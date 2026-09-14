@@ -44,7 +44,22 @@ is the query path. **Every "display-only" row below was checked individually.**
 | G9 | **Work order results come back newest-first** (`start_date DESC`) | `FetchDataQueryHandler.php:124` — INV-18 | Recency is tested only for **Purchase Orders** (`C45137`) and **Vendor Invoices** (`C45138`). WO recency untested; `C44851` ("more relevant first") does not pin ordering | **GAP** | 🟠 Med |
 | G10 | **A loading state while results are being fetched** (input disabled, "Loading…" placeholder) | `GlobalSearch.vue:12-14,147-149` — INV-43 | 3 `loading` hits are unrelated (tab counts, Show-all, the 20-cap). No loading/skeleton case | **GAP** | 🟡 Low |
 
-## 2 · CORRECTLY EXCLUDED — V1 behaviour V2 deliberately changes (do NOT add regression cases)
+## 2 · ~~CORRECTLY EXCLUDED~~ — 🔴 **THIS SECTION WAS WRONG AND IS OVERTURNED (2026-09-14)**
+
+> **🔴 DO NOT USE THE TABLE BELOW AS AN EXCLUSION LIST.** The QA lead ruled on 2026-09-14, verbatim:
+> *"if it is n[o]t working on V2 and works on V1 we need a task ticket for that too … no matter the
+> specs of V2 are disallowing this to happen we have to ensure that V1 things are doable in V2."*
+>
+> **A V2 specification that deliberately removes a V1 capability does not discharge the regression
+> suite — it is exactly the case that must exist.** The specification decides whether the loss is
+> *acceptable*; it never decides whether the loss is *tested*. The customer never read the
+> specification, and "the spec allows it" is no answer to *"this worked in V1 and does not work now."*
+>
+> Every row below is now either **covered by a new case** or **assessed and recorded as no capability
+> loss**, in `build/global-search/v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md`.
+> New cases: **C55658-C55666**. The table is kept, undeleted, as the record of the mistake.
+
+### The original (superseded) table — V1 behaviour V2 deliberately changes
 
 Verified against the V2 delta already recorded in `build/global-search/regression-2026-08-26/REGRESSION-IMPACT-MATRIX.md`:
 
