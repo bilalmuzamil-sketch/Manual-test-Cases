@@ -1828,3 +1828,23 @@ with `POST /api/switch-user {user_id}`; confirm the change by the email and perm
 `localStorage.fe_permissions_wrapper`, never by the call returning 200; end it with a fresh admin
 boot. One browser per role — changing who you are mid-session bounces the app to `/no-location`,
 which looks like a permission result and is not.
+
+### L0094 — a fixture gap detector is blind wherever the write name and the read name differ
+My comparison walked the manifest's create/patch payload keys and checked each against the record.
+It caught `state_or_province`, `address_2` and `telephone` as null. It said nothing about the asset's
+**model**, which is the gap that mattered most: the payload writes `model_name: "Cascadia"` and the
+record reads back `vehicle_model: "1000HS"`. Different key, so my check scored it "field not present,
+skip" — the silent branch — and three cases stayed unrunnable for a reason the detector was
+structurally unable to see.
+
+The seeded asset had been rendering as **"2019 Freightliner ????"** in every result row all along.
+That was the gap, visible in plain sight in my own evidence, and I read past it for hours because I
+was looking for zeros rather than at what the rows actually said.
+
+> **When a check can't evaluate something, that is a THIRD outcome — not a pass.** Count and print
+> the fields you skipped, right beside the ones you compared. "No gaps found" and "no gaps I was able
+> to look for" have to look different on the page, or the second silently masquerades as the first.
+
+Same family as L0083 and L0088 (a cross-check that fails open) and L0092 (a self-contradictory record).
+The recurring shape this pass: **every one of my false readings came from a check that could not run
+and did not say so.**
