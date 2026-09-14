@@ -96,11 +96,11 @@ cases serving no V1 capability.
 
 ---
 
-## 2 · TICKET CANDIDATES — GROUP A: OBSERVED LOSSES, AND V2's OWN SPEC ALSO EXPECTS THEM TO WORK
+## 2 · TICKET CANDIDATES — GROUP A: CONFIRMED BUILD DEFECTS
 
 *(V1 could · V2 cannot · **observed live** on `sv9160.qa.shopview.com`, 2026-09-14.)*
 
-**Every row here is a ticket because V1 could do it and V2 cannot. Full stop.** The extra fact that
+**A1–A4 are tickets because V1 could do it and V2 cannot. Full stop.** **A5 is a straight build failure** — not a V1 comparison at all, but it blocks a case in this suite, so it is carried here rather than lost. The extra fact that
 PRD v1.5 also says these should work is recorded only because it makes the ticket unarguable — it is
 **not** the reason the ticket exists, and its absence would not have removed one.
 
@@ -110,6 +110,22 @@ PRD v1.5 also says these should work is recorded only because it makes the ticke
 | **A2** | An asset cannot be found by its full VIN, though the VIN prefix works | Search `1FUJGLDR9KLZZ4471` → **0 results**; `1FUJGLDR9KL` → returns the asset | §4 indexes **VIN**; §7 requires exact match after normalization. A prefix succeeding while the exact value fails points at a length or tokenisation bug | [C53516](https://shopview.testrail.io/index.php?/cases/view/53516) |
 | **A3** | A vendor cannot be found by email address | Search `parts@kestrelsupply-zzt.com` → **0 results** | §4 explicitly indexes vendor **email** | [C53584](https://shopview.testrail.io/index.php?/cases/view/53584) |
 | **A4** | A stocked inventory part cannot be found by its own part number | **Controlled experiment.** Two parts created minutes apart, same vendor / category / tags; one stocked (qty 25), one not. The stocked part `ZZT-88-4412` IS returned by its description (`Kestrel`, `Brake Chamber`) but **its own part number returns nothing**. Same record, same moment → rules out indexing lag, org scoping and permissions | §4 indexes **part number** for Parts | [C55666](https://shopview.testrail.io/index.php?/cases/view/55666) |
+
+| **A5** | **A work order / part sale cannot be created** | **Reported by the QA lead from the UI: part sales are not being created.** Corroborated from the API: `POST /api/work-orders/create` returns **HTTP 500** for the minimal valid payload (`company_id` alone — the only non-nullable field on `CreateCommand`), with and without `X-Location-ID`. Six request ids captured, listed below. The same endpoint created work orders S9160-17580…17583 **earlier the same day** | This is a build failure, not a product decision — nothing in any specification permits a 500 | *(blocks C55665; no case asserts it)* |
+
+**Request ids for A5** — hand these to engineering, they resolve to the exact stack traces:
+`465ccf15-369a-4217-bd41-4c861f2c6648` · `6e58db29-a136-403e-9140-35b731d34e29` ·
+`8adc4b7b-f5fb-42b3-9b53-a409c31cf970` · `d630fc5e-5017-4c5b-83c4-8401243fcc47` ·
+`d50aeb87-834d-4e0b-9d87-59f9990ca365` · `4bf25333-5d4c-458e-82af-e12a5cae4856`
+
+**What A5 does NOT yet establish, and the execution session should close:** whether the UI failure and
+the API 500 are the same bug, and whether this session's signed-in user simply lacks
+`ROLE_WORK_ORDER_CREATE_AND_EDIT` (which ought to return 403, not 500 — a permission error surfacing as
+a 500 would itself be the defect). **Reproduce it once in the browser and capture the request id from
+the network tab**; that settles both questions. Note also that `/api/work-orders/create` takes **no
+`type` field at all** — it is service-only, and the part sale is produced by the
+`CreateDefaultPartSaleLineOnWorkOrderCreatedEvent` listener, so "part sales are not created" may be a
+failure in that listener rather than in creation itself.
 
 **A1–A4 share one shape: free text matches, identifiers do not.** They are very likely **one root
 cause** in how identifier fields are tokenised or normalised, not four separate bugs. Recommend filing
@@ -182,7 +198,27 @@ confirm if that is acceptable"*):
 
 ---
 
-## 6 · NOT YET FILED — AND WHY
+## 6 · WHO FILES THESE — the execution session, not this one
+
+**QA lead ruling, 2026-09-14:** the tickets are to be filed by **session `manual-test-cases-c2`**
+(session `session_01FWbxRKg4riKCp3gpbbwYzA`, branch `claude/test-execution-defects-cdrjsq`), because
+that session holds the defect-filing skill and the Jira access.
+
+**What that session needs, and it is all in this file:**
+
+| It needs | Where it is |
+|---|---|
+| The 16 candidates, each with V1 evidence, the exact query, and the observed V2 result | §2, §3, §4 above |
+| The ticket shape — issue type, parent, priority, links, title pattern | §5 below |
+| The TestRail case each one maps to | the Case column in every table |
+| The request ids for A5 | §2 |
+| The V1 code citations | every row, and `V1-CAPABILITY-COVERAGE-PROOF.md` |
+| The rule that governs the framing | Standing Rule 109 |
+
+**It must still ask for permission per ask (Rule 62) and clear the Rule 94 admissibility gate on each
+one.** This document is a set of approved candidates, not an instruction to file.
+
+## 6a · NOT FILED BY THIS SESSION — AND WHY
 
 **Nothing in this document has been filed in Jira.** Standing Rule 62 puts a creation hold in place
 (QA lead, 2026-08-10: *"Do not create anything until my next order."*) and makes permission **per
@@ -190,7 +226,7 @@ ask** — an approval for one batch never covers a later one. The 2026-09-14 rul
 order, but a Jira ticket is a write into a real production system and is awkward to unpick, so this
 session is not going to assume it.
 
-**Say the word and all fifteen go in, one at a time, each through the Rule 94 admissibility gate.**
+**This session files none of them.** They go to `manual-test-cases-c2` per §6.
 
 ---
 
@@ -227,7 +263,7 @@ location — V1's part search text was `cp.name` and `cp.part_number` only
 
 | # | What I need | Why it matters |
 |---|---|---|
-| 1 | **One word to file the 15 tickets** (4 defects + 11 PO decisions) | Rule 62 makes permission per-ask; they are written and ready |
+| 1 | **One word to file the 16 tickets** (4 defects + 11 PO decisions) | Rule 62 makes permission per-ask; they are written and ready |
 | 2 | **Fresh QA cookies for `sv9160.qa.shopview.com`** | To re-run the bin-location check and to seed the missing Part Sale that C55665 needs |
 | 3 | **A PO ruling on what "bin location" means** in PRD v1.5 §4 — the Bin Location record, or the part's free-text grid location? | Rule 58 — I will not resolve an ambiguous spec by guessing from the build |
 | 4 | **Tell the execution session** that run 415 is now 157 tests, not 139 | It is mid-handoff and will otherwise work from a stale count |

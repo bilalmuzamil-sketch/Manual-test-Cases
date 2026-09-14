@@ -195,10 +195,44 @@ V1 regression suite, and is recorded here so the finding is not lost.
 (*"Fuel/Water Separator, Cummins QSB | FS19732"*) rather than the P550848 record itself — another
 instance of the identifier-matching problem already reported.
 
-### One thing that produced NO finding, deliberately
+### 🔴 SUPERSEDED — the paragraph below was wrong, see the correction under it
+
+### ~~One thing that produced NO finding, deliberately~~
 
 Creating a part sale through `POST /api/work-orders/create` returned **HTTP 500** (request ids
 `d630fc5e…`, `d50aeb87…`, `8adc4b7b…`). **A control with `type: service` returned 500 as well**, so the
 failure is not part-sale-specific and is most likely my payload missing a required field rather than a
 build defect. **No defect is claimed from it** — the instrument was not proved, so there is no finding.
 The part sale that C55665 needs must be created through the UI; the case's preconditions already say so.
+
+### CORRECTION — work order / part sale creation IS a defect (A5)
+
+**The reasoning in the struck-through paragraph above is backwards and I am correcting it.** I argued
+that because the `type: service` control ALSO returned 500, the fault must be my payload. That is the
+wrong inference: a control failing the same way means **creation is broken for both types**, which makes
+the finding stronger, not weaker.
+
+**The QA lead independently reported that part sales are not being created in the UI**, which prompted
+the re-check. Done properly this time, from the endpoint's own code rather than by guessing:
+
+- `POST /api/work-orders/create` (`CreateController.php:19`) takes a `CreateCommand` whose **only
+  non-nullable constructor field is `company_id`** — so `{"company_id": "..."}` is the complete minimal
+  valid payload.
+- It returns **HTTP 500**, with and without `X-Location-ID`, for the seeded customer.
+- **The same endpoint created work orders S9160-17580 to S9160-17583 earlier the same day.**
+- Six request ids captured: `465ccf15-369a-4217-bd41-4c861f2c6648`,
+  `6e58db29-a136-403e-9140-35b731d34e29`, `8adc4b7b-f5fb-42b3-9b53-a409c31cf970`,
+  `d630fc5e-5017-4c5b-83c4-8401243fcc47`, `d50aeb87-834d-4e0b-9d87-59f9990ca365`,
+  `4bf25333-5d4c-458e-82af-e12a5cae4856`.
+
+**Still open, and cheap to close:** whether the UI failure and the API 500 are one bug, and whether the
+signed-in user lacks `ROLE_WORK_ORDER_CREATE_AND_EDIT` — which should return 403, not 500, so a
+permission error surfacing as a 500 would itself be the defect. One browser reproduction with the
+network tab open settles both.
+
+**A pointer for engineering:** `/api/work-orders/create` has **no `type` parameter** — it creates
+service work orders only, and the part sale is produced afterwards by
+`CreateDefaultPartSaleLineOnWorkOrderCreatedEvent`. So "part sales are not being created" may be a
+failure in **that listener** rather than in creation itself.
+
+Filed as candidate **A5** in `v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md`.

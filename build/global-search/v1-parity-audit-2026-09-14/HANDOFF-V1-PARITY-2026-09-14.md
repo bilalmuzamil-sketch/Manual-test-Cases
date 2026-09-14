@@ -105,14 +105,16 @@ why — so you can overrule any of them rather than have the judgement made invi
 
 ---
 
-## 5 · THE 15 TICKETS, WRITTEN AND WAITING
+## 5 · THE 16 TICKETS — WRITTEN, AND HANDED TO `manual-test-cases-c2`
 
-`PO-TASK-TICKET-CANDIDATES.md` — **nothing filed.** Rule 62 makes Jira permission per-ask.
+`PO-TASK-TICKET-CANDIDATES.md` — **nothing filed by this session.** Per your ruling they go to
+`manual-test-cases-c2`, which has the filing skill and the Jira access.
 
-- **4 observed defects**, all reproduced live on the QA branch: asset unit number, full VIN (the
+- **5 confirmed build defects.** Four reproduced live on the QA branch: asset unit number, full VIN (the
   11-character prefix works while the complete VIN fails), vendor email, and a stocked part's own part
-  number. They share one shape — **free text matches, identifiers do not** — and are very likely one
-  root cause rather than four bugs.
+  number. Those four share one shape — **free text matches, identifiers do not** — and are very likely
+  one root cause rather than four bugs. The fifth is **A5, work order / part sale creation returning
+  500** (§6b).
 - **11 PO decisions**: catalogue-only parts, customer postal code and website, contact job title,
   vendor postal code and state, licence plate, plus the four in the table above.
 
@@ -123,11 +125,16 @@ most common search in this product.
 
 ## 6 · YOUR FOUR QUESTIONS, ANSWERED
 
-**1. "Are you referring to file those tickets in Jira?" — Yes.** Fifteen tickets in Jira under epic
-SV-9160: four `Story Defect` for the confirmed build defects, eleven `Task` for the PO to rule on. Each
-parented to its owning story (never the epic — an Epic parent is rejected HTTP 400), priority `Medium`,
-`relates to` the owning story. They are written; I have filed none, because Rule 62 makes the permission
-per-ask.
+**1. "Are you referring to file those tickets in Jira?" — Yes, and you have since ruled that
+`manual-test-cases-c2` files them, not me.** Sixteen tickets under epic SV-9160: five `Story Defect` for
+the confirmed build defects, eleven `Task` for the PO to rule on. Each parented to its **owning story**
+(never the epic — an Epic parent is rejected HTTP 400), priority `Medium`, `relates to` the owning story.
+
+**Everything that session needs is inside `PO-TASK-TICKET-CANDIDATES.md`** — each candidate's V1
+evidence, the exact query that reproduces it, the observed V2 result, the TestRail case it maps to, the
+ticket shape, and the request ids for the new defect A5. Just send it that file. It should still ask you
+per ask (Rule 62) and clear the Rule 94 gate on each one; the file is a set of **approved candidates**,
+not an instruction to file.
 
 **2. Cookies — received and used.** Stored at `/tmp/qa/cookies.json`, `chmod 600`, never committed
 (Rule 82). They work: `GET /api/search` returns 200, and V1's old endpoint
@@ -168,10 +175,33 @@ nothing was lost. It **is** a V2 defect against V2's own spec (§4 indexes bin l
 30-second index refresh), so it belongs to the **V2 functional suite** — not mine. Recorded in full at
 `qa-seed-2026-09-14/EARLY-SIGNALS-FROM-SEED-VERIFICATION.md` so it does not get lost between the two.
 
-**One thing I deliberately did NOT report.** Creating the part sale C55665 needs, via
-`POST /api/work-orders/create`, returned HTTP 500. I ran a control with `type: service` — **also 500**.
-So the failure is not part-sale-specific and is most likely my payload missing a field, not a build
-defect. **No finding claimed.** The part sale needs creating through the UI; the case already says so.
+### 6b · A5 — WORK ORDER / PART SALE CANNOT BE CREATED (new defect candidate)
+
+**I had written this off as my own payload. Your report that part sales are not being created changes
+that, and I went back and proved it properly.**
+
+I read the endpoint's own code rather than guessing. `POST /api/work-orders/create`
+(`CreateController.php:19`) takes a `CreateCommand` whose **only non-nullable field is `company_id`** —
+so `{"company_id": "..."}` is the complete minimal valid payload. It returns **HTTP 500**, with and
+without `X-Location-ID`, and **the same endpoint created work orders S9160-17580 to S9160-17583 earlier
+the same day.** Six request ids are captured in the ticket file — hand them to engineering and they
+resolve to the exact stack traces.
+
+**Two things this does not yet settle, and the execution session can close both in one minute:**
+whether your UI failure and my API 500 are the same bug, and whether the signed-in user simply lacks
+`ROLE_WORK_ORDER_CREATE_AND_EDIT` — which *ought* to return 403, not 500, so a permission error
+surfacing as a 500 would itself be the defect. **Reproduce it once in the browser and grab the request
+id from the network tab.**
+
+**One detail worth passing to engineering:** `/api/work-orders/create` has **no `type` parameter at
+all** — it only makes service work orders, and the part sale is produced afterwards by the
+`CreateDefaultPartSaleLineOnWorkOrderCreatedEvent` listener. So *"part sales are not being created"* may
+be a failure in **that listener** rather than in creation itself. That is a much narrower place for a
+developer to look.
+
+**Correction to what I told you earlier:** I said the `type: service` control also returning 500 meant
+the fault was my payload. That inference was wrong — the control failing the same way means **creation
+is broken for both types**, which makes it a stronger finding, not a weaker one. I read it backwards.
 
 ---
 
@@ -190,8 +220,8 @@ PRD v1.5 §4 does not say which it indexes.
 
 | # | What I need | Why it matters | Blocks |
 |---|---|---|---|
-| 1 | **One word to file the 15 tickets** | Rule 62 permission is per-ask; they are written and ready to go one at a time | The PO cannot rule on what has not been raised |
-| 2 | **Create one part sale** for `ZZAUTOTEST Bridgeport Hauling` through the UI | The API path returns 500 for me on every work-order type, so it is my payload, not a bug worth chasing | C55665 only |
+| 1 | **Send `PO-TASK-TICKET-CANDIDATES.md` to `manual-test-cases-c2`** (branch `claude/test-execution-defects-cdrjsq`) | It has the filing skill and the Jira access; everything it needs is in that one file | All 16 tickets |
+| 2 | **Have `manual-test-cases-c2` reproduce A5 in the browser** and capture the request id from the network tab | It settles whether your UI failure and my API 500 are one bug, and whether a permission error is surfacing as a 500 | C55665, and the precision of the A5 ticket |
 | 3 | ~~The bin-location ruling~~ — **answered: bin = grid location.** Question closed, retest done | — | — |
 | 4 | **Tell the execution session run 415 is now 157 tests**, not 139 | It is mid-handoff and will otherwise work from a stale count and think cases are missing | Its run |
 | 5 | **Carry Rule 109 onto the canonical branch** | This branch is superseded; a rule that lives only here is a rule the next session never sees | Every future V1→V2 comparison |
