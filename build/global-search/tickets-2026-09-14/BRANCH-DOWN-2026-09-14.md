@@ -23,6 +23,18 @@ credentials. The branch and its API are returning gateway errors.
 
 The API was already degrading while the modal said "Search unavailable"; it has since failed outright.
 
+## Re-checked 13:18 UTC — still down
+
+| Host | 12:30 | 13:18 |
+|---|---|---|
+| `app.shopview.com` (control) | 200 | **200** |
+| `sv9160.qa.shopview.com` | 502 | **502** |
+| `sv9160api.qa.shopview.com` | 503 | **502** |
+
+**The branch has now been unusable for roughly 90 minutes** — since about 11:46 when the search modal
+first said "Search unavailable", and hard gateway errors since about 12:24. Production answers
+normally throughout, on the same connection, so this is the branch and not the route to it.
+
 ## What this does and does not affect
 
 - **The eight Story Defects already filed are unaffected.** Their evidence was captured while search
@@ -36,5 +48,13 @@ The API was already degrading while the modal said "Search unavailable"; it has 
 
 ## What happens next
 
-A check-in is scheduled. When the branch answers again: capture the six scope-tab pairs, file the five
-Story Defects under SV-9163, and re-confirm the eight already filed while running the cases.
+**The four findings the QA lead reported are no longer waiting on the branch** — he supplied a screen
+recording, and they were filed from it as SV-10014, SV-10015, SV-10016 and SV-10017 (see
+`FILED-TAB-DEFECTS.md`). So the outage now blocks only:
+
+1. **Re-checking C3** — whether a mid-word fragment still finds a customer. Unresolved either way.
+2. **The unit-number search** (`ZZT-4471`), which is not among the QA lead's four and has no evidence.
+3. **Running the 58-case regression suite**, which was already waiting for the quota reset.
+4. **Re-confirming the eight filed Story Defects** while running those cases.
+
+A check-in is re-armed. Nothing will be filed from a zero taken while the branch is in this state.
