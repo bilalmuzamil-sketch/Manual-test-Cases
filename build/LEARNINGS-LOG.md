@@ -1743,3 +1743,22 @@ had not bitten this run, and 15 re-runs were not needed to establish that.
 > **A fault in the instrument does not automatically invalidate the readings.** Work out what the
 > fault would LOOK like in the data, then go and see whether it is there. That is the difference
 > between correcting a result and re-doing a pass.
+
+### L0090 — a case that says "create a record, then search for it" is not a search case
+The execution plan parsed each case's steps for "type/search …: <value>" and ran the queries. That
+works for "find the seeded customer by postal code". It is silently wrong for **C53586, "a newly
+created customer is findable within 30 seconds"**: the parser lifted the example name out of the
+steps, searched it, and found unrelated records that merely resembled it. Nothing by that name had
+ever been created, so the reading — whatever it was — said nothing whatsoever about the index refresh
+window the case exists to test.
+
+Same shape in **C53588** (ranking): the displayed order is meaningless until it is compared against
+the update times it is supposed to reflect.
+
+> **Before automating a case, ask what the case is actually asking — not what its steps look like.**
+> A step that begins *create*, *switch*, *sign in as*, *wait*, *compare* is a precondition the harness
+> must satisfy, not a string to extract a query from. A query extractor will happily produce a
+> confident reading for a case it never ran.
+
+The tell: a case whose Expected mentions a **time window, an ordering, a role, or a second record**
+almost never reduces to one query.
