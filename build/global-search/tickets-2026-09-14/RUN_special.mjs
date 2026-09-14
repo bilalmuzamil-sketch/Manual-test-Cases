@@ -577,13 +577,20 @@ await run(45152,'Switching location refreshes results to the new location',async
       if(!b) return false; b.click(); return true;});
     if(!steps.menu) return {...steps, picked:false};
     await page.waitForTimeout(2500);
+    // "Change Location" is a DROPDOWN, not a menu row: its current value is the location name. The
+    // earlier attempt clicked the words next to it, which does not open anything. Click the dropdown
+    // itself, wait for its option list, then pick.
     steps.changeLocation=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-      const row=[...document.querySelectorAll('div,button,a,[role=menuitem],.q-item')].filter(vis)
-        .filter(e=>/Change Location/i.test(e.innerText||'') && (e.innerText||'').length<90)
-        .sort((a,b)=>(a.innerText||'').length-(b.innerText||'').length)[0];
-      if(!row) return false; (row.closest('button,[role=button],a,.q-item')||row).click(); return true;});
+      const sel=[...document.querySelectorAll('.q-select,label.q-field')].filter(vis)
+        .filter(e=>/Staging [A-Za-z ]+- ?\d+/.test(e.innerText||''))[0];
+      if(!sel) return false; sel.click(); return true;});
     if(!steps.changeLocation) return {...steps, picked:false};
     await page.waitForTimeout(3000);
+    // the option list opens in its own popup, separate from the profile menu
+    steps.optionsSeen=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      return [...document.querySelectorAll('[role=option],.q-item')].filter(vis)
+        .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim().slice(0,50))
+        .filter(t=>/Staging /.test(t)).slice(0,10);});
     steps.picked=await page.evaluate((n)=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
       const opt=[...document.querySelectorAll('[role=option],.q-item,li,button,div,label')].filter(vis)
         .filter(e=>(e.innerText||'').replace(/\s+/g,' ').trim().startsWith(n) && (e.innerText||'').length<90)
