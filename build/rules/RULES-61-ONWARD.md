@@ -3860,8 +3860,10 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     capability is LOST rather than REROUTED** (Skill 17 §6.0 draws that distinction), it feeds Rule 94's
     admissibility gate (each loss becomes an approved ticket candidate, not a filed ticket), it inherits
     Rule 62's per-ask permission for the filing, and it is bound by Rule 104 (a negative finding must
-    first prove the instrument worked). Operator forms: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
-    §6.0 and `build/skills/V1-BASELINE-FROM-SOURCE.md`. **Worked example — NOT ON THIS BRANCH:** it lives
+    first prove the instrument worked). Operator forms: **`build/skills/19-V1-V2-PARITY-SUITE.md` (the end-to-end pipeline, and the one to
+    open first)**, with `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md` §6.0 and
+    `build/skills/V1-BASELINE-FROM-SOURCE.md`. Tools: `build/testing-tools/parity_coverage_proof.py`
+    and `build/testing-tools/parity_source_audit.py` — both must PASS before the suite is declared done. **Worked example — NOT ON THIS BRANCH:** it lives
     at `build/global-search/v1-parity-audit-2026-09-14/` on `origin/claude/global-search-v1-baseline-6ax9ul`
     (that branch is superseded on SHARED files and must never be merged here — read the folder, do not
     merge the branch). It carries the coverage proof, the ticket candidates and the audit scripts.

@@ -1,0 +1,41 @@
+{
+ "suite_id": 1,
+ "section_id": 6769,
+ "run_id": 415,
+ "baseline": "ShopView/shopview @ 55767168 (develop; Global Search FE+BE byte-identical to main d9ce0e5)",
+ "commit": "55767168",
+ "v1_files": [
+  "FetchDataQueryHandler.php",
+  "useGlobalSearch.ts",
+  "GlobalSearch.vue",
+  "routingService.ts",
+  "FetchDataController.php",
+  "DesktopMenu.vue"
+ ],
+ "v2_doc_marker": "Product Requirements specification",
+ "absence_markers": [
+  "ABSENCE of any feature flag"
+ ],
+ "capabilities": [
+  {
+   "kind": "field",
+   "capability": "WO/PS - plain (raw) number",
+   "evidence": "FetchDataQueryHandler.php:96 wo.raw_number",
+   "cases": [
+    55672
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "WO/PS - formatted number",
+   "evidence": "FetchDataQueryHandler.php:98-111 wo.number",
+   "cases": [
+    53579
+   ]
+  },
+  {
+   "_note": "... one row per V1 capability; 65 on the Global Search pass"
+  }
+ ],
+ "_README": "Template for parity_coverage_proof.py and parity_source_audit.py (Skill 19). Replace every value. 'capabilities' is the list EXTRACTED BY SCRIPT from the V1 source at 'commit' - never typed from memory. Each row needs a code citation in 'evidence' (Rule 109a). 'absence_markers' is for a capability that IS an absence (e.g. no feature flag exists in V1): there is no file to cite and inventing one would be worse."
+}
