@@ -220,9 +220,18 @@ await run(45154,'Selecting the record you are already on does not re-navigate',a
   if(!cust) return {control:'could not find the customer row to open -- nothing concluded'};
   const u0=page.url();
   await page.evaluate(t=>{const e=document.querySelector(`[data-test-id="${t}"]`); e&&e.click();},cust.tid);
+  // capture the recent list BEFORE re-selecting: "was it re-added to the top" cannot be answered
+  // from an after-shot alone, because opening it the first time legitimately puts it there.
   await page.waitForTimeout(6000);
   const uOnRecord=page.url();
   const controlNavigated=u0!==uOnRecord;
+  const readRecent=async()=>{ await openModal();
+    await page.fill('[data-test-id="search_modal_input"]',''); await page.waitForTimeout(3500);
+    return page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!d) return null;
+      return [...d.querySelectorAll('[data-test-id^="search_result_row_"]')].slice(0,8)
+        .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim().slice(0,70));});};
+  const recentBefore=await readRecent(); await closeModal();
   // now select the SAME record while already on it
   await openModal(); m=await type2('Bridgeport');
   const same=m&&m.rows.find(r=>r.type==='customers');
@@ -233,16 +242,14 @@ await run(45154,'Selecting the record you are already on does not re-navigate',a
     uAfter=page.url();
     reloaded=await page.evaluate(()=>typeof window.__navMark==='undefined'); }
   // and whether it was pushed back to the top of recent activity
-  await openModal(); await page.fill('[data-test-id="search_modal_input"]',''); await page.waitForTimeout(3500);
-  const recent=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-    const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!d) return null;
-    return [...d.querySelectorAll('[data-test-id^="search_result_row_"]')].slice(0,6)
-      .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim().slice(0,70));});
+  const recent=await readRecent();
   await shot('C45154-recent-after-reselect');
   return {controlNavigated, urlOnRecord:uOnRecord.replace(APP,''),
     urlAfterReselect:uAfter&&uAfter.replace(APP,''),
     sameRecordReselected:!!same, pageReloaded:reloaded,
-    didNotReNavigate:uAfter===uOnRecord && reloaded===false, recentActivityTop:recent};});
+    didNotReNavigate:uAfter===uOnRecord && reloaded===false,
+    recentBefore, recentAfter:recent,
+    recentUnchanged: JSON.stringify(recentBefore)===JSON.stringify(recent)};});
 
 // ---------------------------------------------------------------- C53586 new customer findable
 await run(53586,'A newly created customer is findable within 30 seconds',async()=>{
