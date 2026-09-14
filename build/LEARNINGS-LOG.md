@@ -1848,3 +1848,36 @@ was looking for zeros rather than at what the rows actually said.
 Same family as L0083 and L0088 (a cross-check that fails open) and L0092 (a self-contradictory record).
 The recurring shape this pass: **every one of my false readings came from a check that could not run
 and did not say so.**
+
+### L0095 — never judge from a results file a run is still writing
+I read `RUN-RESULTS2.json` while the re-run was mid-pass and wrote a **Failed** verdict for C53604
+("a second address line is not searchable") from a record that had not been written yet. The next
+line of the run log showed the case returning the customer. The verdict was wrong for about four
+minutes and only got caught because the log and my own conclusion disagreed and I went back.
+
+The executor saves after **every case**, which is right for crash-resilience and exactly what makes
+the file readable-but-incomplete at any moment.
+
+> **Before judging from a state file, confirm the writer has finished** — check the process is gone,
+> or that the record carries a completion marker. A partial file does not look partial; it looks like
+> an answer.
+
+Cheap fix, worth building in: have the pass write `"complete": true` (and the case count) at the end,
+and refuse to judge a file without it.
+
+### L0096 — seeding the missing value is what tells a real miss from a data gap, and it cuts both ways
+The customer's state, second address line and phone were all written in **one save**. Afterwards:
+searching the state finds the customer, searching the second address line finds the customer, and
+searching the phone still finds nothing.
+
+That single fact settles three cases at once and is far stronger than any of them alone:
+- the save landed (two of the three now work),
+- the search index caught up (same save, same moment),
+- so the phone miss is **real**, not lag and not a bad write.
+
+Two of the three "findings" evaporated on contact with data; the third got a control no amount of
+re-running could have produced.
+
+> **Seeding the value is not a chore that precedes the test — it often IS the test.** A negative with
+> the value absent is worthless. The same negative, beside a sibling field written in the same
+> transaction that now works, is close to conclusive.
