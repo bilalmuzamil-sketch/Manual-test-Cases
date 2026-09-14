@@ -1644,3 +1644,43 @@ project. Conversion is UI-only (already recorded for Product Area). **Re-create 
 `parent: <owning story>` at creation time and retire the original**; `DELETE /issue/{key}` answered
 **403**, so retire by transition (`OBSOLETE`, id 8 in this project) plus a comment naming the
 replacement, never by deletion.
+
+### L0082 — the search modal REMEMBERS its scope tab across close/reopen, so the "All" view must be selected, never assumed
+Chasing L0079 (a count is not a result) I built the executor to click the scope tab each case names.
+That click **persists**: closing the modal with Escape and reopening it lands on the tab the previous
+search left selected. Every case that ran after a scoped one therefore read its "All" view *through
+someone else's filter* — `Marlene` came back as a single Asset row beside a strip counting 16 results
+across 5 categories, and two exact-identifier queries came back as flat zeros. All three were about to
+be written up as defects; all three are clean.
+
+The tell was there and I nearly explained it away: **the strip's counts and the rendered rows
+disagreed**. A modal that counts 16 and renders 1 is not reporting a product fact, it is reporting
+that I am looking at the wrong pane.
+
+> **Reset every view-state you depend on at the START of each observation, and never inherit one from
+> the observation before it.** Scope tabs, filters, sort orders, pagination, date ranges and the
+> "remember my last choice" conveniences all survive a close/reopen. If a reading depends on which
+> pane is showing, *select that pane explicitly* as part of the observation.
+
+Encoded in `RUN_exec2.mjs`: every query selects **All** before the All-view is read, and the tab the
+modal *opened* on is recorded as `openedOnTab`, so the carried-over scope is visible evidence rather
+than a thing quietly worked around.
+
+### L0083 — read the app's OWN network response; a cross-check you issue yourself can answer a different question
+I cross-checked the screen against `fetch('/api/search?q=…')` issued inside the page. The API lives on
+a **separate origin** (`<branch>api.qa.shopview.com`), so that relative URL resolved against the
+front-end host and returned the SPA's `index.html`. My parser saw `<!doctype` and recorded
+`{error: …}` — and the comparison then *silently compared nothing* and reported agreement. A
+cross-check that fails open is worse than none: it manufactures confidence.
+
+> **Attach a response listener and read the answer the app already got, rather than asking the
+> question again yourself.** It needs no auth, no origin guess and no extra load, and it is by
+> construction the same answer the pixels were rendered from. And **a cross-check that cannot run must
+> fail LOUD** — never degrade to "no difference found".
+
+### L0084 — a visibility filter turns "further down the list" into "missing"
+My row reader filtered elements by `getBoundingClientRect().width>2 && height>2`. The results render
+inside a scrollable body (`search-modal__body`, scrollHeight 842 vs clientHeight 668), so rows below
+the fold are real, mounted, and correctly reported by the DOM. Filtering by geometry is right for
+"is this control clickable" and **wrong for "does this record appear"** — the user scrolls. Count rows
+from the DOM unfiltered, and keep the geometry only as an attribute on each row.
