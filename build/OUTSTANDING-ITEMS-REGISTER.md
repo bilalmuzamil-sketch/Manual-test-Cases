@@ -197,3 +197,53 @@ answerable without opening anything, in
 
 **None of these blocks anything else**, and none blocks the Invoice Refresh run he wants next — that
 one is simply queued behind this suite completing, as he instructed.
+
+---
+
+# B · GLOBAL SEARCH — TEN THINGS ONLY YOU CAN DECIDE (2026-09-14)
+
+We have re-tested everything people could do with the search box in the old version. The everyday
+things all still work. **Ten things that worked before now return nothing.** None is broken in the
+sense of crashing or erroring — the record is there and search no longer looks at that piece of
+information. Each test says, in its own wording, that this is a decision for you rather than a fault
+to raise, so none has been raised.
+
+**The decision on each is the same one line: should this still work, yes or no?** If the answer is
+yes for any of them, that becomes a piece of work for engineering. If no, we close the question and
+the test records your ruling.
+
+| | What a person can no longer do | Why it matters |
+|---|---|---|
+| 1 | Find a vehicle by its **number plate** | Often the only thing written down when a vehicle is booked in |
+| 2 | Find a customer or supplier by **postcode** | How you pick the right one out of several similar names |
+| 3 | Find a customer by **its own phone number** | A supplier's phone number still works, so as it stands it is inconsistent |
+| 4 | Find a supplier by the **county** it is in | Used when someone knows roughly where a supplier is but not its name |
+| 5 | Find a company by a **contact's job title** | Less common, but it worked before |
+| 6 | Find a **part that has never been stocked** | **The biggest one** — every catalogue part used to be searchable, now only stocked ones are. This is the one a customer is most likely to report |
+| 7 | Type a **job's status** and get those jobs | How a dispatcher pulled up all the estimates at once |
+| 8 | Find a vehicle by **part of its chassis number** | A technician reads the short code off the windscreen; the whole number works, part of it does not |
+| 9 | Get the **recently-viewed list back** when a search finds nothing | A fruitless search now leaves you at a dead end with nothing to click |
+| 10 | Find a record by a **fragment from the middle of a word** | It works in some places and not others, which is the confusing part |
+
+**If you say nothing:** the ten tests stay open and the suite cannot be handed to a manual tester as
+finished. Nothing else is held up by them — everything else has been tested and recorded.
+
+**If you would rather tick boxes than read a table**, say so and this goes out as a sheet with the
+options already filled in.
+
+## Also on Global Search
+
+- **A test written to expect failure now passes.** Finding a part by its part number was expected to
+  fail on this build and does not. Something was fixed; worth knowing before anyone re-reads the
+  ticket about it.
+- **One ticket already raised may no longer hold.** It says a part is counted but missing from the
+  parts section; today that part does appear there. The test data was rebuilt after that recording, so
+  it may be different data rather than a fix. Not touched, as you asked.
+- **Three checks wait on part sales**, which cannot be created on this branch — the problem you
+  already raised.
+
+---REFERENCE---
+Run 415, Global Search V2 regression set, QA branch sv9160, executed 14 September 2026.
+1 C53516 · 2 C53582/C53585 · 3 C55662 · 4 C53606 · 5 C53603 · 6 C53601 · 7 C55658 · 8 C55669 ·
+9 C55679 · 10 C55660. Expect-fail now passing: C55666. Ticket to re-check: SV-10016.
+Part sales blocked by SV-10031, affecting C55665, C45153, C45151.
