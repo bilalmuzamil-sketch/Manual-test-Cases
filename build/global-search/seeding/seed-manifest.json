@@ -1,0 +1,312 @@
+{
+ "_README": "DECLARATIVE SEED MANIFEST. One entry per record the suite needs. The seeder is FIND-OR-CREATE and idempotent: run it after every redeploy and it restores only what is missing, then writes the live ids to seed-state-live.json. TO ADD DATA FOR A NEW TEST CASE: add an entry here and add the case id to its 'serves'. Never edit the seeder for a new record.",
+ "environment": {
+  "app": "sv9160.qa.shopview.com",
+  "api": "sv9160api.qa.shopview.com",
+  "workplace_name_hint": "Heavy Duty",
+  "tag": "ZZAUTOTEST"
+ },
+ "records": [
+  {
+   "key": "customer",
+   "type": "Customer",
+   "serves": [
+    55667,
+    53602,
+    53582,
+    53604,
+    55662,
+    53583,
+    53578,
+    53581,
+    55665,
+    55660,
+    55671,
+    55673,
+    55675
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZAUTOTEST Bridgeport Hauling",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZAUTOTEST Bridgeport Hauling",
+     "address": "1450 Kestrelway Industrial",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9931",
+     "phone": "(419) 555-0143",
+     "country_code": "US",
+     "email": "dispatch@bridgeporthauling-zzt.com"
+    }
+   },
+   "patch": {
+    "endpoint": "/api/customers/change",
+    "fields": {
+     "website": "bridgeporthauling-zzt.com",
+     "address_2": "Dock 7B",
+     "telephone": "(419) 555-0143"
+    },
+    "_why": "website and address_2 are NOT on the create payload (proved 2026-09-10); without this C53583 and half of C53582 are unrunnable"
+   },
+   "verify": [
+    "name",
+    "city",
+    "postal_code",
+    "website"
+   ]
+  },
+  {
+   "key": "asset",
+   "type": "Vehicle",
+   "serves": [
+    53580,
+    55669,
+    53516,
+    53605,
+    55664,
+    53581,
+    55661
+   ],
+   "depends_on": "customer",
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "unit",
+    "value": "ZZT-4471",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Freightliner",
+     "model_name": "Cascadia",
+     "year": "2019",
+     "unit": "ZZT-4471",
+     "vin": "1FUJGLDR9KLZZ4471",
+     "licence_plate": "OHZZT471"
+    },
+    "inject": {
+     "company_id": "customer"
+    }
+   },
+   "verify": [
+    "unit",
+    "vin",
+    "licence_plate",
+    "year"
+   ]
+  },
+  {
+   "key": "vendor",
+   "type": "Vendor",
+   "serves": [
+    55668,
+    53584,
+    53585,
+    53606,
+    55663,
+    53604,
+    55661
+   ],
+   "unique": true,
+   "_unique_why": "a double run created TWO vendor records with the same name on 2026-09-14, which made global search look like it was returning duplicates. The seeder now refuses to create a second one.",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZAUTOTEST Kestrel Parts Supply",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZAUTOTEST Kestrel Parts Supply",
+     "address_1": "88 Halbrook Trace",
+     "city": "Marnston",
+     "state_or_province": "Ohio",
+     "postal_code": "43055-2210",
+     "telephone": "(614) 555-0188",
+     "email": "parts@kestrelsupply-zzt.com",
+     "credit_term": 30,
+     "credit_limit": 10000
+    },
+    "resolve": {
+     "tax_id": "/api/taxes"
+    },
+    "_why_resolve": "add-vendor REQUIRES tax_id; take the first tax from GET /api/taxes"
+   },
+   "verify": [
+    "name",
+    "city",
+    "email"
+   ]
+  },
+  {
+   "key": "part_catalogue_only",
+   "type": "CataloguePart",
+   "serves": [
+    53601,
+    45153
+   ],
+   "must_not_be_stocked": true,
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZT-77-3300",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZAUTOTEST Airline Coupler Vernway",
+     "part_number": "ZZT-77-3300",
+     "tags": []
+    },
+    "_required": "name, part_number, tags - proved live 2026-09-14 from the 400 body"
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "part_stocked",
+   "type": "InventoryPart",
+   "serves": [
+    55666,
+    53607,
+    55659,
+    45153,
+    55661
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZT-88-4412",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZAUTOTEST Brake Chamber Kestrel",
+     "part_number": "ZZT-88-4412",
+     "tags": []
+    }
+   },
+   "stock": {
+    "endpoint": "/api/inventory/parts/create",
+    "quantity": 25,
+    "_required": "catalog_part_id, category_id, quantity, cost, tags, bins - proved live 2026-09-14",
+    "resolve": {
+     "category_id": "/api/parts-catalogue/categories-list",
+     "bin": "/api/inventory/bin-locations"
+    },
+    "_why": "V2 searches Parts (Inventory). Catalogue-only will NOT be found, so this part MUST carry stock or C55666/C53607 fail for a data reason."
+   },
+   "verify": [
+    "part_number",
+    "quantity"
+   ]
+  },
+  {
+   "key": "work_orders",
+   "type": "WorkOrder",
+   "count": 4,
+   "serves": [
+    53578,
+    53579,
+    55672,
+    55658,
+    53588,
+    55661,
+    45153
+   ],
+   "depends_on": "customer",
+   "find": {
+    "mode": "page",
+    "list": "/api/work-orders",
+    "coll": "work_orders",
+    "field": "number",
+    "prefix": "S9160-1758",
+    "control": "S2-4219",
+    "_why_page": "?search= on /api/work-orders is BROKEN - it returns 100 unfiltered rows for a real target and ZERO for a control that exists (measured 2026-09-14). Never trust it."
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {},
+    "inject": {
+     "company_id": "customer"
+    }
+   },
+   "runtime_values": [
+    "number"
+   ],
+   "_runtime_why": "numbers are assigned by the system and depend on the workplace. C53579, C55672 and C55658 read them from seed-state-live.json - never hard-code one",
+   "\ud83d\udd34 BLOCKED_BY": "A5 - POST /api/work-orders/create returns HTTP 500 on a proven-live session (requestIds 888fcd13, 0ed4a340). Until A5 is fixed this record CANNOT be seeded."
+  },
+  {
+   "key": "part_sale",
+   "type": "PartSale",
+   "serves": [
+    55665,
+    45153,
+    45151
+   ],
+   "depends_on": "customer",
+   "find": {
+    "mode": "page",
+    "list": "/api/part-sales",
+    "coll": "collection",
+    "field": "number",
+    "prefix": "P",
+    "control": null
+   },
+   "\ud83d\udd34 BLOCKED_BY": "A5 - part sales are produced by CreateDefaultPartSaleLineOnWorkOrderCreatedEvent after a work order is created, so the same 500 blocks this too",
+   "manual_fallback": "Create one part sale through the UI for ZZAUTOTEST Bridgeport Hauling and re-run the seeder; it will find and record it."
+  }
+ ],
+ "environment_setup": {
+  "_README": "Not records - environment state the permission and scoping cases need. Recipes from build/APP-ACTIONS-PLAYBOOK.md.",
+  "second_location": {
+   "serves": [
+    45151,
+    45152
+   ],
+   "status": "ALREADY EXISTS",
+   "detail": "GET /api/staff/my-workplaces returns Staging Heavy Duty - 9919 and Staging Lethbridge - 4310. Switch with POST /api/iam/change-location {workplace_id, workplace_timezone}."
+  },
+  "roles": {
+   "serves": [
+    45142,
+    45143,
+    45144,
+    45145,
+    45146,
+    45147,
+    45149,
+    45159
+   ],
+   "recipe": "GET /api/staff?limit=200 lists role_label per staff - find a holder and POST /api/switch-user {user_id}. No holder: POST /api/iam/create {email,firstName,lastName,roleId,departments,workplaceId}. Reset to template FIRST (Rule 26) via POST /api/roles/{id}."
+  },
+  "second_organization": {
+   "serves": [
+    45150
+   ],
+   "status": "DEFERRED by the QA lead - raise only when everything else is done"
+  }
+ },
+ "_find_note": "Each record declares HOW to find it, because ?search= works on some list endpoints and silently matches nothing on others. Where a 'control' is given the seeder searches for it FIRST: if a record that is known to exist comes back empty, the probe is broken and any 'missing' verdict is discarded (Rule 104). Measured 2026-09-14: search WORKS on customers, vendors, vehicles, inventory parts; it is BROKEN on work-orders."
+}

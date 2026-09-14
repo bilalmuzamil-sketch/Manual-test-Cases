@@ -1,0 +1,126 @@
+{
+ "when_utc": "2026-09-14T160406Z",
+ "environment": {
+  "app": "sv9160.qa.shopview.com",
+  "api": "sv9160api.qa.shopview.com",
+  "workplace_name_hint": "Heavy Duty",
+  "tag": "ZZAUTOTEST"
+ },
+ "live_ids": {
+  "customer": "a1d08451-0214-41a4-983f-7f878ff7bcf0",
+  "asset": "81c09d26-9c5b-494b-ae3d-e4aa2ba56f77",
+  "vendor": [
+   "0be71457-edf2-4269-a9d6-7ab1c49cf577",
+   "0ff19eb4-5078-4ed8-969d-4943f291f906"
+  ],
+  "part_catalogue_only": "7aeffde7-77c1-45bd-b2ae-6d9e1c501946",
+  "part_stocked": "63a300f0-d45a-4858-ae9b-78006e145406"
+ },
+ "records": [
+  {
+   "key": "customer",
+   "state": "PRESENT",
+   "ids": [
+    "a1d08451-0214-41a4-983f-7f878ff7bcf0"
+   ],
+   "serves": [
+    55667,
+    53602,
+    53582,
+    53604,
+    55662,
+    53583,
+    53578,
+    53581,
+    55665,
+    55660,
+    55671,
+    55673,
+    55675
+   ]
+  },
+  {
+   "key": "asset",
+   "state": "PRESENT",
+   "ids": [
+    "81c09d26-9c5b-494b-ae3d-e4aa2ba56f77"
+   ],
+   "serves": [
+    53580,
+    55669,
+    53516,
+    53605,
+    55664,
+    53581,
+    55661
+   ]
+  },
+  {
+   "key": "vendor",
+   "state": "DUPLICATE",
+   "ids": [
+    "0be71457-edf2-4269-a9d6-7ab1c49cf577",
+    "0ff19eb4-5078-4ed8-969d-4943f291f906"
+   ],
+   "serves": [
+    55668,
+    53584,
+    53585,
+    53606,
+    55663,
+    53604,
+    55661
+   ]
+  },
+  {
+   "key": "part_catalogue_only",
+   "state": "PRESENT",
+   "ids": [
+    "7aeffde7-77c1-45bd-b2ae-6d9e1c501946"
+   ],
+   "serves": [
+    53601,
+    45153
+   ]
+  },
+  {
+   "key": "part_stocked",
+   "state": "PRESENT",
+   "ids": [
+    "63a300f0-d45a-4858-ae9b-78006e145406"
+   ],
+   "serves": [
+    55666,
+    53607,
+    55659,
+    45153,
+    55661
+   ]
+  },
+  {
+   "key": "work_orders",
+   "state": "BLOCKED",
+   "reason": "A5 - POST /api/work-orders/create returns HTTP 500 on a proven-live session (requestIds 888fcd13, 0ed4a340). Until A5 is fixed this record CANNOT be seeded.",
+   "serves": [
+    53578,
+    53579,
+    55672,
+    55658,
+    53588,
+    55661,
+    45153
+   ]
+  },
+  {
+   "key": "part_sale",
+   "state": "BLOCKED",
+   "reason": "A5 - part sales are produced by CreateDefaultPartSaleLineOnWorkOrderCreatedEvent after a work order is created, so the same 500 blocks this too",
+   "serves": [
+    55665,
+    45153,
+    45151
+   ]
+  }
+ ],
+ "_note": "Live ids re-derived this run. Never trust an older copy - a redeploy changes them."
+}
