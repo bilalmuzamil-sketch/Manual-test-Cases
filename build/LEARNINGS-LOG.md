@@ -1925,3 +1925,21 @@ The same shape has now appeared five times today, in five different disguises:
 
 This is the single most expensive recurring mistake of the pass, and every instance of it was cheap
 to prevent.
+
+### L0092a — one instrument fix can hide a second, and the false finding survives until both are gone
+The three-widths case took **two** corrections before it told the truth.
+
+1. It checked whether the panel had opened with no wait, so tablet and phone read as *search cannot be
+   reached* — a capability loss the case says affects technicians working from phones.
+2. Fixed that, and it still read as failing: the panel now opened, but my settle logic waited for the
+   row of section names to show its **counts**, and at narrow widths that row has no counts at all. The
+   reading timed out and returned nothing, which rendered as *the customer cannot be found on a phone*.
+
+Only after the second fix did it pass cleanly at all three sizes. Both bugs produced the **same
+headline** by different routes, so fixing the first felt like it had confirmed the finding rather than
+half-removed it.
+
+> **When a fix does not change a negative, that is not corroboration.** Check that the *reason* for the
+> negative changed. Here the first reading was "the panel never opened" and the second was "nothing was
+> ever read" — two different failures wearing one conclusion. A finding is only real once the
+> observation is clean, not once it has survived a fix.
