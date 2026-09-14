@@ -48,3 +48,23 @@ Sources are **CURRENT** (PRD v1.5 unchanged since the 9/9 full verify). The 90 v
 already source-verified against the live spec. No re-stamp needed. Two edge findings flagged (quick-actions
 deferral conflict — excluded folder; new Part Sales bug). Awaiting the QA lead's steer on whether to also
 re-run the full case-by-case five-dimension gate over the 90, given the spec has not moved (Rule 80).
+
+## 5. SAFETY CHECK — is "sources confirmed current" enough? YES
+QA lead asked to confirm nothing bites before accepting "sources confirmed current" instead of a full
+re-run. Checked:
+- **Spec:** PRD v1.5 unchanged since the 9/9 full verify. ✓
+- **Cases:** all **90** verifiable cases were last updated **2026-09-09** (verify day) and **none** after —
+  no case created or edited since the full five-dimension gate, so that gate fully covers today's suite. ✓
+- **Apparent wording mismatch checked:** C44900 (Vendor Invoices) title says "tri-state" while PRD §4
+  body reads "Paid / Unpaid". The case is DELIBERATE and DISCLOSED — it states all three states and its
+  provenance cites the engineering/designer decision of 2026-08-17 (Rule 56). Not an error. (Spec-body
+  cleanup item for the owner: align §4 to the tri-state engineering decision.)
+- **Edge findings do not touch the 90:** quick-actions OBSOLETE is confined to the excluded folder
+  (sec 6774); the new Part Sales bug SV-10031 is a product defect, not a source/case change.
+
+**DECISION: accept "sources confirmed current" — no full re-run.** The 2026-09-09 five-dimension verify
+remains valid because neither the sources nor the 90 cases have changed since.
+
+**Residual known-open items (carried, none new/blocking):** PO-GS-ASSET-SHOWALL open; PO-GS-EMPTY-1 open;
+quick-actions spec-vs-ticket conflict (spec owner to settle); PRD §4 body still says Paid/Unpaid vs the
+tri-state engineering decision the case follows.
