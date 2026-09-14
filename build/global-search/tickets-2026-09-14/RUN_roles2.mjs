@@ -68,8 +68,19 @@ for(const tgt of targets){
   rec.staff={id:t.id,name:t.name,email:t.email,role:t.role};
   rec.switch={status:sw.status, head:sw.head};
 
+  // Ask the SERVER who this session is now. switch-user answered 200, but the page's stored copy of
+  // the signed-in user is written at sign-in and is not refreshed by the swap -- so reading identity
+  // out of browser storage reports the administrator for ever and the check never passes.
+  const fe=await api('/api/auth/me/fe-permissions');
+  const fd=fe.json&&(fe.json.data!==undefined?fe.json.data:fe.json);
+  const feList=fd&&(fd.fe_permissions||fd.fePermissions);
+  rec.serverIdentity={status:fe.status, templateSlug:fd&&(fd.template_slug||fd.templateSlug),
+    nPerms:Array.isArray(feList)?feList.length:(feList?Object.keys(feList).length:null)};
+  // clear the stale copy and reload so the app renders as this user, not as the administrator
+  await page.evaluate(()=>{ try{ localStorage.removeItem('user');
+    localStorage.removeItem('fe_permissions_wrapper'); }catch(e){} }).catch(()=>{});
   await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'});
-  await page.waitForTimeout(8000);
+  await page.waitForTimeout(9000);
   // WHO AM I NOW -- read from the server's own answer, not from the fact the call returned 200.
   const who=await page.evaluate(()=>{ let u=null,w=null;
     try{u=JSON.parse(localStorage.getItem('user')||'null')}catch(e){}
@@ -80,8 +91,13 @@ for(const tgt of targets){
       email:u&&u.data&&u.data.email, roleName:u&&u.data&&u.data.role&&u.data.role.name};});
   rec.now={templateSlug:who.templateSlug, nPerms:who.perms?who.perms.length:null,
            email:who.email, roleName:who.roleName};
-  rec.identityChanged = !!(who.email && t.email && who.email.toLowerCase()===t.email.toLowerCase())
-                     || (who.perms && nFePerms!==null && who.perms.length!==nFePerms);
+  // The server's answer is the authority; the page's own copy is a secondary confirmation.
+  const srv=rec.serverIdentity||{};
+  rec.identityChanged =
+       (srv.templateSlug && templateSlug && srv.templateSlug!==templateSlug)
+    || (srv.nPerms!==null && srv.nPerms!==undefined && nFePerms!==null && srv.nPerms!==nFePerms)
+    || !!(who.email && t.email && who.email.toLowerCase()===t.email.toLowerCase())
+    || !!(who.perms && nFePerms!==null && who.perms.length!==nFePerms);
   rec.permissions = who.perms;
   rec.url=page.url();
 
