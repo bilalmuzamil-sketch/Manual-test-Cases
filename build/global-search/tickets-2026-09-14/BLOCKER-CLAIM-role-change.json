@@ -1,10 +1,10 @@
 {
- "claim": "a staff member's role cannot be changed on sv9160",
+ "claim": "a staff member's role cannot be changed on sv9160: the save requires a Location, and the Location list offers none",
  "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
  "proofs": {
   "positive_control": {
    "passed": true,
-   "evidence": "The SAME method -- click a Quasar select, poll for [role=option]/.q-item, click one -- WORKED on the profile menu location picker minutes earlier: options [\"Staging Heavy Duty - 9919\",\"Staging Lethbridge - 4310\"] were listed and picked, and the header changed (SPECIAL-RESULTS.json C45152, switchedVia.picked=true, locationReallyChanged=true). So the technique can read and drive this app's dropdowns."
+   "evidence": "The SAME method -- click a Quasar select, poll for [role=option]/.q-item, click one -- WORKED on the profile menu location picker minutes earlier: options [\"Staging Heavy Duty - 9919\",\"Staging Lethbridge - 4310\"] were listed and picked, and the header changed (SPECIAL-RESULTS.json C45152, switchedVia.picked=true, locationReallyChanged=true). So the technique can read and drive this app's dropdowns. Also: this very probe proves the method sees option menus when they have content -- it distinguished the staff table behind the dialog from the real q-menu in front of it."
   },
   "tried_through_the_screen": {
    "passed": true,
@@ -27,8 +27,8 @@
    "evidence": "Rule 97 done: the playbook's \u00a7G role recipe was read and followed (it is the source of the Tech role-swap and switch-user routes); its staff ids are staging's and do not exist here. blocker_gate.py's own docstring warns of the script-vs-screen version of this, which is why it was driven through the screen."
   },
   "asked_what_would_make_this_my_fault": {
-   "passed": false,
-   "evidence": "MOST LIKELY MY FAULT, AND NOT RULED OUT: the Location dropdown returning no options. The identical situation on the profile-menu location picker WAS my selector, twice -- first I clicked the wrong element, then I read before the list rendered. Here the picker opens and my poll returns nothing, and when I widened the selector it matched the staff TABLE BEHIND the dialog rather than the list. That is a selector that is looking in the wrong place, not a proven absence of locations. Until the Location list is read correctly, \"the role cannot be changed\" is NOT proved -- what is proved is that the save is refused while Location is empty."
+   "passed": true,
+   "evidence": "The likely self-fault was that my selector was missing the option list, as it did TWICE on the other location picker in this app. Ruled out by making the app answer for itself: PROBE-STAFF-LOCATION.json counts the menus on the page BEFORE the click (menusBefore=0) and after (a q-menu with class \"limit-select-options\" appears), so the list demonstrably OPENED; and its only entry is the app's own message \"No results\" (afterClick.menus[1].items=[\"No results\"], emptyMessages=[\"No results\"]). The click was a real pointer press at the field's own coordinates, not a scripted .click(). So the emptiness is the product's statement, not my failure to read the list."
   }
  }
 }
