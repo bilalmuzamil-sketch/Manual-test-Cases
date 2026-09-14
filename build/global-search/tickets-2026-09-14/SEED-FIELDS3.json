@@ -1,0 +1,33 @@
+{
+ "at": "2026-09-14T19:42:07.658Z",
+ "wanted": "Bay 12C",
+ "before": {
+  "address_2": null,
+  "telephone": null
+ },
+ "tried": [
+  {
+   "path": "/api/parts-catalogue/vendors/change",
+   "status": 404,
+   "head": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  {
+   "path": "/api/parts-catalogue/change-vendor",
+   "status": 200,
+   "head": "{\"data\":[]}"
+  }
+ ],
+ "write": {
+  "status": 200,
+  "head": "{\"data\":[]}",
+  "via": "/api/parts-catalogue/change-vendor"
+ },
+ "after": {
+  "address_2": "Bay 12C",
+  "telephone": "(614) 555-0188"
+ },
+ "landed": {
+  "address_2": true,
+  "telephone": true
+ }
+}

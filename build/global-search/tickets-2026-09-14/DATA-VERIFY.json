@@ -1,0 +1,51 @@
+{
+ "at": "2026-09-14T19:10:07.692Z",
+ "live_ids": {
+  "customer": "a1d08451-0214-41a4-983f-7f878ff7bcf0",
+  "asset": "81c09d26-9c5b-494b-ae3d-e4aa2ba56f77",
+  "vendor": "0be71457-edf2-4269-a9d6-7ab1c49cf577",
+  "part_catalogue_only": "7aeffde7-77c1-45bd-b2ae-6d9e1c501946",
+  "part_stocked": "63a300f0-d45a-4858-ae9b-78006e145406",
+  "work_orders": [
+   "ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
+   "8c81f3d7-ccaa-4bf5-8e48-75310301bd20",
+   "8f02b314-d826-4035-a77c-9f2997b4b158",
+   "3f149d79-f650-492e-bace-840bb65a100c"
+  ]
+ },
+ "customer": {
+  "status": 200,
+  "fields": {
+   "name": "ZZAUTOTEST Bridgeport Hauling",
+   "website": "bridgeporthauling-zzt.com",
+   "address_2": null,
+   "city": "Fernvale",
+   "state_or_province": null,
+   "postal_code": "44872-9931",
+   "telephone": null
+  },
+  "contactKeys": [
+   "contacts",
+   "contacts_count"
+  ],
+  "contacts": [
+   {
+    "first_name": "Marlene",
+    "last_name": "Okonkwo",
+    "title": "Dispatch Supervisor",
+    "email": "marlene.okonkwo-zzt@example.com"
+   }
+  ]
+ },
+ "try /api/customers/a1d08451-0214-41a4-983f-7f878ff7bcf0/contacts": 404,
+ "try /api/companies/a1d08451-0214-41a4-983f-7f878ff7bcf0/contacts": 404,
+ "try /api/contacts?company_id=a1d08451-0214-41a4-983f-7f878ff7bcf0": 404,
+ "asset": {
+  "status": 404,
+  "fields": {}
+ },
+ "vendor": {
+  "status": 404,
+  "fields": {}
+ }
+}

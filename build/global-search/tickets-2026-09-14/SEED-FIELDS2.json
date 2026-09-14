@@ -1,0 +1,44 @@
+{
+ "at": "2026-09-14T19:31:45.544Z",
+ "steps": [
+  {
+   "what": "vendor telephone",
+   "wanted": "(614) 555-0188",
+   "writeStatus": 404,
+   "before": null,
+   "after": null,
+   "landed": false,
+   "head": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  {
+   "what": "asset model via /api/vehicles/change",
+   "status": 400,
+   "head": "{\"errors\":[{\"vehicle_id\":\"Missing required parameter\"},{\"company_id\":\"Missing required parameter\"}]}"
+  },
+  {
+   "what": "asset model via /api/vehicles/edit",
+   "status": 404,
+   "head": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  {
+   "what": "asset model via /api/customers/vehicle/change",
+   "status": 404,
+   "head": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+  },
+  {
+   "what": "asset model",
+   "wanted": "Cascadia",
+   "via": null,
+   "before": "1000HS",
+   "after": "1000HS",
+   "landed": false
+  }
+ ],
+ "assetAfter": {
+  "unit": "ZZT-4471",
+  "vin": "1FUJGLDR9KLZZ4471",
+  "year": "2019",
+  "vehicle_model": "1000HS",
+  "licence_plate": "OHZZT471"
+ }
+}

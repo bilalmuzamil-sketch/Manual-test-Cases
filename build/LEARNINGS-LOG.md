@@ -1943,3 +1943,29 @@ half-removed it.
 > negative changed. Here the first reading was "the panel never opened" and the second was "nothing was
 > ever read" — two different failures wearing one conclusion. A finding is only real once the
 > observation is clean, not once it has survived a fix.
+
+### L0099 — I judged 41 cases against text my own extractor had truncated
+The script that built the execution plan kept `expected[:420]` — sensible, since it only needed enough
+text to find the queries. I then used that same file to **judge verdicts**. Every one of the 62 cases
+has an Expected longer than 420 characters; the longest is 3,223.
+
+And the tail is where these cases keep their **grading instruction**:
+
+> "If it fails, mark the case BLOCKED and write the reason ('V1 behaviour, not listed in PRD v1.5
+> section 4 — awaiting Product Owner ruling'). **Do NOT mark it Failed and do NOT raise a defect
+> until the Product Owner has ruled.**"
+
+Two verdicts were already wrong because of it — the number-plate case and the chassis-number case,
+both recorded **Failed** where the case says **Blocked**. Filing either as a defect would have broken
+the standing hold *and* pre-empted a decision that is the Product Owner's to make.
+
+Caught by asking a question I should have asked at the start: *where did this text come from, and was
+it complete when it got here?* The extract was built for one job and silently reused for another.
+
+> **A file built for one purpose is not evidence for another.** When data is repurposed, re-derive it
+> from the source for the new purpose — especially anything lossy by design. Truncation is the most
+> dangerous kind of lossy, because what survives still reads like the whole thing.
+
+Now: `dump_full_cases.py` reads every case in full from the live source, and `grading_rules.py`
+extracts each case's own verdict instruction and **flags any verdict that contradicts it**. That check
+runs before results are written, every time.

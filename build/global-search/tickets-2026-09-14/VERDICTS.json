@@ -138,9 +138,9 @@
    "not_observed": "The record was created through the back end rather than through the screen, so the part of the check about it appearing in the recently-viewed list was not exercised fairly and is not being claimed either way."
   },
   "C55669": {
-   "verdict": "Failed",
-   "observed": "The full chassis number returned the vehicle. The last six characters of it returned nothing at all. Someone reading the short code off a windscreen plate cannot find the vehicle.",
-   "todo": "Searching part of a chassis number needs to find the vehicle, as the whole number does. Worth flagging that this case was written expecting the opposite problem - the full number failing and the front part working - so the behaviour has changed since it was written and the note on the case is now out of date."
+   "verdict": "Blocked",
+   "observed": "The full chassis number returned the vehicle. The last six characters of it returned nothing. Someone reading the short code off a windscreen plate cannot find the vehicle.",
+   "todo": "The case says to hold this for the Product Owner rather than treat it as a fault: matching part of a chassis number was possible in the previous version. Also worth telling him the case is now out of date - it was written expecting the opposite problem, the whole number failing and the front part working, and the behaviour has since changed."
   },
   "C45153": {
    "verdict": "Blocked",
@@ -178,9 +178,9 @@
    "observed": "All three ways of typing the name - all lower case, all capitals, and a jumble of both - returned exactly the same seven customers, the seeded one among them. Capitals make no difference."
   },
   "C53516": {
-   "verdict": "Failed",
+   "verdict": "Blocked",
    "observed": "Searching the vehicle's number plate returned nothing at all - not one result of any kind. The vehicle's record does hold that plate; it was read back off the record to be sure.",
-   "todo": "A vehicle needs to be findable by its number plate. It is often the only thing written down when a vehicle is booked in, and the person at the desk has nothing else to type."
+   "todo": "The case says to hold this rather than treat it as a fault: the number plate was searchable in the previous version, and the new specification does not list it among the things a vehicle can be found by. The Product Owner needs to decide whether it should still work. Worth saying plainly what it costs if it does not - the plate is often the only thing written down when a vehicle is booked in."
   },
   "C55674": {
    "verdict": "Passed",

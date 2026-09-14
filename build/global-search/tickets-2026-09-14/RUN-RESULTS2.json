@@ -1,0 +1,5380 @@
+{
+ "at": "2026-09-14T18:49:29.594Z",
+ "cases": {
+  "C55661": {
+   "title": "Every matching type still appears when a search matches many records",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZAUTOTEST",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 8,
+      "all": 8,
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "8 results found across 5 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55664": {
+   "title": "Finding an asset by its model",
+   "override": false,
+   "obs": [
+    {
+     "query": "Cascadia",
+     "group": "Assets",
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 46,
+      "all": 46,
+      "work_orders": 20,
+      "customers": 0,
+      "assets": 20,
+      "parts": 5,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "46 results found across 4 categories",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "Cascadia2020 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-17288 East Providence Diesel Repair Paid 2015 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17178 Chatal Truck Center - Hamilton Estimate 2013 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-16632 Burke Onsite Truck & Trailer Repair Paid 2014 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-16257 Mobile Truck & Trailer Repair Island Lake Paid FL2501 · 2025 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-15981 Walser's Truck Repair Paid 1054 · 2022 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "assets",
+       "text": "Cascadia2020 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "LH06C2018 Freightliner Cascadia Lansing Truck and Trailer Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "AB112024 Freightliner Cascadia Earlimart Fleet Services",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "22242022 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "22222022 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "parts",
+       "text": "LED Cab Marker, Amber, Cascadia, Late Style 4 Available 564.46064N",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "LED Cab Marker, Amber, Freightliner Cascadia, 08-Up 4 Available 564.46064",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "LED Turn Signal, Amber, LH/RH, 08-Up Freightliner Cascadia 2 Available 564.46059L",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "Engine Air Filter, Cascadia, 57X 1 Available 03-42776-010",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "Engine Air Filter, Freightliner Cascadia, 122SD 1 Available AF56500",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "Cascade Truck & Trailer Repair 797-841-8294 · 728 Joseph Viaduct, East Jacqueline",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "assets",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 20,
+      "customers": 0,
+      "assets": 20,
+      "parts": 5,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "assets",
+       "text": "Cascadia2020 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "LH06C2018 Freightliner Cascadia Lansing Truck and Trailer Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "AB112024 Freightliner Cascadia Earlimart Fleet Services",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "22242022 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "22222022 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "19002019 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "20262020 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "22142022 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "22022022 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "24002024 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "20302020 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "1016582020 Freightliner Cascadia Genoa Mobile Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "1032018 Freightliner Cascadia VSM Truck Repair - Channelview",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2025 Freightliner Cascadia Santa Clara Truck & Equipment Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "3352020 Freightliner Cascadia Suzanne's Mobile Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "1862020 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "TRUCK2018 Freightliner Cascadia Johnson Truck Centre",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "20282020 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "23042023 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "2142019 Freightliner Cascadia Rochester Fleet Services",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55666": {
+   "title": "Finding a part by its part number still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZT-88-4412",
+     "group": "Parts",
+     "openedOnTab": "assets",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 62
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      }
+     ],
+     "headers": [
+      "parts"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "ZZT884412",
+     "group": "Parts",
+     "openedOnTab": "parts",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 62
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      }
+     ],
+     "headers": [
+      "parts"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55669": {
+   "title": "Finding an asset by its VIN, in full and in part",
+   "override": false,
+   "obs": [
+    {
+     "query": "1FUJGLDR9KLZZ4471",
+     "group": "Assets",
+     "openedOnTab": "assets",
+     "tabs": {
+      "strip": 5,
+      "all": 5,
+      "work_orders": 4,
+      "customers": 0,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "5 results found across 2 categories",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "ZZT-44712019 Freightliner 1000HS ZZAUTOTEST Bridgeport Hauling",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner 1000HS",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner 1000HS",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner 1000HS",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner 1000HS",
+       "h": 60
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner 1000HS ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 0,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner 1000HS ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "ZZ4471",
+     "group": "Assets",
+     "openedOnTab": "assets",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55670": {
+   "title": "Finding a customer or vendor by a contact's first or last name",
+   "override": false,
+   "obs": [
+    {
+     "query": "Marlene",
+     "group": null,
+     "openedOnTab": "assets",
+     "tabs": {
+      "strip": 16,
+      "all": 16,
+      "work_orders": 0,
+      "customers": 9,
+      "assets": 1,
+      "parts": 4,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 1,
+      "vendor_invoices": 0
+     },
+     "countLine": "16 results found across 5 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Helena-West Helena Heavy Duty Truck & Equipment Repair Contact match · 44250 Lopez Alley Apt. 860, West Lawrencemouth, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Fullthrottle Mobile Truck & Trailer Repair Contact match · 4707 Hector Field Apt. 772, Carterport, Quebec",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Hanford Roadside Truck Repair Contact match · 804 Weber Fields, Ericton, Quebec",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Independence Truck Service & Repair Contact match · 943 John Point Apt. 232, New Robertbury, Quebec",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2005 Ford F-350 Martens' Diesel Repair",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "MARINE/POST ADAPTER TERMINAL, NEG. 3 Available 5518N",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "MARINE/POST ADAPTER TERMINAL, POS. 1 Available 5516P",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "1PC 5/6\" STUD NEGATIVE LEAD ALLOY MARINE BATTERY TERMINAL 0 Available PIC898N-BP",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "1 SET POSITIVE & NEGATIVE EPOXY MARINE BATTERY TERMINALS 0 Available PIC898E-12",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "Coeur d'Alene Truck & Equipment Repair 576-565-0116 · 59357 Smith Unions, Annehaven",
+       "h": 59
+      },
+      {
+       "type": "purchase_orders",
+       "text": "I9160-139 Stillwater Diesel Repair Fulfilled $27.52 · Feb 25, 2025",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "customers",
+      "assets",
+      "parts",
+      "vendors",
+      "purchase_orders"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 9,
+      "assets": 1,
+      "parts": 4,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 1,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    },
+    {
+     "query": "Okonkwo",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C45155": {
+   "title": "The vehicles group is shown to users as 'Assets'",
+   "override": true,
+   "obs": [
+    {
+     "query": "Cascadia",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 46,
+      "all": 46,
+      "work_orders": 20,
+      "customers": 0,
+      "assets": 20,
+      "parts": 5,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "46 results found across 4 categories",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "Cascadia2020 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-17288 East Providence Diesel Repair Paid 2015 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17178 Chatal Truck Center - Hamilton Estimate 2013 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-16632 Burke Onsite Truck & Trailer Repair Paid 2014 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-16257 Mobile Truck & Trailer Repair Island Lake Paid FL2501 · 2025 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-15981 Walser's Truck Repair Paid 1054 · 2022 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "assets",
+       "text": "Cascadia2020 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "LH06C2018 Freightliner Cascadia Lansing Truck and Trailer Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "AB112024 Freightliner Cascadia Earlimart Fleet Services",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "22242022 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "assets",
+       "text": "22222022 Freightliner Cascadia",
+       "h": 58
+      },
+      {
+       "type": "parts",
+       "text": "LED Cab Marker, Amber, Cascadia, Late Style 4 Available 564.46064N",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "LED Cab Marker, Amber, Freightliner Cascadia, 08-Up 4 Available 564.46064",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "LED Turn Signal, Amber, LH/RH, 08-Up Freightliner Cascadia 2 Available 564.46059L",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "Engine Air Filter, Cascadia, 57X 1 Available 03-42776-010",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "Engine Air Filter, Freightliner Cascadia, 122SD 1 Available AF56500",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "Cascade Truck & Trailer Repair 797-841-8294 · 728 Joseph Viaduct, East Jacqueline",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "assets",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 20,
+      "customers": 0,
+      "assets": 20,
+      "parts": 5,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C45157": {
+   "title": "A record that matches more than once appears only once",
+   "override": true,
+   "obs": [
+    {
+     "query": "Kestrel",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 3,
+      "all": 3,
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "3 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C45161": {
+   "title": "Search needs at least two characters before it matches",
+   "override": true,
+   "obs": [
+    {
+     "query": "Z",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": null,
+      "all": null,
+      "work_orders": null,
+      "customers": null,
+      "assets": null,
+      "parts": null,
+      "vendors": null,
+      "part_sales": null,
+      "purchase_orders": null,
+      "vendor_invoices": null
+     },
+     "countLine": "",
+     "allRows": [
+      {
+       "type": "recent_today",
+       "text": "2005 Ford F-350 Martens' Diesel Repair",
+       "h": 59
+      },
+      {
+       "type": "recent_today",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "recent_today",
+       "text": "S9160-17113 Colesville Diesel Repair Approved 745 · 2020 Hino Conventional Type Truck",
+       "h": 60
+      },
+      {
+       "type": "recent_today",
+       "text": "P9160-250 4 Star Truck Repair Estimate Admin ShopView · Today",
+       "h": 60
+      },
+      {
+       "type": "recent_today",
+       "text": "S9160-17595 4 Star Truck Repair Approved 2011 Hyundai Santa Fe",
+       "h": 60
+      },
+      {
+       "type": "recent_today",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "recent_today",
+       "text": "S2-6643 Cornerstone Truck & Trailer Repair Fulfilled $373.74 · Apr 23, 2025",
+       "h": 60
+      },
+      {
+       "type": "recent_today",
+       "text": "S2-6156 Grand Haven Diesel Services LLC Ordered $907.72 · Apr 2, 2025",
+       "h": 60
+      },
+      {
+       "type": "recent_today",
+       "text": "East Point Heavy Truck Repair Inc 3403 Adam Rapid Suite 714, East Kathleenstad, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "recent_today",
+       "text": "Colesville Diesel Repair 3 open 997 Jason Creek Suite 072, Owenstown, British Columbia",
+       "h": 60
+      },
+      {
+       "type": "recent_today",
+       "text": "Topeka Truck Repair 8838 Dixon Parkways, Clarenceburgh, Newfoundland and Labrador",
+       "h": 59
+      },
+      {
+       "type": "recent_today",
+       "text": "Monroe Truck Service & Repair 19 open 938 Zachary Lodge Apt. 430, East Nancy, Manitoba",
+       "h": 60
+      }
+     ],
+     "headers": [],
+     "api": {
+      "error": "no /api/search response seen for this query"
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    },
+    {
+     "query": "ZZ",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 15,
+      "all": 15,
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 8,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "15 results found across 5 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2018 Ford F-550 Burlingame Truck & Trailer Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "109270542023 Wacker Neuson Corporation Dba Wacker Neuson Wacker Neuson Corporation Dba Wacker Neuson Camden Truck and Trailer Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "8H67GJ2026 CHEVROLET S15C Rockaway Mobile Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "CV14 5942014 Gmc Savana Baltej's Mobile Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 8,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53516": {
+   "title": "Searching an asset's licence plate finds that asset",
+   "override": true,
+   "obs": [
+    {
+     "query": "OHZZT471",
+     "group": "Assets",
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53578": {
+   "title": "Finding a work order by its customer's name still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": "Work Orders",
+     "openedOnTab": "assets",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53579": {
+   "title": "A work order number with the shop number in front still finds it",
+   "override": true,
+   "obs": [
+    {
+     "query": "S-17597",
+     "group": "Work Orders",
+     "openedOnTab": "work_orders",
+     "tabs": {
+      "strip": 8,
+      "all": 8,
+      "work_orders": 1,
+      "customers": 1,
+      "assets": 0,
+      "parts": 3,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 3,
+      "vendor_invoices": 0
+     },
+     "countLine": "8 results found across 4 categories",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 61
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Pitcox's Mobile Diesel Repair 4175 Moore Villages, West Jeffreyfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "Paccar Oil Filter, MX-11/13 3 Available 2129253PE",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "Engine Oil Filter, Isuzu/Hino 0 Available 2-90654-404-0",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "OIL FILTER, GM (LF17531, WL10255, P577065, B7444 0 Available PF63",
+       "h": 61
+      },
+      {
+       "type": "purchase_orders",
+       "text": "I9160-903 Global Fleet Services Fulfilled $247.42 · Jan 21, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "I9160-548 Revere Truck and Trailer Repair Fulfilled $129.85 · Aug 1, 2025",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-11002 Revere Truck and Trailer Repair Fulfilled $119.46 · Oct 30, 2025",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "parts",
+      "purchase_orders"
+     ],
+     "api": {
+      "work_orders": 1,
+      "customers": 1,
+      "assets": 0,
+      "parts": 3,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 3,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "S17597",
+     "group": "Work Orders",
+     "openedOnTab": "work_orders",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 61
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "work_orders"
+     ],
+     "api": {
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "S9160-17597",
+     "group": "Work Orders",
+     "openedOnTab": "work_orders",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 61
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "work_orders"
+     ],
+     "api": {
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "9160-17597",
+     "group": "Work Orders",
+     "openedOnTab": "work_orders",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 61
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "work_orders"
+     ],
+     "api": {
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53580": {
+   "title": "Finding an asset by its unit number still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZT-4471",
+     "group": "Assets",
+     "openedOnTab": "work_orders",
+     "tabs": {
+      "strip": 5,
+      "all": 5,
+      "work_orders": 4,
+      "customers": 0,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "5 results found across 2 categories",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 0,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53581": {
+   "title": "Finding an asset by the customer who owns it still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": "Assets",
+     "openedOnTab": "assets",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53582": {
+   "title": "Finding a customer by address, city or postal code still works",
+   "override": true,
+   "obs": [
+    {
+     "query": "Kestrelway",
+     "group": "Customers",
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 7,
+      "all": 7,
+      "work_orders": 1,
+      "customers": 2,
+      "assets": 2,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "7 results found across 5 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S2-12215 Estrella Diesel Repair Paid Load King",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Estrella Diesel Repair 056 Victoria Overpass, Port Justinside, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "N/A2016 Freightliner Estrella Diesel Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "Load King Estrella Diesel Repair",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 1,
+      "customers": 2,
+      "assets": 2,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Estrella Diesel Repair 056 Victoria Overpass, Port Justinside, Prince Edward Island",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "Fernvale",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 0,
+      "customers": 6,
+      "assets": 5,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Darlene Cartage Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Halloway Freight 345994 Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Marlene Freight Lines Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Mobile Truck & Trailer Repair Ferndale 7589 Tammy Drive Suite 511, East Kimberlymouth, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "HRTU693167Trailer Mobile Truck & Trailer Repair Ferndale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2008 Ford F-150 Ferndale Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "16162015 Freightliner 114sd Mobile Truck & Trailer Repair Ferndale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "TXCU540934Atlas Chassis Mobile Truck & Trailer Repair Ferndale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2007 Ford E-450 Ferndale Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Verndale Truck Repair 514-143-3640 · 7952 Carpenter Haven, Malonehaven",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers",
+      "assets",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 6,
+      "assets": 5,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Darlene Cartage Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Halloway Freight 345994 Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Marlene Freight Lines Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Mobile Truck & Trailer Repair Ferndale 7589 Tammy Drive Suite 511, East Kimberlymouth, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Ferndale Truck Repair 59257 Zachary Squares, Deanport, Saskatchewan",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "Ohio",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 5,
+      "all": 5,
+      "work_orders": 0,
+      "customers": 4,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "5 results found across 2 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Darlene Cartage Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Halloway Freight 345994 Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Marlene Freight Lines Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Ohioville Diesel Services LLC 298-674-3171 · 229 Rojas Ville, North Cathyville",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 4,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Darlene Cartage Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Halloway Freight 345994 Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Marlene Freight Lines Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "44872-9931",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53583": {
+   "title": "Finding a customer by their website still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "bridgeporthauling-zzt.com",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53584": {
+   "title": "Finding a vendor by email address still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "parts@kestrelsupply-zzt.com",
+     "group": "Vendors",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "ZZAUTOTEST Kestrel Parts Supply Contact match · 88 Halbrook Trace, Marnston",
+       "h": 60
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply Contact match · 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply Contact match · 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53585": {
+   "title": "Finding a vendor by address, city or postal code still works",
+   "override": true,
+   "obs": [
+    {
+     "query": "Halbrook",
+     "group": "Vendors",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 13,
+      "all": 13,
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 10,
+      "parts": 0,
+      "vendors": 2,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "13 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "Holbrook Truck & Trailer Repair 24/7 990 Leach Island, Port Garrettport, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "RAM 35002019 Ram 3500 Holbrook Truck & Trailer Repair 24/7",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "1312020 Ram 1500 Holbrook Truck & Trailer Repair 24/7",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "1342013 Dodge Caravan Holbrook Truck & Trailer Repair 24/7",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "08 F-4502008 Ford F-450 Holbrook Truck & Trailer Repair 24/7",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2013 Acura Mdx Holbrook Truck & Trailer Repair 24/7",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Old Saybrook Truck & Trailer Repair 255-400-7986 · 562 Olson Rapids Apt. 737, Lake Mark",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers",
+      "assets",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 10,
+      "parts": 0,
+      "vendors": 2,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Old Saybrook Truck & Trailer Repair 255-400-7986 · 562 Olson Rapids Apt. 737, Lake Mark",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "Marnston",
+     "group": "Vendors",
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 5,
+      "all": 5,
+      "work_orders": 0,
+      "customers": 2,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 2,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "5 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "Antell's Fleet Service 29592 Walker Plaza Suite 595, Maryton, Manitoba",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Darnestown Truck and Trailer Repair 1872 Adkins Crescent, Lake Cheryl, British Columbia",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2012 Kia Optima Darnestown Truck and Trailer Repair",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Chattanooga Fleet Services 402-913-9811 · 251 Timothy Grove, South Marcustown",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers",
+      "assets",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 2,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 2,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Chattanooga Fleet Services 402-913-9811 · 251 Timothy Grove, South Marcustown",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "43055-2210",
+     "group": "Vendors",
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53586": {
+   "title": "A newly created customer is findable within 30 seconds",
+   "override": false,
+   "obs": [
+    {
+     "query": "Halloway",
+     "group": null,
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 66,
+      "all": 66,
+      "work_orders": 12,
+      "customers": 3,
+      "assets": 20,
+      "parts": 4,
+      "vendors": 1,
+      "part_sales": 5,
+      "purchase_orders": 6,
+      "vendor_invoices": 15
+     },
+     "countLine": "66 results found across 8 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-13930 South Hill Diesel Performance Estimate 2007 Gmc W5",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-12344 Oak Hill Mobile Truck Repair Paid N/A · 2009 Dodge Grand Caravan",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-11933 Oak Hill Mobile Truck Repair Paid 2018 VOLKSWAGEN GOLF",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-10734 Oak Hill Mobile Truck Repair Paid 2018 VOLKSWAGEN GOLF",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-5724 Oak Hill Mobile Truck Repair Paid 2018 Volkswagen Atlas",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Town of Lafayette Truck Repair Contact match · 5906 Khan Forges, Lake Jeremyhaven, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Jonestown Diesel Services LLC 4413 Holloway Extension, West Christopher, Northwest Territories",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Valier Mobile Truck Repair Contact match · 379 Cruz Gateway, Port Shannon, Manitoba",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2016 Ford F-450 Holley Diesel Services Inc",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2018 Volkswagen Atlas Oak Hill Mobile Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2019 Stc Stc Morgan Hill Onsite Truck & Trailer Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "1112016 Freightliner M2 Hale Heavy Duty Repair LLC",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2026 CHEVROLET Colorado Cherry Hill Truck and Trailer Repair",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "Power Steering Pump, Freightliner 1 Available PEV251615L101QG",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "SET SCREW 5 Available 449D",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "1410 U-Joint 1 Available 41-05-0160US",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "U-Joint, 400 Series 0 Available 04-05-0400",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "Robarts' Fleet Service 419-321-3490 · 73400 Holloway Ranch Suite 202, Jamesview",
+       "h": 59
+      },
+      {
+       "type": "part_sales",
+       "text": "P2-75 Oak Hill Mobile Truck Repair Paid Jeffrey Jordan · May 7, 2026",
+       "h": 60
+      },
+      {
+       "type": "part_sales",
+       "text": "P2-64 Oak Hill Mobile Truck Repair Paid Jeffrey Jordan · Apr 29, 2026",
+       "h": 60
+      },
+      {
+       "type": "part_sales",
+       "text": "P2-12 Oak Hill Mobile Truck Repair Paid Jeffrey Jordan · Mar 13, 2026",
+       "h": 60
+      },
+      {
+       "type": "part_sales",
+       "text": "P9160-192 Oak Hill Mobile Truck Repair Estimate Ashlee Thomas · Jul 25, 2026",
+       "h": 60
+      },
+      {
+       "type": "part_sales",
+       "text": "P9160-184 Mobile Truck & Trailer Repair Olive Hill Estimate Ashlee Thomas · Jul 21, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-13740 Oxon Hill Truck Shop Fulfilled $43.64 · Mar 12, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-12942 Holly Springs Mobile Truck Repair Fulfilled $7,119.99 · Feb 6, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-12821 Pleasant Hill Diesel Repair Fulfilled $3,833.00 · Jan 28, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-11447 Oxon Hill Truck Shop Fulfilled $1,584.38 · Nov 24, 2025",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-10837 Oxon Hill Truck Shop Fulfilled $682.63 · Oct 22, 2025",
+       "h": 60
+      },
+      {
+       "type": "vendor_invoices",
+       "text": "1418944-00 Oxon Hill Truck Shop Unpaid $1,294.39 · Jul 16, 2026",
+       "h": 60
+      },
+      {
+       "type": "vendor_invoices",
+       "text": "6179847-00 Pleasant Hill Diesel Repair Unpaid $12.30 · May 19, 2026",
+       "h": 60
+      },
+      {
+       "type": "vendor_invoices",
+       "text": "1414921-00 Oxon Hill Truck Shop Unpaid $45.82 · Mar 12, 2026",
+       "h": 60
+      },
+      {
+       "type": "vendor_invoices",
+       "text": "1414718-00 Oxon Hill Truck Shop Unpaid $1,294.39 · Mar 6, 2026",
+       "h": 60
+      },
+      {
+       "type": "vendor_invoices",
+       "text": "686898746 Holly Springs Mobile Truck Repair Unpaid $5,622.73 · Feb 23, 2026",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "parts",
+      "vendors",
+      "part_sales",
+      "purchase_orders",
+      "vendor_invoices"
+     ],
+     "api": {
+      "work_orders": 12,
+      "customers": 3,
+      "assets": 20,
+      "parts": 4,
+      "vendors": 1,
+      "part_sales": 5,
+      "purchase_orders": 6,
+      "vendor_invoices": 15
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53588": {
+   "title": "More recent work orders rank above older ones of equal relevance",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53601": {
+   "title": "A catalogue part that is not in inventory can still be found",
+   "override": false,
+   "obs": [
+    {
+     "query": "Vernway",
+     "group": "Parts",
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 30,
+      "all": 30,
+      "work_orders": 3,
+      "customers": 7,
+      "assets": 19,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "30 results found across 4 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S2-17318 La Vergne Truck Repair Paid 2017 John Deere 331",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-17142 La Vergne Truck Repair Paid 2017 John Deere 331",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-13813 La Vergne Truck Repair Paid 2017 John Deere 331",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Norton Fleet Services 1064 Gray Circle Suite 178, Farmerchester, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "La Vergne Truck Repair 026 Derek Plaza, Richardhaven, Alberta",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Warren Trailer & Suspension 83243 Cole Ferry Apt. 902, East Bryan, Yukon Territory",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Farhan Mechanical Services 733 Eric Trail Apt. 970, Lake James, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Ardmore Fleet Maintenance Inc Contact match · 55659 Carroll Terrace Apt. 890, East Michael, Manitoba",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2022 Ford F-150 La Vergne Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2017 John Deere 331 La Vergne Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2017 Hyundai Santa Fe La Vergne Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "2018 Ford F-150 La Vergne Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "SILVER2006 Dodge Caravan/grand Caravan La Vergne Truck Repair",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Vernal Diesel & Fleet Repair 206-588-6222 · 3367 Johnson Loop Apt. 061, Nicoleview",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 3,
+      "customers": 7,
+      "assets": 19,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    },
+    {
+     "query": "ZZT-77-3300",
+     "group": "Parts",
+     "openedOnTab": "parts",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53602": {
+   "title": "Finding a customer by their name with the spaces removed",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZAUTOTESTBridgeportHauling",
+     "group": "Customers",
+     "openedOnTab": "parts",
+     "tabs": {
+      "strip": 7,
+      "all": 7,
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "7 results found across 4 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53603": {
+   "title": "Finding a customer or vendor by a contact's job title",
+   "override": false,
+   "obs": [
+    {
+     "query": "Dispatch Supervisor",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "error": "no /api/search response seen for this query"
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53604": {
+   "title": "Finding a customer or vendor by address line 2",
+   "override": false,
+   "obs": [
+    {
+     "query": "Dock 7B",
+     "group": "Customers",
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 2,
+      "all": 2,
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 1,
+      "vendor_invoices": 0
+     },
+     "countLine": "2 results found across 2 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-16543 Brookline Truck Repair Fulfilled $972.86 · Jul 28, 2026",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "customers",
+      "purchase_orders"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 1,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53605": {
+   "title": "Finding an asset by its year",
+   "override": false,
+   "obs": [
+    {
+     "query": "2019 Freightliner",
+     "group": "Assets",
+     "openedOnTab": "assets",
+     "tabs": {
+      "strip": 37,
+      "all": 37,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 16,
+      "vendors": 0,
+      "part_sales": 1,
+      "purchase_orders": 20,
+      "vendor_invoices": 0
+     },
+     "countLine": "37 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "parts",
+       "text": "Fuel/Water Separator Cartridge Kit, Freightliner/Western Star, OEM, 2019-Current 4 Available A0000905051",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "Engine Oil Filter Cartridge Kit, Detroit DD13/15/16, OEM, 2019-Current 2 Available A4711800209",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "LED Turn Signal Amber LH/RH Freightliner 2 Available 564.46059",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "FREIGHTLINER TORQUE ROD 23.89\" 2 Available 345-212",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "LED Turn Signal, Amber, LH/RH, 08-Up Freightliner Cascadia 2 Available 564.46059L",
+       "h": 61
+      },
+      {
+       "type": "part_sales",
+       "text": "P9160-243 Tannus Diesel Services Inc Complete Jeffrey Jordan · Aug 27, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "I9160-1294 Willoughby Mechanical Services Fulfilled $730.94 · Jul 20, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "I9160-1178 Willoughby Mechanical Services Fulfilled $1,508.72 · Jun 3, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "I9160-1080 Willoughby Mechanical Services Fulfilled $754.83 · Apr 13, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "I9160-1376 Willoughby Mechanical Services Fulfilled $757.80 · Aug 24, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "I9160-1373 Willoughby Mechanical Services Fulfilled $665.16 · Aug 21, 2026",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "parts",
+      "part_sales",
+      "purchase_orders"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 16,
+      "vendors": 0,
+      "part_sales": 1,
+      "purchase_orders": 20,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53606": {
+   "title": "Finding a vendor by state or province",
+   "override": false,
+   "obs": [
+    {
+     "query": "Ohio",
+     "group": "Vendors",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 5,
+      "all": 5,
+      "work_orders": 0,
+      "customers": 4,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "5 results found across 2 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Darlene Cartage Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Halloway Freight 345994 Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Marlene Freight Lines Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Ohioville Diesel Services LLC 298-674-3171 · 229 Rojas Ville, North Cathyville",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 4,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "vendors",
+       "text": "Ohioville Diesel Services LLC 298-674-3171 · 229 Rojas Ville, North Cathyville",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53607": {
+   "title": "Finding a part by its description",
+   "override": false,
+   "obs": [
+    {
+     "query": "Kestrel",
+     "group": "Parts",
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 3,
+      "all": 3,
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "3 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "Brake Chamber",
+     "group": "Parts",
+     "openedOnTab": "parts",
+     "tabs": {
+      "strip": 61,
+      "all": 61,
+      "work_orders": 20,
+      "customers": 1,
+      "assets": 0,
+      "parts": 20,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 20,
+      "vendor_invoices": 0
+     },
+     "countLine": "61 results found across 4 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17535 Monroe Truck Service & Repair Approved E10024 · 2010 Peterbilt 367",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-16887 Monroe Truck Service & Repair Approved E10024 · 2010 Peterbilt 367",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-16810 Mobile Truck & Trailer Repair Dover Approved 2019 Landoll Corporation 930e",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-17387 Monroe Truck Service & Repair Invoiced INTENSITY UNIT · 2007 Freightliner M2",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S2-17288 East Providence Diesel Repair Paid 2015 Freightliner Cascadia",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Palm Beach Gardens Truck Shop Contact match · 66131 Sosa Landing Suite 801, Lake Duane, Nunavut",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "30/30 LONG STROKE SPRING BRAKE CHAMBER (SB3030S3000) 2 Available FLT3030LCB20",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "BRAKE CHAMBER - GOLD SEAL 3036GC 1 Available GC3036CW",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "30/30 LONG STROKE PIGGY BACK KIT- BRAKE CHAMBER 1 Available FLTK3030LB24",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "3030 Long Stroke Brake Chamber 15 Available W3030LS",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "3030 Standard Brake Chamber, 13.25\" Rod 24 Available W3030T",
+       "h": 61
+      },
+      {
+       "type": "purchase_orders",
+       "text": "I9160-1392 Mobile Truck & Trailer Repair Hampton Ordered $956.77 · Aug 28, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-14169 Butautas' Truck & Trailer Repair LLC Partial delivery $9,024.59 · Apr 15, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-12433 Mobile Truck & Trailer Repair Hampton Ordered $7,737.46 · Jan 12, 2026",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-5426 Glen Burnie Truck Shop Ordered $1,131.24 · Feb 28, 2025",
+       "h": 60
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-4198 Stillwater Diesel Repair Ordered $4,119.05 · Jan 24, 2025",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "parts",
+      "purchase_orders"
+     ],
+     "api": {
+      "error": "no /api/search response seen for this query"
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "parts",
+       "text": "30/30 LONG STROKE SPRING BRAKE CHAMBER (SB3030S3000) 2 Available FLT3030LCB20",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "BRAKE CHAMBER - GOLD SEAL 3036GC 1 Available GC3036CW",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "30/30 LONG STROKE PIGGY BACK KIT- BRAKE CHAMBER 1 Available FLTK3030LB24",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "3030 Long Stroke Brake Chamber 15 Available W3030LS",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "3030 Standard Brake Chamber, 13.25\" Rod 24 Available W3030T",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "3030 Standard Stoke Brake Chamber, Welded Clevis 3 Available F3030W",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "GOLD SEAL 3636 BRAKE CHAMBER 4 Available GC3636CW",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "Piggy Back Brake Chamber, 30/30 Long Stroke 16 Available F3030LSP",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "3030 Standard Brake Chamber 3 Available W3030",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "30/30 STANDARD PIGGY BACK KIT, BRAKE CHAMBER 12 Available FLT3030SB28",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "30/30 TRAILER BRAKE CHAMBER REGULAR STROKE (EXTENDED ROD) 1 Available F3030",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "(30/30 LONG STROKE SPRING BRAKE CHAMBER (SB3030S3000) 1 Available 4--FLT3030LCB20",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "CHAMBER-BRAKE LS*TR3030LP3 1 Available ZAJ3230951",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "30/30 TRAILER BRAKE CHAMBER LONG STROKE (EXTENDED ROD) 1 Available F3030LS",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "3030 Long Stroke Brake Chamber, Welded 0 Available GC3030LCW",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "(30/30 STANDARD/REGULAR STROKE BRAKE CHAMBER (SB3030S2500) 0 Available 4--FLT3030-SCB20",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "30/30 STANDARD/REGULAR STROKE BRAKE CHAMBER (SB3030S2500) 0 Available FLT3030SCB20",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "3030 Long Stroke Brake Chamber, Welded Clevis 0 Available F3030LSW",
+       "h": 61
+      },
+      {
+       "type": "parts",
+       "text": "Brake Shoe Kit w/ Hardware, 16.5x6, Coreless 46 Available W4715QP",
+       "h": 61
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55658": {
+   "title": "Finding a work order by typing its status still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "Estimate",
+     "group": "Work Orders",
+     "openedOnTab": "parts",
+     "tabs": {
+      "strip": 19,
+      "all": 19,
+      "work_orders": 1,
+      "customers": 11,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 6,
+      "part_sales": 0,
+      "purchase_orders": 1,
+      "vendor_invoices": 0
+     },
+     "countLine": "19 results found across 4 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S2-6147 La Grande Fleet Services Paid 2025 Lonking Excavator",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "CMLZ Truck Repair - Talladega 4 open 84067 Smith Estate, Walltown, Northwest Territories",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Universal Fleet Services 1068 Debra Estate Suite 045, Wadeberg, Nova Scotia",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Vandergrift Truck & Equipment Repair 425 Taylor Estate, Jessicafort, Quebec",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Sharp Mobile Truck & Trailer Repair 1706 Stephanie Estate, Port Donnastad, Manitoba",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Optimum Truck Repair LLC 560 Gonzalez Estate, North Steven, Newfoundland and Labrador",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Oak Grove Fleet Maintenance Inc 074-086-4560 · 409 Jeffrey Estate, South Laura",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Dannatt Trucking & Repair 771-890-9242 · 3395 Tucker Estate Suite 350, Marquezside",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Bellwood Truck Center 304-822-4969 · 3380 Stacy Estate, Melissamouth",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Silverline Truck Repair 24/7 966-538-8175 · 4493 Scott Estate, Alexandramouth",
+       "h": 59
+      },
+      {
+       "type": "vendors",
+       "text": "Vandalia Mobile Truck Repair 858-742-9492 · 427 Deanna Estate Apt. 890, Lake Roberttown",
+       "h": 59
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-11575 Curto Truck Center - Hastings Fulfilled $6,998.14 · Dec 22, 2025",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "vendors",
+      "purchase_orders"
+     ],
+     "api": {
+      "work_orders": 1,
+      "customers": 11,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 6,
+      "part_sales": 0,
+      "purchase_orders": 1,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "work_orders",
+       "text": "S2-6147 La Grande Fleet Services Paid 2025 Lonking Excavator",
+       "h": 60
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "qualitycheck",
+     "group": "Work Orders",
+     "openedOnTab": "work_orders",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55659": {
+   "title": "Finding a record by typing only part of its number still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "17597",
+     "group": "Work Orders",
+     "openedOnTab": "work_orders",
+     "tabs": {
+      "strip": 2,
+      "all": 2,
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "2 results found across 2 categories",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 61
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "assets",
+       "text": "175972021 Ford F-250 Fenton Trailer Repair Ltd",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "4412",
+     "group": "Parts",
+     "openedOnTab": "work_orders",
+     "tabs": {
+      "strip": 4,
+      "all": 4,
+      "work_orders": 0,
+      "customers": 2,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "4 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "CMLZ Truck Repair - Talladega 4 open Contact match · 84067 Smith Estate, Walltown, Northwest Territories",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Holt Mobile Truck Repair Contact match · 89093 Daryl River, Ortizville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "Okolona Fleet Services 936-613-9571 · 44124 Clements Passage, Port Michaelburgh",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 2,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "4471",
+     "group": "Assets",
+     "openedOnTab": "parts",
+     "tabs": {
+      "strip": 8,
+      "all": 8,
+      "work_orders": 4,
+      "customers": 2,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 1,
+      "vendor_invoices": 0
+     },
+     "countLine": "8 results found across 4 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Louisville Roadside Truck Repair Contact match · 231 James Isle, Jenniferside, Alberta",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Scarborough Truck & Equipment Repair 5304 Ingram Valleys, South Benjaminberg, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      },
+      {
+       "type": "purchase_orders",
+       "text": "S2-8185 Stillwater Diesel Repair Fulfilled $21.91 · Jun 23, 2025",
+       "h": 60
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "purchase_orders"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 2,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 1,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55660": {
+   "title": "Finding a record by a fragment from the middle of a word still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "ernva",
+     "group": "Customers",
+     "openedOnTab": "assets",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    },
+    {
+     "query": "idgepor",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 6,
+      "all": 6,
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "6 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "estrelw",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 7,
+      "all": 7,
+      "work_orders": 1,
+      "customers": 2,
+      "assets": 2,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "7 results found across 5 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S2-12215 Estrella Diesel Repair Paid Load King",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Estrella Diesel Repair 056 Victoria Overpass, Port Justinside, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "N/A2016 Freightliner Estrella Diesel Repair",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "Load King Estrella Diesel Repair",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 1,
+      "customers": 2,
+      "assets": 2,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Estrella Diesel Repair 056 Victoria Overpass, Port Justinside, Prince Edward Island",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55662": {
+   "title": "Finding a customer by the company's own main phone number",
+   "override": false,
+   "obs": [
+    {
+     "query": "(419) 555-0143",
+     "group": "Customers",
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "4195550143",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55663": {
+   "title": "Finding a vendor by phone number",
+   "override": false,
+   "obs": [
+    {
+     "query": "(614) 555-0188",
+     "group": "Vendors",
+     "openedOnTab": "assets",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    },
+    {
+     "query": "6145550188",
+     "group": "Vendors",
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55665": {
+   "title": "Finding a part sale by its customer's name",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": "Part sales",
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [],
+     "scopedEmpty": true,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55667": {
+   "title": "Finding a customer by company name",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": "Customers",
+     "openedOnTab": "part_sales",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "error": "no /api/search response seen for this query"
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Doyle's Mobile Diesel Repair Contact match · 264 Robertson Tunnel Apt. 999, New Steven, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Badger Diesel & Fleet Repair 22903 Matthew Ports, Priceport, Saskatchewan",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "ZZAUTOTEST Bridgeport Hauling",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 6,
+      "all": 6,
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "6 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "error": "no /api/search response seen for this query"
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55668": {
+   "title": "Finding a vendor by name",
+   "override": false,
+   "obs": [
+    {
+     "query": "Kestrel",
+     "group": "Vendors",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 3,
+      "all": 3,
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "3 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "customers",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 0,
+      "customers": 1,
+      "assets": 0,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "ZZAUTOTEST Kestrel Parts Supply",
+     "group": "Vendors",
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 1,
+      "all": 1,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "1 result found across 1 category",
+     "allRows": [
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "vendors"
+     ],
+     "api": {
+      "error": "no /api/search response seen for this query"
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55671": {
+   "title": "Search finds records whatever mix of capitals is typed",
+   "override": false,
+   "obs": [
+    {
+     "query": "bridgeport",
+     "group": "Customers",
+     "openedOnTab": "vendors",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Doyle's Mobile Diesel Repair Contact match · 264 Robertson Tunnel Apt. 999, New Steven, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Badger Diesel & Fleet Repair 22903 Matthew Ports, Priceport, Saskatchewan",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "BRIDGEPORT",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Doyle's Mobile Diesel Repair Contact match · 264 Robertson Tunnel Apt. 999, New Steven, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Badger Diesel & Fleet Repair 22903 Matthew Ports, Priceport, Saskatchewan",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    },
+    {
+     "query": "BrIdGePoRt",
+     "group": "Customers",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Doyle's Mobile Diesel Repair Contact match · 264 Robertson Tunnel Apt. 999, New Steven, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Badger Diesel & Fleet Repair 22903 Matthew Ports, Priceport, Saskatchewan",
+       "h": 59
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55672": {
+   "title": "Finding a work order by its plain number with no prefix",
+   "override": false,
+   "obs": [
+    {
+     "query": "17597",
+     "group": "Work Orders",
+     "openedOnTab": "customers",
+     "tabs": {
+      "strip": 2,
+      "all": 2,
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "2 results found across 2 categories",
+     "allRows": [
+      {
+       "type": "pinned",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 61
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "assets",
+       "text": "175972021 Ford F-250 Fenton Trailer Repair Ltd",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 1,
+      "customers": 0,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      }
+     ],
+     "scopedEmpty": false,
+     "groupClicked": true
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55673": {
+   "title": "Pressing Enter opens the top result without arrowing to it",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": null,
+     "openedOnTab": "work_orders",
+     "tabs": {
+      "strip": 12,
+      "all": 12,
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "12 results found across 3 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+       "h": 59
+      },
+      {
+       "type": "customers",
+       "text": "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 7,
+      "assets": 1,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55675": {
+   "title": "A search that matches nothing says so plainly",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZNOSUCHRECORD9999",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55679": {
+   "title": "Your recent items come back when a search finds nothing",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZNOSUCHRECORD9999",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 0,
+      "all": 0,
+      "work_orders": 0,
+      "customers": 0,
+      "assets": 0,
+      "parts": 0,
+      "vendors": 0,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "No results found",
+     "allRows": [],
+     "headers": [],
+     "api": {
+      "error": "no /api/search response seen for this query"
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55680": {
+   "title": "Arrow keys move between results and skip the group headings",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZAUTOTEST",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 8,
+      "all": 8,
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "8 results found across 5 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55682": {
+   "title": "Each result row shows an icon telling you what kind of record it is",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZAUTOTEST",
+     "group": null,
+     "openedOnTab": "all",
+     "tabs": {
+      "strip": 8,
+      "all": 8,
+      "work_orders": 4,
+      "customers": 1,
+      "assets": 1,
+      "parts": 1,
+      "vendors": 1,
+      "part_sales": 0,
+      "purchase_orders": 0,
+      "vendor_invoices": 0
+     },
+     "countLine": "8 results found across 5 categories",
+     "allRows": [
+      {
+       "type": "work_orders",
+       "text": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "work_orders",
+       "text": "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+       "h": 60
+      },
+      {
+       "type": "customers",
+       "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+       "h": 59
+      },
+      {
+       "type": "assets",
+       "text": "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling",
+       "h": 59
+      },
+      {
+       "type": "parts",
+       "text": "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412",
+       "h": 61
+      },
+      {
+       "type": "vendors",
+       "text": "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+       "h": 59
+      }
+     ],
+     "headers": [
+      "work_orders",
+      "customers",
+      "assets",
+      "parts",
+      "vendors"
+     ],
+     "api": {
+      "error": "no /api/search response seen for this query"
+     },
+     "divergence": null,
+     "scopedRows": null,
+     "scopedEmpty": null,
+     "groupClicked": false
+    }
+   ],
+   "instrumentTrouble": false
+  }
+ },
+ "complete": false
+}
