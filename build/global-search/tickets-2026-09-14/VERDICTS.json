@@ -106,6 +106,46 @@
   "C55666": {
    "verdict": "Passed",
    "observed": "Both the part number written with dashes and the same number run together returned the part under the Parts heading. IMPORTANT: this case was written expecting to fail on this build, and it now passes - the part number works both ways."
+  },
+  "C55668": {
+   "verdict": "Passed",
+   "observed": "Typing just the supplier's first word returned it under the Vendors heading in its own right, even though that word also appears on a part and inside the customer's address. Typing the supplier's full name returned it on its own."
+  },
+  "C55670": {
+   "verdict": "Passed",
+   "observed": "Typing the contact's first name returned the company, and typing the surname returned it again - both marked as a contact match. Someone who only knows who they speak to can still find the company."
+  },
+  "C55672": {
+   "verdict": "Passed",
+   "observed": "Typing the bare job number with no prefix returned that job under the Work orders heading."
+  },
+  "C55675": {
+   "verdict": "Passed",
+   "observed": "A search for a made-up reference showed a clear 'No results found' message. The list did not sit empty, keep spinning, or go on showing the previous results."
+  },
+  "C45154": {
+   "verdict": "Passed",
+   "observed": "Opening a different record did navigate, which proves the check works. Selecting the record already on screen did not navigate and did not reload the page, and the recently-viewed list was identical before and after - the record was not pushed back to the top."
+  },
+  "C53588": {
+   "verdict": "Passed",
+   "observed": "Among the four jobs that match equally and share a status, the three nobody had opened appear most-recently-started first. The one listed above them is the job opened a few minutes earlier, which the case names as a signal that rightly outranks recency.",
+   "not_observed": "These jobs carry a start time but no separate last-changed time, so the order was judged against when each was started. None had been edited since."
+  },
+  "C53586": {
+   "verdict": "Passed",
+   "observed": "A new customer was created and then searched for without reloading or signing out. It came back after 17 seconds, inside the 30 seconds allowed.",
+   "not_observed": "The record was created through the back end rather than through the screen, so the part of the check about it appearing in the recently-viewed list was not exercised fairly and is not being claimed either way."
+  },
+  "C55669": {
+   "verdict": "Failed",
+   "observed": "The full chassis number returned the vehicle. The last six characters of it returned nothing at all. Someone reading the short code off a windscreen plate cannot find the vehicle.",
+   "todo": "Searching part of a chassis number needs to find the vehicle, as the whole number does. Worth flagging that this case was written expecting the opposite problem - the full number failing and the front part working - so the behaviour has changed since it was written and the note on the case is now out of date."
+  },
+  "C45153": {
+   "verdict": "Blocked",
+   "observed": "Every kind of record that could be tested opened the right page: a job opened that job, a customer opened that customer's jobs, a vehicle opened that vehicle's jobs under the right owner, a supplier opened the supplier, and a part opened the stock list for that part. The two that matter most to this case could not be tested - the catalogue-only part cannot be found at all, so there is no row to click, and no part sale exists to click either.",
+   "todo": "This needs the catalogue-only part to be findable and a part sale to exist. The catalogue part is the whole point of the case: the previous version opened the catalogue page, and the case exists to check the new version opens something a person can actually use."
   }
  }
 }
