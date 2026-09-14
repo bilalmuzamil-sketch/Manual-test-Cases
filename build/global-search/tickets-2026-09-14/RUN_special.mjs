@@ -353,7 +353,13 @@ await run(55673,'Pressing Enter opens the top result without arrowing to it',asy
   // Typing and reading the rows says nothing about what Enter does. Type, press Enter once, and see
   // whether the record opened -- with a control that the top row is the one it opened.
   await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
-  await openModal(); const m=await type2('Bridgeport');
+  // TYPE AND NOTHING ELSE. The helper used elsewhere clicks the "All" tab first, and that click can
+  // itself move which row is highlighted -- so a finding about "Enter opens the wrong row" could be
+  // caused by the probe. A freshly-opened panel is already on All, so nothing needs clicking.
+  await openModal();
+  await page.fill('[data-test-id="search_modal_input"]','');
+  await page.type('[data-test-id="search_modal_input"]','Bridgeport',{delay:35});
+  const m=await settle(6000);
   const top=(m&&m.rows[0])||null;
   const before=page.url();
   // What counts as "highlighted" must be read from the app, not guessed from a class-name substring.
@@ -382,8 +388,15 @@ await run(55673,'Pressing Enter opens the top result without arrowing to it',asy
   await shot('C55673-after-enter');
   return {topRow:top&&top.text, topRowType:top&&top.type, highlightedBeforeEnter:highlighted,
     highlightEvidence:highlightInfo,
-    openedTheTopRow: !!(top && after!==before && highlightInfo && highlightInfo.firstRow
-      && highlightInfo.firstRow.text && top.text.startsWith(highlightInfo.firstRow.text.slice(0,20))),
+    noTabWasClickedFirst:true,
+    // Did Enter open the row at the TOP of the list? Compare where it landed against the top row's
+    // own type, not the top row against itself.
+    topRowWasWhatOpened: !!(top && after!==before &&
+      ((top.type==='work_orders' && /\/workorders\//.test(after)) ||
+       (top.type==='customers'   && /\/customers\//.test(after))  ||
+       (top.type==='assets'      && /vehicle/.test(after))         ||
+       (top.type==='vendors'     && /vendor/.test(after))          ||
+       (top.type==='parts'       && /\/parts/.test(after)))),
     urlBefore:before.replace(APP,''), urlAfter:after.replace(APP,''), navigated:before!==after,
     modalStillOpen:await modalOpen()};});
 
