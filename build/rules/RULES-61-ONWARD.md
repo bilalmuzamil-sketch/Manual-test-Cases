@@ -3811,6 +3811,27 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     repository maps to a case, the mapping is checked **live** against the test-management tool (case
     exists · case is in the run · no case serves no capability), and **every** case's expected result and
     SOURCE line cite V1. A row with no recorded verdict is an unfinished row.
+    **🔴 RECONCILIATION WITH RULE 57 AND RULE 96 — READ THIS BEFORE YOU THINK THIS RULE CONTRADICTS THEM.**
+    Rule 96 states, verbatim: *"CODE IS NEVER A SOURCE OF EXPECTATION (Rule 57)."* This rule does not
+    overturn that, and **must never be read as licence to derive the NEW system's expectations from the
+    NEW system's code.** Rule 96 itself already draws the line this rule stands on: *"using it for a
+    **REGRESSION baseline is legitimate**, because a regression baseline is a question of fact."*
+    The distinction is exact and load-bearing:
+    **(i)** The **V1 product's shipped code establishes WHAT V1 DID — a historical FACT**, and it is the
+    only complete record of it. That fact is the *subject* of the comparison.
+    **(ii)** It never establishes **WHAT V2 SHOULD DO**. V2's correctness still comes from the documents
+    (Rule 57), and V2's own code is never consulted for what V2 ought to do — that is the "the build is
+    right because the build does it" trap Rule 57 exists to stop.
+    **(iii)** V1 is **not the build under test**. V2 is. Reading V1's code is reading a record of the
+    past, not marking the present system's own homework.
+    **THE DANGER RULE 96 NAMES, AND WHAT TO DO ABOUT IT.** *"If the code contains a bug, code-derived
+    'current behaviour' would become an invariant we actively protect — a regression case asserting that
+    the bug must survive V2."* **That risk is real and this rule does not remove it.** So: when a
+    V1 behaviour derived from code looks like a **defect rather than a capability** — a typo in a field
+    list, a match that fires on the wrong column, an inconsistency between two entities that serve the
+    same purpose — it is a **PO DECISION ITEM, never a silent invariant, and never asserted as an
+    expectation without saying so on the case.** If in doubt, raise it; a suite that protects a V1 bug is
+    as damaging as one that misses a V1 capability.
     **RELATION TO OTHER RULES:** this is the comparison-suite form of Rule 57 (expectation comes from the
     source, never from the build) with the roles swapped — here the V2 document must not be allowed to
     excuse V1's shipped behaviour. It **overrides Rule 96's retire-the-superseded-case step wherever the
