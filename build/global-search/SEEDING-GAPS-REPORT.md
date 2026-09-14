@@ -78,6 +78,28 @@ compare the whole `create.payload` + `patch.fields` against it.
 is a **third outcome**, not a pass. `"no gaps found"` and `"no gaps I was able to look for"` must not
 look the same. This one line is what turns item 5 from invisible into obvious.
 
+Here is that check running against the fixtures as they stand — the second block is the part that had
+been silent, and `asset.model_name` is item 5 announcing itself:
+
+```
+DATA GAPS:
+  customer.country_code: wanted "US" but the record holds "CA"
+  vendor.telephone: wanted "(614) 555-0188" but the record holds null
+NOT COMPARED (do not read these as clean):
+  customer.address:   written as 'address',    but the record exposes no such key -- cannot compare
+  customer.phone:     written as 'phone',      but the record exposes no such key -- cannot compare
+  customer.email:     written as 'email',      but the record exposes no such key -- cannot compare
+  asset.maker_name:   written as 'maker_name', but the record exposes no such key -- cannot compare
+  asset.model_name:   written as 'model_name', but the record exposes no such key -- cannot compare
+  work_orders:        the record could not be read at all
+  part_sale:          the record could not be read at all
+```
+
+Five of the seven lines in that second block are **write-name vs read-name mismatches**: the payload
+writes `address`, `phone`, `email`, `maker_name`, `model_name`; the record reads back `address_1`,
+`telephone`, *(email not exposed on the list row)*, and `vehicle_model`. Every one of those is a
+field the suite searches on.
+
 **3. Add a `read_as` mapping to the manifest** wherever the API renames a field:
 ```json
 "verify": ["unit", "vin", "licence_plate", "year"],
