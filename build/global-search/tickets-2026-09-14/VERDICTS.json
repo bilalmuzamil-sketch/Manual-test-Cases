@@ -165,7 +165,7 @@
   },
   "C55662": {
    "verdict": "Blocked",
-   "observed": "Searching the company's own phone number returned nothing, in the formatted version and as plain digits. The number was put onto the record in the same save as the state, and searching the state DOES now find the customer - so the save worked and the search has caught up. The company's phone number simply is not searchable.",
+   "observed": "Searching the company's own phone number returned nothing, written out and as plain digits. Three things rule out the obvious explanations: the number was put onto the record and read back to confirm it; the county, saved in the very same change, IS now found by searching it, so the save worked and the search had caught up; and a SUPPLIER'S phone number, seeded the same way at the same time, IS found. So it is specifically a customer's own phone number that search does not look at.",
    "todo": "The case says to hold this and flag it. In the previous version a company could be found by its own switchboard number, separately from its contacts' numbers, so the Product Owner needs to decide whether that should come back."
   },
   "C53606": {
@@ -190,6 +190,10 @@
   "C55680": {
    "verdict": "Passed",
    "observed": "Arrowing down twelve times and back up six only ever landed on result rows. The headings that separate the sections - Customers, Assets, Vendors and the rest - were stepped over every time, going down and coming back, so the highlight never sat on something that cannot be opened."
+  },
+  "C55663": {
+   "verdict": "Passed",
+   "observed": "Searching the supplier's phone number returned that supplier, both written out with brackets and dashes and typed as plain digits. It had returned nothing before the number was actually put on the supplier's record - the record had been left without one."
   }
  }
 }
