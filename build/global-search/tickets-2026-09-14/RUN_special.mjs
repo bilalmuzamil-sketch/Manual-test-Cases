@@ -472,11 +472,23 @@ await run(53587,'A new work order or part sale is findable within 30 seconds',as
   const live=JSON.parse(fs.readFileSync('/home/user/Manual-test-Cases/build/global-search/seeding/seed-state-live.json','utf8')).live_ids;
   const c=await api('/api/work-orders/create','POST',
     {is_vehicle_here:false, company_id:live.customer, vehicle_id:live.asset});
-  const d=c.json&&(c.json.data||c.json); const wo=(d&&(d.work_order||d))||{};
-  if(!(c.status>=200&&c.status<300)||!wo.number)
+  const d=c.json&&(c.json.data||c.json); let wo=(d&&(d.work_order||d))||{};
+  // The create answered 201 and the job really was made -- it turned up in another case's results
+  // minutes later -- but `number` was not where this looked for it, so the case reported "could not
+  // create" and skipped the very thing it exists to measure. Dig for the number, and if it still
+  // cannot be found, fall back to the id and say plainly which was used.
+  const findNum=(o,depth=0)=>{ if(!o||typeof o!=='object'||depth>4) return null;
+    for(const [k,v] of Object.entries(o)){
+      if(/^number$/i.test(k) && (typeof v==='string'||typeof v==='number')) return String(v);
+      if(typeof v==='object'){ const r=findNum(v,depth+1); if(r) return r; } }
+    return null; };
+  const number=findNum(c.json)||findNum(wo);
+  if(!(c.status>=200&&c.status<300))
     return {created:false, status:c.status, head:c.head,
       note:'the job could not be created, so the 30-second window was never tested'};
-  const number=String(wo.number);
+  if(!number)
+    return {created:true, status:c.status, numberFound:false, responseHead:c.head,
+      note:'the job was created but its number could not be read from the response, so the window was not timed'};
   const bare=(number.match(/(\d+)\s*$/)||[])[1]||number;   // people type the bare number
   const t0=Date.now(); let foundAfter=null, lastRows=null;
   for(let i=0;i<8;i++){
@@ -504,11 +516,19 @@ await run(45152,'Switching location refreshes results to the new location',async
     locations:list.map(x=>x.name)};
   const A=list.find(x=>/heavy duty/i.test(x.name||''))||list[0];
   const B=list.find(x=>x.id!==A.id);
+  // Which location does the APP think it is on? Changing it through the back end is not proof the
+  // screen followed -- and "the results did not change" means nothing if the location never did.
+  const shownLocation=async()=>page.evaluate(()=>{
+    let loc=null; try{ loc=JSON.parse(localStorage.getItem('location')||'null'); }catch(e){}
+    const name=loc&&(loc.name||(loc.data&&loc.data.name))||null;
+    const header=(document.body.innerText||'').match(/Staging [A-Za-z ]+- ?\d+/);
+    return {fromStorage:name, onScreen:header?header[0]:null};});
   const searchJobs=async(label)=>{
     await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(4000);
+    const where=await shownLocation();
     await openModal(); const m=await type2('Bridgeport');
     await shot(`C45152-${label}`);
-    return {tabs:m&&m.tabs,
+    return {appThinksItIsOn:where, tabs:m&&m.tabs,
       jobs:(m?m.rows:[]).filter(r=>r.type==='work_orders').map(r=>r.text.slice(0,60)),
       partSales:(m?m.rows:[]).filter(r=>r.type==='part_sales').map(r=>r.text.slice(0,60))};};
   await api('/api/iam/change-location','POST',{workplace_id:A.id, workplace_timezone:A.timezone||'America/Edmonton'});
@@ -519,9 +539,14 @@ await run(45152,'Switching location refreshes results to the new location',async
   await closeModal();
   // put it back where the rest of the pass expects it
   await api('/api/iam/change-location','POST',{workplace_id:A.id, workplace_timezone:A.timezone||'America/Edmonton'});
+  const locationReallyChanged = JSON.stringify(at1.appThinksItIsOn)!==JSON.stringify(at2.appThinksItIsOn);
   return {location1:{name:A.name, ...at1}, location2:{name:B.name, switchStatus:sw.status, ...at2},
     firstLocationHadJobs:at1.jobs.length>0,
+    locationReallyChanged,
     jobsChanged:JSON.stringify(at1.jobs)!==JSON.stringify(at2.jobs),
+    // Without BOTH controls -- the first location had jobs, and the app actually moved -- an
+    // unchanged result list says nothing about whether search respects the location.
+    conclusive: at1.jobs.length>0 && locationReallyChanged,
     restoredTo:A.name};});
 
 // ---------------------------------------------------------------- C53589 typing is never lost
