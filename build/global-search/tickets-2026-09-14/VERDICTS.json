@@ -221,6 +221,11 @@
   "C55664": {
    "verdict": "Passed",
    "observed": "Searching the vehicle's model returned it under the Assets heading, among the other vehicles of that model. It had not been returned before, because the vehicle was recorded with the wrong model - once its record actually said what it was meant to say, the search found it."
+  },
+  "C55673": {
+   "verdict": "Blocked",
+   "observed": "Typed a word and pressed Enter without touching the arrow keys. Something did open, so Enter works on its own - but it opened the wrong record. The top result was a job; what opened was a customer sitting partway down the list, and that customer is the one the panel had quietly highlighted from the moment the results appeared. Checked twice, once with nothing else clicked first, and it behaved the same both times.",
+   "todo": "The case says to hold this and flag it. Before, the first result was highlighted as soon as results appeared, so typing and pressing Enter took you straight to the best match. Now it takes you somewhere else, which is worse than doing nothing: someone typing and pressing Enter out of habit lands on a record they did not ask for and may not notice. Worth deciding whether this is a deliberate change or simply wrong."
   }
  }
 }

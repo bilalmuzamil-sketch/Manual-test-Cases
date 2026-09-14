@@ -801,7 +801,7 @@
   },
   "C55673": {
    "title": "Pressing Enter opens the top result without arrowing to it",
-   "topRow": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner 1000HS",
+   "topRow": "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner Cascadia",
    "topRowType": "work_orders",
    "highlightedBeforeEnter": "search_row_customers_3281d198-6e8c-419f-bb39-16482f7412ac",
    "highlightEvidence": {
@@ -830,31 +830,31 @@
      },
      {
       "tid": "search_result_row_work_orders_1",
+      "id": "search_row_work_orders_ea3c8f84-4c3c-4e2c-8c1c-15451adeec70",
+      "cls": "search-row",
+      "ariaSelected": "false",
+      "text": "S9160-17603 ZZAUTOTEST Bridgeport Hauling Est"
+     },
+     {
+      "tid": "search_result_row_work_orders_2",
       "id": "search_row_work_orders_bc72f68c-ae32-4bb2-91d8-560ce34781ff",
       "cls": "search-row",
       "ariaSelected": "false",
       "text": "S9160-17602 ZZAUTOTEST Bridgeport Hauling Est"
      },
      {
-      "tid": "search_result_row_work_orders_2",
+      "tid": "search_result_row_work_orders_3",
       "id": "search_row_work_orders_6742aca7-31e6-45f7-a30a-f6708d98777e",
       "cls": "search-row",
       "ariaSelected": "false",
       "text": "S9160-17601 ZZAUTOTEST Bridgeport Hauling Est"
      },
      {
-      "tid": "search_result_row_work_orders_3",
+      "tid": "search_result_row_work_orders_4",
       "id": "search_row_work_orders_3f149d79-f650-492e-bace-840bb65a100c",
       "cls": "search-row",
       "ariaSelected": "false",
       "text": "S9160-17600 ZZAUTOTEST Bridgeport Hauling Est"
-     },
-     {
-      "tid": "search_result_row_work_orders_4",
-      "id": "search_row_work_orders_8f02b314-d826-4035-a77c-9f2997b4b158",
-      "cls": "search-row",
-      "ariaSelected": "false",
-      "text": "S9160-17599 ZZAUTOTEST Bridgeport Hauling Est"
      },
      {
       "tid": "search_result_row_customers_0",
@@ -893,7 +893,8 @@
      }
     ]
    },
-   "openedTheTopRow": true,
+   "noTabWasClickedFirst": true,
+   "topRowWasWhatOpened": false,
    "urlBefore": "/workorders?tab=complete",
    "urlAfter": "/customers/3281d198-6e8c-419f-bb39-16482f7412ac/work-orders",
    "navigated": true,
@@ -1086,7 +1087,9 @@
    "created": true,
    "status": 201,
    "numberFound": false,
-   "note": "the job was created but its number could not be read from the response, so the window was not timed"
+   "newId": null,
+   "responseBody": "{\"data\":{\"work_order_id\":\"ea3c8f84-4c3c-4e2c-8c1c-15451adeec70\"}}",
+   "note": "the job was created but its number could not be read, so the window was not timed"
   },
   "C45152": {
    "title": "Switching location refreshes results to the new location",
@@ -1097,9 +1100,9 @@
      "onScreen": "Staging Heavy Duty - 9919"
     },
     "tabs": {
-     "strip": 14,
-     "all": 14,
-     "work_orders": 6,
+     "strip": 15,
+     "all": 15,
+     "work_orders": 7,
      "customers": 7,
      "assets": 1,
      "parts": 0,
@@ -1110,24 +1113,28 @@
     },
     "jobs": [
      "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+     "S9160-17603 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
      "S9160-17602 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
      "S9160-17601 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
-     "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
-     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 "
+     "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 "
     ],
     "partSales": []
    },
    "location2": {
     "name": "Staging Lethbridge - 4310",
     "switchStatus": 200,
+    "switchedVia": {
+     "clicked": true,
+     "picked": false
+    },
     "appThinksItIsOn": {
      "fromStorage": null,
      "onScreen": "Staging Heavy Duty - 9919"
     },
     "tabs": {
-     "strip": 14,
-     "all": 14,
-     "work_orders": 6,
+     "strip": 15,
+     "all": 15,
+     "work_orders": 7,
      "customers": 7,
      "assets": 1,
      "parts": 0,
@@ -1138,10 +1145,10 @@
     },
     "jobs": [
      "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
+     "S9160-17603 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
      "S9160-17602 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
      "S9160-17601 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
-     "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 ",
-     "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 "
+     "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 "
     ],
     "partSales": []
    },
