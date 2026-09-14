@@ -9,6 +9,25 @@ unable to see. None of it is a criticism of the approach.
 
 ---
 
+## What I had to seed, in one table
+
+Everything below was declared in the manifest (except the last two rows) and absent from the record.
+I put each value on, read it back to confirm, and re-ran the tests that depend on it.
+
+| Record | Field | What I set it to | What it unblocked |
+|---|---|---|---|
+| Customer | county / state | `Ohio` | Searching a customer by county — **now works** |
+| Customer | address line 2 | `Dock 7B` | Searching by second address line — **now works** |
+| Customer | telephone | `(419) 555-0143` | Still returns nothing — a real finding, now provable |
+| Vendor | telephone | `(614) 555-0188` | Searching a supplier by phone — **now works** |
+| Vendor | address line 2 | `Bay 12C` *(never declared)* | The supplier half of the address-line-2 test |
+| Vehicle | model | `Cascadia` (was `1000HS`) | Searching a vehicle by model — **now works** |
+| Customer | a new one, created live | `ZZAUTOTEST Halloway Freight …` | The "findable within 30 seconds" test — found in 17s |
+| Work order | a new one, created live | — | The "new job findable" test |
+
+**Four things that looked like product faults were missing data.** Without seeding them, four tickets
+would have been proposed for fields the record simply did not carry.
+
 ## The one-line version
 
 `seed.py --check` reported **6 of 7 records present**, and that was true. But **"the record exists"
