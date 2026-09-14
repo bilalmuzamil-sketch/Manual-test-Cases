@@ -1,11 +1,33 @@
 {
  "at": "2026-09-14T15:08:56.139Z",
  "ids": {
-  "customer": "a1d08451-0214-41a4-983f-7f878ff7bcf0"
+  "customer": "a1d08451-0214-41a4-983f-7f878ff7bcf0",
+  "contact": "present",
+  "asset": "present",
+  "vendor": "present"
  },
  "routes": [
   "POST /api/customers/create",
-  "POST /api/user/recent-entities/touch"
+  "POST /api/user/recent-entities/touch",
+  "POST /api/contacts/create",
+  "POST /api/parts-catalogue/add-vendor",
+  "POST /api/vehicles/create"
  ],
- "notes": []
+ "notes": [
+  {
+   "asset": "make/model substituted from the existing list; no \"Cascadia\" option exists. VIN, unit and plate are exact.",
+   "make": "picked:check `freightliner",
+   "model": "no-usable-option"
+  },
+  {
+   "asset": "make/model substituted from the existing list; no \"Cascadia\" option exists. VIN, unit and plate are exact.",
+   "make": "picked:Freightliner",
+   "model": "picked:????"
+  },
+  {
+   "asset": "make/model substituted from the existing list; no \"Cascadia\" option exists. VIN, unit and plate are exact.",
+   "make": "picked:Freightliner",
+   "model": "picked:????"
+  }
+ ]
 }
