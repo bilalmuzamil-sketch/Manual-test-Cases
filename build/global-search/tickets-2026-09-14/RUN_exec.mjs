@@ -23,9 +23,20 @@ const search=async(q)=>{
   await page.waitForSelector('[data-test-id="search_modal_input"]',{state:'visible',timeout:20000});
   const sel='[data-test-id="search_modal_input"]';
   await page.fill(sel,''); await page.type(sel,q,{delay:35});
-  await page.waitForTimeout(4200);
   const v=await page.$eval(sel,e=>e.value).catch(()=>null);
   if(v!==q) throw new Error(`INSTRUMENT: box holds ${JSON.stringify(v)} not ${JSON.stringify(q)}`);
+  // WAIT FOR THE COUNTS TO SETTLE, never a fixed timeout. Measured on this build: a 29-character
+  // query still reads "All (0)" at 2s and only settles to "All (6)" at 4s. A fixed wait turns that
+  // into a confident, wrong zero -- which is what my first two passes recorded.
+  let last=null, stable=0;
+  for(let i=0;i<20;i++){
+    await page.waitForTimeout(1000);
+    const now=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
+      return m?[...m.querySelectorAll('[role=tab],.q-tab')].filter(vis).map(e=>(e.innerText||'').trim()).join('|'):null;});
+    if(now && now===last){ if(++stable>=2) return; } else stable=0;
+    last=now;
+  }
 };
 const readAll=async()=>page.evaluate(()=>{
   const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
@@ -40,7 +51,7 @@ const openTab=async(name)=>{ const ok=await page.evaluate((n)=>{
     const t=[...m.querySelectorAll('[role=tab],.q-tab')].filter(vis)
       .find(e=>(e.innerText||'').trim().toLowerCase().startsWith(n.toLowerCase()));
     if(!t) return false; t.click(); return true;}, name);
-  await page.waitForTimeout(3200); return ok; };
+  await page.waitForTimeout(3500); return ok; };
 // The group comes from the case's own steps ("Read the Assets group"), parsed into CASES-6769.json.
 // Two earlier attempts to infer it -- from the title, then from the Expected prose -- were both
 // wrong in ways that would have produced confident, wrong zeros ("proVINce" matched /vin/; "vendor
