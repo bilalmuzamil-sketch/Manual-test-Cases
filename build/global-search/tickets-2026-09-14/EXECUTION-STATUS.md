@@ -28,7 +28,7 @@ by its year" into something an engineer can act on.
 |---|---|---|
 | Query-driven | 41 | Executed with the corrected instrument; judged against the full case text |
 | Not query-driven | 9 | Executed with purpose-built probes, each carrying its own control |
-| Role-gated | 12 | Route open (impersonating existing holders); the sweep is running |
+| Role-gated | 12 | **2 judged from a controlled comparison**; the rest need permission sets nobody currently holds |
 
 ## A seventh instrument fault, and the worst of them
 
@@ -47,9 +47,25 @@ the source, and a check flags any verdict that contradicts its own case before r
 
 **The twelve role cases.** They were carried as blocked because the branch's quick sign-in offers only
 Admin and Tech. That is a fact about the sign-in panel, not about the branch: it carries **66 staff
-across five real roles** (Admin, Technician, Foreman, Sales Representative, Senior Service Advisor),
-and any of them can be impersonated — no user created, no role edited, nothing to restore. The recipe
-was already in the playbook before this pass started.
+across five real roles**, and any active one can be impersonated — no user created, no role edited,
+nothing to restore. The recipe was already in the playbook before this pass started.
+
+It took **four** goes, and every wall was mine: the sign-in panel's two buttons, then inactive
+accounts, then reading identity from the browser's cache instead of the server, then signing the app
+out by clearing its storage. The control refused to report a permission result each time — wrong about
+why, right about not reporting.
+
+**What it produced.** A **technician** (6 permissions) and a **foreman** (23) searched the same word
+minutes apart on the same data: identical jobs, customers and vehicle counts, and the foreman
+additionally sees the part and the supplier while the technician sees neither and gets no such
+headings. That is the paired User A / User B comparison two of these cases ask for, and both pass.
+
+**What is still needed.** The other role cases want permission sets **nobody on this branch currently
+holds** — a time-clock user, a user without job access, a user without customer access, a part-sales
+only user. The eleven role templates exist (including Time Clock User), so the sets are there,
+unassigned. A probe is running that gives one spare staff member a role for the length of one
+observation, proves the observation, then puts the role back and **reads it back to prove the restore
+landed**. It never touches the administrator account.
 
 **The part sale (C55665, and part of C45153/C45151).** Part sales still cannot be created on this
 branch, so there is no part sale to search for. That one is genuinely outstanding.
