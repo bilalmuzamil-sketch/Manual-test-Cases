@@ -63,10 +63,21 @@ const settle=async(min=5000)=>{ let last=null,st=0,t0=Date.now();
         text:(e.innerText||'').replace(/\s+/g,' ').trim()}));
       return {tabs,rows};});
     if(!m){st=0;continue;}
-    const sig=JSON.stringify(m); const has=Object.values(m.tabs).some(v=>v!==null);
-    if(has&&sig===last){ if(++st>=3&&Date.now()-t0>=min) return m; } else st=0;
+    const sig=JSON.stringify(m);
+    // Settle on the counts where a tab strip exists, and on the ROWS where it does not. At tablet and
+    // phone widths the strip may not render its counts at all, and insisting on them made the reading
+    // time out and come back null -- which then read as "the customer cannot be found on a phone".
+    const ready=Object.values(m.tabs).some(v=>v!==null) || m.rows.length>0 || m.settledEmpty;
+    if(ready&&sig===last){ if(++st>=3&&Date.now()-t0>=min) return m; } else st=0;
     last=sig; }
-  return null; };
+  return await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!d) return null;
+    const tabs={}; d.querySelectorAll('[data-test-id^="search_modal_tab_"]').forEach(e=>{
+      const t=(e.innerText||'').match(/\((\d+)\)/); tabs[e.getAttribute('data-test-id').replace('search_modal_tab_','')]=t?+t[1]:null;});
+    return {tabs, timedOut:true,
+      rows:[...d.querySelectorAll('[data-test-id^="search_result_row_"]')].map(e=>({
+        tid:e.getAttribute('data-test-id'), type:e.getAttribute('data-test-id').replace('search_result_row_','').replace(/_\d+$/,''),
+        text:(e.innerText||'').replace(/\s+/g,' ').trim()}))};}); };
 const shot=(n)=>page.screenshot({path:`${EV}/${n}.png`});
 const run=async(id,name,fn)=>{ const k='C'+id;
   if(!want(id)) return; if(R.cases[k]&&!ONLY){ L('skip',k); return; }
@@ -138,7 +149,9 @@ await run(55674,'Search can be reached on a phone and a tablet as well as a desk
     let found=null, rows=null;
     if(opened){ const m=await type2('Bridgeport');
       rows=m?m.rows.map(r=>`[${r.type}] ${r.text.slice(0,60)}`):null;
-      found=!!(m&&m.rows.some(r=>r.type==='customers'&&/Bridgeport/i.test(r.text))); }
+      found=!!(m&&m.rows.some(r=>r.type==='customers'&&/Bridgeport/i.test(r.text)));
+      out[label+'_readingTimedOut']=!!(m&&m.timedOut);
+      out[label+'_tabStripCounts']=m&&m.tabs; }
     await shot(`C55674-${label}`);
     out[label]={reachedBy:how, modalOpened:opened, customerFound:found, rows};
     await closeModal(); }
@@ -189,10 +202,15 @@ await run(45160,'Selecting a result records a usage analytics event',async()=>{
   // the URL alone cannot tell a search-usage event from the navigation that follows it. GA4 puts the
   // event name in `en=`, so read it rather than infer the verdict from the fact that something fired.
   const h=r=>{const u=r.url(); if(/analytic|telemetry|event|track|mixpanel|segment|amplitude|usage/i.test(u)){
-    let body=''; try{ body=r.postData()||''; }catch(e){}
-    const names=[...String(body).matchAll(/(?:^|&|\n)en=([^&\n]+)/g)].map(m=>decodeURIComponent(m[1]));
-    seen.push({call:`${r.method()} ${u.slice(0,110)}`, events:names,
-      body:String(body).slice(0,300)});}};
+    let body=''; let unreadable=false;
+    try{ body=r.postData()||''; }catch(e){}
+    if(!body){ try{ const b=r.postDataBuffer&&r.postDataBuffer(); if(b) body=b.toString('utf8'); }catch(e){} }
+    if(!body && r.method()==='POST') unreadable=true;   // sendBeacon bodies can be unreadable
+    // GA puts the event name in `en=`, in the BODY for POST and sometimes in the URL query.
+    const hay=body+'\n'+u;
+    const names=[...String(hay).matchAll(/(?:^|&|\n|\?)en=([^&\n]+)/g)].map(m=>decodeURIComponent(m[1]));
+    seen.push({call:`${r.method()} ${u.slice(0,110)}`, events:names, bodyUnreadable:unreadable,
+      body:String(body).slice(0,400)});}};
   page.on('request',h);
   await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
   const baseline=seen.length;
@@ -205,8 +223,12 @@ await run(45160,'Selecting a result records a usage analytics event',async()=>{
   page.off('request',h); page.off('request',h2);
   await shot('C45160-after-selecting-a-result');
   const eventNames=[...new Set(seen.flatMap(x=>x.events||[]))];
+  const unreadable=seen.filter(x=>x.bodyUnreadable).length;
   return {rowClicked:!!row, analyticsBefore:baseline, analyticsAfter:seen.length,
     eventNames, searchEventSeen:eventNames.some(n=>/search/i.test(n)),
+    // An unreadable body is a THIRD outcome -- not "no search event". Say so rather than conclude.
+    postsWithUnreadableBody:unreadable,
+    conclusive: unreadable===0,
     analyticsRequests:seen.slice(0,10), requestsCapturedAtAll:anyRequest.length,
     note:anyRequest.length?'the listener demonstrably captured traffic during the click':
       'NO traffic captured during the click -- the listener, not the app, is what this proves'};});
