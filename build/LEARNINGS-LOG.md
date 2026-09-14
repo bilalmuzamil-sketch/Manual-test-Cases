@@ -1881,3 +1881,24 @@ re-running could have produced.
 > **Seeding the value is not a chore that precedes the test — it often IS the test.** A negative with
 > the value absent is worthless. The same negative, beside a sibling field written in the same
 > transaction that now works, is close to conclusive.
+
+### L0097 — the refusal names the cause; read it before calling the route closed
+Impersonation came back `400` and `403` for the first three roles. The bodies said it plainly:
+
+- `{"errors":[{"error":"Cannot impersonate an inactive user."}]}`
+- `{"errors":[{"error":"Access denied."}]}`
+
+The route was fine. **I had picked the wrong people** — the first holder of each role happened to be
+an inactive account. Had I logged "switch-user is not available on this branch" and moved on, twelve
+cases would have stayed blocked over a filter I never applied.
+
+Two habits this pass keeps rewarding:
+- **Read the error body, always.** It is the single highest-yield step in the unblock drill and it
+  cost one line of code to capture.
+- **Try more than one candidate.** A single 403 is a fact about that user, not about the role or the
+  endpoint (Rule 68). Each role now gets up to four active candidates.
+
+And the reason this was recoverable at all: the probe's positive control **refused to report anything**
+about permissions while the identity had not demonstrably changed. Without it, four roles would have
+returned "sees no results" — a catastrophic-looking finding, produced entirely by a session that was
+still signed in as an administrator the whole time.
