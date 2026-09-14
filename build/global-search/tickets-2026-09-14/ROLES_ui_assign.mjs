@@ -114,8 +114,27 @@ const setRole=async(name)=>{
     const b=[...dlg.querySelectorAll('button')].filter(vis)
       .find(e=>/^(save|update|apply|confirm)\b/i.test((e.innerText||'').replace(/\s+/g,' ').trim()));
     if(!b) return false; b.click(); return true;});
-  await page.waitForTimeout(7000);
-  return {opened:true, options, picked, saved};
+  await page.waitForTimeout(6000);
+  // The pick and the save both register and the role does not change -- so the form is refusing.
+  // Capture what it says rather than start filling in other fields on a real person's record.
+  const afterSave=await page.evaluate(()=>{
+    const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const dlg=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
+    const errs=[...document.querySelectorAll('.q-field--error,.text-negative,[role=alert],.q-notification')]
+      .filter(vis).map(e=>(e.innerText||'').replace(/\s+/g,' ').trim().slice(0,90)).slice(0,8);
+    return {dialogStillOpen:!!dlg,
+      roleFieldNow:(()=>{ if(!dlg) return null;
+        const f=[...dlg.querySelectorAll('.q-select,label.q-field')].filter(vis)
+          .find(e=>/^Role\b/.test((e.innerText||'').replace(/\s+/g,' ').trim()));
+        return f?((f.querySelector('input')||{}).value||null):null;})(),
+      messages:errs,
+      emptyRequired:(()=>{ if(!dlg) return [];
+        return [...dlg.querySelectorAll('label.q-field,.q-select')].filter(vis)
+          .filter(e=>!((e.querySelector('input')||{}).value||'').trim())
+          .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim().slice(0,40)).slice(0,6);})()};});
+  await page.screenshot({path:`${DIR}/roles-evidence/ui-after-save.png`}).catch(()=>{});
+  await page.waitForTimeout(1500);
+  return {opened:true, options, picked, saved, afterSave};
 };
 
 R.change=await setRole(TARGET);
