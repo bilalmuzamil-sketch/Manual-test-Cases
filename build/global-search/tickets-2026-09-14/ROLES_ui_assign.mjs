@@ -109,6 +109,35 @@ const setRole=async(name)=>{
       .find(e=>(e.innerText||'').replace(/\s+/g,' ').trim()===n);
     if(!o) return false; o.click(); return true;}, name);
   await page.waitForTimeout(2000);
+  // The form refuses with "Location is a required field" -- this person has none set, and the save is
+  // blocked even though the role field itself accepted the change. Fill it. On a dummy branch, adding
+  // a location to a test staff member is well within what we are cleared to do, and it is additive
+  // rather than an overwrite: the field was empty.
+  let locationFilled=null;
+  const needsLocation=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const dlg=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!dlg) return false;
+    const f=[...dlg.querySelectorAll('.q-select,label.q-field')].filter(vis)
+      .find(e=>/^Location\b/.test((e.innerText||'').replace(/\s+/g,' ').trim()));
+    return f?!(((f.querySelector('input')||{}).value)||'').trim():false;});
+  if(needsLocation){
+    const opened=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const dlg=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!dlg) return false;
+      const f=[...dlg.querySelectorAll('.q-select,label.q-field')].filter(vis)
+        .find(e=>/^Location\b/.test((e.innerText||'').replace(/\s+/g,' ').trim()));
+      if(!f) return false; f.click(); return true;});
+    await page.waitForTimeout(2500);
+    const opts=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      return [...document.querySelectorAll('[role=option],.q-item')].filter(vis)
+        .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim()).filter(t=>/Staging /.test(t)).slice(0,8);});
+    const chose=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const o=[...document.querySelectorAll('[role=option],.q-item')].filter(vis)
+        .find(e=>/Heavy Duty/.test(e.innerText||''))
+        ||[...document.querySelectorAll('[role=option],.q-item')].filter(vis)
+        .find(e=>/Staging /.test(e.innerText||''));
+      if(!o) return false; o.click(); return true;});
+    await page.waitForTimeout(2500);
+    locationFilled={opened, options:opts, chose};
+  }
   const saved=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
     const dlg=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop()||document.body;
     const b=[...dlg.querySelectorAll('button')].filter(vis)
@@ -134,7 +163,7 @@ const setRole=async(name)=>{
           .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim().slice(0,40)).slice(0,6);})()};});
   await page.screenshot({path:`${DIR}/roles-evidence/ui-after-save.png`}).catch(()=>{});
   await page.waitForTimeout(1500);
-  return {opened:true, options, picked, saved, afterSave};
+  return {opened:true, options, picked, locationFilled, saved, afterSave};
 };
 
 R.change=await setRole(TARGET);
