@@ -1,0 +1,34 @@
+{
+ "claim": "a staff member's role cannot be changed on sv9160",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The SAME method -- click a Quasar select, poll for [role=option]/.q-item, click one -- WORKED on the profile menu location picker minutes earlier: options [\"Staging Heavy Duty - 9919\",\"Staging Lethbridge - 4310\"] were listed and picked, and the header changed (SPECIAL-RESULTS.json C45152, switchedVia.picked=true, locationReallyChanged=true). So the technique can read and drive this app's dropdowns."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Yes -- /administration/staff, the row edit control, the real dialog. The Role dropdown opened and listed all eleven roles, \"Time Clock User\" was picked and the field showed it (ROLES-UI.json change.picked=true, afterSave.roleFieldNow=\"Time Clock User\"). Save & Close was clicked. The form then displayed \"Location is a required field\"."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Four separate runs (queues gs13, gs14, gs16, gs17), each a fresh sign-in. The last polls for the Location options ten times over twelve seconds. Same outcome each time; the person ended each run verified back on Technician."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "The dialog stayed open after Save (afterSave.dialogStillOpen=true) and the staff list, re-read on a fresh page load, still shows Technician -- so nothing navigated away mid-save and no second tab took the action."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "The subject's role was read off the staff list before (Technician), after the attempted change (Technician) and after the restore (Technician) -- ROLES-UI.json subject.roleBefore / roleAfterChange / restore.roleNow."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "Rule 97 done: the playbook's \u00a7G role recipe was read and followed (it is the source of the Tech role-swap and switch-user routes); its staff ids are staging's and do not exist here. blocker_gate.py's own docstring warns of the script-vs-screen version of this, which is why it was driven through the screen."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": false,
+   "evidence": "MOST LIKELY MY FAULT, AND NOT RULED OUT: the Location dropdown returning no options. The identical situation on the profile-menu location picker WAS my selector, twice -- first I clicked the wrong element, then I read before the list rendered. Here the picker opens and my poll returns nothing, and when I widened the selector it matched the staff TABLE BEHIND the dialog rather than the list. That is a selector that is looking in the wrong place, not a proven absence of locations. Until the Location list is read correctly, \"the role cannot be changed\" is NOT proved -- what is proved is that the save is refused while Location is empty."
+  }
+ }
+}
