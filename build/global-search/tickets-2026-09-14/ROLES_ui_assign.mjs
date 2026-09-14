@@ -125,16 +125,20 @@ const setRole=async(name)=>{
       const f=[...dlg.querySelectorAll('.q-select,label.q-field')].filter(vis)
         .find(e=>/^Location\b/.test((e.innerText||'').replace(/\s+/g,' ').trim()));
       if(!f) return false; f.click(); return true;});
-    await page.waitForTimeout(2500);
-    const opts=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-      return [...document.querySelectorAll('[role=option],.q-item')].filter(vis)
-        .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim()).filter(t=>/Staging /.test(t)).slice(0,8);});
+    // POLL for the options rather than read once: the list loads after the click, and reading at a
+    // fixed 2.5s came back empty -- which reads as "there are no locations to choose" and is not.
+    let opts=[];
+    for(let i=0;i<10;i++){
+      await page.waitForTimeout(1200);
+      opts=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+        return [...document.querySelectorAll('[role=option],.q-item,.q-virtual-scroll__content > *')].filter(vis)
+          .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim()).filter(Boolean).slice(0,15);});
+      if(opts.some(t=>/Staging /.test(t))) break;
+    }
     const chose=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-      const o=[...document.querySelectorAll('[role=option],.q-item')].filter(vis)
-        .find(e=>/Heavy Duty/.test(e.innerText||''))
-        ||[...document.querySelectorAll('[role=option],.q-item')].filter(vis)
-        .find(e=>/Staging /.test(e.innerText||''));
-      if(!o) return false; o.click(); return true;});
+      const all=[...document.querySelectorAll('[role=option],.q-item,.q-virtual-scroll__content > *')].filter(vis);
+      const o=all.find(e=>/Heavy Duty/.test(e.innerText||''))||all.find(e=>/Staging /.test(e.innerText||''));
+      if(!o) return false; (o.closest('[role=option],.q-item')||o).click(); return true;});
     await page.waitForTimeout(2500);
     locationFilled={opened, options:opts, chose};
   }
