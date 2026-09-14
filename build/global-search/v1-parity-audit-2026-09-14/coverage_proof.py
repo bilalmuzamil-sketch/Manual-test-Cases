@@ -81,6 +81,18 @@ BEHAVIOURS=[
  ("INV-81 only WO/PS are location-scoped; the rest are org-wide","FetchDataQueryHandler.php:130",[45151]),
  ("INV-82 a location switch refreshes the results","useGlobalSearch.ts:286-299",[45152]),
  ("INV-90 no feature flag controls global search","absence in component, composable and config",[45158]),
+ # --- added 2026-09-14 evening: six invariants that were in the documented register but had
+ #     never been wired into this script, so the proof under-reported what it was checking.
+ #     No coverage was missing - every one already had a live case - but an unchecked row is
+ #     not a proof. Plus the two new precision cases.
+ ("INV-42 group headers are not selectable","useGlobalSearch.ts / GlobalSearch.vue:157-159; V1 baseline 55767168",[55680]),
+ ("INV-63 history shows when the query is under two characters OR the search matches nothing","useGlobalSearch.ts:69-71,229-231; V1 baseline 55767168",[45161,55679]),
+ ("INV-91 the exclusion list - TimeClock role, no default workplace, ungranted sections, invoices, inventory","V1 baseline 55767168; every excluded population is cased",[45147,45159,45142,53601]),
+ ("INV-92 each result row carries a per-type icon","GlobalSearch.vue:60-62 + useGlobalSearch.ts:96-137; V1 baseline 55767168",[55682]),
+ ("INV-93 the keyboard-shortcut hint is shown, platform-correct","GlobalSearch.vue:40-47,128-131; V1 baseline 55767168",[55683]),
+ ("INV-94 the old location's rows are cleared before the re-fetch","useGlobalSearch.ts:286-299 + V1's own test; V1 baseline 55767168",[55684]),
+ ("INV-95 only records containing the typed text are returned (literal matching, no near spellings)","useGlobalSearch.ts:76-92 startsWith then includes; V1 baseline 55767168",[55685]),
+ ("INV-96 exact-start matches are ordered above looser matches","useGlobalSearch.ts:156-180 two-pass ordering; V1 baseline 55767168",[55686]),
 ]
 cr=json.load(open('/tmp/testrail/creds.json'))
 A=base64.b64encode(f"{cr['user']}:{cr['login_password'] or cr['password']}".encode()).decode()
@@ -88,12 +100,17 @@ ctx=ssl.create_default_context(cafile='/root/.ccr/ca-bundle.crt')
 def api(p):
     r=urllib.request.Request(cr['host'].rstrip('/')+f"/index.php?/api/v2/{p}",headers={'Authorization':'Basic '+A})
     return json.loads(urllib.request.urlopen(r,context=ctx,timeout=60).read())
-cs=[];off=0
-while True:
-    r=api(f"get_cases/1&suite_id=1&section_id=6769&limit=250&offset={off}")
-    x=r['cases'] if isinstance(r,dict) else r; cs+=x
-    if len(x)<250: break
-    off+=250
+# A suite may span several sections - 8056 holds the cases derived from V1's own automated
+# tests. Reading only 6769 made C55684 look like it did not exist.
+SECTIONS=[6769,8056]
+cs=[]
+for sec in SECTIONS:
+    off=0
+    while True:
+        r=api(f"get_cases/1&suite_id=1&section_id={sec}&limit=250&offset={off}")
+        x=r['cases'] if isinstance(r,dict) else r; cs+=x
+        if len(x)<250: break
+        off+=250
 live={c['id']:c['title'] for c in cs}
 tests=[];off=0
 while True:
@@ -109,12 +126,12 @@ for kind,cap,cite,ids in rows:
         unmapped.discard(i)
         if i not in live: missing.append((cap,i))
         elif i not in inrun: notinrun.append((cap,i))
-print(f"section 6769 live cases : {len(live)}")
+print(f"live cases in sections {SECTIONS} : {len(live)}")
 print(f"run 415 tests           : {len(inrun)}")
 print(f"capabilities mapped     : {len(rows)}  ({len(FIELDS)} searchable fields + {len(BEHAVIOURS)} behaviours)")
 print(f"mapped to a case that does not exist : {missing}")
 print(f"mapped to a case NOT in run 415      : {notinrun}")
-print(f"cases in 6769 not mapped to any capability : {len(unmapped)}")
+print(f"cases not mapped to any capability : {len(unmapped)}")
 for i in sorted(unmapped): print(f"    C{i}  {live[i]}")
 json.dump({'fields':FIELDS,'behaviours':BEHAVIOURS,'live_6769':len(live),'run415':len(inrun),
  'missing':missing,'not_in_run':notinrun,'unmapped_cases':{str(i):live[i] for i in sorted(unmapped)}},
