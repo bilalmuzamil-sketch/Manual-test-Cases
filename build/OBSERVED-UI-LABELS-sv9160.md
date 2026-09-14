@@ -1,0 +1,27 @@
+# OBSERVED UI LABELS — sv9160.qa.shopview.com (build v26.36.4-7869ff2), 2026-09-14
+# Global Search — Enhancement (Aug 2026), epic SV-9160. Read live with evidence.
+
+## Opening the palette (Palette Open/Close/Keyboard)
+- Open: press **Ctrl+K** anywhere in the app, OR click the top-bar search box reading
+  **"Search work orders, customers, parts and more"** (the palette input's placeholder).
+- Close: the **X (close)** control, or **Esc**.
+- Keyboard hint shown in the palette footer: **"Arrow down and arrow up navigate, Enter selects, Escape closes"**
+  (with labels Navigate / Select / Close / esc).
+
+## Scope tabs (across the top of the palette), each with a live count in parentheses
+**All · Work orders · Customers · Assets · Parts · Vendors · Part sales · Purchase orders · Vendor invoices**
+(e.g. "All (85)  Work orders (20)  Customers (3)  Assets (20) …").
+
+## Default (empty-query) state — Recent activity
+- Heading **"Recent searches"** with a **"Clear All"** control; entries grouped under a date header (e.g. **"TODAY"**).
+
+## Grouped results + counts (after typing a query)
+- Results are grouped by category with a count per group, e.g. **"Work orders (20)"**, **"Customers (3)"**.
+- A summary line reads **"N results found across M categories"** (e.g. "85 results found across 7 categories").
+
+## Per-entity result row shape (examples observed)
+- Work order row: number (e.g. **S9160-17595**), customer name, status (Approved/Estimate), vehicle (e.g. 2011 Hyundai Santa Fe).
+- Estimate row: number **P9160-###**, customer, "Estimate", author · Today.
+
+## No-results state
+- **"No results found"** with the line **"No results for "<query>""**, all scope counts read (0).
