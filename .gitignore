@@ -24,3 +24,7 @@ secret-fingerprints.json
 # waiter runs, so tracking it makes the tree dirty every few minutes. A final snapshot is
 # committed as GS3-wait-final.log when the waiter exits.
 build/global-search/tickets-2026-09-14/GS3-wait.log
+
+# Live log of the regression-run executor (appended while it runs; the results and evidence
+# it produces ARE tracked -- only this transcript is not).
+build/global-search/tickets-2026-09-14/run-exec.log
