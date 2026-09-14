@@ -115,14 +115,25 @@ await run(55674,'Search can be reached on a phone and a tablet as well as a desk
     const clicked=await page.evaluate(()=>{const b=document.querySelector('[data-test-id="global_search_trigger"]');
       if(!b) return false; const r=b.getBoundingClientRect(); if(!(r.width>2&&r.height>2)) return false;
       b.click(); return true;});
-    if(clicked) how='search box in the header';
-    if(!clicked){ const icon=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    // WAIT for the modal after each attempt. The first version checked immediately after clicking,
+    // so desktop "passed" only by winning a race and the two narrow widths read as "search cannot be
+    // reached" -- which would have been reported as a V1-to-V2 capability loss caused entirely by a
+    // missing await. Each route now gets a real chance to open before the next is tried.
+    const waitOpen=async(ms=8000)=>{ const t=Date.now();
+      while(Date.now()-t<ms){ if(await modalOpen()) return true; await page.waitForTimeout(400); }
+      return false; };
+    if(clicked && await waitOpen()) how='search box in the header';
+    if(!how){ const icon=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
         const c=[...document.querySelectorAll('button,[role=button],a')].filter(vis)
           .find(e=>/search/i.test((e.getAttribute('aria-label')||'')+' '+(e.getAttribute('title')||'')+' '+(e.className||'')));
         if(!c) return false; c.click(); return true;});
-      if(icon) how='a search icon'; }
-    if(!how){ await page.keyboard.press('Control+k'); await page.waitForTimeout(1500);
-      if(await modalOpen()) how='the keyboard shortcut only'; }
+      if(icon && await waitOpen()) how='a search icon'; }
+    if(!how){ await page.keyboard.press('Control+k');
+      if(await waitOpen()) how='the keyboard shortcut'; }
+    // last resort: a REAL pointer click on the trigger, in case a JS .click() is being swallowed
+    if(!how){ await page.locator('[data-test-id="global_search_trigger"]').first()
+        .click({timeout:5000}).catch(()=>{});
+      if(await waitOpen()) how='a real tap on the search box'; }
     const opened=await modalOpen();
     let found=null, rows=null;
     if(opened){ const m=await type2('Bridgeport');

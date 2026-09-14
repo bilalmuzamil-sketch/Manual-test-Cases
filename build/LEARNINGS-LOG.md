@@ -1783,3 +1783,22 @@ Two habits, both cheap:
 Corollary for endpoints: `/api/<type>/view/<id>` answered **404** for vehicles and vendors. The
 manifest's own `find` blocks name the list endpoints the seeder has proven work — use those rather
 than guessing a view route, and treat a 404 as "wrong route", never as "record gone".
+
+### L0092 — a missing `await` reads as a product capability loss
+The three-widths case clicked the header search box and checked whether the modal was open **in the
+same breath**, with no wait. Desktop "passed" by winning a race; tablet and phone reported
+*search cannot be reached* — which the case itself says to treat as **"a real V1-to-V2 capability
+loss"** affecting technicians working from phones in the yard. That report would have been entirely
+manufactured by a missing await.
+
+The tell was in my own data and worth naming, because it recurs: the record said
+`reachedBy: "search box in the header"` **and** `modalOpened: false`. Those two cannot both be true —
+"I reached it" and "it never opened" is a self-contradiction, and a self-contradictory record is a
+statement about the instrument, not about the product.
+
+Now each route is given a real chance (poll to 8s) before the next is tried, and a genuine pointer
+tap is the last resort in case a scripted `.click()` is being swallowed.
+
+> **Any check of the form "did X happen after I did Y" needs a WAIT, not an immediate read** — and
+> the negative case is the one that needs it most, because a false positive gets caught by the next
+> step while a false negative gets written up as a finding.
