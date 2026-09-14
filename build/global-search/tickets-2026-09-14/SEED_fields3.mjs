@@ -28,9 +28,23 @@ if(!v){ out.error='vendor not found'; }
 else if(!String(v.name||'').includes(man.environment.tag)){ out.error=`refusing: ${v.name} is not tagged`; }
 else {
   out.before={address_2:v.address_2, telephone:v.telephone};
-  const w=await api('/api/parts-catalogue/edit-vendor','POST',
-    {...v, id:v.id, address_2:WANT, telephone:'(614) 555-0188'});
-  out.write={status:w.status, head:w.head};
+  // /api/parts-catalogue/edit-vendor answers 404 "'resource' was not found" -- a wrong path, not a
+  // missing vendor. Try the shapes this API actually uses and record which one took, so the next
+  // session does not repeat the search.
+  const fields={address_2:WANT, telephone:'(614) 555-0188'};
+  let w={status:0, head:'none tried'};
+  out.tried=[];
+  for(const [path,body] of [
+    ['/api/parts-catalogue/vendors/change', {...v, id:v.id, vendor_id:v.id, ...fields}],
+    ['/api/parts-catalogue/change-vendor',  {...v, id:v.id, vendor_id:v.id, ...fields}],
+    ['/api/parts-catalogue/update-vendor',  {...v, id:v.id, vendor_id:v.id, ...fields}],
+    ['/api/parts-catalogue/add-vendor',     {...v, id:v.id, vendor_id:v.id, ...fields}],
+    [`/api/parts-catalogue/vendors/${v.id}/change`, {...v, ...fields}],
+    [`/api/parts-catalogue/vendor/${v.id}/change`,  {...v, ...fields}],
+  ]){ const r=await api(path,'POST',body);
+    out.tried.push({path, status:r.status, head:(r.head||'').slice(0,110)});
+    if(r.status>=200&&r.status<300){ w=r; w.via=path; break; } w=r; }
+  out.write={status:w.status, head:w.head, via:w.via||null};
   await page.waitForTimeout(3000);
   const after=await findVendor();
   out.after={address_2:after&&after.address_2, telephone:after&&after.telephone};
