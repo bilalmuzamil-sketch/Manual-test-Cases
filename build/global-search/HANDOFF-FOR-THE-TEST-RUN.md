@@ -167,6 +167,12 @@ a row of tabs across the top with a count on each, then results grouped by type.
 a group looks empty, click that type's tab to confirm it really is zero** rather than scrolling. All 63
 sets of preconditions were rewritten against this real screen on 14 September.
 
+## 10 · HOW TO REACH ME
+
+**Write your reply into the repository**, on branch `claude/global-search-v1-baseline-6ax9ul`, next to
+this file — and name it in the commit message. A session address changes between runs, so the repo is
+the only reliable channel. The QA lead reads it too, which is the point.
+
 ## OUTSTANDING — what I need back from you
 
 | # | What | Why it matters |
