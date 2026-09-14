@@ -4969,3 +4969,28 @@ the work-order list is broken (the manifest says so). Read it back with
 **Analytics.** GA4 posts carry the event name as `en=` in the BODY, and `sendBeacon` bodies are not
 always exposed to a request listener — intercept the route and read `postDataBuffer()`, and count the
 posts whose body you could not read rather than reporting "no such event".
+
+### §GS.3 — WHAT WORKS AND WHAT DOES NOT FOR ROLES ON sv9160 (measured 2026-09-14)
+
+Recorded so the next session does not spend the time again.
+
+| Want | Route | Result |
+|---|---|---|
+| The list of role templates | `GET /api/role-templates` | **200**, `data.role_templates[]` — 11 of them, including **Time Clock User**, Parts Manager, Parts Technician |
+| The organisation's roles | `GET /api/roles` | **405.** `GET /api/organizations/{org}/roles` needs an organisation id that is **not** in localStorage (only `default_workplace` is there) |
+| Staff and their roles | `GET /api/staff?limit=200` | **200** — carries `role_label` but **no role id anywhere** |
+| Act as another person | `POST /api/switch-user {user_id}` | **works**, with the staff-list id. Refuses inactive accounts by name: *"Cannot impersonate an inactive user."* Some accounts answer *"Access denied."* — try several |
+| Change a staff member's role | `POST /api/staff/{id}/change` | **404 *"'Staff' was not found"*** with the staff-list id. `/api/staff/{id}`, `/edit`, `/view/{id}`, `/api/iam/users/{id}` all 404 or 405 — **no id that works was found** |
+
+**So: impersonation yes, role assignment no (from behind the app).** Four non-admin roles are reachable
+by impersonation on this branch — Technician, Foreman, Sales Representative, Senior Service Advisor —
+which is enough for any case that compares a role WITH a permission against one WITHOUT it.
+
+**After impersonating, read identity from `GET /api/auth/me/fe-permissions`** (`template_slug` and the
+permission count), never from localStorage: that copy is written at sign-in and does not change.
+**Do not clear localStorage to force a refresh** — removing `user` *or* `fe_permissions_wrapper`
+signs the app out and the bounce to the sign-in screen reads exactly like a permission result. Nothing
+needs clearing: the RESULTS come from the server, which already knows who the session is.
+
+Measured: technician = 6 permissions, sees jobs, customers and vehicles only; foreman = 23, additionally
+sees parts and suppliers; administrator = 43.
