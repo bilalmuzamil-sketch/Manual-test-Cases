@@ -24,6 +24,12 @@ with a second word that empties the results, and it does so whichever order you 
 needs no decision from you: both the old product and the written requirements say the year is
 searchable, so it is simply not working.
 
+**A second fault, smaller but worth a look.** A newly created **job** does not show up in search for
+about **85 seconds**. The requirement allows 30. A newly created **customer** manages it in 17, timed
+the same way minutes apart — so customers and jobs are not being refreshed the same way. Nobody would
+call it broken, but someone who creates a job and immediately searches for it will think it has not
+saved.
+
 **Nothing else failed.** That is not me being generous — the rest of these tests are written so that a
 capability lost between versions is put to you for a ruling, not raised as a bug.
 
@@ -40,7 +46,7 @@ capability lost between versions is put to you for a ruling, not raised as a bug
 | Clicking a result | Opens the right record every time |
 | The arrow keys | Move between results and never land on a section heading |
 | Typing fast while results load | Nothing is swallowed; the results match what you typed |
-| A brand-new customer | Found seventeen seconds after being created |
+| A brand-new customer | Found seventeen seconds after being created, inside the time allowed |
 | A search matching nothing | Says so plainly |
 | A word matching sixty-six records across all eight kinds | Every kind still shown; nothing squeezed out |
 | Finding a vehicle by its model, and a supplier by its phone | Both work — they had looked broken only because the test records were missing those details |
