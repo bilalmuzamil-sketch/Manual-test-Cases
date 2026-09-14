@@ -2004,3 +2004,24 @@ write-side field name the read side does not use.
 Confirmed working on this API: the customer endpoint takes whole-record writes by name and they
 land; the vendor endpoint is `change-vendor`, not `edit-vendor` or `vendors/change`, and those land
 too; the vehicle endpoint needs `vehicle_id`, `company_id`, and the model as an **id**.
+
+### L0102 — after changing who you are, ask the SERVER who you are
+Impersonation finally returned **200**, and the probe still reported the identity unchanged. The
+page's stored copy of the signed-in user (`localStorage.user`, `fe_permissions_wrapper`) is written at
+**sign-in** and is not refreshed by a mid-session swap — so reading identity from browser storage
+reports the administrator for ever, no matter who the server now thinks you are.
+
+That would have left twelve role cases unrunnable for the **third** time in one pass, each time for a
+different reason and each time looking like the same wall:
+
+1. "quick sign-in only offers two users" — true, and irrelevant (L0093)
+2. "impersonation is refused" — the users picked were inactive (L0097)
+3. "the identity did not change" — I was asking the wrong thing (this one)
+
+> **Read state from the authority, not from a cache written at a different moment.** After any change
+> of identity, location, permission or tenant, the question "what am I now?" goes to the server. And
+> clear the stale copy before rendering, or the screen keeps drawing the old answer.
+
+Worth noting what kept this honest: the control refused to report permission results while the
+identity was unproven. It was wrong three times about *why* — and right every time about *not
+reporting*. A control that blocks a conclusion you want is doing its job.
