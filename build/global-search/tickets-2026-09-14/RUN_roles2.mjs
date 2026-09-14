@@ -76,11 +76,19 @@ for(const tgt of targets){
   const feList=fd&&(fd.fe_permissions||fd.fePermissions);
   rec.serverIdentity={status:fe.status, templateSlug:fd&&(fd.template_slug||fd.templateSlug),
     nPerms:Array.isArray(feList)?feList.length:(feList?Object.keys(feList).length:null)};
-  // clear the stale copy and reload so the app renders as this user, not as the administrator
-  await page.evaluate(()=>{ try{ localStorage.removeItem('user');
-    localStorage.removeItem('fe_permissions_wrapper'); }catch(e){} }).catch(()=>{});
+  // Drop ONLY the cached permission set, never the signed-in user: removing `user` makes the app
+  // treat the session as signed out and bounce to the sign-in screen, and "search is not reachable"
+  // then reads as a permission result when it is nothing of the kind. Keeping `user` and dropping
+  // `fe_permissions_wrapper` leaves the app signed in and makes it re-fetch what this person may do.
+  await page.evaluate(()=>{ try{ localStorage.removeItem('fe_permissions_wrapper'); }catch(e){} }).catch(()=>{});
   await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'});
   await page.waitForTimeout(9000);
+  // If it bounced to the sign-in screen anyway, say so -- that is the harness, not the role.
+  if(/\/login/.test(page.url())){
+    await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'});
+    await page.waitForTimeout(8000);
+  }
+  rec.bouncedToSignIn = /\/login/.test(page.url());
   // WHO AM I NOW -- read from the server's own answer, not from the fact the call returned 200.
   const who=await page.evaluate(()=>{ let u=null,w=null;
     try{u=JSON.parse(localStorage.getItem('user')||'null')}catch(e){}
@@ -107,6 +115,9 @@ for(const tgt of targets){
     const trig=await page.evaluate(()=>{const b=document.querySelector('[data-test-id="global_search_trigger"]');
       if(!b) return false; const r=b.getBoundingClientRect(); return r.width>2&&r.height>2;});
     rec.searchReachable=trig;
+    if(!trig) rec.instrument=(rec.bouncedToSignIn
+      ? 'the app went back to the sign-in screen, so nothing here is a permission result'
+      : 'the search box was not on the page; treat as unproven rather than as a permission result');
     if(trig){
       await page.evaluate(()=>{const b=document.querySelector('[data-test-id="global_search_trigger"]'); b&&b.click();});
       await page.waitForSelector('[data-test-id="search_modal_input"]',{state:'visible',timeout:20000}).catch(()=>{});
