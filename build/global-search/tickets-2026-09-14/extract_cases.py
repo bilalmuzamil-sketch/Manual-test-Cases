@@ -23,7 +23,11 @@ def gmatch(w):
 # and the records themselves), not from the old handoff, which is stale on work-order numbers.
 OVERRIDE={
  53516: [('OHZZT471','Assets')],                       # the asset's full licence plate
- 53579: [('S-17597','Work Orders'),('S17597','Work Orders'),('S12-17597','Work Orders')],
+ # shop_id is 9160, read from /api/staff/my-workplaces. The case's "S12-" is a PLACEHOLDER in its
+ # example text, not a real prefix -- an earlier override copied it literally and would have reported
+ # a failure for a work-order number that never existed.
+ 53579: [('S-17597','Work Orders'),('S17597','Work Orders'),
+         ('S9160-17597','Work Orders'),('9160-17597','Work Orders')],
  53582: [('Kestrelway','Customers'),('Fernvale','Customers'),('Ohio','Customers'),('44872-9931','Customers')],
  53585: [('Halbrook','Vendors'),('Marnston','Vendors'),('43055-2210','Vendors')],
  45155: [('Cascadia',None)],                           # which heading do vehicles appear under?
@@ -43,7 +47,7 @@ def build():
         chunks=[parts[i+1] for i in range(1,len(parts)-1,2)] if len(parts)>2 else [steps]
         pairs=[]; pending=None
         for ch in chunks:
-            m=re.search(r'\b(?:[Tt]ype|[Ss]earch)(?:\s+(?:the|it|for))?[^:]{0,45}:\s*(.+)$', ch)
+            m=re.search(r'\b(?:[Tt]ype|[Ss]earch)(?:\s+(?:the|it|for))?[^:]{0,80}:\s*(.+)$', ch)
             if m:
                 q=re.split(r'\s{2,}', m.group(1).strip().rstrip('.').strip())[0].strip()
                 q=re.sub(r'^(for example|e\.g\.)\s+','',q,flags=re.I).strip()

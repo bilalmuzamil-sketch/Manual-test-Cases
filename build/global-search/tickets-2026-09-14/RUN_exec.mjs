@@ -28,8 +28,11 @@ const search=async(q)=>{
   // WAIT FOR THE COUNTS TO SETTLE, never a fixed timeout. Measured on this build: a 29-character
   // query still reads "All (0)" at 2s and only settles to "All (6)" at 4s. A fixed wait turns that
   // into a confident, wrong zero -- which is what my first two passes recorded.
-  let last=null, stable=0;
-  for(let i=0;i<20;i++){
+  // Two identical reads a second apart is only 2 seconds, and a long multi-word query was measured
+  // settling at ~4s -- which is how "All (0)" came to sit beside a group holding a row. Require
+  // THREE consecutive identical reads and a minimum elapsed time before trusting the counts.
+  let last=null, stable=0; const t0=Date.now();
+  for(let i=0;i<25;i++){
     await page.waitForTimeout(1000);
     const now=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
       const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
@@ -37,7 +40,7 @@ const search=async(q)=>{
     // A tab strip that has rendered WITHOUT its counts is stable-looking but not settled: it yields
     // "All (0)" beside a group that actually holds rows. Require the counts to be present.
     const hasCounts = now && /\(\d+\)/.test(now);
-    if(hasCounts && now===last){ if(++stable>=2) return; } else stable=0;
+    if(hasCounts && now===last){ if(++stable>=3 && Date.now()-t0>=5000) return; } else stable=0;
     last=now;
   }
 };
