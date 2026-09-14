@@ -1762,3 +1762,24 @@ the update times it is supposed to reflect.
 
 The tell: a case whose Expected mentions a **time window, an ordering, a role, or a second record**
 almost never reduces to one query.
+
+### L0091 — read the record's WHOLE field set; a guessed key list hides the null that changes the verdict
+Three searches returned nothing and looked like product findings: a customer by **state**, by
+**address line 2**, and by the **company's own phone number**. Reading the customer record showed
+`state_or_province`, `address_2` and `telephone` all **null** — the manifest's patch step declares
+them, but the record does not carry them. None of the three was a product finding; all three were
+missing data, and the cases cannot be run until it is seeded (Rule 14: seed the state, never mark it
+not-verified).
+
+Two habits, both cheap:
+- **Dump every scalar field of the record, not a subset you chose.** My first verifier picked the keys
+  it expected; a field that is simply absent looks identical to one that is null, and both look
+  identical to a key I forgot to ask for.
+- **Compare what the record HOLDS against what the fixture SAYS it holds**, field by field, and print
+  the differences. The seeder is find-or-create and idempotent, so a patch step that silently no-ops
+  leaves a manifest that says one thing and a record that says another — and every case resting on
+  that field then fails for a reason that has nothing to do with the product.
+
+Corollary for endpoints: `/api/<type>/view/<id>` answered **404** for vehicles and vendors. The
+manifest's own `find` blocks name the list endpoints the seeder has proven work — use those rather
+than guessing a view route, and treat a 404 as "wrong route", never as "record gone".
