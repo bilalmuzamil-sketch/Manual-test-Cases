@@ -51,6 +51,14 @@ my own 201, and changed nothing.
 > `POST /api/vehicles/change` needs **`vehicle_id`** (not `id`), **`company_id`**, and the model as an
 > **id**, not a name.
 
+**Where to get that id**, since no models-lookup endpoint answers on this branch — every shape of
+`/api/vehicles/models`, `/api/vehicle-models` and `/api/vehicles/makers/{id}/models` returns 404:
+**take it off a vehicle that already has the model you want.** Searching the vehicle list for
+`Cascadia` returns 61 rows; the first one's `vehicle_model_id` is the id. Confirmed: the seeded
+vehicle is now a 2019 Freightliner Cascadia, read back to prove it.
+
+When the lookup table is not exposed, the existing data is the lookup table.
+
 This is the single highest-value thing in this report: a create that returns success while dropping a
 field will keep producing fixtures that look complete and are not — and only a read-back catches it.
 
