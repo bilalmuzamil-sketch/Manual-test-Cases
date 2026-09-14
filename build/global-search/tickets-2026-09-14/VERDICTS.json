@@ -146,6 +146,33 @@
    "verdict": "Blocked",
    "observed": "Every kind of record that could be tested opened the right page: a job opened that job, a customer opened that customer's jobs, a vehicle opened that vehicle's jobs under the right owner, a supplier opened the supplier, and a part opened the stock list for that part. The two that matter most to this case could not be tested - the catalogue-only part cannot be found at all, so there is no row to click, and no part sale exists to click either.",
    "todo": "This needs the catalogue-only part to be findable and a part sale to exist. The catalogue part is the whole point of the case: the previous version opened the catalogue page, and the case exists to check the new version opens something a person can actually use."
+  },
+  "C53582": {
+   "verdict": "Blocked",
+   "observed": "Searching the street, the town and the state each returned the customer. Searching its postcode returned nothing at all, although the customer's record does hold that postcode.",
+   "not_observed": null,
+   "todo": "The case says to hold a postcode miss rather than treat it as a fault: the postcode worked in the previous version but is not in the new specification's list, so the Product Owner needs to decide whether searching by postcode should still work. Worth knowing that the town and the state DO work, so this is specific to the postcode."
+  },
+  "C53585": {
+   "verdict": "Blocked",
+   "observed": "Searching the street and the town each returned the supplier. Searching its postcode returned nothing, although the supplier's record does hold that postcode.",
+   "todo": "Same decision as the customer postcode: it worked in the previous version and is not in the new specification's list, so the Product Owner needs to say whether it should still work."
+  },
+  "C53604": {
+   "verdict": "Failed",
+   "observed": "Searching the customer's second address line returned nothing, even though the record holds it. The value was put onto the record in the same save as the state, and searching the state DOES now find the customer - so the save worked and the search has caught up. The second address line simply is not searchable.",
+   "not_observed": "The supplier half was not run: no supplier in the test data has a second address line at all, so there was nothing to search for.",
+   "todo": "A second address line needs to be searchable in its own right, as the case requires - a dock or bay number is often the only thing that tells two sites of the same customer apart. Test data also needs a supplier with a second address line before the supplier half can be run."
+  },
+  "C55662": {
+   "verdict": "Blocked",
+   "observed": "Searching the company's own phone number returned nothing, in the formatted version and as plain digits. The number was put onto the record in the same save as the state, and searching the state DOES now find the customer - so the save worked and the search has caught up. The company's phone number simply is not searchable.",
+   "todo": "The case says to hold this and flag it. In the previous version a company could be found by its own switchboard number, separately from its contacts' numbers, so the Product Owner needs to decide whether that should come back."
+  },
+  "C53606": {
+   "verdict": "Blocked",
+   "observed": "Searching the state returned one supplier, but not the seeded one - it matched on a name that happens to contain the word. The seeded supplier's record does hold that state and it was not returned.",
+   "todo": "The case says to hold this for the Product Owner: the new specification lists a supplier's name, phone, email, street and town as searchable, but not the state."
   }
  }
 }
