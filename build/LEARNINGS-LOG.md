@@ -2137,3 +2137,20 @@ touch anything.
 > how to put it back afterwards" is how a shared environment gets left broken.
 
 Rule 107 authorises doing whatever the test environment needs. It does not authorise leaving it worse.
+
+### L0107 — the queue runner reads its file as it goes, so rewriting it mid-run splices garbage into the run
+The queue runner loops `while read -r line ... done < "$queue"` — it reads from the open file
+descriptor **as it goes**, not into memory up front. That is convenient (steps appended during a run
+get picked up) and it has a sharp edge: **rewriting the file mid-run resumes reading at the old byte
+offset**, which lands in the middle of a line.
+
+Observed: a queue file rewritten while its runner was mid-step produced a step literally called `s` —
+the tail of a word — and the runner dutifully tried to execute it.
+
+> **A file another process is reading is not yours to rewrite.** Append to it, or write a new file and
+> point a new runner at it. And when you do start a second runner, check the first is gone:
+> `pgrep -f` before `nohup`, because two runners on one queue interleave their logs and — worse here —
+> two browser sessions on one QA branch evict each other.
+
+Harmless this time: the spliced step was a nonsense command that failed instantly. It would not have
+been harmless if the fragment had happened to parse.
