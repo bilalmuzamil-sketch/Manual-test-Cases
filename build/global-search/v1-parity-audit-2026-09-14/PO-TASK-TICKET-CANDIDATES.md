@@ -50,6 +50,45 @@ specification decides whether the loss is *acceptable*; it does not decide wheth
 
 ---
 
+## 🔑 WHAT THE LABELS MEAN — read this first, in plain words
+
+Every item below has a short code. **The code is filing shorthand, not something anyone should have to
+memorise.** Here is the whole list in one place, in the words a shop user would use.
+
+| Code | In plain words | Status |
+|---|---|---|
+| **A1** | An asset can't be found by typing its unit number | Real |
+| **A2** | An asset can't be found by typing its full VIN — oddly, the first 11 characters DO work | Real |
+| **A3** | A vendor can't be found by typing their email address | Real |
+| **A4** | A part you have in stock can't be found by typing its part number | ⚠️ **PROBABLY NOT REAL — see below** |
+| **A5** | A work order or part sale can't be created at all — the system returns an error | Real, and proved carefully |
+| **B1** | A part in the catalogue that the shop has never stocked can't be found at all | Real |
+| **B2** | A customer can't be found by postal code | Real |
+| **B3** | A customer can't be found by their website | Real |
+| **B4** | A company can't be found by a contact person's job title | Real |
+| **B5** | A vendor can't be found by postal code | Real |
+| **B6** | A vendor can't be found by state or province — though a CUSTOMER still can | Real |
+| **B7** | An asset can't be found by licence plate | Real |
+| **C1** | A work order can no longer be found by typing its status, e.g. "Estimate" | Predicted |
+| **C2** | Typing only PART of a number no longer finds the record | Predicted |
+| **C3** | Typing a fragment from the middle of a word no longer finds the record | Predicted |
+| **C4** | A type of record can vanish from the results entirely when a search matches a lot | Predicted |
+
+**"Real"** = seen with our own eyes on the build. **"Predicted"** = the specification removes it by
+design, the test exists, and the run will confirm it.
+
+### 🔴 A4 IS ON HOLD — it is probably MY mistake, not a bug
+
+On 2026-09-14 I re-created that part **properly** — added it to the catalogue **and put it on a shelf
+with a quantity of 25** — and searching its part number `ZZT-88-4412` **worked immediately.**
+
+My original test part was almost certainly never properly stocked, which would explain the whole
+original finding. **A4 must be re-tested before it is filed.** The same run also proved B1 cleanly: a
+catalogue part with no stock returns nothing, while the stocked one is found — both created minutes
+apart, the same way.
+
+---
+
 ## 1 · WHAT CHANGED IN THE SUITE TODAY
 
 Eighteen cases were added to section 6769 and synced union-only into run 415 (139 → **157** tests,

@@ -10,6 +10,20 @@ authored them and I do not file.
 
 ---
 
+## 🔴 BEFORE YOU FILE ANYTHING — TWO ITEMS ARE ON HOLD
+
+**A4 ("a part in stock can't be found by its part number") is probably NOT a real defect.**
+On 2026-09-14 the part was re-created properly — added to the catalogue AND stocked on a shelf with a
+quantity — and searching `ZZT-88-4412` worked immediately. The original test part was most likely never
+properly stocked. **Re-test A4 on the freshly seeded data before filing it.** If it passes, withdraw it.
+
+**A5 ("a work order or part sale can't be created") IS real and is proved.** GET 200 → POST create 500
+→ GET 200, so the session was alive either side. Request ids `888fcd13`, `0ed4a340`.
+
+**Also: the same run proved B1 cleanly.** A catalogue part with no stock (`ZZT-77-3300`) returns nothing,
+while the stocked part is found — both created minutes apart, the same way. That is the strongest
+evidence in the batch.
+
 ## 1 · CORRECT YOUR STALE PICTURE FIRST
 
 Your session card says the Global Search V1 regression suite is *"20 cases, C45142 onward,
