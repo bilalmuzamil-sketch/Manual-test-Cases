@@ -62,6 +62,1651 @@
     }
    ],
    "instrumentTrouble": false
+  },
+  "C45161": {
+   "title": "Search needs at least two characters before it matches",
+   "override": true,
+   "obs": [
+    {
+     "query": "Z",
+     "group": null,
+     "tabs": [
+      "All",
+      "Work orders",
+      "Customers",
+      "Assets",
+      "Parts",
+      "Vendors",
+      "Part sales",
+      "Purchase orders",
+      "Vendor invoices"
+     ],
+     "allRows": 8,
+     "topRows": [
+      "S9160-17113 Colesville Diesel Repair Approved 745 · 2020 Hino Conventional Type Truck",
+      "P9160-250 4 Star Truck Repair Estimate Admin ShopView · Today",
+      "S9160-17595 4 Star Truck Repair Approved 2011 Hyundai Santa Fe"
+     ],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    },
+    {
+     "query": "ZZ",
+     "group": null,
+     "tabs": [
+      "All (15)",
+      "Work orders (4)",
+      "Customers (1)",
+      "Assets (8)",
+      "Parts (1)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 8,
+     "topRows": [
+      "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53516": {
+   "title": "Searching an asset's licence plate finds that asset",
+   "override": true,
+   "obs": [
+    {
+     "query": "OHZZT471",
+     "group": "Assets",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53578": {
+   "title": "Finding a work order by its customer's name still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": "Work Orders",
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling"
+     ],
+     "groupClicked": true,
+     "groupRows": 4,
+     "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53579": {
+   "title": "A work order number with the shop number in front still finds it",
+   "override": true,
+   "obs": [
+    {
+     "query": "S-17597",
+     "group": "Work Orders",
+     "tabs": [
+      "All (8)",
+      "Work orders (1)",
+      "Customers (1)",
+      "Assets (0)",
+      "Parts (3)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (3)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (8) Work orders (1) Customers (1) Assets (0) Parts (3) Vendors (0) Part sales (0) Purchase orders (3) Vendor invoices (0) 8 result"
+    },
+    {
+     "query": "S17597",
+     "group": "Work Orders",
+     "tabs": [
+      "All (1)",
+      "Work orders (1)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (1) Work orders (1) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    },
+    {
+     "query": "S9160-17597",
+     "group": "Work Orders",
+     "tabs": [
+      "All (1)",
+      "Work orders (1)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (1) Work orders (1) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    },
+    {
+     "query": "9160-17597",
+     "group": "Work Orders",
+     "tabs": [
+      "All (1)",
+      "Work orders (1)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (1) Work orders (1) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53580": {
+   "title": "Finding an asset by its unit number still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZT-4471",
+     "group": "Assets",
+     "tabs": [
+      "All (5)",
+      "Work orders (4)",
+      "Customers (0)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 4,
+     "topRows": [
+      "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (5) Work orders (4) Customers (0) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 5 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53581": {
+   "title": "Finding an asset by the customer who owns it still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": "Assets",
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53582": {
+   "title": "Finding a customer by address, city or postal code still works",
+   "override": true,
+   "obs": [
+    {
+     "query": "Kestrelway",
+     "group": "Customers",
+     "tabs": [
+      "All (7)",
+      "Work orders (1)",
+      "Customers (2)",
+      "Assets (2)",
+      "Parts (1)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 2,
+     "topRows": [
+      "N/A2016 Freightliner Estrella Diesel Repair",
+      "Load King Estrella Diesel Repair"
+     ],
+     "groupClicked": true,
+     "groupRows": 2,
+     "groupText": "close All (7) Work orders (1) Customers (2) Assets (2) Parts (1) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 7 result"
+    },
+    {
+     "query": "Fernvale",
+     "group": "Customers",
+     "tabs": [
+      "All (9)",
+      "Work orders (0)",
+      "Customers (3)",
+      "Assets (5)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 3,
+     "topRows": [
+      "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+      "Mobile Truck & Trailer Repair Ferndale 7589 Tammy Drive Suite 511, East Kimberlymouth, Saskatchewan",
+      "Ferndale Truck Repair 59257 Zachary Squares, Deanport, Saskatchewan"
+     ],
+     "groupClicked": true,
+     "groupRows": 3,
+     "groupText": "close All (9) Work orders (0) Customers (3) Assets (5) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 9 result"
+    },
+    {
+     "query": "Ohio",
+     "group": "Customers",
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    },
+    {
+     "query": "44872-9931",
+     "group": "Customers",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53583": {
+   "title": "Finding a customer by their website still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "bridgeporthauling-zzt.com",
+     "group": "Customers",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53584": {
+   "title": "Finding a vendor by email address still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "parts@kestrelsupply-zzt.com",
+     "group": "Vendors",
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53585": {
+   "title": "Finding a vendor by address, city or postal code still works",
+   "override": true,
+   "obs": [
+    {
+     "query": "Halbrook",
+     "group": "Vendors",
+     "tabs": [
+      "All (13)",
+      "Work orders (0)",
+      "Customers (1)",
+      "Assets (10)",
+      "Parts (0)",
+      "Vendors (2)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 2,
+     "topRows": [
+      "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+      "Old Saybrook Truck & Trailer Repair 255-400-7986 · 562 Olson Rapids Apt. 737, Lake Mark"
+     ],
+     "groupClicked": true,
+     "groupRows": 2,
+     "groupText": "close All (13) Work orders (0) Customers (1) Assets (10) Parts (0) Vendors (2) Part sales (0) Purchase orders (0) Vendor invoices (0) 13 res"
+    },
+    {
+     "query": "Marnston",
+     "group": "Vendors",
+     "tabs": [
+      "All (5)",
+      "Work orders (0)",
+      "Customers (2)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (2)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 2,
+     "topRows": [
+      "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston",
+      "Chattanooga Fleet Services 402-913-9811 · 251 Timothy Grove, South Marcustown"
+     ],
+     "groupClicked": true,
+     "groupRows": 2,
+     "groupText": "close All (5) Work orders (0) Customers (2) Assets (1) Parts (0) Vendors (2) Part sales (0) Purchase orders (0) Vendor invoices (0) 5 result"
+    },
+    {
+     "query": "43055-2210",
+     "group": "Vendors",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53586": {
+   "title": "A newly created customer is findable within 30 seconds",
+   "override": false,
+   "obs": [
+    {
+     "query": "Halloway",
+     "group": null,
+     "tabs": [
+      "All (66)",
+      "Work orders (12)",
+      "Customers (3)",
+      "Assets (20)",
+      "Parts (4)",
+      "Vendors (1)",
+      "Part sales (5)",
+      "Purchase orders (6)",
+      "Vendor invoices (15)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "Robarts' Fleet Service 419-321-3490 · 73400 Holloway Ranch Suite 202, Jamesview"
+     ],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53588": {
+   "title": "More recent work orders rank above older ones of equal relevance",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": null,
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53601": {
+   "title": "A catalogue part that is not in inventory can still be found",
+   "override": false,
+   "obs": [
+    {
+     "query": "Vernway",
+     "group": "Parts",
+     "tabs": [
+      "All (30)",
+      "Work orders (3)",
+      "Customers (7)",
+      "Assets (19)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "Vernal Diesel & Fleet Repair 206-588-6222 · 3367 Johnson Loop Apt. 061, Nicoleview"
+     ],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (30) Work orders (3) Customers (7) Assets (19) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 30 res"
+    },
+    {
+     "query": "ZZT-77-3300",
+     "group": "Parts",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53602": {
+   "title": "Finding a customer by their name with the spaces removed",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZAUTOTESTBridgeportHauling",
+     "group": "Customers",
+     "tabs": [
+      "All (7)",
+      "Work orders (4)",
+      "Customers (1)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (7) Work orders (4) Customers (1) Assets (1) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 7 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53603": {
+   "title": "Finding a customer or vendor by a contact's job title",
+   "override": false,
+   "obs": [
+    {
+     "query": "Dispatch Supervisor",
+     "group": "Customers",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53604": {
+   "title": "Finding a customer or vendor by address line 2",
+   "override": false,
+   "obs": [
+    {
+     "query": "Dock 7B",
+     "group": "Customers",
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (1)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (1) Vendor invoices (0) 1 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53605": {
+   "title": "Finding an asset by its year",
+   "override": false,
+   "obs": [
+    {
+     "query": "2019 Freightliner",
+     "group": "Assets",
+     "tabs": [
+      "All (37)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (16)",
+      "Vendors (0)",
+      "Part sales (1)",
+      "Purchase orders (20)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (37) Work orders (0) Customers (0) Assets (0) Parts (16) Vendors (0) Part sales (1) Purchase orders (20) Vendor invoices (0) 37 re"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53606": {
+   "title": "Finding a vendor by state or province",
+   "override": false,
+   "obs": [
+    {
+     "query": "Ohio",
+     "group": "Vendors",
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C53607": {
+   "title": "Finding a part by its description",
+   "override": false,
+   "obs": [
+    {
+     "query": "Kestrel",
+     "group": "Parts",
+     "tabs": [
+      "All (3)",
+      "Work orders (0)",
+      "Customers (1)",
+      "Assets (0)",
+      "Parts (1)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (3) Work orders (0) Customers (1) Assets (0) Parts (1) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 3 result"
+    },
+    {
+     "query": "Brake Chamber",
+     "group": "Parts",
+     "tabs": [
+      "All (61)",
+      "Work orders (20)",
+      "Customers (1)",
+      "Assets (0)",
+      "Parts (20)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (20)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 8,
+     "topRows": [
+      "30/30 LONG STROKE SPRING BRAKE CHAMBER (SB3030S3000) 2 Available FLT3030LCB20",
+      "BRAKE CHAMBER - GOLD SEAL 3036GC 1 Available GC3036CW",
+      "30/30 LONG STROKE PIGGY BACK KIT- BRAKE CHAMBER 1 Available FLTK3030LB24"
+     ],
+     "groupClicked": true,
+     "groupRows": 8,
+     "groupText": "close All (61) Work orders (20) Customers (1) Assets (0) Parts (20) Vendors (0) Part sales (0) Purchase orders (20) Vendor invoices (0) 61 r"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55658": {
+   "title": "Finding a work order by typing its status still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "Estimate",
+     "group": "Work Orders",
+     "tabs": [
+      "All (19)",
+      "Work orders (1)",
+      "Customers (11)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (6)",
+      "Part sales (0)",
+      "Purchase orders (1)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (19) Work orders (1) Customers (11) Assets (0) Parts (0) Vendors (6) Part sales (0) Purchase orders (1) Vendor invoices (0) 19 res"
+    },
+    {
+     "query": "qualitycheck",
+     "group": "Work Orders",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55659": {
+   "title": "Finding a record by typing only part of its number still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "17597",
+     "group": "Work Orders",
+     "tabs": [
+      "All (2)",
+      "Work orders (1)",
+      "Customers (0)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "S9160-17597 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (2) Work orders (1) Customers (0) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 2 result"
+    },
+    {
+     "query": "4412",
+     "group": "Parts",
+     "tabs": [
+      "All (4)",
+      "Work orders (0)",
+      "Customers (2)",
+      "Assets (0)",
+      "Parts (1)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (4) Work orders (0) Customers (2) Assets (0) Parts (1) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 4 result"
+    },
+    {
+     "query": "4471",
+     "group": "Assets",
+     "tabs": [
+      "All (8)",
+      "Work orders (4)",
+      "Customers (2)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (1)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (8) Work orders (4) Customers (2) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (1) Vendor invoices (0) 8 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55660": {
+   "title": "Finding a record by a fragment from the middle of a word still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "ernva",
+     "group": "Customers",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    },
+    {
+     "query": "idgepor",
+     "group": "Customers",
+     "tabs": [
+      "All (6)",
+      "Work orders (4)",
+      "Customers (1)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (6) Work orders (4) Customers (1) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 6 result"
+    },
+    {
+     "query": "estrelw",
+     "group": "Customers",
+     "tabs": [
+      "All (7)",
+      "Work orders (1)",
+      "Customers (2)",
+      "Assets (2)",
+      "Parts (1)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 2,
+     "topRows": [
+      "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+      "Estrella Diesel Repair 056 Victoria Overpass, Port Justinside, Prince Edward Island"
+     ],
+     "groupClicked": true,
+     "groupRows": 2,
+     "groupText": "close All (7) Work orders (1) Customers (2) Assets (2) Parts (1) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 7 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55661": {
+   "title": "Every matching type still appears when a search matches many records",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZAUTOTEST",
+     "group": null,
+     "tabs": [
+      "All (8)",
+      "Work orders (4)",
+      "Customers (1)",
+      "Assets (1)",
+      "Parts (1)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale"
+     ],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55662": {
+   "title": "Finding a customer by the company's own main phone number",
+   "override": false,
+   "obs": [
+    {
+     "query": "(419) 555-0143",
+     "group": "Customers",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    },
+    {
+     "query": "4195550143",
+     "group": "Customers",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55663": {
+   "title": "Finding a vendor by phone number",
+   "override": false,
+   "obs": [
+    {
+     "query": "(614) 555-0188",
+     "group": "Vendors",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    },
+    {
+     "query": "6145550188",
+     "group": "Vendors",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55664": {
+   "title": "Finding an asset by its model",
+   "override": false,
+   "obs": [
+    {
+     "query": "Cascadia",
+     "group": "Assets",
+     "tabs": [
+      "All (46)",
+      "Work orders (20)",
+      "Customers (0)",
+      "Assets (20)",
+      "Parts (5)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "Cascade Truck & Trailer Repair 797-841-8294 · 728 Joseph Viaduct, East Jacqueline"
+     ],
+     "groupClicked": true,
+     "groupRows": 8,
+     "groupText": "close All (46) Work orders (20) Customers (0) Assets (20) Parts (5) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 46 re"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55665": {
+   "title": "Finding a part sale by its customer's name",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": "Part sales",
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling"
+     ],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55666": {
+   "title": "Finding a part by its part number still works",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZT-88-4412",
+     "group": "Parts",
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (1)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (1) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    },
+    {
+     "query": "ZZT884412",
+     "group": "Parts",
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (1)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (1) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55667": {
+   "title": "Finding a customer by company name",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": "Customers",
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 7,
+     "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
+    },
+    {
+     "query": "ZZAUTOTEST Bridgeport Hauling",
+     "group": "Customers",
+     "tabs": [
+      "All (6)",
+      "Work orders (4)",
+      "Customers (1)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (6) Work orders (4) Customers (1) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 6 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55668": {
+   "title": "Finding a vendor by name",
+   "override": false,
+   "obs": [
+    {
+     "query": "Kestrel",
+     "group": "Vendors",
+     "tabs": [
+      "All (3)",
+      "Work orders (0)",
+      "Customers (1)",
+      "Assets (0)",
+      "Parts (1)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (3) Work orders (0) Customers (1) Assets (0) Parts (1) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 3 result"
+    },
+    {
+     "query": "ZZAUTOTEST Kestrel Parts Supply",
+     "group": "Vendors",
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZAUTOTEST Kestrel Parts Supply 88 Halbrook Trace, Marnston"
+     ],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (1) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (1) Part sales (0) Purchase orders (0) Vendor invoices (0) 1 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55669": {
+   "title": "Finding an asset by its VIN, in full and in part",
+   "override": false,
+   "obs": [
+    {
+     "query": "1FUJGLDR9KLZZ4471",
+     "group": "Assets",
+     "tabs": [
+      "All (5)",
+      "Work orders (4)",
+      "Customers (0)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (5) Work orders (4) Customers (0) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 5 result"
+    },
+    {
+     "query": "ZZ4471",
+     "group": "Assets",
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 0,
+     "groupText": "close All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No resul"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55670": {
+   "title": "Finding a customer or vendor by a contact's first or last name",
+   "override": false,
+   "obs": [
+    {
+     "query": "Marlene",
+     "group": null,
+     "tabs": [
+      "All (16)",
+      "Work orders (0)",
+      "Customers (9)",
+      "Assets (1)",
+      "Parts (4)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (1)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "2005 Ford F-350 Martens' Diesel Repair"
+     ],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    },
+    {
+     "query": "Okonkwo",
+     "group": null,
+     "tabs": [
+      "All (1)",
+      "Work orders (0)",
+      "Customers (1)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55671": {
+   "title": "Search finds records whatever mix of capitals is typed",
+   "override": false,
+   "obs": [
+    {
+     "query": "bridgeport",
+     "group": "Customers",
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 1,
+     "topRows": [
+      "ZZT-44712019 Freightliner ???? ZZAUTOTEST Bridgeport Hauling"
+     ],
+     "groupClicked": true,
+     "groupRows": 7,
+     "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
+    },
+    {
+     "query": "BRIDGEPORT",
+     "group": "Customers",
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 7,
+     "topRows": [
+      "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+      "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+      "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick"
+     ],
+     "groupClicked": true,
+     "groupRows": 7,
+     "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
+    },
+    {
+     "query": "BrIdGePoRt",
+     "group": "Customers",
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 7,
+     "topRows": [
+      "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale",
+      "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+      "Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick"
+     ],
+     "groupClicked": true,
+     "groupRows": 7,
+     "groupText": "close All (12) Work orders (4) Customers (7) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 12 resu"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55672": {
+   "title": "Finding a work order by its plain number with no prefix",
+   "override": false,
+   "obs": [
+    {
+     "query": "17597",
+     "group": "Work Orders",
+     "tabs": [
+      "All (2)",
+      "Work orders (1)",
+      "Customers (0)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": true,
+     "groupRows": 1,
+     "groupText": "close All (2) Work orders (1) Customers (0) Assets (1) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) 2 result"
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55673": {
+   "title": "Pressing Enter opens the top result without arrowing to it",
+   "override": false,
+   "obs": [
+    {
+     "query": "Bridgeport",
+     "group": null,
+     "tabs": [
+      "All (12)",
+      "Work orders (4)",
+      "Customers (7)",
+      "Assets (1)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 4,
+     "topRows": [
+      "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55675": {
+   "title": "A search that matches nothing says so plainly",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZNOSUCHRECORD9999",
+     "group": null,
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55679": {
+   "title": "Your recent items come back when a search finds nothing",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZNOSUCHRECORD9999",
+     "group": null,
+     "tabs": [
+      "All (0)",
+      "Work orders (0)",
+      "Customers (0)",
+      "Assets (0)",
+      "Parts (0)",
+      "Vendors (0)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 0,
+     "topRows": [],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55680": {
+   "title": "Arrow keys move between results and skip the group headings",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZAUTOTEST",
+     "group": null,
+     "tabs": [
+      "All (8)",
+      "Work orders (4)",
+      "Customers (1)",
+      "Assets (1)",
+      "Parts (1)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 4,
+     "topRows": [
+      "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
+  },
+  "C55682": {
+   "title": "Each result row shows an icon telling you what kind of record it is",
+   "override": false,
+   "obs": [
+    {
+     "query": "ZZAUTOTEST",
+     "group": null,
+     "tabs": [
+      "All (8)",
+      "Work orders (4)",
+      "Customers (1)",
+      "Assets (1)",
+      "Parts (1)",
+      "Vendors (1)",
+      "Part sales (0)",
+      "Purchase orders (0)",
+      "Vendor invoices (0)"
+     ],
+     "allRows": 4,
+     "topRows": [
+      "S9160-17600 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17599 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????",
+      "S9160-17598 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner ????"
+     ],
+     "groupClicked": false,
+     "groupRows": null,
+     "groupText": null
+    }
+   ],
+   "instrumentTrouble": false
   }
  }
 }
