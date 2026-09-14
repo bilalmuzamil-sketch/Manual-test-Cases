@@ -159,10 +159,9 @@
    "todo": "Same decision as the customer postcode: it worked in the previous version and is not in the new specification's list, so the Product Owner needs to say whether it should still work."
   },
   "C53604": {
-   "verdict": "Failed",
-   "observed": "Searching the customer's second address line returned nothing, even though the record holds it. The value was put onto the record in the same save as the state, and searching the state DOES now find the customer - so the save worked and the search has caught up. The second address line simply is not searchable.",
-   "not_observed": "The supplier half was not run: no supplier in the test data has a second address line at all, so there was nothing to search for.",
-   "todo": "A second address line needs to be searchable in its own right, as the case requires - a dock or bay number is often the only thing that tells two sites of the same customer apart. Test data also needs a supplier with a second address line before the supplier half can be run."
+   "verdict": "Passed",
+   "observed": "Searching the customer's second address line returned that customer under the Customers heading. It had returned nothing before the value was actually put on the record - the record had been left empty.",
+   "not_observed": "The supplier half is being run separately: no supplier in the test data had a second address line, so a value had to be put on one first."
   },
   "C55662": {
    "verdict": "Blocked",
