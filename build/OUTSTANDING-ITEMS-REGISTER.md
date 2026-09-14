@@ -231,6 +231,26 @@ finished. Nothing else is held up by them — everything else has been tested an
 **If you would rather tick boxes than read a table**, say so and this goes out as a sheet with the
 options already filled in.
 
+## Six checks I could not finish, and the one thing that would clear them
+
+Fifty-six of the sixty-two are done. The last six all ask the same kind of question: **what does
+someone with narrower access see?** — a person who only clocks in and out, a person without access to
+jobs, a person without access to customers, a person who only handles part sales.
+
+I got most of the way there by signing in as real people already on the branch, which answered several
+of these properly. But **nobody on this branch currently holds those four narrower jobs**. The job
+types all exist in the system; they are simply not given to anyone here.
+
+I tried to lend one of them to a spare test person for the length of a single check and put it
+straight back. The staff screen accepts the change and then does not keep it — the person stays on
+the job they had. **Nothing was changed**, and I checked afterwards to be sure.
+
+**What would clear it:** someone gives one spare test person the time-clock job for ten minutes. Or
+tell me to keep working at it and I will find why the screen is not keeping the change.
+
+**Cost of leaving it:** six checks stay open, so the set cannot be handed to a manual tester as
+finished. Nothing else is held up.
+
 ## Also on Global Search
 
 - **A test written to expect failure now passes.** Finding a part by its part number was expected to
