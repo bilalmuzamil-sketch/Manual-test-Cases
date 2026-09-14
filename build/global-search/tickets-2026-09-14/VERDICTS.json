@@ -246,6 +246,20 @@
   "C45145": {
    "verdict": "Passed",
    "observed": "The same two people, the same word, minutes apart. The foreman saw the supplier under the Vendors heading. The technician, who does not have supplier access, saw no suppliers at all and no Vendors heading. The jobs, customers and vehicle they each saw were identical, so nothing else differed between the two views."
+  },
+  "C45152": {
+   "verdict": "Passed",
+   "observed": "Searched a word at the first location and got 16 results including 8 jobs. Switched to the second location the way a person does - through the menu by the name at the top of the screen - and confirmed the screen really had moved, because the location shown at the top changed. Searched the same word again: the 8 jobs were gone. The results follow the location you are on."
+  },
+  "C45151": {
+   "verdict": "Passed",
+   "observed": "The same search at two locations, one after the other. Jobs: 8 at the first location, none at the second - so jobs really are limited to where you are. Customers: 7 at both. Vehicles: 1 at both - identical, so those are not limited by location, which is what this case requires. The screen was confirmed to have actually moved between the two, by the location name at the top of the page.",
+   "not_observed": "Suppliers and parts did not match the word used, so those two were not shown either way and nothing is claimed about them. Part sales could not be checked at all - none can be created on this branch at present."
+  },
+  "C45148": {
+   "verdict": "Passed",
+   "observed": "Across roughly seventy searches in this pass the results only ever contained the nine kinds of record the panel is built to show - jobs, customers, vehicles, parts, suppliers, part sales, purchase orders, supplier invoices - and nothing else ever appeared. The stronger evidence is what a limited person sees: a technician, who has no access to parts or suppliers, got no parts and no suppliers at all and no headings for them, while a foreman searching the same word got both. What a person is not permitted is not shown.",
+   "not_observed": "A genuinely new or unknown kind of record cannot be introduced from outside the product, so the case cannot be pushed further than this from the screen."
   }
  }
 }
