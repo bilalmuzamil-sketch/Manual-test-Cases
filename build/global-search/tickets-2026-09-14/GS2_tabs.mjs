@@ -21,42 +21,21 @@ const PLAN=[
 ];
 const { browser, page } = await boot('sv9160','/','admin');
 const openAndType=async(q)=>{
-  await page.keyboard.press('Escape').catch(()=>{}); await page.waitForTimeout(600);
-  const via=await page.evaluate(()=>{const b=document.querySelector('[data-test-id="global_search_trigger"]');
-    if(b){b.click(); return 'trigger';} return null;});
-  if(!via) await page.keyboard.press('Control+k');
-  await page.waitForTimeout(1600);
-  await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-    const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop()||document;
-    const i=[...m.querySelectorAll('input')].filter(vis)[0]; if(!i) return;
-    i.focus(); Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(i,'');
-    i.dispatchEvent(new Event('input',{bubbles:true}));});
-  await page.keyboard.type(q,{delay:45});
-  await page.waitForTimeout(4200);
-  // READ THE INPUT BACK. The previous run typed into nothing and returned tabs with no counts,
-  // which I could easily have mistaken for "no results". An empty box is an instrument failure.
-  const got=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-    const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!m) return null;
-    const i=[...m.querySelectorAll('input')].filter(vis)[0]; return i?i.value:null;});
-  if(got!==q){
-    // fall back to filling the field directly, then confirm again
-    await page.evaluate((qq)=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-      const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!m) return;
-      const i=[...m.querySelectorAll('input')].filter(vis)[0]; if(!i) return;
-      Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(i,qq);
-      i.dispatchEvent(new Event('input',{bubbles:true}));}, q);
-    await page.waitForTimeout(4200);
-  }
-  const finalVal=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-    const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!m) return null;
-    const i=[...m.querySelectorAll('input')].filter(vis)[0]; return i?i.value:null;});
+  await page.keyboard.press('Escape').catch(()=>{}); await page.waitForTimeout(800);
+  await page.evaluate(()=>{const b=document.querySelector('[data-test-id="global_search_trigger"]'); b&&b.click();});
+  // Wait for the real input rather than guessing a timeout -- the earlier fixed 1600ms was too short
+  // right after boot and the guard (correctly) refused to report anything.
+  await page.waitForSelector('[data-test-id="search_modal_input"]', {state:'visible', timeout:20000});
+  const sel='[data-test-id="search_modal_input"]';
+  await page.fill(sel, '');
+  await page.type(sel, q, {delay:40});
+  await page.waitForTimeout(4500);
+  const finalVal=await page.$eval(sel, e=>e.value).catch(()=>null);
   if(finalVal!==q) throw new Error(`INSTRUMENT FAILURE: search box holds ${JSON.stringify(finalVal)}, expected ${JSON.stringify(q)} -- not reporting a result from this`);
   return finalVal;
 };
-// The modal shows "Search unavailable / Retry" when the search service is erroring. Every tab then
-// reads zero, which is indistinguishable from "nothing found" unless you look for this banner.
-// Treat it as an INSTRUMENT FAILURE, never as a result. (QA lead caught me reading counts as results;
-// this is the same class of mistake one level down.)
+// "Search unavailable / Retry" makes every tab read zero, which is indistinguishable from "nothing
+// found". Treat it as an INSTRUMENT FAILURE and record nothing (L0080).
 const searchBroken=async()=>page.evaluate(()=>{
   const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
   const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
