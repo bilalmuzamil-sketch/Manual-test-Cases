@@ -83,11 +83,34 @@ const labelNow=async()=>{ const r=await api('/api/staff?limit=200');
      role_id:homeTemplate.id});
   await page.waitForTimeout(3000);
   const after=await labelNow();
-  R.mappingProof={writeStatus:probe.status, roleBefore:roleLabel, roleAfter:after,
-    holds:String(after||'').toLowerCase()===String(roleLabel||'').toLowerCase()};
+  // The write must SUCCEED for this proof to mean anything. A 404 leaves the role untouched and the
+  // before/after comparison then passes trivially -- a check that did not run, reporting as a pass,
+  // which is the exact trap this pass keeps falling into. Require both.
+  R.mappingProof={writeStatus:probe.status, writeBody:probe.body, roleBefore:roleLabel, roleAfter:after,
+    writeSucceeded: probe.status>=200 && probe.status<300,
+    roleUnchanged: String(after||'').toLowerCase()===String(roleLabel||'').toLowerCase()};
+  R.mappingProof.holds = R.mappingProof.writeSucceeded && R.mappingProof.roleUnchanged;
   save();
   L('mapping proof:', JSON.stringify(R.mappingProof));
-  if(!R.mappingProof.holds){
+  if(!R.mappingProof.writeSucceeded){
+    // Find the id this endpoint wants. The playbook records that the id in the staff LIST is not the
+    // one /change accepts -- it 404s -- so look for the other one rather than give up here.
+    R.idHunt=[];
+    for(const path of [`/api/staff/${subject.id}`, `/api/staff/${subject.id}/edit`,
+                       `/api/iam/users/${subject.id}`, `/api/staff/view/${subject.id}`]){
+      const r=await api(path);
+      const dj=r.json&&(r.json.data||r.json); const pj=(dj&&(dj.staff||dj.user||dj))||{};
+      const ids=Object.entries(pj).filter(([k,v])=>/(^|_)id$/i.test(k)&&typeof v==='string'
+        &&/^[0-9a-f-]{20,}$/i.test(v)).map(([k,v])=>`${k}=${v}`);
+      R.idHunt.push({path, status:r.status, idsFound:ids.slice(0,8)});
+    }
+    R.abort='the change endpoint does not accept the id this person is listed under, so their role '+
+            'could not be set and could not have been put back -- NOTHING WAS CHANGED. The ids found '+
+            'on their record are recorded above for whoever picks this up.';
+    save(); L(R.abort); L(JSON.stringify(R.idHunt).slice(0,500));
+    await browser.close(); process.exit(2);
+  }
+  if(!R.mappingProof.roleUnchanged){
     R.abort='assigning the template that matches this person\'s own role did not leave them on it, '+
             'so the restore value cannot be trusted -- stopping before changing anything further';
     save(); L(R.abort); await browser.close(); process.exit(2);
