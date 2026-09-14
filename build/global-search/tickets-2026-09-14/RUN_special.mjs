@@ -16,7 +16,8 @@ const DIR='/home/user/Manual-test-Cases/build/global-search/tickets-2026-09-14';
 const EV=`${DIR}/special-evidence`; fs.mkdirSync(EV,{recursive:true});
 const STATE=`${DIR}/SPECIAL-RESULTS.json`;
 const R=fs.existsSync(STATE)?JSON.parse(fs.readFileSync(STATE,'utf8')):{at:new Date().toISOString(),cases:{}};
-const save=()=>fs.writeFileSync(STATE,JSON.stringify(R,null,1));
+let COMPLETE=false;
+const save=()=>fs.writeFileSync(STATE,JSON.stringify({...R, complete:COMPLETE},null,1));
 const L=(...a)=>console.log(new Date().toISOString().slice(11,19),a.map(x=>typeof x==='string'?x:JSON.stringify(x)).join(' '));
 const ONLY=process.env.ONLY?new Set(process.env.ONLY.split(',').map(s=>s.replace(/^C/,''))):null;
 const want=(id)=>!ONLY||ONLY.has(String(id));
@@ -473,6 +474,7 @@ await run(45152,'Switching location refreshes results to the new location',async
     jobsChanged:JSON.stringify(at1.jobs)!==JSON.stringify(at2.jobs),
     restoredTo:A.name};});
 
+COMPLETE=true; save();
 console.log('SPECIAL PASS DONE');
 await browser.close();
 

@@ -19,7 +19,8 @@ const EV=`${DIR}/run-evidence2`; fs.mkdirSync(EV,{recursive:true});
 const STATE=`${DIR}/RUN-RESULTS2.json`;
 const L=(...a)=>console.log(new Date().toISOString().slice(11,19),a.map(x=>typeof x==='string'?x:JSON.stringify(x)).join(' '));
 const R=fs.existsSync(STATE)?JSON.parse(fs.readFileSync(STATE,'utf8')):{at:new Date().toISOString(),cases:{}};
-const save=()=>fs.writeFileSync(STATE, JSON.stringify(R,null,1));
+let COMPLETE=false;
+const save=()=>fs.writeFileSync(STATE, JSON.stringify({...R, complete:COMPLETE},null,1));
 const ONLY=process.env.ONLY?new Set(process.env.ONLY.split(',').map(s=>s.replace(/^C/,''))):null;
 const CASES=JSON.parse(fs.readFileSync(`${DIR}/CASES-6769.json`,'utf8'))
   .filter(c=>c.pairs && c.pairs.length && !c.needs_roles)
@@ -171,5 +172,6 @@ for(const c of CASES){
   const o=rec.obs[0]||{};
   L(`${key} ${c.pairs.length}q q1="${o.query}" grp=${o.group||'-'} allRows=${o.allRows?o.allRows.length:'-'} scoped=${o.scopedRows?o.scopedRows.length:'-'} div=${o.divergence?'YES':'no'}`);
 }
+COMPLETE=true; save();
 L(`executed ${done} cases this pass; ${Object.keys(R.cases).length} recorded in total`);
 await browser.close();

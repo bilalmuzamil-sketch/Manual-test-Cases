@@ -11,9 +11,19 @@ D = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, D)
 from seed_index import lookup          # the positive control for every zero (Rule 104)
 cases = {c['id']: c for c in json.load(open(f'{D}/CASES-6769.json'))}
-res = json.load(open(f'{D}/RUN-RESULTS2.json'))['cases']
+_raw = json.load(open(f'{D}/RUN-RESULTS2.json'))
+res = _raw['cases']
+# A results file a run is still writing does not look partial -- it looks like an answer, and a
+# verdict was written from one (L0095). Say so at the top rather than let it pass silently.
+if not _raw.get('complete'):
+    out_warn = ('!' * 78 + '\n'
+                '!! THIS RESULTS FILE IS NOT MARKED COMPLETE -- a pass may still be writing it.\n'
+                '!! Do not write verdicts from it until the run has finished.\n' + '!' * 78)
+else:
+    out_warn = None
 
 out = []
+if out_warn: out.append(out_warn)
 for key in sorted(res, key=lambda k: int(k[1:])):
     cid = int(key[1:]); c = cases.get(cid, {}); r = res[key]
     out.append('=' * 78)
