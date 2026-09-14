@@ -225,6 +225,58 @@ await run(45154,'Selecting the record you are already on does not re-navigate',a
     sameRecordReselected:!!same, pageReloaded:reloaded,
     didNotReNavigate:uAfter===uOnRecord && reloaded===false, recentActivityTop:recent};});
 
+// ---------------------------------------------------------------- C53586 new customer findable
+await run(53586,'A newly created customer is findable within 30 seconds',async()=>{
+  // This case CANNOT be run by searching alone. The query pass typed a name and read whatever
+  // happened to match -- but nothing by that name had been created, so the reading said nothing
+  // about the 30-second index window. Create the record, then time it. Rule 14: seed the state.
+  const name=`ZZAUTOTEST Halloway Freight ${Date.now().toString().slice(-6)}`;
+  const c=await api('/api/customers/create','POST',{name, address:'12 Halloway Bend', city:'Fernvale',
+    state_or_province:'Ohio', postal_code:'44872-9931', phone:'(419) 555-0177', country_code:'US',
+    email:'ops@halloway-zzt.com'});
+  if(!(c.status>=200&&c.status<300)) return {created:false, status:c.status, head:c.head,
+    note:'the customer could not be created, so the 30-second window was never tested'};
+  const t0=Date.now(); let foundAfter=null, last=null;
+  for(let i=0;i<8;i++){                      // poll to 40s: the case allows 30 and says so
+    await openModal(); const m=await type2(name);
+    last=m&&m.rows.map(r=>`[${r.type}] ${r.text.slice(0,60)}`);
+    if(m&&m.rows.some(r=>r.type==='customers'&&r.text.includes('Halloway'))){
+      foundAfter=Math.round((Date.now()-t0)/1000); break; }
+    await closeModal(); await page.waitForTimeout(5000);
+  }
+  await shot('C53586-new-customer');
+  // and it should also show under recent activity, because creating counts as viewing
+  await openModal(); await page.fill('[data-test-id="search_modal_input"]',''); await page.waitForTimeout(3500);
+  const recent=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!d) return null;
+    return [...d.querySelectorAll('[data-test-id^="search_result_row_"]')].slice(0,8)
+      .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim().slice(0,70));});
+  return {created:true, name, foundAfterSeconds:foundAfter,
+    withinThirty: foundAfter!==null && foundAfter<=30, rowsAtEnd:last,
+    recentActivityTop:recent,
+    inRecentActivity: !!(recent&&recent.some(r=>r.includes('Halloway')))};});
+
+// ---------------------------------------------------------------- C53588 recency ranking
+await run(53588,'More recent work orders rank above older ones of equal relevance',async()=>{
+  // Ranking cannot be judged from the order alone -- it has to be compared against the thing the
+  // order is supposed to reflect. Read each matching work order's own updated timestamp and status,
+  // then say whether the displayed order is consistent with "more recently updated first among
+  // equals". The Expected explicitly warns NOT to demand strict newest-first.
+  await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
+  await openModal(); const m=await type2('Bridgeport');
+  const shown=(m?m.rows:[]).filter(r=>r.type==='work_orders').map(r=>r.text);
+  const numbers=shown.map(t=>(t.match(/S\d*-?\d+/)||[])[0]).filter(Boolean);
+  const live=JSON.parse(fs.readFileSync('/home/user/Manual-test-Cases/build/global-search/seeding/seed-state-live.json','utf8'));
+  const details=[];
+  for(const id of (live.live_ids.work_orders||[])){
+    const r=await api(`/api/work-orders/view/${id}`);
+    const d=r.json&&(r.json.data||r.json); const w=(d&&(d.work_order||d))||{};
+    details.push({id, number:w.number, status:w.status&&(w.status.name||w.status),
+      updated:w.updated_at||w.updatedAt||null, created:w.created_at||w.createdAt||null}); }
+  await shot('C53588-ranking');
+  return {displayedOrder:numbers, displayedRows:shown, workOrders:details,
+    note:'judge the displayed order against these timestamps and statuses, not against a date sort'};});
+
 console.log('SPECIAL PASS DONE');
 await browser.close();
 
