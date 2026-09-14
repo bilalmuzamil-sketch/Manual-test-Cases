@@ -474,6 +474,59 @@ await run(45152,'Switching location refreshes results to the new location',async
     jobsChanged:JSON.stringify(at1.jobs)!==JSON.stringify(at2.jobs),
     restoredTo:A.name};});
 
+// ---------------------------------------------------------------- C53589 typing is never lost
+await run(53589,'Typing is never lost while search results are loading',async()=>{
+  // Carried as role-gated, but nothing about it needs a role: it is about the input box keeping
+  // every character while a search is in flight. Type fast, keep typing while results arrive, then
+  // compare the box against what was meant to be typed and the results against the box.
+  await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
+  await openModal();
+  const sel='[data-test-id="search_modal_input"]';
+  await page.fill(sel,'');
+  const first='Bridgeport', rest=' Hauling';
+  await page.type(sel,first,{delay:15});          // fast, no pause
+  const boxRightAfterFirst=await page.$eval(sel,e=>e.value);
+  // keep typing immediately, without waiting for the first search to come back
+  await page.type(sel,rest,{delay:15});
+  const boxRightAfterRest=await page.$eval(sel,e=>e.value);
+  // did it ever look broken while fetching?
+  const midFlight=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const d=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
+    return d?{text:(d.innerText||'').replace(/\s+/g,' ').slice(0,160),
+      spinner:!!d.querySelector('.q-spinner,[class*=spinner],[class*=loading]'),
+      looksBroken:/error|unavailable|oooops/i.test(d.innerText||'')}:null;});
+  const settled=await settle(6000);
+  const boxAtEnd=await page.$eval(sel,e=>e.value);
+  await shot('C53589-typing-not-lost');
+  const wanted=first+rest;
+  return {wanted, boxAfterFirstBurst:boxRightAfterFirst, boxAfterSecondBurst:boxRightAfterRest,
+    boxAtEnd, everyCharacterKept: boxAtEnd===wanted,
+    midFlight,
+    // the results must match the FULL text, not the half-typed version
+    rowsAtEnd:(settled?settled.rows:[]).map(r=>`[${r.type}] ${r.text.slice(0,60)}`),
+    resultsMatchFullText: !!(settled&&settled.rows.some(r=>/Bridgeport Hauling/i.test(r.text))),
+    settledAtAll: !!settled};});
+
+// ---------------------------------------------------------------- C45150 no other organisation
+await run(45150,"Results never include another organization's records",async()=>{
+  // One signed-in user belongs to one organisation, so what this can establish honestly is whether
+  // anything OUTSIDE this organisation's own records ever appears. Compare what search returns
+  // against what the organisation's own lists hold.
+  await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(3500);
+  await openModal(); const m=await type2('ZZAUTOTEST');
+  const rows=(m?m.rows:[]).map(r=>({type:r.type,text:r.text}));
+  // cross-check each customer row against this organisation's own customer list
+  const cust=await api('/api/customers?search=ZZAUTOTEST&limit=50');
+  const cd=cust.json&&(cust.json.data||cust.json);
+  const clist=(Array.isArray(cd)?cd:((cd&&(cd.collection||cd.customers))||[])).map(x=>x.name);
+  const shownCustomers=rows.filter(r=>r.type==='customers').map(r=>r.text);
+  const notInOwnList=shownCustomers.filter(t=>!clist.some(n=>n&&t.includes(n)));
+  await shot('C45150-one-organisation');
+  return {rowsShown:rows.length, customersShown:shownCustomers,
+    ownCustomerListSize:clist.length,
+    customersNotInThisOrganisationsOwnList:notInOwnList,
+    note:'a single signed-in user belongs to one organisation, so this shows whether anything outside its own records appears; it cannot prove what a second organisation would see'};});
+
 COMPLETE=true; save();
 console.log('SPECIAL PASS DONE');
 await browser.close();
