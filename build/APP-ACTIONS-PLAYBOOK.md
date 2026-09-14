@@ -4994,3 +4994,30 @@ needs clearing: the RESULTS come from the server, which already knows who the se
 
 Measured: technician = 6 permissions, sees jobs, customers and vehicles only; foreman = 23, additionally
 sees parts and suppliers; administrator = 43.
+
+### §GS.4 — CHANGING A STAFF MEMBER'S ROLE ON sv9160: WHY IT CANNOT BE DONE (measured 2026-09-14)
+
+Both routes were exhausted. Recorded so nobody repeats them.
+
+**Behind the app:** `POST /api/staff/{id}/change` answers **404 *"'Staff' was not found"*** with the id
+every staff member is listed under in `GET /api/staff?limit=200`. `/api/staff/{id}` is **405**,
+`/api/staff/{id}/edit`, `/api/staff/view/{id}` and `/api/iam/users/{id}` are all **404**. No id that
+the change endpoint accepts was found anywhere on the record.
+
+**Through the screen:** `/administration/staff` lists everyone with an edit control per row. The
+editor is a dialog whose fields are, in order: First Name · Last Name · Email · Salary Type ·
+Hourly Rate · **Job Title** (a text box, holds e.g. "Automotive Technician") · **Role** (the dropdown,
+label starts exactly `Role`) · **Location** · Billable. The save button reads **"Save & Close"**.
+
+The Role dropdown opens and lists all eleven roles, and the pick registers — the field shows the new
+role. **Saving is then refused: *"Location is a required field"***, and the Location dropdown opens
+with **no options to choose**. So the role cannot be changed either way.
+
+**Two traps in that editor**, both of which silently do nothing: match the role field by a label
+starting `Role`, not by its value (the Job Title box above it holds a role-shaped string); and match
+the save button on a prefix, since `^(save)$` misses "Save & Close".
+
+**What this blocks:** any case needing a permission set nobody currently holds — a time-clock user, a
+user without work-order access, a user without customer access, a part-sales-only user. What it does
+NOT block is any case that compares a role WITH a permission against one WITHOUT it: impersonation
+(§GS.3) reaches Technician, Foreman, Sales Representative and Senior Service Advisor.
