@@ -60,9 +60,9 @@ memorise.** Here is the whole list in one place, in the words a shop user would 
 | **A1** | An asset can't be found by typing its unit number | Real |
 | **A2** | An asset can't be found by typing its full VIN — oddly, the first 11 characters DO work | Real |
 | **A3** | A vendor can't be found by typing their email address | Real |
-| **A4** | A part you have in stock can't be found by typing its part number | ⚠️ **PROBABLY NOT REAL — see below** |
-| **A5** | A work order or part sale can't be created at all — the system returns an error | Real, and proved carefully |
-| **B1** | A part in the catalogue that the shop has never stocked can't be found at all | Real |
+| **A4** | ~~A part you have in stock can't be found by its part number~~ — **WITHDRAWN, I framed it wrongly.** The real finding is B1 | Withdrawn |
+| **A5** | ~~A work order or part sale can't be created~~ — **SPLIT IN TWO, see below.** Part sales: a known bug, already filed. Work orders: **my mistake, they create fine** | Split |
+| **B1** | A part in the catalogue that the shop has never stocked can't be found at all | 🔴 **CONFIRMED — the strongest finding in the batch** |
 | **B2** | A customer can't be found by postal code | Real |
 | **B3** | A customer can't be found by their website | Real |
 | **B4** | A company can't be found by a contact person's job title | Real |
@@ -77,15 +77,36 @@ memorise.** Here is the whole list in one place, in the words a shop user would 
 **"Real"** = seen with our own eyes on the build. **"Predicted"** = the specification removes it by
 design, the test exists, and the run will confirm it.
 
-### 🔴 A4 IS ON HOLD — it is probably MY mistake, not a bug
+### 🔴 CORRECTIONS MADE 2026-09-14 EVENING — read these before filing anything
 
-On 2026-09-14 I re-created that part **properly** — added it to the catalogue **and put it on a shelf
-with a quantity of 25** — and searching its part number `ZZT-88-4412` **worked immediately.**
+**A4 is WITHDRAWN, because I framed it wrongly and the QA lead caught it.**
+I had been chasing *"a stocked part can't be found by its part number."* That was never the point. The
+QA lead's correction, and he is right: **in V1 a part in the CATALOGUE was searchable whether or not the
+shop had ever stocked it.** So the question is not whether a stocked part is findable — it is whether a
+**catalogue-only** part is findable. It is not. **That is B1, and A4 was me looking at the wrong half.**
 
-My original test part was almost certainly never properly stocked, which would explain the whole
-original finding. **A4 must be re-tested before it is filed.** The same run also proved B1 cleanly: a
-catalogue part with no stock returns nothing, while the stocked one is found — both created minutes
-apart, the same way.
+**B1 IS NOW CONFIRMED, with the cleanest control in the whole batch.** Both parts were created minutes
+apart, the same way, on the same day:
+
+| Part | State | Searching its part number |
+|---|---|---|
+| `ZZT-88-4412` | catalogued **and** stocked (25 on the shelf) | ✅ **found** |
+| `ZZT-77-3300` | catalogued only, never stocked | ❌ **nothing** |
+
+One difference between them — stock — and it decides whether the part can be found. **In V1 both would
+have been found.** That is the regression, it is proved, and it is the one most likely to reach a
+customer: a parts clerk searching for something the shop has never carried.
+
+**A5 SPLITS IN TWO, and only one half is real.**
+
+| Half | Verdict |
+|---|---|
+| **Part sales can't be created** | ✅ **Real — and already filed by the QA lead as [SV-10031](https://shopview.atlassian.net/browse/SV-10031).** Not ours to re-report. C55665 stays Blocked until it is fixed |
+| **Work orders can't be created** | ❌ **WRONG — my mistake.** The QA lead's screen recording showed a work order being created normally. My request was missing one field, `is_vehicle_here`. With it, creation returns success first time. **Four work orders (S-17597 to S-17600) have now been seeded this way and global search finds all four.** |
+
+**Worth passing to engineering, but NOT as a parity defect:** when `is_vehicle_here` is missing the
+server returns a **500 server error** rather than a **400 "missing field"**. That is what sent me down
+the wrong path for half a day. It is an API robustness nit, not a V1 capability loss.
 
 ---
 

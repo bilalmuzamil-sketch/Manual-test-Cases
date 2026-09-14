@@ -236,26 +236,56 @@
    ],
    "depends_on": "customer",
    "find": {
-    "mode": "page",
-    "list": "/api/work-orders",
-    "coll": "work_orders",
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
     "field": "number",
-    "prefix": "S9160-1758",
-    "control": "S2-4219",
-    "_why_page": "?search= on /api/work-orders is BROKEN - it returns 100 unfiltered rows for a real target and ZERO for a control that exists (measured 2026-09-14). Never trust it."
+    "ids": [
+     "ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
+     "8c81f3d7-ccaa-4bf5-8e48-75310301bd20",
+     "8f02b314-d826-4035-a77c-9f2997b4b158",
+     "3f149d79-f650-492e-bace-840bb65a100c"
+    ],
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so neither can find these. The seeder records the ids it creates and verifies each one directly - the only reliable route."
    },
    "create": {
     "endpoint": "/api/work-orders/create",
-    "payload": {},
+    "payload": {
+     "is_vehicle_here": false
+    },
     "inject": {
-     "company_id": "customer"
-    }
+     "company_id": "customer",
+     "vehicle_id": "asset"
+    },
+    "\ud83d\udd34 _THE_TRAP": "is_vehicle_here is REQUIRED IN PRACTICE. Omit it and the server answers 500, not 400 - which reads like a broken endpoint. With company_id + vehicle_id + is_vehicle_here it returns 201. Cost half a day on 2026-09-14."
    },
    "runtime_values": [
     "number"
    ],
    "_runtime_why": "numbers are assigned by the system and depend on the workplace. C53579, C55672 and C55658 read them from seed-state-live.json - never hard-code one",
-   "\ud83d\udd34 BLOCKED_BY": "A5 - POST /api/work-orders/create returns HTTP 500 on a proven-live session (requestIds 888fcd13, 0ed4a340). Until A5 is fixed this record CANNOT be seeded."
+   "seeded_2026-09-14": [
+    {
+     "id": "ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
+     "number": "S-17597",
+     "status": "Estimate"
+    },
+    {
+     "id": "8c81f3d7-ccaa-4bf5-8e48-75310301bd20",
+     "number": "S-17598",
+     "status": "Estimate"
+    },
+    {
+     "id": "8f02b314-d826-4035-a77c-9f2997b4b158",
+     "number": "S-17599",
+     "status": "Estimate"
+    },
+    {
+     "id": "3f149d79-f650-492e-bace-840bb65a100c",
+     "number": "S-17600",
+     "status": "Estimate"
+    }
+   ],
+   "_note": "Created for ZZAUTOTEST Bridgeport Hauling, all status Estimate, all searchable. Global search shows them shop-prefixed as S9160-17597..17600."
   },
   {
    "key": "part_sale",
@@ -274,8 +304,8 @@
     "prefix": "P",
     "control": null
    },
-   "\ud83d\udd34 BLOCKED_BY": "A5 - part sales are produced by CreateDefaultPartSaleLineOnWorkOrderCreatedEvent after a work order is created, so the same 500 blocks this too",
-   "manual_fallback": "Create one part sale through the UI for ZZAUTOTEST Bridgeport Hauling and re-run the seeder; it will find and record it."
+   "\ud83d\udd34 BLOCKED_BY": "SV-10031 - part sales cannot be created. Filed by the QA lead 2026-09-14: https://shopview.atlassian.net/browse/SV-10031",
+   "_note": "Blocked by a KNOWN, FILED bug. Not ours to re-report. C55665 stays Blocked until SV-10031 is fixed."
   }
  ],
  "environment_setup": {

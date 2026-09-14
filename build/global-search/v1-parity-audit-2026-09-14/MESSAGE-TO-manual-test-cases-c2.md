@@ -10,19 +10,26 @@ authored them and I do not file.
 
 ---
 
-## 🔴 BEFORE YOU FILE ANYTHING — TWO ITEMS ARE ON HOLD
+## 🔴 BEFORE YOU FILE ANYTHING — THREE CORRECTIONS FROM 2026-09-14 EVENING
 
-**A4 ("a part in stock can't be found by its part number") is probably NOT a real defect.**
-On 2026-09-14 the part was re-created properly — added to the catalogue AND stocked on a shelf with a
-quantity — and searching `ZZT-88-4412` worked immediately. The original test part was most likely never
-properly stocked. **Re-test A4 on the freshly seeded data before filing it.** If it passes, withdraw it.
+**1. A4 is WITHDRAWN — do not file it.** I was chasing "a stocked part can't be found by its part
+number". Wrong half. In V1 a **catalogue** part was searchable whether or not the shop had stocked it.
+The real finding is B1.
 
-**A5 ("a work order or part sale can't be created") IS real and is proved.** GET 200 → POST create 500
-→ GET 200, so the session was alive either side. Request ids `888fcd13`, `0ed4a340`.
+**2. B1 is CONFIRMED and is now the strongest item in the batch.** Two parts, created minutes apart the
+same way: `ZZT-88-4412` (catalogued **and** stocked) is **found** by its part number; `ZZT-77-3300`
+(catalogued only) returns **nothing**. One difference — stock — decides findability. In V1 both would
+have been found.
 
-**Also: the same run proved B1 cleanly.** A catalogue part with no stock (`ZZT-77-3300`) returns nothing,
-while the stocked part is found — both created minutes apart, the same way. That is the strongest
-evidence in the batch.
+**3. A5 splits, and only half is real.**
+- **Part sales cannot be created** — real, and **already filed by the QA lead as SV-10031**
+  (https://shopview.atlassian.net/browse/SV-10031). **Do not re-report it.** C55665 stays Blocked.
+- **Work orders create fine** — that half was my mistake. My request was missing `is_vehicle_here`;
+  with it, creation succeeds. **Four work orders S-17597 to S-17600 are now seeded** for
+  ZZAUTOTEST Bridgeport Hauling and global search returns all four.
+
+*(For engineering, not a parity defect: omitting `is_vehicle_here` returns a 500 server error instead
+of a 400 "missing field". That is what misled me.)*
 
 ## 1 · CORRECT YOUR STALE PICTURE FIRST
 

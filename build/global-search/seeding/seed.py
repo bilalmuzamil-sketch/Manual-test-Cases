@@ -85,6 +85,17 @@ def find(spec):
         if c['status'] != 200 or len(rows(c)) == 0:
             if spec['mode'] == 'search':
                 return [], 'PROBE BROKEN - the control returned nothing; not reporting missing'
+    if spec['mode'] == 'ids':
+        # ?search= is broken and ?page= is ignored on some endpoints, so the only reliable
+        # route is to verify by the ids the seeder recorded when it created them.
+        out = []
+        for i in spec.get('ids', []):
+            r = call(spec['view'].replace('{id}', i))
+            if r['status'] == 200:
+                d = (r['json'] or {}).get('data', {}) or {}
+                rec = d.get(spec['coll']) if isinstance(d, dict) else None
+                if rec: out.append(rec)
+        return out, 'ok'
     if spec['mode'] == 'search':
         r = call(f"{spec['list']}?search={urllib.parse.quote(spec['value'])}&limit=100")
         if r['status'] != 200: return [], f"probe {r['status']}"

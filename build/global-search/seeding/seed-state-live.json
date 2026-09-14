@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-14T160406Z",
+ "when_utc": "2026-09-14T163105Z",
  "environment": {
   "app": "sv9160.qa.shopview.com",
   "api": "sv9160api.qa.shopview.com",
@@ -14,7 +14,13 @@
    "0ff19eb4-5078-4ed8-969d-4943f291f906"
   ],
   "part_catalogue_only": "7aeffde7-77c1-45bd-b2ae-6d9e1c501946",
-  "part_stocked": "63a300f0-d45a-4858-ae9b-78006e145406"
+  "part_stocked": "63a300f0-d45a-4858-ae9b-78006e145406",
+  "work_orders": [
+   "ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
+   "8c81f3d7-ccaa-4bf5-8e48-75310301bd20",
+   "8f02b314-d826-4035-a77c-9f2997b4b158",
+   "3f149d79-f650-492e-bace-840bb65a100c"
+  ]
  },
  "records": [
   {
@@ -99,8 +105,13 @@
   },
   {
    "key": "work_orders",
-   "state": "BLOCKED",
-   "reason": "A5 - POST /api/work-orders/create returns HTTP 500 on a proven-live session (requestIds 888fcd13, 0ed4a340). Until A5 is fixed this record CANNOT be seeded.",
+   "state": "PRESENT",
+   "ids": [
+    "ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
+    "8c81f3d7-ccaa-4bf5-8e48-75310301bd20",
+    "8f02b314-d826-4035-a77c-9f2997b4b158",
+    "3f149d79-f650-492e-bace-840bb65a100c"
+   ],
    "serves": [
     53578,
     53579,
@@ -114,7 +125,7 @@
   {
    "key": "part_sale",
    "state": "BLOCKED",
-   "reason": "A5 - part sales are produced by CreateDefaultPartSaleLineOnWorkOrderCreatedEvent after a work order is created, so the same 500 blocks this too",
+   "reason": "SV-10031 - part sales cannot be created. Filed by the QA lead 2026-09-14: https://shopview.atlassian.net/browse/SV-10031",
    "serves": [
     55665,
     45153,
