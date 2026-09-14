@@ -565,29 +565,45 @@ await run(45152,'Switching location refreshes results to the new location',async
   // Switch through the SCREEN. Changing it behind the app returned success and the header went on
   // showing the first location, so the page never moved and the comparison was meaningless. The
   // location the user switches is the one the case is about.
+  // The location control is inside the PROFILE MENU, not the header text: the header's location words
+  // belong to `profile_menu_button`, and opening that menu reveals a "Change Location:" row. A first
+  // attempt clicked the header text, got the menu, and then looked for the location name as a menu
+  // item -- which is not how it is laid out, so nothing was picked and it silently fell back to
+  // changing the location behind the app, which does not move the screen.
   const switchInUI=async(name)=>{
     await closeModal();
-    const opened=await page.evaluate((n)=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-      // the control is whatever smallest visible element carries the current location's text
-      const all=[...document.querySelectorAll('button,[role=button],a,div,span')].filter(vis)
-        .filter(e=>/Staging [A-Za-z ]+- ?\d+/.test(e.innerText||'') && (e.innerText||'').length<80);
-      const el=all[all.length-1]; if(!el) return false;
-      (el.closest('button,[role=button],a')||el).click(); return true;}, name);
-    if(!opened) return {clicked:false};
+    const steps={};
+    steps.menu=await page.evaluate(()=>{const b=document.querySelector('[data-test-id="profile_menu_button"]');
+      if(!b) return false; b.click(); return true;});
+    if(!steps.menu) return {...steps, picked:false};
     await page.waitForTimeout(2500);
-    const picked=await page.evaluate((n)=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-      const opt=[...document.querySelectorAll('[role=option],.q-item,li,button,div')].filter(vis)
-        .filter(e=>(e.innerText||'').trim().startsWith(n) && (e.innerText||'').length<90);
-      const el=opt[opt.length-1]; if(!el) return false; el.click(); return true;}, name);
-    await page.waitForTimeout(6000);
-    return {clicked:true, picked};
+    steps.changeLocation=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const row=[...document.querySelectorAll('div,button,a,[role=menuitem],.q-item')].filter(vis)
+        .filter(e=>/Change Location/i.test(e.innerText||'') && (e.innerText||'').length<90)
+        .sort((a,b)=>(a.innerText||'').length-(b.innerText||'').length)[0];
+      if(!row) return false; (row.closest('button,[role=button],a,.q-item')||row).click(); return true;});
+    if(!steps.changeLocation) return {...steps, picked:false};
+    await page.waitForTimeout(3000);
+    steps.picked=await page.evaluate((n)=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const opt=[...document.querySelectorAll('[role=option],.q-item,li,button,div,label')].filter(vis)
+        .filter(e=>(e.innerText||'').replace(/\s+/g,' ').trim().startsWith(n) && (e.innerText||'').length<90)
+        .sort((a,b)=>(a.innerText||'').length-(b.innerText||'').length)[0];
+      if(!opt) return false; (opt.closest('[role=option],.q-item,li,button,label')||opt).click(); return true;}, name);
+    await page.waitForTimeout(3000);
+    // some pickers need a confirm
+    steps.confirmed=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const b=[...document.querySelectorAll('button')].filter(vis)
+        .find(e=>/^(save|apply|confirm|switch|change)$/i.test((e.innerText||'').trim()));
+      if(!b) return false; b.click(); return true;});
+    await page.waitForTimeout(7000);
+    return {clicked:true, ...steps};
   };
   await api('/api/iam/change-location','POST',{workplace_id:A.id, workplace_timezone:A.timezone||'America/Edmonton'});
   const at1=await searchJobs('location1');
   await closeModal();
   const uiSwitch=await switchInUI(B.name);
   let sw={status:'switched through the screen'};
-  if(!(uiSwitch.clicked&&uiSwitch.picked)){        // fall back, and SAY that is what happened
+  if(!uiSwitch.picked){        // fall back, and SAY that is what happened
     sw=await api('/api/iam/change-location','POST',{workplace_id:B.id, workplace_timezone:B.timezone||'America/Edmonton'});
     sw.note='the screen control could not be driven, so the location was changed behind the app';
   }
