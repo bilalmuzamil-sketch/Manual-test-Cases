@@ -482,13 +482,27 @@ await run(53587,'A new work order or part sale is findable within 30 seconds',as
       if(/^number$/i.test(k) && (typeof v==='string'||typeof v==='number')) return String(v);
       if(typeof v==='object'){ const r=findNum(v,depth+1); if(r) return r; } }
     return null; };
-  const number=findNum(c.json)||findNum(wo);
   if(!(c.status>=200&&c.status<300))
-    return {created:false, status:c.status, head:c.head,
+    return {created:false, status:c.status, body:c.body,
       note:'the job could not be created, so the 30-second window was never tested'};
+  // The create response does not carry the job number. It does carry the id, and the manifest's own
+  // note says reading a job back by its id is the only reliable route on this API -- searching the
+  // job list is broken. So: take the id, read the job, take its number from there.
+  let number=findNum(c.json);
+  const findId=(o,d=0)=>{ if(!o||typeof o!=='object'||d>4) return null;
+    if(typeof o.id==='string'&&/^[0-9a-f-]{20,}$/i.test(o.id)) return o.id;
+    for(const v of Object.values(o)){ if(typeof v==='object'){ const r=findId(v,d+1); if(r) return r; } }
+    return null; };
+  const newId=findId(c.json);
+  if(!number && newId){
+    const v=await api(`/api/work-orders/view/${newId}`);
+    const vd=v.json&&(v.json.data||v.json);
+    number=findNum(vd);
+  }
   if(!number)
-    return {created:true, status:c.status, numberFound:false, responseHead:c.head,
-      note:'the job was created but its number could not be read from the response, so the window was not timed'};
+    return {created:true, status:c.status, numberFound:false, newId,
+      responseBody:(c.body||'').slice(0,400),
+      note:'the job was created but its number could not be read, so the window was not timed'};
   const bare=(number.match(/(\d+)\s*$/)||[])[1]||number;   // people type the bare number
   const t0=Date.now(); let foundAfter=null, lastRows=null;
   for(let i=0;i<8;i++){
