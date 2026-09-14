@@ -113,12 +113,14 @@
  },
  "_runtime_values": {
   "_note": "Work order and part sale numbers are assigned by the system, and the shop number depends on the workplace. The seed script MUST write the real values here at seed time; the test cases refer to them by name, never to a hard-coded number.",
-  "shop_number": "<filled at seed time>",
-  "wo_a_number": "<filled at seed time>",
-  "wo_b_number": "<filled at seed time>",
-  "wo_c_number": "<filled at seed time>",
-  "wo_d_number": "<filled at seed time>",
-  "part_sale_number": "<filled at seed time>"
+  "shop_number": "9160",
+  "wo_a_number": "S9160-17580",
+  "wo_b_number": "S9160-17581",
+  "wo_c_number": "S9160-17582",
+  "wo_d_number": "S9160-17583",
+  "part_sale_number": "<filled at seed time>",
+  "_filled": "2026-09-14 on sv9160.qa.shopview.com",
+  "_note_c53579_forms": "From S9160-17580 test: 'S9160-17580' (as shown), 'S916017580' (no dash), '9160-17580' (digits only)"
  },
  "_created_during_the_run": {
   "_note": "These are NOT pre-seeded. Cases G1a/G1b create them during the run, because the behaviour under test is that a brand-new record is findable immediately.",
@@ -131,5 +133,13 @@
   "name": "ZZAUTOTEST Airline Coupler Vernway",
   "part_number": "ZZT-77-3300",
   "must_have_no_inventory_record": true
+ },
+ "_qa_seeded_ids": {
+  "customer_id": "c01eab9e-e400-474c-aaa9-a8a93a346add",
+  "contact_id": "10991ac6-656e-43dd-9dc1-dc96c81fa303",
+  "vendor_id": "7379aa02-c999-4659-b017-a8661c450af9",
+  "vehicle_id": "b7d49e1e-9c00-4070-bd42-c9d83da9b80c",
+  "part_catalogue_only_id": "c7c4b204-32d8-43e9-94dd-c2e6abe1c463",
+  "part_stocked_id": "74d3e14e-3714-4e9d-8e6f-86a8be45a6cc"
  }
 }
