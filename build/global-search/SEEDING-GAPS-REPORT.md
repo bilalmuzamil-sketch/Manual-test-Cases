@@ -62,7 +62,7 @@ When the lookup table is not exposed, the existing data is the lookup table.
 This is the single highest-value thing in this report: a create that returns success while dropping a
 field will keep producing fixtures that look complete and are not — and only a read-back catches it.
 
-### Item 5 also deserves this note — it was visible the whole time
+### And it was visible the whole time
 
 The seeded asset rendered in **every single result row** as:
 
