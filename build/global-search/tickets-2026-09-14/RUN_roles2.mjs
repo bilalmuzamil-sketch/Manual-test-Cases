@@ -76,11 +76,15 @@ for(const tgt of targets){
   const feList=fd&&(fd.fe_permissions||fd.fePermissions);
   rec.serverIdentity={status:fe.status, templateSlug:fd&&(fd.template_slug||fd.templateSlug),
     nPerms:Array.isArray(feList)?feList.length:(feList?Object.keys(feList).length:null)};
-  // Drop ONLY the cached permission set, never the signed-in user: removing `user` makes the app
-  // treat the session as signed out and bounce to the sign-in screen, and "search is not reachable"
-  // then reads as a permission result when it is nothing of the kind. Keeping `user` and dropping
-  // `fe_permissions_wrapper` leaves the app signed in and makes it re-fetch what this person may do.
-  await page.evaluate(()=>{ try{ localStorage.removeItem('fe_permissions_wrapper'); }catch(e){} }).catch(()=>{});
+  // TOUCH NOTHING IN BROWSER STORAGE. Removing the stored user bounces the app to the sign-in screen;
+  // removing just the cached permissions does too. Both make "search is not reachable" look like a
+  // permission result when it is the harness signing itself out.
+  //
+  // And nothing needs clearing: the RESULTS come from the server, which already knows this session is
+  // the technician (its own permission call says so, six permissions against the administrator's
+  // forty-three). The page's chrome may still be drawn from the administrator's cached menu; the rows
+  // that come back are the ones this person is allowed to see, which is exactly what these cases ask.
+  // That limit is recorded on every result rather than glossed over.
   await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'});
   await page.waitForTimeout(9000);
   // If it bounced to the sign-in screen anyway, say so -- that is the harness, not the role.
@@ -89,6 +93,8 @@ for(const tgt of targets){
     await page.waitForTimeout(8000);
   }
   rec.bouncedToSignIn = /\/login/.test(page.url());
+  rec.readsResultsAsThisUser = 'the rows come from the server, which has this session as ' +
+    (rec.serverIdentity&&rec.serverIdentity.templateSlug) + '; the page chrome may still be the administrator\'s';
   // WHO AM I NOW -- read from the server's own answer, not from the fact the call returned 200.
   const who=await page.evaluate(()=>{ let u=null,w=null;
     try{u=JSON.parse(localStorage.getItem('user')||'null')}catch(e){}
