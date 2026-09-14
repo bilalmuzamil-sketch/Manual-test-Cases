@@ -11,19 +11,22 @@
    "key": "customer",
    "type": "Customer",
    "serves": [
-    55667,
-    53602,
-    53582,
-    53604,
-    55662,
-    53583,
     53578,
     53581,
-    55665,
+    53582,
+    53583,
+    53602,
+    53604,
     55660,
+    55662,
+    55665,
+    55667,
     55671,
     55673,
-    55675
+    55675,
+    55679,
+    55680,
+    55682
    ],
    "find": {
     "mode": "search",
@@ -66,13 +69,15 @@
    "key": "asset",
    "type": "Vehicle",
    "serves": [
-    53580,
-    55669,
     53516,
-    53605,
-    55664,
+    53580,
     53581,
-    55661
+    53605,
+    55661,
+    55664,
+    55669,
+    55680,
+    55682
    ],
    "depends_on": "customer",
    "find": {
@@ -108,13 +113,15 @@
    "key": "vendor",
    "type": "Vendor",
    "serves": [
-    55668,
     53584,
     53585,
-    53606,
-    55663,
     53604,
-    55661
+    53606,
+    55661,
+    55663,
+    55668,
+    55680,
+    55682
    ],
    "unique": true,
    "_unique_why": "a double run created TWO vendor records with the same name on 2026-09-14, which made global search look like it was returning duplicates. The seeder now refuses to create a second one.",
@@ -184,11 +191,13 @@
    "key": "part_stocked",
    "type": "InventoryPart",
    "serves": [
-    55666,
+    45153,
     53607,
     55659,
-    45153,
-    55661
+    55661,
+    55666,
+    55680,
+    55682
    ],
    "find": {
     "mode": "search",
@@ -226,13 +235,15 @@
    "type": "WorkOrder",
    "count": 4,
    "serves": [
+    45153,
     53578,
     53579,
-    55672,
-    55658,
     53588,
+    55658,
     55661,
-    45153
+    55672,
+    55680,
+    55682
    ],
    "depends_on": "customer",
    "find": {
@@ -344,5 +355,22 @@
   "same_part_at_two_locations": "ALLOWED, and now seeded. The SAME catalogue part can hold an inventory record at each location: ZZT-88-4412 is stocked at Heavy Duty (qty 25, part_id 63a300f0) and at Lethbridge (qty 7, part_id b3a415f1). Global search shows it as ONE row at each location, not two.",
   "index_delay_is_real": "A newly stocked part is NOT searchable immediately - it appeared after ~35 seconds. ALWAYS wait and re-query before calling a part missing (Rule 104). The specification allows up to 30 seconds.",
   "parts_are_LOCATION_scoped_in_V2": "MEASURED: part P550848 is stocked only at Heavy Duty. Searching it at Heavy Duty returns 2 parts; at Lethbridge it returns NO parts. Customers and assets are returned at BOTH locations, and work orders only at Heavy Duty. So in V2 PARTS follow the location. IN V1 PARTS WERE ORG-WIDE (invariant INV-81 - only work orders and part sales were location-scoped). C45151 tests exactly this and is expected to FAIL on its Parts half."
- }
+ },
+ "no_data_needed": {
+  "_README": "Cases that need NO seeded data. Listed so nobody hunts for data that was never required.",
+  "C55683": "The keyboard shortcut hint \u2014 only a signed-in user on a desktop-width window.",
+  "C55675": "A search that matches nothing \u2014 needs the ABSENCE of a record, not the presence of one.",
+  "C45156": "The keyboard shortcut opens search.",
+  "C45158": "No feature-flag toggle.",
+  "C45161": "Two-character minimum.",
+  "C55674": "Reachable on phone and tablet.",
+  "C53589": "Typing is not lost while results load."
+ },
+ "self_seeding_during_the_run": {
+  "_README": "Cases where the TESTER creates the data as part of the test. Cannot be pre-seeded.",
+  "C53586": "A newly created customer is findable \u2014 creating it IS the test.",
+  "C53587": "A new work order or part sale is findable \u2014 creating it IS the test.",
+  "C55679": "Recent items return on a no-match search \u2014 recents are per-user and are built by that tester opening records. Tell the tester to open two records first."
+ },
+ "_verified_2026-09-14_evening": "Searching ZZAUTOTEST returns FIVE groups at once - work orders (4), customers, assets, parts and vendors. That single term is what C55680 (arrow keys skip the group headings) and C55682 (each row carries a type icon) rely on, and it is confirmed live."
 }
