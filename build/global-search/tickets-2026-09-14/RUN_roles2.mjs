@@ -118,6 +118,18 @@ for(const tgt of targets){
   if(!rec.identityChanged){
     rec.instrument='the session did NOT become this user -- anything it shows is about the harness, not about permissions';
   } else {
+    // Ask the server the same question the panel asks. These cases are about WHICH KINDS of record a
+    // person is allowed to see, and that is decided server-side -- so this answer is the substance of
+    // the case even when the page's own chrome is uncooperative. Recorded alongside the screen
+    // reading, never instead of it without saying so.
+    const srch=await api('/api/search?q='+encodeURIComponent(QUERY));
+    const sg=srch.json&&(srch.json.data||srch.json);
+    rec.serverSearch={status:srch.status,
+      groups:Object.fromEntries((((sg&&sg.groups)||[]).map(g=>[g.type,g.total]))),
+      unavailable:(((sg&&sg.groups)||[]).filter(g=>g.unavailable).map(g=>g.type))};
+    rec.typesTheServerReturns=Object.entries(rec.serverSearch.groups||{})
+      .filter(([k,v])=>v>0).map(([k])=>k);
+
     const trig=await page.evaluate(()=>{const b=document.querySelector('[data-test-id="global_search_trigger"]');
       if(!b) return false; const r=b.getBoundingClientRect(); return r.width>2&&r.height>2;});
     rec.searchReachable=trig;
