@@ -3867,3 +3867,34 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     at `build/global-search/v1-parity-audit-2026-09-14/` on `origin/claude/global-search-v1-baseline-6ax9ul`
     (that branch is superseded on SHARED files and must never be merged here — read the folder, do not
     merge the branch). It carries the coverage proof, the ticket candidates and the audit scripts.
+
+110. **NEVER USE A LABEL, CODE OR ABBREVIATION WITHOUT ITS PLAIN-WORDS MEANING BESIDE IT — EVERY TIME,
+    IN EVERY MESSAGE AND EVERY DOCUMENT (all projects, permanent; QA lead, 2026-09-14).**
+    **THE ORDER (QA lead, 2026-09-14):** *"What is A4 and A5 please[,] note that you have to be human
+    friendly with me whenever you are sharing any information with me."*
+    **WHAT HAPPENED.** A defect register used the codes A1–A5, B1–B7 and C1–C4. They were convenient
+    *for the author*. The QA lead had to stop and ask what two of his own highest-priority items were —
+    and a session that invents shorthand and then reports in it has made the reader do its work.
+    **THE RULE.** A code is **filing shorthand and nothing else.** It may appear **only** alongside the
+    thing it stands for, in the words the person who uses the product would use. Not *"A4: identifier
+    field not indexed"* but ***"a part you have in stock can't be found by typing its part number."***
+    This binds **chat replies, status updates, handoffs, ticket registers, test-case bodies and commit
+    messages** — everything anyone reads.
+    **THE THREE TESTS, ALL OF WHICH MUST PASS.**
+    **(a) THE COLD-READ TEST.** Could someone who has never seen this project understand the sentence?
+    If it needs a lookup, rewrite it.
+    **(b) THE SHOP-FLOOR TEST.** Would a parts clerk or a dispatcher recognise what is being described?
+    Say *"find a work order by typing its number"*, never *"identifier matching on the WO entity."*
+    **(c) THE KEY-AT-THE-TOP TEST.** Any document that uses codes at all carries a **plain-words key at
+    the TOP** — not an appendix, not a footnote — listing every code and what it means.
+    **ALSO BARRED FROM ANYTHING HE READS:** HTTP status codes as the whole explanation, endpoint paths,
+    field and column names, internal invariant ids, and bare case numbers with no title. **A `C#####`
+    always carries its title and link (Rule 8); an `INV-nn` always carries what the behaviour actually
+    was.**
+    **RELATION TO OTHER RULES:** this sharpens Rule 103 (everything he reads is in his language) and
+    Rule 99 (every ask is self-contained — he must never have to go and look something up). Rules 7 and
+    9 already require plain layman wording in tester- and PO-facing text; **this rule extends the same
+    bar to everything the QA lead reads, including internal-looking artefacts**, because he reads those
+    too. Worked example of the failure and the fix:
+    `build/global-search/v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md` — the key now sits at
+    the top of the file.
