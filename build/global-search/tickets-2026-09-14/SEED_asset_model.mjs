@@ -33,15 +33,27 @@ const a=await findAsset();
 if(!a){ out.error='asset not found'; }
 else {
   out.before={unit:a.unit, model:a.vehicle_model, makerId:a.vehicle_maker_id, modelId:a.vehicle_model_id};
-  // find the model id for Cascadia under this vehicle's maker
-  let modelId=null;
-  for(const path of [
+  // find the model id for Cascadia. No model-list endpoint answers here -- every shape tried gives
+  // 404 -- but the branch already holds twenty Cascadia vehicles, so take the id off one of them.
+  // The data itself is the lookup table when the lookup endpoint does not exist.
+  let modelId=null, makerId=null;
+  {
+    const f=man.records.find(r=>r.key==='asset').find;
+    const r=await api(`${f.list}?search=Cascadia&limit=50`);
+    const l=listOf(r);
+    const hit=l.find(x=>String(x.vehicle_model||'').toLowerCase()==='cascadia');
+    out.tried.push({path:'existing Cascadia vehicle on this branch', status:r.status, n:l.length,
+      found:hit?{model:hit.vehicle_model, modelId:hit.vehicle_model_id, makerId:hit.vehicle_maker_id}:null});
+    if(hit&&hit.vehicle_model_id){ modelId=hit.vehicle_model_id; makerId=hit.vehicle_maker_id;
+      out.modelFoundVia='an existing Cascadia vehicle'; out.modelName=hit.vehicle_model; }
+  }
+  for(const path of (modelId?[]:[
     `/api/vehicles/models?vehicle_maker_id=${a.vehicle_maker_id}&limit=500`,
     `/api/vehicle-models?vehicle_maker_id=${a.vehicle_maker_id}&limit=500`,
     `/api/vehicles/makers/${a.vehicle_maker_id}/models?limit=500`,
     `/api/vehicles/models?limit=500&search=Cascadia`,
     `/api/vehicle-models?search=Cascadia&limit=500`,
-  ]){
+  ])){
     const r=await api(path); const l=listOf(r);
     out.tried.push({path, status:r.status, n:l.length,
       head: l.length?undefined:(r.head||'').slice(0,110)});
@@ -51,7 +63,8 @@ else {
   out.cascadiaModelId=modelId;
   if(modelId){
     const w=await api('/api/vehicles/change','POST',
-      {...a, vehicle_id:a.id, company_id:a.company_id||live.customer, vehicle_model_id:modelId});
+      {...a, vehicle_id:a.id, company_id:a.company_id||live.customer,
+       vehicle_model_id:modelId, ...(makerId?{vehicle_maker_id:makerId}:{})});
     out.write={status:w.status};
     await page.waitForTimeout(3000);
     const after=await findAsset();
