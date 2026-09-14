@@ -38,7 +38,23 @@ That is indistinguishable from "the search index is broken for this field" unles
 record. Three tickets were one step away from being proposed for fields the record simply did not
 carry.
 
-### Item 5 deserves its own note — it was visible the whole time
+### Item 5 — the root cause, and it will bite again
+
+The vehicle's create payload sends `model_name: "Cascadia"`. **The vehicle endpoint does not accept
+the model by name.** It answers **201**, reports success, and silently drops the field — the vehicle
+ends up with whatever model it was going to have anyway (`1000HS`). The endpoint works in **ids**: it
+wants `vehicle_model_id`, and its own response echoes that field, which is the tell.
+
+So the bad data and my first failed repair have the **identical cause**. I sent `model_name` too, got
+my own 201, and changed nothing.
+
+> `POST /api/vehicles/change` needs **`vehicle_id`** (not `id`), **`company_id`**, and the model as an
+> **id**, not a name.
+
+This is the single highest-value thing in this report: a create that returns success while dropping a
+field will keep producing fixtures that look complete and are not — and only a read-back catches it.
+
+### Item 5 also deserves this note — it was visible the whole time
 
 The seeded asset rendered in **every single result row** as:
 
