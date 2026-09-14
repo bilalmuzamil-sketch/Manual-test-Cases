@@ -1,0 +1,586 @@
+{
+ "suite_id": 1,
+ "section_id": 6769,
+ "run_id": 415,
+ "baseline": "ShopView/shopview @ 55767168",
+ "commit": "55767168",
+ "v1_files": [
+  "FetchDataQueryHandler.php",
+  "useGlobalSearch.ts",
+  "GlobalSearch.vue",
+  "routingService.ts",
+  "FetchDataController.php",
+  "DesktopMenu.vue"
+ ],
+ "v2_doc_marker": "Product Requirements specification",
+ "absence_markers": [
+  "ABSENCE of any feature flag"
+ ],
+ "capabilities": [
+  {
+   "kind": "field",
+   "capability": "WO/PS - plain (raw) number",
+   "evidence": "FetchDataQueryHandler.php:96 wo.raw_number",
+   "cases": [
+    55672
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "WO/PS - formatted number",
+   "evidence": "FetchDataQueryHandler.php:98-111 wo.number",
+   "cases": [
+    53579
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "WO/PS - shop-number-prefixed forms (4 variants)",
+   "evidence": "FetchDataQueryHandler.php:100-110 shop_id injected 4 ways",
+   "cases": [
+    53579
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "WO - customer company name",
+   "evidence": "FetchDataQueryHandler.php:112 c.name",
+   "cases": [
+    53578
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Part Sale - customer company name",
+   "evidence": "FetchDataQueryHandler.php:112 c.name (same fetcher yields Part Sale rows)",
+   "cases": [
+    55665
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "WO/PS - status word",
+   "evidence": "FetchDataQueryHandler.php:113-116 wo.status",
+   "cases": [
+    55658
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - company name",
+   "evidence": "FetchDataQueryHandler.php:226 c.name",
+   "cases": [
+    55667
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - company name with spaces removed",
+   "evidence": "FetchDataQueryHandler.php:228 REPLACE(c.name,' ','')",
+   "cases": [
+    53602
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - address line 1",
+   "evidence": "FetchDataQueryHandler.php:229 c.address_1",
+   "cases": [
+    53582
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - address line 2",
+   "evidence": "FetchDataQueryHandler.php:229 c.address_2",
+   "cases": [
+    53604
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - state or province",
+   "evidence": "FetchDataQueryHandler.php:230 c.state_or_province",
+   "cases": [
+    53582
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - postal code",
+   "evidence": "FetchDataQueryHandler.php:230 c.postal_code",
+   "cases": [
+    53582
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - city",
+   "evidence": "FetchDataQueryHandler.php:231 c.city",
+   "cases": [
+    53582
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - company telephone",
+   "evidence": "FetchDataQueryHandler.php:235 c.telephone",
+   "cases": [
+    55662
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - website",
+   "evidence": "FetchDataQueryHandler.php:236 c.website",
+   "cases": [
+    53583
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - contact first name",
+   "evidence": "FetchDataQueryHandler.php:240 cu.first_name",
+   "cases": [
+    55670
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - contact last name",
+   "evidence": "FetchDataQueryHandler.php:240 cu.last_name",
+   "cases": [
+    55670
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - contact job title",
+   "evidence": "FetchDataQueryHandler.php:241 cu.title",
+   "cases": [
+    53603
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Customer - contact telephone",
+   "evidence": "FetchDataQueryHandler.php:241 cu.telephone",
+   "cases": [
+    55662,
+    53603
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Vendor - name",
+   "evidence": "FetchDataQueryHandler.php:156 v.name",
+   "cases": [
+    55668
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Vendor - address line 1",
+   "evidence": "FetchDataQueryHandler.php:157 v.address_1",
+   "cases": [
+    53585
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Vendor - address line 2",
+   "evidence": "FetchDataQueryHandler.php:158 v.address_2",
+   "cases": [
+    53604
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Vendor - state or province",
+   "evidence": "FetchDataQueryHandler.php:159 v.state_or_province",
+   "cases": [
+    53606
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Vendor - postal code",
+   "evidence": "FetchDataQueryHandler.php:160 v.postal_code",
+   "cases": [
+    53585
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Vendor - city",
+   "evidence": "FetchDataQueryHandler.php:161 v.city",
+   "cases": [
+    53585
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Vendor - telephone",
+   "evidence": "FetchDataQueryHandler.php:162 v.telephone",
+   "cases": [
+    55663
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Vendor - email",
+   "evidence": "FetchDataQueryHandler.php:163 v.email",
+   "cases": [
+    53584
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Asset - owning customer name",
+   "evidence": "FetchDataQueryHandler.php:286 c.name",
+   "cases": [
+    53581
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Asset - year",
+   "evidence": "FetchDataQueryHandler.php:287 v.year",
+   "cases": [
+    53605
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Asset - make / maker",
+   "evidence": "FetchDataQueryHandler.php:288 vmk.name",
+   "cases": [
+    55664
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Asset - model",
+   "evidence": "FetchDataQueryHandler.php:289 vm.name",
+   "cases": [
+    55664
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Asset - unit number",
+   "evidence": "FetchDataQueryHandler.php:290 v.unit",
+   "cases": [
+    53580
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Asset - VIN",
+   "evidence": "FetchDataQueryHandler.php:291 v.vin",
+   "cases": [
+    55669
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Asset - licence plate",
+   "evidence": "FetchDataQueryHandler.php:292 v.licence_plate",
+   "cases": [
+    53516
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Part - name / description",
+   "evidence": "FetchDataQueryHandler.php:325 cp.name",
+   "cases": [
+    53607
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Part - part number with and without dashes",
+   "evidence": "FetchDataQueryHandler.php:326-327 cp.part_number",
+   "cases": [
+    55666
+   ]
+  },
+  {
+   "kind": "field",
+   "capability": "Part - the CATALOGUE is the source, not inventory stock",
+   "evidence": "FetchDataQueryHandler.php:317-331 from CataloguePart::TABLE_NAME",
+   "cases": [
+    53601,
+    45153
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-10 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-10; V1 baseline 55767168",
+   "cases": [
+    45161
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-11 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-11; V1 baseline 55767168",
+   "cases": [
+    55667,
+    55668
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-12 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-12; V1 baseline 55767168",
+   "cases": [
+    55659,
+    55660
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-13 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-13; V1 baseline 55767168",
+   "cases": [
+    55671
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-14 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-14; V1 baseline 55767168",
+   "cases": [
+    55661
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-15 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-15; V1 baseline 55767168",
+   "cases": [
+    55661
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-16 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-16; V1 baseline 55767168",
+   "cases": [
+    45157
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-17 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-17; V1 baseline 55767168",
+   "cases": [
+    55670
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-18 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-18; V1 baseline 55767168",
+   "cases": [
+    53588
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-20 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-20; V1 baseline 55767168",
+   "cases": [
+    45155
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-33 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-33; V1 baseline 55767168",
+   "cases": [
+    53586,
+    53587
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-34 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-34; V1 baseline 55767168",
+   "cases": [
+    45159
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-40 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-40; V1 baseline 55767168",
+   "cases": [
+    45156
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-41 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-41; V1 baseline 55767168",
+   "cases": [
+    55673
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-42 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-42; V1 baseline 55767168",
+   "cases": [
+    55680
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-43 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-43; V1 baseline 55767168",
+   "cases": [
+    53589
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-44 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-44; V1 baseline 55767168",
+   "cases": [
+    55675
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-46 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-46; V1 baseline 55767168",
+   "cases": [
+    45153
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-47 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-47; V1 baseline 55767168",
+   "cases": [
+    45154
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-48 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-48; V1 baseline 55767168",
+   "cases": [
+    45160
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-50 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-50; V1 baseline 55767168",
+   "cases": [
+    55674
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-63 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-63; V1 baseline 55767168",
+   "cases": [
+    45161,
+    55679
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-64 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-64; V1 baseline 55767168",
+   "cases": [
+    45149
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-71 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-71; V1 baseline 55767168",
+   "cases": [
+    45147
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-72 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-72; V1 baseline 55767168",
+   "cases": [
+    45142,
+    45144,
+    45145,
+    45146
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-73 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-73; V1 baseline 55767168",
+   "cases": [
+    45143
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-74 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-74; V1 baseline 55767168",
+   "cases": [
+    45148
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-80 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-80; V1 baseline 55767168",
+   "cases": [
+    45150
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-81 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-81; V1 baseline 55767168",
+   "cases": [
+    45151
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-82 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-82; V1 baseline 55767168",
+   "cases": [
+    45152
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-90 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-90; V1 baseline 55767168",
+   "cases": [
+    45158
+   ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-91 (see FULL-COVERAGE-ACCOUNTING)",
+   "evidence": "INV-91; V1 baseline 55767168",
+   "cases": [
+    45147,
+    45159,
+    45142,
+    53601
+   ]
+  }
+ ],
+ "_full_accounting": "build/global-search/readiness-2026-09-14/FULL-COVERAGE-ACCOUNTING-2026-09-14.md"
+}
