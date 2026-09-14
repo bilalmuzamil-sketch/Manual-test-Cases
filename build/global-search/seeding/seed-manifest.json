@@ -26,7 +26,8 @@
     55675,
     55679,
     55680,
-    55682
+    55682,
+    55684
    ],
    "find": {
     "mode": "search",
@@ -243,7 +244,8 @@
     55661,
     55672,
     55680,
-    55682
+    55682,
+    55684
    ],
    "depends_on": "customer",
    "find": {
@@ -324,7 +326,8 @@
   "second_location": {
    "serves": [
     45151,
-    45152
+    45152,
+    55684
    ],
    "status": "ALREADY EXISTS",
    "detail": "GET /api/staff/my-workplaces returns Staging Heavy Duty - 9919 and Staging Lethbridge - 4310. Switch with POST /api/iam/change-location {workplace_id, workplace_timezone}."
@@ -372,5 +375,13 @@
   "C53587": "A new work order or part sale is findable \u2014 creating it IS the test.",
   "C55679": "Recent items return on a no-match search \u2014 recents are per-user and are built by that tester opening records. Tell the tester to open two records first."
  },
- "_verified_2026-09-14_evening": "Searching ZZAUTOTEST returns FIVE groups at once - work orders (4), customers, assets, parts and vendors. That single term is what C55680 (arrow keys skip the group headings) and C55682 (each row carries a type icon) rely on, and it is confirmed live."
+ "_verified_2026-09-14_evening": "Searching ZZAUTOTEST returns FIVE groups at once - work orders (4), customers, assets, parts and vendors. That single term is what C55680 (arrow keys skip the group headings) and C55682 (each row carries a type icon) rely on, and it is confirmed live.",
+ "rule_111_status_of_every_new_case_2026-09-14": {
+  "_README": "Rule 111: every case ends SEEDED, NEEDS NO DATA, or SELF-SEEDING - written down, not assumed.",
+  "C55679 recents return on a no-match search": "SELF-SEEDING - recents are personal to whoever runs the test; the tester opens two records first. Said in the case preconditions.",
+  "C55680 arrow keys skip the group headings": "SEEDED - ZZAUTOTEST returns five groups at once (work orders, customers, assets, parts, vendors). Verified live.",
+  "C55682 each row carries a type icon": "SEEDED - same five-group search. Verified live.",
+  "C55683 the shortcut hint is shown": "NEEDS NO DATA - a signed-in user on a desktop-width window.",
+  "C55684 no stale rows after a location switch": "SEEDED - both locations exist, and the four work orders belong to Heavy Duty only. Verified live: searching Bridgeport returns 4 work orders at Heavy Duty and 0 at Lethbridge, which is exactly the contrast the case needs."
+ }
 }

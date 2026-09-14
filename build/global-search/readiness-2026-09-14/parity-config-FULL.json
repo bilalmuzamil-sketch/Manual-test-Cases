@@ -1,6 +1,5 @@
 {
  "suite_id": 1,
- "section_id": 6769,
  "run_id": 415,
  "baseline": "ShopView/shopview @ 55767168",
  "commit": "55767168",
@@ -596,7 +595,23 @@
    "cases": [
     55683
    ]
+  },
+  {
+   "kind": "behaviour",
+   "capability": "INV-94 the old location's rows are cleared before the re-fetch",
+   "evidence": "useGlobalSearch.ts:286-299 + V1's own test 'drops the previous location rows while the re-fetch is in flight'; baseline 55767168",
+   "cases": [
+    55684
+   ]
   }
  ],
- "_full_accounting": "build/global-search/readiness-2026-09-14/FULL-COVERAGE-ACCOUNTING-2026-09-14.md"
+ "_full_accounting": "build/global-search/readiness-2026-09-14/FULL-COVERAGE-ACCOUNTING-2026-09-14.md",
+ "section_ids": [
+  6769,
+  8056
+ ],
+ "_sections": {
+  "6769": "main V1 parity suite - derived from the V1 implementation",
+  "8056": "derived from V1's own automated test suite (QA lead's instruction, 2026-09-14)"
+ }
 }
