@@ -502,8 +502,12 @@ await run(53587,'A new work order or part sale is findable within 30 seconds',as
   // note says reading a job back by its id is the only reliable route on this API -- searching the
   // job list is broken. So: take the id, read the job, take its number from there.
   let number=findNum(c.json);
+  // The create returns {"data":{"work_order_id":"..."}} -- the id is NOT under `id`. Match any key
+  // that ends in `id` and holds something id-shaped, rather than the one name I happened to expect.
+  // Third time this pass that a field name I assumed differs from the one actually used.
   const findId=(o,d=0)=>{ if(!o||typeof o!=='object'||d>4) return null;
-    if(typeof o.id==='string'&&/^[0-9a-f-]{20,}$/i.test(o.id)) return o.id;
+    for(const [k,v] of Object.entries(o)){
+      if(/(^|_)id$/i.test(k) && typeof v==='string' && /^[0-9a-f-]{20,}$/i.test(v)) return v; }
     for(const v of Object.values(o)){ if(typeof v==='object'){ const r=findId(v,d+1); if(r) return r; } }
     return null; };
   const newId=findId(c.json);
