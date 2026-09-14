@@ -115,8 +115,13 @@ const clickTab=async(group)=>{
     const m=[...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if(!m) return false;
     const t=m.querySelector(`[data-test-id="search_modal_tab_${s}"]`); if(!t) return false; t.click(); return true;}, slug);
   if(!ok) return null;
-  await page.waitForTimeout(2500);
-  return {slug, view:await readModal()};
+  // SETTLE the scoped view too, never a flat wait. The counts were measured settling at ~4-5s, so a
+  // 2.5s read of a section can come back empty while it is still loading -- and "counted under All
+  // but its own section is empty" is precisely the failure the QA lead found by hand. A harness that
+  // can manufacture that finding is worse than no harness.
+  await page.waitForTimeout(1200);
+  const view=await settle(4000);
+  return {slug, view:view||await readModal()};
 };
 
 let done=0;

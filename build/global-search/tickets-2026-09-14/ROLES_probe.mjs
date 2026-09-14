@@ -30,6 +30,28 @@ if(ql.json){ const arr=ql.json.data||ql.json;
   out.quickLogin.count=out.quickLogin.users.length; }
 else out.quickLogin.bodyHead=(ql.body||'').slice(0,200);
 
+// 2a. THE LEAST INVASIVE ROUTE FIRST. The playbook (§G) gives three ways to act as a non-admin:
+//     impersonate an existing holder (POST /api/switch-user {user_id}) -- mutates nothing --
+//     swap the role on the Tech quick-login user, or create fresh staff. If this branch already has
+//     staff holding the roles the cases name, impersonation serves every one of them and there is
+//     nothing to restore afterwards. So enumerate holders BEFORE proposing to change anything.
+//     NB the staff ids in the playbook are STAGING's; sv9160's must be read live.
+const org=await page.evaluate(()=>{try{const u=JSON.parse(localStorage.getItem('user')||'null');
+  const d=u&&u.data; return (d&&(d.organization_id||(d.organization&&d.organization.id)))||null;}catch(e){return null;}});
+out.organizationId=org;
+if(org){ const rr=await api(`/api/organizations/${org}/roles`);
+  const d=rr.json&&(rr.json.data!==undefined?rr.json.data:rr.json);
+  const list=Array.isArray(d)?d:((d&&(d.collection||d.roles))||[]);
+  out.orgRoles={status:rr.status, n:list.length, roles:list.map(x=>({id:x.id,name:x.name,
+    default:x.default, editable:x.editable, deletable:x.deletable, users:x.usersCount}))}; }
+const st=await api('/api/staff?limit=200');
+{ const d=st.json&&(st.json.data!==undefined?st.json.data:st.json);
+  const list=Array.isArray(d)?d:((d&&(d.collection||d.staff))||[]);
+  out.staff={status:st.status, n:list.length, rows:list.map(x=>({id:x.id, email:x.email,
+    name:[x.first_name,x.last_name].filter(Boolean).join(' '),
+    role:x.role_label||(x.role&&x.role.name)||null, roleId:(x.role&&x.role.id)||x.role_id||null}))
+    .slice(0,60)}; }
+
 // 2. WHAT roles already exist -- an existing restricted role is cheaper than a new one, and it is
 //    also the answer to "could these cases be run by a human tester today?"
 for(const p of ['/api/roles','/api/role-templates','/api/permissions','/api/staff','/api/users']){

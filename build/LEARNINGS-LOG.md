@@ -1705,3 +1705,18 @@ plan, with nothing missing in either direction. Checking that costs one call and
 the two questions that otherwise surface at write time: *am I about to write a result for a test that
 is not in this run* (which grows the run, Rule 34) and *am I quietly leaving part of the ordered scope
 unrun* (Rule 101 — there is no delta; what is not covered is reported NOT VERIFIED, never omitted).
+
+### L0087 — settle the SCOPED view too, or the harness manufactures the very defect it is hunting
+After clicking a scope tab my probe waited a flat 2.5s and read the section. Counts on this build were
+already measured settling at ~4-5s. So a section still loading reads as **empty** — and "the strip
+counts it under All but its own section is empty" is *exactly* the failure the QA lead found by hand
+and filed four Story Defects for. A harness that can produce that reading on its own cannot be used to
+confirm it.
+
+> **Wherever a probe hunts a specific failure mode, check first whether the probe itself can produce
+> that reading.** If it can, fix the probe before trusting a single observation of it — including the
+> ones that look like a clean pass, because the same flaw produces false negatives elsewhere.
+
+Every scoped read now goes through the same settle-detection as the All view (three stable reads with
+counts present). Any case already observed with an empty section under the flat wait is re-run rather
+than judged.
