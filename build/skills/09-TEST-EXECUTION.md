@@ -354,3 +354,43 @@ non-technical QA can act on — **never a bare status** (Rule 7).
 | Put the results in the completion report | **[`05-PROJECT-REPORT`](05-PROJECT-REPORT.md)** |
 | Ask the PO whether the behaviour is even wrong | **[`07-PO-QUESTIONS`](07-PO-QUESTIONS.md)** |
 | Establish what a killed pass actually landed | **[`08-RECOVER`](08-RECOVER.md)** |
+
+---
+
+## 🛑 THE "SHIPPED PRODUCT IS THE SPECIFICATION" EXCEPTION IS PER-SUITE AND MUST BE NAMED
+
+**QA lead, 2026-09-15, on the Global Search V1→V2 regression suite, verbatim:**
+*"Note this condition is for THIS folder ONLY which is Regression suite for Global search make sure
+that you do NOT make it a general rule for testing for other testing suites too."*
+
+**Before you let ANY suite take its expectation from the live product, both of these must be true:**
+
+1. The suite is a **V1→V2 regression suite** — its question is *"a person can do this today on
+   production; can they still do it?"* — and
+2. **the QA lead has said so for THAT suite, by name.** Not for a sibling suite. Not "we did this on
+   Global Search". By name.
+
+**If either is missing, Standing Rule 57 governs and nothing else does:** expected behaviour comes
+from the DOCUMENTS — spec/PRD, the epic's stories, the PO's verified answers, the design, Figma, the
+technical design. **From the build you take exactly two things: the on-screen labels, and the
+pass/fail verdict.**
+
+**The trap is inheritance.** The exception was granted for one folder on one day; a later session
+reading that folder's cases sees "the shipped V1 product IS the specification" in their source lines
+and carries it into the next suite — where it silently converts every V2 change into a defect and
+every documented requirement into an opinion. **A suite-scoped exception carried one folder too far
+does more damage than no exception at all**, because it looks authorised.
+
+Where it has been granted so far, and nowhere else:
+
+| Suite | Granted | Recorded in |
+|---|---|---|
+| Global Search V1→V2 regression (section 6769, run 415) | 2026-09-15 | `build/global-search/regression-2026-08-26/WHAT-THIS-SUITE-IS-TESTED-AGAINST.md` |
+
+**Add a row only when he grants it for that suite, in his own words, and quote him in the file.**
+
+**One consequence worth stating, because it cost a day:** where the live product IS the standard, a
+claim about what it does must be an **observation of the live product** — not a reading of its source,
+not a sentence in our own case text, not the V2 document's description of the old version (Rule 12,
+Rule 100). Four tickets were filed on 2026-09-15 resting on an unobserved claim about V1; the QA lead
+checked production himself and three stood, one did not.
