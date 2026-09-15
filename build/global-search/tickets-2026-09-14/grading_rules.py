@@ -40,10 +40,27 @@ for cid, c in sorted(full.items(), key=lambda kv: int(kv[0][1:])):
     rows.append((cid, c['title'], uniq, verd.get(cid, {}).get('verdict')))
 
 want_blocked = re.compile(r'mark (?:the (?:case|test)|it) (?:as )?blocked|do not mark it failed', re.I)
-conflicts = []
+
+# A case that says "Blocked until the Product Owner has ruled" is asking for a RULING, not for
+# Blocked forever. Once the ruling is on file, Failed is the correct verdict and the case text is
+# what is out of date. So the gate does not just look at the case: it also asks whether the verdict
+# NAMES the ruling and carries the ticket it produced. A Failed with neither is still flagged --
+# which is the thing this gate exists to catch. Ruling of 2026-09-15:
+# build/global-search/questions-2026-09-15/ (the answered sheet, all ten rows YES).
+pending_po = re.compile(r'until the Product Owner has ruled|a task ticket goes to the Product Owner'
+                        r'|until the PO has ruled', re.I)
+RULED = re.compile(r'answered on 15 September 2026|Product Owner question .* was answered', re.I)
+
+conflicts, resolved = [], []
 for cid, title, hits, v in rows:
     joined = ' '.join(hits)
-    if v == 'Failed' and want_blocked.search(joined):
+    if v != 'Failed' or not want_blocked.search(joined):
+        continue
+    rec = verd.get(cid, {})
+    if pending_po.search(joined) and RULED.search(rec.get('observed', '')) \
+            and 'browse/' in (rec.get('ticket') or ''):
+        resolved.append((cid, title))
+    else:
         conflicts.append((cid, title, v))
 
 for cid, title, hits, v in rows:
@@ -52,5 +69,12 @@ for cid, title, hits, v in rows:
     for h in hits:
         print(f'      · {h[:190]}')
 print()
+if resolved:
+    print(f'{len(resolved)} case(s) said "Blocked until the Product Owner has ruled"; the ruling is '
+          f'recorded and each carries its ticket, so Failed is correct:',
+          ', '.join(c[0] for c in resolved))
+    print('   (their case text still tells a tester to mark them Blocked -- that wording is now out '
+          'of date and needs the QA lead\'s go-ahead to change.)')
 print(f'{len(conflicts)} verdict(s) contradict the case\'s own instruction:',
       ', '.join(c[0] for c in conflicts) or 'none')
+sys.exit(1 if conflicts else 0)

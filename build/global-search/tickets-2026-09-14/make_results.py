@@ -36,7 +36,10 @@ for cid, v in V['verdicts'].items():
     if v['verdict'] != 'Passed' and not v.get('todo'):
         problems.append(f'{cid}: {v["verdict"]} with no "what needs to be done"')
         continue
-    results[cid] = {k: v[k] for k in ('verdict', 'observed', 'todo') if k in v}   # evidence_file is internal
+    # `technical` and `ticket` pass straight through: the QA lead asked (2026-09-15) for the plain
+    # words first and the technical detail after a line break, with the ticket link on every failure.
+    results[cid] = {k: v[k] for k in ('verdict', 'observed', 'todo', 'technical', 'ticket')
+                    if k in v}   # evidence_file is internal
     results[cid].setdefault('not_observed', v.get('not_observed'))
 
 missing = sorted(executed - set(V['verdicts']))

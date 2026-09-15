@@ -92,9 +92,26 @@ def esc(s):
 def comment_for(rec, todo, header, footer=None, lead=None):
     """One <p> per paragraph. Never a <br>. Never a bare status.
 
+    ORDER IS FIXED BY THE QA LEAD (2026-09-15, verbatim): "put the proper technical reference
+    which is Good for a layman to understand first and then some technical detail after a line
+    break". So every comment reads:
+
+        what a person would see, in plain words   <- `observed`
+        what was not exercised                    <- `not_observed`
+        ---
+        the ticket, if this failed                <- `ticket`
+        ---
+        what needs to be done                     <- `todo`
+        ---
+        Technical detail: ...                     <- `technical`, LAST, after the rule
+
+    `technical` is the one place ids, queries, counts, routes and selectors belong. Keeping it
+    below the rule is what lets the plain half be read on its own (Rule 103), while nothing is
+    lost for whoever needs to reproduce it.
+
     `footer` is a standing note appended after a rule, e.g. the QA lead's standing
     requirement (2026-09-09) that a QA-branch pass says so and says it will be
-    re-tested on Staging. It is separated by <hr /> so it reads as its own line.
+    re-tested on Staging.
     """
     blocks = []
     if lead:
@@ -103,9 +120,17 @@ def comment_for(rec, todo, header, footer=None, lead=None):
     nobs = (rec.get('not_observed') or '').strip()
     if nobs and nobs.lower() != 'none':
         blocks.append('<p>Not observed this run: %s</p>' % esc(nobs))
+    ticket = (rec.get('ticket') or '').strip()
+    if ticket:
+        blocks.append('<hr />')
+        blocks.append('<p>%s</p>' % esc(ticket))
     if todo:
         blocks.append('<hr />')
         blocks.append('<p>%s</p>' % esc(todo.strip()))
+    tech = (rec.get('technical') or '').strip()
+    if tech:
+        blocks.append('<hr />')
+        blocks.append('<p>Technical detail: %s</p>' % esc(tech))
     if footer:
         blocks.append('<hr />')
         blocks.append('<p>%s</p>' % esc(footer.strip()))
@@ -152,6 +177,15 @@ def main():
                if r['verdict'] != 'Passed' and not (r.get('todo') or todos.get(c))]
     if missing:
         sys.exit('REFUSING: no "What needs to be done" for %s (Rule 7)' % ', '.join(sorted(missing)))
+
+    # QA lead, 2026-09-15: "we should ALWAYS have a ticket for the failed verified test cases and
+    # the ticket links should be commented in the test case too." So a Failed result without a
+    # ticket link is refused here, the same way a bare status already is.
+    no_ticket = [c for c, r in res.items()
+                 if r['verdict'] == 'Failed' and 'browse/' not in (r.get('ticket') or '')]
+    if no_ticket:
+        sys.exit('REFUSING: Failed with no ticket link for %s '
+                 '(QA lead 2026-09-15: every failed case carries its ticket)' % ', '.join(sorted(no_ticket)))
 
     non_passed = sorted(c for c, r in res.items() if r['verdict'] != 'Passed')
     if non_passed and not a.allow_non_passed:
