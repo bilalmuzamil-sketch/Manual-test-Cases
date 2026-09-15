@@ -61,7 +61,9 @@ const read=async()=>page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClient
 const settle=async()=>{ let last=null,st=0;
   for(let i=0;i<25;i++){ await page.waitForTimeout(1000); const m=await read(); if(!m){st=0;continue;}
     const sig=JSON.stringify(m);
-    if(sig===last && Object.values(m.tabs).some(v=>v!==null)){ if(++st>=3) return m; } else st=0; last=sig; }
+    const typeCounts=Object.entries(m.tabs).filter(([k])=>!['strip','all'].includes(k)).map(([,v])=>v);
+    const ready=typeCounts.some(v=>v!==null);
+    if(sig===last && ready){ if(++st>=3) return m; } else st=0; last=sig; }
   return await read(); };
 const search=async(q)=>{ await openModal();
   await page.fill('[data-test-id="search_modal_input"]','');
@@ -101,14 +103,35 @@ if(num){
 if(cust && (out.workplaces||[]).length>1){
   const A=out.workplaces.find(w=>/heavy duty/i.test(w.name))||out.workplaces[0];
   const B=out.workplaces.find(w=>w.id!==A.id);
-  const at=async(w)=>{ await api('/api/iam/change-location','POST',{workplace_id:w.id, workplace_timezone:'America/Edmonton'});
+  const switchInUI=async(name)=>{
+    await page.keyboard.press('Escape').catch(()=>{}); await page.waitForTimeout(800);
+    const menu=await page.evaluate(()=>{const b=document.querySelector('[data-test-id="profile_menu_button"]');
+      if(!b) return false; b.click(); return true;});
+    if(!menu) return false;
+    await page.waitForTimeout(2500);
+    const opened=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const sel=[...document.querySelectorAll('.q-select,label.q-field')].filter(vis)
+        .find(e=>/Staging [A-Za-z ]+- ?\d+/.test(e.innerText||''));
+      if(!sel) return false; sel.click(); return true;});
+    if(!opened) return false;
+    await page.waitForTimeout(3000);
+    const picked=await page.evaluate((n)=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+      const o=[...document.querySelectorAll('[role=option],.q-item')].filter(vis)
+        .find(e=>(e.innerText||'').replace(/\s+/g,' ').trim().replace(/^check /,'')===n);
+      if(!o) return false; (o.closest('[role=option],.q-item')||o).click(); return true;}, name);
+    await page.waitForTimeout(8000);
+    return picked;
+  };
+  const at=async(w, viaUI)=>{ 
+    if(viaUI){ out.uiSwitch=await switchInUI(w.name); }
+    else await api('/api/iam/change-location','POST',{workplace_id:w.id, workplace_timezone:'America/Edmonton'});
     await page.goto(`${APP}/workorders`,{waitUntil:'domcontentloaded'}); await page.waitForTimeout(5000);
     const shown=await page.evaluate(()=>{const m=(document.body.innerText||'').match(/Staging [A-Za-z ]+- ?\d+/); return m?m[0]:null;});
     const m=await search(cust);
     return {location:w.name, appShows:shown, partSales:(m&&m.tabs&&m.tabs.part_sales),
       workOrders:(m&&m.tabs&&m.tabs.work_orders)}; };
-  out.location1=await at(A);
-  out.location2=await at(B);
+  out.location1=await at(A,false);
+  out.location2=await at(B,true);
   out.locationReallyChanged = out.location1.appShows!==out.location2.appShows;
   await api('/api/iam/change-location','POST',{workplace_id:A.id, workplace_timezone:'America/Edmonton'});
 }

@@ -2171,3 +2171,17 @@ Three fixes, in order of preference:
 
 > **Any "wait for X to finish" built on a name match can match the waiter.** Prefer a marker the work
 > itself writes when it is done — it cannot be confused with the act of looking for it.
+
+### L0109 — the tab strip renders its TOTAL before its breakdown, and a settle that accepts either reads a zero
+Searching a customer's full name came back `strip: 0, all: 0` with **every per-type count still null**
+— and my settle accepted it, because it only required *some* count to be non-null and the total
+qualifies. A strip that has drawn "All (0)" and not yet drawn "Customers (…)" is **mid-render**, and
+reading it produces a confident zero for a customer that certainly exists.
+
+This is the fourth costume the same mistake has worn in one pass (L0087, L0092a, L0098, now this), and
+the shape never changes: **a check that had not finished, rendering as a check that finished and found
+nothing.**
+
+> **Settle on the thing you are going to READ, not on a neighbouring thing that happens to be ready
+> first.** If the verdict rests on per-type counts, the per-type counts are what must be present —
+> a total, a spinner disappearing, or a container existing are all proxies, and proxies settle early.
