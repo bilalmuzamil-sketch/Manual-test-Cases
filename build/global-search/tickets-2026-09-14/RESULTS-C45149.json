@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "C45149, blocked until a user could be given a record and then have it taken away",
+  "how_judged": "The same user was looked at twice, minutes apart, with only the permission changed in between. The user's own permission list was read both times.",
+  "build": "v26.36.4-7869ff2"
+ },
+ "results": {
+  "C45149": {
+   "verdict": "Passed",
+   "observed": "With permission to see customers, the user's recently-viewed list held fourteen entries: customers, their vehicles, and part sales. The permission to see customers was then taken away from that user's role and nothing else was changed. The same user's recently-viewed list then held one entry - the part sale, which they are still allowed to see. Every customer and every vehicle had gone from it.",
+   "todo": null,
+   "technical": "Subject: Clayton Stephens, moved onto a purpose-built role. Before: customersView, partSalesView, seeFinancialData - 14 rows. After: partSalesView, seeFinancialData - 1 row, the part sale. Controls: the list was populated before (so the panel works), and it still drew afterwards with the permitted record in it (so an empty panel is not what was measured). The role was built from scratch for this; Clayton was put back on Technician afterwards.",
+   "not_observed": null
+  }
+ }
+}

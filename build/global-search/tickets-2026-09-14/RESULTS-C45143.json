@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "C45143, blocked until a part-sales-only user existed",
+  "how_judged": "The subject's own permission list was read after switching to them. The same words were searched as an administrator beforehand, so the groups that did not appear for the restricted user are known to have records behind them.",
+  "build": "v26.36.4-7869ff2"
+ },
+ "results": {
+  "C45143": {
+   "verdict": "Passed",
+   "observed": "A user whose role grants part sales and nothing else sees part sales in search and nothing else. Typing 4 Star Truck Repair gave that user four part sales and no other group at all - no parts, no suppliers - and the panel said '4 results found across 1 category'. Typing ZZAUTOTEST gave two part sales, again on their own. The same two words typed by an administrator return parts and suppliers as well, so the groups the restricted user does not see are groups that do have records behind them.",
+   "todo": null,
+   "technical": "The subject held exactly two permissions: partSalesView and seeFinancialData (the screen requires the second before it will grant the first - 'Part Sales requires See Financial Data'). Catalog and Inventory and Vendor and order management were both left off. Admin counts for the same query: parts 20, vendors 20, part sales 4. The role used is ZZAUTOTEST No Work Orders, built from scratch; Clayton Stephens was put back on Technician afterwards.",
+   "not_observed": null
+  }
+ }
+}

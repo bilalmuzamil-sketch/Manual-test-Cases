@@ -194,6 +194,39 @@ const clickToggle = async name => {
   return { ok: true };
 };
 
+// A DIALOG CAN OPEN THE MOMENT A BOX IS TICKED, NOT ONLY WHEN SAVE IS PRESSED. Ticking
+// "Part sales / View" immediately asks "Enable See Financial Data? Part Sales requires it" -- and
+// while that is up, every later click lands on the backdrop. Three clicks all reported ok and the
+// screen showed none of them. So: press through whatever is on screen after EVERY click, naming the
+// button from what is on it rather than by position.
+const pressThroughDialogs = async (where) => {
+  const handled = [];
+  for (let i = 0; i < 4; i++) {
+    const dlg = await page.evaluate(() => {
+      const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
+      const d = [...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
+      if (!d) return null;
+      const b = [...d.querySelectorAll('button,.q-btn')].filter(vis)
+        .find(e => /^(save|confirm|yes|continue|ok|proceed|enable|allow|grant|apply)\b/i
+          .test((e.innerText || '').replace(/\s+/g, ' ').trim()));
+      return { text: (d.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 160),
+        button: b ? { x: b.getBoundingClientRect().x, y: b.getBoundingClientRect().y,
+                      w: b.getBoundingClientRect().width, h: b.getBoundingClientRect().height,
+                      text: (b.innerText || '').trim() } : null };
+    });
+    if (!dlg) break;
+    if (!dlg.button) { handled.push({ ...dlg, pressed: null,
+      note: 'a dialog is up and nothing on it reads as an affirmative' }); break; }
+    await page.mouse.move(dlg.button.x + dlg.button.w / 2, dlg.button.y + dlg.button.h / 2);
+    await page.waitForTimeout(120);
+    await page.mouse.down(); await page.waitForTimeout(80); await page.mouse.up();
+    handled.push({ at: where, text: dlg.text, pressed: dlg.button.text });
+    L('  dialog at', where + ':', dlg.text.slice(0, 70), '-> pressed', dlg.button.text);
+    await page.waitForTimeout(2500);
+  }
+  return handled;
+};
+
 const want = [];
 for (const a of ARGS) {
   const m = /^(.+?):(.+?)=(on|off)$/.exec(a) || /^(.+?)=(on|off)$/.exec(a);
@@ -219,7 +252,8 @@ if (MODE === 'set' && want.length) {
     if (cur === w.on) { R.applied.push({ ...w, alreadyCorrect: true });
       L('  already', w.on ? 'on' : 'off', ':', w.toggle || `${w.card}:${w.column}`); continue; }
     const r = w.toggle ? await clickToggle(w.toggle) : await clickBox(w.card, w.column);
-    R.applied.push({ ...w, click: r });
+    const dlgs = await pressThroughDialogs(w.toggle || `${w.card}:${w.column}`);
+    R.applied.push({ ...w, click: r, ...(dlgs.length ? { dialogs: dlgs } : {}) });
     L('  clicked', w.toggle || `${w.card}:${w.column}`, '->', JSON.stringify(r));
   }
   R.afterClicks = await readAll();
@@ -258,35 +292,7 @@ if (MODE === 'set' && want.length) {
   });
   L('after clicking Save:', JSON.stringify(R.afterSaveClick).slice(0, 500));
 
-  // ONE SAVE CAN RAISE MORE THAN ONE DIALOG, AND THEY DO NOT ALL SAY "CONFIRM". Saving Part sales
-  // first asks "Enable See Financial Data? Part Sales requires it", and only then shows the usual
-  // "Confirm Permission Updates" summary. A single pass looking for Confirm/Save left the first
-  // dialog on screen and the whole save unstored -- which read as the screen refusing the change.
-  // So: loop, and name the affirmative button from what is actually on it.
-  R.dialogsHandled = [];
-  for (let i = 0; i < 4; i++) {
-    const dlg = await page.evaluate(() => {
-      const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
-      const d = [...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
-      if (!d) return null;
-      const b = [...d.querySelectorAll('button,.q-btn')].filter(vis)
-        .find(e => /^(save|confirm|yes|continue|ok|proceed|enable|allow|grant|apply)\b/i
-          .test((e.innerText || '').replace(/\s+/g, ' ').trim()));
-      return { text: (d.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 160),
-        button: b ? { x: b.getBoundingClientRect().x, y: b.getBoundingClientRect().y,
-                      w: b.getBoundingClientRect().width, h: b.getBoundingClientRect().height,
-                      text: (b.innerText || '').trim() } : null };
-    });
-    if (!dlg) break;
-    if (!dlg.button) { R.dialogsHandled.push({ ...dlg, pressed: null,
-      note: 'a dialog is up and nothing on it reads as an affirmative' }); break; }
-    await page.mouse.move(dlg.button.x + dlg.button.w / 2, dlg.button.y + dlg.button.h / 2);
-    await page.waitForTimeout(120);
-    await page.mouse.down(); await page.waitForTimeout(80); await page.mouse.up();
-    R.dialogsHandled.push({ text: dlg.text, pressed: dlg.button.text });
-    L('dialog:', dlg.text.slice(0, 80), '-> pressed', dlg.button.text);
-    await page.waitForTimeout(3500);
-  }
+  R.dialogsHandled = await pressThroughDialogs('save');
   R.confirmedWith = R.dialogsHandled.map(d => d.pressed).filter(Boolean).join(' then ') || null;
   await page.waitForTimeout(6000);
 
