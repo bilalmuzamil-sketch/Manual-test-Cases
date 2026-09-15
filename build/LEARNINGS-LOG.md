@@ -2375,3 +2375,31 @@ run rather than quietly falling back.
 > **A rule you have broken twice is not a rule you need to remember harder — it is a step that
 > should not depend on remembering.** Put it in a command, and the next session inherits it instead
 > of repeating me.
+
+### L0121 — the index to 2026-09-15: one mistake wearing eleven costumes
+A single day produced L0110–L0120. They are not eleven lessons; they are one, seen from eleven
+angles: **I reported what my tools read as a fact about the product, without first proving the tools
+were reading correctly.**
+
+| # | What I claimed | What it actually was |
+|---|---|---|
+| L0110 | "The dropdown offers no locations" | A synthetic click never opened it |
+| L0111 | "The list has 65 options" | The table behind the dialog |
+| L0114 | "The role was set" | A substring match set a different role |
+| L0115 | "Checked twice, not a one-off" | One observation and one replay |
+| L0116 | "The position did not stick" | The click never happened — index out of range |
+| L0117 | "The app highlights the 8th row" | My own mouse pointer, twice, two wrong tickets |
+| L0120 | "Here is the case link" | The link that opens the case, not the result |
+
+The common shape, and the reason care was not enough: **every artefact was stable.** It reproduced
+across fresh browser launches, on different queries, on different days. Repeatability is the test I
+use to decide something is real, and all of these passed it.
+
+What actually catches them is not diligence but **asymmetry**: an experiment whose two arms differ in
+exactly one thing. A positive control. A repeat that varies the suspected cause. The pointer moved
+and then verified. Encoded now in `build/testing-tools/finding_gate.py`, because a rule I have broken
+this often is not one to remember harder.
+
+> **Characterise the instrument before trusting what it measures.** And when someone who knows the
+> product says it behaves differently — they are describing the product; you are describing your
+> harness. Test THEIR account first.
