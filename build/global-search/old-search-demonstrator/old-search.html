@@ -1,0 +1,395 @@
+<title>ShopView's Old Search</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ground:#EEF1F4; --surface:#FFFFFF; --surface-2:#F6F8FA;
+    --ink:#141C24; --ink-2:#3A4654; --muted:#5D6B78; --line:#D3DAE1; --line-2:#E4E9EE;
+    --accent:#9A5B00; --accent-soft:#F5E9D6; --accent-ink:#6F4100;
+    --found:#15683C; --found-soft:#E2F1E7; --gone:#A81F1F; --gone-soft:#F8E6E4;
+    --shadow:0 1px 2px rgba(20,28,36,.06), 0 8px 24px rgba(20,28,36,.06);
+    --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#10151A; --surface:#172029; --surface-2:#1C2731;
+      --ink:#E7ECF1; --ink-2:#C3CDD6; --muted:#93A2B0; --line:#27333D; --line-2:#212C35;
+      --accent:#E0A345; --accent-soft:#2B2419; --accent-ink:#F0C583;
+      --found:#4FBF83; --found-soft:#152A20; --gone:#F07A72; --gone-soft:#2B1917;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.34);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#10151A; --surface:#172029; --surface-2:#1C2731;
+    --ink:#E7ECF1; --ink-2:#C3CDD6; --muted:#93A2B0; --line:#27333D; --line-2:#212C35;
+    --accent:#E0A345; --accent-soft:#2B2419; --accent-ink:#F0C583;
+    --found:#4FBF83; --found-soft:#152A20; --gone:#F07A72; --gone-soft:#2B1917;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.34);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--ground); color:var(--ink); font-family:var(--sans);
+       margin:0; padding-inline:20px; padding-block:0; line-height:1.55;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px; margin:0 auto; padding-block:36px 56px}
+
+  /* ── masthead ─────────────────────────────────────────────── */
+  header.mast{display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end;
+              justify-content:space-between; padding-bottom:20px;
+              border-bottom:2px solid var(--ink); margin-bottom:28px}
+  .mast h1{font-size:clamp(28px,4.4vw,44px); line-height:1.08; margin:0 0 8px;
+           font-weight:700; letter-spacing:-.022em; text-wrap:balance}
+  .mast p{margin:0; color:var(--muted); max-width:62ch; font-size:15.5px}
+  .stamp{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em;
+         text-transform:uppercase; color:var(--accent-ink); background:var(--accent-soft);
+         border:1px solid var(--accent); border-radius:3px; padding:7px 11px; white-space:nowrap}
+
+  /* ── two-column body ──────────────────────────────────────── */
+  .cols{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:30px; align-items:start}
+  @media (max-width:900px){ .cols{grid-template-columns:1fr} }
+
+  h2.sec{font-size:12px; font-family:var(--mono); letter-spacing:.14em; text-transform:uppercase;
+         color:var(--muted); margin:0 0 14px; font-weight:600}
+
+  /* ── the running order ────────────────────────────────────── */
+  ol.order{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
+  ol.order li{margin:0}
+  .step{display:grid; grid-template-columns:30px minmax(0,1fr); gap:13px; width:100%;
+        text-align:left; background:none; border:0; border-radius:7px; cursor:pointer;
+        padding:11px 12px; font:inherit; color:inherit; transition:background .13s}
+  .step:hover{background:var(--surface)}
+  .step[aria-current="true"]{background:var(--surface); box-shadow:var(--shadow)}
+  .step:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+  .num{font-family:var(--mono); font-size:12px; font-weight:600; color:var(--muted);
+       border:1px solid var(--line); border-radius:50%; width:26px; height:26px;
+       display:grid; place-items:center; margin-top:1px}
+  .step[aria-current="true"] .num{background:var(--ink); color:var(--ground); border-color:var(--ink)}
+  .say{font-size:14.5px; font-weight:500; color:var(--ink); margin:0 0 3px}
+  .typed{font-family:var(--mono); font-size:13px; color:var(--accent-ink);
+         background:var(--accent-soft); border-radius:3px; padding:1px 5px}
+  .why{font-size:13px; color:var(--muted); margin:3px 0 0}
+
+  /* ── the instrument ───────────────────────────────────────── */
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:11px;
+         box-shadow:var(--shadow); overflow:hidden; position:sticky; top:env(safe-area-inset-top,0px)}
+  @media (max-width:900px){ .panel{position:static} }
+  .panel-top{border-bottom:1px solid var(--line-2); padding:14px 16px;
+             display:flex; align-items:center; gap:11px; background:var(--surface-2)}
+  .panel-top svg{flex:0 0 auto; color:var(--muted)}
+  #q{flex:1 1 auto; min-width:0; font-family:var(--mono); font-size:15px; font-weight:500;
+     background:none; border:0; color:var(--ink); padding:4px 0}
+  #q:focus{outline:none}
+  #q::placeholder{color:var(--muted); font-weight:400}
+  .clear{background:none;border:0;cursor:pointer;color:var(--muted);font:inherit;
+         font-size:18px;line-height:1;padding:2px 4px;border-radius:4px}
+  .clear:hover{color:var(--ink)}
+  .verdict{display:flex; flex-wrap:wrap; gap:9px; align-items:center;
+           padding:12px 16px; border-bottom:1px solid var(--line-2); font-size:13.5px}
+  .chip{font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+        font-weight:600; border-radius:3px; padding:4px 8px; white-space:nowrap}
+  .chip.ok{background:var(--found-soft); color:var(--found); border:1px solid var(--found)}
+  .chip.no{background:var(--gone-soft); color:var(--gone); border:1px solid var(--gone)}
+  .chip.neutral{background:var(--surface-2); color:var(--muted); border:1px solid var(--line)}
+  .verdict span.txt{color:var(--ink-2)}
+  .results{margin:0; padding:0; list-style:none; max-height:none}
+  .grp{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+       color:var(--muted); padding:13px 16px 5px; font-weight:600}
+  .row{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:center;
+       padding:9px 16px; border-top:1px solid var(--line-2)}
+  .row .name{font-size:14.5px; font-weight:500; min-width:0; overflow-wrap:anywhere}
+  .row .how{font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; text-transform:uppercase;
+            color:var(--muted); white-space:nowrap}
+  .empty{padding:26px 16px; color:var(--muted); font-size:14px}
+  .hist{padding:11px 16px; border-top:1px solid var(--line-2); background:var(--surface-2);
+        font-size:13.5px; color:var(--ink-2)}
+  .hist b{font-weight:600}
+  .panel-foot{padding:12px 16px; border-top:1px solid var(--line-2); background:var(--surface-2);
+              font-size:12.5px; color:var(--muted)}
+  .panel-foot code{font-family:var(--mono); font-size:11.5px}
+
+  /* ── the now-note ─────────────────────────────────────────── */
+  .now{margin-top:16px; background:var(--surface); border:1px solid var(--line);
+       border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:14px 16px}
+  .now h3{margin:0 0 5px; font-size:11.5px; font-family:var(--mono); letter-spacing:.1em;
+          text-transform:uppercase; color:var(--accent-ink); font-weight:600}
+  .now p{margin:0; font-size:14px; color:var(--ink-2)}
+  .now.hidden{display:none}
+
+  /* ── the records ──────────────────────────────────────────── */
+  .records{margin-top:44px; padding-top:26px; border-top:1px solid var(--line)}
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(248px,1fr)); gap:14px}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 15px}
+  .card h4{margin:0 0 3px; font-size:14.5px; font-weight:600; overflow-wrap:anywhere}
+  .card .kind{font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+              color:var(--muted); margin:0 0 9px}
+  .card dl{margin:0; display:grid; grid-template-columns:auto minmax(0,1fr); gap:3px 10px; font-size:12.5px}
+  .card dt{color:var(--muted)}
+  .card dd{margin:0; font-family:var(--mono); font-size:12px; overflow-wrap:anywhere;
+           font-variant-numeric:tabular-nums}
+
+  footer.note{margin-top:40px; padding-top:22px; border-top:1px solid var(--line);
+              font-size:13px; color:var(--muted); max-width:78ch}
+  footer.note strong{color:var(--ink-2)}
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important; animation:none!important} }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <h1>How the old search behaved</h1>
+      <p>A working copy of ShopView's previous search box, rebuilt from that version's own code so it
+         can be demonstrated rather than described. Pick a step, or type anything you like — the
+         answers come from the old rules, not from a script.</p>
+    </div>
+    <div class="stamp">Old version · commit 55767168</div>
+  </header>
+
+  <div class="cols">
+    <section>
+      <h2 class="sec">A running order for the meeting</h2>
+      <ol class="order" id="order"></ol>
+    </section>
+
+    <section>
+      <h2 class="sec">The old search box</h2>
+      <div class="panel">
+        <div class="panel-top">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle>
+               <path d="m20 20-3.6-3.6"></path></svg>
+          <input id="q" type="text" autocomplete="off" spellcheck="false"
+                 placeholder="Type here — try anything" aria-label="Search the old way">
+          <button class="clear" id="clear" type="button" aria-label="Clear">×</button>
+        </div>
+        <div class="verdict" id="verdict"></div>
+        <ul class="results" id="results"></ul>
+        <div class="panel-foot" id="foot"></div>
+      </div>
+      <div class="now hidden" id="now">
+        <h3>And on the new version today</h3>
+        <p id="now-text"></p>
+      </div>
+    </section>
+  </div>
+
+  <section class="records">
+    <h2 class="sec">The records it is searching — the same ones the test suite uses</h2>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <footer class="note">
+    <strong>What this is and is not.</strong> It reproduces what the <em>old</em> search did, and
+    nothing else — whether the new version should do the same is a decision for the product owner,
+    taken after the tests have run. Every match it reports comes from the old version's own two rules,
+    rebuilt line for line from
+    <code>FetchDataQueryHandler.php</code> and <code>useGlobalSearch.ts</code> at commit
+    <code>55767168</code>. Lines marked <em>on the new version today</em> were measured by hand on the
+    QA branch on 15 September 2026 and are dated for that reason.
+  </footer>
+</div>
+
+<script>
+/* ────────────────────────────────────────────────────────────────────────────
+   THE OLD SEARCH, REBUILT. A line-for-line port of v1_search.py, which is
+   itself transcribed from the product at commit 55767168.
+
+   Two rules, and they differ — this is the part people get wrong:
+     RULE 1  the typed text, WITH its spaces, against the record's VISIBLE NAME,
+             and only from the START of it.
+     RULE 2  the typed text WITHOUT its spaces, against one long combined text
+             of every detail, matching ANYWHERE inside it.
+   ──────────────────────────────────────────────────────────────────────────── */
+const MAX_PER_TYPE = 3;
+const squash = a => a.join("").toLowerCase().replace(/ /g, "");
+const phone  = p => (p || "").replace(/\)/g, "-").replace(/\(/g, "");
+const status = s => s === "quality_check" ? "qualitycheckqc" : (s || "").replace(/_/g, "");
+
+const REC = [];
+function customer(o){
+  const blob=[o.name,o.name.replace(/ /g,""),o.address_1||"",o.address_2||"",o.state||"",
+              o.postal||"",o.city||"",phone(o.telephone),o.website||""];
+  (o.contacts||[]).forEach(c=>blob.push(c.first||"",c.last||"",c.title||"",phone(c.telephone)));
+  return {kind:"Customer",group:"Customers",label:o.name,search:o.name+" "+squash(blob),card:o};
+}
+function vendor(o){
+  return {kind:"Vendor",group:"Vendors",label:o.name,card:o,
+    search:squash([o.name,o.address_1||"",o.address_2||"",o.state||"",o.postal||"",o.city||"",
+                   phone(o.telephone),o.email||""])};
+}
+function vehicle(o){
+  return {kind:"Vehicle",group:"Assets",label:`${o.year} ${o.make} ${o.model}`,card:o,
+    search:squash([o.owner||"",String(o.year),o.make,o.model,o.unit||"",o.vin||"",o.plate||""])};
+}
+function job(o){
+  const L=o.kind==="parts"?"P":"S", stem=o.number.replace(`${L}-`,"");
+  const vars=[`${L}${stem}`,`${L}${o.shop}${stem}`,`${L}${o.shop}-${stem}`,`${o.shop}-${stem}`];
+  return {kind:o.kind==="parts"?"PartSale":"WorkOrder",
+    group:o.kind==="parts"?"Part sales":"Work orders",
+    label:`${L}${o.shop}-${stem} ${o.customer}`, card:o,
+    search:o.customer+" "+squash([o.raw||"",...vars,o.number,o.customer,status(o.status)])};
+}
+function part(o){
+  return {kind:"Part",group:"Parts",label:o.name,card:o,
+    search:squash([o.name,(o.part_number||"").replace(/-/g,""),o.part_number||""])};
+}
+
+/* the same records the test suite is seeded with */
+const CUST = customer({name:"ZZAUTOTEST Bridgeport Hauling", address_1:"1450 Kestrelway Industrial",
+  address_2:"Dock 7B", state:"Ohio", postal:"44872-9931", city:"Fernvale",
+  telephone:"(419) 555-0143", website:"bridgeporthauling-zzt.com",
+  contacts:[{first:"Marlene",last:"Okonkwo",title:"Dispatch Supervisor",telephone:"(419) 555-0177"}]});
+const NEAR = customer({name:"ZZAUTOTEST Darlene Cartage", address_1:"77 Ridgeway Spur",
+  state:"Ohio", postal:"44872-4411", city:"Fernvale"});
+const VEND = vendor({name:"ZZAUTOTEST Kestrel Parts Supply", address_1:"88 Halbrook Trace",
+  address_2:"Bay 12C", state:"Ohio", postal:"43055-2210", city:"Marnston",
+  telephone:"(614) 555-0188", email:"parts@kestrelsupply-zzt.com"});
+const VEH  = vehicle({year:"2019", make:"Freightliner", model:"Cascadia", unit:"ZZT-4471",
+  vin:"1FUJGLDR9KLZZ4471", plate:"OHZZT471", owner:"ZZAUTOTEST Bridgeport Hauling"});
+const WO   = job({number:"S-17611", customer:"ZZAUTOTEST Bridgeport Hauling", status:"estimate",
+  shop:"9160", kind:"service", raw:"17611"});
+const WOQ  = job({number:"S-17612", customer:"ZZAUTOTEST Bridgeport Hauling",
+  status:"quality_check", shop:"9160", kind:"service", raw:"17612"});
+const PS   = job({number:"P-253", customer:"ZZAUTOTEST Bridgeport Hauling", status:"open",
+  shop:"9160", kind:"parts", raw:"253"});
+const PART = part({name:"ZZAUTOTEST Airline Coupler Vernway", part_number:"ZZT-77-3300"});
+REC.push(CUST, NEAR, VEND, VEH, WO, WOQ, PS, PART);
+
+const HISTORY = ["ZZAUTOTEST Bridgeport Hauling", "S9160-17611 ZZAUTOTEST Bridgeport Hauling"];
+
+function runOldSearch(query){
+  const q = (query||"").toLowerCase();
+  if (q.length < 2) return {history:true, why:"fewer than two characters typed", rows:[]};
+  const sq = q.split(/\s+/).join("");
+  const rows=[], taken={}, done=new Set();
+  const push=(r,asKind,how)=>{
+    const grp = asKind==="Contact" ? "Customers" : r.group;
+    if ((taken[grp]||0) >= MAX_PER_TYPE) return;
+    taken[grp]=(taken[grp]||0)+1;
+    rows.push({group:grp, name:r.label, how});
+  };
+  REC.forEach(r=>{ if(r.label.toLowerCase().startsWith(q)){ push(r,r.kind,"its name starts with this"); done.add(r);} });
+  REC.forEach(r=>{ if(done.has(r)) return;
+    if(sq && r.search.toLowerCase().includes(sq)){
+      push(r, r.kind==="Customer"?"Contact":r.kind, "found inside its details"); done.add(r);} });
+  if(!rows.length) return {history:true, why:"the search matched nothing", rows:[]};
+  return {history:false, why:"", rows};
+}
+
+/* ── the meeting running order ───────────────────────────────────────────── */
+const STEPS = [
+  {q:"Kestrelway", say:"Find a customer by its street address",
+   why:"The old search looked at the whole address, not just the company name.",
+   now:"Still works."},
+  {q:"419-555-0143", say:"Find a customer by its phone number",
+   why:"Stored with the brackets stripped, so the dashed form is what matched.",
+   now:"Works, and the new version is better here — it also accepts (419) 555-0143 and 4195550143, which the old one did not."},
+  {q:"555-0143", say:"Now type only PART of that phone number",
+   why:"The old search looked for what you typed anywhere inside the record, so part of a number was enough.",
+   now:"Returns nothing. This is a real loss — a person rarely has the whole number."},
+  {q:"Dispatch Supervisor", say:"Find a company by a contact's job title",
+   why:"Contact names, titles and numbers were all folded into the company's searchable text.",
+   now:"Reported as returning nothing. Raised for the product owner."},
+  {q:"2019 Freightliner", say:"Find a vehicle by its year and its make",
+   why:"The vehicle's visible name is “2019 Freightliner Cascadia”, so this matched the start of it.",
+   now:"Returns no vehicles at all. Raised as SV-10055."},
+  {q:"ZZ4471", say:"Find a vehicle by the last part of its chassis number",
+   why:"Any fragment of the chassis number matched, which is how somebody reads one off a windscreen.",
+   now:"Returns nothing. Raised as SV-10058."},
+  {q:"ernva", say:"Type a few letters from the middle of the town",
+   why:"Every detail sat in one piece of text searched by one rule, so mid-word worked everywhere.",
+   now:"Returns nothing — while the same kind of fragment from the company name still works. Raised as SV-10060."},
+  {q:"Vernway", say:"Find a part the shop has never stocked",
+   why:"The old search read the parts catalogue and nothing else. Whether the shop ever held the part made no difference.",
+   now:"Reported as not findable. The strongest finding of the batch."},
+  {q:"Marlene", say:"Type a name that exists",
+   why:"Only records actually containing the word came back — never a different, similarly spelled one.",
+   now:"Returns 18 rows, of which 2 genuinely contain it. The rest are Darlene, Charlene, Martens, Marine and Alene. Raised as SV-10025."},
+  {q:"zzzqqq", say:"Finally, search for something that does not exist",
+   why:"A fruitless search handed back your recently opened records, so you were never left at a dead end.",
+   now:"Shows a message and nothing to click. Raised as SV-10059."},
+];
+
+const elOrder=document.getElementById("order"), elQ=document.getElementById("q"),
+      elRes=document.getElementById("results"), elVer=document.getElementById("verdict"),
+      elFoot=document.getElementById("foot"), elNow=document.getElementById("now"),
+      elNowT=document.getElementById("now-text"), elCards=document.getElementById("cards");
+
+STEPS.forEach((s,i)=>{
+  const li=document.createElement("li");
+  li.innerHTML=`<button class="step" type="button" id="step-${i}" data-i="${i}">
+      <span class="num">${i+1}</span>
+      <span><span class="say">${s.say}</span>
+        <span class="typed">${s.q}</span>
+        <span class="why">${s.why}</span></span></button>`;
+  elOrder.appendChild(li);
+});
+elOrder.addEventListener("click",e=>{
+  const b=e.target.closest(".step"); if(!b) return;
+  const s=STEPS[+b.dataset.i]; elQ.value=s.q; render(+b.dataset.i);
+});
+
+function render(stepIndex){
+  const q=elQ.value, out=runOldSearch(q);
+  document.querySelectorAll(".step").forEach(b=>b.setAttribute("aria-current",
+    (stepIndex!=null && +b.dataset.i===stepIndex) ? "true":"false"));
+
+  elVer.innerHTML=""; elRes.innerHTML="";
+  if(q.length<2){
+    elVer.innerHTML=`<span class="chip neutral">waiting</span>
+      <span class="txt">The old search matched nothing until you had typed two characters.</span>`;
+    elRes.innerHTML=`<li class="hist"><b>Your recent records</b> were shown instead — ${HISTORY.join(" · ")}</li>`;
+  } else if(out.history){
+    elVer.innerHTML=`<span class="chip no">nothing found</span>
+      <span class="txt">No record contains that, so the recent list came back.</span>`;
+    elRes.innerHTML=`<li class="hist"><b>Your recent records</b> — ${HISTORY.join(" · ")}
+      <br>This is the expected result: a fruitless search never left you with nothing to click.</li>`;
+  } else {
+    const n=out.rows.length, groups=[...new Set(out.rows.map(r=>r.group))];
+    elVer.innerHTML=`<span class="chip ok">found — ${n} row${n>1?"s":""}</span>
+      <span class="txt">in ${groups.length} group${groups.length>1?"s":""}. This is the expected result.</span>`;
+    groups.forEach(g=>{
+      const h=document.createElement("li"); h.className="grp";
+      h.textContent=`${g} (${out.rows.filter(r=>r.group===g).length})`; elRes.appendChild(h);
+      out.rows.filter(r=>r.group===g).forEach(r=>{
+        const li=document.createElement("li"); li.className="row";
+        li.innerHTML=`<span class="name">${r.name}</span><span class="how">${r.how}</span>`;
+        elRes.appendChild(li);
+      });
+    });
+  }
+  elFoot.innerHTML = q.length<2
+    ? `Three rows per kind of record, and no limit on the total.`
+    : `Matched by the old version's two rules — <code>useGlobalSearch.ts:76-93</code>. Three rows per kind of record, no overall limit.`;
+
+  const s = stepIndex!=null ? STEPS[stepIndex] : null;
+  if(s && s.now){ elNowT.textContent=s.now; elNow.classList.remove("hidden"); }
+  else { elNow.classList.add("hidden"); }
+}
+elQ.addEventListener("input",()=>render(null));
+document.getElementById("clear").addEventListener("click",()=>{elQ.value="";render(null);elQ.focus();});
+
+/* ── the record cards ────────────────────────────────────────────────────── */
+const CARDS=[
+  {t:"ZZAUTOTEST Bridgeport Hauling", k:"Customer", d:[["Address","1450 Kestrelway Industrial, Dock 7B"],
+    ["Town","Fernvale, Ohio 44872-9931"],["Phone","(419) 555-0143"],["Website","bridgeporthauling-zzt.com"],
+    ["Contact","Marlene Okonkwo — Dispatch Supervisor"]]},
+  {t:"ZZAUTOTEST Darlene Cartage", k:"Customer · one letter from Marlene, deliberately",
+    d:[["Address","77 Ridgeway Spur"],["Town","Fernvale, Ohio 44872-4411"]]},
+  {t:"2019 Freightliner Cascadia", k:"Asset", d:[["Unit","ZZT-4471"],["Chassis","1FUJGLDR9KLZZ4471"],
+    ["Plate","OHZZT471"],["Owner","ZZAUTOTEST Bridgeport Hauling"]]},
+  {t:"ZZAUTOTEST Kestrel Parts Supply", k:"Vendor", d:[["Address","88 Halbrook Trace, Bay 12C"],
+    ["Town","Marnston, Ohio 43055-2210"],["Phone","(614) 555-0188"],["Email","parts@kestrelsupply-zzt.com"]]},
+  {t:"S9160-17611", k:"Work order", d:[["Customer","ZZAUTOTEST Bridgeport Hauling"],["Status","Estimate"]]},
+  {t:"S9160-17612", k:"Work order", d:[["Customer","ZZAUTOTEST Bridgeport Hauling"],["Status","Quality check"]]},
+  {t:"P9160-253", k:"Part sale", d:[["Customer","ZZAUTOTEST Bridgeport Hauling"],["Status","Open"]]},
+  {t:"ZZAUTOTEST Airline Coupler Vernway", k:"Catalogue part · never stocked",
+    d:[["Part number","ZZT-77-3300"]]},
+];
+CARDS.forEach(c=>{
+  const d=document.createElement("div"); d.className="card";
+  d.innerHTML=`<h4>${c.t}</h4><p class="kind">${c.k}</p><dl>${
+    c.d.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
+  elCards.appendChild(d);
+});
+
+render(null);
+</script>
