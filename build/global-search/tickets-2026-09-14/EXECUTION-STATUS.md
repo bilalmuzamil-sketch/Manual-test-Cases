@@ -1,124 +1,66 @@
 # Global Search V2 — run 415 regression execution, status
 
-**Branch:** sv9160 · **Run:** 415 · **Suite section:** 6769 · **Scope:** the **62** regression-flagged
-cases in run 415 (reconciled live: 162 tests in the run, 62 flagged, matching the execution plan
-exactly in both directions).
+**Branch:** sv9160 · **Build:** v26.36.4-7869ff2 · **Run:** 415 · **Sections:** 6769 **and 8056** ·
+**Scope:** every case in run 415 that declares the V1 standard in its own Expected text — **65**,
+counted live from the run, not from a snapshot.
 
-**Nothing has been written to TestRail yet.** The instruction was *"before writing anything on
-testrail, RUN all the test cases and unblock yourself everywhere."*
+**Updated 15 September 2026.** Superseded the 14 September version, which said 62 and said nothing
+had been written to TestRail. Both are now out of date: the run holds 65 regression cases and every
+verdict is written into it.
 
 ---
 
-## What is done
+## Where it stands
 
-**50 of 62 judged** — 33 pass, 16 held for the Product Owner, **1 failed**. The shape of that is not
-optimism: these are V1-regression cases and almost every one says, in its own text, that a capability
-lost between versions is recorded **Blocked for a Product Owner ruling**, explicitly *not* Failed and
-*not* a defect. Only where the new specification ALSO requires the behaviour is a miss a defect — and
-exactly one case is in that position.
+| | Cases |
+|---|---|
+| Pass | 47 |
+| Fail | 16 |
+| Held, each waiting on one decision from the QA lead | 2 |
+| **Total** | **65** |
 
-**The one real defect, and it is precise.** Searching a vehicle by its year together with anything
-else returns nothing: `2019 Freightliner`, `2019 Cascadia` and `Cascadia 2019` all come back empty,
-while `2019` alone returns twenty vehicles, `Freightliner` alone returns twenty, and
-`Freightliner Cascadia` returns twenty including the seeded one. The year is indexed; combining it
-with a second word empties the result, in either order. Six queries turned "a vehicle cannot be found
-by its year" into something an engineer can act on.
+The other 99 tests in run 415 are **feature** cases, judged against the V2 specification, and are
+deliberately untouched — the QA lead will say when to start them. `which_standard.py` separates the
+two by what each case says about itself, never by section.
 
-| | Cases | State |
+## The two that are held
+
+| Case | What it is | What would clear it |
 |---|---|---|
-| Query-driven | 41 | Executed with the corrected instrument; judged against the full case text |
-| Not query-driven | 9 | Executed with purpose-built probes, each carrying its own control |
-| Role-gated | 12 | **2 judged from a controlled comparison**; the rest need permission sets nobody currently holds |
+| C45160 | Choosing a search result records no usage event. Measured and settled — the tracking call is in 17 of the app's components and not in the search one. | Permission to raise one new ticket. The moment it exists this becomes a Failed with its link. |
+| C45159 | A person with no home branch cannot be signed in at all, so the case cannot be run. Proved through the blocker gate with all seven proofs. | Either the developers confirm the state can no longer exist (retire the case) or a sign-in is provided for one of the 27 active people who already have no branch. |
 
-## A seventh instrument fault, and the worst of them
+## What was found and fixed in the instruments today
 
-The script that built the execution plan kept only the **first 420 characters** of each case's Expected
-— enough to find the queries it was written to find. I then judged verdicts from that same file.
-**Every one of the 62 cases is longer than that**, the longest eightfold, and the tail is exactly where
-these cases keep their grading instruction:
+* **The suite was 65, not 62.** The count came from `CASES-FULL.json`, a snapshot taken at the start
+  of the pass, instead of from the run. Section **8056** was never in scope either. Three cases had
+  never been executed: C55684, C55685, C55686 — now all three are.
+* **Unchecking a permission does not always remove it.** Turning off *Work orders / View* on the
+  Technician role removed three other permissions and left `workOrdersView` in place, swapping the
+  technician view mode for the full one. Every stock role on this branch carries `workOrdersView`,
+  including Time Clock User with three permissions in total. A user without work-orders access has to
+  be **built from scratch** (Create Custom Role → Skip), which is what C45142 and C45143 now use.
+* **A dialog can open the moment a checkbox is ticked.** Ticking *Part sales / View* asks
+  "Enable See Financial Data? Part Sales requires it" — and while that is up every later click lands
+  on the backdrop. Three clicks reported success and the screen showed none of them.
+* **A toggle must be named the same way when it is clicked as when it is read**, or the script
+  reports "no toggle starting Pick parts" about a toggle it has just printed.
+* **Becoming one person and then another measures the FIRST person's session.** A technician may not
+  impersonate, so four refusals looked like a rule about branchless people. One switch per run, from a
+  fresh administrator session.
+* **An empty branch column is not the app's view of a person** — an administrator is offered every
+  branch regardless, so administrators must be excluded when looking for someone with none.
 
-> *"If it fails, mark the case BLOCKED … Do NOT mark it Failed and do NOT raise a defect until the
-> Product Owner has ruled."*
+## The role built for the permission cases
 
-Two verdicts were already wrong because of it. Both are corrected, the full text is now read live from
-the source, and a check flags any verdict that contradicts its own case before results are written.
+`ZZAUTOTEST No Work Orders` — a custom role created from scratch, used for C45142 (one permission:
+customers), C45143 (part sales + see financial data, as the screen requires both) and C45149. Clayton
+Stephens was moved onto it for each check and put back on Technician afterwards, verified from his own
+permission list each time. The Technician role itself was restored to its recorded baseline control by
+control (`ROLE-BASELINE-Technician.json` vs `ROLE-AFTER-RESTORE-Technician.json`: no differences).
 
-## Nothing was blocked. Two things were, and both are open now
+## Evidence
 
-**The twelve role cases.** They were carried as blocked because the branch's quick sign-in offers only
-Admin and Tech. That is a fact about the sign-in panel, not about the branch: it carries **66 staff
-across five real roles**, and any active one can be impersonated — no user created, no role edited,
-nothing to restore. The recipe was already in the playbook before this pass started.
-
-It took **four** goes, and every wall was mine: the sign-in panel's two buttons, then inactive
-accounts, then reading identity from the browser's cache instead of the server, then signing the app
-out by clearing its storage. The control refused to report a permission result each time — wrong about
-why, right about not reporting.
-
-**What it produced.** A **technician** (6 permissions) and a **foreman** (23) searched the same word
-minutes apart on the same data: identical jobs, customers and vehicle counts, and the foreman
-additionally sees the part and the supplier while the technician sees neither and gets no such
-headings. That is the paired User A / User B comparison two of these cases ask for, and both pass.
-
-**What is still needed.** The other role cases want permission sets **nobody on this branch currently
-holds** — a time-clock user, a user without job access, a user without customer access, a part-sales
-only user. The eleven role templates exist (including Time Clock User), so the sets are there,
-unassigned. A probe is running that gives one spare staff member a role for the length of one
-observation, proves the observation, then puts the role back and **reads it back to prove the restore
-landed**. It never touches the administrator account.
-
-**The part sale (C55665, and part of C45153/C45151).** Part sales still cannot be created on this
-branch, so there is no part sale to search for. That one is genuinely outstanding.
-
-## The instrument was wrong six times, and that is the main event of this pass
-
-Every one of these produced, or would have produced, a "finding" that is not real. All are fixed, and
-recorded in playbook **§GS/§GS.1** and learnings **L0082–L0094**.
-
-1. **The modal remembers its scope tab across close/reopen**, so each case read the previous case's
-   filter. `Marlene` read as one row beside a strip counting 16.
-2. **The API cross-check fetched a relative path** — the API is on a different host — so it returned
-   the app's own HTML and the comparison **failed open**, reporting agreement without comparing.
-3. **Rows were filtered by on-screen position**, turning "further down a scrolling list" into
-   "missing".
-4. **The scoped view was read on a flat 2.5s wait** while counts settle at 4–5s, so a section still
-   loading reads empty — which is exactly the failure four Story Defects were filed for. *Checked
-   whether it had actually bitten: it had not, in any of the 15 candidates.*
-5. **`+` is a space in a web address**, so any query containing one lost its cross-check silently.
-6. **The three-widths case checked whether search had opened with no wait at all** — desktop passed by
-   winning a race and both narrow widths reported search unreachable, which the case says to treat as
-   a real capability loss for technicians on phones.
-
-The recurring shape: **every false reading came from a check that could not run and did not say so.**
-
-## Three "findings" were missing data, not product faults
-
-The records did not carry what the cases search for. Found by reading each record's whole field set
-and comparing it against the fixture that declares it:
-
-| Field | Declared | Record held | Cases it made unrunnable |
-|---|---|---|---|
-| Customer state | Ohio | *(empty)* | C53582 |
-| Customer address line 2 | Dock 7B | *(empty)* | C53604 |
-| Customer phone | (419) 555-0143 | *(empty)* | C55662 |
-| Vendor phone | (614) 555-0188 | *(empty)* | C55663 |
-| **Asset model** | **Cascadia** | **1000HS** | C55664, C53605 |
-
-The asset one had been visible all along — it renders as **"2019 Freightliner ????"** in every result
-row. All are being repaired and the affected cases re-run.
-
-## What the record DOES carry, so the miss is real
-
-Checked individually, so none of these rests on an assumption: the asset's licence plate, the
-customer's postal code and website, the vendor's postal code and state, the catalogue part's number,
-and the contact's job title are all present on their records and search does not return them. Several
-of those cases instruct that the miss be **held for the Product Owner** rather than treated as a
-fault, and that instruction is being followed.
-
-## For the QA lead
-
-- **C55666 was written expecting to fail and now passes** — a part can be found by its number, with
-  dashes and without. The fix appears to have shipped.
-- **SV-10016** says the part `ZZT-88-4412` is counted but missing from the Parts section. With the
-  corrected instrument it **does** appear there today. The data was rebuilt after that recording, so
-  this may be different data rather than a fix. Reported, not touched, per instruction.
+`UNRUN3-RESULTS.json` · `C45153-FINISH.json` · `C45149-RESULTS.json` · `C45159-RESULTS.json` ·
+`C45159-ROUTES.json` · `C45159-SWITCH.json` · `C45159-BLOCKER-CLAIM.json` · `C45160-ANALYTICS.json` ·
+`C45160-CODE-SCAN.json` · `ROLE-*.json` · screenshots in `unrun3-evidence/` and `roles-evidence/`.

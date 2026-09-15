@@ -200,70 +200,69 @@ one is simply queued behind this suite completing, as he instructed.
 
 ---
 
-# B · GLOBAL SEARCH — TEN THINGS ONLY YOU CAN DECIDE (2026-09-14)
+# B · GLOBAL SEARCH — WHERE IT STANDS NOW (updated 2026-09-15)
 
-We have re-tested everything people could do with the search box in the old version. The everyday
-things all still work. **Ten things that worked before now return nothing.** None is broken in the
-sense of crashing or erroring — the record is there and search no longer looks at that piece of
-information. Each test says, in its own wording, that this is a decision for you rather than a fault
-to raise, so none has been raised.
+**The set of tests that checks everything people could do with the search box in the live product is
+finished, bar two things, and both are one word from you.** Sixty-five tests: forty-seven work,
+sixteen do not, two are described below.
 
-**The decision on each is the same one line: should this still work, yes or no?** If the answer is
-yes for any of them, that becomes a piece of work for engineering. If no, we close the question and
-the test records your ruling.
+**The sixteen that do not work are the ten you ruled on plus the six that fall out of them.** Every
+one is written up for the developers and none is a duplicate.
 
-| | What a person can no longer do | Why it matters |
-|---|---|---|
-| 1 | Find a vehicle by its **number plate** | Often the only thing written down when a vehicle is booked in |
-| 2 | Find a customer or supplier by **postcode** | How you pick the right one out of several similar names |
-| 3 | Find a customer by **its own phone number** | A supplier's phone number still works, so as it stands it is inconsistent |
-| 4 | Find a supplier by the **county** it is in | Used when someone knows roughly where a supplier is but not its name |
-| 5 | Find a company by a **contact's job title** | Less common, but it worked before |
-| 6 | Find a **part that has never been stocked** | **The biggest one** — every catalogue part used to be searchable, now only stocked ones are. This is the one a customer is most likely to report |
-| 7 | Type a **job's status** and get those jobs | How a dispatcher pulled up all the estimates at once |
-| 8 | Find a vehicle by **part of its chassis number** | A technician reads the short code off the windscreen; the whole number works, part of it does not |
-| 9 | Get the **recently-viewed list back** when a search finds nothing | A fruitless search now leaves you at a dead end with nothing to click |
-| 10 | Find a record by a **fragment from the middle of a word** | It works in some places and not others, which is the confusing part |
+## The two things waiting on you
 
-**If you say nothing:** the ten tests stay open and the suite cannot be handed to a manual tester as
-finished. Nothing else is held up by them — everything else has been tested and recorded.
+### 1. May I raise the one new fault we found today?
+**What a user would see.** Nothing, directly — and that is the point. Choosing something from the
+search results is no longer recorded anywhere, so nobody can tell whether people are using the search
+box or what they pick when they do. Everything else in the product still records this: the clock-in
+button, the notification bell, the menus, the jobs screen, the filters. Search is the one that
+stopped.
+**Why it matters.** It is the measurement that would tell you whether the new search is actually
+being used after it ships. Once it is missing, that period is simply unmeasurable — it cannot be
+backfilled later.
+**The decision.** May I raise this with the developers?
 
-**If you would rather tick boxes than read a table**, say so and this goes out as a sheet with the
-options already filled in.
+| Option | What we would do |
+|---|---|
+| **Yes (recommended)** | Raise one report against the right story, with what was measured and what the old version did. The test result then changes from "held" to "failed", and the set is complete. |
+| Not yet | The finding stays written up here and the test stays held. |
 
-## Six checks I could not finish, and the one thing that would clear them
+**If you say nothing:** one test of the sixty-five stays unfinished. Nothing else is held up.
 
-Fifty-six of the sixty-two are done. The last six all ask the same kind of question: **what does
-someone with narrower access see?** — a person who only clocks in and out, a person without access to
-jobs, a person without access to customers, a person who only handles part sales.
+### 2. One test can no longer be run at all — retire it, or lend me a sign-in?
+**What it checks.** That someone who has no home branch set can still use search without it breaking.
+**What we found.** Such a person can no longer get into the product at all — the sign-in is refused
+for them. Two people without a branch were refused and a person with one was let straight in, so it
+is the branch that decides. The state cannot be created either: the staff screen requires a branch
+and so does the system behind it. Twenty-seven active people on this branch already have no branch
+set, and none of them can be signed in as.
+**Why it matters.** Either the product now guarantees everyone has a branch, in which case this test
+is obsolete, or those twenty-seven people are locked out and that is a bigger problem than search.
 
-I got most of the way there by signing in as real people already on the branch, which answered several
-of these properly. But **nobody on this branch currently holds those four narrower jobs**. The job
-types all exist in the system; they are simply not given to anyone here.
+| Option | What we would do |
+|---|---|
+| **Ask the developers whether a person without a branch is still meant to exist (recommended)** | Their answer either retires the test or turns this into a separate report. |
+| Give me a sign-in for one of those people | The test runs in a minute and the set is complete. |
+| Leave it | The test stays open, marked with the reason. |
 
-I tried to lend one of them to a spare test person for the length of a single check and put it
-straight back. The staff screen accepts the change and then does not keep it — the person stays on
-the job they had. **Nothing was changed**, and I checked afterwards to be sure.
+**If you say nothing:** one test of the sixty-five stays unfinished. Nothing else is held up.
 
-**What would clear it:** someone gives one spare test person the time-clock job for ten minutes. Or
-tell me to keep working at it and I will find why the screen is not keeping the change.
+## Closed since yesterday
 
-**Cost of leaving it:** six checks stay open, so the set cannot be handed to a manual tester as
-finished. Nothing else is held up.
-
-## Also on Global Search
-
-- **A test written to expect failure now passes.** Finding a part by its part number was expected to
-  fail on this build and does not. Something was fixed; worth knowing before anyone re-reads the
-  ticket about it.
-- **One ticket already raised may no longer hold.** It says a part is counted but missing from the
-  parts section; today that part does appear there. The test data was rebuilt after that recording, so
-  it may be different data rather than a fix. Not touched, as you asked.
-- **Three checks wait on part sales**, which cannot be created on this branch — the problem you
-  already raised.
+- **The ten things that stopped working — answered, all ten, and written up.** No duplicates.
+- **The six checks about narrower access are all done.** Yesterday's note said nobody on the branch
+  held those narrower jobs and that the staff screen would not keep a change. Both are solved: the
+  screen does keep it — it asks for confirmation in a second window that had been missed — and where
+  no suitable job existed, one was built from scratch for the check and taken away afterwards.
+- **Part sales work again**, so the three checks waiting on them are done.
+- **Three tests that had never been run at all have been found and run.** Two work. The third is the
+  near-spelling problem you already know about, so nothing new was raised.
 
 ---REFERENCE---
-Run 415, Global Search V2 regression set, QA branch sv9160, executed 14 September 2026.
-1 C53516 · 2 C53582/C53585 · 3 C55662 · 4 C53606 · 5 C53603 · 6 C53601 · 7 C55658 · 8 C55669 ·
-9 C55679 · 10 C55660. Expect-fail now passing: C55666. Ticket to re-check: SV-10016.
-Part sales blocked by SV-10031, affecting C55665, C45153, C45151.
+Run 415 — https://shopview.testrail.io/index.php?/runs/view/415 — Global Search V2 regression set,
+QA branch sv9160, build v26.36.4-7869ff2, executed 14-15 September 2026.
+Waiting on you: C45160 (usage event not recorded) — https://shopview.testrail.io/index.php?/tests/view/2738741 ·
+C45159 (no home branch) — https://shopview.testrail.io/index.php?/tests/view/2738740.
+Closed today: C45142, C45143, C45149, C45153, C55684, C55685, C55686.
+The ten answered: C53516 · C53582/C53585 · C55662 · C53606 · C53603 · C53601 · C55658 · C55669 ·
+C55679 · C55660.
