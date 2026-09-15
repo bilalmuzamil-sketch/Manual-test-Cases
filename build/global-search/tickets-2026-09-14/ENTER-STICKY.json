@@ -1,76 +1,84 @@
 {
-  "at": "2026-09-15T08:48:15.428Z",
-  "freshWord": "Kestrel",
-  "secondFreshWord": "Marlene",
+  "at": "2026-09-15T08:49:36.314Z",
+  "freshWord": "Truck",
+  "secondFreshWord": "Repair",
   "phases": {
     "A_freshWordEnter": {
-      "rows": 3,
+      "rows": 41,
       "top": {
         "i": 0,
-        "type": "customers",
-        "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, "
+        "type": "pinned",
+        "text": "TRUCK2018 Freightliner Cascadia Johnson Truck Centre"
       },
       "highlighted": {
-        "i": 0,
+        "i": 7,
         "type": "customers",
-        "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, "
+        "text": "Desert Edge Truck Service & Repair 8 open 2478 Dan Islands"
       },
       "urlBefore": "/workorders",
-      "urlAfter": "/customers/b450f737-ead4-4ba6-a881-9085c5bf8c2f/work-orders",
+      "urlAfter": "/customers/7e90eb07-a144-465b-9743-df9c35d9b587/work-orders",
       "navigated": true,
-      "highlightWasTheFirstRow": true
+      "highlightWasTheFirstRow": false
     },
     "B_clickedThirdRow": {
-      "indexClicked": 5,
-      "rowClicked": null
+      "indexAsked": 4,
+      "indexClicked": 4,
+      "rowsAvailable": 41,
+      "rowClicked": {
+        "i": 4,
+        "type": "work_orders",
+        "text": "S9160-17573 Eller Brothers Truck Repair Approved 2007 Frei"
+      },
+      "landedOn": "/workorders/cc5c2728-03df-4e9c-b1ef-db232a9ccb6d/lines"
     },
     "C_sameWordAgainEnter": {
-      "rows": 3,
+      "rows": 41,
       "top": {
         "i": 0,
-        "type": "customers",
-        "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, "
+        "type": "pinned",
+        "text": "TRUCK2018 Freightliner Cascadia Johnson Truck Centre"
       },
       "highlighted": {
-        "i": 0,
-        "type": "customers",
-        "text": "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, "
+        "i": 4,
+        "type": "work_orders",
+        "text": "S9160-17578 Buda Truck Repair Approved 854 · 2021 Kaufman "
       },
       "urlBefore": "/workorders",
-      "urlAfter": "/customers/b450f737-ead4-4ba6-a881-9085c5bf8c2f/work-orders",
+      "urlAfter": "/workorders/539e696b-9ef4-4ff4-9568-b9cbe794e1d2/lines",
       "navigated": true,
       "wentBackToTheRecordIChose": false,
-      "sameAsPhaseA": true,
-      "highlightWasTheFirstRow": true
+      "sameAsPhaseA": false,
+      "highlightWasTheFirstRow": false
     },
     "D_anotherFreshWord": {
-      "rows": 12,
+      "rows": 40,
       "top": {
         "i": 0,
-        "type": "customers",
-        "text": "ZZAUTOTEST Marlene Freight Lines 820 Tallow Bend Road, Fer"
+        "type": "work_orders",
+        "text": "S9160-17578 Buda Truck Repair Approved 854 · 2021 Kaufman "
       },
       "highlighted": {
-        "i": 6,
-        "type": "parts",
-        "text": "MARINE/POST ADAPTER TERMINAL, POS. 1 Available 5516P"
+        "i": 4,
+        "type": "work_orders",
+        "text": "S9160-17562 Elite Truck & Trailer Repair - Ralston Approve"
       },
       "urlBefore": "/workorders",
-      "urlAfter": "/parts/inventory",
+      "urlAfter": "/workorders/19c0378d-5997-4cdc-868f-ca2f2a898999/lines",
       "navigated": true,
       "highlightWasTheFirstRow": false
     }
   },
   "conclusion": {
-    "indexClicked": 5,
+    "indexClicked": 4,
+    "clickActuallyHappened": true,
     "highlightIndex": {
-      "A": 0,
-      "C": 0,
-      "D": 6
+      "A": 7,
+      "C": 4,
+      "D": 4
     },
-    "positionStuckOnSameWord": false,
-    "positionStuckOnADifferentWord": false,
+    "positionStuckOnSameWord": true,
+    "positionStuckOnADifferentWord": true,
     "sameRecordOrJustSamePosition": "the same POSITION, a different record",
-    "everHighlightedTheFirstRow": true
+    "everHighlightedTheFirstRow": false
   }
 }
