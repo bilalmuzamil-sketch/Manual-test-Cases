@@ -25,8 +25,11 @@ const EDITOR = process.env.EDITOR_URL
 const MODE = process.argv[2] || 'read';
 const ARGS = process.argv.slice(3);
 const R = { at: new Date().toISOString(), role: ROLE, mode: MODE, args: ARGS };
-const save = (name) => fs.writeFileSync(`${DIR}/${name || 'ROLE-PERMS-' + ROLE.replace(/\W+/g, '-')}.json`,
-                                        JSON.stringify(R, null, 2));
+const save = (name) => {
+  const base = name || ('ROLE-PERMS-' + ROLE.replace(/\W+/g, '-') + '.json');
+  fs.writeFileSync(`${DIR}/${base.endsWith('.json') ? base : base + '.json'}`,
+                   JSON.stringify(R, null, 2));
+};
 const L = (...a) => console.log(...a);
 
 const { browser, page } = await boot('sv9160', '/administration/staff', 'admin');
@@ -208,8 +211,50 @@ if (MODE === 'set' && want.length) {
   if (!saved) { R.abort = 'no Save button found'; save(); L(R.abort); await browser.close(); process.exit(3); }
   await page.mouse.move(saved.x + saved.w / 2, saved.y + saved.h / 2);
   await page.mouse.down(); await page.waitForTimeout(80); await page.mouse.up();
-  await page.waitForTimeout(7000);
   R.saveButton = saved.text;
+  await page.waitForTimeout(2500);
+
+  // WHAT IS ON SCREEN NOW? A save that clicks cleanly and stores nothing usually means a second
+  // step -- a confirmation dialog, a validation message, a disabled button. Dump it rather than
+  // assume, then deal with what is actually there.
+  R.afterSaveClick = await page.evaluate(() => {
+    const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
+    const dlg = [...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis);
+    return {
+      dialogs: dlg.map(d => ({
+        text: (d.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 300),
+        buttons: [...d.querySelectorAll('button,.q-btn')].filter(vis)
+          .map(b => (b.innerText || '').replace(/\s+/g, ' ').trim()).filter(Boolean) })),
+      notifications: [...document.querySelectorAll('.q-notification,.text-negative,.q-field--error')]
+        .filter(vis).map(e => (e.innerText || '').replace(/\s+/g, ' ').trim()).filter(Boolean).slice(0, 6),
+      url: location.pathname,
+    };
+  });
+  L('after clicking Save:', JSON.stringify(R.afterSaveClick).slice(0, 500));
+
+  // if a confirmation dialog is up, press its affirmative button -- named, not guessed by position
+  if (R.afterSaveClick.dialogs.length) {
+    const confirm = await page.evaluate(() => {
+      const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
+      const d = [...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
+      if (!d) return null;
+      const b = [...d.querySelectorAll('button,.q-btn')].filter(vis)
+        .find(e => /^(save|confirm|yes|continue|ok|proceed)\b/i.test((e.innerText || '').trim()));
+      if (!b) return null;
+      const r = b.getBoundingClientRect();
+      return { x: r.x, y: r.y, w: r.width, h: r.height, text: (b.innerText || '').trim() };
+    });
+    if (confirm) {
+      await page.mouse.move(confirm.x + confirm.w / 2, confirm.y + confirm.h / 2);
+      await page.mouse.down(); await page.waitForTimeout(80); await page.mouse.up();
+      R.confirmedWith = confirm.text;
+      L('confirmed with:', confirm.text);
+    } else {
+      R.confirmedWith = null;
+      L('a dialog is up but no affirmative button was found in it');
+    }
+  }
+  await page.waitForTimeout(6000);
 
   // VERIFY BY RELOADING. A save that closed without an error is not evidence of what was stored.
   await openEditor();

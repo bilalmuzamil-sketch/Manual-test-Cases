@@ -1,285 +1,184 @@
 {
-  "at": "2026-09-15T10:07:49.947Z",
+  "at": "2026-09-15T10:11:05.136Z",
   "role": "Technician",
-  "rolesPageUrl": "/administration/roles-permissions",
-  "row": "Technician Assigned work orders and time tracking (Tech View) Technician System 55 edit more_vert",
-  "editorUrl": "/administration/roles-permissions/af8d02b5-ecd1-4205-a82f-32a4d5bb1015/edit",
-  "controls": [
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "View",
-      "checked": true,
-      "disabled": false,
-      "testId": "area_workorders_view",
-      "y": 584
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Create & Edit",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_workorders_createandedit",
-      "y": 584
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Delete",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_workorders_delete",
-      "y": 584
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Review work orders",
-      "checked": false,
-      "disabled": false,
-      "testId": "wosetting_reviewworkorders",
-      "y": 861
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Pick parts",
-      "checked": true,
-      "disabled": false,
-      "testId": "wosetting_pickparts",
-      "y": 897
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Order parts",
-      "checked": false,
-      "disabled": false,
-      "testId": "wosetting_orderparts",
-      "y": 934
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Received later",
-      "checked": false,
-      "disabled": false,
-      "testId": "wosetting_receivedlater",
-      "y": 971
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Move labor",
-      "checked": false,
-      "disabled": false,
-      "testId": "wosetting_movelabor",
-      "y": 1008
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Create & Edit",
-      "checked": true,
-      "disabled": false,
-      "testId": "area_workorderlines_createandedit",
-      "y": 1108
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Delete",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_workorderlines_delete",
-      "y": 1108
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "View",
-      "checked": true,
-      "disabled": false,
-      "testId": "area_schedule_view",
-      "y": 1215
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Create & Edit",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_schedule_createandedit",
-      "y": 1215
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Delete",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_schedule_delete",
-      "y": 1215
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "View",
-      "checked": true,
-      "disabled": false,
-      "testId": "area_customers_view",
-      "y": 1322
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Create & Edit",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_customers_createandedit",
-      "y": 1322
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Delete",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_customers_delete",
-      "y": 1322
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "View",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_invoicing_view",
-      "y": 1429
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Create & Edit",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_invoicing_createandedit",
-      "y": 1429
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Delete / Reverse",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_invoicing_delete",
-      "y": 1429
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "View",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_timesheets_view",
-      "y": 1536
-    },
-    {
-      "kind": "checkbox",
-      "section": "Permissions",
-      "label": "Create & Edit",
-      "checked": false,
-      "disabled": false,
-      "testId": "area_timesheets_createandedit",
-      "y": 1536
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Parts Department Manage parts inventory, catalog, sales, and vendor operations.",
-      "checked": false,
-      "disabled": false,
-      "testId": "toggle_parts_department",
-      "y": 1621
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Reports Performance statistics, labor/parts/total reports, and analytics",
-      "checked": false,
-      "disabled": false,
-      "testId": "toggle_reports",
-      "y": 1773
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Customer portal Customer facing portal configuration and management.",
-      "checked": false,
-      "disabled": false,
-      "testId": "toggle_customer_portal",
-      "y": 1835
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Settings Application configuration and administration.",
-      "checked": false,
-      "disabled": false,
-      "testId": "toggle_settings",
-      "y": 1898
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "Billing Portal Billing portal access and management.",
-      "checked": false,
-      "disabled": false,
-      "testId": "toggle_billing_portal",
-      "y": 1960
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "",
-      "checked": false,
-      "disabled": false,
-      "testId": "crosstoggle_see_financial_data",
-      "y": 2151
-    },
-    {
-      "kind": "toggle",
-      "section": "Permissions",
-      "label": "",
-      "checked": false,
-      "disabled": false,
-      "testId": "crosstoggle_see_ap_ar_data",
-      "y": 2247
-    }
-  ],
-  "headings": [
-    "Edit Role",
-    "Basic Details",
-    "Permissions"
-  ],
-  "buttons": [
-    "ShopHub expand_more",
-    "Work Orders",
-    "Schedule",
-    "Customers",
-    "Parts",
-    "Reports",
-    "search Search customers, work orders, parts... Ctrl K",
-    "timer Clock In",
-    "notifications",
-    "Staging Heavy Duty - 9919 AS",
-    "close",
-    "Full View",
-    "Tech view",
-    "delete Delete Role",
-    "restart_alt Reset To Template",
-    "Cancel",
-    "Save"
-  ]
+  "mode": "read",
+  "args": [],
+  "before": {
+    "checkboxes": [
+      {
+        "card": "Work orders",
+        "column": "View",
+        "on": true,
+        "y": 584,
+        "x": 1263
+      },
+      {
+        "card": "Work orders",
+        "column": "Create & Edit",
+        "on": false,
+        "y": 584,
+        "x": 1359
+      },
+      {
+        "card": "Work orders",
+        "column": "Delete",
+        "on": false,
+        "y": 584,
+        "x": 1455
+      },
+      {
+        "card": "Work order lines",
+        "column": "Create & Edit",
+        "on": true,
+        "y": 1108,
+        "x": 1359
+      },
+      {
+        "card": "Work order lines",
+        "column": "Delete",
+        "on": false,
+        "y": 1108,
+        "x": 1455
+      },
+      {
+        "card": "Schedule",
+        "column": "View",
+        "on": true,
+        "y": 1215,
+        "x": 1263
+      },
+      {
+        "card": "Schedule",
+        "column": "Create & Edit",
+        "on": false,
+        "y": 1215,
+        "x": 1359
+      },
+      {
+        "card": "Schedule",
+        "column": "Delete",
+        "on": false,
+        "y": 1215,
+        "x": 1455
+      },
+      {
+        "card": "Customers",
+        "column": "View",
+        "on": true,
+        "y": 1322,
+        "x": 1263
+      },
+      {
+        "card": "Customers",
+        "column": "Create & Edit",
+        "on": false,
+        "y": 1322,
+        "x": 1359
+      },
+      {
+        "card": "Customers",
+        "column": "Delete",
+        "on": false,
+        "y": 1322,
+        "x": 1455
+      },
+      {
+        "card": "Invoicing & payments",
+        "column": "View",
+        "on": false,
+        "y": 1429,
+        "x": 1230
+      },
+      {
+        "card": "Invoicing & payments",
+        "column": "Create & Edit",
+        "on": false,
+        "y": 1429,
+        "x": 1326
+      },
+      {
+        "card": "Invoicing & payments",
+        "column": "Delete / Reverse",
+        "on": false,
+        "y": 1429,
+        "x": 1438
+      },
+      {
+        "card": "Timesheets",
+        "column": "View",
+        "on": false,
+        "y": 1536,
+        "x": 1263
+      },
+      {
+        "card": "Timesheets",
+        "column": "Create & Edit",
+        "on": false,
+        "y": 1536,
+        "x": 1359
+      }
+    ],
+    "toggles": [
+      {
+        "name": "Review work orders",
+        "on": false,
+        "y": 861
+      },
+      {
+        "name": "Pick parts",
+        "on": true,
+        "y": 897
+      },
+      {
+        "name": "Order parts",
+        "on": false,
+        "y": 934
+      },
+      {
+        "name": "Received later",
+        "on": false,
+        "y": 971
+      },
+      {
+        "name": "Move labor",
+        "on": false,
+        "y": 1008
+      },
+      {
+        "name": "Parts Department",
+        "on": false,
+        "y": 1621
+      },
+      {
+        "name": "Delete Role",
+        "on": false,
+        "y": 1773
+      },
+      {
+        "name": "Customer portal",
+        "on": false,
+        "y": 1835
+      },
+      {
+        "name": "Settings",
+        "on": false,
+        "y": 1898
+      },
+      {
+        "name": "Billing Portal",
+        "on": false,
+        "y": 1960
+      },
+      {
+        "name": "See Financial Data",
+        "on": false,
+        "y": 2151
+      },
+      {
+        "name": "View and Manage AP/AR Data",
+        "on": false,
+        "y": 2247
+      }
+    ]
+  }
 }
