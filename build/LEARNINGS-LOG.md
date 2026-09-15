@@ -2496,3 +2496,44 @@ naming rules, and the disagreement read as "the screen does not have that contro
 > Where a script both reads and writes a control, the identity function must be **one function**.
 > Two implementations of "which one is this" will drift, and the drift always presents itself as the
 > product missing something.
+
+### L0126 — becoming someone else changes who asks the next question
+Four people could not be impersonated: "Access denied", every time. They had one thing in common — no
+home branch — so the obvious reading was that the product refuses a session to a person without one.
+
+The obvious reading was about me. The run had become **Clayton Stephens first**, as a positive
+control, and every later request was therefore made *from a technician's session*. A technician may
+not impersonate anyone. Four refusals, one cause, and it was the order I made the calls in.
+
+The fix is the shape of the test, not more care: **one switch per run, from a fresh administrator
+session**. Re-run that way, the finding survived — a technician WITH a branch is let in and a
+technician WITHOUT one is refused — but it survived as a measurement rather than as a coincidence I
+had built.
+
+> When a probe changes who you are, every later reading in that run is about the new you. Either
+> reset, or take one reading per session.
+
+### L0127 — an empty column is not the application's view of the thing
+The staff list showed 61 people with no branch. One of them, impersonated, produced a session with
+both branches and full administrator rights — because an administrator is offered every branch
+regardless of what the staff record says.
+
+A field being empty in a list is a fact about that list. What the subject can actually reach is a
+question only their own session answers (`/staff/my-workplaces`, read AS them). The candidates for
+"a user with no branch" had to exclude administrators for that reason, and the state had to be
+confirmed from the subject's own session before it could be tested.
+
+> Read the state from the thing that will be under test, not from the screen that lists it.
+
+### L0128 — the verify that fails on every case may be measuring the wrong thing
+A marker sweep reported `VERIFY FAILED: not exactly the expected replacement` on case after case. The
+edits had all landed correctly. The check asserts `after === before.replaceAll(from, to)` — byte for
+byte — and a save through the editor normalises the markup around the edit: a newline becomes
+`</p><p>`, two spaces become `&nbsp;`, an empty paragraph is added at the end.
+
+Both readings were available: stop because the tool says so, or check what the tool is actually
+comparing. The way to tell them apart was cheap — **snapshot three cases before they were written,
+then diff** — and it showed five differences, all of them markup, no content changed or lost.
+
+> A guard firing on every single case is a hypothesis about the guard as much as about the work.
+> Prove which, with a before-and-after you captured yourself, before you trust it or override it.
