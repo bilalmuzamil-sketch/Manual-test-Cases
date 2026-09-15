@@ -169,3 +169,41 @@ would have duplicated it and left the wrong one in the suite.
 | **2** | **Which `custom_automation_type` should new cases in this suite carry?** I used **0**, matching all 66 siblings and all three skill files. Their card says a ruling of yours on 2026-09-02 requires **2** for new cases — I could not find that ruling in anything committed, so I did not follow it on your behalf. | If the ruling is real, C55688 and C55689 need changing to 2, and so do the other 66. If it is not, their card needs correcting. Either way it is one word from you. |
 | **3** | **Nobody knows yet whether the make alone or the year alone actually works** on this build. C55688 and C55689 are written and in the run but have never been executed. | Those two results decide whether a new ticket is needed. The execution session has the handoff. |
 | **4** | Nothing else. Seeding needs nothing, all eight cases are verified, and the run is intact. | — |
+
+---
+
+## 7 · The two new cases were run, and running them found a flaw in my own wording
+
+**15 September 2026, branch `sv9160`, build `v26.36.4-7869ff2`, measured at `GET /api/search` — the
+search the box itself calls.**
+
+| Case | Typed | Assets group came back with | Result |
+|---|---|---|---|
+| [C55688](https://shopview.testrail.io/index.php?/cases/view/55688) | `Freightliner` | 20 vehicles, **every one a Freightliner** — 2017 M2, 2023 114sd, 2023 M2, 2024 114sd, 2026 114sd, 2021 Mt 55 Chassis, 2018 Cascadia, 2024 Cascadia, 2016 Sd122, 2021 114sd, 2019 114sd, 2019 M2, 2024 114sd, 2018 M2, 2016 114sd, 2020 114sd, 2020 114sd, 2017 114sd, 2007 Freightliner, 2013 114sd | **Passed** |
+| [C55689](https://shopview.testrail.io/index.php?/cases/view/55689) | `2019` | 20 vehicles, 19 of them 2019s, **the seeded `2019 Freightliner Cascadia` on row 10** | **Passed** |
+
+**So both capabilities work.** The make is searched and the year is searched.
+
+### The flaw, and why it mattered
+
+I wrote both cases to expect *"it should return at least the seeded one"*. **On C55688 that is wrong,
+and it would have produced a false Failed.** The seeded `2019 Freightliner Cascadia` is **not** in the
+20 rows returned for `Freightliner` — there are more Freightliners in this data than the group can
+list, so it sits below the last row. Searching its model instead (`Cascadia`) returns it on row 4.
+
+**And V1 was stricter, not looser: it showed at most THREE rows per group** (`useGlobalSearch.ts`,
+`MAX_PER_TYPE = 3`). So "my vehicle must appear when I type a common make" was never V1 behaviour
+either. The V1 capability is **"the make is part of what is searched"**, and nothing more.
+
+Both cases were re-worded before any result was recorded. They now say what proves the capability —
+every vehicle listed shares the make or year you typed — and they say explicitly that the seeded
+vehicle's absence is **not** a failure, that a vehicle of another make or year may legitimately appear
+because its chassis or unit number contains what you typed, and that the record should be opened and
+checked before anyone calls such a row wrong.
+
+**The lesson, and it is the same one as the phone numbers: an expectation has to be derived from what
+the old version actually did, including its LIMITS.** A case built on a plausible-sounding expectation
+rather than a measured one produces a confident wrong verdict, and a false Failed costs a developer a
+day proving nothing is broken.
+
+Both now carry `custom_automation_type: 2` (Functional), per the QA lead's ruling of 15 September 2026.

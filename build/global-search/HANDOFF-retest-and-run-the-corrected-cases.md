@@ -1,25 +1,35 @@
-# Handoff — eight cases need running in run 415
+# Handoff — six cases need running in run 415
 
 **For:** the session running the test pass.
 **From:** the main session, 15 September 2026.
 **Run 415:** https://shopview.testrail.io/index.php?/runs/view/415 — branch `sv9160`, build `v26.36.4-7869ff2`.
 
-**Why:** six cases were corrected today and two were newly written. The six corrected ones already
+**Why:** six cases were corrected today. They already
 carry results, and those results were set against the OLD wording — the cases now ask the tester to
-type things the old steps never asked for, so those results no longer mean anything. The two new ones
-have never been run.
+type things the old steps never asked for, so those results no longer mean anything. (Two further
+cases were written today and have already been run — §1, nothing to do.)
 
 The run went from 164 tests to 166. **Nothing was removed and all 65 existing results were kept** —
 checked before and after.
 
 ---
 
-## 1 · Two new cases — never run
+## 1 · Two new cases — ALREADY RUN, both Passed
 
-| Case | Test | Type this | What should happen |
+Run on 15 September 2026 on branch `sv9160`, build `v26.36.4-7869ff2`. **Nothing to do here** — this
+section is for information.
+
+| Case | Test | Typed | Result |
 |---|---|---|---|
-| **C55688** — Finding an asset by its make on its own<br>https://shopview.testrail.io/index.php?/cases/view/55688 | [2990626](https://shopview.testrail.io/index.php?/tests/view/2990626) | `Freightliner` — the make, nothing else | The asset `2019 Freightliner Cascadia` comes back under Assets. **Unknown whether this works** — that is the point of the case. |
-| **C55689** — Finding an asset by its year on its own<br>https://shopview.testrail.io/index.php?/cases/view/55689 | [2990627](https://shopview.testrail.io/index.php?/tests/view/2990627) | `2019` — the year, nothing else | Same asset comes back. **Unknown whether this works.** Do not assume it fails just because the year-and-make case fails. |
+| **C55688** — Finding an asset by its make on its own<br>https://shopview.testrail.io/index.php?/cases/view/55688 | [2990626](https://shopview.testrail.io/index.php?/tests/view/2990626) | `Freightliner` | **Passed** — all 20 vehicles listed are Freightliners, so the make is searched. |
+| **C55689** — Finding an asset by its year on its own<br>https://shopview.testrail.io/index.php?/cases/view/55689 | [2990627](https://shopview.testrail.io/index.php?/tests/view/2990627) | `2019` | **Passed** — 19 of 20 are 2019 vehicles and the seeded one is on row 10. |
+
+> ⚠️ **Read the "what counts as a failure" part of these two cases before re-running them.** Both were
+> re-worded after the first run. The first wording said the seeded vehicle "should come back", and
+> that is wrong: there are more Freightliners and more 2019 vehicles in this data than the group can
+> list, so the seeded one may sit below the last row. **Its absence is not a failure.** What proves the
+> search used the field is that the vehicles listed all share the make (or the year) you typed. The old
+> version showed only three rows per group, so "my vehicle must appear" was never its behaviour either.
 
 ---
 
@@ -90,6 +100,5 @@ and if it passes, the fix has shipped and the ticket can be closed.
 
 | # | What I need |
 |---|---|
-| **1** | Run the eight tests above and set a result on each, with the typed text and what came back on anything that is not a Passed. |
-| **2** | Tell the QA lead what C55688 and C55689 do — nobody knows yet whether the make alone or the year alone works, and those two answers decide whether a new ticket is needed. |
-| **3** | Nothing else. The data is seeded and verified; the cases are corrected and verified. |
+| **1** | Run the six tests in §2 and set a result on each, with the typed text and what came back on anything that is not a Passed. |
+| **2** | Nothing else. The data is seeded and verified; the cases are corrected and verified; C55688 and C55689 are already run and Passed. |
