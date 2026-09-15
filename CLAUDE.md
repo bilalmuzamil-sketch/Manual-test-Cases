@@ -88,6 +88,20 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   reconciliation to `build/<project>/source-verify-<date>/`, and **answer the nearest apparently
   contradicting rule in advance**. Worked example:
   `build/inline-add-edit-parts/source-verify-2026-09-10/DECLINED-QUOTES.md`.
+  **🛑 EXTENDED 2026-09-15 — IT IS A PRE-CHECK ON EVERY CASE YOU EXECUTE, NOT ONLY ON EVERY DEFECT YOU
+  PROPOSE (QA lead: *"MAKE it a rule and save in your Skills etc and wherever needed forver"*).** The
+  defect-time trigger only fires when the product FAILS — so a case whose Expected disagrees with the
+  source, and whose build happens to match THE CASE, **passes, is recorded as verified, and is never
+  looked at again: a FALSE PASS made by our own test**, worse than a false defect because a false
+  defect is argued with by a developer the same day and a false pass is believed for ever. **Four
+  outcomes:** agree + build matches ⇒ real pass · agree + build differs ⇒ real defect, ask to file ·
+  **disagree + build matches the CASE ⇒ the CASE is the defect and the pass is worthless** ·
+  **disagree + build matches the SOURCE ⇒ a FALSE DEFECT about to be filed; the product is right.**
+  Both disagreements are ours to correct, never a ticket. **Reconcile WITHOUT breaking Rule 81: read
+  the governing source ONCE per pass with his go-ahead, then check every case against that single live
+  read** — one gated fetch per pass, never one per case; **a pass with no go-ahead reconciles against
+  NOTHING and says so**, never against memory or an extract. Full text: `RULES-61-ONWARD.md` rule 106
+  (2026-09-15 extension); carried by skills 03, 06, 09, 11, 12 and 16.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -445,7 +459,7 @@ rule. Generated from the split files' own headers.
 | **103** | EVERYTHING THE QA LEAD READS IS IN HIS LANGUAGE — every message, not only asks; no ids/codes/jargon carrying the meaning, no bare tallies; run `plain_check.py` before sending |
 | **104** | A NEGATIVE FINDING MUST PROVE THE INSTRUMENT WORKED — seven proofs, enforced by `probe_guard.mjs` and `blocker_gate.py`; never re-block on something already unblocked |
 | **105** | NEVER GO IDLE WHILE WORK REMAINS — queue every step with `run_queue.sh`; the last action before any report is to START the next work |
-| **106** | BEFORE PROPOSING A DEFECT, RECONCILE THE CASE'S EXPECTED AGAINST THE **LIVE** SOURCE — if they disagree the CASE is wrong, ask to fix the case, not to file a ticket |
+| **106** | RECONCILE EVERY CASE'S EXPECTED AGAINST THE **LIVE** SOURCE — **before JUDGING it, not only before filing a defect** (extended 2026-09-15) — if they disagree the CASE is wrong, ask to fix the case, not to file a ticket |
 | **107** | STANDING AUTHORISATION TO UNBLOCK — seed/change/delete any test data, edit roles, use either surface; seven routes tried and NAMED before anything is called blocked; the standing holds (62 · 6 · 38 · 71 · 82) are untouched |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
