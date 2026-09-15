@@ -46,7 +46,10 @@ captured from Set-Cookie (playbook §Q1 - not doing so makes every later call an
 import json, sys, os, re, ssl, urllib.parse, urllib.request, urllib.error, argparse, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-COOKIES = '/tmp/qa/cookies.json'
+# Which environment to seed. Defaults to the QA branch profile; set SEED_PROFILE to point at
+# another one (production is PHPSESSID-only and has no SSO cookie - see playbook section K).
+#     SEED_PROFILE=/tmp/prod/cookies.json python3 seed.py --check
+COOKIES = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
 CTX = ssl.create_default_context(cafile='/root/.ccr/ca-bundle.crt')
 
 def _c(): return json.load(open(COOKIES))
@@ -55,7 +58,10 @@ def _save(c):
 
 def call(path, method='GET', body=None):
     c = _c()
-    ck = f"sv_sso_session={c['sv_sso_session']}; PHPSESSID={c['PHPSESSID']}; cf_clearance={c['cf_clearance']}"
+    # Send only the cookies this environment actually has. Production carries PHPSESSID alone;
+    # sending empty sv_sso_session / cf_clearance values there is not the same as omitting them.
+    ck = '; '.join(f"{k}={c[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance')
+                   if c.get(k))
     req = urllib.request.Request(f"https://{c['api']}{path}", method=method,
         data=json.dumps(body).encode() if body is not None else None,
         headers={'Cookie': ck, 'Accept': 'application/json', 'Content-Type': 'application/json',
