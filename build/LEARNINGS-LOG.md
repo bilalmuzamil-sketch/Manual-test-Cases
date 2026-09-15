@@ -2403,3 +2403,29 @@ this often is not one to remember harder.
 > **Characterise the instrument before trusting what it measures.** And when someone who knows the
 > product says it behaves differently — they are describing the product; you are describing your
 > harness. Test THEIR account first.
+
+### L0122 — the two standards live in the same run, and mixing them fails silently
+The QA lead, on the regression standard: *"We would need to test similar test cases in similar
+fashion in future too where we will be upgrading our existing features again, but you have to make
+sure that you never mix and make blunders."*
+
+I had recorded it as an exception granted for one folder. That was half right and the wrong half was
+the dangerous one. It is not a rare dispensation — it is **how an upgrade project is tested, and it
+will be set up again.** The thing to guard is not the granting; it is the mixing.
+
+**Run 415 holds 164 tests. 62 are regression. 102 are not.** One run, two standards:
+
+- Judge the 102 against *what production does* → every deliberate improvement reads as a defect.
+- Judge the 62 against *the new specification* → every lost capability reads as acceptable.
+
+**Neither blunder raises an error.** Nothing fails, nothing looks wrong; the verdicts simply come out
+inverted, and they go to engineering as facts.
+
+The discriminator is **the case's own source line**, never the run, the folder or the project — a
+regression case declares its own standard in its Expected text. `which_standard.py` now classifies a
+set by that line, says loudly when a set is MIXED, and `--assert-all` refuses when a session claims a
+suite is all one kind and it is not.
+
+> **When two different truths can be applied to the same pile of work, the question is never "which
+> one is right" — it is "what tells me, per item, which applies".** If the answer is the folder it
+> sits in, it will be wrong the first time the folder holds both.

@@ -357,40 +357,57 @@ non-technical QA can act on — **never a bare status** (Rule 7).
 
 ---
 
-## 🛑 THE "SHIPPED PRODUCT IS THE SPECIFICATION" EXCEPTION IS PER-SUITE AND MUST BE NAMED
+## 🛑 WHICH STANDARD A CASE IS JUDGED AGAINST — AND HOW NOT TO MIX THEM
 
-**QA lead, 2026-09-15, on the Global Search V1→V2 regression suite, verbatim:**
-*"Note this condition is for THIS folder ONLY which is Regression suite for Global search make sure
-that you do NOT make it a general rule for testing for other testing suites too."*
+**This pattern RECURS.** The QA lead, 2026-09-15: *"We would need to test similar test cases in
+similar fashion in future too where we will be upgrading our existing features again, but you have
+to make sure that you never mix and make blunders."* So this is not a one-off exception to be
+hoarded for Global Search — it is how an upgrade project is tested, and it will be set up again.
+What must never happen is mixing it with ordinary feature testing.
 
-**Before you let ANY suite take its expectation from the live product, both of these must be true:**
+### The two kinds, and what each is judged against
 
-1. The suite is a **V1→V2 regression suite** — its question is *"a person can do this today on
-   production; can they still do it?"* — and
-2. **the QA lead has said so for THAT suite, by name.** Not for a sibling suite. Not "we did this on
-   Global Search". By name.
+| Kind | The question it asks | The standard |
+|---|---|---|
+| **Regression** (old version → new) | *A person can do this on the live product today. Can they still?* | **The shipped OLD version, on production.** The new specification is context only. A requirement that permits the loss makes it a PO decision (Rules 96, 58), not an acceptable outcome. |
+| **Feature** (everything else) | *Does the new version do what was specified?* | **The DOCUMENTS — Standing Rule 57.** Spec/PRD, the epic's stories, the PO's verified answers, the design, Figma, the technical design. From the build: the on-screen labels and the pass/fail verdict, nothing else. |
 
-**If either is missing, Standing Rule 57 governs and nothing else does:** expected behaviour comes
-from the DOCUMENTS — spec/PRD, the epic's stories, the PO's verified answers, the design, Figma, the
-technical design. **From the build you take exactly two things: the on-screen labels, and the
-pass/fail verdict.**
+### THE DISCRIMINATOR IS THE CASE'S OWN SOURCE LINE — never the run, the folder or the project
 
-**The trap is inheritance.** The exception was granted for one folder on one day; a later session
-reading that folder's cases sees "the shipped V1 product IS the specification" in their source lines
-and carries it into the next suite — where it silently converts every V2 change into a defect and
-every documented requirement into an opinion. **A suite-scoped exception carried one folder too far
-does more damage than no exception at all**, because it looks authorised.
+**Both kinds live in the same run.** Run 415 holds **164 tests: 62 regression, 102 feature.** Judge
+those 102 against "what production does" and every deliberate improvement becomes a defect. Judge the
+62 against the new specification and every lost capability becomes acceptable. **Both blunders are
+silent** — nothing errors, the results simply come out wrong.
 
-Where it has been granted so far, and nowhere else:
+A regression case **says so in its own Expected text** ("THIS CASE IS TESTED AGAINST V1, NOT AGAINST
+THE V2 SPECIFICATION" / "the shipped V1 product IS the specification" / Standing Rule 109). **A case
+that does not say it is not one, whatever its neighbours say.**
+
+**Do not eyeball this. Run it:**
+
+    python3 build/testing-tools/which_standard.py --cases <CASES-FULL.json> --list
+    python3 build/testing-tools/which_standard.py --cases <file> --assert-all regression
+
+It classifies every case by its own source line, says loudly when a set is MIXED, and `--assert-all`
+exits 1 unless the set really is all one kind. Run it **before** judging a suite, not after.
+
+### Setting up the next upgrade suite
+
+1. **Get it in writing, for that suite by name.** "We did this on Global Search" is not authority for
+   the next one. Quote him in the project's own folder, as
+   `build/global-search/regression-2026-08-26/WHAT-THIS-SUITE-IS-TESTED-AGAINST.md` does.
+2. **Put the standard in every regression case's own source line**, so the case carries its own
+   authority and `which_standard.py` can see it. A case whose standard lives only in a README is a
+   case the next session will misjudge.
+3. **Keep the two kinds separable** — a section, a flag, something — and never assume a run is
+   uniform.
+4. **Where the live product is the standard, a claim about what it does must be an OBSERVATION of
+   it.** Not a reading of its source, not our own case text, not the new document's description of
+   the old version (Rules 12, 100). On 2026-09-15 four tickets rested on an unobserved claim about
+   V1; the QA lead checked production himself and three stood, one did not.
+
+Granted so far, and nowhere else:
 
 | Suite | Granted | Recorded in |
 |---|---|---|
-| Global Search V1→V2 regression (section 6769, run 415) | 2026-09-15 | `build/global-search/regression-2026-08-26/WHAT-THIS-SUITE-IS-TESTED-AGAINST.md` |
-
-**Add a row only when he grants it for that suite, in his own words, and quote him in the file.**
-
-**One consequence worth stating, because it cost a day:** where the live product IS the standard, a
-claim about what it does must be an **observation of the live product** — not a reading of its source,
-not a sentence in our own case text, not the V2 document's description of the old version (Rule 12,
-Rule 100). Four tickets were filed on 2026-09-15 resting on an unobserved claim about V1; the QA lead
-checked production himself and three stood, one did not.
+| Global Search V1→V2 regression (section 6769, run 415, 62 cases) | 2026-09-15 | `build/global-search/regression-2026-08-26/WHAT-THIS-SUITE-IS-TESTED-AGAINST.md` |
