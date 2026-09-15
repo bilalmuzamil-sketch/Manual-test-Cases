@@ -159,10 +159,30 @@ const clickBox = async (card, column) => {
   return { ok: true };
 };
 const clickToggle = async name => {
+  // NAME A TOGGLE THE SAME WAY THE READER NAMES IT. Most toggles here carry no text of their own --
+  // the reader falls back to the nearest label beside them -- so matching on the toggle's own
+  // innerText finds nothing and reports "no toggle starting Pick parts" about a toggle the same
+  // script had just printed. One naming rule, used by both halves.
   const b = await page.evaluate(n => {
     const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
+    const nameOf = e => {
+      const r = e.getBoundingClientRect();
+      let nm = (e.innerText || '').replace(/\s+/g, ' ').trim();
+      if (!nm) {
+        const near = [...document.querySelectorAll(
+          '.cross-toggles__title,.page-access__title,.settings__title,.wo-settings__toggle-label,'
+          + '.permission-card__title,div,span')]
+          .filter(vis)
+          .map(t => ({ d: Math.abs(t.getBoundingClientRect().top - r.top),
+                       txt: (t.innerText || '').replace(/\s+/g, ' ').trim() }))
+          .filter(t => t.txt && t.txt.length < 40 && t.d < 30)
+          .sort((a, b) => a.d - b.d);
+        nm = near.length ? near[0].txt : '';
+      }
+      return nm.split('\n')[0].slice(0, 40);
+    };
     const t = [...document.querySelectorAll('.q-toggle')].filter(vis)
-      .find(e => (e.innerText || '').replace(/\s+/g, ' ').trim().startsWith(n));
+      .find(e => nameOf(e).startsWith(n));
     if (!t) return null;
     t.scrollIntoView({ block: 'center' });
     const r = t.getBoundingClientRect(); return { x: r.x, y: r.y, w: r.width, h: r.height };
