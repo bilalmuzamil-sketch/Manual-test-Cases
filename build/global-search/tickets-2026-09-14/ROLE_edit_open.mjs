@@ -57,13 +57,19 @@ R.rolesPageUrl = new URL(page.url()).pathname;
     // happened to contain the word is how the last run opened PARTS Technician's editor and called
     // the result a Technician baseline -- which would then have been "restored" onto the wrong
     // role. A name that cannot be matched exactly is an abort, not a near-enough.
+    // The first <td> holds only a padlock icon on the locked rows, so td[0] is not the name. Match
+    // on the ROW TEXT starting with the role name: "Parts Technician ..." does not start with
+    // "Technician", and "Senior Service Advisor ..." does not start with "Service Advisor", so a
+    // startsWith on the whole row is both exact enough and robust to the icon column.
     const rows = [...document.querySelectorAll('tr')].filter(vis);
     const norm = t => (t || '').replace(/\s+/g, ' ').replace(/^lock\s+/, '').trim();
-    const row = rows.find(r => norm((r.querySelector('td') || {}).innerText) === name);
+    const row = rows.find(r => {
+      const txt = norm(r.innerText);
+      return txt === name || txt.startsWith(name + ' ');
+    });
     if (!row) {
       return { notFound: true,
-               firstCells: rows.map(r => norm((r.querySelector('td') || {}).innerText))
-                 .filter(Boolean).slice(0, 15) };
+               rowsSeen: rows.map(r => norm(r.innerText).slice(0, 40)).filter(Boolean).slice(0, 15) };
     }
     row.scrollIntoView({ block: 'center' });
     const edit = [...row.querySelectorAll('*')].filter(vis)
@@ -77,8 +83,8 @@ R.rolesPageUrl = new URL(page.url()).pathname;
   }, ROLE);
   if (!box || box.notFound) {
     R.abort = `no row whose first cell is exactly "${ROLE}"`;
-    R.firstCellsSeen = box && box.firstCells;
-    save(); L(R.abort, '| first cells on the page:', JSON.stringify(R.firstCellsSeen));
+    R.rowsSeen = box && box.rowsSeen;
+    save(); L(R.abort, '| rows on the page:', JSON.stringify(R.rowsSeen));
     await browser.close(); process.exit(3);
   }
   R.row = box.rowText;
