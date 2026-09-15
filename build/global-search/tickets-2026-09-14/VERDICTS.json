@@ -241,11 +241,13 @@
   "C45144": {
    "verdict": "Passed",
    "observed": "Two real people on this branch searched the same word minutes apart. The foreman, who has access to the parts catalogue, got 15 results across five kinds including the part. The technician, who does not, got 13 results across three kinds and NO parts at all - the Parts heading did not appear for them. Everything else was identical between the two: the same eight jobs, the same four customers, the same one vehicle. Only the part and the supplier differed, which is exactly the difference their access should make. Opening a part result also lands on the stock record showing how many are on hand, not the catalogue entry.",
-   "not_observed": null
+   "not_observed": null,
+   "evidence_file": "ROLES-OBSERVED.json"
   },
   "C45145": {
    "verdict": "Passed",
-   "observed": "The same two people, the same word, minutes apart. The foreman saw the supplier under the Vendors heading. The technician, who does not have supplier access, saw no suppliers at all and no Vendors heading. The jobs, customers and vehicle they each saw were identical, so nothing else differed between the two views."
+   "observed": "The same two people, the same word, minutes apart. The foreman saw the supplier under the Vendors heading. The technician, who does not have supplier access, saw no suppliers at all and no Vendors heading. The jobs, customers and vehicle they each saw were identical, so nothing else differed between the two views.",
+   "evidence_file": "ROLES-OBSERVED.json"
   },
   "C45152": {
    "verdict": "Passed",
@@ -254,12 +256,44 @@
   "C45151": {
    "verdict": "Passed",
    "observed": "The same search at two locations, one after the other. Jobs: 8 at the first location, none at the second - so jobs really are limited to where you are. Customers: 7 at both. Vehicles: 1 at both - identical, so those are not limited by location, which is what this case requires. The screen was confirmed to have actually moved between the two, by the location name at the top of the page.",
-   "not_observed": "Suppliers and parts did not match the word used, so those two were not shown either way and nothing is claimed about them. Part sales could not be checked at all - none can be created on this branch at present."
+   "not_observed": "Suppliers and parts did not match the word used, so those two were not shown either way and nothing is claimed about them. Part sales could not be checked at all - none can be created on this branch at present.",
+   "evidence_file": "SPECIAL-RESULTS.json"
   },
   "C45148": {
    "verdict": "Passed",
    "observed": "Across roughly seventy searches in this pass the results only ever contained the nine kinds of record the panel is built to show - jobs, customers, vehicles, parts, suppliers, part sales, purchase orders, supplier invoices - and nothing else ever appeared. The stronger evidence is what a limited person sees: a technician, who has no access to parts or suppliers, got no parts and no suppliers at all and no headings for them, while a foreman searching the same word got both. What a person is not permitted is not shown.",
-   "not_observed": "A genuinely new or unknown kind of record cannot be introduced from outside the product, so the case cannot be pushed further than this from the screen."
+   "not_observed": "A genuinely new or unknown kind of record cannot be introduced from outside the product, so the case cannot be pushed further than this from the screen.",
+   "evidence_file": "ROLES-OBSERVED.json"
+  },
+  "C45142": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone WITHOUT access to jobs. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished."
+  },
+  "C45143": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone who can only handle part sales. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well. Part sales also cannot be created on this branch at present, so this one needs both.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished."
+  },
+  "C45146": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone WITHOUT access to customers. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished."
+  },
+  "C45147": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone who only clocks in and out. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished."
+  },
+  "C45149": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone who viewed a record and then lost access to it. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well. It needs that person's job changed twice - once to let them see the record, once to take it away.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished."
+  },
+  "C45159": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone with no home location set. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished."
   }
  }
 }

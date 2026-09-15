@@ -1,0 +1,347 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set (section 6769)",
+  "environment": "QA branch sv9160",
+  "date": "14 September 2026",
+  "scope": "the 62 regression-flagged cases in run 415",
+  "how_judged": "Every verdict is read from the RENDERED ROWS, using the app's own result-row test ids, with the tab strip's counts, the modal's own result-count line and the /api/search response the page was rendered from all required to agree. Zeros are checked against the seed manifest so a missing record is never reported as a product fault.",
+  "_note": "DRAFT - cases still being observed carry no entry yet. make_results.py refuses to emit while any executed case is unjudged."
+ },
+ "results": {
+  "C45155": {
+   "verdict": "Passed",
+   "observed": "The group of vehicles is labelled 'Assets' on the tab strip and on the group heading. The internal word 'Vehicles' is not shown to the user anywhere in the search results.",
+   "not_observed": null
+  },
+  "C45157": {
+   "verdict": "Passed",
+   "observed": "Searching 'Kestrel' returned three results and each was a different record - the customer, the part and the supplier. No record was listed twice, even though the word appears in more than one of its fields.",
+   "not_observed": null
+  },
+  "C45161": {
+   "verdict": "Passed",
+   "observed": "Typing a single letter ran no search: the panel showed the recently-viewed list instead. Typing two letters ran the search and returned results across five types. Matching begins at two characters, as expected.",
+   "not_observed": null
+  },
+  "C53578": {
+   "verdict": "Passed",
+   "observed": "Typing the customer's name returned that customer's four jobs under the Work orders heading. No job number had to be known.",
+   "not_observed": null
+  },
+  "C53579": {
+   "verdict": "Passed",
+   "observed": "All four ways of writing the job number found the same job: with a dash, run together, with the shop number in front, and the shop number without the letter. None returned 'no results'.",
+   "not_observed": null
+  },
+  "C53580": {
+   "verdict": "Passed",
+   "observed": "Typing the vehicle's unit number returned that vehicle under the Assets heading, and its four jobs alongside.",
+   "not_observed": null
+  },
+  "C53581": {
+   "verdict": "Passed",
+   "observed": "Typing the customer's name returned that customer's vehicle under the Assets heading.",
+   "not_observed": null
+  },
+  "C53584": {
+   "verdict": "Passed",
+   "observed": "Typing the supplier's email address returned that supplier under the Vendors heading, shown as a contact match.",
+   "not_observed": null
+  },
+  "C53602": {
+   "verdict": "Passed",
+   "observed": "Typing the customer's name with all the spaces removed returned that customer under the Customers heading, together with its jobs and its vehicle.",
+   "not_observed": null
+  },
+  "C53607": {
+   "verdict": "Passed",
+   "observed": "Typing a word from the part's description returned that part under the Parts heading, and typing two words of the description returned it among the matching parts. A part can be found by its description, not only by its number.",
+   "not_observed": null
+  },
+  "C55659": {
+   "verdict": "Passed",
+   "observed": "Typing only part of a number found the record every time: part of the job number found the job, part of the part number found the part, and part of the unit number found the vehicle.",
+   "not_observed": null
+  },
+  "C55661": {
+   "verdict": "Passed",
+   "observed": "Tested twice, and the second is the one that matters. A word matching five kinds of record showed all five on the combined view. A much broader word matching 66 records across ALL EIGHT kinds - jobs, customers, vehicles, parts, suppliers, part sales, purchase orders and supplier invoices - showed every one of the eight, each with rows under its own heading, even though only 33 rows fit on screen. Nothing that matched was squeezed out by the kinds that matched most often, which is what this case exists to catch.",
+   "not_observed": null
+  },
+  "C55667": {
+   "verdict": "Passed",
+   "observed": "Typing part of the company name returned the customer, and typing the full company name returned it again. This is the control the other customer checks depend on, and it holds.",
+   "not_observed": null
+  },
+  "C45156": {
+   "verdict": "Passed",
+   "observed": "With the search panel closed, pressing the keyboard shortcut opened it and put the cursor straight in the search box, ready to type.",
+   "not_observed": null
+  },
+  "C45158": {
+   "verdict": "Passed",
+   "observed": "Search was present and working on a normal screen with no setting switched on and nothing enabled beforehand - it returned results immediately.",
+   "not_observed": null
+  },
+  "C55683": {
+   "verdict": "Passed",
+   "observed": "On a full-size screen the search box shows the shortcut written in it, and hovering explains what it does. On the narrower tablet and phone widths the shortcut is not shown, which is right - there is no keyboard to press it on.",
+   "not_observed": null
+  },
+  "C53583": {
+   "verdict": "Blocked",
+   "observed": "Typing the customer's website address returned nothing at all, although the customer's record does hold that website.",
+   "todo": "The case says to hold this rather than treat it as a fault: the new specification leaves the website out of what a customer can be found by, so this may be a deliberate decision. It needs the Product Owner to say whether searching by website should still work.",
+   "not_observed": null
+  },
+  "C53603": {
+   "verdict": "Blocked",
+   "observed": "Typing the contact's job title returned nothing. The contact does exist on the customer and does carry that exact job title, so the record is there and the search does not reach it.",
+   "todo": "The case says to hold this for the Product Owner: the new specification lists a contact's name, phone and email as searchable but not their job title, so this may be a deliberate decision.",
+   "not_observed": null
+  },
+  "C53601": {
+   "verdict": "Blocked",
+   "observed": "Neither the part's own number nor a word from its name returned the catalogue part. It is a part that has never been stocked, and it cannot be found at all.",
+   "todo": "The case says to hold this for the Product Owner rather than treat it as a fault. It is the change a customer is most likely to notice, because in the previous version every catalogue part could be searched whether or not it had ever been in stock.",
+   "not_observed": null
+  },
+  "C55658": {
+   "verdict": "Blocked",
+   "observed": "Typing a job status did not return the jobs in that status. Typing 'Estimate' returned one job that is marked Paid, matched on other words on the record, and typing a two-word status run together returned nothing.",
+   "todo": "The case says to mark this held and flag it: being able to type a status was how a dispatcher pulled up all the estimates, so the Product Owner needs to decide whether that should come back.",
+   "not_observed": null
+  },
+  "C55660": {
+   "verdict": "Blocked",
+   "observed": "A fragment from the middle of the city name returned nothing, while fragments from the middle of the company name and of the address both found the customer. So mid-word matching works in some places and not others.",
+   "todo": "The case says to mark this held and flag it. The Product Owner needs to decide whether typing a fragment from the middle of any word should find the record, as it did in the previous version.",
+   "not_observed": null
+  },
+  "C55665": {
+   "verdict": "Blocked",
+   "observed": "No part sale exists to search for. Part sales cannot be created on this branch at present, so the check could not be carried out.",
+   "todo": "A part sale needs to be creatable on this branch before this can be run. Once one exists, search the customer's name and look under the Part sales heading.",
+   "not_observed": null
+  },
+  "C55666": {
+   "verdict": "Passed",
+   "observed": "Both the part number written with dashes and the same number run together returned the part under the Parts heading. IMPORTANT: this case was written expecting to fail on this build, and it now passes - the part number works both ways.",
+   "not_observed": null
+  },
+  "C55668": {
+   "verdict": "Passed",
+   "observed": "Typing just the supplier's first word returned it under the Vendors heading in its own right, even though that word also appears on a part and inside the customer's address. Typing the supplier's full name returned it on its own.",
+   "not_observed": null
+  },
+  "C55670": {
+   "verdict": "Passed",
+   "observed": "Typing the contact's first name returned the company, and typing the surname returned it again - both marked as a contact match. Someone who only knows who they speak to can still find the company.",
+   "not_observed": null
+  },
+  "C55672": {
+   "verdict": "Passed",
+   "observed": "Typing the bare job number with no prefix returned that job under the Work orders heading.",
+   "not_observed": null
+  },
+  "C55675": {
+   "verdict": "Passed",
+   "observed": "A search for a made-up reference showed a clear 'No results found' message. The list did not sit empty, keep spinning, or go on showing the previous results.",
+   "not_observed": null
+  },
+  "C45154": {
+   "verdict": "Passed",
+   "observed": "Opening a different record did navigate, which proves the check works. Selecting the record already on screen did not navigate and did not reload the page, and the recently-viewed list was identical before and after - the record was not pushed back to the top.",
+   "not_observed": null
+  },
+  "C53588": {
+   "verdict": "Passed",
+   "observed": "Among the four jobs that match equally and share a status, the three nobody had opened appear most-recently-started first. The one listed above them is the job opened a few minutes earlier, which the case names as a signal that rightly outranks recency.",
+   "not_observed": "These jobs carry a start time but no separate last-changed time, so the order was judged against when each was started. None had been edited since."
+  },
+  "C53586": {
+   "verdict": "Passed",
+   "observed": "A new customer was created and then searched for without reloading or signing out. It came back after 17 seconds, inside the 30 seconds allowed.",
+   "not_observed": "The record was created through the back end rather than through the screen, so the part of the check about it appearing in the recently-viewed list was not exercised fairly and is not being claimed either way."
+  },
+  "C55669": {
+   "verdict": "Blocked",
+   "observed": "The full chassis number returned the vehicle. The last six characters of it returned nothing. Someone reading the short code off a windscreen plate cannot find the vehicle.",
+   "todo": "The case says to hold this for the Product Owner rather than treat it as a fault: matching part of a chassis number was possible in the previous version. Also worth telling him the case is now out of date - it was written expecting the opposite problem, the whole number failing and the front part working, and the behaviour has since changed.",
+   "not_observed": null
+  },
+  "C45153": {
+   "verdict": "Blocked",
+   "observed": "Every kind of record that could be tested opened the right page: a job opened that job, a customer opened that customer's jobs, a vehicle opened that vehicle's jobs under the right owner, a supplier opened the supplier, and a part opened the stock list for that part. The two that matter most to this case could not be tested - the catalogue-only part cannot be found at all, so there is no row to click, and no part sale exists to click either.",
+   "todo": "This needs the catalogue-only part to be findable and a part sale to exist. The catalogue part is the whole point of the case: the previous version opened the catalogue page, and the case exists to check the new version opens something a person can actually use.",
+   "not_observed": null
+  },
+  "C53582": {
+   "verdict": "Blocked",
+   "observed": "Searching the street, the town and the state each returned the customer. Searching its postcode returned nothing at all, although the customer's record does hold that postcode.",
+   "todo": "The case says to hold a postcode miss rather than treat it as a fault: the postcode worked in the previous version but is not in the new specification's list, so the Product Owner needs to decide whether searching by postcode should still work. Worth knowing that the town and the state DO work, so this is specific to the postcode.",
+   "not_observed": null
+  },
+  "C53585": {
+   "verdict": "Blocked",
+   "observed": "Searching the street and the town each returned the supplier. Searching its postcode returned nothing, although the supplier's record does hold that postcode.",
+   "todo": "Same decision as the customer postcode: it worked in the previous version and is not in the new specification's list, so the Product Owner needs to say whether it should still work.",
+   "not_observed": null
+  },
+  "C53604": {
+   "verdict": "Passed",
+   "observed": "Searching the customer's second address line returned that customer under the Customers heading. It had returned nothing before the value was actually put on the record - the record had been left empty.",
+   "not_observed": "The supplier half is being run separately: no supplier in the test data had a second address line, so a value had to be put on one first."
+  },
+  "C55662": {
+   "verdict": "Blocked",
+   "observed": "Searching the company's own phone number returned nothing, written out and as plain digits. Three things rule out the obvious explanations: the number was put onto the record and read back to confirm it; the county, saved in the very same change, IS now found by searching it, so the save worked and the search had caught up; and a SUPPLIER'S phone number, seeded the same way at the same time, IS found. So it is specifically a customer's own phone number that search does not look at.",
+   "todo": "The case says to hold this and flag it. In the previous version a company could be found by its own switchboard number, separately from its contacts' numbers, so the Product Owner needs to decide whether that should come back.",
+   "not_observed": null
+  },
+  "C53606": {
+   "verdict": "Blocked",
+   "observed": "Searching the state returned one supplier, but not the seeded one - it matched on a name that happens to contain the word. The seeded supplier's record does hold that state and it was not returned.",
+   "todo": "The case says to hold this for the Product Owner: the new specification lists a supplier's name, phone, email, street and town as searchable, but not the state.",
+   "not_observed": null
+  },
+  "C55671": {
+   "verdict": "Passed",
+   "observed": "All three ways of typing the name - all lower case, all capitals, and a jumble of both - returned exactly the same seven customers, the seeded one among them. Capitals make no difference.",
+   "not_observed": null
+  },
+  "C53516": {
+   "verdict": "Blocked",
+   "observed": "Searching the vehicle's number plate returned nothing at all - not one result of any kind. The vehicle's record does hold that plate; it was read back off the record to be sure.",
+   "todo": "The case says to hold this rather than treat it as a fault: the number plate was searchable in the previous version, and the new specification does not list it among the things a vehicle can be found by. The Product Owner needs to decide whether it should still work. Worth saying plainly what it costs if it does not - the plate is often the only thing written down when a vehicle is booked in.",
+   "not_observed": null
+  },
+  "C55674": {
+   "verdict": "Passed",
+   "observed": "Search was reached from the header and found the customer at a full desktop size, at tablet width and at phone width. Nothing had to be tapped open first at any size.",
+   "not_observed": "At the two narrower sizes the row of section names does not show its counts. That is a layout difference, not a fault, and the results themselves were all there."
+  },
+  "C55680": {
+   "verdict": "Passed",
+   "observed": "Arrowing down twelve times and back up six only ever landed on result rows. The headings that separate the sections - Customers, Assets, Vendors and the rest - were stepped over every time, going down and coming back, so the highlight never sat on something that cannot be opened.",
+   "not_observed": null
+  },
+  "C55663": {
+   "verdict": "Passed",
+   "observed": "Searching the supplier's phone number returned that supplier, both written out with brackets and dashes and typed as plain digits. It had returned nothing before the number was actually put on the supplier's record - the record had been left without one.",
+   "not_observed": null
+  },
+  "C55679": {
+   "verdict": "Blocked",
+   "observed": "With the box empty, twenty recently-viewed items were listed - so the list is there and working. After typing a reference that matches nothing, the panel showed only the message 'No results for ZZNOSUCHRECORD9999' and the recently-viewed items did not come back. A fruitless search leaves you at a dead end with nothing to click.",
+   "todo": "The case says to record this and hold it for the Product Owner, not to treat it as a fault and not to pass it just because the new specification allows the new behaviour. He needs to decide whether the recently-viewed list should come back when a search finds nothing, as it did before.",
+   "not_observed": null
+  },
+  "C53589": {
+   "verdict": "Passed",
+   "observed": "Typed a word quickly and, without waiting for the results to arrive, kept typing more onto the end. Every character stayed in the box - the final text was exactly what was typed, nothing swallowed. While the results were being fetched the panel showed its normal prompt rather than an error or a frozen list, and the results that finally appeared matched the whole phrase, not the half-typed version.",
+   "not_observed": null
+  },
+  "C45150": {
+   "verdict": "Passed",
+   "observed": "Searched a word that matches records across the board and checked every customer that came back against this organisation's own customer list. All four matched; nothing appeared that does not belong to this organisation.",
+   "not_observed": "One signed-in person belongs to one organisation, so this shows that nothing from outside leaks in. It cannot show what somebody in a different organisation would see - that would need a second sign-in on a second organisation, which this branch does not offer."
+  },
+  "C55682": {
+   "verdict": "Passed",
+   "observed": "Every result row carries a small picture on its left, and the five kinds on screen - jobs, customers, vehicles, parts and suppliers - each use their own distinct picture. No row was left without one, and no two kinds share the same one, so you can tell at a glance what each row is.",
+   "not_observed": null
+  },
+  "C45160": {
+   "verdict": "Blocked",
+   "observed": "Selecting a result does send usage messages - two went out at the moment of the click, where none was going out while the panel sat idle, and the listener demonstrably caught the traffic. But the messages that could be read are the general ones any screen sends when you move to it. No message specific to using the search was seen, and one of the two could not be read at all.",
+   "todo": "This cannot be answered from the browser: one of the two messages is sent in a form the browser will not show us. Someone with access to the usage-reporting account needs to look at whether a search-usage entry arrives when a result is picked. Until then all we honestly know is that something is recorded, not what.",
+   "not_observed": null
+  },
+  "C55664": {
+   "verdict": "Passed",
+   "observed": "Searching the vehicle's model returned it under the Assets heading, among the other vehicles of that model. It had not been returned before, because the vehicle was recorded with the wrong model - once its record actually said what it was meant to say, the search found it.",
+   "not_observed": null
+  },
+  "C55673": {
+   "verdict": "Blocked",
+   "observed": "Typed a word and pressed Enter without touching the arrow keys. Something did open, so Enter works on its own - but it opened the wrong record. The top result was a job; what opened was a customer sitting partway down the list, and that customer is the one the panel had quietly highlighted from the moment the results appeared. Checked twice, once with nothing else clicked first, and it behaved the same both times.",
+   "todo": "The case says to hold this and flag it. Before, the first result was highlighted as soon as results appeared, so typing and pressing Enter took you straight to the best match. Now it takes you somewhere else, which is worse than doing nothing: someone typing and pressing Enter out of habit lands on a record they did not ask for and may not notice. Worth deciding whether this is a deliberate change or simply wrong.",
+   "not_observed": null
+  },
+  "C53605": {
+   "verdict": "Failed",
+   "observed": "Typing the year and the make together - '2019 Freightliner', the most natural way anyone would look for a vehicle - returned no vehicles at all. Taken apart, each piece works: the year on its own returns twenty vehicles, the make on its own returns twenty, and the make with the model returns twenty including ours. It is only when the YEAR is combined with another word that everything disappears: '2019 Freightliner', 'Cascadia 2019' and '2019 Cascadia' all return nothing, in either order. The vehicle's record carries the right year, make and model - that was checked and corrected first - and searching its model does find it, so the search is up to date.",
+   "todo": "Searching a vehicle by its year together with the make or model needs to work. Both the old product and the written requirements say the year is one of the things a vehicle can be found by, so this is not a decision anyone needs to make - it is simply not working. The useful detail for whoever fixes it: the year on its own is fine, so the year is being recorded; it is combining the year with any second word that empties the results.",
+   "not_observed": null
+  },
+  "C53587": {
+   "verdict": "Failed",
+   "observed": "A new job was created and then searched for by its number, over and over, without reloading or signing out. It did not come back until about 85 seconds had passed. The requirement allows 30. The method is not in doubt: a new CUSTOMER, created and timed exactly the same way in the same session, came back after 17 seconds - so the clock and the search can both see a record inside the allowed window when there is one to see.",
+   "todo": "A newly created job needs to be findable within 30 seconds, as the requirement says and as a new customer already manages. Useful detail for whoever looks: customers appear quickly and jobs do not, so the two are not being refreshed the same way. The other two flows in this case still need running once part sales can be created here.",
+   "not_observed": "Two of the three flows in this case were not run. A part sale cannot be created on this branch at all, and receiving a part through an order was not exercised. Only the new-job flow was timed."
+  },
+  "C45144": {
+   "verdict": "Passed",
+   "observed": "Two real people on this branch searched the same word minutes apart. The foreman, who has access to the parts catalogue, got 15 results across five kinds including the part. The technician, who does not, got 13 results across three kinds and NO parts at all - the Parts heading did not appear for them. Everything else was identical between the two: the same eight jobs, the same four customers, the same one vehicle. Only the part and the supplier differed, which is exactly the difference their access should make. Opening a part result also lands on the stock record showing how many are on hand, not the catalogue entry.",
+   "not_observed": null
+  },
+  "C45145": {
+   "verdict": "Passed",
+   "observed": "The same two people, the same word, minutes apart. The foreman saw the supplier under the Vendors heading. The technician, who does not have supplier access, saw no suppliers at all and no Vendors heading. The jobs, customers and vehicle they each saw were identical, so nothing else differed between the two views.",
+   "not_observed": null
+  },
+  "C45152": {
+   "verdict": "Passed",
+   "observed": "Searched a word at the first location and got 16 results including 8 jobs. Switched to the second location the way a person does - through the menu by the name at the top of the screen - and confirmed the screen really had moved, because the location shown at the top changed. Searched the same word again: the 8 jobs were gone. The results follow the location you are on.",
+   "not_observed": null
+  },
+  "C45151": {
+   "verdict": "Passed",
+   "observed": "The same search at two locations, one after the other. Jobs: 8 at the first location, none at the second - so jobs really are limited to where you are. Customers: 7 at both. Vehicles: 1 at both - identical, so those are not limited by location, which is what this case requires. The screen was confirmed to have actually moved between the two, by the location name at the top of the page.",
+   "not_observed": "Suppliers and parts did not match the word used, so those two were not shown either way and nothing is claimed about them. Part sales could not be checked at all - none can be created on this branch at present."
+  },
+  "C45148": {
+   "verdict": "Passed",
+   "observed": "Across roughly seventy searches in this pass the results only ever contained the nine kinds of record the panel is built to show - jobs, customers, vehicles, parts, suppliers, part sales, purchase orders, supplier invoices - and nothing else ever appeared. The stronger evidence is what a limited person sees: a technician, who has no access to parts or suppliers, got no parts and no suppliers at all and no headings for them, while a foreman searching the same word got both. What a person is not permitted is not shown.",
+   "not_observed": "A genuinely new or unknown kind of record cannot be introduced from outside the product, so the case cannot be pushed further than this from the screen."
+  },
+  "C45142": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone WITHOUT access to jobs. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished.",
+   "not_observed": null
+  },
+  "C45143": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone who can only handle part sales. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well. Part sales also cannot be created on this branch at present, so this one needs both.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished.",
+   "not_observed": null
+  },
+  "C45146": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone WITHOUT access to customers. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished.",
+   "not_observed": null
+  },
+  "C45147": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone who only clocks in and out. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished.",
+   "not_observed": null
+  },
+  "C45149": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone who viewed a record and then lost access to it. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well. It needs that person's job changed twice - once to let them see the record, once to take it away.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished.",
+   "not_observed": null
+  },
+  "C45159": {
+   "verdict": "Blocked",
+   "observed": "This check needs someone signed in as someone with no home location set. Nobody on this branch has that job, and a job cannot be given to anyone here: the staff screen refuses to save any change with 'Location is a required field', and its location box shows the app's own 'No results' even though this branch has two locations that the menu by your name lists and switches between perfectly well.",
+   "todo": "Give one spare test person that job for ten minutes and this can be run in a few minutes. The thing standing in the way is the location box on the staff screen not offering the locations that already exist - once it does, this and the other five like it can all be finished.",
+   "not_observed": null
+  }
+ }
+}

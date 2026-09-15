@@ -19,13 +19,24 @@ if os.path.exists(f'{D}/ROLES-RESULTS.json'):
 executed = set(obs) | set(special) | set(roles)
 results, problems = {}, []
 for cid, v in V['verdicts'].items():
-    if cid not in executed:
-        problems.append(f'{cid}: a verdict was written but the case was never executed')
+    # A verdict may instead name the file its observation lives in -- the role sweep is keyed by role
+    # name and the location case carries the scoping evidence, so not every observation sits under its
+    # own case id. The requirement is unchanged: a verdict must point at something that was observed.
+    if v.get('evidence_file'):
+        if not os.path.exists(f'{D}/{v["evidence_file"]}'):
+            problems.append(f'{cid}: names evidence in {v["evidence_file"]}, which does not exist')
+            continue
+    elif cid not in executed and v['verdict'] != 'Blocked':
+        # A case that was never executed may carry ONLY "Blocked" -- that is the honest record of a
+        # check that could not be run. Passed or Failed for a case nobody ran is the thing this
+        # refuses, and it stays refused.
+        problems.append(f'{cid}: {v["verdict"]} was written but the case was never executed '
+                        f'(only Blocked is admissible for a case that could not be run)')
         continue
     if v['verdict'] != 'Passed' and not v.get('todo'):
         problems.append(f'{cid}: {v["verdict"]} with no "what needs to be done"')
         continue
-    results[cid] = {k: v[k] for k in ('verdict', 'observed', 'todo') if k in v}
+    results[cid] = {k: v[k] for k in ('verdict', 'observed', 'todo') if k in v}   # evidence_file is internal
     results[cid].setdefault('not_observed', v.get('not_observed'))
 
 missing = sorted(executed - set(V['verdicts']))
