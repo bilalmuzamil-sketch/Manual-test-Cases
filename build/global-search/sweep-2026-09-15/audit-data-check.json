@@ -1,0 +1,592 @@
+{
+ "when_utc": "2026-09-15T07:37:18.999986Z",
+ "operation": "update_case",
+ "_why": "One five-second data check at the top of every case, with an explicit instruction NOT to hand-build missing records - hand-made data makes a test pass for the wrong reason.",
+ "cases": [
+  {
+   "c_id": 45142,
+   "title": "Work Orders results appear only for users with Work Orders access",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45142",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45143,
+   "title": "A Part-Sales-only role sees Part Sales but not Parts or Vendors",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45143",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45144,
+   "title": "Part results appear only with Catalog & Inventory access",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45144",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45145,
+   "title": "Vendor results appear only with Vendor & Order Management access",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45145",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45146,
+   "title": "Customer and Asset results both require Customers access",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45146",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45147,
+   "title": "A Time Clock role gets no global search results at all",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45147",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45148,
+   "title": "An unrecognised result type is hidden unless explicitly permitted",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45148",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45149,
+   "title": "Recent items the user can no longer access are hidden",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45149",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45150,
+   "title": "Results never include another organization's records",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45150",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45151,
+   "title": "Work Orders and Part Sales are limited to the current location",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45151",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45152,
+   "title": "Switching location refreshes results to the new location",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45152",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45153,
+   "title": "Selecting each result type opens the right record",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45153",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45154,
+   "title": "Selecting the record you are already on does not re-navigate",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45154",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45155,
+   "title": "The vehicles group is shown to users as 'Assets'",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45155",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45156,
+   "title": "The keyboard shortcut opens global search",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45156",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45157,
+   "title": "A record that matches more than once appears only once",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45157",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45158,
+   "title": "Global search is available with no feature-flag toggle",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45158",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45159,
+   "title": "A user with no default workplace does not break search",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45159",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45160,
+   "title": "Selecting a result records a usage analytics event",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45160",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 45161,
+   "title": "Search needs at least two characters before it matches",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45161",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53516,
+   "title": "Searching an asset's licence plate finds that asset",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53516",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53578,
+   "title": "Finding a work order by its customer's name still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53578",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53579,
+   "title": "A work order number with the shop number in front still finds it",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53579",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53580,
+   "title": "Finding an asset by its unit number still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53580",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53581,
+   "title": "Finding an asset by the customer who owns it still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53581",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53582,
+   "title": "Finding a customer by address, city or postal code still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53582",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53583,
+   "title": "Finding a customer by their website still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53583",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53584,
+   "title": "Finding a vendor by email address still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53584",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53585,
+   "title": "Finding a vendor by address, city or postal code still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53585",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53586,
+   "title": "A newly created customer is findable within 30 seconds",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53586",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53587,
+   "title": "A new work order or part sale is findable within 30 seconds",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53587",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53588,
+   "title": "More recent work orders rank above older ones of equal relevance",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53588",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53589,
+   "title": "Typing is never lost while search results are loading",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53589",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53601,
+   "title": "A catalogue part that is not in inventory can still be found",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53601",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53602,
+   "title": "Finding a customer by their name with the spaces removed",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53602",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53603,
+   "title": "Finding a customer or vendor by a contact's job title",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53603",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53604,
+   "title": "Finding a customer or vendor by address line 2",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53604",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53605,
+   "title": "Finding an asset by its year",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53605",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53606,
+   "title": "Finding a vendor by state or province",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53606",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 53607,
+   "title": "Finding a part by its description",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/53607",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55658,
+   "title": "Finding a work order by typing its status still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55658",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55659,
+   "title": "Finding a record by typing only part of its number still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55659",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55660,
+   "title": "Finding a record by a fragment from the middle of a word still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55660",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55661,
+   "title": "Every matching type still appears when a search matches many records",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55661",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55662,
+   "title": "Finding a customer by the company's own main phone number",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55662",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55663,
+   "title": "Finding a vendor by phone number",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55663",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55664,
+   "title": "Finding an asset by its model",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55664",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55665,
+   "title": "Finding a part sale by its customer's name",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55665",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55666,
+   "title": "Finding a part by its part number still works",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55666",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55667,
+   "title": "Finding a customer by company name",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55667",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55668,
+   "title": "Finding a vendor by name",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55668",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55669,
+   "title": "Finding an asset by its VIN, in full and in part",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55669",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55670,
+   "title": "Finding a customer or vendor by a contact's first or last name",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55670",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55671,
+   "title": "Search finds records whatever mix of capitals is typed",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55671",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55672,
+   "title": "Finding a work order by its plain number with no prefix",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55672",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55673,
+   "title": "Pressing Enter opens the top result without arrowing to it",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55673",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55674,
+   "title": "Search can be reached on a phone and a tablet as well as a desktop",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55674",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55675,
+   "title": "A search that matches nothing says so plainly",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55675",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55679,
+   "title": "Your recent items come back when a search finds nothing",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55679",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55680,
+   "title": "Arrow keys move between results and skip the group headings",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55680",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55682,
+   "title": "Each result row shows an icon telling you what kind of record it is",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55682",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55683,
+   "title": "The keyboard shortcut is shown in the search box so people can find it",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55683",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55685,
+   "title": "Typing a name does not bring back other differently spelled names",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55685",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55686,
+   "title": "The record that actually matches what you typed is listed first",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55686",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55684,
+   "title": "After switching location you never see the old location's records",
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55684",
+   "check_present": true,
+   "exactly_once": true,
+   "original_content_kept": true,
+   "verdict": "PASS"
+  }
+ ]
+}
