@@ -114,41 +114,58 @@ const boxOfField=label=>{
   const r=c.getBoundingClientRect();
   return {x:r.x,y:r.y,w:r.width,h:r.height};
 };
+// THE TRAP THIS FIXES: the staff table behind the dialog is itself a virtual-scroll list of
+// .q-item rows, so an unscoped '.q-item, [role=option], .q-virtual-scroll__content > *' returns
+// SIXTY-FIVE STAFF ROWS and reads as a populated dropdown. It then "picks an option" by clicking a
+// person in the table. Options are read from the POPUP ONLY -- the last .q-menu on the page, which
+// is the one this click opened.
+const menuCount=async()=>page.evaluate(()=>document.querySelectorAll('.q-menu').length);
 const readOptions=async()=>{
   for(let i=0;i<12;i++){
     await page.waitForTimeout(800);
     const o=await page.evaluate(()=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-      return [...document.querySelectorAll('.q-menu .q-item, [role=option], .q-virtual-scroll__content > *')]
-        .filter(vis).map(e=>(e.innerText||'').replace(/\s+/g,' ').trim()).filter(Boolean);});
-    if(o.length) return o;
+      const menus=[...document.querySelectorAll('.q-menu')].filter(vis);
+      if(!menus.length) return null;
+      const m=menus[menus.length-1];
+      const items=[...m.querySelectorAll('.q-item,[role=option]')].filter(vis)
+        .map(e=>(e.innerText||'').replace(/\s+/g,' ').trim()).filter(Boolean);
+      return {items, menuText:(m.innerText||'').replace(/\s+/g,' ').trim().slice(0,200)};});
+    if(o && o.items.length) return o;
+    if(o) LASTMENUTEXT=o.menuText;
   }
-  return [];
+  return {items:[], menuText:LASTMENUTEXT};
 };
+let LASTMENUTEXT=null;
 const pickOption=async text=>{
-  const box=await page.evaluate(t=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
-    const all=[...document.querySelectorAll('.q-menu .q-item, [role=option], .q-virtual-scroll__content > *')].filter(vis);
-    const hit=all.find(e=>(e.innerText||'').includes(t)); if(!hit) return null;
-    const r=hit.getBoundingClientRect(); return {x:r.x,y:r.y,w:r.width,h:r.height};}, text);
-  if(!box) return false;
-  await page.mouse.move(box.x+box.w/2, box.y+box.h/2); await page.waitForTimeout(150);
-  await page.mouse.down(); await page.waitForTimeout(80); await page.mouse.up();
-  await page.waitForTimeout(1500); return true;
+  const r=await clickReal(t=>{const vis=e=>{const r=e.getBoundingClientRect();return r.width>2&&r.height>2;};
+    const menus=[...document.querySelectorAll('.q-menu')].filter(vis);
+    if(!menus.length) return null;
+    const m=menus[menus.length-1];
+    const hit=[...m.querySelectorAll('.q-item,[role=option]')].filter(vis)
+      .find(e=>(e.innerText||'').replace(/\s+/g,' ').trim().includes(t));
+    if(!hit) return null; hit.scrollIntoView({block:'center'});
+    const b=hit.getBoundingClientRect(); return {x:b.x,y:b.y,w:b.width,h:b.height};}, text);
+  await page.waitForTimeout(1800); return r;
 };
 
 // --- ROLE
 await clickReal(boxOfField,'Role');
+R.menusBeforeRole=await menuCount();
 R.roleOptions=await readOptions();
-L('role options:', R.roleOptions.length, JSON.stringify(R.roleOptions).slice(0,300));
+L('role options:', R.roleOptions.items.length, JSON.stringify(R.roleOptions.items).slice(0,300),
+  '| menu text:', (R.roleOptions.menuText||'').slice(0,120));
 R.rolePicked=await pickOption(WANT_ROLE);
-L('role picked:', R.rolePicked);
+L('role picked:', JSON.stringify(R.rolePicked));
 
 // --- LOCATION, the one that was wrongly called empty
 await clickReal(boxOfField,'Location');
+R.menusBeforeLocation=await menuCount();
 R.locationOptions=await readOptions();
-L('LOCATION OPTIONS:', R.locationOptions.length, JSON.stringify(R.locationOptions).slice(0,300));
+L('LOCATION OPTIONS:', R.locationOptions.items.length, JSON.stringify(R.locationOptions.items).slice(0,300),
+  '| menu text:', (R.locationOptions.menuText||'').slice(0,120));
 await page.screenshot({path:`${DIR}/run-evidence2/location-list-open.png`}).catch(()=>{});
 R.locationPicked=await pickOption('Heavy Duty');
-L('location picked:', R.locationPicked);
+L('location picked:', JSON.stringify(R.locationPicked));
 R.fieldsAfterPick=await fields();
 
 // --- SAVE
