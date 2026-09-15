@@ -298,3 +298,30 @@ C45159 (no home branch) — https://shopview.testrail.io/index.php?/tests/view/2
 Closed today: C45142, C45143, C45149, C45153, C55684, C55685, C55686.
 The ten answered: C53516 · C53582/C53585 · C55662 · C53606 · C53603 · C53601 · C55658 · C55669 ·
 C55679 · C55660.
+
+## B-NEW (15 September 2026) — two supplier findings held under the no-filing rule
+
+Found while running the corrected cases on run 415, branch sv9160, build v26.36.4-7869ff2. Neither is
+filed; both are put to the QA lead in `build/global-search/reports/STATUS-2026-09-15-old-search-safety-net.md`.
+
+| | Finding | Evidence |
+|---|---|---|
+| B-N1 | A supplier cannot be found by their **address line 2** although a customer can. The supplier record prints `Address 2: Bay 12C` on screen and typing it returns nothing; the customer's `Dock 7B` returns the customer. | C53604 / test 2959370, and `SUPPLIER-ADDRESS.json` |
+| B-N2 | A supplier cannot be found by their **website** (`kestrelsupply-zzt.com`). The customer equivalent is already filed as SV-10003; the supplier side had never been checked. | `SUPPLIER-ADDRESS.json` |
+
+**The whole address picture, measured field by field on 15 September** — so this is one decision, not four:
+
+| Field | Supplier | Customer |
+|---|---|---|
+| name | found | found |
+| address line 1 (and a word from it) | found | found |
+| address line 2 | **not found** | found |
+| city / town | found | found |
+| state | **not found** (SV-10006) | found |
+| postcode | **not found** (SV-10005) | **not found** (SV-10002) |
+| website | **not found** | **not found** (SV-10003) |
+| email | found | — |
+
+**B-N3 — the 99 feature checks in run 415 have never been run.** They test the new search against its
+own written requirements rather than against the old product. The QA lead was asked whether to start
+them; until he answers they stay untouched.
