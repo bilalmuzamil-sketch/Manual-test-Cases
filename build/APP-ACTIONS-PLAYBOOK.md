@@ -4421,3 +4421,69 @@ negative** (Rule 104). This alone nearly produced three false "the seed data is 
 ### Q5 · A duplicate row in results may be duplicate DATA, not a de-duplication defect
 Global search returned the same vendor name twice. **The two rows carried DIFFERENT ids** — two real
 records from a double-run seeder, not a dedup bug. **Compare the ids before writing the ticket.**
+
+### Q6 · 🔴 DISCOVERING AN UNKNOWN ENDPOINT — POST AN EMPTY BODY AND READ THE REFUSAL
+
+Found 2026-09-15 rebuilding the Global Search seed data. It found three unknown routes in one pass
+each, and it is the fastest method available on this API because **the refusals are precise**:
+
+| Answer | What it means | What to do |
+|---|---|---|
+| **404** `'resource' was not found` | wrong route | try the next spelling |
+| **405** Method Not Allowed | **right path, wrong verb** | try POST / PUT / PATCH on that same path |
+| **400** listing field names | **right route**, missing arguments | it just told you the payload |
+
+Found this way: `POST /api/contacts/create` (company_id + first_name) · `POST
+/api/parts-catalogue/change-vendor` (vendor_id, name, credit_term, credit_limit, tax_id) · `POST
+/api/inventory/parts/create` (catalog_part_id, category_id, quantity, cost, tags, bins).
+
+**🔴 AND THE RULE FOR WHEN IT FAILS.** Eight spellings of a part-sale create route all answered 404.
+The real route is **`POST /api/part-sales` — the same path as the LIST, a different verb** — because
+that one route is REST while the rest of the API is `/resource/verb`. No amount of guessing reaches
+it. **WHEN GUESSING HAS FAILED TWICE, READ THE ROUTE OUT OF THE PRODUCT SOURCE:** one `git grep` for
+the `#[Route(...)]` attribute gives the path, the verb and the payload. It is faster than the third
+guess, and unlike a guess it cannot be subtly wrong.
+
+### Q7 · 🔴 A 2xx IS NOT EVIDENCE A WRITE LANDED — read the record back, every time
+
+`POST /api/vehicles/change` answers **201 to a model NAME and changes nothing**: it works in ids
+(`vehicle_id`, not `id`; `vehicle_model_id`, not `model_name`). A seeded vehicle was declared a 2019
+Freightliner Cascadia and was actually a 1000HS for days, and three cases sat unrunnable for a reason
+no status code could show. `POST /api/customers/change` has the same shape of trap: a **sparse patch
+is ignored** — send the whole record with the fields replaced.
+
+**It was visible the whole time and still missed:** the vehicle rendered in every result row as
+`2019 Freightliner ????`. The `????` sat in hundreds of lines of captured evidence, unread, because
+the eye was on the zeros rather than on what the non-zero rows actually said.
+
+### Q8 · WHEN THE LOOKUP TABLE IS NOT EXPOSED, THE EXISTING DATA IS THE LOOKUP TABLE
+
+No vehicle-models endpoint answers on `sv9160` — every shape of `/api/vehicles/models`,
+`/api/vehicle-models` and `/api/vehicles/makers/{id}/models` returns 404. But the branch already holds
+dozens of Cascadia vehicles, so the model id comes off one of them. Likewise a bin cannot be created
+by name (`[0][id] This field is missing` / `[0][name] This field was not expected`) — the bin id comes
+off a part that already sits in one. Both are now declarative directives in the seed manifest rather
+than hardcoded ids that rot on the next redeploy.
+
+### Q9 · 🔴 A COMPANY IS A BUSINESS; A "CUSTOMER" IS A PERSON AT IT — and this blocks record creation
+
+`/api/vehicles/create` wants **`customer_id`, and that is a CONTACT, not the company.** Sending the
+company id answers `400 {"customer_id":"Not found"}` — which reads like a bad id rather than the wrong
+KIND of id. Consequence, found when a redeploy wiped a branch: with no contact there is no vehicle,
+and with no vehicle there are no work orders. **One undeclared record silently blocked three record
+types and about twenty test cases**, hidden for days because a contact left over from an earlier
+ad-hoc run had been propping the whole chain up.
+
+There is no contacts list endpoint (`/api/contacts` 404s in every shape). Contacts are read from
+**`/api/customers/view/{company_id}` → `data.company.contacts[]`**, which carries the id, both names,
+the job title, email and telephone.
+
+**The transferable lesson:** build fixture lists from **what the create endpoints demand**, not only
+from what the test cases search for. Those are different lists, and the second one is invisible until
+the environment is empty.
+
+### Q10 · LIST ENDPOINTS DO NOT ALL ANSWER UNDER `collection`
+
+`/api/part-sales` returns its rows under **`partSales`**. Every other list on this API uses
+`collection`, so a script assuming the house style reads an empty list and reports a record missing
+while it is sitting right there. Check the key before concluding anything is absent (Rule 104).
