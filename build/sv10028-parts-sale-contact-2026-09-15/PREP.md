@@ -1,3 +1,7 @@
+> **DROPPED 2026-09-15 — the QA lead stood this down ("Ok forget sv-10028").**
+> Not tested, no QA branch was ever supplied. This note is kept for the record only;
+> do not pick it up as pending work.
+
 # SV-10028 — prep, written before the QA branch exists (2026-09-15)
 
 **Ticket:** *"Parts sale contact change fails with 'invalid uuid' and defaults to a different contact"*
