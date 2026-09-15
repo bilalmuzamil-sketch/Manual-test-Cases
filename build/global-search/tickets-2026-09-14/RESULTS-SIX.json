@@ -1,0 +1,62 @@
+{
+ "pass_meta": {
+  "what": "the six corrected cases the handoff asked for, plus the timing case whose recorded result today's measurement contradicts",
+  "branch": "sv9160",
+  "build": "v26.36.4-7869ff2",
+  "when": "15 September 2026"
+ },
+ "results": {
+  "C55662": {
+   "verdict": "Failed",
+   "observed": "Typing the company's whole telephone number with dashes brought the customer back. Typing only the last part of the same number brought nothing back at all - the panel said there were no results, and every group showed nought. This is outcome 1 of the three the case lists, so it is the problem already reported and nothing new is being raised.",
+   "not_observed": null,
+   "ticket": "Already reported: SV-10057 - a customer cannot be found by part of their telephone number. https://shopview.atlassian.net/browse/SV-10057",
+   "todo": "What needs to be done: nothing by the tester. The report is already with the team. Re-run this once a fix ships - if both searches then work, mark it Passed and tell the QA lead so the report can be closed.",
+   "technical": "Typed 419-555-0143 -> Customers group returned ZZAUTOTEST Bridgeport Hauling. Typed 555-0143 -> all groups 0, panel read \"No results for 555-0143\". Branch sv9160, build v26.36.4-7869ff2."
+  },
+  "C53605": {
+   "verdict": "Failed",
+   "observed": "Typing the vehicle's year and make together brought back no vehicle at all - the Assets group was empty, while thirty-five other things were found. This is outcome 1 of the three the case lists, so it is the problem already reported and nothing new is being raised.",
+   "not_observed": null,
+   "ticket": "Already reported: SV-10055 - a vehicle cannot be found by its year and make typed together. https://shopview.atlassian.net/browse/SV-10055",
+   "todo": "What needs to be done: nothing by the tester. The report is already with the team. Re-run this once a fix ships - if the vehicle then comes back, mark it Passed and tell the QA lead so the report can be closed.",
+   "technical": "Typed 2019 Freightliner -> All 35, Assets 0; what came back was 15 parts, 2 part sales and 18 purchase orders. The same vehicle returns on its unit number ZZT-4471 in the same sitting. Branch sv9160, build v26.36.4-7869ff2."
+  },
+  "C55664": {
+   "verdict": "Passed",
+   "observed": "Typing the vehicle's model on its own brought the vehicle back under Assets, which is what the case asks for.",
+   "not_observed": null,
+   "technical": "Typed Cascadia -> Assets group returned 2019 Freightliner Cascadia. Branch sv9160, build v26.36.4-7869ff2."
+  },
+  "C55670": {
+   "verdict": "Failed",
+   "observed": "Three of the four searches worked: the contact's first name, the contact's last name and the contact's whole direct-line number each brought the customer back. The fourth did not - typing only the last part of that same number brought nothing back at all. The case requires all four, so it fails on the fourth.",
+   "not_observed": null,
+   "ticket": "The same cause as the report already raised for the company's number: SV-10057 - a customer cannot be found by part of their telephone number. https://shopview.atlassian.net/browse/SV-10057 . It is now known to apply to a contact's own number as well, and that has been passed to the QA lead.",
+   "todo": "What needs to be done: nothing by the tester. Re-run this once a fix for the partial telephone number ships - if the fourth search then works too, mark it Passed.",
+   "technical": "Typed Marlene -> customer returned. Okonkwo -> customer returned. 419-555-0177 -> customer returned. 555-0177 -> all groups 0. Branch sv9160, build v26.36.4-7869ff2."
+  },
+  "C53579": {
+   "verdict": "Passed",
+   "observed": "A real job number was read off the screen first, and then written five different ways - with and without the dash, and with the shop number in front in three of the forms. Every one of the five brought back the same job.",
+   "not_observed": null,
+   "technical": "Job S9160-17613, shop number 9160. Typed S-17613, S17613, S916017613, S9160-17613 and 9160-17613; the Work orders group returned that job on all five. Branch sv9160, build v26.36.4-7869ff2."
+  },
+  "C53604": {
+   "verdict": "Failed",
+   "observed": "The customer half worked: typing the customer's address line 2 brought the customer back. The supplier half did not - typing the supplier's address line 2 brought nothing back at all, even though that supplier's record shows it on screen under the heading Address 2. The case asks for both halves, so it fails on the supplier half.",
+   "not_observed": null,
+   "ticket": "Not yet reported. This is a new finding and it is with the QA lead, because no report may be opened without his say-so.",
+   "todo": "What needs to be done: nothing by the tester - the finding is with the QA lead. Do not raise a report for it yourself.",
+   "technical": "Typed Dock 7B -> Customers returned ZZAUTOTEST Bridgeport Hauling. Typed Bay 12C -> all groups 0, while the supplier page /parts/vendor/1677318c-6eb5-454c-92f7-20c6d387ba8a/contacts shows Address 2: Bay 12C. Branch sv9160, build v26.36.4-7869ff2.",
+   "ticket_held": true
+  },
+  "C53587": {
+   "verdict": "Passed",
+   "observed": "A brand new job was created and its number typed into the search box straight away. It came back after ten seconds, which is inside the thirty seconds this case asks for. The whole thing was done three times over, on three separate new jobs, and every one came back after ten seconds. Ten seconds is simply the first moment anything was typed, so the true figure is ten seconds or less. This replaces an earlier result on this test that recorded about eighty-five seconds; that reading could not be reproduced.",
+   "not_observed": "The part sale half of this case was not exercised - part sales cannot be created on this branch.",
+   "todo": "What needs to be done: nothing. The earlier report about a delay has been closed as not reproducing.",
+   "technical": "Jobs S9160-17617, S9160-17618 and S9160-17619 created through /api/work-orders/create and each searched by its bare number; found on the first poll at 10s in all three runs, and each job deleted afterwards. Branch sv9160, build v26.36.4-7869ff2."
+  }
+ }
+}

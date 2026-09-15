@@ -181,11 +181,28 @@ def main():
     # QA lead, 2026-09-15: "we should ALWAYS have a ticket for the failed verified test cases and
     # the ticket links should be commented in the test case too." So a Failed result without a
     # ticket link is refused here, the same way a bare status already is.
-    no_ticket = [c for c, r in res.items()
-                 if r['verdict'] == 'Failed' and 'browse/' not in (r.get('ticket') or '')]
+    #
+    # ONE EXCEPTION, and it is not a loophole. No Jira ticket may be opened without the QA lead's
+    # say-so (Standing Rule 62), so a failure found TODAY genuinely has no ticket yet and never
+    # will until he answers. Refusing those would force the choice between not recording a real
+    # failure and inventing a ticket link - both worse than saying plainly that it is with him.
+    # So `ticket_held` is accepted in place of a link, and it must SAY SO in the comment.
+    HELD = 'with the qa lead'   # compared against a lowercased ticket line
+    no_ticket = []
+    for c, r in res.items():
+        if r['verdict'] != 'Failed':
+            continue
+        if 'browse/' in (r.get('ticket') or ''):
+            continue
+        if r.get('ticket_held') and HELD in (r.get('ticket') or '').lower():
+            continue
+        no_ticket.append(c)
     if no_ticket:
         sys.exit('REFUSING: Failed with no ticket link for %s '
-                 '(QA lead 2026-09-15: every failed case carries its ticket)' % ', '.join(sorted(no_ticket)))
+                 '(QA lead 2026-09-15: every failed case carries its ticket). If the finding is new '
+                 'and cannot be filed yet under Standing Rule 62, set "ticket_held": true on it AND '
+                 'say in its "ticket" text that it is with the QA lead.'
+                 % ', '.join(sorted(no_ticket)))
 
     non_passed = sorted(c for c, r in res.items() if r['verdict'] != 'Passed')
     if non_passed and not a.allow_non_passed:

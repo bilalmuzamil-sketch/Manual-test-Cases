@@ -1,0 +1,199 @@
+{
+ "at": "2026-09-15T19:34:53.428Z",
+ "cases": {
+  "C55662": {
+   "test": 2977474,
+   "steps": [
+    {
+     "typed": "419-555-0143",
+     "group": "customers",
+     "count": 1,
+     "rows": [
+      "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio"
+     ]
+    },
+    {
+     "typed": "555-0143",
+     "group": "customers",
+     "count": 0,
+     "rows": []
+    }
+   ],
+   "wholeNumberFound": true,
+   "partOfNumberFound": false,
+   "verdict": "Failed",
+   "why": "the whole number returns the customer and only the last part of it returns nothing - exactly the known problem SV-10057, so nothing new is raised"
+  },
+  "C53605": {
+   "test": 2959371,
+   "steps": [
+    {
+     "typed": "2019 Freightliner",
+     "group": "assets",
+     "count": 0,
+     "rows": []
+    }
+   ],
+   "found": false,
+   "verdict": "Failed",
+   "why": "the Assets group came back empty - exactly the known problem SV-10055, so nothing new is raised"
+  },
+  "C55664": {
+   "test": 2977476,
+   "steps": [
+    {
+     "typed": "Cascadia",
+     "group": "assets",
+     "count": 20,
+     "rows": [
+      "Cascadia2020 Freightliner Cascadia",
+      "LH06C2018 Freightliner Cascadia Lansing Truck and Trailer Repair",
+      "AB112024 Freightliner Cascadia Earlimart Fleet Services",
+      "ZZT-44712019 Freightliner Cascadia ZZAUTOTEST Bridgeport Hauling",
+      "TRUCK2018 Freightliner Cascadia Johnson Truck Centre",
+      "2023 Freightliner Cascadia"
+     ]
+    }
+   ],
+   "found": true,
+   "verdict": "Passed",
+   "why": "the vehicle came back under Assets when its model was typed"
+  },
+  "C55670": {
+   "test": 2980692,
+   "steps": [
+    {
+     "typed": "Marlene",
+     "group": "customers",
+     "count": 11,
+     "rows": [
+      "ZZAUTOTEST Marlene Freight Lines 820 Tallow Bend Road, Fernvale, Ohio",
+      "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+      "≈ close match: ZZAUTOTEST Darlene Cartage 77 Ridgeway Spur, Fernvale, Ohio",
+      "Helena-West Helena Heavy Duty Truck & Equipment Repair Contact match · 44250 Lopez Alley A",
+      "Fullthrottle Mobile Truck & Trailer Repair Contact match · 4707 Hector Field Apt. 772, Car",
+      "Hanford Roadside Truck Repair Contact match · 804 Weber Fields, Ericton, Quebec"
+     ]
+    },
+    {
+     "typed": "Okonkwo",
+     "group": "customers",
+     "count": 1,
+     "rows": [
+      "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio"
+     ]
+    },
+    {
+     "typed": "419-555-0177",
+     "group": "customers",
+     "count": 1,
+     "rows": [
+      "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio"
+     ]
+    },
+    {
+     "typed": "555-0177",
+     "group": "customers",
+     "count": 0,
+     "rows": []
+    }
+   ],
+   "found": {
+    "first": true,
+    "last": true,
+    "whole": true,
+    "part": false
+   },
+   "verdict": "Failed",
+   "why": "one or more of the four searches did not return the customer"
+  },
+  "C53579": {
+   "test": 2959356,
+   "jobNumber": "S9160-17613",
+   "forms": [
+    "S-17613",
+    "S17613",
+    "S916017613",
+    "S9160-17613",
+    "9160-17613"
+   ],
+   "steps": [
+    {
+     "typed": "S-17613",
+     "group": "work_orders",
+     "count": 1,
+     "rows": [
+      "S9160-17613 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner Cascadia ·"
+     ]
+    },
+    {
+     "typed": "S17613",
+     "group": "work_orders",
+     "count": 1,
+     "rows": [
+      "S9160-17613 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner Cascadia ·"
+     ]
+    },
+    {
+     "typed": "S916017613",
+     "group": "work_orders",
+     "count": 1,
+     "rows": [
+      "S9160-17613 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+     ]
+    },
+    {
+     "typed": "S9160-17613",
+     "group": "work_orders",
+     "count": 1,
+     "rows": [
+      "S9160-17613 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+     ]
+    },
+    {
+     "typed": "9160-17613",
+     "group": "work_orders",
+     "count": 1,
+     "rows": [
+      "S9160-17613 ZZAUTOTEST Bridgeport Hauling Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+     ]
+    }
+   ],
+   "foundEachForm": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "verdict": "Passed",
+   "why": "all five ways of writing the job number found the same job"
+  },
+  "C53604": {
+   "test": 2959370,
+   "steps": [
+    {
+     "typed": "Dock 7B",
+     "group": "customers",
+     "count": 1,
+     "rows": [
+      "ZZAUTOTEST Bridgeport Hauling 1450 Kestrelway Industrial, Fernvale, Ohio · Address:Dock 7B"
+     ]
+    },
+    {
+     "typed": "Bay 12C",
+     "group": "vendors",
+     "count": 1,
+     "rows": [
+      "≈ close match: B&K Truck Repair LLC 597-559-2694 · 61553 Patricia Village, Williamsonview"
+     ]
+    }
+   ],
+   "customerFound": true,
+   "vendorFound": false,
+   "verdict": "Failed",
+   "why": "the supplier half returned nothing."
+  }
+ },
+ "workplace": "Staging Heavy Duty - 9919"
+}

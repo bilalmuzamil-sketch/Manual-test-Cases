@@ -678,3 +678,67 @@ and the staff search box was never cleared between attempts. Learnings **L0110�
 **Still open:** three cases have no ruling (C53583 customer website — SV-10003 exists; C45160 search
 usage reporting, which needs access to the usage-reporting account; C55673 Enter opens the wrong
 record, a candidate worth filing). The six role cases are being executed now that roles can be set.
+
+## §0b — TICKET REWORK AND THE SIX CORRECTED CASES, 15 September 2026
+
+**Branch `sv9160`, build `v26.36.4-7869ff2`. Run 415** — https://shopview.testrail.io/index.php?/runs/view/415
+
+### The twenty Global Search reports, all handled
+
+**Fourteen rewritten** into the layout the Head of Product and the Head of Engineering approved:
+one-line title · Environment on one line · Description · Steps of reproduction · Current behaviour ·
+Expected behaviour · Screenshots · the Product Owner note · a rule · Sources. No "technical details
+for developers" section. Each carries ONE composed picture — the live product above, the new version
+below, each cropped to the search panel — sized to span the description so it reads without being
+clicked (learning **L0130**, and skill 06 now carries it as step 4 of the inline-image recipe).
+
+SV-10001 · SV-10002 · SV-10003 · SV-10004 · SV-10005 · SV-10006 · SV-10007 · SV-10008 · SV-10025 ·
+SV-10055 · SV-10057 · SV-10058 · SV-10060 · SV-10061.
+
+**Six closed after re-checking on the build**, each with a comment saying exactly what was seen:
+
+| | Why it was closed |
+|---|---|
+| SV-10014 | The chassis number shows Assets (1) and clicking Assets lists the vehicle. |
+| SV-10015 | Written against `jay.harrison@gmail.com`; the supplier holds `jay.harrison@staging.shopview.local`, and the real address is found. |
+| SV-10016 | The part number shows Parts (1) and clicking Parts lists the part. |
+| SV-10017 | Job S9160-17580 no longer exists; the jobs run from S9160-17597 up. |
+| SV-10056 | Re-measured three times: three brand new jobs, each findable within **10 seconds** against a 30-second requirement. The 85-second reading does not reproduce. |
+| SV-10059 | Clearing the box after a no-match search brings the 34 recently viewed items straight back. |
+
+**Four of those six were written from the QA lead's screen recording** on 14 September, when the
+branch was down and nothing could be captured live. Every one of them was wrong by 15 September —
+two fixed, two written against records this branch does not hold. **A report that was never run
+against the product is a report waiting to be withdrawn.**
+
+### Titles corrected, because the old ones were wrong
+
+* SV-10057 was *"cannot be found by its own telephone number"* — the whole number works in all four
+  formats. Now: **by part of their telephone number**.
+* SV-10006 was *"cannot be found by the state they are in"* — customers in that state ARE found.
+  Now: **although a customer can**.
+* SV-10001 now says the part is **in the catalogue but has never been stocked**, which is the actual
+  boundary: the stocked part ZZT-88-4412 is found in the same sitting.
+
+### The six corrected cases, run
+
+| Case | Test | Result |
+|---|---|---|
+| C55662 company phone | [2977474](https://shopview.testrail.io/index.php?/tests/view/2977474) | **Failed** — whole number found, last part found nothing (SV-10057) |
+| C53605 year and make | [2959371](https://shopview.testrail.io/index.php?/tests/view/2959371) | **Failed** — Assets empty (SV-10055) |
+| C55664 model | [2977476](https://shopview.testrail.io/index.php?/tests/view/2977476) | **Passed** |
+| C55670 contact name and number | [2980692](https://shopview.testrail.io/index.php?/tests/view/2980692) | **Failed** — three of four searches worked; the last part of the contact's number found nothing |
+| C53579 job number, five forms | [2959356](https://shopview.testrail.io/index.php?/tests/view/2959356) | **Passed** — all five forms found S9160-17613 |
+| C53604 address line 2 | [2959370](https://shopview.testrail.io/index.php?/tests/view/2959370) | **Failed** — customer half works; the SUPPLIER half finds nothing although the record shows Address 2: Bay 12C |
+| C53587 new job within 30s | [2959364](https://shopview.testrail.io/index.php?/tests/view/2959364) | **Passed** — was Failed; three new jobs each found within 10 seconds |
+
+**C53604's supplier half is a NEW finding and is NOT filed** (Standing Rule 62). It belongs with
+SV-10005 (supplier postcode) and SV-10006 (supplier state): the supplier's address is searched on
+line 1 and the name only — line 2, postcode and state are all ignored, while the customer's are not.
+
+### Coverage against V1 — 42 of 42
+
+The four gaps `artifact-coverage-2026-09-15/COVERAGE-REPORT.md` found are all closed: part of a phone
+number (C55662 step 4), a contact's own number (C55670 steps 6-9), the make on its own (C55688) and
+the year on its own (C55689). **Every behaviour the rebuilt old search demonstrates is now typed by a
+case in the suite, and every one of those cases has been run.**
