@@ -1,17 +1,23 @@
 {
-  "at": "2026-09-15T07:47:47.335Z",
+  "at": "2026-09-15T08:31:13.413Z",
   "subject": "clayton.stephens@staging.shopview.local",
   "wanted": "Technician",
-  "rowBefore": "Clayton Stephens clayton.stephens@staging.shopview.local Heavy Duty Field Technician Parts Technician 1 Department Aug 24, 2026 Aug 26, 2026 Yes edit_note",
-  "roleBefore": "Parts Technician",
+  "rowBefore": "Clayton Stephens clayton.stephens@staging.shopview.local Heavy Duty Field Technician Time Clock User 1 Department Aug 24, 2026 Aug 26, 2026 Yes edit_note",
+  "roleBefore": "Time Clock User",
   "openedEditor": {
     "ok": true
   },
   "dialogOpen": true,
   "rolePick": {
     "ok": true,
-    "index": 9,
-    "via": "click"
+    "via": "keyboard",
+    "steps": 12,
+    "seen": [
+      "Senior Service Advisor",
+      "Service Advisor",
+      "Service Manager",
+      "Technician"
+    ]
   },
   "locationPick": {
     "ok": true,
@@ -27,5 +33,146 @@
   },
   "rowAfter": "Clayton Stephens clayton.stephens@staging.shopview.local Heavy Duty Field Technician Technician 1 Department Aug 24, 2026 Aug 26, 2026 Yes edit_note",
   "roleAfter": "Technician",
-  "ok": true
+  "ok": true,
+  "switchStatus": 200,
+  "who": {
+    "status": 200,
+    "templateSlug": "technician",
+    "nPerms": 6,
+    "perms": [
+      "customersView",
+      "scheduleView",
+      "woPickParts",
+      "woTechViewMode",
+      "workOrderLinesCreateAndEdit",
+      "workOrdersView"
+    ]
+  },
+  "queries": {
+    "9160": {
+      "tabs": {
+        "strip": 22,
+        "all": 22,
+        "work_orders": 20,
+        "customers": 2,
+        "assets": 0,
+        "parts": null,
+        "vendors": null,
+        "part_sales": null,
+        "purchase_orders": null,
+        "vendor_invoices": null
+      },
+      "tabsPresent": [
+        "strip",
+        "all",
+        "work_orders",
+        "customers",
+        "assets",
+        "parts",
+        "vendors",
+        "part_sales",
+        "purchase_orders",
+        "vendor_invoices"
+      ],
+      "modalText": "close All (22) Work orders (20) Customers (2) Assets (0) Parts Vendors Part sales Purchase orders Vendor invoices 22 results found across 2 categories Work orders (20) S9160-17579 Buda Truck Repair Approved 854 · 2024 IN",
+      "rowTypes": [
+        "work_orders",
+        "customers"
+      ]
+    },
+    "Bridgeport": {
+      "tabs": {
+        "strip": 14,
+        "all": 14,
+        "work_orders": 6,
+        "customers": 7,
+        "assets": 1,
+        "parts": null,
+        "vendors": null,
+        "part_sales": null,
+        "purchase_orders": null,
+        "vendor_invoices": null
+      },
+      "tabsPresent": [
+        "strip",
+        "all",
+        "work_orders",
+        "customers",
+        "assets",
+        "parts",
+        "vendors",
+        "part_sales",
+        "purchase_orders",
+        "vendor_invoices"
+      ],
+      "modalText": "close All (14) Work orders (6) Customers (7) Assets (1) Parts Vendors Part sales Purchase orders Vendor invoices 14 results found across 3 categories Work orders (6) S9160-17613 ZZAUTOTEST Bridgeport Hauling Estimate ZZT",
+      "rowTypes": [
+        "work_orders",
+        "customers",
+        "assets"
+      ]
+    },
+    "S9160": {
+      "tabs": {
+        "strip": 20,
+        "all": 20,
+        "work_orders": 20,
+        "customers": 0,
+        "assets": 0,
+        "parts": null,
+        "vendors": null,
+        "part_sales": null,
+        "purchase_orders": null,
+        "vendor_invoices": null
+      },
+      "tabsPresent": [
+        "strip",
+        "all",
+        "work_orders",
+        "customers",
+        "assets",
+        "parts",
+        "vendors",
+        "part_sales",
+        "purchase_orders",
+        "vendor_invoices"
+      ],
+      "modalText": "close All (20) Work orders (20) Customers (0) Assets (0) Parts Vendors Part sales Purchase orders Vendor invoices 20 results found across 1 category Work orders (20) S9160-17579 Buda Truck Repair Approved 854 · 2024 INTE",
+      "rowTypes": [
+        "work_orders"
+      ]
+    }
+  },
+  "modal": {
+    "tabs": {
+      "strip": 14,
+      "all": 14,
+      "work_orders": 6,
+      "customers": 7,
+      "assets": 1,
+      "parts": null,
+      "vendors": null,
+      "part_sales": null,
+      "purchase_orders": null,
+      "vendor_invoices": null
+    },
+    "tabsPresent": [
+      "strip",
+      "all",
+      "work_orders",
+      "customers",
+      "assets",
+      "parts",
+      "vendors",
+      "part_sales",
+      "purchase_orders",
+      "vendor_invoices"
+    ],
+    "modalText": "close All (14) Work orders (6) Customers (7) Assets (1) Parts Vendors Part sales Purchase orders Vendor invoices 14 results found across 3 categories Work orders (6) S9160-17613 ZZAUTOTEST Bridgeport Hauling Estimate ZZT",
+    "rowTypes": [
+      "work_orders",
+      "customers",
+      "assets"
+    ]
+  }
 }
