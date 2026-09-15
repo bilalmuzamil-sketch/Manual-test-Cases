@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "the two cases added after the old-search reconciliation",
+  "how_judged": "Read from the Assets scope tab, which lists up to twenty, not from the All tab, which shows five per group. A first reading took the five and called the year a failure - that was where I looked, not what the product did.",
+  "build": "v26.36.4-7869ff2"
+ },
+ "results": {
+  "C55689": {
+   "verdict": "Passed",
+   "observed": "Typing the year on its own - 2019 - returns vehicles of that year, and the seeded vehicle 2019 Freightliner Cascadia is among them. The year is searchable in its own right, as it was in the previous version.",
+   "todo": null,
+   "technical": "Assets count 20 (the documented cap), 20 rows listed on the Assets tab, the seeded vehicle ZZT-4471 among them. Control: the same vehicle returns on its own for its unit number.",
+   "not_observed": null
+  },
+  "C55688": {
+   "verdict": "Passed",
+   "observed": "Typing the make on its own - Freightliner - returns twenty vehicles and every one of them is a Freightliner, so the make is searchable in its own right, as it was in the previous version. The seeded vehicle is not among those twenty: the branch holds far more than twenty Freightliners and the panel shows at most twenty, which is the documented limit for this version. That same vehicle comes back on its own when its unit number is typed, so it is reachable and indexed.",
+   "todo": "A wording point on the test itself, for whoever owns it: it asks for the seeded vehicle by name, which a query matching hundreds of records cannot guarantee once the twenty-row limit applies. It should ask that the vehicles returned carry the make typed. Nothing to raise with the developers.",
+   "technical": "Assets count 20 = the cap in specification v1.5 section 5.2. All 20 rows are Freightliners. The seeded ZZT-4471 is absent from the 20 but returns alone for its unit number.",
+   "not_observed": null
+  }
+ }
+}

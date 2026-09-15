@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "the two phone cases, re-run after steps were added to them",
+  "how_judged": "Both cases grew steps after the reconciliation, so their earlier results were about a smaller test. Re-run in full, and the number was then typed in four different layouts to find out which of them the search accepts.",
+  "build": "v26.36.4-7869ff2"
+ },
+ "results": {
+  "C55662": {
+   "verdict": "Failed",
+   "observed": "The company's whole phone number DOES find the customer, and in every layout tried - with brackets, with dashes, as bare digits and with spaces. Each returned the one customer. What fails is typing only PART of the number: the last seven characters return nothing at all, and neither do the last four. Since a person rarely has the whole number in front of them, that is the half people actually use.",
+   "todo": "The report already raised for this needs its wording corrected before a developer picks it up - it currently says the customer cannot be found by its own telephone number, and today it can. The real fault is narrower: part of a number finds nothing.",
+   "technical": "Whole number as (419) 555-0143, 419-555-0143, 4195550143 and 419 555 0143 -> Customers (1), the seeded customer, every time. Part of it as 555-0143 and 0143 -> Customers (0). Control: the same customer returns by name in the same sitting. This differs from the 14 September reading, which found the whole number failing too - either a fix has shipped since or that reading was wrong; today's is repeatable across four layouts.",
+   "ticket": "Raised as SV-10057 - https://shopview.atlassian.net/browse/SV-10057 - which needs its wording corrected to the narrower fault.",
+   "not_observed": null
+  },
+  "C55670": {
+   "verdict": "Failed",
+   "observed": "A contact's first name, a contact's surname and the contact's own whole phone number all find the company they work for - the number works with brackets and as bare digits alike. What fails is part of that number: the last seven characters return nothing.",
+   "todo": "Nothing separate to raise - it is the same fault as the company's number, and the report for that one covers it once its wording is corrected.",
+   "technical": "Marlene -> 11 customers including the seeded one; Okonkwo -> 1; (419) 555-0177 and 4195550177 -> Customers (1), the seeded customer; 555-0177 -> Customers (0). This case previously passed, but that was before the phone steps were added to it.",
+   "ticket": "Same report as the company number: SV-10057 - https://shopview.atlassian.net/browse/SV-10057",
+   "not_observed": null
+  }
+ }
+}
