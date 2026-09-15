@@ -2259,3 +2259,29 @@ Two fixes, and both were needed:
 > **A write is verified by reading back the VALUE, never by the absence of an error.** And when the
 > value is a name from a known set, match the whole name and prefer the longest match — substrings of
 > real names are real names.
+
+### L0115 — a repeat that reuses the same INPUT is not an independent observation when the app remembers the input
+I filed a defect saying "checked twice in separate sittings, and it opened the very same wrong
+record both times, so this is not a one-off". The QA lead then explained the actual mechanism: the
+search remembers something about a query you have already used and chosen a result for. So my two
+runs were **one observation and one replay**. The second run could not have disagreed with the
+first — it was reading back the state the first one wrote.
+
+Worse, the identical result *felt like* strong evidence. Two matching observations is the classic
+shape of a confirmed finding, and here it was the shape of a cache.
+
+The same trap sits under: a search box that persists its query, a form that restores a draft, a
+list that remembers its filter, any "recently used" ordering, and every server-side per-user store.
+
+> **Before calling a second run a confirmation, ask what the first run CHANGED.** An independent
+> repeat varies the thing the app might be remembering — a different query, a different record, a
+> different account, a cleared session — and a repeat that cannot fail is not evidence.
+
+### L0116 — an index into a list must be clamped, or a test that never ran reports as a negative
+The confirming run asked for the **sixth row of a three-row list**. Nothing was clicked, and the
+phases after it dutifully reported "the position did not stick" — which reads as the hypothesis
+being disproved when it was never tested. One clamp plus an explicit `why` in the output turned a
+confident false negative into an honest "this run proved nothing".
+
+> Same family as L0104 and L0109: **a step that could not run must say so, not return the value it
+> would have returned had it run and found nothing.**
