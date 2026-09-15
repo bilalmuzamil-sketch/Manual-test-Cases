@@ -1,6 +1,11 @@
 # Were these six really possible in V1? — checked, not assumed
 
 **Date:** 2026-09-15 · **Tickets:** SV-10055 to SV-10060 · **V1 baseline:** commit `55767168`
+> ✅ **SUPERSEDED IN SCOPE, NOT IN CONTENT.** The six-ticket simulator here has grown into a
+> complete, runnable register of **every** capability the old search had —
+> `build/global-search/v1-capability-evidence/`. Use that one for anything new; this file stays as
+> the record of the six-ticket check.
+
 **Method:** V1's matching was re-implemented exactly from its own source and **run** against the
 queries each ticket names — `v1_matching_simulator.py` in this folder. Nothing below is reasoning
 about what V1 probably did.
