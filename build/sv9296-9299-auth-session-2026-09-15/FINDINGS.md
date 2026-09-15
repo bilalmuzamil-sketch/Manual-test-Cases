@@ -233,3 +233,21 @@ Exhibit `ev/04_SV-9299_before_after.png`; keys `ev/fix_login_response_keys.json`
   shipped source but not driven through the impersonation UI; the login and blip paths were.
 * SV-9299's `unserialize()` clause is not externally testable — see above.
 * Everything else was observed live on the builds named at the top, on 15 Sep 2026.
+
+---
+
+## Posted
+
+Pre-post gate run at 15:50:31Z: both build markers re-read live and identical to the start of the
+pass; all four ticket statuses and priorities re-read; images uploaded as **real Jira attachments**
+(not external links) and each comment read back in ADF afterwards.
+
+| Ticket | Comment | Status at posting | Media (all `type: file`) | Table rows |
+|---|---|---|---|---|
+| SV-9296 | 76568 | Ready for Production | 3 | 10 |
+| SV-9297 | 76569 | Ready for Production | 2 | 7 |
+| SV-9298 | 76570 | Code Review | 2 | 9 |
+| SV-9299 | 76571 | Ready for Production | 1 | 5 |
+
+First line of every comment reads `OVERALL QA STATUS: PASSED`. Voice scan clean.
+
