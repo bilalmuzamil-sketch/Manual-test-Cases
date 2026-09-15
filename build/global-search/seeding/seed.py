@@ -50,6 +50,23 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # another one (production is PHPSESSID-only and has no SSO cookie - see playbook section K).
 #     SEED_PROFILE=/tmp/prod/cookies.json python3 seed.py --check
 COOKIES = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
+# One state file per environment, or a production run silently overwrites the QA branch's state
+# and the next reader believes the wrong thing about the wrong estate.
+ENV_LABEL = 'qa' if COOKIES == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(COOKIES))
+STATE_FILE = 'seed-state-live.json' if ENV_LABEL == 'qa' else f'seed-state-live-{ENV_LABEL}.json'
+# 🔴 IDS ARE PER ENVIRONMENT AND MUST NEVER GO BACK INTO THE SHARED MANIFEST. They used to, and the
+# first production run overwrote the QA branch's work-order ids with production's - after which the
+# QA check reported those four work orders MISSING when they were sitting right there. The manifest
+# is the shared plan; the ids of one estate's records are not part of it.
+IDS_FILE = f'seed-ids-{ENV_LABEL}.json'
+
+def _ids_load():
+    try: return json.load(open(f'{HERE}/{IDS_FILE}'))
+    except Exception: return {}
+
+def _ids_save(key, ids):
+    d = _ids_load(); d[key] = ids
+    json.dump(d, open(f'{HERE}/{IDS_FILE}', 'w'), indent=1)
 CTX = ssl.create_default_context(cafile='/root/.ccr/ca-bundle.crt')
 
 def _c(): return json.load(open(COOKIES))
@@ -82,7 +99,16 @@ def call(path, method='GET', body=None):
 
 def ensure_session():
     """Self-unblock: mint a session and set the location (playbook §Q2, §Q3)."""
-    if call('/api/search?q=zz')['status'] != 200:
+    # Liveness probe must be valid in EVERY environment. '/api/search' is the V2 endpoint and
+    # 404s on production, which runs V1 (its search is '/api/global-search/fetch') - probing it
+    # there reports a dead session that is perfectly alive.
+    if call('/api/staff/my-workplaces')['status'] != 200:
+        # quick-login 500s on production (playbook section K) and it evicts other workers on a QA
+        # branch (Rule 83). Only reach for it on the default QA profile, and never invent a session
+        # on an environment where it cannot work.
+        if COOKIES != '/tmp/qa/cookies.json':
+            sys.exit("session is not live on this profile, and quick-login is a QA-branch-only "
+                     "recovery - log in again and rewrite the profile")
         r = call('/api/quick-login', 'POST', {'key': 'admin'})
         print(f"  quick-login -> {r['status']}  (evicts other workers on this branch - Rule 83)")
         if r['status'] != 200: sys.exit("cannot authenticate")
@@ -90,8 +116,16 @@ def ensure_session():
     if w['status'] == 200:
         d = (w['json'] or {}).get('data', w['json'])
         wps = d if isinstance(d, list) else (d.get('workplaces') or d.get('collection') or [])
-        hint = json.load(open(f'{HERE}/seed-manifest.json'))['environment']['workplace_name_hint']
-        pick = next((x for x in wps if hint.lower() in (x.get('name') or '').lower()), (wps or [None])[0])
+        # SEED_WORKPLACE overrides the manifest hint, so another environment does not need the
+        # manifest edited. Production is 'Trucks Hill 2' - it HAS canned lines (playbook section K).
+        hint = os.environ.get('SEED_WORKPLACE') or \
+            json.load(open(f'{HERE}/seed-manifest.json'))['environment']['workplace_name_hint']
+        # 🔴 NEVER fall back to "the first workplace". Seeding the wrong shop is silent and wrong -
+        # on production the first one is a DIFFERENT shop from the one we want.
+        pick = next((x for x in wps if hint.lower() in (x.get('name') or '').lower()), None)
+        if pick is None:
+            sys.exit(f"no workplace matches {hint!r} - found: "
+                     f"{[x.get('name') for x in wps]}. Set SEED_WORKPLACE to one of these.")
         if pick:
             r = call('/api/iam/change-location', 'POST',
                      {'workplace_id': pick['id'], 'workplace_timezone': pick.get('timezone', 'America/Edmonton')})
@@ -101,7 +135,7 @@ def ensure_session():
 
 STATE = {}
 
-def find(spec):
+def find(spec, _key=None):
     """FIND a record. Two modes, because ?search= works on some list endpoints and silently
     matches NOTHING on others (measured: broken on /api/work-orders). Where the spec gives a
     'control', search for it FIRST - if a record known to exist comes back empty the probe is
@@ -114,13 +148,31 @@ def find(spec):
     if spec.get('control'):
         c = call(f"{spec['list']}?search={urllib.parse.quote(spec['control'])}&limit=100")
         if c['status'] != 200 or len(rows(c)) == 0:
-            if spec['mode'] == 'search':
-                return [], 'PROBE BROKEN - the control returned nothing; not reporting missing'
+            # The declared control is a record that exists in ONE environment. Point the seeder at
+            # another one and it vanishes - which looks exactly like a broken probe. So calibrate
+            # against the environment actually in front of us: read a record off an unfiltered
+            # page and search for a word out of it. That separates the three cases honestly -
+            # search is broken / the endpoint is simply empty / search works and ours is missing.
+            base = call(f"{spec['list']}?limit=5")
+            brows = rows(base)
+            if base['status'] != 200:
+                return [], f"PROBE BROKEN - {spec['list']} answered {base['status']}"
+            if brows:
+                probe_val = str(brows[0].get(spec['field']) or '').strip()
+                token = probe_val.split()[0] if probe_val else ''
+                d = call(f"{spec['list']}?search={urllib.parse.quote(token)}&limit=100") if token else None
+                if not token or d['status'] != 200 or len(rows(d)) == 0:
+                    if spec['mode'] == 'search':
+                        return [], ('PROBE BROKEN - ?search= returned nothing even for a value read '
+                                    'from this same endpoint a moment ago')
+            # brows empty = the endpoint genuinely holds no records here, so "missing" is the truth.
     if spec['mode'] == 'ids':
         # ?search= is broken and ?page= is ignored on some endpoints, so the only reliable
         # route is to verify by the ids the seeder recorded when it created them.
         out = []
-        for i in spec.get('ids', []):
+        # Ids captured for THIS environment win; the manifest's are the starting default.
+        # Ids captured for THIS environment win; the manifest's are the starting default.
+        for i in (_ids_load().get(_key) or spec.get('ids', [])):
             r = call(spec['view'].replace('{id}', i))
             if r['status'] == 200:
                 d = (r['json'] or {}).get('data', {}) or {}
@@ -231,18 +283,32 @@ def resolve_nested(spec):
     would rot on the next redeploy, so take one off a part that already sits in a bin. Same
     principle as resolve_by_example, one level deeper: when the lookup table is not exposed, the
     existing data is the lookup table."""
-    r = call(f"{spec['list']}?search={urllib.parse.quote(str(spec['search']))}&limit=25")
-    if r['status'] != 200: return None, f"probe {r['status']}"
-    d = (r['json'] or {}).get('data', {}) or {}
-    rows = d.get(spec.get('coll', 'collection')) if isinstance(d, dict) else []
-    node = None
-    for row in (rows or []):
-        node = row
-        for step in spec['take_path'].split('.'):
-            node = node[int(step)] if (isinstance(node, list) and step.isdigit()) else (node or {}).get(step)
-            if node is None: break
-        if node: break
-    if not node: return None, f"no row under search={spec['search']!r} carried {spec['take_path']}"
+    def fetch(q):
+        r = call(f"{spec['list']}?{q}")
+        if r['status'] != 200: return None
+        d = (r['json'] or {}).get('data', {}) or {}
+        return d.get(spec.get('coll', 'collection')) if isinstance(d, dict) else []
+
+    def dig(rows):
+        for row in (rows or []):
+            node = row
+            for step in spec['take_path'].split('.'):
+                node = node[int(step)] if (isinstance(node, list) and step.isdigit()) else (node or {}).get(step)
+                if node is None: break
+            if node: return node
+        return None
+
+    rows = fetch(f"search={urllib.parse.quote(str(spec['search']))}&limit=25")
+    if rows is None: return None, 'probe did not answer 200'
+    node = dig(rows)
+    if not node:
+        # The named example is a record of ONE environment. Somewhere else it does not exist, and
+        # the example was never the point - any row carrying the path will do. So sweep an
+        # unfiltered page and take the first that has one.
+        node = dig(fetch('limit=100'))
+    if not node:
+        return None, (f"no row carried {spec['take_path']} - not under search={spec['search']!r} "
+                      f"and not in the first 100 rows of {spec['list']}")
     def sub(x):
         if x == '@': return node
         if isinstance(x, list): return [sub(i) for i in x]
@@ -297,7 +363,7 @@ def main():
             print(f"  {k:24s} 🔴 BLOCKED — {rec['🔴 BLOCKED_BY'][:80]}")
             report.append({'key': k, 'state': 'BLOCKED', 'reason': rec['🔴 BLOCKED_BY'], 'serves': rec['serves']})
             continue
-        hits, how = find(rec['find'])
+        hits, how = find(rec['find'], k)
         if how != 'ok':
             print(f"  {k:24s} ⚠️  probe failed ({how}) — NOT reporting as missing (Rule 104)")
             report.append({'key': k, 'state': 'UNVERIFIED', 'reason': how, 'serves': rec['serves']}); continue
@@ -330,7 +396,8 @@ def main():
             for _n in range(reps):
                 r = call(rec['create']['endpoint'], 'POST', payload)
                 ok = r['status'] in (200, 201)
-                print(f"       create -> {r['status']}" + ('' if ok else f"  {r['raw'][:120]}"))
+                print(f"       create -> {r['status']}"
+                      + ('' if ok else f"  {str(r.get('raw') or r.get('error') or '')[:120]}"))
                 if not ok: break
                 # 🔴 CAPTURE THE ID THE CREATE RETURNS. The work orders were found by a hardcoded id
                 # list that a redeploy invalidates, so after every wipe they read as "created but not
@@ -346,14 +413,14 @@ def main():
             if made:
                 STATE[k] = made[0] if len(made) == 1 else made
                 if rec['find'].get('mode') == 'ids':
-                    rec['find']['ids'] = made
-                    json.dump(man, open(f'{HERE}/seed-manifest.json', 'w'), indent=2, ensure_ascii=False)
-                    print(f"       recorded {len(made)} live id(s) back into the manifest")
+                    rec['find']['ids'] = made          # for the verify pass in THIS run
+                    _ids_save(k, made)
+                    print(f"       recorded {len(made)} live id(s) in {IDS_FILE}")
             ok = bool(made) or (reps == 1 and ok)
             if not ok:
                 report.append({'key': k, 'state': 'CREATE_FAILED', 'http': r['status'],
                                'body': str(r['raw'][:200]), 'serves': rec['serves']}); continue
-            hits, _ = find(rec['find'])
+            hits, _ = find(rec['find'], k)
             if not hits:
                 print(f"       created but NOT FINDABLE — indexing lag, or the create dropped the finder field")
                 report.append({'key': k, 'state': 'CREATED_NOT_FOUND', 'serves': rec['serves']}); continue
@@ -369,7 +436,7 @@ def main():
             for n in res.get('notes', []): print(f"       {n}")
             print(f"       repair -> {res.get('http')}" + ('' if res['ok'] else f"  {res.get('why') or res.get('body','')[:110]}"))
             if res['ok']:
-                hits2, _ = find(rec['find'])          # READ BACK - a 2xx is not evidence
+                hits2, _ = find(rec['find'], k)          # READ BACK - a 2xx is not evidence
                 if hits2:
                     record = hits2[0]
                     match, gap, nc = verify_fields(rec, record)
@@ -404,7 +471,7 @@ def main():
     ts = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H%M%SZ')
     json.dump({'when_utc': ts, 'environment': man['environment'], 'live_ids': STATE, 'records': report,
                '_note': 'Live ids re-derived this run. Never trust an older copy - a redeploy changes them.'},
-              open(f'{HERE}/seed-state-live.json', 'w'), indent=1)
+              open(f'{HERE}/{STATE_FILE}', 'w'), indent=1)
 
     blocked = [r for r in report if r['state'] in ('BLOCKED', 'MISSING', 'CREATE_FAILED', 'DUPLICATE',
                                                    'CREATED_NOT_FOUND', 'UNVERIFIED')]
@@ -416,7 +483,7 @@ def main():
     print(f"  field gaps      : {len(gaps)}")
     print(f"  NOT COMPARED    : {len(ncs)}" + ("   🔴 this is not a clean bill of health" if ncs else ""))
     print(f"  cases at risk   : {len(at_risk)}  {at_risk}")
-    print(f"  state written   : seed-state-live.json")
+    print(f"  state written   : {STATE_FILE}")
     verified = [r for r in report if r['state'] == 'PRESENT']
     if not gaps and not ncs and verified and not blocked:
         print("\n  Every declared field on every record was checked, and every one matched.")
