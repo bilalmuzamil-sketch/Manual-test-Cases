@@ -15,7 +15,10 @@ const ROLE = process.argv[2] || 'Technician';
 const SUBJECT = process.env.SUBJECT || 'clayton.stephens@staging.shopview.local';
 const SEARCH_TERM = process.env.SEARCH_TERM || 'Stephens';
 const MEASURE = process.env.MEASURE === '1';
-const QUERY = 'Bridgeport';
+// QUERIES: the case's own query PLUS a positive control -- a term this account should be able
+// to see. Without the control, 'this role sees nothing' is indistinguishable from 'the panel
+// did not finish drawing' (L0109), and a negative finding with no control is refused (Rule 104).
+const QUERIES = (process.env.QUERIES || 'Bridgeport').split('|');
 const KNOWN = ['Admin', 'Foreman', 'Office User', 'Parts Manager', 'Parts Technician',
                'Sales Representative', 'Senior Service Advisor', 'Service Advisor',
                'Service Manager', 'Technician', 'Time Clock User'];
@@ -279,33 +282,42 @@ if (MEASURE && R.ok) {
       R.who = { status: fe.status, templateSlug: fd && (fd.template_slug || fd.templateSlug),
                 nPerms: perms.length, perms: perms.map(p => p.name || p).sort() };
       if (R.who.templateSlug) {
-        await page.goto('https://sv9160.qa.shopview.com/workorders', { waitUntil: 'domcontentloaded' }).catch(() => {});
-        await page.waitForTimeout(4000);
-        await page.evaluate(() => { const b = document.querySelector('[data-test-id="global_search_trigger"]'); b && b.click(); });
-        await page.waitForSelector('[data-test-id="search_modal_input"]', { state: 'visible', timeout: 20000 }).catch(() => {});
-        await page.type('[data-test-id="search_modal_input"]', QUERY, { delay: 30 });
-        await page.evaluate(() => { const t = document.querySelector('[data-test-id="search_modal_tab_all"]'); t && t.click(); });
-        let last = null, st = 0, m = null;
-        for (let i = 0; i < 40; i++) {
-          await page.waitForTimeout(800);
-          m = await page.evaluate(() => { const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
-            const d = [...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if (!d) return null;
-            const tabs = {}; d.querySelectorAll('[data-test-id^="search_modal_tab_"]').forEach(e => {
-              const t = (e.innerText || '').match(/\((\d+)\)/);
-              tabs[e.getAttribute('data-test-id').replace('search_modal_tab_', '')] = t ? +t[1] : null; });
-            return { tabs, tabsPresent: Object.keys(tabs),
-              rowTypes: [...new Set([...d.querySelectorAll('[data-test-id^="search_result_row_"]')]
-                .map(e => e.getAttribute('data-test-id').replace('search_result_row_', '').replace(/_\d+$/, '')))] }; });
-          if (!m) continue;
-          const sig = JSON.stringify(m);
-          const tc = Object.entries(m.tabs).filter(([k]) => !['strip', 'all'].includes(k)).map(([, v]) => v);
-          if (sig === last && tc.some(v => v !== null)) { if (++st >= 3) break; } else st = 0;
-          last = sig;
+        R.queries = {};
+        for (const Q of QUERIES) {
+          await page.goto('https://sv9160.qa.shopview.com/workorders', { waitUntil: 'domcontentloaded' }).catch(() => {});
+          await page.waitForTimeout(4000);
+          await page.evaluate(() => { const b = document.querySelector('[data-test-id="global_search_trigger"]'); b && b.click(); });
+          await page.waitForSelector('[data-test-id="search_modal_input"]', { state: 'visible', timeout: 20000 }).catch(() => {});
+          const reachable = await page.evaluate(() => !!document.querySelector('[data-test-id="search_modal_input"]'));
+          if (!reachable) { R.queries[Q] = { searchNotReachable: true }; continue; }
+          await page.fill('[data-test-id="search_modal_input"]', '').catch(() => {});
+          await page.type('[data-test-id="search_modal_input"]', Q, { delay: 30 });
+          await page.evaluate(() => { const t = document.querySelector('[data-test-id="search_modal_tab_all"]'); t && t.click(); });
+          let last = null, st = 0, m = null;
+          for (let i = 0; i < 45; i++) {
+            await page.waitForTimeout(800);
+            m = await page.evaluate(() => { const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
+              const d = [...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop(); if (!d) return null;
+              const tabs = {}; d.querySelectorAll('[data-test-id^="search_modal_tab_"]').forEach(e => {
+                const t = (e.innerText || '').match(/\((\d+)\)/);
+                tabs[e.getAttribute('data-test-id').replace('search_modal_tab_', '')] = t ? +t[1] : null; });
+              return { tabs, tabsPresent: Object.keys(tabs),
+                modalText: (d.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 220),
+                rowTypes: [...new Set([...d.querySelectorAll('[data-test-id^="search_result_row_"]')]
+                  .map(e => e.getAttribute('data-test-id').replace('search_result_row_', '').replace(/_\d+$/, '')))] }; });
+            if (!m) continue;
+            const sig = JSON.stringify(m);
+            const tc = Object.entries(m.tabs).filter(([k]) => !['strip', 'all'].includes(k)).map(([, v]) => v);
+            if (sig === last && tc.some(v => v !== null)) { if (++st >= 3) break; } else st = 0;
+            last = sig;
+          }
+          R.queries[Q] = m;
+          await page.screenshot({ path: `${DIR}/roles-evidence/${ROLE.replace(/\W+/g, '-')}-${Q.replace(/\W+/g, '-')}.png` }).catch(() => {});
+          L(`   "${Q}" ->`, JSON.stringify(m && m.tabs), '| rows', JSON.stringify(m && m.rowTypes));
         }
+        const m = R.queries[QUERIES[0]];
         R.modal = m;
-        await page.screenshot({ path: `${DIR}/roles-evidence/${ROLE.replace(/\W+/g, '-')}-search.png` }).catch(() => {});
-        L('as', R.who.templateSlug, '- can do', R.who.nPerms, 'things; search offers',
-          JSON.stringify(m && m.tabs), '; rows', JSON.stringify(m && m.rowTypes));
+        L('as', R.who.templateSlug, '- can do', R.who.nPerms, 'things');
       } else {
         R.notRecorded = 'the server would not say who this session is, so nothing is attributed';
         L(R.notRecorded);
