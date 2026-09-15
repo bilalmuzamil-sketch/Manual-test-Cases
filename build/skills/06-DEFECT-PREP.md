@@ -515,6 +515,25 @@ His two messages, verbatim (2026-09-10, after SV-9917/9918/9919 were filed badly
 > *"Yes current behavior and expected behaior should also be nicely concisely and logically described
 > in a non technical way for a lay man"*
 
+**🛑 A TICKET THAT NO LONGER REPRODUCES IS *QA COMPLETE*, NEVER WITHDRAWN — QA LEAD, 2026-09-15,
+VERBATIM:** *"the developers are quickly fixing the issues which we are reporting so I am not going
+to withdraw any ticket which was an issue before and not reproducible anymore, rather we are going
+to mark those ticket status as QA complete Also add the label QAcomplete."*
+
+**So: transition the ticket to QA Complete and add the label `QAcomplete`.** Do NOT close it, do NOT
+mark it obsolete, do NOT ask for it to be withdrawn.
+
+**Why this matters and why my instinct was wrong.** Finding a reported fault gone, I proposed
+withdrawing the ticket — which erases the fact that it was real, that it was reported, and that
+someone fixed it. On a fast-moving branch that is most of the team's visible output. *Not
+reproducible* is a RESULT, not an admission; it belongs in the record with the work that produced it.
+
+**The one exception, and it is a different thing entirely: a ticket that was never a real fault.**
+Where the finding was OUR mistake — a measurement artefact, a misread, a test comparing the wrong
+states — it is withdrawn with an explanation, because there was nothing to fix and QA Complete would
+assert that something was. Be honest about which of the two you have: *fixed since* and *never real*
+look identical from the ticket, and only our own evidence tells them apart.
+
 **🛑 AND KEEP IT SHORT — QA LEAD, 2026-09-15, VERBATIM:** *"Also do NOT forget ever to keep the
 ticket simple and explainatory and short as much as possible."* **This is a STANDING requirement on
 every ticket, not a note about one of them.** The eight headings stay; the words under them are cut

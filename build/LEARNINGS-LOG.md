@@ -2339,3 +2339,20 @@ The defect does not need my working shown; the repo and a comment hold that.
 > comment or the repo — never in the description.
 
 Recorded as a standing requirement in `build/skills/06-DEFECT-PREP.md`, above the heading order.
+
+### L0119 — "not reproducible any more" is QA Complete, not a withdrawal
+I proposed withdrawing a ticket whose fault I could no longer reproduce. The QA lead:
+*"the developers are quickly fixing the issues which we are reporting so I am not going to withdraw
+any ticket which was an issue before and not reproducible anymore, rather we are going to mark those
+ticket status as QA complete Also add the label QAcomplete."*
+
+Withdrawing erases three things at once: that the fault was real, that QA found it, and that someone
+fixed it. On a branch moving this fast that is most of the team's visible output — and I was about to
+delete it for tidiness.
+
+**Transition to QA Complete and add the label `QAcomplete`.** Never close, never mark obsolete.
+
+**The exception is a genuinely different case: a ticket that was never a real fault at all** — one
+built on our own measurement artefact. That IS withdrawn, with an explanation, because QA Complete
+would assert something was fixed when nothing was broken. Today produced one of each, and the
+difference is invisible from the ticket: only our own evidence says which it is.
