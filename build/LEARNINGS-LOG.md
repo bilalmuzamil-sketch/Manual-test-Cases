@@ -2315,3 +2315,27 @@ Three rules came out of it, and all three are cheap:
 
 Companion to L0110 (a synthetic click is not a click) and L0115 (a replay is not a repeat): the same
 lesson from three sides — **the instrument has to be characterised before the thing it measures.**
+
+### L0118 — a long ticket is not a rigorous ticket; it is an unread one
+The QA lead, on a ticket I had just rewritten: *"do NOT forget ever to keep the ticket simple and
+explainatory and short as much as possible."* The description was about 900 words. Cut to **354** it
+lost nothing a developer needs — every step, every measured fact, all three screenshots and the one
+requirement quote survived.
+
+What went, and why each was there in the first place:
+
+| Cut | Why I had written it |
+|---|---|
+| A paragraph in *The problem* restating the mechanism | I wanted the reader to understand it before the steps. The steps do that. |
+| Reasoning under *Sources* about how two requirements interact | It was interesting to me while diagnosing. It is noise to someone fixing it. |
+| "Measured with the pointer parked and the parking verified…" | **Showing my work.** After being wrong twice I wanted the ticket to prove I had been careful this time. |
+| Both withdrawn descriptions, explained in the body | Honesty — which belongs in a comment, not in front of the next reader. |
+
+That third row is the real lesson. **Length crept in as self-justification**, not as information.
+The defect does not need my working shown; the repo and a comment hold that.
+
+> **A description someone cannot read in a minute and then reproduce is too long.** Keep the required
+> headings and cut the words under them. Correction history and evidence of diligence go in a
+> comment or the repo — never in the description.
+
+Recorded as a standing requirement in `build/skills/06-DEFECT-PREP.md`, above the heading order.

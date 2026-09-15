@@ -515,6 +515,28 @@ His two messages, verbatim (2026-09-10, after SV-9917/9918/9919 were filed badly
 > *"Yes current behavior and expected behaior should also be nicely concisely and logically described
 > in a non technical way for a lay man"*
 
+**🛑 AND KEEP IT SHORT — QA LEAD, 2026-09-15, VERBATIM:** *"Also do NOT forget ever to keep the
+ticket simple and explainatory and short as much as possible."* **This is a STANDING requirement on
+every ticket, not a note about one of them.** The eight headings stay; the words under them are cut
+to the minimum that still lets a developer reproduce the fault and a layman understand it.
+
+What that means in practice, from the SV-10061 rewrite that prompted it (≈900 words → **354**):
+
+- **Heading 2 is ONE or TWO sentences.** Say what happens. Do not restate the mechanism, do not
+  explain why it matters, do not preview the steps — the steps are next.
+- **Headings 5 and 6 are bullets of one line each.** No bullet that runs to three lines; no bullet
+  that argues.
+- **Heading 7 is the link, ONE quote, and at most one line saying why that quote is the relevant
+  one.** Reasoning about how requirements interact does not belong in a defect.
+- **Cut every sentence that exists to show our work** — how carefully it was measured, how many
+  times, what we ruled out. If it is worth recording, it goes in the repo or in a COMMENT, never in
+  the description.
+- **Correction history goes in a comment, never in the description.** Someone opening the ticket
+  wants the defect, not our audit trail.
+
+**The test:** can a developer read the whole description in under a minute and then reproduce it?
+If not, it is too long — and length is not evidence of rigour.
+
 **THE ORDER IS HIS, GIVEN 2026-09-10 AND NOT TO BE REARRANGED:**
 
 | # | Heading | What goes in it |
