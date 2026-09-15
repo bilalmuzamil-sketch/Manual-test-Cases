@@ -124,11 +124,48 @@ Taken from the old version's own behaviour, so they can fail honestly.
 
 ---
 
+## 6 · CLOSED — what was done, 15 September 2026
+
+The QA lead approved correcting the cases and assigned the writing to this session. All of it is done
+and verified live.
+
+| Action | Case | Verified |
+|---|---|---|
+| **Created** — types `Freightliner`, the make on its own | [C55688](https://shopview.testrail.io/index.php?/cases/view/55688) | ✅ fields, marker, V1 source block, title length, no duplicate title |
+| **Created** — types `2019`, the year on its own | [C55689](https://shopview.testrail.io/index.php?/cases/view/55689) | ✅ same checks |
+| **Corrected** — steps now type `419-555-0143` then `555-0143`; was typing the two forms V1 never supported. Now EXPECT FAIL (SV-10057) with the three outcomes | [C55662](https://shopview.testrail.io/index.php?/cases/view/55662) | ✅ exactly two typing steps, dashed then partial; the forbidden forms appear only inside the "do NOT type" warning |
+| **Corrected** — retitled to *"Finding an asset by its year and make typed together"*, which is what its one step types. Now EXPECT FAIL (SV-10055) with the three outcomes | [C53605](https://shopview.testrail.io/index.php?/cases/view/53605) | ✅ title, steps, marker, pointer to C55689 |
+| **Corrected** — the false claim that a misspelling case proved the make was searchable now points at C55688; a mangled source sentence repaired | [C55664](https://shopview.testrail.io/index.php?/cases/view/55664) | ✅ old sentence gone, new one present, source sentence reads correctly |
+| **Added to run 415 by union** | C55688, C55689 | ✅ 164 → 166 tests, **nothing lost, all 65 existing results preserved** |
+
+**Coverage proof now passes.** `steps_exercise_proof.py`: 42 scenarios — **39 typed by a case, 3 waved
+with a written reason, 0 not typed.** It was failing on three before this work.
+
+### Gap 1 was folded into C55662 rather than made a new case
+
+The other session's card proposed a separate case for "part of a phone number". C55662 already exists
+for that field, with the same record and the same preconditions, and its steps were wrong — so the
+honest fix was to correct it rather than leave a wrong case beside a new right one. A separate case
+would have duplicated it and left the wrong one in the suite.
+
+### Two things worth recording for next time
+
+1. **`delete_case` with `soft=1` is NOT a dry run on this TestRail.** It deleted. I used it expecting a
+   preview. No harm done — what it removed were two duplicates I had just created by accident and
+   which were in no run — but nobody should reach for it as a safe check.
+2. **`(value or "")` in a verification comparator silently destroys a legitimate `0`**, and TestRail
+   appends a trailing newline and sometimes a stray `</p>` to text fields. Three "the write did not
+   land" alarms today were all the comparator, not the data. A verification that cries wolf gets
+   ignored, so these are now compared at content level — every sentence asserted present, the old text
+   asserted absent, and every untouched field asserted byte-identical.
+
+---
+
 ## OUTSTANDING — what I need from you
 
 | # | What I need | Why it is waiting on you |
 |---|---|---|
-| **1** | **May I correct C55662?** Its two steps type the two phone forms the old version never supported, and miss the one it did. | It is an EXPECT-FAIL case tied to open ticket SV-10057, so changing what it tests changes what that ticket is judged against. I will not touch it without your word. |
-| **2** | **Shall I tell the other session about §3** before they write their Case 1 and Case 2? | Their Case 2 as specified types a form the old version could not find. If it goes in as written it cannot fail honestly, and it will read as a passing case that proves nothing. |
-| **3** | **Who writes the three open cases** — them or me? | Their card assigns them to the authoring lane. I have the old-version behaviour verified and can write them, but I am not going to duplicate their work by accident. |
-| **4** | Nothing else. Seeding needs nothing, and the three cases I fixed are verified. | — |
+| **1** | **Tell the other session to stand down on their four cases.** All four are now handled — two written, one folded into C55662, one already in C55670. If they create theirs as well the suite gets four duplicates. | They are working from a card that predates this, so they will write them unless told. |
+| **2** | **Which `custom_automation_type` should new cases in this suite carry?** I used **0**, matching all 66 siblings and all three skill files. Their card says a ruling of yours on 2026-09-02 requires **2** for new cases — I could not find that ruling in anything committed, so I did not follow it on your behalf. | If the ruling is real, C55688 and C55689 need changing to 2, and so do the other 66. If it is not, their card needs correcting. Either way it is one word from you. |
+| **3** | **Nobody knows yet whether the make alone or the year alone actually works** on this build. C55688 and C55689 are written and in the run but have never been executed. | Those two results decide whether a new ticket is needed. The execution session has the handoff. |
+| **4** | Nothing else. Seeding needs nothing, all eight cases are verified, and the run is intact. | — |
