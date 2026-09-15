@@ -2537,3 +2537,29 @@ then diff** — and it showed five differences, all of them markup, no content c
 
 > A guard firing on every single case is a hypothesis about the guard as much as about the work.
 > Prove which, with a before-and-after you captured yourself, before you trust it or override it.
+
+### L0129 — the pre-check paid for itself the day it was written
+Rule 106 was extended on 2026-09-15 to run **before judging any case**, not only before proposing a
+defect. Hours later it caught a false defect I had already finished building.
+
+The case: *selecting a search result records a usage event*. I measured it properly — the sending
+functions wrapped in the page before the app's code ran, the network captured independently, then all
+93 of the app's JavaScript files read to show the tracking call in 17 components and not in the search
+one. The evidence was sound. The ask was drafted: *"may I raise this new fault?"*
+
+Then the source, read live: the requirements say in two separate places that there is **no impression
+or click logging in this version**, and the change log records telemetry being **removed entirely**.
+The owning story is not started. **The build matched the source; my case did not.** The case carried a
+line — "V2 keeps this" — that had been true of an earlier version of the document and was overtaken.
+
+Two things in that are worth keeping:
+
+1. **Quality of evidence is not a substitute for the pre-check.** Nothing about my measurement was
+   wrong. It was an excellent proof of the wrong proposition, and no amount of further rigour would
+   have found that; only reading the source would.
+2. **Our own suite already knew.** A second case in the same set carried the exclusion in full, with
+   the story key and the date the decision was taken. The contradiction was inside our own work,
+   sitting two hundred cases away from the case that contradicted it.
+
+> A finding you can prove is still only as good as the claim it is measured against. Read the claim
+> live, then judge — including, and especially, when the measurement is beautiful.

@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "C45160, corrected after the written requirements were read live",
+  "how_judged": "The case's expectation was reconciled against the written requirements as they read today before any conclusion was drawn. They say the opposite of the case.",
+  "build": "v26.36.4-7869ff2"
+ },
+ "results": {
+  "C45160": {
+   "verdict": "Blocked",
+   "observed": "This test is checking for something the product deliberately does not do in this version, so it should not be run against it. The written requirements, read today, put search usage-recording outside this release in two places: the goals section says there is no impression or click logging in this version, and the change list records telemetry being removed from the document entirely. The work itself sits on a separate piece of work that has been moved to a later release and is not started. The product on the branch matches the requirements: choosing a result records nothing about the search. A second test in this same set already carries exactly that exclusion and is deliberately not executed.",
+   "todo": "Nothing to raise with the developers - the product is doing what the requirements say. What is needed is a decision on the test itself: carry the same exclusion its twin carries, so it is kept for the release in which usage-recording ships, or keep it as an old-version expectation and put the difference to the Product Owner as a decision he already took in August. Either way it is a change to our own test, not a report against the build.",
+   "technical": "Reconciliation written to build/global-search/source-verify-2026-09-15/TELEMETRY-C45160.md. Source: Global Search - Product Requirements, Confluence page 576978945, version 1.5, last modified 8 September 2026, fetched live 15 September 2026 - section 2 Non-Goals: 'no impression or click logging in v1'; change log v1.5: 'Telemetry removed entirely'. Owning story SV-9167 (https://shopview.atlassian.net/browse/SV-9167) is Blocked and not delivered. Twin case C45140 carries the exclusion already. Measurement kept for the record: the in-page and network captures during the click returned only page_view, and the tracking call appears in 17 of the app's 93 JavaScript files and not in the search one.",
+   "not_observed": null
+  }
+ }
+}

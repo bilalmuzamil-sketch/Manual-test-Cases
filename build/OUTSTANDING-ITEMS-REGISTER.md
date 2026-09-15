@@ -211,23 +211,32 @@ one is written up for the developers and none is a duplicate.
 
 ## The two things waiting on you
 
-### 1. May I raise the one new fault we found today?
-**What a user would see.** Nothing, directly — and that is the point. Choosing something from the
-search results is no longer recorded anywhere, so nobody can tell whether people are using the search
-box or what they pick when they do. Everything else in the product still records this: the clock-in
-button, the notification bell, the menus, the jobs screen, the filters. Search is the one that
-stopped.
-**Why it matters.** It is the measurement that would tell you whether the new search is actually
-being used after it ships. Once it is missing, that period is simply unmeasurable — it cannot be
-backfilled later.
-**The decision.** May I raise this with the developers?
+### 1. One test is checking for something we deliberately left out of this version
+**What happened, and it is worth a minute.** I had this written up as a new fault and was about to ask
+your permission to raise it: choosing something from the search results is no longer recorded
+anywhere, so nobody can tell whether people use the search box. I had it measured, and I could point
+at it in the product's own code — every other part still records this and search does not.
+
+**Then I read the written requirements as they stand today, before judging it.** They say the
+opposite of our test. The goals section puts usage-recording outside this version in as many words,
+and the change list records it being taken out of the document altogether. The piece of work that
+would build it was moved to a later release and has not started. **The product is doing exactly what
+was asked of it.** Raising it would have put a report on a developer's desk for work we ourselves
+decided not to do.
+
+**And we already knew.** Another test in the same set carries that exclusion in full and is
+deliberately not run. The two are about the same thing; one of them has the ruling on it and the other
+does not.
+
+**The decision.** Nothing goes to the developers. What is left is our own test:
 
 | Option | What we would do |
 |---|---|
-| **Yes (recommended)** | Raise one report against the right story, with what was measured and what the old version did. The test result then changes from "held" to "failed", and the set is complete. |
-| Not yet | The finding stays written up here and the test stays held. |
+| **Give it the same exclusion as its twin (recommended)** | It is kept for the release in which usage-recording ships, and recorded as not applicable to this version rather than as a failure. |
+| Keep it as an old-version expectation and put the difference to the Product Owner | The old version did record this and the new one will not. That is a decision he already took in August; re-opening it is his call. |
 
-**If you say nothing:** one test of the sixty-five stays unfinished. Nothing else is held up.
+**If you say nothing:** one test of the sixty-five stays open. Nothing goes to the developers either
+way, and nothing else is held up.
 
 ### 2. One test can no longer be run at all — retire it, or lend me a sign-in?
 **What it checks.** That someone who has no home branch set can still use search without it breaking.
