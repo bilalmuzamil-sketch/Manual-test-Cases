@@ -1,7 +1,63 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0b-FIVE-DIMENSION-REVERIFY-2026-09-09 (LATEST) — full authenticity gate; ALL 5 dimensions clean
+## §0a-REGRESSION-EXECUTION-2026-09-15 (LATEST) — the V1 regression set is executed, 63 of 65 judged
+
+**Run 415, QA branch sv9160, build `v26.36.4-7869ff2`.** The set that asks "can a person still do on V2
+what they could do on V1" is **65 cases, not the 62 reported all week** — the count had come from
+`CASES-FULL.json`, a snapshot taken at the start of the pass, and there is a **second regression section,
+8056**, that was never in scope. Count from the run, never from an extract (Rule 100).
+
+| | Cases |
+|---|---|
+| Pass | 47 |
+| Fail | 16 — the ten the PO ruled on (2026-09-15) plus the six that fall out of them, all written up, no duplicates |
+| Held on a decision | 2 — C45159, C45160 |
+| **Total** | **65** |
+
+The other **99 tests in run 415 are FEATURE cases** judged against spec v1.5 and are deliberately
+untouched; the QA lead says when to start them. `build/testing-tools/which_standard.py` separates the two
+**by what each case says about itself**, never by section — `--assert-all regression` exits 1 on a mixed
+set, which is the guard against judging a V2 improvement as a V1 regression.
+
+**The two held, and what each needs**
+* **C45160** (usage event on selecting a result) — **reconciled against the live source and it is NOT a
+  defect.** Spec v1.5 §2 Non-Goals: *"no impression or click logging in v1"*; change log v1.5:
+  *"Telemetry removed entirely"*; owning story **SV-9167 Blocked, not delivered**. The build matches the
+  source and the case does not, so the **case** is what needs correcting — and **C45140 already carries
+  that exclusion**. Full reconciliation: `source-verify-2026-09-15/TELEMETRY-C45160.md`. Nothing filed.
+* **C45159** (a user with no home branch) — **proved blocker, through the gate with all seven proofs**:
+  such a person cannot be signed in at all. A technician WITH a branch is admitted and a technician
+  WITHOUT one is refused, from fresh sessions each time; the state cannot be created either (the staff
+  save answers `workplace_id: Missing required parameter` and the record reads back unchanged). 27 active
+  people already have no branch. Claim: `tickets-2026-09-14/C45159-BLOCKER-CLAIM.json`.
+
+**What the permission cases needed, and the trap in them.** **Unchecking a permission does not always
+remove it** — turning off *Work orders / View* on Technician removed three other permissions and left
+`workOrdersView`, swapping the technician view mode for the full one; **every stock role on this branch
+carries `workOrdersView`**, Time Clock User included. A user without work-orders access has to be **built
+from scratch** (*Create Custom Role → Skip*). The role `ZZAUTOTEST No Work Orders` was built for C45142,
+re-shaped for C45143 (part sales requires *See Financial Data* — the screen says so) and for C45149.
+Clayton Stephens was moved onto it each time and put back on Technician, verified from his own permission
+list; Technician was restored to `ROLE-BASELINE-Technician.json` control by control with no differences.
+
+**Three instrument mistakes worth carrying (L0124-L0129).** A dialog can open the moment a checkbox is
+ticked, and every later click then lands on the backdrop · becoming one person and then another measures
+the FIRST person's session · an empty branch column is not the app's view of a person, since an
+administrator is offered every branch regardless · and the byte-strict verify in `surgical_replace.mjs`
+fails on every case because a UI save normalises markup around the edit — proved harmless by snapshotting
+three cases before writing and diffing (five differences, all markup).
+
+**Marker sweep in flight.** Every executed case still carried *"Not available on Build to test Yet"*,
+untrue the moment it ran. Being corrected to `AUTOMATION: READY` through the UI editor **only** — the
+served pages are `markdown fr-view` today and an API write would drop them into the escaping container
+(playbook §J). Chunked eight at a time because TestRail deadlocks under a long run.
+
+Status doc: `tickets-2026-09-14/EXECUTION-STATUS.md`. Outstanding: `build/OUTSTANDING-ITEMS-REGISTER.md` §B.
+
+---
+
+## §0b-FIVE-DIMENSION-REVERIFY-2026-09-09 — full authenticity gate; ALL 5 dimensions clean
 
 **Re-ran the five-dimension authenticity gate (L0026 / skill 02 §5c) over all 119 cases** after the morning
 v1.5 pass — because that pass predated the title/steps-coverage lessons. It caught real misses the morning
