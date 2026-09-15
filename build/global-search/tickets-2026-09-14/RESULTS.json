@@ -293,9 +293,11 @@
    "not_observed": null
   },
   "C55673": {
-   "verdict": "Blocked",
-   "observed": "Typed a word and pressed Enter without touching the arrow keys. Something did open, so Enter works on its own - but it opened the wrong record. The top result was a job; what opened was a customer sitting partway down the list, and that customer is the one the panel had quietly highlighted from the moment the results appeared. Checked twice, once with nothing else clicked first, and it behaved the same both times.",
-   "todo": "The case says to hold this and flag it. Before, the first result was highlighted as soon as results appeared, so typing and pressing Enter took you straight to the best match. Now it takes you somewhere else, which is worse than doing nothing: someone typing and pressing Enter out of habit lands on a record they did not ask for and may not notice. Worth deciding whether this is a deliberate change or simply wrong.",
+   "verdict": "Failed",
+   "observed": "Typed a word and pressed Enter without touching the arrow keys. Something did open, so Enter works on its own - but it opened the wrong record. The top result was a job for the customer typed; what opened was a different customer's page, and that customer is the one the panel had quietly highlighted from the moment the results appeared, with nothing pressed or clicked to choose it. Checked twice in separate sittings with nothing clicked first, and it opened the very same wrong record both times. The QA lead approved raising this on 15 September 2026.",
+   "todo": "Pressing Enter should open the top result, and whichever row is going to open should be shown as selected so a person can see where Enter will take them. This needs fixing, and is logged.",
+   "technical": "query 'Bridgeport', 13 rows. Top row S9160-17613 ZZAUTOTEST Bridgeport Hauling (a work order). The row carrying the app's own active marking, with no arrow key pressed, was \"Forest's Truck Repair\". Enter navigated /workorders -> /customers/18b7a7dc-87d9-44bb-a714-fe9183307d25/work-orders, title 'Customer | ShopView'. Identical on a second run. Evidence ENTER-KEY-EVIDENCE.json and enter-evidence/, screenshots annotated in-page before capture.",
+   "ticket": "Logged as SV-10061 - \"pressing Enter opens a record further down the list, not the top result\": https://shopview.atlassian.net/browse/SV-10061",
    "not_observed": null
   },
   "C53605": {

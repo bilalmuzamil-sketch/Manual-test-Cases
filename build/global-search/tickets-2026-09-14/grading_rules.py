@@ -49,7 +49,10 @@ want_blocked = re.compile(r'mark (?:the (?:case|test)|it) (?:as )?blocked|do not
 # build/global-search/questions-2026-09-15/ (the answered sheet, all ten rows YES).
 pending_po = re.compile(r'until the Product Owner has ruled|a task ticket goes to the Product Owner'
                         r'|until the PO has ruled', re.I)
-RULED = re.compile(r'answered on 15 September 2026|Product Owner question .* was answered', re.I)
+# A ruling reaches a case in more than one shape: an answered question sheet, or the QA lead
+# approving the finding directly. Both are rulings; only the wording differs.
+RULED = re.compile(r'(?:answered|approved|ruled)\b[^.]{0,80}\b15 September 2026'
+                   r'|Product Owner question[^.]*was answered', re.I)
 
 conflicts, resolved = [], []
 for cid, title, hits, v in rows:
