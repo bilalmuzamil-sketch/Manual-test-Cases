@@ -73,6 +73,8 @@ different feature entirely.
   template) · §AD the before/after exhibit.
 - `CLAUDE.md` Standing Rules — the **rules** half. Every rule carries its own rationale, which is the
   story of the mistake that produced it.
+| A build-marker check reported the wrong build because `curl -o <file>` had failed and the file still held the **previous** read's bytes — the grep happily returned a stale `app-version`, and for a moment it looked like the QA branch had redeployed onto production's build. (SV-9914 pre-post gate, 2026-09-15.) | Every marker/artefact read checks `%{http_code}` **and** that the file is non-empty before anything greps it, and writes to a **fresh `mktemp`** rather than a reused path. A failed fetch must fail loudly, never silently return the last good answer. | This row; `build/APP-ACTIONS-PLAYBOOK.md` §AC.8; Standing Rules 59 + 81. |
+
 
 ## The shape of the mistakes, in four lines
 

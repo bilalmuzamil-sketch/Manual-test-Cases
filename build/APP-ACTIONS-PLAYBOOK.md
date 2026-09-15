@@ -4482,3 +4482,27 @@ another cookie set.
 **Secrets:** production credentials live in `/tmp` only (e.g. `/tmp/prod/creds.json`, mode 600) and are
 **NEVER committed** — this repository is PUBLIC, which is how the Jira inline screenshots load. `/tmp`
 is wiped on container restart, so on a fresh container ask the QA lead for them again.
+
+### AC.8 A failed `curl -o` leaves the PREVIOUS file — guard every marker read
+
+`curl -s -o /tmp/i.html <url>` that fails (dead bridge, timeout, proxy gone) **does not empty
+`/tmp/i.html`** — the bytes from the last successful write are still sitting there. A build-marker
+check that then greps that path returns the *previous environment's* `app-version` and looks like a
+real reading.
+
+Cost, 2026-09-15 (SV-9914 pre-post gate): both MITM bridges had died; the QA branch read came back as
+production's `v26.36.7-cf5012e`, which read exactly like "the branch redeployed onto the production
+build". It had not. The path `/tmp/i.html` had simply been reused from the earlier SV-9296 gate, where
+production was the last thing written to it.
+
+**The guard, and it is two lines:**
+```bash
+T=$(mktemp); H=$(mktemp)
+CODE=$(curl -s -D $H -o $T --max-time 30 -w '%{http_code}' -x http://127.0.0.1:$PORT -k "$URL/index.html")
+[ "$CODE" = "200" ] && [ -s "$T" ] || { echo "FETCH FAILED http=$CODE"; exit 1; }
+```
+Fresh `mktemp` per read, check the code, check the file is non-empty. Also print the `sha256` of the
+body alongside the etag — two independent markers make a stale read obvious at a glance.
+
+Same family as §AC.6 (read the whole artefact) and Standing Rule 81 (verify the thing the reader gets,
+not a proxy for it): **a failed check must fail loudly, never quietly hand back the last good answer.**
