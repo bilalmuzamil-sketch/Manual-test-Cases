@@ -325,3 +325,23 @@ filed; both are put to the QA lead in `build/global-search/reports/STATUS-2026-0
 **B-N3 — the 99 feature checks in run 415 have never been run.** They test the new search against its
 own written requirements rather than against the old product. The QA lead was asked whether to start
 them; until he answers they stay untouched.
+
+### B-NEW closed out, 15 September 2026 — the QA lead gave the go-ahead and both are filed
+
+| | Finding | Report | Check |
+|---|---|---|---|
+| B-N1 | A supplier cannot be found by their **address line 2**, although a customer can | [SV-10109](https://shopview.atlassian.net/browse/SV-10109) | C53604, test 2959370, Failed |
+| B-N2 | A supplier cannot be found by their **website** | [SV-10110](https://shopview.atlassian.net/browse/SV-10110) | **C55692, created 15 September** — test 2990950, Failed |
+
+**C55692 is new.** The suite had "Finding a customer by their website still works" and nothing for the
+vendor, which is exactly why the supplier half went unnoticed. The new case types BOTH websites in one
+sitting, so the difference between the two kinds of company cannot hide again. Written in section 6769
+in the same shape as its neighbours, `custom_automation_type` 2 (Functional), and repaired to
+`markdown fr-view` through the UI editor after the API write — an API write alone would have shown the
+tester literal `<strong>` and `<br>`.
+
+**Both were measured on the live product first.** Typing each of the two values there returns
+ZZAUTOTEST Kestrel Parts Supply, and the supplier's record on the live product shows both fields, so
+neither is a case of an empty field.
+
+**B-N3 still open** — the 99 feature checks in run 415 have never been run.

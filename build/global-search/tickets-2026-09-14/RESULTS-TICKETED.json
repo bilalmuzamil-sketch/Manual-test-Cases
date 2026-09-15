@@ -1,0 +1,22 @@
+{
+ "pass_meta": {"what": "naming the reports now that they exist, on the two tests that were failed without one",
+               "branch": "sv9160", "build": "v26.36.4-7869ff2"},
+ "results": {
+  "C53604": {
+   "verdict": "Failed",
+   "observed": "Same result as the run earlier today, now with the report it belongs to. The customer half works - typing the customer's address line 2 returns the customer. The supplier half does not: the supplier whose address line 2 was typed is not returned, and the one company listed under Vendors is an unrelated one offered because its name looks similar. The supplier's own record shows Address 2 on screen, so the field is filled in.",
+   "not_observed": null,
+   "ticket": "Now reported as SV-10109 - a supplier cannot be found by their address line 2, although a customer can. https://shopview.atlassian.net/browse/SV-10109",
+   "todo": "What needs to be done: nothing by the tester. Re-run this once a fix ships - it passes only when BOTH halves return their company.",
+   "technical": "Typed Dock 7B -> Customers returned ZZAUTOTEST Bridgeport Hauling. Typed Bay 12C -> Vendors 1, and that one row is B&K Truck Repair LLC, a name match. On the live product at app.shopview.com v26.36.7-cf5012e the same words returned ZZAUTOTEST Kestrel Parts Supply. Branch sv9160, build v26.36.4-7869ff2."
+  },
+  "C55692": {
+   "verdict": "Failed",
+   "observed": "Same result as the run earlier today, now with the report it belongs to. Neither website found its company - the supplier's returned nothing and the customer's returned nothing. The supplier comes straight back when its name is typed, so the record is there and the search box is working.",
+   "not_observed": null,
+   "ticket": "The supplier half is now reported as SV-10110 - a supplier cannot be found by their website address. https://shopview.atlassian.net/browse/SV-10110 . The customer half remains SV-10003. https://shopview.atlassian.net/browse/SV-10003",
+   "todo": "What needs to be done: nothing by the tester. Re-run this once a fix ships - it passes only when BOTH websites return their company.",
+   "technical": "Typed kestrelsupply-zzt.com -> Vendors 0. Typed bridgeporthauling-zzt.com -> Customers 0. Control: ZZAUTOTEST Kestrel -> Vendors 1. On the live product both words returned their company. Branch sv9160, build v26.36.4-7869ff2."
+  }
+ }
+}

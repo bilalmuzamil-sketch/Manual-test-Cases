@@ -455,5 +455,51 @@
   ],
   "shot_caption": "Above, the panel as reported - a search that matched nothing, showing only the message. Below, the same day after clearing the box - the recently viewed list is back.",
   "sources": "There is no half from the version people use today in the picture above, and there cannot be. The live product was opened on 15 September 2026 with nothing typed into its search box and it shows nothing at all - it has no recently viewed list. The list is something the new version adds, so what this is checked against is the new version's own behaviour, not the old product's.\n\nThe test that covers this, and its result on this run: \"Your recent items come back when a search finds nothing\" - https://shopview.testrail.io/index.php?/tests/view/2981982"
+ },
+ "SV-10109": {
+  "title": "Global Search: a supplier cannot be found by their address line 2, although a customer can",
+  "image": "VENDOR-ADDRESS-2.png",
+  "description": "A company's address can run to two lines - a dock, a bay, a suite - and the second line is often the only part that tells two units on the same estate apart. The new search reads that second line on a CUSTOMER and ignores it on a SUPPLIER. Someone holding a delivery note with the bay number on it can find the customer and not the supplier, from the same box, with the same kind of words. On the version people use today, both come back.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that supplier from the Vendors group. This also shows the search box itself is working.",
+   "On the supplier's page, read the line marked Address 2. It says Bay 12C.",
+   "Open the search box again and type Bay 12C exactly as the record prints it.",
+   "Read the Vendors group and look for ZZAUTOTEST Kestrel Parts Supply.",
+   "Now clear the box and type Dock 7B - the address line 2 of the customer ZZAUTOTEST Bridgeport Hauling - and read the Customers group. This is the same kind of search on the other kind of company."
+  ],
+  "current": [
+   "The supplier is not returned. The one company listed under Vendors is B&K Truck Repair LLC, which is offered because its NAME looks a little like the words typed - its address has nothing to do with them.",
+   "The customer search in the same sitting works: typing Dock 7B returns ZZAUTOTEST Bridgeport Hauling.",
+   "The supplier comes straight back when its name is typed, so the record is there and the search box is working, and its own page shows Address 2: Bay 12C, so the field is filled in."
+  ],
+  "expected": [
+   "The supplier whose address line 2 was typed is returned, under Vendors - the same way the customer already is under Customers.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The same address line typed into both versions. Above, the live product returns the supplier. Below, the new version returns an unrelated company matched on its name.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where Bay 12C returned ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The supplier's record on the live product shows the same Address 2, so the field is filled in on both. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nWorth reading beside this one: the supplier's postcode and the state it is in are not searched either, and those are already reported as SV-10005 and SV-10006. Measured field by field on 15 September, a supplier is found by its name, its street and its town and by nothing else on its address; a customer is found by all of those plus its address line 2 and its state. It may be one piece of work rather than three.\n\nThe test that covers this, and its result on this run: \"Finding a customer or vendor by address line 2\" - https://shopview.testrail.io/index.php?/tests/view/2959370"
+ },
+ "SV-10110": {
+  "title": "Global Search: a supplier cannot be found by their website address",
+  "image": "VENDOR-WEBSITE.png",
+  "description": "A supplier's website is printed on their record and the new search ignores it. Someone who has the supplier's website in front of them - off an email footer, an invoice, or a parts catalogue - cannot use it to reach them. On the version people use today, typing it brings the supplier straight back.\n\nThe same is already reported for customers as SV-10003. Nobody had checked the supplier side because the suite had a check for the customer's website and none for the supplier's; that gap is now closed.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that supplier from the Vendors group. This also shows the search box itself is working.",
+   "On the supplier's page, read the line marked Website. It says kestrelsupply-zzt.com.",
+   "Open the search box again and type that website exactly as the record prints it.",
+   "Wait for the results and read the Vendors group."
+  ],
+  "current": [
+   "Nothing comes back at all. The panel reads \"No results for kestrelsupply-zzt.com\" and every group shows nought.",
+   "The supplier comes straight back when its name is typed, so the record is there and the search box is working, and its own page shows the website, so the field is filled in."
+  ],
+  "expected": [
+   "The supplier whose website was typed is returned, under Vendors.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The same website typed into both versions. Above, the live product returns the supplier. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where kestrelsupply-zzt.com returned ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The supplier's record on the live product shows the same website, so the field is filled in on both.\n\nThe customer side of the same thing is already reported as SV-10003. Both were typed in the same sitting on the new version and neither returned its company, so a fix wants to cover both.\n\nThe check that covers this was written on 15 September because the suite did not have one: \"Finding a vendor by their website still works\" - https://shopview.testrail.io/index.php?/tests/view/2990950"
  }
 }

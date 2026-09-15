@@ -1,0 +1,14 @@
+{
+ "pass_meta": {"what": "the vendor-website case, created and run on 15 September 2026",
+               "branch": "sv9160", "build": "v26.36.4-7869ff2"},
+ "results": {
+  "C55692": {
+   "verdict": "Failed",
+   "observed": "Neither website found its company. Typing the supplier's website returned nothing at all - the Vendors group showed nought - and typing the customer's website returned nothing either. The same supplier comes straight back when its name is typed, in the same sitting, so the record is there and the search box is working.",
+   "not_observed": null,
+   "ticket": "The customer half is already reported as SV-10003 - a customer cannot be found by their website address. https://shopview.atlassian.net/browse/SV-10003 . The supplier half is new and is being reported now.",
+   "todo": "What needs to be done: nothing by the tester. Both halves are with the team. Re-run this once a fix ships - it passes only when BOTH websites return their company.",
+   "technical": "Typed kestrelsupply-zzt.com -> Vendors 0. Typed bridgeporthauling-zzt.com -> Customers 0. Control: ZZAUTOTEST Kestrel -> Vendors 1, the supplier listed. On the live product at app.shopview.com v26.36.7-cf5012e the same two words each returned their company. Branch sv9160, build v26.36.4-7869ff2."
+  }
+ }
+}
