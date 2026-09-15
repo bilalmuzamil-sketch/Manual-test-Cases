@@ -4464,3 +4464,21 @@ set an e-mail + tick **Customer Portal Access** (`input_checkbox_has_portal_acce
 `POST /api/contacts/change`, **`company_id` is required** or you get
 `{"company_id":"Missing required parameter"}`). Then profile menu -> **Customer Portal**.
 Restore the contact afterwards on production — it is a shared org.
+
+### §K.1 — PRODUCTION ACCESS IS A USERNAME + PASSWORD LOGIN, NOT COOKIES
+
+QA-lead ruling, 2026-09-15, verbatim: *"For production never never need cookies rather the credentials
+to log in with."*
+
+**So: never ask for production cookies. Ask for the login credentials** (or reuse the ones already held
+in `/tmp` for this session). A production session is obtained by **logging in at
+`https://app.shopview.com/`** with username + password and keeping the resulting session; cookie sets
+handed over for `app.shopview.com` go stale in ~24 h and the 409 that follows is not a reason to ask for
+another cookie set.
+
+**The QA branches (`sv####.qa.shopview.com`) are the opposite** — those still need the three cookies
+(`sv_sso_session`, `PHPSESSID`, `cf_clearance`), because they sit behind Cloudflare + SSO.
+
+**Secrets:** production credentials live in `/tmp` only (e.g. `/tmp/prod/creds.json`, mode 600) and are
+**NEVER committed** — this repository is PUBLIC, which is how the Jira inline screenshots load. `/tmp`
+is wiped on container restart, so on a fresh container ask the QA lead for them again.
