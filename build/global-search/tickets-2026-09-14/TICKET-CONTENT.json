@@ -1,0 +1,24 @@
+{
+ "SV-10002": {
+  "title": "Global Search: a customer cannot be found by their postcode",
+  "image": "SV-10002.png",
+  "description": "A customer's postcode is on their record and the search box ignores it. Anyone who knows roughly where a customer is - which is how people tell two similar company names apart - has no way to get to them from the search box. On the version people use today, typing the postcode brings the customer straight back.",
+  "steps": [
+   "Open ShopView and sign in.",
+   "Open Customers, open any customer, and read the postcode on their record. On the test branch use ZZAUTOTEST Bridgeport Hauling, whose postcode is 44872-9931.",
+   "Click the search box at the top of the screen (or press Ctrl and K together).",
+   "Type that postcode exactly as it appears on the record.",
+   "Wait for the results and read the Customers group."
+  ],
+  "current": [
+   "Nothing comes back at all. The panel reads \"No results for 44872-9931\" and every group shows a count of zero.",
+   "The same customer is returned immediately if their name is typed instead, so the record is there and the search box is working."
+  ],
+  "expected": [
+   "The customer whose postcode was typed is returned, under the Customers group.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The same postcode typed into both versions. Above, the live product returns the customer. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version of the product that is live today, where the postcode is part of what a customer can be found by. It was typed into the live product on 15 September 2026 and the customer came back; the picture above is that search. Nothing else is being relied on."
+ }
+}
