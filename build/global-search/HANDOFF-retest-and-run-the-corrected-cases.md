@@ -4,10 +4,10 @@
 **From:** the main session, 15 September 2026.
 **Run 415:** https://shopview.testrail.io/index.php?/runs/view/415 — branch `sv9160`, build `v26.36.4-7869ff2`.
 
-**Why:** six cases were corrected today. They already
-carry results, and those results were set against the OLD wording — the cases now ask the tester to
-type things the old steps never asked for, so those results no longer mean anything. (Two further
-cases were written today and have already been run — §1, nothing to do.)
+**Why:** six cases were corrected today. They already carry results, and those results were set
+against the OLD wording — the cases now ask you to type things the old steps never asked for, so those
+results no longer mean anything. (Two further cases were written today and have already been run —
+§1, nothing to do.)
 
 The run went from 164 tests to 166. **Nothing was removed and all 65 existing results were kept** —
 checked before and after.
@@ -63,6 +63,25 @@ removed — nothing else. So:
 So **do not "helpfully" retype a number in a different format.** If a case says type it with dashes,
 type it with dashes. The new version is more forgiving than the old one, and typing a format the old
 version never supported turns the test into something that cannot fail.
+
+---
+
+## 3a · You can now see the OLD search for yourself
+
+The same records were seeded into the **production test account** on 15 September 2026 —
+`https://app.shopview.com`, workplace **Trucks Hill 2**. **Production runs the old search.** So if you
+are ever unsure what the old version did, you can go and type it there rather than argue about it.
+
+**This is the reference the whole suite is judged against** (Standing Rule 109: the shipped old product
+is the specification). It was measured on 15 September and agreed with the suite on **13 of 13**
+behaviours, including every phone format above.
+
+**Two things to hold on to when you compare:**
+
+1. The old version shows **three rows per group**. The new one shows far more. So a common word — a
+   make, a year — will surface our record in the new version and may not in the old one, and **that is
+   not a difference in what is searched.** It is a difference in how many rows are shown.
+2. The old version's search box needs **at least two characters** before it matches anything.
 
 ---
 

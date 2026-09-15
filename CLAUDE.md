@@ -354,6 +354,20 @@ cannot drift; **procedure found inside one is a bug in that router.**
 and 60 apply in full and findings stay PROVISIONAL. §16.1 is the superseded 2026-08-11 "the branches
 are FINAL" text, kept visible and dated.
 
+**🌱 RESEEDING THE GLOBAL SEARCH TEST DATA — TWO KEYWORDS, `build/global-search/seeding/RESEED.md`.**
+The QA lead says **`RESEED QA`** (branch `sv9160`) or **`RESEED LIVE`** (the production test account
+`app.shopview.com`, workplace **Trucks Hill 2**) and the session does the rest: `seed.py --check`,
+`--confirm`, `--check` again, proving **11/11 present, 0 field gaps**. Production needs
+`SEED_PROFILE` + `SEED_WORKPLACE` and a **single** login per run (a fresh login expires that user's
+previous session). **`0 of 11` is NEVER a clean bill of health** — the seeder says so itself. Four
+traps are recorded there and must not be simplified back out: a liveness probe must not use an
+endpoint only one version has (`/api/search` 404s on V1); a probe "control" record belongs to ONE
+estate and must calibrate against the environment in front of it; **one estate's record ids must
+never be written into the shared manifest** (a production run once overwrote the QA branch's and four
+work orders read as MISSING while sitting there); and **work orders cannot be found by searching**, so
+losing their captured ids means the seeder creates duplicates — remove extras with
+`POST /api/work-orders/delete {"work_order_id": …}` (**`work_order_id`, not `id`**).
+
 **Other standing infrastructure docs:** `build/PROCESS-CATALOG.md` (every callable process) ·
 `build/APP-ACTIONS-PLAYBOOK.md` (proven staging/QA action recipes — **read before any staging
 action**; §J TestRail traps, §K production access) · `build/TESTING-RUNBOOK.md` ·
