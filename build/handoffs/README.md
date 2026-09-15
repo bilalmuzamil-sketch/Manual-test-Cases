@@ -17,6 +17,19 @@
 
 ---
 
+## Task cards — issued WITH a handoff, never instead of one
+
+A **task card** briefs one specific piece of work. It does **not** repeat the charter, the search
+drill or §1a — it is pasted **after** the lane handoff that carries them, and it says so in its own
+first line. This keeps one copy of the mandatory sections, in the four files above, where they cannot
+drift apart.
+
+| Card | The work | Issued with |
+|---|---|---|
+| [`../global-search/artifact-coverage-2026-09-15/TASK-CARD-four-missing-cases.md`](../global-search/artifact-coverage-2026-09-15/TASK-CARD-four-missing-cases.md) | Author the **four V1-regression cases** the old-search demonstration showed are not covered anywhere in run 415: part of a phone number · a contact's own phone number · a vehicle's make on its own · a vehicle's year on its own. Carries the seeded records, the verified V1 source lines, where the V2 specification stands on each, the render trap and the union-only run sync. | `HANDOFF-1-TEST-CASE-CREATION.md` |
+
+---
+
 ---
 
 ## 🔴 EVERY HANDOFF AUTHORED FROM NOW ON MUST EMBED THE TOKEN DISCIPLINE CHARTER (Rule 95)
