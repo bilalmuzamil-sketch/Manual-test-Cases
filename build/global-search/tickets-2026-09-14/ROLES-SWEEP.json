@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-15T07:33:26.976Z",
+  "at": "2026-09-15T07:38:02.687Z",
   "subject": "clayton.stephens@staging.shopview.local",
   "query": "Bridgeport",
   "roles": {
@@ -46,9 +46,49 @@
         "status": 200
       },
       "who": {
+        "ok": true,
         "status": 200,
-        "nPerms": 0,
-        "perms": []
+        "templateSlug": "parts_technician",
+        "roleName": null,
+        "nPerms": 28,
+        "perms": [
+          "catalogInventoryCreateAndEdit",
+          "catalogInventoryDelete",
+          "catalogInventoryView",
+          "customersCreateAndEdit",
+          "customersDelete",
+          "customersView",
+          "invoicingPaymentsCreateAndEdit",
+          "invoicingPaymentsView",
+          "partSalesCreateAndEdit",
+          "partSalesDelete",
+          "partSalesView",
+          "reportsPageAccess",
+          "scheduleView",
+          "seeApArData",
+          "seeFinancialData",
+          "vendorOrderManagementCreateAndEdit",
+          "vendorOrderManagementDelete",
+          "vendorOrderManagementView",
+          "viewHistoryLogs",
+          "woFullViewMode",
+          "woOrderParts",
+          "woPickParts",
+          "woReviewWorkOrders",
+          "workOrderLinesCreateAndEdit",
+          "workOrderLinesDelete",
+          "workOrdersCreateAndEdit",
+          "workOrdersDelete",
+          "workOrdersView"
+        ],
+        "rawKeys": [
+          "fe_permissions",
+          "view_mode",
+          "cross_toggles",
+          "template_id",
+          "template_slug",
+          "system_role"
+        ]
       },
       "modal": {
         "tabs": {
@@ -88,7 +128,8 @@
         "ok": false,
         "savedWithoutError": true,
         "picked": {
-          "ok": true
+          "ok": false,
+          "why": "no element matched"
         },
         "saved": {
           "ok": true
@@ -128,9 +169,64 @@
   "subjectResolved": true,
   "adminBaseline": {
     "who": {
+      "ok": true,
       "status": 200,
-      "nPerms": 0,
-      "perms": []
+      "templateSlug": "administrator",
+      "roleName": null,
+      "nPerms": 43,
+      "perms": [
+        "accountingView",
+        "billingPortalPageAccess",
+        "catalogInventoryCreateAndEdit",
+        "catalogInventoryDelete",
+        "catalogInventoryView",
+        "customerPortalPageAccess",
+        "customersCreateAndEdit",
+        "customersDelete",
+        "customersView",
+        "invoicingPaymentsCreateAndEdit",
+        "invoicingPaymentsDelete",
+        "invoicingPaymentsView",
+        "partSalesCreateAndEdit",
+        "partSalesDelete",
+        "partSalesView",
+        "reportsPageAccess",
+        "scheduleCreateAndEdit",
+        "scheduleDelete",
+        "scheduleView",
+        "seeApArData",
+        "seeFinancialData",
+        "settingsApp",
+        "settingsDataImport",
+        "settingsFinance",
+        "settingsIntegrations",
+        "settingsParts",
+        "settingsService",
+        "settingsWages",
+        "timesheetsCreateAndEdit",
+        "timesheetsView",
+        "vendorOrderManagementCreateAndEdit",
+        "vendorOrderManagementDelete",
+        "vendorOrderManagementView",
+        "viewHistoryLogs",
+        "woFullViewMode",
+        "woOrderParts",
+        "woPickParts",
+        "woReviewWorkOrders",
+        "workOrderLinesCreateAndEdit",
+        "workOrderLinesDelete",
+        "workOrdersCreateAndEdit",
+        "workOrdersDelete",
+        "workOrdersView"
+      ],
+      "rawKeys": [
+        "fe_permissions",
+        "view_mode",
+        "cross_toggles",
+        "template_id",
+        "template_slug",
+        "system_role"
+      ]
     },
     "modal": {
       "tabs": {
@@ -169,7 +265,8 @@
     "ok": false,
     "savedWithoutError": true,
     "picked": {
-      "ok": true
+      "ok": false,
+      "why": "no element matched"
     },
     "saved": {
       "ok": true

@@ -76,9 +76,11 @@
    "observed": "On a full-size screen the search box shows the shortcut written in it, and hovering explains what it does. On the narrower tablet and phone widths the shortcut is not shown, which is right - there is no keyboard to press it on."
   },
   "C53583": {
-   "verdict": "Blocked",
-   "observed": "Typing the customer's website address returned nothing at all, although the customer's record does hold that website.",
-   "todo": "The case says to hold this rather than treat it as a fault: the new specification leaves the website out of what a customer can be found by, so this may be a deliberate decision. It needs the Product Owner to say whether searching by website should still work."
+   "verdict": "Failed",
+   "observed": "Typing the customer's website address returned nothing at all, although the customer's record does hold that website. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, a customer should still be findable by their website address, so it is logged as a fault.",
+   "todo": "This needs fixing, and is logged.",
+   "ticket": "Logged as SV-10003 - \"a customer cannot be found by their website address\": https://shopview.atlassian.net/browse/SV-10003",
+   "technical": "customer website searched in full -> 0 results of any type; the website is on the customer record. Searching the customer by name returns it. Spec v1.5 section 4 does not list a website field for customers, so this is a V1 capability the V2 field list drops."
   },
   "C53603": {
    "verdict": "Failed",
