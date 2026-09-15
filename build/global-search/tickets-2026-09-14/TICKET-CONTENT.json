@@ -2,23 +2,270 @@
  "SV-10002": {
   "title": "Global Search: a customer cannot be found by their postcode",
   "image": "SV-10002.png",
-  "description": "A customer's postcode is on their record and the search box ignores it. Anyone who knows roughly where a customer is - which is how people tell two similar company names apart - has no way to get to them from the search box. On the version people use today, typing the postcode brings the customer straight back.",
+  "description": "A customer's postcode is printed on their record, and the search box ignores it. Anyone who knows roughly where a customer is - which is how people tell two similar company names apart - has no way to reach them from the search box. On the version people use today, typing the postcode brings the customer straight back.",
   "steps": [
-   "Open ShopView and sign in.",
-   "Open Customers, open any customer, and read the postcode on their record. On the test branch use ZZAUTOTEST Bridgeport Hauling, whose postcode is 44872-9931.",
-   "Click the search box at the top of the screen (or press Ctrl and K together).",
-   "Type that postcode exactly as it appears on the record.",
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Bridgeport Hauling, and open that customer from the Customers group. This also shows the search box itself is working.",
+   "On the customer's page, read the postcode under Address. It is 44872-9931.",
+   "Open the search box again and type that postcode exactly as the record prints it.",
    "Wait for the results and read the Customers group."
   ],
   "current": [
-   "Nothing comes back at all. The panel reads \"No results for 44872-9931\" and every group shows a count of zero.",
-   "The same customer is returned immediately if their name is typed instead, so the record is there and the search box is working."
+   "Nothing comes back at all. The panel reads \"No results for 44872-9931\" and every group shows nought.",
+   "The same customer comes straight back when their name is typed, so the record is there and the search box is working."
   ],
   "expected": [
-   "The customer whose postcode was typed is returned, under the Customers group.",
+   "The customer whose postcode was typed is returned, under Customers.",
    "This is what the version people use today does."
   ],
   "shot_caption": "The same postcode typed into both versions. Above, the live product returns the customer. Below, the new version returns nothing.",
-  "sources": "The expected behaviour comes from the version of the product that is live today, where the postcode is part of what a customer can be found by. It was typed into the live product on 15 September 2026 and the customer came back; the picture above is that search. Nothing else is being relied on."
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the postcode 44872-9931 returned the customer ZZAUTOTEST Bridgeport Hauling, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a customer by address, city or postal code still works\" - https://shopview.testrail.io/index.php?/tests/view/2959359"
+ },
+ "SV-10003": {
+  "title": "Global Search: a customer cannot be found by their website address",
+  "image": "SV-10003.png",
+  "description": "A customer's website is printed on their record, and the search box ignores it. Someone who has the company's website in front of them - off an email footer or an invoice - cannot use it to reach the customer. On the version people use today, typing the website brings the customer straight back.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Bridgeport Hauling, and open that customer from the Customers group. This also shows the search box itself is working.",
+   "On the customer's page, read the line marked Website. It is bridgeporthauling-zzt.com.",
+   "Open the search box again and type that website address exactly as the record prints it.",
+   "Wait for the results and read the Customers group."
+  ],
+  "current": [
+   "Nothing comes back at all. The panel reads \"No results for bridgeporthauling-zzt.com\" and every group shows nought.",
+   "The same customer comes straight back when their name is typed, so the record is there and the search box is working."
+  ],
+  "expected": [
+   "The customer whose website was typed is returned, under Customers.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The same website address typed into both versions. Above, the live product returns the customer. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the website bridgeporthauling-zzt.com returned the customer ZZAUTOTEST Bridgeport Hauling, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a customer by their website still works\" - https://shopview.testrail.io/index.php?/tests/view/2959360"
+ },
+ "SV-10005": {
+  "title": "Global Search: a supplier cannot be found by their postcode",
+  "image": "SV-10005.png",
+  "description": "A supplier's postcode is printed on their record, and the search box ignores it. Someone holding a delivery note or an invoice with the supplier's address on it cannot use it to reach them. On the version people use today, typing the postcode brings the supplier straight back.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that supplier from the Vendors group. This also shows the search box itself is working.",
+   "On the supplier's page, read the postcode in its address. It is 43055-2210.",
+   "Open the search box again and type that postcode exactly as the record prints it.",
+   "Wait for the results and read the Vendors group."
+  ],
+  "current": [
+   "Nothing comes back at all. The panel reads \"No results for 43055-2210\" and every group shows nought.",
+   "The same supplier comes straight back when their name is typed, so the record is there and the search box is working."
+  ],
+  "expected": [
+   "The supplier whose postcode was typed is returned, under Vendors.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The same supplier postcode typed into both versions. Above, the live product returns the supplier. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the postcode 43055-2210 returned the supplier ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a vendor by address, city or postal code still works\" - https://shopview.testrail.io/index.php?/tests/view/2959362"
+ },
+ "SV-10006": {
+  "title": "Global Search: a supplier cannot be found by the state they are in, although a customer can",
+  "image": "SV-10006.png",
+  "description": "Typing the name of a state finds the CUSTOMERS in that state but not the SUPPLIERS in it. The same word, the same box, two different answers depending on which kind of company the record is. Someone looking for a supplier in a particular state is told there is none, while the customers next door on the same street are listed. On the version people use today, both come back.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that supplier from the Vendors group. Read its address: it is in Ohio.",
+   "Open the search box again and type Ohio.",
+   "Read the Customers group. Customers whose address is in Ohio are listed, with the word Ohio marked in their address.",
+   "Now read the Vendors group, and look for ZZAUTOTEST Kestrel Parts Supply."
+  ],
+  "current": [
+   "The supplier in Ohio is not there. The Vendors group holds one company, Ohioville Diesel Services LLC, and it is listed because Ohio is part of its NAME - its address is in North Cathyville.",
+   "The Customers group at the same time lists three customers whose address is in Ohio, so the state is being read on customers and not on suppliers."
+  ],
+  "expected": [
+   "Suppliers whose address is in the state typed are returned under Vendors, the same way customers in that state already are.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The name of a state typed into both versions. Above, the live product lists the supplier in Ohio. Below, the new version lists the customers in Ohio but not the supplier.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the state name Ohio returned the supplier ZZAUTOTEST Kestrel Parts Supply alongside the customers in that state, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a vendor by state or province\" - https://shopview.testrail.io/index.php?/tests/view/2959372"
+ },
+ "SV-10007": {
+  "title": "Global Search: a vehicle cannot be found by its number plate",
+  "image": "SV-10007.png",
+  "description": "A vehicle's number plate is printed on its record, and the search box ignores it. The plate is what is readable on a truck standing in the yard, so it is often the only thing the person at the desk has. On the version people use today, typing the plate brings the vehicle straight back.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZT-4471, and open the vehicle from the Assets group. This also shows the search box itself is working.",
+   "On the vehicle's page, read its number plate. It is OHZZT471.",
+   "Open the search box again and type that plate exactly as the record prints it.",
+   "Wait for the results and read the Assets group."
+  ],
+  "current": [
+   "Nothing comes back at all. The panel reads \"No results for OHZZT471\" and every group shows nought.",
+   "The same vehicle comes straight back when its unit number is typed, so the record is there and the search box is working."
+  ],
+  "expected": [
+   "The vehicle whose plate was typed is returned, under Assets.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The same number plate typed into both versions. Above, the live product returns the vehicle. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the number plate OHZZT471 returned the vehicle 2019 Freightliner Cascadia, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Searching an asset's licence plate finds that asset\" - https://shopview.testrail.io/index.php?/tests/view/2902696"
+ },
+ "SV-10008": {
+  "title": "Global Search: jobs can no longer be found by typing the stage they are at",
+  "image": "SV-10008.png",
+  "description": "Typing a job stage - Estimate, Approved and the rest - used to list the jobs sitting at that stage. It no longer does. That is how a service writer sweeps up the estimates waiting on a customer's word, and it is gone. What comes back instead is a long list of companies whose street address happens to contain a similar-looking word.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Open Work Orders from the top menu and note that jobs are shown with a stage against them, several of them at Estimate.",
+   "Click the search box at the top of the screen (or press Ctrl and K) and type Estimate.",
+   "Wait for the results and read the Work orders group.",
+   "Look at what the other groups came back with, and at the words marked inside each row."
+  ],
+  "current": [
+   "No job at the Estimate stage comes back. The Work orders group holds one job, and that job is at the Paid stage - it was matched on the wording of one of its line items, not on its stage.",
+   "The other eighteen results are customers and suppliers whose street address contains the word Estate, which the search treated as near enough to Estimate."
+  ],
+  "expected": [
+   "The jobs sitting at the stage typed are returned, under Work orders.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The same job stage typed into both versions. Above, the live product lists the jobs at that stage. Below, the new version lists street addresses containing the word Estate.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the stage name Estimate returned the jobs sitting at that stage, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a work order by typing its status still works\" - https://shopview.testrail.io/index.php?/tests/view/2977470"
+ },
+ "SV-10025": {
+  "title": "Global Search: a correctly spelled name brings back records that have nothing to do with it",
+  "image": "SV-10025.png",
+  "gained": true,
+  "description": "The search corrects spelling, and it corrects it so freely that a name typed correctly is buried. Type a customer's name exactly as it is written on their record and eighteen things come back, most of them unrelated - the word MARINE on a battery terminal is offered as a near-spelling of Marlene. The person has to read the whole list to find the record they already knew the name of.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K) and type Marlene - the name of the customer ZZAUTOTEST Marlene Freight Lines, spelled exactly as their record spells it.",
+   "Wait for the results and count what comes back.",
+   "Read the rows and the words marked inside them."
+  ],
+  "current": [
+   "Eighteen results come back across five groups.",
+   "Most have nothing to do with the name typed: four parts described as MARINE/POST ADAPTER TERMINAL and MARINE BATTERY TERMINALS, a vehicle belonging to Martens' Diesel Repair, and customers reached through a contact rather than the name.",
+   "The customer actually asked for is in the list, but it takes reading the list to see that."
+  ],
+  "expected": [
+   "Typing a name that is spelled correctly returns the records that carry that name, and does not fill the list with words that merely look similar.",
+   "This is what the version people use today does: the same word returns only the records that really carry it."
+  ],
+  "shot_caption": "The same correctly spelled customer name typed into both versions. Above, the live product returns only the records that carry it. Below, the new version returns eighteen, most of them unrelated.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the customer name Marlene returned only the records that really carry that name, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Typing a name does not bring back other differently spelled names\" - https://shopview.testrail.io/index.php?/tests/view/2984234"
+ },
+ "SV-10055": {
+  "title": "Global Search: a vehicle cannot be found by its year and make typed together",
+  "image": "SV-10055.png",
+  "description": "A vehicle is named on its own record by its year and its make - 2019 Freightliner Cascadia - and typing that into the search box returns no vehicle at all. It is the most natural thing to type when someone is looking at a truck. On the version people use today it brings the vehicle straight back.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZT-4471, and open the vehicle from the Assets group. This also shows the search box itself is working.",
+   "On the vehicle's page, read how it is named: 2019 Freightliner Cascadia, with Year: 2019 shown against it.",
+   "Open the search box again and type 2019 Freightliner.",
+   "Wait for the results and read the Assets group."
+  ],
+  "current": [
+   "No vehicle comes back. The Assets group shows nought, even though thirty-five other things are found.",
+   "What does come back is fifteen parts, two part sales and eighteen purchase orders, matched on the words Freightliner or 2019 appearing in a part name or an order line.",
+   "The same vehicle comes straight back when its unit number is typed, so the record is there."
+  ],
+  "expected": [
+   "The vehicle whose year and make were typed is returned, under Assets.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "A vehicle's year and make typed into both versions. Above, the live product returns the vehicle. Below, the new version returns thirty-five results and not one of them a vehicle.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the year and make 2019 Freightliner returned the vehicle 2019 Freightliner Cascadia, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding an asset by its year and make typed together\" - https://shopview.testrail.io/index.php?/tests/view/2959371"
+ },
+ "SV-10057": {
+  "title": "Global Search: a customer cannot be found by part of their telephone number",
+  "image": "SV-10057.png",
+  "description": "Typing the whole telephone number finds the customer. Typing only the last part of it finds nothing. People rarely have the whole number - they have the last few digits off a caller display, or the part they can remember - and on the version people use today any part of it was enough. This report is about the partial number only: the whole number works on the new version, in every way of writing it.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Bridgeport Hauling, and open that customer from the Customers group.",
+   "On the customer's page, read the line marked Phone. It is (419) 555-0143.",
+   "Open the search box again and type the whole number, (419) 555-0143. The customer comes back - this part works.",
+   "Now clear the box and type only the last part of the same number: 555-0143.",
+   "Wait for the results and read the Customers group."
+  ],
+  "current": [
+   "Part of the number returns nothing at all. The panel reads \"No results for 555-0143\" and every group shows nought. Typing it without the dash, 5550143, does the same.",
+   "The whole number works in all four ways of writing it - (419) 555-0143, 419-555-0143, 4195550143 and 419 555 0143 - so this is about the partial number only."
+  ],
+  "expected": [
+   "Part of a telephone number finds the customer, the way the whole number already does.",
+   "This is what the version people use today does: it looks for what was typed anywhere inside the number."
+  ],
+  "shot_caption": "Part of a telephone number typed into both versions. Above, the live product returns the customer. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the part-number 555-0143 returned the customer ZZAUTOTEST Bridgeport Hauling, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a customer by the company's own main phone number\" - https://shopview.testrail.io/index.php?/tests/view/2977474"
+ },
+ "SV-10058": {
+  "title": "Global Search: a vehicle cannot be found by part of its chassis number",
+  "image": "SV-10058.png",
+  "description": "Typing the whole chassis number finds the vehicle. Typing the last few characters of it finds nothing. The last few characters are what people use, because that is what fits on a note and what is quoted on the phone. On the version people use today any part of it was enough. This report is about the partial number only: the whole number works on the new version.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZT-4471, and open the vehicle from the Assets group.",
+   "On the vehicle's page, read the line marked VIN/Serial #. It is 1FUJGLDR9KLZZ4471.",
+   "Open the search box again and type the whole number, 1FUJGLDR9KLZZ4471. The vehicle comes back - this part works.",
+   "Now clear the box and type only the last six characters of the same number: ZZ4471.",
+   "Wait for the results and read the Assets group."
+  ],
+  "current": [
+   "Part of the number returns nothing at all. The panel reads \"No results for ZZ4471\" and every group shows nought.",
+   "The whole chassis number returns the vehicle in the same sitting, so this is about the partial number only."
+  ],
+  "expected": [
+   "Part of a chassis number finds the vehicle, the way the whole number already does.",
+   "This is what the version people use today does: it looks for what was typed anywhere inside the number."
+  ],
+  "shot_caption": "Part of a chassis number typed into both versions. Above, the live product returns the vehicle. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the part-number ZZ4471 returned the vehicle 2019 Freightliner Cascadia, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding an asset by its VIN, in full and in part\" - https://shopview.testrail.io/index.php?/tests/view/2980691"
+ },
+ "SV-10060": {
+  "title": "Global Search: part of a word finds the record in the company name and the street, but not in the town",
+  "image": "SV-10060.png",
+  "description": "Typing a few characters from the middle of a word finds the record when those characters sit in the company's name or in the street, and finds nothing when the same characters sit in the town. The person typing has no way of knowing which part of an address the rule applies to, so the search looks broken to them roughly half the time. On the version people use today it works in all of them.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Bridgeport Hauling, and open that customer from the Customers group.",
+   "On the customer's page, read the address: 1450 Kestrelway Industrial, Dock 7B, Fernvale, Ohio 44872-9931.",
+   "Open the search box again and type ernva - five characters from the middle of the town, Fernvale.",
+   "Read the Customers group.",
+   "Now clear the box and type idgepor - seven characters from the middle of the company's own name. Then try estrelw, from the middle of the street name Kestrelway."
+  ],
+  "current": [
+   "The characters from the middle of the TOWN return nothing at all. The panel reads \"No results for ernva\".",
+   "The characters from the middle of the COMPANY NAME return the customer, and so do the characters from the middle of the STREET. The same kind of typing works on two parts of the record and not on the third."
+  ],
+  "expected": [
+   "A few characters from the middle of a word find the record wherever that word sits on it, the town included.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "A fragment from the middle of a town name typed into both versions. Above, the live product returns the customers in that town. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the fragment ernva, from the middle of the town Fernvale returned the customers whose address is in that town, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a record by a fragment from the middle of a word still works\" - https://shopview.testrail.io/index.php?/tests/view/2977472"
+ },
+ "SV-10004": {
+  "title": "Global Search: a company cannot be found by a contact's job title",
+  "image": "SV-10004.png",
+  "description": "Every contact on a customer or supplier has a job title against them, and the search box ignores it. Somebody who knows they need \"whoever the dispatch supervisor is\" has no way to get from that to the company. On the version people use today, typing the job title brings the company straight back.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Bridgeport Hauling, and open that customer from the Customers group. This also shows the search box itself is working.",
+   "On the customer's page, click Contacts (1). The contact listed is Marlene Okonkwo, and the column headed Title reads Dispatch Supervisor.",
+   "Open the search box again and type Dispatch Supervisor.",
+   "Wait for the results and read the Customers group."
+  ],
+  "current": [
+   "Nothing comes back at all. The panel reads \"No results for Dispatch Supervisor\" and every group shows nought.",
+   "The same customer comes straight back when their name is typed, so the record is there and the search box is working."
+  ],
+  "expected": [
+   "The company whose contact holds the job title typed is returned, under Customers - and a supplier whose contact holds it, under Vendors.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The same contact job title typed into both versions. Above, the live product returns the company. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the job title Dispatch Supervisor returned the customer ZZAUTOTEST Bridgeport Hauling, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a customer or vendor by a contact's job title\" - https://shopview.testrail.io/index.php?/tests/view/2959369"
  }
 }

@@ -56,7 +56,7 @@ def main():
 
     a1=Image.open(a.v1).convert('RGB'); a2=Image.open(a.v2).convert('RGB')
     inner=max(a1.width,a2.width)
-    inner=min(inner,720)
+    inner=min(inner,int(__import__('os').environ.get('MAXW','560')))
     def fit(im):
         if im.width<=inner: return im
         h=int(im.height*inner/im.width); return im.resize((inner,h),Image.LANCZOS)
