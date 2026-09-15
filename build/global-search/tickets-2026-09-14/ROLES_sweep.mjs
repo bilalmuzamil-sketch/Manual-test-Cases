@@ -124,6 +124,7 @@ const pickFromPopup = async text => {
   // step 1: scroll it into view, then let the scroll settle
   await page.evaluate(i => { const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
     const menus = [...document.querySelectorAll('.q-menu')].filter(vis);
+    if (!menus.length) return;            // the popup can close between finding and scrolling
     const items = [...menus[menus.length - 1].querySelectorAll('.q-item,[role=option]')].filter(vis);
     items[i] && items[i].scrollIntoView({ block: 'center' }); }, idx);
   await page.waitForTimeout(700);
@@ -267,6 +268,7 @@ console.log('subject id:', R.subjectId, 'via', R.subjectFoundVia);
   console.log('admin baseline:', JSON.stringify(R.adminBaseline.modal && R.adminBaseline.modal.tabs)); }
 save();
 
+try {
 for (const role of ROLES) {
   L(`\n=== ${role} ===`);
   const set = await setRole(role);
@@ -303,6 +305,13 @@ for (const role of ROLES) {
   // back to the administrator before the next staff edit
   await page.goto('https://sv9160.qa.shopview.com/workorders', { waitUntil: 'domcontentloaded' }).catch(() => {});
   await page.waitForTimeout(2500);
+}
+} catch (e) {
+  // A crash must NEVER skip the restore. The last run threw inside a popup read and left the
+  // person on whatever role the sweep had reached.
+  R.crashed = String(e).slice(0, 300);
+  L('the sweep threw, restoring anyway:', R.crashed);
+  save();
 }
 
 // ---------- ALWAYS put the person back

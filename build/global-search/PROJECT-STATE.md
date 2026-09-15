@@ -567,3 +567,58 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 - Apply: re-import GS (109) -> re-backfill C-IDs -> union-sync run R415 -> re-assign R415 to Bilal. Nothing pushed by us.
 
 - **APPLIED to TestRail 2026-08-25:** 110 cases live (97 updated in place, 13 added, 8 moved to Out-of-V1); id-map 110/110; run R415 = 110, all assigned to Bilal. Lossless, nothing deleted.
+
+## 2026-09-15 — regression run 415 executed, PO rulings applied, six defects filed
+
+**Scope:** the 62 regression-flagged cases of run **415**, section 6769, on QA branch **sv9160**
+(build v26.36.4-7869ff2). Evidence and scripts: `tickets-2026-09-14/`.
+
+**Where the 62 stand:** Passed 39 · Failed 13 · Blocked 10 (was Passed 38 / Failed 2 / Blocked 22).
+
+**What moved them.**
+
+1. **Part sales are creatable again** (SV-10031 fixed, confirmed by the QA lead). Four checks that
+   had been carried out on a substitute customer, or not at all, were re-run **as written** against
+   ZZAUTOTEST Bridgeport Hauling: a part sale is found by its customer's name (C55665 → Passed), the
+   row opens that part sale (C45153's part-sale clause), part sales are limited to the current
+   location (C45151), and a new part sale is findable in **9 seconds** (C53587's second flow).
+   Create route: `POST /api/part-sales {company_id}` → 200, exactly as the playbook records.
+
+2. **The ten open PO questions were answered on 15 September, every one YES** — it should still
+   work, log it as a fault (`questions-2026-09-15/…ANSWERED-from-V1-2026-09-15.xlsx`). Eleven cases
+   move Blocked → Failed. **Their case TEXT still says "mark Blocked until the Product Owner has
+   ruled" and is now out of date** — changing it needs his go-ahead (Rule 6) and has not been done.
+
+3. **Six Story Defects filed**, each under its owning story, each quoting the specification read
+   **live** on 15 September (Confluence 576978945, v1.5). Rule 106 reconciliation:
+   `source-verify-2026-09-15/RECONCILIATION.md`.
+
+   | | Case | Ticket | Owning story |
+   |---|---|---|---|
+   | vehicle year + make/model | C53605 | SV-10055 | SV-9164 |
+   | new job not findable for ~85s (30s allowed) | C53587 | SV-10056 | SV-9163 |
+   | customer's own telephone | C55662 | SV-10057 | SV-9163 |
+   | part of a chassis number | C55669 | SV-10058 | SV-9164 |
+   | recently viewed after no results | C55679 | SV-10059 | SV-9168 |
+   | mid-word fragment inconsistent across fields | C55660 | SV-10060 | SV-9164 |
+
+   **Two of these reverse a written V2 decision.** Spec §7 requires an EXACT match on a VIN, and
+   §5.2 says the no-results state shows "Nothing else". Both tickets quote that, so engineering
+   reads them as a change of mind rather than a bug report against what they built.
+   **SV-10060 pulls against SV-10025**, which asks for fuzzy matching to be TIGHTENED; both tickets
+   now say to decide them together.
+
+   The eight earlier findings already carry Story Defects **SV-10001–SV-10008** (the Tasks
+   SV-9993–SV-10000 they replaced are OBSOLETE). Nothing was re-filed.
+
+**The staff-screen "blocker" was mine, not the product's.** An earlier claim that a staff member's
+role could not be changed — "the Location list offers none" — was wrong. The QA lead's screenshot
+showed it open with both locations. Causes, all in the harness: a synthetic `element.click()` never
+fires the `mousedown` Quasar's select opens on; the staff table behind the dialog is itself
+`.q-item` rows and was being read as the dropdown; a substring option match picked "Senior Service
+Advisor" for "Service Advisor"; scroll-and-measure in one step put the eleventh option off-screen;
+and the staff search box was never cleared between attempts. Learnings **L0110–L0114**.
+
+**Still open:** three cases have no ruling (C53583 customer website — SV-10003 exists; C45160 search
+usage reporting, which needs access to the usage-reporting account; C55673 Enter opens the wrong
+record, a candidate worth filing). The six role cases are being executed now that roles can be set.
