@@ -2459,3 +2459,40 @@ says so — never against memory or a committed extract.
 
 > **Check the claim before you use it to judge anything — including when the product agrees with it.**
 > Agreement between a test and a build is only evidence if the test was right to begin with.
+
+### L0124 — a control that cannot be reached by subtraction has to be BUILT
+C45142 needs a user *without* work-orders access. The obvious route was to take it away: uncheck
+**Work orders / View** on the Technician role. The editor accepted it, the confirmation dialog
+listed four permissions it was about to remove, the read-back after a reload agreed — and the
+permission was **still there** when the user's own session was asked:
+
+    before   customersView, scheduleView, woPickParts, woTechViewMode,
+             workOrderLinesCreateAndEdit, workOrdersView
+    after    customersView, scheduleView, woFullViewMode, workOrdersView
+
+Three permissions went; `workOrdersView` stayed, and `woTechViewMode` was **replaced by
+`woFullViewMode`** — the account ended up seeing *more* of a work order, not less. Every stock role
+on the branch carries `workOrdersView`, including Time Clock User, which has three permissions in
+total.
+
+Two things follow, and the second is the general one:
+
+1. **The editor's read-back is not the subject's permission list.** Reloading the role page proves
+   what the *form* stored. The only evidence about what the *user* can do is that user's own
+   permission list, read after switching to them. They disagreed here.
+2. **When a state cannot be reached by subtraction, build it.** The screen offers
+   *Create Custom Role → Skip (start from scratch)*, which is the only way to get a role that never
+   had the permission. A precondition that no amount of unchecking will produce is not a blocker —
+   it is a different route (Rule 107).
+
+> Ask the subject, not the form. And a control you cannot subtract, you construct.
+
+### L0125 — name a thing the same way when you click it as when you read it
+`ROLE_permissions.mjs` printed `Pick parts on` from its reader and then refused to click it:
+`no toggle starting "Pick parts"`. The reader fell back to the nearest label when a toggle carried
+no text of its own; the clicker only ever looked at the toggle's own `innerText`. Same script, two
+naming rules, and the disagreement read as "the screen does not have that control".
+
+> Where a script both reads and writes a control, the identity function must be **one function**.
+> Two implementations of "which one is this" will drift, and the drift always presents itself as the
+> product missing something.

@@ -1,0 +1,36 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set (sections 6769 and 8056)",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "the three regression cases in run 415 that had never been executed",
+  "how_judged": "Every verdict is read from the RENDERED ROWS, using the app's own result-row test ids, with the tab strip's counts. Each check carries its own positive control: the search had to return something and the named record had to be present before any 'this other row does not match' claim; the pointer was parked away from every row and the parking verified before Enter, because hovering a row silently re-targets Enter on this build; and the location test required the first location to return jobs AND the app to actually move before a second, different list meant anything.",
+  "build": "v26.36.4-7869ff2",
+  "how_found": "Run 415 holds 65 regression cases, not the 62 the pass had been reporting. The earlier count came from a snapshot file taken at the start of the pass instead of from the run itself. See UNRUN-REGRESSION-CASES.md."
+ },
+ "results": {
+  "C55685": {
+   "verdict": "Failed",
+   "observed": "Typing Marlene brought back twelve records and only ONE of them contains the word Marlene - the customer ZZAUTOTEST Marlene Freight Lines. The other eleven are near spellings the tester did not type: Darlene Cartage, Charlene in two street addresses, Martens as a company name, Marine battery terminals, and the vendor Coeur d'Alene. In the previous version a record came back only if it actually contained what you typed.",
+   "todo": "Nothing new to raise - this is the already-reported problem behaving exactly as reported. Mark it Failed and leave it against the existing report.",
+   "technical": "query 'Marlene' -> tab strip 18, 12 rows rendered on All; 1 row contains the typed word, 11 do not. Customers tab: 11 rows, 1 contains it. Controls: search returned rows, and the exact record was present.",
+   "ticket": "Already logged as SV-10025 - the near-spelling problem: https://shopview.atlassian.net/browse/SV-10025",
+   "not_observed": null
+  },
+  "C55686": {
+   "verdict": "Passed",
+   "observed": "Typing Marlene puts ZZAUTOTEST Marlene Freight Lines - the record that genuinely contains the word - at the TOP of the Customers group, above Darlene Cartage and above every other near spelling. Pressing Enter without touching an arrow key opened that same record.",
+   "todo": null,
+   "technical": "Customers group order: Marlene Freight Lines (1), Bridgeport Hauling, Darlene Cartage, then the rest. Enter with the pointer parked off every row navigated to the customer page. This is the safety net on SV-10025: even while the near spellings come back, the record actually typed is still first.",
+   "not_observed": null
+  },
+  "C55684": {
+   "verdict": "Passed",
+   "observed": "At Heavy Duty, typing Bridgeport returned five of that location's jobs. After switching to Lethbridge through the screen, the same search returned none of them - and they never appeared even for an instant while the new results were loading.",
+   "todo": null,
+   "technical": "45 readings taken every 120ms from the first keystroke after the switch; not one of them contained any of the five Heavy Duty job numbers. Controls: the first location had jobs, the header really changed from Staging Heavy Duty - 9919 to Staging Lethbridge - 4310, and the sampling ran while the list was still loading. The location was put back to Heavy Duty afterwards.",
+   "not_observed": null
+  }
+ }
+}
