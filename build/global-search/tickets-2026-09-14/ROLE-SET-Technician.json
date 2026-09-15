@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-15T07:43:04.455Z",
+  "at": "2026-09-15T07:46:18.628Z",
   "subject": "clayton.stephens@staging.shopview.local",
   "wanted": "Technician",
   "rowBefore": "Clayton Stephens clayton.stephens@staging.shopview.local Heavy Duty Field Technician Parts Technician 1 Department Aug 24, 2026 Aug 26, 2026 Yes edit_note",
@@ -10,11 +10,17 @@
   "dialogOpen": true,
   "rolePick": {
     "ok": false,
-    "why": "could not click the option after six tries"
+    "why": "neither arrowing nor clicking reached the option",
+    "keyboardTried": {
+      "ok": false,
+      "why": "arrowed through the list without landing on \"Technician\"",
+      "seen": []
+    }
   },
   "locationPick": {
     "ok": true,
-    "index": 0
+    "index": 0,
+    "via": "click"
   },
   "saveClick": {
     "ok": true

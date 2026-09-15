@@ -57,6 +57,10 @@ const rowFor = async () => page.evaluate(em => {
   const r = [...document.querySelectorAll('tr')].find(x => (x.innerText || '').includes(em));
   return r ? (r.innerText || '').replace(/\s+/g, ' ').trim() : null; }, SUBJECT);
 
+// A TALLER WINDOW IS THE REAL FIX. The Role list has eleven options; in a 900px window the last
+// two fall below the bottom edge, and everything downstream -- scrollIntoView, measuring, clicking,
+// even arrow-key focus -- was failing on that one fact. Give the page room and the list fits.
+await page.setViewportSize({ width: 1600, height: 1400 }).catch(() => {});
 await page.waitForTimeout(7000);
 
 // --- find the person: clear the box first, always
@@ -157,7 +161,25 @@ if (R.roleBefore === ROLE) {
              seen: [...new Set(seen)] };
   };
 
-  const pick = async text => {
+  // If no popup is on the page, the field never opened -- RE-CLICK IT rather than spending six
+  // retries reading an empty document. "seen: []" with no options anywhere is the signature of a
+  // select that was never opened, not of a select with nothing in it.
+  const ensureOpen = async label => {
+    for (let i = 0; i < 5; i++) {
+      const n = await page.evaluate(() => { const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
+        return [...document.querySelectorAll('.q-menu')].filter(vis).length; });
+      if (n > 0) return true;
+      await clickReal(fieldBox, label);
+      await page.waitForTimeout(2000);
+    }
+    return false;
+  };
+
+  const pick = async (text, label) => {
+    if (label) {
+      const opened = await ensureOpen(label);
+      if (!opened) return { ok: false, why: `the ${label} list never opened` };
+    }
     const kb = await pickByKeyboard(text);
     if (kb.ok) return kb;
     // fall back to clicking, for a popup that does not take arrow keys
@@ -172,11 +194,17 @@ if (R.roleBefore === ROLE) {
             .map(e => (e.innerText || '').replace(/\s+/g, ' ').trim()); });
         return { ok: false, why: `"${text}" not offered`, optionsSeen: seen };
       }
+      // scrollIntoView scrolls the PAGE. The popup is its own scroll container, so move THAT.
       await page.evaluate(i => { const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
         const menus = [...document.querySelectorAll('.q-menu')].filter(vis);
         if (!menus.length) return;
-        const items = [...menus[menus.length - 1].querySelectorAll('.q-item,[role=option]')].filter(vis);
-        items[i] && items[i].scrollIntoView({ block: 'center' }); }, idx);
+        const m = menus[menus.length - 1];
+        const items = [...m.querySelectorAll('.q-item,[role=option]')].filter(vis);
+        const el = items[i]; if (!el) return;
+        const scroller = [m, ...m.querySelectorAll('.scroll,.q-scrollarea__container,.q-virtual-scroll')]
+          .find(c => c.scrollHeight > c.clientHeight + 4) || m;
+        scroller.scrollTop = Math.max(0, el.offsetTop - scroller.clientHeight / 2);
+        el.scrollIntoView({ block: 'center' }); }, idx);
       await page.waitForTimeout(700);
       const box = await page.evaluate(i => { const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
         const menus = [...document.querySelectorAll('.q-menu')].filter(vis);
@@ -193,11 +221,11 @@ if (R.roleBefore === ROLE) {
   };
 
   await clickReal(fieldBox, 'Role'); await page.waitForTimeout(1800);
-  R.rolePick = await pick(ROLE);
+  R.rolePick = await pick(ROLE, 'Role');
   L('role pick:', JSON.stringify(R.rolePick).slice(0, 200));
   await page.waitForTimeout(1200);
   await clickReal(fieldBox, 'Location'); await page.waitForTimeout(1800);
-  R.locationPick = await pick('Staging');
+  R.locationPick = await pick('Staging', 'Location');
   L('location pick:', JSON.stringify(R.locationPick).slice(0, 200));
   await page.waitForTimeout(1000);
 
