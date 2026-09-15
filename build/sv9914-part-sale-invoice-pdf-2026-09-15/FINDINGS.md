@@ -131,3 +131,22 @@ and integration callers.
   reproduced in full.
 * `POST /api/quick-login` was used twice during the pass, which rotates the shared QA session — worth
   knowing if the branch session was in use elsewhere at the same time.
+
+---
+
+## Posted
+
+Pre-post gate at 19:12–19:13Z. **The gate earned its keep:** the first marker read reported the QA
+branch as running production's build `v26.36.7-cf5012e`, which read exactly like a redeploy onto the
+production build. It was not — both MITM bridges had died, and `curl -o /tmp/i.html` had left the
+*previous* pass's bytes in place for the grep to find. Re-read with a fresh `mktemp`, an HTTP-code
+check and a non-empty check: branch `v26.36.7-2e03bc9` etag `58705708…`, production `v26.36.7-cf5012e`
+etag `b5f3b483…` — both identical to the start of the pass. Lesson recorded in
+`build/LESSONS-INDEX.md` and `build/APP-ACTIONS-PLAYBOOK.md` §AC.8.
+
+Comment **76593** on SV-9914 (status Code Review, priority Medium, assignee Milomir Kotlajic).
+Read back in ADF: first line `OVERALL QA STATUS: PASSED`, 8 table rows, 5 media nodes all
+`type: file` (real attachments), and the `@Milomir Kotlajic` mention resolved.
+
+The `?estimate=false` observation is put to him in the comment as a question — intended as it stands,
+or a separate ticket — and is **not** recorded as a failure.
