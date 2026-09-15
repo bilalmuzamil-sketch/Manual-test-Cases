@@ -458,7 +458,7 @@
  },
  "SV-10109": {
   "title": "Global Search: a supplier cannot be found by their address line 2, although a customer can",
-  "image": "VENDOR-ADDRESS-2.png",
+  "image": "SV-10109.png",
   "description": "A company's address can run to two lines - a dock, a bay, a suite - and the second line is often the only part that tells two units on the same estate apart. The new search reads that second line on a CUSTOMER and ignores it on a SUPPLIER. Someone holding a delivery note with the bay number on it can find the customer and not the supplier, from the same box, with the same kind of words. On the version people use today, both come back.",
   "steps": [
    "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
@@ -482,7 +482,7 @@
  },
  "SV-10110": {
   "title": "Global Search: a supplier cannot be found by their website address",
-  "image": "VENDOR-WEBSITE.png",
+  "image": "SV-10110.png",
   "description": "A supplier's website is printed on their record and the new search ignores it. Someone who has the supplier's website in front of them - off an email footer, an invoice, or a parts catalogue - cannot use it to reach them. On the version people use today, typing it brings the supplier straight back.\n\nThe same is already reported for customers as SV-10003. Nobody had checked the supplier side because the suite had a check for the customer's website and none for the supplier's; that gap is now closed.",
   "steps": [
    "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",

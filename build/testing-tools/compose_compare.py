@@ -14,8 +14,10 @@ panel itself - not a whole screen shrunk to fit - the words arrive at their own 
       --v2-says "nothing comes back" \
       --caption "Typing a customer postcode"
 """
-import argparse, os
+import argparse, os, sys
 from PIL import Image, ImageDraw, ImageFont
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from annotate_panel import annotate as mark_up
 
 RED=(200,35,45); GREEN=(21,104,60); INK=(20,24,32); MUTED=(93,107,120)
 PAPER=(255,255,255); BAND=(246,248,250); LINE=(211,218,225)
@@ -59,9 +61,21 @@ def main():
     # the fault above, the working version below. So each half says which it is.
     ap.add_argument('--top-mark',default='good',choices=['good','bad'])
     ap.add_argument('--bottom-mark',default='bad',choices=['good','bad'])
+    # A bare screenshot is not an annotated one (skill 06). Each half takes its own boxes:
+    #   --v1-note y0,y1,text   repeated, in that half's OWN pixels, before any scaling.
+    ap.add_argument('--v1-note',action='append',default=[])
+    ap.add_argument('--v2-note',action='append',default=[])
     a=ap.parse_args()
 
-    a1=Image.open(a.v1).convert('RGB'); a2=Image.open(a.v2).convert('RGB')
+    def notes(spec):
+        out=[]
+        for n in spec:
+            y0,y1,text=n.split(',',2); out.append((int(y0),int(y1),text))
+        return out
+    a1 = mark_up(a.v1, notes(a.v1_note), GREEN if a.top_mark=='good' else RED) if a.v1_note \
+         else Image.open(a.v1).convert('RGB')
+    a2 = mark_up(a.v2, notes(a.v2_note), GREEN if a.bottom_mark=='good' else RED) if a.v2_note \
+         else Image.open(a.v2).convert('RGB')
     inner=max(a1.width,a2.width)
     inner=min(inner,int(__import__('os').environ.get('MAXW','560')))
     def fit(im):

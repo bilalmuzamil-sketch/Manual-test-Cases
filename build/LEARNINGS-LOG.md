@@ -2630,3 +2630,31 @@ are re-run on every build, so the report is the thing the next run's result is r
 
 **And check every test link against the run before publishing it** — two of the six carried a link to
 a test that is not in run 415 at all.
+
+## L0132 — A framed comparison picture is not an annotated one (2026-09-15)
+
+**His words:** *"All 20+ were supposed to be rewritten in the approved lay out and the annotated
+screenshots as I told you before"* — and he was right. All 22 Global Search reports went out with the
+approved layout and with comparison pictures that had a green BEFORE label above and a red AFTER label
+below, and **nothing marked inside either half**. The reader still had to work out where to look, which
+is exactly what skill 06 means by *"a bare screenshot is not an annotated one"*.
+
+**The house style, which the reports raised from the QA lead's own recording already used:** numbered
+red boxes on the exact elements — the search box, the counts along the top, the result area — with a
+numbered legend underneath. Rebuilt all 22 that way.
+
+**Three things worth keeping:**
+1. `build/testing-tools/annotate_panel.py` does the marking; `compose_compare.py` takes
+   `--v1-note y0,y1,text` and `--v2-note` and marks each half before stacking them. The bands are
+   stable because every crop comes from the same clip rectangle: a live-product panel is
+   `14,44 / 46,68 / 70,H-5`, a new-version modal is `8,60 / 64,114 / 118,H-45`.
+2. **Resize a wide crop to about 660px BEFORE annotating.** The legend is drawn at source resolution
+   and scaled with the image; a 1150px crop scales to 0.49 and the legend becomes unreadable.
+3. **An archived half that is already annotated is left alone.** Drawing our boxes over his boxes
+   would make the picture worse, not better.
+
+**And the silent failure this pass nearly shipped:** two reports kept displaying their OLD, unannotated
+picture because the build script wrote `SV-10109.png` while the ticket's content still named
+`VENDOR-ADDRESS-2.png`. The embed resolves by filename, so nothing errors — the ticket simply keeps the
+older file. **Assert that every ticket's image name equals its key, and verify the published media
+node's width and height against the file on disk**, which is what caught it.
