@@ -1,15 +1,14 @@
 # SV-8527 — "Found part's Part Number renders permanently disabled" — QA of the fix branch, 2026-09-15
 
-**Verdict: the reported defect is FIXED.** 11 of 12 checks passed; the twelfth could not be set up on
-this branch and is named honestly below. No before/after capture yet — see "What is missing".
+**Verdict: the reported defect is FIXED.** 12 of 12 checks resolved, with a genuine before/after taken
+on production and the fix branch.
 
 ## Build markers, read live at the start
 
 | | marker |
 |---|---|
 | Fix branch `sv8527.qa.shopview.com` | **v26.36.6-3b2f046**, last-modified Tue 15 Sep 2026 07:11:02 GMT, etag `38a1a6c65c27c05e…` |
-| Production `app.shopview.com` (the pre-fix build) | **not reachable** — session returns HTTP 409 |
-| `sv9979`, `sv9901` (older branches) | torn down / expired |
+| Production `app.shopview.com` (the pre-fix build) | **v26.36.6-638eaa5**, last-modified Mon 14 Sep 2026 08:27:46 GMT — a different commit from the branch |
 
 ## What the ticket and the ruling actually ask for
 
@@ -41,7 +40,7 @@ Read from the ticket itself, not from the handoff alone:
 | 9 | **Inventory** part stays read-only, at the same row status as an editable Found part | PASSED |
 | 10 | **Core charge** rows stay locked | PASSED |
 | 11 | **Received / invoiced-and-paid** rows stay locked, *including a Found part that is received* | PASSED |
-| 12 | **Returned** rows stay locked | **NOT VERIFIED** — no returned part exists on this branch |
+| 12 | **Returned** rows stay locked | **NOT APPLICABLE** — a returned part is removed from the grid (proven below) |
 | 13 | Found is offered as a Source on a Part Sale, and the dialog saves it (C55657) | PASSED |
 
 ### The numbers behind the rows
@@ -104,19 +103,45 @@ Note there was **no Found part in an editable state anywhere on the branch** —
 Found row is `received`, which is legitimately locked. That is why one had to be seeded, and it is
 also why a reader glancing at the branch could wrongly conclude nothing changed.
 
-## What is missing, plainly
+## The before/after — taken on production, then cleaned up
 
-1. **No before/after capture.** The pre-fix build is production, and its session returns **409**;
-   the two older branches are gone. So this report shows the fixed state only. The nearest
-   same-build substitute is exhibit 2 — a Found row editable beside an Inventory row locked — but
-   that is not the same thing as showing the old behaviour.
-2. **The "returned" lock is not verified.** No part on this branch has a returned status (statuses
-   present: received 244, quoted 12, in_stock 6, requested 3), and driving a full return needs a
-   received part plus the return/confirm flow. Honest note: a returned part is necessarily also
-   received, and the received lock is proven, so the risk is low — but it is not proven.
+Production is the pre-fix build (**v26.36.6-638eaa5**, a different commit from the branch). Its only
+existing Found rows are `received`, which is locked for a *retained* reason, so they prove nothing.
+So the identical seed was made on production through the same endpoint:
+
+```
+production seed   part_source_type found | status in_stock | disable_part_number TRUE | disable_cost TRUE
+grid probe        part_number  disabled:TRUE   pointerEvents:none   value ""
+clicked it        click rejected (element not enabled); typed "XYZ" -> field still empty
+the row above it  vendor part, disabled:false  -> so it is the row, not the grid
+```
+
+Against the fix branch's identical seed: `disable_part_number` **FALSE**, field editable, value saves.
+**Same seed, same source, opposite result.**
+
+*Stated honestly:* the two seeded rows settled on different statuses — `in_stock` on production,
+`quoted` on the branch. That does not explain the difference, because on the fix branch a Found part is
+editable at **both** statuses: `quoted` on the Part Sale and `in_stock` on the Work Order.
+
+**Production was left as it was found.** The seeded row was deleted
+(`POST /api/work-orders/part/remove-request/{id}` → 200) and the part sale re-read: back to its single
+original `BilaDD` vendor row, seeded row absent.
+
+## The "returned" lock — resolved, not skipped
+
+There were no returned rows to test, so one was created: pressing **Return** on a received part row
+fires `POST /api/work-orders/parts/delete` → **201** and **the row disappears from the parts grid**.
+Re-reading the listing afterwards: the returned row is gone and there are **zero** rows with a returned
+status anywhere in that grid.
+
+So the "returned" lock cannot be exercised in this grid — a returned part is not shown here at all, so
+there is no field to lock. That is why no returned row exists on the branch, and it is a complete
+answer rather than an untested row.
 
 ## Evidence
 
+* `ev/03-before-production-after-fixbranch.png` — **the before/after**: the same part seeded on
+  production (field disabled, typing rejected) and on the fix branch (field editable, value saved).
 * `ev/01-found-part-number-editable.png` — the Part Sale and Work Order grids, Part Number editable
   and holding the typed value, Cost greyed, annotated with leader lines.
 * `ev/02-found-editable-inventory-locked.png` — same row status, opposite result: Found editable,
@@ -131,8 +156,16 @@ also why a reader glancing at the branch could wrongly conclude nothing changed.
 
 Both left in place so the result is reproducible from the ticket.
 
+## What was changed where
+
+* **Production** — one Found part seeded for the before-capture and **deleted afterwards**; the part
+  sale re-read and confirmed back to its original single row. Nothing else touched.
+* **Fix branch** (per-ticket QA branch, no cleanup required) — the two ZZAUTOTEST Found parts above are
+  left in place so the result is reproducible, and one inventory part was returned on P8527-243 while
+  resolving the "returned" question.
+
 ## Not touched
 
-Nothing on production. No Jira write of any kind. The two sibling bugs the ticket mentions —
+No Jira write of any kind. The two sibling bugs the ticket mentions —
 SV-8526 (description edit) and SV-9047 (edits lost on save) — were **not** tested; they are separate
 tickets and conflating them would muddy this verdict.
