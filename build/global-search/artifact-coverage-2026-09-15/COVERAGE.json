@@ -1,0 +1,3979 @@
+[
+ {
+  "area": "Customers",
+  "keyword": "ZZAUTOTEST Bridgeport Hauling",
+  "what": "The company's own name",
+  "field": "Customer name",
+  "expect": [
+   "Customers",
+   "Work orders",
+   "Part sales",
+   "Assets"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53578,
+    "t": 2959355,
+    "title": "Finding a work order by its customer's name still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53581,
+    "t": 2959358,
+    "title": "Finding an asset by the customer who owns it still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53583,
+    "t": 2959360,
+    "title": "Finding a customer by their website still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53587,
+    "t": 2959364,
+    "title": "A new work order or part sale is findable within 30 seconds",
+    "status": "Failed"
+   },
+   {
+    "c": 53588,
+    "t": 2959365,
+    "title": "More recent work orders rank above older ones of equal relevance",
+    "status": "Passed"
+   },
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55661,
+    "t": 2977473,
+    "title": "Every matching type still appears when a search matches many records",
+    "status": "Passed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   },
+   {
+    "c": 55665,
+    "t": 2977477,
+    "title": "Finding a part sale by its customer's name",
+    "status": "Passed"
+   },
+   {
+    "c": 55667,
+    "t": 2980689,
+    "title": "Finding a customer by company name",
+    "status": "Passed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   },
+   {
+    "c": 55671,
+    "t": 2980693,
+    "title": "Search finds records whatever mix of capitals is typed",
+    "status": "Passed"
+   },
+   {
+    "c": 55673,
+    "t": 2980695,
+    "title": "Pressing Enter opens the top result without arrowing to it",
+    "status": "Failed"
+   },
+   {
+    "c": 55674,
+    "t": 2980696,
+    "title": "Search can be reached on a phone and a tablet as well as a desktop",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53578,
+    "t": 2959355,
+    "title": "Finding a work order by its customer's name still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53581,
+    "t": 2959358,
+    "title": "Finding an asset by the customer who owns it still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53586,
+    "t": 2959363,
+    "title": "A newly created customer is findable within 30 seconds",
+    "status": "Passed"
+   },
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55665,
+    "t": 2977477,
+    "title": "Finding a part sale by its customer's name",
+    "status": "Passed"
+   },
+   {
+    "c": 55667,
+    "t": 2980689,
+    "title": "Finding a customer by company name",
+    "status": "Passed"
+   },
+   {
+    "c": 55668,
+    "t": 2980690,
+    "title": "Finding a vendor by name",
+    "status": "Passed"
+   },
+   {
+    "c": 55671,
+    "t": 2980693,
+    "title": "Search finds records whatever mix of capitals is typed",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "ZZAUTOTESTBridgeportHauling",
+  "what": "The same name with every space removed",
+  "field": "Customer name (space-free copy)",
+  "expect": [
+   "Customers",
+   "Work orders",
+   "Part sales",
+   "Assets"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "idgepor",
+  "what": "A few letters from the MIDDLE of the name",
+  "field": "Customer name",
+  "expect": [
+   "Customers",
+   "Work orders",
+   "Part sales",
+   "Assets"
+  ],
+  "on_v2_today": "Still works on the new version.",
+  "literal": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53578,
+    "t": 2959355,
+    "title": "Finding a work order by its customer's name still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53581,
+    "t": 2959358,
+    "title": "Finding an asset by the customer who owns it still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53583,
+    "t": 2959360,
+    "title": "Finding a customer by their website still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53587,
+    "t": 2959364,
+    "title": "A new work order or part sale is findable within 30 seconds",
+    "status": "Failed"
+   },
+   {
+    "c": 53588,
+    "t": 2959365,
+    "title": "More recent work orders rank above older ones of equal relevance",
+    "status": "Passed"
+   },
+   {
+    "c": 53589,
+    "t": 2959366,
+    "title": "Typing is never lost while search results are loading",
+    "status": "Passed"
+   },
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55661,
+    "t": 2977473,
+    "title": "Every matching type still appears when a search matches many records",
+    "status": "Passed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   },
+   {
+    "c": 55665,
+    "t": 2977477,
+    "title": "Finding a part sale by its customer's name",
+    "status": "Passed"
+   },
+   {
+    "c": 55667,
+    "t": 2980689,
+    "title": "Finding a customer by company name",
+    "status": "Passed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   },
+   {
+    "c": 55671,
+    "t": 2980693,
+    "title": "Search finds records whatever mix of capitals is typed",
+    "status": "Passed"
+   },
+   {
+    "c": 55673,
+    "t": 2980695,
+    "title": "Pressing Enter opens the top result without arrowing to it",
+    "status": "Failed"
+   },
+   {
+    "c": 55674,
+    "t": 2980696,
+    "title": "Search can be reached on a phone and a tablet as well as a desktop",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "Kestrelway",
+  "what": "The street address",
+  "field": "Address line 1",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53584,
+    "t": 2959361,
+    "title": "Finding a vendor by email address still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55668,
+    "t": 2980690,
+    "title": "Finding a vendor by name",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "Dock 7B",
+  "what": "The SECOND line of the address",
+  "field": "Address line 2",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "Fernvale",
+  "what": "The town",
+  "field": "City",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "ernva",
+  "what": "A few letters from the middle of the TOWN",
+  "field": "City",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": "Returns NOTHING on the new version, while the same kind of fragment from the company NAME still works. Raised as SV-10060.",
+  "literal": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "Ohio",
+  "what": "The county or state",
+  "field": "State or province",
+  "expect": [
+   "Customers",
+   "Vendors"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53589,
+    "t": 2959366,
+    "title": "Typing is never lost while search results are loading",
+    "status": "Passed"
+   },
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55675,
+    "t": 2980697,
+    "title": "A search that matches nothing says so plainly",
+    "status": "Passed"
+   },
+   {
+    "c": 55679,
+    "t": 2981982,
+    "title": "Your recent items come back when a search finds nothing",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "44872-9931",
+  "what": "The postcode",
+  "field": "Postal code",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45142,
+    "t": 2738723,
+    "title": "Work Orders results appear only for users with Work Orders access",
+    "status": "Passed"
+   },
+   {
+    "c": 45143,
+    "t": 2738724,
+    "title": "A Part-Sales-only role sees Part Sales but not Parts or Vendors",
+    "status": "Passed"
+   },
+   {
+    "c": 45144,
+    "t": 2738725,
+    "title": "Part results appear only with Catalog & Inventory access",
+    "status": "Passed"
+   },
+   {
+    "c": 45145,
+    "t": 2738726,
+    "title": "Vendor results appear only with Vendor & Order Management access",
+    "status": "Passed"
+   },
+   {
+    "c": 45146,
+    "t": 2738727,
+    "title": "Customer and Asset results both require Customers access",
+    "status": "Passed"
+   },
+   {
+    "c": 45147,
+    "t": 2738728,
+    "title": "A Time Clock role gets no global search results at all",
+    "status": "Passed"
+   },
+   {
+    "c": 45148,
+    "t": 2738729,
+    "title": "An unrecognised result type is hidden unless explicitly permitted",
+    "status": "Passed"
+   },
+   {
+    "c": 45149,
+    "t": 2738730,
+    "title": "Recent items the user can no longer access are hidden",
+    "status": "Passed"
+   },
+   {
+    "c": 45150,
+    "t": 2738731,
+    "title": "Results never include another organization's records",
+    "status": "Passed"
+   },
+   {
+    "c": 45151,
+    "t": 2738732,
+    "title": "Work Orders and Part Sales are limited to the current location",
+    "status": "Passed"
+   },
+   {
+    "c": 45152,
+    "t": 2738733,
+    "title": "Switching location refreshes results to the new location",
+    "status": "Passed"
+   },
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 45154,
+    "t": 2738735,
+    "title": "Selecting the record you are already on does not re-navigate",
+    "status": "Passed"
+   },
+   {
+    "c": 45155,
+    "t": 2738736,
+    "title": "The vehicles group is shown to users as 'Assets'",
+    "status": "Passed"
+   },
+   {
+    "c": 45156,
+    "t": 2738737,
+    "title": "The keyboard shortcut opens global search",
+    "status": "Passed"
+   },
+   {
+    "c": 45157,
+    "t": 2738738,
+    "title": "A record that matches more than once appears only once",
+    "status": "Passed"
+   },
+   {
+    "c": 45158,
+    "t": 2738739,
+    "title": "Global search is available with no feature-flag toggle",
+    "status": "Passed"
+   },
+   {
+    "c": 45159,
+    "t": 2738740,
+    "title": "A user with no default workplace does not break search",
+    "status": "Blocked"
+   },
+   {
+    "c": 45160,
+    "t": 2738741,
+    "title": "Selecting a result records a usage analytics event",
+    "status": "Blocked"
+   },
+   {
+    "c": 45161,
+    "t": 2738742,
+    "title": "Search needs at least two characters before it matches",
+    "status": "Passed"
+   },
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53578,
+    "t": 2959355,
+    "title": "Finding a work order by its customer's name still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53579,
+    "t": 2959356,
+    "title": "A work order number with the shop number in front still finds it",
+    "status": "Passed"
+   },
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53581,
+    "t": 2959358,
+    "title": "Finding an asset by the customer who owns it still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53583,
+    "t": 2959360,
+    "title": "Finding a customer by their website still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53584,
+    "t": 2959361,
+    "title": "Finding a vendor by email address still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53586,
+    "t": 2959363,
+    "title": "A newly created customer is findable within 30 seconds",
+    "status": "Passed"
+   },
+   {
+    "c": 53587,
+    "t": 2959364,
+    "title": "A new work order or part sale is findable within 30 seconds",
+    "status": "Failed"
+   },
+   {
+    "c": 53588,
+    "t": 2959365,
+    "title": "More recent work orders rank above older ones of equal relevance",
+    "status": "Passed"
+   },
+   {
+    "c": 53589,
+    "t": 2959366,
+    "title": "Typing is never lost while search results are loading",
+    "status": "Passed"
+   },
+   {
+    "c": 53601,
+    "t": 2959367,
+    "title": "A catalogue part that is not in inventory can still be found",
+    "status": "Failed"
+   },
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 53607,
+    "t": 2959691,
+    "title": "Finding a part by its description",
+    "status": "Passed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55661,
+    "t": 2977473,
+    "title": "Every matching type still appears when a search matches many records",
+    "status": "Passed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55663,
+    "t": 2977475,
+    "title": "Finding a vendor by phone number",
+    "status": "Passed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   },
+   {
+    "c": 55665,
+    "t": 2977477,
+    "title": "Finding a part sale by its customer's name",
+    "status": "Passed"
+   },
+   {
+    "c": 55666,
+    "t": 2977799,
+    "title": "Finding a part by its part number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55667,
+    "t": 2980689,
+    "title": "Finding a customer by company name",
+    "status": "Passed"
+   },
+   {
+    "c": 55668,
+    "t": 2980690,
+    "title": "Finding a vendor by name",
+    "status": "Passed"
+   },
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   },
+   {
+    "c": 55671,
+    "t": 2980693,
+    "title": "Search finds records whatever mix of capitals is typed",
+    "status": "Passed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   },
+   {
+    "c": 55673,
+    "t": 2980695,
+    "title": "Pressing Enter opens the top result without arrowing to it",
+    "status": "Failed"
+   },
+   {
+    "c": 55674,
+    "t": 2980696,
+    "title": "Search can be reached on a phone and a tablet as well as a desktop",
+    "status": "Passed"
+   },
+   {
+    "c": 55675,
+    "t": 2980697,
+    "title": "A search that matches nothing says so plainly",
+    "status": "Passed"
+   },
+   {
+    "c": 55679,
+    "t": 2981982,
+    "title": "Your recent items come back when a search finds nothing",
+    "status": "Passed"
+   },
+   {
+    "c": 55680,
+    "t": 2982304,
+    "title": "Arrow keys move between results and skip the group headings",
+    "status": "Passed"
+   },
+   {
+    "c": 55682,
+    "t": 2983268,
+    "title": "Each result row shows an icon telling you what kind of record it is",
+    "status": "Passed"
+   },
+   {
+    "c": 55683,
+    "t": 2983269,
+    "title": "The keyboard shortcut is shown in the search box so people can find it",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   },
+   {
+    "c": 55686,
+    "t": 2984235,
+    "title": "The record that actually matches what you typed is listed first",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "419-555-0143",
+  "what": "The company's own switchboard number",
+  "field": "Telephone",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": null,
+  "literal": [],
+  "concept": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55663,
+    "t": 2977475,
+    "title": "Finding a vendor by phone number",
+    "status": "Passed"
+   },
+   {
+    "c": 55674,
+    "t": 2980696,
+    "title": "Search can be reached on a phone and a tablet as well as a desktop",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "555-0143",
+  "what": "Only PART of that phone number",
+  "field": "Telephone (partial)",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": "Returns NOTHING on the new version. A person rarely has the whole number. Part of SV-10057.",
+  "literal": [
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55663,
+    "t": 2977475,
+    "title": "Finding a vendor by phone number",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "bridgeporthauling-zzt.com",
+  "what": "The website",
+  "field": "Website",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53583,
+    "t": 2959360,
+    "title": "Finding a customer by their website still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53583,
+    "t": 2959360,
+    "title": "Finding a customer by their website still works",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Contacts",
+  "keyword": "Marlene",
+  "what": "A contact's FIRST name",
+  "field": "Contact first name",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": "Returns 18 rows, only 2 of which contain the word. The rest are Darlene, Charlene, Martens, Marine and Alene. Raised as SV-10025.",
+  "literal": [
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   },
+   {
+    "c": 55686,
+    "t": 2984235,
+    "title": "The record that actually matches what you typed is listed first",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   },
+   {
+    "c": 55682,
+    "t": 2983268,
+    "title": "Each result row shows an icon telling you what kind of record it is",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Contacts",
+  "keyword": "Okonkwo",
+  "what": "A contact's SURNAME",
+  "field": "Contact last name",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   },
+   {
+    "c": 55682,
+    "t": 2983268,
+    "title": "Each result row shows an icon telling you what kind of record it is",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Contacts",
+  "keyword": "Dispatch Supervisor",
+  "what": "A contact's JOB TITLE",
+  "field": "Contact job title",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": "Reported as returning nothing. Open for the product owner.",
+  "literal": [
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Contacts",
+  "keyword": "419-555-0177",
+  "what": "A contact's OWN phone number",
+  "field": "Contact telephone",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": null,
+  "literal": [],
+  "concept": [
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "ZZT-4471",
+  "what": "The unit number",
+  "field": "Unit number",
+  "expect": [
+   "Assets"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53581,
+    "t": 2959358,
+    "title": "Finding an asset by the customer who owns it still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   },
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53581,
+    "t": 2959358,
+    "title": "Finding an asset by the customer who owns it still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   },
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "1FUJGLDR9KLZZ4471",
+  "what": "The WHOLE chassis number",
+  "field": "Chassis number (VIN)",
+  "expect": [
+   "Assets"
+  ],
+  "on_v2_today": "Still works on the new version.",
+  "literal": [
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "ZZ4471",
+  "what": "Only the LAST PART of that chassis number",
+  "field": "Chassis number (partial)",
+  "expect": [
+   "Assets"
+  ],
+  "on_v2_today": "Returns NOTHING on the new version. Raised as SV-10058.",
+  "literal": [
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45152,
+    "t": 2738733,
+    "title": "Switching location refreshes results to the new location",
+    "status": "Passed"
+   },
+   {
+    "c": 45159,
+    "t": 2738740,
+    "title": "A user with no default workplace does not break search",
+    "status": "Blocked"
+   },
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53588,
+    "t": 2959365,
+    "title": "More recent work orders rank above older ones of equal relevance",
+    "status": "Passed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "OHZZT471",
+  "what": "The number plate",
+  "field": "Licence plate",
+  "expect": [
+   "Assets"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "2019",
+  "what": "The vehicle's YEAR",
+  "field": "Year",
+  "expect": [
+   "Assets"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "Freightliner",
+  "what": "The MAKE",
+  "field": "Make",
+  "expect": [
+   "Assets"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "Cascadia",
+  "what": "The MODEL",
+  "field": "Model",
+  "expect": [
+   "Assets"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "2019 Freightliner",
+  "what": "The year AND the make together",
+  "field": "Year + Make",
+  "expect": [
+   "Assets"
+  ],
+  "on_v2_today": "Returns NO vehicles at all. Raised as SV-10055.",
+  "literal": [
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "17611",
+  "what": "The job number with nothing in front",
+  "field": "Job number (plain)",
+  "expect": [
+   "Work orders"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53579,
+    "t": 2959356,
+    "title": "A work order number with the shop number in front still finds it",
+    "status": "Passed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "S-17611",
+  "what": "The job number as it is written",
+  "field": "Job number",
+  "expect": [
+   "Work orders"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53579,
+    "t": 2959356,
+    "title": "A work order number with the shop number in front still finds it",
+    "status": "Passed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53578,
+    "t": 2959355,
+    "title": "Finding a work order by its customer's name still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53579,
+    "t": 2959356,
+    "title": "A work order number with the shop number in front still finds it",
+    "status": "Passed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "S9160-17611",
+  "what": "The job number with the SHOP number in front",
+  "field": "Job number (shop-prefixed)",
+  "expect": [
+   "Work orders"
+  ],
+  "on_v2_today": null,
+  "literal": [],
+  "concept": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53578,
+    "t": 2959355,
+    "title": "Finding a work order by its customer's name still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53579,
+    "t": 2959356,
+    "title": "A work order number with the shop number in front still finds it",
+    "status": "Passed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "Estimate",
+  "what": "The job's STATUS",
+  "field": "Status",
+  "expect": [
+   "Work orders"
+  ],
+  "on_v2_today": "Reported as returning no jobs. Open for the product owner.",
+  "literal": [
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45144,
+    "t": 2738725,
+    "title": "Part results appear only with Catalog & Inventory access",
+    "status": "Passed"
+   },
+   {
+    "c": 53588,
+    "t": 2959365,
+    "title": "More recent work orders rank above older ones of equal relevance",
+    "status": "Passed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "qualitycheck",
+  "what": "A TWO-WORD status typed as one word",
+  "field": "Status (two words joined)",
+  "expect": [
+   "Work orders"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "ZZAUTOTEST Kestrel Parts Supply",
+  "what": "The supplier's name",
+  "field": "Vendor name",
+  "expect": [
+   "Vendors"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53584,
+    "t": 2959361,
+    "title": "Finding a vendor by email address still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55661,
+    "t": 2977473,
+    "title": "Every matching type still appears when a search matches many records",
+    "status": "Passed"
+   },
+   {
+    "c": 55663,
+    "t": 2977475,
+    "title": "Finding a vendor by phone number",
+    "status": "Passed"
+   },
+   {
+    "c": 55668,
+    "t": 2980690,
+    "title": "Finding a vendor by name",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53601,
+    "t": 2959367,
+    "title": "A catalogue part that is not in inventory can still be found",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55668,
+    "t": 2980690,
+    "title": "Finding a vendor by name",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "Halbrook",
+  "what": "The supplier's street address",
+  "field": "Address line 1",
+  "expect": [
+   "Vendors"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53584,
+    "t": 2959361,
+    "title": "Finding a vendor by email address still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55668,
+    "t": 2980690,
+    "title": "Finding a vendor by name",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "Bay 12C",
+  "what": "The supplier's SECOND address line",
+  "field": "Address line 2",
+  "expect": [
+   "Vendors"
+  ],
+  "on_v2_today": null,
+  "literal": [],
+  "concept": [
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "Marnston",
+  "what": "The supplier's town",
+  "field": "City",
+  "expect": [
+   "Vendors"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "43055-2210",
+  "what": "The supplier's postcode",
+  "field": "Postal code",
+  "expect": [
+   "Vendors"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45142,
+    "t": 2738723,
+    "title": "Work Orders results appear only for users with Work Orders access",
+    "status": "Passed"
+   },
+   {
+    "c": 45143,
+    "t": 2738724,
+    "title": "A Part-Sales-only role sees Part Sales but not Parts or Vendors",
+    "status": "Passed"
+   },
+   {
+    "c": 45144,
+    "t": 2738725,
+    "title": "Part results appear only with Catalog & Inventory access",
+    "status": "Passed"
+   },
+   {
+    "c": 45145,
+    "t": 2738726,
+    "title": "Vendor results appear only with Vendor & Order Management access",
+    "status": "Passed"
+   },
+   {
+    "c": 45146,
+    "t": 2738727,
+    "title": "Customer and Asset results both require Customers access",
+    "status": "Passed"
+   },
+   {
+    "c": 45147,
+    "t": 2738728,
+    "title": "A Time Clock role gets no global search results at all",
+    "status": "Passed"
+   },
+   {
+    "c": 45148,
+    "t": 2738729,
+    "title": "An unrecognised result type is hidden unless explicitly permitted",
+    "status": "Passed"
+   },
+   {
+    "c": 45149,
+    "t": 2738730,
+    "title": "Recent items the user can no longer access are hidden",
+    "status": "Passed"
+   },
+   {
+    "c": 45150,
+    "t": 2738731,
+    "title": "Results never include another organization's records",
+    "status": "Passed"
+   },
+   {
+    "c": 45151,
+    "t": 2738732,
+    "title": "Work Orders and Part Sales are limited to the current location",
+    "status": "Passed"
+   },
+   {
+    "c": 45152,
+    "t": 2738733,
+    "title": "Switching location refreshes results to the new location",
+    "status": "Passed"
+   },
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 45154,
+    "t": 2738735,
+    "title": "Selecting the record you are already on does not re-navigate",
+    "status": "Passed"
+   },
+   {
+    "c": 45155,
+    "t": 2738736,
+    "title": "The vehicles group is shown to users as 'Assets'",
+    "status": "Passed"
+   },
+   {
+    "c": 45156,
+    "t": 2738737,
+    "title": "The keyboard shortcut opens global search",
+    "status": "Passed"
+   },
+   {
+    "c": 45157,
+    "t": 2738738,
+    "title": "A record that matches more than once appears only once",
+    "status": "Passed"
+   },
+   {
+    "c": 45158,
+    "t": 2738739,
+    "title": "Global search is available with no feature-flag toggle",
+    "status": "Passed"
+   },
+   {
+    "c": 45159,
+    "t": 2738740,
+    "title": "A user with no default workplace does not break search",
+    "status": "Blocked"
+   },
+   {
+    "c": 45160,
+    "t": 2738741,
+    "title": "Selecting a result records a usage analytics event",
+    "status": "Blocked"
+   },
+   {
+    "c": 45161,
+    "t": 2738742,
+    "title": "Search needs at least two characters before it matches",
+    "status": "Passed"
+   },
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53578,
+    "t": 2959355,
+    "title": "Finding a work order by its customer's name still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53579,
+    "t": 2959356,
+    "title": "A work order number with the shop number in front still finds it",
+    "status": "Passed"
+   },
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53581,
+    "t": 2959358,
+    "title": "Finding an asset by the customer who owns it still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53583,
+    "t": 2959360,
+    "title": "Finding a customer by their website still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53584,
+    "t": 2959361,
+    "title": "Finding a vendor by email address still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53586,
+    "t": 2959363,
+    "title": "A newly created customer is findable within 30 seconds",
+    "status": "Passed"
+   },
+   {
+    "c": 53587,
+    "t": 2959364,
+    "title": "A new work order or part sale is findable within 30 seconds",
+    "status": "Failed"
+   },
+   {
+    "c": 53588,
+    "t": 2959365,
+    "title": "More recent work orders rank above older ones of equal relevance",
+    "status": "Passed"
+   },
+   {
+    "c": 53589,
+    "t": 2959366,
+    "title": "Typing is never lost while search results are loading",
+    "status": "Passed"
+   },
+   {
+    "c": 53601,
+    "t": 2959367,
+    "title": "A catalogue part that is not in inventory can still be found",
+    "status": "Failed"
+   },
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 53607,
+    "t": 2959691,
+    "title": "Finding a part by its description",
+    "status": "Passed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55661,
+    "t": 2977473,
+    "title": "Every matching type still appears when a search matches many records",
+    "status": "Passed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55663,
+    "t": 2977475,
+    "title": "Finding a vendor by phone number",
+    "status": "Passed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   },
+   {
+    "c": 55665,
+    "t": 2977477,
+    "title": "Finding a part sale by its customer's name",
+    "status": "Passed"
+   },
+   {
+    "c": 55666,
+    "t": 2977799,
+    "title": "Finding a part by its part number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55667,
+    "t": 2980689,
+    "title": "Finding a customer by company name",
+    "status": "Passed"
+   },
+   {
+    "c": 55668,
+    "t": 2980690,
+    "title": "Finding a vendor by name",
+    "status": "Passed"
+   },
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   },
+   {
+    "c": 55671,
+    "t": 2980693,
+    "title": "Search finds records whatever mix of capitals is typed",
+    "status": "Passed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   },
+   {
+    "c": 55673,
+    "t": 2980695,
+    "title": "Pressing Enter opens the top result without arrowing to it",
+    "status": "Failed"
+   },
+   {
+    "c": 55674,
+    "t": 2980696,
+    "title": "Search can be reached on a phone and a tablet as well as a desktop",
+    "status": "Passed"
+   },
+   {
+    "c": 55675,
+    "t": 2980697,
+    "title": "A search that matches nothing says so plainly",
+    "status": "Passed"
+   },
+   {
+    "c": 55679,
+    "t": 2981982,
+    "title": "Your recent items come back when a search finds nothing",
+    "status": "Passed"
+   },
+   {
+    "c": 55680,
+    "t": 2982304,
+    "title": "Arrow keys move between results and skip the group headings",
+    "status": "Passed"
+   },
+   {
+    "c": 55682,
+    "t": 2983268,
+    "title": "Each result row shows an icon telling you what kind of record it is",
+    "status": "Passed"
+   },
+   {
+    "c": 55683,
+    "t": 2983269,
+    "title": "The keyboard shortcut is shown in the search box so people can find it",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   },
+   {
+    "c": 55686,
+    "t": 2984235,
+    "title": "The record that actually matches what you typed is listed first",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "614-555-0188",
+  "what": "The supplier's phone number",
+  "field": "Telephone",
+  "expect": [
+   "Vendors"
+  ],
+  "on_v2_today": null,
+  "literal": [],
+  "concept": [
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55663,
+    "t": 2977475,
+    "title": "Finding a vendor by phone number",
+    "status": "Passed"
+   },
+   {
+    "c": 55674,
+    "t": 2980696,
+    "title": "Search can be reached on a phone and a tablet as well as a desktop",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "parts@kestrelsupply-zzt.com",
+  "what": "The supplier's email address",
+  "field": "Email",
+  "expect": [
+   "Vendors"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 53584,
+    "t": 2959361,
+    "title": "Finding a vendor by email address still works",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 53584,
+    "t": 2959361,
+    "title": "Finding a vendor by email address still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Parts",
+  "keyword": "ZZT-77-3300",
+  "what": "The part number",
+  "field": "Part number",
+  "expect": [
+   "Parts"
+  ],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53601,
+    "t": 2959367,
+    "title": "A catalogue part that is not in inventory can still be found",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53601,
+    "t": 2959367,
+    "title": "A catalogue part that is not in inventory can still be found",
+    "status": "Failed"
+   },
+   {
+    "c": 53607,
+    "t": 2959691,
+    "title": "Finding a part by its description",
+    "status": "Passed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55666,
+    "t": 2977799,
+    "title": "Finding a part by its part number still works",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Parts",
+  "keyword": "ZZT773300",
+  "what": "The part number with the DASHES removed",
+  "field": "Part number (dash-free copy)",
+  "expect": [
+   "Parts"
+  ],
+  "on_v2_today": null,
+  "literal": [],
+  "concept": [
+   {
+    "c": 55666,
+    "t": 2977799,
+    "title": "Finding a part by its part number still works",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Parts",
+  "keyword": "Vernway",
+  "what": "A word from the part's DESCRIPTION",
+  "field": "Part description",
+  "expect": [
+   "Parts"
+  ],
+  "on_v2_today": "Reported as not findable at all. The strongest finding of the batch.",
+  "literal": [
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53601,
+    "t": 2959367,
+    "title": "A catalogue part that is not in inventory can still be found",
+    "status": "Failed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45143,
+    "t": 2738724,
+    "title": "A Part-Sales-only role sees Part Sales but not Parts or Vendors",
+    "status": "Passed"
+   },
+   {
+    "c": 45144,
+    "t": 2738725,
+    "title": "Part results appear only with Catalog & Inventory access",
+    "status": "Passed"
+   },
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 53601,
+    "t": 2959367,
+    "title": "A catalogue part that is not in inventory can still be found",
+    "status": "Failed"
+   },
+   {
+    "c": 53607,
+    "t": 2959691,
+    "title": "Finding a part by its description",
+    "status": "Passed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55661,
+    "t": 2977473,
+    "title": "Every matching type still appears when a search matches many records",
+    "status": "Passed"
+   },
+   {
+    "c": 55666,
+    "t": 2977799,
+    "title": "Finding a part by its part number still works",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Edge cases",
+  "keyword": "Darlene",
+  "what": "A name ONE letter away from a real one",
+  "field": "Customer name",
+  "expect": [
+   "Customers"
+  ],
+  "on_v2_today": "Typing Marlene on the new version returns the Darlene records too. That is SV-10025.",
+  "literal": [
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   },
+   {
+    "c": 55686,
+    "t": 2984235,
+    "title": "The record that actually matches what you typed is listed first",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45142,
+    "t": 2738723,
+    "title": "Work Orders results appear only for users with Work Orders access",
+    "status": "Passed"
+   },
+   {
+    "c": 45143,
+    "t": 2738724,
+    "title": "A Part-Sales-only role sees Part Sales but not Parts or Vendors",
+    "status": "Passed"
+   },
+   {
+    "c": 45144,
+    "t": 2738725,
+    "title": "Part results appear only with Catalog & Inventory access",
+    "status": "Passed"
+   },
+   {
+    "c": 45145,
+    "t": 2738726,
+    "title": "Vendor results appear only with Vendor & Order Management access",
+    "status": "Passed"
+   },
+   {
+    "c": 45146,
+    "t": 2738727,
+    "title": "Customer and Asset results both require Customers access",
+    "status": "Passed"
+   },
+   {
+    "c": 45147,
+    "t": 2738728,
+    "title": "A Time Clock role gets no global search results at all",
+    "status": "Passed"
+   },
+   {
+    "c": 45148,
+    "t": 2738729,
+    "title": "An unrecognised result type is hidden unless explicitly permitted",
+    "status": "Passed"
+   },
+   {
+    "c": 45149,
+    "t": 2738730,
+    "title": "Recent items the user can no longer access are hidden",
+    "status": "Passed"
+   },
+   {
+    "c": 45150,
+    "t": 2738731,
+    "title": "Results never include another organization's records",
+    "status": "Passed"
+   },
+   {
+    "c": 45151,
+    "t": 2738732,
+    "title": "Work Orders and Part Sales are limited to the current location",
+    "status": "Passed"
+   },
+   {
+    "c": 45152,
+    "t": 2738733,
+    "title": "Switching location refreshes results to the new location",
+    "status": "Passed"
+   },
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 45154,
+    "t": 2738735,
+    "title": "Selecting the record you are already on does not re-navigate",
+    "status": "Passed"
+   },
+   {
+    "c": 45155,
+    "t": 2738736,
+    "title": "The vehicles group is shown to users as 'Assets'",
+    "status": "Passed"
+   },
+   {
+    "c": 45156,
+    "t": 2738737,
+    "title": "The keyboard shortcut opens global search",
+    "status": "Passed"
+   },
+   {
+    "c": 45157,
+    "t": 2738738,
+    "title": "A record that matches more than once appears only once",
+    "status": "Passed"
+   },
+   {
+    "c": 45158,
+    "t": 2738739,
+    "title": "Global search is available with no feature-flag toggle",
+    "status": "Passed"
+   },
+   {
+    "c": 45159,
+    "t": 2738740,
+    "title": "A user with no default workplace does not break search",
+    "status": "Blocked"
+   },
+   {
+    "c": 45160,
+    "t": 2738741,
+    "title": "Selecting a result records a usage analytics event",
+    "status": "Blocked"
+   },
+   {
+    "c": 45161,
+    "t": 2738742,
+    "title": "Search needs at least two characters before it matches",
+    "status": "Passed"
+   },
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53578,
+    "t": 2959355,
+    "title": "Finding a work order by its customer's name still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53579,
+    "t": 2959356,
+    "title": "A work order number with the shop number in front still finds it",
+    "status": "Passed"
+   },
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53581,
+    "t": 2959358,
+    "title": "Finding an asset by the customer who owns it still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53583,
+    "t": 2959360,
+    "title": "Finding a customer by their website still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53584,
+    "t": 2959361,
+    "title": "Finding a vendor by email address still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53586,
+    "t": 2959363,
+    "title": "A newly created customer is findable within 30 seconds",
+    "status": "Passed"
+   },
+   {
+    "c": 53587,
+    "t": 2959364,
+    "title": "A new work order or part sale is findable within 30 seconds",
+    "status": "Failed"
+   },
+   {
+    "c": 53588,
+    "t": 2959365,
+    "title": "More recent work orders rank above older ones of equal relevance",
+    "status": "Passed"
+   },
+   {
+    "c": 53589,
+    "t": 2959366,
+    "title": "Typing is never lost while search results are loading",
+    "status": "Passed"
+   },
+   {
+    "c": 53601,
+    "t": 2959367,
+    "title": "A catalogue part that is not in inventory can still be found",
+    "status": "Failed"
+   },
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 53607,
+    "t": 2959691,
+    "title": "Finding a part by its description",
+    "status": "Passed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55661,
+    "t": 2977473,
+    "title": "Every matching type still appears when a search matches many records",
+    "status": "Passed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55663,
+    "t": 2977475,
+    "title": "Finding a vendor by phone number",
+    "status": "Passed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   },
+   {
+    "c": 55665,
+    "t": 2977477,
+    "title": "Finding a part sale by its customer's name",
+    "status": "Passed"
+   },
+   {
+    "c": 55666,
+    "t": 2977799,
+    "title": "Finding a part by its part number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55667,
+    "t": 2980689,
+    "title": "Finding a customer by company name",
+    "status": "Passed"
+   },
+   {
+    "c": 55668,
+    "t": 2980690,
+    "title": "Finding a vendor by name",
+    "status": "Passed"
+   },
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   },
+   {
+    "c": 55671,
+    "t": 2980693,
+    "title": "Search finds records whatever mix of capitals is typed",
+    "status": "Passed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   },
+   {
+    "c": 55673,
+    "t": 2980695,
+    "title": "Pressing Enter opens the top result without arrowing to it",
+    "status": "Failed"
+   },
+   {
+    "c": 55674,
+    "t": 2980696,
+    "title": "Search can be reached on a phone and a tablet as well as a desktop",
+    "status": "Passed"
+   },
+   {
+    "c": 55675,
+    "t": 2980697,
+    "title": "A search that matches nothing says so plainly",
+    "status": "Passed"
+   },
+   {
+    "c": 55679,
+    "t": 2981982,
+    "title": "Your recent items come back when a search finds nothing",
+    "status": "Passed"
+   },
+   {
+    "c": 55680,
+    "t": 2982304,
+    "title": "Arrow keys move between results and skip the group headings",
+    "status": "Passed"
+   },
+   {
+    "c": 55682,
+    "t": 2983268,
+    "title": "Each result row shows an icon telling you what kind of record it is",
+    "status": "Passed"
+   },
+   {
+    "c": 55683,
+    "t": 2983269,
+    "title": "The keyboard shortcut is shown in the search box so people can find it",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   },
+   {
+    "c": 55686,
+    "t": 2984235,
+    "title": "The record that actually matches what you typed is listed first",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Edge cases",
+  "keyword": "a",
+  "what": "A single character",
+  "field": "—",
+  "expect": [],
+  "on_v2_today": null,
+  "literal": [
+   {
+    "c": 45142,
+    "t": 2738723,
+    "title": "Work Orders results appear only for users with Work Orders access",
+    "status": "Passed"
+   },
+   {
+    "c": 45143,
+    "t": 2738724,
+    "title": "A Part-Sales-only role sees Part Sales but not Parts or Vendors",
+    "status": "Passed"
+   },
+   {
+    "c": 45144,
+    "t": 2738725,
+    "title": "Part results appear only with Catalog & Inventory access",
+    "status": "Passed"
+   },
+   {
+    "c": 45145,
+    "t": 2738726,
+    "title": "Vendor results appear only with Vendor & Order Management access",
+    "status": "Passed"
+   },
+   {
+    "c": 45146,
+    "t": 2738727,
+    "title": "Customer and Asset results both require Customers access",
+    "status": "Passed"
+   },
+   {
+    "c": 45147,
+    "t": 2738728,
+    "title": "A Time Clock role gets no global search results at all",
+    "status": "Passed"
+   },
+   {
+    "c": 45148,
+    "t": 2738729,
+    "title": "An unrecognised result type is hidden unless explicitly permitted",
+    "status": "Passed"
+   },
+   {
+    "c": 45149,
+    "t": 2738730,
+    "title": "Recent items the user can no longer access are hidden",
+    "status": "Passed"
+   },
+   {
+    "c": 45150,
+    "t": 2738731,
+    "title": "Results never include another organization's records",
+    "status": "Passed"
+   },
+   {
+    "c": 45151,
+    "t": 2738732,
+    "title": "Work Orders and Part Sales are limited to the current location",
+    "status": "Passed"
+   },
+   {
+    "c": 45152,
+    "t": 2738733,
+    "title": "Switching location refreshes results to the new location",
+    "status": "Passed"
+   },
+   {
+    "c": 45153,
+    "t": 2738734,
+    "title": "Selecting each result type opens the right record",
+    "status": "Failed"
+   },
+   {
+    "c": 45154,
+    "t": 2738735,
+    "title": "Selecting the record you are already on does not re-navigate",
+    "status": "Passed"
+   },
+   {
+    "c": 45155,
+    "t": 2738736,
+    "title": "The vehicles group is shown to users as 'Assets'",
+    "status": "Passed"
+   },
+   {
+    "c": 45156,
+    "t": 2738737,
+    "title": "The keyboard shortcut opens global search",
+    "status": "Passed"
+   },
+   {
+    "c": 45157,
+    "t": 2738738,
+    "title": "A record that matches more than once appears only once",
+    "status": "Passed"
+   },
+   {
+    "c": 45158,
+    "t": 2738739,
+    "title": "Global search is available with no feature-flag toggle",
+    "status": "Passed"
+   },
+   {
+    "c": 45159,
+    "t": 2738740,
+    "title": "A user with no default workplace does not break search",
+    "status": "Blocked"
+   },
+   {
+    "c": 45160,
+    "t": 2738741,
+    "title": "Selecting a result records a usage analytics event",
+    "status": "Blocked"
+   },
+   {
+    "c": 45161,
+    "t": 2738742,
+    "title": "Search needs at least two characters before it matches",
+    "status": "Passed"
+   },
+   {
+    "c": 53516,
+    "t": 2902696,
+    "title": "Searching an asset's licence plate finds that asset",
+    "status": "Failed"
+   },
+   {
+    "c": 53578,
+    "t": 2959355,
+    "title": "Finding a work order by its customer's name still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53579,
+    "t": 2959356,
+    "title": "A work order number with the shop number in front still finds it",
+    "status": "Passed"
+   },
+   {
+    "c": 53580,
+    "t": 2959357,
+    "title": "Finding an asset by its unit number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53581,
+    "t": 2959358,
+    "title": "Finding an asset by the customer who owns it still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53582,
+    "t": 2959359,
+    "title": "Finding a customer by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53583,
+    "t": 2959360,
+    "title": "Finding a customer by their website still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53584,
+    "t": 2959361,
+    "title": "Finding a vendor by email address still works",
+    "status": "Passed"
+   },
+   {
+    "c": 53585,
+    "t": 2959362,
+    "title": "Finding a vendor by address, city or postal code still works",
+    "status": "Failed"
+   },
+   {
+    "c": 53586,
+    "t": 2959363,
+    "title": "A newly created customer is findable within 30 seconds",
+    "status": "Passed"
+   },
+   {
+    "c": 53587,
+    "t": 2959364,
+    "title": "A new work order or part sale is findable within 30 seconds",
+    "status": "Failed"
+   },
+   {
+    "c": 53588,
+    "t": 2959365,
+    "title": "More recent work orders rank above older ones of equal relevance",
+    "status": "Passed"
+   },
+   {
+    "c": 53589,
+    "t": 2959366,
+    "title": "Typing is never lost while search results are loading",
+    "status": "Passed"
+   },
+   {
+    "c": 53601,
+    "t": 2959367,
+    "title": "A catalogue part that is not in inventory can still be found",
+    "status": "Failed"
+   },
+   {
+    "c": 53602,
+    "t": 2959368,
+    "title": "Finding a customer by their name with the spaces removed",
+    "status": "Passed"
+   },
+   {
+    "c": 53603,
+    "t": 2959369,
+    "title": "Finding a customer or vendor by a contact's job title",
+    "status": "Failed"
+   },
+   {
+    "c": 53604,
+    "t": 2959370,
+    "title": "Finding a customer or vendor by address line 2",
+    "status": "Passed"
+   },
+   {
+    "c": 53605,
+    "t": 2959371,
+    "title": "Finding an asset by its year",
+    "status": "Failed"
+   },
+   {
+    "c": 53606,
+    "t": 2959372,
+    "title": "Finding a vendor by state or province",
+    "status": "Failed"
+   },
+   {
+    "c": 53607,
+    "t": 2959691,
+    "title": "Finding a part by its description",
+    "status": "Passed"
+   },
+   {
+    "c": 55658,
+    "t": 2977470,
+    "title": "Finding a work order by typing its status still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55659,
+    "t": 2977471,
+    "title": "Finding a record by typing only part of its number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55660,
+    "t": 2977472,
+    "title": "Finding a record by a fragment from the middle of a word still works",
+    "status": "Failed"
+   },
+   {
+    "c": 55661,
+    "t": 2977473,
+    "title": "Every matching type still appears when a search matches many records",
+    "status": "Passed"
+   },
+   {
+    "c": 55662,
+    "t": 2977474,
+    "title": "Finding a customer by the company's own main phone number",
+    "status": "Failed"
+   },
+   {
+    "c": 55663,
+    "t": 2977475,
+    "title": "Finding a vendor by phone number",
+    "status": "Passed"
+   },
+   {
+    "c": 55664,
+    "t": 2977476,
+    "title": "Finding an asset by its model",
+    "status": "Passed"
+   },
+   {
+    "c": 55665,
+    "t": 2977477,
+    "title": "Finding a part sale by its customer's name",
+    "status": "Passed"
+   },
+   {
+    "c": 55666,
+    "t": 2977799,
+    "title": "Finding a part by its part number still works",
+    "status": "Passed"
+   },
+   {
+    "c": 55667,
+    "t": 2980689,
+    "title": "Finding a customer by company name",
+    "status": "Passed"
+   },
+   {
+    "c": 55668,
+    "t": 2980690,
+    "title": "Finding a vendor by name",
+    "status": "Passed"
+   },
+   {
+    "c": 55669,
+    "t": 2980691,
+    "title": "Finding an asset by its VIN, in full and in part",
+    "status": "Failed"
+   },
+   {
+    "c": 55670,
+    "t": 2980692,
+    "title": "Finding a customer or vendor by a contact's first or last name",
+    "status": "Passed"
+   },
+   {
+    "c": 55671,
+    "t": 2980693,
+    "title": "Search finds records whatever mix of capitals is typed",
+    "status": "Passed"
+   },
+   {
+    "c": 55672,
+    "t": 2980694,
+    "title": "Finding a work order by its plain number with no prefix",
+    "status": "Passed"
+   },
+   {
+    "c": 55673,
+    "t": 2980695,
+    "title": "Pressing Enter opens the top result without arrowing to it",
+    "status": "Failed"
+   },
+   {
+    "c": 55674,
+    "t": 2980696,
+    "title": "Search can be reached on a phone and a tablet as well as a desktop",
+    "status": "Passed"
+   },
+   {
+    "c": 55675,
+    "t": 2980697,
+    "title": "A search that matches nothing says so plainly",
+    "status": "Passed"
+   },
+   {
+    "c": 55679,
+    "t": 2981982,
+    "title": "Your recent items come back when a search finds nothing",
+    "status": "Passed"
+   },
+   {
+    "c": 55680,
+    "t": 2982304,
+    "title": "Arrow keys move between results and skip the group headings",
+    "status": "Passed"
+   },
+   {
+    "c": 55682,
+    "t": 2983268,
+    "title": "Each result row shows an icon telling you what kind of record it is",
+    "status": "Passed"
+   },
+   {
+    "c": 55683,
+    "t": 2983269,
+    "title": "The keyboard shortcut is shown in the search box so people can find it",
+    "status": "Passed"
+   },
+   {
+    "c": 55685,
+    "t": 2984234,
+    "title": "Typing a name does not bring back other differently spelled names",
+    "status": "Failed"
+   },
+   {
+    "c": 55686,
+    "t": 2984235,
+    "title": "The record that actually matches what you typed is listed first",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "concept": [
+   {
+    "c": 45161,
+    "t": 2738742,
+    "title": "Search needs at least two characters before it matches",
+    "status": "Passed"
+   },
+   {
+    "c": 55675,
+    "t": 2980697,
+    "title": "A search that matches nothing says so plainly",
+    "status": "Passed"
+   },
+   {
+    "c": 55679,
+    "t": 2981982,
+    "title": "Your recent items come back when a search finds nothing",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ },
+ {
+  "area": "Edge cases",
+  "keyword": "zzzqqq",
+  "what": "Something that exists nowhere",
+  "field": "—",
+  "expect": [],
+  "on_v2_today": "Shows a message and nothing to click. Raised as SV-10059.",
+  "literal": [],
+  "concept": [
+   {
+    "c": 45147,
+    "t": 2738728,
+    "title": "A Time Clock role gets no global search results at all",
+    "status": "Passed"
+   },
+   {
+    "c": 45149,
+    "t": 2738730,
+    "title": "Recent items the user can no longer access are hidden",
+    "status": "Passed"
+   },
+   {
+    "c": 45154,
+    "t": 2738735,
+    "title": "Selecting the record you are already on does not re-navigate",
+    "status": "Passed"
+   },
+   {
+    "c": 45161,
+    "t": 2738742,
+    "title": "Search needs at least two characters before it matches",
+    "status": "Passed"
+   },
+   {
+    "c": 53579,
+    "t": 2959356,
+    "title": "A work order number with the shop number in front still finds it",
+    "status": "Passed"
+   },
+   {
+    "c": 53586,
+    "t": 2959363,
+    "title": "A newly created customer is findable within 30 seconds",
+    "status": "Passed"
+   },
+   {
+    "c": 53588,
+    "t": 2959365,
+    "title": "More recent work orders rank above older ones of equal relevance",
+    "status": "Passed"
+   },
+   {
+    "c": 55675,
+    "t": 2980697,
+    "title": "A search that matches nothing says so plainly",
+    "status": "Passed"
+   },
+   {
+    "c": 55679,
+    "t": 2981982,
+    "title": "Your recent items come back when a search finds nothing",
+    "status": "Passed"
+   },
+   {
+    "c": 55684,
+    "t": 2983591,
+    "title": "After switching location you never see the old location's records",
+    "status": "Passed"
+   }
+  ],
+  "covered": true
+ }
+]

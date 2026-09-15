@@ -1,0 +1,722 @@
+[
+ {
+  "area": "Customers",
+  "keyword": "ZZAUTOTEST Bridgeport Hauling",
+  "what": "The company's own name",
+  "app": "Customers",
+  "where": "Customers → open the company. The name at the top of the record.",
+  "field": "Customer name",
+  "expect_groups": [
+   "Customers",
+   "Work orders",
+   "Part sales",
+   "Assets"
+  ],
+  "expect_sentence": "The company itself, plus its jobs and its vehicle, because the company name is stored on those too.",
+  "verify": "Check the name on the customer record matches exactly, including the ZZAUTOTEST prefix.",
+  "on_v2_today": null,
+  "cases": "C55667 · C53578 · C55665 · C53581",
+  "note": "The name itself, and the jobs, part sale and vehicle that carry it — four cases between them.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "ZZAUTOTESTBridgeportHauling",
+  "what": "The same name with every space removed",
+  "app": "Customers",
+  "where": "Customers → the company name. Nothing to set up — the old search stored a second, space-free copy of the name.",
+  "field": "Customer name (space-free copy)",
+  "expect_groups": [
+   "Customers",
+   "Work orders",
+   "Part sales",
+   "Assets"
+  ],
+  "expect_sentence": "The same records as the full name. People type company names without spaces and it still worked.",
+  "verify": "Nothing to check on the record — this tests the search, not the data.",
+  "on_v2_today": null,
+  "cases": "C53602",
+  "note": "Types the name with the spaces removed.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "idgepor",
+  "what": "A few letters from the MIDDLE of the name",
+  "app": "Customers",
+  "where": "Customers → the company name. Taken from Br-idgepor-t.",
+  "field": "Customer name",
+  "expect_groups": [
+   "Customers",
+   "Work orders",
+   "Part sales",
+   "Assets"
+  ],
+  "expect_sentence": "The company and everything carrying its name. Mid-word fragments matched.",
+  "verify": "Nothing on the record — this tests how matching worked.",
+  "on_v2_today": "Still works on the new version.",
+  "cases": "C55660",
+  "note": "Step 4 types idgepor.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "Kestrelway",
+  "what": "The street address",
+  "app": "Customers",
+  "where": "Customers → open the company → Address line 1.",
+  "field": "Address line 1",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "Only the customer. Nothing else is on that street.",
+  "verify": "Open the company and read Address line 1 — it should say 1450 Kestrelway Industrial.",
+  "on_v2_today": null,
+  "cases": "C53582",
+  "note": "Step 2 types Kestrelway.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "Dock 7B",
+  "what": "The SECOND line of the address",
+  "app": "Customers",
+  "where": "Customers → open the company → Address line 2.",
+  "field": "Address line 2",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "Only the customer. This line is often blank on records, which is why it is worth checking.",
+  "verify": "Open the company and read Address line 2 — it should say Dock 7B. If it is empty, the test proves nothing.",
+  "on_v2_today": null,
+  "cases": "C53604",
+  "note": "Step 2 types Dock 7B; step 4 does the supplier's.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "Fernvale",
+  "what": "The town",
+  "app": "Customers",
+  "where": "Customers → open the company → City.",
+  "field": "City",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "TWO customers — both test companies are in Fernvale.",
+  "verify": "Read the City field on both test customers.",
+  "on_v2_today": null,
+  "cases": "C53582",
+  "note": "Step 3 types Fernvale.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "ernva",
+  "what": "A few letters from the middle of the TOWN",
+  "app": "Customers",
+  "where": "Customers → open the company → City. Taken from F-ernva-le.",
+  "field": "City",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "Both Fernvale customers. The old search treated the town exactly like the name.",
+  "verify": "Nothing on the record — this tests matching.",
+  "on_v2_today": "Returns NOTHING on the new version, while the same kind of fragment from the company NAME still works. Raised as SV-10060.",
+  "cases": "C55660",
+  "note": "Step 2 types ernva.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "Ohio",
+  "what": "The county or state",
+  "app": "Customers",
+  "where": "Customers → open the company → State or province. Suppliers have the same field.",
+  "field": "State or province",
+  "expect_groups": [
+   "Customers",
+   "Vendors"
+  ],
+  "expect_sentence": "Both customers AND the supplier — all three are in Ohio.",
+  "verify": "Read State or province on the two customers and the supplier.",
+  "on_v2_today": null,
+  "cases": "C53582 · C53606",
+  "note": "Step 4 of the customer case and the whole of the supplier one.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "44872-9931",
+  "what": "The postcode",
+  "app": "Customers",
+  "where": "Customers → open the company → Postal code.",
+  "field": "Postal code",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "Only the customer with that postcode.",
+  "verify": "Read Postal code on the company — it should be 44872-9931.",
+  "on_v2_today": null,
+  "cases": "C53582",
+  "note": "Step 5 types the postcode.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "419-555-0143",
+  "what": "The company's own switchboard number",
+  "app": "Customers",
+  "where": "Customers → open the company → Telephone.",
+  "field": "Telephone",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "Only the customer. Typed with dashes, which is the form the old search stored.",
+  "verify": "Read Telephone on the company — (419) 555-0143. If it is blank, nothing can be proved.",
+  "on_v2_today": null,
+  "cases": "C55662",
+  "note": "Types it formatted and as plain digits.",
+  "covered": true
+ },
+ {
+  "area": "Customers",
+  "keyword": "555-0143",
+  "what": "Only PART of that phone number",
+  "app": "Customers",
+  "where": "Customers → open the company → Telephone. The last part of it.",
+  "field": "Telephone (partial)",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "The customer. The old search looked anywhere inside the record, so part of a number was enough.",
+  "verify": "Same field as above.",
+  "on_v2_today": "Returns NOTHING on the new version. A person rarely has the whole number. Part of SV-10057.",
+  "cases": "",
+  "note": "GAP",
+  "covered": false
+ },
+ {
+  "area": "Customers",
+  "keyword": "bridgeporthauling-zzt.com",
+  "what": "The website",
+  "app": "Customers",
+  "where": "Customers → open the company → Website.",
+  "field": "Website",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "Only the customer.",
+  "verify": "Read Website on the company. It is often blank on real records.",
+  "on_v2_today": null,
+  "cases": "C53583",
+  "note": "Types the website.",
+  "covered": true
+ },
+ {
+  "area": "Contacts",
+  "keyword": "Marlene",
+  "what": "A contact's FIRST name",
+  "app": "Customers → Contacts",
+  "where": "Customers → open the company → the Contacts list → First name.",
+  "field": "Contact first name",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "The COMPANY, not a separate contact row. A contact match returned the business they work for.",
+  "verify": "Open the company, open its Contacts list, confirm Marlene Okonkwo is there.",
+  "on_v2_today": "Returns 18 rows, only 2 of which contain the word. The rest are Darlene, Charlene, Martens, Marine and Alene. Raised as SV-10025.",
+  "cases": "C55670",
+  "note": "Step 2 types the first name.",
+  "covered": true
+ },
+ {
+  "area": "Contacts",
+  "keyword": "Okonkwo",
+  "what": "A contact's SURNAME",
+  "app": "Customers → Contacts",
+  "where": "Customers → open the company → Contacts → Last name.",
+  "field": "Contact last name",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "The company that person works for.",
+  "verify": "Same Contacts list.",
+  "on_v2_today": null,
+  "cases": "C55670",
+  "note": "Step 4 types the surname.",
+  "covered": true
+ },
+ {
+  "area": "Contacts",
+  "keyword": "Dispatch Supervisor",
+  "what": "A contact's JOB TITLE",
+  "app": "Customers → Contacts",
+  "where": "Customers → open the company → Contacts → Title.",
+  "field": "Contact job title",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "The company. Somebody who only remembers a job title could still find the business.",
+  "verify": "Open the Contacts list and confirm the Title field reads Dispatch Supervisor. It is frequently empty.",
+  "on_v2_today": "Reported as returning nothing. Open for the product owner.",
+  "cases": "C53603",
+  "note": "Types the job title.",
+  "covered": true
+ },
+ {
+  "area": "Contacts",
+  "keyword": "419-555-0177",
+  "what": "A contact's OWN phone number",
+  "app": "Customers → Contacts",
+  "where": "Customers → open the company → Contacts → Telephone. Different from the company's number.",
+  "field": "Contact telephone",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "The company. Note this is the CONTACT's number, not the switchboard.",
+  "verify": "Confirm the contact's own Telephone is set and differs from the company's.",
+  "on_v2_today": null,
+  "cases": "",
+  "note": "GAP",
+  "covered": false
+ },
+ {
+  "area": "Assets",
+  "keyword": "ZZT-4471",
+  "what": "The unit number",
+  "app": "Assets",
+  "where": "Assets → open the vehicle → Unit. Shops label their own trucks with these.",
+  "field": "Unit number",
+  "expect_groups": [
+   "Assets"
+  ],
+  "expect_sentence": "Only the vehicle.",
+  "verify": "Read Unit on the vehicle record.",
+  "on_v2_today": null,
+  "cases": "C53580",
+  "note": "Types the unit number.",
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "1FUJGLDR9KLZZ4471",
+  "what": "The WHOLE chassis number",
+  "app": "Assets",
+  "where": "Assets → open the vehicle → VIN / Serial number.",
+  "field": "Chassis number (VIN)",
+  "expect_groups": [
+   "Assets"
+  ],
+  "expect_sentence": "Only the vehicle.",
+  "verify": "Read the VIN field, all 17 characters.",
+  "on_v2_today": "Still works on the new version.",
+  "cases": "C55669",
+  "note": "Types the whole number.",
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "ZZ4471",
+  "what": "Only the LAST PART of that chassis number",
+  "app": "Assets",
+  "where": "Assets → the same VIN field, last six characters.",
+  "field": "Chassis number (partial)",
+  "expect_groups": [
+   "Assets"
+  ],
+  "expect_sentence": "The vehicle. This is how somebody reads a number off a windscreen.",
+  "verify": "Same VIN field — check the last characters match what you type.",
+  "on_v2_today": "Returns NOTHING on the new version. Raised as SV-10058.",
+  "cases": "C55669",
+  "note": "Same case types the tail of it.",
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "OHZZT471",
+  "what": "The number plate",
+  "app": "Assets",
+  "where": "Assets → open the vehicle → Licence plate.",
+  "field": "Licence plate",
+  "expect_groups": [
+   "Assets"
+  ],
+  "expect_sentence": "Only the vehicle.",
+  "verify": "Read Licence plate on the vehicle. Often blank on real records.",
+  "on_v2_today": null,
+  "cases": "C53516",
+  "note": "Types the plate.",
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "2019",
+  "what": "The vehicle's YEAR",
+  "app": "Assets",
+  "where": "Assets → open the vehicle → Year. It is also the first thing in the vehicle's displayed name.",
+  "field": "Year",
+  "expect_groups": [
+   "Assets"
+  ],
+  "expect_sentence": "The vehicle. On a real shop's data this would return many.",
+  "verify": "Read Year on the vehicle.",
+  "on_v2_today": null,
+  "cases": "",
+  "note": "GAP",
+  "covered": false
+ },
+ {
+  "area": "Assets",
+  "keyword": "Freightliner",
+  "what": "The MAKE",
+  "app": "Assets",
+  "where": "Assets → open the vehicle → Make.",
+  "field": "Make",
+  "expect_groups": [
+   "Assets"
+  ],
+  "expect_sentence": "The vehicle.",
+  "verify": "Read Make on the vehicle.",
+  "on_v2_today": null,
+  "cases": "",
+  "note": "GAP",
+  "covered": false
+ },
+ {
+  "area": "Assets",
+  "keyword": "Cascadia",
+  "what": "The MODEL",
+  "app": "Assets",
+  "where": "Assets → open the vehicle → Model.",
+  "field": "Model",
+  "expect_groups": [
+   "Assets"
+  ],
+  "expect_sentence": "The vehicle.",
+  "verify": "Read Model on the vehicle.",
+  "on_v2_today": null,
+  "cases": "C55664",
+  "note": "Types the model.",
+  "covered": true
+ },
+ {
+  "area": "Assets",
+  "keyword": "2019 Freightliner",
+  "what": "The year AND the make together",
+  "app": "Assets",
+  "where": "Assets → the vehicle's displayed name is year, make, then model — so this is the start of it.",
+  "field": "Year + Make",
+  "expect_groups": [
+   "Assets"
+  ],
+  "expect_sentence": "The vehicle. It matched because the displayed name STARTS with what you typed.",
+  "verify": "Check the vehicle shows as 2019 Freightliner Cascadia.",
+  "on_v2_today": "Returns NO vehicles at all. Raised as SV-10055.",
+  "cases": "C53605",
+  "note": "The only step in that case types exactly this.",
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "17611",
+  "what": "The job number with nothing in front",
+  "app": "Work orders",
+  "where": "Work orders → the Number column, with the letter, dash and shop number stripped off.",
+  "field": "Job number (plain)",
+  "expect_groups": [
+   "Work orders"
+  ],
+  "expect_sentence": "The job. People read the digits off a printed sheet and type only those.",
+  "verify": "Open the job and read its number.",
+  "on_v2_today": null,
+  "cases": "C55672 · C55659",
+  "note": "The bare number, and the tail of it.",
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "S-17611",
+  "what": "The job number as it is written",
+  "app": "Work orders",
+  "where": "Work orders → the Number column, as displayed.",
+  "field": "Job number",
+  "expect_groups": [
+   "Work orders"
+  ],
+  "expect_sentence": "The job.",
+  "verify": "Read the number on the job.",
+  "on_v2_today": null,
+  "cases": "C53579",
+  "note": "Step 2 types it as displayed.",
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "S9160-17611",
+  "what": "The job number with the SHOP number in front",
+  "app": "Work orders",
+  "where": "Work orders → the Number column. Different shops write it differently, so the old search stored four forms.",
+  "field": "Job number (shop-prefixed)",
+  "expect_groups": [
+   "Work orders"
+  ],
+  "expect_sentence": "The job. All four written forms matched.",
+  "verify": "Compare the number on screen with the shop number on the branch.",
+  "on_v2_today": null,
+  "cases": "C53579",
+  "note": "Steps 3-5 cover the other written forms.",
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "Estimate",
+  "what": "The job's STATUS",
+  "app": "Work orders",
+  "where": "Work orders → the Status column, or the status on the job itself.",
+  "field": "Status",
+  "expect_groups": [
+   "Work orders"
+  ],
+  "expect_sentence": "Every job in that status — this is how a dispatcher pulled up all the estimates at once.",
+  "verify": "Read the Status on the job.",
+  "on_v2_today": "Reported as returning no jobs. Open for the product owner.",
+  "cases": "C55658",
+  "note": "Step 2 types the status.",
+  "covered": true
+ },
+ {
+  "area": "Jobs",
+  "keyword": "qualitycheck",
+  "what": "A TWO-WORD status typed as one word",
+  "app": "Work orders",
+  "where": "Work orders → the Status column, for a status like Quality check.",
+  "field": "Status (two words joined)",
+  "expect_groups": [
+   "Work orders"
+  ],
+  "expect_sentence": "The job in that status. The old search deliberately joined the words.",
+  "verify": "Find a job whose status is Quality check.",
+  "on_v2_today": null,
+  "cases": "C55658",
+  "note": "Step 4 types the two-word status as one word.",
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "ZZAUTOTEST Kestrel Parts Supply",
+  "what": "The supplier's name",
+  "app": "Vendors",
+  "where": "Parts → Vendors → open the supplier. The name at the top.",
+  "field": "Vendor name",
+  "expect_groups": [
+   "Vendors"
+  ],
+  "expect_sentence": "Only the supplier.",
+  "verify": "Read the name on the supplier record.",
+  "on_v2_today": null,
+  "cases": "C55668",
+  "note": "Types a word from it and then the full name.",
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "Halbrook",
+  "what": "The supplier's street address",
+  "app": "Vendors",
+  "where": "Parts → Vendors → open the supplier → Address line 1.",
+  "field": "Address line 1",
+  "expect_groups": [
+   "Vendors"
+  ],
+  "expect_sentence": "Only the supplier.",
+  "verify": "Read Address line 1 on the supplier.",
+  "on_v2_today": null,
+  "cases": "C53585",
+  "note": "Step 2 types the street.",
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "Bay 12C",
+  "what": "The supplier's SECOND address line",
+  "app": "Vendors",
+  "where": "Parts → Vendors → open the supplier → Address line 2.",
+  "field": "Address line 2",
+  "expect_groups": [
+   "Vendors"
+  ],
+  "expect_sentence": "Only the supplier. Worth checking because this field is usually empty.",
+  "verify": "Read Address line 2 on the supplier. If blank, the test proves nothing.",
+  "on_v2_today": null,
+  "cases": "C53604",
+  "note": "Step 4 does the supplier's second address line.",
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "Marnston",
+  "what": "The supplier's town",
+  "app": "Vendors",
+  "where": "Parts → Vendors → open the supplier → City.",
+  "field": "City",
+  "expect_groups": [
+   "Vendors"
+  ],
+  "expect_sentence": "Only the supplier.",
+  "verify": "Read City on the supplier.",
+  "on_v2_today": null,
+  "cases": "C53585",
+  "note": "Step 3 types the town.",
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "43055-2210",
+  "what": "The supplier's postcode",
+  "app": "Vendors",
+  "where": "Parts → Vendors → open the supplier → Postal code.",
+  "field": "Postal code",
+  "expect_groups": [
+   "Vendors"
+  ],
+  "expect_sentence": "Only the supplier.",
+  "verify": "Read Postal code on the supplier.",
+  "on_v2_today": null,
+  "cases": "C53585",
+  "note": "Step 4 types the postcode.",
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "614-555-0188",
+  "what": "The supplier's phone number",
+  "app": "Vendors",
+  "where": "Parts → Vendors → open the supplier → Telephone.",
+  "field": "Telephone",
+  "expect_groups": [
+   "Vendors"
+  ],
+  "expect_sentence": "Only the supplier.",
+  "verify": "Read Telephone on the supplier.",
+  "on_v2_today": null,
+  "cases": "C55663",
+  "note": "Formatted and as plain digits.",
+  "covered": true
+ },
+ {
+  "area": "Vendors",
+  "keyword": "parts@kestrelsupply-zzt.com",
+  "what": "The supplier's email address",
+  "app": "Vendors",
+  "where": "Parts → Vendors → open the supplier → Email.",
+  "field": "Email",
+  "expect_groups": [
+   "Vendors"
+  ],
+  "expect_sentence": "Only the supplier. Note customers have no email of their own — only their contacts do.",
+  "verify": "Read Email on the supplier.",
+  "on_v2_today": null,
+  "cases": "C53584",
+  "note": "Types the email.",
+  "covered": true
+ },
+ {
+  "area": "Parts",
+  "keyword": "ZZT-77-3300",
+  "what": "The part number",
+  "app": "Parts",
+  "where": "Parts → Parts catalogue → open the part → Part number.",
+  "field": "Part number",
+  "expect_groups": [
+   "Parts"
+  ],
+  "expect_sentence": "The part. This one has NEVER been stocked, which is the point of it.",
+  "verify": "Open the catalogue part and read its number.",
+  "on_v2_today": null,
+  "cases": "C53601",
+  "note": "Step 4 types the catalogue part number.",
+  "covered": true
+ },
+ {
+  "area": "Parts",
+  "keyword": "ZZT773300",
+  "what": "The part number with the DASHES removed",
+  "app": "Parts",
+  "where": "Parts → the same Part number field. The old search stored a dash-free copy as well.",
+  "field": "Part number (dash-free copy)",
+  "expect_groups": [
+   "Parts"
+  ],
+  "expect_sentence": "The same part. Nobody types the dashes.",
+  "verify": "Nothing on the record — this tests the search.",
+  "on_v2_today": null,
+  "cases": "C55666",
+  "note": "Step 4 types a part number with the dashes removed.",
+  "covered": true
+ },
+ {
+  "area": "Parts",
+  "keyword": "Vernway",
+  "what": "A word from the part's DESCRIPTION",
+  "app": "Parts",
+  "where": "Parts → Parts catalogue → open the part → the description or name.",
+  "field": "Part description",
+  "expect_groups": [
+   "Parts"
+  ],
+  "expect_sentence": "The part — and this is the important one. The old search read the CATALOGUE, so a part the shop has never held was still findable.",
+  "verify": "Confirm the part exists in the catalogue and has NO stock. That absence is the test.",
+  "on_v2_today": "Reported as not findable at all. The strongest finding of the batch.",
+  "cases": "C53601 · C53607",
+  "note": "The never-stocked part by a word from its description, and descriptions generally.",
+  "covered": true
+ },
+ {
+  "area": "Edge cases",
+  "keyword": "Darlene",
+  "what": "A name ONE letter away from a real one",
+  "app": "Customers",
+  "where": "Customers → there are two test companies, one with Marlene and one with Darlene, created one letter apart on purpose.",
+  "field": "Customer name",
+  "expect_groups": [
+   "Customers"
+  ],
+  "expect_sentence": "ONLY the Darlene company. The old search never offered you a different spelling from the one you typed.",
+  "verify": "Check both companies exist so the pair is meaningful.",
+  "on_v2_today": "Typing Marlene on the new version returns the Darlene records too. That is SV-10025.",
+  "cases": "C55685 · C55686",
+  "note": "The near-spelling pair, and which of them is listed first.",
+  "covered": true
+ },
+ {
+  "area": "Edge cases",
+  "keyword": "a",
+  "what": "A single character",
+  "app": "Anywhere",
+  "where": "Nothing to set up.",
+  "field": "—",
+  "expect_groups": [],
+  "expect_sentence": "NOTHING is matched. Your recently opened records are shown instead. The old search waited for two characters.",
+  "verify": "Nothing to check.",
+  "on_v2_today": null,
+  "cases": "C45161",
+  "note": "One character, then a second.",
+  "covered": true
+ },
+ {
+  "area": "Edge cases",
+  "keyword": "zzzqqq",
+  "what": "Something that exists nowhere",
+  "app": "Anywhere",
+  "where": "Nothing to set up.",
+  "field": "—",
+  "expect_groups": [],
+  "expect_sentence": "No match — so your recently opened records come back, leaving you something to click.",
+  "verify": "Nothing to check.",
+  "on_v2_today": "Shows a message and nothing to click. Raised as SV-10059.",
+  "cases": "C55675 · C55679",
+  "note": "What the screen says, and whether the recent list comes back.",
+  "covered": true
+ }
+]
