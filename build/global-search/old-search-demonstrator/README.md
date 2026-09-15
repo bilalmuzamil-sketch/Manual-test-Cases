@@ -10,6 +10,39 @@ A **working copy of the old search box**. Type into it and it answers using the 
 rules. It is not a set of canned screenshots and not a recording — anyone can type anything and get a
 truthful answer, which is what makes it usable in a meeting where somebody asks *"well what about…?"*
 
+## Two ways in
+
+**Tab 1 · Meeting run-through** — ten numbered steps that build the argument in order: three things
+that still work, then the losses, then the noise, ending on the recently-viewed list.
+
+**Tab 2 · Every keyword — 42** — every single thing you can type, **grouped by the part of the app it
+comes from**, with that part's navigation path printed under the heading:
+
+| Area | Where it lives | Keywords |
+|---|---|---|
+| Customers | Customers → open a company | 12 |
+| Contacts | Customers → open a company → its Contacts list | 4 |
+| Assets | Assets → open a vehicle | 8 |
+| Jobs | Work orders → open a job | 5 |
+| Vendors | Parts → Vendors → open a supplier | 7 |
+| Parts | Parts → Parts catalogue → open a part | 3 |
+| Edge cases | nothing to set up | 3 |
+
+**Clicking any keyword opens a briefing panel on the right** telling you, for that keyword alone:
+
+- **what it is** — "the SECOND line of the address"
+- **which part of the app it lives in** — as a chip, and the exact path to the field
+- **the field that holds it** — the field name as it appears on the record
+- **what should come back** — in words, before you look
+- 🔴 **what to check before you judge the result** — because if the field is empty on the record, the
+  test proves nothing. This is the line that stops a false finding.
+- **on the new version today**, where it was measured — dated, and marked *reported as* where it came
+  from someone else's testing rather than a measurement
+
+And under the search box, a banner **compares what actually came back against that stated
+expectation** and says whether they match. So you are never asked to take the expectation on trust —
+the page checks itself in front of the room.
+
 ## How to run a meeting with it
 
 Open it and work down the **ten numbered steps on the left**. Each one says, in one line:
@@ -32,6 +65,10 @@ exists. They are the same eight records the test suite is seeded with.
 
 Three deliberate choices:
 
+- **Every expectation is machine-checked.** `check_presets.py` in this folder runs all 42 declared
+  expectations against the rebuilt engine and fails if any disagrees. It is run before every publish:
+  a preset that says one thing and does another would be shown in a meeting and contradicted on the
+  spot. Current state: **42 checked, 0 mismatches.**
 - **It runs the real rules, ported line for line** from `v1_search.py` in
   `build/global-search/v1-capability-evidence/`, which is itself transcribed from the product at
   commit `55767168`. All ten steps were cross-checked against the Python engine before publishing and

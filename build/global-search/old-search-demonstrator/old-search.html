@@ -10,126 +10,158 @@
     --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
   }
-  @media (prefers-color-scheme:dark){
-    :root:not([data-theme="light"]){
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
       --ground:#10151A; --surface:#172029; --surface-2:#1C2731;
       --ink:#E7ECF1; --ink-2:#C3CDD6; --muted:#93A2B0; --line:#27333D; --line-2:#212C35;
       --accent:#E0A345; --accent-soft:#2B2419; --accent-ink:#F0C583;
       --found:#4FBF83; --found-soft:#152A20; --gone:#F07A72; --gone-soft:#2B1917;
-      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.34);
-    }
-  }
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.34); } }
   :root[data-theme="dark"]{
-    --ground:#10151A; --surface:#172029; --surface-2:#1C2731;
-    --ink:#E7ECF1; --ink-2:#C3CDD6; --muted:#93A2B0; --line:#27333D; --line-2:#212C35;
-    --accent:#E0A345; --accent-soft:#2B2419; --accent-ink:#F0C583;
-    --found:#4FBF83; --found-soft:#152A20; --gone:#F07A72; --gone-soft:#2B1917;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.34);
-  }
+      --ground:#10151A; --surface:#172029; --surface-2:#1C2731;
+      --ink:#E7ECF1; --ink-2:#C3CDD6; --muted:#93A2B0; --line:#27333D; --line-2:#212C35;
+      --accent:#E0A345; --accent-soft:#2B2419; --accent-ink:#F0C583;
+      --found:#4FBF83; --found-soft:#152A20; --gone:#F07A72; --gone-soft:#2B1917;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.34); }
   *{box-sizing:border-box}
-  body{background:var(--ground); color:var(--ink); font-family:var(--sans);
-       margin:0; padding-inline:20px; padding-block:0; line-height:1.55;
-       -webkit-font-smoothing:antialiased}
-  .wrap{max-width:1180px; margin:0 auto; padding-block:36px 56px}
+  body{background:var(--ground); color:var(--ink); font-family:var(--sans); margin:0;
+       padding-inline:20px; padding-block:0; line-height:1.55; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1460px; margin:0 auto; padding-block:34px 56px}
+  header.mast{display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end; justify-content:space-between;
+              padding-bottom:18px; border-bottom:2px solid var(--ink); margin-bottom:24px}
+  .mast h1{font-size:clamp(26px,4vw,40px); line-height:1.08; margin:0 0 7px; font-weight:700;
+           letter-spacing:-.022em; text-wrap:balance}
+  .mast p{margin:0; color:var(--muted); max-width:64ch; font-size:15px}
+  .stamp{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase;
+         color:var(--accent-ink); background:var(--accent-soft); border:1px solid var(--accent);
+         border-radius:3px; padding:7px 11px; white-space:nowrap}
 
-  /* ── masthead ─────────────────────────────────────────────── */
-  header.mast{display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end;
-              justify-content:space-between; padding-bottom:20px;
-              border-bottom:2px solid var(--ink); margin-bottom:28px}
-  .mast h1{font-size:clamp(28px,4.4vw,44px); line-height:1.08; margin:0 0 8px;
-           font-weight:700; letter-spacing:-.022em; text-wrap:balance}
-  .mast p{margin:0; color:var(--muted); max-width:62ch; font-size:15.5px}
-  .stamp{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em;
-         text-transform:uppercase; color:var(--accent-ink); background:var(--accent-soft);
-         border:1px solid var(--accent); border-radius:3px; padding:7px 11px; white-space:nowrap}
-
-  /* ── two-column body ──────────────────────────────────────── */
-  .cols{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:30px; align-items:start}
-  @media (max-width:900px){ .cols{grid-template-columns:1fr} }
+  .cols{display:grid; gap:26px; align-items:start;
+        grid-template-columns:330px minmax(0,1fr) 370px;
+        grid-template-areas:"pick run help"}
+  @media (max-width:1300px){ .cols{grid-template-columns:320px minmax(0,1fr);
+        grid-template-areas:"pick run" "help help"} }
+  @media (max-width:900px){ .cols{grid-template-columns:1fr;
+        grid-template-areas:"run" "help" "pick"} }
+  .c-pick{grid-area:pick} .c-run{grid-area:run} .c-help{grid-area:help}
 
   h2.sec{font-size:12px; font-family:var(--mono); letter-spacing:.14em; text-transform:uppercase;
-         color:var(--muted); margin:0 0 14px; font-weight:600}
+         color:var(--muted); margin:0 0 12px; font-weight:600}
 
-  /* ── the running order ────────────────────────────────────── */
-  ol.order{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
-  ol.order li{margin:0}
-  .step{display:grid; grid-template-columns:30px minmax(0,1fr); gap:13px; width:100%;
-        text-align:left; background:none; border:0; border-radius:7px; cursor:pointer;
-        padding:11px 12px; font:inherit; color:inherit; transition:background .13s}
-  .step:hover{background:var(--surface)}
+  /* tabs */
+  .tabs{display:flex; gap:4px; margin-bottom:14px; border-bottom:1px solid var(--line)}
+  .tab{background:none; border:0; border-bottom:2px solid transparent; cursor:pointer; font:inherit;
+       font-size:13.5px; font-weight:500; color:var(--muted); padding:7px 10px; margin-bottom:-1px}
+  .tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--accent); font-weight:600}
+  .tab:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:3px}
+
+  /* run order */
+  ol.order{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+  .step{display:grid; grid-template-columns:26px minmax(0,1fr); gap:11px; width:100%; text-align:left;
+        background:none; border:0; border-radius:7px; cursor:pointer; padding:9px 10px; font:inherit;
+        color:inherit; transition:background .13s}
+  .step:hover,.chipbtn:hover{background:var(--surface)}
   .step[aria-current="true"]{background:var(--surface); box-shadow:var(--shadow)}
-  .step:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
-  .num{font-family:var(--mono); font-size:12px; font-weight:600; color:var(--muted);
-       border:1px solid var(--line); border-radius:50%; width:26px; height:26px;
-       display:grid; place-items:center; margin-top:1px}
+  .step:focus-visible,.chipbtn:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+  .num{font-family:var(--mono); font-size:11.5px; font-weight:600; color:var(--muted);
+       border:1px solid var(--line); border-radius:50%; width:23px; height:23px; display:grid;
+       place-items:center; margin-top:2px}
   .step[aria-current="true"] .num{background:var(--ink); color:var(--ground); border-color:var(--ink)}
-  .say{font-size:14.5px; font-weight:500; color:var(--ink); margin:0 0 3px}
-  .typed{font-family:var(--mono); font-size:13px; color:var(--accent-ink);
-         background:var(--accent-soft); border-radius:3px; padding:1px 5px}
-  .why{font-size:13px; color:var(--muted); margin:3px 0 0}
+  .say{font-size:14px; font-weight:500; display:block}
+  .typed{font-family:var(--mono); font-size:12.5px; color:var(--accent-ink);
+         background:var(--accent-soft); border-radius:3px; padding:1px 5px; display:inline-block; margin-top:2px}
 
-  /* ── the instrument ───────────────────────────────────────── */
+  /* keyword groups */
+  .grp-area{margin-bottom:18px}
+  .grp-area h3{margin:0 0 3px; font-size:13.5px; font-weight:700}
+  .grp-area .path{margin:0 0 8px; font-size:11.5px; font-family:var(--mono); color:var(--muted)}
+  .chiprow{display:flex; flex-wrap:wrap; gap:5px}
+  .chipbtn{font-family:var(--mono); font-size:12px; background:var(--surface); color:var(--ink-2);
+           border:1px solid var(--line); border-radius:4px; padding:4px 8px; cursor:pointer;
+           transition:background .12s,border-color .12s}
+  .chipbtn[aria-current="true"]{background:var(--ink); color:var(--ground); border-color:var(--ink)}
+
+  /* instrument */
   .panel{background:var(--surface); border:1px solid var(--line); border-radius:11px;
-         box-shadow:var(--shadow); overflow:hidden; position:sticky; top:env(safe-area-inset-top,0px)}
-  @media (max-width:900px){ .panel{position:static} }
-  .panel-top{border-bottom:1px solid var(--line-2); padding:14px 16px;
-             display:flex; align-items:center; gap:11px; background:var(--surface-2)}
+         box-shadow:var(--shadow); overflow:hidden}
+  .panel-top{border-bottom:1px solid var(--line-2); padding:14px 16px; display:flex; align-items:center;
+             gap:11px; background:var(--surface-2)}
   .panel-top svg{flex:0 0 auto; color:var(--muted)}
   #q{flex:1 1 auto; min-width:0; font-family:var(--mono); font-size:15px; font-weight:500;
      background:none; border:0; color:var(--ink); padding:4px 0}
-  #q:focus{outline:none}
-  #q::placeholder{color:var(--muted); font-weight:400}
-  .clear{background:none;border:0;cursor:pointer;color:var(--muted);font:inherit;
-         font-size:18px;line-height:1;padding:2px 4px;border-radius:4px}
+  #q:focus{outline:none} #q::placeholder{color:var(--muted); font-weight:400}
+  .clear{background:none;border:0;cursor:pointer;color:var(--muted);font:inherit;font-size:18px;
+         line-height:1;padding:2px 5px;border-radius:4px}
   .clear:hover{color:var(--ink)}
-  .verdict{display:flex; flex-wrap:wrap; gap:9px; align-items:center;
-           padding:12px 16px; border-bottom:1px solid var(--line-2); font-size:13.5px}
-  .chip{font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+  .verdict{display:flex; flex-wrap:wrap; gap:9px; align-items:center; padding:12px 16px;
+           border-bottom:1px solid var(--line-2); font-size:13.5px}
+  .chip{font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase;
         font-weight:600; border-radius:3px; padding:4px 8px; white-space:nowrap}
   .chip.ok{background:var(--found-soft); color:var(--found); border:1px solid var(--found)}
   .chip.no{background:var(--gone-soft); color:var(--gone); border:1px solid var(--gone)}
   .chip.neutral{background:var(--surface-2); color:var(--muted); border:1px solid var(--line)}
-  .verdict span.txt{color:var(--ink-2)}
-  .results{margin:0; padding:0; list-style:none; max-height:none}
-  .grp{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  .verdict .txt{color:var(--ink-2)}
+  .results{margin:0; padding:0; list-style:none}
+  .grp{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
        color:var(--muted); padding:13px 16px 5px; font-weight:600}
   .row{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:center;
        padding:9px 16px; border-top:1px solid var(--line-2)}
   .row .name{font-size:14.5px; font-weight:500; min-width:0; overflow-wrap:anywhere}
   .row .how{font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; text-transform:uppercase;
             color:var(--muted); white-space:nowrap}
-  .empty{padding:26px 16px; color:var(--muted); font-size:14px}
   .hist{padding:11px 16px; border-top:1px solid var(--line-2); background:var(--surface-2);
         font-size:13.5px; color:var(--ink-2)}
   .hist b{font-weight:600}
-  .panel-foot{padding:12px 16px; border-top:1px solid var(--line-2); background:var(--surface-2);
+  .panel-foot{padding:11px 16px; border-top:1px solid var(--line-2); background:var(--surface-2);
               font-size:12.5px; color:var(--muted)}
   .panel-foot code{font-family:var(--mono); font-size:11.5px}
 
-  /* ── the now-note ─────────────────────────────────────────── */
-  .now{margin-top:16px; background:var(--surface); border:1px solid var(--line);
-       border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:14px 16px}
-  .now h3{margin:0 0 5px; font-size:11.5px; font-family:var(--mono); letter-spacing:.1em;
-          text-transform:uppercase; color:var(--accent-ink); font-weight:600}
-  .now p{margin:0; font-size:14px; color:var(--ink-2)}
-  .now.hidden{display:none}
+  /* match-the-expectation banner */
+  .check{margin-top:14px; border-radius:8px; padding:13px 15px; font-size:14px; border:1px solid var(--line);
+         background:var(--surface); display:flex; gap:11px; align-items:flex-start}
+  .check.pass{border-color:var(--found); background:var(--found-soft); color:var(--found)}
+  .check.fail{border-color:var(--gone); background:var(--gone-soft); color:var(--gone)}
+  .check.hidden{display:none}
+  .check b{font-weight:700}
 
-  /* ── the records ──────────────────────────────────────────── */
-  .records{margin-top:44px; padding-top:26px; border-top:1px solid var(--line)}
-  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(248px,1fr)); gap:14px}
+  /* help rail */
+  .help{background:var(--surface); border:1px solid var(--line); border-radius:11px;
+        box-shadow:var(--shadow); overflow:hidden; position:sticky; top:env(safe-area-inset-top,0px)}
+  @media (max-width:1300px){ .help{position:static} }
+  .help-empty{padding:22px 18px; color:var(--muted); font-size:14px}
+  .help-top{padding:15px 18px 13px; border-bottom:1px solid var(--line-2); background:var(--surface-2)}
+  .help-top .kw{font-family:var(--mono); font-size:16px; font-weight:600; overflow-wrap:anywhere;
+                display:block; margin-bottom:5px}
+  .help-top .what{font-size:14px; color:var(--ink-2)}
+  .area-chip{display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.07em;
+             text-transform:uppercase; font-weight:600; color:var(--accent-ink);
+             background:var(--accent-soft); border:1px solid var(--accent); border-radius:3px;
+             padding:3px 7px; margin-bottom:8px}
+  dl.help-dl{margin:0; padding:15px 18px; display:flex; flex-direction:column; gap:13px}
+  dl.help-dl dt{font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase;
+                color:var(--muted); font-weight:600; margin-bottom:3px}
+  dl.help-dl dd{margin:0; font-size:13.5px; color:var(--ink-2)}
+  dl.help-dl dd .mono{font-family:var(--mono); font-size:12.5px; overflow-wrap:anywhere}
+  .help-now{margin:0; padding:14px 18px; border-top:1px solid var(--line-2);
+            border-left:3px solid var(--accent); background:var(--surface-2)}
+  .help-now h4{margin:0 0 4px; font-size:10.5px; font-family:var(--mono); letter-spacing:.09em;
+               text-transform:uppercase; color:var(--accent-ink); font-weight:600}
+  .help-now p{margin:0; font-size:13.5px; color:var(--ink-2)}
+
+  /* records */
+  .records{margin-top:40px; padding-top:24px; border-top:1px solid var(--line)}
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px}
   .card{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 15px}
   .card h4{margin:0 0 3px; font-size:14.5px; font-weight:600; overflow-wrap:anywhere}
   .card .kind{font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
               color:var(--muted); margin:0 0 9px}
   .card dl{margin:0; display:grid; grid-template-columns:auto minmax(0,1fr); gap:3px 10px; font-size:12.5px}
-  .card dt{color:var(--muted)}
+  .card dt{color:var(--muted)} 
   .card dd{margin:0; font-family:var(--mono); font-size:12px; overflow-wrap:anywhere;
            font-variant-numeric:tabular-nums}
-
-  footer.note{margin-top:40px; padding-top:22px; border-top:1px solid var(--line);
-              font-size:13px; color:var(--muted); max-width:78ch}
-  footer.note strong{color:var(--ink-2)}
-  @media (prefers-reduced-motion:reduce){ *{transition:none!important; animation:none!important} }
+  footer.note{margin-top:38px; padding-top:20px; border-top:1px solid var(--line); font-size:13px;
+              color:var(--muted); max-width:80ch}
+  footer.note strong{color:var(--ink-2)} footer.note code{font-family:var(--mono); font-size:11.5px}
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important} }
 </style>
 
 <div class="wrap">
@@ -137,19 +169,24 @@
     <div>
       <h1>How the old search behaved</h1>
       <p>A working copy of ShopView's previous search box, rebuilt from that version's own code so it
-         can be demonstrated rather than described. Pick a step, or type anything you like — the
-         answers come from the old rules, not from a script.</p>
+         can be demonstrated rather than described. Pick a keyword on the left — it tells you what that
+         keyword is, which part of the app it lives in, and what should come back — then checks the
+         result against that expectation for you.</p>
     </div>
     <div class="stamp">Old version · commit 55767168</div>
   </header>
 
   <div class="cols">
-    <section>
-      <h2 class="sec">A running order for the meeting</h2>
-      <ol class="order" id="order"></ol>
+    <section class="c-pick">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tab-run" aria-selected="true" aria-controls="pane-run">Meeting run-through</button>
+        <button class="tab" role="tab" id="tab-kw" aria-selected="false" aria-controls="pane-kw">Every keyword · 42</button>
+      </div>
+      <div id="pane-run" role="tabpanel" aria-labelledby="tab-run"><ol class="order" id="order"></ol></div>
+      <div id="pane-kw" role="tabpanel" aria-labelledby="tab-kw" hidden></div>
     </section>
 
-    <section>
+    <section class="c-run">
       <h2 class="sec">The old search box</h2>
       <div class="panel">
         <div class="panel-top">
@@ -164,35 +201,45 @@
         <ul class="results" id="results"></ul>
         <div class="panel-foot" id="foot"></div>
       </div>
-      <div class="now hidden" id="now">
-        <h3>And on the new version today</h3>
-        <p id="now-text"></p>
-      </div>
+      <div class="check hidden" id="check"></div>
     </section>
+
+    <aside class="c-help">
+      <h2 class="sec">What this keyword is</h2>
+      <div class="help" id="help">
+        <p class="help-empty">Pick a keyword on the left and this panel will tell you what it is, which
+           part of the app it comes from, which field holds it, what should come back, and how to check
+           the record really carries it before you judge the result.</p>
+      </div>
+    </aside>
   </div>
 
   <section class="records">
-    <h2 class="sec">The records it is searching — the same ones the test suite uses</h2>
+    <h2 class="sec">The records it is searching — the same eight the test suite is seeded with</h2>
     <div class="cards" id="cards"></div>
   </section>
 
   <footer class="note">
     <strong>What this is and is not.</strong> It reproduces what the <em>old</em> search did, and
     nothing else — whether the new version should do the same is a decision for the product owner,
-    taken after the tests have run. Every match it reports comes from the old version's own two rules,
-    rebuilt line for line from
-    <code>FetchDataQueryHandler.php</code> and <code>useGlobalSearch.ts</code> at commit
-    <code>55767168</code>. Lines marked <em>on the new version today</em> were measured by hand on the
-    QA branch on 15 September 2026 and are dated for that reason.
+    taken after the tests have run. Every match comes from the old version's own two rules, rebuilt
+    line for line from <code>FetchDataQueryHandler.php</code> and <code>useGlobalSearch.ts</code> at
+    commit <code>55767168</code>, and all 42 keyword expectations were checked against that rebuild
+    before this page was published. Lines marked <em>on the new version today</em> were measured by
+    hand on the QA branch on 15 September 2026, or say <em>reported as</em> where they come from
+    someone else's testing rather than a measurement — and they are dated so a stale one is obvious.
   </footer>
 </div>
-
+<script>
+const PRESETS=[["Customers", "ZZAUTOTEST Bridgeport Hauling", "The company's own name", "Customers", "Customers → open the company. The name at the top of the record.", "Customer name", ["Customers", "Work orders", "Part sales", "Assets"], "The company itself, plus its jobs and its vehicle, because the company name is stored on those too.", "Check the name on the customer record matches exactly, including the ZZAUTOTEST prefix.", null], ["Customers", "ZZAUTOTESTBridgeportHauling", "The same name with every space removed", "Customers", "Customers → the company name. Nothing to set up — the old search stored a second, space-free copy of the name.", "Customer name (space-free copy)", ["Customers", "Work orders", "Part sales", "Assets"], "The same records as the full name. People type company names without spaces and it still worked.", "Nothing to check on the record — this tests the search, not the data.", null], ["Customers", "idgepor", "A few letters from the MIDDLE of the name", "Customers", "Customers → the company name. Taken from Br-idgepor-t.", "Customer name", ["Customers", "Work orders", "Part sales", "Assets"], "The company and everything carrying its name. Mid-word fragments matched.", "Nothing on the record — this tests how matching worked.", "Still works on the new version."], ["Customers", "Kestrelway", "The street address", "Customers", "Customers → open the company → Address line 1.", "Address line 1", ["Customers"], "Only the customer. Nothing else is on that street.", "Open the company and read Address line 1 — it should say 1450 Kestrelway Industrial.", null], ["Customers", "Dock 7B", "The SECOND line of the address", "Customers", "Customers → open the company → Address line 2.", "Address line 2", ["Customers"], "Only the customer. This line is often blank on records, which is why it is worth checking.", "Open the company and read Address line 2 — it should say Dock 7B. If it is empty, the test proves nothing.", null], ["Customers", "Fernvale", "The town", "Customers", "Customers → open the company → City.", "City", ["Customers"], "TWO customers — both test companies are in Fernvale.", "Read the City field on both test customers.", null], ["Customers", "ernva", "A few letters from the middle of the TOWN", "Customers", "Customers → open the company → City. Taken from F-ernva-le.", "City", ["Customers"], "Both Fernvale customers. The old search treated the town exactly like the name.", "Nothing on the record — this tests matching.", "Returns NOTHING on the new version, while the same kind of fragment from the company NAME still works. Raised as SV-10060."], ["Customers", "Ohio", "The county or state", "Customers", "Customers → open the company → State or province. Suppliers have the same field.", "State or province", ["Customers", "Vendors"], "Both customers AND the supplier — all three are in Ohio.", "Read State or province on the two customers and the supplier.", null], ["Customers", "44872-9931", "The postcode", "Customers", "Customers → open the company → Postal code.", "Postal code", ["Customers"], "Only the customer with that postcode.", "Read Postal code on the company — it should be 44872-9931.", null], ["Customers", "419-555-0143", "The company's own switchboard number", "Customers", "Customers → open the company → Telephone.", "Telephone", ["Customers"], "Only the customer. Typed with dashes, which is the form the old search stored.", "Read Telephone on the company — (419) 555-0143. If it is blank, nothing can be proved.", null], ["Customers", "555-0143", "Only PART of that phone number", "Customers", "Customers → open the company → Telephone. The last part of it.", "Telephone (partial)", ["Customers"], "The customer. The old search looked anywhere inside the record, so part of a number was enough.", "Same field as above.", "Returns NOTHING on the new version. A person rarely has the whole number. Part of SV-10057."], ["Customers", "bridgeporthauling-zzt.com", "The website", "Customers", "Customers → open the company → Website.", "Website", ["Customers"], "Only the customer.", "Read Website on the company. It is often blank on real records.", null], ["Contacts", "Marlene", "A contact's FIRST name", "Customers → Contacts", "Customers → open the company → the Contacts list → First name.", "Contact first name", ["Customers"], "The COMPANY, not a separate contact row. A contact match returned the business they work for.", "Open the company, open its Contacts list, confirm Marlene Okonkwo is there.", "Returns 18 rows, only 2 of which contain the word. The rest are Darlene, Charlene, Martens, Marine and Alene. Raised as SV-10025."], ["Contacts", "Okonkwo", "A contact's SURNAME", "Customers → Contacts", "Customers → open the company → Contacts → Last name.", "Contact last name", ["Customers"], "The company that person works for.", "Same Contacts list.", null], ["Contacts", "Dispatch Supervisor", "A contact's JOB TITLE", "Customers → Contacts", "Customers → open the company → Contacts → Title.", "Contact job title", ["Customers"], "The company. Somebody who only remembers a job title could still find the business.", "Open the Contacts list and confirm the Title field reads Dispatch Supervisor. It is frequently empty.", "Reported as returning nothing. Open for the product owner."], ["Contacts", "419-555-0177", "A contact's OWN phone number", "Customers → Contacts", "Customers → open the company → Contacts → Telephone. Different from the company's number.", "Contact telephone", ["Customers"], "The company. Note this is the CONTACT's number, not the switchboard.", "Confirm the contact's own Telephone is set and differs from the company's.", null], ["Assets", "ZZT-4471", "The unit number", "Assets", "Assets → open the vehicle → Unit. Shops label their own trucks with these.", "Unit number", ["Assets"], "Only the vehicle.", "Read Unit on the vehicle record.", null], ["Assets", "1FUJGLDR9KLZZ4471", "The WHOLE chassis number", "Assets", "Assets → open the vehicle → VIN / Serial number.", "Chassis number (VIN)", ["Assets"], "Only the vehicle.", "Read the VIN field, all 17 characters.", "Still works on the new version."], ["Assets", "ZZ4471", "Only the LAST PART of that chassis number", "Assets", "Assets → the same VIN field, last six characters.", "Chassis number (partial)", ["Assets"], "The vehicle. This is how somebody reads a number off a windscreen.", "Same VIN field — check the last characters match what you type.", "Returns NOTHING on the new version. Raised as SV-10058."], ["Assets", "OHZZT471", "The number plate", "Assets", "Assets → open the vehicle → Licence plate.", "Licence plate", ["Assets"], "Only the vehicle.", "Read Licence plate on the vehicle. Often blank on real records.", null], ["Assets", "2019", "The vehicle's YEAR", "Assets", "Assets → open the vehicle → Year. It is also the first thing in the vehicle's displayed name.", "Year", ["Assets"], "The vehicle. On a real shop's data this would return many.", "Read Year on the vehicle.", null], ["Assets", "Freightliner", "The MAKE", "Assets", "Assets → open the vehicle → Make.", "Make", ["Assets"], "The vehicle.", "Read Make on the vehicle.", null], ["Assets", "Cascadia", "The MODEL", "Assets", "Assets → open the vehicle → Model.", "Model", ["Assets"], "The vehicle.", "Read Model on the vehicle.", null], ["Assets", "2019 Freightliner", "The year AND the make together", "Assets", "Assets → the vehicle's displayed name is year, make, then model — so this is the start of it.", "Year + Make", ["Assets"], "The vehicle. It matched because the displayed name STARTS with what you typed.", "Check the vehicle shows as 2019 Freightliner Cascadia.", "Returns NO vehicles at all. Raised as SV-10055."], ["Jobs", "17611", "The job number with nothing in front", "Work orders", "Work orders → the Number column, with the letter, dash and shop number stripped off.", "Job number (plain)", ["Work orders"], "The job. People read the digits off a printed sheet and type only those.", "Open the job and read its number.", null], ["Jobs", "S-17611", "The job number as it is written", "Work orders", "Work orders → the Number column, as displayed.", "Job number", ["Work orders"], "The job.", "Read the number on the job.", null], ["Jobs", "S9160-17611", "The job number with the SHOP number in front", "Work orders", "Work orders → the Number column. Different shops write it differently, so the old search stored four forms.", "Job number (shop-prefixed)", ["Work orders"], "The job. All four written forms matched.", "Compare the number on screen with the shop number on the branch.", null], ["Jobs", "Estimate", "The job's STATUS", "Work orders", "Work orders → the Status column, or the status on the job itself.", "Status", ["Work orders"], "Every job in that status — this is how a dispatcher pulled up all the estimates at once.", "Read the Status on the job.", "Reported as returning no jobs. Open for the product owner."], ["Jobs", "qualitycheck", "A TWO-WORD status typed as one word", "Work orders", "Work orders → the Status column, for a status like Quality check.", "Status (two words joined)", ["Work orders"], "The job in that status. The old search deliberately joined the words.", "Find a job whose status is Quality check.", null], ["Vendors", "ZZAUTOTEST Kestrel Parts Supply", "The supplier's name", "Vendors", "Parts → Vendors → open the supplier. The name at the top.", "Vendor name", ["Vendors"], "Only the supplier.", "Read the name on the supplier record.", null], ["Vendors", "Halbrook", "The supplier's street address", "Vendors", "Parts → Vendors → open the supplier → Address line 1.", "Address line 1", ["Vendors"], "Only the supplier.", "Read Address line 1 on the supplier.", null], ["Vendors", "Bay 12C", "The supplier's SECOND address line", "Vendors", "Parts → Vendors → open the supplier → Address line 2.", "Address line 2", ["Vendors"], "Only the supplier. Worth checking because this field is usually empty.", "Read Address line 2 on the supplier. If blank, the test proves nothing.", null], ["Vendors", "Marnston", "The supplier's town", "Vendors", "Parts → Vendors → open the supplier → City.", "City", ["Vendors"], "Only the supplier.", "Read City on the supplier.", null], ["Vendors", "43055-2210", "The supplier's postcode", "Vendors", "Parts → Vendors → open the supplier → Postal code.", "Postal code", ["Vendors"], "Only the supplier.", "Read Postal code on the supplier.", null], ["Vendors", "614-555-0188", "The supplier's phone number", "Vendors", "Parts → Vendors → open the supplier → Telephone.", "Telephone", ["Vendors"], "Only the supplier.", "Read Telephone on the supplier.", null], ["Vendors", "parts@kestrelsupply-zzt.com", "The supplier's email address", "Vendors", "Parts → Vendors → open the supplier → Email.", "Email", ["Vendors"], "Only the supplier. Note customers have no email of their own — only their contacts do.", "Read Email on the supplier.", null], ["Parts", "ZZT-77-3300", "The part number", "Parts", "Parts → Parts catalogue → open the part → Part number.", "Part number", ["Parts"], "The part. This one has NEVER been stocked, which is the point of it.", "Open the catalogue part and read its number.", null], ["Parts", "ZZT773300", "The part number with the DASHES removed", "Parts", "Parts → the same Part number field. The old search stored a dash-free copy as well.", "Part number (dash-free copy)", ["Parts"], "The same part. Nobody types the dashes.", "Nothing on the record — this tests the search.", null], ["Parts", "Vernway", "A word from the part's DESCRIPTION", "Parts", "Parts → Parts catalogue → open the part → the description or name.", "Part description", ["Parts"], "The part — and this is the important one. The old search read the CATALOGUE, so a part the shop has never held was still findable.", "Confirm the part exists in the catalogue and has NO stock. That absence is the test.", "Reported as not findable at all. The strongest finding of the batch."], ["Edge cases", "Darlene", "A name ONE letter away from a real one", "Customers", "Customers → there are two test companies, one with Marlene and one with Darlene, created one letter apart on purpose.", "Customer name", ["Customers"], "ONLY the Darlene company. The old search never offered you a different spelling from the one you typed.", "Check both companies exist so the pair is meaningful.", "Typing Marlene on the new version returns the Darlene records too. That is SV-10025."], ["Edge cases", "a", "A single character", "Anywhere", "Nothing to set up.", "—", [], "NOTHING is matched. Your recently opened records are shown instead. The old search waited for two characters.", "Nothing to check.", null], ["Edge cases", "zzzqqq", "Something that exists nowhere", "Anywhere", "Nothing to set up.", "—", [], "No match — so your recently opened records come back, leaving you something to click.", "Nothing to check.", "Shows a message and nothing to click. Raised as SV-10059."]];
+const RUNORDER=[["Kestrelway", "Find a customer by its street address"], ["419-555-0143", "Find a customer by its phone number"], ["555-0143", "Now type only PART of that number"], ["Dispatch Supervisor", "Find a company by a contact's job title"], ["2019 Freightliner", "Find a vehicle by its year and make"], ["ZZ4471", "Find a vehicle by the last part of its chassis number"], ["ernva", "Type letters from the middle of the town"], ["Vernway", "Find a part the shop has never stocked"], ["Marlene", "Type a name that exists"], ["zzzqqq", "Search for something that does not exist"]];
+</script>
 <script>
 /* ────────────────────────────────────────────────────────────────────────────
-   THE OLD SEARCH, REBUILT. A line-for-line port of v1_search.py, which is
-   itself transcribed from the product at commit 55767168.
+   THE OLD SEARCH, REBUILT — a line-for-line port of v1_search.py, itself
+   transcribed from the product at commit 55767168.
 
-   Two rules, and they differ — this is the part people get wrong:
+   Two rules, and they differ. This is the part people get wrong:
      RULE 1  the typed text, WITH its spaces, against the record's VISIBLE NAME,
              and only from the START of it.
      RULE 2  the typed text WITHOUT its spaces, against one long combined text
@@ -203,175 +250,207 @@ const squash = a => a.join("").toLowerCase().replace(/ /g, "");
 const phone  = p => (p || "").replace(/\)/g, "-").replace(/\(/g, "");
 const status = s => s === "quality_check" ? "qualitycheckqc" : (s || "").replace(/_/g, "");
 
-const REC = [];
 function customer(o){
   const blob=[o.name,o.name.replace(/ /g,""),o.address_1||"",o.address_2||"",o.state||"",
               o.postal||"",o.city||"",phone(o.telephone),o.website||""];
   (o.contacts||[]).forEach(c=>blob.push(c.first||"",c.last||"",c.title||"",phone(c.telephone)));
-  return {kind:"Customer",group:"Customers",label:o.name,search:o.name+" "+squash(blob),card:o};
+  return {kind:"Customer",group:"Customers",label:o.name,search:o.name+" "+squash(blob)};
 }
-function vendor(o){
-  return {kind:"Vendor",group:"Vendors",label:o.name,card:o,
-    search:squash([o.name,o.address_1||"",o.address_2||"",o.state||"",o.postal||"",o.city||"",
-                   phone(o.telephone),o.email||""])};
-}
-function vehicle(o){
-  return {kind:"Vehicle",group:"Assets",label:`${o.year} ${o.make} ${o.model}`,card:o,
-    search:squash([o.owner||"",String(o.year),o.make,o.model,o.unit||"",o.vin||"",o.plate||""])};
-}
+const vendor = o => ({kind:"Vendor",group:"Vendors",label:o.name,
+  search:squash([o.name,o.address_1||"",o.address_2||"",o.state||"",o.postal||"",o.city||"",
+                 phone(o.telephone),o.email||""])});
+const vehicle = o => ({kind:"Vehicle",group:"Assets",label:`${o.year} ${o.make} ${o.model}`,
+  search:squash([o.owner||"",String(o.year),o.make,o.model,o.unit||"",o.vin||"",o.plate||""])});
 function job(o){
   const L=o.kind==="parts"?"P":"S", stem=o.number.replace(`${L}-`,"");
   const vars=[`${L}${stem}`,`${L}${o.shop}${stem}`,`${L}${o.shop}-${stem}`,`${o.shop}-${stem}`];
   return {kind:o.kind==="parts"?"PartSale":"WorkOrder",
     group:o.kind==="parts"?"Part sales":"Work orders",
-    label:`${L}${o.shop}-${stem} ${o.customer}`, card:o,
+    label:`${L}${o.shop}-${stem} ${o.customer}`,
     search:o.customer+" "+squash([o.raw||"",...vars,o.number,o.customer,status(o.status)])};
 }
-function part(o){
-  return {kind:"Part",group:"Parts",label:o.name,card:o,
-    search:squash([o.name,(o.part_number||"").replace(/-/g,""),o.part_number||""])};
-}
+const part = o => ({kind:"Part",group:"Parts",label:o.name,
+  search:squash([o.name,(o.part_number||"").replace(/-/g,""),o.part_number||""])});
 
-/* the same records the test suite is seeded with */
-const CUST = customer({name:"ZZAUTOTEST Bridgeport Hauling", address_1:"1450 Kestrelway Industrial",
-  address_2:"Dock 7B", state:"Ohio", postal:"44872-9931", city:"Fernvale",
-  telephone:"(419) 555-0143", website:"bridgeporthauling-zzt.com",
-  contacts:[{first:"Marlene",last:"Okonkwo",title:"Dispatch Supervisor",telephone:"(419) 555-0177"}]});
-const NEAR = customer({name:"ZZAUTOTEST Darlene Cartage", address_1:"77 Ridgeway Spur",
-  state:"Ohio", postal:"44872-4411", city:"Fernvale"});
-const VEND = vendor({name:"ZZAUTOTEST Kestrel Parts Supply", address_1:"88 Halbrook Trace",
-  address_2:"Bay 12C", state:"Ohio", postal:"43055-2210", city:"Marnston",
-  telephone:"(614) 555-0188", email:"parts@kestrelsupply-zzt.com"});
-const VEH  = vehicle({year:"2019", make:"Freightliner", model:"Cascadia", unit:"ZZT-4471",
-  vin:"1FUJGLDR9KLZZ4471", plate:"OHZZT471", owner:"ZZAUTOTEST Bridgeport Hauling"});
-const WO   = job({number:"S-17611", customer:"ZZAUTOTEST Bridgeport Hauling", status:"estimate",
-  shop:"9160", kind:"service", raw:"17611"});
-const WOQ  = job({number:"S-17612", customer:"ZZAUTOTEST Bridgeport Hauling",
-  status:"quality_check", shop:"9160", kind:"service", raw:"17612"});
-const PS   = job({number:"P-253", customer:"ZZAUTOTEST Bridgeport Hauling", status:"open",
-  shop:"9160", kind:"parts", raw:"253"});
-const PART = part({name:"ZZAUTOTEST Airline Coupler Vernway", part_number:"ZZT-77-3300"});
-REC.push(CUST, NEAR, VEND, VEH, WO, WOQ, PS, PART);
-
+/* the same eight records the test suite is seeded with */
+const REC = [
+  customer({name:"ZZAUTOTEST Bridgeport Hauling", address_1:"1450 Kestrelway Industrial",
+    address_2:"Dock 7B", state:"Ohio", postal:"44872-9931", city:"Fernvale",
+    telephone:"(419) 555-0143", website:"bridgeporthauling-zzt.com",
+    contacts:[{first:"Marlene",last:"Okonkwo",title:"Dispatch Supervisor",telephone:"(419) 555-0177"}]}),
+  customer({name:"ZZAUTOTEST Darlene Cartage", address_1:"77 Ridgeway Spur", state:"Ohio",
+    postal:"44872-4411", city:"Fernvale"}),
+  vendor({name:"ZZAUTOTEST Kestrel Parts Supply", address_1:"88 Halbrook Trace", address_2:"Bay 12C",
+    state:"Ohio", postal:"43055-2210", city:"Marnston", telephone:"(614) 555-0188",
+    email:"parts@kestrelsupply-zzt.com"}),
+  vehicle({year:"2019", make:"Freightliner", model:"Cascadia", unit:"ZZT-4471",
+    vin:"1FUJGLDR9KLZZ4471", plate:"OHZZT471", owner:"ZZAUTOTEST Bridgeport Hauling"}),
+  job({number:"S-17611", customer:"ZZAUTOTEST Bridgeport Hauling", status:"estimate", shop:"9160",
+    kind:"service", raw:"17611"}),
+  job({number:"S-17612", customer:"ZZAUTOTEST Bridgeport Hauling", status:"quality_check", shop:"9160",
+    kind:"service", raw:"17612"}),
+  job({number:"P-253", customer:"ZZAUTOTEST Bridgeport Hauling", status:"open", shop:"9160",
+    kind:"parts", raw:"253"}),
+  part({name:"ZZAUTOTEST Airline Coupler Vernway", part_number:"ZZT-77-3300"}),
+];
 const HISTORY = ["ZZAUTOTEST Bridgeport Hauling", "S9160-17611 ZZAUTOTEST Bridgeport Hauling"];
 
 function runOldSearch(query){
-  const q = (query||"").toLowerCase();
-  if (q.length < 2) return {history:true, why:"fewer than two characters typed", rows:[]};
-  const sq = q.split(/\s+/).join("");
-  const rows=[], taken={}, done=new Set();
+  const q=(query||"").toLowerCase();
+  if(q.length<2) return {history:true, why:"fewer than two characters typed", rows:[]};
+  const sq=q.split(/\s+/).join(""), rows=[], taken={}, done=new Set();
   const push=(r,asKind,how)=>{
     const grp = asKind==="Contact" ? "Customers" : r.group;
-    if ((taken[grp]||0) >= MAX_PER_TYPE) return;
+    if((taken[grp]||0)>=MAX_PER_TYPE) return;
     taken[grp]=(taken[grp]||0)+1;
     rows.push({group:grp, name:r.label, how});
   };
   REC.forEach(r=>{ if(r.label.toLowerCase().startsWith(q)){ push(r,r.kind,"its name starts with this"); done.add(r);} });
-  REC.forEach(r=>{ if(done.has(r)) return;
+  REC.forEach(r=>{ if(done.has(r))return;
     if(sq && r.search.toLowerCase().includes(sq)){
       push(r, r.kind==="Customer"?"Contact":r.kind, "found inside its details"); done.add(r);} });
   if(!rows.length) return {history:true, why:"the search matched nothing", rows:[]};
   return {history:false, why:"", rows};
 }
 
-/* ── the meeting running order ───────────────────────────────────────────── */
-const STEPS = [
-  {q:"Kestrelway", say:"Find a customer by its street address",
-   why:"The old search looked at the whole address, not just the company name.",
-   now:"Still works."},
-  {q:"419-555-0143", say:"Find a customer by its phone number",
-   why:"Stored with the brackets stripped, so the dashed form is what matched.",
-   now:"Works, and the new version is better here — it also accepts (419) 555-0143 and 4195550143, which the old one did not."},
-  {q:"555-0143", say:"Now type only PART of that phone number",
-   why:"The old search looked for what you typed anywhere inside the record, so part of a number was enough.",
-   now:"Returns nothing. This is a real loss — a person rarely has the whole number."},
-  {q:"Dispatch Supervisor", say:"Find a company by a contact's job title",
-   why:"Contact names, titles and numbers were all folded into the company's searchable text.",
-   now:"Reported as returning nothing. Raised for the product owner."},
-  {q:"2019 Freightliner", say:"Find a vehicle by its year and its make",
-   why:"The vehicle's visible name is “2019 Freightliner Cascadia”, so this matched the start of it.",
-   now:"Returns no vehicles at all. Raised as SV-10055."},
-  {q:"ZZ4471", say:"Find a vehicle by the last part of its chassis number",
-   why:"Any fragment of the chassis number matched, which is how somebody reads one off a windscreen.",
-   now:"Returns nothing. Raised as SV-10058."},
-  {q:"ernva", say:"Type a few letters from the middle of the town",
-   why:"Every detail sat in one piece of text searched by one rule, so mid-word worked everywhere.",
-   now:"Returns nothing — while the same kind of fragment from the company name still works. Raised as SV-10060."},
-  {q:"Vernway", say:"Find a part the shop has never stocked",
-   why:"The old search read the parts catalogue and nothing else. Whether the shop ever held the part made no difference.",
-   now:"Reported as not findable. The strongest finding of the batch."},
-  {q:"Marlene", say:"Type a name that exists",
-   why:"Only records actually containing the word came back — never a different, similarly spelled one.",
-   now:"Returns 18 rows, of which 2 genuinely contain it. The rest are Darlene, Charlene, Martens, Marine and Alene. Raised as SV-10025."},
-  {q:"zzzqqq", say:"Finally, search for something that does not exist",
-   why:"A fruitless search handed back your recently opened records, so you were never left at a dead end.",
-   now:"Shows a message and nothing to click. Raised as SV-10059."},
-];
+/* ── build the two pickers ───────────────────────────────────────────────── */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const P={AREA:0,Q:1,WHAT:2,APP:3,WHERE:4,FIELD:5,EXPECT:6,EXPSENT:7,VERIFY:8,NOW:9};
+let active=null;   // the selected preset row, or null
 
-const elOrder=document.getElementById("order"), elQ=document.getElementById("q"),
-      elRes=document.getElementById("results"), elVer=document.getElementById("verdict"),
-      elFoot=document.getElementById("foot"), elNow=document.getElementById("now"),
-      elNowT=document.getElementById("now-text"), elCards=document.getElementById("cards");
-
-STEPS.forEach((s,i)=>{
+RUNORDER.forEach(([q,say],i)=>{
   const li=document.createElement("li");
-  li.innerHTML=`<button class="step" type="button" id="step-${i}" data-i="${i}">
-      <span class="num">${i+1}</span>
-      <span><span class="say">${s.say}</span>
-        <span class="typed">${s.q}</span>
-        <span class="why">${s.why}</span></span></button>`;
-  elOrder.appendChild(li);
-});
-elOrder.addEventListener("click",e=>{
-  const b=e.target.closest(".step"); if(!b) return;
-  const s=STEPS[+b.dataset.i]; elQ.value=s.q; render(+b.dataset.i);
+  li.innerHTML=`<button class="step" type="button" data-q="${esc(q)}" data-i="${i}">
+    <span class="num">${i+1}</span><span><span class="say">${esc(say)}</span>
+    <span class="typed">${esc(q)}</span></span></button>`;
+  $("order").appendChild(li);
 });
 
-function render(stepIndex){
-  const q=elQ.value, out=runOldSearch(q);
-  document.querySelectorAll(".step").forEach(b=>b.setAttribute("aria-current",
-    (stepIndex!=null && +b.dataset.i===stepIndex) ? "true":"false"));
+const AREA_PATH={
+  "Customers":"Customers → open a company",
+  "Contacts":"Customers → open a company → its Contacts list",
+  "Assets":"Assets → open a vehicle",
+  "Jobs":"Work orders → open a job",
+  "Vendors":"Parts → Vendors → open a supplier",
+  "Parts":"Parts → Parts catalogue → open a part",
+  "Edge cases":"Nothing to set up",
+};
+const paneKw=$("pane-kw");
+[...new Set(PRESETS.map(r=>r[P.AREA]))].forEach(area=>{
+  const rows=PRESETS.filter(r=>r[P.AREA]===area);
+  const d=document.createElement("div"); d.className="grp-area";
+  d.innerHTML=`<h3>${esc(area)} <span style="font-weight:400;color:var(--muted)">· ${rows.length}</span></h3>
+    <p class="path">${esc(AREA_PATH[area]||"")}</p>
+    <div class="chiprow">${rows.map(r=>
+      `<button class="chipbtn" type="button" data-q="${esc(r[P.Q])}">${esc(r[P.Q])}</button>`).join("")}</div>`;
+  paneKw.appendChild(d);
+});
 
-  elVer.innerHTML=""; elRes.innerHTML="";
+/* tabs */
+function tab(which){
+  const run=which==="run";
+  $("tab-run").setAttribute("aria-selected",run); $("tab-kw").setAttribute("aria-selected",!run);
+  $("pane-run").hidden=!run; $("pane-kw").hidden=run;
+}
+$("tab-run").addEventListener("click",()=>tab("run"));
+$("tab-kw").addEventListener("click",()=>tab("kw"));
+
+/* clicks from either picker */
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".step, .chipbtn"); if(!b) return;
+  $("q").value=b.dataset.q; render(b.dataset.q);
+});
+
+/* ── render ──────────────────────────────────────────────────────────────── */
+function render(fromPreset){
+  const q=$("q").value;
+  active = fromPreset!=null ? (PRESETS.find(r=>r[P.Q].toLowerCase()===String(fromPreset).toLowerCase())||null) : null;
+  document.querySelectorAll(".step,.chipbtn").forEach(b=>
+    b.setAttribute("aria-current", b.dataset.q===q ? "true":"false"));
+
+  const out=runOldSearch(q);
+  const actual = out.history ? [] : [...new Set(out.rows.map(r=>r.group))];
+  $("verdict").innerHTML=""; $("results").innerHTML="";
+
   if(q.length<2){
-    elVer.innerHTML=`<span class="chip neutral">waiting</span>
-      <span class="txt">The old search matched nothing until you had typed two characters.</span>`;
-    elRes.innerHTML=`<li class="hist"><b>Your recent records</b> were shown instead — ${HISTORY.join(" · ")}</li>`;
+    $("verdict").innerHTML=`<span class="chip neutral">waiting</span><span class="txt">The old search
+      matched nothing until two characters were typed.</span>`;
+    $("results").innerHTML=`<li class="hist"><b>Your recent records</b> were shown instead — ${HISTORY.map(esc).join(" · ")}</li>`;
   } else if(out.history){
-    elVer.innerHTML=`<span class="chip no">nothing found</span>
-      <span class="txt">No record contains that, so the recent list came back.</span>`;
-    elRes.innerHTML=`<li class="hist"><b>Your recent records</b> — ${HISTORY.join(" · ")}
-      <br>This is the expected result: a fruitless search never left you with nothing to click.</li>`;
+    $("verdict").innerHTML=`<span class="chip no">nothing found</span><span class="txt">No record
+      contains that, so the recent list came back.</span>`;
+    $("results").innerHTML=`<li class="hist"><b>Your recent records</b> — ${HISTORY.map(esc).join(" · ")}
+      <br>A fruitless search never left you with nothing to click.</li>`;
   } else {
-    const n=out.rows.length, groups=[...new Set(out.rows.map(r=>r.group))];
-    elVer.innerHTML=`<span class="chip ok">found — ${n} row${n>1?"s":""}</span>
-      <span class="txt">in ${groups.length} group${groups.length>1?"s":""}. This is the expected result.</span>`;
-    groups.forEach(g=>{
+    const n=out.rows.length;
+    $("verdict").innerHTML=`<span class="chip ok">found — ${n} row${n>1?"s":""}</span>
+      <span class="txt">in ${actual.length} group${actual.length>1?"s":""}: ${actual.map(esc).join(", ")}</span>`;
+    actual.forEach(g=>{
       const h=document.createElement("li"); h.className="grp";
-      h.textContent=`${g} (${out.rows.filter(r=>r.group===g).length})`; elRes.appendChild(h);
+      h.textContent=`${g} (${out.rows.filter(r=>r.group===g).length})`; $("results").appendChild(h);
       out.rows.filter(r=>r.group===g).forEach(r=>{
         const li=document.createElement("li"); li.className="row";
-        li.innerHTML=`<span class="name">${r.name}</span><span class="how">${r.how}</span>`;
-        elRes.appendChild(li);
+        li.innerHTML=`<span class="name">${esc(r.name)}</span><span class="how">${esc(r.how)}</span>`;
+        $("results").appendChild(li);
       });
     });
   }
-  elFoot.innerHTML = q.length<2
+  $("foot").innerHTML = q.length<2
     ? `Three rows per kind of record, and no limit on the total.`
     : `Matched by the old version's two rules — <code>useGlobalSearch.ts:76-93</code>. Three rows per kind of record, no overall limit.`;
 
-  const s = stepIndex!=null ? STEPS[stepIndex] : null;
-  if(s && s.now){ elNowT.textContent=s.now; elNow.classList.remove("hidden"); }
-  else { elNow.classList.add("hidden"); }
+  /* does the result match what the keyword said to expect? */
+  const chk=$("check");
+  if(!active){ chk.className="check hidden"; chk.innerHTML=""; }
+  else{
+    const want=[...active[P.EXPECT]].sort(), got=[...actual].sort();
+    const same = want.length===got.length && want.every((v,i)=>v===got[i]);
+    chk.className="check "+(same?"pass":"fail");
+    chk.innerHTML = same
+      ? `<span>✓</span><span><b>The result matches the expectation.</b> ${want.length
+          ? "Expected " + want.map(esc).join(", ") + " — and that is what came back."
+          : "Expected no matches, and the recent list came back instead."}</span>`
+      : `<span>✕</span><span><b>The result does NOT match the expectation.</b> Expected
+          ${want.length?want.map(esc).join(", "):"no matches"}, got
+          ${got.length?got.map(esc).join(", "):"no matches"}. Worth looking into before you rely on
+          this keyword.</span>`;
+  }
+  renderHelp();
 }
-elQ.addEventListener("input",()=>render(null));
-document.getElementById("clear").addEventListener("click",()=>{elQ.value="";render(null);elQ.focus();});
+
+function renderHelp(){
+  const h=$("help");
+  if(!active){
+    h.innerHTML=`<p class="help-empty">Pick a keyword on the left and this panel will tell you what it
+      is, which part of the app it comes from, which field holds it, what should come back, and how to
+      check the record really carries it before you judge the result.</p>`;
+    return;
+  }
+  const r=active;
+  h.innerHTML=`
+    <div class="help-top">
+      <span class="area-chip">${esc(r[P.APP])}</span>
+      <span class="kw">${esc(r[P.Q])}</span>
+      <span class="what">${esc(r[P.WHAT])}</span>
+    </div>
+    <dl class="help-dl">
+      <div><dt>Where this lives in the app</dt><dd>${esc(r[P.WHERE])}</dd></div>
+      <div><dt>The field that holds it</dt><dd><span class="mono">${esc(r[P.FIELD])}</span></dd></div>
+      <div><dt>What should come back</dt><dd>${esc(r[P.EXPSENT])}</dd></div>
+      <div><dt>Check this before you judge the result</dt><dd>${esc(r[P.VERIFY])}</dd></div>
+    </dl>
+    ${r[P.NOW] ? `<div class="help-now"><h4>On the new version today</h4><p>${esc(r[P.NOW])}</p></div>` : ""}`;
+}
+
+$("q").addEventListener("input",()=>render(null));
+$("clear").addEventListener("click",()=>{$("q").value="";render(null);$("q").focus();});
 
 /* ── the record cards ────────────────────────────────────────────────────── */
 const CARDS=[
   {t:"ZZAUTOTEST Bridgeport Hauling", k:"Customer", d:[["Address","1450 Kestrelway Industrial, Dock 7B"],
     ["Town","Fernvale, Ohio 44872-9931"],["Phone","(419) 555-0143"],["Website","bridgeporthauling-zzt.com"],
-    ["Contact","Marlene Okonkwo — Dispatch Supervisor"]]},
+    ["Contact","Marlene Okonkwo — Dispatch Supervisor, (419) 555-0177"]]},
   {t:"ZZAUTOTEST Darlene Cartage", k:"Customer · one letter from Marlene, deliberately",
     d:[["Address","77 Ridgeway Spur"],["Town","Fernvale, Ohio 44872-4411"]]},
   {t:"2019 Freightliner Cascadia", k:"Asset", d:[["Unit","ZZT-4471"],["Chassis","1FUJGLDR9KLZZ4471"],
@@ -386,10 +465,11 @@ const CARDS=[
 ];
 CARDS.forEach(c=>{
   const d=document.createElement("div"); d.className="card";
-  d.innerHTML=`<h4>${c.t}</h4><p class="kind">${c.k}</p><dl>${
-    c.d.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
-  elCards.appendChild(d);
+  d.innerHTML=`<h4>${esc(c.t)}</h4><p class="kind">${esc(c.k)}</p><dl>${
+    c.d.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>`;
+  $("cards").appendChild(d);
 });
 
-render(null);
+/* open on a realistic working state, not an empty shell */
+$("q").value="Kestrelway"; render("Kestrelway");
 </script>
