@@ -847,6 +847,29 @@ v2**:
    whose `attrs.id` is a **36-char UUID**, **and** `renderedFields.description` must contain a real
    `<img src=".../attachment/content/<id>">`. **Attached but not inline fails this format.**
 
+#### 🛑 STEP 4 IS NOT OPTIONAL — THE PICTURE IS STILL A POSTAGE STAMP UNTIL THE MEDIA NODE CARRIES ITS TRUE SIZE (QA lead, 2026-09-15: *"Perfect the pictures is perfect NOW, save it as your rule/skill etc forever"*)
+
+Steps 1–3 embed the picture. They do **not** make it readable. Wiki markup hands Jira **no height**, so
+the `media` node is born with a made-up one (we measured **183** every time) and Jira draws the picture
+to that wrong shape — the reader has to click it, which is precisely what the Head of Product asked us
+to stop doing. **Three causes, and all three must be fixed or it is still small:**
+
+1. **No true height.** ⇒ **Step 4: read the description back as ADF, set the `media` node's `width` and
+   `height` to the file's REAL pixel size, set the parent `mediaSingle` to `layout: "full-width"`, and
+   `PUT /rest/api/3/issue/<KEY>`.** Confirm exactly **1** node was fixed.
+2. **A re-upload of the same filename does not replace the old one** — the embed resolves by name to the
+   **FIRST** attachment ever uploaded under it, so a better picture changes nothing on screen. ⇒ **delete
+   every existing attachment on the ticket BEFORE uploading** (`clear_attachments()`).
+3. **A whole screen shrunk to fit is unreadable at any size.** ⇒ crop each half to the search box and its
+   panel, and compose the two halves into **ONE** picture — the live product above, the new version
+   below — so the reader is not made to do the comparing:
+   `MAXW=560 python3 build/testing-tools/compose_compare.py --v1 … --v2 … --out ticket-images/<KEY>.png`.
+   **560 inner + padding = 588 px wide, and 588 is the width he approved.**
+
+**Never call a picture done because the upload succeeded.** Read the ADF back and check the media node's
+width and height are the file's own. Tool that does all four steps:
+`build/global-search/tickets-2026-09-14/rewrite_to_standard.py`. Learning **L0130**.
+
 ---
 
 ## THE DELIVERABLE — the prepared pack

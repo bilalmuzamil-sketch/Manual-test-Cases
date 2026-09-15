@@ -2563,3 +2563,33 @@ Two things in that are worth keeping:
 
 > A finding you can prove is still only as good as the claim it is measured against. Read the claim
 > live, then judge — including, and especially, when the measurement is beautiful.
+
+## L0130 — A picture in a Jira ticket only reads without clicking if the media node carries its TRUE size and spans the description (2026-09-15, approved by the QA lead: *"Perfect the pictures is perfect NOW, save it as your rule/skill etc forever"*)
+
+**The failure.** Every comparison picture we embedded read as a postage stamp. The reader had to click
+it to see anything, which is exactly what the Head of Product asked us to stop doing. Three separate
+causes, and all three have to be fixed or the picture is still small:
+
+1. **Wiki markup does not tell Jira the picture's height.** `!name.png|width=760!` creates a
+   `mediaSingle` whose inner `media` node gets a made-up height (we measured 183 every time). Jira draws
+   the picture to that wrong shape, so it comes out tiny however large the file is.
+2. **A second upload of the same filename does not replace the first.** The embed resolves by name to
+   the FIRST attachment ever uploaded under it. Re-uploading a better picture changes nothing on screen.
+3. **A whole screen shrunk to fit is unreadable at any size.** Crop each half to the search box and its
+   panel so the words arrive at their own size.
+
+**The standard, all four steps, in this order:**
+- **Compose ONE picture**, the live product above and the new version below, each cropped to the panel:
+  `MAXW=560 python3 build/testing-tools/compose_compare.py --v1 … --v2 … --out ticket-images/<KEY>.png`
+  — 560 inner + padding = **588 px wide**, which is the width that was approved.
+- **Delete every existing attachment on the ticket first** (`clear_attachments()`), then upload once.
+- **Write the description as WIKI** through `PUT /rest/api/2/issue/<KEY>` — the only route that embeds
+  a picture inline; the MCP tools take markdown and leave it as an attachment nobody opens.
+- **Then read the description back as ADF and repair the media node**: set `width` and `height` to the
+  picture's REAL pixel size and set the parent `mediaSingle` to `layout: "full-width"`, and
+  `PUT /rest/api/3/issue/<KEY>`. Confirm the node count is 1.
+
+**Never** consider a picture done because the upload returned success. Read the ADF back and check the
+media node's width and height are the file's own.
+
+Tool that does all four: `build/global-search/tickets-2026-09-14/rewrite_to_standard.py`.
