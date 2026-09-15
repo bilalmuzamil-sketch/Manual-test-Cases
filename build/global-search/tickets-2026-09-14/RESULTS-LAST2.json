@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "the last two cases of the regression set",
+  "how_judged": "Each reading was made to prove itself first: for the branch case, the same sign-in-as request was made for a person WITH a branch and a person WITHOUT one, of the same job, from fresh sessions each time. For the usage-reporting case, the page's own sending functions were wrapped before the app's code ran, and every piece of the app's JavaScript the browser had fetched was read.",
+  "build": "v26.36.4-7869ff2"
+ },
+ "results": {
+  "C45159": {
+   "verdict": "Blocked",
+   "observed": "This cannot be checked on the current product, and the reason is itself worth knowing: a person with no home branch can no longer be signed in at all. The product refuses to open a session for them. Two people with no branch - one a foreman, one a technician - were both refused, while a technician who has a branch was let in immediately from the same starting point, so the difference is the branch and nothing else. Nor can the state be created: the staff screen requires a branch, and so does the system behind it, which answers that the branch is a required detail.",
+   "todo": "Two things would unblock it, and both are yours to decide: either the developers confirm that a person without a home branch can no longer exist, in which case this test should be retired; or somebody provides a sign-in for one of the twenty-seven people who already have no branch, and the test runs in a minute.",
+   "technical": "Sign-in-as: clayton.stephens (Technician, has a branch) allowed; craig.mckee (Technician, no branch) refused 'Access denied'; amy.fernandez (Foreman, no branch) refused the same, each from a fresh administrator session. Creating the state: the staff save answers 'workplace_id: Missing required parameter' both when the branch is emptied and when it is left out, and the record reads back unchanged. The branches screen lists branches only and assigns nobody. 27 active people and 34 inactive already have no branch. This blocks nothing else in the suite: every other case is judged.",
+   "not_observed": "whether search degrades gracefully for such a user - nobody can be signed in as one"
+  },
+  "C45160": {
+   "verdict": "Blocked",
+   "observed": "This one is settled as far as the product goes, and is held only for your word. Selecting a search result records nothing about the search. The only message sent when a result was chosen was the ordinary page-view message for the page that opened, and the app's own code shows why: seventeen parts of the product record what people do - the clock-in button, the notification bell, the profile menu, the navigation links, the jobs screen, the filters - and the global search panel is not one of them. In the previous version, choosing a result recorded a search-usage event, which is how anyone could tell whether people were using the search box.",
+   "todo": "Say the word and this is raised with the developers as a new fault and the result here becomes a failure. It is held because it is a NEW finding, and new tickets need your go-ahead - it is not one of the ones already written up.",
+   "technical": "Both the in-page capture (the sending functions wrapped before any app code ran) and the network capture returned exactly one event name during the click: page_view, for the customer page that opened. Control: that same capture proves usage reporting is switched on and working on this branch. Code scan: 93 of the app's own JavaScript files were fetched and read with no failures; the tracking call appears in 17 of them and in none of the global search one.",
+   "not_observed": null
+  }
+ }
+}

@@ -1,0 +1,119 @@
+{
+ "at": "2026-09-15T11:07:47.240Z",
+ "subject": "clayton.stephens@staging.shopview.local",
+ "callsOnLoad": [],
+ "staffListCall": null,
+ "read /api/staff": {
+  "status": 200,
+  "rows": 66,
+  "keys": [
+   "id",
+   "email",
+   "first_name",
+   "last_name",
+   "created_on",
+   "confirmed_invitation_on",
+   "avatar_url",
+   "is_active",
+   "role_label",
+   "staff_id",
+   "job_title",
+   "salary_type",
+   "salary",
+   "billable",
+   "clockable",
+   "is_sales_rep",
+   "is_default",
+   "departments",
+   "defaultWorkplace",
+   "defaultWorkplaceName",
+   "salary_type_label",
+   "workplace_id",
+   "deletable",
+   "role_id"
+  ],
+  "branchFields": [
+   "defaultWorkplace",
+   "defaultWorkplaceName",
+   "workplace_id"
+  ],
+  "peopleWithNoBranch": [
+   {
+    "name": "",
+    "id": "00fea40e-5f3b-4a35-abc2-d00d0e0046b5"
+   },
+   {
+    "name": "",
+    "id": "013cc113-9b3b-43ae-be65-bc5311b7605b"
+   },
+   {
+    "name": "",
+    "id": "01d6d939-83c9-4c83-888d-53cdb8bb4454"
+   },
+   {
+    "name": "",
+    "id": "0201ef09-fc90-43e3-8996-a9fe260e870b"
+   },
+   {
+    "name": "",
+    "id": "0327aae4-f532-4afd-af23-3920b9af3ec6"
+   },
+   {
+    "name": "",
+    "id": "0687da3b-0f7b-41a4-b24c-616c5a9dc056"
+   },
+   {
+    "name": "",
+    "id": "13609b56-83ae-44aa-8685-b5147421313b"
+   },
+   {
+    "name": "",
+    "id": "139c1d1c-b99f-4324-b903-4ffb23222f1d"
+   },
+   {
+    "name": "",
+    "id": "162ffc41-e2e9-4c52-bede-3879b69c7828"
+   },
+   {
+    "name": "",
+    "id": "1e153938-7fcb-4dbe-9ae6-862d13e57979"
+   }
+  ]
+ },
+ "read /api/staff/list": {
+  "status": 405,
+  "rows": 0,
+  "keys": null
+ },
+ "read /api/technicians": {
+  "status": 200,
+  "rows": 45,
+  "keys": [
+   "id",
+   "user_id",
+   "first_name",
+   "last_name",
+   "name"
+  ],
+  "branchFields": []
+ },
+ "read /api/iam/staff": {
+  "status": 404,
+  "rows": 0,
+  "keys": null
+ },
+ "editOpened": true,
+ "saveButtonFound": true,
+ "callsMadeBySaving": [
+  {
+   "method": "POST",
+   "url": "/api/staff/27e1de5e-eeef-4323-8832-aa087e837fae/change",
+   "body": "{\"first_name\":\"Clayton\",\"last_name\":\"Stephens\",\"email\":\"clayton.stephens@staging.shopview.local\",\"role_id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"job_title\":\"Heavy Duty Field Technician\",\"salary_type\":\"hourly\",\"salary\":50,\"billable\":1,\"clockable\":true,\"is_sales_rep\":false}"
+  },
+  {
+   "method": "GET",
+   "url": "/api/staff?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=1000&pagination%5BsortBy%5D=first_name&pagination%5Bdescending%5D=false&search=",
+   "body": ""
+  }
+ ]
+}

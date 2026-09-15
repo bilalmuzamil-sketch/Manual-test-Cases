@@ -1,0 +1,90 @@
+{
+ "at": "2026-09-15T11:16:29.648Z",
+ "attempts": [
+  {
+   "label": "control (has a branch)",
+   "name": "Clayton Stephens",
+   "id": "95539f41-30b6-4362-82a7-3f517c46e034",
+   "hasBranch": true,
+   "active": true,
+   "status": 200,
+   "answer": "{\"data\":{\"role\":{\"id\":\"af8d02b5-ecd1-4205-a82f-32a4d5bb1015\",\"fePermissions\":[{\"id\":\"267eed7b-a2a5-4d99-9ae0-15c690278854\",\"name\":\"woFullViewMode\"},{\"id\":\"3a50f7f9-1085-479c-b332-dd4fff79030a\",\"name\":",
+   "became": {
+    "nPerms": 6,
+    "role": "technician",
+    "branches": [
+     "Staging Heavy Duty - 9919"
+    ]
+   }
+  },
+  {
+   "label": "active, no branch",
+   "name": "Amy Fernandez",
+   "id": "644032f2-d8e7-4bdb-aa68-a3b9ff138d34",
+   "hasBranch": false,
+   "active": true,
+   "status": 403,
+   "answer": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+  },
+  {
+   "label": "active, no branch",
+   "name": "Angelica Harper",
+   "id": "e51b9b29-6665-4388-acea-9dfee9909913",
+   "hasBranch": false,
+   "active": true,
+   "status": 403,
+   "answer": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+  },
+  {
+   "label": "active, no branch",
+   "name": "Christopher Robinson",
+   "id": "27d3b38c-f852-44f2-a607-99c828b65f47",
+   "hasBranch": false,
+   "active": true,
+   "status": 200,
+   "answer": "{\"data\":{\"role\":{\"id\":\"73f72525-3d67-436b-9c1d-12677cdf9883\",\"fePermissions\":[{\"id\":\"05e82cdd-26da-4ef0-9fe5-d415d5b9bc73\",\"name\":\"settingsParts\"},{\"id\":\"06e09b15-29bc-4c05-981e-478f51511596\",\"name\":\"",
+   "became": {
+    "nPerms": 43,
+    "role": "administrator",
+    "branches": [
+     "Staging Heavy Duty - 9919",
+     "Staging Lethbridge - 4310"
+    ]
+   }
+  },
+  {
+   "label": "active, no branch",
+   "name": "Craig Mckee",
+   "id": "1e153938-7fcb-4dbe-9ae6-862d13e57979",
+   "hasBranch": false,
+   "active": true,
+   "status": 403,
+   "answer": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+  },
+  {
+   "label": "inactive, no branch",
+   "name": "Adam Haynes",
+   "id": "87ff2edf-5e8c-4452-8546-87f9b38d18e5",
+   "hasBranch": false,
+   "active": false,
+   "status": 400,
+   "answer": "{\"errors\":[{\"error\":\"Cannot impersonate an inactive user.\"}]}"
+  }
+ ],
+ "asAdmin": {
+  "nPerms": 43,
+  "role": "administrator",
+  "branches": [
+   "Staging Heavy Duty - 9919",
+   "Staging Lethbridge - 4310"
+  ]
+ },
+ "counts": {
+  "people": 165,
+  "activeWithNoBranch": 27,
+  "inactiveWithNoBranch": 34,
+  "activeWithABranch": 67
+ },
+ "control_becomingSomeoneWorksAtAll": true,
+ "anyBranchlessPersonReachable": true
+}

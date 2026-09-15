@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "C45160, left unjudged on 14 September because two of the messages the page sent could not be read",
+  "how_judged": "The page's own sending functions were wrapped before any of the app's code ran, so every message was captured where it was sent rather than guessed at from the network. The same traffic was recorded a second time at the network layer. Then every piece of the app's JavaScript the browser had fetched - all ninety-three files, none of them unreadable - was searched for the recording call.",
+  "build": "v26.36.4-7869ff2"
+ },
+ "results": {
+  "C45160": {
+   "verdict": "Failed",
+   "observed": "Selecting a search result records nothing about the search. The only thing sent when a result was chosen was the ordinary page-view message for the page it opened. Reading the app's own code shows why: seventeen parts of the product record what people do - the clock-in button, the notification bell, the profile menu, the navigation links, the jobs screen, the filters - and the global search panel is not one of them. It contains no recording call at all. In the previous version, choosing a search result recorded a search-usage event, which is how anyone could tell whether people were using the search box.",
+   "todo": "This needs raising with the developers - it is a new finding, not one of the ones already written up. Nothing has been raised yet, because new tickets are on hold until you say otherwise.",
+   "technical": "Both the in-page capture and the network capture during the click returned exactly one event name, page_view, for the customer page that opened. Control: that same capture proves the usage reporting is switched on and working on this branch. Code scan: 93 of the app's own JavaScript files were fetched and read with no failures; the tracking call appears in 17 of them and not in the global search one, whose only mention of global search is the name of the trigger button.",
+   "not_observed": null
+  }
+ }
+}

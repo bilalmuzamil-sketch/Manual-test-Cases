@@ -1,0 +1,41 @@
+{
+ "claim": "a user with no home branch cannot be signed in at all",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The SAME call, in the same run and from the same fresh administrator session, succeeded for Clayton Stephens - a Technician WITH a home branch - returning his own session with 6 permissions and one branch. C45159-SWITCH.json.",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "The staff screen itself was driven: the edit dialog was opened and saved, and the branch field is required there. The branches screen (administration/locations) was walked too - it lists branches only and offers no way to assign or unassign a person. PROBE-STAFF-SAVE.json, C45159-ROUTES.json.",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Three separate runs, each from a fresh session: amy.fernandez (Foreman, no branch) refused, craig.mckee (Technician, no branch) refused, clayton.stephens (Technician, WITH a branch) allowed. queue logs c159g, c159h, c159e.",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "Not an in-page action: the refusal is the server's own answer to the sign-in-as request, 'Access denied', with no page involved. The staff save refusal is likewise the server's: 'workplace_id: Missing required parameter'.",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "The state was read back rather than assumed. The branch was cleared through the same call the screen makes and the record was re-read afterwards: the branch was unchanged, so the state was never created. The people who already have no branch were read from the staff list (27 active, 34 inactive of 165). C45159-RESULTS.json, C45159-ROUTES.json.",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "Searched the branch for prior work on this state and for the refusal text: only the case's own authoring records came back (regression-2026-08-26/*, disposition-2026-09-02.json). No BLOCKED-*.md covers it. Nothing in the playbook or the skills.",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely: my own session. An earlier run did exactly that - it became Clayton and then asked to become someone else, which a Technician may not do, so four refusals looked like a rule about branchless people and were a rule about the session I had put myself in. Ruled out by re-running each attempt from a FRESH administrator session, and by the role control: a Technician with a branch is allowed and a Technician without one is refused, so the difference is the branch, not the role and not my session. Second possibility: the staff list's empty branch column is not the app's view of the person - ruled out for administrators (they are offered every branch regardless) by excluding administrators from the candidates.",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}

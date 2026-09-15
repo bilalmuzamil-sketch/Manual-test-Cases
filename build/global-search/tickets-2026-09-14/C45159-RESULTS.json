@@ -1,0 +1,53 @@
+{
+ "at": "2026-09-15T11:11:21.992Z",
+ "subject": "clayton.stephens@staging.shopview.local",
+ "recordFound": true,
+ "staffId": "27e1de5e-eeef-4323-8832-aa087e837fae",
+ "loginId": "95539f41-30b6-4362-82a7-3f517c46e034",
+ "branchNow": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+ "recordKeys": [
+  "id",
+  "email",
+  "first_name",
+  "last_name",
+  "created_on",
+  "confirmed_invitation_on",
+  "avatar_url",
+  "is_active",
+  "role_label",
+  "staff_id",
+  "job_title",
+  "salary_type",
+  "salary",
+  "billable",
+  "clockable",
+  "is_sales_rep",
+  "is_default",
+  "departments",
+  "defaultWorkplace",
+  "defaultWorkplaceName",
+  "salary_type_label",
+  "workplace_id",
+  "deletable",
+  "role_id"
+ ],
+ "clearAttempts": [
+  {
+   "how": "branch set to nothing",
+   "status": 400,
+   "answer": "{\"errors\":[{\"workplace_id\":\"Missing required parameter\"}]}"
+  },
+  {
+   "how": "branch left out entirely",
+   "status": 400,
+   "answer": "{\"errors\":[{\"workplace_id\":\"Missing required parameter\"}]}"
+  }
+ ],
+ "branchAfterClearing": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+ "theStateWasReached": false,
+ "restore": {
+  "status": 201,
+  "branchNow": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+  "verified": true
+ }
+}
