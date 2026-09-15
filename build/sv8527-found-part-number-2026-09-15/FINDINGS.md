@@ -169,3 +169,28 @@ Both left in place so the result is reproducible from the ticket.
 No Jira write of any kind. The two sibling bugs the ticket mentions —
 SV-8526 (description edit) and SV-9047 (edits lost on save) — were **not** tested; they are separate
 tickets and conflating them would muddy this verdict.
+
+---
+
+# Posted (2026-09-15)
+
+**SV-8527 comment `76528`** — the QA result. First line is the verdict, then the before/after exhibit,
+a 12-row checks table, the two grid exhibits, the returned-case explanation, the "worth knowing" note
+about seeding, what was deliberately not tested, and the technical section last.
+
+Read back from Jira: **3 media nodes, all `type: file`, in order, correct dimensions; 18 table rows;
+no AI fingerprint.**
+
+## Pre-post gate (Standing Rule 72), run at 08:32:45Z
+
+* Build markers re-read live — sv8527 `v26.36.6-3b2f046`, production `v26.36.6-638eaa5`, both unchanged
+  from the start of the pass.
+* Named test data re-confirmed live on the branch: Part Sale row still `ZZ-8527-FINAL` /
+  `disable_part_number false`, Work Order row still `ZZ-8527-WO` / `false`.
+* Production re-read: part sale P2-60 back to **1** row, exactly as found.
+* Ticket re-read: still TESTING QA, still 7 comments — nothing had moved under us.
+* Images uploaded as real Jira attachments and verified **from the posted comment**, not the source.
+
+## Outstanding
+
+**Nothing outstanding.** The ticket is with the developer/PO to close.
