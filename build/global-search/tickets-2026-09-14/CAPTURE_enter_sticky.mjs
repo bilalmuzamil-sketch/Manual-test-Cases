@@ -90,8 +90,15 @@ const describe = m => ({
 // ---------------- B: same word, click the THIRD row by hand
 {
   const m = await openAndType(FRESH);
-  const third = m && m.rows[CLICK_INDEX];
-  R.phases.B_clickedThirdRow = { indexClicked: CLICK_INDEX, rowClicked: third ? { i: third.i, type: third.type, text: third.text } : null };
+  // Guard the index. Asking for the sixth row of a three-row list clicks nothing, and the run then
+  // reports the whole hypothesis as unproven when in fact it was never tested.
+  let idx = CLICK_INDEX;
+  if (m && m.rows.length && idx >= m.rows.length) idx = m.rows.length - 1;
+  const third = m && m.rows[idx];
+  R.phases.B_clickedThirdRow = { indexAsked: CLICK_INDEX, indexClicked: idx,
+    rowsAvailable: m ? m.rows.length : 0,
+    rowClicked: third ? { i: third.i, type: third.type, text: third.text } : null };
+  if (!third) R.phases.B_clickedThirdRow.why = 'no row at that position -- nothing was clicked, so C and D prove nothing';
   if (third) {
     const box = await page.evaluate(i => {
       const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
@@ -100,7 +107,7 @@ const describe = m => ({
       const el = rows[i]; if (!el) return null;
       el.scrollIntoView({ block: 'center' });
       const r = el.getBoundingClientRect(); return { x: r.x, y: r.y, w: r.width, h: r.height };
-    }, CLICK_INDEX);
+    }, idx);
     if (box) {
       await page.mouse.move(box.x + box.w / 2, box.y + box.h / 2);
       await page.mouse.down(); await page.waitForTimeout(80); await page.mouse.up();
@@ -153,10 +160,11 @@ const describe = m => ({
 // position to whatever list is now on screen.
 const hi = k => (R.phases[k] && R.phases[k].highlighted) ? R.phases[k].highlighted.i : null;
 R.conclusion = {
-  indexClicked: CLICK_INDEX,
+  indexClicked: R.phases.B_clickedThirdRow.indexClicked,
+  clickActuallyHappened: !!R.phases.B_clickedThirdRow.rowClicked,
   highlightIndex: { A: hi('A_freshWordEnter'), C: hi('C_sameWordAgainEnter'), D: hi('D_anotherFreshWord') },
-  positionStuckOnSameWord: hi('C_sameWordAgainEnter') === CLICK_INDEX,
-  positionStuckOnADifferentWord: hi('D_anotherFreshWord') === CLICK_INDEX,
+  positionStuckOnSameWord: hi('C_sameWordAgainEnter') === R.phases.B_clickedThirdRow.indexClicked,
+  positionStuckOnADifferentWord: hi('D_anotherFreshWord') === R.phases.B_clickedThirdRow.indexClicked,
   sameRecordOrJustSamePosition:
     (R.phases.C_sameWordAgainEnter.wentBackToTheRecordIChose ? 'the same RECORD' : 'the same POSITION, a different record'),
   everHighlightedTheFirstRow: [hi('A_freshWordEnter'), hi('C_sameWordAgainEnter'), hi('D_anotherFreshWord')].includes(0),
