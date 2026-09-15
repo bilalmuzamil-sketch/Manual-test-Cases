@@ -103,7 +103,7 @@ python3 seed.py --confirm    # creates only what is missing
 It logs itself in, sets the location, checks what exists, creates only the gaps, and writes the live
 record ids to `seed-state-live.json`. **Run `--check` before the run starts and after any redeploy.**
 
-**Seeded and verified right now — 8 of 9:**
+**Seeded and verified right now — 11 of 11, every declared field checked:**
 
 | | |
 |---|---|
@@ -113,7 +113,7 @@ record ids to `seed-state-live.json`. **Run `--check` before the run starts and 
 | Catalogue-only part `ZZT-77-3300` | ✅ |
 | Stocked part `ZZT-88-4412` — 25 at Heavy Duty, 7 at Lethbridge | ✅ |
 | Four work orders, `S9160-17597` to `S9160-17600` | ✅ |
-| A part sale | 🔴 **blocked by SV-10031** — three cases wait on it |
+| A part sale | ✅ **SV-10031 is FIXED** (QA lead, 15/9) — created and verified live |
 | Customer `ZZAUTOTEST Marlene Freight Lines` — contains the word the tester types | ✅ |
 | Customer `ZZAUTOTEST Darlene Cartage` — ONE letter away, and deliberately so | ✅ |
 

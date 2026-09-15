@@ -1,3 +1,8 @@
+> 🔴 **READ `SEEDING-LESSONS-2026-09-15.md` FIRST.** It records why the earlier seeding was
+> incomplete (nine cases unrunnable, three near-miss false defects), the method that found every
+> missing route, the exact reseed procedure, and what still makes it fail. This playbook is the
+> reference; that file is the reasoning.
+
 # SEEDING PLAYBOOK — restore the suite's data after any redeploy, in minutes
 
 **Why this exists:** the QA branch is redeployed regularly and **our test data is wiped every time.**

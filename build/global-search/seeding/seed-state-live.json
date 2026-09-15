@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-14T191913Z",
+ "when_utc": "2026-09-15T070035Z",
  "environment": {
   "app": "sv9160.qa.shopview.com",
   "api": "sv9160api.qa.shopview.com",
@@ -7,27 +7,44 @@
   "tag": "ZZAUTOTEST"
  },
  "live_ids": {
-  "customer": "a1d08451-0214-41a4-983f-7f878ff7bcf0",
-  "asset": "81c09d26-9c5b-494b-ae3d-e4aa2ba56f77",
-  "vendor": "0be71457-edf2-4269-a9d6-7ab1c49cf577",
-  "part_catalogue_only": "7aeffde7-77c1-45bd-b2ae-6d9e1c501946",
-  "part_stocked": "63a300f0-d45a-4858-ae9b-78006e145406",
+  "customer": "b450f737-ead4-4ba6-a881-9085c5bf8c2f",
+  "contact": "0d6a2ad4-6c54-42b5-9950-5e05345d491f",
+  "asset": "e08aae98-2a42-4515-a92b-ffe34e1391b6",
   "work_orders": [
-   "ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
-   "8c81f3d7-ccaa-4bf5-8e48-75310301bd20",
-   "8f02b314-d826-4035-a77c-9f2997b4b158",
-   "3f149d79-f650-492e-bace-840bb65a100c"
+   "43033d4f-2112-46c1-847a-f6edb2b4e4d6",
+   "f3a36e79-2cbb-46b9-a476-7d1a5b3641f5",
+   "84d86dff-1716-4302-8afe-401a6eb03073",
+   "a6989c89-744b-4d7e-88ca-1843328bfb27"
   ],
-  "customer_fuzzy_target": "890f8b8b-35e3-45a8-b652-93b38316955a",
-  "customer_fuzzy_nearmiss": "7c9b3a1e-6f7f-4353-8c85-b111324a9441"
+  "vendor": "1677318c-6eb5-454c-92f7-20c6d387ba8a",
+  "part_catalogue_only": "4cf49691-09ea-48c3-8a2d-4e37786244a9",
+  "part_catalogue_stocked_source": "6b5f67ab-6d08-450b-ac5a-6173e3ffaa1c",
+  "part_stocked": "e259d83b-1155-4280-a375-9eaf63f093d1",
+  "customer_fuzzy_target": "1ac81228-6e6d-4a43-b40e-9217b84028af",
+  "customer_fuzzy_nearmiss": "399cdc19-389d-486d-bf03-cd7feaa60d1e",
+  "part_sale": "8c7a07ab-dcba-44f3-9551-2492c789294c"
  },
  "records": [
   {
    "key": "customer",
    "state": "PRESENT",
    "ids": [
-    "a1d08451-0214-41a4-983f-7f878ff7bcf0"
+    "b450f737-ead4-4ba6-a881-9085c5bf8c2f"
    ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code",
+    "website",
+    "address_2",
+    "telephone"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     53578,
     53581,
@@ -49,11 +66,49 @@
    ]
   },
   {
+   "key": "contact",
+   "state": "PRESENT",
+   "ids": [
+    "0d6a2ad4-6c54-42b5-9950-5e05345d491f"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    53603,
+    55670,
+    53582,
+    53516,
+    53580,
+    53581,
+    53605,
+    55664,
+    55669,
+    55661
+   ]
+  },
+  {
    "key": "asset",
    "state": "PRESENT",
    "ids": [
-    "81c09d26-9c5b-494b-ae3d-e4aa2ba56f77"
+    "e08aae98-2a42-4515-a92b-ffe34e1391b6"
    ],
+   "fields_ok": [
+    "maker_name",
+    "model_name",
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     53516,
     53580,
@@ -67,11 +122,49 @@
    ]
   },
   {
+   "key": "work_orders",
+   "state": "PRESENT",
+   "ids": [
+    "43033d4f-2112-46c1-847a-f6edb2b4e4d6",
+    "f3a36e79-2cbb-46b9-a476-7d1a5b3641f5",
+    "84d86dff-1716-4302-8afe-401a6eb03073",
+    "a6989c89-744b-4d7e-88ca-1843328bfb27"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    45153,
+    53578,
+    53579,
+    53588,
+    55658,
+    55661,
+    55672,
+    55680,
+    55682,
+    55684
+   ]
+  },
+  {
    "key": "vendor",
    "state": "PRESENT",
    "ids": [
-    "0be71457-edf2-4269-a9d6-7ab1c49cf577"
+    "1677318c-6eb5-454c-92f7-20c6d387ba8a"
    ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "address_2",
+    "website"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     53584,
     53585,
@@ -88,19 +181,31 @@
    "key": "part_catalogue_only",
    "state": "PRESENT",
    "ids": [
-    "7aeffde7-77c1-45bd-b2ae-6d9e1c501946"
+    "4cf49691-09ea-48c3-8a2d-4e37786244a9"
    ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     53601,
     45153
    ]
   },
   {
-   "key": "part_stocked",
+   "key": "part_catalogue_stocked_source",
    "state": "PRESENT",
    "ids": [
-    "63a300f0-d45a-4858-ae9b-78006e145406"
+    "6b5f67ab-6d08-450b-ac5a-6173e3ffaa1c"
    ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     45153,
     53607,
@@ -112,43 +217,43 @@
    ]
   },
   {
-   "key": "work_orders",
+   "key": "part_stocked",
    "state": "PRESENT",
    "ids": [
-    "ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
-    "8c81f3d7-ccaa-4bf5-8e48-75310301bd20",
-    "8f02b314-d826-4035-a77c-9f2997b4b158",
-    "3f149d79-f650-492e-bace-840bb65a100c"
+    "e259d83b-1155-4280-a375-9eaf63f093d1"
    ],
+   "fields_ok": [
+    "quantity"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     45153,
-    53578,
-    53579,
-    53588,
-    55658,
+    53607,
+    55659,
     55661,
-    55672,
+    55666,
     55680,
-    55682,
-    55684
-   ]
-  },
-  {
-   "key": "part_sale",
-   "state": "BLOCKED",
-   "reason": "SV-10031 - part sales cannot be created. Filed by the QA lead 2026-09-14: https://shopview.atlassian.net/browse/SV-10031",
-   "serves": [
-    55665,
-    45153,
-    45151
+    55682
    ]
   },
   {
    "key": "customer_fuzzy_target",
    "state": "PRESENT",
    "ids": [
-    "890f8b8b-35e3-45a8-b652-93b38316955a"
+    "1ac81228-6e6d-4a43-b40e-9217b84028af"
    ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55685,
     55686
@@ -158,11 +263,37 @@
    "key": "customer_fuzzy_nearmiss",
    "state": "PRESENT",
    "ids": [
-    "7c9b3a1e-6f7f-4353-8c85-b111324a9441"
+    "399cdc19-389d-486d-bf03-cd7feaa60d1e"
    ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55685,
     55686
+   ]
+  },
+  {
+   "key": "part_sale",
+   "state": "PRESENT",
+   "ids": [
+    "8c7a07ab-dcba-44f3-9551-2492c789294c"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55665,
+    45153,
+    45151
    ]
   }
  ],
