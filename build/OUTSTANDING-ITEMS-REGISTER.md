@@ -209,7 +209,7 @@ sixteen do not, two are described below.
 **The sixteen that do not work are the ten you ruled on plus the six that fall out of them.** Every
 one is written up for the developers and none is a duplicate.
 
-## The two things waiting on you
+## The three things waiting on you
 
 ### 1. One test is checking for something we deliberately left out of this version
 **What happened, and it is worth a minute.** I had this written up as a new fault and was about to ask
@@ -255,6 +255,29 @@ is obsolete, or those twenty-seven people are locked out and that is a bigger pr
 | Leave it | The test stays open, marked with the reason. |
 
 **If you say nothing:** one test of the sixty-five stays unfinished. Nothing else is held up.
+
+### 3. The ten you ruled on still read as unanswered questions to the developers
+**What they say today.** Each of the ten was written deliberately as a question, not an accusation —
+"this is a capability the previous version had and this one does not; is losing it acceptable?" with
+two options, and the line *"nothing is being called a fault here"*. That was right when they were
+written, because nobody had decided yet.
+
+**What has changed.** You decided. All ten, the same answer: it should still work, log it as a fault
+and get it fixed.
+
+**Why it matters.** Anyone opening those ten today reads an open question addressed to you and has no
+reason to start work. Your answer is in the spreadsheet you sent back, and nowhere on the tickets.
+
+**The decision.** You told me not to touch tickets that are already raised, so I have not.
+
+| Option | What we would do |
+|---|---|
+| **Let me add your answer to each (recommended)** | One short note on each: you were asked, you answered on 15 September, it should still work, so this is work rather than a question. Nothing else changes — no status, no wording, no re-filing. |
+| You add it yourself | Nothing for me to do; say so and I will leave them alone. |
+| Leave them as questions for now | They stay open and nobody starts on them. |
+
+**If you say nothing:** the ten faults you ruled on sit looking like unanswered questions. Nothing else
+is held up.
 
 ## Closed since yesterday
 
