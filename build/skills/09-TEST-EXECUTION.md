@@ -411,3 +411,40 @@ Granted so far, and nowhere else:
 | Suite | Granted | Recorded in |
 |---|---|---|
 | Global Search V1→V2 regression (section 6769, run 415, 62 cases) | 2026-09-15 | `build/global-search/regression-2026-08-26/WHAT-THIS-SUITE-IS-TESTED-AGAINST.md` |
+
+---
+
+## 🛑 RECONCILE EVERY CASE AGAINST THE SOURCE **BEFORE** YOU JUDGE IT (Rule 106, extended 2026-09-15)
+
+**QA lead, 2026-09-15:** *"MAKE it a rule and save in your Skills etc and wherever needed forver."*
+
+Before judging a case — **before running it, not after it fails** — compare its Expected against the
+governing document as it reads TODAY.
+
+**Why the old trigger was not enough.** Rule 106 used to fire only when you were about to propose a
+defect, which means only when the product FAILS. A case whose Expected disagrees with the source, and
+whose product happens to match the case, **passes** — and is written up as verified, and nobody looks
+at it again. That is a **false pass manufactured by our own test**, and it is worse than a false
+defect: a false defect gets argued with by a developer the same day; a false pass is believed for ever.
+
+**Four outcomes. Two of them are our fault, not the product's:**
+
+| Case vs source | Build | What it is | What you do |
+|---|---|---|---|
+| agree | matches | a real pass | record it |
+| agree | differs | a real defect | ask to file it |
+| **disagree** | matches the **case** | **FALSE PASS — the case is the defect** | do not use the pass as evidence; ask to correct the case |
+| **disagree** | matches the **source** | **FALSE DEFECT about to be filed** | the product is right; ask to correct the case, never raise a ticket |
+
+**Doing this without breaking Rule 81** (sources are offered and gated; never pulled on your own
+initiative): **read the governing source ONCE per pass, with his go-ahead, and reconcile every case
+against that one live read.** Record page id, version and read date once in the pass folder and cite
+it per case. One gated fetch per pass, not one per case. **A pass with no go-ahead reconciles against
+nothing and says so** — it does not reconcile against memory, an extract, or `requirements.md`
+(Rules 12, 100).
+
+**Write it down:** `build/<project>/source-verify-<date>/` — one file listing every case checked, the
+quote it was checked against, and which of the four outcomes it fell into.
+
+> A case is a claim about what the product should do. **Check the claim before you use it to judge
+> anything** — including when the product agrees with it.

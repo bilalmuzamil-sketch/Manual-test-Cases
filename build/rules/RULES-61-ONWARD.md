@@ -3653,6 +3653,32 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     session's own notes and from our own case text, never from the specification. Asked *"where in the
     specs does it say that?"*, the session had to go and read the page. The wording did hold, but that
     was luck: **the ticket had been written without ever opening the source it cited.**
+    **🛑 EXTENDED 2026-09-15 (QA lead, verbatim: "Perfect MAKE it a rule and save in your Skills etc
+    and wherever needed forver"): THE RECONCILIATION IS NOW A PRE-CHECK ON EVERY CASE YOU EXECUTE,
+    NOT ONLY ON EVERY DEFECT YOU PROPOSE.** Before judging a case — before running it, not after it
+    fails — compare its Expected against the governing document as it reads TODAY.
+    **WHY THE DEFECT-TIME TRIGGER WAS NOT ENOUGH, AND THIS IS THE WHOLE POINT:** it only fires when the
+    product FAILS. A case whose Expected disagrees with the source and whose product happens to match
+    the case **PASSES**, is written up as verified, and nobody ever looks at it again. That is a
+    **FALSE PASS created by our own test** — strictly worse than a false defect, because a false defect
+    gets argued with by a developer within the day and a false pass is believed for ever.
+    **THE FOUR OUTCOMES, AND WHAT EACH ONE IS:**
+    · **case agrees with the source, build matches** → a real pass.
+    · **case agrees with the source, build differs** → a real defect; ask to file it.
+    · **CASE DISAGREES WITH THE SOURCE, build matches the CASE** → **FALSE PASS. The case is the
+      defect.** Do not record the pass as evidence of anything. Ask permission to correct the case.
+    · **CASE DISAGREES WITH THE SOURCE, build matches the SOURCE** → **FALSE DEFECT waiting to be
+      filed.** The product is right. Ask permission to correct the case; never raise a ticket.
+    **HOW TO DO THIS WITHOUT COLLIDING WITH RULE 81** (source verification is offered and gated — never
+    pull sources on your own initiative): **read the governing source ONCE per pass, with his go-ahead,
+    and reconcile every case in the pass against that single live read.** Record the page id, version
+    and read date once, in the pass's own folder, and cite it per case. It is one gated fetch for the
+    pass, not one per case — and a pass that has not been given that go-ahead reconciles against
+    nothing and says so, rather than reconciling against memory.
+    **WHERE THE RECONCILIATION LIVES:** `build/<project>/source-verify-<date>/`, as Rule 106 already
+    required for defects. A pass-wide reconciliation is one file listing every case checked, the source
+    quote it was checked against, and which of the four outcomes it fell into.
+
     **THE THREE-WAY CHECK, MANDATORY BEFORE ANY DEFECT IS PUT TO HIM:**
     **(1) THE CASE** — what the test's Expected Result asserts, read from TestRail live.
     **(2) THE SOURCE** — what the governing document says **TODAY**, fetched live this pass and quoted

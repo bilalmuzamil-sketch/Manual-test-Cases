@@ -2429,3 +2429,33 @@ suite is all one kind and it is not.
 > **When two different truths can be applied to the same pile of work, the question is never "which
 > one is right" — it is "what tells me, per item, which applies".** If the answer is the folder it
 > sits in, it will be wrong the first time the folder holds both.
+
+### L0123 — a false PASS is worse than a false defect, and only a pre-check catches it
+Rule 106 made me reconcile a case against its source **before proposing a defect**. The QA lead
+extended it on 2026-09-15 to **before judging any case at all**, and the reason is sharper than the
+original rule:
+
+**The defect-time trigger only fires when the product fails.** If a case's Expected disagrees with
+the specification, and the build happens to match the *case*, the case **passes**. It is written up
+as verified, the run goes green, and nobody ever looks again.
+
+That is a false pass manufactured by our own test — and it is worse than a false defect. A false
+defect lands on a developer's desk and gets argued with the same day. **A false pass is believed for
+ever**, and it is believed specifically about the thing nobody will re-check.
+
+Four outcomes, and two of them are ours:
+
+| Case vs source | Build matches | What it really is |
+|---|---|---|
+| agree | source | real pass |
+| agree | neither | real defect |
+| **disagree** | **the case** | **false pass — the case is the defect** |
+| **disagree** | **the source** | **false defect about to be filed — the product is right** |
+
+The practical trick that makes it affordable, and that stops it colliding with Rule 81 (never pull
+sources unasked): **one gated source read per pass**, then reconcile every case against that single
+live read. Not one fetch per case. And a pass without that go-ahead reconciles against *nothing* and
+says so — never against memory or a committed extract.
+
+> **Check the claim before you use it to judge anything — including when the product agrees with it.**
+> Agreement between a test and a build is only evidence if the test was right to begin with.
