@@ -2593,3 +2593,40 @@ causes, and all three have to be fixed or the picture is still small:
 media node's width and height are the file's own.
 
 Tool that does all four: `build/global-search/tickets-2026-09-14/rewrite_to_standard.py`.
+
+## L0131 — A report that no longer reproduces is KEPT, corrected and left for the QA lead to pass — never closed by us (2026-09-15)
+
+**His ruling, verbatim:** *"Any ticket which is not reproducible now should still and so its test case.
+2cause the yest cases are reusables and the ticket needs to be marked as QA passed (do it only when I
+say) But before that we need to make thise tickets correct. If we can not replicate an issue to take
+its screenshot the. You can use the old screenahot of V2 and new wcreenshot of V1 amd then add the New
+screenshot on the Ticket comment saying -> QA Status Passed"*
+
+**What I had done wrong.** Six reports did not reproduce, so I commented on each and closed them to
+OBSOLETE. That throws away the pairing between a report and the check that covers it — and the checks
+are re-run on every build, so the report is the thing the next run's result is read against.
+
+**The standing shape, from now on:**
+1. **Never close it.** Re-open anything already closed (transition `26 Reopen -> Open`).
+2. **Correct it first** — the same approved layout as a live report.
+3. **The picture is a BEFORE and AFTER, not a V1-versus-V2 comparison.** The fault as it was reported
+   goes on top (the archived screenshot; the original attachments are the evidence and **must not be
+   deleted**), and the same search today goes underneath. `compose_compare.py --top-mark bad
+   --bottom-mark good` paints it that way round.
+4. **Post the current screenshot as a comment headed `QA Status Passed`**, embedded inline through
+   wiki markup on `POST /rest/api/2/issue/<KEY>/comment`.
+5. **Do NOT move the status.** He marks it passed himself, when he says so.
+6. **The test case stays in the run.** It is re-usable and is worth running on the next build.
+
+**Two traps this pass walked into:**
+- **`clear_attachments()` deleted EVERYTHING.** On a report somebody else raised that means throwing
+  away their screen recording and their screenshots. It is now scoped to the one filename being
+  replaced (which is all the duplicate-name trap ever needed), and nothing else is touched.
+- **READ THE ORIGINAL SCREENSHOT BEFORE RE-TESTING.** SV-10014's words named the chassis number
+  `BAHUTYV09T63EV7NS`; its own picture showed `0ED823VK8BWL1Y0MP` typed into the box. I re-tested the
+  one the words named. **The evidence is the query, not the prose.** And SV-10015's picture disproved
+  my own closing note — the address WAS on the branch on 14 September; the data had simply been
+  rebuilt since, which is a different thing and had to be corrected on the record.
+
+**And check every test link against the run before publishing it** — two of the six carried a link to
+a test that is not in run 415 at all.

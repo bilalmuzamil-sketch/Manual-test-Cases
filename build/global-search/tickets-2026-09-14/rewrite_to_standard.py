@@ -92,9 +92,13 @@ def build(t, image_name, image_width):
               'h2. Sources', '', t['sources']]
     return '\n'.join(parts)
 
-def clear_attachments(key):
-    """An older picture with the same name is what the embed resolves to, so the ticket keeps
-    showing the first one uploaded however many times it is replaced. Clear them, then upload once."""
+def clear_attachments(key, only=None):
+    """An older picture with the SAME NAME is what the embed resolves to, so the ticket keeps showing
+    the first one uploaded however many times it is replaced. Clearing that name fixes it.
+
+    Clearing EVERYTHING does not: it also throws away evidence somebody else put there - a screen
+    recording, a picture from the person who raised it. Those are not ours to delete. So `only` names
+    the filenames to remove, and nothing else on the ticket is touched."""
     raw = sh(['bash', f'{REPO}/build/atlassian-login/jira.sh','GET', f'/rest/api/3/issue/{key}?fields=attachment'])
     try:
         d,_ = json.JSONDecoder().raw_decode(raw)
@@ -102,6 +106,8 @@ def clear_attachments(key):
         return 0
     n=0
     for a in d['fields'].get('attachment') or []:
+        if only is not None and a.get('filename') not in only:
+            continue
         out = sh(['bash', f'{REPO}/build/atlassian-login/jira.sh','DELETE', f"/rest/api/3/attachment/{a['id']}"])
         if '__HTTP:204' in out: n+=1
     return n
@@ -150,7 +156,7 @@ def main():
         print(f'--- {a.key} :: {t["title"]}')
         print(body)
         return
-    cleared = clear_attachments(a.key)
+    cleared = clear_attachments(a.key, only={t['image']})
     ok, why = attach(a.key, img)
     print(f'{a.key} old pictures cleared: {cleared} | new one attached: {ok}')
     okd, whyd = put_description(a.key, body)

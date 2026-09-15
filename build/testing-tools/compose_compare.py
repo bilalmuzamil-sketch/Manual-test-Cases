@@ -55,6 +55,10 @@ def main():
     ap.add_argument('--top-label',default='BEFORE  \u00b7  the live product, the version people use today')
     ap.add_argument('--bottom-label',default='AFTER  \u00b7  the new version on the test branch')
     ap.add_argument('--typed-label',default='Typed into the search box:')
+    # A picture does not always run good-on-top. A report being shown as fixed runs the other way:
+    # the fault above, the working version below. So each half says which it is.
+    ap.add_argument('--top-mark',default='good',choices=['good','bad'])
+    ap.add_argument('--bottom-mark',default='bad',choices=['good','bad'])
     a=ap.parse_args()
 
     a1=Image.open(a.v1).convert('RGB'); a2=Image.open(a.v2).convert('RGB')
@@ -99,12 +103,12 @@ def main():
         y+=4
         return y
 
-    y=section(a1,a.top_label,
-              '✔  '+a.v1_says, GREEN, y)
+    tm = (GREEN,'✔  ') if a.top_mark=='good' else (RED,'✖  ')
+    bm = (GREEN,'✔  ') if a.bottom_mark=='good' else (RED,'✖  ')
+    y=section(a1,a.top_label, tm[1]+a.v1_says, tm[0], y)
     y+=GAP
     d.line([(PAD,y-GAP//2),(W-PAD,y-GAP//2)],fill=LINE,width=1)
-    y=section(a2,a.bottom_label,
-              '✖  '+a.v2_says, RED, y)
+    y=section(a2,a.bottom_label, bm[1]+a.v2_says, bm[0], y)
 
     os.makedirs(os.path.dirname(a.out) or '.',exist_ok=True)
     img.save(a.out)
