@@ -82,7 +82,13 @@ def build(t, image_name, image_width):
     parts += [f'* {s}' for s in t['expected']]
     parts += ['', 'h2. Screenshots', '',
               f'!{image_name}|width={image_width}!', '',
-              t['shot_caption'], '', (GAINED if t.get('gained') else QUESTION), '', '----', '',
+              t['shot_caption'], '']
+    # the question for the Product Owner belongs on a ticket that compares the two versions.
+    # A plain fault inside the new version is not a question for anybody - asking "is losing this
+    # acceptable?" about it would be nonsense, so those tickets carry no block.
+    if not t.get('no_question'):
+        parts += ['', (GAINED if t.get('gained') else QUESTION)]
+    parts += ['', '----', '',
               'h2. Sources', '', t['sources']]
     return '\n'.join(parts)
 

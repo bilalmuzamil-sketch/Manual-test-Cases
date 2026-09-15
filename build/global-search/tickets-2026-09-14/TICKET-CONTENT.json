@@ -267,5 +267,53 @@
   ],
   "shot_caption": "The same contact job title typed into both versions. Above, the live product returns the company. Below, the new version returns nothing.",
   "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the job title Dispatch Supervisor returned the customer ZZAUTOTEST Bridgeport Hauling, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a customer or vendor by a contact's job title\" - https://shopview.testrail.io/index.php?/tests/view/2959369"
+ },
+ "SV-10001": {
+  "title": "Global Search: a part that is in the catalogue but has never been stocked cannot be found at all",
+  "image": "SV-10001.png",
+  "description": "Part numbers are searched - a part the shop holds in stock comes back the moment its number is typed. But a part that is only in the catalogue, one the shop has never stocked, cannot be found by its number, by its name, or by any word in it. That is the case every time somebody is asked for something new: they have the number off a supplier's list and no way to look it up. On the version people use today, every catalogue part was searchable whether or not it had ever been on a shelf.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K) and type ZZT-88-4412 - the number of a part the shop holds in stock. It comes back under Parts. This shows part numbers are searched and the box is working.",
+   "Clear the box and type ZZT-77-3300. That is the number of ZZAUTOTEST Airline Coupler Vernway, which is in the catalogue (Parts, then Catalog) but has never been stocked, so it is not on Parts, then Inventory.",
+   "Wait for the results and read the Parts group.",
+   "Clear the box once more and type Vernway - a word out of that same part's own name - and read the Parts group again."
+  ],
+  "current": [
+   "The catalogue part's number returns nothing at all. The panel reads \"No results for ZZT-77-3300\" and every group shows nought.",
+   "A word from the same part's name, Vernway, returns thirty results across four groups - and the Parts group is empty. So the part is reachable by no route at all.",
+   "The stocked part ZZT-88-4412 comes back in the same sitting, which is what makes this about catalogue parts rather than about part numbers."
+  ],
+  "expected": [
+   "A part in the catalogue is returned by its part number, and by a word from its name, whether or not the shop has ever stocked it.",
+   "This is what the version people use today does."
+  ],
+  "shot_caption": "The same catalogue part number typed into both versions. Above, the live product returns the part. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the part number ZZT-77-3300 returned ZZAUTOTEST Airline Coupler Vernway, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"A catalogue part that is not in inventory can still be found\" - https://shopview.testrail.io/index.php?/tests/view/2959367"
+ },
+ "SV-10061": {
+  "title": "Global Search: moving the mouse across the results changes which record Enter opens, and it stays changed",
+  "image": "SV-10061.png",
+  "no_question": true,
+  "description": "Type a word, press Enter, and one record opens. Do exactly the same again, but let the mouse pass over the list on its way somewhere else, and a different record opens - the one the pointer happened to cross. Nothing was clicked and nothing on screen says the target has moved. It stays moved after the pointer leaves the list, and it is still moved after the search is closed and opened again. Someone who types and presses Enter without looking down lands on a record they never chose.",
+  "steps": [
+   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Click the search box at the top of the screen (or press Ctrl and K) and type Truck. A long list appears.",
+   "Without moving the mouse at all, press Enter. Write down which record opened.",
+   "Go back, open the search box again and type Truck a second time.",
+   "This time move the mouse down over the list until the pointer is over the ninth row - do NOT click - and then move the mouse away to the side, so it is not over any row.",
+   "Press Enter, and compare which record opens with the one you wrote down."
+  ],
+  "current": [
+   "Without touching the mouse, Enter opened Desert Edge Truck Service & Repair.",
+   "After the pointer had crossed the list and moved away, Enter opened Henderson Mobile Truck Repair - the row the pointer passed over. Nobody clicked it.",
+   "The change sticks: the pointer is no longer over the list, and closing the search and opening it again on the same page leaves the same row as the one Enter will open."
+  ],
+  "expected": [
+   "What Enter opens is set by what the person typed and by the arrow keys, and only changes when the person chooses - by arrowing to a row or by clicking it.",
+   "A pointer passing over the list on its way elsewhere does not change it, and nothing carries over after the search is closed and opened again."
+  ],
+  "shot_caption": "The same word typed twice and Enter pressed both times. Above, the mouse was never touched. Below, the pointer had crossed the list and moved away - and a different record opens.",
+  "sources": "The panel says what drives it, in its own footer, read on the build on 15 September 2026: \"Arrow down and arrow up navigate, Enter selects, Escape closes.\" It names the arrow keys and Enter, and it does not name the mouse.\n\nBoth halves of the picture are the new version on the test branch, on the same day and the same page - this is not a difference between the two versions, it is the new version behaving two different ways on the same words.\n\nThe test that covers this, and its result on this run: \"Pressing Enter opens the top result without arrowing to it\" - https://shopview.testrail.io/index.php?/tests/view/2980695"
  }
 }

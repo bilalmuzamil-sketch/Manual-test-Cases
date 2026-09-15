@@ -52,6 +52,9 @@ def main():
     ap.add_argument('--v1-says',default='the record comes back')
     ap.add_argument('--v2-says',default='nothing comes back')
     ap.add_argument('--caption',default='')
+    ap.add_argument('--top-label',default='BEFORE  \u00b7  the live product, the version people use today')
+    ap.add_argument('--bottom-label',default='AFTER  \u00b7  the new version on the test branch')
+    ap.add_argument('--typed-label',default='Typed into the search box:')
     a=ap.parse_args()
 
     a1=Image.open(a.v1).convert('RGB'); a2=Image.open(a.v2).convert('RGB')
@@ -66,10 +69,13 @@ def main():
     fh=font(15,True); fs=font(13); fc=font(12)
     probe=Image.new('RGB',(10,10)); d0=ImageDraw.Draw(probe)
     cap_lines=wrap(d0,a.caption,fh,W-PAD*2) if a.caption else []
-    typed_line=f'Typed into the search box:  {a.typed}'
+    typed_line=f'{a.typed_label}  {a.typed}'
     h_head=PAD + (len(cap_lines)*20 if cap_lines else 0) + 22 + 10
-    h_sec1 = 24 + a1.height + 24
-    h_sec2 = 24 + a2.height + 24
+    def sect_h(im, label, says):
+        return (len(wrap(d0,label,fh,W-PAD*2))*20 + 2 + im.height + 6
+                + len(wrap(d0,'X  '+says,fc,W-PAD*2))*16 + 4)
+    h_sec1 = sect_h(a1, a.top_label, a.v1_says)
+    h_sec2 = sect_h(a2, a.bottom_label, a.v2_says)
     H=h_head + h_sec1 + GAP + h_sec2 + PAD
 
     img=Image.new('RGB',(W,H),PAPER); d=ImageDraw.Draw(img)
@@ -80,18 +86,24 @@ def main():
     d.line([(PAD,y),(W-PAD,y)],fill=LINE,width=1); y+=10
 
     def section(im, label, says, colour, y):
-        d.text((PAD,y),label,font=fh,fill=colour); y+=22
+        # wrap, because a label or a caption that runs off the edge is exactly the unreadable
+        # picture this tool exists to stop
+        for ln in wrap(d,label,fh,W-PAD*2):
+            d.text((PAD,y),ln,font=fh,fill=colour); y+=20
+        y+=2
         img.paste(im,(PAD,y))
         d.rectangle([PAD-2,y-2,PAD+im.width+1,y+im.height+1],outline=colour,width=2)
         y+=im.height+6
-        d.text((PAD,y),says,font=fc,fill=colour); y+=20
+        for ln in wrap(d,says,fc,W-PAD*2):
+            d.text((PAD,y),ln,font=fc,fill=colour); y+=16
+        y+=4
         return y
 
-    y=section(a1,'BEFORE  ·  the live product, the version people use today',
+    y=section(a1,a.top_label,
               '✔  '+a.v1_says, GREEN, y)
     y+=GAP
     d.line([(PAD,y-GAP//2),(W-PAD,y-GAP//2)],fill=LINE,width=1)
-    y=section(a2,'AFTER  ·  the new version on the test branch',
+    y=section(a2,a.bottom_label,
               '✖  '+a.v2_says, RED, y)
 
     os.makedirs(os.path.dirname(a.out) or '.',exist_ok=True)
