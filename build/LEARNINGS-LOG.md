@@ -2285,3 +2285,33 @@ confident false negative into an honest "this run proved nothing".
 
 > Same family as L0104 and L0109: **a step that could not run must say so, not return the value it
 > would have returned had it run and found nothing.**
+
+### L0117 — THE POINTER IS PART OF THE INSTRUMENT: a mouse left where it clicked keeps hovering
+Twice in one day I described a product fault that was my own cursor. The script clicked a result row
+with `page.mouse`, then **left the pointer sitting at those coordinates**. The search panel reopens
+in the same screen position, so the pointer was still hovering whatever now occupied that spot — and
+the app marks a hovered row. I read that mark, called it "the app highlights the eighth row by
+itself", and filed it. With the pointer parked in a corner, a fresh word on a 41-row list selects
+**row 1**. The product was right both times.
+
+Worse, the artefact was *stable*: it reproduced on every run, across fresh browser launches, on
+different queries. It had every surface property of a real finding.
+
+Three rules came out of it, and all three are cheap:
+
+1. **Park the pointer before every reading**, somewhere that cannot be over the thing being measured
+   — and **verify it** with `document.elementFromPoint`, never assume `mouse.move` put it where you
+   think. A parked pointer is as much a precondition as being signed in.
+2. **Never read state at the coordinates you just clicked.** Move away first, then read.
+3. **Do not conflate hover, active and focused into one flag.** My reader tested
+   `/active|selected|highlight/` in a single regex and called the result "highlighted". That one
+   sloppy regex is why a hover artefact and a real keyboard-focus behaviour were indistinguishable
+   in every output I produced. They are different states with different causes; read them apart.
+
+> **Anything the harness does to the page is a variable in the experiment** — the pointer position,
+> the viewport size, the scroll offset, the focused element, the query it typed last. If a reading
+> depends on one of them, control it and record it. "I clicked and then looked" is not an
+> observation of the product; it is an observation of the product *plus my cursor*.
+
+Companion to L0110 (a synthetic click is not a click) and L0115 (a replay is not a repeat): the same
+lesson from three sides — **the instrument has to be characterised before the thing it measures.**
