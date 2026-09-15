@@ -3,10 +3,12 @@
   "run": 415,
   "suite": "Global Search V2 - V1 regression set (section 6769)",
   "environment": "QA branch sv9160",
-  "date": "14 September 2026",
+  "date": "15 September 2026",
   "scope": "the 62 regression-flagged cases in run 415",
   "how_judged": "Every verdict is read from the RENDERED ROWS, using the app's own result-row test ids, with the tab strip's counts, the modal's own result-count line and the /api/search response the page was rendered from all required to agree. Zeros are checked against the seed manifest so a missing record is never reported as a product fault.",
-  "_note": "DRAFT - cases still being observed carry no entry yet. make_results.py refuses to emit while any executed case is unjudged."
+  "build": "v26.36.4-7869ff2",
+  "po_ruling": "The ten open Product Owner questions were answered on 15 September 2026 (Global-Search-questions-ANSWERED-from-V1-2026-09-15.xlsx), every row YES - it should still work, log it as a fault. Eleven cases move from Blocked to Failed as a result.",
+  "source_reconciliation": "build/global-search/source-verify-2026-09-15/RECONCILIATION.md"
  },
  "results": {
   "C45155": {
@@ -96,33 +98,41 @@
    "not_observed": null
   },
   "C53603": {
-   "verdict": "Blocked",
-   "observed": "Typing the contact's job title returned nothing. The contact does exist on the customer and does carry that exact job title, so the record is there and the search does not reach it.",
+   "verdict": "Failed",
+   "observed": "Typing the contact's job title returned nothing. The contact does exist on the customer and does carry that exact job title, so the record is there and the search does not reach it. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to hold this for the Product Owner: the new specification lists a contact's name, phone and email as searchable but not their job title, so this may be a deliberate decision.",
+   "technical": "contact job title 'Dispatch Supervisor' -> 0; the contact name -> company returned.",
+   "ticket": "Logged as SV-10004 - \"a customer or supplier cannot be found by a contact's job title\": https://shopview.atlassian.net/browse/SV-10004",
    "not_observed": null
   },
   "C53601": {
-   "verdict": "Blocked",
-   "observed": "Neither the part's own number nor a word from its name returned the catalogue part. It is a part that has never been stocked, and it cannot be found at all.",
+   "verdict": "Failed",
+   "observed": "Neither the part's own number nor a word from its name returned the catalogue part. It is a part that has never been stocked, and it cannot be found at all. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to hold this for the Product Owner rather than treat it as a fault. It is the change a customer is most likely to notice, because in the previous version every catalogue part could be searched whether or not it had ever been in stock.",
+   "technical": "catalogue-only part ZZT-77-3300: part number -> 0, a word from its name -> 0. Stocked part ZZT-88-4412 -> returned. Spec v1.5 section 5.3 routes a Part row to the INVENTORY part, which is the V2 change this case exists to flag.",
+   "ticket": "Logged as SV-10001 - \"a catalogue part cannot be found by its part number\": https://shopview.atlassian.net/browse/SV-10001",
    "not_observed": null
   },
   "C55658": {
-   "verdict": "Blocked",
-   "observed": "Typing a job status did not return the jobs in that status. Typing 'Estimate' returned one job that is marked Paid, matched on other words on the record, and typing a two-word status run together returned nothing.",
+   "verdict": "Failed",
+   "observed": "Typing a job status did not return the jobs in that status. Typing 'Estimate' returned one job that is marked Paid, matched on other words on the record, and typing a two-word status run together returned nothing. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to mark this held and flag it: being able to type a status was how a dispatcher pulled up all the estimates, so the Product Owner needs to decide whether that should come back.",
+   "technical": "status words typed as one word and as two: 'Estimate' -> 1 job matching the word elsewhere, not a status filter. Spec v1.5 section 4 states status is stored for ranking and badges and is deliberately NOT matchable - the V1 capability is what is lost.",
+   "ticket": "Logged as SV-10008 - \"jobs can no longer be found by typing their status\": https://shopview.atlassian.net/browse/SV-10008",
    "not_observed": null
   },
   "C55660": {
-   "verdict": "Blocked",
-   "observed": "A fragment from the middle of the city name returned nothing, while fragments from the middle of the company name and of the address both found the customer. So mid-word matching works in some places and not others.",
+   "verdict": "Failed",
+   "observed": "A fragment from the middle of the city name returned nothing, while fragments from the middle of the company name and of the address both found the customer. So mid-word matching works in some places and not others. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to mark this held and flag it. The Product Owner needs to decide whether typing a fragment from the middle of any word should find the record, as it did in the previous version.",
+   "technical": "mid-word fragment of the company name -> customer returned; mid-word fragment of the town on the same record -> 0. Both fields indexed per spec v1.5 section 4. Decide with SV-10025, which asks for fuzzy matching to be TIGHTENED - opposite direction.",
+   "ticket": "Logged as SV-10060 - \"a fragment from the middle of a word finds the record in some fields but not others\": https://shopview.atlassian.net/browse/SV-10060",
    "not_observed": null
   },
   "C55665": {
-   "verdict": "Blocked",
-   "observed": "No part sale exists to search for. Part sales cannot be created on this branch at present, so the check could not be carried out.",
-   "todo": "A part sale needs to be creatable on this branch before this can be run. Once one exists, search the customer's name and look under the Part sales heading.",
+   "verdict": "Passed",
+   "observed": "A part sale was created for 'ZZAUTOTEST Bridgeport Hauling' - the customer this case names - and the customer's name was then typed into search. The part sale came back under Part sales, along with a second one for the same customer: 'P9160-254 ZZAUTOTEST Bridgeport Hauling Estimate' and 'P9160-253 ZZAUTOTEST Bridgeport Hauling Estimate'. Finding a part sale by its customer's name works. This was also confirmed a second time with a different customer, '4 Star Truck Repair', which returned its two part sales the same way.",
+   "technical": "'Bridgeport' -> part_sales 2: P9160-254 and P9160-253, both ZZAUTOTEST Bridgeport Hauling. Part sale created for that customer this run (SV-10031 fix confirmed). Cross-checked with '4 Star Truck Repair' -> part_sales 4.",
    "not_observed": null
   },
   "C55666": {
@@ -166,27 +176,35 @@
    "not_observed": "The record was created through the back end rather than through the screen, so the part of the check about it appearing in the recently-viewed list was not exercised fairly and is not being claimed either way."
   },
   "C55669": {
-   "verdict": "Blocked",
-   "observed": "The full chassis number returned the vehicle. The last six characters of it returned nothing. Someone reading the short code off a windscreen plate cannot find the vehicle.",
+   "verdict": "Failed",
+   "observed": "The full chassis number returned the vehicle. The last six characters of it returned nothing. Someone reading the short code off a windscreen plate cannot find the vehicle. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to hold this for the Product Owner rather than treat it as a fault: matching part of a chassis number was possible in the previous version. Also worth telling him the case is now out of date - it was written expecting the opposite problem, the whole number failing and the front part working, and the behaviour has since changed.",
+   "technical": "full VIN -> asset returned; last 6 characters -> 0 of any type. NOTE spec v1.5 section 7 'What is not fuzzy' REQUIRES exact match on VIN, so this ticket reverses a written decision on the QA lead's ruling - stated on SV-10058.",
+   "ticket": "Logged as SV-10058 - \"part of a chassis number no longer finds the vehicle\": https://shopview.atlassian.net/browse/SV-10058",
    "not_observed": null
   },
   "C45153": {
    "verdict": "Blocked",
-   "observed": "Every kind of record that could be tested opened the right page: a job opened that job, a customer opened that customer's jobs, a vehicle opened that vehicle's jobs under the right owner, a supplier opened the supplier, and a part opened the stock list for that part. The two that matter most to this case could not be tested - the catalogue-only part cannot be found at all, so there is no row to click, and no part sale exists to click either.",
-   "todo": "This needs the catalogue-only part to be findable and a part sale to exist. The catalogue part is the whole point of the case: the previous version opened the catalogue page, and the case exists to check the new version opens something a person can actually use.",
+   "observed": "Six of the seven record types opened the right page: a job opened that job, a customer opened that customer's jobs, a vehicle opened that vehicle's jobs under the right owner, a supplier opened the supplier, a part opened the stock list for that part, and a PART SALE opened that part sale - a part sale was created for 'ZZAUTOTEST Bridgeport Hauling', found by the customer's name, clicked, and the page that opened was that same part sale. The one type that could not be tested is the one this case exists for: the catalogue-only part cannot be found at all, so there is no row to click. The Product Owner question about the catalogue-only part was answered on 15 September 2026: yes, it should still be findable. It is logged as SV-10001. This case stays Blocked because the case itself says to mark it Blocked when the catalogue part cannot be found, and because there is still no row to click until that is fixed.",
+   "todo": "This needs the catalogue-only part to be findable. That is the whole point of the case: the previous version opened the catalogue page, and the case exists to check the new version opens something a person can actually use. The case itself says to mark it Blocked and send it to the Product Owner with the catalogue-part question as one decision, which is what has been done.",
+   "technical": "six of seven types opened correctly: work order, customer, asset (right owning customer), vendor, stocked part, and part sale -> /parts/part-sale/f3ba0cab-7de1-4a24-8345-15233b450207/part-requests. Catalogue-only part ZZT-77-3300 returns no row to click.",
+   "ticket": "Logged as SV-10001 - \"a catalogue part cannot be found by its part number\": https://shopview.atlassian.net/browse/SV-10001",
    "not_observed": null
   },
   "C53582": {
-   "verdict": "Blocked",
-   "observed": "Searching the street, the town and the state each returned the customer. Searching its postcode returned nothing at all, although the customer's record does hold that postcode.",
+   "verdict": "Failed",
+   "observed": "Searching the street, the town and the state each returned the customer. Searching its postcode returned nothing at all, although the customer's record does hold that postcode. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to hold a postcode miss rather than treat it as a fault: the postcode worked in the previous version but is not in the new specification's list, so the Product Owner needs to decide whether searching by postcode should still work. Worth knowing that the town and the state DO work, so this is specific to the postcode.",
+   "technical": "customer postcode 44872-9931 -> 0; street, town and state each -> customer returned (positive controls). Spec v1.5 section 4 does not list postcode for customers.",
+   "ticket": "Logged as SV-10002 - \"a customer cannot be found by their postal code\": https://shopview.atlassian.net/browse/SV-10002",
    "not_observed": null
   },
   "C53585": {
-   "verdict": "Blocked",
-   "observed": "Searching the street and the town each returned the supplier. Searching its postcode returned nothing, although the supplier's record does hold that postcode.",
+   "verdict": "Failed",
+   "observed": "Searching the street and the town each returned the supplier. Searching its postcode returned nothing, although the supplier's record does hold that postcode. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "Same decision as the customer postcode: it worked in the previous version and is not in the new specification's list, so the Product Owner needs to say whether it should still work.",
+   "technical": "supplier postcode 43055-2210 -> 0; street and town each -> supplier returned.",
+   "ticket": "Logged as SV-10005 - \"a supplier cannot be found by their postal code\": https://shopview.atlassian.net/browse/SV-10005",
    "not_observed": null
   },
   "C53604": {
@@ -195,15 +213,19 @@
    "not_observed": "The supplier half is being run separately: no supplier in the test data had a second address line, so a value had to be put on one first."
   },
   "C55662": {
-   "verdict": "Blocked",
-   "observed": "Searching the company's own phone number returned nothing, written out and as plain digits. Three things rule out the obvious explanations: the number was put onto the record and read back to confirm it; the county, saved in the very same change, IS now found by searching it, so the save worked and the search had caught up; and a SUPPLIER'S phone number, seeded the same way at the same time, IS found. So it is specifically a customer's own phone number that search does not look at.",
+   "verdict": "Failed",
+   "observed": "Searching the company's own phone number returned nothing, written out and as plain digits. Three things rule out the obvious explanations: the number was put onto the record and read back to confirm it; the county, saved in the very same change, IS now found by searching it, so the save worked and the search had caught up; and a SUPPLIER'S phone number, seeded the same way at the same time, IS found. So it is specifically a customer's own phone number that search does not look at. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to hold this and flag it. In the previous version a company could be found by its own switchboard number, separately from its contacts' numbers, so the Product Owner needs to decide whether that should come back.",
+   "technical": "customer ZZAUTOTEST Bridgeport Hauling telephone searched as displayed and as bare digits -> 0 results both ways. Vendor telephone -> vendor returned (positive control). Customer by name -> returned. Spec v1.5 section 4 indexes customer telephone digits-only normalised; section 7 requires bracket/dash stripping.",
+   "ticket": "Logged as SV-10057 - \"a customer cannot be found by its own telephone number\": https://shopview.atlassian.net/browse/SV-10057",
    "not_observed": null
   },
   "C53606": {
-   "verdict": "Blocked",
-   "observed": "Searching the state returned one supplier, but not the seeded one - it matched on a name that happens to contain the word. The seeded supplier's record does hold that state and it was not returned.",
+   "verdict": "Failed",
+   "observed": "Searching the state returned one supplier, but not the seeded one - it matched on a name that happens to contain the word. The seeded supplier's record does hold that state and it was not returned. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to hold this for the Product Owner: the new specification lists a supplier's name, phone, email, street and town as searchable, but not the state.",
+   "technical": "'Ohio' -> one supplier, matched on the NAME 'Ohioville', not the seeded Ohio-based supplier. A customer in Ohio IS returned by 'Ohio', so the two sides differ.",
+   "ticket": "Logged as SV-10006 - \"a supplier cannot be found by the state or province they are in\": https://shopview.atlassian.net/browse/SV-10006",
    "not_observed": null
   },
   "C55671": {
@@ -212,9 +234,11 @@
    "not_observed": null
   },
   "C53516": {
-   "verdict": "Blocked",
-   "observed": "Searching the vehicle's number plate returned nothing at all - not one result of any kind. The vehicle's record does hold that plate; it was read back off the record to be sure.",
+   "verdict": "Failed",
+   "observed": "Searching the vehicle's number plate returned nothing at all - not one result of any kind. The vehicle's record does hold that plate; it was read back off the record to be sure. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to hold this rather than treat it as a fault: the number plate was searchable in the previous version, and the new specification does not list it among the things a vehicle can be found by. The Product Owner needs to decide whether it should still work. Worth saying plainly what it costs if it does not - the plate is often the only thing written down when a vehicle is booked in.",
+   "technical": "licence plate OHZZT471 -> 0 results of any type; plate present on the asset record.",
+   "ticket": "Logged as SV-10007 - \"a vehicle cannot be found by its licence plate\": https://shopview.atlassian.net/browse/SV-10007",
    "not_observed": null
   },
   "C55674": {
@@ -233,9 +257,11 @@
    "not_observed": null
   },
   "C55679": {
-   "verdict": "Blocked",
-   "observed": "With the box empty, twenty recently-viewed items were listed - so the list is there and working. After typing a reference that matches nothing, the panel showed only the message 'No results for ZZNOSUCHRECORD9999' and the recently-viewed items did not come back. A fruitless search leaves you at a dead end with nothing to click.",
+   "verdict": "Failed",
+   "observed": "With the box empty, twenty recently-viewed items were listed - so the list is there and working. After typing a reference that matches nothing, the panel showed only the message 'No results for ZZNOSUCHRECORD9999' and the recently-viewed items did not come back. A fruitless search leaves you at a dead end with nothing to click. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
    "todo": "The case says to record this and hold it for the Product Owner, not to treat it as a fault and not to pass it just because the new specification allows the new behaviour. He needs to decide whether the recently-viewed list should come back when a search finds nothing, as it did before.",
+   "technical": "empty box -> 20 recently-viewed rows; query 'zzzqqqxxx' -> no-results message, 0 rows. NOTE spec v1.5 section 5.2 says 'Nothing else' for the no-results state, so this ticket also reverses a written decision - stated on SV-10059.",
+   "ticket": "Logged as SV-10059 - \"the recently viewed list does not come back after a search that finds nothing\": https://shopview.atlassian.net/browse/SV-10059",
    "not_observed": null
   },
   "C53589": {
@@ -274,13 +300,17 @@
    "verdict": "Failed",
    "observed": "Typing the year and the make together - '2019 Freightliner', the most natural way anyone would look for a vehicle - returned no vehicles at all. Taken apart, each piece works: the year on its own returns twenty vehicles, the make on its own returns twenty, and the make with the model returns twenty including ours. It is only when the YEAR is combined with another word that everything disappears: '2019 Freightliner', 'Cascadia 2019' and '2019 Cascadia' all return nothing, in either order. The vehicle's record carries the right year, make and model - that was checked and corrected first - and searching its model does find it, so the search is up to date.",
    "todo": "Searching a vehicle by its year together with the make or model needs to work. Both the old product and the written requirements say the year is one of the things a vehicle can be found by, so this is not a decision anyone needs to make - it is simply not working. The useful detail for whoever fixes it: the year on its own is fine, so the year is being recorded; it is combining the year with any second word that empties the results.",
+   "technical": "query '2019 Freightliner' -> assets 0; '2019' -> 20; 'Freightliner' -> 20; 'Freightliner Cascadia' -> 20 incl. ZZT-4471 (2019 Freightliner Cascadia). '2019 Cascadia' and 'Cascadia 2019' also 0. Asset year/make/model verified on the record before the run. Spec v1.5 section 4 indexes asset year.",
+   "ticket": "Logged as SV-10055 - \"a vehicle cannot be found by its year together with its make or model\": https://shopview.atlassian.net/browse/SV-10055",
    "not_observed": null
   },
   "C53587": {
    "verdict": "Failed",
-   "observed": "A new job was created and then searched for by its number, over and over, without reloading or signing out. It did not come back until about 85 seconds had passed. The requirement allows 30. The method is not in doubt: a new CUSTOMER, created and timed exactly the same way in the same session, came back after 17 seconds - so the clock and the search can both see a record inside the allowed window when there is one to see.",
-   "todo": "A newly created job needs to be findable within 30 seconds, as the requirement says and as a new customer already manages. Useful detail for whoever looks: customers appear quickly and jobs do not, so the two are not being refreshed the same way. The other two flows in this case still need running once part sales can be created here.",
-   "not_observed": "Two of the three flows in this case were not run. A part sale cannot be created on this branch at all, and receiving a part through an order was not exercised. Only the new-job flow was timed."
+   "observed": "A new job was created and then searched for by its number, over and over, without reloading or signing out. It did not come back until about 85 seconds had passed. The requirement allows 30. The method is not in doubt, and two separate controls prove it: a new CUSTOMER, created and timed exactly the same way in the same session, came back after 17 seconds; and a new PART SALE for 'ZZAUTOTEST Bridgeport Hauling', created and timed the same way, came back after 9 seconds. So the clock and the search can both see a brand new record well inside the allowed window - jobs are the one kind that cannot.",
+   "todo": "A newly created job needs to be findable within 30 seconds, as the requirement says and as a new part sale and a new customer both already manage. Useful detail for whoever looks: part sales and customers appear within seconds and jobs do not, so jobs are not being refreshed the same way as the rest. The receive-a-part flow still needs running once.",
+   "technical": "new work order: findable at ~85s, first hit poll 85s, requirement 30s (spec v1.5 section 9). Controls in the same session: new customer 17s, new part sale P9160-254 9s. No reload, no re-auth between polls.",
+   "ticket": "Logged as SV-10056 - \"a newly created job is not findable for about 85 seconds\": https://shopview.atlassian.net/browse/SV-10056",
+   "not_observed": "One of the three flows in this case was not run: receiving a part through Receive Order was not exercised. The new-job flow and the new-part-sale flow were both timed."
   },
   "C45144": {
    "verdict": "Passed",
@@ -300,6 +330,7 @@
   "C45151": {
    "verdict": "Passed",
    "observed": "The same search at two locations, one after the other. Jobs: 8 at the first location, none at the second - so jobs really are limited to where you are. Customers: 7 at both. Vehicles: 1 at both - identical, so those are not limited by location, which is what this case requires. The screen was confirmed to have actually moved between the two, by the location name at the top of the page.",
+   "technical": "one word, both locations, screen-driven switch verified by the location name in the profile menu. Heavy Duty vs Lethbridge.",
    "not_observed": "Suppliers and parts did not match the word used, so those two were not shown either way and nothing is claimed about them. Part sales could not be checked at all - none can be created on this branch at present."
   },
   "C45148": {

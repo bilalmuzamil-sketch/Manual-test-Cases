@@ -2185,3 +2185,77 @@ nothing.**
 > **Settle on the thing you are going to READ, not on a neighbouring thing that happens to be ready
 > first.** If the verdict rests on per-type counts, the per-type counts are what must be present —
 > a total, a spinner disappearing, or a container existing are all proxies, and proxies settle early.
+
+### L0110 — Quasar's select opens on **mousedown**, so `element.click()` from `page.evaluate` never opens it
+I reported for four runs that a staff member's role could not be changed because the Location list
+"offers none". The QA lead sent a screenshot of the same dialog with **both locations listed**.
+
+The dropdown was never opening. `element.click()` dispatches a bare `click` event; Quasar's `QSelect`
+opens its popup on **`mousedown`/focus**, which that event does not produce. The field looked clicked
+— no error, no exception — and the option list was genuinely empty because there was no list.
+
+Driving the same field with `page.mouse.move` → `down` → `up` opened it first time, showed all eleven
+roles and both locations, and the save went through with no error.
+
+> **A synthetic `.click()` is not a click.** For any component library that listens on `mousedown`,
+> `pointerdown` or focus — Quasar, Vuetify, MUI menus — drive it with real mouse events. "The control
+> did nothing" is the expected symptom of the wrong event, not evidence about the control.
+
+### L0111 — the table BEHIND a dialog is itself `.q-item` rows, so an unscoped option selector reads it as the dropdown
+Second fault stacked on the first, and far more dangerous because it reports **success**. After
+fixing the click, the option reader returned **65 "options"** — every one a row of the staff table
+behind the dialog, because that table is a `q-virtual-scroll` of `.q-item`s and my selector was
+`.q-menu .q-item, [role=option], .q-virtual-scroll__content > *` with the last term unscoped. The
+script then "picked an option" by **clicking a person in the table**, and logged `picked: true`.
+
+A count is not a check. Eleven roles read as eleven named strings is a check; sixty-five reads as
+"that is the wrong list" the moment you print what is in it.
+
+> **Read options from the POPUP the click opened — the last `.q-menu` — never from the document.**
+> And always log the option TEXT, not just how many there were: the wrong list is obvious by its
+> contents and invisible by its length.
+
+### L0112 — a ruling supersedes a case's "Blocked until the Product Owner has ruled", and the gate has to know that
+Eleven cases carry, in their own Expected, "mark the test Blocked … do not raise a defect until the
+Product Owner has ruled". Once he ruled, Failed became the correct verdict — and `grading_rules.py`
+flagged all eleven as contradicting the case, because it was coded from the case text alone.
+
+The fix was not to ignore the gate. It now recognises the pattern "Blocked **until** a ruling" and
+passes the verdict **only if** the verdict text names the ruling *and* carries a ticket link;
+otherwise it still fails. It also prints that the case WORDING is now out of date.
+
+> **A gate coded from a document goes stale with the document.** Teach it what evidence lets the
+> instruction be superseded, and make it demand that evidence — never switch it off.
+
+### L0113 — before filing, search for ADJACENT tickets, not just duplicates
+Checking for duplicates found none. Checking the same list for *neighbours* found **SV-10025**, which
+asks for the search's typo-tolerance to be made **stricter** — the exact opposite of the ticket I was
+about to file asking for mid-word matching to be more consistent. Filing both without a word between
+them would have handed engineering two tickets that undo each other.
+
+Both now say to decide them together. Same pass: SV-3259, closed years ago, is the old form of the
+new-job-not-findable complaint, so that ticket says plainly how it differs.
+
+> **"Is this a duplicate?" is the weak version of the question.** The useful one is "what else is
+> already open that this pulls against, or that someone will think this is?"
+
+### L0114 — a loose option match picks the WRONG option, and "saved with no error" hides it
+Asking the staff editor for the role **"Service Advisor"** set **"Senior Service Advisor"**. The
+option list is alphabetical, Senior sits above Service, and `includes('Service Advisor')` matches it.
+Asking for **"Technician"** set **"Parts Technician"** for the same reason. The save succeeded both
+times with no error and the script logged `set role: saved`.
+
+Worse, the RESTORE step used the same matcher, so a run that ended "restored to Technician: yes" had
+actually left the person on Parts Technician. The claim was checked against the dialog (closed, no
+error) rather than against the row.
+
+Two fixes, and both were needed:
+
+1. **Exact option text first**, substring only as a fallback for options carrying a tick or a count.
+2. **Read the result back off the row** — and read it carefully. This person's JOB TITLE is
+   "Heavy Duty Field Technician", so the word Technician is in the row whatever the role is. The
+   honest read is: find every KNOWN ROLE NAME present in the row and take the **longest**.
+
+> **A write is verified by reading back the VALUE, never by the absence of an error.** And when the
+> value is a name from a known set, match the whole name and prefer the longest match — substrings of
+> real names are real names.
