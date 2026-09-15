@@ -80,6 +80,18 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
    2026-07-23 extension above, which he had to repeat because the run was being left off; a case
    link with no run makes him hunt for the result. Under Rule 103 the ids and links live after the
    `---REFERENCE---` line and never carry the meaning — but they are never omitted.
+   **🛑 RE-ASKED A THIRD TIME, 2026-09-15 (QA lead, verbatim): "you are giving me the link/number
+   of test cases whereas you should be ALWAYS giving me the test case RUN link and number with the
+   test case number."** He has now had to say this three times — 2026-07-23, 2026-09-10 and today —
+   which means remembering it has failed as a mechanism. **A case link on its own is the failure
+   mode: it opens the case, not the result, so he has to go and find the run himself.**
+   **USE THE COMMAND, DO NOT RECALL THE RULE:**
+   `python3 build/testing-tools/case_ref.py --run <run> C##### C#####` — or `--all`, or
+   `--all --status failed` — emits the C-id, the status, the title and the `/tests/view/<test_id>`
+   link that opens ON THE RESULT, with the run named above it. A case not in the run is reported as
+   such rather than silently downgraded to a case link.
+   **Reference lines are GENERATED from now on, not typed.**
+
    The active runs for the two current suites: **Inline Add and Edit Parts = run 418**
    (`https://shopview.testrail.io/index.php?/runs/view/418`) · **Printer Friendly Work Orders =
    run 419** (`https://shopview.testrail.io/index.php?/runs/view/419`).

@@ -2356,3 +2356,22 @@ delete it for tidiness.
 built on our own measurement artefact. That IS withdrawn, with an explanation, because QA Complete
 would assert something was fixed when nothing was broken. Today produced one of each, and the
 difference is invisible from the ticket: only our own evidence says which it is.
+
+### L0120 — when a rule has to be repeated three times, the fix is a command, not better recall
+Rule 8 says a case number never travels alone: C-id, and the link that opens THE RESULT, and the
+run. The QA lead asked on 2026-07-23, amended it on 2026-09-10, and had to say it again today:
+*"you are giving me the link/number of test cases whereas you should be ALWAYS giving me the test
+case RUN link and number with the test case number."*
+
+Three asks on one subject is not a memory problem to try harder at. It is a missing tool. Every time
+I produced a reference line I typed it by hand from what I had to hand — which was the case id — and
+`/cases/view/<id>` is the thing you reach for when you are typing from memory. It opens the case, not
+the result, so he lands on the test and still has to hunt for the run.
+
+`build/testing-tools/case_ref.py --run 415 --all --status failed` now emits the right line, with the
+`/tests/view/<test_id>` link that opens on the result, and says so out loud when a case is not in the
+run rather than quietly falling back.
+
+> **A rule you have broken twice is not a rule you need to remember harder — it is a step that
+> should not depend on remembering.** Put it in a command, and the next session inherits it instead
+> of repeating me.
