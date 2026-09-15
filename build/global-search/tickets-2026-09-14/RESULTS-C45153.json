@@ -1,0 +1,21 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "C45153, whose two remaining halves could not be judged on 14 September",
+  "how_judged": "The part sale half became testable once part sales could be created again. The catalogue-only part was re-checked on today's build alongside a stocked part in the same minute, so the zero is read against a non-zero from the same search box.",
+  "build": "v26.36.4-7869ff2"
+ },
+ "results": {
+  "C45153": {
+   "verdict": "Failed",
+   "observed": "Five of the six kinds of result open the right record: a job opens the job, a customer opens that customer, a vehicle opens that vehicle under its owning customer, a supplier opens the supplier, and a part sale opens the part sale (P9160-252 opened the part sale page for 4 Star Truck Repair). A stocked part opens the parts list with that part number already filled into its search box. The one that fails is the point of the case: a part the shop has never stocked cannot be found at all. The catalogue part number returns nothing of any kind, and searching its supplier's name returns thirty records with not one part among them - while a stocked part typed into the same box a minute later comes straight back. In the previous version every catalogue part could be reached from search whether the shop had stocked it or not.",
+   "todo": "This needs fixing, and is logged. The Product Owner was asked on 15 September whether a never-stocked part should still be findable and answered yes, so the case is now a fault rather than a question.",
+   "technical": "Landing pages: work order -> /workorders/<id>/lines; customer -> /customers/<id>/work-orders; asset -> /customers/vehicle/<id>/work-orders?companyId=<owner>; vendor -> /parts/vendor/<id>/contacts; part sale -> /parts/part-sale/<id>/part-requests; stocked part ZZT-88-4412 -> /parts/inventory?search=ZZT-88-4412. Catalogue-only part ZZT-77-3300 -> 0 across every group; 'Vernway' -> 30 results, parts 0. Control: ZZT-88-4412 returned 1 part in the same session.",
+   "ticket": "Already logged as SV-10001 - a part that has never been stocked cannot be found: https://shopview.atlassian.net/browse/SV-10001",
+   "not_observed": null
+  }
+ }
+}

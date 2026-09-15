@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "suite": "Global Search V2 - V1 regression set",
+  "environment": "QA branch sv9160",
+  "date": "15 September 2026",
+  "scope": "the permission-gated cases that were Blocked for want of a suitable user",
+  "how_judged": "The subject's OWN permission list was read after switching to them, not the role form's read-back - the two disagreed earlier in the day, and only the subject's list says what the user can do. Every search carries a positive control: a query that must still return something for this user, so that an empty Work Orders group is distinguishable from an empty search.",
+  "build": "v26.36.4-7869ff2"
+ },
+ "results": {
+  "C45142": {
+   "verdict": "Passed",
+   "observed": "A user who can see work orders gets work-order results: typing 9160 returned twenty jobs and typing Bridgeport returned six. A user whose role does not include work-orders access gets none at all - the Work Orders group does not even appear for them - while their customers and vehicles come back exactly as before. Typing 9160 gave that user two customers and no jobs; typing Bridgeport gave seven customers and one vehicle and no jobs.",
+   "todo": null,
+   "technical": "User A: Clayton Stephens on Technician, six permissions including workOrdersView. User B: the same person moved to a purpose-built role holding ONE permission, customersView. Note for whoever repeats this: unchecking Work orders / View on a stock role does NOT remove workOrdersView (it swaps the technician view mode for the full one), and every stock role on this branch carries it - so User B has to be a role created from scratch. The role used is ZZAUTOTEST No Work Orders; Clayton was put back on Technician afterwards and the Technician role was restored control by control to its recorded baseline.",
+   "not_observed": null
+  }
+ }
+}

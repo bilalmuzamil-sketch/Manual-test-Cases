@@ -19,9 +19,13 @@ const MEASURE = process.env.MEASURE === '1';
 // to see. Without the control, 'this role sees nothing' is indistinguishable from 'the panel
 // did not finish drawing' (L0109), and a negative finding with no control is refused (Rule 104).
 const QUERIES = (process.env.QUERIES || 'Bridgeport').split('|');
+// The stock roles, plus any custom role this run is about. A role the list does not know is read
+// off the row as `null`, which then reports as "the role did not change" about a change that
+// worked -- so a custom role must be declared, not discovered.
 const KNOWN = ['Admin', 'Foreman', 'Office User', 'Parts Manager', 'Parts Technician',
                'Sales Representative', 'Senior Service Advisor', 'Service Advisor',
-               'Service Manager', 'Technician', 'Time Clock User'];
+               'Service Manager', 'Technician', 'Time Clock User',
+               ...(process.env.EXTRA_ROLES ? process.env.EXTRA_ROLES.split(',').map(s => s.trim()).filter(Boolean) : [])];
 
 const R = { at: new Date().toISOString(), subject: SUBJECT, wanted: ROLE };
 const save = () => fs.writeFileSync(`${DIR}/ROLE-SET-${ROLE.replace(/\W+/g, '-')}.json`,
@@ -281,7 +285,13 @@ if (MEASURE && R.ok) {
       const perms = Array.isArray(list) ? list : (list ? Object.values(list) : []);
       R.who = { status: fe.status, templateSlug: fd && (fd.template_slug || fd.templateSlug),
                 nPerms: perms.length, perms: perms.map(p => p.name || p).sort() };
-      if (R.who.templateSlug) {
+      // A CUSTOM ROLE HAS NO TEMPLATE SLUG. Requiring one meant the switch worked, the permission
+      // list came back with exactly the custom role's one permission -- and the measurement was
+      // skipped anyway, reported as "the server would not say who this session is". The proof that
+      // the session is the subject is the PERMISSION LIST, which is the thing being tested.
+      R.attributedBy = R.who.templateSlug ? 'the role template the server named'
+        : (fe.status === 200 ? 'the permission list the server returned for this session' : null);
+      if (R.attributedBy) {
         R.queries = {};
         for (const Q of QUERIES) {
           await page.goto('https://sv9160.qa.shopview.com/workorders', { waitUntil: 'domcontentloaded' }).catch(() => {});
@@ -317,7 +327,7 @@ if (MEASURE && R.ok) {
         }
         const m = R.queries[QUERIES[0]];
         R.modal = m;
-        L('as', R.who.templateSlug, '- can do', R.who.nPerms, 'things');
+        L('as', R.who.templateSlug || ROLE, '- can do', R.who.nPerms, 'things');
       } else {
         R.notRecorded = 'the server would not say who this session is, so nothing is attributed';
         L(R.notRecorded);

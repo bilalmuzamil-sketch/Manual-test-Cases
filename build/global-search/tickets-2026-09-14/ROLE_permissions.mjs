@@ -53,7 +53,7 @@ const openEditor = async () => {
 // ---- the reader: every control, tagged with the card it belongs to
 const READ = () => {
   const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
-  const cards = [...document.querySelectorAll('.permission-card__title')].filter(vis)
+  const cards = [...document.querySelectorAll('.permission-card__title,.parts-panel__title')].filter(vis)
     .map(e => ({ y: e.getBoundingClientRect().top,
                  name: (e.innerText || '').replace(/\s+/g, ' ').trim() }))
     .sort((a, b) => a.y - b.y);
@@ -131,7 +131,7 @@ L(`\n=== ${ROLE} — before ===`); show(R.before);
 const clickBox = async (card, column) => {
   const b = await page.evaluate(([c, col]) => {
     const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
-    const titles = [...document.querySelectorAll('.permission-card__title')].filter(vis)
+    const titles = [...document.querySelectorAll('.permission-card__title,.parts-panel__title')].filter(vis)
       .map(e => ({ y: e.getBoundingClientRect().top, name: (e.innerText || '').trim() }))
       .sort((a, b) => a.y - b.y);
     const cardFor = y => { const a = titles.filter(t => t.y <= y + 6); return a.length ? a[a.length - 1].name : null; };
@@ -205,9 +205,15 @@ for (const a of ARGS) {
 if (MODE === 'set' && want.length) {
   R.applied = [];
   for (const w of want) {
+    // READ THE PAGE AGAIN BEFORE EACH INSTRUCTION. Some controls do not exist until an earlier one
+    // is switched on -- turning "Parts Department" on reveals nine more checkboxes under Part
+    // sales, Catalog and Inventory and Vendor and order management. Judging every instruction
+    // against the state read at load reports those nine as "not found on the page" while they are
+    // on screen.
+    const live = await readAll();
     const cur = w.toggle
-      ? (R.before.toggles.find(t => (t.name || '').startsWith(w.toggle)) || {}).on
-      : (R.before.checkboxes.find(c => c.card === w.card && c.column === w.column) || {}).on;
+      ? (live.toggles.find(t => (t.name || '').startsWith(w.toggle)) || {}).on
+      : (live.checkboxes.find(c => c.card === w.card && c.column === w.column) || {}).on;
     if (cur === undefined) { R.applied.push({ ...w, skipped: 'not found on the page' });
       L('  NOT FOUND:', JSON.stringify(w)); continue; }
     if (cur === w.on) { R.applied.push({ ...w, alreadyCorrect: true });
@@ -252,28 +258,36 @@ if (MODE === 'set' && want.length) {
   });
   L('after clicking Save:', JSON.stringify(R.afterSaveClick).slice(0, 500));
 
-  // if a confirmation dialog is up, press its affirmative button -- named, not guessed by position
-  if (R.afterSaveClick.dialogs.length) {
-    const confirm = await page.evaluate(() => {
+  // ONE SAVE CAN RAISE MORE THAN ONE DIALOG, AND THEY DO NOT ALL SAY "CONFIRM". Saving Part sales
+  // first asks "Enable See Financial Data? Part Sales requires it", and only then shows the usual
+  // "Confirm Permission Updates" summary. A single pass looking for Confirm/Save left the first
+  // dialog on screen and the whole save unstored -- which read as the screen refusing the change.
+  // So: loop, and name the affirmative button from what is actually on it.
+  R.dialogsHandled = [];
+  for (let i = 0; i < 4; i++) {
+    const dlg = await page.evaluate(() => {
       const vis = e => { const r = e.getBoundingClientRect(); return r.width > 2 && r.height > 2; };
       const d = [...document.querySelectorAll('.q-dialog,[role=dialog]')].filter(vis).pop();
       if (!d) return null;
       const b = [...d.querySelectorAll('button,.q-btn')].filter(vis)
-        .find(e => /^(save|confirm|yes|continue|ok|proceed)\b/i.test((e.innerText || '').trim()));
-      if (!b) return null;
-      const r = b.getBoundingClientRect();
-      return { x: r.x, y: r.y, w: r.width, h: r.height, text: (b.innerText || '').trim() };
+        .find(e => /^(save|confirm|yes|continue|ok|proceed|enable|allow|grant|apply)\b/i
+          .test((e.innerText || '').replace(/\s+/g, ' ').trim()));
+      return { text: (d.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 160),
+        button: b ? { x: b.getBoundingClientRect().x, y: b.getBoundingClientRect().y,
+                      w: b.getBoundingClientRect().width, h: b.getBoundingClientRect().height,
+                      text: (b.innerText || '').trim() } : null };
     });
-    if (confirm) {
-      await page.mouse.move(confirm.x + confirm.w / 2, confirm.y + confirm.h / 2);
-      await page.mouse.down(); await page.waitForTimeout(80); await page.mouse.up();
-      R.confirmedWith = confirm.text;
-      L('confirmed with:', confirm.text);
-    } else {
-      R.confirmedWith = null;
-      L('a dialog is up but no affirmative button was found in it');
-    }
+    if (!dlg) break;
+    if (!dlg.button) { R.dialogsHandled.push({ ...dlg, pressed: null,
+      note: 'a dialog is up and nothing on it reads as an affirmative' }); break; }
+    await page.mouse.move(dlg.button.x + dlg.button.w / 2, dlg.button.y + dlg.button.h / 2);
+    await page.waitForTimeout(120);
+    await page.mouse.down(); await page.waitForTimeout(80); await page.mouse.up();
+    R.dialogsHandled.push({ text: dlg.text, pressed: dlg.button.text });
+    L('dialog:', dlg.text.slice(0, 80), '-> pressed', dlg.button.text);
+    await page.waitForTimeout(3500);
   }
+  R.confirmedWith = R.dialogsHandled.map(d => d.pressed).filter(Boolean).join(' then ') || null;
   await page.waitForTimeout(6000);
 
   // VERIFY BY RELOADING. A save that closed without an error is not evidence of what was stored.
