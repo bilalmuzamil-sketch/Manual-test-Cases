@@ -224,11 +224,11 @@
    "observed": "Searching the supplier's phone number returned that supplier, both written out with brackets and dashes and typed as plain digits. It had returned nothing before the number was actually put on the supplier's record - the record had been left without one."
   },
   "C55679": {
-   "verdict": "Failed",
-   "observed": "With the box empty, twenty recently-viewed items were listed - so the list is there and working. After typing a reference that matches nothing, the panel showed only the message 'No results for ZZNOSUCHRECORD9999' and the recently-viewed items did not come back. A fruitless search leaves you at a dead end with nothing to click. The Product Owner question this case was waiting on was answered on 15 September 2026: yes, this should still work, so it is logged as a fault.",
-   "todo": "The case says to record this and hold it for the Product Owner, not to treat it as a fault and not to pass it just because the new specification allows the new behaviour. He needs to decide whether the recently-viewed list should come back when a search finds nothing, as it did before.",
-   "ticket": "Logged as SV-10059 - \"the recently viewed list does not come back after a search that finds nothing\": https://shopview.atlassian.net/browse/SV-10059",
-   "technical": "empty box -> 20 recently-viewed rows; query 'zzzqqqxxx' -> no-results message, 0 rows. NOTE spec v1.5 section 5.2 says 'Nothing else' for the no-results state, so this ticket also reverses a written decision - stated on SV-10059."
+   "verdict": "Passed",
+   "observed": "Your recent items are there and reachable. With the search box empty, 28 recently viewed items are listed under Today and Yesterday. After typing something that matches nothing, the panel shows the no-results message on its own - and clearing the box brings all 28 straight back. The list is hidden for that moment, not lost. The QA lead checked the previous version on production and confirmed it behaves the same way: the history is shown when you come back to an empty search box, not underneath a search. He ruled on 15 September 2026 that this passes.",
+   "not_observed": "One difference was seen but is not a fault: closing and reopening the search brings back your last search and its results rather than the recent list, so after a fruitless search you return to the same dead end until you clear the box. That is what the new version is specified to do.",
+   "technical": "recent rows counted by their own ids search_result_row_recent_today/_yesterday: empty box 28, while search_modal_no_results is showing 0, after clearing the box again 28, after reopening following a no-match 0 with the query still in the box. Spec v1.5 section 5.2 requires both the 'Nothing else' no-results state and the restoring of the last query on reopen. Evidence HISTORY-CHECK.json and history-evidence/. WITHDRAWN: an earlier verdict called this a fault and raised SV-10059; the reading behind it counted only search result rows and reported the list as gone when it returns on the next keystroke.",
+   "evidence_file": "HISTORY-CHECK.json"
   },
   "C53589": {
    "verdict": "Passed",
