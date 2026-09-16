@@ -1,0 +1,730 @@
+{
+  "_README": "DECLARATIVE SEED MANIFEST. One entry per record the suite needs. The seeder is FIND-OR-CREATE and idempotent: run it after every redeploy and it restores only what is missing, then writes the live ids to seed-state-live.json. TO ADD DATA FOR A NEW TEST CASE: add an entry here and add the case id to its 'serves'. Never edit the seeder for a new record.",
+  "environment": {
+    "app": "sv9160.qa.shopview.com",
+    "api": "sv9160api.qa.shopview.com",
+    "workplace_name_hint": "Heavy Duty",
+    "tag": "ZZAUTOTEST"
+  },
+  "records": [
+    {
+      "key": "customer",
+      "type": "Customer",
+      "serves": [
+        53578,
+        53581,
+        53582,
+        53583,
+        53602,
+        53604,
+        55660,
+        55662,
+        55665,
+        55667,
+        55671,
+        55673,
+        55675,
+        55679,
+        55680,
+        55682,
+        55684
+      ],
+      "find": {
+        "mode": "search",
+        "list": "/api/customers",
+        "coll": "collection",
+        "field": "name",
+        "value": "ZZAUTOTEST Bridgeport Hauling",
+        "control": "4 Star Truck Repair"
+      },
+      "create": {
+        "endpoint": "/api/customers/create",
+        "payload": {
+          "name": "ZZAUTOTEST Bridgeport Hauling",
+          "address": "1450 Kestrelway Industrial",
+          "city": "Fernvale",
+          "state_or_province": "Ohio",
+          "postal_code": "44872-9931",
+          "phone": "(419) 555-0143",
+          "country_code": "US"
+        }
+      },
+      "patch": {
+        "endpoint": "/api/customers/change",
+        "fields": {
+          "website": "bridgeporthauling-zzt.com",
+          "address_2": "Dock 7B",
+          "telephone": "(419) 555-0143",
+          "state_or_province": "Ohio"
+        },
+        "_why": "website, address_2 and telephone are NOT accepted by the create endpoint, and state_or_province is dropped by it too (measured 2026-09-14: the record came back empty on all four). 🔴 AND THIS BLOCK WAS NEVER EXECUTED by the old seeder - it only ever read `create`. Declared and never written is the worst of both worlds: the manifest looked complete and the data was not."
+      },
+      "verify": [
+        "name",
+        "city",
+        "postal_code",
+        "website"
+      ],
+      "read_as": {
+        "address": "address_1",
+        "phone": "telephone"
+      },
+      "_read_as_why": "The create payload writes 'address', 'phone' and 'email'; the record reads back 'address_1', 'telephone', and does not expose the email on the list row at all. Without this map a key-by-key check finds no such key and SKIPS SILENTLY - which is exactly how three absent fields looked like product defects on 2026-09-14. email is declared null = 'cannot be checked here', which is reported as NOT COMPARED, never as a pass.",
+      "write": {
+        "endpoint": "/api/customers/change",
+        "whole_record": true,
+        "_why": "A SPARSE PATCH IS IGNORED. Send the whole record back with the fields replaced. Proved the expensive way 2026-09-14."
+      },
+      "skip_verify": [
+        "tags"
+      ],
+      "_email_note": "🔴 A COMPANY HAS NO EMAIL FIELD. /api/customers/create ACCEPTS an 'email' key, answers 201 and discards it - /api/customers/view exposes no such key on the company at all. Email lives on the CONTACT (and is verified there, 5/5). So this was never 'a value we could not check': it was a value that cannot exist, declared by mistake. Dropping it is the honest fix; leaving it as NOT COMPARED would have kept a permanent false alarm in every report. Proved live 2026-09-15."
+    },
+    {
+      "key": "contact",
+      "type": "Contact (a person AT a customer company)",
+      "_why": "🔴 THE STRUCTURAL GAP FOUND 2026-09-14, AND IT IS WORSE THAN A SEARCH GAP. The suite searches a contact's first name, last name and job title and no contact was ever declared; one existed by luck from an earlier ad-hoc run. AND on 2026-09-15 a redeploy proved the real cost: /api/vehicles/create wants a customer_id, and in this domain a CUSTOMER IS A CONTACT (a person at a Company). With no contact the vehicle cannot be created, and with no vehicle the work orders cannot be created. One undeclared record silently blocked THREE record types and roughly twenty cases.",
+      "serves": [
+        53603,
+        55670,
+        53582,
+        53516,
+        53580,
+        53581,
+        53605,
+        55664,
+        55669,
+        55661
+      ],
+      "_note_on_the_name": "'Marlene' is deliberate: the same contact is the genuine hit in the near-spelling pair (C55685/C55686) and the subject of SV-10025.",
+      "_endpoint_proved": "POST /api/contacts/create - found 2026-09-15 by POSTing an EMPTY body to five candidate routes and reading the refusals: four answered 404 'resource was not found' (wrong route) and this one answered 400 naming company_id and first_name (right route, missing arguments). A 404 and a 400 mean completely different things here, and that difference IS the discovery method. There is no GET /api/contacts.",
+      "find": {
+        "mode": "child",
+        "parent": "customer",
+        "view": "/api/customers/view/{id}",
+        "path": "company.contacts",
+        "field": "first_name",
+        "value": "Marlene",
+        "_why": "There is NO contacts list endpoint - /api/contacts answers 404 in every shape tried. But /api/customers/view/<company id> returns data.company.contacts[] carrying the contact's id, names, job title, email and telephone. Finding the COMPANY and calling that 'the contact is present' is the trap this mode exists to avoid: the company exists whether or not anyone works there."
+      },
+      "create": {
+        "endpoint": "/api/contacts/create",
+        "payload": {
+          "first_name": "Marlene",
+          "last_name": "Okonkwo",
+          "title": "Dispatch Supervisor",
+          "telephone": "(419) 555-0177",
+          "email": "marlene.okonkwo@bridgeporthauling-zzt.com"
+        },
+        "inject": {
+          "company_id": "customer"
+        }
+      },
+      "read_as": {},
+      "_read_as_why": "None needed. The nested contacts[] exposes title, email and telephone under the same names the create payload writes, so all five declared fields are genuinely checkable - including the job title C53603 searches on."
+    },
+    {
+      "key": "asset",
+      "type": "Vehicle",
+      "serves": [
+        53516,
+        53580,
+        53581,
+        53605,
+        55661,
+        55664,
+        55669,
+        55680,
+        55682
+      ],
+      "depends_on": "customer",
+      "find": {
+        "mode": "search",
+        "list": "/api/vehicles",
+        "coll": "collection",
+        "field": "unit",
+        "value": "ZZT-4471",
+        "control": null
+      },
+      "create": {
+        "endpoint": "/api/vehicles/create",
+        "payload": {
+          "maker_name": "Freightliner",
+          "model_name": "Cascadia",
+          "year": "2019",
+          "unit": "ZZT-4471",
+          "vin": "1FUJGLDR9KLZZ4471",
+          "licence_plate": "OHZZT471"
+        },
+        "inject": {
+          "company_id": "customer",
+          "customer_id": "contact"
+        },
+        "_inject_why": "🔴 customer_id IS THE CONTACT, NOT THE COMPANY. In this domain a Company is the business and a 'customer' is a PERSON at it, so a vehicle belongs to a company AND to a contact. Sending the company id for customer_id answers 400 'customer_id: Not found', which reads like a bad id rather than the wrong KIND of id. This is why the undeclared contact silently blocked the vehicle and the work orders."
+      },
+      "verify": [
+        "unit",
+        "vin",
+        "licence_plate",
+        "year"
+      ],
+      "read_as": {
+        "model_name": "vehicle_model",
+        "maker_name": "vehicle_make"
+      },
+      "_read_as_why": "The vehicle writes 'model_name' / 'maker_name' and reads back 'vehicle_model' / 'vehicle_make'. This rename is where the whole 2026-09-14 problem lived: the seeded vehicle was declared a 2019 Freightliner Cascadia and was actually a 1000HS, and no check could see it.",
+      "write": {
+        "endpoint": "/api/vehicles/change",
+        "whole_record": true,
+        "id_as": {
+          "vehicle_id": "id"
+        },
+        "also": {
+          "company_id": "@customer"
+        },
+        "_why": "🔴 THE ENDPOINT REFUSES 'id' AND WANTS 'vehicle_id' + 'company_id' - the 400 names them, which is the fastest route to the right call. AND it answers 201 to a model NAME while changing nothing: it works in IDs. A success status over a silent no-op is why every write here is read back.",
+        "resolve_ids": {
+          "model_name": {
+            "list": "/api/vehicles",
+            "coll": "collection",
+            "match_field": "vehicle_model",
+            "take": "vehicle_model_id",
+            "take_as": "vehicle_model_id",
+            "also_take": {
+              "vehicle_maker_id": "vehicle_maker_id"
+            },
+            "_why": "No models lookup answers on this branch - every shape of /api/vehicles/models, /api/vehicle-models and /api/vehicles/makers/{id}/models returns 404. But the branch already holds dozens of Cascadia vehicles. WHEN THE LOOKUP TABLE IS NOT EXPOSED, THE EXISTING DATA IS THE LOOKUP TABLE."
+          }
+        }
+      }
+    },
+    {
+      "key": "work_orders",
+      "type": "WorkOrder",
+      "count": 4,
+      "serves": [
+        45153,
+        53578,
+        53579,
+        53588,
+        55658,
+        55661,
+        55672,
+        55680,
+        55682,
+        55684
+      ],
+      "depends_on": "customer",
+      "find": {
+        "mode": "ids",
+        "view": "/api/work-orders/view/{id}",
+        "coll": "work_order",
+        "field": "number",
+        "ids": [
+          "43033d4f-2112-46c1-847a-f6edb2b4e4d6",
+          "f3a36e79-2cbb-46b9-a476-7d1a5b3641f5",
+          "84d86dff-1716-4302-8afe-401a6eb03073",
+          "a6989c89-744b-4d7e-88ca-1843328bfb27"
+        ],
+        "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so neither can find these. The seeder records the ids it creates and verifies each one directly - the only reliable route."
+      },
+      "create": {
+        "endpoint": "/api/work-orders/create",
+        "payload": {
+          "is_vehicle_here": false
+        },
+        "inject": {
+          "company_id": "customer",
+          "vehicle_id": "asset"
+        },
+        "🔴 _THE_TRAP": "is_vehicle_here is REQUIRED IN PRACTICE. Omit it and the server answers 500, not 400 - which reads like a broken endpoint. With company_id + vehicle_id + is_vehicle_here it returns 201. Cost half a day on 2026-09-14.",
+        "id_from": "data.work_order_id",
+        "repeat": 4,
+        "_id_from_why": "🔴 THE HARDCODED ID LIST WAS THE BUG. find.mode 'ids' listed four ids from an earlier deployment; a redeploy wipes the records and the ids point at nothing, so the seeder created four new work orders and then reported 'created but NOT FINDABLE' - four cases lost on every single redeploy. POST /api/work-orders/create returns {\"data\":{\"work_order_id\":\"…\"}}, and an id the server has just handed you is the only one that cannot be stale. The seeder now writes them back into this manifest."
+      },
+      "runtime_values": [
+        "number"
+      ],
+      "_runtime_why": "numbers are assigned by the system and depend on the workplace. C53579, C55672 and C55658 read them from seed-state-live.json - never hard-code one",
+      "seeded_2026-09-14": [
+        {
+          "id": "ae6797c7-d9ee-4142-9017-e2ba32a1b3a4",
+          "number": "S-17597",
+          "status": "Estimate"
+        },
+        {
+          "id": "8c81f3d7-ccaa-4bf5-8e48-75310301bd20",
+          "number": "S-17598",
+          "status": "Estimate"
+        },
+        {
+          "id": "8f02b314-d826-4035-a77c-9f2997b4b158",
+          "number": "S-17599",
+          "status": "Estimate"
+        },
+        {
+          "id": "3f149d79-f650-492e-bace-840bb65a100c",
+          "number": "S-17600",
+          "status": "Estimate"
+        }
+      ],
+      "_note": "Created for ZZAUTOTEST Bridgeport Hauling, all status Estimate, all searchable. Global search shows them shop-prefixed as S9160-17597..17600.",
+      "skip_verify": [
+        "is_vehicle_here"
+      ]
+    },
+    {
+      "key": "vendor",
+      "type": "Vendor",
+      "serves": [
+        53584,
+        53585,
+        53604,
+        53606,
+        55661,
+        55663,
+        55668,
+        55680,
+        55682
+      ],
+      "unique": true,
+      "_unique_why": "a double run created TWO vendor records with the same name on 2026-09-14, which made global search look like it was returning duplicates. The seeder now refuses to create a second one.",
+      "find": {
+        "mode": "search",
+        "list": "/api/parts-catalogue/vendors",
+        "coll": "collection",
+        "field": "name",
+        "value": "ZZAUTOTEST Kestrel Parts Supply",
+        "control": "Carolina Truck"
+      },
+      "create": {
+        "endpoint": "/api/parts-catalogue/add-vendor",
+        "payload": {
+          "name": "ZZAUTOTEST Kestrel Parts Supply",
+          "address_1": "88 Halbrook Trace",
+          "city": "Marnston",
+          "state_or_province": "Ohio",
+          "postal_code": "43055-2210",
+          "telephone": "(614) 555-0188",
+          "email": "parts@kestrelsupply-zzt.com",
+          "credit_term": 30,
+          "credit_limit": 10000
+        },
+        "resolve": {
+          "tax_id": "/api/taxes"
+        },
+        "_why_resolve": "add-vendor REQUIRES tax_id; take the first tax from GET /api/taxes"
+      },
+      "verify": [
+        "name",
+        "city",
+        "email"
+      ],
+      "read_as": {},
+      "skip_verify": [
+        "credit_term",
+        "credit_limit",
+        "tax_id"
+      ],
+      "extra_fields": {
+        "address_2": "Bay 12C",
+        "website": "kestrelsupply-zzt.com"
+      },
+      "_extra_fields_why": "C53604 checks that a second address line is searchable for a customer AND for a vendor. The vendor had no address_2 declared at all - not 'declared and missing', simply never specified - so the vendor half of that case had nothing to search for. Found by the execution session 2026-09-14.",
+      "write": {
+        "endpoint": "/api/parts-catalogue/change-vendor",
+        "whole_record": true,
+        "id_as": {
+          "vendor_id": "id"
+        },
+        "_why": "PROVED 2026-09-15 by POSTing an empty body to six candidates. Four answered 404 'resource was not found' (wrong route) and one 405 Method Not Allowed (right path, wrong verb); THIS one answered 400 naming vendor_id, name, credit_term, credit_limit and tax_id - a 400 that lists fields is the route telling you it is the right one. Send the whole record so the required fields ride along."
+      }
+    },
+    {
+      "key": "part_catalogue_only",
+      "type": "CataloguePart",
+      "serves": [
+        53601,
+        45153
+      ],
+      "must_not_be_stocked": true,
+      "find": {
+        "mode": "search",
+        "list": "/api/parts-catalogue/catalogue-parts",
+        "coll": "collection",
+        "field": "part_number",
+        "value": "ZZT-77-3300",
+        "control": "21-361"
+      },
+      "create": {
+        "endpoint": "/api/parts-catalogue/add-catalogue-part",
+        "payload": {
+          "name": "ZZAUTOTEST Airline Coupler Vernway",
+          "part_number": "ZZT-77-3300",
+          "tags": []
+        },
+        "_required": "name, part_number, tags - proved live 2026-09-14 from the 400 body"
+      },
+      "verify": [
+        "part_number",
+        "name"
+      ],
+      "skip_verify": [
+        "tags"
+      ],
+      "write": {
+        "endpoint": "/api/parts-catalogue/change-catalogue-part",
+        "whole_record": true,
+        "id_as": {
+          "category_id": "category",
+          "manufacturerId": "manufacturer_id"
+        },
+        "_why": "Added 2026-09-16. These two records had NO write block, so when someone renamed both catalogue parts on the branch ('Bilal' and 'Bilal2') a reseed could create nothing and repair nothing - it reported the gap and stopped, leaving 8 cases searching for a name that was not there. Route found by grepping the #[Route(...)] attribute after guessing failed twice: /api/parts-catalogue/catalogue-parts/<x> is GET-only (405 'Allow: GET'), and the real one is verb-first like its add/remove siblings. The command wants category_id and manufacturerId, while the record reads back 'category' and 'manufacturer_id' - hence id_as."
+      }
+    },
+    {
+      "key": "part_catalogue_stocked_source",
+      "type": "Catalogue part (the source record the STOCKED part is built from)",
+      "_why": "part_stocked is an INVENTORY record built from a CATALOGUE part. That catalogue part is a record in its own right and has to be declared, or the stocked part has nothing to be built from on a wiped branch.",
+      "serves": [
+        45153,
+        53607,
+        55659,
+        55661,
+        55666,
+        55680,
+        55682
+      ],
+      "find": {
+        "mode": "search",
+        "list": "/api/parts-catalogue/catalogue-parts",
+        "coll": "collection",
+        "field": "part_number",
+        "value": "ZZT-88-4412",
+        "control": "21-361"
+      },
+      "create": {
+        "endpoint": "/api/parts-catalogue/add-catalogue-part",
+        "payload": {
+          "name": "ZZAUTOTEST Brake Chamber Kestrel",
+          "part_number": "ZZT-88-4412",
+          "tags": []
+        }
+      },
+      "skip_verify": [
+        "tags"
+      ],
+      "write": {
+        "endpoint": "/api/parts-catalogue/change-catalogue-part",
+        "whole_record": true,
+        "id_as": {
+          "category_id": "category",
+          "manufacturerId": "manufacturer_id"
+        },
+        "_why": "Added 2026-09-16. These two records had NO write block, so when someone renamed both catalogue parts on the branch ('Bilal' and 'Bilal2') a reseed could create nothing and repair nothing - it reported the gap and stopped, leaving 8 cases searching for a name that was not there. Route found by grepping the #[Route(...)] attribute after guessing failed twice: /api/parts-catalogue/catalogue-parts/<x> is GET-only (405 'Allow: GET'), and the real one is verb-first like its add/remove siblings. The command wants category_id and manufacturerId, while the record reads back 'category' and 'manufacturer_id' - hence id_as."
+      }
+    },
+    {
+      "key": "part_stocked",
+      "type": "InventoryPart",
+      "serves": [
+        45153,
+        53607,
+        55659,
+        55661,
+        55666,
+        55680,
+        55682
+      ],
+      "find": {
+        "mode": "search",
+        "list": "/api/inventory/parts",
+        "coll": "collection",
+        "field": "part_number",
+        "value": "ZZT-88-4412",
+        "control": "P550848"
+      },
+      "create": {
+        "endpoint": "/api/inventory/parts/create",
+        "payload": {
+          "quantity": 25,
+          "cost": 42.5,
+          "tags": [],
+          "min": 1,
+          "max": 100,
+          "sell_price": 89.99
+        },
+        "resolve_by_example": {
+          "catalog_part_id": {
+            "list": "/api/parts-catalogue/catalogue-parts",
+            "coll": "collection",
+            "match_field": "part_number",
+            "value": "ZZT-88-4412",
+            "take": "id",
+            "take_as": "catalog_part_id",
+            "also_take": {
+              "category_id": "category"
+            },
+            "_why": "The stocked part is BUILT FROM the catalogue part, so its id has to be looked up rather than guessed - and the catalogue row also carries the category id the inventory create demands. When the lookup table is not exposed, the existing data is the lookup table."
+          }
+        },
+        "_prerequisite": "The catalogue part ZZT-88-4412 must exist first - see part_catalogue_stocked_source below.",
+        "resolve_nested": {
+          "bins": {
+            "list": "/api/inventory/parts",
+            "coll": "collection",
+            "search": "P550848",
+            "take_path": "binLocations.0.binLocationId",
+            "template": [
+              {
+                "id": "@",
+                "isDefault": true,
+                "quantity": 25
+              }
+            ],
+            "_why": "🔴 A BIN CANNOT BE CREATED BY NAME HERE. The refusal is exact: '[0][id] This field is missing', '[0][name] This field was not expected' - bins reference EXISTING bin locations by id. Hardcoding one would rot on the next redeploy, so it is taken off a part that already sits in a bin. PROVED 2026-09-15: created 201 and read back as 25 units in bin H3B."
+          }
+        },
+        "id_from": "data.part_id"
+      },
+      "stock": {
+        "endpoint": "/api/inventory/parts/create",
+        "quantity": 25,
+        "_required": "catalog_part_id, category_id, quantity, cost, tags, bins - proved live 2026-09-14",
+        "resolve": {
+          "category_id": "/api/parts-catalogue/categories-list",
+          "bin": "/api/inventory/bin-locations"
+        },
+        "_why": "V2 searches Parts (Inventory). Catalogue-only will NOT be found, so this part MUST carry stock or C55666/C53607 fail for a data reason."
+      },
+      "verify": [
+        "part_number",
+        "quantity"
+      ],
+      "skip_verify": [
+        "tags",
+        "bins",
+        "cost",
+        "min",
+        "max",
+        "sell_price"
+      ],
+      "read_as": {},
+      "_why": "🔴 TWO DIFFERENT THINGS WITH ONE NAME. A CATALOGUE part is a part the shop knows about; a STOCKED part is one it actually holds, in inventory, at a location. This entry used the CATALOGUE create endpoint and then looked for the result in INVENTORY, so on a fresh branch it created a catalogue part, failed to find it in inventory, and on the next run answered 400 'Part number name duplicate' - it was fighting itself. C53601 and the whole catalogue-vs-stocked distinction (SV-10025's neighbour finding) depend on these two being genuinely different records."
+    },
+    {
+      "key": "customer_fuzzy_target",
+      "type": "Customer",
+      "_why": "The GENUINE hit for the near-spelling precision pair. Its name literally contains the word the tester types, so V1 and V2 must both return it. Paired with customer_fuzzy_nearmiss - the two are only meaningful together (Rule 104: a negative finding needs a control that proves the probe worked).",
+      "serves": [
+        55685,
+        55686
+      ],
+      "find": {
+        "mode": "search",
+        "list": "/api/customers",
+        "coll": "collection",
+        "field": "name",
+        "value": "ZZAUTOTEST Marlene Freight Lines",
+        "control": "4 Star Truck Repair"
+      },
+      "create": {
+        "endpoint": "/api/customers/create",
+        "payload": {
+          "name": "ZZAUTOTEST Marlene Freight Lines",
+          "address": "820 Tallow Bend Road",
+          "city": "Fernvale",
+          "state_or_province": "Ohio",
+          "postal_code": "44872-4410",
+          "phone": "(419) 555-0188",
+          "country_code": "US"
+        }
+      },
+      "verify": [
+        "name",
+        "city",
+        "postal_code"
+      ],
+      "read_as": {
+        "address": "address_1",
+        "phone": "telephone"
+      },
+      "_read_as_why": "The create payload writes 'address', 'phone' and 'email'; the record reads back 'address_1', 'telephone', and does not expose the email on the list row at all. Without this map a key-by-key check finds no such key and SKIPS SILENTLY - which is exactly how three absent fields looked like product defects on 2026-09-14. email is declared null = 'cannot be checked here', which is reported as NOT COMPARED, never as a pass.",
+      "write": {
+        "endpoint": "/api/customers/change",
+        "whole_record": true,
+        "_why": "A SPARSE PATCH IS IGNORED. Send the whole record back with the fields replaced. Proved the expensive way 2026-09-14."
+      },
+      "skip_verify": [
+        "tags"
+      ],
+      "_email_note": "🔴 A COMPANY HAS NO EMAIL FIELD. /api/customers/create ACCEPTS an 'email' key, answers 201 and discards it - /api/customers/view exposes no such key on the company at all. Email lives on the CONTACT (and is verified there, 5/5). So this was never 'a value we could not check': it was a value that cannot exist, declared by mistake. Dropping it is the honest fix; leaving it as NOT COMPARED would have kept a permanent false alarm in every report. Proved live 2026-09-15."
+    },
+    {
+      "key": "customer_fuzzy_nearmiss",
+      "type": "Customer",
+      "_why": "The CONTROLLED NEAR-MISS. 'Darlene' is exactly ONE letter from 'Marlene', so normalized Damerau-Levenshtein scores it 1 - 1/7 = 0.857, comfortably over V2's 0.70 acceptance bar (api/config/packages/search.yaml:230 on branch SV-9160-global-search-v2). V1 matched by literal containment only and never returned it. Seeded so the precision case is deterministic on any environment instead of depending on demo data that a redeploy may change.",
+      "serves": [
+        55685,
+        55686
+      ],
+      "find": {
+        "mode": "search",
+        "list": "/api/customers",
+        "coll": "collection",
+        "field": "name",
+        "value": "ZZAUTOTEST Darlene Cartage",
+        "control": "4 Star Truck Repair"
+      },
+      "create": {
+        "endpoint": "/api/customers/create",
+        "payload": {
+          "name": "ZZAUTOTEST Darlene Cartage",
+          "address": "77 Ridgeway Spur",
+          "city": "Fernvale",
+          "state_or_province": "Ohio",
+          "postal_code": "44872-4411",
+          "phone": "(419) 555-0189",
+          "country_code": "US"
+        }
+      },
+      "verify": [
+        "name",
+        "city",
+        "postal_code"
+      ],
+      "read_as": {
+        "address": "address_1",
+        "phone": "telephone"
+      },
+      "_read_as_why": "The create payload writes 'address', 'phone' and 'email'; the record reads back 'address_1', 'telephone', and does not expose the email on the list row at all. Without this map a key-by-key check finds no such key and SKIPS SILENTLY - which is exactly how three absent fields looked like product defects on 2026-09-14. email is declared null = 'cannot be checked here', which is reported as NOT COMPARED, never as a pass.",
+      "write": {
+        "endpoint": "/api/customers/change",
+        "whole_record": true,
+        "_why": "A SPARSE PATCH IS IGNORED. Send the whole record back with the fields replaced. Proved the expensive way 2026-09-14."
+      },
+      "skip_verify": [
+        "tags"
+      ],
+      "_email_note": "🔴 A COMPANY HAS NO EMAIL FIELD. /api/customers/create ACCEPTS an 'email' key, answers 201 and discards it - /api/customers/view exposes no such key on the company at all. Email lives on the CONTACT (and is verified there, 5/5). So this was never 'a value we could not check': it was a value that cannot exist, declared by mistake. Dropping it is the honest fix; leaving it as NOT COMPARED would have kept a permanent false alarm in every report. Proved live 2026-09-15."
+    },
+    {
+      "key": "part_sale",
+      "type": "PartSale",
+      "serves": [
+        55665,
+        45153,
+        45151
+      ],
+      "depends_on": "customer",
+      "find": {
+        "mode": "search",
+        "list": "/api/part-sales",
+        "coll": "partSales",
+        "field": "companyName",
+        "value": "ZZAUTOTEST Bridgeport Hauling",
+        "control": "4 Star Truck Repair",
+        "_why": "🔴 THE LIST KEY IS 'partSales', NOT 'collection'. Every other list on this API answers under 'collection'; this one does not, so a seeder assuming the house style reads an empty list and reports the record missing when it is sitting right there."
+      },
+      "_note": "Blocked by a KNOWN, FILED bug. Not ours to re-report. C55665 stays Blocked until SV-10031 is fixed.",
+      "_unblocked": "SV-10031 was fixed and the QA lead confirmed it on 2026-09-15. Verified live the same day: POST /api/part-sales answered 200 and the sale appeared in the list.",
+      "create": {
+        "endpoint": "/api/part-sales",
+        "payload": {},
+        "inject": {
+          "company_id": "customer",
+          "vehicle_id": "asset"
+        },
+        "id_from": "data.0.id",
+        "_why_this_route": "🔴 IT IS 'POST /api/part-sales' - THE SAME PATH AS THE LIST, A DIFFERENT VERB. Eight guessed spellings (/part-sales/create, /part-sale/create, /parts/part-sales/create, /add, /new, ...) all answered 404, because this one route is REST while the rest of the API is /resource/verb. Guessing verbs can never find it. It was found by reading the product source: api/src/VehicleService/WorkOrders/Application/PartSale/Create/CreateController.php. WHEN GUESSING HAS FAILED TWICE, READ THE ROUTE OUT OF THE SOURCE - it is faster than the third guess."
+      },
+      "skip_verify": [
+        "company_id",
+        "vehicle_id"
+      ]
+    }
+  ],
+  "environment_setup": {
+    "_README": "Not records - environment state the permission and scoping cases need. Recipes from build/APP-ACTIONS-PLAYBOOK.md.",
+    "second_location": {
+      "serves": [
+        45151,
+        45152,
+        55684
+      ],
+      "status": "ALREADY EXISTS",
+      "detail": "GET /api/staff/my-workplaces returns Staging Heavy Duty - 9919 and Staging Lethbridge - 4310. Switch with POST /api/iam/change-location {workplace_id, workplace_timezone}."
+    },
+    "roles": {
+      "serves": [
+        45142,
+        45143,
+        45144,
+        45145,
+        45146,
+        45147,
+        45149,
+        45159
+      ],
+      "recipe": "GET /api/staff?limit=200 lists role_label per staff - find a holder and POST /api/switch-user {user_id}. No holder: POST /api/iam/create {email,firstName,lastName,roleId,departments,workplaceId}. Reset to template FIRST (Rule 26) via POST /api/roles/{id}."
+    },
+    "second_organization": {
+      "serves": [
+        45150
+      ],
+      "status": "DEFERRED by the QA lead - raise only when everything else is done"
+    }
+  },
+  "_find_note": "Each record declares HOW to find it, because ?search= works on some list endpoints and silently matches nothing on others. Where a 'control' is given the seeder searches for it FIRST: if a record that is known to exist comes back empty, the probe is broken and any 'missing' verdict is discarded (Rule 104). Measured 2026-09-14: search WORKS on customers, vendors, vehicles, inventory parts; it is BROKEN on work-orders.",
+  "_facts_learned_2026-09-14": {
+    "duplicate_part_number": "BLOCKED BY THE PRODUCT. POST add-catalogue-part with an existing part_number returns 400 'Part number name duplicate' with a link to the existing part - with the same name AND with a different name. You cannot have two catalogue parts sharing a part number.",
+    "same_part_at_two_locations": "ALLOWED, and now seeded. The SAME catalogue part can hold an inventory record at each location: ZZT-88-4412 is stocked at Heavy Duty (qty 25, part_id 63a300f0) and at Lethbridge (qty 7, part_id b3a415f1). Global search shows it as ONE row at each location, not two.",
+    "index_delay_is_real": "A newly stocked part is NOT searchable immediately - it appeared after ~35 seconds. ALWAYS wait and re-query before calling a part missing (Rule 104). The specification allows up to 30 seconds.",
+    "parts_are_LOCATION_scoped_in_V2": "MEASURED: part P550848 is stocked only at Heavy Duty. Searching it at Heavy Duty returns 2 parts; at Lethbridge it returns NO parts. Customers and assets are returned at BOTH locations, and work orders only at Heavy Duty. So in V2 PARTS follow the location. IN V1 PARTS WERE ORG-WIDE (invariant INV-81 - only work orders and part sales were location-scoped). C45151 tests exactly this and is expected to FAIL on its Parts half."
+  },
+  "no_data_needed": {
+    "_README": "Cases that need NO seeded data. Listed so nobody hunts for data that was never required.",
+    "C55683": "The keyboard shortcut hint — only a signed-in user on a desktop-width window.",
+    "C55675": "A search that matches nothing — needs the ABSENCE of a record, not the presence of one.",
+    "C45156": "The keyboard shortcut opens search.",
+    "C45158": "No feature-flag toggle.",
+    "C45161": "Two-character minimum.",
+    "C55674": "Reachable on phone and tablet.",
+    "C53589": "Typing is not lost while results load."
+  },
+  "self_seeding_during_the_run": {
+    "_README": "Cases where the TESTER creates the data as part of the test. Cannot be pre-seeded.",
+    "C53586": "A newly created customer is findable — creating it IS the test.",
+    "C53587": "A new work order or part sale is findable — creating it IS the test.",
+    "C55679": "Recent items return on a no-match search — recents are per-user and are built by that tester opening records. Tell the tester to open two records first."
+  },
+  "_verified_2026-09-14_evening": "Searching ZZAUTOTEST returns FIVE groups at once - work orders (4), customers, assets, parts and vendors. That single term is what C55680 (arrow keys skip the group headings) and C55682 (each row carries a type icon) rely on, and it is confirmed live.",
+  "rule_111_status_of_every_new_case_2026-09-14": {
+    "_README": "Rule 111: every case ends SEEDED, NEEDS NO DATA, or SELF-SEEDING - written down, not assumed.",
+    "C55679 recents return on a no-match search": "SELF-SEEDING - recents are personal to whoever runs the test; the tester opens two records first. Said in the case preconditions.",
+    "C55680 arrow keys skip the group headings": "SEEDED - ZZAUTOTEST returns five groups at once (work orders, customers, assets, parts, vendors). Verified live.",
+    "C55682 each row carries a type icon": "SEEDED - same five-group search. Verified live.",
+    "C55683 the shortcut hint is shown": "NEEDS NO DATA - a signed-in user on a desktop-width window.",
+    "C55684 no stale rows after a location switch": "SEEDED - both locations exist, and the four work orders belong to Heavy Duty only. Verified live: searching Bridgeport returns 4 work orders at Heavy Duty and 0 at Lethbridge, which is exactly the contrast the case needs.",
+    "C55685 typing a name does not bring back other spellings": "SEEDED - the controlled pair 'ZZAUTOTEST Marlene Freight Lines' (contains the typed word) and 'ZZAUTOTEST Darlene Cartage' (one letter away, does not contain it). Both created 14/9/2026 via /api/customers/create and verified live: searching Marlene returns the first at score 0.9 and the second at 0.4429. The pair makes the case deterministic instead of depending on demo data a redeploy may change.",
+    "C55686 the record that actually matches is listed first": "SEEDED - the same controlled pair. Verified live 14/9/2026: 'ZZAUTOTEST Marlene Freight Lines' ranks above 'ZZAUTOTEST Darlene Cartage'."
+  },
+  "_lessons_2026-09-15_from_the_execution_session": {
+    "the_one_line": "'The record exists' is not 'the record carries the values the cases search for.' The old --check answered the first question and was read as answering the second.",
+    "what_it_cost": "Nine cases unrunnable, and THREE would have been written up as product defects against fields the record simply did not hold. All four present identically on screen: you search a value and nothing comes back.",
+    "three_causes": [
+      "The patch block was declared and never executed - the seeder only ever read `create`.",
+      "A 2xx is not evidence a write landed. /api/vehicles/change answers 201 to a model NAME and changes nothing.",
+      "A field renamed between write and read was skipped SILENTLY - 'model_name' out, 'vehicle_model' back."
+    ],
+    "the_fix": "Three outcomes, never two: MATCH, GAP, NOT COMPARED. 'No gaps found' and 'no gaps I was able to look for' must never look the same on screen.",
+    "write_routes_learned": {
+      "customer": "POST /api/customers/change - send the WHOLE record with the fields replaced, not a sparse patch",
+      "vehicle": "POST /api/vehicles/change - refuses 'id'; wants vehicle_id + company_id, and the model as an ID",
+      "reading_back": "Use the manifest's own find.list endpoints. /api/<type>/view/<id> answers 404 for vehicles and vendors - a wrong route, not a missing record"
+    },
+    "the_transferable_trick": "When the lookup table is not exposed, the existing data IS the lookup table.",
+    "and_it_was_visible_the_whole_time": "The seeded asset rendered in every result row as '2019 Freightliner ????' - the model failing to resolve. It sat in hundreds of lines of captured evidence and was read past, because the eye was on the zeros rather than on what the non-zero rows actually said."
+  },
+  "_ORDER_IS_A_DEPENDENCY_CHAIN": "🔴 THE ORDER OF `records` MATTERS AND IS NOT ALPHABETICAL. The seeder walks it top to bottom and injects ids from records already made, so a record must appear AFTER everything it depends on. The chain is: customer -> contact -> asset -> work_orders. On 2026-09-15 the contact sat LAST, so on a wiped branch the asset asked for a customer_id that did not exist yet, failed, and took the work orders down with it - two record types and about twenty cases lost to a list being in the wrong order. When you add a record, put it after its parents."
+}

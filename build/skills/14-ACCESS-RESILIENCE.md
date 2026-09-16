@@ -60,6 +60,44 @@ that does not need that system.
 
 ---
 
+## 0.5 · BLOCKER? SEARCH THE SHARED BRAIN FIRST — before you call it a blocker
+
+**NEVER GIVE UP ON A BLOCKER WITHOUT SEARCHING THE REPO FIRST (USER DIRECTIVE, 2026-08-26, verbatim).**
+*"Almost every 'this is impossible' in this workspace has already been hit, solved, and written down by
+another session. Before you tell me something cannot be done, spend two minutes searching. Use the ERROR
+TEXT ITSELF as the search key — that is what finds it."* This is the step that comes **before** §7's
+BLOCKED protocol and it is the fast path P09 (*clear a blocker yourself before escalating*) and Rule 68
+(*a blocker must be PROVED*) both assume: the cheapest way to clear a blocker is to grep what a past
+session already solved.
+
+**Use the error string itself as the search key:**
+
+```
+grep -rn "<the exact error string>" build/ --include=*.md | head -20
+grep -rn "<the endpoint, tool or symptom>" build/APP-ACTIONS-PLAYBOOK.md build/skills/ | head -20
+ls build/BLOCKED-*.md          # known blockers — several are marked RESOLVED with the cause
+ls build/*DIAGNOSIS*.md build/*/FINDINGS.md 2>/dev/null   # past investigations
+git log --all --oneline --grep="<keyword>" | head -20     # someone may have fixed it in a commit
+```
+
+**Always check these four, in this order** (grep or a bounded slice — never bulk-read to "get oriented",
+Rule 88):
+
+1. `build/APP-ACTIONS-PLAYBOOK.md` — proven action recipes and the traps (TestRail, the app, Jira)
+2. `build/skills/14-ACCESS-RESILIENCE.md` — the primary/fallback ladder for every system, plus preflights (this file)
+3. `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` — browser, proxy and MITM-bridge mechanics
+4. `build/rules/RULES-*.md` — grep it; do NOT read it end to end
+
+**Then:**
+- **Found it →** use it, and **say where you found it.**
+- **Genuinely cannot find it →** say **exactly what you searched and what you tried**, so the QA lead knows
+  the gap is real rather than unsearched. Only then does §7's BLOCKED protocol apply.
+- **Solved something NEW →** write it into `build/APP-ACTIONS-PLAYBOOK.md` or the relevant skill **in the
+  same pass**. This is **not optional** — undocumented knowledge is knowledge we lose, and the next
+  session must never pay for it twice.
+
+---
+
 ## 1 · TESTRAIL — the most reliable path we have, and it needs no MCP
 
 **PRIMARY — the REST API v2 with Basic auth.** No MCP server is involved, which is exactly why this is

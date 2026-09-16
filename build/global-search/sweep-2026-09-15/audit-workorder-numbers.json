@@ -1,0 +1,69 @@
+{
+ "when_utc": "2026-09-15T07:35:35.051123Z",
+ "operation": "update_case",
+ "_why": "Work order numbers were hardcoded in three contradictory stale ranges; replaced with an on-screen lookup a non-technical tester can do in five seconds.",
+ "cases": [
+  {
+   "c_id": 45153,
+   "link": "https://shopview.testrail.io/index.php?/cases/view/45153",
+   "title": "Selecting each result type opens the right record",
+   "applied": [
+    "work orders S9160-17580 to S9160-17583"
+   ],
+   "not_found": [],
+   "howto_present": true,
+   "stale_numbers_remaining": [],
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55658,
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55658",
+   "title": "Finding a work order by typing its status still works",
+   "applied": [
+    "The four seeded work orders S9160-17580, S9160-17581, S"
+   ],
+   "not_found": [],
+   "howto_present": true,
+   "stale_numbers_remaining": [],
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55659,
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55659",
+   "title": "Finding a record by typing only part of its number still works",
+   "applied": [
+    "Type only the tail of the work order number: 17597",
+    "Work order S-17597 exists."
+   ],
+   "not_found": [],
+   "howto_present": true,
+   "stale_numbers_remaining": [],
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55672,
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55672",
+   "title": "Finding a work order by its plain number with no prefix",
+   "applied": [
+    "Type the plain number on its own: 17597",
+    "The work order S-17597 exists. Its plain number is 1759"
+   ],
+   "not_found": [],
+   "howto_present": true,
+   "stale_numbers_remaining": [],
+   "verdict": "PASS"
+  },
+  {
+   "c_id": 55684,
+   "link": "https://shopview.testrail.io/index.php?/cases/view/55684",
+   "title": "After switching location you never see the old location's records",
+   "applied": [
+    "The four work orders S9160-17597 to S9160-17600 belong "
+   ],
+   "not_found": [],
+   "howto_present": true,
+   "stale_numbers_remaining": [],
+   "verdict": "PASS"
+  }
+ ]
+}

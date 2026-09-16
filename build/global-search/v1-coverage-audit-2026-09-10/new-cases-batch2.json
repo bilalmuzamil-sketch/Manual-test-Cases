@@ -1,0 +1,80 @@
+[
+ {
+  "title": "A catalogue part that is not in inventory can still be found",
+  "refs": "SV-9160 (INV-06; V1 baseline 55767168; PRD 1.5 s4 Parts=Inventory - PO DECISION)",
+  "custom_preconds": "<p>1. Sign in to ShopView. In the app header, click the search field (or press \u2318K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.<br>1. A part exists in the parts CATALOGUE named 'ZZAUTOTEST Airline Coupler Vernway', part number 'ZZT-77-3300'.<br>2. That part has NEVER been stocked - it has no inventory record and no quantity on hand.<br>3. Parts access: Catalog &amp; Inventory - View.</p>",
+  "custom_steps": "<p>1. Open global search.<br>2. Type: Vernway<br>3. Read the Parts group.<br>4. Clear the input and type the part number: ZZT-77-3300<br>5. Read the Parts group again.</p>",
+  "custom_expected": "<p>Both searches return the catalogue part 'ZZAUTOTEST Airline Coupler Vernway'.<br>THIS IS THE HIGHEST-RISK DIFFERENCE BETWEEN V1 AND V2. In V1 every catalogue part was searchable whether or not it had ever been stocked. V2 searches Parts (Inventory).<br>If the part is NOT returned, this is the change a customer is most likely to report as 'I could search this part in V1 and cannot in V2'. Record and flag it - do not raise a defect until the Product Owner has ruled on whether catalogue-only parts are intentionally dropped from search.</p><p>---<br>This is the expected behaviour as per epic SV-9160 and the V1 behaviour recorded in the ShopView code baseline 55767168 (FetchDataQueryHandler.php:317-331, which reads the CataloguePart table). the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945) section 4 does NOT list the parts catalogue as a source - it names 'Parts (Inventory)' and indexes description, part number, tags, category, manufacturer, vendor name and bin location, so this is a code-versus-document conflict: Standing Rule 96 keeps the V1 behaviour as the default and Standing Rule 58 makes the conflict a PO DECISION ITEM. If this case fails, record and flag it - do not raise a defect until the Product Owner has ruled. Read on 13 September 2026.<br>AUTOMATION: Not available on Build to test Yet - Last checked 13/9/2026</p>",
+  "section_id": 6769,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "custom_atmstatus": 1,
+  "custom_automation_type": 0
+ },
+ {
+  "title": "Finding a customer by their name with the spaces removed",
+  "refs": "SV-9160 (INV-03; V1 baseline 55767168; PRD 1.5 s7 keeps spaces for names - PO DECISION)",
+  "custom_preconds": "<p>1. Sign in to ShopView. In the app header, click the search field (or press \u2318K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.<br>1. A customer exists named 'ZZAUTOTEST Bridgeport Hauling'.<br>2. Customers access: View.</p>",
+  "custom_steps": "<p>1. Open global search.<br>2. Type the name with no spaces: ZZAUTOTESTBridgeportHauling<br>3. Read the Customers group.<br>4. Clear the input and type it normally with spaces to confirm the customer is findable at all.</p>",
+  "custom_expected": "<p>Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'.<br>Step 4 also returns the customer, confirming the record itself is searchable.<br>In V1 the customer name was indexed twice, once as typed and once with every space removed, so a run-together name matched.<br>If step 2 fails while step 4 passes, record and flag it - do not raise a defect until the Product Owner has ruled.</p><p>---<br>This is the expected behaviour as per epic SV-9160 and the V1 behaviour recorded in the ShopView code baseline 55767168 (FetchDataQueryHandler.php:229, REPLACE(c.name, \" \", \"\")). the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945) section 4 does NOT list a spaces-removed form of the customer name - section 7 strips non-alphanumerics only for identifier fields and states that for names it keeps spaces, so this is a code-versus-document conflict: Standing Rule 96 keeps the V1 behaviour as the default and Standing Rule 58 makes the conflict a PO DECISION ITEM. If this case fails, record and flag it - do not raise a defect until the Product Owner has ruled. Read on 13 September 2026.<br>AUTOMATION: Not available on Build to test Yet - Last checked 13/9/2026</p>",
+  "section_id": 6769,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "custom_atmstatus": 1,
+  "custom_automation_type": 0
+ },
+ {
+  "title": "Finding a customer or vendor by a contact's job title",
+  "refs": "SV-9160 (INV-03; V1 baseline 55767168; PRD 1.5 s4 omits contact title - PO DECISION)",
+  "custom_preconds": "<p>1. Sign in to ShopView. In the app header, click the search field (or press \u2318K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.<br>1. Customer 'ZZAUTOTEST Bridgeport Hauling' has a contact: Marlene Okonkwo, job title 'Dispatch Supervisor'.<br>2. Customers access: View.</p>",
+  "custom_steps": "<p>1. Open global search.<br>2. Type the contact's job title: Dispatch Supervisor<br>3. Read the Customers group.</p>",
+  "custom_expected": "<p>The customer 'ZZAUTOTEST Bridgeport Hauling' is returned, carrying the 'Contact match' label.<br>In V1 the contact's job title was part of the customer's searchable text.<br>If it fails, record and flag it - the V2 specification lists contact names, telephone numbers and email addresses but not job title, so this may be a deliberate scope cut. Do not raise a defect until the Product Owner has ruled.</p><p>---<br>This is the expected behaviour as per epic SV-9160 and the V1 behaviour recorded in the ShopView code baseline 55767168 (FetchDataQueryHandler.php:241, COALESCE(cu.title, \"\")). the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945) section 4 does NOT list contact job title among the indexed contact fields - it lists the names, telephone numbers and email addresses of contacts, so this is a code-versus-document conflict: Standing Rule 96 keeps the V1 behaviour as the default and Standing Rule 58 makes the conflict a PO DECISION ITEM. If this case fails, record and flag it - do not raise a defect until the Product Owner has ruled. Read on 13 September 2026.<br>AUTOMATION: Not available on Build to test Yet - Last checked 13/9/2026</p>",
+  "section_id": 6769,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "custom_atmstatus": 1,
+  "custom_automation_type": 0
+ },
+ {
+  "title": "Finding a customer or vendor by address line 2",
+  "refs": "SV-9160 (INV-03, INV-05; V1 baseline 55767168; PRD 1.5 s4 Customers 'address 1/2')",
+  "custom_preconds": "<p>1. Sign in to ShopView. In the app header, click the search field (or press \u2318K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.<br>1. Customer 'ZZAUTOTEST Bridgeport Hauling' has address line 1 '1450 Kestrelway Industrial' and address line 2 'Dock 7B'.<br>2. Vendor 'ZZAUTOTEST Kestrel Parts Supply' has an address line 2 recorded.<br>3. Access: Customers - View, and Vendor &amp; Order Management - View.</p>",
+  "custom_steps": "<p>1. Open global search.<br>2. Type the customer's address line 2: Dock 7B<br>3. Read the Customers group.<br>4. Clear the input and search for the vendor's address line 2.<br>5. Read the Vendors group.</p>",
+  "custom_expected": "<p>Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'.<br>Step 4 returns the vendor 'ZZAUTOTEST Kestrel Parts Supply'.<br>Address line 2 is searchable in its own right, not only address line 1.</p><p>---<br>This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945) section 4, which indexes Customers on \"address 1/2\", together with the V1 behaviour recorded in the ShopView code baseline 55767168 (FetchDataQueryHandler.php:231 and :158, COALESCE(address_2)) which did the same. Read on 13 September 2026.<br>AUTOMATION: Not available on Build to test Yet - Last checked 13/9/2026</p>",
+  "section_id": 6769,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "custom_atmstatus": 1,
+  "custom_automation_type": 0
+ },
+ {
+  "title": "Finding an asset by its year",
+  "refs": "SV-9160 (INV-04; V1 baseline 55767168; PRD 1.5 s4 Assets indexed on year)",
+  "custom_preconds": "<p>1. Sign in to ShopView. In the app header, click the search field (or press \u2318K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.<br>1. An asset exists: 2019 Freightliner Cascadia, unit ZZT-4471, owned by 'ZZAUTOTEST Bridgeport Hauling'.<br>2. Customers access: View.</p>",
+  "custom_steps": "<p>1. Open global search.<br>2. Type: 2019 Freightliner<br>3. Read the Assets group.</p>",
+  "custom_expected": "<p>The 2019 Freightliner Cascadia is returned under the Assets group.<br>The year is part of what an asset can be found by, alongside make and model.</p><p>---<br>This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945) section 4, which indexes Assets on \"year, make, model, VIN/serial #, unit number, owning customer name\", together with the V1 behaviour recorded in the ShopView code baseline 55767168 (FetchDataQueryHandler.php:285-293). Read on 13 September 2026.<br>AUTOMATION: Not available on Build to test Yet - Last checked 13/9/2026</p>",
+  "section_id": 6769,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "custom_atmstatus": 1,
+  "custom_automation_type": 0
+ },
+ {
+  "title": "Finding a vendor by state or province",
+  "refs": "SV-9160 (INV-05; V1 baseline 55767168; PRD 1.5 s4 omits vendor state - PO DECISION)",
+  "custom_preconds": "<p>1. Sign in to ShopView. In the app header, click the search field (or press \u2318K / Ctrl+K) to open the global search, which searches across work orders, customers, parts and more; results appear grouped by type under a tab strip.<br>1. Vendor 'ZZAUTOTEST Kestrel Parts Supply' has state or province 'Ohio' recorded.<br>2. Vendor &amp; Order Management access: View.</p>",
+  "custom_steps": "<p>1. Open global search.<br>2. Type: Ohio<br>3. Read the Vendors group.</p>",
+  "custom_expected": "<p>The vendor 'ZZAUTOTEST Kestrel Parts Supply' is returned under the Vendors group.<br>If it fails, record and flag it - the V2 specification lists vendor name, telephone, email, address and city but not state or province. Do not raise a defect until the Product Owner has ruled.</p><p>---<br>This is the expected behaviour as per epic SV-9160 and the V1 behaviour recorded in the ShopView code baseline 55767168 (FetchDataQueryHandler.php:159, COALESCE(v.state_or_province, \"\")). the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945) section 4 does NOT list state or province among the Vendor indexed fields - it lists name, telephone, email, address and city, so this is a code-versus-document conflict: Standing Rule 96 keeps the V1 behaviour as the default and Standing Rule 58 makes the conflict a PO DECISION ITEM. If this case fails, record and flag it - do not raise a defect until the Product Owner has ruled. Read on 13 September 2026.<br>AUTOMATION: Not available on Build to test Yet - Last checked 13/9/2026</p>",
+  "section_id": 6769,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "custom_atmstatus": 1,
+  "custom_automation_type": 0
+ }
+]

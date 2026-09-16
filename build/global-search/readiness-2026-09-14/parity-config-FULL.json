@@ -1,0 +1,626 @@
+{
+  "suite_id": 1,
+  "run_id": 415,
+  "baseline": "ShopView/shopview @ 55767168",
+  "commit": "55767168",
+  "v1_files": [
+    "FetchDataQueryHandler.php",
+    "useGlobalSearch.ts",
+    "GlobalSearch.vue",
+    "routingService.ts",
+    "FetchDataController.php",
+    "DesktopMenu.vue"
+  ],
+  "v2_doc_marker": "Product Requirements specification",
+  "absence_markers": [
+    "ABSENCE of any feature flag"
+  ],
+  "capabilities": [
+    {
+      "kind": "field",
+      "capability": "WO/PS - plain (raw) number",
+      "evidence": "FetchDataQueryHandler.php:96 wo.raw_number",
+      "cases": [
+        55672
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "WO/PS - formatted number",
+      "evidence": "FetchDataQueryHandler.php:98-111 wo.number",
+      "cases": [
+        53579
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "WO/PS - shop-number-prefixed forms (4 variants)",
+      "evidence": "FetchDataQueryHandler.php:100-110 shop_id injected 4 ways",
+      "cases": [
+        53579
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "WO - customer company name",
+      "evidence": "FetchDataQueryHandler.php:112 c.name",
+      "cases": [
+        53578
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Part Sale - customer company name",
+      "evidence": "FetchDataQueryHandler.php:112 c.name (same fetcher yields Part Sale rows)",
+      "cases": [
+        55665
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "WO/PS - status word",
+      "evidence": "FetchDataQueryHandler.php:113-116 wo.status",
+      "cases": [
+        55658
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - company name",
+      "evidence": "FetchDataQueryHandler.php:226 c.name",
+      "cases": [
+        55667
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - company name with spaces removed",
+      "evidence": "FetchDataQueryHandler.php:228 REPLACE(c.name,' ','')",
+      "cases": [
+        53602
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - address line 1",
+      "evidence": "FetchDataQueryHandler.php:229 c.address_1",
+      "cases": [
+        53582
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - address line 2",
+      "evidence": "FetchDataQueryHandler.php:229 c.address_2",
+      "cases": [
+        53604
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - state or province",
+      "evidence": "FetchDataQueryHandler.php:230 c.state_or_province",
+      "cases": [
+        53582
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - postal code",
+      "evidence": "FetchDataQueryHandler.php:230 c.postal_code",
+      "cases": [
+        53582
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - city",
+      "evidence": "FetchDataQueryHandler.php:231 c.city",
+      "cases": [
+        53582
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - company telephone",
+      "evidence": "FetchDataQueryHandler.php:235 c.telephone",
+      "cases": [
+        55662
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - website",
+      "evidence": "FetchDataQueryHandler.php:236 c.website",
+      "cases": [
+        53583
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - contact first name",
+      "evidence": "FetchDataQueryHandler.php:240 cu.first_name",
+      "cases": [
+        55670
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - contact last name",
+      "evidence": "FetchDataQueryHandler.php:240 cu.last_name",
+      "cases": [
+        55670
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - contact job title",
+      "evidence": "FetchDataQueryHandler.php:241 cu.title",
+      "cases": [
+        53603
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Customer - contact telephone",
+      "evidence": "FetchDataQueryHandler.php:241 cu.telephone",
+      "cases": [
+        55662,
+        53603
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Vendor - name",
+      "evidence": "FetchDataQueryHandler.php:156 v.name",
+      "cases": [
+        55668
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Vendor - address line 1",
+      "evidence": "FetchDataQueryHandler.php:157 v.address_1",
+      "cases": [
+        53585
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Vendor - address line 2",
+      "evidence": "FetchDataQueryHandler.php:158 v.address_2",
+      "cases": [
+        53604
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Vendor - state or province",
+      "evidence": "FetchDataQueryHandler.php:159 v.state_or_province",
+      "cases": [
+        53606
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Vendor - postal code",
+      "evidence": "FetchDataQueryHandler.php:160 v.postal_code",
+      "cases": [
+        53585
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Vendor - city",
+      "evidence": "FetchDataQueryHandler.php:161 v.city",
+      "cases": [
+        53585
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Vendor - telephone",
+      "evidence": "FetchDataQueryHandler.php:162 v.telephone",
+      "cases": [
+        55663
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Vendor - email",
+      "evidence": "FetchDataQueryHandler.php:163 v.email",
+      "cases": [
+        53584
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Asset - owning customer name",
+      "evidence": "FetchDataQueryHandler.php:286 c.name",
+      "cases": [
+        53581
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Asset - year",
+      "evidence": "FetchDataQueryHandler.php:287 v.year",
+      "cases": [
+        53605
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Asset - make / maker",
+      "evidence": "FetchDataQueryHandler.php:288 vmk.name",
+      "cases": [
+        55664
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Asset - model",
+      "evidence": "FetchDataQueryHandler.php:289 vm.name",
+      "cases": [
+        55664
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Asset - unit number",
+      "evidence": "FetchDataQueryHandler.php:290 v.unit",
+      "cases": [
+        53580
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Asset - VIN",
+      "evidence": "FetchDataQueryHandler.php:291 v.vin",
+      "cases": [
+        55669
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Asset - licence plate",
+      "evidence": "FetchDataQueryHandler.php:292 v.licence_plate",
+      "cases": [
+        53516
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Part - name / description",
+      "evidence": "FetchDataQueryHandler.php:325 cp.name",
+      "cases": [
+        53607
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Part - part number with and without dashes",
+      "evidence": "FetchDataQueryHandler.php:326-327 cp.part_number",
+      "cases": [
+        55666
+      ]
+    },
+    {
+      "kind": "field",
+      "capability": "Part - the CATALOGUE is the source, not inventory stock",
+      "evidence": "FetchDataQueryHandler.php:317-331 from CataloguePart::TABLE_NAME",
+      "cases": [
+        53601,
+        45153
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-10 minimum two characters",
+      "evidence": "useGlobalSearch.ts:69-71",
+      "cases": [
+        45161
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-11 prefix match on the visible label",
+      "evidence": "useGlobalSearch.ts:76-82",
+      "cases": [
+        55667,
+        55668
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-12 substring match anywhere in the record text",
+      "evidence": "useGlobalSearch.ts:84-93",
+      "cases": [
+        55659,
+        55660
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-13 case-insensitive matching",
+      "evidence": "useGlobalSearch.ts:67,81,91",
+      "cases": [
+        55671
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-14 + INV-15 per-type slots and no overall cap",
+      "evidence": "useGlobalSearch.ts:152 MAX_PER_TYPE=3, no total cap",
+      "cases": [
+        55661
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-16 a record matching twice is shown once",
+      "evidence": "useGlobalSearch.ts:182-184",
+      "cases": [
+        45157
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-17 a contact match still returns its company",
+      "evidence": "useGlobalSearch.ts:187-188,207-209",
+      "cases": [
+        55670
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-18 work orders newest first",
+      "evidence": "FetchDataQueryHandler.php:124 start_date DESC",
+      "cases": [
+        53588
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-20 the vehicles group is shown as Assets",
+      "evidence": "GlobalSearch.vue:60",
+      "cases": [
+        45155
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-33 a newly created record is findable at once",
+      "evidence": "useGlobalSearch.ts:309-313 + 5 call sites",
+      "cases": [
+        53586,
+        53587
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-34 a user with no default workplace",
+      "evidence": "GlobalSearch.vue:131-137",
+      "cases": [
+        45159
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-40 keyboard shortcut reaches search",
+      "evidence": "GlobalSearch.vue:243-254",
+      "cases": [
+        45156
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-41 first result auto-highlighted; Enter opens it",
+      "evidence": "GlobalSearch.vue:173-184,205",
+      "cases": [
+        55673
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-43 loading state while results are not ready",
+      "evidence": "GlobalSearch.vue:12-14,147-149",
+      "cases": [
+        53589
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-44 a no-results message",
+      "evidence": "GlobalSearch.vue:33-39,151-153",
+      "cases": [
+        55675
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-46 selecting a result opens the right record",
+      "evidence": "GlobalSearch.vue:208-235; routingService.ts:75",
+      "cases": [
+        45153
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-47 already on that record - no re-navigation",
+      "evidence": "GlobalSearch.vue:223-234",
+      "cases": [
+        45154
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-48 selecting a result records an analytics event",
+      "evidence": "GlobalSearch.vue:211-217",
+      "cases": [
+        45160
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-50 reachable on desktop, tablet and phone",
+      "evidence": "DesktopMenu.vue:52,74,77-101; GlobalSearch.vue:81-91",
+      "cases": [
+        55674
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-64 history entries the user may not see are hidden",
+      "evidence": "useGlobalSearch.ts:21-29",
+      "cases": [
+        45149
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-71 the TimeClock role gets nothing",
+      "evidence": "FetchDataController.php:50-51",
+      "cases": [
+        45147
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-72 per-section access gating by held bundle",
+      "evidence": "FetchDataQueryHandler.php:47-53",
+      "cases": [
+        45142,
+        45144,
+        45145,
+        45146
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-73 Part gated on catalogInventoryView only",
+      "evidence": "FetchDataQueryHandler.php:47-53; routingService.ts:84-85",
+      "cases": [
+        45143
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-74 an unknown result type defaults to not-permitted",
+      "evidence": "routingService.ts:78-99",
+      "cases": [
+        45148
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-80 every fetcher is organization-scoped",
+      "evidence": "FetchDataQueryHandler.php:127-130 et al",
+      "cases": [
+        45150
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-81 only WO/PS are location-scoped; the rest are org-wide",
+      "evidence": "FetchDataQueryHandler.php:130",
+      "cases": [
+        45151
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-82 a location switch refreshes the results",
+      "evidence": "useGlobalSearch.ts:286-299",
+      "cases": [
+        45152
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-90 no feature flag controls global search",
+      "evidence": "absence in component, composable and config",
+      "cases": [
+        45158
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-42 group headers are not selectable",
+      "evidence": "useGlobalSearch.ts / GlobalSearch.vue:157-159; V1 baseline 55767168",
+      "cases": [
+        55680
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-63 history shows when the query is under two characters OR the search matches nothing",
+      "evidence": "useGlobalSearch.ts:69-71,229-231; V1 baseline 55767168",
+      "cases": [
+        45161,
+        55679
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-91 the exclusion list - TimeClock role, no default workplace, ungranted sections, invoices, inventory",
+      "evidence": "V1 baseline 55767168; every excluded population is cased",
+      "cases": [
+        45147,
+        45159,
+        45142,
+        53601
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-92 each result row carries a per-type icon",
+      "evidence": "GlobalSearch.vue:60-62 + useGlobalSearch.ts:96-137; V1 baseline 55767168",
+      "cases": [
+        55682
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-93 the keyboard-shortcut hint is shown, platform-correct",
+      "evidence": "GlobalSearch.vue:40-47,128-131; V1 baseline 55767168",
+      "cases": [
+        55683
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-94 the old location's rows are cleared before the re-fetch",
+      "evidence": "useGlobalSearch.ts:286-299 + V1's own test; V1 baseline 55767168",
+      "cases": [
+        55684
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-95 only records containing the typed text are returned (literal matching, no near spellings)",
+      "evidence": "useGlobalSearch.ts:76-92 startsWith then includes; V1 baseline 55767168",
+      "cases": [
+        55685
+      ]
+    },
+    {
+      "kind": "behaviour",
+      "capability": "INV-96 exact-start matches are ordered above looser matches",
+      "evidence": "useGlobalSearch.ts:156-180 two-pass ordering; V1 baseline 55767168",
+      "cases": [
+        55686
+      ]
+    }
+  ],
+  "_full_accounting": "build/global-search/readiness-2026-09-14/FULL-COVERAGE-ACCOUNTING-2026-09-14.md",
+  "section_ids": [
+    6769,
+    8056
+  ],
+  "_sections": {
+    "6769": "main V1 parity suite - derived from the V1 implementation",
+    "8056": "derived from V1's own automated test suite (QA lead's instruction, 2026-09-14)"
+  },
+  "_capabilities_source": "GENERATED FROM v1-parity-audit-2026-09-14/coverage_proof.py on 2026-09-14. They had DRIFTED: the register documented 35 behaviour invariants and the script only checked 29, so the proof silently under-reported what it was proving. No coverage was ever missing - all six already had live cases - but an unchecked row is not a proof. The script is now the single source and this list is regenerated from it."
+}

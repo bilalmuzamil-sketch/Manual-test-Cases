@@ -1,0 +1,24 @@
+{
+ "customer_id": "c01eab9e-e400-474c-aaa9-a8a93a346add",
+ "contact_id": "10991ac6-656e-43dd-9dc1-dc96c81fa303",
+ "vendor_id": "7379aa02-c999-4659-b017-a8661c450af9",
+ "vehicle_id": "b7d49e1e-9c00-4070-bd42-c9d83da9b80c",
+ "part_catalogue_only_id": "c7c4b204-32d8-43e9-94dd-c2e6abe1c463",
+ "part_stocked_id": "74d3e14e-3714-4e9d-8e6f-86a8be45a6cc",
+ "work_orders": [
+  "0900c73a-b672-4150-a6a4-2c3cb583c599",
+  "4b926f35-f96e-4405-b68d-85f88bdd8110",
+  "4f3a8e47-5c0d-46b2-899d-662f7bc681e5",
+  "6a94983e-884a-4bcd-b547-65c60f0b5974"
+ ],
+ "wo_numbers": [
+  "S9160-17583",
+  "S9160-17582",
+  "S9160-17581",
+  "S9160-17580"
+ ],
+ "inventory_part_id": "a123b4e5-39ed-40a6-bc64-ced030673daa",
+ "_note": "inventory_part_id is the STOCKED part (ZZT-88-4412, qty 25). part_catalogue_only_id (ZZT-77-3300) must stay OUT of inventory - that contrast is the C53601 test.",
+ "_WARNING_2026-09-14": "THESE IDS ARE UNRELIABLE. customer_id c01eab9e-e400-474c-aaa9-a8a93a346add returns 404 on GET /api/customers/{id}. The customer EXISTS under id a1d08451-0214-41a4-983f-7f878ff7bcf0 (ZZAUTOTEST Bridgeport Hauling, Fernvale, 44872-9931). Every other id in this file is therefore suspect and must be rebuilt from live lookups before the run. See readiness-2026-09-14/A5-AND-SEED-IDS-CORRECTION-2026-09-14.md",
+ "customer_id_OBSERVED_LIVE_2026-09-14": "a1d08451-0214-41a4-983f-7f878ff7bcf0"
+}

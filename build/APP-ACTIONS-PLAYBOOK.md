@@ -4487,3 +4487,164 @@ the environment is empty.
 `/api/part-sales` returns its rows under **`partSales`**. Every other list on this API uses
 `collection`, so a script assuming the house style reads an empty list and reports a record missing
 while it is sitting right there. Check the key before concluding anything is absent (Rule 104).
+
+## O. GLOBAL SEARCH — V1 and V2 facts worth never rediscovering (proven 2026-09-14→16)
+
+Everything here was measured live or read from the product source. It sat only in dated session
+folders until 2026-09-16, which is how a fact gets rediscovered the expensive way.
+
+### O1. The two search endpoints are DIFFERENT, and probing the wrong one lies to you
+
+| Version | Where | Endpoint | Shape |
+|---|---|---|---|
+| **V1** (production, `app.shopview.com`) | `api.shopview.com` | `GET /api/global-search/fetch` | returns the **WHOLE collection** (~5,000 rows of `label` + `search` + `type`); the **browser** filters |
+| **V2** (QA branch `sv9160`) | `sv9160api.qa.shopview.com` | `GET /api/search?q=<query>` | returns grouped, ranked results; the **server** filters |
+
+🔴 **`/api/search` 404s on production and `/api/global-search/fetch` is not the V2 endpoint.** A
+liveness probe must use something that exists in both — `GET /api/staff/my-workplaces` works
+everywhere. Probing the wrong one reports a dead session that is perfectly alive (cost: one blocked
+reseed, 2026-09-16).
+
+**Because V1 hands over the whole collection, V1 behaviour can be measured WITHOUT a browser:** fetch
+the collection and apply V1's own two passes. Runnable: `build/global-search/prod-v1-comparison-2026-09-15/verify_prod_v1.py`.
+
+### O2. V1's matching, transcribed (`useGlobalSearch.ts:66-93` @ `55767168`)
+
+* **Under 2 characters** → returns recent history, not results.
+* **Pass 1:** `label.toLowerCase().startsWith(query)` — the label is what the row displays.
+* **Pass 2:** `search.toLowerCase().includes(query.replace(/\s+/g, ''))` — **only SPACES are stripped
+  from what the user typed. Nothing else.**
+* 🔴 **AND THE HALF EVERYONE FORGETS: V1's STORED `search` TEXT HAS NO SPACES EITHER.** A vehicle
+  reads `zzautotestfibridgecommercial2019freightlinercascadiatrk4121fujgldr9clbp8834ohzzt412`.
+  That is *why* the query's spaces are stripped — the two sides are symmetric. Practical
+  consequences: (a) typing `TRK 412` **does** find a unit stored as `TRK 412`; (b) **grepping the
+  collection for a literal value with a space in it finds nothing**, which reads exactly like a
+  missing record — compare space-stripped on both sides (cost: one false "asset not found" on
+  2026-09-16); (c) the blob keeps **dashes**, so the phone table below still holds.
+* **`MAX_PER_TYPE = 3`** — V1 showed at most **three rows per group**. V2 shows 20. So "my record must
+  appear when I type a common make/year" was **never V1 behaviour**, and its absence from a V2 list is
+  not automatically a loss. Compare *whether the field is searched*, not *whether our record surfaces*.
+
+**The phone-number rule, which catches everyone.** V1 stored a number with brackets stripped and `)`
+turned into `-`, so `(419) 555-0143` became `419-555-0143`; the typed text lost only its spaces:
+
+| Typed | V1 found it? |
+|---|---|
+| `419-555-0143` (dashes) | ✅ |
+| `555-0143` (part of it) | ✅ |
+| `(419) 555-0143` (brackets) | ❌ |
+| `4195550143` (plain digits) | ❌ |
+
+**Do not "helpfully" retype a number in another format** — it changes what is being tested.
+
+### O3. V1's searchable fields, per record type — the authority is the SQL, not intuition
+
+`FetchDataQueryHandler.php` @ `55767168`. **Customers and Vendors differ, and that asymmetry has
+already caused one withdrawn ticket.**
+
+| Record | Fields V1 folds into its search text |
+|---|---|
+| **Customer** (:228-244) | name · name-with-spaces-removed · address 1 · address 2 · state · postal · city · telephone · **website** · each contact's first name, last name, title, telephone |
+| **Vendor** (:157-164) | name · address 1 · address 2 · state · postal · city · telephone · **email** |
+| **Asset** (:287-292) | owner name · year · make · model · unit · VIN · plate |
+| **Part** (:317-340) | reads **CataloguePart** — **no inventory join at all**, so a part never stocked was still findable |
+| **Work order / part sale** (:96-116) | raw number · number · four shop-prefixed variants · customer name · status (`quality_check` → `qualitycheckqc`) |
+
+🔴 **A CUSTOMER has a website and NO email. A VENDOR has an email and NO website.** They are not
+mirror images. SV-10110 was filed claiming V1 searched a vendor website; it never did — the match came
+from the email, which *contains* the website string. See Standing Rule 110.
+
+### O4. Seeding and TestRail traps hit on this project
+
+* **`SEED_PROFILE` / `SEED_WORKPLACE`** switch `seed.py` between estates; `RESEED QA` and `RESEED LIVE`
+  are the keywords. Full runbook: `build/global-search/seeding/RESEED.md`.
+* 🔴 **`delete_case/<id>&soft=1` DELETES on this TestRail — it is NOT a dry run.** Do not reach for it
+  as a safe preview.
+* **Deleting a TestRail case also deletes its tests and results everywhere.** Snapshot the full body
+  **and** its results first, verify the snapshot, then delete, then count the run before and after.
+  Precedent: SBC-EXP-13 (2026-07-28) and C55692 (2026-09-16).
+* **`update_case` verification traps:** TestRail appends a trailing newline and sometimes a stray
+  `</p>` to text fields, and `(value or '')` in a comparator destroys a legitimate `0`. Compare at
+  content level, not byte level, or you will chase three false alarms.
+
+### O5. V2's INDEXED FIELDS, per entity type — read from the deployed source, not guessed
+
+Source: `api/src/Search/Infrastructure/DocumentProvider/*DocumentProvider.php` on branch
+**`SV-9160-global-search-v2` @ `21b4db9`**, which is exactly the build the QA branch serves
+(`curl -s https://sv9160.qa.shopview.com/ | grep app-version` → `v26.36.7-21b4db9`, 2026-09-16).
+**This table is what makes a seed findable.** Get it wrong and you create a record the search will
+never return, then spend an afternoon deciding whether that is a defect.
+
+| Entity | Indexed fields (what a query can match) |
+|---|---|
+| **work_orders** | number + shop-prefixed variants · status · **customer_name** · contact_name · contact_email · asset_make · asset_model · **unit** · vin · lead_technician_name · service_advisor_name · **line_name / line description (`line_texts`)** · part-request part numbers |
+| **companies (customers)** | name · phone · address_line_1 · address_line_2 · city · state · postal_code · country_code · **website** · and each **contact's** name, telephone, mobile, email, title |
+| **vehicles (assets)** | **year (as an INTEGER, not text)** · make · model · vin · unit · licence_plate · **owner company_name** |
+| **parts** | description · part_number (+ stripped variant) · category · manufacturer · **vendor_name** · bin_location · tags |
+| **vendors** | name · phone · email · address_line_1/2 · city · state · postal_code · and each **contact's** name, telephone, mobile, email |
+| **part_sales** | number + variants · status · **customer_name** · asset_description · vin · created_by_name |
+| **purchase_orders** | number · **vendor_name** · status · ordered_by_name · note · work_order_number · **item part_number + description (`item_part_names`)** |
+| **vendor_invoices** | **invoice_number** · **vendor_name** · received_by_name · note · payment_status · order_number |
+
+**Three consequences that decide how you seed:**
+1. **Name the CUSTOMER and the VENDOR after the search term and almost everything else follows** —
+   its work orders (customer_name), its assets (owner company_name), its part sales (customer_name),
+   its purchase orders and vendor invoices (vendor_name) all inherit the match. You do not need to
+   rename 21 work orders to make 21 work orders match.
+2. **A customer has a `website`; a vendor does not** — the same V1 asymmetry (O3) survives into V2's
+   company document. Do not claim a vendor matched on a website.
+3. 🔴 **A YEAR IN THE QUERY DOES NOT NARROW AN ASSET SEARCH THE WAY IT LOOKS LIKE IT SHOULD.**
+   `year` is indexed as an *integer*, and the group caps at 20, so `2025 Freightliner M2` degrades
+   to "Freightliner M2" — which the staging estate answers with twenty other Freightliner M2s, and
+   the one you seeded never appears. The asset row DISPLAYS the year, so this is easy to misread as
+   "my seeded asset is missing". It is not: search it by its **owner** or its **VIN/unit**, which
+   are the fields that actually discriminate. Measured 2026-09-16: `2025 Freightliner M2` → ours
+   absent, `Bryan Smith` → ours first.
+4. **Fuzzy noise is real and it is large.** On the staging estate `Fibridge` already returns 7
+   customers and 5 vendors before you seed anything — all fuzzy hits on **"Bridge" inside an address**.
+   `Peterson` returns 20 customers the same way. **So count targets ("≤5", ">20") must be measured on
+   the SHORT prefix term (`Fib`), never on the long one**, and a group total is never evidence your
+   record is there (Rule 110b — check identity).
+
+### O6. Purchase order → vendor invoice → payment: the whole chain, with the payloads
+
+A **delivery IS the vendor invoice** in this data model (`inventory_delivery`); the invoice number is
+a nullable free-text column on it. The list endpoint is `GET /api/inventory/deliveries` — there is no
+`/api/vendor-invoices` (404), which is the first wrong turn.
+
+1. **Part request on a work order** → `POST /api/work-orders/part/make-request
+   {line, work_order, description, quantity, part_source_type:'vendor', part_number, sell_price, cost,
+   part_category_id}` (§E — `part_category_id` is required).
+2. **Order it** → `POST /api/work-orders/part/perform-request-status-action
+   {part_request_id, action:'order'}` → 201. **This is what creates the purchase order.**
+3. **Receive it** → `POST /api/inventory/orders/accept` (fields `invoice-number`, invoice date,
+   per-line delivered qty, tax, note). **This is what creates the vendor invoice (delivery).**
+4. **The payment badge is NOT a column on the delivery.** It is
+   `vendor_transaction.vendor_transaction_status`, LEFT JOINed by the indexer where the transaction's
+   type is `delivery`. Receiving a delivery auto-creates that transaction as **`unpaid`** with
+   `balance = amount` (`CreateTransactionWhenDeliveryIsCreated`).
+5. **Pay it** (this is the only way to reach Partially paid / Paid):
+   - vendor account id: `GET /api/parts-catalogue/vendor/{vendorId}` → `data.vendor.vendor_account_id`
+     (it is **not** on the `/api/parts-catalogue/vendors` list row).
+   - the open items: `GET /api/parts-catalogue/vendor/transactions/list-unpaid-by-vendor-account
+     ?accountId=<acc>&pagination[page]=1&pagination[rowsPerPage]=50` →
+     `data.response.collection[]` (each row has `id`, `amount`, `balance`, `invoice_number`).
+   - payment methods: `GET /api/parts-catalogue/vendor/transactions/payment-methods` →
+     `data.collection[] {id, name, code, type}`.
+   - **`POST /api/parts-catalogue/vendor/payment/create`** with the uniform snake_case body:
+     `{account_id, primary_id:null, ibs_batch_id:null, payment_date, payment_method,
+     reference_number, description, new_credit:0, new_deposit:0, payment_amount,
+     transactions:[{…the unpaid row…, transaction_payment_amount:<n>, index:0}],
+     applied_deposits:[], applied_credits:[]}`.
+     Pay **less** than the balance → `partially_paid`; pay the **whole** balance → `paid`.
+     Needs `ROLE_VENDOR_CREATE_AND_EDIT`.
+
+🔴 **The payment badge has FOUR states, not the three the PRD and case C44900 describe.**
+`vendor_transaction_status` declares `unpaid`, `partially_paid`, `paid` **and `credit`** (rendered
+"Unapplied"), and the document carries `null` when the delivery has no transaction yet. The
+`VendorInvoiceDocumentProvider` docblock says so itself and calls it "correcting D19". **Document
+says three, code says four → Rule 96: a PO DECISION ITEM, never a silent invariant.**
+
+**Measured on the QA branch 2026-09-16:** all 155 sampled vendor invoices read `unpaid`, and purchase
+orders carry `ordered` (75), `partial_delivery` (18) and `fulfilled` (83). So the PO status spread the
+cases need already exists; only the invoice payment spread has to be created.
