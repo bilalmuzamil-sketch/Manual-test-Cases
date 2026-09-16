@@ -3804,10 +3804,12 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     replacement. Putting them in Replacement Scope alone would send ordinary work back to the old
     ticket shape:
 
-    1. **The approved ticket layout** — one-line title · Environment on one line · Description ·
-       Steps of reproduction · Current behaviour · Expected behaviour · Screenshots · (the Product
-       Owner note, Replacement Scope only) · a rule · Sources. **No "technical details for
-       developers" section, ever.**
+    1. **The approved ticket layout** — one-line title · Description · Steps of reproduction ·
+       Current behaviour · Expected behaviour · Screenshots · (the Product Owner note, Replacement
+       Scope only) · a rule · **Environment** (a blank line above and below it) · Sources.
+       **No "technical details for developers" section, ever.**
+       ⛔ *Amended 2026-09-16: Environment used to open the ticket; he moved it to second-to-last,
+       directly above Sources. Skill 06's heading table carries the full amendment.*
     2. **Annotated screenshots** — boxes on the exact element with a numbered legend beneath, sized
        to span the description so nothing has to be clicked. A framed picture is not an annotated
        one (L0132).
