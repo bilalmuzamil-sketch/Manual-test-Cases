@@ -45,7 +45,7 @@ TO ADD DATA FOR A NEW TEST CASE: add an entry to the right manifest. Never edit 
 AUTH is self-service (Rule 107): quick-login mints a session, and the rotated PHPSESSID is
 captured from Set-Cookie (playbook §Q1 - not doing so makes every later call answer 409).
 """
-import json, sys, os, re, ssl, urllib.parse, urllib.request, urllib.error, argparse, datetime
+import json, sys, os, re, ssl, time, urllib.parse, urllib.request, urllib.error, argparse, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # Which environment to seed. Defaults to the QA branch profile; set SEED_PROFILE to point at
@@ -183,11 +183,17 @@ def find(spec, _key=None):
         # Ids captured for THIS environment win; the manifest's are the starting default.
         # Ids captured for THIS environment win; the manifest's are the starting default.
         for i in (_ids_load().get(_key) or spec.get('ids', [])):
-            r = call(spec['view'].replace('{id}', i))
-            if r['status'] == 200:
-                d = (r['json'] or {}).get('data', {}) or {}
-                rec = d.get(spec['coll']) if isinstance(d, dict) else None
-                if rec: out.append(rec)
+            # Same retry as the search mode, for the same reason: a transient failure on ONE of
+            # eighteen view calls reads as a shortfall, and a shortfall now creates a top-up.
+            # Believing a flaky read here does not just miscount, it manufactures extra records.
+            for attempt in range(3):
+                r = call(spec['view'].replace('{id}', i))
+                if r['status'] == 200:
+                    d = (r['json'] or {}).get('data', {}) or {}
+                    rec = d.get(spec['coll']) if isinstance(d, dict) else None
+                    if rec: out.append(rec)
+                    break
+                if attempt < 2: time.sleep(2 * (attempt + 1))
         return out, 'ok'
     if spec['mode'] == 'child':
         # A record that lives INSIDE its parent and has no list endpoint of its own. A contact is
@@ -206,9 +212,25 @@ def find(spec, _key=None):
         return [x for x in rows
                 if str(x.get(spec['field']) or '').strip().lower() == str(spec['value']).strip().lower()], 'ok'
     if spec['mode'] == 'search':
-        r = call(f"{spec['list']}?search={urllib.parse.quote(spec['value'])}&limit=100")
-        if r['status'] != 200: return [], f"probe {r['status']}"
-        return [x for x in rows(r) if str(x.get(spec['field']) or '') == spec['value']], 'ok'
+        # 🔴 A SINGLE EMPTY READ IS NOT A MISSING RECORD, AND ON THIS API THE DIFFERENCE IS
+        # DANGEROUS. Production's list endpoints return transient empties and errors: on
+        # 2026-09-16 three consecutive --confirm runs disagreed about which records existed, with
+        # cust_bryan_smith, contact_bryan and cpart_fib_instock each reading MISSING in one run and
+        # present in the next, while a direct check proved all 33 were there the whole time. The
+        # cost of believing a flaky miss is not a wrong number on screen - it is a CREATE, and
+        # therefore a DUPLICATE of a record that already exists, in an estate where duplicates are
+        # exactly what the count targets cannot survive. So: retry, and only then believe it.
+        last = None
+        for attempt in range(3):
+            r = call(f"{spec['list']}?search={urllib.parse.quote(spec['value'])}&limit=100")
+            if r['status'] == 200:
+                hit = [x for x in rows(r) if str(x.get(spec['field']) or '') == spec['value']]
+                if hit: return hit, 'ok'
+                last = ([], 'ok')
+            else:
+                last = ([], f"probe {r['status']}")
+            if attempt < 2: time.sleep(2 * (attempt + 1))
+        return last
     # page mode - and page params can be IGNORED, so stop as soon as a page repeats
     hits, page, seen_ids = [], 1, set()
     while page <= 60:
