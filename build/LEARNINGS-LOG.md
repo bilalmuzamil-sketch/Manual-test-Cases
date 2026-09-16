@@ -2658,3 +2658,32 @@ picture because the build script wrote `SV-10109.png` while the ticket's content
 `VENDOR-ADDRESS-2.png`. The embed resolves by filename, so nothing errors — the ticket simply keeps the
 older file. **Assert that every ticket's image name equals its key, and verify the published media
 node's width and height against the file on disk**, which is what caught it.
+
+## L0133 — A branch whose API is asleep does not look asleep; and sv9160's sign-in changed on 16 September (2026-09-16)
+
+**Two separate things, found one behind the other, and the first hides the second.**
+
+**1. The sleep check watches the wrong thing.** `qa-branch-boot.mjs` decides a branch is asleep by
+looking at the PAGE url for `sleep.qa.shopview.com`. But the app host and the API host sleep
+independently: on 16 September `sv9160.qa.shopview.com/login` served a normal 200 with a valid
+`app-version`, while `sv9160api.qa.shopview.com/api/quick-login/users` answered **302 to
+`https://sleep.qa.shopview.com/api/quick-login/users?api=sv9160`**. The page never redirects, so the
+check never fires — and the run stops with *"no DEV MODE Admin button"*, which reads as a dead branch
+and is not one. **⇒ Detect sleep on the API host too: a 302 whose `location` contains
+`sleep.qa.shopview.com` is the tell, and `/api/quick-login/users` is the cheapest place to see it.**
+`wake_branch.mjs` woke it correctly (the endpoint moved 302 → 401 afterwards), so the waking works —
+only the detecting was wrong.
+
+**2. And underneath it, the sign-in route has gone.** After waking, build **`v26.36.4-d1af0c9`**
+(yesterday's was `-7869ff2`) no longer offers the `DEV MODE — QUICK LOGIN` panel at all:
+`/api/quick-login/users` answers **401**, and `/login` redirects to **Google sign-in**
+(`accounts.google.com/... redirect_uri=https://auth.qa.shopview.com/callback`). **Nothing can be run
+on sv9160 until that is sorted** — this is not a stale cookie and re-minting one will not help.
+
+**What this cost:** SV-10031 could not be re-checked before being rewritten, so it was rewritten from
+the evidence on record with the build and date it was seen on stated plainly, and with a line saying
+it has not been re-checked and why. **That is the honest shape for a report you cannot re-run — never
+restate an old claim as if it were checked today.**
+
+**Also corrected:** an earlier note said SV-10031 blocked C55665. That check now passes, so the
+blocking claim was stale and was not repeated in the rewrite.

@@ -501,5 +501,31 @@
   ],
   "shot_caption": "The same website typed into both versions. Above, the live product returns the supplier. Below, the new version returns nothing.",
   "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where kestrelsupply-zzt.com returned ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The supplier's record on the live product shows the same website, so the field is filled in on both.\n\nThe customer side of the same thing is already reported as SV-10003. Both were typed in the same sitting on the new version and neither returned its company, so a fix wants to cover both.\n\nThe check that covers this was written on 15 September because the suite did not have one: \"Finding a vendor by their website still works\" - https://shopview.testrail.io/index.php?/tests/view/2990950"
+ },
+ "SV-10031": {
+  "title": "Part Sales: a new part sale is created but the app cannot open it, and shows two errors",
+  "image": "SV-10031.png",
+  "no_question": true,
+  "description": "Pressing Save on a new part sale shows two red messages and the part sale never opens. The record is not lost - it appears in the Part Sales list a moment later - but the person who just made it cannot get into it to add anything. They are left looking at an error, with no way of telling whether the thing they created exists or not.\n\nIt happened every time it was tried, and each attempt produced a different support reference, so it is not a one-off.",
+  "steps": [
+   "Sign in to the test branch: https://sv9160.qa.shopview.com",
+   "Open Parts from the top menu, then Part Sales.",
+   "Click New Part Sale, at the top right.",
+   "In the New part sale box, choose a customer - 4 Star Truck Repair will do.",
+   "Click Save, and read what appears.",
+   "Close the messages and look at the Part Sales list."
+  ],
+  "current": [
+   "Two red messages appear. The first says an error occurred and gives a support reference to quote. The second says the part sale you are trying to open does not exist.",
+   "The new part sale does not open.",
+   "It is in the list all the same - P9160-250, against 4 Star Truck Repair, with no parts on it and no total. So the record was made; the app just cannot reach it.",
+   "Trying again does the same thing, with a different support reference each time."
+  ],
+  "expected": [
+   "Pressing Save creates the part sale and opens it, ready for parts to be added.",
+   "No error message appears."
+  ],
+  "shot_caption": "Above, the two messages shown after pressing Save. Below, the part sales list a moment later, with the new one sitting in it.",
+  "sources": "There is no specification behind this one and none is needed: the New Part Sale button exists to create a part sale and open it, and it does neither cleanly. The proof that the record is really made is the list itself, in the picture above - so the failure is between creating it and opening it, not in the creating.\n\nSeen on the test branch https://sv9160.qa.shopview.com, build v26.36.4-7869ff2, on 14 September 2026, signed in as an administrator, with a full screen recording attached. The support references from two of the attempts were 5bc49151-2dc2-4143-823f-115cb4fbc801 and dd7c7cbb-1b8f-4ab0-a4ca-5e13d91d75b1.\n\nIt has NOT been re-checked since. On 16 September the branch's sign-in changed - the quick sign-in used for testing is no longer offered and the page now asks for a Google account - so nobody has been able to try it again. Worth re-running the moment that is sorted out."
  }
 }
