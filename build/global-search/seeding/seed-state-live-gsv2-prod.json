@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-16T195723Z",
+ "when_utc": "2026-09-16T203010Z",
  "environment": {
   "app": "sv9160.qa.shopview.com",
   "api": "sv9160api.qa.shopview.com",
@@ -36,7 +36,6 @@
   "cpart_fib_5": "b2087a75-2134-4cf3-af92-613446fe4b3f",
   "part_instock": "613af7a3-de62-4c28-b264-907fb6c1a9b5",
   "part_low": "0fd577b1-d57b-4806-b5a3-068c247dde03",
-  "part_out": "10fe3707-db86-4154-b9d2-8bf6bee0b47a",
   "part_65547": "71fa1674-ab85-4459-bb5c-30c1ca8e1d73",
   "work_orders_fib_main": [
    "2e2d8a27-b7a8-493e-878a-e8757c652ac2",
@@ -646,13 +645,8 @@
   },
   {
    "key": "part_out",
-   "state": "PRESENT",
-   "ids": [
-    "10fe3707-db86-4154-b9d2-8bf6bee0b47a"
-   ],
-   "fields_ok": [],
-   "gaps": [],
-   "not_compared": [],
+   "state": "UNVERIFIED",
+   "reason": "PROBE BROKEN - /api/inventory/parts answered ERR",
    "serves": [
     44834,
     44852,

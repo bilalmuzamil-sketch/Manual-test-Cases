@@ -285,28 +285,37 @@ def main():
     for row in PLAN:
         tag = row['tag']
         rec = st.get(tag) or {}
-        # 🔴 RESUME, DO NOT SKIP. "The purchase order exists" is not "the row is finished" - a row
-        # that wants receiving and paying is only done when it HAS an invoice number and a recorded
-        # payment. The first version skipped on order_number alone, so a run that created five POs
-        # and failed every receive reported all five rows "already seeded" on the retry and the
-        # vendor-invoice group stayed empty. Same shape as the "6 of 7 present" report this whole
-        # seeder exists to prevent.
-        done = bool(rec.get('order_number')) \
-            and (not row['receive'] or rec.get('invoice_number')) \
-            and (not row['pay'] or rec.get('pay_result'))
+        # 🔴 THE STATE FILE NEVER DECIDES THAT A ROW IS DONE. THE ENVIRONMENT DOES.
+        #
+        # This block was written twice and wrong both times, and the second way was the dangerous
+        # one. Version 1 skipped on order_number alone, so a run that created five purchase orders
+        # and failed every receive reported all five "already seeded" on the retry. Version 2 added
+        # the invoice and payment to the test - and still read them off the state FILE. On
+        # 2026-09-16 the QA branch was redeployed mid-session and wiped; this script measured
+        # "0 purchase orders, 0 vendor invoices on this vendor" and then printed **complete** for
+        # all four rows, because the file still said so. It had the contradicting evidence on
+        # screen, one line above, and believed the file anyway.
+        #
+        # So the test is now: is the recorded purchase order ACTUALLY THERE, and the invoice
+        # ACTUALLY THERE. A recorded id that no longer resolves means the row was wiped, and a
+        # wiped row is REBUILT IN THIS PASS - not cleared for some later run that nobody may run.
+        live_orders = {o['id']: o for o in orders_by_vendor(vid)}
+        live_invoices = {str(d.get('invoice_number')) for d in deliveries_by_vendor(vid)}
+        order_live = rec.get('order_id') in live_orders
+        invoice_live = (not row['receive']) or (rec.get('invoice_number') in live_invoices)
+        done = order_live and invoice_live and (not row['pay'] or rec.get('pay_result'))
         if done:
             print(f"  {tag:14} complete -> PO {rec['order_number']} "
                   f"inv {rec.get('invoice_number')} pay={rec.get('pay_result')}")
             continue
-        if rec.get('order_number') and CONFIRM:
-            # the PO half is done; pick up at receive/pay
-            order = next((o for o in orders_by_vendor(vid) if o['id'] == rec.get('order_id')), None)
-            if order is None:
-                print(f"  {tag:14} 🔴 recorded PO {rec.get('order_number')} is gone - clearing "
-                      f"the row so the next run rebuilds it")
-                st.pop(tag, None); save(st); continue
+        if rec.get('order_number') and not order_live:
+            print(f"  {tag:14} 🔶 recorded PO {rec.get('order_number')} is GONE from the "
+                  f"environment — rebuilding it now")
+            st.pop(tag, None); save(st); rec = {}
+        elif order_live and CONFIRM:
+            # the purchase order survived; pick up at receive/pay
             print(f"  {tag:14} resuming at receive  (PO {rec['order_number']})")
-            finish(st, tag, rec, row, order, vid)
+            finish(st, tag, rec, row, live_orders[rec['order_id']], vid)
             continue
         if not CONFIRM:
             print(f'  {tag:14} would create'); continue
