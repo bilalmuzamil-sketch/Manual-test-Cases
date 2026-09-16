@@ -559,23 +559,35 @@ What that means in practice, from the SV-10061 rewrite that prompted it (≈900 
 **The test:** can a developer read the whole description in under a minute and then reproduce it?
 If not, it is too long — and length is not evidence of rigour.
 
-**THE ORDER IS HIS, GIVEN 2026-09-10 AND NOT TO BE REARRANGED:**
+**THE ORDER IS HIS, GIVEN 2026-09-10 AND AMENDED BY HIM 2026-09-16 — NOT TO BE REARRANGED:**
+
+> **🛑 AMENDMENT 2026-09-16 (QA lead, verbatim): *"I want the environent to appear after a line
+> break just above the SOURCES sectio, then again a line break and then Sources."*** — **Environment
+> is NO LONGER THE FIRST HEADING. It moves to SECOND-TO-LAST**, sitting on its own with **one blank
+> line above it and one blank line below it**, and **Sources directly after it**. Everything else in
+> the order below is unchanged. The reasoning he gave earlier for putting it first (the reader knows
+> what they are looking at) is superseded: the reader now meets the PROBLEM first, and the
+> "where do I go to see this" line sits with the evidence at the bottom. Encoded in
+> `build/global-search/tickets-2026-09-14/rewrite_to_standard.py` — `ENVIRONMENT` is appended after
+> the `----` rule, never at the head of `parts`.
 
 | # | Heading | What goes in it |
 |---|---|---|
-| 1 | **Environment** | First, so the reader knows what they are looking at before anything else. Site · build · signed in as · date · **the record used, with its FULL clickable link** so he can open it himself. |
-| 2 | **The problem** | Two or three plain sentences saying WHAT IS HAPPENING. **NO assumed effects** — no "who this affects and how badly", no severity, no impact paragraph, no guessing at consequences. He struck those out by name. |
-| 3 | **Steps to reproduce** | Numbered, one action per line, **the easiest possible route a manual tester or a layman can follow** — including the steps that CREATE any data needed, with the exact values to type. On-screen labels only. No API. |
-| 4 | **Screenshots** | **INLINE and ANNOTATED**, sized to **fill the description frame without overflowing it** — `!file.png|width=760!`. Each carries a one-line caption saying *what actually happens* / *what you should see*. Not a file list, not attachments-only. |
-| 5 | **Current behaviour** | Short plain bullets. What the build does today. What is correct alongside it goes here too, as a bullet, not as a separate essay. |
-| 6 | **Expected behaviour** | Short plain bullets. What should happen. Non-technical. |
+| 1 | **The problem** | Two or three plain sentences saying WHAT IS HAPPENING. **NO assumed effects** — no "who this affects and how badly", no severity, no impact paragraph, no guessing at consequences. He struck those out by name. |
+| 2 | **Steps to reproduce** | Numbered, one action per line, **the easiest possible route a manual tester or a layman can follow** — including the steps that CREATE any data needed, with the exact values to type. On-screen labels only. No API. |
+| 3 | **Screenshots** | **INLINE and ANNOTATED**, sized to **fill the description frame without overflowing it** — `!file.png|width=760!`. Each carries a one-line caption saying *what actually happens* / *what you should see*. Not a file list, not attachments-only. |
+| 4 | **Current behaviour** | Short plain bullets. What the build does today. What is correct alongside it goes here too, as a bullet, not as a separate essay. |
+| 5 | **Expected behaviour** | Short plain bullets. What should happen. Non-technical. |
+| 6 | **Environment** | **Second-to-last, a blank line above and a blank line below (2026-09-16).** Both places as clickable links — the version people use today and the new version on the test branch · build · signed in as · date · **the record used, with its FULL clickable link** so he can open it himself. |
 | 7 | **Sources** | The document name, its page id, the date read, **a clickable link**, then each requirement quoted **verbatim** in its own quote block **labelled with its id** (S1-N1, S4-E1 …) so anyone can navigate straight to it. |
 | 8 | **Test cases** | The run and its link, then each case id with its link (Rule 8 as amended 2026-09-10). |
 
-⛔ **SUPERSEDED, kept dated:** an earlier version of this table on the same day put *The problem*
-first and *Current/Expected behaviour* immediately after it, before the steps. **He reordered it on
-2026-09-10 — Environment first, and the two behaviour sections AFTER the screenshots.** Use the order
-above.
+⛔ **SUPERSEDED, kept dated (1):** an earlier version of this table on 2026-09-10 put *The problem*
+first and *Current/Expected behaviour* immediately after it, before the steps. He reordered it the
+same day — the two behaviour sections go AFTER the screenshots. That part still stands.
+⛔ **SUPERSEDED, kept dated (2):** *"Environment — First, so the reader knows what they are looking at
+before anything else."* (2026-09-10). **Replaced 2026-09-16: Environment is second-to-last, just above
+Sources.** Use the order above.
 
 **⚠️ WHICH MARKUP — THIS IS WHERE IT WENT WRONG.** The two doors take **different dialects**:
 
@@ -820,9 +832,9 @@ tickets themselves. **It is the QA lead's call, never ours.**
 |---|---|---|
 | 1 | **Description** | Plain layman words. **No jargon, no codes, no endpoints.** What is wrong, and **why it matters** |
 | 2 | **Branch / Environment** | Stated explicitly, never assumed: branch URL, API host, **build marker**, org/location ids, **date and time observed** |
-| 3 | **Steps to reproduce** | **Real numbered steps a layman can follow**, using the **exact on-screen labels**. **If data is needed, include the steps that CREATE it.** **NAME THE EXACT TEST DATA** (item 3). **NO API calls here.** If the fault genuinely cannot be reached from any screen, **say exactly that** and point at section 7 |
+| 2 | **Steps to reproduce** | **Real numbered steps a layman can follow**, using the **exact on-screen labels**. **If data is needed, include the steps that CREATE it.** **NAME THE EXACT TEST DATA** (item 3). **NO API calls here.** If the fault genuinely cannot be reached from any screen, **say exactly that** and point at section 7 |
 | 4 | **Expected behaviour** | In plain words, **quoting the governing requirement** |
-| 5 | **Current behaviour** | In plain words |
+| 4 | **Current behaviour** | In plain words |
 | 6 | **Images** | Attach **and embed inline so they RENDER** — not a file list. If none exists, **say so and say why** |
 | 7 | **Technical details for developers** | **LAST.** All codes, endpoints, request/response bodies, request ids, row counts, spec references, evidence paths — **everything technical, and nothing technical above** |
 

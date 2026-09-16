@@ -208,6 +208,42 @@ the standing instruction, and it applies to us executing exactly as it applies t
 Every Blocked case gets a **manual revisit** against the current spec + build, and an **authorised**
 correction.
 
+### 5.3-a 🛑 THE ONE BLOCKED THAT IS *MANDATORY*: THE OWNING STORY IS NOT YET READY FOR QA (Rule 112)
+
+**Added 2026-09-16 on the QA lead's instruction.** Everything above is about not using Blocked as an
+excuse. This is the opposite case — the one place where Blocked is **required** and a Failed would be
+wrong.
+
+**The gate.** Before a failing case becomes a defect, read the **owning story's status LIVE** (never
+from a handoff, a note or memory — Rule 100). Only **Ready for QA** and **Testing QA** admit a
+defect. Any other status — In Progress, To Do, In Development, In Review, Blocked — means the
+developer has not finished building the thing, so **what the screen does today is not the finished
+behaviour and there is nothing to judge.**
+
+**What to do instead — all four, every time:**
+
+1. **Run the test anyway** and write down what you actually saw. The gate is on FILING, not testing.
+2. **Mark the case Blocked**, never Failed, never Untested, never skipped.
+3. **The comment carries:** which story or stories the case covers, **key + link** (Rule 8) · that
+   story's status **read live, with the date** · the plain sentence that it is still in progress /
+   not yet ready for QA so this cannot be judged · **what was observed**.
+4. **Prepare the ticket anyway** if the finding looks real — picture, wording, sources — hold it, and
+   say in the report that it is ready the moment the story moves.
+
+**Plain-words template (Rule 103 — keys go below the reference line):**
+
+> Cannot be judged yet. The part of the product this checks is still being built, so what the screen
+> does today is not the finished behaviour. Observed on <date>: <one plain sentence>. No problem has
+> been reported to the developers for this, on purpose. Re-run this once the work is handed to QA.
+>
+> ---REFERENCE---
+> Covers SV-XXXXX (<status read live on <date>>) · run <n> · <case link>
+
+**This does not weaken §5.3 above.** A case that fails for any reason *other* than an unfinished
+story is an ordinary Failed, handled the ordinary way. And it does not override Rule 62: a story that
+IS in Ready for QA still needs his per-ticket go-ahead. Full text: `build/rules/RULES-61-ONWARD.md`
+rule 112.
+
 ## 5.4 🛑 WRITING RESULTS TO TESTRAIL — the repo rule, and it is narrower than you think
 
 > **CORE §4.1: "Never write a RESULT to another tester's run. Log only Passed cases to a run at all,

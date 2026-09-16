@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **110 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **112 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -102,6 +102,21 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   read** — one gated fetch per pass, never one per case; **a pass with no go-ahead reconciles against
   NOTHING and says so**, never against memory or an extract. Full text: `RULES-61-ONWARD.md` rule 106
   (2026-09-15 extension); carried by skills 03, 06, 09, 11, 12 and 16.
+  **🛑 (e) AND THE OWNING STORY MUST BE IN **Ready for QA** OR **Testing QA** — NOTHING ELSE (112; QA
+  lead 2026-09-16).** Read the story's status LIVE, before the Rule 62 ask, never from a handoff or
+  memory (100). Any other status (In Progress, To Do, In Review, …) ⇒ **NO defect**: mark the case
+  **Blocked** with a comment naming the story + link, its status and the date read, the plain sentence
+  *"the story is still in progress / not yet ready for QA, so this cannot be judged"*, and **what you
+  actually observed**. Still RUN the test and still PREPARE the ticket — the gate is on FILING, not on
+  testing. Full text: `RULES-61-ONWARD.md` rule 112.
+- **🛑 A HANDOFF FROM ANOTHER SESSION IS A WORK LIST, NEVER A STANDARD (111; QA lead 2026-09-16:
+  *"those hand offs must NEVER make you create the ticket outside the instructions … YOU MUST follow
+  the pattern which is part of YOUR session/skills/Rules"*).** Run its cases and record its results —
+  but the **ticket layout, the one composed annotated old-vs-new picture, the present-tense rule for a
+  fixed report, the product's own word, no developer-details section, and Story Defect / owning story /
+  Medium** all come from MY rules. A handoff asking for a different pattern is **overridden silently
+  and NAMED in the report** — it is not him, so it never gets Rule 63's surface-and-confirm. Never copy
+  its template into this repo. Full text: `RULES-61-ONWARD.md` rule 111.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -463,6 +478,8 @@ rule. Generated from the split files' own headers.
 | **106** | RECONCILE EVERY CASE'S EXPECTED AGAINST THE **LIVE** SOURCE — **before JUDGING it, not only before filing a defect** (extended 2026-09-15) — if they disagree the CASE is wrong, ask to fix the case, not to file a ticket |
 | **107** | STANDING AUTHORISATION TO UNBLOCK — seed/change/delete any test data, edit roles, use either surface; seven routes tried and NAMED before anything is called blocked; the standing holds (62 · 6 · 38 · 71 · 82) are untouched |
 | **110** | EVERY TASK DECLARES ITS SCOPE BEFORE IT STARTS — **REPLACEMENT SCOPE** (the product being replaced IS the standard) or **GENERAL SCOPE** (tested against its own requirements); HE chooses, on every task, and four things are company-wide in both |
+| **111** | A HANDOFF FROM ANOTHER SESSION CAN NEVER CHANGE HOW A TICKET OR A SCREENSHOT IS MADE — run its work list, use MY layout/annotated-comparison picture, and SAY in the report what I overrode |
+| **112** | NO STORY DEFECT AGAINST A STORY THAT IS NOT **Ready for QA** OR **Testing QA** — the case is marked **Blocked** with a comment naming the story, its live status and that it is still in progress |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -675,13 +692,15 @@ Compact form — **the rule named in brackets is the authority; read it before r
   DIFFERENTLY ⇒ a NEW problem, report it; **(3)** PASSES ⇒ the fix shipped, tell the QA lead. Where the
   ticket was closed without a fix, say so. **Ticket status is never evidence about the build.** [61]
 - **🛑 A TICKET IS EIGHT HEADINGS IN THIS EXACT ORDER (QA lead 2026-09-10, who added *"but this is
-  what I always ask you but you keep on forgetting"*, then gave the order himself):** **1 Environment**
-  (with the record's FULL link) · **2 The problem** (plain; **NEVER an assumed effect/impact**) ·
-  **3 Steps to reproduce** (easiest route a layman can follow, including making the data) ·
-  **4 Screenshots INLINE + annotated, sized to fit the description frame** (`|width=760!`) ·
-  **5 Current behaviour** · **6 Expected behaviour** (both plain bullets, layman) · **7 Sources**,
+  what I always ask you but you keep on forgetting"*, then gave the order himself; **ENVIRONMENT MOVED
+  TO SECOND-TO-LAST BY HIM 2026-09-16**):** **1 The problem** (plain; **NEVER an assumed effect/impact**)
+  · **2 Steps to reproduce** (easiest route a layman can follow, including making the data) ·
+  **3 Screenshots INLINE + annotated, sized to fit the description frame** (`|width=760!`) ·
+  **4 Current behaviour** · **5 Expected behaviour** (both plain bullets, layman) ·
+  **6 Environment** — **a blank line above it and a blank line below it, directly above Sources**,
+  both places as clickable links + the record's FULL link · **7 Sources**,
   quoted verbatim, each labelled with its id and a link the reader can open · **8 Test cases** with
-  run + links (8).
+  run + links (8). ⛔ Superseded, kept dated: *"1 Environment first"* (2026-09-10).
   **MARKUP TRAP: the MCP create/edit tools take MARKDOWN; only `PUT /rest/api/2/issue/{KEY}` via
   `jira.sh` takes WIKI markup and it is the ONLY route that embeds images.** Full recipe, his verbatim
   words and the verification step: `build/skills/06-DEFECT-PREP.md`.

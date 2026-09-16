@@ -3,9 +3,12 @@
 Engineering approved on 15 September 2026.
 
 The layout, in their order:
-  title (one line) · Environment (one line) · Description · Steps of reproduction ·
-  Current behaviour · Expected behaviour · Screenshots (annotated, readable without clicking) ·
-  the question for the Product Owner · a rule · Sources
+  title (one line) · Description · Steps of reproduction · Current behaviour ·
+  Expected behaviour · Screenshots (annotated, readable without clicking) ·
+  the question for the Product Owner · a rule · Environment · Sources
+
+  ENVIRONMENT SITS SECOND-TO-LAST, NOT FIRST (QA lead, 16 September 2026): one blank line above it,
+  one blank line below it, and Sources directly after.
 
 What is deliberately NOT here: any "technical details for developers" section. The Head of
 Engineering asked for it to go, and a ticket a manual tester and a product owner can both run is the
@@ -73,7 +76,10 @@ Nothing is being called a fault here. This is a way the previous version behaved
 not, raised so somebody decides on purpose rather than by accident."""
 
 def build(t, image_name, image_width):
-    parts = [ENVIRONMENT, '', 'h2. Description', '', t['description'], '',
+    # ENVIRONMENT MOVED 2026-09-16 (QA lead): it used to open the ticket. It now sits on its own,
+    # one blank line below whatever came before it and one blank line above Sources - so the reader
+    # meets the problem first and the "where do I go to see this" line sits with the evidence.
+    parts = ['h2. Description', '', t['description'], '',
              'h2. Steps of reproduction', '']
     parts += [f'# {s}' for s in t['steps']]
     parts += ['', 'h2. Current behaviour', '']
@@ -89,6 +95,7 @@ def build(t, image_name, image_width):
     if not t.get('no_question'):
         parts += ['', (GAINED if t.get('gained') else QUESTION)]
     parts += ['', '----', '',
+              ENVIRONMENT, '',
               'h2. Sources', '', t['sources']]
     return '\n'.join(parts)
 

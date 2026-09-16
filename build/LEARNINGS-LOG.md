@@ -2759,3 +2759,83 @@ and 15.
 in the rules file**. 109 in particular — *"the shipped V1 product IS the specification"* — is quoted
 by every Global Search regression case and by skills 09 and 17. Rule 110(a) now states that
 substance, but the dangling citations need writing up or re-pointing. Flagged, not done unasked.
+
+---
+
+## L0136 — A `401 sso_required` ON THE API HOST IS A STATEMENT ABOUT MY COOKIE JAR, NEVER ABOUT THE PRODUCT (2026-09-16)
+
+**This entry CORRECTS L0133, which is wrong and should not be relied on.**
+
+On 15 September I reported that the newest `sv9160` build had **removed the DEV MODE quick-login
+panel** and now demanded Google SSO, and I recorded the branch as unusable — a blocker that stopped
+every remaining regression check and that I carried into three status messages.
+
+**It was never true.** Today, with a live `sv_sso_session` supplied by the QA lead,
+`GET /api/quick-login/users` answers **200**, both the Admin and Tech buttons are on the sign-in
+page, and `qa-branch-boot.mjs sv9160 /customers admin` signed in first try: build
+`v26.36.7-21b4db9`, `template_slug=administrator`, **43** permissions, landed on `/customers`.
+
+**What I actually had was an expired session cookie.** Without it the API host answers
+`401 {"error":"sso_required","sso_redirect_url":"https://auth.qa.shopview.com/login?…"}`, and the
+browser lands on a Google sign-in. That reads *exactly* like "the product changed its login", and it
+is not. **The instrument was broken, and I blamed the product — Rule 104's whole point, and the
+sixth time it has caught me.** The missing proof was the cheapest one on the list: a **positive
+control**. One `curl` with a known-good cookie would have separated the two explanations in seconds.
+
+**The measured ladder is now in `build/APP-ACTIONS-PLAYBOOK.md`** (names only, no values):
+nothing → 401 · `PHPSESSID` alone → 401 · **`sv_sso_session` alone → 409 "Session has expired."** ·
+**both → 200** · adding `cf_clearance` changes nothing.
+
+**And the 409 has a SECOND cause, which §A did not carry.** §A records duplicate domain-scoped
+cookies. Over `curl` there is no cookie scoping at all, so that cannot be it — **a 409 on a plain
+`curl` means `PHPSESSID` is missing, not that the session is dead.** Two different faults, one
+error string; the discriminator is whether a browser or `curl` produced it.
+
+**Re-proven the same day and unchanged:** the SPA does **not** self-hydrate from cookies. The same
+cookies that return 200 over `curl` land the browser on `/login?redirect=/customers`. A cookie-only
+launcher was written, proven to fail that way, and **deleted** — `qa-branch-boot.mjs` stays the one
+implementation.
+
+## L0137 — A HANDOFF IS A WORK LIST; THE STANDARD IS MINE (2026-09-16, Rule 111)
+
+The QA lead's instruction, given before handing over the next batch: another session's handoff
+**must never** change how a ticket or a screenshot is made. Run its cases, file its results — but
+the layout, the one composed annotated old-vs-new picture, the present-tense rule for a fixed
+report, the product's own word, the absent developer-details section and the Story Defect / owning
+story / Medium shape all come from my own rules.
+
+**The distinction worth keeping:** Rule 63 says an instruction conflicting with a recorded rule is
+**surfaced and confirmed**. That is about **him**. A handoff is not him — it gets **overridden
+silently and named in the report**, never surfaced as a question and never copied into the skills.
+A standard another session's file can switch off is not a standard.
+
+## L0138 — A DEFECT AGAINST AN UNFINISHED STORY IS NOISE; THE CASE IS **BLOCKED**, NOT FAILED (2026-09-16, Rule 112)
+
+Only **Ready for QA** and **Testing QA** admit a story defect. Any earlier status means the developer
+has not finished building the thing, so what the screen does today is not the finished behaviour and
+**there is nothing to judge.**
+
+The failure mode this prevents is subtle and expensive: a Failed result plus a filed ticket against
+an in-progress story is triaged, argued with and closed — and it teaches the team that our findings
+need checking before they are believed. The **same information** as a Blocked result, with the story
+named and its status read live, costs nobody anything and turns into a real verdict the day the
+story moves.
+
+**What is easy to get wrong:** treating the gate as permission to skip the test. It is not. **Run
+it, record what you saw, prepare the ticket** — the gate is on **filing**, never on **testing**. And
+a Blocked whose comment carries no observation is a wasted run.
+
+Recorded as Rule 112, as §1 part (e) of the defect bullet in `CLAUDE.md`, and as §5.3-a of
+`build/skills/09-TEST-EXECUTION.md` — the one place where Blocked is *mandatory* rather than a shrug.
+
+## L0139 — THE ENVIRONMENT LINE MOVED TO SECOND-TO-LAST (2026-09-16)
+
+The QA lead moved **Environment** out of the first position, where he had put it on 10 September, to
+**second-to-last — one blank line above it, one blank line below it, Sources directly after.** The
+reader now meets the problem first, and the "where do I go to see this" line sits with the evidence.
+Everything else in the approved order is unchanged.
+
+Encoded in `build/global-search/tickets-2026-09-14/rewrite_to_standard.py` (`ENVIRONMENT` is appended
+after the `----` rule, never at the head of `parts`), in skill 06's heading table, and in the
+`CLAUDE.md` §1 bullet. **The superseded wording is kept, dated** — both of his rulings are on the
+record, so nobody re-derives the old order from a stale quote.
