@@ -224,8 +224,15 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   walk the neighbouring feature · change the role/permission/data in the way · prove the instrument
   (104). *"It failed the way I first tried"* is step 1 of 7, not a blocker. **107 NEVER overrides the
   standing holds: no Jira/external artefact (62) · no TestRail write without his go-ahead (6) ·
-  Vladimir's cases never (38) · Automated cases held (71) · secrets never committed (82) · production
-  is not a test environment.**
+  Vladimir's cases never (38) · Automated cases held (71) · secrets never committed (82).**
+  **🛑 EXTENDED 2026-09-16 (QA lead: *"you are authorized to CRUD anything on production and QA
+  branch"*) — PRODUCTION IS NOW IN SCOPE TOO, on the same terms.** ⛔ Supersedes *"production is not a
+  test environment."* Four things it still does NOT cover: **real customers' own records** — touch what
+  we made, READ what the business made · **anything that leaves the building** (email, a portal
+  invitation, a charge, a QuickBooks or accounting post) — separate ask · **the standing holds above**,
+  unchanged · **signing in as HIM**, which expires his own session — use the recorded production test
+  account. Tag `ZZAUTOTEST` and restore. On a GENERAL-SCOPE task there is normally no reason to write
+  to production at all. Full text: `RULES-61-ONWARD.md` rule 107 amendment 2026-09-16.
 - **🛑 ASK WHICH SCOPE BEFORE STARTING ANY TASK — HE CHOOSES (110; QA lead 2026-09-16: *"whenever I give you any task you MUST ask me if that is to be done based on which scope"*).** **REPLACEMENT SCOPE** = the feature replaces one people already use, so **the old product is MEASURED and is the standard**; every report carries the two-version picture and the Product Owner note. **GENERAL SCOPE** = everything else, tested against its own requirements. **Never infer it — ask, name both, say which you'd pick, and WAIT.** **Four things are COMPANY-WIDE in BOTH: the approved ticket layout (no technical-details section) · annotated screenshots · a fixed report KEEPS its present-tense issue statement and we never close it · the product's own word (Vendor, VIN number).** Full text: `build/rules/RULES-61-ONWARD.md` rule 110.
 - **STRATEGY FIRST (79), AND NEVER GO IDLE WHILE WORK REMAINS (105; QA lead 2026-09-10 — *"Are you
   done? I do not see any running task"*, asked while a finished probe sat with no successor).** Devise
