@@ -1,0 +1,20 @@
+{
+ "pass_meta": {"what":"the checks behind the two reports just signed off, and the one that only half-moves",
+               "branch":"sv9160","when":"16 September 2026"},
+ "results": {
+  "C53583": {"verdict":"Passed",
+   "observed":"The QA lead has verified the fix and signed the report off: typing a customer's website now returns that customer.",
+   "not_observed":"Not re-run by this session. The test branch has replaced its quick sign-in with a Google account sign-in, so nothing can be run on it at the moment.",
+   "technical":"Basis: SV-10003 moved to QA Complete by the QA lead on 16 September 2026. Superseded result: 15 September, typed bridgeporthauling-zzt.com -> all groups 0."},
+  "C55669": {"verdict":"Passed",
+   "observed":"The QA lead has verified the fix and signed the report off: part of a vehicle's VIN number now finds the vehicle, as the whole number already did. This check asks for both, so it now passes.",
+   "not_observed":"Not re-run by this session. The test branch cannot be signed in to at the moment.",
+   "technical":"Basis: SV-10058 moved to QA Complete by the QA lead on 16 September 2026. Superseded result: 15 September, the whole VIN number returned the vehicle and ZZ4471 returned nothing."},
+  "C55692": {"verdict":"Failed",
+   "observed":"Half of this check has been fixed and half has not, so it still fails. It types two websites: a customer's and a Vendor's. The customer half is fixed and signed off. The Vendor half is not - that report has come back from the team without a fix and is open again. This check passes only when BOTH websites return their company.",
+   "not_observed":"Not re-run by this session. The test branch cannot be signed in to at the moment.",
+   "ticket":"The half still outstanding: SV-10110 - a Vendor cannot be found by their website address. https://shopview.atlassian.net/browse/SV-10110 . The half now fixed was SV-10003. https://shopview.atlassian.net/browse/SV-10003",
+   "todo":"What needs to be done: nothing by the tester. Re-run this once the Vendor half is fixed - it passes only when both websites return their company.",
+   "technical":"Basis: SV-10003 QA Complete, SV-10110 back to Open, both on 16 September 2026. Last run 15 September: typed kestrelsupply-zzt.com -> Vendors 0; typed bridgeporthauling-zzt.com -> Customers 0."}
+ }
+}
