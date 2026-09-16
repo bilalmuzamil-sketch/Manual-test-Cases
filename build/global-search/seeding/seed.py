@@ -28,7 +28,7 @@ SO THE REPORT NOW HAS THREE OUTCOMES, NEVER TWO:
      NOT COMPARED — could not be checked at all
 "no gaps found" and "no gaps I was able to look for" must never look the same on screen.
 
-WHAT IT DOES: reads seed-manifest.json, and for every record FIND-OR-CREATE, then FIELD-VERIFY:
+WHAT IT DOES: reads the manifest named by SEED_MANIFEST (default seed-manifest.json), and for every record FIND-OR-CREATE, then FIELD-VERIFY:
     found      -> records the LIVE id, verifies every declared field, repairs gaps on --confirm
     not found  -> creates it, then verifies
     blocked    -> reports why, and does not pretend
@@ -38,7 +38,9 @@ SAFE TO RUN ANY NUMBER OF TIMES. It never creates a duplicate of a record marked
 USAGE
     python3 seed.py --check      # report only, writes nothing to the environment
     python3 seed.py --confirm    # find-or-create, and repair any declared field that is missing
-TO ADD DATA FOR A NEW TEST CASE: add an entry to seed-manifest.json. Never edit this file.
+TO ADD DATA FOR A NEW TEST CASE: add an entry to the right manifest. Never edit this file.
+  SEED_MANIFEST=seed-manifest.json         the 11 V1-regression records (default)
+  SEED_MANIFEST=seed-manifest-gs-v2.json   the Fibridge universe for the 90 V2 cases
 
 AUTH is self-service (Rule 107): quick-login mints a session, and the rotated PHPSESSID is
 captured from Set-Cookie (playbook §Q1 - not doing so makes every later call answer 409).
@@ -53,12 +55,20 @@ COOKIES = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
 # One state file per environment, or a production run silently overwrites the QA branch's state
 # and the next reader believes the wrong thing about the wrong estate.
 ENV_LABEL = 'qa' if COOKIES == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(COOKIES))
-STATE_FILE = 'seed-state-live.json' if ENV_LABEL == 'qa' else f'seed-state-live-{ENV_LABEL}.json'
+# WHICH UNIVERSE to seed. Two live side by side and must never be mixed:
+#   seed-manifest.json          the 11 V1-regression records (sections 6769 / 8056)
+#   seed-manifest-gs-v2.json    the "Fibridge" universe for the 90 V2 cases (6721-6740)
+# Ids and state are keyed by manifest AND environment, so one never overwrites the other.
+MANIFEST = os.environ.get('SEED_MANIFEST', 'seed-manifest.json')
+MSLUG = 'gsv2' if 'gs-v2' in MANIFEST else 'v1reg'
+IDS_FILE = ('seed-ids-%s.json' % ENV_LABEL if MANIFEST == 'seed-manifest.json'
+            else f'seed-ids-{MSLUG}-{ENV_LABEL}.json')
+STATE_FILE = ('seed-state-live.json' if (ENV_LABEL == 'qa' and MANIFEST == 'seed-manifest.json')
+              else f'seed-state-live-{MSLUG}-{ENV_LABEL}.json')
 # 🔴 IDS ARE PER ENVIRONMENT AND MUST NEVER GO BACK INTO THE SHARED MANIFEST. They used to, and the
 # first production run overwrote the QA branch's work-order ids with production's - after which the
 # QA check reported those four work orders MISSING when they were sitting right there. The manifest
 # is the shared plan; the ids of one estate's records are not part of it.
-IDS_FILE = f'seed-ids-{ENV_LABEL}.json'
 
 def _ids_load():
     try: return json.load(open(f'{HERE}/{IDS_FILE}'))
@@ -119,7 +129,7 @@ def ensure_session():
         # SEED_WORKPLACE overrides the manifest hint, so another environment does not need the
         # manifest edited. Production is 'Trucks Hill 2' - it HAS canned lines (playbook section K).
         hint = os.environ.get('SEED_WORKPLACE') or \
-            json.load(open(f'{HERE}/seed-manifest.json'))['environment']['workplace_name_hint']
+            json.load(open(f'{HERE}/{MANIFEST}'))['environment']['workplace_name_hint']
         # 🔴 NEVER fall back to "the first workplace". Seeding the wrong shop is silent and wrong -
         # on production the first one is a DIFFERENT shop from the one we want.
         pick = next((x for x in wps if hint.lower() in (x.get('name') or '').lower()), None)
@@ -353,7 +363,7 @@ def main():
     ap.add_argument('--confirm', action='store_true'); ap.add_argument('--check', action='store_true')
     a = ap.parse_args()
     if not (a.confirm or a.check): sys.exit("pass --check or --confirm")
-    man = json.load(open(f'{HERE}/seed-manifest.json'))
+    man = json.load(open(f'{HERE}/{MANIFEST}'))
     print("=== session ==="); ensure_session()
     report = []
     print("\n=== records ===")
@@ -367,6 +377,25 @@ def main():
         if how != 'ok':
             print(f"  {k:24s} ⚠️  probe failed ({how}) — NOT reporting as missing (Rule 104)")
             report.append({'key': k, 'state': 'UNVERIFIED', 'reason': how, 'serves': rec['serves']}); continue
+
+        # 🔴 A SHORTFALL IS NOT "PRESENT". A record can declare `count: 18` and the branch hold 14 -
+        # a connection reset mid-loop did exactly that on 2026-09-16. The old code found some hits,
+        # called the record present and moved on, which is the same failure as the "6 of 7 present"
+        # report this file was rewritten to kill: the number on screen was true and the data was
+        # still wrong. Count targets are the whole point of this universe (one group must exceed 20,
+        # another must stay at five or fewer), so a shortfall is reported AND topped up.
+        want = int(rec.get('count', 0) or 0)
+        if want and len(hits) < want and not a.check:
+            missing_n = want - len(hits)
+            print(f"  {k:24s} 🔶 SHORT — {len(hits)} of {want}; creating {missing_n} more…")
+            rec = dict(rec)
+            rec['create'] = dict(rec['create']); rec['create']['repeat'] = missing_n
+            rec['_topping_up'] = _ids_load().get(k) or []
+            hits = []
+        elif want and len(hits) < want:
+            print(f"  {k:24s} 🔶 SHORT — {len(hits)} of {want} present; --confirm would create {want - len(hits)}")
+            report.append({'key': k, 'state': 'SHORT', 'have': len(hits), 'want': want,
+                           'serves': rec['serves']}); continue
 
         if not hits:
             if a.check:
@@ -413,6 +442,9 @@ def main():
             if made:
                 STATE[k] = made[0] if len(made) == 1 else made
                 if rec['find'].get('mode') == 'ids':
+                    # Topping up APPENDS. Overwriting here would throw away the ids of the records
+                    # that already existed and leave the manifest describing a fraction of the data.
+                    made = list(rec.get('_topping_up') or []) + made
                     rec['find']['ids'] = made          # for the verify pass in THIS run
                     _ids_save(k, made)
                     print(f"       recorded {len(made)} live id(s) in {IDS_FILE}")
