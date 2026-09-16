@@ -371,7 +371,16 @@
       ],
       "skip_verify": [
         "tags"
-      ]
+      ],
+      "write": {
+        "endpoint": "/api/parts-catalogue/change-catalogue-part",
+        "whole_record": true,
+        "id_as": {
+          "category_id": "category",
+          "manufacturerId": "manufacturer_id"
+        },
+        "_why": "Added 2026-09-16. These two records had NO write block, so when someone renamed both catalogue parts on the branch ('Bilal' and 'Bilal2') a reseed could create nothing and repair nothing - it reported the gap and stopped, leaving 8 cases searching for a name that was not there. Route found by grepping the #[Route(...)] attribute after guessing failed twice: /api/parts-catalogue/catalogue-parts/<x> is GET-only (405 'Allow: GET'), and the real one is verb-first like its add/remove siblings. The command wants category_id and manufacturerId, while the record reads back 'category' and 'manufacturer_id' - hence id_as."
+      }
     },
     {
       "key": "part_catalogue_stocked_source",
@@ -404,7 +413,16 @@
       },
       "skip_verify": [
         "tags"
-      ]
+      ],
+      "write": {
+        "endpoint": "/api/parts-catalogue/change-catalogue-part",
+        "whole_record": true,
+        "id_as": {
+          "category_id": "category",
+          "manufacturerId": "manufacturer_id"
+        },
+        "_why": "Added 2026-09-16. These two records had NO write block, so when someone renamed both catalogue parts on the branch ('Bilal' and 'Bilal2') a reseed could create nothing and repair nothing - it reported the gap and stopped, leaving 8 cases searching for a name that was not there. Route found by grepping the #[Route(...)] attribute after guessing failed twice: /api/parts-catalogue/catalogue-parts/<x> is GET-only (405 'Allow: GET'), and the real one is verb-first like its add/remove siblings. The command wants category_id and manufacturerId, while the record reads back 'category' and 'manufacturer_id' - hence id_as."
+      }
     },
     {
       "key": "part_stocked",
