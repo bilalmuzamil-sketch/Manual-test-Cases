@@ -1,0 +1,18 @@
+{
+ "pass_meta": {"what": "the checks behind a report the QA lead has verified and moved to QA Complete",
+               "branch": "sv9160", "when": "16 September 2026"},
+ "results": {
+  "C55662": {
+   "verdict": "Passed",
+   "observed": "Marked on the QA lead's own verification: he re-tested the telephone number on 16 September 2026, attached his screenshot to the report and moved it through to QA Complete. That covers both halves of this check - the whole number and the last part of it - which is outcome 3 of the three this case lists: the fix has shipped, so it passes. The last run by this session was on 15 September, when the last part of the number returned nothing; that reading is superseded by his.",
+   "not_observed": "Not re-run by this session. The test branch took a new build overnight and its quick sign-in has been replaced by a Google account sign-in, so nothing can be run on it at the moment.",
+   "technical": "Basis: SV-10057 moved Open -> QA Complete by the QA lead at 02:49-02:52 on 16 September 2026, with a screenshot on the report. Superseded result: 15 September, typed 419-555-0143 -> customer returned, typed 555-0143 -> all groups 0."
+  },
+  "C55670": {
+   "verdict": "Passed",
+   "observed": "Marked on the QA lead's own verification of the same problem: the only step that failed here was the last part of the contact's telephone number, which is the problem he re-tested and signed off on 16 September 2026. The contact's first name, last name and whole number all worked when this was last run. The last run by this session was on 15 September; that reading is superseded by his.",
+   "not_observed": "Not re-run by this session. The test branch cannot be signed in to at the moment.",
+   "technical": "Basis: SV-10057 moved to QA Complete by the QA lead at 02:52 on 16 September 2026. Superseded result: 15 September, Marlene / Okonkwo / 419-555-0177 each returned the customer; 555-0177 returned nothing."
+  }
+ }
+}
