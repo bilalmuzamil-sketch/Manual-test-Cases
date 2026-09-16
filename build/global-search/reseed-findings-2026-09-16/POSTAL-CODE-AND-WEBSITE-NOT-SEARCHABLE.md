@@ -52,6 +52,37 @@ Both values are **on the records**, read back off them today:
 The seeder reports **11 of 11 records present, 0 field gaps**. So this is the search not looking at
 those fields, not data missing from the records.
 
+## 3a · "I added that by hand" — checked, and it is not the explanation
+
+The QA lead pointed out that he had added the customer's postal code (and some other fields) **by
+hand** before asking for the reseed. That is a fair challenge and it had to be tested: the new search
+reads from an index, so a hand-edited field could be missing from the **index** rather than missing
+from what the search looks at. Those are different faults with different owners.
+
+**It is not that.** The supplier settles it, because nothing about it was hand-edited:
+
+> **ZZAUTOTEST Kestrel Parts Supply was created from nothing by the seeder, and all nine of its fields
+> were written in ONE API call, minutes before this was measured.**
+
+From that single write:
+
+| Field, all written by the same call | Searchable? |
+|---|---|
+| street — `88 Halbrook Trace` → typed `Halbrook` | ✅ found |
+| town — `Marnston` | ✅ found |
+| email — `parts@kestrelsupply-zzt.com` | ✅ found |
+| **postal code — `43055-2210`** | 🔴 **not found** |
+| **website — `kestrelsupply-zzt.com`** | 🔴 **not found** |
+
+One record, one write, one moment — and the index clearly took that write in, because three of the
+five fields from it come back. **So the index is not stale and the edit route makes no difference. Those
+two fields are simply not in the text the search looks at.**
+
+The same holds for the customer's website, which the seeder wrote by API in the same call that wrote
+its street, town, state and second address line — and those four are findable while the website is not.
+
+---
+
 ## 4 · What the old version did, from its own code
 
 The old product folded both fields into the text it searched, for customers and suppliers alike —
