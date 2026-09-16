@@ -29,18 +29,21 @@ Measured on `v26.36.7-893d13a`, by the identity of the record returned.
 | Customer by postcode | 🔴 broken | ✅ **fixed** | [SV-10002](https://shopview.atlassian.net/browse/SV-10002) | QA Complete |
 | Vendor by postcode | 🔴 broken | ✅ **fixed** | [SV-10005](https://shopview.atlassian.net/browse/SV-10005) | QA Complete |
 | Vendor by state | 🔴 broken | ✅ **fixed** | [SV-10006](https://shopview.atlassian.net/browse/SV-10006) | QA Complete |
-| Customer by website | 🔴 broken | ✅ **fixed** | [SV-10003](https://shopview.atlassian.net/browse/SV-10003) | 🔶 **still Open — can be closed** |
-| Vendor by website | 🔴 broken | 🔴 **still broken** | [SV-10110](https://shopview.atlassian.net/browse/SV-10110) | Open |
+| Customer by website | 🔴 broken | ✅ **fixed** | [SV-10003](https://shopview.atlassian.net/browse/SV-10003) | QA Complete (moved 16 Sept 06:28) |
+| Vendor by website | 🔴 broken | 🔴 still broken | [SV-10110](https://shopview.atlassian.net/browse/SV-10110) | **OBSOLETE — withdrawn 16 Sept; V1 never had this. See `../field-attribution-audit-2026-09-16/`** |
 | Catalogue part never stocked | 🔴 broken | 🔴 **still broken** | [SV-10001](https://shopview.atlassian.net/browse/SV-10001) | Open |
 
 **Nothing needs filing. Every one already has a ticket.**
 
-## 2 · Two tickets are ready to move
+## 2 · Both of these have since moved — nothing owed
 
-| Ticket | Why |
+| Ticket | State as of 16 Sept midday |
 |---|---|
-| **[SV-10003](https://shopview.atlassian.net/browse/SV-10003)** — a customer cannot be found by their website | It **can** now, on `v26.36.7`. Verified today by typing `bridgeporthauling-zzt.com` and getting ZZAUTOTEST Bridgeport Hauling back. The ticket is still Open. |
-| **[SV-10058](https://shopview.atlassian.net/browse/SV-10058)** — a vehicle cannot be found by part of its VIN | It **can** now. Typing `ZZ4471` returns the 2019 Freightliner Cascadia. Already moved to QA Complete this morning, so this is confirmation rather than news. |
+| **[SV-10003](https://shopview.atlassian.net/browse/SV-10003)** — customer by website | **QA Complete.** Works on `v26.36.7` (typing `bridgeporthauling-zzt.com` returns ZZAUTOTEST Bridgeport Hauling). |
+| **[SV-10058](https://shopview.atlassian.net/browse/SV-10058)** — vehicle by part of its VIN | **QA Complete.** Works — typing `ZZ4471` returns the 2019 Freightliner Cascadia. |
+
+**[SV-10001](https://shopview.atlassian.net/browse/SV-10001)** (catalogue part never stocked) is the
+only one of the six still Open, and it is real.
 
 ## 3 · One that looks alarming and is not
 
@@ -71,6 +74,5 @@ redeploy does, and it is why the build marker belongs on every result.
 
 | # | What I need |
 |---|---|
-| **1** | **Nothing to file.** Both remaining losses already have tickets — SV-10110 (vendor website) and SV-10001 (catalogue-only part) — so there is no defect handoff to give anyone, which is what you asked me to check for. |
-| **2** | **SV-10003 can be closed** — the customer website works on this build. Your call whether to close it or have it verified first. |
-| **3** | **Run 415's results are stale against the new build.** Worth a re-run of at least the cases tied to SV-10002, SV-10003, SV-10005, SV-10006 and SV-10058, which should now pass. |
+| **1** | **Nothing to file and nothing owed on tickets.** SV-10110 was withdrawn as invalid (V1 never searched a vendor website) and is OBSOLETE; SV-10003 and SV-10058 are QA Complete; SV-10001 is the one real loss still Open and already filed. |
+| **2** | **Run 415's results are stale against the new build.** Worth a re-run of at least the cases tied to SV-10002, SV-10003, SV-10005, SV-10006 and SV-10058, which should now pass. The handoff covers it. |
