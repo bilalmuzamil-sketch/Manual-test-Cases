@@ -378,7 +378,7 @@ cannot drift; **procedure found inside one is a bug in that router.**
 and 60 apply in full and findings stay PROVISIONAL. §16.1 is the superseded 2026-08-11 "the branches
 are FINAL" text, kept visible and dated.
 
-**🌱 RESEEDING THE GLOBAL SEARCH TEST DATA — TWO KEYWORDS, `build/global-search/seeding/RESEED.md`.**
+**🌱 RESEEDING THE GLOBAL SEARCH TEST DATA — FOUR KEYWORDS, `build/global-search/seeding/RESEED.md`.**
 🔴 **A RESEED THAT FINDS 0 OF 11 RECORDS USUALLY MEANS THE BRANCH WAS REDEPLOYED — SO CHECK THE BUILD
 MARKER BEFORE EXPLAINING ANY CHANGE IN BEHAVIOUR** (`curl -s https://sv9160.qa.shopview.com/ | grep
 app-version`). On 2026-09-16 the branch went `v26.36.4-7869ff2` → `v26.36.7-893d13a` overnight and
@@ -387,6 +387,17 @@ then had to be restored. **Prove a "not found" with a control on the SAME record
 field of it), re-check minutes apart, and check the IDENTITY of what came back — never the row count.**
 A count of 1 is not a pass. **And before reporting any loss, check Jira for an existing ticket** — on
 2026-09-16 every one of six already had one.
+**TWO UNIVERSES, NEVER MIXED.** `RESEED QA` / `RESEED LIVE` rebuild the **V1-regression** 11 records
+(sections 6769 / 8056); **`RESEED GSV2 QA`** / **`RESEED GSV2 LIVE`** rebuild the **Global Search V2
+"Fibridge"** universe — 33 records plus the work-order status spread, the purchase orders and the
+three vendor-invoice payment states (sections 6721–6740, run R415). Ids and state are keyed by
+universe AND environment, so one can no longer overwrite the other. 🔴 **The proof step is a
+DIFFERENT script per environment**: `verify_gsv2.py` on the QA branch (V2, `/api/search`) and
+`verify_gsv2_v1.py` on production (V1, `/api/global-search/fetch`) — running the V2 one against
+production reports a dead environment that is perfectly healthy. A run is finished when the verifier
+passes, never when the seeder prints 33/33: *"the record exists"* is not *"the search returns it"*.
+Record inventory with real ids: `build/global-search/seeding/SEED-MANIFEST-GS-V2-{qa,prod}.md`.
+
 The QA lead says **`RESEED QA`** (branch `sv9160`) or **`RESEED LIVE`** (the production test account
 `app.shopview.com`, workplace **Trucks Hill 2**) and the session does the rest: `seed.py --check`,
 `--confirm`, `--check` again, proving **11/11 present, 0 field gaps**. Production needs

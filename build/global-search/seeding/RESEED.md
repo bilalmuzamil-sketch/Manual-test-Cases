@@ -1,14 +1,79 @@
-# RESEED — the two keywords
+# RESEED — the four keywords
 
 **Say one of these and nothing else. I will do the rest.**
 
-| You say | I reseed | Where |
-|---|---|---|
-| **`RESEED QA`** | the QA branch | `sv9160.qa.shopview.com` |
-| **`RESEED LIVE`** | the production test account | `app.shopview.com`, workplace **Trucks Hill 2** |
+There are **two universes** of test data and they must never be mixed, so each one has its own
+keyword per environment. Ids and state are stored per universe AND per environment, so a production
+run can no longer overwrite the QA branch's record ids (which it once did, and four work orders then
+read as MISSING while sitting right there).
 
-The two words share no letters at the start on purpose — **QA** and **LIVE** cannot be confused for
-one another the way "qa" and "prod" can when typed quickly.
+| You say | I reseed | Which data | Where |
+|---|---|---|---|
+| **`RESEED QA`** | the QA branch | the **V1-regression** universe (11 records, sections 6769 / 8056) | `sv9160.qa.shopview.com` |
+| **`RESEED LIVE`** | production | the **V1-regression** universe | `app.shopview.com`, workplace **Trucks Hill 2** |
+| **`RESEED GSV2 QA`** | the QA branch | the **Global Search V2 "Fibridge"** universe (33 records + statuses + purchase orders + vendor invoices, sections 6721–6740) | `sv9160.qa.shopview.com` |
+| **`RESEED GSV2 LIVE`** | production | the **Fibridge** universe | `app.shopview.com`, workplace **Trucks Hill 2** |
+
+**`RESEED EVERYTHING QA`** / **`RESEED EVERYTHING LIVE`** runs both universes on that environment.
+
+The words share no leading letters on purpose — **QA** and **LIVE** cannot be confused for one
+another the way "qa" and "prod" can when typed quickly, and **GSV2** is impossible to say by
+accident.
+
+---
+
+## 🔴 WHAT I RUN FOR THE GSV2 KEYWORDS — the exact sequence, so nothing is rediscovered
+
+Four steps, in this order, because each depends on the one before. All of them are safe to re-run:
+every step measures first and creates only the difference.
+
+```bash
+cd build/global-search/seeding
+
+# ── RESEED GSV2 QA ────────────────────────────────────────────────────────────────
+export SEED_MANIFEST=seed-manifest-gs-v2.json
+python3 seed.py --check                     # 1. measure, write nothing
+python3 seed.py --confirm                   #    create the 33 records, verify every field
+python3 set_wo_statuses.py --confirm        # 2. spread the work orders across the statuses
+python3 seed_po_and_invoices.py --confirm   # 3. purchase orders, vendor invoices, payments
+python3 verify_gsv2.py                      # 4. PROVE it: 35 identity/count/negative checks
+python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-qa.md
+
+# ── RESEED GSV2 LIVE ──────────────────────────────────────────────────────────────
+export SEED_PROFILE=/tmp/prod/cookies.json SEED_WORKPLACE="Trucks Hill 2"
+export SEED_MANIFEST=seed-manifest-gs-v2.json
+python3 seed.py --check && python3 seed.py --confirm
+python3 set_wo_statuses.py --confirm
+python3 seed_po_and_invoices.py --confirm
+python3 verify_gsv2_v1.py                   # 🔴 the V1 verifier — see below
+python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-prod.md
+```
+
+🔴 **STEP 4 IS A DIFFERENT SCRIPT ON EACH ENVIRONMENT, AND THAT IS NOT OPTIONAL.** The QA branch
+runs V2 (`GET /api/search`); production runs V1 (`GET /api/global-search/fetch`) and answers **404**
+to the V2 endpoint. Running `verify_gsv2.py` against production reports a dead environment that is
+perfectly healthy. `verify_gsv2_v1.py` reproduces V1's own two passes over the whole collection
+instead, and asserts the two known V1 misses (a contact's **email**, and a phone typed as plain
+digits) as **EXPECTED** — because those are the V1-vs-V2 difference under comparison, not a broken
+seed.
+
+**A run is finished when step 4 prints all checks passed, not when step 1 prints 33/33.** "The
+record exists" is not "the search returns it".
+
+---
+
+## If a step fails, this is almost always why
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `seed.py` reports records MISSING that you can see in the UI | production's list endpoints return transient empties | already handled — the finder retries 3× before believing a miss. If it still reports missing, check for a **duplicate** before creating anything. |
+| `perform-request-status-action` → **500** | the part request has no vendor yet | `POST /api/work-orders/part/change-request {id, vendor_id}` first. A 500, not a 400. |
+| `orders/accept` → **500** on a work-order PO | **a suspected product defect** — see playbook §O6 | use the standalone inventory route (`/api/inventory/orders/create`), which the script already does |
+| `orders/accept` → 500 right after creating a vendor | `credit_term` was written as the integer `30` | it must be a CreditTerms **string**: `Net 30`. The manifest now verifies it. |
+| four plan rows all land in one purchase order | one PO per work order **and** vendor | the script uses a different work order per PO |
+| production session → **409 Session has expired** | the PHPSESSID aged out | `POST /api/login {username, password}` and capture the rotated `PHPSESSID` from `Set-Cookie`. A fresh login **expires that user's previous session**, so only do it once per run. |
+
+---
 
 **Both are safe to say at any time.** Reseeding only creates what is missing. If everything is already
 there it writes nothing and just tells you so.
