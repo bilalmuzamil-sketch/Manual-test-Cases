@@ -2,7 +2,28 @@
 
 **Canonical cold-resume doc.** Status derived live; do not trust remembered figures (Rule 92 / skill 15 §7).
 
-## 🆕 Update — 2026-09-09 (evening) — FULL BUILD VERIFICATION on sv9315 `v26.36.0-f43b2fd`
+## 🆕 Update — 2026-09-16 — FULL BUILD VERIFICATION on **staging** `v26.36.7-20cfff7`
+- **Environment change:** the **sv9315 QA branch was destroyed** when the feature merged to Staging (2026-09-10);
+  `sv9315/login` → HTTP 502. **Staging is now the test environment for this suite.** Login proven (admin, 58
+  perms, full view). Access recipe: `staging-boot2.mjs` + live `sv_sso_session` in `/tmp/staging-cookie.txt`.
+- **Source current** (source-verify sibling, 2026-09-16, spec 782761986 / 2026-09-10 revision). Full Rule-101
+  re-observation on the new build, then re-stamp.
+- **5 source-changed cases build-observed:** **C45013/C45054 PASS** — free-typed part status **"Auth to order"**
+  confirmed (on a **Vendor**-sourced part on an **Authorized** line → action Order; L0044, QA lead caught a
+  false "Awaiting" read); **C45222 PASS** — typeahead card "Inventory Qty: N ea" + bin chip confirmed;
+  **C44993/C44994** — Add Part + Edit **hidden on Complete/Paid confirmed**, Declined-shown half = tester confirms.
+- **Re-stamp v26.36.0/v26.36.2 → `v26.36.7-20cfff7 on 9/16/2026`: 123/123, fail=0** (structure-preserving API
+  write, L0028). 9 authorised Automated included → Rule-65 notice `build/FOR-VLAD-inline-restamp-2026-09-16.md`.
+  Vladimir's 11 cases (`created_by=1`) untouched.
+- **Gates:** runnable-shape **123/123**; precond-label **123/123** vs new `build/OBSERVED-UI-LABELS-staging.md`;
+  served-page render **123/123 fr-view, 0 escaping**.
+- **Reusable asset created (QA-lead directive "never rediscover"):** `build/inline-add-edit-parts/probe_inline_surfaces.mjs`
+  — host-agnostic (staging or QA-branch) Inline surface walker; carries the L0044 status-condition note.
+- **Left (tester-confirm, not blockers):** Declined-shown visibility (Declined WOs exist: S2-14522 etc.; filter nav flaky);
+  "Bin Locations"/"Split across bins…" (need a seeded ≥2-bin part); C45060 quotes "Catalog" (build shows source
+  "Inventory/Vendor/Found" — wording-lane check). Evidence: `build/inline-add-edit-parts/build-verify-2026-09-16-staging/`.
+
+## Update — 2026-09-09 (evening) — FULL BUILD VERIFICATION on sv9315 `v26.36.0-f43b2fd`
 - **The build moved `v26.35.9-7f2e4fa` → `v26.36.0-f43b2fd`.** A full (Rule 101) build-verification was run:
   every distinct surface the 123 our-cases depend on was re-observed LIVE on the new build.
 - **All surfaces confirmed intact on v26.36.0:** inline Add-Part row (`Add Part`/`Part number`/`Description`/
