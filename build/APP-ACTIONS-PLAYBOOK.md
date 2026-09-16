@@ -2974,7 +2974,7 @@ never return, then spend an afternoon deciding whether that is a defect.
 |---|---|
 | **work_orders** | number + shop-prefixed variants · status · **customer_name** · contact_name · contact_email · asset_make · asset_model · **unit** · vin · lead_technician_name · service_advisor_name · **line_name / line description (`line_texts`)** · part-request part numbers |
 | **companies (customers)** | name · phone · address_line_1 · address_line_2 · city · state · postal_code · country_code · **website** · and each **contact's** name, telephone, mobile, email, title |
-| **vehicles (assets)** | make · model · vin · unit · licence_plate · **owner company_name** |
+| **vehicles (assets)** | **year (as an INTEGER, not text)** · make · model · vin · unit · licence_plate · **owner company_name** |
 | **parts** | description · part_number (+ stripped variant) · category · manufacturer · **vendor_name** · bin_location · tags |
 | **vendors** | name · phone · email · address_line_1/2 · city · state · postal_code · and each **contact's** name, telephone, mobile, email |
 | **part_sales** | number + variants · status · **customer_name** · asset_description · vin · created_by_name |
@@ -2988,7 +2988,14 @@ never return, then spend an afternoon deciding whether that is a defect.
    rename 21 work orders to make 21 work orders match.
 2. **A customer has a `website`; a vendor does not** — the same V1 asymmetry (O3) survives into V2's
    company document. Do not claim a vendor matched on a website.
-3. **Fuzzy noise is real and it is large.** On the staging estate `Fibridge` already returns 7
+3. 🔴 **A YEAR IN THE QUERY DOES NOT NARROW AN ASSET SEARCH THE WAY IT LOOKS LIKE IT SHOULD.**
+   `year` is indexed as an *integer*, and the group caps at 20, so `2025 Freightliner M2` degrades
+   to "Freightliner M2" — which the staging estate answers with twenty other Freightliner M2s, and
+   the one you seeded never appears. The asset row DISPLAYS the year, so this is easy to misread as
+   "my seeded asset is missing". It is not: search it by its **owner** or its **VIN/unit**, which
+   are the fields that actually discriminate. Measured 2026-09-16: `2025 Freightliner M2` → ours
+   absent, `Bryan Smith` → ours first.
+4. **Fuzzy noise is real and it is large.** On the staging estate `Fibridge` already returns 7
    customers and 5 vendors before you seed anything — all fuzzy hits on **"Bridge" inside an address**.
    `Peterson` returns 20 customers the same way. **So count targets ("≤5", ">20") must be measured on
    the SHORT prefix term (`Fib`), never on the long one**, and a group total is never evidence your
