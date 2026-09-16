@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **112 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **113 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -117,6 +117,15 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   Medium** all come from MY rules. A handoff asking for a different pattern is **overridden silently
   and NAMED in the report** — it is not him, so it never gets Rule 63's surface-and-confirm. Never copy
   its template into this repo. Full text: `RULES-61-ONWARD.md` rule 111.
+- **🛑 PASS AND BLOCK FREELY; STOP ONLY AT THE JIRA BUTTON, ONE TICKET AT A TIME (113; QA lead
+  2026-09-16).** **Passed** and **Blocked** results go into the run **with NO permission** (this narrows
+  Rule 6 for run results only). On a **Failed**: write the result NOW with the prepared comment minus the
+  ticket number (`ticket_held`) — never leave the run saying "not run" while a ticket queues — prepare the
+  annotated picture, comment and ticket body, **file nothing**, give him the LIST, **ask for the FIRST and
+  WAIT**. On approval create it (`Story Defect` · owning story · Medium), **append the ticket number to the
+  prepared comment and post it into the run**, then ask for the next. **The Jira button is the ONLY thing
+  that stops a pass** — logins, data, roles, tooling are all unblocked under 107/105, and testing continues
+  while a report waits. Full text: `RULES-61-ONWARD.md` rule 113.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -480,6 +489,7 @@ rule. Generated from the split files' own headers.
 | **110** | EVERY TASK DECLARES ITS SCOPE BEFORE IT STARTS — **REPLACEMENT SCOPE** (the product being replaced IS the standard) or **GENERAL SCOPE** (tested against its own requirements); HE chooses, on every task, and four things are company-wide in both |
 | **111** | A HANDOFF FROM ANOTHER SESSION CAN NEVER CHANGE HOW A TICKET OR A SCREENSHOT IS MADE — run its work list, use MY layout/annotated-comparison picture, and SAY in the report what I overrode |
 | **112** | NO STORY DEFECT AGAINST A STORY THAT IS NOT **Ready for QA** OR **Testing QA** — the case is marked **Blocked** with a comment naming the story, its live status and that it is still in progress |
+| **113** | THE TEST-EXECUTION FILING LOOP — mark **Passed** and **Blocked** with NO permission; on a **Failed**, record the result and HOLD only the Jira ticket; list them, ask per ticket, **one at a time**; after each ticket append its number to the prepared comment and post it into the run. **Nothing except the Jira button is ever a reason to wait** |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`

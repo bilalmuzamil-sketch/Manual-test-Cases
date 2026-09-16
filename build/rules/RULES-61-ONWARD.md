@@ -3949,3 +3949,64 @@ a real defect the day the story moves — with the observation already written d
   needs his per-ticket go-ahead.
 - It does not apply to a case that fails for a reason unrelated to an unfinished story. That is an
   ordinary Failed, handled the ordinary way.
+
+---
+
+## RULE 113 — THE TEST-EXECUTION FILING LOOP: PASS AND BLOCK FREELY, STOP ONLY AT THE JIRA BUTTON, ONE TICKET AT A TIME
+
+**Added 2026-09-16, on the QA lead's instruction. Verbatim:**
+
+> *"You will mark the PASSED test cases without my permission. You will block the test cases for
+> which the story is not ready for QA without my permission. For the failed test cases -> There you
+> will prepare the comment for the test case and keep the screenshot annotated ones and everything
+> prepred for yourself and give me the list of the failed test cases and will ask me to give you a
+> go aheaqd for the first and then you will wait for me to audit that and approve it. Once I approve
+> it you will create the jira ticket for the send failure. After creating the ticket for each failed
+> test case, you will append the ticket number to the comment which you have already prepared for
+> that test case and will post that comment in that test case run. For anything else besides
+> creating ticket on Jira you willl NOT wait for me and will keep yourself unblocked."*
+
+### 113.1 · THE THREE OUTCOMES, AND WHAT EACH ONE AUTHORISES
+
+| Outcome | Authorisation | Action |
+|---|---|---|
+| **Passed** | **STANDING — never ask** | Write the result into the run immediately, with what was observed. |
+| **Blocked** (owning story not Ready for QA / Testing QA, Rule 112) | **STANDING — never ask** | Write the Blocked result immediately, with the §5.3-a comment naming the story, its live status, the date read and what was observed. |
+| **Failed** | **HELD at the Jira button ONLY** | Record the Failed result and hold the TICKET. See 113.2. |
+
+**This narrows Rule 6's TestRail write-hold for run results specifically: writing a Passed or a
+Blocked result into a run needs no go-ahead.** Rule 6 still governs `add_case` / `update_case` /
+run creation and deletion, and Rule 38 still puts Vladimir's cases out of reach.
+
+### 113.2 · WHAT HAPPENS ON A FAILURE — IN THIS ORDER, NO STEP SKIPPED
+
+1. **Record the Failed result in the run straight away**, with the prepared comment minus the ticket
+   number, and a line saying the report is prepared and awaiting his go-ahead. **The run is never
+   left saying "not run" while a ticket queues** — that hides how far the batch has got. The
+   `ticket_held` path in `build/testing-tools/push_results_to_run.py` exists for exactly this.
+2. **Prepare EVERYTHING and file NOTHING:** the annotated picture, the full comment, the ticket body
+   in the approved layout (Environment second-to-last, above Sources), the owning story, the
+   sources. Held on disk under `build/<project>/tickets-<date>/`.
+3. **Give him the LIST of failed cases** — plainly, what each one means for a user, each one
+   self-contained (Rule 99). **Then ask for the go-ahead on the FIRST one and WAIT.**
+4. **He audits and approves that one.** Only then create its Jira ticket — `Story Defect`, parent =
+   the **owning story**, priority **Medium** (Rule 62's shape).
+5. **Immediately after the ticket exists:** append the ticket number to the comment already prepared
+   for that case and **post that comment into the case's result in the run.**
+6. **Then ask for the next one.** **ONE AT A TIME.** His approval of the first is approval of the
+   first — Rule 62's per-ask is unchanged, and an approved batch never becomes a standing licence.
+
+### 113.3 · THE OTHER HALF OF THE RULE, AND IT IS THE BIGGER HALF
+
+> *"For anything else besides creating ticket on Jira you will NOT wait for me and will keep
+> yourself unblocked."*
+
+**The Jira button is the ONLY place a pass stops.** Nothing else is a reason to go idle or to write
+back asking: not a login that expired, not a missing record, not a role without a permission, not a
+screen that needs a work order that does not exist yet, not a tool that broke. Seed it, log in,
+change the role, walk the neighbouring feature, write the tooling — Rule 107 authorises all of it,
+and Rule 105 forbids ending a turn with nothing running. **Waiting on him for anything other than a
+Jira ticket is a rule break, not caution.**
+
+While a ticket waits for his approval, **keep testing.** The queue does not stop for one held
+report.
