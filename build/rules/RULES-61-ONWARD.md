@@ -4063,3 +4063,46 @@ On a **General Scope** task the new version is judged against its own requiremen
 normally **no reason to write to production at all** — it is not the standard, and a comparison
 picture is not being taken. Use the authorisation when a check genuinely needs it; do not write to
 a live system because a rule now permits it.
+
+---
+
+## RULE 107 — SECOND AMENDMENT, 2026-09-16: `app.shopview.com` IS A DUMMY ENVIRONMENT, NOT A LIVE BUSINESS. ALL FOUR OF MY RESERVATIONS ARE WITHDRAWN BY HIM
+
+**I listed four things I said I would keep doing on production even under the CRUD authorisation.
+He answered all four, verbatim:**
+
+> *"1. All that is dummy data dont assume that they are other peoples real data, the data in both
+> the branches is NOT real. 2. You can do it because all the dta is the dummy data. 3. No need to
+> ever clean up the data dont wate the time, these are dummy test accounts on production and QA
+> 4. Feel free to sign in as me whenever needed, the most important thing is to complete your task
+> timely and without any error so that your work does not bite me."*
+
+**THE FACT THAT CHANGES EVERYTHING: `app.shopview.com` is not a live business.** Every record on it
+is seeded test data, and the accounts on it are test accounts. The whole caution I had built around
+it rested on a premise that is false. **Do not re-derive that caution from first principles** — it
+looks like prudence and it is just slowness.
+
+| What I said I would keep doing | His ruling | What now happens |
+|---|---|---|
+| Only READ records the business made; never edit a real customer's data | **"the data in both the branches is NOT real"** | **There are no real customers' records.** Create, edit and delete anything. Stop distinguishing "ours" from "the business's". |
+| Never send an email / portal invitation / charge / accounting post without a separate ask | **"You can do it because all the data is the dummy data"** | **Authorised.** Nothing on these environments reaches a real person or a real ledger. No separate ask. |
+| Tag `ZZAUTOTEST` and restore what I changed | **"No need to ever clean up the data dont wate the time"** | **Cleanup is DROPPED on both environments.** Do not spend a pass restoring state. Tagging stays only where it is free and helps ME find my own records again — never as a tidy-up obligation. |
+| Never sign in as him on production (it expires his session) | **"Feel free to sign in as me whenever needed"** | **Authorised.** His credentials are in `/tmp` (`chmod 600`, never committed). The mechanical side-effect is unchanged — a second login for the same user ends his current session — so prefer the test account when the choice makes no difference to the task, and use his the moment it does. **Never delay a task over it.** |
+
+### What he said the point actually is
+
+> *"the most important thing is to complete your task timely and without any error so that your work
+> does not bite me."*
+
+**Read that as the priority order it is:** finished, on time, and right. Caution that costs time and
+buys nothing is not a virtue here — it is the thing he is telling me to stop doing. **Rule 6's
+"everything except TestRail is a disposable TEST account" now includes `app.shopview.com`
+explicitly**, and Rule 107's seven-routes drill applies there exactly as it does on a QA branch.
+
+### What is STILL held — unchanged by any of this
+
+No Jira ticket without his per-ticket go-ahead (62 / 113) · no TestRail `add_case` / `update_case` /
+run creation or deletion without his go-ahead (6) · **Vladimir's cases never (38)** · Automated cases
+held (71) · **secrets never committed (82) — and his own credentials being usable makes this MORE
+important, not less: they live in `/tmp`, `chmod 600`, and never reach a log, an error paste, a
+screenshot or a commit.**

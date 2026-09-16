@@ -228,12 +228,19 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   Vladimir's cases never (38) · Automated cases held (71) · secrets never committed (82).**
   **🛑 EXTENDED 2026-09-16 (QA lead: *"you are authorized to CRUD anything on production and QA
   branch"*) — PRODUCTION IS NOW IN SCOPE TOO, on the same terms.** ⛔ Supersedes *"production is not a
-  test environment."* Four things it still does NOT cover: **real customers' own records** — touch what
-  we made, READ what the business made · **anything that leaves the building** (email, a portal
-  invitation, a charge, a QuickBooks or accounting post) — separate ask · **the standing holds above**,
-  unchanged · **signing in as HIM**, which expires his own session — use the recorded production test
-  account. Tag `ZZAUTOTEST` and restore. On a GENERAL-SCOPE task there is normally no reason to write
-  to production at all. Full text: `RULES-61-ONWARD.md` rule 107 amendment 2026-09-16.
+  test environment."*
+  **🛑 AND `app.shopview.com` IS A DUMMY ENVIRONMENT — ALL FOUR RESERVATIONS I RAISED ARE WITHDRAWN BY
+  HIM, SAME DAY:** *"the data in both the branches is NOT real … No need to ever clean up the data dont
+  wate the time … Feel free to sign in as me whenever needed."* ⇒ **there are no real customers'
+  records** (create/edit/delete anything) · **email, portal invitations, charges and accounting posts are
+  authorised** — nothing reaches a real person · **NO CLEANUP, on either environment** (tag only where it
+  helps YOU find your own records) · **his own login may be used** (in `/tmp`, `chmod 600`; a second login
+  ends his current session, so prefer the test account only when it costs nothing, never delay over it).
+  His stated priority: *"complete your task timely and without any error"* — **caution that costs time
+  and buys nothing is the thing he is telling me to stop.** STILL HELD: Jira per ticket (62/113) ·
+  TestRail case/run writes (6) · Vladimir's cases (38) · Automated (71) · **secrets never committed (82),
+  which matters MORE now his credentials are usable.** Full text: `RULES-61-ONWARD.md` rule 107
+  amendments 2026-09-16 (both).
 - **🛑 ASK WHICH SCOPE BEFORE STARTING ANY TASK — HE CHOOSES (110; QA lead 2026-09-16: *"whenever I give you any task you MUST ask me if that is to be done based on which scope"*).** **REPLACEMENT SCOPE** = the feature replaces one people already use, so **the old product is MEASURED and is the standard**; every report carries the two-version picture and the Product Owner note. **GENERAL SCOPE** = everything else, tested against its own requirements. **Never infer it — ask, name both, say which you'd pick, and WAIT.** **Four things are COMPANY-WIDE in BOTH: the approved ticket layout (no technical-details section) · annotated screenshots · a fixed report KEEPS its present-tense issue statement and we never close it · the product's own word (Vendor, VIN number).** Full text: `build/rules/RULES-61-ONWARD.md` rule 110.
 - **STRATEGY FIRST (79), AND NEVER GO IDLE WHILE WORK REMAINS (105; QA lead 2026-09-10 — *"Are you
   done? I do not see any running task"*, asked while a finished probe sat with no successor).** Devise
