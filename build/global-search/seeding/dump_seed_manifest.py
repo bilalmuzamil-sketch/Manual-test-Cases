@@ -18,6 +18,20 @@ def rows(r, coll='collection'):
     d = (r['json'] or {}).get('data', {}) or {}
     return d.get(coll) or (d if isinstance(d, list) else [])
 
+def find_one(path, field, value, coll='collection'):
+    """🔴 RETRY BEFORE PRINTING A RED MARK. These list endpoints return transient empties, and an
+    inventory that says a record is missing when it is sitting there is worse than no inventory -
+    the next reader reseeds something that was never broken. One flaky read put a false 🔴 against
+    asset_fib_5 on 2026-09-16 while the vehicle answered on the very next attempt."""
+    import time as _t
+    for attempt in range(3):
+        r = call(path)
+        if r['status'] == 200:
+            hit = next((x for x in rows(r, coll) if str(x.get(field) or '') == str(value)), None)
+            if hit: return hit
+        if attempt < 2: _t.sleep(2 * (attempt + 1))
+    return None
+
 def out(section, header, lines):
     print(f'\n### {section}\n')
     print('| ' + ' | '.join(header) + ' |')
@@ -36,7 +50,13 @@ try:
     import urllib.request, ssl, re
     c = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
     ctx = ssl.create_default_context(cafile='/root/.ccr/ca-bundle.crt')
-    html = urllib.request.urlopen(f"https://{c['host']}/", context=ctx, timeout=30).read().decode()
+    html = ''
+    for _a in range(3):
+        try:
+            html = urllib.request.urlopen(f"https://{c['host']}/", context=ctx, timeout=30).read().decode()
+            break
+        except Exception:
+            import time as _t; _t.sleep(3)
     m = re.search(r'app-version"\s+content="([^"]+)"', html)
     marker = m.group(1) if m else ''
 except Exception as e: marker = f'(could not read: {e})'
@@ -50,8 +70,7 @@ lines = []
 for rec in man['records']:
     if rec['type'] != 'Customer': continue
     v = rec['find']['value']
-    r = call(f"/api/customers?search={q(v)}&limit=100")
-    hit = next((x for x in rows(r) if x.get('name') == v), None)
+    hit = find_one(f"/api/customers?search={q(v)}&limit=100", 'name', v)
     lines.append([rec['key'], v, hit.get('id') if hit else '🔴 NOT FOUND',
                   (hit or {}).get('telephone') or '', (hit or {}).get('address_1') or ''])
 out('Customers', ['key', 'name', 'id', 'telephone', 'address'], lines)
@@ -80,19 +99,18 @@ lines = []
 for rec in man['records']:
     if rec['type'] != 'Vehicle': continue
     vin = rec['find']['value']
-    r = call(f"/api/vehicles?search={q(vin)}&limit=50")
-    hit = next((x for x in rows(r) if x.get('vin') == vin), None)
+    hit = find_one(f"/api/vehicles?search={q(vin)}&limit=50", 'vin', vin)
     lines.append([rec['key'], f"{(hit or {}).get('year','')} {(hit or {}).get('vehicle_make','')} "
                   f"{(hit or {}).get('vehicle_model','')}".strip(), (hit or {}).get('id', '🔴'),
                   (hit or {}).get('unit') or '(none — deliberate)', vin])
 out('Assets', ['key', 'year make model', 'id', 'unit', 'VIN'], lines)
 
 # vendor
-r = call('/api/parts-catalogue/vendors?search=Fibridge&limit=100')
+vendor = find_one('/api/parts-catalogue/vendors?search=Fibridge&limit=100', 'name',
+                  'ZZAUTOTEST Fibridge Mining')
 # 🔴 ITS OWN NAME. `hit` is reused by every loop below it, so reading the vendor id off `hit`
 # further down returns whatever the LAST loop matched - an inventory part - and the purchase-order
 # and vendor-invoice tables come out empty while the records exist. Shadowing, not missing data.
-vendor = next((x for x in rows(r) if x.get('name') == 'ZZAUTOTEST Fibridge Mining'), None)
 out('Vendor', ['name', 'id', 'email', 'credit term'],
     [['ZZAUTOTEST Fibridge Mining', (vendor or {}).get('id', '🔴'), (vendor or {}).get('email', ''),
       (vendor or {}).get('credit_term', '')]])
@@ -102,8 +120,7 @@ lines = []
 for rec in man['records']:
     if rec['type'] != 'InventoryPart': continue
     pn = rec['find']['value']
-    r = call(f"/api/inventory/parts?search={q(pn)}&limit=50")
-    hit = next((x for x in rows(r) if x.get('part_number') == pn), None)
+    hit = find_one(f"/api/inventory/parts?search={q(pn)}&limit=50", 'part_number', pn)
     st = rec.get('stock') or {}
     lines.append([rec['key'], pn, (hit or {}).get('description') or (hit or {}).get('name') or '',
                   (hit or {}).get('id', '🔴'), st.get('quantity_on_hand'), st.get('min')])
@@ -114,9 +131,16 @@ out('Inventory parts (the three stock states + the exact part number)',
 lines = []
 for key in ('work_orders_fib_main', 'work_orders_fib_nounit'):
     for i in ids.get(key) or []:
-        r = call(f'/api/work-orders/view/{i}')
-        w = ((r['json'] or {}).get('data') or {}).get('work_order') or {}
-        lines.append([key, w.get('number', '🔴'), i, w.get('status', ''), w.get('company_name', '')])
+        # Same retry as every other lookup here: a single failed view call prints a red mark
+        # against a work order that answers perfectly on the next attempt.
+        w = {}
+        for attempt in range(3):
+            r = call(f'/api/work-orders/view/{i}')
+            w = ((r['json'] or {}).get('data') or {}).get('work_order') or {}
+            if w.get('number'): break
+            if attempt < 2:
+                import time as _t; _t.sleep(2 * (attempt + 1))
+        lines.append([key, w.get('number') or '🔴', i, w.get('status', ''), w.get('company_name', '')])
 out('Work orders (numbers are ASSIGNED BY THE BRANCH — they cannot be chosen)',
     ['key', 'number', 'id', 'status', 'customer'], lines)
 

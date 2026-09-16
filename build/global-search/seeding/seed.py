@@ -412,7 +412,18 @@ def main():
             print(f"  {k:24s} 🔶 SHORT — {len(hits)} of {want}; creating {missing_n} more…")
             rec = dict(rec)
             rec['create'] = dict(rec['create']); rec['create']['repeat'] = missing_n
-            rec['_topping_up'] = _ids_load().get(k) or []
+            # 🔴 CARRY FORWARD ONLY THE IDS THAT STILL RESOLVE. After a branch WIPE every recorded id
+            # points at nothing, and appending eighteen new ids to eighteen dead ones leaves a file
+            # describing thirty-six work orders of which half do not exist - so the next run reads a
+            # shortfall again and tops up again, growing the estate on every reseed. `hits` is what
+            # the probe just proved is live, so the surviving ids are exactly the ids of those hits.
+            live = {h.get('id') for h in hits if isinstance(h, dict)}
+            carried = [i for i in (_ids_load().get(k) or []) if i in live]
+            dropped = len(_ids_load().get(k) or []) - len(carried)
+            if dropped:
+                print(f"       dropped {dropped} recorded id(s) that no longer resolve "
+                      f"(the branch was wiped or those records were deleted)")
+            rec['_topping_up'] = carried
             hits = []
         elif want and len(hits) < want:
             print(f"  {k:24s} 🔶 SHORT — {len(hits)} of {want} present; --confirm would create {want - len(hits)}")

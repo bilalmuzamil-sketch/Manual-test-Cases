@@ -1,109 +1,103 @@
 # SEED MANIFEST — Global Search V2 "Fibridge" universe · qa
 
-**Read back off the environment, not typed.** Build marker: `v26.36.7-21b4db9`.
+**Read back off the environment, not typed.** Build marker: `v26.36.7-29ca209`.
 Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 
 ### Customers
 
 | key | name | id | telephone | address |
 |---|---|---|---|---|
-| cust_fib_commercial | ZZAUTOTEST Fibridge Commercial | 68ed76d5-d712-4c7b-a6a8-b830062f58f8 | (264) 328-6723 | 4120 Fibridge Commerce Way |
-| cust_fib_logistics | ZZAUTOTEST Fibridge Logistics | db1eb452-5adc-4b8b-a8bc-e1ab9f5d7031 | (264) 555-0143 | 77 Fibridge Yard Road |
-| cust_fib_retail | ZZAUTOTEST Fibridge Retail | 3aa49332-6836-4797-a3f2-0fee01849b3d | (264) 555-0145 | 9 Fibridge Market Street |
-| cust_peterson | ZZAUTOTEST Peterson Hauling | b6673b3c-dc3d-420f-89e4-e0732010096d | (264) 555-0151 | 210 Peterson Ridge |
-| cust_aabridge | ZZAUTOTEST Aabridge Freight | aa70d573-26de-4208-ac28-2c9663ded10d | (264) 555-0152 | 14 Aabridge Loop |
-| cust_toboro | ZZAUTOTEST Toboro Industries | b51d9124-4f60-41a7-ac63-64e1a31c9f33 | (264) 555-0153 | 3300 Toboro Bend |
-| cust_deshawn_named | ZZAUTOTEST Deshawn Freight Lines | a1198010-6ce8-486a-8666-39c8d853bb64 | (264) 555-0154 | 88 Deshawn Crossing |
-| cust_bryan_smith | ZZAUTOTEST Bryan Smith Hauling | fb82208e-0235-4eec-8e99-349fb8a65b6d | (264) 555-0155 | 51 Smithfield Row |
+| cust_fib_commercial | ZZAUTOTEST Fibridge Commercial | 4b6f7023-e1f5-42db-95e0-9168d94c4fb5 | (264) 328-6723 | 4120 Fibridge Commerce Way |
+| cust_fib_logistics | ZZAUTOTEST Fibridge Logistics | 9f7ee11a-c943-49b2-9c06-929f8506f858 | (264) 555-0143 | 77 Fibridge Yard Road |
+| cust_fib_retail | ZZAUTOTEST Fibridge Retail | 77b9cc71-9661-4e6d-b105-fcce83f3ffc6 | (264) 555-0145 | 9 Fibridge Market Street |
+| cust_peterson | ZZAUTOTEST Peterson Hauling | 5f60c514-b6e9-4028-aa8b-ac3b1f02d9da | (264) 555-0151 | 210 Peterson Ridge |
+| cust_aabridge | ZZAUTOTEST Aabridge Freight | bf3f2d64-fd9d-4da8-be30-941fd49abc86 | (264) 555-0152 | 14 Aabridge Loop |
+| cust_toboro | ZZAUTOTEST Toboro Industries | 26d7ddb1-16a1-41ba-a786-740b67c18381 | (264) 555-0153 | 3300 Toboro Bend |
+| cust_deshawn_named | ZZAUTOTEST Deshawn Freight Lines | 5107713c-ade4-42d5-9995-6fd097cd2d69 | (264) 555-0154 | 88 Deshawn Crossing |
+| cust_bryan_smith | ZZAUTOTEST Bryan Smith Hauling | 664fb6d4-3386-4da0-a185-82fde3a143c5 | (264) 555-0155 | 51 Smithfield Row |
 
 ### Contacts (people AT a customer company)
 
 | key | name | id | title | telephone | email |
 |---|---|---|---|---|---|
-| contact_deshawn | Deshawn Oyelaran | 48d06764-c313-4457-9960-dfd6ea67c202 | Fleet Manager | (264) 555-0142 | deshawn@fibridge-commercial.test |
-| contact_logistics | Ama Boateng | f701bcd3-d704-4117-a423-c5e9454de0a3 | Dispatcher | (264) 555-0144 | ama@fibridge-logistics.test |
-| contact_retail | Iris Vandenberg | 4b978282-d5ee-444c-b1ca-440fb1f0c1a4 | Owner | (264) 555-0146 | iris@fibridge-retail.test |
-| contact_bryan | Bryan Smith | 6aaac293-9bd8-4f6f-9511-f1694b6602e1 | Owner | (264) 555-0156 | bryan@bryansmithhauling.test |
+| contact_deshawn | Deshawn Oyelaran | 721b39eb-3949-45cc-9a3d-baff244cbe40 | Fleet Manager | (264) 555-0142 | deshawn@fibridge-commercial.test |
+| contact_logistics | Ama Boateng | cabd3d3a-5683-40ab-89e4-165940dc9f34 | Dispatcher | (264) 555-0144 | ama@fibridge-logistics.test |
+| contact_retail | Iris Vandenberg | 8f17fa9a-f70e-49fb-86c8-372854890eb6 | Owner | (264) 555-0146 | iris@fibridge-retail.test |
+| contact_bryan | Bryan Smith | a23e3b48-09d6-4366-87c6-3191bed4d470 | Owner | (264) 555-0156 | bryan@bryansmithhauling.test |
 
 ### Assets
 
 | key | year make model | id | unit | VIN |
 |---|---|---|---|---|
-| asset_trk412 | 2019 Freightliner Cascadia | a3c5024c-d866-49bc-b26e-2fda6fbcb83d | TRK 412 | 1FUJGLDR9CLBP8834 |
-| asset_nounit | 2021 KEN WORTH T680 | 88930a47-7090-468e-8336-47109b288276 | (none — deliberate) | 1XKYDP9X1MJ441077 |
-| asset_fib_3 | 2022 PETERBILT 579 | 3660ebb7-3ab9-423c-a190-0ee9c57d0a44 | TRK 413 | 1XPBDP9X5ND441078 |
-| asset_fib_4 | 2020 VOLVO VNL760 | e05782f0-708b-4347-97e5-d83a429a9816 | TRK 414 | 4V4NC9EH8LN441079 |
-| asset_fib_5 | 2023 MACK ANTHEM | 456233ac-5614-4f8d-aec9-495d28872487 | TRK 415 | 1M1AN07Y5PM441080 |
-| asset_fib_6 | 2024 INTERNATIONAL LT625 | 9079a0c0-2891-4084-8f92-2c8330a12a67 | TRK 416 | 3HSDJAPR5RN441081 |
-| asset_m2_bryan | 2025 Freightliner M2 | ad2208cf-96f5-4946-97ff-84d386cc020d | BSH 001 | 1FVACWDT5SH441082 |
+| asset_trk412 | 2019 Freightliner Cascadia | 291e5fc9-bb7c-406c-b67d-5a4e7a1382b6 | TRK 412 | 1FUJGLDR9CLBP8834 |
+| asset_nounit | 2021 KEN WORTH T680 | 6af0fc81-69ca-4c1c-8386-db0413d63176 | (none — deliberate) | 1XKYDP9X1MJ441077 |
+| asset_fib_3 | 2022 PETERBILT 579 | 5b9fd152-818a-448d-88d8-7fa2863561bb | TRK 413 | 1XPBDP9X5ND441078 |
+| asset_fib_4 | 2020 VOLVO VNL760 | 9acf7f5d-aea0-45da-9fc9-61511a4ed82b | TRK 414 | 4V4NC9EH8LN441079 |
+| asset_fib_5 | 2023 MACK ANTHEM | fe883417-7a1f-4f84-b9d5-6b3e875d7928 | TRK 415 | 1M1AN07Y5PM441080 |
+| asset_fib_6 | 2024 INTERNATIONAL LT625 | da4b8995-fe76-447b-b8ff-29b88163b513 | TRK 416 | 3HSDJAPR5RN441081 |
+| asset_m2_bryan | 2025 Freightliner M2 | 6108d3ff-e199-4293-8107-6459207f5706 | BSH 001 | 1FVACWDT5SH441082 |
 
 ### Vendor
 
 | name | id | email | credit term |
 |---|---|---|---|
-| ZZAUTOTEST Fibridge Mining | 87919c7d-705b-4b9e-9c25-190f2ac1147c | parts@fibridge-mining.test | Net 30 |
+| ZZAUTOTEST Fibridge Mining | 61d43b54-4456-428e-877b-f412e400a971 | parts@fibridge-mining.test | Net 30 |
 
 ### Inventory parts (the three stock states + the exact part number)
 
 | key | part number | description | id | on hand | reorder level |
 |---|---|---|---|---|---|
-| part_instock | ZZT-FIB-1001 | ZZAUTOTEST Fibridge Brake Shoe Kit | 76835243-3021-4f1c-abc3-51a84c8cd343 | 40 | 5 |
-| part_low | ZZT-FIB-1002 | ZZAUTOTEST Fibridge Wheel Seal | a0d60c65-fce1-4249-8710-fc099162e3b0 | 2 | 5 |
-| part_out | ZZT-FIB-1003 | ZZAUTOTEST Fibridge Air Dryer Cartridge | fd70d212-7f47-4346-98ee-b5ced7fd2413 | 0 | 5 |
-| part_65547 | 65547 | Rear Shock | b73ff088-7d6f-48ee-bba3-2e645e1d1ddc | 12 | 2 |
+| part_instock | ZZT-FIB-1001 | ZZAUTOTEST Fibridge Brake Shoe Kit | 0f538908-d881-412d-88ed-6b14254105a3 | 40 | 5 |
+| part_low | ZZT-FIB-1002 | ZZAUTOTEST Fibridge Wheel Seal | 4f862507-5fdb-406b-9673-7e355dd9d964 | 2 | 5 |
+| part_out | ZZT-FIB-1003 | ZZAUTOTEST Fibridge Air Dryer Cartridge | 55d34cca-d806-4340-a0e5-c1c744f280ab | 0 | 5 |
+| part_65547 | 65547 | Rear Shock | f47a5189-cb2e-4094-aa0c-1599f22124b4 | 12 | 2 |
 
 ### Work orders (numbers are ASSIGNED BY THE BRANCH — they cannot be chosen)
 
 | key | number | id | status | customer |
 |---|---|---|---|---|
-| work_orders_fib_main | S-17630 | 60e7bbe2-c828-421e-900e-0f87e9d50d4c | Approved | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17631 | 0fd8984c-5b3d-44cc-a885-ce719f9f9ece | Approved | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17632 | e4f4a156-901c-47da-9ae8-f97c9fe90aa5 | Approved | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17633 | 4456247c-fef8-4c36-9d23-20f732aa747d | Approved | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17634 | 5aa6ce39-2ace-443c-b188-15a160e4632f | Approved | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17635 | 8218d71a-2651-40dc-a46c-2a2574915a04 | Approved | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17636 | b5d1913d-32d8-49d7-a83c-436ae13193b3 | In Progress | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17637 | a50ec551-a013-44bf-a633-309b147c4421 | In Progress | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17638 | 5e038ec9-e91c-47fa-a55b-36837f389060 | In Progress | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17639 | 85b7d9e1-10f8-4207-a997-a67300967d70 | In Progress | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17640 | e22a6169-331e-4794-99b3-cdfaef32a53d | Approved | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17641 | 523e6657-487c-4ccf-9192-78cdf777a2c5 | Review | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17642 | 1048559d-b659-424b-b12b-b160dd1e08ea | Review | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17643 | 385a8c5c-59c9-4273-a267-30a28b1536f7 | Declined | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17648 | 245fc707-a667-4895-aab7-e0fa3aac9288 | Declined | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17649 | de86ff9d-338a-4cfd-a8d7-e8d9ef65de5a | Estimate | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17650 | 3d782565-15de-434d-90dc-ac8c8fa01637 | Estimate | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17651 | 7ea84526-a270-4490-a543-3b5c36f67ddf | Estimate | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_nounit | S-17644 | 68d40a24-ee0c-4d08-987c-ed014c4ee4b9 | Approved | ZZAUTOTEST Fibridge Logistics |
-| work_orders_fib_nounit | S-17645 | c88b7137-d143-46bb-a1c5-e01176a1fd24 | Approved | ZZAUTOTEST Fibridge Logistics |
-| work_orders_fib_nounit | S-17646 | b114f303-da34-4066-95f6-7c9108bc41c5 | Estimate | ZZAUTOTEST Fibridge Logistics |
-| work_orders_fib_nounit | S-17647 | 90b2caef-518c-4b60-ad0b-451373f50580 | Estimate | ZZAUTOTEST Fibridge Logistics |
+| work_orders_fib_main | S-17652 | b746502a-b48c-4730-bcac-6ef88b9270cf | Approved | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17653 | 297f171a-1216-4255-a12d-0570af864ea9 | Approved | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17654 | edb63ecb-d707-4a1e-b8f4-5d46ec57d633 | Approved | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17655 | 564bf822-0e89-43dd-9acd-5d168c4f2f94 | Approved | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17656 | 2c36d7af-a522-46fa-bca7-17f95d36e4e8 | Approved | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17657 | 1391ec5c-7638-4454-b906-1a02b97946ba | Approved | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17658 | 36e9e5eb-ee74-4747-a354-a5d850164d66 | In Progress | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17659 | 4194d905-59ba-4e18-beae-93086f3c3de1 | In Progress | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17660 | 3169709d-73f0-484d-ae11-4c8f3b6738f0 | In Progress | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17661 | 6cffa4c0-8e4a-426d-bce9-8efad6d5ed1b | In Progress | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17662 | 3725fae3-d0ee-4e00-9c64-13a40dd39693 | Review | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17663 | f4145843-f947-4f38-9825-eccc948b9f6b | Review | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17664 | a8c08563-237d-427a-8f22-1728817dcdda | Review | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17665 | 58be8992-daf5-4f75-80e5-ad323fa263e3 | Declined | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17666 | ac7f18e7-d49e-4359-a4d3-f9bd9868ae69 | Declined | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17667 | 9e5796e6-50c6-4b7f-9a22-d4ee4bc579b9 | Estimate | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17668 | 603f0a86-07aa-444b-baf3-b52adad8a506 | Estimate | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17669 | 636f7fc0-d7d6-4a47-ae0b-710376d9de58 | Estimate | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_nounit | S-17670 | 02fd66df-a97a-4bb7-a8de-b983cb065670 | Approved | ZZAUTOTEST Fibridge Logistics |
+| work_orders_fib_nounit | S-17671 | 4a4eae21-1786-4056-a680-493f374061b3 | Approved | ZZAUTOTEST Fibridge Logistics |
+| work_orders_fib_nounit | S-17672 | fa32b0f0-1cc9-4162-b42f-2ceed19a6503 | Estimate | ZZAUTOTEST Fibridge Logistics |
+| work_orders_fib_nounit | S-17673 | 36a8d352-8261-48b6-ba51-a641679d3b41 | Estimate | ZZAUTOTEST Fibridge Logistics |
 
 ### Part sales
 
 | P-number | id | customer | status |
 |---|---|---|---|
-| P9160-257 | b78e9136-1a88-499f-b3bb-fd95c80e8957 | ZZAUTOTEST Fibridge Commercial | estimate |
+| P9160-258 | 87cff77c-48fd-477a-89b1-2e5b1d23fcde | ZZAUTOTEST Fibridge Commercial | estimate |
 
 ### Purchase orders (on the Fibridge vendor)
 
 | number | id | status | total |
 |---|---|---|---|
-| S-17640 | cb2938fc-2dcd-4d7b-a5df-66521c777170 | ordered | 67.5 |
-| S-17634 | ea97d694-5f05-4add-bb95-c920426b260b | ordered | 90 |
-| S-17633 | 8a156f60-60ef-42ba-8db4-3a02ad09f5de | ordered | 100 |
-| S-17632 | 95902b44-6021-4493-a87d-76aaf3666849 | ordered | 90 |
-| S-17631 | 5360683a-66b4-43c5-a4e9-47b2a83100be | ordered | 240 |
-| S-17630 | 0e765cb4-6577-42a7-bc1b-c688c2095e96 | ordered | 610 |
+| S-17652 | 342f6e2a-6a5e-429f-af45-26f7ada197e9 | ordered | 240 |
 
 ### Vendor invoices (a delivery IS the vendor invoice)
 
 | invoice number | id | from PO | total |
 |---|---|---|---|
-| ZZT-INV-3 | 6504b7ae-fe24-4695-a7ab-e6112e8487da | I-1398 | 90.00 |
-| ZZT-INV-2 | 368b24cb-6d69-4de2-a818-fbbe438ece1e | I-1397 | 100.00 |
-| ZZT-INV-1 | 7394a2bb-9617-461a-b043-fd101386b903 | I-1396 | 90.00 |
-| ZZT-INV-S1 | c56c14da-a93f-4901-bc9b-1c9ac3a8d123 | I-1395 | 112.50 |
+| ZZT-INV-3 | 806df545-afea-4fa4-8f28-41f682bdf4f8 | I-1397 | 90.00 |
+| ZZT-INV-2 | a33c9a5b-9891-4056-a64a-57c20d8585a7 | I-1396 | 100.00 |
+| ZZT-INV-1 | 4e9509a9-83d0-4186-909d-6b00a74ad284 | I-1395 | 90.00 |
 
 > The payment badge is not stored on the invoice — it is `vendor_transaction.vendor_transaction_status`, joined by the indexer. Read the live badge from a search, not from this table.
 
@@ -111,10 +105,10 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 
 | tag | PO | route | invoice | payment |
 |---|---|---|---|---|
-| po_ordered | S-17631 |  | — | — |
-| inv_unpaid | I-1396 | stock | ZZT-INV-1 | — |
-| inv_partial | I-1397 | stock | ZZT-INV-2 | 200 paid 50.0 of 100.0 (partial) |
-| inv_paid | I-1398 | stock | ZZT-INV-3 | 200 paid 90.0 of 90.0 (full) |
+| po_ordered | S-17652 | work_order | — | — |
+| inv_unpaid | I-1395 | stock | ZZT-INV-1 | — |
+| inv_partial | I-1396 | stock | ZZT-INV-2 | 200 paid 50.0 of 100.0 (partial) |
+| inv_paid | I-1397 | stock | ZZT-INV-3 | 200 paid 90.0 of 90.0 (full) |
 
 ### Work-order status spread actually reached
 

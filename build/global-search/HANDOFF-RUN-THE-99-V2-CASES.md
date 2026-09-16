@@ -8,8 +8,15 @@ search; your job is to execute the cases and write a result for every one of the
 | **Suite** | Global Search — Enhancement (Aug 2026), epic **SV-9160** |
 | **Run** | **R415** — <https://shopview.testrail.io/index.php?/runs/view/415> |
 | **Scope** | **99 cases**: 90 core (sections 6721–6740), 8 Quick Actions (6774), 1 V1-Regression parity (8056) |
-| **Build to test** | `https://sv9160.qa.shopview.com` — marker at seeding time **`v26.36.7-21b4db9`** |
-| **🔴 Check the marker first** | `curl -s https://sv9160.qa.shopview.com/ \| grep app-version`. **If it has moved, the branch was redeployed and your data may be gone — reseed before you conclude anything** (see §6). On 2026-09-16 a redeploy changed four behaviours overnight and blaming the search index instead withdrew four TRUE findings. |
+| **Build to test** | `https://sv9160.qa.shopview.com` — marker at seeding time **`v26.36.7-29ca209`** |
+| **🔴 Check the marker first** | `curl -s https://sv9160.qa.shopview.com/ \| grep app-version`. **If it has moved, the branch was redeployed and your data may be gone — reseed before you conclude anything** (see §6). |
+
+> **🔴 THIS IS NOT HYPOTHETICAL. The branch was redeployed on 2026-09-16 while this handoff was
+> being written** — `v26.36.7-21b4db9` → **`v26.36.7-29ca209`** — and **it wiped every seeded
+> record**: 1 of 33 survived. It was rebuilt with one command and re-proven at 35/35, which is why
+> §6 exists and why the ids in the inventory are the ones from *after* the redeploy. Earlier, on the
+> same day, a different redeploy changed four behaviours overnight and blaming the search index
+> instead withdrew four TRUE findings. **Read the marker before you believe anything about the data.**
 
 ## 🛑 DO NOT TOUCH
 

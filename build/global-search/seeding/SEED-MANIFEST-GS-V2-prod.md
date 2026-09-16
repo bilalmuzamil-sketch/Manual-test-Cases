@@ -118,5 +118,6 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | approved | 8 |
 | estimate | 5 |
 | in_progress | 4 |
-| review | 3 |
+| review | 2 |
 | declined | 2 |
+| null | 1 |
