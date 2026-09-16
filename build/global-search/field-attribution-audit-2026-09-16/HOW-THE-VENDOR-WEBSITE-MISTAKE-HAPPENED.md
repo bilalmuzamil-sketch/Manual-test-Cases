@@ -79,7 +79,30 @@ email column**, so nothing else in that record can carry `bridgeporthauling-zzt.
 | **C55692 "Finding a vendor by their website still works" must be retired or rewritten** | As a V1-regression case it asserts something V1 never did, so it can only ever fail for the wrong reason. It is tied to SV-10110, so it waits on the same decision. |
 | **Nothing else is affected** | The other 27 claims are attributable. |
 
-## 5 · Proposed comment for SV-10110 — NOT posted
+## 5 · DONE — both actions carried out, 16 September 2026
+
+Approved by the QA lead and executed.
+
+| Action | Result |
+|---|---|
+| **SV-10110 withdrawn** | Comment [76670](https://shopview.atlassian.net/browse/SV-10110?focusedCommentId=76670) posted, explaining the email/website substring, citing the V1 vendor query, and crediting Sinisa. |
+| **C55692 retired** | Deleted from TestRail, following the precedent set for SBC-EXP-13 on 2026-07-28 (delete, keep a restorable local snapshot). |
+
+**The retired case is restorable.** `retired/C55692-RETIRED-full-body.json` holds all 30 fields and
+`retired/C55692-RETIRED-results.json` holds its 3 recorded results. To bring it back:
+`add_case` into section **6769** with the snapshot's fields — but **do not**, unless someone first
+establishes that the old version searched a vendor website, which its own code says it did not.
+
+**The delete was verified not to disturb anything else:** run 415 went 167 → 166 tests and 68 → 67
+results, **no other test and no other result was lost** — checked before and after, by case id.
+
+> ⚠️ Deleting a TestRail case also deletes its tests and their results, everywhere. The snapshot is
+> taken and verified complete **before** the delete, and the run is counted before and after. That is
+> the only safe order.
+
+---
+
+## 5a · The comment that was posted
 
 > Withdrawing this — the old version could not do this either, so it is not a regression.
 >

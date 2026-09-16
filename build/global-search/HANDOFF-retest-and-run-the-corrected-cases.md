@@ -1,4 +1,4 @@
-# Handoff — eight cases need running in run 415
+# Handoff — seven cases need running in run 415
 
 **For:** the session running the test pass.
 **From:** the main session, 15 September 2026.
@@ -76,24 +76,29 @@ version never supported turns the test into something that cannot fail.
 
 ---
 
-## 2a · Two more cases to run — both expected to FAIL, both already ticketed
+## 2a · One more case to run — expected to FAIL, already ticketed
 
-These are the two things the old search could do that this build still cannot. **Both already have a
-ticket, so if they fail, record the failure and raise nothing new.**
+This is the one thing the old search could do that this build still cannot. **It already has a
+ticket, so if it fails, record the failure and raise nothing new.**
+
+> ### ⚠️ C55692 has been RETIRED — do not look for it
+> *"Finding a vendor by their website still works"* was deleted from TestRail on 16 September. It
+> asserted something **the old version never did**: the old vendor search had no website field at all.
+> The evidence behind it was a match on the vendor's **email** (`parts@kestrelsupply-zzt.com`), which
+> contains the website text. Its ticket SV-10110 has been withdrawn. If you have it open in a tab from
+> before, close it — there is nothing to run and nothing to report.
 
 | Case | Type this | What happens today | Ticket |
 |---|---|---|---|
 | **C53601** — a catalogue part that is not in inventory can still be found<br>https://shopview.testrail.io/index.php?/cases/view/53601 | `ZZT-77-3300` | nothing comes back | [SV-10001](https://shopview.atlassian.net/browse/SV-10001) |
-| **C55692** — finding a vendor by their website still works<br>https://shopview.testrail.io/index.php?/cases/view/55692 | `kestrelsupply-zzt.com` | nothing comes back | [SV-10110](https://shopview.atlassian.net/browse/SV-10110) |
 
 **Put the ticket number in your result comment** so the next reader does not re-investigate something
 already raised. If either one *passes*, that means a fix shipped — say so, because the ticket can then
 be closed.
 
-> A control to run beside each, so a failure is never mistaken for missing data: search
-> **`ZZT-88-4412`** (a part that IS in stock — it comes back) and **`parts@kestrelsupply-zzt.com`**
-> (the same vendor's email — it comes back). If the control also returns nothing, the test data is
-> missing and the case is Blocked, not Failed.
+> A control to run beside it, so a failure is never mistaken for missing data: search
+> **`ZZT-88-4412`** — a part that IS in stock, which comes back. If the control also returns nothing,
+> the test data is missing and the case is **Blocked**, not Failed.
 
 ---
 
@@ -150,6 +155,6 @@ and if it passes, the fix has shipped and the ticket can be closed.
 
 | # | What I need |
 |---|---|
-| **1** | Run the six tests in §2 **and the two in §2a**, and set a result on each, with the typed text and what came back on anything that is not a Passed. |
+| **1** | Run the six tests in §2 **and the one in §2a**, and set a result on each, with the typed text and what came back on anything that is not a Passed. |
 | **1a** | **Re-run anything already marked Failed for SV-10002, SV-10003, SV-10005, SV-10006 or SV-10058** — those behaviours were fixed in this build and should now pass. |
 | **2** | Nothing else. The data is seeded and verified; the cases are corrected and verified; C55688 and C55689 are already run and Passed. |
