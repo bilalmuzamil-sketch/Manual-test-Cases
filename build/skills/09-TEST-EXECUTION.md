@@ -244,6 +244,40 @@ story is an ordinary Failed, handled the ordinary way. And it does not override 
 IS in Ready for QA still needs his per-ticket go-ahead. Full text: `build/rules/RULES-61-ONWARD.md`
 rule 112.
 
+## 5.3-b 🛑 THE FILING LOOP — WHO MAY BE MARKED WITHOUT ASKING, AND WHERE THE ONE STOP IS (Rule 113)
+
+**QA lead, 2026-09-16.** This is the operating procedure for a run. Read it before the first result.
+
+| Outcome | Ask him? | What you do |
+|---|---|---|
+| **Passed** | **No. Never.** | Write it into the run now, with what was observed. |
+| **Blocked** (story not Ready for QA / Testing QA) | **No. Never.** | Write it now, with the §5.3-a comment. |
+| **Failed** | **Only at the Jira button** | ↓ |
+
+**On a Failed, in this order:**
+
+1. **Write the Failed result into the run straight away** — the prepared comment MINUS the ticket
+   number, plus a line saying the report is prepared and awaiting his go-ahead. Use the
+   `ticket_held` path in `push_results_to_run.py`. **Never leave the case saying "not run" while a
+   ticket queues**: that hides how far the batch has got, and he reads the run to know.
+2. **Prepare everything, file nothing** — annotated picture, full comment, ticket body in the
+   approved layout (Environment second-to-last, above Sources), owning story, sources. On disk.
+3. **Give him the LIST** of failed cases, plainly, each self-contained (Rule 99), **and ask for the
+   go-ahead on the FIRST one only. Then wait.**
+4. **He audits and approves.** Create that one ticket: `Story Defect` · parent = the **owning
+   story** · priority **Medium**.
+5. **Append the ticket number to the comment already prepared** for that case and **post it into the
+   case's result in the run.**
+6. **Ask for the next. ONE AT A TIME.** Approving the first is approving the first — Rule 62's
+   per-ask is untouched.
+
+**🛑 AND THE BIGGER HALF:** *"For anything else besides creating ticket on Jira you will NOT wait
+for me and will keep yourself unblocked."* The Jira button is the **only** place a pass stops. An
+expired login, a missing record, a role without a permission, a screen needing data that does not
+exist, a broken tool — none of those is a reason to write back or to go idle (Rules 107, 105).
+**And keep testing while a report waits for approval.** Full text: `build/rules/RULES-61-ONWARD.md`
+rule 113.
+
 ## 5.4 🛑 WRITING RESULTS TO TESTRAIL — the repo rule, and it is narrower than you think
 
 > **CORE §4.1: "Never write a RESULT to another tester's run. Log only Passed cases to a run at all,
