@@ -2212,3 +2212,40 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     first prove the instrument worked). Operator forms: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
     §6.0 and `build/skills/V1-BASELINE-FROM-SOURCE.md`. Worked example:
     `build/global-search/v1-parity-audit-2026-09-14/`.
+
+110. **A RESULT IS NOT EVIDENCE UNTIL IT IS ATTRIBUTED, IDENTIFIED AND DATED — RUN THE DISCONFIRMING
+    TEST BEFORE YOU REPORT ANYTHING (all projects, permanent).** Ratified by the QA lead 2026-09-16
+    after three failures in one week, each the same error in a different costume: **a search returned
+    something, and that was treated as proof the thing under test worked.** It does not prove it. Before
+    any claim — a pass, a failure, a capability, a regression, a ticket — the result must clear **three
+    checks**, and a claim that has not cleared them is **UNPROVEN**, never "probably fine".
+    **(a) ATTRIBUTION — would it still happen with that field empty?** Claiming *"this record can be
+    found by field F"* requires blanking **F** and searching again. Still found ⇒ the match came from
+    somewhere else and the claim is dead. **SV-10110 was filed and had to be withdrawn** because typing
+    a vendor's website returned the vendor — via its **EMAIL**, `parts@kestrelsupply-zzt.com`, which
+    *contains* `kestrelsupply-zzt.com`. V1's vendor query has **no website column at all**
+    (`FetchDataQueryHandler.php:157-164` @ `55767168`), our own committed baseline said so, and it was
+    not read. **Two values that resemble one another RAISE the evidential bar, they never lower it** —
+    a website inside an email, a number inside a longer number, a name inside a company name.
+    **(b) IDENTITY — is OUR record in the list?** Never "were there results". A result **count** is not
+    a verdict; on real data almost every query returns something. Counting produced a **false PASS** on
+    a genuine regression (a catalogue-only part, 2026-09-15) that was only caught the next day.
+    **(c) PROVENANCE — which build, and how long after the write?** Record the build marker with every
+    verdict. A QA branch is redeployed without announcement: on 2026-09-16 `v26.36.4-7869ff2` →
+    `v26.36.7-893d13a` changed four behaviours overnight, and misreading that as a slow search index
+    caused **four TRUE findings to be withdrawn**. A reseed finding **0 of 11** records is the tell that
+    the branch was redeployed, not that data was tidied. Measure after the write has settled, and prove
+    a "not found" with a **control on the same record**.
+    **AND BEFORE REPORTING A LOSS AT ALL, SEARCH JIRA FOR AN EXISTING TICKET.** On 2026-09-16 all six
+    reported losses already had one. A duplicate ticket costs the team more than the finding is worth.
+    **THE LINE.** The cheapest disconfirming test beats the most convincing confirming one, and **the
+    answer is usually already in our own repository** — the product source, the V1 baseline, the
+    playbook — one grep away. All three failures were of a claim that could have been broken in seconds
+    by someone trying to break it. **Try to break your own finding before you ship it.**
+    Operator form: `build/global-search/field-attribution-audit-2026-09-16/attribution_check.py`
+    (28 claims checked, 1 bad). Durable facts it produced: `build/APP-ACTIONS-PLAYBOOK.md` §O.
+    Worked example and full post-mortem:
+    `build/global-search/field-attribution-audit-2026-09-16/HOW-THE-VENDOR-WEBSITE-MISTAKE-HAPPENED.md`.
+    **RELATION TO OTHER RULES:** it is the evidential floor beneath Rule 12 (verified means observed —
+    this says *observed how*), it gates Rule 94's admissibility check and Rule 62's per-ask filing, and
+    it is the general case of Rule 104 (prove the instrument worked before reporting a negative).

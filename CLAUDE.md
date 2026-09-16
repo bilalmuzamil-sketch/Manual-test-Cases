@@ -20,7 +20,8 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
+**plus Rules 109 and 110** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -93,17 +94,18 @@ These are stated here **in full** because a session that gets only this far must
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
 - **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N /
   live total M.
-- **🔴 A RETURNED RECORD IS NOT AN ATTRIBUTED MATCH — RUN THE DISCONFIRMING TEST (proposed rule, QA
-  lead to ratify; learned the hard way 2026-09-16).** Before claiming *"you can find this record by
-  field F"*, **blank F and search again**. Still found ⇒ the match came from somewhere else and the
-  claim is UNPROVEN. **SV-10110 was filed on a match that came from the vendor's EMAIL**
-  (`parts@kestrelsupply-zzt.com`) while being reported as the **WEBSITE** (`kestrelsupply-zzt.com`) —
-  the website is a substring of the email, and V1's vendor query has **no website column at all**
-  (`FetchDataQueryHandler.php:157-164`). Our own committed baseline already said so and was not read.
-  **Two values that look alike (a website and an email sharing a domain) RAISE the bar for evidence,
-  they do not lower it.** Tool: `build/global-search/field-attribution-audit-2026-09-16/attribution_check.py`
-  — 28 claims checked, 1 bad. Same family as: a result COUNT is never a verdict, and a search run
-  straight after a reseed measures the index, not the product.
+- **🔴 A RESULT IS NOT EVIDENCE UNTIL IT IS ATTRIBUTED, IDENTIFIED AND DATED (110).** Ratified
+  2026-09-16 after three failures in one week, all the same error: **a search returned something and
+  that was treated as proof.** Three checks, or the claim is UNPROVEN: **(a) ATTRIBUTION** — blank the
+  field and search again; still found ⇒ the match came from elsewhere (SV-10110 was withdrawn because a
+  vendor's **website** matched via its **EMAIL**, which contains it, and V1's vendor query has no
+  website column). **(b) IDENTITY** — is OUR record in the list, never "were there results"; a count is
+  not a verdict (a count of 1 produced a false PASS on a real regression). **(c) PROVENANCE** — record
+  the build marker; a QA branch redeploys unannounced, and misreading that as a slow index withdrew
+  **four TRUE findings**. **Search Jira for an existing ticket before reporting any loss** — all six
+  already had one. **The answer is usually one grep away in our own repo. Try to break your own finding
+  before you ship it.** Tool: `build/global-search/field-attribution-audit-2026-09-16/attribution_check.py`.
+  Facts: `build/APP-ACTIONS-PLAYBOOK.md` §O.
 
 ---
 
@@ -262,6 +264,17 @@ tests cannot fail. Operator form: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md
 (and the mistake that produced the rule): `build/global-search/v1-parity-audit-2026-09-14/`.
 🔴 **Numbered 109 to continue CANONICAL's sequence (canonical is at 108, in the renamed
 `build/rules/RULES-61-ONWARD.md`) — it must be carried across, or the next session will not have it.**
+
+**Rule 110 (a result is not evidence until it is attributed, identified and dated)** was ratified
+2026-09-16 and lives at the end of `build/rules/RULES-61-96.md`, after 109. **Read it before reporting
+any pass, failure or regression.** It is the evidential floor under Rule 12 — Rule 12 says *verified
+means observed*, Rule 110 says **observed how**: attribution (blank the field), identity (is OUR record
+there), provenance (which build, how long after the write). Operator form:
+`build/global-search/field-attribution-audit-2026-09-16/attribution_check.py`. The durable facts it
+produced are in **`build/APP-ACTIONS-PLAYBOOK.md` §O — Global Search**, which is the place to look
+before re-deriving anything about either search version (the two endpoints, V1's two passes and its
+three-rows-per-group cap, the phone-format rule, the per-record-type field lists, and the TestRail
+delete traps).
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is

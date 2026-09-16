@@ -2889,3 +2889,75 @@ branch fails, it is the per-branch session and the recipe applies. Distinguish a
 from an expired SSO session by the **shape of the refusal**: a Cloudflare block returns a challenge page,
 whereas an application-level JSON `{"error":"sso_required", …}` means the request **reached the app** and
 `cf_clearance` is still good.
+
+## O. GLOBAL SEARCH — V1 and V2 facts worth never rediscovering (proven 2026-09-14→16)
+
+Everything here was measured live or read from the product source. It sat only in dated session
+folders until 2026-09-16, which is how a fact gets rediscovered the expensive way.
+
+### O1. The two search endpoints are DIFFERENT, and probing the wrong one lies to you
+
+| Version | Where | Endpoint | Shape |
+|---|---|---|---|
+| **V1** (production, `app.shopview.com`) | `api.shopview.com` | `GET /api/global-search/fetch` | returns the **WHOLE collection** (~5,000 rows of `label` + `search` + `type`); the **browser** filters |
+| **V2** (QA branch `sv9160`) | `sv9160api.qa.shopview.com` | `GET /api/search?q=<query>` | returns grouped, ranked results; the **server** filters |
+
+🔴 **`/api/search` 404s on production and `/api/global-search/fetch` is not the V2 endpoint.** A
+liveness probe must use something that exists in both — `GET /api/staff/my-workplaces` works
+everywhere. Probing the wrong one reports a dead session that is perfectly alive (cost: one blocked
+reseed, 2026-09-16).
+
+**Because V1 hands over the whole collection, V1 behaviour can be measured WITHOUT a browser:** fetch
+the collection and apply V1's own two passes. Runnable: `build/global-search/prod-v1-comparison-2026-09-15/verify_prod_v1.py`.
+
+### O2. V1's matching, transcribed (`useGlobalSearch.ts:66-93` @ `55767168`)
+
+* **Under 2 characters** → returns recent history, not results.
+* **Pass 1:** `label.toLowerCase().startsWith(query)` — the label is what the row displays.
+* **Pass 2:** `search.toLowerCase().includes(query.replace(/\s+/g, ''))` — **only SPACES are stripped
+  from what the user typed. Nothing else.**
+* **`MAX_PER_TYPE = 3`** — V1 showed at most **three rows per group**. V2 shows 20. So "my record must
+  appear when I type a common make/year" was **never V1 behaviour**, and its absence from a V2 list is
+  not automatically a loss. Compare *whether the field is searched*, not *whether our record surfaces*.
+
+**The phone-number rule, which catches everyone.** V1 stored a number with brackets stripped and `)`
+turned into `-`, so `(419) 555-0143` became `419-555-0143`; the typed text lost only its spaces:
+
+| Typed | V1 found it? |
+|---|---|
+| `419-555-0143` (dashes) | ✅ |
+| `555-0143` (part of it) | ✅ |
+| `(419) 555-0143` (brackets) | ❌ |
+| `4195550143` (plain digits) | ❌ |
+
+**Do not "helpfully" retype a number in another format** — it changes what is being tested.
+
+### O3. V1's searchable fields, per record type — the authority is the SQL, not intuition
+
+`FetchDataQueryHandler.php` @ `55767168`. **Customers and Vendors differ, and that asymmetry has
+already caused one withdrawn ticket.**
+
+| Record | Fields V1 folds into its search text |
+|---|---|
+| **Customer** (:228-244) | name · name-with-spaces-removed · address 1 · address 2 · state · postal · city · telephone · **website** · each contact's first name, last name, title, telephone |
+| **Vendor** (:157-164) | name · address 1 · address 2 · state · postal · city · telephone · **email** |
+| **Asset** (:287-292) | owner name · year · make · model · unit · VIN · plate |
+| **Part** (:317-340) | reads **CataloguePart** — **no inventory join at all**, so a part never stocked was still findable |
+| **Work order / part sale** (:96-116) | raw number · number · four shop-prefixed variants · customer name · status (`quality_check` → `qualitycheckqc`) |
+
+🔴 **A CUSTOMER has a website and NO email. A VENDOR has an email and NO website.** They are not
+mirror images. SV-10110 was filed claiming V1 searched a vendor website; it never did — the match came
+from the email, which *contains* the website string. See Standing Rule 110.
+
+### O4. Seeding and TestRail traps hit on this project
+
+* **`SEED_PROFILE` / `SEED_WORKPLACE`** switch `seed.py` between estates; `RESEED QA` and `RESEED LIVE`
+  are the keywords. Full runbook: `build/global-search/seeding/RESEED.md`.
+* 🔴 **`delete_case/<id>&soft=1` DELETES on this TestRail — it is NOT a dry run.** Do not reach for it
+  as a safe preview.
+* **Deleting a TestRail case also deletes its tests and results everywhere.** Snapshot the full body
+  **and** its results first, verify the snapshot, then delete, then count the run before and after.
+  Precedent: SBC-EXP-13 (2026-07-28) and C55692 (2026-09-16).
+* **`update_case` verification traps:** TestRail appends a trailing newline and sometimes a stray
+  `</p>` to text fields, and `(value or '')` in a comparator destroys a legitimate `0`. Compare at
+  content level, not byte level, or you will chase three false alarms.
