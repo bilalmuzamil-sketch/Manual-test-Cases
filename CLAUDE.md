@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **107 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **110 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -202,6 +202,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   standing holds: no Jira/external artefact (62) · no TestRail write without his go-ahead (6) ·
   Vladimir's cases never (38) · Automated cases held (71) · secrets never committed (82) · production
   is not a test environment.**
+- **🛑 ASK WHICH SCOPE BEFORE STARTING ANY TASK — HE CHOOSES (110; QA lead 2026-09-16: *"whenever I give you any task you MUST ask me if that is to be done based on which scope"*).** **REPLACEMENT SCOPE** = the feature replaces one people already use, so **the old product is MEASURED and is the standard**; every report carries the two-version picture and the Product Owner note. **GENERAL SCOPE** = everything else, tested against its own requirements. **Never infer it — ask, name both, say which you'd pick, and WAIT.** **Four things are COMPANY-WIDE in BOTH: the approved ticket layout (no technical-details section) · annotated screenshots · a fixed report KEEPS its present-tense issue statement and we never close it · the product's own word (Vendor, VIN number).** Full text: `build/rules/RULES-61-ONWARD.md` rule 110.
 - **STRATEGY FIRST (79), AND NEVER GO IDLE WHILE WORK REMAINS (105; QA lead 2026-09-10 — *"Are you
   done? I do not see any running task"*, asked while a finished probe sat with no successor).** Devise
   or recall the smartest quota-efficient plan, then begin. **Queue EVERY remaining step into
@@ -329,7 +330,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 
 ---
 
-## 2 · THE RULE INDEX — all 107 rules, and where each one lives
+## 2 · THE RULE INDEX — all rules to 110, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -461,6 +462,7 @@ rule. Generated from the split files' own headers.
 | **105** | NEVER GO IDLE WHILE WORK REMAINS — queue every step with `run_queue.sh`; the last action before any report is to START the next work |
 | **106** | RECONCILE EVERY CASE'S EXPECTED AGAINST THE **LIVE** SOURCE — **before JUDGING it, not only before filing a defect** (extended 2026-09-15) — if they disagree the CASE is wrong, ask to fix the case, not to file a ticket |
 | **107** | STANDING AUTHORISATION TO UNBLOCK — seed/change/delete any test data, edit roles, use either surface; seven routes tried and NAMED before anything is called blocked; the standing holds (62 · 6 · 38 · 71 · 82) are untouched |
+| **110** | EVERY TASK DECLARES ITS SCOPE BEFORE IT STARTS — **REPLACEMENT SCOPE** (the product being replaced IS the standard) or **GENERAL SCOPE** (tested against its own requirements); HE chooses, on every task, and four things are company-wide in both |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -761,7 +763,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61 onward (full text — 61–107 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
+| Standing Rules 61 onward (full text — 61–110 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |

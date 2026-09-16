@@ -2732,3 +2732,30 @@ Restored on 16 September: SV-10014 · SV-10015 · SV-10016 · SV-10017 · SV-100
 
 **And the same reasoning reaches the checks:** a check whose report has been passed stays in the run
 and stays runnable. It is re-run on the next build. That is why neither may be written in the past.
+
+## L0135 — Two named scopes, and the scope question comes before the work (2026-09-16)
+
+**His ruling:** *"whenever I give you any task you MUST ask me if that is to be done based on which
+scope, and let me decide and tell which which scope is to be used"* — and, on where the line sits,
+*"I will go with your recommendations — Company wide."*
+
+**REPLACEMENT SCOPE** — a feature rebuilt to replace one people already use. *The thing being
+replaced is the standard, not the new specification.* Five things are true here and nowhere else:
+the old product is **measured** and is the specification · one two-version picture per report · the
+Product Owner note after the screenshots, only where something worked before and does not now ·
+coverage judged against what the old product demonstrably does · a failure is a **loss**.
+
+**GENERAL SCOPE** — everything else, tested against its own requirements.
+
+**COMPANY-WIDE, in both:** the approved ticket layout with no technical-details section · annotated
+screenshots · a report that no longer reproduces keeps its present-tense issue statement and is never
+closed by us · the product's own word for a thing.
+
+**The ask is per TASK, not per project** — and it is the first thing sent back, before any work. Name
+both, say which you would pick and why, then wait. Recorded as Rule 110 and at the top of skills 00
+and 15.
+
+**Found while recording it:** Standing Rules **108 and 109 are cited across the repo and have no text
+in the rules file**. 109 in particular — *"the shipped V1 product IS the specification"* — is quoted
+by every Global Search regression case and by skills 09 and 17. Rule 110(a) now states that
+substance, but the dangling citations need writing up or re-pointing. Flagged, not done unasked.

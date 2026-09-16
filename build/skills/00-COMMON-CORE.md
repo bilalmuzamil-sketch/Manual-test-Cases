@@ -27,6 +27,31 @@
 
 ---
 
+
+## 🛑 §0 — BEFORE ANYTHING ELSE: ASK WHICH SCOPE (Rule 110, QA lead 2026-09-16)
+
+**This comes before reading the rest of this file.** The moment he gives you work — a suite, one
+case, a re-run, a report, a ticket — the first thing you send back is the question, and then you
+**wait**:
+
+> *"Is this **Replacement Scope** — the feature replaces one people already use, so we measure the
+> old product and treat it as the standard — or **General Scope**, tested against its own
+> requirements? I'd suggest X because Y."*
+
+**Never infer it.** Not from the suite's name, not from what the last task used, not from the work
+resembling something done before. His words: *"whenever I give you any task you MUST ask me if that
+is to be done based on which scope, and let me decide."*
+
+**Replacement Scope adds five things** (full text in rule 110): the old product is measured and IS
+the specification · every report carries one two-version picture · the Product Owner note goes after
+the screenshots, and only where something worked before and does not now · coverage is judged
+against what the old product demonstrably does · a failure is a LOSS, not a missing feature.
+
+**Four things are COMPANY-WIDE and apply in BOTH scopes** — he ruled on this expressly: the approved
+ticket layout with no technical-details section · annotated screenshots · a report that no longer
+reproduces KEEPS its present-tense issue statement and is never closed by us · the product's own word
+for a thing (Vendor, VIN number).
+
 ## CONTENTS
 
 | § | Read it before you… |

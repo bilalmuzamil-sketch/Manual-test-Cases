@@ -850,6 +850,12 @@ v2**:
    whose `attrs.id` is a **36-char UUID**, **and** `renderedFields.description` must contain a real
    `<img src=".../attachment/content/<id>">`. **Attached but not inline fails this format.**
 
+> **SCOPE (Rule 110, QA lead 2026-09-16): the next two sections, the approved eight-heading
+> layout, and the annotated-screenshot standard are COMPANY-WIDE — they apply in BOTH
+> Replacement Scope and General Scope.** Only the *Product Owner note after the screenshots*
+> is Replacement-Scope-only, and only where something worked before and does not now. Ask him
+> which scope before starting any task; never infer it.
+
 ### 🛑 THE REPORT IS THE ISSUE, IN THE PRESENT TENSE — EVEN AFTER IT IS FIXED (QA lead, 2026-09-16)
 
 **Verbatim:** *"you should not change the Ticket title and description into the past that it WAS

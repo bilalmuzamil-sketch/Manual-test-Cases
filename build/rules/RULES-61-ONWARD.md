@@ -3752,3 +3752,79 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     never mark it not-verified) and Rule 74 (no present feature left un-verified — seed and log in as
     needed), made general and explicit so no session re-asks. Rule 104 still governs what may be
     CALLED a blocker; 107 governs how hard you must work before the question arises. Learning L0041.
+
+---
+
+110. **EVERY TASK DECLARES ITS SCOPE BEFORE IT STARTS — REPLACEMENT SCOPE OR GENERAL SCOPE, AND HE
+    CHOOSES (all projects, permanent; QA lead 2026-09-16)**
+
+    **His ruling, verbatim:** *"whenever I give you any task you MUST ask me if that is to be done
+    based on which scope, and let me decide and tell which which scope is to be used."* And on where
+    the line sits: *"I will go with your recommendations — Company wide."*
+
+    **THE ASK IS ON EVERY TASK, NOT EVERY PROJECT.** The moment he gives work — a suite, a single
+    case, a re-run, a report, a ticket — the FIRST thing back is: **"Replacement Scope or General
+    Scope?"** Then wait. **Never infer it from the suite's name, from what the last task used, or from
+    the work looking like something done before.** A task that begins without the answer is a task
+    that may have to be done twice.
+
+    ---
+    **REPLACEMENT SCOPE — when a feature has been REBUILT TO REPLACE ONE PEOPLE ALREADY USE.**
+    The plain sentence: *the thing being replaced is the standard, not the new specification.*
+    Global Search V2 is the worked example (run 415, epic SV-9160). Five things are true here and
+    nowhere else:
+
+    a. **THE OLD PRODUCT IS THE SPECIFICATION.** Expected behaviour is **MEASURED on the live
+       product**, not read out of a document — typed in and photographed, with the date and the
+       version. Where the new specification and the old behaviour disagree, **the old behaviour is
+       the expectation** and the disagreement is a Product Owner decision item (96, 58). This is what
+       the suite's own cases mean by *"the shipped V1 product IS the specification"*.
+    b. **EVERY REPORT COMPARES THE TWO VERSIONS IN ONE PICTURE** — the live product above, the new
+       version below, each cropped to the panel and annotated, stacked by
+       `build/testing-tools/compose_compare.py`. Two separate pictures make the reader do the
+       comparing; one does it for them.
+    c. **THE PRODUCT OWNER NOTE GOES AFTER THE SCREENSHOTS** — *"Is losing this acceptable?"* with
+       both options spelled out — and **ONLY on a report where something worked before and does not
+       now.** Never on a plain fault inside the new version: asking whether losing it is acceptable
+       would be nonsense, and a session put that block on a mouse-and-keyboard defect once.
+    d. **COVERAGE IS JUDGED AGAINST WHAT THE OLD PRODUCT DEMONSTRABLY DOES**, not against the new
+       specification's feature list. On Global Search that meant reconciling against the 42
+       behaviours the rebuilt old search demonstrates — which found four that no case typed at all.
+    e. **A CHECK THAT PASSED BEFORE MUST KEEP PASSING.** A failure is a **LOSS**, not a missing
+       feature, and it is reported as something a person can no longer do.
+
+    ---
+    **GENERAL SCOPE — everything else.** A feature tested against its own requirements, with none of
+    (a)–(e): no live-product measurement as the authority, no two-version picture, no Product Owner
+    note, coverage judged against the specification, and a failure is a defect rather than a loss.
+
+    ---
+    **🛑 FOUR THINGS ARE COMPANY-WIDE AND BELONG TO BOTH SCOPES — HE RULED ON THIS EXPRESSLY.** They
+    came from the Head of Product, the Head of Engineering and from him, and they are NOT about
+    replacement. Putting them in Replacement Scope alone would send ordinary work back to the old
+    ticket shape:
+
+    1. **The approved ticket layout** — one-line title · Environment on one line · Description ·
+       Steps of reproduction · Current behaviour · Expected behaviour · Screenshots · (the Product
+       Owner note, Replacement Scope only) · a rule · Sources. **No "technical details for
+       developers" section, ever.**
+    2. **Annotated screenshots** — boxes on the exact element with a numbered legend beneath, sized
+       to span the description so nothing has to be clicked. A framed picture is not an annotated
+       one (L0132).
+    3. **A report that no longer reproduces KEEPS its present-tense issue statement** — title,
+       description, steps, current and expected behaviour all stay reproducible. Only a comment and
+       the status carry the verification, and **we never close it ourselves** (L0131, L0134).
+    4. **The product's own word for a thing is the word** — Vendor, not supplier; VIN number, not
+       chassis number. Plain English means no jargon, never renaming what the product names (L0134).
+
+    ---
+    **WHAT TO SAY WHEN YOU ASK.** Name the two, in one line each, and say which you would pick and
+    why — he decides, but he should not have to reconstruct the difference:
+    *"Is this Replacement Scope — we measure the old product and treat it as the standard — or
+    General Scope, tested against its own requirements? I would suggest X because Y."*
+
+    **RECORDED GAP, 2026-09-16:** Standing Rules **108 and 109 are cited across the repo but have no
+    text in this file** — 109 in particular ("the shipped V1 product IS the specification") is quoted
+    by every Global Search regression case and by skills 09 and 17. Rule 110(a) states that
+    substance, but the dangling citations should be written up or re-pointed. Flagged to the QA lead;
+    not done unasked.
