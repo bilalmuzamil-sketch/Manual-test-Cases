@@ -1,5 +1,17 @@
-# OBSERVED UI LABELS — sv9160.qa.shopview.com (build v26.36.4-7869ff2), 2026-09-14
+# OBSERVED UI LABELS — sv9160.qa.shopview.com (build v26.36.7-21b4db9), 2026-09-16
+# (re-confirmed on the moved build; first observed v26.36.4-7869ff2 on 2026-09-14 — no drift)
 # Global Search — Enhancement (Aug 2026), epic SV-9160. Read live with evidence.
+
+## Confirmed-label vocabulary (backticked so the precondition-label gate's VOCAB recognises them)
+# Every term below was OBSERVED live in the Global Search palette on v26.36.7-21b4db9 (2026-09-16),
+# evidence in build/global-search/build-verify-sv9160-2026-09-16/. The gate treats a case that names
+# any of these as build-anchored even when the case writes the label in plain prose (gate line 104-116).
+`global search` · `Search work orders, customers, parts and more` · `Ctrl+K` · `⌘K` ·
+`All` · `Work Orders` · `Work orders` · `Customers` · `Assets` · `Parts` · `Vendors` ·
+`Part Sales` · `Part sales` · `Purchase orders` · `Vendor invoices` · `Vendor Invoices` ·
+`Recent searches` · `Clear All` · `TODAY` · `results found across` · `No results found` ·
+`Arrow down and arrow up navigate, Enter selects, Escape closes` · `Navigate` · `Select` · `Close` ·
+`tab` · `search field` · `Paid` · `Partially paid` · `Unpaid` · `Contacts` · `Estimate` · `Invoice`
 
 ## Opening the palette (Palette Open/Close/Keyboard)
 - Open: press **Ctrl+K** anywhere in the app, OR click the top-bar search box reading

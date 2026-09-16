@@ -1,7 +1,20 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0b-FIVE-DIMENSION-REVERIFY-2026-09-09 (LATEST) — full authenticity gate; ALL 5 dimensions clean
+## §0a-BUILD-VERIFY-2026-09-16 (LATEST) — re-verified on sv9160 `v26.36.7-21b4db9`
+- **Branch build MOVED** `v26.36.4-7869ff2` (9/14 verify) → **`v26.36.7-21b4db9`** (rebuilt 9/16); full Rule-101
+  re-observation run. Source unchanged (PRD v1.5). sv9160 still up (sv-branch, not destroyed).
+- **Scope 90 cases** (6721–6740 + 6768); **C45140 excluded/untouched** (6767); excluded 6769/6774/8056; 0 Vladimir, 0 Automated.
+- **Every palette surface re-confirmed, NO drift:** Ctrl+K + placeholder "Search work orders, customers, parts and more";
+  9 scope tabs with counts (All 85 · Work orders 20 · Customers 4 · Assets 20 · Parts 20 · Vendors 1 · Part sales 0 ·
+  Purchase orders 20 · Vendor invoices 0); "85 results found across 6 categories"; Recent searches / Clear All / TODAY;
+  keyboard hint; "No results found". **C44900**: Vendor-invoice status badge live — "Unpaid" observed (tri-state kept per doc).
+- **Re-stamp `v26.36.4-7869ff2` → `v26.36.7-21b4db9 on 9/16/2026`: 90/90, fail=0.** Gates: runnable 90/90; precond-label
+  90/90 (added a **backtick vocabulary** to `OBSERVED-UI-LABELS-sv9160.md` so the gate's VOCAB recognises prose-named labels);
+  served render 90/90 fr-view, 0 escaping. Run R415 holds all 90 (unchanged).
+- **Reusable asset:** `build/global-search/probe_gs_surfaces.mjs` (host-agnostic GS palette walker). Evidence: `build/global-search/build-verify-sv9160-2026-09-16/`.
+
+## §0b-FIVE-DIMENSION-REVERIFY-2026-09-09 — full authenticity gate; ALL 5 dimensions clean
 
 **Re-ran the five-dimension authenticity gate (L0026 / skill 02 §5c) over all 119 cases** after the morning
 v1.5 pass — because that pass predated the title/steps-coverage lessons. It caught real misses the morning
