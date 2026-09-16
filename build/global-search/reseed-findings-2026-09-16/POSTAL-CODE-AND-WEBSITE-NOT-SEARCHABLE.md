@@ -1,4 +1,4 @@
-# Three things you could search for before, and cannot now — and it is the SPEC, not the build
+# Four things you could search for before, and cannot now — and it is the SPEC, not the build
 
 **Found 2026-09-16 while reseeding the QA branch.** You spotted the postal code. Chasing it turned up
 two more fields, and then reading the specification turned the whole thing on its head.
@@ -26,6 +26,25 @@ Measured on both sides with the same records in each: the old version on product
 | A supplier's **postal code** — `43055-2210` | ✅ finds it | 🔴 nothing | **not listed** |
 | A supplier's **website** — `kestrelsupply-zzt.com` | ✅ finds it | 🔴 nothing | **not listed** |
 | A supplier's **state** — `Ohio` | ✅ finds it | 🔴 nothing | **not listed** (it *is* listed for customers) |
+| A **catalogue part the shop has never stocked** — `ZZT-77-3300` | ✅ finds it | 🔴 nothing | §4 indexes **"Parts (Inventory)"** — catalogue-only parts are not in it |
+
+### The fourth one is a whole record type, not a field
+
+The old search read the **parts catalogue** and never looked at inventory at all, so a part the shop
+had never carried was still findable — which is how you check whether a part exists before ordering it.
+The new search indexes **inventory** parts. §4 says *"Parts (Inventory)"*, and §5.3 confirms the intent:
+*"A Part row opens the inventory part, not the catalogue entry — the row shows on-hand quantity and
+stock status, which only exist on inventory."*
+
+Proved with a matched pair, both created by the seeder minutes apart:
+
+| Part | In inventory? | Old version | New version |
+|---|---|---|---|
+| `ZZT-88-4412` ZZAUTOTEST Brake Chamber Kestrel | yes | ✅ found | ✅ found |
+| `ZZT-77-3300` ZZAUTOTEST Airline Coupler Vernway | **no** | ✅ found | 🔴 **nothing**, by part number or by name |
+
+Not index lag: polled for 90 seconds (the specification allows 30), and the record is confirmed
+present on the branch with the right name and deliberately absent from inventory.
 
 ## 2 · The build follows the spec exactly — which is how we know it is the spec's doing
 
@@ -78,6 +97,7 @@ fail. A case rewritten to match the thing it tests cannot fail.
 | [C53585](https://shopview.testrail.io/index.php?/cases/view/53585) — vendor by address, city or postal code | step 4, `43055-2210` | street and city pass |
 | [C53606](https://shopview.testrail.io/index.php?/cases/view/53606) — vendor by state or province | the whole case | — |
 | [C55692](https://shopview.testrail.io/index.php?/cases/view/55692) — vendor by their website | the vendor-website step | — |
+| [C53601](https://shopview.testrail.io/index.php?/cases/view/53601) — a catalogue part that is not in inventory can still be found | the whole case | — |
 
 Run 415: https://shopview.testrail.io/index.php?/runs/view/415
 
@@ -89,6 +109,19 @@ Run 415: https://shopview.testrail.io/index.php?/runs/view/415
 
 **A case that fails on one step is a failing case** — two of these have passing steps around the
 failing one, so the tester must say which step.
+
+---
+
+## 5a · A correction to what I reported yesterday
+
+On 15 September I checked this same part and called it findable. **That was wrong, and the way it was
+wrong is worth recording.** I searched `ZZT-77-3300`, saw the result count was 1, and took that as a
+pass — without checking that the one result was actually our part. Today's check compares the
+returned record's identity, and the part is not there at all.
+
+**A result count is not a verdict.** A search that returns something is not a search that returned the
+right thing, and on a busy dataset almost every query returns something. Every check in this document
+now asserts the identity of what came back, not how many rows there were.
 
 ---
 
