@@ -86,6 +86,14 @@ you then see is the product. If it does not, reseed (§6) before writing a singl
 | `Deshawn` | **Deshawn Freight Lines first** (own name), **Fibridge Commercial second** (contact field) — that ordering is C45139 |
 | `65547` | the part |
 | `P2-58` | the part sale · **`P2-59` returns nothing** |
+
+🔴 **`P2-59` IS FRAGILE AND YOU MUST RE-CHECK IT BEFORE RUNNING C44849.** A part-sale number matches
+**across shop prefixes** — typing `P2-59` will return a part sale numbered `P9160-259`, from a
+completely different shop. Part-sale numbers are assigned sequentially, so **any reseed of any suite
+can create one and silently break this case's precondition.** It happened on 2026-09-16 and the
+verifier caught it. If `P2-59` returns a row: a part sale is a work order underneath, so
+`POST /api/work-orders/delete {work_order_id}` removes it and the seeder issues the next number.
+Work-order numbers do **not** behave this way — `S2-15441` is safe.
 | `S2-15440` · `S215440` · `S2 15440` | the same work order, **pinned at the top** |
 | `S2-15441`, `S2-15450` | **nothing** |
 | `S1- 56438` | **nothing** (the no-results case) |
