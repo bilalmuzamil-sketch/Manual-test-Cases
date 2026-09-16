@@ -123,7 +123,8 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   ticket number (`ticket_held`) — never leave the run saying "not run" while a ticket queues — prepare the
   annotated picture, comment and ticket body, **file nothing**, give him the LIST, **ask for the FIRST and
   WAIT**. On approval create it (`Story Defect` · owning story · Medium), **append the ticket number to the
-  prepared comment and post it into the run**, then ask for the next. **The Jira button is the ONLY thing
+  prepared comment and post it into the run**, then **ask again for the next — N failures = N asks =
+  N approvals, no batch, confirmed by him in so many words 2026-09-16**. **The Jira button is the ONLY thing
   that stops a pass** — logins, data, roles, tooling are all unblocked under 107/105, and testing continues
   while a report waits. Full text: `RULES-61-ONWARD.md` rule 113.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,

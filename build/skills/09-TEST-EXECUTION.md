@@ -268,8 +268,11 @@ rule 112.
    story** · priority **Medium**.
 5. **Append the ticket number to the comment already prepared** for that case and **post it into the
    case's result in the run.**
-6. **Ask for the next. ONE AT A TIME.** Approving the first is approving the first — Rule 62's
-   per-ask is untouched.
+6. **Ask for the next. ONE AT A TIME — he confirmed this in so many words (2026-09-16):**
+   *"Approving one means you will ask me if I am allowing you to create the 2nd jira ticket again,
+   and then you will create it after gettig my approval, and then will ask me to create the other
+   one after that and so on."* **N failures = N asks = N approvals.** There is no batch and no
+   "he approved the pattern". The only thing that runs ahead is the TESTING.
 
 **🛑 AND THE BIGGER HALF:** *"For anything else besides creating ticket on Jira you will NOT wait
 for me and will keep yourself unblocked."* The Jira button is the **only** place a pass stops. An

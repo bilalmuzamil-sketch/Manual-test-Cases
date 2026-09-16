@@ -3993,8 +3993,14 @@ run creation and deletion, and Rule 38 still puts Vladimir's cases out of reach.
    the **owning story**, priority **Medium** (Rule 62's shape).
 5. **Immediately after the ticket exists:** append the ticket number to the comment already prepared
    for that case and **post that comment into the case's result in the run.**
-6. **Then ask for the next one.** **ONE AT A TIME.** His approval of the first is approval of the
-   first — Rule 62's per-ask is unchanged, and an approved batch never becomes a standing licence.
+6. **Then ask for the next one.** **ONE AT A TIME, AND HE CONFIRMED THIS EXPLICITLY WHEN I PUT THE
+   READING BACK TO HIM (2026-09-16, verbatim):** *"Approving one means you will ask me if I am
+   allowing you to create the 2nd jira ticket again, and then you will create it after gettig my
+   approval, and then will ask me to create the other one after that and so on."*
+   **There is no batch. There is no "he approved the pattern". N failures means N separate asks and
+   N separate approvals**, in order, each one waiting. Rule 62's per-ask is not merely unchanged —
+   it is the whole shape of this loop. **The only thing that may run ahead is the TESTING**: keep
+   working the rest of the queue while a single report sits with him (113.3).
 
 ### 113.3 · THE OTHER HALF OF THE RULE, AND IT IS THE BIGGER HALF
 
