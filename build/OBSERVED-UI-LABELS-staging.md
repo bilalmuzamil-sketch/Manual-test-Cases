@@ -46,10 +46,11 @@
 ## Edit Line dialog
 - Title: **Edit Line**; carries a **Status** field (value seen: **"Authorized"**), Technicians, Labor Rate, Estimated Time, Tech Time; buttons **Delete**, **Save & Close**
 
-## Add Part / Edit visibility by work-order status (C44993 / C44994)
+## Add Part / Edit visibility by work-order status (C44993 / C44994) — FULLY CONFIRMED
 - **Complete** (WO S2-328544): **Add Part hidden**, part-row **Edit hidden** — confirmed
 - **Paid** (WO S2-322624): **Add Part hidden**, **Edit hidden** — confirmed
-- **Declined**: the 2026-09-10 revision says Add Part + Edit are **shown** on Declined. Declined work orders exist (e.g. S2-14522, S2-32995) but the status filter → detail navigation was not reliable this pass; the shown-on-Declined half is **NOT re-observed this build** — the tester confirms it on a Declined work order (the case preconditions already say to use whichever statuses are reachable).
+- **Declined** (WO **S2-14522**): **Add Part shown** ✓ and part-row **Edit shown** ✓ — confirmed live 2026-09-16.
+- 🛑 RELIABLE ROUTE to a Declined work order (the Status filter → detail click is FLAKY): use the **global search** (Ctrl+K), type the WO number (e.g. `S2-14522`), click the result. This opens the detail page directly. Reuse this instead of the list filter.
 
 ## Roles & Permissions (precondition route)
 - **Settings** → **Roles & Permissions** (sidebar) → the role's pencil → route `/administration/roles-permissions/<roleId>/edit`
@@ -57,9 +58,12 @@
 - **Work order lines** section with a **Create & Edit** toggle
 - **See Financial Data** toggle
 
-## Allocation (bin) surfaces
-- **Pulled from** — allocation wording, observed after selecting an inventory part in the inline row
-- **Bin Locations** and **"Split across bins…"** — documented labels for a multi-bin inventory part; **NOT re-triggered on staging this pass** (needs a seeded inventory part with ≥2 bins in stock — same limit the 2026-09-09 pass recorded on v26.36.0). Tester confirms when a ≥2-bin part is seeded.
+## Allocation (bin) surfaces — CONFIRMED on a real inventory part (2026-09-16)
+Used a well-stocked inventory part: **"ATF Bulk- Mobil Delvac 1 ATF 668" (MD668D)**, Inventory Qty 280, bin **SHOP**.
+- **"Pulled from"** — the allocation chip on the inline row after selecting an inventory part (renders "Pulled from SHOP ▾"). Confirmed ✓ (C45224).
+- **Bin picker** — opens by clicking the **caret (▾) at the right end of the "Pulled from" chip** (a `<button>` inside `.inline-part-row__binline`; a plain click on the chip text does NOT open it — click the caret). The picker lists each bin with its **name**, a **Default** badge, its **on-hand quantity** (e.g. "SHOP · Default · 280"), and a **check** on the selected bin; it **ends with a "Split across bins…" action**. Confirmed ✓ (C45221, C45226).
+- **"Split across bins…"** — the last action in the bin picker. Confirmed present ✓.
+- **"Bin Locations"** modal — opens when you click "Split across bins…" (C45232/C45233). The action that opens it is confirmed; the modal itself was not captured by automation (Quasar menu→dialog timing) — a tester opens it with one click. Tester confirms the modal contents (one row per bin, Default badge, on-hand, allocation input, Apply).
 
 ## Keyboard
 - **Escape** closes the inline row / dialogs
