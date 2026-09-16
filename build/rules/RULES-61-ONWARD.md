@@ -4010,3 +4010,50 @@ Jira ticket is a rule break, not caution.**
 
 While a ticket waits for his approval, **keep testing.** The queue does not stop for one held
 report.
+
+---
+
+## RULE 107 — AMENDMENT, 2026-09-16: THE AUTHORISATION NOW COVERS PRODUCTION, AND WHAT THAT DOES AND DOES NOT MEAN
+
+**QA lead, 2026-09-16, verbatim:** *"Note you are authorized to CRUD anything on production and QA
+branch."*
+
+**SURFACED UNDER RULE 63 BEFORE ACTING, because it contradicts recorded law.** Rule 107 as written
+ends *"the standing holds are untouched … production is not a test environment"*, and Rule 6 treats
+production as the one place we do not act freely. **His instruction overrides both.** It is recorded
+here rather than argued with — but the contradiction is named, so nobody later reads the old line
+and thinks this amendment was a session taking liberties.
+
+### What is now authorised on production
+
+Create, read, update and delete, on the same terms as a QA branch: test records, test customers,
+test vehicles, test work orders, roles and permissions, workplace switching. No second ask.
+
+### What that does NOT change — and these are not my caution, they are still rules
+
+1. **REAL CUSTOMER DATA IS NOT TEST DATA.** Production carries other people's live records. An
+   authorisation to create and delete test data is not an authorisation to edit or delete a record
+   that belongs to a real customer, a real work order, a real invoice. **Touch what we made; leave
+   what the business made.** If a check needs a real record, READ it.
+2. **TAG EVERYTHING `ZZAUTOTEST`, AND RESTORE WHAT WAS NOT THE POINT OF THE TEST** (Rule 6). On
+   production this matters more, not less: an untagged test customer is indistinguishable from a
+   real one to the person who finds it next week.
+3. **ANYTHING THAT LEAVES THE BUILDING STAYS OFF-LIMITS WITHOUT A SEPARATE ASK.** Sending an email
+   or an invoice to a real address, a customer-portal invitation, anything that bills, charges,
+   syncs to QuickBooks or posts to an accounting period. Production delivers these for real. This
+   is not covered by "CRUD" and never was.
+4. **THE STANDING HOLDS ARE UNTOUCHED**, exactly as the original Rule 107 says: no Jira ticket
+   without his go-ahead (62 / 113) · no TestRail `add_case`/`update_case`/run creation without his
+   go-ahead (6) · Vladimir's cases never (38) · Automated cases held (71) · secrets never committed
+   (82).
+5. **NEVER SIGN IN AS HIM ON PRODUCTION.** A second login for the same user expires his session and
+   signs him out of his own screen (playbook §K trap 2). He supplied his own production credentials
+   on 2026-09-16; they are stored `chmod 600` in `/tmp` and are the fallback, not the default. Use
+   the recorded production TEST account.
+
+### The practical note
+
+On a **General Scope** task the new version is judged against its own requirements, so there is
+normally **no reason to write to production at all** — it is not the standard, and a comparison
+picture is not being taken. Use the authorisation when a check genuinely needs it; do not write to
+a live system because a rule now permits it.
