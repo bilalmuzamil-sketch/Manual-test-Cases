@@ -4606,6 +4606,33 @@ never return, then spend an afternoon deciding whether that is a defect.
    the SHORT prefix term (`Fib`), never on the long one**, and a group total is never evidence your
    record is there (Rule 110b — check identity).
 
+### O5b. 🔴 A PART-SALE NUMBER MATCHES ACROSS SHOP PREFIXES. A WORK-ORDER NUMBER DOES NOT.
+
+Measured live 2026-09-16 on `v26.36.7-29ca209`:
+
+| Typed | Returns |
+|---|---|
+| `P2-59` | **`P9160-259`** — a different shop's prefix, the same trailing number |
+| `P9160-259` · `P-59` | the same part sale |
+| `S2-17660` | **nothing**, although `S9160-17660` exists |
+| `S9160-17660` · `S-17660` · `17660` | the work order |
+
+Both providers build a `number_variants` list, but only the part sale's variants reach across shop
+prefixes in practice. **The consequence is a cross-suite booby trap:** a case whose precondition is
+*"no Part Sale `P2-59` exists"* (C44849) is broken the moment ANY shop creates a part sale whose
+trailing number is 59 — and part-sale numbers are assigned sequentially, so **an unrelated reseed of
+an unrelated suite can silently break it.**
+
+It happened: reseeding the V1-regression universe after the 2026-09-16 redeploy created
+`P9160-259`, and `P2-59` immediately started returning a row. **The verifier caught it** — which is
+the entire argument for `verify_gsv2.py` existing and being run after every reseed rather than
+trusting a seeder's 33/33.
+
+**The fix, if it recurs:** a part sale is a work order underneath, so
+`POST /api/work-orders/delete {work_order_id: <the part sale's id>}` → **201** removes it, and
+re-running the seeder issues the next number. Do NOT edit the case to dodge it without the QA lead
+— and check `P2-59`/`S2-15441`-style negatives after **every** reseed of **either** universe.
+
 ### O6. Purchase order → vendor invoice → payment: the whole chain, with the payloads
 
 A **delivery IS the vendor invoice** in this data model (`inventory_delivery`); the invoice number is
