@@ -47,3 +47,28 @@ not a behaviour redesign. "Catalog" is still a valid part source (NOT globally r
 **Next step (NOT done — awaiting QA lead):** a full re-verify of Inline against the Sep-10 spec edit,
 re-stamped and re-worded (status name, inventory-specific catalog→inventory, the corrected status lists,
 Story 7 bin rule). WO Print needs nothing.
+
+---
+## EXECUTION — full source verification applied 2026-09-16 (QA lead go-ahead)
+Verified all 123 in-scope Inline cases against spec 782761986 (2026-09-10 revision). Vladimir's 11 foreign
+cases untouched (Rule 38).
+
+**CONTENT-CHANGED — 5 cases (4% of 123):**
+- **C44993, C44994** — the 2026-09-10 revision removed **Declined and Imported** from S1-N1/S1-N2 (Imported
+  is an invoice status; Declined is now a status where the feature applies). Expected corrected to
+  hidden-on-Complete/Invoiced/Paid, shown-on-Declined. **These flipped from EXPECT-FAIL (story defect
+  SV-9917) to normal PASS** — SV-9917's premise (control hidden on Declined) is no longer the documented
+  expectation and should be reviewed for closure (flagged, not filed — Jira hold).
+- **C45013, C45054** — the free-typed part status is shown on the build as **"Auth to order"** (Requested is
+  the concept name); Expected aligned to the build label.
+- **C45222** — S7-R2's "Not stocked" result-card state is now flagged **unreachable** (an inventory part
+  always has a bin); Expected updated to say so.
+
+**RE-STAMPED ONLY (content current, read-date → 16 Sep) — 114 cases:** 108 writable spec-derived + 6
+Automated (C45005, C45026, C45223, C45224, C45227, C45237, re-stamped on QA-lead go-ahead — see FOR-VLAD-2026-09-16.md).
+
+**LEFT UNTOUCHED — 4 manually-added cases** (product-knowledge source, unaffected): C45251, C45252, C45253, C45254.
+
+All edited + sampled cases verified `fr-view` / marker last. **The exact rate the spec change REQUIRED a
+change: 5 / 123 = 4%** — not 90%. WO Print (44 cases): 0% (spec unchanged since the check). Run R418 holds
+the suite; membership unchanged.
