@@ -1,14 +1,16 @@
 # HANDOFF → DATA-SEEDING SESSION — Global Search (Enhancement, Aug 2026), sv9160
-### Seed the QA branch so every one of the 90 build-verified cases can actually be run. 2026-09-16.
+### Seed the QA branch so every one of the 99 build-verified cases can actually be run. 2026-09-16.
+### (90 core cases §1–§4, plus Quick Actions on Hover 6774 in §6 and the V1-Regression parity case 8056 in §7.)
 
 **You are the seeding session.** The build-verify pass is done (90/90 runnable, stamped to `v26.36.7-21b4db9`,
 render clean). What is missing is the *data* each case needs to be executed. Your job: create that data on the
 **`sv9160` QA branch**, verify each search returns what the case expects, and **save a re-runnable seed
 manifest so the data can be rebuilt after any branch redeploy.**
 
-- **Suite:** Global Search — Enhancement (Aug 2026). **90 cases**, sections 6721–6740 + 6768. Run **R415**.
-- **EXCLUDED — do not seed for, do not touch:** C45140 (6767, Out of V1 Scope) · folders 6769, 6774, 8056 ·
-  Vladimir Tomovic's cases in section 49.
+- **Suite:** Global Search — Enhancement (Aug 2026). **99 cases**: 90 core (sections 6721–6740 + 6768, §1–§4),
+  8 Quick Actions on Hover (6774, §6), 1 V1-Regression parity case (8056 / C55684, §7). All in run **R415**.
+- **EXCLUDED — do not seed for, do not touch:** C45140 (6767, Out of V1 Scope) · folder 6769 (V1 Regression
+  Suite — not build-verified) · Vladimir Tomovic's cases in section 49.
 - **Branch:** `https://sv9160.qa.shopview.com` — a **dummy QA branch; you have FULL CRUD authority** here
   (QA lead, 2026-09-16). Tag throwaway data `ZZAUTOTEST` where a name field allows it (Rule 6).
 - **Access recipe:** `source build/testing-tools/ensure_bridge.sh` then
@@ -197,11 +199,53 @@ container and /tmp are not):
 4. **After a redeploy:** re-run `seed_gs.mjs`, allow OpenSearch to index, re-verify a sample of the §2 searches,
    and update the manifest with the new identifiers the branch assigns.
 
+## §6 · QUICK ACTIONS ON HOVER (folder 6774) — 8 cases C44866–C44873
+**🛑 The feature is NOT on the build today** (confirmed absent on v26.36.7-21b4db9, 2026-09-16 — the epic
+SV-9173 is deferred/"later release"). So these 8 cases are correctly **parked** ("Not available on Build") and
+**cannot be run until the hover quick-actions ship**. There is **no seed you can add that makes them runnable
+now** — do not try. When the feature ships, the data they need is **the same core universe from §1** (a
+searchable result of each entity type), so no NEW records are required beyond §1. Record this in the manifest
+so nobody re-investigates it.
+
+The quick action each case expects (PRD §5.4), and what makes it observable once built:
+| Case | Entity → quick action | Data (all from the §1 universe) |
+|---|---|---|
+| C44866 | Work Order → "Add new line" | a Work Order result (§1 B1); tester is **editing a work order** elsewhere (the action targets it) |
+| C44867 | Asset → "New work order" + history/invoices icons | an Asset result (§1 C1/C3) |
+| C44868 | Customer → "New work order" + "New contact" | a Customer result (§1 A1) |
+| C44869, C44871 | Part → "View part history" only | a Part result (§1 D3); C44871 also while **editing a work order** |
+| C44870 | Vendor → "Add contact" | a Vendor result (§1 E1) |
+| C44872 | quick actions never destructive | any entity type that has a quick action (§1) |
+| C44873 | a quick action per entity that has one (Part Sale → Add part, PO → Receive; Vendor Invoice → none) | one result of each entity type (§1 F/G/H) |
+> Until the feature ships: keep parked, don't seed. When it ships: the §1 universe already covers the data; the
+> only extra setup is that C44866/C44871 need the tester to be **editing a work order at the same time**.
+
+## §7 · V1-REGRESSION PARITY CASE (folder 8056) — C55684 "old location never flashes"
+This one needs a **very specific fixture** and it is **already seeded** on `sv9160` by the parity lane —
+confirmed present on the current build (2026-09-16). Your job is to **record it in the manifest and make it
+re-creatable**, so it survives a redeploy.
+
+**The fixture (verify present; re-create only if a redeploy wiped it):**
+- A customer **"Bridgeport"** (`ZZAUTOTEST`), belonging to the whole company (so it appears at **every**
+  location).
+- **Exactly four work orders** for that customer **on the Heavy Duty location** (observed: S9160-17625, -17626,
+  -17627, -17628, all "ZZAUTOTEST Bridgeport Hauling"). Their asset is a 2019 Freightliner Cascadia (unit ZZT-4471).
+- A **second location "Lethbridge"** exists to switch to, where the **customer still appears but its Heavy-Duty
+  work orders do NOT** (work orders belong to a location; customers belong to the company).
+- Seed check the case itself prescribes: open global search, type `ZZAUTOTEST` — you must get several groups. If
+  nothing returns, the build wiped the data — re-run the seed, do NOT hand-create (hand-made records come out
+  slightly different and make the test lie).
+**Not seedable:** the assertion itself — that the old location's rows never flash for even a moment during the
+re-fetch — is a **sub-second human-eye observation** ("watch the results closely as they load"), not a data
+state. The data above makes the test *runnable*; a human runs it.
+
 ## §5 · DONE means
-Every §2 search returns what its case expects on `sv9160` (allowing index lag); the manifest lists every
-created record by its real id; `seed_gs.mjs` re-creates the universe idempotently; both are committed; and the
-handful of non-seedable items (§3 second tenant, backdated recent activity if the API can't do it, and the
-simulation-only cases) are named plainly as tester/infra items — not faked, not silently dropped.
+Every §2 search returns what its case expects on `sv9160` (allowing index lag); the §6 note records that Quick
+Actions stay parked until the feature ships (no seed makes them runnable now); the §7 Bridgeport/two-location
+fixture is present (or re-created) and in the manifest; the manifest lists every created record by its real id;
+`seed_gs.mjs` re-creates the universe idempotently; both are committed; and the non-seedable items (§3 second
+tenant, backdated recent activity if the API can't do it, the simulation-only cases, and §7's no-flash
+observation) are named plainly as tester/infra items — not faked, not silently dropped.
 
 **Standing holds still apply (Rule 107 does not move them):** no Jira/external artefact, no TestRail *case*
 writes without the QA lead, Vladimir's cases never, secrets never committed, production is not a test
