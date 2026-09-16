@@ -2961,3 +2961,78 @@ from the email, which *contains* the website string. See Standing Rule 110.
 * **`update_case` verification traps:** TestRail appends a trailing newline and sometimes a stray
   `</p>` to text fields, and `(value or '')` in a comparator destroys a legitimate `0`. Compare at
   content level, not byte level, or you will chase three false alarms.
+
+### O5. V2's INDEXED FIELDS, per entity type — read from the deployed source, not guessed
+
+Source: `api/src/Search/Infrastructure/DocumentProvider/*DocumentProvider.php` on branch
+**`SV-9160-global-search-v2` @ `21b4db9`**, which is exactly the build the QA branch serves
+(`curl -s https://sv9160.qa.shopview.com/ | grep app-version` → `v26.36.7-21b4db9`, 2026-09-16).
+**This table is what makes a seed findable.** Get it wrong and you create a record the search will
+never return, then spend an afternoon deciding whether that is a defect.
+
+| Entity | Indexed fields (what a query can match) |
+|---|---|
+| **work_orders** | number + shop-prefixed variants · status · **customer_name** · contact_name · contact_email · asset_make · asset_model · **unit** · vin · lead_technician_name · service_advisor_name · **line_name / line description (`line_texts`)** · part-request part numbers |
+| **companies (customers)** | name · phone · address_line_1 · address_line_2 · city · state · postal_code · country_code · **website** · and each **contact's** name, telephone, mobile, email, title |
+| **vehicles (assets)** | make · model · vin · unit · licence_plate · **owner company_name** |
+| **parts** | description · part_number (+ stripped variant) · category · manufacturer · **vendor_name** · bin_location · tags |
+| **vendors** | name · phone · email · address_line_1/2 · city · state · postal_code · and each **contact's** name, telephone, mobile, email |
+| **part_sales** | number + variants · status · **customer_name** · asset_description · vin · created_by_name |
+| **purchase_orders** | number · **vendor_name** · status · ordered_by_name · note · work_order_number · **item part_number + description (`item_part_names`)** |
+| **vendor_invoices** | **invoice_number** · **vendor_name** · received_by_name · note · payment_status · order_number |
+
+**Three consequences that decide how you seed:**
+1. **Name the CUSTOMER and the VENDOR after the search term and almost everything else follows** —
+   its work orders (customer_name), its assets (owner company_name), its part sales (customer_name),
+   its purchase orders and vendor invoices (vendor_name) all inherit the match. You do not need to
+   rename 21 work orders to make 21 work orders match.
+2. **A customer has a `website`; a vendor does not** — the same V1 asymmetry (O3) survives into V2's
+   company document. Do not claim a vendor matched on a website.
+3. **Fuzzy noise is real and it is large.** On the staging estate `Fibridge` already returns 7
+   customers and 5 vendors before you seed anything — all fuzzy hits on **"Bridge" inside an address**.
+   `Peterson` returns 20 customers the same way. **So count targets ("≤5", ">20") must be measured on
+   the SHORT prefix term (`Fib`), never on the long one**, and a group total is never evidence your
+   record is there (Rule 110b — check identity).
+
+### O6. Purchase order → vendor invoice → payment: the whole chain, with the payloads
+
+A **delivery IS the vendor invoice** in this data model (`inventory_delivery`); the invoice number is
+a nullable free-text column on it. The list endpoint is `GET /api/inventory/deliveries` — there is no
+`/api/vendor-invoices` (404), which is the first wrong turn.
+
+1. **Part request on a work order** → `POST /api/work-orders/part/make-request
+   {line, work_order, description, quantity, part_source_type:'vendor', part_number, sell_price, cost,
+   part_category_id}` (§E — `part_category_id` is required).
+2. **Order it** → `POST /api/work-orders/part/perform-request-status-action
+   {part_request_id, action:'order'}` → 201. **This is what creates the purchase order.**
+3. **Receive it** → `POST /api/inventory/orders/accept` (fields `invoice-number`, invoice date,
+   per-line delivered qty, tax, note). **This is what creates the vendor invoice (delivery).**
+4. **The payment badge is NOT a column on the delivery.** It is
+   `vendor_transaction.vendor_transaction_status`, LEFT JOINed by the indexer where the transaction's
+   type is `delivery`. Receiving a delivery auto-creates that transaction as **`unpaid`** with
+   `balance = amount` (`CreateTransactionWhenDeliveryIsCreated`).
+5. **Pay it** (this is the only way to reach Partially paid / Paid):
+   - vendor account id: `GET /api/parts-catalogue/vendor/{vendorId}` → `data.vendor.vendor_account_id`
+     (it is **not** on the `/api/parts-catalogue/vendors` list row).
+   - the open items: `GET /api/parts-catalogue/vendor/transactions/list-unpaid-by-vendor-account
+     ?accountId=<acc>&pagination[page]=1&pagination[rowsPerPage]=50` →
+     `data.response.collection[]` (each row has `id`, `amount`, `balance`, `invoice_number`).
+   - payment methods: `GET /api/parts-catalogue/vendor/transactions/payment-methods` →
+     `data.collection[] {id, name, code, type}`.
+   - **`POST /api/parts-catalogue/vendor/payment/create`** with the uniform snake_case body:
+     `{account_id, primary_id:null, ibs_batch_id:null, payment_date, payment_method,
+     reference_number, description, new_credit:0, new_deposit:0, payment_amount,
+     transactions:[{…the unpaid row…, transaction_payment_amount:<n>, index:0}],
+     applied_deposits:[], applied_credits:[]}`.
+     Pay **less** than the balance → `partially_paid`; pay the **whole** balance → `paid`.
+     Needs `ROLE_VENDOR_CREATE_AND_EDIT`.
+
+🔴 **The payment badge has FOUR states, not the three the PRD and case C44900 describe.**
+`vendor_transaction_status` declares `unpaid`, `partially_paid`, `paid` **and `credit`** (rendered
+"Unapplied"), and the document carries `null` when the delivery has no transaction yet. The
+`VendorInvoiceDocumentProvider` docblock says so itself and calls it "correcting D19". **Document
+says three, code says four → Rule 96: a PO DECISION ITEM, never a silent invariant.**
+
+**Measured on the QA branch 2026-09-16:** all 155 sampled vendor invoices read `unpaid`, and purchase
+orders carry `ordered` (75), `partial_delivery` (18) and `fulfilled` (83). So the PO status spread the
+cases need already exists; only the invoice payment spread has to be created.
