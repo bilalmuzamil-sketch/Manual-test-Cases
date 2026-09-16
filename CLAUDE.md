@@ -93,6 +93,17 @@ These are stated here **in full** because a session that gets only this far must
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
 - **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N /
   live total M.
+- **🔴 A RETURNED RECORD IS NOT AN ATTRIBUTED MATCH — RUN THE DISCONFIRMING TEST (proposed rule, QA
+  lead to ratify; learned the hard way 2026-09-16).** Before claiming *"you can find this record by
+  field F"*, **blank F and search again**. Still found ⇒ the match came from somewhere else and the
+  claim is UNPROVEN. **SV-10110 was filed on a match that came from the vendor's EMAIL**
+  (`parts@kestrelsupply-zzt.com`) while being reported as the **WEBSITE** (`kestrelsupply-zzt.com`) —
+  the website is a substring of the email, and V1's vendor query has **no website column at all**
+  (`FetchDataQueryHandler.php:157-164`). Our own committed baseline already said so and was not read.
+  **Two values that look alike (a website and an email sharing a domain) RAISE the bar for evidence,
+  they do not lower it.** Tool: `build/global-search/field-attribution-audit-2026-09-16/attribution_check.py`
+  — 28 claims checked, 1 bad. Same family as: a result COUNT is never a verdict, and a search run
+  straight after a reseed measures the index, not the product.
 
 ---
 

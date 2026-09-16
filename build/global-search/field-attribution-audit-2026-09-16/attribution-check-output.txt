@@ -1,0 +1,32 @@
+RECORD     CLAIMED FIELD TYPED                            VERDICT
+customer   name         'ZZAUTOTEST Bridgeport Hauling'  ok  attributable
+customer   address_1    'Kestrelway'                     ok  attributable
+customer   address_2    'Dock 7B'                        ok  attributable
+customer   state        'Ohio'                           ok  attributable
+customer   postal       '44872-9931'                     ok  attributable
+customer   city         'Fernvale'                       ok  attributable
+customer   telephone    '419-555-0143'                   ok  attributable
+customer   website      'bridgeporthauling-zzt.com'      ok  attributable
+customer   contacts     'Marlene'                        ok  attributable
+customer   contacts     'Okonkwo'                        ok  attributable
+customer   contacts     'Dispatch Supervisor'            ok  attributable
+customer   contacts     '419-555-0177'                   ok  attributable
+vendor     name         'ZZAUTOTEST Kestrel'             ok  attributable
+vendor     address_1    'Halbrook'                       ok  attributable
+vendor     address_2    'Bay 12C'                        ok  attributable
+vendor     state        'Ohio'                           ok  attributable
+vendor     postal       '43055-2210'                     ok  attributable
+vendor     city         'Marnston'                       ok  attributable
+vendor     telephone    '614-555-0188'                   ok  attributable
+vendor     email        'parts@kestrelsupply-zzt.com'    ok  attributable
+vendor     website      'kestrelsupply-zzt.com'          🔴 THE FIELD IS NOT IN V1's QUERY AT ALL
+asset      year         '2019'                           ok  attributable
+asset      maker        'Freightliner'                   ok  attributable
+asset      model        'Cascadia'                       ok  attributable
+asset      unit         'ZZT-4471'                       ok  attributable
+asset      vin          '1FUJGLDR9KLZZ4471'              ok  attributable
+asset      plate        'OHZZT471'                       ok  attributable
+asset      owner        'ZZAUTOTEST Bridgeport'          ok  attributable
+
+🔴 1 CLAIM(S) NOT ATTRIBUTABLE TO THE FIELD THEY NAME:
+     vendor.website via 'kestrelsupply-zzt.com': field absent from the V1 query
