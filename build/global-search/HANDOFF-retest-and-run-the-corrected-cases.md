@@ -1,6 +1,14 @@
 # Handoff — seven cases need running in run 415
 
 **For:** the session running the test pass.
+
+> ### ⚠️ IF YOU WERE SENT AN EARLIER COPY OF THIS FILE, DISCARD IT
+> It has changed materially since it was first issued. Earlier copies said **six** cases, then
+> **eight**; it is now **seven**. An earlier copy also told you to run **C55692**, which has since been
+> **deleted from TestRail** — its ticket was withdrawn because the behaviour it asserted never existed
+> in the old version. And no earlier copy warned that the build moved, which makes every result
+> recorded before 16 September stale. **Always work from the link, not from a saved copy.**
+
 **From:** the main session, 15 September 2026.
 **Run 415:** https://shopview.testrail.io/index.php?/runs/view/415 — branch `sv9160`, build
 **`v26.36.7-893d13a`** (it was `v26.36.4-7869ff2` until 16 September).
@@ -56,27 +64,7 @@ section is for information.
 
 ---
 
-## 3 · The one thing that will trip you up
-
-**A phone number in the old version only matched if you typed it with dashes, or typed part of it.**
-
-The old version stored `(419) 555-0143` as `419-555-0143`, and what you typed had only its **spaces**
-removed — nothing else. So:
-
-| Typed | Old version found it? |
-|---|---|
-| `419-555-0143` | ✅ yes |
-| `555-0143` — part of it | ✅ yes |
-| `(419) 555-0143` — with brackets | ❌ no |
-| `4195550143` — plain digits | ❌ no |
-
-So **do not "helpfully" retype a number in a different format.** If a case says type it with dashes,
-type it with dashes. The new version is more forgiving than the old one, and typing a format the old
-version never supported turns the test into something that cannot fail.
-
----
-
-## 2a · One more case to run — expected to FAIL, already ticketed
+## 3 · One more case to run — expected to FAIL, already ticketed
 
 This is the one thing the old search could do that this build still cannot. **It already has a
 ticket, so if it fails, record the failure and raise nothing new.**
@@ -102,7 +90,27 @@ be closed.
 
 ---
 
-## 3a · You can now see the OLD search for yourself
+## 4 · The one thing that will trip you up
+
+**A phone number in the old version only matched if you typed it with dashes, or typed part of it.**
+
+The old version stored `(419) 555-0143` as `419-555-0143`, and what you typed had only its **spaces**
+removed — nothing else. So:
+
+| Typed | Old version found it? |
+|---|---|
+| `419-555-0143` | ✅ yes |
+| `555-0143` — part of it | ✅ yes |
+| `(419) 555-0143` — with brackets | ❌ no |
+| `4195550143` — plain digits | ❌ no |
+
+So **do not "helpfully" retype a number in a different format.** If a case says type it with dashes,
+type it with dashes. The new version is more forgiving than the old one, and typing a format the old
+version never supported turns the test into something that cannot fail.
+
+---
+
+## 5 · You can now see the OLD search for yourself
 
 The same records were seeded into the **production test account** on 15 September 2026 —
 `https://app.shopview.com`, workplace **Trucks Hill 2**. **Production runs the old search.** So if you
@@ -121,7 +129,7 @@ behaviours, including every phone format above.
 
 ---
 
-## 4 · Before you start
+## 6 · Before you start
 
 Open global search and type **ZZAUTOTEST**. You should get several groups — Work orders, Customers,
 Assets, Parts, Vendors, Part sales.
@@ -134,7 +142,7 @@ So nothing returning at all means a fresh wipe, not a known gap.
 
 ---
 
-## 5 · Recording results
+## 7 · Recording results
 
 * **Passed** — every search in the case returned what the Expected Results say.
 * **Failed** — a search returned nothing, or the wrong record. **Put the exact text you typed and what
@@ -155,6 +163,6 @@ and if it passes, the fix has shipped and the ticket can be closed.
 
 | # | What I need |
 |---|---|
-| **1** | Run the six tests in §2 **and the one in §2a**, and set a result on each, with the typed text and what came back on anything that is not a Passed. |
+| **1** | Run the six tests in §2 **and the one in §3**, and set a result on each, with the typed text and what came back on anything that is not a Passed. |
 | **1a** | **Re-run anything already marked Failed for SV-10002, SV-10003, SV-10005, SV-10006 or SV-10058** — those behaviours were fixed in this build and should now pass. |
 | **2** | Nothing else. The data is seeded and verified; the cases are corrected and verified; C55688 and C55689 are already run and Passed. |
