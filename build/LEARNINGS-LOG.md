@@ -2839,3 +2839,30 @@ Encoded in `build/global-search/tickets-2026-09-14/rewrite_to_standard.py` (`ENV
 after the `----` rule, never at the head of `parts`), in skill 06's heading table, and in the
 `CLAUDE.md` §1 bullet. **The superseded wording is kept, dated** — both of his rulings are on the
 record, so nobody re-derives the old order from a stale quote.
+
+## L0140 — MY CAUTION RESTED ON A PREMISE I NEVER CHECKED: `app.shopview.com` IS NOT A LIVE BUSINESS (2026-09-16)
+
+I built four careful exceptions around the live product — do not touch other people's records, ask
+before anything leaves the building, tag and restore everything, never sign in as him. Every one of
+them was reasonable. Every one of them rested on **an assumption I had never once tested: that the
+records on `app.shopview.com` belong to real customers.** They do not. It is a dummy environment
+with seeded data and test accounts, and the QA lead said so in one line when I finally stated the
+assumption out loud instead of silently acting on it.
+
+**Two lessons, and the second is the bigger one.**
+
+**One — saying the assumption out loud is what fixed it.** I had been quietly acting on this belief
+for weeks. The only reason it got corrected is that I wrote the four lines down and asked. **An
+unstated premise cannot be contradicted.** When caution is about to cost real time, name the belief
+it rests on rather than just applying it.
+
+**Two — caution that costs time and buys nothing is not a virtue, and here it was the fault.** His
+answer ended: *"the most important thing is to complete your task timely and without any error so
+that your work does not bite me."* Restoring state, asking before sending, avoiding his login —
+none of that made the work safer, and all of it made the work slower. **Do not re-derive this
+caution from first principles next session.** It will look like prudence again.
+
+**What did NOT change, and it now matters more:** his credentials being usable makes Rule 82 sharper,
+not softer. They live in `/tmp`, `chmod 600`, and never reach a log, an error paste, a screenshot or
+a commit — this repository is public. And the standing holds are untouched: Jira per ticket, TestRail
+case and run writes, Vladimir's cases, Automated cases.
