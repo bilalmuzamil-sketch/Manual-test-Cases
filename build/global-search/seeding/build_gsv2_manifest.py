@@ -218,12 +218,21 @@ R.append({
                'payload': {'name': f'{TAG} Fibridge Mining', 'address_1': '600 Fibridge Quarry Road',
                            'city': 'Marnston', 'state_or_province': 'Ohio',
                            'postal_code': '43055-4100', 'telephone': '(264) 555-0160',
-                           'email': 'parts@fibridge-mining.test', 'credit_term': 30,
+                           'email': 'parts@fibridge-mining.test', 'credit_term': 'Net 30',
                            'credit_limit': 25000},
                'resolve': {'tax_id': '/api/taxes'},
                '_why_resolve': 'add-vendor REQUIRES tax_id; take the first tax from GET /api/taxes'},
-    'verify': ['name', 'city', 'email'], 'read_as': {},
-    'skip_verify': ['credit_term', 'credit_limit', 'tax_id'],
+    'read_as': {},
+    'verify': ['name', 'city', 'email', 'credit_term'],
+    'skip_verify': ['credit_limit', 'tax_id'],
+    '_credit_term_is_a_STRING_CODE': '🔴 credit_term IS NOT A NUMBER OF DAYS. It is one of the '
+        'CreditTerms constants - "COD", "Due on Receipt", "Net 7" … "Net 120", "Credit Hold". '
+        'add-vendor ACCEPTS the integer 30, answers 201 and stores the string "30", and nothing '
+        'complains until you try to RECEIVE a delivery from that vendor: accept-delivery computes '
+        'the invoice due date through CreditTerms::getDueDate($date, $creditTerm) and dies, so the '
+        'whole receive rolls back with a bare 500 and no delivery. Cost: an hour chasing bin '
+        'allocations and the QuickBooks sync, neither of which was the problem. It is verified '
+        'here BECAUSE a wrong value is silent until it is expensive.',
     'extra_fields': {'address_2': 'Gate 3'},
     '_no_website_on_purpose': '🔴 A VENDOR HAS AN EMAIL AND NO WEBSITE; a CUSTOMER has a website and '
         'no email. Declaring a website here is what produced the withdrawn SV-10110 (Rule 110a).',
