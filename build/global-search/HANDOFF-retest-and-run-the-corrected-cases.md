@@ -9,7 +9,7 @@
 > in the old version. And no earlier copy warned that the build moved, which makes every result
 > recorded before 16 September stale. **Always work from the link, not from a saved copy.**
 
-**From:** the main session, 15 September 2026.
+**From:** the main session. **Last updated 16 September 2026** — this supersedes every earlier copy.
 **Run 415:** https://shopview.testrail.io/index.php?/runs/view/415 — branch `sv9160`, build
 **`v26.36.7-893d13a`** (it was `v26.36.4-7869ff2` until 16 September).
 
