@@ -3,29 +3,28 @@
 **16 September 2026.** Measured on both: the old version on production (`app.shopview.com`), the new
 one on the QA branch `sv9160`, with the same records in each.
 
-> ## 🔴 THIS FILE REPLACES AN EARLIER VERSION THAT WAS WRONG
+> ## 🔴 READ `WHAT-CHANGED-BETWEEN-THE-TWO-BUILDS.md` ALONGSIDE THIS
 >
-> The earlier version listed **six** losses. **Four of them were not real.** Customer postal code,
-> customer website, vendor postal code and vendor state are all searchable in the new version. I
-> measured them within a minute or two of the seeder writing those values, and the search index had
-> not caught up yet — so I recorded "not found" and built an argument on top of it.
+> An earlier version of this file listed **six** losses and then withdrew four of them as "the search
+> index had not caught up". **The withdrawal was wrong.** The four were genuinely broken on build
+> `v26.36.4-7869ff2`, already had tickets, and were **fixed in `v26.36.7-893d13a`**, which the branch
+> was redeployed to overnight. The companion file has the full account.
 >
-> **The reseed writes and the index catches up afterwards. A search run straight after a reseed is
-> measuring the index, not the product.** That is now written into the reseed runbook so it does not
-> happen again.
->
-> The QA lead caught it: he saw `Ohio` returning vendors and said so.
+> **The two below are the ones still broken on the current build**, and both already have a ticket —
+> so there is nothing to file.
 
 ---
 
 ## 1 · What is actually lost — two things
 
-| You type | Old version | New version | Case |
-|---|---|---|---|
-| A **vendor's website** — `kestrelsupply-zzt.com` | ✅ finds ZZAUTOTEST Kestrel Parts Supply | 🔴 **nothing** | [C55692](https://shopview.testrail.io/index.php?/cases/view/55692) |
-| A **catalogue part the shop has never stocked** — `ZZT-77-3300` | ✅ finds ZZAUTOTEST Airline Coupler Vernway | 🔴 **nothing** | [C53601](https://shopview.testrail.io/index.php?/cases/view/53601) |
+| You type | Old version | New version | Case | Ticket |
+|---|---|---|---|---|
+| A **vendor's website** — `kestrelsupply-zzt.com` | ✅ finds ZZAUTOTEST Kestrel Parts Supply | 🔴 **nothing** | [C55692](https://shopview.testrail.io/index.php?/cases/view/55692) | [SV-10110](https://shopview.atlassian.net/browse/SV-10110) |
+| A **catalogue part the shop has never stocked** — `ZZT-77-3300` | ✅ finds ZZAUTOTEST Airline Coupler Vernway | 🔴 **nothing** | [C53601](https://shopview.testrail.io/index.php?/cases/view/53601) | [SV-10001](https://shopview.atlassian.net/browse/SV-10001) |
 
-**Both already have a test case, and both will fail when run.** Nothing needs writing.
+**Both already have a test case AND a ticket, and both will fail when run. Nothing to write, nothing
+to file.** SV-10110 was raised on 15 September and already carries a developer conversation; SV-10001
+was raised on 14 September.
 
 Each was measured against a control on the same record or record type, so neither is index lag:
 
@@ -97,6 +96,5 @@ the old search and holds the same records.
 
 | # | What I need |
 |---|---|
-| **1** | **The vendor website — may I file it?** It behaves differently from the customer website, which works, and the specification does not explain the difference. That reads as a genuine defect. I have filed nothing. |
-| **2** | **The catalogue-only part — shall I put it to the Product Owner?** *"The old search could find a part the shop had never stocked; the new one only searches parts that are in inventory — is that intended?"* It matches the specification, so it is a question, not a bug. |
-| **3** | **Nothing to author.** Both already have cases — C55692 and C53601 — and both will fail when run. |
+| **1** | **Nothing to file and nothing to author.** Both already have a case and a ticket. The duplicate check you asked for came back positive on both. |
+| **2** | The vendor-website ticket **SV-10110** has a developer asking which workplace was used, and you have already answered. Nothing needed from this session. |

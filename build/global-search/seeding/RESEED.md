@@ -71,6 +71,13 @@ them were fine** and had simply not been indexed yet when they were checked a mi
 An argument was then built on top of those readings, including a claim about the specification, and all
 of it had to be withdrawn. The QA lead caught it by noticing a search that worked for him.
 
+**And before you explain ANY change in behaviour, check the build marker:**
+`curl -s https://sv9160.qa.shopview.com/ | grep app-version`. The branch is redeployed without
+announcement. On 2026-09-16 it went from `v26.36.4-7869ff2` to `v26.36.7-893d13a` overnight and four
+behaviours changed with it — and **the wiped data was the clue**: a reseed finding 0 of 11 records
+usually means a redeploy, not a cleanup. Blaming the index for that cost four true findings, which
+were withdrawn and had to be restored.
+
 **So, after any reseed:**
 
 1. **Give it a couple of minutes** before searching for a seeded record. The specification allows up to

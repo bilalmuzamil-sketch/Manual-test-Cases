@@ -355,12 +355,14 @@ and 60 apply in full and findings stay PROVISIONAL. §16.1 is the superseded 202
 are FINAL" text, kept visible and dated.
 
 **🌱 RESEEDING THE GLOBAL SEARCH TEST DATA — TWO KEYWORDS, `build/global-search/seeding/RESEED.md`.**
-🔴 **AFTER A RESEED, WAIT BEFORE JUDGING ANYTHING BY SEARCHING FOR IT — the reseed writes and the
-search index catches up afterwards, so an immediate search measures the index, not the product.** On
-2026-09-16 that produced six reported losses of which **four were false**, plus a specification
-argument built on top of them, all withdrawn. **Prove a "not found" with a control on the SAME record
-(search a different field of it), re-check minutes apart, and check the IDENTITY of what came back —
-never the row count.** A count of 1 is not a pass.
+🔴 **A RESEED THAT FINDS 0 OF 11 RECORDS USUALLY MEANS THE BRANCH WAS REDEPLOYED — SO CHECK THE BUILD
+MARKER BEFORE EXPLAINING ANY CHANGE IN BEHAVIOUR** (`curl -s https://sv9160.qa.shopview.com/ | grep
+app-version`). On 2026-09-16 the branch went `v26.36.4-7869ff2` → `v26.36.7-893d13a` overnight and
+four behaviours changed with it; blaming the search index instead withdrew **four TRUE findings** that
+then had to be restored. **Prove a "not found" with a control on the SAME record (search a different
+field of it), re-check minutes apart, and check the IDENTITY of what came back — never the row count.**
+A count of 1 is not a pass. **And before reporting any loss, check Jira for an existing ticket** — on
+2026-09-16 every one of six already had one.
 The QA lead says **`RESEED QA`** (branch `sv9160`) or **`RESEED LIVE`** (the production test account
 `app.shopview.com`, workplace **Trucks Hill 2**) and the session does the rest: `seed.py --check`,
 `--confirm`, `--check` again, proving **11/11 present, 0 field gaps**. Production needs
