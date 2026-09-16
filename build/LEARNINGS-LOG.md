@@ -2687,3 +2687,48 @@ restate an old claim as if it were checked today.**
 
 **Also corrected:** an earlier note said SV-10031 blocked C55665. That check now passes, so the
 blocking claim was stale and was not repeated in the rewrite.
+
+## L0134 — Three corrections from the QA lead, 16 September 2026: the product's words, and never rewrite a report into the past
+
+### 1 · The product says **Vendor** and **VIN number**. I wrote "supplier" and "chassis number".
+
+Both were mine, invented in the name of plain English, and both are wrong. The search panel's tab is
+**Vendors**, a Vendor's own page is reached from **Parts → Vendors**, and a vehicle's record prints
+**VIN/Serial #**. He corrected them in the reports by hand and asked for the test cases too.
+
+**The rule:** *plain English* means avoiding jargon, **never renaming a thing the product already
+names**. A tester reading "supplier" has to work out that we mean the Vendors tab, which is the
+opposite of plain. **Where the product has a word for an entity, that word is the word** — read it off
+the screen (Rule 57: labels come from the build), and if it seems clumsy, raise it rather than
+silently translating it.
+
+Fixed on 16 September: 5 reports and 4 checks (C53604, C55688, C55689, C55692). Every report and
+every check in run 415 was then re-read live and neither word appears anywhere.
+
+### 2 · 🛑 A REPORT THAT NO LONGER REPRODUCES KEEPS ITS PRESENT-TENSE ISSUE STATEMENT
+
+**His words:** *"when a ticket has been fixed and you find that it has been fixed and you put the QA
+passed comment, then you should not change the Ticket title and description into the past that it WAS
+happening. The ticket title and description should stay as it is so that the manual QA tester can
+actually reproduce the issue and may know what is the expected behavior for this ticket even though if
+it is not happening anymore."*
+
+I had rewritten six reports into the past — *"was missing from the Assets section"*, *"was reported as
+taking about 85 seconds"*. That destroys the thing a tester needs: **the report is the specification of
+the issue**, and it has to stay reproducible and state its expected behaviour, because the next build
+may bring it back and the check is run again every time.
+
+**The split, and it is absolute:**
+- **Title, Description, Steps, Current behaviour, Expected behaviour** — the issue, in the present
+  tense, always. Never softened, never past tense, never "this no longer happens".
+- **The picture in the body** — the FAULT as reported, not a before-and-after.
+- **A comment** — and only a comment — carries that it passes now, with today's screenshot.
+- **The status** — the QA lead sets it. We never move it.
+
+**His own comment format, which ours should match:** a short `→ QA Status: Passed` with the screenshot
+underneath. Not a headed essay.
+
+Restored on 16 September: SV-10014 · SV-10015 · SV-10016 · SV-10017 · SV-10056 · SV-10059.
+
+**And the same reasoning reaches the checks:** a check whose report has been passed stays in the run
+and stays runnable. It is re-run on the next build. That is why neither may be written in the past.

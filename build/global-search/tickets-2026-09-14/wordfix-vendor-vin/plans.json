@@ -1,0 +1,14 @@
+[
+ {"from":"the SUPPLIER's address line 2","to":"the VENDOR's address line 2",
+  "fields":["custom_steps"],"cases":[53604],"expect_per_field":1},
+ {"from":"the chassis number and the licence plate","to":"the VIN number and the licence plate",
+  "fields":["custom_expected"],"cases":[55688],"expect_per_field":1},
+ {"from":"whose chassis number or unit number contains","to":"whose VIN number or unit number contains",
+  "fields":["custom_expected"],"cases":[55688],"expect_per_field":1},
+ {"from":"Its chassis number or unit number may contain","to":"Its VIN number or unit number may contain",
+  "fields":["custom_expected"],"cases":[55689],"expect_per_field":1},
+ {"from":"open the supplier from the Vendors group","to":"open the Vendor from the Vendors group",
+  "fields":["custom_preconds"],"cases":[55692],"expect_per_field":1},
+ {"from":"The supplier's own record on the live product","to":"The Vendor's own record on the live product",
+  "fields":["custom_expected"],"cases":[55692],"expect_per_field":1}
+]

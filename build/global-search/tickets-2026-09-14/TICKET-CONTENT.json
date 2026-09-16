@@ -44,48 +44,48 @@
   "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the website bridgeporthauling-zzt.com returned the customer ZZAUTOTEST Bridgeport Hauling, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a customer by their website still works\" - https://shopview.testrail.io/index.php?/tests/view/2959360"
  },
  "SV-10005": {
-  "title": "Global Search: a supplier cannot be found by their postcode",
+  "title": "Global Search: a Vendor cannot be found by their postcode",
   "image": "SV-10005.png",
-  "description": "A supplier's postcode is printed on their record, and the search box ignores it. Someone holding a delivery note or an invoice with the supplier's address on it cannot use it to reach them. On the version people use today, typing the postcode brings the supplier straight back.",
+  "description": "A Vendor's postcode is printed on their record, and the search box ignores it. Someone holding a delivery note or an invoice with the Vendor's address on it cannot use it to reach them. On the version people use today, typing the postcode brings the Vendor straight back.",
   "steps": [
    "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
-   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that supplier from the Vendors group. This also shows the search box itself is working.",
-   "On the supplier's page, read the postcode in its address. It is 43055-2210.",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that Vendor from the Vendors group. This also shows the search box itself is working.",
+   "On the Vendor's page, read the postcode in its address. It is 43055-2210.",
    "Open the search box again and type that postcode exactly as the record prints it.",
    "Wait for the results and read the Vendors group."
   ],
   "current": [
    "Nothing comes back at all. The panel reads \"No results for 43055-2210\" and every group shows nought.",
-   "The same supplier comes straight back when their name is typed, so the record is there and the search box is working."
+   "The same Vendor comes straight back when their name is typed, so the record is there and the search box is working."
   ],
   "expected": [
-   "The supplier whose postcode was typed is returned, under Vendors.",
+   "The Vendor whose postcode was typed is returned, under Vendors.",
    "This is what the version people use today does."
   ],
-  "shot_caption": "The same supplier postcode typed into both versions. Above, the live product returns the supplier. Below, the new version returns nothing.",
-  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the postcode 43055-2210 returned the supplier ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a vendor by address, city or postal code still works\" - https://shopview.testrail.io/index.php?/tests/view/2959362"
+  "shot_caption": "The same Vendor postcode typed into both versions. Above, the live product returns the Vendor. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the postcode 43055-2210 returned the Vendor ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a vendor by address, city or postal code still works\" - https://shopview.testrail.io/index.php?/tests/view/2959362"
  },
  "SV-10006": {
-  "title": "Global Search: a supplier cannot be found by the state they are in, although a customer can",
+  "title": "Global Search: a Vendor cannot be found by the state they are in, although a customer can",
   "image": "SV-10006.png",
-  "description": "Typing the name of a state finds the CUSTOMERS in that state but not the SUPPLIERS in it. The same word, the same box, two different answers depending on which kind of company the record is. Someone looking for a supplier in a particular state is told there is none, while the customers next door on the same street are listed. On the version people use today, both come back.",
+  "description": "Typing the name of a state finds the CUSTOMERS in that state but not the VENDORS in it. The same word, the same box, two different answers depending on which kind of company the record is. Someone looking for a Vendor in a particular state is told there is none, while the customers next door on the same street are listed. On the version people use today, both come back.",
   "steps": [
    "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
-   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that supplier from the Vendors group. Read its address: it is in Ohio.",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that Vendor from the Vendors group. Read its address: it is in Ohio.",
    "Open the search box again and type Ohio.",
    "Read the Customers group. Customers whose address is in Ohio are listed, with the word Ohio marked in their address.",
    "Now read the Vendors group, and look for ZZAUTOTEST Kestrel Parts Supply."
   ],
   "current": [
-   "The supplier in Ohio is not there. The Vendors group holds one company, Ohioville Diesel Services LLC, and it is listed because Ohio is part of its NAME - its address is in North Cathyville.",
-   "The Customers group at the same time lists three customers whose address is in Ohio, so the state is being read on customers and not on suppliers."
+   "The Vendor in Ohio is not there. The Vendors group holds one company, Ohioville Diesel Services LLC, and it is listed because Ohio is part of its NAME - its address is in North Cathyville.",
+   "The Customers group at the same time lists three customers whose address is in Ohio, so the state is being read on customers and not on Vendors."
   ],
   "expected": [
-   "Suppliers whose address is in the state typed are returned under Vendors, the same way customers in that state already are.",
+   "Vendors whose address is in the state typed are returned under Vendors, the same way customers in that state already are.",
    "This is what the version people use today does."
   ],
-  "shot_caption": "The name of a state typed into both versions. Above, the live product lists the supplier in Ohio. Below, the new version lists the customers in Ohio but not the supplier.",
-  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the state name Ohio returned the supplier ZZAUTOTEST Kestrel Parts Supply alongside the customers in that state, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a vendor by state or province\" - https://shopview.testrail.io/index.php?/tests/view/2959372"
+  "shot_caption": "The name of a state typed into both versions. Above, the live product lists the Vendor in Ohio. Below, the new version lists the customers in Ohio but not the Vendor.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the state name Ohio returned the Vendor ZZAUTOTEST Kestrel Parts Supply alongside the customers in that state, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a vendor by state or province\" - https://shopview.testrail.io/index.php?/tests/view/2959372"
  },
  "SV-10007": {
   "title": "Global Search: a vehicle cannot be found by its number plate",
@@ -122,7 +122,7 @@
   ],
   "current": [
    "No job at the Estimate stage comes back. The Work orders group holds one job, and that job is at the Paid stage - it was matched on the wording of one of its line items, not on its stage.",
-   "The other eighteen results are customers and suppliers whose street address contains the word Estate, which the search treated as near enough to Estimate."
+   "The other eighteen results are customers and Vendors whose street address contains the word Estate, which the search treated as near enough to Estimate."
   ],
   "expected": [
    "The jobs sitting at the stage typed are returned, under Work orders.",
@@ -201,9 +201,9 @@
   "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the part-number 555-0143 returned the customer ZZAUTOTEST Bridgeport Hauling, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding a customer by the company's own main phone number\" - https://shopview.testrail.io/index.php?/tests/view/2977474"
  },
  "SV-10058": {
-  "title": "Global Search: a vehicle cannot be found by part of its chassis number",
+  "title": "Global Search: a vehicle cannot be found by part of its VIN number",
   "image": "SV-10058.png",
-  "description": "Typing the whole chassis number finds the vehicle. Typing the last few characters of it finds nothing. The last few characters are what people use, because that is what fits on a note and what is quoted on the phone. On the version people use today any part of it was enough. This report is about the partial number only: the whole number works on the new version.",
+  "description": "Typing the whole VIN number finds the vehicle. Typing the last few characters of it finds nothing. The last few characters are what people use, because that is what fits on a note and what is quoted on the phone. On the version people use today any part of it was enough. This report is about the partial number only: the whole number works on the new version.",
   "steps": [
    "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
    "Click the search box at the top of the screen (or press Ctrl and K), type ZZT-4471, and open the vehicle from the Assets group.",
@@ -214,13 +214,13 @@
   ],
   "current": [
    "Part of the number returns nothing at all. The panel reads \"No results for ZZ4471\" and every group shows nought.",
-   "The whole chassis number returns the vehicle in the same sitting, so this is about the partial number only."
+   "The whole VIN number returns the vehicle in the same sitting, so this is about the partial number only."
   ],
   "expected": [
-   "Part of a chassis number finds the vehicle, the way the whole number already does.",
+   "Part of a VIN number finds the vehicle, the way the whole number already does.",
    "This is what the version people use today does: it looks for what was typed anywhere inside the number."
   ],
-  "shot_caption": "Part of a chassis number typed into both versions. Above, the live product returns the vehicle. Below, the new version returns nothing.",
+  "shot_caption": "Part of a VIN number typed into both versions. Above, the live product returns the vehicle. Below, the new version returns nothing.",
   "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where the part-number ZZ4471 returned the vehicle 2019 Freightliner Cascadia, and the picture above is that search. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nThe test that covers this, and its result on this run: \"Finding an asset by its VIN, in full and in part\" - https://shopview.testrail.io/index.php?/tests/view/2980691"
  },
  "SV-10060": {
@@ -249,7 +249,7 @@
  "SV-10004": {
   "title": "Global Search: a company cannot be found by a contact's job title",
   "image": "SV-10004.png",
-  "description": "Every contact on a customer or supplier has a job title against them, and the search box ignores it. Somebody who knows they need \"whoever the dispatch supervisor is\" has no way to get from that to the company. On the version people use today, typing the job title brings the company straight back.",
+  "description": "Every contact on a customer or Vendor has a job title against them, and the search box ignores it. Somebody who knows they need \"whoever the dispatch supervisor is\" has no way to get from that to the company. On the version people use today, typing the job title brings the company straight back.",
   "steps": [
    "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
    "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Bridgeport Hauling, and open that customer from the Customers group. This also shows the search box itself is working.",
@@ -262,7 +262,7 @@
    "The same customer comes straight back when their name is typed, so the record is there and the search box is working."
   ],
   "expected": [
-   "The company whose contact holds the job title typed is returned, under Customers - and a supplier whose contact holds it, under Vendors.",
+   "The company whose contact holds the job title typed is returned, under Customers - and a Vendor whose contact holds it, under Vendors.",
    "This is what the version people use today does."
   ],
   "shot_caption": "The same contact job title typed into both versions. Above, the live product returns the company. Below, the new version returns nothing.",
@@ -271,7 +271,7 @@
  "SV-10001": {
   "title": "Global Search: a part that is in the catalogue but has never been stocked cannot be found at all",
   "image": "SV-10001.png",
-  "description": "Part numbers are searched - a part the shop holds in stock comes back the moment its number is typed. But a part that is only in the catalogue, one the shop has never stocked, cannot be found by its number, by its name, or by any word in it. That is the case every time somebody is asked for something new: they have the number off a supplier's list and no way to look it up. On the version people use today, every catalogue part was searchable whether or not it had ever been on a shelf.",
+  "description": "Part numbers are searched - a part the shop holds in stock comes back the moment its number is typed. But a part that is only in the catalogue, one the shop has never stocked, cannot be found by its number, by its name, or by any word in it. That is the case every time somebody is asked for something new: they have the number off a Vendor's list and no way to look it up. On the version people use today, every catalogue part was searchable whether or not it had ever been on a shelf.",
   "steps": [
    "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
    "Click the search box at the top of the screen (or press Ctrl and K) and type ZZT-88-4412 - the number of a part the shop holds in stock. It comes back under Parts. This shows part numbers are searched and the box is working.",
@@ -317,190 +317,192 @@
   "sources": "The panel says what drives it, in its own footer, read on the build on 15 September 2026: \"Arrow down and arrow up navigate, Enter selects, Escape closes.\" It names the arrow keys and Enter, and it does not name the mouse.\n\nBoth halves of the picture are the new version on the test branch, on the same day and the same page - this is not a difference between the two versions, it is the new version behaving two different ways on the same words.\n\nThe test that covers this, and its result on this run: \"Pressing Enter opens the top result without arrowing to it\" - https://shopview.testrail.io/index.php?/tests/view/2980695"
  },
  "SV-10014": {
-  "title": "Global Search: a vehicle found by its chassis number was missing from the Assets section",
+  "title": "Global Search: a vehicle found by its VIN number is missing from the Assets section",
   "image": "SV-10014.png",
   "no_question": true,
-  "description": "This was raised on 14 September. The search box said two things at once: the count along the top said the record had been found, and opening the Assets section said there were no results. Somebody who narrows down to the kind of record they are after - the natural thing to do - was told it does not exist.\n\nIt does not happen any more. Checked again on 15 September on the same test branch, the count and the Assets section agree.\n\nOne thing worth recording: this report's words name the chassis number BAHUTYV09T63EV7NS, while its own picture shows 0ED823VK8BWL1Y0MP typed into the box. Both were checked on 15 September and both behave correctly, so the mismatch changes nothing about the answer - but it is why the first re-check looked at the wrong one.",
+  "description": "The search box says two things at once. The count along the top says the record has been found, and opening the Assets section says there are no results. Anyone who narrows down to the kind of record they are after - the natural thing to do - is told it does not exist. Only somebody who stays on All ever sees it.\n\nOne thing to know before reproducing it: this report's words name the VIN number BAHUTYV09T63EV7NS, while its own picture shows 0ED823VK8BWL1Y0MP typed into the box. Use the one in the picture.",
   "steps": [
-   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Sign in to the test branch: https://sv9160.qa.shopview.com",
    "Click the search box at the top of the screen (or press Ctrl and K).",
-   "Type a vehicle's chassis number. The report was raised on 0ED823VK8BWL1Y0MP, which belongs to the 2016 Ram 2500 on 4 Star Truck Repair's list.",
-   "Read the number in brackets beside Assets along the top of the panel.",
+   "Type a vehicle VIN number - the report was raised on 0ED823VK8BWL1Y0MP, the 2016 Ram 2500 on 4 Star Truck Repair's list.",
+   "Read the number in brackets beside Assets along the top of the panel. It reads 1.",
    "Click Assets, and read what the panel then lists."
   ],
   "current": [
-   "The count beside Assets and the Assets section agree. Clicking Assets lists the record: 2016 Ram 2500, 4 Star Truck Repair.",
-   "The same check was run alongside a record everybody agrees is findable, and that behaved correctly too, so this is not a measurement that stopped working."
+   "The count beside Assets says 1, so the record was found.",
+   "Clicking Assets says there are no results.",
+   "The record is real: 2016 Ram 2500, on 4 Star Truck Repair."
   ],
   "expected": [
    "A record counted along the top is also listed when you click into its own section.",
-   "That is what happens now."
+   "The check passes only when it shows in both."
   ],
-  "shot_caption": "Above, the search as it was reported on 14 September. Below, the same search on 15 September - the count and the section agree and the record is listed.",
-  "sources": "There is no half from the version people use today in the picture above, and there cannot be. The old search shows its results as a plain list with a heading over each kind of record - it has no counts along the top and no section to click into. The thing this report is about only exists in the new version, so the comparison that makes sense is the new version then against the new version now, and that is what the picture shows.\n\nWhat this is checked against is the new version's own panel: a number in brackets beside a section is a promise that clicking it will show that many records. The report is that the promise was broken; it is not broken now.\n\nThe test that covers this, and its result on this run: \"Selecting each result type opens the right record\" - https://shopview.testrail.io/index.php?/tests/view/2738734\n\nThe check that covers this behaviour directly - that clicking a section shows that section's records and its count - is \"Selecting a scope tab shows only that entity's results with its count\", https://shopview.testrail.io/index.php?/tests/view/2723892. It sits with the checks that test the new version against its own written requirements, and none of those has been run yet, so it is worth running before this report is settled."
+  "shot_caption": "What was seen: the count says the record is there, and the section says it is not.",
+  "sources": "What this is checked against is the new version's own panel: a number in brackets beside a section is a promise that clicking it will show that many records. This report is that the promise is broken.\n\nThere is no comparison with the version people use today, and there cannot be: the old search shows a plain list with a heading over each kind of record - it has no counts along the top and no section to click into. What this report is about only exists in the new version.\n\nThe check that covers this behaviour directly is \"Selecting a scope tab shows only that entity's results with its count\", https://shopview.testrail.io/index.php?/tests/view/2723892 - it has not been run yet.\n\nThe check for finding the record at all: \"Selecting each result type opens the right record\" - https://shopview.testrail.io/index.php?/tests/view/2738734"
  },
  "SV-10015": {
-  "title": "Global Search: a supplier found by a contact's email was missing from the Vendors section",
+  "title": "Global Search: a Vendor found by a contact's email is missing from the Vendors section",
   "image": "SV-10015.png",
   "no_question": true,
-  "description": "This was raised on 14 September. The search box said two things at once: the count along the top said the record had been found, and opening the Vendors section said there were no results. Somebody who narrows down to the kind of record they are after - the natural thing to do - was told it does not exist.\n\nIt does not happen any more. Checked again on 15 September on the same test branch, the count and the Vendors section agree.\n\nThe address the report names, jay.harrison@gmail.com, finds nothing at all now - the test data on this branch has been rebuilt since 14 September and that address is no longer on any record. So the check was run with the address the supplier actually holds today, which is the same search on the same supplier.",
+  "description": "The search box says two things at once. The count along the top says the record has been found, and opening the Vendors section says there are no results. Anyone who narrows down to the kind of record they are after - the natural thing to do - is told it does not exist. Only somebody who stays on All ever sees it.\n\nBefore reproducing it, check the address on the record: the test data on this branch is rebuilt from time to time, and that Vendor's contact may hold a different address now. Use whatever address the record actually shows.",
   "steps": [
-   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Sign in to the test branch: https://sv9160.qa.shopview.com",
    "Click the search box at the top of the screen (or press Ctrl and K).",
-   "Type a supplier contact's email address. The supplier is Carolina Truck & Trailer Repair, and the address its contact holds today is jay.harrison@staging.shopview.local.",
-   "Read the number in brackets beside Vendors along the top of the panel.",
+   "Type a Vendor contact's email address - the report was raised on jay.harrison@gmail.com, held by a contact at Carolina Truck & Trailer Repair.",
+   "Read the number in brackets beside Vendors along the top of the panel. It reads 1.",
    "Click Vendors, and read what the panel then lists."
   ],
   "current": [
-   "The count beside Vendors and the Vendors section agree. Clicking Vendors lists the record: Carolina Truck & Trailer Repair.",
-   "The same check was run alongside a record everybody agrees is findable, and that behaved correctly too, so this is not a measurement that stopped working."
+   "The count beside Vendors says 1, so the record was found.",
+   "Clicking Vendors says there are no results.",
+   "The record is real: Carolina Truck & Trailer Repair."
   ],
   "expected": [
    "A record counted along the top is also listed when you click into its own section.",
-   "That is what happens now."
+   "The check passes only when it shows in both."
   ],
-  "shot_caption": "Above, the search as it was reported on 14 September. Below, the same search on 15 September - the count and the section agree and the record is listed.",
-  "sources": "There is no half from the version people use today in the picture above, and there cannot be. The old search shows its results as a plain list with a heading over each kind of record - it has no counts along the top and no section to click into. The thing this report is about only exists in the new version, so the comparison that makes sense is the new version then against the new version now, and that is what the picture shows.\n\nWhat this is checked against is the new version's own panel: a number in brackets beside a section is a promise that clicking it will show that many records. The report is that the promise was broken; it is not broken now.\n\nThe test that covers this, and its result on this run: \"Vendor by email address\" - https://shopview.testrail.io/index.php?/tests/view/2959361\n\nThe check that covers this behaviour directly - that clicking a section shows that section's records and its count - is \"Selecting a scope tab shows only that entity's results with its count\", https://shopview.testrail.io/index.php?/tests/view/2723892. It sits with the checks that test the new version against its own written requirements, and none of those has been run yet, so it is worth running before this report is settled."
+  "shot_caption": "What was seen: the count says the record is there, and the section says it is not.",
+  "sources": "What this is checked against is the new version's own panel: a number in brackets beside a section is a promise that clicking it will show that many records. This report is that the promise is broken.\n\nThere is no comparison with the version people use today, and there cannot be: the old search shows a plain list with a heading over each kind of record - it has no counts along the top and no section to click into. What this report is about only exists in the new version.\n\nThe check that covers this behaviour directly is \"Selecting a scope tab shows only that entity's results with its count\", https://shopview.testrail.io/index.php?/tests/view/2723892 - it has not been run yet.\n\nThe check for finding the record at all: \"Finding a vendor by email address still works\" - https://shopview.testrail.io/index.php?/tests/view/2959361"
  },
  "SV-10016": {
-  "title": "Global Search: a part found by its part number was missing from the Parts section",
+  "title": "Global Search: a part found by its part number is missing from the Parts section",
   "image": "SV-10016.png",
   "no_question": true,
-  "description": "This was raised on 14 September. The search box said two things at once: the count along the top said the record had been found, and opening the Parts section said there were no results. Somebody who narrows down to the kind of record they are after - the natural thing to do - was told it does not exist.\n\nIt does not happen any more. Checked again on 15 September on the same test branch, the count and the Parts section agree.",
+  "description": "The search box says two things at once. The count along the top says the record has been found, and opening the Parts section says there are no results. Anyone who narrows down to the kind of record they are after - the natural thing to do - is told it does not exist. Only somebody who stays on All ever sees it.",
   "steps": [
-   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Sign in to the test branch: https://sv9160.qa.shopview.com",
    "Click the search box at the top of the screen (or press Ctrl and K).",
    "Type the part number ZZT-88-4412.",
-   "Read the number in brackets beside Parts along the top of the panel.",
+   "Read the number in brackets beside Parts along the top of the panel. It reads 1.",
    "Click Parts, and read what the panel then lists."
   ],
   "current": [
-   "The count beside Parts and the Parts section agree. Clicking Parts lists the record: ZZAUTOTEST Brake Chamber Kestrel, 25 available.",
-   "The same check was run alongside a record everybody agrees is findable, and that behaved correctly too, so this is not a measurement that stopped working."
+   "The count beside Parts says 1, so the record was found.",
+   "Clicking Parts says there are no results.",
+   "The record is real: the stocked part ZZAUTOTEST Brake Chamber Kestrel."
   ],
   "expected": [
    "A record counted along the top is also listed when you click into its own section.",
-   "That is what happens now."
+   "The check passes only when it shows in both."
   ],
-  "shot_caption": "Above, the search as it was reported on 14 September. Below, the same search on 15 September - the count and the section agree and the record is listed.",
-  "sources": "There is no half from the version people use today in the picture above, and there cannot be. The old search shows its results as a plain list with a heading over each kind of record - it has no counts along the top and no section to click into. The thing this report is about only exists in the new version, so the comparison that makes sense is the new version then against the new version now, and that is what the picture shows.\n\nWhat this is checked against is the new version's own panel: a number in brackets beside a section is a promise that clicking it will show that many records. The report is that the promise was broken; it is not broken now.\n\nThe test that covers this, and its result on this run: \"Finding a part by its part number still works\" - https://shopview.testrail.io/index.php?/tests/view/2977799\n\nThe check that covers this behaviour directly - that clicking a section shows that section's records and its count - is \"Selecting a scope tab shows only that entity's results with its count\", https://shopview.testrail.io/index.php?/tests/view/2723892. It sits with the checks that test the new version against its own written requirements, and none of those has been run yet, so it is worth running before this report is settled."
+  "shot_caption": "What was seen: the count says the record is there, and the section says it is not.",
+  "sources": "What this is checked against is the new version's own panel: a number in brackets beside a section is a promise that clicking it will show that many records. This report is that the promise is broken.\n\nThere is no comparison with the version people use today, and there cannot be: the old search shows a plain list with a heading over each kind of record - it has no counts along the top and no section to click into. What this report is about only exists in the new version.\n\nThe check that covers this behaviour directly is \"Selecting a scope tab shows only that entity's results with its count\", https://shopview.testrail.io/index.php?/tests/view/2723892 - it has not been run yet.\n\nThe check for finding the record at all: \"Finding a part by its part number still works\" - https://shopview.testrail.io/index.php?/tests/view/2977799"
  },
  "SV-10017": {
-  "title": "Global Search: a job found by part of its number was missing from the Work orders section",
+  "title": "Global Search: a job found by part of its number is missing from the Work orders section",
   "image": "SV-10017.png",
   "no_question": true,
-  "description": "This was raised on 14 September. The search box said two things at once: the count along the top said the record had been found, and opening the Work orders section said there were no results. Somebody who narrows down to the kind of record they are after - the natural thing to do - was told it does not exist.\n\nIt does not happen any more. Checked again on 15 September on the same test branch, the count and the Work orders section agree.\n\nThe job the report names, S9160-17580, no longer exists - the jobs on this branch were rebuilt after 14 September and now run from S9160-17597 upward. So the check was run the same way on a job that does exist.",
+  "description": "The search box says two things at once. The count along the top says the record has been found, and opening the Work orders section says there are no results. Anyone who narrows down to the kind of record they are after - the natural thing to do - is told it does not exist. Only somebody who stays on All ever sees it.\n\nBefore reproducing it, read a job number off the Work Orders screen first and use the last five digits of that. Job numbers change when the branch is rebuilt, so the one named here may not exist any more.",
   "steps": [
-   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Sign in to the test branch: https://sv9160.qa.shopview.com",
    "Click the search box at the top of the screen (or press Ctrl and K).",
-   "Type part of a job number. Read a job number off the Work Orders screen first and type the last five digits of it - on 15 September that was 17615.",
-   "Read the number in brackets beside Work orders along the top of the panel.",
+   "Type part of a job number - the report was raised on 17580.",
+   "Read the number in brackets beside Work orders along the top of the panel. It reads 1.",
    "Click Work orders, and read what the panel then lists."
   ],
   "current": [
-   "The count beside Work orders and the Work orders section agree. Clicking Work orders lists the record: S9160-17615, A & J Truck & Trailer Repair.",
-   "The same check was run alongside a record everybody agrees is findable, and that behaved correctly too, so this is not a measurement that stopped working."
+   "The count beside Work orders says 1, so the record was found.",
+   "Clicking Work orders says there are no results.",
+   "The record is real: work order S9160-17580."
   ],
   "expected": [
    "A record counted along the top is also listed when you click into its own section.",
-   "That is what happens now."
+   "The check passes only when it shows in both."
   ],
-  "shot_caption": "Above, the search as it was reported on 14 September. Below, the same search on 15 September - the count and the section agree and the record is listed.",
-  "sources": "There is no half from the version people use today in the picture above, and there cannot be. The old search shows its results as a plain list with a heading over each kind of record - it has no counts along the top and no section to click into. The thing this report is about only exists in the new version, so the comparison that makes sense is the new version then against the new version now, and that is what the picture shows.\n\nWhat this is checked against is the new version's own panel: a number in brackets beside a section is a promise that clicking it will show that many records. The report is that the promise was broken; it is not broken now.\n\nThe test that covers this, and its result on this run: \"A work order number with the shop number in front still finds it\" - https://shopview.testrail.io/index.php?/tests/view/2959356\n\nThe check that covers this behaviour directly - that clicking a section shows that section's records and its count - is \"Selecting a scope tab shows only that entity's results with its count\", https://shopview.testrail.io/index.php?/tests/view/2723892. It sits with the checks that test the new version against its own written requirements, and none of those has been run yet, so it is worth running before this report is settled."
+  "shot_caption": "What was seen: the count says the record is there, and the section says it is not.",
+  "sources": "What this is checked against is the new version's own panel: a number in brackets beside a section is a promise that clicking it will show that many records. This report is that the promise is broken.\n\nThere is no comparison with the version people use today, and there cannot be: the old search shows a plain list with a heading over each kind of record - it has no counts along the top and no section to click into. What this report is about only exists in the new version.\n\nThe check that covers this behaviour directly is \"Selecting a scope tab shows only that entity's results with its count\", https://shopview.testrail.io/index.php?/tests/view/2723892 - it has not been run yet.\n\nThe check for finding the record at all: \"A work order number with the shop number in front still finds it\" - https://shopview.testrail.io/index.php?/tests/view/2959356"
  },
  "SV-10056": {
-  "title": "Global Search: a newly created job was reported as taking about 85 seconds to become findable",
+  "title": "Global Search: a newly created job is not findable by its number for about 85 seconds",
   "image": "SV-10056.png",
   "no_question": true,
-  "description": "This was raised on 15 September: a job you have just created could not be found by its number for about 85 seconds, against a requirement of thirty. It also said the old version had no delay at all.\n\nNeither part holds up when it is measured again. A brand new job is findable within ten seconds on the new version, and the version people use today takes about the same - eleven seconds. So there is no delay to fix and nothing was lost against the old version.",
+  "description": "A job you have just created cannot be found by its number for about 85 seconds. Other new records appear far sooner - a customer in 17 seconds, a part sale in 9 - so this is specific to jobs. No page reload and no signing out is involved: the job does appear on its own, it is simply very late.\n\nIt should be findable within 30 seconds.",
   "steps": [
-   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Sign in to the test branch: https://sv9160.qa.shopview.com",
    "Open Work Orders and create a new job for any customer that has a vehicle. Write its number down.",
    "Without reloading the page, click the search box at the top of the screen (or press Ctrl and K) and type that number.",
-   "If nothing comes back, clear the box and type it again, keeping an eye on the clock.",
-   "Do exactly the same on the version people use today at https://app.shopview.com and compare."
+   "If nothing comes back, clear the box, type it again, and keep an eye on the clock.",
+   "For comparison, create a new customer and a new part sale and time those the same way."
   ],
   "current": [
-   "On the new version the job came back after ten seconds. Three separate brand new jobs were timed and every one came back after ten seconds. Ten seconds is simply the first moment anything was typed, so the true figure is ten seconds or less.",
-   "On the version people use today the same thing was done and the job came back after eleven seconds - the same, within the accuracy of the measurement.",
-   "Every job created for this was deleted afterwards, on both."
+   "The job cannot be found for about 85 seconds.",
+   "A new customer is findable after about 17 seconds and a new part sale after about 9.",
+   "The job does appear in the end, with no reload and no signing out."
   ],
   "expected": [
-   "A job you have just created is findable by its number within thirty seconds, with no page reload and no signing out.",
-   "That is what happens, on both versions."
+   "A job you have just created is findable by its number within 30 seconds, with no page reload and no signing out.",
+   "The version people use today had no delay worth noticing, so anything close to the 30 seconds is already slower than what a service writer was used to."
   ],
-  "shot_caption": "The same thing done on both: a job created and its number typed straight away. Above, the version people use today. Below, the new version.",
-  "sources": "The expected behaviour comes from the version people use today, and it was not read out of a specification - a job was created on the live product at https://app.shopview.com on 15 September 2026 and its number typed straight away, and the picture above is that search. The job was deleted afterwards.\n\nThe report's claim that the old version was effectively immediate came from reading the old version's source code, not from using it. Measured on the running product it is about eleven seconds, which is why that claim does not stand.\n\nThe test that covers this, and its result on this run: \"A new work order or part sale is findable within 30 seconds\" - https://shopview.testrail.io/index.php?/tests/view/2959364"
+  "shot_caption": "The number of a newly created job typed into the search box, and the job coming back.",
+  "sources": "The 30 seconds comes from the Global Search Product Requirements, Confluence page 576978945, version 1.5, section 9: \"Index refresh latency <= 30s for entity create/update.\" Section 8 adds that creating a record counts as viewing it, so it should be available straight away to the person who made it.\n\nThe check that covers this: \"A new work order or part sale is findable within 30 seconds\" - https://shopview.testrail.io/index.php?/tests/view/2959364"
  },
  "SV-10059": {
-  "title": "Global Search: the recently viewed list was reported as not coming back after a search that finds nothing",
+  "title": "Global Search: the recently viewed list does not come back after a search that finds nothing",
   "image": "SV-10059.png",
   "no_question": true,
-  "description": "This was raised on 15 September: after typing something that matches nothing, the panel showed only a message, and clearing the box did not bring the recently viewed list back - leaving nothing to click.\n\nIt does not happen any more. Checked again the same day on the same test branch, clearing the box brings the list straight back.",
+  "description": "Open the search box without typing and a list of recently viewed things is shown, ready to click. Type something that matches nothing and the panel shows only a message. Clear the box again and the list does not come back - the person is left with nothing to click and has to close the search and open it again.",
   "steps": [
-   "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
+   "Sign in to the test branch: https://sv9160.qa.shopview.com",
    "Click the search box at the top of the screen (or press Ctrl and K) without typing anything. A list of recently viewed things is shown.",
    "Type something that matches nothing at all, for example zzzqqqxxx, and read what the panel shows.",
    "Clear the box completely.",
    "Read what the panel shows now."
   ],
   "current": [
-   "Opening the box with nothing typed lists 34 recently viewed things.",
-   "Typing something that matches nothing shows \"No results\", which is right.",
-   "Clearing the box brings the same 34 back, under the heading Recent searches, with today's entries at the top."
+   "Typing something that matches nothing shows a message and nothing else, which is right.",
+   "Clearing the box leaves the panel empty - the recently viewed list does not return."
   ],
   "expected": [
-   "After a search that finds nothing, clearing the box brings the recently viewed list back, so there is still something to click.",
-   "That is what happens now."
+   "After a search that finds nothing, clearing the box brings the recently viewed list back, so there is still something to click."
   ],
-  "shot_caption": "Above, the panel as reported - a search that matched nothing, showing only the message. Below, the same day after clearing the box - the recently viewed list is back.",
-  "sources": "There is no half from the version people use today in the picture above, and there cannot be. The live product was opened on 15 September 2026 with nothing typed into its search box and it shows nothing at all - it has no recently viewed list. The list is something the new version adds, so what this is checked against is the new version's own behaviour, not the old product's.\n\nThe test that covers this, and its result on this run: \"Your recent items come back when a search finds nothing\" - https://shopview.testrail.io/index.php?/tests/view/2981982"
+  "shot_caption": "What was seen: a search that matched nothing, with nothing listed underneath it.",
+  "sources": "What this is checked against is the new version's own design: the list is shown when the box is empty, so emptying the box should show it again.\n\nThere is no comparison with the version people use today: its search box shows nothing at all when you open it without typing - it has no recently viewed list. The list is something the new version adds. Read on the live product on 15 September 2026.\n\nThe check that covers this: \"Your recent items come back when a search finds nothing\" - https://shopview.testrail.io/index.php?/tests/view/2981982"
  },
  "SV-10109": {
-  "title": "Global Search: a supplier cannot be found by their address line 2, although a customer can",
+  "title": "Global Search: a Vendor cannot be found by their address line 2, although a customer can",
   "image": "SV-10109.png",
-  "description": "A company's address can run to two lines - a dock, a bay, a suite - and the second line is often the only part that tells two units on the same estate apart. The new search reads that second line on a CUSTOMER and ignores it on a SUPPLIER. Someone holding a delivery note with the bay number on it can find the customer and not the supplier, from the same box, with the same kind of words. On the version people use today, both come back.",
+  "description": "A company's address can run to two lines - a dock, a bay, a suite - and the second line is often the only part that tells two units on the same estate apart. The new search reads that second line on a CUSTOMER and ignores it on a VENDOR. Someone holding a delivery note with the bay number on it can find the customer and not the Vendor, from the same box, with the same kind of words. On the version people use today, both come back.",
   "steps": [
    "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
-   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that supplier from the Vendors group. This also shows the search box itself is working.",
-   "On the supplier's page, read the line marked Address 2. It says Bay 12C.",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that Vendor from the Vendors group. This also shows the search box itself is working.",
+   "On the Vendor's page, read the line marked Address 2. It says Bay 12C.",
    "Open the search box again and type Bay 12C exactly as the record prints it.",
    "Read the Vendors group and look for ZZAUTOTEST Kestrel Parts Supply.",
    "Now clear the box and type Dock 7B - the address line 2 of the customer ZZAUTOTEST Bridgeport Hauling - and read the Customers group. This is the same kind of search on the other kind of company."
   ],
   "current": [
-   "The supplier is not returned. The one company listed under Vendors is B&K Truck Repair LLC, which is offered because its NAME looks a little like the words typed - its address has nothing to do with them.",
+   "The Vendor is not returned. The one company listed under Vendors is B&K Truck Repair LLC, which is offered because its NAME looks a little like the words typed - its address has nothing to do with them.",
    "The customer search in the same sitting works: typing Dock 7B returns ZZAUTOTEST Bridgeport Hauling.",
-   "The supplier comes straight back when its name is typed, so the record is there and the search box is working, and its own page shows Address 2: Bay 12C, so the field is filled in."
+   "The Vendor comes straight back when its name is typed, so the record is there and the search box is working, and its own page shows Address 2: Bay 12C, so the field is filled in."
   ],
   "expected": [
-   "The supplier whose address line 2 was typed is returned, under Vendors - the same way the customer already is under Customers.",
+   "The Vendor whose address line 2 was typed is returned, under Vendors - the same way the customer already is under Customers.",
    "This is what the version people use today does."
   ],
-  "shot_caption": "The same address line typed into both versions. Above, the live product returns the supplier. Below, the new version returns an unrelated company matched on its name.",
-  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where Bay 12C returned ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The supplier's record on the live product shows the same Address 2, so the field is filled in on both. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nWorth reading beside this one: the supplier's postcode and the state it is in are not searched either, and those are already reported as SV-10005 and SV-10006. Measured field by field on 15 September, a supplier is found by its name, its street and its town and by nothing else on its address; a customer is found by all of those plus its address line 2 and its state. It may be one piece of work rather than three.\n\nThe test that covers this, and its result on this run: \"Finding a customer or vendor by address line 2\" - https://shopview.testrail.io/index.php?/tests/view/2959370"
+  "shot_caption": "The same address line typed into both versions. Above, the live product returns the Vendor. Below, the new version returns an unrelated company matched on its name.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where Bay 12C returned ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The Vendor's record on the live product shows the same Address 2, so the field is filled in on both. The same records are seeded on both, so the two halves of the picture are the same words typed into the same box, one version each.\n\nWorth reading beside this one: the Vendor's postcode and the state it is in are not searched either, and those are already reported as SV-10005 and SV-10006. Measured field by field on 15 September, a Vendor is found by its name, its street and its town and by nothing else on its address; a customer is found by all of those plus its address line 2 and its state. It may be one piece of work rather than three.\n\nThe test that covers this, and its result on this run: \"Finding a customer or vendor by address line 2\" - https://shopview.testrail.io/index.php?/tests/view/2959370"
  },
  "SV-10110": {
-  "title": "Global Search: a supplier cannot be found by their website address",
+  "title": "Global Search: a Vendor cannot be found by their website address",
   "image": "SV-10110.png",
-  "description": "A supplier's website is printed on their record and the new search ignores it. Someone who has the supplier's website in front of them - off an email footer, an invoice, or a parts catalogue - cannot use it to reach them. On the version people use today, typing it brings the supplier straight back.\n\nThe same is already reported for customers as SV-10003. Nobody had checked the supplier side because the suite had a check for the customer's website and none for the supplier's; that gap is now closed.",
+  "description": "A Vendor's website is printed on their record and the new search ignores it. Someone who has the Vendor's website in front of them - off an email footer, an invoice, or a parts catalogue - cannot use it to reach them. On the version people use today, typing it brings the Vendor straight back.\n\nThe same is already reported for customers as SV-10003. Nobody had checked the Vendor side because the suite had a check for the customer's website and none for the Vendor's; that gap is now closed.",
   "steps": [
    "Sign in to the new version on the test branch: https://sv9160.qa.shopview.com",
-   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that supplier from the Vendors group. This also shows the search box itself is working.",
-   "On the supplier's page, read the line marked Website. It says kestrelsupply-zzt.com.",
+   "Click the search box at the top of the screen (or press Ctrl and K), type ZZAUTOTEST Kestrel, and open that Vendor from the Vendors group. This also shows the search box itself is working.",
+   "On the Vendor's page, read the line marked Website. It says kestrelsupply-zzt.com.",
    "Open the search box again and type that website exactly as the record prints it.",
    "Wait for the results and read the Vendors group."
   ],
   "current": [
    "Nothing comes back at all. The panel reads \"No results for kestrelsupply-zzt.com\" and every group shows nought.",
-   "The supplier comes straight back when its name is typed, so the record is there and the search box is working, and its own page shows the website, so the field is filled in."
+   "The Vendor comes straight back when its name is typed, so the record is there and the search box is working, and its own page shows the website, so the field is filled in."
   ],
   "expected": [
-   "The supplier whose website was typed is returned, under Vendors.",
+   "The Vendor whose website was typed is returned, under Vendors.",
    "This is what the version people use today does."
   ],
-  "shot_caption": "The same website typed into both versions. Above, the live product returns the supplier. Below, the new version returns nothing.",
-  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where kestrelsupply-zzt.com returned ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The supplier's record on the live product shows the same website, so the field is filled in on both.\n\nThe customer side of the same thing is already reported as SV-10003. Both were typed in the same sitting on the new version and neither returned its company, so a fix wants to cover both.\n\nThe check that covers this was written on 15 September because the suite did not have one: \"Finding a vendor by their website still works\" - https://shopview.testrail.io/index.php?/tests/view/2990950"
+  "shot_caption": "The same website typed into both versions. Above, the live product returns the Vendor. Below, the new version returns nothing.",
+  "sources": "The expected behaviour comes from the version people use today. It was not read out of a specification - it was typed into the live product at https://app.shopview.com on 15 September 2026, where kestrelsupply-zzt.com returned ZZAUTOTEST Kestrel Parts Supply, and the picture above is that search. The Vendor's record on the live product shows the same website, so the field is filled in on both.\n\nThe customer side of the same thing is already reported as SV-10003. Both were typed in the same sitting on the new version and neither returned its company, so a fix wants to cover both.\n\nThe check that covers this was written on 15 September because the suite did not have one: \"Finding a vendor by their website still works\" - https://shopview.testrail.io/index.php?/tests/view/2990950"
  },
  "SV-10031": {
   "title": "Part Sales: a new part sale is created but the app cannot open it, and shows two errors",

@@ -850,6 +850,33 @@ v2**:
    whose `attrs.id` is a **36-char UUID**, **and** `renderedFields.description` must contain a real
    `<img src=".../attachment/content/<id>">`. **Attached but not inline fails this format.**
 
+### 🛑 THE REPORT IS THE ISSUE, IN THE PRESENT TENSE — EVEN AFTER IT IS FIXED (QA lead, 2026-09-16)
+
+**Verbatim:** *"you should not change the Ticket title and description into the past that it WAS
+happening. The ticket title and description should stay as it is so that the manual QA tester can
+actually reproduce the issue and may know what is the expected behavior for this ticket even though if
+it is not happening anymore."*
+
+A report is the **specification of the issue**, not a diary of it. The check behind it is re-run on
+every build, so both must stay runnable. **Six reports were rewritten into the past on 15 September and
+had to be restored the next day.**
+
+| Part of the report | What it says when the fault no longer reproduces |
+|---|---|
+| Title · Description · Steps · Current behaviour · Expected behaviour | **The issue, present tense, unchanged.** A tester must be able to reproduce it and see what is expected. |
+| The picture in the body | **The fault as reported.** Not a before-and-after. |
+| A comment | The only place "it passes now" goes — `→ QA Status: Passed`, with today's screenshot. Match the QA lead's own short format. |
+| The status | **His to set.** Never moved by us, and the report is never closed by us (L0131). |
+
+### 🛑 THE PRODUCT'S OWN WORD FOR A THING IS THE WORD — NEVER A "PLAINER" SYNONYM (QA lead, 2026-09-16)
+
+Plain English means **no jargon**; it does not mean **renaming what the product names**. Writing
+"supplier" for a **Vendor**, or "chassis number" for a **VIN number**, forces the tester to translate —
+the opposite of plain — and it cost a correction pass across 5 reports and 4 checks. **Read the word off
+the screen** (Rule 57: labels come from the build). If the product's word seems clumsy, raise it; never
+translate it silently. Known pairs on this product: **Vendor** (not supplier) · **VIN number** (not
+chassis number) · the record page prints **VIN/Serial #**.
+
 #### 🛑 STEP 4 IS NOT OPTIONAL — THE PICTURE IS STILL A POSTAGE STAMP UNTIL THE MEDIA NODE CARRIES ITS TRUE SIZE (QA lead, 2026-09-15: *"Perfect the pictures is perfect NOW, save it as your rule/skill etc forever"*)
 
 Steps 1–3 embed the picture. They do **not** make it readable. Wiki markup hands Jira **no height**, so
