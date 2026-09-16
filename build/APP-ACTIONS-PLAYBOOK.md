@@ -2916,6 +2916,13 @@ the collection and apply V1's own two passes. Runnable: `build/global-search/pro
 * **Pass 1:** `label.toLowerCase().startsWith(query)` — the label is what the row displays.
 * **Pass 2:** `search.toLowerCase().includes(query.replace(/\s+/g, ''))` — **only SPACES are stripped
   from what the user typed. Nothing else.**
+* 🔴 **AND THE HALF EVERYONE FORGETS: V1's STORED `search` TEXT HAS NO SPACES EITHER.** A vehicle
+  reads `zzautotestfibridgecommercial2019freightlinercascadiatrk4121fujgldr9clbp8834ohzzt412`.
+  That is *why* the query's spaces are stripped — the two sides are symmetric. Practical
+  consequences: (a) typing `TRK 412` **does** find a unit stored as `TRK 412`; (b) **grepping the
+  collection for a literal value with a space in it finds nothing**, which reads exactly like a
+  missing record — compare space-stripped on both sides (cost: one false "asset not found" on
+  2026-09-16); (c) the blob keeps **dashes**, so the phone table below still holds.
 * **`MAX_PER_TYPE = 3`** — V1 showed at most **three rows per group**. V2 shows 20. So "my record must
   appear when I type a common make/year" was **never V1 behaviour**, and its absence from a V2 list is
   not automatically a loss. Compare *whether the field is searched*, not *whether our record surfaces*.
