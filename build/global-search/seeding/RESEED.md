@@ -61,6 +61,33 @@ the session or the probes, not with the data.
 
 ---
 
+## 🔴 WAIT BEFORE YOU JUDGE ANYTHING BY SEARCHING FOR IT
+
+**The reseed writes records. The search index catches up afterwards.** Search straight after a reseed
+and you are measuring the index, not the product.
+
+This cost a whole finding on 2026-09-16. Six fields were reported as "no longer searchable"; **four of
+them were fine** and had simply not been indexed yet when they were checked a minute after the write.
+An argument was then built on top of those readings, including a claim about the specification, and all
+of it had to be withdrawn. The QA lead caught it by noticing a search that worked for him.
+
+**So, after any reseed:**
+
+1. **Give it a couple of minutes** before searching for a seeded record. The specification allows up to
+   30 seconds for the index to refresh; leave more.
+2. **When something is not found, prove it with a control on the same record** — search a different
+   field of that same record. If the control comes back and the field in question does not, the index
+   has the record and that one field is genuinely not searched. If neither comes back, you are just
+   early.
+3. **Re-check anything that looks missing, more than once, minutes apart.** One reading is not a
+   finding.
+4. **Check the IDENTITY of what came back, never the number of rows.** A result count of 1 is not a
+   pass — on this data almost every query returns something. Ask "is OUR record in the list?", not
+   "were there any results?". That mistake produced a false pass on 2026-09-15 and a false failure the
+   day after.
+
+---
+
 ## The four things that make a reseed go wrong
 
 All four were found the expensive way. They are fixed in `seed.py`; this is why the code looks the way

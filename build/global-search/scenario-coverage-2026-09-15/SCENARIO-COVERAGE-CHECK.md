@@ -66,11 +66,11 @@ query actually wrote.
 
 ---
 
-## 🔴 GAP 3 · The supplier's second address line — named for the customer, not for the supplier
+## 🔴 GAP 3 · The vendor's second address line — named for the customer, not for the vendor
 
 | | |
 |---|---|
-| **Scenario** | Type the supplier's second address line, `Bay 12C` |
+| **Scenario** | Type the vendor's second address line, `Bay 12C` |
 | **Case** | [C53604](https://shopview.testrail.io/index.php?/cases/view/53604) — *"Finding a customer or vendor by address line 2"* |
 
 **What the steps say:**
@@ -78,8 +78,8 @@ query actually wrote.
 > 2. Type the customer's address line 2: **Dock 7B**
 > 4. Clear the input and **search for the vendor's address line 2**.
 
-The customer half names its value. **The supplier half does not** — the tester is sent to go and find
-it. And until today the supplier had no second address line at all, so that half was unrunnable; I
+The customer half names its value. **The vendor half does not** — the tester is sent to go and find
+it. And until today the vendor had no second address line at all, so that half was unrunnable; I
 seeded `Bay 12C` this morning and did not come back to the case.
 
 For a non-technical tester, "go and look it up" is exactly the instruction that gets skipped.

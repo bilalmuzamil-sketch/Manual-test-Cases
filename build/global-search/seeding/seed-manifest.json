@@ -330,7 +330,7 @@
         "address_2": "Bay 12C",
         "website": "kestrelsupply-zzt.com"
       },
-      "_extra_fields_why": "C53604 checks that a second address line is searchable for a customer AND for a supplier. The vendor had no address_2 declared at all - not 'declared and missing', simply never specified - so the supplier half of that case had nothing to search for. Found by the execution session 2026-09-14.",
+      "_extra_fields_why": "C53604 checks that a second address line is searchable for a customer AND for a vendor. The vendor had no address_2 declared at all - not 'declared and missing', simply never specified - so the vendor half of that case had nothing to search for. Found by the execution session 2026-09-14.",
       "write": {
         "endpoint": "/api/parts-catalogue/change-vendor",
         "whole_record": true,

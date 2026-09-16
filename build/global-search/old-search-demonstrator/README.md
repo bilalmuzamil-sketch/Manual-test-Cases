@@ -24,7 +24,7 @@ comes from**, with that part's navigation path printed under the heading:
 | Contacts | Customers → open a company → its Contacts list | 4 |
 | Assets | Assets → open a vehicle | 8 |
 | Jobs | Work orders → open a job | 5 |
-| Vendors | Parts → Vendors → open a supplier | 7 |
+| Vendors | Parts → Vendors → open a vendor | 7 |
 | Parts | Parts → Parts catalogue → open a part | 3 |
 | Edge cases | nothing to set up | 3 |
 

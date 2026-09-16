@@ -93,22 +93,22 @@ row(F, "cust-12", "A customer, by a contact's job title", f"{SQL}:238-244 cu.tit
 row(F, "cust-13", "A customer, by a contact's own phone number", f"{SQL}:238-244 cu.telephone", "C55662 · C53603",
     lambda: finds("419-555-0177", ALL))
 
-# ══ A SUPPLIER ══════════════════════════════════════════════════════════════════════════════
-row(F, "vend-1", "A supplier, by its name", f"{SQL}:157 v.name", "C55668",
+# ══ A VENDOR ════════════════════════════════════════════════════════════════════════════════
+row(F, "vend-1", "A vendor, by its name", f"{SQL}:157 v.name", "C55668",
     lambda: finds("ZZAUTOTEST Kestrel", ALL))
-row(F, "vend-2", "A supplier, by its street address", f"{SQL}:158 v.address_1", "C53585",
+row(F, "vend-2", "A vendor, by its street address", f"{SQL}:158 v.address_1", "C53585",
     lambda: finds("Halbrook", ALL))
-row(F, "vend-3", "A supplier, by the second line of its address", f"{SQL}:159 v.address_2", "C53604",
+row(F, "vend-3", "A vendor, by the second line of its address", f"{SQL}:159 v.address_2", "C53604",
     lambda: finds("Bay 12C", ALL))
-row(F, "vend-4", "A supplier, by its county or state", f"{SQL}:160 v.state_or_province", "C53606",
+row(F, "vend-4", "A vendor, by its county or state", f"{SQL}:160 v.state_or_province", "C53606",
     lambda: finds("Ohio", [VEND]))
-row(F, "vend-5", "A supplier, by its postcode", f"{SQL}:161 v.postal_code", "C53585",
+row(F, "vend-5", "A vendor, by its postcode", f"{SQL}:161 v.postal_code", "C53585",
     lambda: finds("43055-2210", ALL))
-row(F, "vend-6", "A supplier, by its town", f"{SQL}:162 v.city", "C53585",
+row(F, "vend-6", "A vendor, by its town", f"{SQL}:162 v.city", "C53585",
     lambda: finds("Marnston", ALL))
-row(F, "vend-7", "A supplier, by its phone number", f"{SQL}:163 v.telephone", "C55663",
+row(F, "vend-7", "A vendor, by its phone number", f"{SQL}:163 v.telephone", "C55663",
     lambda: finds("614-555-0188", ALL))
-row(F, "vend-8", "A supplier, by its email address", f"{SQL}:164 v.email", "C53584",
+row(F, "vend-8", "A vendor, by its email address", f"{SQL}:164 v.email", "C53584",
     lambda: finds("parts@kestrelsupply-zzt.com", ALL))
 
 # ══ A VEHICLE ═══════════════════════════════════════════════════════════════════════════════

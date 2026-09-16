@@ -18,9 +18,9 @@ each of the ten, at commit `55767168`. **All ten demonstrably worked.** None is 
 | # | Question | Proved in V1 at | Answer |
 |---|---|---|---|
 | 1 | Vehicle by number plate | `FetchDataQueryHandler.php:293` — `v.licence_plate` in the vehicle search text | YES |
-| 2 | Customer **and** supplier by postcode | `c.postal_code` (213-266) · `v.postal_code` (144-183) | YES |
+| 2 | Customer **and** vendor by postcode | `c.postal_code` (213-266) · `v.postal_code` (144-183) | YES |
 | 3 | Customer by its own phone number | `c.telephone` (213-266), brackets stripped so both formats matched | YES |
-| 4 | Supplier by county | `v.state_or_province` (144-183) — **the same field that still works for customers** | YES |
+| 4 | Vendor by county | `v.state_or_province` (144-183) — **the same field that still works for customers** | YES |
 | 5 | Company by a contact's job title | `cu.title` (213-266), via the contacts join at line 248 | YES |
 | 6 | Part never stocked | `cp.name` / `cp.part_number` from **CataloguePart** (317-340, table at 330) — **no inventory join exists anywhere in it** | YES |
 | 7 | Jobs by status | `wo.status` (75-143), underscores removed so "quality check" matched too | YES |
@@ -35,7 +35,7 @@ is no inventory join in that query at all, so whether the shop had ever held the
 difference. In V2 only stocked parts come back. This is the one a customer is most likely to hit, and
 the sheet says so.
 
-**#4, the supplier's county.** It is the *same field* that still works for customers. Whatever the
+**#4, the vendor's county.** It is the *same field* that still works for customers. Whatever the
 decision, the two should end up consistent — a search that works on one kind of record and not the
 other is the shape of thing that erodes trust in the whole box.
 

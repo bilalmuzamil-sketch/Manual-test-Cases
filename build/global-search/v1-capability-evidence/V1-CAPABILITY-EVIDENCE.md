@@ -113,14 +113,14 @@ wrong answer elsewhere. Both passes are implemented.
 | `cust-11` | A customer, by a contact's surname | ✅ runs green | `FetchDataQueryHandler.php:238-244 cu.last_name` | C55670 |
 | `cust-12` | A customer, by a contact's job title | ✅ runs green | `FetchDataQueryHandler.php:238-244 cu.title` | C53603 |
 | `cust-13` | A customer, by a contact's own phone number | ✅ runs green | `FetchDataQueryHandler.php:238-244 cu.telephone` | C55662 · C53603 |
-| `vend-1` | A supplier, by its name | ✅ runs green | `FetchDataQueryHandler.php:157 v.name` | C55668 |
-| `vend-2` | A supplier, by its street address | ✅ runs green | `FetchDataQueryHandler.php:158 v.address_1` | C53585 |
-| `vend-3` | A supplier, by the second line of its address | ✅ runs green | `FetchDataQueryHandler.php:159 v.address_2` | C53604 |
-| `vend-4` | A supplier, by its county or state | ✅ runs green | `FetchDataQueryHandler.php:160 v.state_or_province` | C53606 |
-| `vend-5` | A supplier, by its postcode | ✅ runs green | `FetchDataQueryHandler.php:161 v.postal_code` | C53585 |
-| `vend-6` | A supplier, by its town | ✅ runs green | `FetchDataQueryHandler.php:162 v.city` | C53585 |
-| `vend-7` | A supplier, by its phone number | ✅ runs green | `FetchDataQueryHandler.php:163 v.telephone` | C55663 |
-| `vend-8` | A supplier, by its email address | ✅ runs green | `FetchDataQueryHandler.php:164 v.email` | C53584 |
+| `vend-1` | A vendor, by its name | ✅ runs green | `FetchDataQueryHandler.php:157 v.name` | C55668 |
+| `vend-2` | A vendor, by its street address | ✅ runs green | `FetchDataQueryHandler.php:158 v.address_1` | C53585 |
+| `vend-3` | A vendor, by the second line of its address | ✅ runs green | `FetchDataQueryHandler.php:159 v.address_2` | C53604 |
+| `vend-4` | A vendor, by its county or state | ✅ runs green | `FetchDataQueryHandler.php:160 v.state_or_province` | C53606 |
+| `vend-5` | A vendor, by its postcode | ✅ runs green | `FetchDataQueryHandler.php:161 v.postal_code` | C53585 |
+| `vend-6` | A vendor, by its town | ✅ runs green | `FetchDataQueryHandler.php:162 v.city` | C53585 |
+| `vend-7` | A vendor, by its phone number | ✅ runs green | `FetchDataQueryHandler.php:163 v.telephone` | C55663 |
+| `vend-8` | A vendor, by its email address | ✅ runs green | `FetchDataQueryHandler.php:164 v.email` | C53584 |
 | `veh-1` | A vehicle, by the name of the customer who owns it | ✅ runs green | `FetchDataQueryHandler.php:287 c.name` | C53581 |
 | `veh-2` | A vehicle, by its year | ✅ runs green | `FetchDataQueryHandler.php:288 v.year` | C53605 |
 | `veh-3` | A vehicle, by its make | ✅ runs green | `FetchDataQueryHandler.php:289 vmk.name` | C55664 |
