@@ -103,6 +103,20 @@ def codes(role):
     return [p.get('code') or p.get('name') for p in (role.get('fe_permissions') or [])
             if isinstance(p, dict) and (p.get('code') or p.get('name'))]
 
+def template_codes(role_name):
+    """The permission set the product's own 'Reset To Template' button would restore.
+    🔴 The fe-permissions endpoint takes the template's ID, not its slug - the slug answers 404,
+    which reads like 'no template exists' rather than 'wrong key'."""
+    r = call('/api/role-templates')
+    if r['status'] != 200: return None
+    tpls = (r['json'] or {}).get('data', {}).get('role_templates') or []
+    t = next((x for x in tpls if (x.get('name') or '').lower() == role_name.lower()), None)
+    if not t: return None
+    rp = call(f"/api/role-templates/{t['id']}/fe-permissions")
+    if rp['status'] != 200: return None
+    return [p.get('code') or p.get('name')
+            for p in ((rp['json'] or {}).get('data', {}).get('fe_permissions') or [])]
+
 def org_id():
     """🔴 /api/staff rows do NOT carry organization_id (measured: the field is absent, so reading it
     yields None and the create then fails on a missing entity rather than on anything informative).
@@ -131,6 +145,31 @@ def main():
         if len(cs) > len(src_codes): best, src, src_codes = rid, role, cs
     print(f'cloning from {SOURCE_ROLE_NAME}: {len(src_codes)} permissions '
           f'(best of {len(candidates)} roles with that name)')
+
+    # 🔴 A LIVE ROLE IS NOT A TRUSTWORTHY BASELINE — MANUAL TESTERS EDIT THEM (QA lead, 2026-09-17).
+    # Cloning a stock role means inheriting whatever anyone last left it as, silently: the fixtures
+    # would still be created, still verified, and still wrong, because "Office User minus Parts"
+    # would mean something different this week than last. The TEMPLATE is the authority, and it is
+    # what the product's own "Reset To Template" button reads.
+    # This compares the two and tells you which you are standing on. It does not overwrite the stock
+    # role - that is the manual tester's environment, not ours to reset (Rule 38 in spirit).
+    tpl_codes = template_codes(SOURCE_ROLE_NAME)
+    if tpl_codes is None:
+        print('  ⚠️  no template found for that role name — proceeding on the LIVE role, which may '
+              'carry a tester\'s edits')
+    elif set(tpl_codes) == set(src_codes):
+        print(f'  ✅ the live role matches its template exactly ({len(tpl_codes)} permissions) — '
+              f'the baseline is clean')
+    else:
+        only_t = sorted(set(tpl_codes) - set(src_codes))
+        only_l = sorted(set(src_codes) - set(tpl_codes))
+        print(f'  🔴 THE LIVE ROLE HAS DRIFTED FROM ITS TEMPLATE — using the TEMPLATE instead.')
+        if only_t: print(f'      missing from the live role : {only_t}')
+        if only_l: print(f'      added to the live role     : {only_l}')
+        src_codes = list(tpl_codes)
+        # keep the live role's ids for the permissions the template keeps, since fePermissions wants ids
+        src = dict(src, fe_permissions=[p for p in (src.get('fe_permissions') or [])
+                                        if (p.get('code') or p.get('name')) in set(tpl_codes)])
     if not src_codes:
         sys.exit('every role with that name is empty - pick a different SOURCE_ROLE_NAME')
     by_name = {r['label']: r['id'] for r in roles}

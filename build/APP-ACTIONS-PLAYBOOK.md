@@ -234,6 +234,19 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   **Listing is not access:** `GET /api/organizations` names every organisation the person belongs to,
   so a working session can *see* another one while `GET /api/staff/my-workplaces` returns only its own.
   To seed or verify inside another organisation you need that organisation's own `PHPSESSID`.
+- **🔴 A LIVE ROLE IS NOT A TRUSTWORTHY BASELINE — RESET IT TO TEMPLATE BEFORE APPLYING IT TO ANYONE
+  (QA lead's standing instruction, 2026-09-17).** Manual testers edit the stock roles by hand, so a
+  role named "Service Advisor" may no longer carry the Service Advisor permission set. A permission
+  case run against a drifted role proves nothing and fails like a product defect.
+  **In the UI:** Settings → Roles & Permissions → the role → Edit → **Reset To Template** → **Save**,
+  and only then assign it. **If Reset To Template leaves SAVE DISABLED, the role was already
+  default** — a disabled Save is the "already clean" signal, not a broken button.
+  **By API:** `GET /api/role-templates`, then `GET /api/role-templates/{TEMPLATE_ID}/fe-permissions`
+  — 🔴 **the ID, not the slug; the slug answers 404**, which reads like "no template exists" rather
+  than "wrong key". Reset-to-template is a front-end operation: it loads the template's permissions
+  into the draft and `PUT /roles/{id}` saves them, so a script can do the same.
+  **Measured 2026-09-17:** the live `Office User` matched its template exactly (26 permissions, same
+  codes), so the ZZAUTOTEST fixtures cloned from it are clean — worth proving, not assuming.
 - **🔴 THE ONE-CALL CONTROL FOR "AM I POINTED AT THE RIGHT HOST?" (2026-09-17).** Same failure as trap
   **(2)** below — I hit it because I had not read the traps first, so here is the control that settles
   it without knowing the symptom: **request a path that CANNOT exist**, e.g. `/api/nope-does-not-exist`.
