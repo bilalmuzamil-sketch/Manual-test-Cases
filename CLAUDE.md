@@ -4549,6 +4549,48 @@ deliver the 7-tab management report.
     undocumented decision is indistinguishable from a miss) and 79/80/81 (the corrections that prompted
     it).
 
+
+83. **A FAILED FINDING IS REPORTED SO THE DEVELOPER CAN REPRODUCE IT — steps, not internals, in a
+    fixed five-part order (all projects).**
+    USER DIRECTIVE (2026-09-17, verbatim): *"since the developer is new and you are not telling him how
+    to reproduce the fail. So going forward instead of sharing the technical details, share the steps of
+    reproduction of a fail whenever it happens. … Share the screenshots/comparison if needed with
+    annotation for a fail after a description of what is failing and where, make sure the description is
+    not a full paragraph but what is happening and where, something concise and relevant which explains
+    what the problem is."*
+    **THE RULE — every FAILED item in a QA comment, and every defect we file, is laid out in exactly
+    this order:**
+    **(1) DESCRIPTION — concise, what is happening and WHERE.** One or two lines. Not a paragraph, not
+    a narrative, no root-cause essay. Name the screen/feature and the wrong behaviour so the reader
+    knows the problem before reading anything else.
+    **(2) STEPS OF REPRODUCTION.** Numbered, click by click, runnable by someone who has never seen the
+    feature — exact on-screen labels and navigation path (Rule 9), the **exact test data by name/id**
+    (Rule 50), the environment link, and any non-obvious interaction (a control that needs two clicks, a
+    tab that must be opened, a setting that must be on). **This REPLACES the technical dump as the thing
+    a developer acts on.**
+    **(3) CURRENT AND EXPECTED BEHAVIOUR.** Side by side: what it does now, what it should do — the
+    expected half quoted from the document that requires it (Rules 25/57).
+    **(4) SCREENSHOTS.** Annotated, and a before/after or current-vs-expected comparison where that is
+    what shows the problem (Rules 64/73).
+    **(5) ENVIRONMENT.** Branch/URL, build marker, date, account/role used.
+    **WHAT CHANGES FROM THE OLD SHAPE:** endpoint names, payloads, row counts, raw responses and field
+    dumps are **NOT the failure report**. They may follow, below, for whoever wants them — but a new
+    developer must be able to reproduce the failure **without reading a single one of them**. A failure
+    written only as API evidence is not reportable work.
+    **THE PASSED HALF KEEPS ITS OWN SHAPE** (verdict line, what-was-checked table, exhibits) — this rule
+    governs the FAILED half, and where a comment has both, the **failure comes first under its own
+    heading** (Rule: `WHAT FAILED` then `WHAT PASSED`).
+    **RATIONALE, 2026-09-17:** the SV-9304 comment reported a real failure — a work-order split moves a
+    part and records it nowhere — and told the developer the endpoints and row counts but **never how to
+    make it happen**. The developer on that ticket is new; the one thing he needed was "tick the line,
+    open the menu, click Split work order twice, then look at Part History", and it was not there.
+    Ties to Standing Rules 7 (plain layman wording), 9 (build-accurate labels and paths), 25 (quote the
+    source the behaviour deviates from), 50 (name the exact test data), 57 (expected behaviour comes
+    from the document), 64/73 (annotated screenshots, before/after), 65 (human voice), 66 (test the
+    reported flow), 67 (a ticket must be reproducible by a non-technical reader — this rule is its
+    QA-comment twin) and 77 (the ticket-QA operating procedure).
+
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
@@ -4752,6 +4794,16 @@ regression / bug-fix re-testing.
   are the DEFAULT requirements for any comparison file unless the user overrides.
 
 ## Deliverable conventions the user likes
+- **A FAILED ITEM IS WRITTEN AS A REPRODUCTION, NOT AS EVIDENCE (Standing Rule 83, QA-lead ruling
+  2026-09-17).** In any QA comment or ticket, the failing part follows a fixed order: **(1)** a concise
+  description of *what is happening and where* (one or two lines, never a paragraph) · **(2) Steps of
+  reproduction** — numbered, click by click, with the exact labels, the exact test data and any
+  two-click/hidden interaction · **(3) Current and expected behaviour**, the expected half quoted from
+  the document · **(4) Screenshots**, annotated, comparison where that is what shows it · **(5)
+  Environment** — branch, build marker, date, account. Endpoints, payloads and row counts are **not**
+  the failure report; they may follow below, but a **new developer must be able to reproduce the
+  failure without reading any of them**. Where a comment carries both, **`WHAT FAILED` comes first,
+  then `WHAT PASSED`**.
 - Plain, layman English.
 - Numbered **Preconditions / Steps / Expected**, each with line breaks.
 - **EXPECTED RESULTS STATE WHAT THE DOCUMENT REQUIRES — the spec/PRD, the epic's stories, or the
