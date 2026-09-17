@@ -2965,6 +2965,15 @@ from the email, which *contains* the website string. See Standing Rule 110.
 * **Deleting a TestRail case also deletes its tests and results everywhere.** Snapshot the full body
   **and** its results first, verify the snapshot, then delete, then count the run before and after.
   Precedent: SBC-EXP-13 (2026-07-28) and C55692 (2026-09-16).
+* 🔴 **`update_case` REWRITES THE MARKUP OF EVERY FIELD IT SAVES, EVEN WHEN YOU CHANGE NOTHING.**
+  Proven 2026-09-17 by posting a field back **verbatim**: TestRail re-encodes `—` as `&mdash;` and
+  `⌘` as `&#8984;`, appends a trailing newline, and **RELOCATES a `</p>`** from the middle of the
+  body to the end. The tag COUNT stays balanced (3 and 3), so nothing is lost and the page still
+  renders as two paragraphs — HTML opens a new paragraph at `<p>` whether or not the previous one
+  was closed. **Do not chase this.** It is not your edit, you cannot post it back, and a byte
+  comparison will report it forever. **Verify at WORD level** (strip tags, unescape entities,
+  collapse whitespace) and the comparison is exact again. Cost of learning it the hard way: three
+  rounds of "something else changed" on a one-word correction.
 * **`update_case` verification traps:** TestRail appends a trailing newline and sometimes a stray
   `</p>` to text fields, and `(value or '')` in a comparator destroys a legitimate `0`. Compare at
   content level, not byte level, or you will chase three false alarms.
