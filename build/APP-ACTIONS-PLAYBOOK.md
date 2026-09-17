@@ -148,18 +148,27 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   `{key:'admin'}` WITHOUT sending the old PHPSESSID → fresh PHPSESSID → all 200 again.
 - **🔴 SIGN-IN ON `.qa.shopview.com` IS GOOGLE OAUTH — A USERNAME AND PASSWORD CANNOT MINT A SESSION
   (measured 2026-09-17).** `POST /api/login {username,password}` against the `…api.` host answers
-  **401 `sso_required`** with a redirect to `auth.qa.shopview.com/login`, and following that redirect
-  lands on **`accounts.google.com/o/oauth2/v2/auth?…&hd=shopview.com`**. So the app credentials are not
-  what the gate wants, and a session cannot be minted from a script at all — **the ONLY route is an
-  `sv_sso_session` cookie captured from a browser that has already completed the Google sign-in.**
-  **Consequence for asking:** when a session is dead, ask for the **`sv_sso_session`** value by name and
-  say where it lives (browser DevTools → Application → Cookies → the branch host). Asking for
-  "the cookies" gets the *per-branch* `PHPSESSID` refreshed, which is the value that was never stale —
-  proven three times in a row on 2026-09-17, each attempt carrying a byte-identical `sv_sso_session`
-  and `cf_clearance` while only `PHPSESSID` changed, and each failing **409 `Session has expired.`**
-  **409 vs 401 tells you WHICH value is dead:** 401 `sso_required` = no usable SSO token at all;
-  **409 `Session has expired.` = the SSO token is recognised but its server-side record has lapsed**,
-  and a freshly minted `PHPSESSID` (the login call issues one even while refusing) does not rescue it.
+  **401 `sso_required`**, and following that redirect lands on
+  **`accounts.google.com/o/oauth2/v2/auth?…&hd=shopview.com`**. App credentials are not what the gate
+  wants, and **no script can mint a session** — the only route is cookies captured from a browser that
+  already completed the Google sign-in. (The login call still issues a fresh `PHPSESSID` while
+  refusing, which is a trap: a new session id is not a new session.)
+- **🔴 `PHPSESSID` CARRIES THE ORGANISATION, AND IT IS THE VALUE THAT GOES STALE — ASK FOR IT BY NAME,
+  CAPTURED WHILE THE BROWSER IS IN THE ORGANISATION YOU WANT (proven 2026-09-17, after I got this
+  BACKWARDS).** One person signed into Google has **one `sv_sso_session`** covering every organisation
+  they can reach; **which organisation a request lands in is carried by `PHPSESSID`.**
+  **The measurement that settles it:** a **byte-identical** `sv_sso_session` and `cf_clearance`
+  answered **409 `Session has expired.`** with one organisation's `PHPSESSID` and **200** with
+  another's, minutes apart. So a 409 does **not** mean the SSO token is dead — I concluded that and was
+  wrong, and it cost three rounds of asking for the wrong value.
+  **Read the two refusals as naming different values:** **401 `sso_required`** = no usable SSO token
+  (that one really is `sv_sso_session`, or an expired `cf_clearance` per trap (1)); **409 `Session has
+  expired.`** = the SSO token is fine and **this organisation's `PHPSESSID` has lapsed**. A freshly
+  minted `PHPSESSID` from the login call does not fix a 409 either — it has no organisation attached.
+  **What "can see it" does NOT mean:** `GET /api/organizations` lists every organisation the person
+  belongs to, so a working session can *name* another organisation while `GET /api/staff/my-workplaces`
+  returns only its own. **Listing is not access** — to seed or verify inside another organisation you
+  need that organisation's own `PHPSESSID`.
 - **🔴 THE ONE-CALL CONTROL FOR "AM I POINTED AT THE RIGHT HOST?" (2026-09-17).** This is the same
   failure as trap **(2)** below — I hit it building a profile for a second organisation *because I had
   not read trap (2) first*, so here is the cheap control that settles it without knowing the symptom:
