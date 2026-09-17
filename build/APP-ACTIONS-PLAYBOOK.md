@@ -4538,3 +4538,69 @@ when source type is inventory."*); `inventory_part_id` and `inventoryPartId` are
 it dies with `409 {"error":"Session has expired."}`. Interleaving UI and API work needs a re-mint
 between them — keep a `refresh.sh` that POSTs `/api/quick-login` with the SSO cookie and captures the
 new `PHPSESSID` from `Set-Cookie` (an in-page `fetch` cannot read that header).
+
+### AC.10 Work orders, parts and history — the full route/endpoint map (SV-9304, 2026-09-17)
+
+Everything below was discovered the hard way once. **Do not re-derive it.**
+
+**Move a part.** Two endpoints, and the dialog picks between them on `part_category`, so to the user
+it is one button:
+```
+POST /api/work-orders/part/move-part-to-line      {"part_id":"<work_order_part_id>","target_line_id":"<line>"}
+POST /api/work-orders/part-request/move-to-line   {"part_request_id":"<request>","target_line_id":"<line>"}
+```
+`part_id` is the **`work_order_part_id`** (the staged part), *not* the request `id`. A `quantity` in
+the body is **silently ignored** — `quantity: 99` against a qty-2 request returns 200 and moves the
+whole request. There is no partial-move parameter.
+
+**⚠️ SPLIT A WORK ORDER — the control needs TWO CLICKS on the same menu entry.** This is the
+`/lines` tab, and it is how a line *and its parts* end up on a brand-new work order:
+1. tick `[data-test-id="line_checkbox_<lineId>"]` (verify `aria-checked="true"`),
+2. click `[data-test-id="button_line_bulk_action"]` (the ⋮ beside the select-all box),
+3. click `[data-test-id="menu_item_split_wo"]` **TWICE** — the first click arms it and the menu
+   **stays open** with no dialog and no request; the second click fires it. One click looks like it
+   worked and silently does nothing.
+
+It sends `POST /api/work-orders/split {"ids":["<lineId>"]}` and the browser navigates to the new work
+order. Same two-step-confirm family as the §U.0b trap and the SV-8527 menu. **Click by coordinate**
+(`page.mouse.click` on the element's rect centre) — Playwright actionability clicks are unreliable on
+these Quasar menus.
+
+**History endpoints, and they do NOT share a payload key:**
+```
+GET /api/work-orders/{id}/history          -> data.history     []
+GET /api/work-orders/lines/{id}/history    -> data.history     []
+GET /api/parts/history/{inventoryPartId}   -> data.collection  []   <-- different key
+```
+Read both keys or you will report an empty log that is really a wrong lookup. A work-order history
+row carries **92 fields** on this branch (85 on production); `workOrderNumber` holds the work order's
+**UUID, not its number**, on *every* event type — that is long-standing, not a bug in whatever you are
+testing.
+
+**Parts on a work order** — the listing nests two levels deep and `part_number` is often `null`, so
+walk the structure rather than sniffing for a field:
+```
+GET /api/work-orders/{id}/parts/list-requests-by-line?search=&filters[0][field]=work_order&filters[0][value]={id}
+    -> data.collection[].part_requests[]
+```
+
+**Other contracts proven this pass:**
+```
+POST /api/work-orders/{id}/pick-inventory-parts  {"part_request_ids":["<id>"]}   (that exact key)
+POST /api/work-orders/part/perform-request-status-action  {"part_request_id":"<id>"}  -> waiting_to_receive
+POST /api/work-orders/part/change-request  {"id":...}   refuses a received request:
+     "Part requests can't be modified once received."  — so price a part AT CREATION, not after
+POST /api/inventory/parts/cycle-count  {"part_quantities":[{"id":"<part>","bins":[{"id":"<bin>","quantity":N}]}]}
+     — the way to give a part stock; note `bins`, and `id` inside it (not bin_location_id)
+POST /api/part-sales/move  {"part_request_ids":[...],"work_order_id":...,"target_work_order_id":...}
+```
+
+**Useful `data-test-id`s on the work order screens:** `link_lines_tab` · `link_part_requests_tab` ·
+`link_history_tab` · `button_work_order_nav_bar_menu` (⋮ → `menu_item_audit_log`, the Work Order Log
+dialog) · `button_line_bulk_action` · `line_checkbox_<lineId>` · `button_new_line` ·
+`button_download_invoice` / `button_print_invoice` / `button_send_email` / `button_invoice_settings`
+on the Finance tab.
+
+⚠️ **`/workorders/{id}/history` is not a real route** — it renders an empty table and fires no
+request. The audit log is a **dialog**, reached through the ⋮ menu. Do not conclude "no history
+rendered" from that URL.
