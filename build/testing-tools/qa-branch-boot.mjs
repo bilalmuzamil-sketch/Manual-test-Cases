@@ -95,7 +95,7 @@ export async function bootOrigin({ app, apiHost, ssoFile, label = app, route = '
     proxy: { server: `http://127.0.0.1:${PORT}` },
     args: ['--no-sandbox', '--ignore-certificate-errors'],
   });
-  const ctx = await browser.newContext({ viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true });
+  const ctx = await browser.newContext({ viewport: { width: Number(process.env.QA_VW || 1600), height: Number(process.env.QA_VH || 1000) }, deviceScaleFactor: Number(process.env.QA_DPR || 1), ignoreHTTPSErrors: true });
   // host-only on BOTH hosts, never a leading dot / parent domain (trap 2)
   await ctx.addCookies([{ ...sso, domain: APIH }, { ...sso, domain: APPH }]);
 

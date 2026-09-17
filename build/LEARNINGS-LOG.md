@@ -3139,3 +3139,33 @@ had its story marked obsolete. That is a lead-and-PO question.
 3. **`jira.sh` appends `\n__HTTP:<code>` to every response.** Piping it straight into
    `json.load` fails with a parse error that reads exactly like an expired session. Strip it
    (`sed 's/__HTTP:.*//'`) before parsing, and do not conclude the cookies are dead.
+
+## L0154 — I SCANNED THE FIRST SCREENFUL AND CALLED THE REST ABSENT — TWICE IN ONE HOUR (2026-09-17)
+
+Measuring C44838 I scraped the job statuses a search returns, found six kinds, and wrote into the
+run that **"Declined was never actually seen — there is no job in that state anywhere on this
+branch today"**, withdrawing a claim an earlier pass had made. That correction was itself wrong.
+Twenty minutes later, reading badge rectangles for the picture, the same query returned **two
+Declined rows** — they sit below the rows the first scrape reached.
+
+**The mistake underneath both versions is the same one:** treating what the first scan happened to
+reach as the whole population. The first pass over-claimed Declined without measuring it; the
+correction under-claimed it after measuring only part of the list. Being careful in the second
+direction is still being wrong.
+
+**What it costs.** A withdrawal published into the run is read as settled fact by whoever comes
+next. Withdrawing something true is worse than never having claimed it, because it actively tells
+the next person not to look.
+
+**The rule I am holding myself to:** before writing *absent*, *never*, *no such thing on this
+branch* about a set, say out loud **how much of the set I actually enumerated** — and if the answer
+is "what fitted on screen" or "what the first request returned", that is not an enumeration. Rule
+104's positive control has a sibling: a **completeness control**. Either page the whole set, or
+write "not seen in the first N rows" and never the word absent.
+
+**It also cuts the other way, and that is the part worth keeping.** The same over-eager scan made
+the *finding* wrong in a more useful direction. The first version said four stages share one colour
+and left it there. Re-measuring both screens properly produced a far sharper and more defensible
+statement: **In Progress is green on the Work Orders list and orange in the search** — a colour
+family change for the same job between two screens — and only inside the search do four stages
+collapse into one colour. That is the version a developer can act on without arguing.
