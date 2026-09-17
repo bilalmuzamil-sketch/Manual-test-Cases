@@ -95,9 +95,9 @@ While signed in to one organisation, the service behind the people list and the 
 
 ## OUTSTANDING — what I need from you
 
-**1. May I read the written requirement?** One read, covering four lines only: the twenty, the two phone ones, and the Tab key. Then each resolves itself — where the document backs the product, I correct our check; where it backs our check, I write the report. **If you would rather I did not read it**, tell me what the right behaviour is for those four and I will act on that. **Cost of leaving it:** four checks sit in the list looking like faults nobody wrote up.
+**1. May I read the written requirement? This is the one that unblocks the most.** One read, covering six things: the twenty, the two phone ones, the Tab key — and the closing section of the two reports that are ready to go. Every report we send names the requirement it is measured against, quoted word for word; I will not write that section from our own check text, because that is how a report gets argued away. **If you would rather I did not read it**, tell me what the right behaviour is for the four checks and I will write the two reports without that closing section and say plainly why it is missing. **Cost of leaving it:** four checks sit looking like faults nobody wrote up, and two finished reports cannot be sent.
 
-**2. Go-ahead for the first of the two ready reports** — the one about a job showing green on one screen and orange on the other. One at a time, as always. **Cost of leaving it:** two faults the developers cannot see yet.
+**2. Go-ahead for the first of the two ready reports** — the one about a job showing green on one screen and orange on the other. One at a time, as always. Both are now fully written, both have their picture, and both are attached to the right piece of work, which I checked today. **Cost of leaving it:** two faults the developers cannot see yet.
 
 **3. The ten checks behind obsolete work.** Do those requirements come back, or do we retire the checks? This is the biggest single block of unfinished work and it is not something I can decide. **Cost of leaving it:** ten checks stay held indefinitely and the list never reaches a clean finish.
 
