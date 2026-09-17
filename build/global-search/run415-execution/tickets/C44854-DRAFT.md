@@ -3,9 +3,9 @@
 **Type** `Story Defect` · **Parent** the owning story · **Priority** `Medium` · also link the owning
 story *relates to*.
 
-**Owning story — UNRESOLVED.** The case references SV-9160 (the epic) plus a specification pointer.
-An epic parent is rejected. The owning story must be identified and read live, and must be
-**Ready for QA** or **Testing QA** (Rule 112).
+**Owning story — RESOLVED, and it passes the gate.** `SV-9165` — *BE — Ranking engine: per-entity scoring, cross-entity ordering and contextual bias* — read live
+from Jira on 17 September 2026: **Ready for QA**. Rule 112 is satisfied, so a defect may be
+raised against it once the go-ahead comes. Set `parent` = `SV-9165` and also link it *relates to*.
 
 **Sources section — BLOCKED ON A SOURCE READ** (Rule 106), same as the other held report.
 
