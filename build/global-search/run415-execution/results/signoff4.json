@@ -1,0 +1,8 @@
+[
+ {"cid":"C53583","status":"Passed",
+  "note":"typing a customer's web address still finds that customer.",
+  "evidence":"Re-run by observation on 17 September 2026, build v26.36.7-29ca209. The earlier pass was carried over from a closed report rather than watched - the note on it said the branch could not be signed in to at the time. It can now, so it was run.\n\nTyped the web address 'bridgeporthauling-zzt.com'. One result came back in the whole search: the right customer, with the web address shown as the words that matched."},
+ {"cid":"C55669","status":"Passed",
+  "note":"a vehicle is found by its full chassis number and by just the last part of it - both halves of this check now work.",
+  "evidence":"Re-run by observation on 17 September 2026, build v26.36.7-29ca209, replacing a pass carried over from a closed report rather than watched.\n\nTyped the complete chassis number '1FUJGLDR9KLZZ4471' - the vehicle came back under Vehicles with that number shown as the match. Typed only the last part, 'ZZ4471' - the vehicle came back again, with just that fragment shown as the match, and a third form, 'LZZ4471', behaved the same way. Both the whole number and a piece of it work, which is what this check asks for and what the older version did.\n\nThe vehicle sits below the four jobs that carry the same vehicle when everything is shown together; under the Vehicles heading it is the one result."}
+]
