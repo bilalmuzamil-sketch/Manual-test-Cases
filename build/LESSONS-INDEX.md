@@ -74,6 +74,7 @@ different feature entirely.
 - `CLAUDE.md` Standing Rules — the **rules** half. Every rule carries its own rationale, which is the
   story of the mistake that produced it.
 | A build-marker check reported the wrong build because `curl -o <file>` had failed and the file still held the **previous** read's bytes — the grep happily returned a stale `app-version`, and for a moment it looked like the QA branch had redeployed onto production's build. (SV-9914 pre-post gate, 2026-09-15.) | Every marker/artefact read checks `%{http_code}` **and** that the file is non-empty before anything greps it, and writes to a **fresh `mktemp`** rather than a reused path. A failed fetch must fail loudly, never silently return the last good answer. | This row; `build/APP-ACTIONS-PLAYBOOK.md` §AC.8; Standing Rules 59 + 81. |
+| A seeded inventory part arrived already picked and the reason was guessed at rather than looked up; the QA lead pointed at the org setting that causes it. Separately, three payload readers in one pass returned "0 rows" because the parser keyed on the wrong field (`data.history` vs `data.collection`, `part_number` non-null) — each time the data was there. (SV-9304, 2026-09-17.) | Look the behaviour up in the settings screen before explaining it from the API's output. And when a reader returns empty, prove the reader works on data you know exists before reporting an absence — walk the payload's real structure, never a guessed predicate. | `build/APP-ACTIONS-PLAYBOOK.md` §AC.9; Standing Rules 75 + 81. |
 
 
 ## The shape of the mistakes, in four lines

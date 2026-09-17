@@ -4506,3 +4506,35 @@ body alongside the etag — two independent markers make a stale read obvious at
 
 Same family as §AC.6 (read the whole artefact) and Standing Rule 81 (verify the thing the reader gets,
 not a proxy for it): **a failed check must fail loudly, never quietly hand back the last good answer.**
+
+### AC.9 Inventory parts arrive ALREADY PICKED when auto-pick is on — check the setting before seeding
+
+`POST /api/work-orders/part/make-request` with `part_source_type: "inventory"` can come back already
+`received`, with a `work_order_part_id` populated and stock already deducted — no separate pick call.
+That is not a quirk of the endpoint: it is the organization setting
+
+**Administration → Settings → *Work Orders* tab → "Automatically Pick Inventory Parts"**
+*"Inventory and found parts will automatically skip the pick step and go straight to staged when
+authorized"* (`https://<env>/administration/settings`).
+
+**Read that toggle before seeding**, because it decides which state you can produce:
+* **ON**  — an inventory request lands **staged** (`received`, has `work_order_part_id`). Good for
+  anything needing a staged part; you **cannot** easily produce an unpicked inventory request.
+* **OFF** — the request stays unpicked and you pick it with
+  `POST /api/work-orders/{workOrderId}/pick-inventory-parts` `{"part_request_ids":["<id>"]}`
+  (note the key — `part_requests` / `parts` both return *"Part request ids are required."*).
+
+Minimal working create (all five are required, and `part_category_id` is the one that is easy to
+miss — omit it and you get a bare 500, not a validation message):
+```json
+{"work_order":"<wo>","line":"<line>","description":"ZZAUTOTEST …","quantity":1,
+ "part_source_type":"inventory","inventory_part_id":"<inventory part>",
+ "part_category_id":"<category>"}
+```
+`inventory_part` / `part` / `part_id` are **not** accepted (they give *"Inventory part is required
+when source type is inventory."*); `inventory_part_id` and `inventoryPartId` are.
+
+⚠️ **A browser Dev-Mode quick-login ROTATES the shared `PHPSESSID`**, so any curl cookie taken before
+it dies with `409 {"error":"Session has expired."}`. Interleaving UI and API work needs a re-mint
+between them — keep a `refresh.sh` that POSTs `/api/quick-login` with the SSO cookie and captures the
+new `PHPSESSID` from `Set-Cookie` (an in-page `fetch` cannot read that header).
