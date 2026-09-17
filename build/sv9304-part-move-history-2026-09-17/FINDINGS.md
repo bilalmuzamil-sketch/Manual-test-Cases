@@ -375,3 +375,60 @@ row is hovered (invisible to a human reader of any steps that do not say so), an
 `part/make-request` body that seeds a picked inventory part — `part_category_id` required, and
 `part_number` / `core_charge:0` must be omitted or the call 400s with `"This value should be greater
 than 0."`, which names no field.
+
+---
+
+## Check 11 — the split part request, tested end to end (the gap I had wrongly called unproducible)
+
+The earlier comment carried a "What was not tested" line saying the split part-request case — the one
+the blind code review fixed — **could not be produced**. That was wrong, and the QA lead supplied the
+recipe: order a vendor part with quantity 3, click **Order**, click **Receive**, lower **Quantity
+Received** from 3 to 1, receive. Done live on `v26.36.7-e72f63d` in about twenty minutes.
+
+### Seeding the state
+
+| step | what happened |
+|---|---|
+| part request | `ZZ9304-614095`, Source Vendor, quantity 3, on line "Service - CVIP inspection single or tandem axle" of **S9304-17579** |
+| order | status → `waiting_to_receive`, purchase order `d6e7d742-…` |
+| receive | on the PO's Receive form: vendor **5 Star Truck Repair**, invoice `ZZ9304-PARTIAL`, **Quantity Received 3 → 1** |
+| result | order status **`partial_delivery`**; item `quantity_ordered 3.00 / already_received 1.00 / quantity_remaining 2`; the Parts tab now shows **two rows — qty 1 Received and qty 2 Awaiting** |
+
+**The Receive button is disabled until the vendor AND the invoice number are both filled**, and
+hovering it while disabled says so outright: *"This PO still needs: an assigned vendor, a vendor
+invoice number."* That tooltip is how the block was cleared, not guesswork.
+
+### The move, and the attribution the review fixed
+
+The awaiting row (qty 2) was moved to **S9304-17580** through the part row's kebab → **Move** → work
+order + target line → **Move To Line** (another **two-click** button, same family as *Split work
+order*). It sent `POST /api/work-orders/part-request/move-to-line`.
+
+| | source S9304-17579 | destination S9304-17580 |
+|---|---|---|
+| Work Order Log entry | *Part moved · Quantity: 2.00 · Moved to: WO S9304-17580 — Service - Wheels off single or tandem axle* | *Part moved · Quantity: 2.00 · Moved from: WO S9304-17579 — Service - CVIP inspection single or tandem axle* |
+| `partRequestId` on the entry | `27a958c0…` — **the source-side request** | `70afea93…` — **the request created on the destination** |
+| parts tab afterwards | keeps the qty **1 Received** row | holds the qty **2 Awaiting** row |
+
+**That is exactly the defect the blind review reported** — *"a split part request attributed the source
+work order's entry to the target-side request"* — and each side is now attributed to its own request.
+No Part History row is written, correctly: this part never came out of inventory.
+
+Evidence: `ev/split-part-request/` (`EX4_split_request.png` is the exhibit; the raw parts tabs, both
+Work Order Log dialogs and the filled receive form are beside it).
+
+### The comment
+
+**76700 updated in place**: the checks table is now **11 rows, all PASSED**, with a section explaining
+check 11 and its exhibit; the "What was not tested" section is **gone** — the only remaining exclusion
+is `POST /api/part-sales/move`, which the ticket's own description defers, now stated under
+**Out of scope** rather than as something we failed to do. Read back: 3 media nodes all `type: file`,
+12 table rows, no occurrence of "not tested" or "could not".
+
+### Recorded so it never repeats
+
+`build/APP-ACTIONS-PLAYBOOK.md` **§AC.11** — the five-step partial-receive recipe, the receive form's
+pre-ticked item checkbox, the vendor/invoice gate with its tooltip, and the Move dialog's two-click
+button. `build/LESSONS-INDEX.md` and the ALWAYS UNBLOCK YOURSELF ruling in `CLAUDE.md` now carry the
+rule in the QA lead's own words: **"not tested because I could not do it" is never an acceptable line
+in a QA report.**
