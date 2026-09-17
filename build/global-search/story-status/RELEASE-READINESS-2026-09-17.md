@@ -52,3 +52,29 @@ SV-10031 — Part Sales bug, QA Complete.
 Two failures cleared by the QA lead himself today with verification videos: **C44880** (tenancy) and
 **C53476** (the count of twenty — his ruling stands over the §5.2 wording, so the Rule 63 conflict
 raised earlier is closed). Two more cleared by reading §5.6 live: **C45132** and **C45136**.
+
+## Who the 14 open defects are with — read live 2026-09-17
+
+| Assignee | Count | Defects |
+|---|---|---|
+| **Sinisa Nogic** | **6** | SV-10001 · SV-10199 · SV-10161 · SV-10188 · SV-10163 · SV-10060 (Blocked) |
+| **Nikola Milosevic** | 3 | SV-10178 · SV-10186 · SV-10068 (In Progress) |
+| **Branko Cicovic** | 2 | SV-10181 · SV-10061 |
+| **Milos Vasic** | 1 | SV-10055 |
+| ⚠️ **Unassigned** | 1 | **SV-10159** — the missing "Show all" link; nobody is on it |
+| ⚠️ **Bilal Muzamil (QA)** | 1 | **SV-10025** — parked on QA, needs reassigning to a developer before anyone can start |
+| *With QA to verify* | *1* | *SV-10008 — Done, awaiting a QA check* |
+
+**The two flagged rows are the quickest wins:** neither has a developer working on it today.
+
+## The shareable report
+
+https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B — **version 2**, rewritten for a CEO and Product
+Head audience on the QA lead's instruction:
+
+* a black **bottom-line** banner at the top: tested end to end, 139 of 165 pass, held by 14 open
+  developer faults and **not** by anything waiting on QA;
+* a **two-column split — QA work / Developer work** — so the two sides read at a glance;
+* per-story owner counts in the defect section, plus a **"who the 14 faults are with"** table.
+
+Ticket keys are kept but deliberately subdued: nothing in the narrative requires reading one.
