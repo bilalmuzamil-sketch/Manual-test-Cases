@@ -55,12 +55,39 @@ COOKIES = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
 # One state file per environment, or a production run silently overwrites the QA branch's state
 # and the next reader believes the wrong thing about the wrong estate.
 ENV_LABEL = 'qa' if COOKIES == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(COOKIES))
-# WHICH UNIVERSE to seed. Two live side by side and must never be mixed:
+# WHICH UNIVERSE to seed. Several live side by side and must never be mixed:
 #   seed-manifest.json          the 11 V1-regression records (sections 6769 / 8056)
 #   seed-manifest-gs-v2.json    the "Fibridge" universe for the 90 V2 cases (6721-6740)
+#   seed-manifest-ranking.json  the ranking/fuzzy universe for 6726 + 6725
 # Ids and state are keyed by manifest AND environment, so one never overwrites the other.
 MANIFEST = os.environ.get('SEED_MANIFEST', 'seed-manifest.json')
-MSLUG = 'gsv2' if 'gs-v2' in MANIFEST else 'v1reg'
+
+def _slug(manifest):
+    """🔴 DERIVE THE UNIVERSE SLUG FROM THE MANIFEST NAME — NEVER A FIXED LIST OF KNOWN ONES.
+
+    This was `'gsv2' if 'gs-v2' in MANIFEST else 'v1reg'`: a two-way switch with a DEFAULT. Add a
+    third universe and it does not fail - it silently answers 'v1reg' and writes the new universe's
+    ids and live state straight over the V1-regression files. The seeder would then read those ids
+    back on the next run, fail to resolve them, and 'top up' by creating DUPLICATES of records that
+    already existed, in an estate whose count targets cannot survive duplicates.
+
+    Caught on 2026-09-17 by a --check dry run that printed the state filename, while adding the
+    ranking universe. Nothing was lost because --check writes no records - which is precisely what
+    the dry run is for.
+
+    The first two names are pinned so the state files already on disk keep their names; every
+    later manifest derives its own slug, so a new universe is isolated by construction rather than
+    by somebody remembering to extend a switch."""
+    if manifest == 'seed-manifest.json':          return 'v1reg'   # pinned: files exist on disk
+    if 'gs-v2' in manifest:                       return 'gsv2'    # pinned: files exist on disk
+    m = re.match(r'seed-manifest-(.+)\.json$', os.path.basename(manifest))
+    if not m:
+        sys.exit(f"cannot derive a universe slug from {manifest!r} - name it "
+                 f"'seed-manifest-<universe>.json' so its ids and state cannot collide with another "
+                 f"universe's")
+    return m.group(1).replace('-', '')
+
+MSLUG = _slug(MANIFEST)
 IDS_FILE = ('seed-ids-%s.json' % ENV_LABEL if MANIFEST == 'seed-manifest.json'
             else f'seed-ids-{MSLUG}-{ENV_LABEL}.json')
 STATE_FILE = ('seed-state-live.json' if (ENV_LABEL == 'qa' and MANIFEST == 'seed-manifest.json')

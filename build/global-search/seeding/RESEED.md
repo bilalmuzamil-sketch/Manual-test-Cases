@@ -18,7 +18,23 @@ read as MISSING while sitting right there).
 | **`RESEED GSV2 QA`** | the QA branch | the **Global Search V2 "Fibridge"** universe (33 records + statuses + purchase orders + vendor invoices, sections 6721–6740) | `sv9160.qa.shopview.com` |
 | **`RESEED GSV2 LIVE`** | production | the **Fibridge** universe | `app.shopview.com`, workplace **Trucks Hill 2** |
 
-**`RESEED EVERYTHING QA`** / **`RESEED EVERYTHING LIVE`** runs both universes on that environment.
+| **`RESEED RANKING QA`** | the QA branch | the **ranking + fuzzy-remainder** universe (25 records, sections 6726 / 6725) | `sv9160.qa.shopview.com` |
+
+🔴 **`RESEED EVERYTHING QA`** is now the one to reach for after a redeploy — **`./reseed_everything.sh qa`**
+rebuilds **all three** universes in dependency order and runs **each one's own verifier**
+(V1-regression → Fibridge 39 checks → ranking 10 checks). `RESEED EVERYTHING LIVE` rebuilds only the
+V1-regression universe, because production runs V1 and the other two are QA-branch features.
+
+🔴 **KEYWORDS MUST BE FAR APART IN EDIT DISTANCE, NOT MERELY DIFFERENT.** The ranking universe was
+first built on `ZZRANKQ`, `ZZRANKC`, `ZZRANKV`… — one character apart. The search is deliberately
+fuzzy, so every keyword matched every other one, and each returned the same eight customers. Every
+record had been created, verified present and field-checked clean; only SEARCHING for them exposed
+it. The tokens are now whole distinct words (`ZZPREFIX`, `ZZCUSTOPEN`, `ZZASSETLIFT`, `ZZVENDORPO`,
+`ZZTIEBREAK`, `ZZSTOCKPART`, `ZZPARTBUSY`, `ZZCONTACTONLY`, `ZZFUZZLEN`). **A `<PREFIX><letter>`
+scheme is exactly wrong for a fuzzy search, however tidy it looks in a table.**
+
+🔴 **A CATALOGUE PART IS NOT SEARCHABLE WITHOUT AN INVENTORY ROW.** Both part keywords returned
+nothing while their catalogue parts were present and verified — the search indexes the stock record.
 
 The words share no leading letters on purpose — **QA** and **LIVE** cannot be confused for one
 another the way "qa" and "prod" can when typed quickly, and **GSV2** is impossible to say by
