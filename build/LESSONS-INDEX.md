@@ -80,6 +80,8 @@ different feature entirely.
 
 | Shipped a QA comment whose "What was not tested" section said the split part-request case **could not be produced** — "the move endpoint takes no quantity, so it needs a partially-received request, which needs the full purchase-order and part-delivery flow". The QA lead replied with the recipe: order a vendor part with quantity 3, click Order, click Receive, **lower Quantity Received from 3 to 1**, receive. It took twenty minutes and the check passed. (SV-9304, 2026-09-17.) | **"Not tested because I could not do it" is never an acceptable line in a QA report.** A data state a ticket needs is reachable through the product, because the product creates it — the difficulty is a description of the steps, not a reason to skip. Walk the screens a user walks; when a control is disabled, **hover it** — this app names the missing field in a tooltip. | `build/APP-ACTIONS-PLAYBOOK.md` §AC.11; the ALWAYS UNBLOCK YOURSELF ruling in CLAUDE.md. |
 
+| Called the Work Order Log's Details column "cut off" in a QA comment and typed the full text into the exhibit by hand, when the dialog has a **horizontal scroll bar** — the QA lead had to point at it in a screenshot. Nothing was lost; I had simply not scrolled. (SV-9304, 2026-09-17.) | Before reporting anything as truncated, hidden or unavailable on screen, **look for the scroll bar and use it**, then re-capture. An exhibit shows the app's own rendering; a hand-typed transcription of a clipped column is a tell that the control was never operated. | `build/APP-ACTIONS-PLAYBOOK.md` §AC.10 (the log dialog scroll recipe); Standing Rules 79 + 81. |
+
 
 ## The shape of the mistakes, in four lines
 

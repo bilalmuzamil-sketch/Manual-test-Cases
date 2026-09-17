@@ -4624,6 +4624,20 @@ and `button_move_part_action`. **`button_move_part_action` is ANOTHER TWO-CLICK 
 click does nothing and fires no request, exactly like *Split work order*. It sends
 `POST /api/work-orders/part-request/move-to-line {partRequestId, target_line_id, target_work_order_id}`.
 
+**⚠️ THE WORK ORDER LOG DIALOG SCROLLS SIDEWAYS — ITS DETAILS COLUMN IS NOT LOST, AND SAYING SO IS A
+FALSE FINDING.** The dialog is a fixed **608 px** card whatever the viewport, and its table is **885 px**
+wide, so `Details` is clipped on arrival and a **horizontal scroll bar sits along the bottom of the
+dialog**. Widening the browser does nothing; the card does not grow. To capture the full text for
+evidence, scroll the inner container and screenshot again:
+```js
+await p.evaluate(() => { const s = document.querySelector('.q-dialog .q-table__middle');
+                         s.scrollLeft = s.scrollWidth; });   // 0 -> 327, then screenshot
+```
+Two shots — landing position and scrolled — show both what a reader first sees and the complete entry.
+**Do not paste a typed-out transcription of the clipped column into an exhibit**: the app's own
+rendering is the evidence, and a caption claiming the column "cuts off" is wrong (QA lead, 2026-09-17,
+pointing at the scroll bar in a screenshot).
+
 **History endpoints, and they do NOT share a payload key:**
 ```
 GET /api/work-orders/{id}/history          -> data.history     []
