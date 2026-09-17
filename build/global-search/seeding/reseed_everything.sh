@@ -58,7 +58,10 @@ if [ "$1" = "qa" ]; then
   # ── universe 3 · RANKING + fuzzy remainder (25 records, sections 6726 / 6725) ────────────────
   export SEED_MANIFEST=seed-manifest-ranking.json
   step "9  ranking + fuzzy records"         python3 seed.py --confirm            || exit 1
-  step "10 ranking PROOF — 10 checks"       python3 verify_ranking.py            || exit 1
+  # The records alone do not make a ranking case runnable - two rows that match identically cannot
+  # pass or fail. This applies the one thing that must DIFFER between each pair.
+  step "10 ranking signals (PO, activity, tie-break)" python3 apply_ranking_signals.py --confirm || exit 1
+  step "11 ranking PROOF — 10 checks"       python3 verify_ranking.py            || exit 1
 fi
 
 echo

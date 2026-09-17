@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-17T184707Z",
+ "when_utc": "2026-09-17T190712Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
@@ -28,7 +28,11 @@
   "rank_i_instock_inv": "e058267c-8fc1-465e-9a68-252b4d1648fc",
   "rank_i_outstock_inv": "09e4410e-4f86-4c00-9833-2d9ee9bf2718",
   "rank_p_active_inv": "a15f3d33-5b2a-4457-961e-3b794cb8ad97",
-  "rank_p_quiet_inv": "dcb6d8b5-19ed-4411-99e8-33336f715fd9"
+  "rank_p_quiet_inv": "dcb6d8b5-19ed-4411-99e8-33336f715fd9",
+  "rank_c_open_contact": "8468f781-0f8d-4bb4-bf3c-734bc26b0157",
+  "rank_c_open_vehicle": "8ab41bac-a826-4f20-aa1a-344c2c8f49b1",
+  "wo_custopen": "00c5a36a-a7b6-4133-8eee-606a2c18c615",
+  "wo_assetlift": "54d678fd-9205-4352-8cc2-1747dbb14c24"
  },
  "records": [
   {
@@ -514,6 +518,78 @@
    "not_compared": [],
    "serves": [
     55712
+   ]
+  },
+  {
+   "key": "rank_c_open_contact",
+   "state": "PRESENT",
+   "ids": [
+    "8468f781-0f8d-4bb4-bf3c-734bc26b0157"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55708
+   ]
+  },
+  {
+   "key": "rank_c_open_vehicle",
+   "state": "PRESENT",
+   "ids": [
+    "8ab41bac-a826-4f20-aa1a-344c2c8f49b1"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [
+    {
+     "field": "maker_name",
+     "why": "written as 'maker_name', but the record exposes no such key"
+    },
+    {
+     "field": "model_name",
+     "why": "written as 'model_name', but the record exposes no such key"
+    }
+   ],
+   "serves": [
+    55708
+   ]
+  },
+  {
+   "key": "wo_custopen",
+   "state": "PRESENT",
+   "ids": [
+    "00c5a36a-a7b6-4133-8eee-606a2c18c615"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55708
+   ]
+  },
+  {
+   "key": "wo_assetlift",
+   "state": "PRESENT",
+   "ids": [
+    "54d678fd-9205-4352-8cc2-1747dbb14c24"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55709
    ]
   }
  ],

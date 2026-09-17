@@ -24,16 +24,35 @@ what is NOT ready, and running those cases anyway is how a false Failed gets fil
 
 | Folder | State | What you can do today |
 |---|---|---|
-| **Fuzzy 6725** | ✅ **Ready** — 13 of 14 | Run it. Everything it needs is seeded and verified |
-| **Ranking 6726** | 🟡 **Partly ready** — the records exist and each keyword is private, but **five cases need a signal that is not applied yet** (below) | Run the rest; **Block the five, do not fail them** |
-| **Permissions 6734** | ❌ **Not seeded** | **Block all 12 with the reason.** The roles and reduced-permission users do not exist |
+| **Fuzzy 6725** | ✅ **Ready** — all 14 | Run it |
+| **Ranking 6726** | ✅ **Ready** — all 15 | Run it. Every pair's differing signal is applied and proven |
+| **Permissions 6734** | ✅ **Ready for 11 of 12** | Run them. **C44880 alone is Blocked** — it needs a second organisation that exists but is not yet reachable |
 
-**The five ranking cases whose SECOND HALF is missing.** Both records exist and the keyword is
-private, but the thing that is supposed to *differ* between them has not been applied, so the two
-rows are currently equivalent and **any order you see is meaningless**:
+**All 41 cases are runnable except C44880.** Two verifiers prove it, and both passed on this build:
+`verify_gsv2.py` (39 checks) and `verify_ranking.py` (10 checks).
 
-| Case | Keyword | What is missing |
+**The five ranking signals are applied and verified:**
+
+| Case | Keyword | The signal now in place |
 |---|---|---|
+| C55708 | `ZZCUSTOPEN` | one customer has an **open work order**, its twin has none |
+| C55709 | `ZZASSETLIFT` | the **2019** asset is on an open work order; the newer 2025 is idle |
+| C55710 | `ZZVENDORPO` | one vendor has an **open purchase order** (`I9160-1398`), its twin none |
+| C55712 | `ZZPARTBUSY` | one part has **recent activity**; stock is identical on both, so activity is the only difference |
+| C55716 | `ZZTIEBREAK` | Transport **Two** was re-saved last, so it must win the tie |
+
+**Permissions 6734 — six role fixtures exist**, each read back after creation to prove the
+permission actually came off: `ZZAUTOTEST No Work Orders View` · `No Customers View` (hides Customers
+**and** Assets — one permission, two groups) · `No Parts View` · `No Part Sales View` ·
+`No Vendor Order View` (hides Vendors, Purchase Orders **and** Vendor Invoices) · `No Financial Data`
+(groups stay, **prices are masked** — a hidden group here would be the wrong outcome). The stock
+**Technician**, **Sales Representative** and **Time Clock User** roles cover the rest.
+
+**C44880 is the one Blocked case.** The second organisation exists — `ZZAUTOTEST Second Org Ltd` —
+and is visible from this login, but working inside it needs its own session, which is not available.
+**Block it, do not fail it.**
+
+---|---|---|
 | C55708 | `ZZCUSTOPEN` | neither customer has an open work order yet |
 | C55709 | `ZZASSETLIFT` | neither asset is on an open work order yet |
 | C55710 | `ZZVENDORPO` | neither vendor has a purchase order yet |
@@ -87,15 +106,24 @@ that case.**
 
 ✅ **C55715 already works** — `Alternator` and the typo `Altenator` both return parts.
 
-## §3 · 🔴 C55714 NAMES A PURCHASE ORDER THAT DOES NOT EXIST
+## §3 · ✅ C55714 IS CORRECTED — nothing for you to do
 
-The case says purchase order **`S9-25987`**. Searching it on this branch returns **nothing** — not a
-fuzzy match, not an exact one. The vendor-invoice half of the case is fine.
+The case used to name purchase order **`PO-3241`** and vendor invoice **`S9-25987`**. **Neither
+existed on this branch**, so the case would have failed against a product that was working.
 
-**Do not mark it Failed.** The case is unrunnable as written, which is a *data* problem, not a
-product one. Mark it **Blocked**, name the number, and say the purchase order does not exist on the
-branch. The correction — seed a real purchase order, read the number the branch assigns, and change
-**that number only** in the case — is the seeding session's job and is queued.
+Both identifiers are corrected — **the numbers only, every other word byte-identical**, proved by
+reading the case back and substituting the new numbers for the old to get the original exactly:
+
+| | Was | Now | Proven |
+|---|---|---|---|
+| Purchase order | `PO-3241` | **`I9160-1398`** | found and pinned; `I9160-1399` returns nothing; `I-1398` and `I91601398` both normalise to it |
+| Vendor invoice | `S9-25987` | **`ZZT-INV-3`** | found and pinned; `ZZT-INV-4` returns nothing |
+
+🔴 **A note on the earlier draft of this handoff:** it said the case named `S9-25987` as its
+*purchase order*. It does not — that was the *vendor invoice* example, and the purchase order was
+`PO-3241`. I had read an extracted literal without its sentence. That is precisely the mistake the
+"read the case body, not a summary" rule exists to prevent, and I made it while writing the rule's
+own handoff. **Open the case.**
 
 ## §4 · IF THE BRANCH WAS REDEPLOYED
 
@@ -132,16 +160,13 @@ the service, not your data.
 6. **Union-only when syncing the run:** a partial `case_ids` list **deletes** tests and their results.
 7. **Report `ours N / live total M`** wherever you quote a case count.
 
-## §6 · WHAT THE SEEDING SESSION STILL OWES
+## §6 · WHAT IS STILL OWED — one item
 
 | # | Item | Blocks |
 |---|---|---|
-| 1 | The five ranking **signals** — open work order, open purchase order, part activity, tie-break update ordering | C55708, C55709, C55710, C55712, C55716 |
-| 2 | The **roles and reduced-permission users** for Permissions | all 12 of 6734 |
-| 3 | A real **purchase order + invoice number**, then correcting the number in the case | C55714 |
-| 4 | The **second organisation** — it exists (`ZZAUTOTEST Second Org Ltd`) but is not reachable yet | C44880 |
+| 1 | The **second organisation's session**. `ZZAUTOTEST Second Org Ltd` exists and is visible, but working inside it needs its own sign-in, which the QA lead is supplying. | **C44880 only** |
 
----
+Everything else the three folders need is seeded, and both verifiers pass on this build.
 
 ## §7 · THE TOKEN-DISCIPLINE CHARTER — EMBEDDED VERBATIM, BINDING FROM YOUR FIRST TURN
 
