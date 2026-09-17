@@ -194,3 +194,17 @@ Appended correctly; nothing shifted.
   target_work_order_id}`; I did not exercise it, so I am not asserting what it does or does not write.
 * Only **one** cored part exists on this branch and it had zero stock, so Test D required a cycle
   count to give it stock first.
+
+---
+
+## Posted
+
+Pre-post gate at 05:08Z: both build markers re-read live and identical to the start of the pass
+(branch `v26.36.7-e72f63d` etag `c494fce9…`, production `v26.36.7-cf5012e` etag `b5f3b483…`);
+ticket re-read — still TESTING QA, priority Medium, 5 comments, nothing new to react to.
+
+Comment **76697** on SV-9304. Read back in ADF: first line `OVERALL QA STATUS: PASSED`,
+11 table rows, 3 media nodes all `type: file` (real Jira attachments, not external links).
+
+The comment states plainly that the split case and `POST /api/part-sales/move` were not exercised,
+and why.
