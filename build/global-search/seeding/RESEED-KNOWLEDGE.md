@@ -25,16 +25,26 @@ that is perfectly healthy.
 
 ## 1 · THE SEVEN STEPS, AND WHY THE ORDER IS NOT ARBITRARY
 
-| # | Step | Why it must be here |
-|---|---|---|
-| 1 | `seed.py --check` | measure; writes nothing |
-| 2 | `seed.py --confirm` | the 39 records + field verification |
-| 3 | `set_wo_statuses.py --confirm` | you cannot set a status on a work order that does not exist |
-| 4 | `seed_po_and_invoices.py --confirm` | consumes work orders; needs them out of `estimate` |
-| 5 | `complete_and_invoice.py --confirm` | takes the **leftover** estimate work orders, so 4 must claim its own first |
-| 6 | `seed_roles.py --confirm` | independent of records, but before the verifier so one run proves everything |
-| 7 | `touch_recent_entities.py --confirm` | needs the records to exist; fills the recent list with one of each type |
-| 8 | the verifier | **39** identity/count/negative checks + reachability + the seven status badges |
+**On an intact branch a full reseed is ~2 minutes and 165 API calls.** It is dominated by network
+latency, not by our code — the same run varies between 112 and 173 seconds on this branch — so the
+honest measure of "did I make it faster?" is **calls**, not seconds. There is a call counter built in:
+`SEED_COUNT_CALLS=1 python3 <step>` prints `__API_CALLS__ n` to stderr on exit.
+
+| # | Step | Calls | Why it must be here |
+|---|---|---|---|
+| 1 | `seed.py --confirm` | 89 | the 39 records + field verification. **`--confirm` IS find-or-create — it measures before it creates, so there is no separate `--check` step.** `--check` still exists for a preview that writes nothing |
+| 2 | `set_wo_statuses.py --confirm` | **1** | you cannot set a status on a work order that does not exist. On the happy path ONE search proves the whole spread — and the search is what the tester sees, where 22 work-order reads only prove what the database holds. `--force` re-walks anyway |
+| 3 | `seed_po_and_invoices.py --confirm` | 13 | consumes work orders; needs them out of `estimate` |
+| 4 | `complete_and_invoice.py --confirm` | **2** | takes the **leftover** estimate work orders, so 3 must claim its own first. Verifies the two it recorded rather than re-reading all 18 |
+| 5 | `seed_roles.py --confirm` | 5 | independent of records, but before the verifier so one run proves everything. `--summary` adds the per-role entity table |
+| 6 | `touch_recent_entities.py --confirm` | 12 | needs the records to exist. ONE search feeds all eight types |
+| 7 | the verifier | 43 | **39** identity/count/negative checks + reachability + the seven status badges |
+
+🔴 **THE VERIFIER AND THE SEEDER BOTH RETRY A DROPPED CONNECTION, AND THAT IS NOT LAZINESS.** Three
+separate runs were failed by a transient `HTTP ERR` on data that was perfectly fine. **A verifier
+that cries wolf is worse than no verifier**, because the next real red gets shrugged off. A real HTTP
+*status* is still reported instantly — that is the product answering, and it is exactly what we are
+here to catch. Only the transport layer is retried.
 
 ---
 

@@ -87,6 +87,7 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 
 | P-number | id | customer | status |
 |---|---|---|---|
+| P9160-258 | 87cff77c-48fd-477a-89b1-2e5b1d23fcde | ZZAUTOTEST Fibridge Commercial | estimate |
 
 ### Purchase orders (on the Fibridge vendor)
 

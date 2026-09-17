@@ -244,6 +244,25 @@ exists" is not "the search returns it".
 **The QA lead's instruction, 2026-09-17: this session runs the tests and files a ticket for every
 defect found — and 🔴 CHECKS EACH OF MY FINDINGS AGAIN BEFORE TRUSTING IT.**
 
+### 🔴 FILE THEM UNDER YOUR OWN SESSION'S RULES — not under mine, and not under this handoff's
+
+The QA lead was explicit: **ticket creation follows the rules of the session that does it.** This
+handoff tells you *what was observed*; it does not tell you how or when to file, and you must not
+treat it as authority to skip a gate. **Go and read the rules in their files before you file anything**
+— the one-line reminders below are locators, not the rules (`CLAUDE.md` says so of itself).
+
+| Before you file | Where the rule lives |
+|---|---|
+| **Is filing even permitted right now?** Permission is **PER ASK** — an earlier batch approval never covers a later ticket, and a finding being real and obviously worth filing **is not permission**. Check whether a creation hold is active and whether it has been lifted. | Rule **62**, and Rule **73** on what a lifted hold actually authorises |
+| **Has it passed the admissibility gate?** A lane's output is *approved candidates*, not filed tickets. | Rule **94** |
+| **Have you reconciled the case's expected result against the LIVE source first?** | Rule **106** |
+| **Is it API-related?** Then ask every time, even inside an approved batch. | Rule **51** |
+| **The ticket's shape:** `Story Defect` · parent = **the owning story** (an Epic parent is rejected) · priority **Medium** (**never High**) · also link the owning story *relates to* · no Product Area. Never convert someone else's ticket. | Rules **52**, **53** |
+| **Evidence standard:** attribution, identity, provenance — and search Jira for an existing ticket before reporting any loss. | Rule **110** (parity file) / the equivalent in your own sequence |
+
+**If your rules and this handoff ever disagree, your rules win** — and surface the conflict rather
+than resolving it silently (Rule **63**).
+
 I am a different session with no more authority than you. Everything below was measured on
 `v26.36.7-29ca209` and could be stale, environment-specific, or simply wrong — one finding in this
 project was already withdrawn after a vendor's *email* was mistaken for its *website*, and four true
