@@ -15,6 +15,8 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | cust_toboro | ZZAUTOTEST Toboro Industries | c49c533a-f971-447d-9443-1ab3a1b96a98 | (264) 555-0153 | 3300 Toboro Bend |
 | cust_deshawn_named | ZZAUTOTEST Deshawn Freight Lines | 97407eac-dd5b-490f-8ba6-4da45706e82c | (264) 555-0154 | 88 Deshawn Crossing |
 | cust_bryan_smith | ZZAUTOTEST Bryan Smith Hauling | 85a34911-7c02-43cc-bf2c-8fabbb283a00 | (264) 555-0155 | 51 Smithfield Row |
+| cust_adale | ZZAUTOTEST Adale Transport | 4dd65c19-578f-4c26-b4c2-8bc322508694 | (264) 555-0157 | 12 Adale Way |
+| cust_fisquare | ZZAUTOTEST Fisquare Farms | bd12e3c6-bc59-4def-837e-e22557d01679 | (264) 555-0158 | 7 Fisquare Lane |
 
 ### Contacts (people AT a customer company)
 
@@ -24,6 +26,7 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | contact_logistics | Ama Boateng | 48fe770d-fea7-4e5d-8f7a-484a83d1e3dc | Dispatcher | (264) 555-0144 | ama@fibridge-logistics.test |
 | contact_retail | Iris Vandenberg | 99ad42e1-5c9d-4864-89ce-e9162ec71ff1 | Owner | (264) 555-0146 | iris@fibridge-retail.test |
 | contact_bryan | Bryan Smith | 6dce31c5-a9b9-4d1f-97b9-3437b634b0dd | Owner | (264) 555-0156 | bryan@bryansmithhauling.test |
+| contact_fisquare | Nadia Fisquare | a4e8968c-b5a6-420a-9075-3ccd34a5b148 | Owner | (264) 555-0159 | nadia@fisquare-farms.test |
 
 ### Assets
 
@@ -36,6 +39,7 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | asset_fib_5 | 2023 MACK ANTHEM | 22e0ab6f-afe2-410b-ae8e-9cf3d6a554ee | TRK 415 | 1M1AN07Y5PM441080 |
 | asset_fib_6 | 2024 INTERNATIONAL LT625 | c4bbb818-d465-4701-bee3-c655ba43af09 | TRK 416 | 3HSDJAPR5RN441081 |
 | asset_m2_bryan | 2025 Freightliner M2 | 701d1146-0ac8-4137-9965-c90516cd5e62 | BSH 001 | 1FVACWDT5SH441082 |
+| asset_fisquare | 2024 Freightliner M2 | 7cc78216-98d8-4124-985c-2e744a69ec65 | FSQ 001 | 1FVACWDT5RH441083 |
 
 ### Vendor
 
@@ -74,7 +78,7 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | work_orders_fib_main | S-904 | a9503872-5283-4b08-86b7-05fdf103c953 | Estimate | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-905 | b1fe9c52-2392-4626-a1dd-a2b3d1420aa3 | Estimate | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-906 | 39441b10-b9bb-44ed-bd43-0c5c7f192578 | Estimate | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-907 | f2461bb0-3da8-484e-99ba-53a1329c2dab | Estimate | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-907 | f2461bb0-3da8-484e-99ba-53a1329c2dab | Approved | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_nounit | S-885 | 00c7fc8e-cea2-4228-883c-72bc92593bdd | Approved | ZZAUTOTEST Fibridge Logistics |
 | work_orders_fib_nounit | S-886 | 2effee23-b4ce-4cc1-ba1f-6c693a479daf | Approved | ZZAUTOTEST Fibridge Logistics |
 | work_orders_fib_nounit | S-887 | fc1daf7e-d97e-4488-9fb2-9191175682c0 | Estimate | ZZAUTOTEST Fibridge Logistics |
@@ -90,12 +94,12 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 
 | number | id | status | total |
 |---|---|---|---|
-| S-889 | 3ab236da-aca4-449c-a2b9-53d450c770cb | ordered | 240 |
 
 ### Vendor invoices (a delivery IS the vendor invoice)
 
 | invoice number | id | from PO | total |
 |---|---|---|---|
+| 82132 | d4e5bd0f-b691-41b1-9117-fcb824f1f7a5 | S-889 | 748.80 |
 | ZZT-INV-3 | 1f58c69b-0920-43a9-ad20-ff115eca7192 | I-33 | 90.00 |
 | ZZT-INV-2 | f5543047-8bba-46fd-8012-6c5c9f75dfb9 | I-32 | 100.00 |
 | ZZT-INV-1 | a659d1f3-50d6-403e-b577-b48512f7545c | I-31 | 90.00 |

@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-16T203010Z",
+ "when_utc": "2026-09-17T045321Z",
  "environment": {
   "app": "sv9160.qa.shopview.com",
   "api": "sv9160api.qa.shopview.com",
@@ -36,6 +36,7 @@
   "cpart_fib_5": "b2087a75-2134-4cf3-af92-613446fe4b3f",
   "part_instock": "613af7a3-de62-4c28-b264-907fb6c1a9b5",
   "part_low": "0fd577b1-d57b-4806-b5a3-068c247dde03",
+  "part_out": "10fe3707-db86-4154-b9d2-8bf6bee0b47a",
   "part_65547": "71fa1674-ab85-4459-bb5c-30c1ca8e1d73",
   "work_orders_fib_main": [
    "2e2d8a27-b7a8-493e-878a-e8757c652ac2",
@@ -64,7 +65,16 @@
    "fc1daf7e-d97e-4488-9fb2-9191175682c0",
    "993f7d68-da9b-4a0f-b646-aef103fe6d33"
   ],
-  "part_sale_fib": "07e852ef-cf58-432f-92b3-30bf47316beb"
+  "part_sale_fib": "07e852ef-cf58-432f-92b3-30bf47316beb",
+  "cust_adale": "4dd65c19-578f-4c26-b4c2-8bc322508694",
+  "cust_fisquare": "bd12e3c6-bc59-4def-837e-e22557d01679",
+  "contact_fisquare": "a4e8968c-b5a6-420a-9075-3ccd34a5b148",
+  "asset_fisquare": "7cc78216-98d8-4124-985c-2e744a69ec65",
+  "work_orders_fisquare": [
+   "90dc3ed3-fa9c-426c-bbb2-10423e55a007",
+   "d7c4c21c-dd99-4866-9af8-5437a6425190"
+  ],
+  "vendor_report_beverages": "17e773f4-9ac2-4022-a065-b1212e8e4878"
  },
  "records": [
   {
@@ -645,8 +655,13 @@
   },
   {
    "key": "part_out",
-   "state": "UNVERIFIED",
-   "reason": "PROBE BROKEN - /api/inventory/parts answered ERR",
+   "state": "PRESENT",
+   "ids": [
+    "10fe3707-db86-4154-b9d2-8bf6bee0b47a"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     44834,
     44852,
@@ -746,6 +761,127 @@
     44815,
     44830,
     44814
+   ]
+  },
+  {
+   "key": "cust_adale",
+   "state": "PRESENT",
+   "ids": [
+    "4dd65c19-578f-4c26-b4c2-8bc322508694"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code",
+    "telephone"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    44868
+   ]
+  },
+  {
+   "key": "cust_fisquare",
+   "state": "PRESENT",
+   "ids": [
+    "bd12e3c6-bc59-4def-837e-e22557d01679"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code",
+    "telephone"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    44866,
+    44858,
+    44859
+   ]
+  },
+  {
+   "key": "contact_fisquare",
+   "state": "PRESENT",
+   "ids": [
+    "a4e8968c-b5a6-420a-9075-3ccd34a5b148"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": []
+  },
+  {
+   "key": "asset_fisquare",
+   "state": "PRESENT",
+   "ids": [
+    "7cc78216-98d8-4124-985c-2e744a69ec65"
+   ],
+   "fields_ok": [
+    "maker_name",
+    "model_name",
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    44866
+   ]
+  },
+  {
+   "key": "work_orders_fisquare",
+   "state": "PRESENT",
+   "ids": [
+    "90dc3ed3-fa9c-426c-bbb2-10423e55a007",
+    "d7c4c21c-dd99-4866-9af8-5437a6425190"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    44866,
+    44858,
+    44859
+   ]
+  },
+  {
+   "key": "vendor_report_beverages",
+   "state": "PRESENT",
+   "ids": [
+    "17e773f4-9ac2-4022-a065-b1212e8e4878"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    44870
    ]
   }
  ],

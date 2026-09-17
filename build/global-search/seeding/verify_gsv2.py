@@ -65,9 +65,18 @@ CHECKS = [
  ('contact-vs-name ranking', 'Deshawn', 'ZZAUTOTEST Deshawn Freight Lines', 'customers', '45139'),
  ('part number exact',       '65547', '65547',                        'parts', '44846'),
  ('part sale P-number',      'P2-58', 'P2-58',                        'part_sales', '44836 44849'),
- ('WO number, exact',        'S2-15440', 'S2-15440',                  None, '44843 44850'),
- ('WO number, no dash',      'S215440', 'S2-15440',                   None, '44843'),
- ('WO number, space',        'S2 15440', 'S2-15440',                  None, '44843'),
+ # 🔴 THESE MUST MATCH WHAT THE CASES ACTUALLY SAY. They tested S2-15440 while C44843/C44847/C44850
+ # had been corrected to S2-15430 - and they PASSED, because S2-15440 is in the index. The verifier
+ # was proving the wrong thing, confidently. Rule 112 applies to our own tooling too: check against
+ # the case body, not against what you remember writing.
+ ('WO number, exact',        'S2-15430', 'S2-15430',                  None, '44843 44850'),
+ ('WO number, no dash',      'S215430', 'S2-15430',                   None, '44843'),
+ ('WO number, space',        'S2 15430', 'S2-15430',                  None, '44843'),
+ # the quick-actions examples (6774): named in the case bodies, absent from the branch until seeded
+ ('quick actions: customer',  'Adale Transport',  'ZZAUTOTEST Adale Transport',  'customers',   '44868'),
+ ('quick actions: work order','Fisquare Farms',   'ZZAUTOTEST Fisquare Farms',   'work_orders', '44866 44858 44859'),
+ ('quick actions: vendor',    'Report Beverages', 'ZZAUTOTEST Report Beverages', 'vendors',     '44870'),
+ ('quick actions: part',      'Rear Shock',       'Rear Shock',                  'parts',       '44869 44871'),
 ]
 
 # (label, query, group, predicate on the total, cases)
@@ -82,8 +91,8 @@ COUNTS = [
 # a query that must return NOTHING — the negative half of a pair is a check too
 NEGATIVES = [
  ('no such part sale', 'P2-59', 'part_sales', '44849'),
- ('no such work order', 'S2-15441', 'work_orders', '44847'),
- ('no such work order', 'S2-15450', 'work_orders', '44847'),
+ ('no such work order', 'S2-15431', 'work_orders', '44847'),
+ ('no such work order', 'S2-15432', 'work_orders', '44847'),
  ('matches nothing at all', 'S1- 56438', None, '44864'),
 ]
 
@@ -121,6 +130,16 @@ def main():
         mark = '✅' if ok(n) else '🔴'
         print(f'  {mark} {label:40} {gtype:17} = {n:3}  [C{cases.replace(" ", ", C")}]')
         if not ok(n): bad.append((label, q, f'total={n}'))
+
+    print('\n=== REACHABILITY — the pinned record must OPEN, not merely be indexed ===')
+    d, _ = search('S2-15430')
+    p = (d or {}).get('pinned') or {}
+    v = call(f"/api/work-orders/view/{p.get('id')}") if p.get('id') else {'status': 'NO PINNED ROW'}
+    ok = v.get('status') == 200
+    print(f"  {'✅' if ok else '🔴'} S2-15430 opens at this workplace -> HTTP {v.get('status')}")
+    if not ok:
+        bad.append(('reachability', 'S2-15430', f"view HTTP {v.get('status')} - the search index is "
+                    "organisation-scoped but the record is workplace-scoped"))
 
     print('\n=== STATUS BADGE COLOURS — all seven on one term (C44838) ===')
     want = {'approved', 'estimate', 'in_progress', 'ready_for_review', 'complete', 'declined', 'invoiced'}

@@ -54,13 +54,14 @@ step () {                       # step <label> <command...>
   fi
 }
 
-step "1/7  measure — writes nothing"              python3 seed.py --check
-step "2/7  create the 33 records, verify fields"  python3 seed.py --confirm
-step "3/7  spread the work-order statuses"        python3 set_wo_statuses.py --confirm
-step "4/7  purchase orders, invoices, payments"   python3 seed_po_and_invoices.py --confirm
-step "5/7  drive two WOs to Complete + Invoiced"  python3 complete_and_invoice.py --confirm
-step "6/7  role fixtures for section 6734"        python3 seed_roles.py --confirm
-step "7/7  PROVE IT — $VERIFIER"                  python3 "$VERIFIER"
+step "1/8  measure — writes nothing"              python3 seed.py --check
+step "2/8  create the 39 records, verify fields"  python3 seed.py --confirm
+step "3/8  spread the work-order statuses"        python3 set_wo_statuses.py --confirm
+step "4/8  purchase orders, invoices, payments"   python3 seed_po_and_invoices.py --confirm
+step "5/8  drive two WOs to Complete + Invoiced"  python3 complete_and_invoice.py --confirm
+step "6/8  role fixtures for section 6734"        python3 seed_roles.py --confirm
+step "7/8  fill the recent-activity list"         python3 touch_recent_entities.py --confirm
+step "8/8  PROVE IT — $VERIFIER"                  python3 "$VERIFIER"
 
 echo; echo "---- writing the record inventory"
 python3 dump_seed_manifest.py > "SEED-MANIFEST-GS-V2-${SUFFIX}.md" \

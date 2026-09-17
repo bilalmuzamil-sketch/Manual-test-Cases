@@ -129,9 +129,10 @@ cannot satisfy one, the case is **Blocked with the reason**, never Failed (Rule 
 
 | Cases | What is missing | What to do |
 |---|---|---|
-| **6774, all 8** (C44866–C44873) | **The hover quick-actions feature is not on the build** (epic SV-9173 deferred). Confirmed absent again 2026-09-16. | Leave **parked / Not available on Build**. No seed makes them runnable. Do not investigate again — this is recorded so nobody re-derives it. |
+| **6774, all 8** (C44866–C44873) | **The FEATURE is not on the build** (epic SV-9173 deferred). | Leave **parked / Not available on Build** — but **the DATA is seeded and verified**, so they run the day it ships. 🔴 Reading the case bodies rather than the handoff summary found **three named examples that existed nowhere on the branch** — `Adale Transport`, `Fisquare Farms`, `Report Beverages`. All three are seeded now and the verifier checks them. |
 | **C44880** | a **second tenant/organisation** | Not seedable — the branch has one organisation (two *locations*, which is not the same thing). **Blocked, infra.** |
-| **C44857, C44858, C44859, C45128, C45135** (6728) | recent activity in the **Yesterday / past-week / past-30-day** buckets | Per-user and time-based. "Today" you generate live by opening records. The older buckets cannot be produced by opening records now. **Test what you can, Block the rest with the reason.** |
+| **C44857, C45128** (6728) | the **Yesterday / past-week / past-30-day** buckets | `recent-entities/touch` records *"just now"* and takes no timestamp, so those buckets cannot be manufactured — they fill in as the branch is used. **Test what you can, Block the rest with the reason.** |
+| ~~**C44858, C44859**~~ | **✅ RUNNABLE** | The recent list is pre-filled with **one record of every one of the eight types**, all in Today. 🔴 It is **per user** — if you sign in as somebody else it starts empty (which is itself C44855's first-time-empty case). |
 | ~~**C44877–C44882** (6734)~~ | **✅ NOW RUNNABLE — see §4a** | The roles exist. Nothing blocked. |
 | **C44876** (offline), **C44829** (screen reader), **6738** (mobile), **C44897** (rollout) | tester technique | No data needed. Use a narrow window / devtools offline / a real screen reader. |
 | **C44855** | a user with **no** recent activity | Use a fresh profile or a private window. |

@@ -1716,6 +1716,286 @@
     "company_id",
     "vehicle_id"
    ]
+  },
+  {
+   "key": "cust_adale",
+   "type": "Customer",
+   "serves": [
+    44868
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZAUTOTEST Adale Transport",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZAUTOTEST Adale Transport",
+     "address": "12 Adale Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-3006",
+     "phone": "(264) 555-0157",
+     "country_code": "US"
+    }
+   },
+   "patch": {
+    "endpoint": "/api/customers/change",
+    "fields": {
+     "telephone": "(264) 555-0157",
+     "state_or_province": "Ohio"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "skip_verify": [
+    "tags"
+   ],
+   "_why": "C44868 says: type a term that returns at least one Customer, 'for example Adale Transport'. Nothing on the branch matched it (measured 2026-09-17: the query returned nothing at all)."
+  },
+  {
+   "key": "cust_fisquare",
+   "type": "Customer",
+   "serves": [
+    44866,
+    44858,
+    44859
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZAUTOTEST Fisquare Farms",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZAUTOTEST Fisquare Farms",
+     "address": "7 Fisquare Lane",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-3007",
+     "phone": "(264) 555-0158",
+     "country_code": "US"
+    }
+   },
+   "patch": {
+    "endpoint": "/api/customers/change",
+    "fields": {
+     "telephone": "(264) 555-0158",
+     "state_or_province": "Ohio"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "skip_verify": [
+    "tags"
+   ],
+   "_why": "C44866 names 'S1-644 Fisquare Farms' as its example work order, and C44858/C44859 use the same brand in their example rows. The BRAND is seedable and the work-order NUMBER is not, so this customer plus its work orders make the example term return something real."
+  },
+  {
+   "key": "contact_fisquare",
+   "type": "Contact (a PERSON at a customer company)",
+   "depends_on": "cust_fisquare",
+   "serves": [],
+   "find": {
+    "mode": "child",
+    "parent": "cust_fisquare",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Nadia"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Nadia",
+     "last_name": "Fisquare",
+     "title": "Owner",
+     "telephone": "(264) 555-0159",
+     "email": "nadia@fisquare-farms.test"
+    },
+    "inject": {
+     "company_id": "cust_fisquare"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "read_as": {}
+  },
+  {
+   "key": "asset_fisquare",
+   "type": "Vehicle",
+   "depends_on": "cust_fisquare",
+   "serves": [
+    44866
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "1FVACWDT5RH441083",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Freightliner",
+     "model_name": "M2",
+     "year": "2024",
+     "unit": "FSQ 001",
+     "vin": "1FVACWDT5RH441083",
+     "licence_plate": "OHZZT419"
+    },
+    "inject": {
+     "company_id": "cust_fisquare",
+     "customer_id": "contact_fisquare"
+    }
+   },
+   "verify": [
+    "vin",
+    "year",
+    "licence_plate",
+    "unit"
+   ],
+   "read_as": {
+    "model_name": "vehicle_model",
+    "maker_name": "vehicle_make"
+   },
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true,
+    "id_as": {
+     "vehicle_id": "id"
+    },
+    "also": {
+     "company_id": "@cust_fisquare"
+    }
+   }
+  },
+  {
+   "key": "work_orders_fisquare",
+   "type": "WorkOrder",
+   "count": 2,
+   "depends_on": "cust_fisquare",
+   "serves": [
+    44866,
+    44858,
+    44859
+   ],
+   "_why": "C44866 needs a term that returns at least one Work Order and names Fisquare Farms as the example. Two work orders make the brand answer in the Work orders group.",
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": []
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "cust_fisquare",
+     "vehicle_id": "asset_fisquare",
+     "customer_id": "contact_fisquare"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 2
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ]
+  },
+  {
+   "key": "vendor_report_beverages",
+   "type": "Vendor",
+   "unique": true,
+   "serves": [
+    44870
+   ],
+   "_why": "C44870 says: type a term that returns a Vendor result, 'for example Report Beverages'. Nothing on the branch matched it (measured 2026-09-17). One vendor removes the dead end.",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZAUTOTEST Report Beverages",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZAUTOTEST Report Beverages",
+     "address_1": "400 Report Row",
+     "city": "Marnston",
+     "state_or_province": "Ohio",
+     "postal_code": "43055-4200",
+     "telephone": "(264) 555-0161",
+     "email": "orders@report-beverages.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve": {
+     "tax_id": "/api/taxes"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "email",
+    "credit_term"
+   ],
+   "read_as": {},
+   "skip_verify": [
+    "credit_limit",
+    "tax_id"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/change-vendor",
+    "whole_record": true,
+    "id_as": {
+     "vendor_id": "id"
+    }
+   }
   }
  ]
 }
