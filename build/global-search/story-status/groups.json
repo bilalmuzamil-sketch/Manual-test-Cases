@@ -1,0 +1,321 @@
+{
+ "CLEAN": [
+  {
+   "key": "SV-9161",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "[Spike \u2014 resolved] Search infrastructure decision \u2014 residual: commit the ADR",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9162",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "BE \u2014 GET /api/search: query-parameterised, scoped, grouped and ranked search endpoint",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9166",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "BE \u2014 Recent-entities API: record and serve the user's recently-viewed records",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9172",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "FE \u2014 Recent searches grouped by time interval, and persisting the last query",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9313",
+   "status": "TESTING QA",
+   "type": "Task",
+   "summary": "Verify Phase 6 \u2014 FE old-path removal & copy",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  }
+ ],
+ "HAS DEFECTS": [
+  {
+   "key": "SV-9163",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "BE \u2014 Search index: backfill and incremental maintenance for all nine entity types",
+   "n_total": 13,
+   "not_fixed": [
+    "SV-10001",
+    "SV-10199"
+   ],
+   "fixed_unver": [
+    "SV-10008"
+   ],
+   "verified": 9,
+   "obsolete": 1
+  },
+  {
+   "key": "SV-9164",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "BE \u2014 Matching pipeline: query normalisation, identifier parsing and fuzzy matching",
+   "n_total": 4,
+   "not_fixed": [
+    "SV-10025",
+    "SV-10055",
+    "SV-10060"
+   ],
+   "fixed_unver": [],
+   "verified": 1,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9165",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "BE \u2014 Ranking engine: per-entity scoring, cross-entity ordering and contextual bias",
+   "n_total": 2,
+   "not_fixed": [
+    "SV-10161",
+    "SV-10188"
+   ],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9168",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "FE \u2014 Global search modal shell: \u2318K trigger, five states and focus management",
+   "n_total": 3,
+   "not_fixed": [
+    "SV-10068",
+    "SV-10181"
+   ],
+   "fixed_unver": [],
+   "verified": 1,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9170",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "FE \u2014 Entity result rows: shared base row, nine variants, badges and match highlighting",
+   "n_total": 3,
+   "not_fixed": [
+    "SV-10163",
+    "SV-10178",
+    "SV-10186"
+   ],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9171",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "FE \u2014 Keyboard navigation and WCAG 2.1 AA accessibility for the search modal",
+   "n_total": 1,
+   "not_fixed": [
+    "SV-10061"
+   ],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9174",
+   "status": "Ready for QA",
+   "type": "Story",
+   "summary": "FE \u2014 Integration: wire the modal to /api/search with debounce, error handling and page-context",
+   "n_total": 1,
+   "not_fixed": [
+    "SV-10159"
+   ],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  }
+ ],
+ "OBSOLETE": [
+  {
+   "key": "SV-9167",
+   "status": "OBSOLETE",
+   "type": "Story",
+   "summary": "Search telemetry: search_event schema plus impression and click logging",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9169",
+   "status": "OBSOLETE",
+   "type": "Story",
+   "summary": "FE \u2014 Scope tab strip with live counts, grouped results, and scoped-tab load-more",
+   "n_total": 5,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 5,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9173",
+   "status": "OBSOLETE",
+   "type": "Story",
+   "summary": "FE \u2014 Contextual quick actions on result rows",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9306",
+   "status": "OBSOLETE",
+   "type": "Story",
+   "summary": "BE \u2014 Page search cutover: WO / Inventory Parts / Customers list search served by the search tier",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9310",
+   "status": "OBSOLETE",
+   "type": "Task",
+   "summary": "Verify Phase 4 \u2014 search modal: states, rows, keyboard, persistence, quick actions",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  }
+ ],
+ "NOT STARTED": [
+  {
+   "key": "SV-9175",
+   "status": "Open",
+   "type": "Story",
+   "summary": "QA \u2014 Global Search v2 end-to-end test plan and E2E automation",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9176",
+   "status": "Open",
+   "type": "Story",
+   "summary": "Direct rollout (no flags) and old-path removal",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9307",
+   "status": "Board Backlog",
+   "type": "Task",
+   "summary": "Verify Phase 1 \u2014 OpenSearch infrastructure & search framework core",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9308",
+   "status": "Board Backlog",
+   "type": "Task",
+   "summary": "Verify Phase 2 \u2014 indexing pipeline, backfill & staleness",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9309",
+   "status": "Board Backlog",
+   "type": "Task",
+   "summary": "Verify Phase 3 \u2014 /api/search matching, ranking, permissions, recents",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9311",
+   "status": "Board Backlog",
+   "type": "Task",
+   "summary": "Verify Phase 5 \u2014 page-search cutover parity (WO / Parts / Customers)",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9312",
+   "status": "Board Backlog",
+   "type": "Task",
+   "summary": "Verify Phase 6 \u2014 rollout & BE old-path removal",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  },
+  {
+   "key": "SV-9594",
+   "status": "Open",
+   "type": "Story",
+   "summary": "Show unit number and vehicle on Schedule work orders",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  }
+ ],
+ "DONE": [
+  {
+   "key": "SV-10031",
+   "status": "QA Complete",
+   "type": "Bug",
+   "summary": "Part Sales: a new part sale is created but the app cannot open it, and shows two errors",
+   "n_total": 0,
+   "not_fixed": [],
+   "fixed_unver": [],
+   "verified": 0,
+   "obsolete": 0
+  }
+ ]
+}

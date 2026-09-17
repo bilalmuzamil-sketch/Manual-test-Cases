@@ -1,0 +1,396 @@
+<title>Global Search v2 Readiness</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root{
+    --paper:#F6F5F2; --surface:#FFFFFF; --sunk:#F0EEEA;
+    --ink:#1A1E23; --muted:#5C6570; --faint:#8A929C; --line:#E3E0DA; --line-soft:#EDEAE4;
+    --accent:#1F4E79; --accent-soft:#E7EEF5;
+    --good:#186E3A; --good-soft:#E4F1E8;
+    --warn:#A75B08; --warn-soft:#FAEDDF;
+    --bad:#A81C1C; --bad-soft:#F8E6E6;
+    --slate:#5F6875; --slate-soft:#EAEBED;
+    --shadow:0 1px 2px rgba(26,30,35,.06), 0 1px 12px rgba(26,30,35,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14171A; --surface:#1B1F23; --sunk:#22262B;
+      --ink:#ECEEF0; --muted:#A3ACB6; --faint:#79828D; --line:#2C3238; --line-soft:#262B31;
+      --accent:#7FB2DE; --accent-soft:#1A2B3A;
+      --good:#6DC48C; --good-soft:#16281D;
+      --warn:#E0A464; --warn-soft:#2C2015;
+      --bad:#E88A8A; --bad-soft:#2E1A1A;
+      --slate:#9AA3AE; --slate-soft:#23282E;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 1px 12px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14171A; --surface:#1B1F23; --sunk:#22262B;
+    --ink:#ECEEF0; --muted:#A3ACB6; --faint:#79828D; --line:#2C3238; --line-soft:#262B31;
+    --accent:#7FB2DE; --accent-soft:#1A2B3A;
+    --good:#6DC48C; --good-soft:#16281D;
+    --warn:#E0A464; --warn-soft:#2C2015;
+    --bad:#E88A8A; --bad-soft:#2E1A1A;
+    --slate:#9AA3AE; --slate-soft:#23282E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 1px 12px rgba(0,0,0,.25);
+  }
+
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size:16px; line-height:1.55; margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:940px; margin:0 auto; padding-block:40px 72px; padding-left:20px; padding-right:20px; }
+
+  h1,h2,h3,.lbl,.num{ font-family:"Archivo", ui-sans-serif, system-ui, sans-serif; }
+  h1{ font-size:clamp(28px,5vw,40px); line-height:1.1; font-weight:700; letter-spacing:-.02em; margin:0 0 10px; text-wrap:balance; }
+  h2{ font-size:clamp(19px,3vw,23px); font-weight:650; letter-spacing:-.01em; margin:0; text-wrap:balance; }
+  h3{ font-size:16px; font-weight:600; margin:0; }
+  p{ margin:0 0 14px; max-width:68ch; }
+  .lede{ font-size:18px; color:var(--muted); max-width:64ch; margin-bottom:0; }
+
+  .lbl{ font-size:11.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--faint); }
+  .num{ font-variant-numeric:tabular-nums; }
+
+  header.masthead{ border-bottom:2px solid var(--ink); padding-bottom:22px; margin-bottom:28px; }
+  .meta{ display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:16px; }
+  .meta span{ font-size:13px; color:var(--muted); }
+  .meta b{ color:var(--ink); font-weight:600; }
+
+  .verdict{
+    background:var(--surface); border:1px solid var(--line); border-left:5px solid var(--accent);
+    border-radius:3px; padding:20px 22px; margin:0 0 34px; box-shadow:var(--shadow);
+  }
+  .verdict p:last-child{ margin-bottom:0; }
+  .verdict strong{ font-weight:650; }
+
+  .tiles{ display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:1px; background:var(--line);
+          border:1px solid var(--line); border-radius:3px; overflow:hidden; margin-bottom:40px; }
+  .tile{ background:var(--surface); padding:16px 16px 14px; }
+  .tile .v{ font-family:"Archivo",sans-serif; font-size:30px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
+  .tile .k{ font-size:13px; color:var(--muted); margin-top:6px; line-height:1.35; }
+  .tile.g .v{ color:var(--good); } .tile.b .v{ color:var(--bad); }
+  .tile.w .v{ color:var(--warn); } .tile.s .v{ color:var(--slate); }
+
+  section{ margin-bottom:44px; }
+  .sechead{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+  .count{ font-family:"Archivo",sans-serif; font-size:13px; font-weight:600; font-variant-numeric:tabular-nums;
+          padding:2px 9px; border-radius:100px; }
+  .c-good{ background:var(--good-soft); color:var(--good); }
+  .c-bad{ background:var(--bad-soft); color:var(--bad); }
+  .c-warn{ background:var(--warn-soft); color:var(--warn); }
+  .c-slate{ background:var(--slate-soft); color:var(--slate); }
+  .secnote{ color:var(--muted); margin:0 0 18px; max-width:68ch; }
+
+  ul.items{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px;
+            background:var(--line-soft); border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+  ul.items > li{ background:var(--surface); padding:15px 18px; display:grid;
+                 grid-template-columns:1fr auto; gap:4px 18px; align-items:start; }
+  .title-row{ display:flex; flex-direction:column; gap:3px; min-width:0; }
+  .title-row .t{ font-weight:600; }
+  .title-row .d{ font-size:14.5px; color:var(--muted); }
+  .key{ font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12.5px; color:var(--faint); }
+  .right{ text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:5px; white-space:nowrap; }
+  .chip{ font-size:12.5px; font-weight:600; padding:2px 9px; border-radius:100px; letter-spacing:.01em; }
+  .chip.ok{ background:var(--good-soft); color:var(--good); }
+  .chip.fix{ background:var(--bad-soft); color:var(--bad); }
+  .chip.qa{ background:var(--warn-soft); color:var(--warn); }
+  .chip.off{ background:var(--slate-soft); color:var(--slate); }
+  .sub{ font-size:13px; color:var(--faint); }
+
+  .fixlist{ list-style:none; margin:8px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:6px; grid-column:1/-1; }
+  .fixlist li{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px;
+               background:var(--sunk); border:1px solid var(--line-soft); color:var(--muted);
+               padding:2px 8px; border-radius:3px; }
+  .fixlist li.flag{ background:var(--warn-soft); border-color:transparent; color:var(--warn); font-weight:600; }
+
+  .runwrap{ overflow-x:auto; border:1px solid var(--line); border-radius:3px; background:var(--surface); }
+  table{ border-collapse:collapse; width:100%; font-size:15px; }
+  th,td{ text-align:left; padding:11px 16px; border-bottom:1px solid var(--line-soft); }
+  th{ font-family:"Archivo",sans-serif; font-size:11.5px; font-weight:600; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--faint); background:var(--sunk); }
+  tr:last-child td{ border-bottom:none; }
+  td.n{ font-variant-numeric:tabular-nums; font-weight:600; text-align:right; width:1%; white-space:nowrap; }
+
+  .ask{ background:var(--accent-soft); border:1px solid var(--line); border-radius:3px; padding:20px 22px; }
+  .ask h2{ margin-bottom:10px; }
+  .ask ol{ margin:0; padding-left:20px; }
+  .ask li{ margin-bottom:8px; }
+  .ask li:last-child{ margin-bottom:0; }
+
+  footer{ margin-top:48px; padding-top:18px; border-top:1px solid var(--line); font-size:13.5px; color:var(--faint); }
+  footer p{ max-width:68ch; margin-bottom:8px; }
+
+  @media (max-width:560px){
+    ul.items > li{ grid-template-columns:1fr; }
+    .right{ align-items:flex-start; text-align:left; flex-direction:row; flex-wrap:wrap; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="lbl">ShopView &middot; Release readiness</div>
+    <h1>Global Search v2 &mdash; where we stand</h1>
+    <p class="lede">Testing is finished. Five pieces of work can be signed off today. Seven cannot, and in every one of those seven the reason is the same: faults are still open with the developers.</p>
+    <div class="meta">
+      <span>Prepared <b>17 September 2026</b></span>
+      <span>Tested on <b>the QA branch, build v26.36.7-29ca209</b></span>
+      <span>Every status read live from the tracker on the day</span>
+    </div>
+  </header>
+
+  <div class="verdict">
+    <p><strong>The short version.</strong> QA has run the entire suite &mdash; 165 checks against the build. 139 pass. Nothing is waiting on testing.</p>
+    <p><strong>What is holding the release is 14 open faults</strong>, spread across seven pieces of work. Until those are fixed, those seven cannot honestly be marked as QA complete. One further fault has already been fixed and only needs a QA check.</p>
+    <p>A further eleven checks are parked, not failed &mdash; they belong to work that has been marked obsolete, so there is nothing for them to test. Those are a decision to take, not work to do.</p>
+  </div>
+
+  <div class="tiles">
+    <div class="tile g"><div class="v num">5</div><div class="k">Ready to sign off now</div></div>
+    <div class="tile b"><div class="v num">7</div><div class="k">Held by open faults</div></div>
+    <div class="tile b"><div class="v num">14</div><div class="k">Faults with developers</div></div>
+    <div class="tile w"><div class="v num">1</div><div class="k">Fixed, needs a QA check</div></div>
+    <div class="tile s"><div class="v num">5</div><div class="k">Obsolete</div></div>
+    <div class="tile s"><div class="v num">8</div><div class="k">Not started</div></div>
+  </div>
+
+  <section>
+    <div class="sechead"><h2>Ready to be signed off</h2><span class="count c-good">5</span></div>
+    <p class="secnote">No faults are open against any of these, and every check that applies to them passes. These can move to QA complete as soon as someone marks them.</p>
+    <ul class="items">
+      <li>
+        <div class="title-row">
+          <span class="t">The search service itself &mdash; scoped and permission&#8209;aware</span>
+          <span class="d">All six permission and scoping checks pass, including the one confirming a person only ever sees their own organisation&rsquo;s records.</span>
+          <span class="key">SV-9162</span>
+        </div>
+        <div class="right"><span class="chip ok">No faults</span><span class="sub num">6 of 6 checks pass</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Recording what a person recently looked at</span>
+          <span class="d">Four of five checks pass. The fifth needs a branch that has been in use for several days so the older date headings exist &mdash; it is a data limitation, not a fault.</span>
+          <span class="key">SV-9166</span>
+        </div>
+        <div class="right"><span class="chip ok">No faults</span><span class="sub num">4 of 5 checks pass</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Keeping the last search, and grouping recent ones by time</span>
+          <span class="d">Every check on keeping the last search passes. Shares the same single data-limited check as the row above.</span>
+          <span class="key">SV-9172</span>
+        </div>
+        <div class="right"><span class="chip ok">No faults</span><span class="sub num">3 of 3 checks pass</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Removing the old search path and its wording</span>
+          <span class="d">Currently in QA. No faults have been raised against it.</span>
+          <span class="key">SV-9313</span>
+        </div>
+        <div class="right"><span class="chip ok">No faults</span><span class="sub">In QA now</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">The search infrastructure decision</span>
+          <span class="d">A resolved investigation. The only thing left is writing the decision down &mdash; there is nothing for QA to test.</span>
+          <span class="key">SV-9161</span>
+        </div>
+        <div class="right"><span class="chip ok">Nothing to test</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Held by faults the developers must fix</h2><span class="count c-bad">7</span></div>
+    <p class="secnote">These are the reason the release is not signed off. <strong>14 faults are open.</strong> Each row shows how many are still to be fixed, and the faults are listed underneath. None of these can be marked QA complete until its list is clear.</p>
+    <ul class="items">
+      <li>
+        <div class="title-row">
+          <span class="t">What each result line shows</span>
+          <span class="d">A vehicle line runs the unit number and the year together; a part-sale line shows no total price; a work order&rsquo;s status is a different colour here than everywhere else in the app.</span>
+          <span class="key">SV-9170</span>
+        </div>
+        <div class="right"><span class="chip fix">3 to fix</span></div>
+        <ul class="fixlist"><li>SV-10163</li><li>SV-10178</li><li>SV-10186</li></ul>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Matching &mdash; typos, part-words and identifiers</span>
+          <span class="d">A correctly spelled name brings back differently spelled records; a vehicle cannot be found by its year and make typed together; part of a word does not find the record. One of the three is itself blocked and cannot be worked on.</span>
+          <span class="key">SV-9164</span>
+        </div>
+        <div class="right"><span class="chip fix">3 to fix</span><span class="sub">1 of them blocked</span></div>
+        <ul class="fixlist"><li>SV-10025</li><li>SV-10055</li><li>SV-10060 &mdash; blocked</li></ul>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Making every record findable</span>
+          <span class="d">A catalogue part that has never been in stock cannot be found, and imported invoices are not searchable. Nine faults on this one have already been fixed and verified &mdash; <strong>a tenth is fixed and only needs a QA check.</strong></span>
+          <span class="key">SV-9163</span>
+        </div>
+        <div class="right"><span class="chip fix">2 to fix</span><span class="chip qa">1 needs a QA check</span><span class="sub num">9 already verified</span></div>
+        <ul class="fixlist"><li>SV-10001</li><li>SV-10199</li><li class="flag">SV-10008 &mdash; fixed, awaiting QA</li></ul>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Ranking &mdash; what comes back first</span>
+          <span class="d">A match on a contact&rsquo;s details outranks a match on the company&rsquo;s own name; a part already on a work order is not pushed down when searching from that work order.</span>
+          <span class="key">SV-9165</span>
+        </div>
+        <div class="right"><span class="chip fix">2 to fix</span></div>
+        <ul class="fixlist"><li>SV-10161</li><li>SV-10188</li></ul>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">The search box itself and its states</span>
+          <span class="d">The &ldquo;no results&rdquo; message does not name the tab the person is in. A wider round of interface fixes is in progress.</span>
+          <span class="key">SV-9168</span>
+        </div>
+        <div class="right"><span class="chip fix">2 to fix</span><span class="sub">1 in progress</span></div>
+        <ul class="fixlist"><li>SV-10181</li><li>SV-10068 &mdash; in progress</li></ul>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Keyboard use and accessibility</span>
+          <span class="d">Moving the mouse across the results changes what pressing Enter will open.</span>
+          <span class="key">SV-9171</span>
+        </div>
+        <div class="right"><span class="chip fix">1 to fix</span></div>
+        <ul class="fixlist"><li>SV-10061</li></ul>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Wiring the box to the search, errors and page context</span>
+          <span class="d">The &ldquo;Show all&rdquo; link is missing from every group heading, so a person cannot open the full list for a type.</span>
+          <span class="key">SV-9174</span>
+        </div>
+        <div class="right"><span class="chip fix">1 to fix</span></div>
+        <ul class="fixlist"><li>SV-10159</li></ul>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Marked obsolete</h2><span class="count c-slate">5</span></div>
+    <p class="secnote">These have been dropped by the team. <strong>Eleven checks are parked against them</strong> &mdash; written, ready, and with nothing to run against. Each one still appears as a requirement in the specification, so the two records disagree and someone needs to decide which is right.</p>
+    <ul class="items">
+      <li>
+        <div class="title-row">
+          <span class="t">Shortcuts on a result line</span>
+          <span class="d">Hovering a result to add a line, start a work order, or add a contact.</span>
+          <span class="key">SV-9173</span>
+        </div>
+        <div class="right"><span class="chip off">Obsolete</span><span class="sub num">8 checks parked</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">The tab strip and its counts</span>
+          <span class="d">Includes the &ldquo;Show all&rdquo; handover to a type&rsquo;s own tab. All five faults raised against it were fixed and verified before it was dropped.</span>
+          <span class="key">SV-9169</span>
+        </div>
+        <div class="right"><span class="chip off">Obsolete</span><span class="sub num">1 check parked</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Moving the page searches onto the main search</span>
+          <span class="d">The Work Orders, Parts and Customers page searches still behave differently from the main search box today. Its own verification task has not been started either.</span>
+          <span class="key">SV-9306</span>
+        </div>
+        <div class="right"><span class="chip off">Obsolete</span><span class="sub num">1 check parked</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Recording how search is used</span>
+          <span class="d">The specification agrees with the status here: it states in two places that there is none in this version.</span>
+          <span class="key">SV-9167</span>
+        </div>
+        <div class="right"><span class="chip off">Obsolete</span><span class="sub num">1 check parked</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Verification round four</span>
+          <span class="d">The verification task covering the search box, rows, keyboard and shortcuts.</span>
+          <span class="key">SV-9310</span>
+        </div>
+        <div class="right"><span class="chip off">Obsolete</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>Not started</h2><span class="count c-slate">8</span></div>
+    <p class="secnote">No work has begun on these. Five are the remaining verification rounds; the other three are the rollout, our own automation, and one item that belongs to a different feature entirely.</p>
+    <ul class="items">
+      <li>
+        <div class="title-row">
+          <span class="t">Rollout and removing the old search</span>
+          <span class="d">The switch-over itself. Nothing has started.</span>
+          <span class="key">SV-9176</span>
+        </div>
+        <div class="right"><span class="chip off">Not started</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Verification rounds one, two, three, five and six</span>
+          <span class="d">Five planned verification passes, all sitting in the backlog. Round five covers the page-search move, whose own work is obsolete.</span>
+          <span class="key">SV-9307 &middot; SV-9308 &middot; SV-9309 &middot; SV-9311 &middot; SV-9312</span>
+        </div>
+        <div class="right"><span class="chip off">Not started</span><span class="sub num">5 items</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Our own end-to-end automation</span>
+          <span class="d">The automated version of the suite. The manual suite is complete and has been run in full; this is the follow-on.</span>
+          <span class="key">SV-9175</span>
+        </div>
+        <div class="right"><span class="chip off">Not started</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Unit number and vehicle on Schedule work orders</span>
+          <span class="d">A different feature that sits under this project by accident. It is not part of search and has no checks in this suite &mdash; it needs its own.</span>
+          <span class="key">SV-9594</span>
+        </div>
+        <div class="right"><span class="chip off">Not started</span><span class="sub">Not a search item</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>What testing actually found</h2></div>
+    <p class="secnote">The full suite was run against the QA branch. Every failure below already has a fault raised against it, so each one can be tracked and re-checked the moment it is fixed.</p>
+    <div class="runwrap">
+      <table>
+        <thead><tr><th>Result</th><th>What it means</th><th>Checks</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip ok">Passed</span></td><td>Behaves as the specification requires</td><td class="n">139</td></tr>
+          <tr><td><span class="chip fix">Failed</span></td><td>A real fault &mdash; every one has a report raised and linked</td><td class="n">13</td></tr>
+          <tr><td><span class="chip off">Parked</span></td><td>Belongs to work that has been marked obsolete</td><td class="n">11</td></tr>
+          <tr><td><span class="chip qa">Held</span></td><td>Needs a branch that has been in use for several days</td><td class="n">1</td></tr>
+          <tr><td><span class="chip off">Not run</span></td><td>Outside this release by the specification&rsquo;s own wording</td><td class="n">1</td></tr>
+          <tr><td colspan="2"><strong>Total</strong></td><td class="n">165</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="ask">
+    <h2>What would move this forward</h2>
+    <ol>
+      <li><strong>Fix the 14 open faults.</strong> They are the only thing standing between seven pieces of work and QA sign-off. Three of them sit on the result lines alone.</li>
+      <li><strong>Unblock the one blocked fault</strong> in the matching work &mdash; it cannot be picked up as things stand.</li>
+      <li><strong>Decide on the five obsolete items.</strong> Their requirements are still written in the specification and still written into eleven checks. Either the work returns, or the requirements are withdrawn and the checks retired.</li>
+      <li><strong>Mark the five clear items as QA complete</strong> so the remaining picture is honest and small.</li>
+      <li><strong>Move the Schedule item out of this project</strong> &mdash; it is not part of search and it makes this project look less finished than it is.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>Every figure here was read live from the tracker and from the test run on 17 September 2026, not carried over from an earlier note. The test run is 165 checks on the Global Search v2 QA branch at build v26.36.7-29ca209.</p>
+    <p>Prepared by QA. Fault references are given so each item can be opened directly.</p>
+  </footer>
+
+</div>
