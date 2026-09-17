@@ -2894,3 +2894,20 @@ was issued against.
 **The general lesson, which is the part worth keeping:** when a recorded fact rules out the cause I
 am actually looking at, I should re-read the exact words before trusting the paraphrase I have in my
 head. "Never rotates" was precise and correct; the failure was mine for widening it.
+
+
+## L0142 — THE 20 IS PER SECTION, NOT A CEILING ON THE WHOLE BOX (2026-09-17)
+
+C53476 reads *"no count anywhere in the modal reads higher than 20"*, and the All tab shows 44 (the
+sum of eight capped sections). I recorded that as a failure. **The QA lead settled it: the cap is
+PER SECTION.** Each type is correctly capped at twenty; All adding them up is right, and the case's
+word "anywhere" is our wording being too broad, not the product being wrong.
+
+**This is Rule 106's third outcome and it is the one that is easy to miss:** the case disagreed with
+the source, the build matched the source, and I was one approval away from filing a defect against
+correct behaviour. The discriminator I did have and did use was refusing to file without asking —
+had I filed on my own judgement the developers would have been sent to look at working code.
+
+**What I should have done earlier:** flagged the wording as a candidate case-defect when I first saw
+that every per-type count WAS capped correctly. A failure where the specific mechanism plainly works
+and only a general phrase is violated is a signal that the phrase is wrong, not the product.
