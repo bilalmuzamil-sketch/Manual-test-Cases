@@ -208,3 +208,31 @@ Comment **76697** on SV-9304. Read back in ADF: first line `OVERALL QA STATUS: P
 
 The comment states plainly that the split case and `POST /api/part-sales/move` were not exercised,
 and why.
+
+---
+
+## G — "Split work order" (added after the QA lead pointed at the control)
+
+I had reported the split as untestable. That was wrong: it is a visible control on the **Lines** tab —
+tick `line_checkbox_<lineId>`, open `button_line_bulk_action`, choose **Split work order**, and
+**click that entry twice** (the first click arms it; the menu stays open and no request is sent). It
+fires `POST /api/work-orders/split {"ids":["<lineId>"]}` and the browser lands on a new work order.
+
+Split the line holding staged inventory part **MD668D** off S9304-17435 → new work order **S-17580**:
+
+| | result |
+|---|---|
+| S9304-17435 | +1 `work_order.split_to` ("Split to") |
+| S-17580 (new) | `work_order.split_from` + `work_order.created` |
+| Part History, MD668D | **10 → 10, no new row; nothing in it names S-17580** |
+| where the part is | on S-17580, gone from S9304-17435 |
+
+**A third path by which a part changes work order, and the part's own history records nothing.** The
+two work orders are linked to each other, so the trail is not entirely lost — but Part History, the
+view that was empty in the original battery report, does not show it.
+
+**Not a failure of this fix.** The split is not one of the two handlers the PR changes, so it looks
+pre-existing — the same shape as `POST /api/part-sales/move`, already deferred to its own ticket.
+**Not confirmed on production** (neither production work order I snapshotted has split events).
+
+Raised in the ticket comment as a decision for Slavcho: in scope here, or a third follow-up.
