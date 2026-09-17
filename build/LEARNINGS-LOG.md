@@ -3296,3 +3296,32 @@ allowed to be quietly presented as *"what I observed"* (Rule 12).
 **And the same read settled the ticket's real shape.** Search keeps its own table of four tones —
 `success / info / warning / neutral` — and squeezes every status into it. That *is* the "palette of
 its own" §5.3 forbids, stated in the product's own code rather than inferred from colour swatches.
+
+## L0160 — TWO DIFFERENT PARTS CAN SHARE A PART NUMBER, AND IT NEARLY COST TWO FALSE DEFECTS (2026-09-17)
+
+Comparing part stock colours between the Parts list and the search, two rows came back as
+mismatches: `LF3973` red on the list but orange in search, `N000000001069` at 0 on the list but 9
+in search. Both were wrong. **Three of the twelve part numbers checked are carried by two
+different parts** — the search returns both rows, and a matcher that takes the first row, or falls
+back to `rows[0]`, silently reads the wrong one:
+
+* `LF3973` → row 1 is a `*DUPLICATE* LUBE OIL FILTER` at 1; the real *Engine Oil FIlter,
+  Caterpillar/Mack* is at −1, matching exactly.
+* `N000000001069` → row 1 is *Aluminum Seal Ring, M14* at 9; the real *DO NOT USE Aluminum Seal
+  Ring, 14mm* is at 0, matching exactly.
+
+Once matched on the **description**, all twelve agree, colour and number. **Part B is a clean
+pass.** Had the first numbers been written up, a developer would have been sent after a defect that
+does not exist — the third near-miss of the day, after the branch falling asleep (L0150) and the
+half-scanned status list (L0154).
+
+**The rule: an identifier is not an identity.** Before comparing a record across two screens,
+confirm both sides are the *same record* by something that actually distinguishes it — the
+description, the customer, the date — and **never let a matcher fall back to "the first row"**. A
+fallback that silently substitutes a different record is worse than no match at all, because it
+produces a confident wrong answer. Write the probe to return *every* candidate row and choose
+deliberately.
+
+**Two further habits this confirmed.** `rows.find(...) || rows[0]` is banned in a comparison probe.
+And when a mismatch appears, dump the whole candidate set and read it before believing it — the
+dump is what caught both of these.

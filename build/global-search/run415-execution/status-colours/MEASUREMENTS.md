@@ -67,3 +67,56 @@ screen-level confirmation is wanted.
 
 `badge-grid.png` — the raw eight-row comparison. The annotated version filed on the ticket is
 `../tickets/C44838-all-statuses.png`.
+
+---
+
+# Part stock badge colours — Parts list vs search (Part B of the case)
+
+Measured 17 September 2026, same branch and build. On **Parts → Inventory** the **Supply** menu was
+set to each level in turn, the colour under **Total Quantity** and the **part number** were written
+down, and each number was then typed into the search and read off the **Parts** tab.
+
+**On the Parts list, the three levels are:** Under-supplied **red `193,0,21`** · Well-supplied
+**green `33,186,69`** · Over-supplied **orange `229,120,11`**, white text on all three.
+
+| Part number | Which part | Supply level | Parts list | Search | Same? |
+|---|---|---|---|---|---|
+| PMH-4 | SS GEAR CLAMP | Under | 4, red | 4, red | ✅ |
+| 76-3350PK | DTP 4 Wire Receptical | Under | 0, red | 0, red | ✅ |
+| ZCSM10SC-18-100 | 18X100MM CRS HEX BOLT | Under | 2, red | 2, red | ✅ |
+| LF3973 | Engine Oil FIlter, Caterpillar/Mack | Under | **−1**, red | **−1**, red | ✅ |
+| N000000001069 | DO NOT USE Aluminum Seal Ring, 14mm | Well | 0, green | 0, green | ✅ |
+| MD668D | ATF Bulk - Mobil Delvac 1 | Well | 280, green | 280, green | ✅ |
+| NFF2403-10-08 | #10 MALE ORFS X #08 MALE ORFS | Well | 2, green | 2, green | ✅ |
+| 209.1223 | SPINDLE NUT | Well | 2, green | 2, green | ✅ |
+| P550848 | FUEL/WATER SEPARATOR (FS19732…) | Over | 6, orange | 6, orange | ✅ |
+| 2--83-2511PK | 12-10 GA RING TERMINAL | Over | 46, orange | 46, orange | ✅ |
+| 84-2005 | CONNECTOR | Over | 14, orange | 14, orange | ✅ |
+| 2208H476 | AXLE SHAFT FLANGE | Over | 9, orange | 9, orange | ✅ |
+
+**Twelve of twelve match, colour and number.** The search's part row uses the **same `q-badge`
+component** as the Parts list — which is exactly what §5.3 requires and exactly what the work order
+status badge does *not* do. **Part B is a PASS; there is no parts defect.**
+
+## 🛑 The trap that nearly produced a false defect, twice
+
+**Three of these part numbers are carried by two different parts** — `LF3973`, `N000000001069` and
+`P550848` each return two rows. A matcher that takes the first row, or falls back to `rows[0]`,
+reads the wrong part and reports a mismatch that does not exist:
+
+* `LF3973` → the first row is a `*DUPLICATE* LUBE OIL FILTER` at 1, orange. The real one, *Engine
+  Oil FIlter, Caterpillar/Mack*, is at −1, red — matching.
+* `N000000001069` → the first row is *Aluminum Seal Ring, M14* at 9. The real one, *DO NOT USE
+  Aluminum Seal Ring, 14mm*, is at 0 — matching.
+
+**Match on the description, never on the part number alone.** Both false mismatches were caught
+only by dumping every returned row and reading them (`parts-dump.json`).
+
+## One thing for the QA lead, not a defect
+
+§5.3 says stock badges are *"success when quantity is above the low threshold, warning at or below
+it, **danger when zero**"*. On this build a zero-quantity part is **not always red**: `76-3350PK`
+at 0 is red, `N000000001069` at 0 is green. **Both surfaces agree with each other**, so this is not
+a search fault — the shared component evidently keys off each part's own min/max, not off a bare
+zero. Worth a question about whether the sentence or the behaviour is right; out of scope for this
+case either way.
