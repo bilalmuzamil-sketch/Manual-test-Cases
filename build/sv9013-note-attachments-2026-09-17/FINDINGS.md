@@ -40,20 +40,54 @@ Playwright's file chooser is intercepted and the file is handed over programmati
 delay; the window-focus event that the old code keyed on is dispatched on the page. Everything else —
 the clicks, the screens, the uploads, the results — is the real application.
 
-## BEFORE: the defect reproduces on production
+## BEFORE: the defect reproduces on production — the exact steps and results
 
-Clicked **Attach files** on the Notes tab, dispatched window focus 0.5 s later (the dialog losing
-focus), then handed the PDF over at 4 s.
+Re-run cleanly on **2026-09-17** so the captures, the timings and the network log all come from one
+session. Environment: **app.shopview.com**, build **v26.36.7-cf5012e** (read from the page's own
+`app-version` tag during the run), work order **S2-874 (ZZAUTOTEST Bridgeport Hauling)**, Notes tab,
+signed in with credentials (production is never driven from cookies).
 
-* **No network call at all** — not `note/create`, not `note/add-attachments`
-* The notes list still reads **"No Work Order Notes Yet"**
-* **No error anywhere on screen**
-* Still nothing after a full page refresh — so the file never reached the server
+### The steps, exactly as run
 
-`ev/PB3_1_before.png`, `ev/PB3_2_after.png`.
+1. Open work order **S2-874** and click the **Notes** tab.
+2. Click **Attach Files** — the blue file icon just left of **New Note**.
+3. **While the file-picking window is open, click back on the browser window behind it**, so the page
+   has focus again.
+4. Wait about four seconds, then choose the PDF (`ZZ9013-prod-fail.pdf`) and click **Open**.
 
-For completeness, a *fast* pick on production (no focus event, file handed over after 5 s) **does**
-upload — which is exactly why the customer saw it as random.
+Step 3 is the whole trigger. Picking a file from OneDrive, SharePoint or a network drive does the same
+thing on its own, because the file takes a moment to arrive — which is why the customer hit it with an
+ordinary PDF and could see no pattern.
+
+Measured on the run: the page regained focus at **+504 ms**, the file was released at **+4020 ms**.
+
+### What happened — the results
+
+| Observation | Result |
+|---|---|
+| Attachment card on screen | **No** |
+| Notes list | still reads **"No Work Order Notes Yet"** |
+| Error message / spinner / any feedback | **None at all** |
+| Non-GET network traffic for the whole attempt | **`POST /api/6364962/envelope/` only** — the app's own telemetry. **No `note/create`, no `note/add-attachments`.** The app never even tried. |
+| After a full page refresh | **Still nothing** — the file never reached the server |
+
+`ev/PR_A_before.png` → `ev/PR_B_run1_after.png` → `ev/PR_C_run1_after_refresh.png`.
+
+### The control, on the same screen
+
+Same work order, same file, same production build — but the file released at **+200 ms with no
+click-away**: `POST /api/note/create` then `POST /api/note/add-attachments`, and the attachment card
+renders (`Notes (1)`). `ev/PR_D_run2_control.png`. **That contrast is why it looked random to the
+customer.**
+
+The note created by the control run was **deleted through the UI** and the page re-read: only the
+customer name `ZZAUTOTEST Bridgeport Hauling` still matches, no note. `ev/PC2_prod_notes_after_clean.png`.
+
+Annotated exhibit posted on the ticket: **`ev/EX0_production_reproduction.png`** — the four steps
+written out, then the starting point, the result, the result after a refresh, and the control, each
+boxed and captioned.
+
+(The earlier same-day run `ev/PB3_*` showed the identical thing and is kept for the record.)
 
 ## AFTER: the same reproduction on the fix branch
 
@@ -123,13 +157,18 @@ section. Read back live: 1 rendered image from Jira's own attachment store, all 
 
 ## The QA comment
 
-`76714` on SV-9013, posted after the pre-post gate (build marker re-read live and identical, ticket
+`76714` on SV-9013 — **updated in place** (never a second comment) once the QA lead asked for the
+production reproduction to be spelled out, so the ticket carries exactly one complete record. It now
+opens with a *"How the fault was reproduced on production"* section: the four numbered steps, the
+results as plain statements (nothing on screen, no error, no upload request, nothing after a refresh),
+the control run, and the annotated exhibit. Posted after the pre-post gate (build marker re-read live and identical, ticket
 still TESTING QA with no new comment since the developer's handoff, text scanned for any
 machine-authored tell). Read back from Jira afterwards: **4 exhibit images in the right order, all
 real Jira attachments** (61005–61008), 15 table rows (header + 14 checks), first line
 *"OVERALL QA STATUS: PASSED"*.
 
-Exhibits: `ev/EX1_before_after.png` (production vs branch, the Rule-73 comparison) ·
+Exhibits: `ev/EX0_production_reproduction.png` (the production reproduction, steps + results) ·
+`ev/EX1_before_after.png` (production vs branch, the Rule-73 comparison) ·
 `ev/EX2_alt_tab.png` · `ev/EX3_multiple_files.png` · `ev/EX4_ten_file_limit.png` ·
 `ev/TICKET_unsupported_wording.png` (SV-10160).
 
