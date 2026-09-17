@@ -4561,6 +4561,28 @@ whole request. There is no partial-move parameter.
    **stays open** with no dialog and no request; the second click fires it. One click looks like it
    worked and silently does nothing.
 
+**⚠️ THE LINE TICK BOX IS `opacity: 0` UNTIL YOU HOVER THE ROW** (measured 2026-09-17: all three
+`line_checkbox_*` elements report `opacity:"0", visibility:"visible"` at rest and `opacity:"1"` after
+`.hover()`). It is *in* the DOM and clickable by selector, so automation never notices — but a human
+reading your reproduction steps sees no tick box at all and stops there. **Say "hover the line, then
+tick the box that appears" in any steps you write.**
+
+**SEEDING A PICKED INVENTORY PART ONTO A LINE — the exact body that works** (2026-09-17; the
+`part_number`/`core_charge` pair is the trap):
+```
+POST /api/work-orders/part/make-request
+  {work_order, line, description, quantity:1, part_source_type:"inventory",
+   inventory_part_id, sell_price, cost, part_category_id}            -> 201, status "received"
+```
+`part_category_id` is **required** (without it the same body 500s, not 400s). **Do NOT send
+`part_number` or `core_charge:0`** — either makes it 400 `"This value should be greater than 0."`,
+which names no field and reads like a price problem. The server fills the part number and the
+description from the inventory part. It comes back **`status: "received"`** with no pick step because
+*Administration → Settings → Work Orders → "Automatically Pick Inventory Parts"* is on, so one call
+gives you a part that is genuinely out of stock and therefore has Part History.
+`GET /api/work-orders/lines/{woId}` does **not** list a received inventory part under the line, so
+check the state on the screen (`/workorders/{id}/lines`) or you will think the seed failed.
+
 It sends `POST /api/work-orders/split {"ids":["<lineId>"]}` and the browser navigates to the new work
 order. Same two-step-confirm family as the §U.0b trap and the SV-8527 menu. **Click by coordinate**
 (`page.mouse.click` on the element's rect centre) — Playwright actionability clicks are unreliable on

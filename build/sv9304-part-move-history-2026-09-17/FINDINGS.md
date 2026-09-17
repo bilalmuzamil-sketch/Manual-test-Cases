@@ -303,3 +303,75 @@ Screenshots → h4 Environment → h4 fairness note → h2 WHAT PASSED; tables o
 nodes, all `type: file`** (real Jira attachments); voice scan clean.
 
 **76697 and 76699 are superseded and can be deleted — 76700 is the single current comment.**
+
+---
+
+## Verdict settled: PASSED, with the split raised as its own ticket (SV-10158)
+
+The QA lead's ruling: the split is outside what SV-9304 set out to fix, so **SV-9304 passes** and the
+split gap becomes a follow-up ticket. Both were done on the same build, `v26.36.7-e72f63d`, re-read
+live at the start of this pass (`index.html` last-modified Wed 16 Sep 2026 10:58:10 GMT,
+etag `c494fce982e4072d4da7fc0b4ebf1ec7`).
+
+### The reproduction was re-driven live before the ticket was written
+
+Nothing in SV-10158 is carried over from the earlier run. On S9304-17435 an inventory part **MD668D**
+was seeded onto line "Service - Replace wiper blades" (auto-picked, `status: received`), the part's
+history was captured, the line was split off, and the history was captured again:
+
+| | before the split | after the split |
+|---|---|---|
+| Part History rows for MD668D | 12 | 12 |
+| the twelve rows themselves | — | byte-identical to the before capture |
+| any row naming the new work order | — | none (`S9304-17581` and `S-17581` both absent) |
+
+The split created **S9304-17581** (`POST /api/work-orders/split {"ids":["cb370173-…"]}`), and the part
+arrived on it — confirmed on the new work order's Parts tab and in the work order list.
+
+**Left ready for whoever reproduces it:** all three remaining lines of **S9304-17435** now carry a
+picked **MD668D**, so the steps in the ticket can be run three times without any setup. Verified live
+on the screen after seeding.
+
+### SV-10158 — the follow-up ticket
+
+[SV-10158](https://shopview.atlassian.net/browse/SV-10158) *"Split work order moves a part but writes
+no Part History entry"* — Bug, priority Medium, Product Area Work Orders, QA Branch field set, linked
+`Relates` to SV-9304. SV-9304 has no parent, so the follow-up has none either.
+
+Written to the failure format (Standing Rule 83) with **no technical section at all**, per the QA
+lead: `Found while testing SV-9304` (linked) on the first line → a two-line description → **How to
+reproduce** (QA branch link, nine steps, the hover-to-reveal tick box and the two clicks on *Split
+work order* both called out) → **What happens now, and what we expected** → **Screenshots** →
+**Environment**. The expected column is stated plainly and the one honest gap is stated with it: the
+Move option records the move, the split is a third path, and whether it should record the same thing
+is **not written down anywhere**, so it needs a product decision rather than being asserted as a
+requirement.
+
+Three annotated exhibits, uploaded as **real Jira attachments** and verified as `type: file` media
+nodes with three rendered `<img>` tags: `01-where-to-click.png` (hover → tick box → three-dot menu →
+*Split work order*, twice), `02-what-the-split-does.png` (S9304-17581 created, MD668D on it),
+`03-part-history-before-after.png` (the same twelve rows before and after, with a Move-button entry
+boxed for contrast). Sources kept in `ev/followup/`.
+
+### SV-9304's comment rebuilt in place — 76700
+
+One comment, no chain: `OVERALL QA STATUS: PASSED`, the before/after exhibit, the ten checks all
+passed, the Part History exhibit, a section naming SV-10158 as the separately-raised issue, what was
+deliberately not raised, what was not tested, and the technical detail last. Read back in ADF: first
+line PASSED, 2 media nodes both `type: file`, 11 table rows, SV-10158 named, no "FAILED" anywhere,
+voice scan clean.
+
+### Reported, not acted on
+
+**SV-9304's status is `REJECTED FROM TESTING`** — moved there at 2026-09-17T00:35:18 under our shared
+account, alongside the earlier failing comment. The workflow offers only *Blocked*, *In Progress* and
+*Close (OBSOLETE)* from that state, so there is **no transition back to a QA-passed state available to
+us**. Left for the QA lead to move; nothing was transitioned.
+
+### Recipes recorded
+
+`build/APP-ACTIONS-PLAYBOOK.md`, beside the split recipe: the line tick box is `opacity: 0` until the
+row is hovered (invisible to a human reader of any steps that do not say so), and the exact
+`part/make-request` body that seeds a picked inventory part — `part_category_id` required, and
+`part_number` / `core_charge:0` must be omitted or the call 400s with `"This value should be greater
+than 0."`, which names no field.
