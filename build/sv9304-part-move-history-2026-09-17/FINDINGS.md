@@ -274,3 +274,32 @@ the follow-up gets raised.
 **One full rebuilt comment posted — 76699** — leading with `OVERALL QA STATUS: FAILED`, then a
 `WHAT FAILED` header and a `WHAT PASSED` header. Read back: 4 real attachments, 12 table rows,
 headings in order. **Comment 76697 is superseded and can be deleted.**
+
+---
+
+## Rebuilt again to the failure-reporting format — comment 76700
+
+The QA lead's instruction, given on the back of 76699: the developer on this ticket is new, so a
+failure must be handed over as **a reproduction, not as evidence**. Endpoints, row counts and
+payload keys prove a fault to someone who already knows the system; they do not tell a new developer
+how to see it. Saved as **Standing Rule 83**, with the fixed order:
+
+1. a concise statement of **what is failing and where** — not a paragraph
+2. **Steps to reproduce**
+3. **Current behaviour vs expected behaviour**
+4. **Screenshots** (annotated; a comparison where one helps)
+5. **Environment**
+
+Comment **76700** posted to that shape. `WHAT FAILED` first, with eight numbered steps naming the
+real test data — work order **S9304-17435**, line 2 *"Service - Wheels off single or tandem axle"*,
+part **MD668D** — and the two-click warning on **Split work order**, which is the one step that will
+otherwise make the reproduction look like it did nothing. The endpoints and row counts are kept, but
+demoted to *"Supporting detail, if you want it"* at the bottom, marked as not needed to reproduce
+anything above. `WHAT PASSED` follows with the before/after exhibit and the eleven checks.
+
+Read back in ADF: first line `OVERALL QA STATUS: FAILED`; headings in order h2 WHAT FAILED → h3 the
+one-line failure → h4 Steps to reproduce → h4 Current behaviour vs expected behaviour → h4
+Screenshots → h4 Environment → h4 fairness note → h2 WHAT PASSED; tables of 5 and 12 rows; **3 media
+nodes, all `type: file`** (real Jira attachments); voice scan clean.
+
+**76697 and 76699 are superseded and can be deleted — 76700 is the single current comment.**
