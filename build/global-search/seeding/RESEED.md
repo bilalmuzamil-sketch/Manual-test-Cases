@@ -26,6 +26,39 @@ accident.
 
 ---
 
+## 🌱 THE CONVENTION FOR THE NEXT FEATURE — this file is the register for ALL of them
+
+**This is not a Global Search file any more; it is where every feature's reseed keywords live.**
+Other areas of the app will need their own seeded data, and each one gets the same shape:
+
+> **`RESEED <FEATURE> QA`** and **`RESEED <FEATURE> LIVE`**
+
+**Rules for a new keyword, so the list stays unambiguous as it grows:**
+
+1. **Two keywords minimum — one per environment.** Never one keyword that guesses the environment.
+2. **The `<FEATURE>` token must be impossible to say by accident** and must not share a prefix with
+   an existing one. `GSV2` is the model.
+3. **Add the row to the table above the moment the kit exists**, with the record count, the sections
+   it serves, and the host. A keyword nobody registered is a keyword nobody can use.
+4. **Each universe keeps its own state, keyed by universe AND environment.** Two features must never
+   write into one state file.
+5. **Name the verifier for that feature in its row**, because 🔴 **the verification step can be a
+   DIFFERENT PROGRAM per environment** — running the wrong one reports a dead environment that is
+   perfectly healthy, and somebody then reseeds something that was never broken.
+
+**To stand up a new feature's kit:**
+
+```bash
+python3 build/testing-tools/seeding/scaffold_seeding.py <project-slug> "<Feature Name>"
+```
+
+It copies the proven engine and leaves you only the manifest to write. **The method is
+`build/skills/20-FEATURE-DATA-SEEDING.md`; the manifest schema is
+`build/testing-tools/seeding/MANIFEST-SCHEMA.md`.** Both were written so that the second feature
+area costs a fraction of the first.
+
+---
+
 ## 🔴 WHAT I RUN FOR THE GSV2 KEYWORDS — the exact sequence, so nothing is rediscovered
 
 Four steps, in this order, because each depends on the one before. All of them are safe to re-run:

@@ -387,6 +387,7 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/15-NEW-PROJECT-INTAKE.md` | **The moment a project is NAMED** — required input set, PRESENT/MISSING intake checklist, source-currency block, and the REVIVAL path (Rules 92–93) |
 | `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md` | **The project is a V2 / upgrade of an existing feature** (Rule 96) — a V2 spec says only what CHANGES and is SILENT about the rest, so derive the **invariant set** (V1 baseline − changed ∪ removed ∪ replaced), escalate the dangerous silences, retire the superseded V1 cases. No build, no cookies |
 | `build/skills/V1-BASELINE-FROM-SOURCE.md` | **Companion to Skill 17 (Rule 96)** — the method for its Step 1 / §3.3: read the CURRENT product source code and produce a **source-cited V1 behaviour baseline** (invariant register + collateral-risk map + existing-coverage list + self-check, pinned to a commit SHA) for the V2 session to subtract the delta from. Use when you have source read access; it feeds Skill 17, it does not derive invariants or author cases. Worked example: `build/global-search/GLOBAL-SEARCH-V1-BASELINE-INVARIANTS.md` |
+| `build/skills/20-FEATURE-DATA-SEEDING.md` | **The feature's cases need data the environment does not hold** — the project-agnostic method for seeding AND reseeding any area of the app. **The engine is generic; only the manifest is per-feature**, so the second feature area costs a fraction of the first. Nine steps (read the CASES not a summary · measure before creating · write the DESIGN RULE first · a keyword that cannot collide · manifest with `serves` and `_why` · seed and VERIFY as separate steps · prove idempotence by running it three times · reconcile server-assigned identifiers · write the traps down), the five-point reseed contract, thirteen feature-independent traps with the symptom each presents as, and what is NEVER seedable. Scaffold: `python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature>"` · schema: `build/testing-tools/seeding/MANIFEST-SCHEMA.md` · reference implementation: `build/global-search/seeding/` |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |
 | `build/handoffs/README.md` | **Four** copy-paste lane briefings for a fresh session |
@@ -404,7 +405,16 @@ cannot drift; **procedure found inside one is a bug in that router.**
 and 60 apply in full and findings stay PROVISIONAL. §16.1 is the superseded 2026-08-11 "the branches
 are FINAL" text, kept visible and dated.
 
-**🌱 RESEEDING THE GLOBAL SEARCH TEST DATA — FOUR KEYWORDS, `build/global-search/seeding/RESEED.md`.**
+**🌱 SEEDING AND RESEEDING TEST DATA — THE METHOD IS `build/skills/20-FEATURE-DATA-SEEDING.md`,
+THE KEYWORD REGISTER IS `build/global-search/seeding/RESEED.md`, AND IT COVERS EVERY FEATURE, NOT
+JUST GLOBAL SEARCH.** Other areas of the app will need seeded data too; each gets
+**`RESEED <FEATURE> QA`** / **`RESEED <FEATURE> LIVE`**, registered in that file. **The engine is
+generic and only the manifest is per-feature**, so stand a new kit up with
+`python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature Name>"` rather than writing
+one from scratch — schema at `build/testing-tools/seeding/MANIFEST-SCHEMA.md`, worked reference at
+`build/global-search/seeding/`.
+
+**🌱 GLOBAL SEARCH SPECIFICALLY — FOUR KEYWORDS, `build/global-search/seeding/RESEED.md`.**
 🔴 **A RESEED THAT FINDS 0 OF 11 RECORDS USUALLY MEANS THE BRANCH WAS REDEPLOYED — SO CHECK THE BUILD
 MARKER BEFORE EXPLAINING ANY CHANGE IN BEHAVIOUR** (`curl -s https://sv9160.qa.shopview.com/ | grep
 app-version`). On 2026-09-16 the branch went `v26.36.4-7869ff2` → `v26.36.7-893d13a` overnight and
