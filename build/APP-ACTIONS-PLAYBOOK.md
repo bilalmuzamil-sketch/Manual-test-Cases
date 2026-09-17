@@ -146,6 +146,20 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **Diagnostic ladder:** no cookies → 401; `sso_required`/only sso+cf → 409; **poisoned shared
   PHPSESSID → 500 on everything** (API root still 200). Fix a poisoned session: re-run quick-login
   `{key:'admin'}` WITHOUT sending the old PHPSESSID → fresh PHPSESSID → all 200 again.
+- **🔴 SIGN-IN ON `.qa.shopview.com` IS GOOGLE OAUTH — A USERNAME AND PASSWORD CANNOT MINT A SESSION
+  (measured 2026-09-17).** `POST /api/login {username,password}` against the `…api.` host answers
+  **401 `sso_required`** with a redirect to `auth.qa.shopview.com/login`, and following that redirect
+  lands on **`accounts.google.com/o/oauth2/v2/auth?…&hd=shopview.com`**. So the app credentials are not
+  what the gate wants, and a session cannot be minted from a script at all — **the ONLY route is an
+  `sv_sso_session` cookie captured from a browser that has already completed the Google sign-in.**
+  **Consequence for asking:** when a session is dead, ask for the **`sv_sso_session`** value by name and
+  say where it lives (browser DevTools → Application → Cookies → the branch host). Asking for
+  "the cookies" gets the *per-branch* `PHPSESSID` refreshed, which is the value that was never stale —
+  proven three times in a row on 2026-09-17, each attempt carrying a byte-identical `sv_sso_session`
+  and `cf_clearance` while only `PHPSESSID` changed, and each failing **409 `Session has expired.`**
+  **409 vs 401 tells you WHICH value is dead:** 401 `sso_required` = no usable SSO token at all;
+  **409 `Session has expired.` = the SSO token is recognised but its server-side record has lapsed**,
+  and a freshly minted `PHPSESSID` (the login call issues one even while refusing) does not rescue it.
 - **🔴 THE ONE-CALL CONTROL FOR "AM I POINTED AT THE RIGHT HOST?" (2026-09-17).** This is the same
   failure as trap **(2)** below — I hit it building a profile for a second organisation *because I had
   not read trap (2) first*, so here is the cheap control that settles it without knowing the symptom:
