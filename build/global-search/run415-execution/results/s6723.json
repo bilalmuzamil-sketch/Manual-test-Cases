@@ -1,0 +1,56 @@
+[
+ {
+  "cid": "C44823",
+  "status": "Passed",
+  "note": "every group heading names the type and carries its match count, and no heading count goes above twenty",
+  "evidence": "headings [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]; all carry a count true; highest heading count 20"
+ },
+ {
+  "cid": "C44824",
+  "status": "Passed",
+  "note": "on the combined view each group shows at most five lines",
+  "evidence": "lines per group [{\"Work orders\":5},{\"Customers\":3},{\"Assets\":5},{\"Parts\":4},{\"Vendors\":1},{\"Part sales\":1},{\"Purchase orders\":5},{\"Vendor invoices\":3}]; most lines in any group 5"
+ },
+ {
+  "cid": "C44825",
+  "status": "Failed",
+  "note": "no Show all link appears on any group, including the groups that have more than five matches",
+  "evidence": "Groups with more than five matches: [{\"group\":\"Work orders (20)\",\"shown\":5},{\"group\":\"Assets (6)\",\"shown\":5},{\"group\":\"Purchase orders (6)\",\"shown\":5}]. Searched the WHOLE PAGE (not just the box) for any element reading \"show all\", \"view all\", \"see all\", \"+N more\" or \"more\" - found 1 on the first attempt and 1 on the second. The group heading contains only a name and a count: [\"span.\",\"span.search-group__count\"]. No buttons or links inside any group heading. Hovering the heading adds nothing. The list was scrolled to the bottom in case a link sat below the fold. PROOF THE CHECK WORKS: the same search DOES find these controls in the box: [\"\",\"All (44)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\"]. What needs to be done: reaching a record past the fifth in a group currently means narrowing the words you type - there is no way to open the full list for that type from the group heading."
+ },
+ {
+  "cid": "C44826",
+  "status": "Blocked",
+  "note": "cannot be run - the Show all link it starts from does not exist on this build (see the line above)",
+  "evidence": "This case's first step is to click a Show all link on a group heading. No such link is on the page. What needs to be done: re-run this once the missing link is put back; the check itself is unchanged."
+ },
+ {
+  "cid": "C44827",
+  "status": "Passed",
+  "note": "the groups always run in the same order whatever the match counts, and there is no Contacts group",
+  "evidence": "on \"Fib\" [\"Work orders\",\"Customers\",\"Assets\",\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"]; on \"Fibridge Commercial\" [\"Work orders\",\"Customers\",\"Assets\",\"Part sales\"]; first is the full specified order true; second keeps that relative order true"
+ },
+ {
+  "cid": "C44828",
+  "status": "Passed",
+  "note": "the letters you typed are picked out inside each matching line, and only those letters",
+  "evidence": "highlighted pieces 34 across 27 of 27 lines; the highlighted text is always [\"Fib\",\"FIB\"]; longest highlighted piece 3 characters; example line \"S9160-17664 ZZAUTOTEST Fibridge Commercial Ready for Review TRK 412 \u00b7 2019 Freig\""
+ },
+ {
+  "cid": "C44829",
+  "status": "Blocked",
+  "note": "the spoken announcement is there and its wording changes with the results, read from the page; but this run has no screen reader and no human eye, so the case is not fully judged",
+  "evidence": "An announcement region is present and it updates: on \"Fib\" it reads \"44 results found across 8 categories\", on \"Fibr\" \"44 results found across 8 categories\", on the exact number \"S2-15430\" \"1 result found across 1 category\". Region settings {\"txt\":\"44 results found across 8 categories\",\"live\":\"polite\",\"role\":\"status\"}. NOT CHECKED: that a real screen reader speaks it, and that every stop (the field, each tab, each line) shows a visible outline when you Tab to it. What needs to be done: re-run with a screen reader switched on and Tab through the box, watching for the outline at each stop."
+ },
+ {
+  "cid": "C44830",
+  "status": "Passed",
+  "note": "the groups run in the specified order, and an exact job-number search shows that one record as a single line above everything else, with its icon",
+  "evidence": "group order on a broad search [\"Work orders\",\"Customers\",\"Assets\",\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"] - matches the specified order true. On the exact number \"S2-15430\": a single pinned line is shown reading \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\", it sits above any groups true, it carries its icon true. NOT COVERED AND SAID SO: the part about two records tied on relevance, where the more recently updated one must sit above the older one. Two such records cannot be built here because a record's last-updated date cannot be set. What needs to be done: judge that half by hand if two naturally tied records ever appear."
+ },
+ {
+  "cid": "C53476",
+  "status": "Failed",
+  "note": "a number in the box reads higher than twenty",
+  "evidence": "tab counts [{\"tab\":\"All\",\"n\":44},{\"tab\":\"Work orders\",\"n\":20},{\"tab\":\"Customers\",\"n\":3},{\"tab\":\"Assets\",\"n\":6},{\"tab\":\"Parts\",\"n\":4},{\"tab\":\"Vendors\",\"n\":1},{\"tab\":\"Part sales\",\"n\":1},{\"tab\":\"Purchase orders\",\"n\":6},{\"tab\":\"Vendor invoices\",\"n\":3}]; heading counts [{\"head\":\"Work orders\",\"n\":20},{\"head\":\"Customers\",\"n\":3},{\"head\":\"Assets\",\"n\":6},{\"head\":\"Parts\",\"n\":4},{\"head\":\"Vendors\",\"n\":1},{\"head\":\"Part sales\",\"n\":1},{\"head\":\"Purchase orders\",\"n\":6},{\"head\":\"Vendor invoices\",\"n\":3}]; Show all links []; ABOVE TWENTY: [{\"tab\":\"All\",\"n\":44}]; narrowed list rows 20"
+ }
+]
