@@ -3929,3 +3929,80 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     Rule 84's tester-readiness gate: a suite handed over with unaccounted data has not passed it.
     Operator form: `build/skills/19-V1-V2-PARITY-SUITE.md` §8a and the worked example at
     `build/global-search/seeding/` (manifest · idempotent seeder · playbook).
+
+112. **WHEN THE SEEDED RECORD'S REAL IDENTIFIER DIFFERS FROM THE ONE THE CASE NAMES, CORRECT THE
+    IDENTIFIER IN THE CASE — THE IDENTIFIER ONLY, AND NOTHING ELSE (all projects, permanent; QA lead,
+    2026-09-17).**
+    **THE ORDER (QA lead, 2026-09-17), verbatim:** *"if you are seeding the data for any test case, and
+    you see the number in the test case for the data you seeded differs, then you should also correct
+    that NUMBER in the test case too. make sure that you correct the number ONLY and do not change
+    anything else in the test case, and make it the rule."*
+    **THE RULE.** This is the completion step after Rule 111. Rule 111 says the data must exist; this
+    says the case must NAME the data that exists. **A case naming an identifier the environment does
+    not hold is a FALSE FAILED waiting to happen** — the tester types it, gets nothing, and files a
+    defect against a product that is working perfectly. C44843, C44847 and C44850 named work order
+    `S2-15276`, which does not exist on `sv9160` and **cannot**, because work-order numbers are
+    assigned by the branch.
+    **HOW.** (1) **Seed first, then read the REAL identifier back off the environment** — never write
+    the one you intended; most are server-assigned and unchoosable (work-order numbers, P-numbers, PO
+    numbers, invoice numbers). (2) Compare it against every identifier the case names, in the
+    preconditions, the steps AND the expected results. (3) Where they differ, **change the identifier
+    and NOTHING ELSE** — not the wording, not the ordering, not the provenance line, not the automation
+    marker, not a helpful note. The identifier is a fact about the environment; everything else is the
+    case's meaning, and the two are never edited in the same breath. (4) Read it back and prove the new
+    identifier works. **Compare at WORD level, not byte level** — TestRail rewrites markup on every
+    save (entities, a trailing newline, a relocated `</p>`), so a byte comparison reports a phantom
+    change forever. (5) Record what changed, and snapshot the case body first (Rule 87).
+    **🔴 THE REACHABILITY CLAUSE — an identifier the SEARCH returns is not automatically usable.**
+    Written from the mistake made while applying this rule the first time. The replacement first chosen
+    was `S2-15440`: pinned as the top hit, every normalization variant working, and **wrong** —
+    `GET /api/work-orders/view/<its id>` answers **400 "Not found"** at *both* workplaces the test
+    login can reach, because **the search index is organisation-scoped while the record is
+    WORKPLACE-scoped**. A case built on it passes step 1 and dies at step 2. **Prove three things, not
+    one:** the search returns it · the record **OPENS** as the tester at the tester's workplace · the
+    near miss is genuinely absent. **And prefer an identifier that survives a reseed** — our own seeded
+    records get a new number on every wipe, and consecutive seeded numbers can never satisfy a
+    "returns nothing" near miss, because every neighbour exists.
+    **THE BOUNDARY.** A **correction**, not a rewrite: Rule 62's creation hold is untouched, and it
+    **never** edits a case towards the build's behaviour (Rule 57 stands) — it changes *which record the
+    tester looks at*, never *what they should see*. Foreign cases stay hands-off (38); an
+    Automated-flagged case is still reported (65, 71); and Rule 41 still applies — re-verify the WHOLE
+    case afterwards.
+    **NOTE ON NUMBERING:** the parity branch `claude/global-search-v1-baseline-6ax9ul` carries this
+    same rule as **111** in its own `RULES-61-96.md`, because the two files' sequences diverged. Same
+    rule, two numbers. Worked example: `build/global-search/case-corrections-2026-09-17/`.
+
+113. **VERIFY AGAINST THE REAL CASE TEXT, NEVER AGAINST A SUMMARY OF IT (all projects, permanent; QA
+    lead, 2026-09-17).**
+    **THE ORDER (QA lead, 2026-09-17):** *"always verify against the real case text rather than trusting
+    the handoff's summary — make it your rule."*
+    **THE RULE.** **A handoff, a task card, a spreadsheet and a previous session's report are all
+    SUMMARIES.** They are written by someone who read the cases once and they go stale the moment
+    anything moves. **The case body is the only thing the tester reads, so it is the only thing that
+    decides whether the test can be run.**
+    **THE FAILURE IT WAS WRITTEN FROM.** The Global Search seeding handoff said of the eight Quick
+    Actions cases: *"the data they need is the same core universe from §1 … so **no NEW records are
+    required beyond §1**. Record this in the manifest so nobody re-investigates it."* Confident,
+    specific, and wrong. Reading the eight case bodies found **three named example records that existed
+    NOWHERE on the branch** — `Fisquare Farms`, `Adale Transport`, `Report Beverages` — and one example
+    term, `2025 Freightliner M2`, returning **no assets whatsoever**, which proved to be a **product
+    defect affecting every asset in the estate** rather than a data gap. A session that trusted the
+    summary would have seeded nothing, reported the section ready, and handed a tester four dead ends.
+    **HOW.** (1) Read the actual `custom_preconds`, `custom_steps` and `custom_expected` of every case
+    in scope — script it (Rule 88), but read the REAL fields. (2) Extract what the tester will literally
+    **TYPE or LOOK FOR** and check each against the live environment. **A term named only as "for
+    example" still gets typed by somebody.** (3) Where the summary and the case disagree, **THE CASE
+    WINS** — and say so, so the summary gets fixed rather than quietly believed again. (4) Quote the
+    case, not the summary, in anything you report.
+    **🔴 IT APPLIES TO OUR OWN TOOLING TOO.** The Global Search seed verifier was still testing work
+    order `S2-15440` after the cases had been corrected to `S2-15430` — and it **PASSED**, because
+    `S2-15440` is in the search index. It was proving the wrong thing, confidently, and only re-reading
+    the case bodies caught it.
+    **THE BOUNDARY.** This does not demote handoffs — a good one saves hours. It says a handoff is a
+    **map, not the territory**: use it to know where to look, then look. The same applies to your own
+    earlier notes, to a `PROJECT-STATE.md`, and to the index in `CLAUDE.md`, which already says of
+    itself that the one-line entry **is not the rule**.
+    **RELATION TO OTHER RULES:** Rule 57's shape applied to our own artefacts (expectation comes from
+    the source document, and for *"can this test be run?"* the source document is the case body); the
+    honest trigger for Rule 112; and the reading half of Rule 86.
+    **NOTE ON NUMBERING:** the parity branch carries this same rule as **112**. Same rule, two numbers.
