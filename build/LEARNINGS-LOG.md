@@ -3198,3 +3198,19 @@ need a source read to catch.
 **And the caution is what saved it.** The result was written Failed *with* the sentence "this case
 may itself be wrong". Had it been written as a flat Failed, it would have gone into the ask list
 and a developer would have been sent to break working code.
+
+## L0156 — THE PRECONDITION READ BACK AS GONE, AND IT WAS MY WAIT AGAIN (2026-09-17)
+
+Re-measuring C44854 immediately before filing (Rule 6e), the check "is the part still on the job?"
+came back **false**. For a moment that read as the seeded state having been wiped, which would have
+meant withdrawing the finding. It had not. The job page takes about **7.5 seconds** to draw its
+lines on this branch; the probe waited 6. Timing it properly showed the body text going
+197 → 197 → 1671 characters, and the part appearing on the third look.
+
+**Same root cause as L0150 and L0154:** a single observation, taken at the moment I happened to
+look, treated as the state of the world. There the wait was too long and the branch fell asleep;
+here it was too short and the page had not finished. **Never assert a precondition from one read —
+poll it until it settles, and print what you saw at each step so the settle is visible.**
+
+The re-check itself is what earns its place: it is the third time today that re-measuring before
+acting changed what I was about to say.
