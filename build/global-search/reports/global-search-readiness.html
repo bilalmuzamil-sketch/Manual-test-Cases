@@ -176,6 +176,7 @@
     <div class="meta">
       <span>Prepared <b>17 September 2026</b></span>
       <span>Tested on <b>the QA branch, build v26.36.7-29ca209</b></span>
+      <span><b>165 checks</b> &mdash; 98 on the new feature, 66 regression</span>
       <span>Every status read live from the tracker on the day</span>
     </div>
   </header>
@@ -183,7 +184,7 @@
   <div class="bottomline">
     <div class="lbl">The bottom line</div>
     <p class="bl-main">The feature has been tested end to end. <b>139 of 165 checks pass.</b> <b>14 defects found during testing are still being worked through</b>, and the feature is ready to release once they are closed.</p>
-    <p class="bl-sub">Six of the twenty-six parts of the feature have now cleared QA. Seven more are tested and are each waiting on one or more of those fourteen defects. This is the normal find-and-fix cycle at its closing stage, and the remaining list is small and specific.</p>
+    <p class="bl-sub">Six of the twenty-six parts of the feature have now cleared QA. Seven more are tested and are each waiting on one or more of those fourteen defects. <b>Testing has raised 32 defects in total on this feature, 16 of them already fixed and re-tested</b> &mdash; this is the normal find-and-fix cycle at its closing stage, and the remaining list is small and specific.</p>
   </div>
 
   <div class="split">
@@ -191,12 +192,13 @@
       <div class="side-head"><span class="lbl">Testing</span><span class="verdict-chip ok">Complete</span></div>
       <p class="big"><span class="num">165</span> checks run, <span class="num">139</span> pass.</p>
       <ul class="plain">
+        <li>The suite is <b>98 checks on the new feature plus 66 regression checks</b> confirming nothing findable in the old search was lost. <b>The regression half found 24 of the 32 defects.</b></li>
         <li>Every one of the <b>13 failures has a defect raised</b> against it, so each is tracked and can be re&#8209;checked as soon as it is closed.</li>
         <li><b>6 parts of the feature have cleared QA</b>, four of them signed off today.</li>
         <li><b>11 checks are parked</b> &mdash; they belong to work marked obsolete, so there is nothing to run them against.</li>
         <li><b>1 fix is ready to be re&#8209;checked</b> and is on the testing list.</li>
       </ul>
-      <p class="side-foot">The suite has been run in full against the current build.</p>
+      <p class="side-foot">Both suites have been run in full against the current build.</p>
     </div>
     <div class="side open">
       <div class="side-head"><span class="lbl">Defects to close</span><span class="verdict-chip bad">In flight</span></div>
@@ -224,7 +226,7 @@
     </div>
 
     <div>
-      <div class="band-head"><h3>Testing raised 32 defects in total. Here is what has happened to them.</h3><span class="of">32 in total</span></div>
+      <div class="band-head"><h3>Testing raised 32 defects on this feature. Here is what has happened to them.</h3><span class="of">32 in total</span></div>
       <div class="tiles">
         <div class="tile g"><div class="v num">16</div><div class="k">Closed and verified</div><div class="x">Fixed and re-tested &mdash; done with</div></div>
         <div class="tile b"><div class="v num">14</div><div class="k">Still open</div><div class="x">The work that remains before release</div></div>
@@ -477,8 +479,82 @@
   </section>
 
   <section>
+    <div class="sechead"><h2>Where the 32 defects came from</h2></div>
+    <p class="secnote">Two bodies of testing were run against this feature, and they do different jobs. <strong>The regression suite is what caught most of what was wrong.</strong></p>
+
+    <div class="tiles" style="margin-bottom:22px;">
+      <div class="tile b"><div class="v num">24</div><div class="k">Found by regression testing</div><div class="x">66 checks confirming that everything findable in the old search is still findable in the new one</div></div>
+      <div class="tile w"><div class="v num">7</div><div class="k">Found by the new-feature checks</div><div class="x">98 checks against what the specification asks the new search to do</div></div>
+      <div class="tile s"><div class="v num">1</div><div class="k">Raised from outside testing</div><div class="x">A general interface round, raised by the product side</div></div>
+    </div>
+
+    <p class="secnote"><strong>Three quarters of everything found came from the regression work</strong> &mdash; and by its nature it caught the things nobody would have thought to look for, because they already worked and nobody expected them to stop. A sample of what it caught, each one raised as its own defect:</p>
+
+    <ul class="items">
+      <li>
+        <div class="title-row">
+          <span class="t">Customers that had become unfindable</span>
+          <span class="d">By postcode. By website address. By part of a telephone number. By a contact&rsquo;s job title. Every one of these worked in the old search.</span>
+        </div>
+        <div class="right"><span class="chip ok">4 raised, all fixed</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Vendors that had become unfindable</span>
+          <span class="d">By postcode, by the state they are in, and by the second line of their address &mdash; each of which still worked for customers, so the gap was only visible by checking both.</span>
+        </div>
+        <div class="right"><span class="chip ok">3 raised, all fixed</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Vehicles, parts and work orders missing from their own sections</span>
+          <span class="d">A vehicle found by its VIN, a vendor found by a contact&rsquo;s email, a part found by its part number and a work order found by part of its number all appeared in the overall list but were absent from the section they belong to.</span>
+        </div>
+        <div class="right"><span class="chip ok">4 raised, all fixed</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Vehicles unfindable by number plate, or by part of a VIN</span>
+          <span class="d">Two of the most common ways a person at the counter identifies a vehicle.</span>
+        </div>
+        <div class="right"><span class="chip ok">2 raised, all fixed</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">A newly created work order taking about 85 seconds to become findable</span>
+          <span class="d">Measured, not estimated. In a shop that means a work order created at the counter cannot be pulled up while the customer is still standing there.</span>
+        </div>
+        <div class="right"><span class="chip ok">Raised and fixed</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">A keyword that threw an error on screen</span>
+          <span class="d">Typing it produced &ldquo;Oops! An error occurred&rdquo; rather than results.</span>
+        </div>
+        <div class="right"><span class="chip ok">Raised and fixed</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Work orders no longer findable by the stage they are at</span>
+          <span class="d">Fixed, and now back on the testing list to be re-checked.</span>
+        </div>
+        <div class="right"><span class="chip qa">Closed, ready to re-check</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Still open from the regression work</span>
+          <span class="d">A catalogue part never held in stock cannot be found; imported invoices are not searchable; a correctly spelled name brings back unrelated records; a vehicle cannot be found by year and make together; part of a word finds a company by its name but not by its street; and moving the mouse changes which record Enter opens.</span>
+        </div>
+        <div class="right"><span class="chip fix">6 still open</span></div>
+      </li>
+    </ul>
+
+    <p class="secnote" style="margin-top:18px;"><strong>Sixteen of the twenty-four regression findings are already fixed and re-tested.</strong> The remainder are in the open list above. The new-feature checks found seven more &mdash; the result rows, the ranking, the missing &ldquo;Show all&rdquo; link and the no-results wording &mdash; all raised today.</p>
+  </section>
+
+  <section>
     <div class="sechead"><h2>What testing actually found</h2></div>
-    <p class="secnote">The full suite was run against the QA branch. Every failure below already has a defect raised against it, so each one is tracked and can be re-checked as soon as it is closed.</p>
+    <p class="secnote">The full suite &mdash; 98 new-feature checks plus 66 regression checks &mdash; was run against the QA branch. Every failure below already has a defect raised against it, so each one is tracked and can be re-checked as soon as it is closed.</p>
     <div class="runwrap">
       <table>
         <thead><tr><th>Result</th><th>What it means</th><th>Checks</th></tr></thead>

@@ -160,3 +160,57 @@ change; the reader stops inferring a gap that was never there.
 
 Zero occurrences remain in the page of: *fault · blame · not started · nothing to test · no owner ·
 waiting on QA · with developers.*
+
+---
+
+# Version 5 — the regression work was missing, and it was the larger half
+
+**QA lead:** *"YOU MUST add the things we raised while testing the regression suite do not miss
+anything which can show our efforts."*
+
+He was right and the omission was serious. Versions 1–4 reported **"16 defects closed and
+verified"** as a single grey number. Those sixteen, plus eight still open, are what the **regression
+suite** found — and the report gave no hint that a second body of work existed at all.
+
+## The split, counted
+
+| Suite | Checks | Results | Defects it produced |
+|---|---|---|---|
+| **V1 regression** (sections 6769 + 8056) | **66** | 59 Passed · 6 Failed · 1 Retest | **24 of 32** |
+| New-feature checks (all other sections) | **98** | 80 Passed · 7 Failed · 10 Retest · 1 Blocked | **7 of 32** |
+| Out of V1 scope (6767) | 1 | 1 Untested | — |
+| | **165** | 139 Passed · 13 Failed · 11 Retest · 1 Blocked · 1 Untested | 32 (+1 raised outside testing) |
+
+**Three quarters of everything found on this feature came from the regression work** — and by its
+nature it caught what nobody would have thought to look for, because it already worked and nobody
+expected it to stop.
+
+## What was added to the report
+
+A full section, *"Where the 32 defects came from"*, with a three-tile band (24 / 7 / 1) and a
+named list of what the regression pass actually caught:
+
+* **Customers unfindable** by postcode · website · part of a telephone number · a contact's job
+  title — 4 raised, all fixed (SV-10002, SV-10003, SV-10057, SV-10004).
+* **Vendors unfindable** by postcode · state · address line 2 — each of which still worked for
+  customers, so the gap was only visible by checking both — 3 raised, all fixed (SV-10005,
+  SV-10006, SV-10109).
+* **Records missing from their own section** although present in the overall list — a vehicle by
+  VIN, a vendor by contact email, a part by part number, a work order by part of its number —
+  4 raised, all fixed (SV-10014, SV-10015, SV-10016, SV-10017).
+* **Vehicles unfindable by number plate, and by part of a VIN** — 2 raised, fixed (SV-10007,
+  SV-10058).
+* **A new work order taking ~85 seconds to become findable** — measured, not estimated; in a shop
+  that means it cannot be pulled up while the customer is still at the counter (SV-10056).
+* **A keyword that threw "Oops! An error occurred"** on screen (SV-10113).
+* **Work orders no longer findable by their stage** — fixed, now awaiting re-check (SV-10008).
+* **Six still open** — SV-10001, SV-10199, SV-10025, SV-10055, SV-10060 (blocked), SV-10061.
+
+The regression split is now also named in the masthead, in the Testing column of the summary, and
+in the run table's introduction, so a reader meets it before the detail.
+
+## The lesson
+
+**A status report that counts only what is still broken erases the work that fixed everything
+else.** Sixteen closed defects are not background — they are the single largest piece of evidence
+that the testing was thorough. Report closed work by name and by count, not as a grey total.
