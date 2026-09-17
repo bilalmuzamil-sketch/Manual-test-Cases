@@ -1,0 +1,20 @@
+[
+ {"cid":"C53606","status":"Passed",
+  "note":"a vendor can still be found by typing the state it sits in - the seeded supplier comes back under Vendors.",
+  "evidence":"Re-run by observation on 17 September 2026, build v26.36.7-29ca209. This check had been marked as passing on the strength of a sign-off rather than a run, at a time when the test branch could not be signed in to; it has now been watched on screen.\n\nTyped 'Ohio' and opened the Vendors list: six suppliers came back, all of them in Ohio, and 'ZZAUTOTEST Kestrel Parts Supply' is one of them. None of the six carries the word Ohio in its name, so the state is genuinely what they were found by."},
+ {"cid":"C53604","status":"Passed",
+  "note":"both halves work - the second line of an address finds the customer, and it finds the supplier too.",
+  "evidence":"Re-run by observation on 17 September 2026, build v26.36.7-29ca209, replacing a result recorded from a sign-off.\n\nTyped 'Dock 7B': the customer ZZAUTOTEST Bridgeport Hauling came back, and it is the only customer returned. Typed 'Bay 12C': the supplier ZZAUTOTEST Kestrel Parts Supply came back under Vendors. Neither record carries those words anywhere except on the second line of its address.\n\nNote for whoever reads the customer's name: it now ends in a tag that was added this evening while building data for another check. The record is the same one."},
+ {"cid":"C53585","status":"Passed",
+  "note":"a supplier is still found by its street, by its town and by its postcode - all three.",
+  "evidence":"Re-run by observation on 17 September 2026, build v26.36.7-29ca209, replacing a result recorded from a sign-off.\n\nTyped 'Halbrook' - the supplier came back under Vendors. Typed 'Marnston' - it came back again, alongside two other suppliers in the same town. Typed the postcode '43055-2210' - the supplier was the only thing returned anywhere on the screen. The postcode is the one the older version could find and the newer requirement does not promise, so it was worth watching: it works."},
+ {"cid":"C53582","status":"Passed",
+  "note":"a customer is still found by street, town, state and postcode.",
+  "evidence":"Re-run by observation on 17 September 2026, build v26.36.7-29ca209, replacing a result recorded from a sign-off.\n\nTyped 'Kestrelway' - the seeded customer came back. Typed the postcode '44872-9931' - the seeded customer was the only thing returned anywhere on the screen.\n\nTown and state needed a second look. Typing 'Fernvale' and typing 'Ohio' each fill the customer list to its limit of twenty, and the seeded customer is not among the twenty shown. That is not the town or the state failing to work: every one of the twenty was found BY its town or state, since none of them carries the word in its name. The seeded customer simply sits behind twenty others that share the same town. Both fields are doing their job."},
+ {"cid":"C53516","status":"Passed",
+  "note":"typing a vehicle's number plate finds that vehicle.",
+  "evidence":"Re-run by observation on 17 September 2026, build v26.36.7-29ca209, replacing a result recorded from a sign-off.\n\nTyped the full plate 'OHZZT471'. One result came back in the whole search - the right vehicle, under Vehicles, showing its year, make and model with its owner beside it, and the plate itself shown as the thing that matched."},
+ {"cid":"C55670","status":"Passed",
+  "note":"a customer is found by a contact's first name, by their surname, by their direct line, and by just the last part of that number.",
+  "evidence":"Re-run by observation on 17 September 2026, build v26.36.7-29ca209, replacing a result recorded from a sign-off.\n\nTyped 'Marlene' - the customer came back, marked as found through a contact. Typed 'Okonkwo' - the same customer, on its own. Typed the whole direct line '419-555-0177' - the customer was the only thing returned. Typed only the last part, '555-0177' - the customer came back again. All four ways work, and each row says plainly that it was a contact that matched."}
+]
