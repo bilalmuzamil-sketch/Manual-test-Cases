@@ -239,7 +239,7 @@ exists" is not "the search returns it".
 
 ---
 
-## §7 · TWO TICKET CANDIDATES — **YOU file these, and you RE-CHECK them first**
+## §7 · THREE TICKET CANDIDATES — **YOU file these, and you RE-CHECK them first**
 
 **The QA lead's instruction, 2026-09-17: this session runs the tests and files a ticket for every
 defect found — and 🔴 CHECKS EACH OF MY FINDINGS AGAIN BEFORE TRUSTING IT.**
@@ -258,7 +258,28 @@ reproduce, say so; that is a useful result, not an awkward one.
    number already in the catalogue. `AcceptDeliveryCommandHandler` ends with
    `refreshTouchedWorkOrders()`, which a standalone order never reaches. **Suspected product defect —
    a ticket candidate, not filed (Rule 62 hold).**
-2. **The vendor-invoice payment badge has FOUR states, not the three the PRD and C44900 describe.**
+2. 🔴 **TYPING AN ASSET'S OWN DISPLAYED ROW TEXT RETURNS NO ASSETS.** The row reads
+   *"2019 Freightliner Cascadia"*; type that and the Assets group is **absent**. Drop the year and it
+   returns 20. Measured on `v26.36.7-29ca209`, 2026-09-17:
+
+   | Typed | Assets |
+   |---|---|
+   | `Freightliner Cascadia` | 20 |
+   | `2019 Freightliner Cascadia` | **0** |
+   | `MAZDA MAZDA3` | 20 |
+   | `2025 MAZDA MAZDA3` | **0** |
+   | `Ford Transit` | 20 |
+   | `2025 Ford Transit` | **0** |
+   | `2025` alone | 20 |
+
+   **Controlled on records this session did not create**, so it is systematic and affects every asset
+   in the estate — not our seed. The likely mechanism: `year` is indexed as an **integer**
+   (`VehicleDocumentProvider`: `'year' => DocumentField::integer($row['year'])`), so the year token
+   cannot participate in the text match and the multi-token query fails as a whole. **This is a
+   guess about the cause; the measurement above is not.** It directly affects **C44867**, which names
+   `2025 Freightliner M2` as its example term, and **C44833**, which names the same.
+
+3. **The vendor-invoice payment badge has FOUR states, not the three the PRD and C44900 describe.**
    `vendor_transaction_status` declares `unpaid`, `partially_paid`, `paid` **and `credit`** (rendered
    "Unapplied"), plus `null` before any transaction exists. The product's own code comment says so and
    calls it *"correcting D19"*. **Document says three, code says four → a PO decision item under Rule
