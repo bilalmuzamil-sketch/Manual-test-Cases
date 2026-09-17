@@ -15,6 +15,17 @@ THE DESIGN RULE FOR THIS UNIVERSE
     Measured 2026-09-17 before writing this: every keyword below returns NOTHING on sv9160, so each
     one is genuinely private to its case.
 
+    🔴 THE KEYWORDS MUST BE FAR APART IN EDIT DISTANCE, NOT MERELY DIFFERENT STRINGS.
+    The first attempt used ZZRANKQ, ZZRANKC, ZZRANKV, ZZRANKN, ZZRANKT, ZZRANKI, ZZRANKP, ZZRANKF -
+    which differ by ONE CHARACTER. The search is deliberately fuzzy, so every one of them matched
+    every other one: each keyword returned the same eight customers and the same two vendors, and
+    the "private keyword" property - the entire basis for reading a ranking result - was gone.
+    It failed silently: the records were all created, all verified present, and all field-checked
+    clean. Only searching for them exposed it, which is why "the record exists" is never "the search
+    returns it".
+    So the tokens below are whole distinct words. A scheme of <PREFIX><letter> is exactly wrong for
+    a fuzzy search, however tidy it looks in a table.
+
 SCOPE OF THIS FILE
     The records that can be created directly - customers, contacts, vehicles, vendors, parts.
     Work orders, purchase orders and vendor invoices are DEPENDENT records with their own proven
@@ -31,18 +42,35 @@ def customer(key, name, serves, why, phone=None, city='Fernvale'):
                                 'state_or_province': 'Ohio', 'postal_code': '44872-2001',
                                 'phone': phone or '(264) 400-0000', 'country_code': 'US'}},
          'verify': ['name', 'city'],
-         'read_as': {'phone': 'telephone'},
+         # The record reads these back under different names; without the mapping the seeder
+         # reports them as NOT COMPARED, which is honest but useless - it means the field was
+         # written and never checked.
+         'read_as': {'phone': 'telephone', 'address': 'address_1'},
          'write': {'endpoint': '/api/customers/change', 'whole_record': True},
          '_why': why}
     return r
 
-def vehicle(key, vin, unit, maker, model, year, serves, why):
+def vehicle(key, vin, unit, maker, model, year, serves, why,
+            owner='rank_owner', owner_contact='rank_owner_contact'):
+    """🔴 AN ASSET NEEDS AN OWNER AT CREATE TIME. /api/vehicles/create answers
+    400 {"customer_id":"Missing required parameter","company_id":"Missing required parameter"}
+    without one. The existing gs-v2 manifest attaches the owner in its REPAIR step instead, which
+    means those records were created before the API required it - so copying that manifest's create
+    payload is not enough, and this is exactly why the seeder creates through the real endpoints and
+    reads the refusal rather than assuming a shape still works."""
     return {'key': key, 'type': 'Vehicle', 'serves': serves,
             'find': {'mode': 'search', 'list': '/api/vehicles', 'coll': 'collection',
                      'field': 'vin', 'value': vin, 'control': None},
             'create': {'endpoint': '/api/vehicles/create',
                        'payload': {'maker_name': maker, 'model_name': model, 'year': year,
-                                   'unit': unit, 'vin': vin, 'licence_plate': unit}},
+                                   'unit': unit, 'vin': vin, 'licence_plate': unit},
+                       # 🔴 customer_id and company_id are DIFFERENT ENTITIES. The backend's
+                       # CreateCommand maps customer_id to a `Customer` and company_id to a
+                       # `Company` (api/src/VehicleService/Vehicles/Application/HTTP/Create/
+                       # CreateCommand.php), so passing the company's id for both answers
+                       # 400 {"customer_id":"Not found"} - a refusal that reads like a missing
+                       # record when it is really a wrong TYPE of id. The Customer is the contact.
+                       'inject': {'customer_id': owner_contact, 'company_id': owner}},
             'verify': ['vin', 'unit'],
             'write': {'endpoint': '/api/vehicles/change', 'whole_record': True},
             '_why': why}
@@ -55,7 +83,16 @@ def vendor(key, name, serves, why):
                        'payload': {'name': name, 'address_1': '2 Ranking Road', 'city': 'Fernvale',
                                    'state_or_province': 'Ohio', 'postal_code': '44872-2001',
                                    'telephone': '(264) 400-0001', 'email': 'ap@zzrank.test',
-                                   'credit_term': 'Net 30', 'credit_limit': 5000}},
+                                   'credit_term': 'Net 30', 'credit_limit': 5000,
+                                   },
+                       # 🔴 tax_id is a UUID REFERENCE to a tax record, not a tax number: a plain
+                       # string answers 400 {"tax_id":"Invalid UUID"}. Hardcoding the id would rot
+                       # on the next redeploy, so take it off a vendor that already carries one -
+                       # when the lookup table is not exposed, the existing data IS the lookup table.
+                       'resolve_by_example': {'tax_id': {
+                           'list': '/api/parts-catalogue/vendors', 'match_field': 'name',
+                           'value': 'Carolina Truck & Trailer Repair',
+                           'take': 'tax_id', 'take_as': 'tax_id'}}},
             'verify': ['name'],
             'write': {'endpoint': '/api/parts-catalogue/vendors/change', 'whole_record': True},
             '_why': why}
@@ -72,72 +109,92 @@ def cat_part(key, number, name, serves, why):
 
 R = []
 
-# ── C55707 [ZZRANKQ] prefix > whole-word > fuzzy ──────────────────────────────────────────────
+# ── C55707 [ZZPREFIX] prefix > whole-word > fuzzy ──────────────────────────────────────────────
 # Three customers, ONE keyword, differing ONLY in where/how the keyword sits in the name.
 R += [
- customer('rank_q_prefix', 'ZZRANKQ Freight Ltd', [55707],
+ customer('rank_q_prefix', 'ZZPREFIX Freight Ltd', [55707],
    'PREFIX: the name STARTS with the keyword. Must rank first.'),
- customer('rank_q_whole', 'Bolton ZZRANKQ Services', [55707],
+ customer('rank_q_whole', 'Bolton ZZPREFIX Services', [55707],
    'WHOLE WORD mid-name. Must rank below the prefix match and above the typo.'),
- customer('rank_q_typo', 'ZZRANKQQ Cartage', [55707],
+ customer('rank_q_typo', 'ZZPREFIXX Cartage', [55707],
    'FUZZY: one edit from the keyword, so it is reachable only by fuzzy matching. Must rank last.'),
 ]
 
-# ── C55708 [ZZRANKC] a customer with an open work order outranks one without ───────────────────
+# ── C55708 [ZZCUSTOPEN] a customer with an open work order outranks one without ───────────────────
 R += [
- customer('rank_c_open', 'ZZRANKC Haulage Open', [55708],
+ customer('rank_c_open', 'ZZCUSTOPEN Haulage Open', [55708],
    'Gets an OPEN work order attached in the dependent pass. Must rank above its twin.'),
- customer('rank_c_none', 'ZZRANKC Haulage Quiet', [55708],
+ customer('rank_c_none', 'ZZCUSTOPEN Haulage Quiet', [55708],
    'Deliberately NO work order and never opened. The control.'),
 ]
 
-# ── C55709 [ZZRANKV] an asset on an open work order outranks a newer one that is idle ──────────
+# The asset cases need an owner, and the owner's NAME must NOT carry the keyword - otherwise the
+# keyword stops being private to the two assets and the assets group is no longer the only thing the
+# query can rank. Declared before the vehicles because `inject` resolves through seeded state.
+R += [customer('rank_owner', 'Fernvale Asset Holdings', [55709],
+   'Owner for the ZZASSETLIFT assets. Deliberately carries NO keyword, so searching ZZASSETLIFT returns the '
+   'two assets and nothing else.')]
+
+R += [{'key': 'rank_owner_contact', 'type': 'Contact (a PERSON at a customer company)',
+       'serves': [55709],
+       'find': {'mode': 'child', 'parent': 'rank_owner', 'view': '/api/customers/view/{id}',
+                'path': 'company.contacts', 'field': 'first_name', 'value': 'Fernvale'},
+       'create': {'endpoint': '/api/contacts/create',
+                  'payload': {'first_name': 'Fernvale', 'last_name': 'Holder',
+                              'title': 'Fleet Manager', 'telephone': '(264) 400-0003',
+                              'email': 'fleet@fernvale-asset.test'},
+                  'inject': {'company_id': 'rank_owner'}},
+       'verify': ['first_name'],
+       '_why': 'The Customer entity the asset create requires. Its name carries no keyword, so it '
+               'cannot pollute the ZZASSETLIFT assets group.'}]
+
+# ── C55709 [ZZASSETLIFT] an asset on an open work order outranks a newer one that is idle ──────────
 R += [
- vehicle('rank_v_open', 'ZZRANKV0000000001', 'ZZRANKV-01', 'Freightliner', 'Cascadia', 2019, [55709],
+ vehicle('rank_v_open', 'ZZASSETLIFT000001', 'ZZASSETLIFT-01', 'Freightliner', 'Cascadia', 2019, [55709],
    'Older model year ON AN OPEN WORK ORDER. Must still outrank the newer idle one - which is the '
    'whole point: the open-work-order lift beats the model-year tiebreak.'),
- vehicle('rank_v_idle', 'ZZRANKV0000000002', 'ZZRANKV-02', 'Freightliner', 'Cascadia', 2025, [55709],
+ vehicle('rank_v_idle', 'ZZASSETLIFT000002', 'ZZASSETLIFT-02', 'Freightliner', 'Cascadia', 2025, [55709],
    'NEWER model year, no work order, never opened. If this ranks first the lift is not applied.'),
 ]
 
-# ── C55710 [ZZRANKN] a vendor with open purchase orders outranks one with none ─────────────────
+# ── C55710 [ZZVENDORPO] a vendor with open purchase orders outranks one with none ─────────────────
 R += [
- vendor('rank_n_open', 'ZZRANKN Supply Open', [55710],
+ vendor('rank_n_open', 'ZZVENDORPO Supply Open', [55710],
    'Gets OPEN purchase orders in the dependent pass. Must rank above its twin.'),
- vendor('rank_n_none', 'ZZRANKN Supply Quiet', [55710],
+ vendor('rank_n_none', 'ZZVENDORPO Supply Quiet', [55710],
    'Deliberately NO purchase orders. The control.'),
 ]
 
-# ── C55716 [ZZRANKT] a tie broken by which was updated more recently ───────────────────────────
+# ── C55716 [ZZTIEBREAK] a tie broken by which was updated more recently ───────────────────────────
 R += [
- customer('rank_t_older', 'ZZRANKT Transport One', [55716],
+ customer('rank_t_older', 'ZZTIEBREAK Transport One', [55716],
    'Created first and NOT touched again. Otherwise identical to its twin.'),
- customer('rank_t_newer', 'ZZRANKT Transport Two', [55716],
+ customer('rank_t_newer', 'ZZTIEBREAK Transport Two', [55716],
    'Identical match quality, but UPDATED LAST by the seeder, so it must win the tie.'),
 ]
 
-# ── C44852 [ZZRANKI] in stock ranks above out of stock (out of stock NOT hidden) ───────────────
+# ── C44852 [ZZSTOCKPART] in stock ranks above out of stock (out of stock NOT hidden) ───────────────
 R += [
- cat_part('rank_i_instock', 'ZZRANKI-1001', 'ZZRANKI Brake Drum In Stock', [44852],
+ cat_part('rank_i_instock', 'ZZSTOCKPART-1001', 'ZZSTOCKPART Brake Drum In Stock', [44852],
    'Stocked to a positive quantity in the dependent pass. Must rank above the out-of-stock twin.'),
- cat_part('rank_i_outstock', 'ZZRANKI-1002', 'ZZRANKI Brake Drum Out Of Stock', [44852],
+ cat_part('rank_i_outstock', 'ZZSTOCKPART-1002', 'ZZSTOCKPART Brake Drum Out Of Stock', [44852],
    'Left at zero on hand. 🔴 It must still APPEAR - the case asserts out-of-stock is ranked lower, '
    'NOT hidden. A missing row here is a different (and reportable) behaviour from a low row.'),
 ]
 
-# ── C55712 [ZZRANKP] a part with recent activity outranks a quiet one ──────────────────────────
+# ── C55712 [ZZPARTBUSY] a part with recent activity outranks a quiet one ──────────────────────────
 R += [
- cat_part('rank_p_active', 'ZZRANKP-2001', 'ZZRANKP Alternator Active', [55712],
+ cat_part('rank_p_active', 'ZZPARTBUSY-2001', 'ZZPARTBUSY Alternator Active', [55712],
    'Sold/used and viewed in the dependent pass. Must rank above the quiet twin.'),
- cat_part('rank_p_quiet', 'ZZRANKP-2002', 'ZZRANKP Alternator Quiet', [55712],
+ cat_part('rank_p_quiet', 'ZZPARTBUSY-2002', 'ZZPARTBUSY Alternator Quiet', [55712],
    'Same stock state, no activity. Isolates recent-activity from in-stock-vs-out.'),
 ]
 
-# ── C45139 [ZZRANKF] a customer matched ONLY through its contact ───────────────────────────────
+# ── C45139 [ZZCONTACTONLY] a customer matched ONLY through its contact ───────────────────────────────
 # 🔴 The company name must NOT contain the searched value, or the case proves nothing.
 R += [
  customer('rank_f_company', 'Northgate Cartage Company', [45139],
-   'The COMPANY NAME deliberately contains neither ZZRANKF nor the contact phone. The only route '
+   'The COMPANY NAME deliberately contains neither ZZCONTACTONLY nor the contact phone. The only route '
    'to this record is its contact - which is exactly what the case measures.',
    phone='(264) 400-0002'),
  {'key': 'rank_f_contact', 'type': 'Contact (a PERSON at a customer company)', 'serves': [45139],
@@ -145,19 +202,20 @@ R += [
            'path': 'company.contacts', 'field': 'first_name', 'value': 'Zzrankf'},
   'create': {'endpoint': '/api/contacts/create',
              'payload': {'first_name': 'Zzrankf', 'last_name': 'Oyelaran', 'title': 'Fleet Manager',
-                         'telephone': '(264) 400-0199', 'email': 'zzrankf@northgate-cartage.test'}},
+                         'telephone': '(264) 400-0199', 'email': 'zzrankf@northgate-cartage.test'},
+             'inject': {'company_id': 'rank_f_company'}},
   'verify': ['first_name', 'telephone'],
-  '_why': 'Carries the ZZRANKF token and a distinctive phone. Searching either must return the '
+  '_why': 'Carries the ZZCONTACTONLY token and a distinctive phone. Searching either must return the '
           'COMPANY, flagged as a contact match.'},
 ]
 
-# ── C55713 [ZZFZ] a very short query must not produce noisy fuzzy matches ──────────────────────
+# ── C55713 [ZZFUZZLEN] a very short query must not produce noisy fuzzy matches ──────────────────────
 # The case needs BOTH halves or it cannot distinguish "short queries are stricter" from "nothing
 # matched anyway": a 2-3 letter name one edit from the query, and a 4+ letter name one edit from it.
 R += [
- customer('fz_short', 'ZZFZ Ab Cartage', [55713],
+ customer('fz_short', 'ZZFUZZLEN Ab Cartage', [55713],
    'SHORT token "Ab" - two letters. Querying "Ac" (one edit) must NOT drag it in.'),
- customer('fz_long', 'ZZFZ Abcde Logistics', [55713],
+ customer('fz_long', 'ZZFUZZLEN Abcde Logistics', [55713],
    'LONG token "Abcde" - five letters. Querying "Abcdf" (one edit) SHOULD find it. The contrast '
    'between these two rows is the whole case.'),
 ]

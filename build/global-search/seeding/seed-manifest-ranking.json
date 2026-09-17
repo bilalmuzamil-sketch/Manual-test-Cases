@@ -17,13 +17,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZRANKQ Freight Ltd",
+    "value": "ZZPREFIX Freight Ltd",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZRANKQ Freight Ltd",
+     "name": "ZZPREFIX Freight Ltd",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -37,7 +37,8 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
@@ -56,13 +57,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "Bolton ZZRANKQ Services",
+    "value": "Bolton ZZPREFIX Services",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "Bolton ZZRANKQ Services",
+     "name": "Bolton ZZPREFIX Services",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -76,7 +77,8 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
@@ -95,13 +97,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZRANKQQ Cartage",
+    "value": "ZZPREFIXX Cartage",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZRANKQQ Cartage",
+     "name": "ZZPREFIXX Cartage",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -115,7 +117,8 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
@@ -134,13 +137,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZRANKC Haulage Open",
+    "value": "ZZCUSTOPEN Haulage Open",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZRANKC Haulage Open",
+     "name": "ZZCUSTOPEN Haulage Open",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -154,7 +157,8 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
@@ -173,13 +177,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZRANKC Haulage Quiet",
+    "value": "ZZCUSTOPEN Haulage Quiet",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZRANKC Haulage Quiet",
+     "name": "ZZCUSTOPEN Haulage Quiet",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -193,13 +197,86 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
     "whole_record": true
    },
    "_why": "Deliberately NO work order and never opened. The control."
+  },
+  {
+   "key": "rank_owner",
+   "type": "Customer",
+   "serves": [
+    55709
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Fernvale Asset Holdings",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Fernvale Asset Holdings",
+     "address": "1 Ranking Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "phone": "(264) 400-0000",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "Owner for the ZZASSETLIFT assets. Deliberately carries NO keyword, so searching ZZASSETLIFT returns the two assets and nothing else."
+  },
+  {
+   "key": "rank_owner_contact",
+   "type": "Contact (a PERSON at a customer company)",
+   "serves": [
+    55709
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "rank_owner",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Fernvale"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Fernvale",
+     "last_name": "Holder",
+     "title": "Fleet Manager",
+     "telephone": "(264) 400-0003",
+     "email": "fleet@fernvale-asset.test"
+    },
+    "inject": {
+     "company_id": "rank_owner"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "_why": "The Customer entity the asset create requires. Its name carries no keyword, so it cannot pollute the ZZASSETLIFT assets group."
   },
   {
    "key": "rank_v_open",
@@ -212,7 +289,7 @@
     "list": "/api/vehicles",
     "coll": "collection",
     "field": "vin",
-    "value": "ZZRANKV0000000001",
+    "value": "ZZASSETLIFT000001",
     "control": null
    },
    "create": {
@@ -221,9 +298,13 @@
      "maker_name": "Freightliner",
      "model_name": "Cascadia",
      "year": 2019,
-     "unit": "ZZRANKV-01",
-     "vin": "ZZRANKV0000000001",
-     "licence_plate": "ZZRANKV-01"
+     "unit": "ZZASSETLIFT-01",
+     "vin": "ZZASSETLIFT000001",
+     "licence_plate": "ZZASSETLIFT-01"
+    },
+    "inject": {
+     "customer_id": "rank_owner_contact",
+     "company_id": "rank_owner"
     }
    },
    "verify": [
@@ -247,7 +328,7 @@
     "list": "/api/vehicles",
     "coll": "collection",
     "field": "vin",
-    "value": "ZZRANKV0000000002",
+    "value": "ZZASSETLIFT000002",
     "control": null
    },
    "create": {
@@ -256,9 +337,13 @@
      "maker_name": "Freightliner",
      "model_name": "Cascadia",
      "year": 2025,
-     "unit": "ZZRANKV-02",
-     "vin": "ZZRANKV0000000002",
-     "licence_plate": "ZZRANKV-02"
+     "unit": "ZZASSETLIFT-02",
+     "vin": "ZZASSETLIFT000002",
+     "licence_plate": "ZZASSETLIFT-02"
+    },
+    "inject": {
+     "customer_id": "rank_owner_contact",
+     "company_id": "rank_owner"
     }
    },
    "verify": [
@@ -282,13 +367,13 @@
     "list": "/api/parts-catalogue/vendors",
     "coll": "collection",
     "field": "name",
-    "value": "ZZRANKN Supply Open",
+    "value": "ZZVENDORPO Supply Open",
     "control": "Carolina Truck"
    },
    "create": {
     "endpoint": "/api/parts-catalogue/add-vendor",
     "payload": {
-     "name": "ZZRANKN Supply Open",
+     "name": "ZZVENDORPO Supply Open",
      "address_1": "2 Ranking Road",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -297,6 +382,15 @@
      "email": "ap@zzrank.test",
      "credit_term": "Net 30",
      "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
     }
    },
    "verify": [
@@ -319,13 +413,13 @@
     "list": "/api/parts-catalogue/vendors",
     "coll": "collection",
     "field": "name",
-    "value": "ZZRANKN Supply Quiet",
+    "value": "ZZVENDORPO Supply Quiet",
     "control": "Carolina Truck"
    },
    "create": {
     "endpoint": "/api/parts-catalogue/add-vendor",
     "payload": {
-     "name": "ZZRANKN Supply Quiet",
+     "name": "ZZVENDORPO Supply Quiet",
      "address_1": "2 Ranking Road",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -334,6 +428,15 @@
      "email": "ap@zzrank.test",
      "credit_term": "Net 30",
      "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
     }
    },
    "verify": [
@@ -356,13 +459,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZRANKT Transport One",
+    "value": "ZZTIEBREAK Transport One",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZRANKT Transport One",
+     "name": "ZZTIEBREAK Transport One",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -376,7 +479,8 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
@@ -395,13 +499,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZRANKT Transport Two",
+    "value": "ZZTIEBREAK Transport Two",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZRANKT Transport Two",
+     "name": "ZZTIEBREAK Transport Two",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -415,7 +519,8 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
@@ -434,14 +539,14 @@
     "list": "/api/parts-catalogue/catalogue-parts",
     "coll": "collection",
     "field": "part_number",
-    "value": "ZZRANKI-1001",
+    "value": "ZZSTOCKPART-1001",
     "control": "21-361"
    },
    "create": {
     "endpoint": "/api/parts-catalogue/add-catalogue-part",
     "payload": {
-     "name": "ZZRANKI Brake Drum In Stock",
-     "part_number": "ZZRANKI-1001",
+     "name": "ZZSTOCKPART Brake Drum In Stock",
+     "part_number": "ZZSTOCKPART-1001",
      "tags": [
       "ZZAUTOTEST"
      ]
@@ -464,14 +569,14 @@
     "list": "/api/parts-catalogue/catalogue-parts",
     "coll": "collection",
     "field": "part_number",
-    "value": "ZZRANKI-1002",
+    "value": "ZZSTOCKPART-1002",
     "control": "21-361"
    },
    "create": {
     "endpoint": "/api/parts-catalogue/add-catalogue-part",
     "payload": {
-     "name": "ZZRANKI Brake Drum Out Of Stock",
-     "part_number": "ZZRANKI-1002",
+     "name": "ZZSTOCKPART Brake Drum Out Of Stock",
+     "part_number": "ZZSTOCKPART-1002",
      "tags": [
       "ZZAUTOTEST"
      ]
@@ -494,14 +599,14 @@
     "list": "/api/parts-catalogue/catalogue-parts",
     "coll": "collection",
     "field": "part_number",
-    "value": "ZZRANKP-2001",
+    "value": "ZZPARTBUSY-2001",
     "control": "21-361"
    },
    "create": {
     "endpoint": "/api/parts-catalogue/add-catalogue-part",
     "payload": {
-     "name": "ZZRANKP Alternator Active",
-     "part_number": "ZZRANKP-2001",
+     "name": "ZZPARTBUSY Alternator Active",
+     "part_number": "ZZPARTBUSY-2001",
      "tags": [
       "ZZAUTOTEST"
      ]
@@ -524,14 +629,14 @@
     "list": "/api/parts-catalogue/catalogue-parts",
     "coll": "collection",
     "field": "part_number",
-    "value": "ZZRANKP-2002",
+    "value": "ZZPARTBUSY-2002",
     "control": "21-361"
    },
    "create": {
     "endpoint": "/api/parts-catalogue/add-catalogue-part",
     "payload": {
-     "name": "ZZRANKP Alternator Quiet",
-     "part_number": "ZZRANKP-2002",
+     "name": "ZZPARTBUSY Alternator Quiet",
+     "part_number": "ZZPARTBUSY-2002",
      "tags": [
       "ZZAUTOTEST"
      ]
@@ -574,13 +679,14 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
     "whole_record": true
    },
-   "_why": "The COMPANY NAME deliberately contains neither ZZRANKF nor the contact phone. The only route to this record is its contact - which is exactly what the case measures."
+   "_why": "The COMPANY NAME deliberately contains neither ZZCONTACTONLY nor the contact phone. The only route to this record is its contact - which is exactly what the case measures."
   },
   {
    "key": "rank_f_contact",
@@ -604,13 +710,16 @@
      "title": "Fleet Manager",
      "telephone": "(264) 400-0199",
      "email": "zzrankf@northgate-cartage.test"
+    },
+    "inject": {
+     "company_id": "rank_f_company"
     }
    },
    "verify": [
     "first_name",
     "telephone"
    ],
-   "_why": "Carries the ZZRANKF token and a distinctive phone. Searching either must return the COMPANY, flagged as a contact match."
+   "_why": "Carries the ZZCONTACTONLY token and a distinctive phone. Searching either must return the COMPANY, flagged as a contact match."
   },
   {
    "key": "fz_short",
@@ -623,13 +732,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZFZ Ab Cartage",
+    "value": "ZZFUZZLEN Ab Cartage",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZFZ Ab Cartage",
+     "name": "ZZFUZZLEN Ab Cartage",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -643,7 +752,8 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
@@ -662,13 +772,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZFZ Abcde Logistics",
+    "value": "ZZFUZZLEN Abcde Logistics",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZFZ Abcde Logistics",
+     "name": "ZZFUZZLEN Abcde Logistics",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -682,7 +792,8 @@
     "city"
    ],
    "read_as": {
-    "phone": "telephone"
+    "phone": "telephone",
+    "address": "address_1"
    },
    "write": {
     "endpoint": "/api/customers/change",
