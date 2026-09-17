@@ -1,0 +1,44 @@
+[
+ {
+  "cid": "C44804",
+  "status": "Failed",
+  "note": "see evidence",
+  "evidence": "width 640, top 96, centred true, dim true, focused false, placeholder \"undefined\", footer \"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\""
+ },
+ {
+  "cid": "C44813",
+  "status": "Passed",
+  "note": "the legend stays in the footer with no query, with results, and with no results",
+  "evidence": "empty:\"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\" | results:\"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\" | no-results:\"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\""
+ },
+ {
+  "cid": "C44806",
+  "status": "Passed",
+  "note": "Esc closes the box and removes the dimming",
+  "evidence": "modal gone true, dimming gone true"
+ },
+ {
+  "cid": "C44805",
+  "status": "Blocked",
+  "note": "could not click the header search field with the selectors tried - instrument not proven (Rule 104)",
+  "evidence": "click route: locator.click: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('header inp"
+ },
+ {
+  "cid": "C44807",
+  "status": "Passed",
+  "note": "pressing the shortcut again closes the box and removes the dimming",
+  "evidence": "modal gone true, dimming gone true"
+ },
+ {
+  "cid": "C44808",
+  "status": "Passed",
+  "note": "clicking the dimmed page behind the box closes it",
+  "evidence": "clicked (60,600); modal gone true, dimming gone true"
+ },
+ {
+  "cid": "C44809",
+  "status": "Passed",
+  "note": "each Down moves to the next result line and each Up to the previous; the highlight never lands on a group heading",
+  "evidence": "down landed on rows [1,2,3,4,5], up [4,3,2], every landing is a result row: true"
+ }
+]

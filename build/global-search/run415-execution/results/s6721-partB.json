@@ -1,0 +1,32 @@
+[
+ {
+  "cid": "C44804",
+  "status": "Passed",
+  "note": "the shortcut opens a 640-wide box 96 from the top, centred not anchored; page dimmed, field ready to type, wording exactly as specified, legend in the footer",
+  "evidence": "width 640, top 96, centred true, dim true, ready to type true, wording \"Search work orders, customers, parts and more\", footer \"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\""
+ },
+ {
+  "cid": "C44805",
+  "status": "Passed",
+  "note": "clicking the header search control opens the same centred box, same size and position, ready to type",
+  "evidence": "width 640, top 96, centred true, dim true, ready to type true, wording \"Search work orders, customers, parts and more\""
+ },
+ {
+  "cid": "C44810",
+  "status": "Passed",
+  "note": "pressing Enter opens the highlighted record in the same tab and the box closes",
+  "evidence": "highlighted \"2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics\"; address before https://sv9160.qa.shopview.com/customers -> after https://sv9160.qa.shopview.com/customers/vehicle/6af0fc81-69ca-4c1c-8386-db0413d63176/work-orders?companyId=9f7ee11a-c943-49b2-9c06-929f8506f858; new tabs 0; box still open false"
+ },
+ {
+  "cid": "C44811",
+  "status": "Passed",
+  "note": "holding Control and pressing Enter opens the highlighted record in a new browser tab and leaves the current page where it was",
+  "evidence": "highlighted \"2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics\"; tabs 1 -> 2; new tab address https://sv9160.qa.shopview.com/customers/vehicle/6af0fc81-69ca-4c1c-8386-db0413d63176/work-orders?companyId=9f7ee11a-c943-49b2-9c06-929f8506f858; current page moved false"
+ },
+ {
+  "cid": "C44812",
+  "status": "Passed",
+  "note": "Tab moves the focus onto the tab strip and the Left and Right arrows move between tabs",
+  "evidence": "focus landed on a tab: true; selected tab All (44) -> right -> Work orders (20) -> left -> All (44)"
+ }
+]
