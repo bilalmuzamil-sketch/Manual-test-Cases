@@ -3402,3 +3402,30 @@ no typo tolerance, pick one that does not exist.** `I9160-1397` is a real purcha
 branch; using it as the "typo" reads as a failure of the rule when the product is behaving perfectly.
 `I9160-1399` is the correct choice, and both are now written into the case's result for whoever
 re-runs it.
+
+## L0164 — 2026-09-17 — A RANKING SIGNAL IS ISOLATED BY BUILDING THE PAIR, NOT BY WAITING FOR ONE
+
+C55711 asked for three ranking signals — recency, created-by-you, and Paid — and was Blocked all day
+because the branch held only two part sales that matched any one query. The seed was raised as an ask
+when it did not need to be one.
+
+What actually worked, and is the pattern for every future ranking case:
+
+1. **Make the records findable by a shared word without inventing records.** Part sales are indexed
+   on the CUSTOMER NAME, so ` ZZPSRANK` was APPENDED to four existing customers. Appending (never
+   substituting) keeps every existing name matching as a whole word, so no other fixture breaks.
+2. **Isolate one signal per pair.** A signal worth +0.05 is invisible next to a recency difference of
+   weeks, and obvious between two records ONE DAY apart. Move an existing record's status rather than
+   hunting for a matching pair: `P9160-246` (28 Aug) was moved to Paid against `P9160-243` (27 Aug),
+   same creator — and the measured gap was 0.054 against a specified +0.05.
+3. **For a per-user signal, change the USER, not the data.** Two part sales created 26 seconds apart
+   by two different quick-logins settle "created by you" in one read. The technician login can CREATE
+   a part sale even though it cannot SEE the Part sales results group — a permission that blocks
+   reading does not necessarily block writing, so try the write before declaring the account useless.
+4. **When scores clamp, the ORDER is the evidence.** The three newest all scored exactly 1.0; the
+   proof of the created-by lift is that a record created 26 seconds LATER by someone else sat third.
+
+Also: part sales ARE work orders behind the scenes. `/api/part-sales/<id>` is a 404, while
+`POST /api/work-orders/change-status` answers about the same record — and its refusal
+(*"Complete work order cannot change its status again"*) is what identified which record could be
+moved. Rule 107's "read the refusal, it names the way through" paid for itself again.

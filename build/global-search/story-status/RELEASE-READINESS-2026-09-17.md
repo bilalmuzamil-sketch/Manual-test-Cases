@@ -237,3 +237,21 @@ the things we raised while testing the regresion suite do not miss anything whic
 efforts."*
 
 Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
+
+## v7 — published 2026-09-17, late evening (artifact version 7)
+
+The last blocked check (C55711) was unblocked and run — see
+`build/global-search/run415-execution/C55711-FIXTURE-2026-09-17.md`. Run 415 read live afterwards:
+
+| Result | Checks |
+|---|---|
+| Passed | **154** |
+| Failed | 15 |
+| Retest (parked behind obsolete work) | 11 |
+| Blocked | **0** |
+| Untested | 1 (C45159 — out of this release by the spec's own wording) |
+| **Total** | **181** |
+
+The "Cannot run yet — 2" tile becomes "Outside this release — 1", and the Held row leaves the
+results table. **Nothing in the run is blocked on data or access any more; the only thing waiting
+is the go-ahead on one report.**
