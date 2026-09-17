@@ -545,6 +545,7 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/18-LAYMAN-UI-STEPS.md` | **Before any handover to a manual tester** — every build-verified case must be followable from the UI by a layman: the entry point, the record, the tab, where the thing appears, and any default-on filter that hides it. Carries the observed routes for sv8218 and the hard line: making a step followable must NEVER make an unreachable state reachable on paper (QA lead, 2026-08-31; testers Viktoria, Mudassir Qamar) |
 | `build/skills/19-V1-V2-PARITY-SUITE.md` | **The task is "make sure V2 still does everything V1 could"** (Rule 109) — the END-TO-END pipeline that Skill 17's analysis feeds: pin the V1 baseline commit · extract the capability list **BY SCRIPT** from V1's source · map every capability to a case · **prove coverage LIVE in both directions** · audit that every case is **sourced to V1, not to the V2 spec** · seed with unique keywords and a control record · build-verify the screen · hand off both halves. Tools: `build/testing-tools/parity_coverage_proof.py` and `parity_source_audit.py`. Carries the eight traps that were hit for real |
 | `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md` | **The project is a V2 / upgrade of an existing feature** (Rule 96) — a V2 spec says only what CHANGES and is SILENT about the rest, so derive the **invariant set** (V1 baseline − changed ∪ removed ∪ replaced), escalate the dangerous silences, retire the superseded V1 cases. No build, no cookies |
+| `build/skills/20-FEATURE-DATA-SEEDING.md` | **The feature's cases need data the environment does not hold** — the project-agnostic method for seeding AND reseeding any area of the app (Rule 111's operator form beyond Global Search). **The engine is generic; only the manifest is per-feature**, so the second feature area costs a fraction of the first. Nine steps (read the CASES not a summary · measure before creating · write the DESIGN RULE first · a keyword that cannot collide · manifest with `serves` and `_why` · seed and VERIFY as separate steps · prove idempotence by running it three times · reconcile server-assigned identifiers · write the traps down), the five-point reseed contract, thirteen feature-independent traps with the symptom each presents as, and what is NEVER seedable. Scaffold: `python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature>"` · schema: `build/testing-tools/seeding/MANIFEST-SCHEMA.md` · reference implementation: `build/global-search/seeding/` |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |
 | `build/handoffs/README.md` | **Four** copy-paste lane briefings for a fresh session |
@@ -561,6 +562,17 @@ cannot drift; **procedure found inside one is a bug in that router.**
 **the branches are NOT final**, they are updated by ad-hoc decisions until release day, so Rules 49
 and 60 apply in full and findings stay PROVISIONAL. §16.1 is the superseded 2026-08-11 "the branches
 are FINAL" text, kept visible and dated.
+
+**🌱 SEEDING AND RESEEDING TEST DATA FOR ANY FEATURE — `build/skills/20-FEATURE-DATA-SEEDING.md`.**
+Other areas of the app will need seeded data, and reseeding it must stay a command rather than an
+investigation. Each feature gets **`RESEED <FEATURE> QA`** / **`RESEED <FEATURE> LIVE`**, registered
+in `build/global-search/seeding/RESEED.md` (which is the register for ALL features, not just Global
+Search). **The engine is generic and only the manifest is per-feature**, so stand a new kit up with
+`python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature Name>"` rather than writing
+one from scratch. Schema: `build/testing-tools/seeding/MANIFEST-SCHEMA.md`. Worked reference:
+`build/global-search/seeding/`. 🔴 **A reseed is finished when the VERIFIER passes, never when the
+seeder prints its count**, and **a branch redeploy is the usual reason data "disappeared" — check the
+build marker before explaining any change in behaviour.**
 
 **Other standing infrastructure docs:** `build/LEARNINGS-LOG.md` (**the continuous, retrievable ledger of
 every learning — append the moment you learn something durable; read/grep it to retrieve ALL learnings**) ·
