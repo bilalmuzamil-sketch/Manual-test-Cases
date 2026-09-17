@@ -2,10 +2,10 @@
 
 **17 September 2026, evening · QA branch sv9160 · build `v26.36.7-29ca209` · run 415**
 
-Nine results in run 415 carried the wording *"RECORDED FROM THE QA LEAD'S OWN VERIFICATION ON THE
+Eleven results in run 415 carried the wording *"RECORDED FROM THE QA LEAD'S OWN VERIFICATION ON THE
 REPORT — not from a run by this session"* and, in the same comment, *"Not observed this run … the
 test branch cannot be signed in to at the moment."* The branch has been signed in to all evening, so
-Rule 12 says these get watched rather than inherited. All nine were re-run through the screen.
+Rule 12 says these get watched rather than inherited. All eleven were re-run through the screen.
 
 | Check | Verdict now | What was seen |
 |---|---|---|
@@ -17,6 +17,8 @@ Rule 12 says these get watched rather than inherited. All nine were re-run throu
 | [C55670](https://shopview.testrail.io/index.php?/cases/view/55670) · [test](https://shopview.testrail.io/index.php?/tests/view/2980692) | **Passed, observed** | contact first name, surname, full direct line and its last part all return the customer, labelled Contact match |
 | [C55662](https://shopview.testrail.io/index.php?/cases/view/55662) · [test](https://shopview.testrail.io/index.php?/tests/view/2977474) | **Passed — and THE CASE needs correcting** | the company's own number finds it, whole and in part; but the case demands the row **not** be labelled *Contact match*, and §4 says it must be |
 | [C53603](https://shopview.testrail.io/index.php?/cases/view/53603) · [test](https://shopview.testrail.io/index.php?/tests/view/2959369) | **Passed — and THE CASE needs correcting** | job title finds the customer; the case demands a *Contact match* label that §4 does not owe a job-title match |
+| [C53583](https://shopview.testrail.io/index.php?/cases/view/53583) · [test](https://shopview.testrail.io/index.php?/tests/view/2959360) | **Passed, observed** | the web address `bridgeporthauling-zzt.com` returns the customer, alone, with the address shown as the match |
+| [C55669](https://shopview.testrail.io/index.php?/cases/view/55669) · [test](https://shopview.testrail.io/index.php?/tests/view/2980691) | **Passed, observed** | the full chassis number **and** the fragment `ZZ4471` each return the asset under Assets |
 | [C55658](https://shopview.testrail.io/index.php?/cases/view/55658) · [test](https://shopview.testrail.io/index.php?/tests/view/2977470) | **NOT CHANGED — conflict surfaced instead (Rule 63)** | see below |
 
 ## The two false defects this stopped (Rule 106, the 2026-09-15 extension)
