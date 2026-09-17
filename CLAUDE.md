@@ -4775,6 +4775,21 @@ regression / bug-fix re-testing.
   route, collected 404/405s and wrote it up as *"could not be verified"* — the QA lead had to point me
   at **Customers → Invoices tab → "Print credit memo"**, which revealed `GET /api/credit-memos/{id}/pdf`
   in one click. Method + the document-QA recipe: **APP-ACTIONS-PLAYBOOK.md §U.1 and §AC**.
+  **⚠️ "NOT TESTED BECAUSE I COULD NOT PRODUCE THE STATE" IS NOT AN ACCEPTABLE LINE IN A QA REPORT
+  (QA-lead ruling 2026-09-17, verbatim: *"you MUST NEVER skip any required testing in the name of 'Not
+  tested because you could not do it'. YOU must be ALWAYS unblocked to do whatever testing a ticket is
+  required, you have the full authority to discover what you need to discover while testing the ticket
+  and you are allowed to fully CRUD the branch given to you for testing."*).** A data state a ticket
+  requires is **always reachable through the product**, because the product is what creates it — so
+  "this needs a partially-received purchase order, which needs the whole ordering flow" is a
+  **description of the steps to take**, not a reason to skip the check. **Own miss, 2026-09-17:** the
+  SV-9304 comment said the split part-request case *"could not be produced: the move endpoint takes no
+  quantity, so it needs a partially-received request"*. The QA lead replied with the five-step recipe —
+  add a part request with a unique part number and Source = Vendor, quantity 3 → Order → Receive →
+  **lower Quantity Received from 3 to 1** → receive — and it took twenty minutes end to end. **Before
+  writing that a check was not done, walk the screens a user would walk to build the state**, and if
+  a control is disabled, **hover it: this app states the missing field in a tooltip** (here: *"This PO
+  still needs: an assigned vendor, a vendor invoice number."*). Recipe: playbook §AC.11.
 - **Dummy environments — retain & reuse credentials in-session, but NEVER commit them (user ruling 2026-09-08, verbatim: "Even If I give you QA or production or Staging environments they are all dummy environments you can save their cookies/credentials etc safely with you").** ALL environments given — QA, staging, AND production — are **dummy/test** environments. So their cookies/credentials/tokens may be **SAVED and REUSED freely within the working session** (`/tmp`, local uncommitted files) **without re-asking the user each time** — do not discard them mid-session or make the user re-supply them within a session. **THE ONE HARD BOUNDARY STILL STANDS: never COMMIT them to git.** This repo is **PUBLIC** (that is how the Jira inline screenshots load over `raw.githubusercontent.com`), so anything pushed is visible to the entire internet — publishing even a dummy login there is unsafe. Keep secrets in `/tmp`/local only; `.gitignore` any local creds file. `/tmp` is ephemeral (wiped on container restart), so across a fresh container the user re-supplies — but within a live session, hold and reuse them.
 - **NEVER commit secrets** (cookies/tokens/keys/passwords) — `/tmp`/local only, never pushed to the PUBLIC repo (see the dummy-environments ruling above).
 - Git identity: `noreply@anthropic.com` / `Claude`.

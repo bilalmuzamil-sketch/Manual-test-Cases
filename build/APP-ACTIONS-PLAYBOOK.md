@@ -4588,6 +4588,42 @@ order. Same two-step-confirm family as the §U.0b trap and the SV-8527 menu. **C
 (`page.mouse.click` on the element's rect centre) — Playwright actionability clicks are unreliable on
 these Quasar menus.
 
+### §AC.11 — SEEDING A PARTIALLY-RECEIVED PART REQUEST (the "split part request" state) — 5 steps
+
+The state a part-request move needs in order to *split*: ordered 3, received 1, 2 still awaiting. The
+move endpoint takes no quantity, so this is the only way to get there. **Proven end to end
+2026-09-17 on `sv9304`, after reporting it as unproducible — it takes about twenty minutes.**
+
+1. **Add a part request on a line** with a **unique part number** and **Source = Vendor**, quantity 3.
+   UI: the line's *New Part Request* dialog. API:
+   `POST /api/work-orders/part/make-request {work_order, line, description, quantity:3,
+   part_source_type:"vendor", part_number:"<unique>", part_category_id, cost, sell_price}` → 201,
+   status `authorized_to_order`.
+2. **Order it** — the row's *Order* button, or
+   `POST /api/work-orders/part/perform-request-status-action {part_request_id, action:"order"}` → 201.
+   The response carries the **`orderId`** you need next; status becomes `waiting_to_receive`.
+3. **Open the purchase order and click Receive** — `/order/{orderId}`, then
+   `[data-test-id="button_receive_order"]`. **The `?receive=1` query on its own does NOT render the
+   receive form; the button click does.**
+4. **Fill everything, then lower the quantity.** On the receive form: the item's checkbox is
+   **already ticked** (clicking it *unticks* it and removes the qty input), so leave it. Pick a
+   **Vendor** (`select_assign_vendor_<orderId>` — click it and pick from the list; typing into it
+   filters to "No results"), type a **vendor invoice number** (`input_invoice_<orderId>`), then set
+   `input_qty_<itemId>` from 3 to **1**. **The Receive button enables only once vendor + invoice are
+   both filled** — and hovering it while disabled names exactly what is missing:
+   *"This PO still needs: an assigned vendor, a vendor invoice number."* Click
+   `button_receive_po_<orderId>` → `POST /api/orders/receive-requested-parts`.
+5. **Confirm the split.** `GET /api/inventory/orders/{orderId}` → order status **`partial_delivery`**,
+   item `quantity_ordered 3.00 / already_received 1.00 / quantity_remaining 2`, and the work order's
+   Parts tab shows **two rows**: qty 1 *Received* and qty 2 *Awaiting*.
+
+**Then move the awaiting row:** its kebab is
+`button_requested_part_context_menu_<partRequestId>_line_<lineId>` → `menu_item_move_requested_part` →
+a dialog with `select_work_order_select` (cross-work-order is supported here), `select_move_part_target_line`
+and `button_move_part_action`. **`button_move_part_action` is ANOTHER TWO-CLICK control** — the first
+click does nothing and fires no request, exactly like *Split work order*. It sends
+`POST /api/work-orders/part-request/move-to-line {partRequestId, target_line_id, target_work_order_id}`.
+
 **History endpoints, and they do NOT share a payload key:**
 ```
 GET /api/work-orders/{id}/history          -> data.history     []
