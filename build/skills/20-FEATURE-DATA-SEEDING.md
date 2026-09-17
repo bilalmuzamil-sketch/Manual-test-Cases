@@ -121,6 +121,8 @@ query — e.g. proving a status spread with a single search instead of 22 indivi
 | **Fulfilled/terminal records drop off their list endpoint** | A finished step reads as unfinished; a duplicate every run | Decide "done" by the thing the step PRODUCES, not by the row still being listed |
 | **Permission removal that silently does not happen** | 201 returned, permission still held | Read it back; dependent permissions may have to be dropped together |
 | **A transient network failure inside a long run** | A false red that sends you debugging real data | Retry **transport** errors only — never retry away a real negative |
+| **A profile pointed at the front-end host instead of the API host** | Every call returns **HTTP 200 with a web page**, so a JSON parse failure looks like a broken endpoint | **Probe a path that cannot exist.** The real API answers 404; the front-end host answers 200 HTML for everything. Never hand-write a new profile's host — copy it from one that works |
+| **A credential set older than its ~24-hour life** | `Session has expired.` on every call, and a freshly minted session cookie does not rescue it | Read the issue time out of the clearance token before diagnosing anything. **Never repair a DIFFERENT tenant's session with a quick-login** — it signs in as this environment's own admin, the wrong tenant, and rotates the shared token, killing the browser session the values came from |
 
 ---
 

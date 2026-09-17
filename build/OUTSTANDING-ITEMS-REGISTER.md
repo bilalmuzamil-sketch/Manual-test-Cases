@@ -27,19 +27,25 @@ owns, and our normal practice is to tell Vlad whenever one of his is touched.
 >
 > Reference: C44843, C44847, C44850, C55684.
 
-### B. A second company account, for the one test that needs two — **you said remind you later**
+### B. A second company account, for the one test that needs two — **you sent one; the sign-in is dead**
 
 **What is happening.** One test checks that a search in one company never shows another company's
-records. The test branch only has one company on it. It has two *locations*, which sounds similar and is
-not the same thing — a location is a shop within the same company, so switching between them proves
-nothing about keeping two companies apart. This is not something I can create; it needs someone with
-access to set up a second company.
+records. You sent me a second company on 17 September and said it is empty. **I cannot get in.** Every
+request comes back "session has expired", and the sign-in details carry their own timestamp: they were
+created at **06:25 on 16 September**, about **thirty hours** before I used them, and these details only
+last about a day. Asking the system for a fresh session did not help — the part that has to be copied
+from your browser is the part that has gone stale.
 
-> **DECISION (QA lead, 2026-09-17): REMIND ME LATER.** The test is marked as blocked, with the reason, so
-> nobody records a pass or a failure on it. Bring it up again when he next asks how the search testing is
-> going, or asks about that test specifically — not before, and not repeatedly.
->
-> Reference: C44880.
+**What I did not do, on purpose.** There is a shortcut that signs me in automatically, and it would
+have been the wrong thing twice over: it signs in to **the original company, not the new one**, so it
+cannot reach the new company at all — and it would have knocked *you* out of your own browser session.
+Not worth it to save you one copy-and-paste.
+
+**What I need.** The same three sign-in values, copied again **now**, while you are signed into the
+second company. Everything else is ready and waiting.
+
+**Cost of saying nothing:** that one test stays blocked, with the reason recorded, and nothing else is
+affected.
 
 ### C. The new written method for setting up test data — **you asked for it, it is written**
 
