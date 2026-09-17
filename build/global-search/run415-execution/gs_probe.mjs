@@ -55,8 +55,28 @@ export async function isOpen(page) {
   return page.evaluate(s => !!document.querySelector(s), SEL.modal);
 }
 
-/** Type a query and wait for the debounce + async index to settle. */
-export async function type(page, q, wait = 2600) {
+/**
+ * Type a query and wait for the debounce + async index to settle.
+ *
+ * 🔴 `reset` RE-SELECTS THE "All" TAB FIRST, AND IT DEFAULTS ON. A scope tab chosen by an earlier
+ * case STAYS selected across a re-type, so the next query is silently narrowed to that one type and
+ * the record you are looking for "is not returned". That produced a false Failed on C45129
+ * (2026-09-17) against data the verifier had just proven. Pass reset:false only when the case is
+ * deliberately testing a scoped tab.
+ */
+export async function type(page, q, wait = 2600, reset = true) {
+  if (reset) {
+    await page.evaluate(() => {
+      const t = [...document.querySelectorAll('.search-tabs__tab')]
+        .find(x => /^All\b/.test(x.innerText.trim()));
+      if (t && !t.classList.contains('search-tabs__tab--active')) t.click();
+    });
+    await page.waitForTimeout(500);
+  }
+  return _type(page, q, wait);
+}
+
+async function _type(page, q, wait) {
   await page.fill(SEL.input, '');
   await page.waitForTimeout(250);
   await page.type(SEL.input, q, { delay: 28 });
@@ -76,9 +96,18 @@ export async function read(page) {
     const inp = document.querySelector(S.input);
     const txt = e => (e?.innerText || '').replace(/\s+/g, ' ').trim();
 
-    // group headings: results mode renders a heading node before each run of rows.
-    const heads = [...m.querySelectorAll('[class*="group"], [class*="recents-header"], [class*="section-header"]')]
-      .map(e => txt(e)).filter(Boolean);
+    // Group headings. RESULTS mode uses .search-group__header ("Work orders (20)"); RECENTS mode
+    // uses .search-modal__recents-header ("TODAY"). Both are collected and `mode` says which.
+    const resHeads = [...m.querySelectorAll('.search-group__header')].map(txt).filter(Boolean);
+    const recHeads = [...m.querySelectorAll('.search-modal__recents-header')].map(txt).filter(Boolean);
+    const heads = resHeads.length ? resHeads : recHeads;
+    const mode = resHeads.length ? 'results' : (recHeads.length ? 'recents' : 'empty');
+
+    // rows per group, in order - needed by every "this tab shows only X" case.
+    const groupRows = [...m.querySelectorAll('.search-group')].map(g => ({
+      head: txt(g.querySelector('.search-group__header')),
+      rows: [...g.querySelectorAll('.search-row')].map(r => txt(r).slice(0, 90)),
+    }));
 
     const rows = [...m.querySelectorAll(S.row)].map(r => ({
       text: txt(r),
@@ -105,7 +134,7 @@ export async function read(page) {
       placeholder: inp ? inp.placeholder : null,
       value: inp ? inp.value : null,
       inputFocused: inp ? document.activeElement === inp : null,
-      tabs, heads, rows,
+      tabs, heads, mode, groupRows, resHeads, recHeads, rows,
       rowCount: rows.length,
       selectedIndex: rows.findIndex(r => r.selected),
       footer: txt(document.querySelector(S.footer)),

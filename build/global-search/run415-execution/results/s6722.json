@@ -1,0 +1,74 @@
+[
+ {
+  "cid": "C44814",
+  "status": "Passed",
+  "note": "the strip reads All then the eight types in the stated order, there is no Contacts tab, All is selected to begin with, every tab carries its count, and the strip scrolls sideways",
+  "evidence": "tabs [\"All (44)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]; order as specified true; no Contacts true; All selected first true; all carry a count true; strip scrolls sideways true"
+ },
+ {
+  "cid": "C44815",
+  "status": "Passed",
+  "note": "the All tab shows every matching type, each under its own heading with a count, in the stated order, and there is no Contacts group",
+  "evidence": "headings [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]; order as specified true; every heading counted true; no Contacts group true"
+ },
+ {
+  "cid": "C44816",
+  "status": "Passed",
+  "note": "the Work orders tab shows only work orders and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Work orders (20)\"; headings shown [\"Work orders (20)\"]; rows 20; count on the tab 20 (same as on the All view: 20)"
+ },
+ {
+  "cid": "C44817",
+  "status": "Passed",
+  "note": "the Customers tab shows only customers and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Customers (3)\"; headings shown [\"Customers (3)\"]; rows 3; count on the tab 3 (same as on the All view: 3)"
+ },
+ {
+  "cid": "C44818",
+  "status": "Passed",
+  "note": "the Assets tab shows only assets and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Assets (6)\"; headings shown [\"Assets (6)\"]; rows 6; count on the tab 6 (same as on the All view: 6)"
+ },
+ {
+  "cid": "C44819",
+  "status": "Passed",
+  "note": "the Parts tab shows only parts and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Parts (4)\"; headings shown [\"Parts (4)\"]; rows 4; count on the tab 4 (same as on the All view: 4)"
+ },
+ {
+  "cid": "C44820",
+  "status": "Passed",
+  "note": "the Vendors tab shows only vendors and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Vendors (1)\"; headings shown [\"Vendors (1)\"]; rows 1; count on the tab 1 (same as on the All view: 1)"
+ },
+ {
+  "cid": "C44821",
+  "status": "Passed",
+  "note": "the Part sales tab shows only part sales and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Part sales (1)\"; headings shown [\"Part sales (1)\"]; rows 1; count on the tab 1 (same as on the All view: 1)"
+ },
+ {
+  "cid": "C45130",
+  "status": "Passed",
+  "note": "the Purchase orders tab shows only purchase orders and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Purchase orders (6)\"; headings shown [\"Purchase orders (6)\"]; rows 6; count on the tab 6 (same as on the All view: 6)"
+ },
+ {
+  "cid": "C45131",
+  "status": "Passed",
+  "note": "the Vendor invoices tab shows only vendor invoices and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Vendor invoices (3)\"; headings shown [\"Vendor invoices (3)\"]; rows 3; count on the tab 3 (same as on the All view: 3)"
+ },
+ {
+  "cid": "C44822",
+  "status": "Passed",
+  "note": "choosing a type shows only that type, at most twenty lines scrolled inside the box, with no page links, no load-more and no Show all, and you stay inside the box",
+  "evidence": "rows shown 20; count on the tab 20; a Show all link present false; page links present false; still inside the box true"
+ },
+ {
+  "cid": "C45129",
+  "status": "Failed",
+  "note": "see evidence",
+  "evidence": "no Contacts tab true; no Contacts group true; company row \"(not returned)\"; carries the contact-match note false"
+ }
+]
