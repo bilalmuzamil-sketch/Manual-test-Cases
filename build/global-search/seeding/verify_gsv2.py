@@ -16,9 +16,22 @@ _seed = runpy.run_path(f'{HERE}/seed.py', run_name='not_main')
 call, ENV = _seed['call'], _seed['ENV_LABEL']
 
 def search(q):
-    r = call('/api/search?q=' + urllib.parse.quote(q))
-    if r['status'] != 200: return None, f"HTTP {r['status']}"
-    return ((r['json'] or {}).get('data') or {}), None
+    """🔴 RETRY A TRANSPORT ERROR BEFORE CALLING IT A FAILURE. A single dropped connection made this
+    verifier report a red 'HTTP ERR' against a check that passed three times in a row a moment later
+    - and a verifier that cries wolf is worse than no verifier, because the next real red gets
+    shrugged off. A NON-200 HTTP STATUS IS STILL REPORTED IMMEDIATELY: that is the product answering,
+    and it is exactly what we are here to catch. Only the transport layer is retried."""
+    import time as _t
+    last = None
+    for attempt in range(3):
+        r = call('/api/search?q=' + urllib.parse.quote(q))
+        if r['status'] == 200:
+            return ((r['json'] or {}).get('data') or {}), None
+        last = f"HTTP {r['status']}"
+        if r['status'] != 'ERR':
+            return None, last          # the server answered - that is a real result, not a blip
+        if attempt < 2: _t.sleep(2 * (attempt + 1))
+    return None, f'{last} after 3 attempts'
 
 def rows(d, gtype=None):
     out = []
