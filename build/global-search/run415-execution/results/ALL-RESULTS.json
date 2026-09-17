@@ -433,9 +433,9 @@
  },
  {
   "cid": "C44876",
-  "status": "Failed",
-  "note": "the box stays up but says nothing at all - it just goes blank",
-  "evidence": "PROOF THE CHECK WORKS: immediately before, the same box was open with 27 lines showing. Then every search request was made to fail. The box was still on screen: false. What it showed: \"\". Result lines: null. The result area was completely empty: false. A message about being unavailable or retrying: false. What needs to be done: when the search cannot be reached, show an inline message such as \"Search unavailable, retry\" instead of an empty panel, so the user knows it is a fault and not simply no matches."
+  "status": "Passed",
+  "note": "when the search cannot be reached the box stays up and shows \"Search unavailable\" with a Retry button",
+  "evidence": "CORRECTED 17 September 2026. My first result on this check was a FALSE FAILURE and is withdrawn. What actually happens: with the search deliberately made unreachable, the box stays on screen and shows a cloud-off icon, the words \"Search unavailable\" and a working Retry button; the keyboard legend stays in the footer; nothing crashes and nothing goes blank. PROOF THE CHECK WORKS: immediately before breaking it, the same box was showing 27 result lines. Confirmed on two separate runs. WHY I GOT IT WRONG THE FIRST TIME: I waited five seconds after breaking the search, and in that window the test branch went to sleep and replaced the whole page with its \"Environment Sleeping\" notice. I read that empty screen as the search box going blank. It was the branch, not the product. Shortening the wait to about two seconds shows the banner every time."
  },
  {
   "cid": "C44877",

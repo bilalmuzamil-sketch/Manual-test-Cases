@@ -3034,3 +3034,38 @@ And one bug found by looking at my own output before shipping it: two labels cen
 on their own boxes **overlapped into an unreadable smear**. They are now laid out before drawing and
 pushed apart. **Look at the picture you made, as a reader, before it goes anywhere** — that is what
 caught it, not a test.
+
+
+## L0150 — I ALMOST FILED A DEFECT AGAINST WORKING CODE, AND THE CAUSE WAS MY OWN WAIT (2026-09-17)
+
+C44876 asks that a search failure shows a "Search unavailable, retry" banner. I recorded it FAILED,
+with the note *"the box stays up but says nothing at all - it just goes blank"*, carried it through
+the whole report as one of the certainly-real findings, and was one approval away from raising it.
+
+**The product is correct.** With the search deliberately made unreachable the box shows a cloud-off
+icon, the words *Search unavailable* and a working *Retry* button, and the keyboard legend stays in
+the footer. Confirmed twice, with a positive control (27 result lines showing immediately before).
+
+**Why I got it wrong:** I waited five seconds after breaking the search. Within that window the QA
+branch went to sleep and replaced the entire page with its *"Environment Sleeping"* notice. I read
+that empty screen as the search box going blank. Shortening the wait to about two seconds shows the
+banner every single time.
+
+**What makes this worse than an ordinary mistake:** I had a positive control in that first run and
+it passed — the box WAS open a moment earlier. Rule 104's seven proofs are not a checklist to tick
+at the start; **the environment can change between the control and the measurement**, and a long
+wait is exactly when that happens. A negative reading taken seconds after a control is not covered
+by that control.
+
+**Three habits from this:**
+1. **The shortest wait that can show the thing.** Every extra second is a second in which something
+   else can change. I used five because it felt safe; it was the opposite.
+2. **Read the WHOLE page, not the element I care about.** `document.body.innerText` would have said
+   *Environment Sleeping* in plain words. I only looked inside the modal, so I saw absence where
+   there was a different page entirely.
+3. **Re-measure a negative finding at the moment of filing, not once when it was found.** This one
+   sat in the report for hours. Had I re-run it before writing the ticket — which is what caught it —
+   I would never have carried it as certain.
+
+**And the one that worked:** asking before filing. The per-ticket gate is what stood between this
+and a developer being sent to look at correct code.

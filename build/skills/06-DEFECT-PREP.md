@@ -693,6 +693,28 @@ ticket and made the picture unreadable, which is the very failure the tool exist
 
 ---
 
+### 6e. 🛑 RE-MEASURE EVERY NEGATIVE FINDING AT THE MOMENT YOU FILE IT (2026-09-17)
+
+A finding recorded hours ago is **not** evidence about the build now. On 2026-09-17 I carried
+C44876 through a whole report as a certain defect — *"the box goes blank with no message"* — and it
+was wrong: the product shows *Search unavailable* with a working *Retry*. My original reading was
+taken five seconds after breaking the search, and in that window **the QA branch went to sleep and
+replaced the entire page**. I saw an empty screen and called it an empty box.
+
+**So, immediately before writing any ticket:**
+
+1. **Re-run the observation.** It costs a minute and it is the last gate before a developer's time.
+2. **Use the shortest wait that can show the thing.** Every extra second is a second in which the
+   environment can change. Long waits feel safe and are the opposite.
+3. **Read the WHOLE page, not just your element.** `document.body.innerText` would have said
+   *"Environment Sleeping"* in plain words. Scoping the read to `.search-modal` turned a different
+   page into an apparent absence.
+4. **A positive control taken before the measurement does not cover it.** Rule 104's proofs are not
+   ticked once at the start — the control and the measurement must be close enough in time that
+   nothing could have changed between them.
+
+---
+
 ### 7. ⛔ NO "TEST CASES" SECTION IN THE TICKET — HE REMOVED IT 2026-09-17
 
 *"Also do not mention the test cases at the bottom."*
