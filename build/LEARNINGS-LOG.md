@@ -3257,3 +3257,42 @@ skipping it:
 verbatim with its page id, version and read date — or the ticket does not get filed until I have
 said out loud, to him, that it is going out without one. There is no third option, and "I think I
 am not allowed" is checkable in thirty seconds against what I did an hour ago.
+
+## L0158 — "WORK ORDER", NEVER "JOB" — THE PRODUCT'S OWN WORD, AND I HAD DRIFTED (2026-09-17)
+
+The QA lead, mid-task: *"Also they are work order and NOT jobs."* He was right, and it was not one
+slip — I had written "job" through two filed tickets, both annotated pictures and a run comment,
+because "job" reads more naturally in plain English and I had been optimising for plain English
+without checking it against the product.
+
+**Rule 110 already says this** — the product's own word is company-wide in both scopes, and names
+*Vendor* and *VIN number* as the examples. Plain language never overrides the product's vocabulary:
+a manual tester and a PO both read the screen, and the screen says *Work Orders*. Fixed in
+SV-10186 and SV-10188, in both pictures (regenerated, re-uploaded, old attachments removed) and in
+the run comments.
+
+**The check to run before anything reaches him or Jira:** every noun in the text either appears on
+the screen it describes, or is ordinary English carrying no product meaning. *Job, ticket (for a
+work order), record, entry* are the ones I reach for and must not.
+
+## L0159 — WHEN THE STATE CANNOT BE MADE, THE PRODUCT'S OWN TABLE IS BETTER EVIDENCE THAN NONE (2026-09-17)
+
+He asked for the badge colour of **every** status, with none missing. Eight could be produced and
+photographed. The ninth, *Imported*, has no record anywhere on the branch — and imported work
+orders turn out to be **a separate kind of record** with their own list, their own page and a
+delete route, but **no create route at all**; they arrive by data import.
+
+Rather than report a gap, the two colours were read out of the product's own built code: the shared
+status-colour table the rest of the app uses (`imported` → deep purple) and search's own four-tone
+table (`imported` → neutral). **That table also independently confirmed all eight measured rows**,
+which is stronger than the screenshots alone — it shows the mapping rather than one instance of it.
+
+**The discipline that keeps this honest:** it is labelled in the ticket as taken from the product's
+tables and *not seen on screen*, the seven unblocking routes are listed in the working notes, and
+the QA lead is asked whether an imported record can be put on the branch if he wants it confirmed
+visually. Evidence from the code is a legitimate answer to *"what does the product do"*; it is never
+allowed to be quietly presented as *"what I observed"* (Rule 12).
+
+**And the same read settled the ticket's real shape.** Search keeps its own table of four tones —
+`success / info / warning / neutral` — and squeezes every status into it. That *is* the "palette of
+its own" §5.3 forbids, stated in the product's own code rather than inferred from colour swatches.
