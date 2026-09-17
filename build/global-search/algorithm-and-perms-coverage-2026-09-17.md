@@ -50,3 +50,24 @@ See Financial Data→prices in rows.
 5 permission-positive (6734) + 6 ranking (6726) + 1 fuzzy (6725) = 12 cases. All atm=1, type=2
 (Functional), sourced to SV-9160 + PRD §6/§7/§9, added to the Global Search run, marked not yet
 build-verified. C-ids recorded in build/global-search/new-cases-2026-09-17.json.
+
+## Edge cases added to complete the suites (2026-09-17, second pass)
+Grounded edges closing the residual gaps flagged in the "are we full" review:
+- C55714 (Fuzzy Matching 6725) — PO number + Vendor Invoice number exact-only (§7 "what is not fuzzy").
+- C55715 (Fuzzy Matching 6725) — fuzzy match on a part's description text (§7 trigram on descriptions).
+- C55716 (Ranking and Prioritization 6726) — recency tie-break when scores are equal (§6.1).
+- C55717 (Permissions and Role-Based Scoping 6734) — recent-searches list respects current access
+  (derived safety invariant from §9 + §8; flagged for PO confirmation).
+Recorded in build/global-search/edge-cases-2026-09-17.json. All added to run 415 (181 cases), fr-view
+render confirmed.
+
+## Final folder inventory (live 2026-09-17, all created_by=3, no foreign cases)
+- **Permissions and Role-Based Scoping** (section 6734) — 12 cases: C44877–C44882, C55702–C55706, C55717.
+- **Ranking and Prioritization** (section 6726) — 15 cases: C44850–C44854, C45137–C45139, C55707–C55712, C55716.
+- **Fuzzy Matching** (section 6725) — 14 cases: C44839–C44849, C55713–C55715.
+All three are child folders of "Global Search - Enhancement (Aug 2026)" (6720); all in run 415.
+
+## One OPEN item — a product-owner decision, NOT a written test (spec silent)
+Quick-action buttons on a row (e.g. "New work order", "Receive") — the spec does not define which
+permission gates which quick action, nor whether search re-checks action permissions. Cannot write a
+correct Expected without the PO's answer (Rule 58). Held as a question, not fabricated as a case.
