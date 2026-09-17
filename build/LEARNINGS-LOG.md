@@ -2866,3 +2866,31 @@ caution from first principles next session.** It will look like prudence again.
 not softer. They live in `/tmp`, `chmod 600`, and never reach a log, an error paste, a screenshot or
 a commit — this repository is public. And the standing holds are untouched: Jira per ticket, TestRail
 case and run writes, Vladimir's cases, Automated cases.
+
+
+## L0141 — "IT DOES NOT ROTATE" AND "IT NEVER GOES STALE" ARE DIFFERENT CLAIMS (2026-09-17)
+
+The playbook said of `sv_sso_session`: *"the only value you carry is the one that never rotates"*.
+That is true — the value does not change underneath you. I read it as *it never stops working*, and
+those are not the same sentence. It expires. One value ran all morning and was dead forty minutes
+later, with the branch up and the build marker unchanged.
+
+**Why this keeps costing time:** a stale sign-in cookie presents as
+`401 sso_required` plus a redirect to Google — i.e. *exactly* like the product having removed
+quick-login and switched to mandatory SSO. That is the false blocker I recorded yesterday as L0133
+and had to withdraw. Same symptom, same wrong conclusion, one day apart, because the playbook line I
+was relying on ruled out the true cause.
+
+**The cheap discriminator, now in the playbook:** one `curl` to `/api/quick-login/users` carrying
+only the sign-in cookie. 200 with a users list ⇒ the cookie is fine, look elsewhere. 401
+`sso_required` ⇒ the cookie is stale, ask for a fresh one, stop investigating.
+
+**And it is the one QA-branch blocker Rule 107 cannot self-serve.** Four routes were tried and all
+are dead ends (password login, app-session cookie alone, both together, the SSO callback directly);
+they are recorded so nobody re-derives them. The fix is one fresh value from the QA lead's browser,
+and then a `quick-login` to mint a matching app session — the old one dies with the SSO session it
+was issued against.
+
+**The general lesson, which is the part worth keeping:** when a recorded fact rules out the cause I
+am actually looking at, I should re-read the exact words before trusting the paraphrase I have in my
+head. "Never rotates" was precise and correct; the failure was mine for widening it.
