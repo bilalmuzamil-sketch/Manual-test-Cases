@@ -1,0 +1,204 @@
+Status
+CompleteGreen
+
+Author
+Product Team
+
+Last Updated
+
+Version
+1.5
+
+Stakeholders
+Engineering, Design, Shop Operations
+
+Design
+https://claude.ai/design/p/fac6efcf-a972-4c02-96a5-def12ed8b037?file=preview%2Fglobal-search.html&via=share
+https://claude.ai/design/p/fac6efcf-a972-4c02-96a5-def12ed8b037?file=Global+Search+Page.html&via=share
+https://claude.ai/design/p/fac6efcf-a972-4c02-96a5-def12ed8b037?file=Mobile+Global+Search.html&via=share
+
+Epic
+SV-9160267fb633-cc25-3f2d-8011-7f1e9199ad21System Jira — 16 stories.
+
+1. Background & Problem
+Today's global search in ShopView is a lightweight dropdown that:
+Returns up to 3 results per category (Customers, Work Orders, Assets, Parts, Vendors) — confirmed in staging by typing "Aabridge" and "BOLT".
+
+Does not include Part Sales as a searchable entity.
+
+Has no fuzzy/typo tolerance — typing "Abrige" instead of "Aabridge" returns "No results".
+
+Provides minimal context per result (just a single subtitle line — e.g. address or date).
+
+Has no recent searches, no quick actions, no keyboard navigation, no result-count overflow link, no scoping tabs.
+
+Loses the user's query as soon as the popover closes.
+
+For a shop foreman or service advisor bouncing between five active work orders, ordering parts mid-conversation with a customer, or trying to find a customer whose name they're spelling phonetically, this is a meaningful friction point.
+The Claude Design prototype defines a redesigned spotlight-style global search that addresses each gap. It has three entry points: the state artboards (Empty · First-time, Recent Searches, Active Search Results, No Results, Persisting Search Dropdown); the interactive desktop build in Global Search Page, which is the reference for behaviour; and Mobile Global Search. All three are linked in the header table.
+2. Goals & Non-Goals
+Goals. Deliver a single global search surface that (a) searches across Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders and Vendor Invoices; (b) ranks results by likelihood of relevance to the searcher's current task; (c) tolerates real-world typos via fuzzy matching; (d) shows enough context inline to act without opening the record; (e) supports keyboard-first usage on desktop; (f) preserves the last query and exposes recent activity; (g) offers contextual quick actions that cut 2–3 clicks off the most common shop flows.
+Non-Goals (v1). AI or natural-language search of any kind — no "ask a question" flow, no AI result row, no AI-assisted ranking. A data-freshness indicator (deferred, see §9). A trained ML ranking model, and the search telemetry that would feed one — no impression or click logging in v1; the ranking weights in §6 are fixed constants. Full page-context awareness beyond the single signal in §6.3. A dedicated full-page search results screen, and any handoff of the query to an entity's list page — search results live entirely inside the modal (§5.2). Paginating the result list: a scoped tab is capped at 20 rows and does not load more (§5.2). On mobile: the hover quick actions of §5.4 (see §5.6).
+Phasing and sequencing of the build are deliberately out of scope for this document. Engineering owns that in its own tech plan.
+3. Users & Primary Jobs-to-be-Done
+The primary users are service advisors, shop foremen, parts personnel, and technicians using ShopView in a shop environment — predominantly on a desktop at the counter or in the office, and on a phone on the shop floor. They are keyboard-heavy, fast typists, frequently mid-conversation, occasionally with dirty hands. Their jobs-to-be-done in search are: "find the work order I was just looking at"; "pull up the customer who's on the phone"; "see if we have this part in stock and where the bin is"; "find the vehicle by VIN/unit"; "find a recent part sale by number or VIN"; and "jump to a vendor to call them about a backorder".
+4. Scope: Entities & Indexed Fields
+The following eight entities are searchable. The indexed fields are what a typed query is matched against; the displayed fields drive the result row UI. Some fields — notably status — are stored on the search document for ranking (§6.1) and for the row badge, but are deliberately not matchable: typing a status name does not return records carrying that status.
+Work Orders. Indexed: WO number (e.g. S2-15276), customer name, asset (year/make/model), unit number, VIN/serial #, lead technician name, service advisor name, line item descriptions (parts and labor on the WO). Displayed: WO number + customer name (primary), status badge, unit number + year/make/model. When the asset has no unit number, the year/make/model stands alone. Lead technician, service advisor and dates remain indexed and rankable — they are simply no longer shown in the row.
+Customers. Indexed: customer name, telephone (digits only, normalized), address 1/2, city, state/province, plus the names, telephone numbers and email addresses of the customer's contacts. Displayed: customer name (primary), address line, open WO count badge (e.g. 12), telephone on hover.
+Assets (Vehicles). Indexed: year, make, model, VIN/serial #, unit number, owning customer name. Displayed: year + make + model (primary), customer name (secondary, smaller).
+Parts (Inventory). Indexed: description, part number, tags, category, manufacturer, vendor name, bin location. Displayed: description (primary), part number (secondary), total quantity with a stock-status badge (see §5.3).
+Vendors. Indexed: name, telephone, email, address, city, plus the names, telephone numbers and email addresses of the vendor's contacts. Displayed: vendor name (primary), telephone + address line (secondary).
+Part Sales. Indexed: P-number (e.g. P2-58), customer name, asset, VIN/serial #, created-by user. Displayed: P-number + customer (primary), status badge, total price + created date.
+Purchase Orders. Indexed: PO number (e.g. PO-3241), vendor name, part numbers and descriptions on the PO, created-by user. Displayed: PO number + vendor (primary), status badge (Ordered / Received), total + created date.
+Vendor Invoices. Indexed: invoice number (e.g. S9-25987), vendor name, PO number. Displayed: invoice number + vendor (primary), status badge (Paid / Unpaid), total + invoice date. Invoice type is out of scope — the "type (Invoice / Sublet)" wording in earlier versions was wrong: ShopView has no sublet concept at all, and the types that do exist (delivery / return / credit / manual / payment) are bookkeeping distinctions that do not help a searcher identify the invoice. Neither indexed nor displayed in v1.
+Contact-field matches. When a customer or vendor matches on a contact field (phone, email, contact name) rather than its own name, its secondary line shows "Contact match" — preserving the helpful affordance already present in today's search. This applies whether the matched field sits on the company record itself or on one of its contacts. A contact-field match returns the company row carrying the label; contacts are not a result group of their own, since users know which customer a contact belongs to and contact lookups are low-frequency. For ranking, a match on a contact field scores as a secondary-field match (§6.1) and carries no primary-name bonus. Contact telephone and email stay indexed in v1, alongside contact names. Contact telephone is already indexed in today's search, so dropping it would be a regression rather than a scope cut — removing Contacts as a standalone result group (v1.3) removed the group, not the indexed fields.
+5. UX Requirements
+Requirements below are derived from the Claude Design prototype linked in the header table.
+5.1 Trigger and Surface
+The search is launched from the persistent search field in the app header, by clicking it or pressing the keyboard shortcut shown in the field (⌘K / Ctrl+K). It opens a centered modal overlay of fixed width 640px and max height calc(100vh − 160px), positioned 96px from the top of the viewport — not anchored to the header field. It floats over the page content, dimming the page behind it. Pressing Esc, clicking the page underlay, or pressing ⌘K again closes it. The footer of the modal always shows the keyboard legend: ↓↑ Navigate · ⏎ Select · Esc Close.
+Placeholder copy in the modal input: "Search work orders, customers, parts and more". The collapsed header trigger keeps its shorter copy: "Search customers, work orders, parts…".
+5.2 States
+First-time search (empty). Below the input, a single line of helper text: "Search for something". Nothing else — no suggested actions.
+Recent searches (returning user, empty input). Replaces the helper text with the user's recent activity, grouped under time-interval headings: Today, Yesterday, Past week, Past 30 days. Each row is a previously opened entity (not just a previous query string), shown with the same row template as a result row. This is what the foreman sees when bouncing between active work orders — their five most recent WOs are right there with no typing.
+A Recent searches header sits above the time groups and carries the Clear all action, which empties the whole history. It is present on both web and mobile. After clearing, the panel falls back to the first-time state described above — the helper text — exactly as a user who has never searched before would see it. There is no separate empty-history message.
+Typing / results. A horizontal tab strip immediately under the input: All · Work Orders · Customers · Assets · Parts · Vendors · Part Sales · Purchase Orders · Vendor Invoices. Each tab carries its result count, e.g. All (12), Work Orders (8). The strip scrolls horizontally, since nine tabs do not fit 640px. "All" is default. Selecting a tab scopes the query to that entity type. Below the tab strip, results are grouped by entity type with a count: Work orders (12), Customers (2), etc. Each group shows up to 5 results (raised from today's 3). When a group has more, a Show all N link appears to the right of the group header.
+Counts are capped at 20. No count in the modal reads higher than 20 — not a tab, not a group header, not the Show all N link. A query matching 34 work orders shows Work Orders (20) and Show all 20. Twenty is both what search returns per entity type and what it reports.
+The Show all N link behaviour — scoped tab. Clicking it switches the modal to that entity's scope tab. The user never leaves the modal: there is no separate search results page and no handoff of the query to the entity's list page. The scoped tab shows up to 20 rows, scrolled within the modal — there is no pagination and no further loading, and no Show all link inside the tab. Reaching a record beyond the 20 means narrowing the query.
+No results. "No results for '<query>'" — plus " in <Tab>" when a scope tab other than All is active. Nothing else.
+Persisting search. When the modal closes (either by Esc or by navigating to a result), the most recent query string is preserved in the header search field as plain text. Reopening the modal restores the query, the scope tab, and the result list, and pre-selects the query text so that typing replaces it.
+5.3 Result row anatomy
+Every row has a left-side entity icon, a primary line (bold), a secondary line (subdued), and an optional right-side cluster (status badges, counts, and quick-action buttons on hover). The matched substring of the query is highlighted in the primary and secondary text — searching Fib highlights "Fib" in "S1-644 Fibridge Commercial".
+Entity icons (Lucide, as vendored in the design system):
+Entity
+Icon
+
+Work Order
+clipboard-list
+
+Customer
+building-2
+
+Asset
+truck
+
+Part
+cog
+
+Vendor
+store
+
+Part Sale
+shopping-cart
+
+Purchase Order
+package
+
+Vendor Invoice
+file-text
+
+Navigation. Clicking a row opens the record it represents. A Part row opens the inventory part, not the catalogue entry — the row shows on-hand quantity and stock status, which only exist on inventory.
+Status badges come from the design system. Search uses the shared Badge component and the system's status-to-tone map; it does not define a palette of its own. Any change to a status colour is made in the design system and propagates here, so no colour values are pinned in this document.
+Stock badges on parts use the same component: success when quantity is above the low threshold, warning at or below it, danger when zero. Out-of-stock parts are expected results, not an edge case (§6.1).
+5.4 Quick actions on hover
+On hover (desktop only — pointer present), a right-aligned button appears in the row:
+Work Order → Add new line.
+
+Customer → New work order, New contact.
+
+Asset → New work order, plus secondary icons for history and invoices.
+
+Part → View part history.
+
+Vendor → Add contact.
+
+Part Sale → Add part.
+
+Purchase Order → Receive.
+
+Vendor Invoice → no quick action.
+
+Actions are shown unconditionally — there is no state in which the cluster is hidden for an entity that has one. Where an action needs a target work order (Add new line), the target is the work order the user is currently editing elsewhere in the app; defining what counts as "currently editing" belongs to the implementation story.
+Quick actions never trigger destructive operations. Hover state is non-essential — every action is reachable from the entity's full record — and each action must have a keyboard path (§9).
+5.5 Keyboard navigation
+↑/↓ moves focus through visible rows (skipping group headers), scrolling the focused row into view. Enter opens the focused row in the same tab. ⌘+Enter (or Ctrl+Enter) opens in a new browser tab. Tab moves focus to the scope tab strip; ←/→ cycles tabs when focus is on the tab strip. Esc closes the modal. The shortcut legend at the bottom is always visible.
+5.6 Mobile
+On phones the search is a full-screen screen, not a centered modal: it replaces the page, has a Cancel action in the top bar next to the input, and no keyboard-hints footer. Placeholder copy: "Search work orders, parts…".
+Scope selection is a horizontal chip row that appears only once there is a query, and lists only entity types that actually matched, each with its count — so the row stays short instead of carrying all nine tabs.
+In the All view results are not capped per group and there is no Show all overflow — the user scrolls the full grouped list. A chip-scoped list shows up to 20 rows, as on desktop, with no pagination. Group headers stick to the top of the list while scrolling. Rows carry no hover quick actions; a tap opens the record, and every action remains reachable there (§5.4).
+First-time, recent-searches and no-results states match §5.2. The Recent searches header and its Clear all action behave as on web: clearing the history returns the screen to the first-time state.
+Deferred on mobile (v1): keyboard navigation (§5.5), which does not apply.
+6. Ranking & Prioritization
+This is the core of "best results top to bottom". Ranking happens in two layers: per-entity ranking (within a group) and cross-entity ranking (used to choose what shows on the "All" view when an entity must be hidden, and to order groups themselves).
+6.1 Per-entity score
+Each candidate gets a numeric score combining match quality and entity-specific recency/importance signals.
+Match-quality component (shared across entities):
+Exact match on identifier (WO number, P-number, VIN, part number, PO number, invoice number, telephone digits) → +1.00 (and effectively always wins).
+
+Prefix match on primary name field → +0.70.
+
+Whole-word match anywhere in indexed fields → +0.50.
+
+Fuzzy match (see §7) → score scaled by similarity, max +0.40.
+
+Bonus for match on the primary display name vs. a secondary indexed field → +0.10. A match on a contact field of a customer or vendor is a secondary-field match and does not receive this bonus (§4).
+
+Entity-specific signals (added on top):
+Work Orders. Open/active status (Approved, In Progress, Review) → +0.30; recency of last update — exponential decay with 14-day half-life — up to +0.25; assigned to the current user (lead tech or service advisor matches signed-in user) → +0.15; was viewed by current user in last 7 days → +0.10. Closed/Invoiced WOs older than 90 days are demoted by −0.20.
+
+Customers. Has ≥1 open WO → +0.20; total open WO count, log-scaled, up to +0.15; viewed by user in last 7 days → +0.10. There is no created-date signal and no migration to add one — the company table carries no creation date. The real need behind it ("I just created this customer, now find it") is served instead by treating a create as a touch in the recent-views store (§8): a newly created customer picks up the existing +0.10 recency bonus and appears under Recent searches. Per-user, no schema change.
+
+Assets. Has open WO → +0.20; viewed recently → +0.10; year newer than 2015 → +0.05 (tie-breaker only).
+
+Parts. In stock (>0) → +0.20; bin location present → +0.05; sold/used in last 30 days (frequency, log-scaled) → up to +0.15; viewed recently → +0.10. Out-of-stock parts are not demoted (you often search to confirm OOS). The sales-frequency signal needs no new counter column — it is a count over the existing inventory_changes ledger (created_at + inventory_part_id + origin), restricted to origins WorkOrderPartPick and WorkOrderInvoiceCreate.
+
+Vendors. Has open POs → +0.20; used in last 30 days → +0.10.
+
+Part Sales. Recency dominates — exponential decay, 7-day half-life — up to +0.30; status = Paid → +0.05; created-by = current user → +0.10.
+
+Purchase Orders. Status = Ordered (not yet received) → +0.30; recency of creation, exponential decay with 14-day half-life, up to +0.25; created-by = current user → +0.10.
+
+Vendor Invoices. Status = Unpaid → +0.25; recency of invoice date, exponential decay with 30-day half-life, up to +0.20.
+
+The score is clamped to a sane range; ties are broken by recency (most recently updated wins). Because search returns at most 20 records per entity type (§5.2), ranking quality is what decides whether the record the user wanted is reachable at all.
+6.2 Cross-entity ordering and group order
+Group display order in "All" is: Work Orders → Customers → Assets → Parts → Vendors → Part Sales → Purchase Orders → Vendor Invoices. Within each group, rows are sorted by score descending. When the top result across all groups has a score > 0.95 (effectively an ID match), it is pinned as a separate single row at the very top, above the groups, labeled by its entity icon — the "if you typed S2-15276, jump straight to that WO" experience.
+6.3 Contextual bias (lightweight)
+If the user is currently on a Customer page, all candidate Assets and Work Orders owned by that customer get a +0.20 boost; if on a Work Order, parts already on that WO are demoted by −0.10 (the user is usually looking for something they don't have yet) while other parts in the same category as the WO's existing parts get +0.05. This is implemented as a single signal rather than full page-context awareness, to keep the surface area small.
+7. Fuzzy Matching
+Real shop input is noisy: "Petersn" for "Peterson", "frieghtliner" for "freightliner", "S215276" with no dash, missing spaces, transposed letters. The fuzzy strategy uses three layered techniques chosen by field type.
+Normalization (applied to both query and indexed text). Lowercase; strip diacritics; collapse whitespace; for identifier fields (WO number, part number, VIN, phone) also strip non-alphanumerics so S2-15276 and s215276 match, and (264) 328-6723 and 2643286723 match. For names, keep spaces but treat hyphens and apostrophes as optional.
+Token n-gram matching (primary technique for short fields). Build trigram indexes on names (customer, contact, vendor, asset make/model), part descriptions, and tags. The query is also trigrammed; candidates with Jaccard similarity ≥ 0.35 against the query trigrams are eligible for fuzzy match. This is what catches Petersn → Peterson.
+Damerau–Levenshtein edit distance (refinement). Among trigram-eligible candidates, compute edit distance against the closest token in the candidate. The similarity score is 1 − (distance / max(len(query), len(token))). Accept the candidate as a fuzzy match when similarity ≥ 0.70 for queries of length ≥ 4, and ≥ 0.80 for shorter queries (to avoid noisy 2–3 letter matches). Damerau handles transpositions, so freihgtliner → freightliner works.
+Phonetic fallback (names only, last resort). Apply Double Metaphone to customer, vendor, and contact names. When the trigram pass yields nothing but the phonetic codes match, surface the candidate with a reduced fuzzy score (max +0.20 contribution). This catches Filbridge → Fibridge-style phonetic confusion.
+What is not fuzzy. Exact identifier fields — VIN, WO number, P-number, part number, PO number, invoice number — bypass fuzzy logic and require exact match after normalization. A typo in a VIN is almost always a wrong VIN, not a typo, and fuzzy matching here would surface confusing results.
+Implementation. PostgreSQL pg_trgm for trigrams + levenshtein() from fuzzystrmatch for edit distance + a metaphone() call for names; or, if the existing search service is OpenSearch / Elasticsearch, fuzziness: AUTO on a match query for names plus ngram analyzers on description fields. Both paths are viable; a short spike at kickoff resolves this against the current data tier.
+Highlighting. When a match is fuzzy rather than exact, the matched token in the row is still highlighted, and a subtle ≈ or italicized treatment indicates the soft match.
+8. Functional Requirements
+The system must: open the modal via field click or ⌘K, and close it on a second ⌘K; debounce input at 150ms; query the backend search endpoint with the current query, scope, and page context; render grouped results within 200ms (p95) of receiving response; support keyboard navigation per §5.5; persist the last query in client state and rehydrate and pre-select it on reopen; persist recent-entity-views in user state for 30 days, grouped by interval — creating an entity counts as a view, so a record the user just created is immediately recent and recency-boosted for that user — and expose a Clear all action which returns the panel to the first-time state; expose the Show all N link, which switches the modal to that entity's scope tab, and cap the scoped list at 20 rows scrolled inside the modal with no further loading (§5.2); show result counts on tabs and group headers, capped at 20; show contextual quick actions on hover for each entity (desktop only); and tolerate offline/network failures with an inline "Search unavailable, retry" banner.
+9. Non-Functional Requirements
+Search latency p95 ≤ 250ms for tenants up to 100k entities total (current staging is well below that). Index refresh latency ≤ 30s for entity create/update — the data-freshness indicator is explicitly deferred (§2). Search must work for a single-tenant dataset where any entity type is empty (e.g. a shop with no part sales yet). All result fields must respect existing tenant-isolation and role-based-access checks — a technician without Parts access does not see Parts results, and the same applies to Purchase Orders and Vendor Invoices, which are finance-adjacent and more likely to be restricted.
+WCAG 2.1 AA: full keyboard operability, focus rings on every interactive element, screen-reader announcements when results count changes ("12 results found across 5 categories"). The modal is a dialog: it takes role="dialog" with an accessible name, traps focus while open, and returns focus to the header trigger on close. The keyboard-focused row must be visually distinguishable from the mouse-hovered row.
+Change Log
+Date
+Author
+Change
+
+Branko Cicovic
+Added mobile design
+
+Branko Cicovic
+v1.2. Migrated all design references from Figma to Claude Design and added the interactive prototype link. Added Contacts, Purchase Orders and Vendor Invoices to scope (§4, §5.2, §5.3, §6). Recorded the "Show all" full-page handoff decision and its results banner (§5.2). Removed AI from scope entirely (§2, §5, §8) and replaced the modal placeholder copy. Moved quick actions out of v1 scope. Added mobile requirements (§5.6), Non-Goals (§2), and the contact-field match rule (§4). Specified Clear all on web and mobile, returning the panel to the first-time state (§5.2, §5.6, §8).
+
+Branko Cicovic
+Removed status from the Work Orders indexed field list — status is not something users search by. Logged retroactively on 2026-09-01.
+
+Branko Cicovic
+v1.3, following the design revision. Contacts removed as a standalone entity and result group — contact names, phones and emails are now indexed on their parent Customer and Vendor, and a contact-field match returns the company row (§2, §4, §5.2, §5.3, §6.1, §6.2, §6.3). Work Order rows show unit number + year/make/model instead of lead technician and date, falling back to year/make/model when there is no unit number (§4). Quick-create buttons removed from the first-time and no-results states; the empty state is now a single "Search for something" line (§5.2, §5.6), and the corresponding job-to-be-done was dropped from §3. A Recent searches header now carries the Clear all action (§5.2, §5.6). Quick actions are back in v1 scope for every entity, shown unconditionally, with View part history added to Part rows (§2, §5.4, §8). Part rows navigate to the inventory part, not the catalogue (§5.3). Status removed from the Part Sales, Purchase Order and Vendor Invoice indexed lists, and §4 now separates matchable fields from fields stored only for ranking and display.
+
+Branko Cicovic
+v1.4. Show all N now switches the modal to that entity's scope tab — the full-page search results screen and the handoff of the query to an entity's list page are both dropped, along with the results banner and its Clear search action. The scoped tab shows up to 20 rows, scrolled inside the modal, with no pagination and no further loading, and carries no Show all link of its own. All result counts are capped at 20 — tabs, group headers and the Show all N link never read higher, since 20 is what search returns per entity type (§2, §5.2, §5.6, §6.1, §8). The Part row's only quick action is View part history — Add to work order is dropped (§5.4).
+
+Milos Vasic
+v1.5, resolving engineering questions from #fs-global-search. Invoice type dropped from Vendor Invoices, indexed and displayed — ShopView has no sublet concept, and the types that exist (delivery / return / credit / manual / payment) do not help identify an invoice (§4). The Customer "created in last 90 days" ranking signal is dropped — no creation date exists on the company table and none is added; a create now counts as a touch in the recent-views store, so new customers ride the existing +0.10 recency bonus and surface under Recent searches (§6.1, §8). The Part sales-frequency signal is kept, computed over the existing inventory_changes ledger for origins WorkOrderPartPick and WorkOrderInvoiceCreate — no counter column (§6.1). Contact telephone and email remain indexed on Customers and Vendors; only the standalone contact result group was removed in v1.3 (§4). Telemetry removed entirely — §6.4 deleted, impression/click logging dropped from §8, and §2 updated (§2, §6, §8).
+
