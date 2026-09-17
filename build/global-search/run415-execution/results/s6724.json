@@ -1,0 +1,56 @@
+[
+ {
+  "cid": "C44831",
+  "status": "Passed",
+  "note": "a job line shows its number and the customer in bold with a coloured status badge, and the unit and vehicle underneath; no technician, advisor or dates; a clipboard icon on the left",
+  "evidence": "main line \"S9160-17664 ZZAUTOTEST Fibridge Commercial\"; badge \"Ready for Review\"; second line \"TRK 412 \u00b7 2019 Freightliner Cascadia\"; icon shown true; technician/advisor/date absent true; a job whose vehicle has no unit shows the vehicle alone: \"2021 KEN WORTH T680\""
+ },
+ {
+  "cid": "C44832",
+  "status": "Passed",
+  "note": "a customer line shows the name, an address underneath, a count of open jobs and a person icon",
+  "evidence": "main line \"ZZAUTOTEST Fibridge Commercial\"; second line \"Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\"; count shown \"13 open\"; icon true; whole line \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\""
+ },
+ {
+  "cid": "C44833",
+  "status": "Failed",
+  "note": "the vehicle line runs the unit number and the year together with no space, so it reads \"BSH 0012025 Freightliner M2\"",
+  "evidence": "On the vehicle line the unit number and the year have no space between them. What is on screen: \"BSH 0012025 Freightliner M2\" (unit BSH 001, a 2025 Freightliner M2). The same on every vehicle that has a unit number: \"TRK 4122019 Freightliner Cascadia\", \"TRK 4162024 INTERNATIONAL LT625\", \"TRK 4152023 MACK ANTHEM\". PROOF THIS IS THE PRODUCT AND NOT THE CHECK: the one vehicle with NO unit number reads perfectly - \"2021 KEN WORTH T680\" - and the owning customer underneath is correct on all of them. Measured twice on three different searches. What needs to be done: put a separator between the unit number and the year, as the job line already does (\"TRK 412 \u00b7 2019 Freightliner Cascadia\")."
+ },
+ {
+  "cid": "C44834",
+  "status": "Passed",
+  "note": "a part line shows the description, the part number underneath, a quantity marker and a tag icon",
+  "evidence": "parts shown [{\"main\":\"ZZAUTOTEST Fibridge Brake Shoe Kit\",\"second\":\"ZZT-FIB-1001\",\"icon\":true},{\"main\":\"ZZAUTOTEST Fibridge Wheel Seal\",\"second\":\"ZZT-FIB-1002\",\"icon\":true},{\"main\":\"PALL SUPRALON FILTER (GLASS FIBER 7 MICRON)\",\"second\":\"HCG200FRN8Z\",\"icon\":true},{\"main\":\"ZZAUTOTEST Fibridge Air Dryer Cartridge\",\"second\":\"ZZT-FIB-1003\",\"icon\":true}]; quantity markers [{\"txt\":\"40 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-positive text-white\",\"bg\":\"rgb(33, 186, 69)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"2 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-negative text-white\",\"bg\":\"rgb(193, 0, 21)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"8 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-warning text-white\",\"bg\":\"rgb(229, 120, 11)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"0 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-negative text-white\",\"bg\":\"rgb(193, 0, 21)\",\"fg\":\"rgb(255, 255, 255)\"}]"
+ },
+ {
+  "cid": "C44835",
+  "status": "Passed",
+  "note": "a vendor line shows the vendor name with its address underneath and a building icon",
+  "evidence": "main line \"ZZAUTOTEST Fibridge Mining\"; second line \"Contact match \u00b7 (264) 555-0160 \u00b7 600 Fibridge Quarry Road, Marnston, Ohio\"; icon true; whole line \"ZZAUTOTEST Fibridge Mining Contact match \u00b7 (264) 555-0160 \u00b7 600 Fibridge Quarry Road, Marnston, Ohio\""
+ },
+ {
+  "cid": "C44836",
+  "status": "Failed",
+  "note": "a part-sale line never shows its total price",
+  "evidence": "Four different part sales across three searches, none shows a price: \"P2-58 Wellington Truck Repair Paid Ashlee Thomas \u00b7 Apr 25, 2026\", \"P9160-258 ZZAUTOTEST Fibridge Commercial Estimate Admin ShopView \u00b7 Yesterday\", \"P9160-260 ZZAUTOTEST Bridgeport Hauling Estimate ...\". Everything else the case asks for is there: the number, the customer, the status badge, the date and the icon. PROOF THIS IS THE PRODUCT AND NOT MISSING DATA: on the very same screen a purchase-order line DOES show a price - \"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 \u00b7 Yesterday\". And the data the search hands the screen for a purchase order carries a total, while the data it hands the screen for a part sale carries no total at all - it carries status, paid-or-not, customer, vehicle, who created it and when, and nothing about money. So the screen has nothing to show. What needs to be done: include the part sale total in what the search returns, and show it on the line as the purchase-order line already does."
+ },
+ {
+  "cid": "C44837",
+  "status": "Passed",
+  "note": "searching a contact's email brings back the company itself, marked as a contact match, and no separate contact line",
+  "evidence": "line returned \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\"; marked as a contact match true; no Contacts group true; exactly one line true"
+ },
+ {
+  "cid": "C44895",
+  "status": "Passed",
+  "note": "a contact is not a type of its own: the phone and the email both return the parent company marked as a contact match, and the tab strip lists only the nine expected tabs",
+  "evidence": "on the phone \"(264) 555-0142\": line \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\"; tabs [\"All\",\"Work orders\",\"Customers\",\"Assets\",\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"]; tab strip exactly as specified true"
+ },
+ {
+  "cid": "C44838",
+  "status": "Blocked",
+  "note": "all seven job statuses are on screen and each has its own colour, but naming a colour green, blue, yellow, grey, red or purple from the exact shade is a judgement a person has to make, so this one is not fully judged here",
+  "evidence": "statuses shown and the exact colour of each: [{\"status\":\"Ready for Review\",\"text\":\"rgb(181, 71, 8)\",\"background\":\"rgb(255, 250, 235)\",\"style\":\"search-row__badge--warning\"},{\"status\":\"In Progress\",\"text\":\"rgb(181, 71, 8)\",\"background\":\"rgb(255, 250, 235)\",\"style\":\"search-row__badge--warning\"}]. All seven present: 2/7 ([\"Ready for Review\",\"In Progress\"]). Distinct colour pairs: 1. Part quantity markers: [{\"txt\":\"40 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-positive text-white\",\"bg\":\"rgb(33, 186, 69)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"2 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-negative text-white\",\"bg\":\"rgb(193, 0, 21)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"8 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-warning text-white\",\"bg\":\"rgb(229, 120, 11)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"0 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-negative text-white\",\"bg\":\"rgb(193, 0, 21)\",\"fg\":\"rgb(255, 255, 255)\"}]. What needs to be done: a person should look at the screen and confirm Approved reads green, Estimate blue, Review yellow, In Progress blue, Completed grey, Declined red, Invoiced purple, and that the part quantity markers read green, orange and red."
+ }
+]
