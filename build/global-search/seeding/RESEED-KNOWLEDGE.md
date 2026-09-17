@@ -168,3 +168,16 @@ Only two roles were created, because the other four requirements already ship.
 
 **Commit after every reseed.** The ids change when a branch is wiped, and git is the only durable
 store — the container and `/tmp` are not.
+
+## 🔴 A CLEAN CHECK THAT REPORTS ITSELF AS A FAILURE (2026-09-17)
+
+`grep -c "❌" <log>` prints **0** and **exits 1** when there is nothing to match. Wrap a verifier run
+in that and a *perfect* result comes back as "command failed, exit code 1" — and the obvious next
+move, re-seeding data that was never broken, is exactly the wrong one.
+
+It happened here: the 39-check verifier printed `✅ all 39 checks passed` and the surrounding shell
+reported failure, purely because the "are there any reds?" grep found none.
+
+**So: read the verifier's OWN summary line, never the exit code of the pipeline you wrapped around
+it.** The verifiers in this kit exit non-zero only on a real failure; anything else in the chain —
+`grep`, `tail`, a loop — has its own exit semantics that mean nothing about the data.

@@ -104,9 +104,7 @@ Work-order numbers do **not** behave this way — `S2-15441` is safe.
 
 **C44843, C44847 and C44850 used to name `S2-15276`, which does not exist and cannot** (work-order
 numbers are branch-assigned). They now name **`S2-15430`**, near miss **`S2-15431`**, corrected on
-the QA lead's approval under **Standing Rule 112 on this branch** (the same rule is numbered 111 on
-the parity branch — map: `build/global-search/case-corrections-2026-09-17/RULE-NUMBERING-MAP.md`) —
-**the number only; every other word is byte-identical
+the QA lead's approval under Standing Rule 111 — **the number only; every other word is byte-identical
 to the original.**
 
 Verified live before the edit and again after: `S2-15430` is pinned as the top hit, `S215430`,
@@ -205,19 +203,16 @@ has 14 matching vendors — which is exactly what the bundle withholds. Check th
 2. **Every result carries the build marker** you read at the start, and the date.
 3. **Every Failed or Blocked comment carries a plain "what needs to be done"** a non-technical QA can
    act on. Never a bare status (Rule 7).
-4. 🔴 **Open the case body before you run it — never this handoff's summary of it (Rule 113).**
-   Where the two disagree, **the case wins**, and say so, so the summary gets fixed rather than
-   quietly believed again.
-5. 🔴 **Before you call anything a regression, do the three checks of Rule 110.**
+4. 🔴 **Before you call anything a regression, do the three checks of Rule 110.**
    **(a) Attribution** — is it really the field you think? Blank it and search again.
    **(b) Identity** — is OUR record in the list? A count is not a verdict; a count of 1 once produced
    a false PASS on a real regression. **(c) Provenance** — record the build marker; a QA branch
    redeploys unannounced.
    Then **search Jira for an existing ticket before reporting any loss** — on 2026-09-16 all six
    reported losses already had one.
-6. **Union-only when syncing the run** (Rule 34): a partial `case_ids` list **DELETES** tests and
+5. **Union-only when syncing the run** (Rule 34): a partial `case_ids` list **DELETES** tests and
    their results.
-7. **Report `ours N / live total M`** wherever you quote a case count — the run holds foreign cases.
+6. **Report `ours N / live total M`** wherever you quote a case count — the run holds foreign cases.
 
 ---
 
@@ -422,7 +417,7 @@ summary, start testing.
 | 1 | **File the two ticket candidates in §7** — after re-checking each one yourself. | you |
 | 2 | **A second tenant for C44880** — not seedable; the branch has one organisation, and two *locations* is not the same thing. **Blocked, infra.** | infra |
 | 3 | **The older recent-activity buckets (6728)** — Yesterday / past week / past 30 days cannot be produced by opening records now, and the API cannot backdate a view. Test "Today" live, Block the rest with the reason. | tester |
-| 4 | ~~Notify Vlad that C44843, C44847, C44850 and C55684 (flagged `automation_type = Functional`) were edited~~ — **CLOSED by the QA lead on 2026-09-17: "Forget it." Do NOT raise this with him or with Vlad.** The edits stand; evidence in `build/global-search/case-corrections-2026-09-17/`. A one-time waiver for these four cases, not a change to the practice. | nobody — closed |
+| 4 | ~~Notify Vlad that C44843, C44847, C44850 and C55684 (flagged `automation_type = Functional`) were edited~~ — **CLOSED by the QA lead on 2026-09-17: "Forget it." Do NOT raise this with him or with Vlad.** The edits stand; evidence in `build/global-search/case-corrections-2026-09-17/`. | nobody — closed |
 
 ---
 
@@ -441,3 +436,6 @@ when the seeder prints 39/39** — *"the record exists"* is not *"the search ret
 Everything known about this data — every trap with the symptom it presents as, the exact count
 targets, the permission map, and what is not seedable and never will be — is on one page:
 **`build/global-search/seeding/RESEED-KNOWLEDGE.md`**. Read it before debugging anything.
+
+
+---

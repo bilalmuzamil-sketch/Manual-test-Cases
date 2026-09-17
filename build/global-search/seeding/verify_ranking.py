@@ -41,23 +41,40 @@ def search(q):
 def groups(d):
     return {g['type']: (g.get('items') or []) for g in (d.get('groups') or []) if g.get('items')}
 
-# keyword, expected group, expected count, the cases it serves
+# keyword, expected group, expected count, cases served, why, groups that may ALSO answer
+#
+# 🔴 "PRIVATE" MEANS NO OTHER CASE'S RECORDS LEAK IN - NOT THAT ONLY ONE GROUP MAY ANSWER.
+# The first version of this file demanded a single group and then failed four checks that were
+# perfectly correct: the work order seeded to give ZZCUSTOPEN its open-work-order signal matches
+# ZZCUSTOPEN through its customer's name, and the purchase order that lifts ZZVENDORPO matches both
+# the vendor and the part it is for. Those are the case's OWN dependent records - the signal itself
+# showing up - and a rule that calls them pollution would have had someone "fixing" correct data.
+# So each check declares which companion groups its own signal legitimately produces; anything
+# outside that set is still a real failure.
 CHECKS = [
-    ('ZZPREFIX',      'customers', 3, '55707', 'prefix / whole-word / typo, one keyword'),
-    ('ZZCUSTOPEN',    'customers', 2, '55708', 'open work order vs none'),
-    ('ZZASSETLIFT',   'assets',    2, '55709', 'asset on an open work order vs a newer idle one'),
-    ('ZZVENDORPO',    'vendors',   2, '55710', 'vendor with open POs vs none'),
-    ('ZZTIEBREAK',    'customers', 2, '55716', 'identical matches, one updated later'),
-    ('ZZSTOCKPART',   'parts',     2, '44852', 'in stock vs out of stock (out MUST still appear)'),
-    ('ZZPARTBUSY',    'parts',     2, '55712', 'recent activity vs quiet, identical stock'),
-    ('ZZCONTACTONLY', 'customers', 1, '45139', 'matched ONLY through its contact'),
-    ('ZZFUZZLEN',     'customers', 2, '55713', 'a short name and a long one'),
+    ('ZZPREFIX',      'customers', 3, '55707', 'prefix / whole-word / typo, one keyword', set()),
+    # 🔴 assets is unavoidable here, not sloppiness: an asset is indexed under its OWNER'S company
+    # name, so every asset belonging to a ZZCUSTOPEN customer answers the keyword however the asset
+    # itself is named. Renaming its VIN and unit (which I did, and which landed) changes nothing.
+    # A work order needs an asset and the asset must belong to the customer, so the row is a
+    # consequence of the signal the case requires.
+    ('ZZCUSTOPEN',    'customers', 2, '55708', 'open work order vs none',
+     {'work_orders', 'assets'}),
+    ('ZZASSETLIFT',   'assets',    2, '55709', 'asset on an open work order vs a newer idle one',
+     {'work_orders'}),
+    ('ZZVENDORPO',    'vendors',   2, '55710', 'vendor with open POs vs none', {'purchase_orders'}),
+    ('ZZTIEBREAK',    'customers', 2, '55716', 'identical matches, one updated later', set()),
+    ('ZZSTOCKPART',   'parts',     2, '44852', 'in stock vs out of stock (out MUST still appear)',
+     {'purchase_orders'}),
+    ('ZZPARTBUSY',    'parts',     2, '55712', 'recent activity vs quiet, identical stock', set()),
+    ('ZZCONTACTONLY', 'customers', 1, '45139', 'matched ONLY through its contact', set()),
+    ('ZZFUZZLEN',     'customers', 2, '55713', 'a short name and a long one', set()),
 ]
 
 def main():
     fails = []
     print('=== EACH KEYWORD IS PRIVATE, AND RETURNS ITS OWN RECORDS ===')
-    for kw, gtype, want, case, why in CHECKS:
+    for kw, gtype, want, case, why, allowed in CHECKS:
         d, err = search(kw)
         if err:
             print(f"  ❌ {kw:14} {err}"); fails.append(kw); continue
@@ -65,10 +82,12 @@ def main():
         got = len(g.get(gtype, []))
         # PRIVACY: no OTHER group may answer. A keyword that drags in another case's records is the
         # exact failure that made the first scheme unreadable, and a count alone would not show it.
-        strays = {t: len(v) for t, v in g.items() if t != gtype}
+        strays = {t: len(v) for t, v in g.items() if t != gtype and t not in allowed}
+        companions = {t: len(v) for t, v in g.items() if t in allowed}
         ok = (got == want) and not strays
         print(f"  {'✅' if ok else '❌'} {kw:14} {gtype}={got} (want {want})"
-              f"{'' if not strays else '  🔴 ALSO ' + str(strays)}   [C{case}] {why}")
+              f"{'' if not companions else '  +signal ' + str(companions)}"
+              f"{'' if not strays else '  🔴 STRAY ' + str(strays)}   [C{case}] {why}")
         if not ok: fails.append(kw)
 
     print('\n=== THE TYPO RECORD IS REACHABLE ONLY BY FUZZY MATCHING (C55707) ===')

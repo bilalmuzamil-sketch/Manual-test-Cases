@@ -1,212 +1,6 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0a-BUILD-VERIFY-2026-09-16 (LATEST) — re-verified on sv9160 `v26.36.7-21b4db9`
-- **Branch build MOVED** `v26.36.4-7869ff2` (9/14 verify) → **`v26.36.7-21b4db9`** (rebuilt 9/16); full Rule-101
-  re-observation run. Source unchanged (PRD v1.5). sv9160 still up (sv-branch, not destroyed).
-- **Scope 90 cases** (6721–6740 + 6768); **C45140 excluded/untouched** (6767); excluded 6769/6774/8056; 0 Vladimir, 0 Automated.
-- **Every palette surface re-confirmed, NO drift:** Ctrl+K + placeholder "Search work orders, customers, parts and more";
-  9 scope tabs with counts (All 85 · Work orders 20 · Customers 4 · Assets 20 · Parts 20 · Vendors 1 · Part sales 0 ·
-  Purchase orders 20 · Vendor invoices 0); "85 results found across 6 categories"; Recent searches / Clear All / TODAY;
-  keyboard hint; "No results found". **C44900**: Vendor-invoice status badge live — "Unpaid" observed (tri-state kept per doc).
-- **Re-stamp `v26.36.4-7869ff2` → `v26.36.7-21b4db9 on 9/16/2026`: 90/90, fail=0.** Gates: runnable 90/90; precond-label
-  90/90 (added a **backtick vocabulary** to `OBSERVED-UI-LABELS-sv9160.md` so the gate's VOCAB recognises prose-named labels);
-  served render 90/90 fr-view, 0 escaping. Run R415 holds all 90 (unchanged).
-- **Reusable asset:** `build/global-search/probe_gs_surfaces.mjs` (host-agnostic GS palette walker). Evidence: `build/global-search/build-verify-sv9160-2026-09-16/`.
-
-## §0b-FIVE-DIMENSION-REVERIFY-2026-09-09 — full authenticity gate; ALL 5 dimensions clean
-
-**Re-ran the five-dimension authenticity gate (L0026 / skill 02 §5c) over all 119 cases** after the morning
-v1.5 pass — because that pass predated the title/steps-coverage lessons. It caught real misses the morning
-pass did not:
-- **Expected (3 spec-wrong cases):** C44864, C44865, C45128 asserted quick-create buttons the spec REMOVED
-  in v1.3 (v1.5 §5.2 reads "Nothing else"; confirmed live from the spec). Fixed: C44864 = no-results message
-  only; C44865 repurposed to the scoped-tab no-results variant; C45128 = clear-all returns to the
-  helper-line-only first-time state. Titles updated; fr-view.
-- **Steps-cover-Expected (was systematically weak):** a coverage audit found **41** cases whose steps did not
-  make every Expected outcome observable (many used a placeholder "perform the action described" step). All
-  re-authored (seed the exact data, type the query, exercise each branch, click/open the row, reopen search,
-  set the phone viewport). Non-UI-observable parts (C44860 retention, C44896 framework, C44897 backend
-  endpoint, C45140/C45148/C45160) correctly handed to a developer via "Reference only" steps — never
-  fabricated. Validated by RE-AUDIT to convergence: **41 → 3 → 1 → 0** coverage gaps.
-- **Titles:** full title-vs-Expected audit = **0 contradictions** (twice).
-- **Runnable shape:** driven to **119/119** (fixed C44897 + C45128 entry points).
-- **Sources:** **119/119** carry v1.5 + read 9 Sep (live-audited).
-- **Mechanical:** clean (the only flags are the "Open" verb in C44804/44805/44810/44811 titles — false positives).
-
-**⇒ Global Search five-dimension status: Title ✅ · Preconditions ✅ · Steps ✅ (0 coverage gaps) · Expected
-✅ · Sources ✅ — SOURCE-VERIFY COMPLETE.** No Automated cases (all atm=1, no Vlad notice); no cases
-added/removed (run R415 membership unchanged). Still **source-verify only — no QA build exists** (Rule 85),
-so nothing is build-observed. Reviewer prompts + tool: `build/testing-tools/audit_case_authenticity.py`.
-
----
-
-## §0-SOURCE-VERIFY-2026-09-09 — re-verified against spec v1.5 (was v1.4)
-
-**Trigger:** QA lead asked (2026-09-09, unattended) to source-verify Global Search again. Pulled every
-source live first (Rule 81). Full records: `source-verify-2026-09-09/{SOURCE-CURRENCY-2026-09-09.md,
-SPEC-DIFF-2026-09-09.md}`.
-
-**Spec moved v1.4 → v1.5** (Confluence 576978945, Last Updated **2026-09-08**, v1.5 change-log by **Milos
-Vasic**). Epic SV-9160 = **25 children** (unchanged); SV-9167 telemetry Blocked (correct). Design =
-Shopview Design System 14 (newest of DS12/13/14 supplied) — lags v1.5 (still shows the invoice-type chip).
-
-**v1.5 delta = 5 requirements; suite impact = 1 content change:**
-- **D1 Invoice type dropped from Vendor Invoices** (§4; no Sublet concept) → **C44900 UPDATED** (removed the
-  Invoice/Sublet open-question caveat; added "no type shown/searchable"). **Resolves PO-GS-VI-1.**
-- **D2** customer "created in 90 days" ranking signal dropped, **D3** part sales-frequency kept, **D4**
-  contact phone/email still indexed → **all UNCHANGED** (no case tests D2; D3/D4 already agree).
-- **D5 telemetry removed entirely** (§6.4 deleted) → **C45140** substance unchanged (already EXCLUDED-FROM-V1);
-  provenance note updated (removal now permanent, §6.4 reference dropped).
-
-**🛑 FULL suite re-stamp (L0015 / skill 02 §5b), not a delta:** all **119 cases re-stamped v1.4 → v1.5**
-(read 9 Sep, marker 9/9) via the deterministic `html.set` fr-view harness. So the suite reads uniformly
-v1.5 and cannot mis-report currency to a later session. **0 NEW cases** → run **R415 already holds all 119**
-(verified live, Rule 34 / L0020). All 119 are atm=1 (no Automated holds). Vladimir's foreign cases untouched.
-
-**Design conflicts (findings, cases follow spec — Rule 57):** DS14 vendor-invoice type chip (v1.5 drops it);
-"View history" vs spec "View part history" (wording); empty-state "Type to start searching…" vs "Search for
-something" (carried PO-GS-EMPTY-1).
-
-**OUTSTANDING:** PO-GS-VI-1 RESOLVED (closed); PO-GS-ASSET-SHOWALL still open; PO-GS-EMPTY-1 still open;
-design update needed (drop the invoice-type chip in DS to match v1.5).
-
----
-
-## §0-SOURCE-VERIFY-2026-09-07 — re-verified against spec v1.4 (was v1.3)
-
-**Trigger:** QA lead asked (2026-09-07) to source-verify Global Search again (one of three suites this
-session, done one at a time). Standing directive: pulled the latest of every source live first. Full
-records: `source-verify-2026-09-07/SOURCE-CURRENCY-2026-09-07.md`, `SPEC-DIFF-2026-09-07.md`.
-
-**Spec moved v1.3 → v1.4** (Confluence 576978945, Last Updated 2026-09-04, Branko). Epic SV-9160 = 25
-children (was 26), consistent with v1.4; SV-9167 telemetry = Blocked (matches our Out-of-V1). Design =
-undated Claude share links (cannot be dated; spec v1.4 is explicit, cases follow the spec, Rule 57).
-
-**v1.3 → v1.4 delta (5 requirements) and what changed in the suite:**
-- **Show all N → in-modal scope tab** (no full-page results screen, no query hand-off to a list page,
-  no results banner, no Clear-search). Rewrote **C44826** (title changed), **C44822**, **C45136**
-  (mobile), **C44874/C44875** (in-page WO search decoupled from the dropped hand-off). Supersedes the
-  2026-09-02 R5.
-- **All counts capped at 20** (tabs, group headings, Show all N; groups show up to 5, scoped tab up to
-  20). New case **C53476** "No count in the search modal reads higher than 20" (Functional type, added
-  in section 6723); rewrote **C44823**, **C44825**, **C44822**.
-- **Part row's only quick action = 'View part history'** ('Add to work order'/'Add part' dropped).
-  Rewrote **C44869** (title changed), **C44871** (title changed), **C44873**.
-- **Assets 'Show all'**: the 2026-09-02 R6 exception (no Show-all on Assets) loses its reason under
-  v1.4 (Show all is in-modal now). **C44825** follows v1.4 (Assets get Show all) with a divergence line;
-  **raised PO-GS-ASSET-SHOWALL** (reverses Branko's Slack #4).
-
-**All 118 of our cases re-stamped provenance v1.3 → v1.4, read 2026-09-07** (metadata refresh; markers
-untouched, G8). Suite now **119 ours** (118 + new C53476). **Vladimir's 8 cases (created_by=1) and 5
-Filters cases (created_by=7, "Remove Global Search Page Filtering") untouched (Rule 38).** No case in the
-suite is Automated (all atm=1), so Rule 71 did not bite.
-
-**PO questions:** `questions-2026-09-07/Global-Search-questions-2026-09-07.xlsx` — Assets Show-all (new),
-Vendor Invoice Invoice/Sublet (carried), empty-state wording (carried).
-
-**Writes DONE:** all 119 written via the deterministic Froala **html.set** writer
-(`source-verify-2026-09-07/hs_write.mjs` — the keyboard-insertText writer had a ~50% save-flake, so it
-was switched out mid-pass): 42 already-ok + 77 fixed, **0 failures**, every field served `markdown
-fr-view`. Post-write gates: **runnable 119/119**, marker last 119/119, atmstatus=1 119/119, provenance
-= v1.4 on all 119. **Run R415 union-synced 118 → 119** (C53476 added, set-equal). Rule 85
-SOURCE-VERIFIED ONLY (no QA build); marker stays "Not available on Build to test Yet - Last checked
-9/7/2026". Full report: `source-verify-2026-09-07/REPORT-2026-09-07.md`.
-
----
-
-## §0-SOURCE-VERIFY-2026-09-02 — full re-verification against spec v1.3 + design + Slack decisions
-
-**Trigger:** QA lead asked to re-source-verify the suite (his manual testing suite). This is a **V2**
-(Rule 96): V2 must not break V1 unless the design/PRD says to drop it. Full decision record + the 18
-rulings: **`build/global-search/SOURCE-VERIFY-2026-09-02.md`**.
-
-**Sources re-read live 2026-09-02:** spec **v1.2 → v1.3** (2026-09-01, Branko), epic SV-9160 (**26
-children**, 2026-08-31), design (Claude Design export v9=v10=v11, byte-identical — behavioural source
-`global-search.jsx`), + **2 Slack Q&A threads** (Branko designer+PO; Milos PO).
-
-**QA-lead precedence ruling (2026-09-02):** *latest decision wins + disclose*; Show-all landing =
-Branko's **no-banner / filters-reset / term-in-search-box**; **direct TestRail writes authorised**.
-
-**RESULT — all 118 cases re-verified and written, live on TestRail:**
-- **Runnable-gate clean: 118/118** (`check_runnable_cases.py`) — every case now opens global search
-  from the header (the old "the palette is open" spec-level preconds are gone). 75 of the untouched
-  cases had failed the gate before this pass.
-- **Render: fr-view on every case** (written via the UI editor, harness-verified per case; a served-page
-  sample re-confirmed). No literal tags, AUTOMATION marker last.
-- **Provenance re-stamped to v1.3 (read 2026-09-02)**; a divergence line added wherever a case follows
-  a Slack/comment/design decision over stale spec text (Rule 56).
-
-**The 18 rulings applied** (R1–R18 in the decision record): Contacts no longer a group (8 entities,
-9 tabs incl. All; a contact match returns the company row with a "Contact match" label) · quick actions
-back in v1 (moved to a new **"Quick Actions on Hover (v1)"** section 6774) · Show-all = no banner /
-filters reset / term in the page search box · assets get no Show-all · WO row shows unit#+year/make/model
-(not lead-tech/date) · Part rows open the inventory part not catalogue · empty state has no quick-create
-buttons · customer "created in last 90 days" ranking signal dropped (create = a recent-views touch) ·
-VI badge is tri-state (Paid/Partially paid/Unpaid) · telemetry out of v1 (**C45140 reframed + moved to
-Out-of-V1** section 6767) · AI stays out.
-
-**Section moves:** 8 quick-action cases → "Quick Actions on Hover (v1)" (6774); C45140 telemetry →
-Out-of-V1 (6767); C44895 (contact-match) → Per-Entity Result Shape (6724).
-
-**Run R415:** unchanged — no cases added or deleted (all in-place updates + section moves), so it stays
-118, set-equal.
-
-**OPEN — PO question sheet delivered:** `build/global-search/questions-2026-09-02/Global-Search-questions-2026-09-02.xlsx`
-— (1) Vendor Invoice "type (Invoice/Sublet)" — Sublet has no data source anywhere; (2) empty-state
-helper wording — spec says "Search for something", the design renders "Type to start searching…".
-Both held as PO questions, cases follow the spec meanwhile.
-
-**Harness (reusable):** `build/global-search/source-verify-2026-09-02/` — `apply.mjs` (UI-editor writer,
-blur+settle+3× save-retry), `run.sh` (self-converges the ~50% transient-save flake), `preflight_gate.py`
-(runs the runnable audit on authored text BEFORE writing), `intended-blocks.json` (all 118 authored
-bodies), `REPAIRED.jsonl` (per-case fr-view evidence).
-
----
-
-## §0-COUNT-CORRECTION-2026-08-28 — the case count is **118**, not 86
-
-**Approved by the QA lead 2026-08-28.** The CLAUDE.md project index said *"all 86 cases ARE LIVE in
-TestRail (group 4094, every one ours)"*. Re-derived live today from a fully paged `get_cases`:
-
-| Measure | Value |
-|---|---|
-| **Ours (`created_by = 3`)** | **118** — every one inside group **6720** *Global Search V2 (Aug 2026)* |
-| Live total under *Test Cases > Global Search* (section 49) | **126** |
-| Foreign | **8** — all `created_by = 1` (Vladimir Tomovic), sitting directly in section 49, created 2024-07-03 to 2026-07-20. Rule 38: report, never edit |
-
-### WHY it moved from 86 to 118 — what the evidence shows
-
-**It was our own work, not a miscount and not a foreign addition.**
-
-1. **Every one of the 118 has a `created_on` of 2026-08-25 (98 cases) or 2026-08-26 (20 cases)** —
-   both AFTER the 2026-08-21 index refresh that recorded 86. `created_on` does **not** change when a
-   case is moved between sections, so these are genuine creations, not the old 86 relocated.
-2. **`created_by` is `3` (us) on all 118.** No foreign editor added any of them.
-3. **The section the index cited no longer exists** — `get_section/4094` returns HTTP 400
-   *"Field :section_id is not a valid section."*
-4. The two dates match this project's own record: **2026-08-25** is the V2 revival push (§ *"APPLIED
-   to TestRail 2026-08-25: 110 cases live (97 updated in place, 13 added, 8 moved to Out-of-V1)"*)
-   and **2026-08-26** is the 20-case *Global Search V2 - V1 Regression Suite*
-   (`regression-2026-08-26/testrail-id-map.csv`, C45142 onward). **98 mapped + 20 regression = 118.**
-
-So the 86 was a true figure for 2026-08-21 and was superseded four days later by the V2 revival.
-**The project row's status "POSTPONED — never pushed" is also stale: the cases are pushed and live.**
-
-### ⚠️ One thing the evidence does NOT explain — 12 cases are gone
-
-`testrail-id-map.csv` holds 110 rows (C44804–C45140). **12 of them no longer resolve** — `get_case`
-returns HTTP 400 *"not a valid test case"* for **C44883, C44884, C44885, C44886, C44887, C44888,
-C44889, C44890, C44891, C44892, C44893, C44894**. They are contiguous and **all twelve are the API
-cases** (`GET /api/search …`, debounce, recent-entities) — this project's "12 API cases in an API
-section". No live case carries any of their titles.
-
-**This contradicts the 2026-08-25 line *"Lossless, nothing deleted."*** Deleted cases cannot be
-queried, so **who deleted them and when cannot be established from TestRail** and is NOT guessed here.
-**Raised, not resolved** — see `build/OUTSTANDING-ITEMS-REGISTER.md`.
-
----
-
 > **Read this first to resume the Global Search project.** Single authoritative
 > snapshot. Keep this project's memory SEPARATE from other projects; reuse shared
 > infrastructure (staging/QA access method, harness scripts, TestRail API patterns,
@@ -583,32 +377,34 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 
 ---
 
-## 2026-09-14 — 🔴 CORRECTION: THE V2 SEARCH ENGINE, AND THE PRECISION FINDING IT EXPLAINS
+## 2026-09-14 — 🔴 CORRECTION: V2 GLOBAL SEARCH RUNS ON OPENSEARCH, NOT ON THE DATABASE
 
-**V2 global search runs on OpenSearch, not on the application database.** Our notes said PostgreSQL
-(from the PRD), corrected to MySQL on Aurora; **both were wrong.** Records are copied into a separate
-search engine and all matching, scoring and ranking happen there — `api/src/Search/Infrastructure/
-OpenSearch/`, branch `SV-9160-global-search-v2` commit `7869ff2a`.
+**Our records were wrong.** We had the PRD's "PostgreSQL with a trigram extension", corrected to
+"the stack is MySQL on Aurora so it will be MySQL text matching." **Neither describes the build.**
+V2 matching runs on a **separate search engine (OpenSearch)**; records are copied into it and all
+matching, scoring and ranking happen there. Established from the product source at branch
+`SV-9160-global-search-v2` commit `7869ff2a`, and reproduced live the same day.
 
-**Three things a tester needs from this:** a new record takes a moment to become findable (it is saved
-to the database first and copied after); **search can be unavailable while the rest of the product is
-fine**, and shows its own retry banner; and relevance is a set of environment switches
-(`api/config/packages/search.yaml`), so two environments can legitimately differ on the same data.
+**The three things that follow, in plain words:**
+1. **A new record takes a moment to become findable** — it is saved to the database first and copied
+   to the search engine after. Our "findable within 30 seconds" cases test a real, deliberate lag.
+2. **Search can be unavailable while everything else works.** A tester who sees "Search unavailable,
+   retry" is looking at a separate service being down, not at the feature being broken.
+3. **Relevance is a set of environment switches, not code** (`api/config/packages/search.yaml`), so
+   two environments can legitimately return different results from the same data.
 
 **How a word is decided to match:** count the single-letter edits between it and what you typed, then
 score `1 − (edits ÷ length of the longer word)`; accept at **0.70** (0.80 for queries of three
-characters or fewer). The bar is a fraction, so **how many letters may differ depends on word length**
-— at seven letters, 0.70 permits **two**. That is the whole explanation of the noise the QA lead
-found: one search for *Marlene* returned *Darlene* (0.857), *Charlene* (0.750), *Martens*, *Marine*
-and *Alene* (0.714 each, clearing the bar by fourteen thousandths).
+characters or fewer). Because the bar is a fraction, **how many letters may differ depends on word
+length** — at seven letters, 0.70 permits **two**.
 
-**Full evidence, the measured table and the settings list live on the parity branch** —
-`build/global-search/V2-SEARCH-ENGINE-CORRECTION-2026-09-14.md` on
-`origin/claude/global-search-v1-baseline-6ax9ul`, with the finding written up as item **D1** in
-`build/global-search/v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md` §4a and cases
-**C55685** / **C55686**. *(That branch is superseded on SHARED files and must never be merged here —
-read the folder, do not merge the branch.)*
+**Full evidence, the measured scores and the settings table:**
+`build/global-search/V2-SEARCH-ENGINE-CORRECTION-2026-09-14.md`.
 
-🔴 **None of this becomes an expectation.** Rule 109 stands: for a V1-versus-V2 comparison suite the
-**V1** product is the specification, and V2's source — like V2's PRD — is context for *why* the build
-behaves as it does, never the standard it is judged against.
+**The finding it produced:** item **D1** in
+`build/global-search/v1-parity-audit-2026-09-14/PO-TASK-TICKET-CANDIDATES.md` §4a — typing a name
+returns a pile of differently spelled names, streets and parts. Cases **C55685** and **C55686**,
+both seeded, both in run **415**.
+
+🔴 **None of this becomes an expectation.** Rule 109 stands: for this suite the **V1** product is the
+specification. V2's code is context for *why* the build behaves as it does, never the standard.

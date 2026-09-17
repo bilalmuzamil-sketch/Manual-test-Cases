@@ -62,6 +62,33 @@ WANTED = [
      'gate': 'customersView', 'serves': 'C44882',
      'note': 'removes BOTH the Customers and the Assets groups - they share one permission. The '
              'create/edit and delete permissions must go too or the view refuses to come off.'},
+    # The same "remove the whole family" rule applies to every bundle below: the server keeps a
+    # View permission that something else still depends on, answers 201, and reads the permission
+    # back intact - a silent refusal that looks exactly like success.
+    {'name': 'ZZAUTOTEST No Parts View',
+     'drop': ['catalogInventoryView', 'catalogInventoryCreateAndEdit', 'catalogInventoryDelete',
+              'woPickParts', 'woOrderParts'],
+     'gate': 'catalogInventoryView', 'serves': 'C44878, C44882',
+     'note': 'hides the Parts group. The two work-order parts permissions go too - picking or '
+             'ordering parts you cannot view is not a state the product offers.'},
+    {'name': 'ZZAUTOTEST No Part Sales View',
+     'drop': ['partSalesView', 'partSalesCreateAndEdit', 'partSalesDelete'],
+     'gate': 'partSalesView', 'serves': 'C44882',
+     'note': 'hides the Part Sales group. Note the group needs partSalesView AND seeFinancialData, '
+             'so this role proves the FIRST of the two conditions on its own.'},
+    {'name': 'ZZAUTOTEST No Vendor Order View',
+     'drop': ['vendorOrderManagementView', 'vendorOrderManagementCreateAndEdit',
+              'vendorOrderManagementDelete'],
+     'gate': 'vendorOrderManagementView', 'serves': 'C44882, C55705 inverse',
+     'note': 'one permission, THREE groups - Vendors, Purchase Orders and Vendor Invoices all '
+             'disappear together.'},
+    {'name': 'ZZAUTOTEST No Financial Data',
+     # seeFinancialData is a crossToggle, NOT an ordinary permission - see the crossToggles note
+     # below. Dropping it from fePermissions alone does nothing; the toggle has to go False too.
+     'drop': ['seeFinancialData'],
+     'gate': 'seeFinancialData', 'serves': 'C44882, C55706 inverse',
+     'note': 'the groups all stay; what changes is that PRICES are masked in the rows. This is the '
+             'one role where a hidden group would be the WRONG outcome.'},
 ]
 
 def list_roles():
@@ -89,12 +116,24 @@ def org_id():
 
 def main():
     roles = list_roles()
+    # 🔴 ROLE NAMES ARE NOT UNIQUE ON THIS ESTATE. There are three 'Office User' roles, three
+    # 'Admin's, three 'Technician's - one per workplace template. A {label: id} dict therefore keeps
+    # whichever came LAST, and on 2026-09-17 that one carried ZERO permissions: the clone source
+    # read as empty, every new role was refused with "At least one permission is required", and the
+    # failure pointed at the roles being created rather than at the template being picked.
+    # So: collect EVERY id for the name and take the one with the most permissions.
+    candidates = [r['id'] for r in roles if r.get('label') == SOURCE_ROLE_NAME]
+    if not candidates: sys.exit(f'source role {SOURCE_ROLE_NAME!r} not found')
+    best, src, src_codes = None, None, []
+    for rid in candidates:
+        role = read_role(rid)
+        cs = codes(role)
+        if len(cs) > len(src_codes): best, src, src_codes = rid, role, cs
+    print(f'cloning from {SOURCE_ROLE_NAME}: {len(src_codes)} permissions '
+          f'(best of {len(candidates)} roles with that name)')
+    if not src_codes:
+        sys.exit('every role with that name is empty - pick a different SOURCE_ROLE_NAME')
     by_name = {r['label']: r['id'] for r in roles}
-    src_id = by_name.get(SOURCE_ROLE_NAME)
-    if not src_id: sys.exit(f'source role {SOURCE_ROLE_NAME!r} not found')
-    src = read_role(src_id)
-    src_codes = codes(src)
-    print(f'cloning from {SOURCE_ROLE_NAME}: {len(src_codes)} permissions')
 
     org = org_id()
     print(f'organization: {org}')
@@ -125,8 +164,17 @@ def main():
                 'fePermissions': keep,
                 'organization': org,
                 'viewMode': None if 'workOrdersView' in drop else src.get('view_mode'),
-                'crossToggles': src.get('cross_toggles') or
-                                {'seeFinancialData': True, 'seeApArData': True, 'viewHistoryLogs': True},
+                # 🔴 crossToggles PUTS A DROPPED PERMISSION STRAIGHT BACK. seeFinancialData,
+                # seeApArData and viewHistoryLogs are not ordinary fePermissions on this API - they
+                # are toggles carried separately, and this block used to hardcode them all True.
+                # So dropping seeFinancialData from fePermissions did nothing: the role was created,
+                # answered 201, and read back still holding it. I first blamed a dependant family
+                # and widened the drop list, which changed nothing because the drop list was never
+                # the problem - the answer was one grep away in our own code.
+                'crossToggles': {k: (False if k in drop else v) for k, v in
+                                 (src.get('cross_toggles') or
+                                  {'seeFinancialData': True, 'seeApArData': True,
+                                   'viewHistoryLogs': True}).items()},
                 'description': f'ZZAUTOTEST fixture for {spec["serves"]} - {SOURCE_ROLE_NAME} without {drop}',
                 'templateId': src.get('template_id')}
         r = call('/api/roles', 'POST', body)

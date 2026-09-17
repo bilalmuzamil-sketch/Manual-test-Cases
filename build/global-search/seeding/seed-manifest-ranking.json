@@ -1080,6 +1080,138 @@
     "max"
    ],
    "_why": "Identical stock, no activity. The control that isolates recent-activity from in-stock."
+  },
+  {
+   "key": "rank_c_open_contact",
+   "type": "Contact (a PERSON at a customer company)",
+   "serves": [
+    55708
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "rank_c_open",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Custopen"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Custopen",
+     "last_name": "Contact",
+     "title": "Owner",
+     "telephone": "(264) 400-0004",
+     "email": "open@zzcustopen.test"
+    },
+    "inject": {
+     "company_id": "rank_c_open"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "_why": "A work order needs a contact as its customer_id. Named without the keyword so it cannot add a row to the customers group the case counts."
+  },
+  {
+   "key": "rank_c_open_vehicle",
+   "type": "Vehicle",
+   "serves": [
+    55708
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZWOVEH0000000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Freightliner",
+     "model_name": "Cascadia",
+     "year": 2020,
+     "unit": "WOVEH-01",
+     "vin": "ZZWOVEH0000000001",
+     "licence_plate": "WOVEH-01"
+    },
+    "inject": {
+     "customer_id": "rank_c_open_contact",
+     "company_id": "rank_c_open"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "The open work order needs an asset. Deliberately NOT a ZZASSETLIFT vehicle - giving one of those an open work order would break C55709, whose whole point is that only ONE of its two assets has one. \ud83d\udd34 And its unit/VIN carry NO keyword either: named CUSTOPEN-01 at first, it matched ZZCUSTOPEN and added an asset row to a customers-ranking case."
+  },
+  {
+   "key": "wo_custopen",
+   "type": "WorkOrder",
+   "serves": [
+    55708
+   ],
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is broken on /api/work-orders, so these are verified by the ids the seeder captured at create time."
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "rank_c_open",
+     "vehicle_id": "rank_c_open_vehicle",
+     "customer_id": "rank_c_open_contact"
+    },
+    "id_from": "data.work_order_id"
+   },
+   "skip_verify": [
+    "is_vehicle_here"
+   ],
+   "_why": "THE SIGNAL for C55708: an OPEN work order on ZZCUSTOPEN Haulage Open and none on its twin. Left in its created (estimate) state, which is open."
+  },
+  {
+   "key": "wo_assetlift",
+   "type": "WorkOrder",
+   "serves": [
+    55709
+   ],
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": []
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "rank_owner",
+     "vehicle_id": "rank_v_open",
+     "customer_id": "rank_owner_contact"
+    },
+    "id_from": "data.work_order_id"
+   },
+   "skip_verify": [
+    "is_vehicle_here"
+   ],
+   "_why": "THE SIGNAL for C55709: the 2019 asset is on an open work order, the 2025 is not. The case asserts that lift beats the newer model year."
   }
  ]
 }
