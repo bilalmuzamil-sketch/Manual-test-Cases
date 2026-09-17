@@ -2943,3 +2943,40 @@ started applying the wrong rule to everything else.
 **A second thing broke while I was at it:** my resizing step applied one picture's dimensions to
 every picture in the description and distorted the screenshot he had pasted in himself. Fixed to
 size each one independently, and to leave a picture it does not recognise alone rather than guess.
+
+
+## L0145 — MY TICKETS WERE NOT WRITTEN FOR THE PEOPLE WHO HAVE TO USE THEM (2026-09-17)
+
+The QA lead, plainly: my tickets were **"very less friendly, difficult for the non-technical users
+to understand and follow, and even difficult for the Manual testers to run following your steps of
+replication."**
+
+**That is the failure, and it is not a formatting one.** I had the approved section order, the
+annotated picture, the quoted source — every box ticked — and still produced something a product
+owner had to parse and a tester could not simply follow. **Passing the checklist is not the same as
+being usable**, and I had been measuring myself against the checklist.
+
+**The two readers I was not writing for:**
+* a **Product Owner** who must understand what is broken without knowing the system;
+* a **manual tester** who must reproduce it from the numbered steps alone, nothing else open.
+
+**What actually made it hard**, from his rewrite: narrative sentences where bullets belong ·
+a title that was a sentence instead of a name · opening with my specific test data instead of the
+shape of the fault · conclusions mixed into the reproduction steps so a tester could not tell an
+action from an observation · saying current-versus-expected twice, in two places.
+
+**The habit to keep:** before filing, read it as each of those two people and ask whether they could
+act on it alone. Not "does it have all the sections".
+
+## L0146 — NO CASE IDS OR RUN LINKS IN A JIRA DESCRIPTION (2026-09-17)
+
+*"Also do not mention the test cases at the bottom."* The ticket now ends at Sources.
+
+**Traceability survives because it only ever needed to run one way.** Rule 113 already puts the
+ticket number onto the test result in the run, so anyone holding the case reaches the ticket. A
+developer reading the ticket does not need to reach the case — which check found it is our
+business, not theirs, and the ids were clutter on a page written for them.
+
+This supersedes item 8 of the eight-heading layout. **Rule 8 is untouched everywhere else** — every
+report, every message to the QA lead, every deliverable still carries the C-id, the case link and
+its run. It is the Jira description, and only that, which drops them.

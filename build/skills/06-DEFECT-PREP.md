@@ -632,6 +632,40 @@ his unclear.
 Boxes, numbered discs and the numbered legend all stay. Keep captions short enough to fit the image
 width, and pad the image left so a disc never covers the text it points at.
 
+### 7. ⛔ NO "TEST CASES" SECTION IN THE TICKET — HE REMOVED IT 2026-09-17
+
+*"Also do not mention the test cases at the bottom."*
+
+**The ticket ENDS at Sources.** No run link, no case ids, no test links in the description.
+
+**Why this does not break traceability, and why you must keep the other half:** the link still
+exists, it just points ONE WAY now. Standing Rule 113 already requires the ticket number to be
+written into the test result in the run, so anyone holding the case can reach the ticket. Nobody
+reading the ticket needs to reach the case — a developer fixing it does not care which check found
+it, and the ids were noise on a page meant for them. **So: ticket number onto the case, always.
+Case ids onto the ticket, never.**
+
+⛔ This supersedes item 8 of the eight-heading layout (2026-09-10, *"Test cases with run + links"*).
+Rule 8 still governs everything the QA lead reads and every deliverable — it is only the Jira
+description that drops them.
+
+### 8. THE STANDARD THIS ALL SERVES
+
+He said it plainly on 2026-09-17: my tickets were **"very less friendly, difficult for the
+non-technical users to understand and follow, and even difficult for the Manual testers to run
+following your steps of replication."**
+
+**Two readers, both non-technical, and the ticket fails if either one struggles:**
+* a **Product Owner** who must understand what is wrong without knowing the system, and
+* a **manual tester** who must reproduce it from the steps alone, with nothing else open.
+
+**Test every ticket against both before it is filed:** could a PO say what is broken after reading
+only the Description? Could a tester reach the fault following only the numbered steps, without
+asking anyone anything? If either answer is no, it is not written yet — length is not the problem,
+narrative is.
+
+---
+
 ### 6. TWO PICTURE TRAPS, BOTH MEASURED 2026-09-17
 
 * **Size EACH picture to ITS OWN dimensions.** `size_pics.py` takes the images in document order;

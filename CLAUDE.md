@@ -724,8 +724,18 @@ Compact form — **the rule named in brackets is the authority; read it before r
   **4 Current behaviour** · **5 Expected behaviour** (both plain bullets, layman) ·
   **6 Environment** — **a blank line above it and a blank line below it, directly above Sources**,
   both places as clickable links + the record's FULL link · **7 Sources**,
-  quoted verbatim, each labelled with its id and a link the reader can open · **8 Test cases** with
-  run + links (8). ⛔ Superseded, kept dated: *"1 Environment first"* (2026-09-10).
+  quoted verbatim, each labelled with its id and a link the reader can open — **AND THE TICKET ENDS
+  THERE.** ⛔ Superseded, kept dated: *"1 Environment first"* (2026-09-10) and *"8 Test cases with run
+  + links"* (removed by him 2026-09-16/17 — **no case ids or run links in a Jira description**; the
+  ticket number still goes onto the case in the run, 113, so traceability runs one way only).
+  **🛑 AND THE HOUSE VOICE IS HIS, REFINED FROM A TICKET HE REWROTE (2026-09-17):** Title-Case title
+  naming the relationship (~70 chars, not a sentence) · first heading is **`Description`, NEVER "The
+  problem"** — state the RULE broken, then "For example," + bullets on the SHAPE of the fault, not your
+  test data · **Steps to Reproduce = actions only**, observations as `#*` sub-bullets, verdict in bold
+  **Actual Result / Expected Result** (which REPLACES separate Current/Expected sections) · `*bold*` and
+  `{{monospace}}` throughout · **every picture KEEPS its banner, and the banner says WHAT YOU ARE
+  LOOKING AT, never the ticket title again.** It must be followable by a non-technical PO and runnable
+  by a manual tester with nothing else open. Full text: `build/skills/06-DEFECT-PREP.md` §§1-8.
   **MARKUP TRAP: the MCP create/edit tools take MARKDOWN; only `PUT /rest/api/2/issue/{KEY}` via
   `jira.sh` takes WIKI markup and it is the ONLY route that embeds images.** Full recipe, his verbatim
   words and the verification step: `build/skills/06-DEFECT-PREP.md`.
