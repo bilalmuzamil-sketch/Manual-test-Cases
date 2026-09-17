@@ -84,10 +84,16 @@ for rec in man['records']:
     pid = next((x['id'] for x in rows(pr) if x.get('name') == pf['value']), None)
     hit = None
     if pid:
-        v = call(f"/api/customers/view/{pid}")
-        node = ((v['json'] or {}).get('data') or {}).get('company', {}) or {}
-        hit = next((c for c in (node.get('contacts') or [])
-                    if c.get('first_name') == rec['find']['value']), None)
+        # Same retry as every other lookup here - a single transient read printed a red mark against
+        # a contact that answered perfectly on the next attempt (production, 2026-09-17).
+        import time as _t
+        for attempt in range(3):
+            v = call(f"/api/customers/view/{pid}")
+            node = ((v['json'] or {}).get('data') or {}).get('company', {}) or {}
+            hit = next((c for c in (node.get('contacts') or [])
+                        if c.get('first_name') == rec['find']['value']), None)
+            if hit: break
+            if attempt < 2: _t.sleep(2 * (attempt + 1))
     p = rec['create']['payload']
     lines.append([rec['key'], f"{p['first_name']} {p['last_name']}", (hit or {}).get('id', '🔴'),
                   p['title'], p['telephone'], p['email']])

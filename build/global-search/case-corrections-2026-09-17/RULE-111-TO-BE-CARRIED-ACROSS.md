@@ -1,4 +1,4 @@
-# 🔴 RULE 111 NEEDS CARRYING ACROSS INTO THE CANONICAL RULE SEQUENCE
+# 🔴 RULES 111 AND 112 NEED CARRYING ACROSS INTO THE CANONICAL RULE SEQUENCE
 
 **The two branches run different rule numbering.** This branch's `build/rules/RULES-61-ONWARD.md` is
 the CANONICAL sequence, and its **110** is *"never use a label, code or abbreviation without its
@@ -65,3 +65,55 @@ miss** — every neighbour of a seeded work order exists, so "returns nothing" c
 **Worked example, false start included:** this folder — the pre-edit snapshot, the applier, and
 `prove_still_runnable.py`, which shows the live cases are byte-identical to the originals once the
 number alone is substituted.
+
+
+---
+
+# RULE 112 · VERIFY AGAINST THE REAL CASE TEXT, NEVER AGAINST A SUMMARY OF IT
+
+**Ordered by the QA lead, 2026-09-17:** *"always verify against the real case text rather than
+trusting the handoff's summary — make it your rule."*
+
+## The failure it prevents
+
+**A handoff, a task card, a spreadsheet and a previous session's report are all SUMMARIES.** They are
+written by someone who read the cases once and they go stale the moment anything moves. The case body
+in TestRail is the only thing the tester reads, so it is the only thing that decides whether the test
+can be run.
+
+**The failure it was written from.** The seeding handoff said of the eight Quick Actions cases:
+
+> *"the data they need is the same core universe from §1 … so **no NEW records are required beyond
+> §1.** Record this in the manifest so nobody re-investigates it."*
+
+Confident, specific, and wrong. Reading the eight case bodies found **three named example records
+that do not exist on the branch at all** — `Fisquare Farms`, `Adale Transport`, `Report Beverages` —
+and one example term, `2025 Freightliner M2`, that returns **no assets whatsoever**, which turned out
+to be a **product defect affecting every asset in the estate** rather than a data gap. A session that
+trusted the summary would have seeded nothing, reported the section ready, and handed a tester four
+dead ends.
+
+## What you do
+
+1. **Read the actual `custom_preconds`, `custom_steps` and `custom_expected` of every case in scope.**
+   Script it (Rule 88) — but read the REAL fields.
+2. **Extract what the tester will literally TYPE or LOOK FOR** and check each against the live
+   environment. **A term named only as *"for example"* still gets typed by somebody.**
+3. **Where the summary and the case disagree, THE CASE WINS** — and say so, so the summary gets fixed
+   rather than quietly believed again.
+4. **Quote the case, not the summary,** in anything you report.
+
+## The boundary
+
+This does not demote handoffs — a good one saves hours. It says a handoff is a **map, not the
+territory**: use it to know where to look, then look. The same applies to your own earlier notes, to
+a `PROJECT-STATE.md`, and to the index in `CLAUDE.md`, which already says of itself that the one-line
+entry **is not the rule**.
+
+🔴 **It applies to our own tooling too.** The seed verifier was still testing work order `S2-15440`
+after the cases had been corrected to `S2-15430` — and it **passed**, because `S2-15440` is in the
+search index. It was proving the wrong thing, confidently, and only re-reading the case bodies caught
+it.
+
+**Relation to other rules:** Rule 57's shape applied to our own artefacts; the honest trigger for
+Rule 111; and the reading half of Rule 86.

@@ -28,12 +28,13 @@ that is perfectly healthy.
 | # | Step | Why it must be here |
 |---|---|---|
 | 1 | `seed.py --check` | measure; writes nothing |
-| 2 | `seed.py --confirm` | the 33 records + field verification |
+| 2 | `seed.py --confirm` | the 39 records + field verification |
 | 3 | `set_wo_statuses.py --confirm` | you cannot set a status on a work order that does not exist |
 | 4 | `seed_po_and_invoices.py --confirm` | consumes work orders; needs them out of `estimate` |
 | 5 | `complete_and_invoice.py --confirm` | takes the **leftover** estimate work orders, so 4 must claim its own first |
 | 6 | `seed_roles.py --confirm` | independent of records, but before the verifier so one run proves everything |
-| 7 | the verifier | 35 identity/count/negative checks + the seven status badges |
+| 7 | `touch_recent_entities.py --confirm` | needs the records to exist; fills the recent list with one of each type |
+| 8 | the verifier | **39** identity/count/negative checks + reachability + the seven status badges |
 
 ---
 
@@ -86,7 +87,7 @@ Ordered by how much time each one cost.
 | seeder says MISSING for records you can see in the UI | production's list endpoints return **transient empties** | already handled — the finder retries 3× before believing a miss. If it still says missing, **check for a duplicate before creating** |
 | a reseed after a wipe keeps growing the estate | top-up was appending new ids to dead ones | fixed — only ids the probe just proved live are carried forward |
 | the PO/invoice step prints "complete" for every row while the vendor has none | it was trusting its own state file | fixed — the environment decides, and a wiped row rebuilds in the **same** pass |
-| an asset "is missing" when you search `2025 Freightliner M2` | the asset year is indexed as an **integer**, and the group caps at 20, so a year-led query degrades to "Freightliner M2" and the estate's own twenty fill it | search the **owner**, the VIN or the unit |
+| an asset "is missing" when you search `2025 Freightliner M2` | 🔴 **not your seed — a product defect.** Typing an asset's own displayed row text returns **no assets at all**, for every asset in the estate: `Freightliner Cascadia` → 20, `2019 Freightliner Cascadia` → **0**. Controlled on records we did not create | search the **owner**, the VIN or the unit. Ticket candidate, in the handoff §7 |
 | a record is in the search but `view/{id}` answers **400 Not found** | the search index is **organisation-scoped**; the record is **workplace-scoped** and lives at a workplace this login cannot reach | never build a case on it — see Rule 111's reachability clause |
 | `P2-59` starts returning a row and breaks C44849 | **a part-sale number matches across shop prefixes** — `P2-59` finds `P9160-259`. Numbers are sequential, so an unrelated reseed can create one | a part sale is a work order underneath: `POST /api/work-orders/delete {work_order_id}`, then reseed. Work-order numbers do **not** behave this way. |
 | deleting a purchase order → **500** | the payload key is **`{id}`**, not `{order_id}` | `POST /api/inventory/orders/delete {id: <uuid>}` → 201 |
@@ -103,12 +104,20 @@ Ordered by how much time each one cost.
 
 Recorded so nobody investigates them again.
 
-- **Quick Actions on hover (6774, 8 cases)** — the feature is not on the build (SV-9173 deferred). No
-  seed makes them runnable. Keep parked.
+- **Quick Actions on hover (6774, 8 cases)** — the FEATURE is not on the build (SV-9173 deferred), so
+  the cases stay parked. **But the DATA is seeded and verified** (QA lead, 2026-09-17), so they are
+  runnable the day it ships. 🔴 Reading the case bodies rather than the handoff's summary (Rule 112)
+  found three named example records that existed **nowhere** on the branch — `Adale Transport`,
+  `Fisquare Farms`, `Report Beverages` — all three now seeded and checked by the verifier.
 - **A second tenant (C44880)** — the branch has one organisation. Two *locations* is not the same
   thing. Infra item.
-- **Backdated recent activity (6728)** — the older Today/Yesterday/week/month buckets are per-user and
-  time-based; the API cannot backdate a view. "Today" the tester generates live.
+- **Backdated recent activity (6728)** — `POST /api/user/recent-entities/touch` records *"just now"*
+  and takes no timestamp, so the **Yesterday / Past week / Past 30 days** buckets cannot be
+  manufactured; they fill in as the branch is used. What step 7 DOES give you is a **Today** bucket
+  containing one record of **every one of the eight types**, which is what C44858 and C44859 need.
+  🔴 The list is **per user** — a tester signing in as somebody else starts empty, which is itself
+  the C44855 first-time-empty case. And the touch endpoint answers **204 even for input it silently
+  discards**, so a 204 is not evidence: always read the list back.
 - **Exact work-order numbers** — branch-assigned. See Rule 111.
 
 ---

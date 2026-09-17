@@ -129,9 +129,10 @@ cannot satisfy one, the case is **Blocked with the reason**, never Failed (Rule 
 
 | Cases | What is missing | What to do |
 |---|---|---|
-| **6774, all 8** (C44866–C44873) | **The hover quick-actions feature is not on the build** (epic SV-9173 deferred). Confirmed absent again 2026-09-16. | Leave **parked / Not available on Build**. No seed makes them runnable. Do not investigate again — this is recorded so nobody re-derives it. |
+| **6774, all 8** (C44866–C44873) | **The FEATURE is not on the build** (epic SV-9173 deferred). | Leave **parked / Not available on Build** — but **the DATA is seeded and verified**, so they run the day it ships. 🔴 Reading the case bodies rather than the handoff summary found **three named examples that existed nowhere on the branch** — `Adale Transport`, `Fisquare Farms`, `Report Beverages`. All three are seeded now and the verifier checks them. |
 | **C44880** | a **second tenant/organisation** | Not seedable — the branch has one organisation (two *locations*, which is not the same thing). **Blocked, infra.** |
-| **C44857, C44858, C44859, C45128, C45135** (6728) | recent activity in the **Yesterday / past-week / past-30-day** buckets | Per-user and time-based. "Today" you generate live by opening records. The older buckets cannot be produced by opening records now. **Test what you can, Block the rest with the reason.** |
+| **C44857, C45128** (6728) | the **Yesterday / past-week / past-30-day** buckets | `recent-entities/touch` records *"just now"* and takes no timestamp, so those buckets cannot be manufactured — they fill in as the branch is used. **Test what you can, Block the rest with the reason.** |
+| ~~**C44858, C44859**~~ | **✅ RUNNABLE** | The recent list is pre-filled with **one record of every one of the eight types**, all in Today. 🔴 It is **per user** — if you sign in as somebody else it starts empty (which is itself C44855's first-time-empty case). |
 | ~~**C44877–C44882** (6734)~~ | **✅ NOW RUNNABLE — see §4a** | The roles exist. Nothing blocked. |
 | **C44876** (offline), **C44829** (screen reader), **6738** (mobile), **C44897** (rollout) | tester technique | No data needed. Use a narrow window / devtools offline / a real screen reader. |
 | **C44855** | a user with **no** recent activity | Use a fresh profile or a private window. |
@@ -238,7 +239,7 @@ exists" is not "the search returns it".
 
 ---
 
-## §7 · TWO TICKET CANDIDATES — **YOU file these, and you RE-CHECK them first**
+## §7 · THREE TICKET CANDIDATES — **YOU file these, and you RE-CHECK them first**
 
 **The QA lead's instruction, 2026-09-17: this session runs the tests and files a ticket for every
 defect found — and 🔴 CHECKS EACH OF MY FINDINGS AGAIN BEFORE TRUSTING IT.**
@@ -257,7 +258,28 @@ reproduce, say so; that is a useful result, not an awkward one.
    number already in the catalogue. `AcceptDeliveryCommandHandler` ends with
    `refreshTouchedWorkOrders()`, which a standalone order never reaches. **Suspected product defect —
    a ticket candidate, not filed (Rule 62 hold).**
-2. **The vendor-invoice payment badge has FOUR states, not the three the PRD and C44900 describe.**
+2. 🔴 **TYPING AN ASSET'S OWN DISPLAYED ROW TEXT RETURNS NO ASSETS.** The row reads
+   *"2019 Freightliner Cascadia"*; type that and the Assets group is **absent**. Drop the year and it
+   returns 20. Measured on `v26.36.7-29ca209`, 2026-09-17:
+
+   | Typed | Assets |
+   |---|---|
+   | `Freightliner Cascadia` | 20 |
+   | `2019 Freightliner Cascadia` | **0** |
+   | `MAZDA MAZDA3` | 20 |
+   | `2025 MAZDA MAZDA3` | **0** |
+   | `Ford Transit` | 20 |
+   | `2025 Ford Transit` | **0** |
+   | `2025` alone | 20 |
+
+   **Controlled on records this session did not create**, so it is systematic and affects every asset
+   in the estate — not our seed. The likely mechanism: `year` is indexed as an **integer**
+   (`VehicleDocumentProvider`: `'year' => DocumentField::integer($row['year'])`), so the year token
+   cannot participate in the text match and the multi-token query fails as a whole. **This is a
+   guess about the cause; the measurement above is not.** It directly affects **C44867**, which names
+   `2025 Freightliner M2` as its example term, and **C44833**, which names the same.
+
+3. **The vendor-invoice payment badge has FOUR states, not the three the PRD and C44900 describe.**
    `vendor_transaction_status` declares `unpaid`, `partially_paid`, `paid` **and `credit`** (rendered
    "Unapplied"), plus `null` before any transaction exists. The product's own code comment says so and
    calls it *"correcting D19"*. **Document says three, code says four → a PO decision item under Rule

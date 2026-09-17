@@ -15,6 +15,8 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | cust_toboro | ZZAUTOTEST Toboro Industries | 26d7ddb1-16a1-41ba-a786-740b67c18381 | (264) 555-0153 | 3300 Toboro Bend |
 | cust_deshawn_named | ZZAUTOTEST Deshawn Freight Lines | 5107713c-ade4-42d5-9995-6fd097cd2d69 | (264) 555-0154 | 88 Deshawn Crossing |
 | cust_bryan_smith | ZZAUTOTEST Bryan Smith Hauling | 664fb6d4-3386-4da0-a185-82fde3a143c5 | (264) 555-0155 | 51 Smithfield Row |
+| cust_adale | ZZAUTOTEST Adale Transport | 3c91cea7-f353-4a9e-8aab-f72244f730ab | (264) 555-0157 | 12 Adale Way |
+| cust_fisquare | ZZAUTOTEST Fisquare Farms | b6eeee82-2ece-4fa6-a082-45eae3e5c73d | (264) 555-0158 | 7 Fisquare Lane |
 
 ### Contacts (people AT a customer company)
 
@@ -24,6 +26,7 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | contact_logistics | Ama Boateng | cabd3d3a-5683-40ab-89e4-165940dc9f34 | Dispatcher | (264) 555-0144 | ama@fibridge-logistics.test |
 | contact_retail | Iris Vandenberg | 8f17fa9a-f70e-49fb-86c8-372854890eb6 | Owner | (264) 555-0146 | iris@fibridge-retail.test |
 | contact_bryan | Bryan Smith | a23e3b48-09d6-4366-87c6-3191bed4d470 | Owner | (264) 555-0156 | bryan@bryansmithhauling.test |
+| contact_fisquare | Nadia Fisquare | 9c3b94a1-be4a-4872-8bc8-ac4c793e7bdc | Owner | (264) 555-0159 | nadia@fisquare-farms.test |
 
 ### Assets
 
@@ -36,6 +39,7 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | asset_fib_5 | 2023 MACK ANTHEM | fe883417-7a1f-4f84-b9d5-6b3e875d7928 | TRK 415 | 1M1AN07Y5PM441080 |
 | asset_fib_6 | 2024 INTERNATIONAL LT625 | da4b8995-fe76-447b-b8ff-29b88163b513 | TRK 416 | 3HSDJAPR5RN441081 |
 | asset_m2_bryan | 2025 Freightliner M2 | 6108d3ff-e199-4293-8107-6459207f5706 | BSH 001 | 1FVACWDT5SH441082 |
+| asset_fisquare | 2024 Freightliner M2 | 1118d37f-38b1-40e0-9e6e-fe3c2b11a913 | FSQ 001 | 1FVACWDT5RH441083 |
 
 ### Vendor
 
@@ -83,7 +87,6 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 
 | P-number | id | customer | status |
 |---|---|---|---|
-| P9160-258 | 87cff77c-48fd-477a-89b1-2e5b1d23fcde | ZZAUTOTEST Fibridge Commercial | estimate |
 
 ### Purchase orders (on the Fibridge vendor)
 

@@ -348,6 +348,58 @@ R.append({
     'skip_verify': ['company_id', 'vehicle_id'],
 })
 
+# ── §6 · QUICK ACTIONS ON HOVER (section 6774) ───────────────────────────────────────────────────
+# 🔴 THE SEEDING HANDOFF SAID THESE NEEDED NO NEW RECORDS. IT WAS WRONG, AND READING THE EIGHT CASE
+# BODIES IS WHAT FOUND IT (Rule 112). Three of them name an example record BY NAME, and none of the
+# three existed on the branch: a tester typing the example gets nothing back. The feature itself is
+# deferred (SV-9173) so the cases stay parked - but the QA lead's instruction on 2026-09-17 was to
+# seed for them anyway, "so they can be available to test on the build any time". These three records
+# cost nothing to keep and remove the dead ends the day the feature ships.
+R.append(customer('cust_adale', 'ZZAUTOTEST Adale Transport', '12 Adale Way',
+    postal='44872-3006', phone='(264) 555-0157', serves=[44868],
+    why="C44868 says: type a term that returns at least one Customer, 'for example Adale Transport'. "
+        "Nothing on the branch matched it (measured 2026-09-17: the query returned nothing at all)."))
+R.append(customer('cust_fisquare', 'ZZAUTOTEST Fisquare Farms', '7 Fisquare Lane',
+    postal='44872-3007', phone='(264) 555-0158', serves=[44866, 44858, 44859],
+    why="C44866 names 'S1-644 Fisquare Farms' as its example work order, and C44858/C44859 use the "
+        "same brand in their example rows. The BRAND is seedable and the work-order NUMBER is not, "
+        "so this customer plus its work orders make the example term return something real."))
+R.append(contact('contact_fisquare', 'cust_fisquare', 'Nadia', 'Fisquare', 'Owner',
+    '(264) 555-0159', 'nadia@fisquare-farms.test'))
+R.append(asset('asset_fisquare', 'cust_fisquare', 'contact_fisquare', 'Freightliner', 'M2',
+    '2024', 'FSQ 001', '1FVACWDT5RH441083', 'OHZZT419', serves=[44866]))
+R.append({
+    'key': 'work_orders_fisquare', 'type': 'WorkOrder', 'count': 2, 'depends_on': 'cust_fisquare',
+    'serves': [44866, 44858, 44859],
+    '_why': 'C44866 needs a term that returns at least one Work Order and names Fisquare Farms as '
+            'the example. Two work orders make the brand answer in the Work orders group.',
+    'find': {'mode': 'ids', 'view': '/api/work-orders/view/{id}', 'coll': 'work_order',
+             'field': 'number', 'ids': []},
+    'create': {'endpoint': '/api/work-orders/create', 'payload': {'is_vehicle_here': False},
+               'inject': {'company_id': 'cust_fisquare', 'vehicle_id': 'asset_fisquare',
+                          'customer_id': 'contact_fisquare'},
+               'id_from': 'data.work_order_id', 'repeat': 2},
+    'skip_verify': ['is_vehicle_here', 'company_id', 'vehicle_id', 'customer_id'],
+})
+R.append({
+    'key': 'vendor_report_beverages', 'type': 'Vendor', 'unique': True, 'serves': [44870],
+    '_why': "C44870 says: type a term that returns a Vendor result, 'for example Report Beverages'. "
+            "Nothing on the branch matched it (measured 2026-09-17). One vendor removes the dead end.",
+    'find': {'mode': 'search', 'list': '/api/parts-catalogue/vendors', 'coll': 'collection',
+             'field': 'name', 'value': f'{TAG} Report Beverages', 'control': 'Carolina Truck'},
+    'create': {'endpoint': '/api/parts-catalogue/add-vendor',
+               'payload': {'name': f'{TAG} Report Beverages', 'address_1': '400 Report Row',
+                           'city': 'Marnston', 'state_or_province': 'Ohio',
+                           'postal_code': '43055-4200', 'telephone': '(264) 555-0161',
+                           'email': 'orders@report-beverages.test', 'credit_term': 'Net 30',
+                           'credit_limit': 5000},
+               'resolve': {'tax_id': '/api/taxes'}},
+    'verify': ['name', 'city', 'email', 'credit_term'], 'read_as': {},
+    'skip_verify': ['credit_limit', 'tax_id'],
+    'write': {'endpoint': '/api/parts-catalogue/change-vendor', 'whole_record': True,
+              'id_as': {'vendor_id': 'id'}},
+})
+
 MANIFEST = {
     '_README': (
         'THE "FIBRIDGE" UNIVERSE - seed data for the 90 build-verified Global Search V2 cases '
