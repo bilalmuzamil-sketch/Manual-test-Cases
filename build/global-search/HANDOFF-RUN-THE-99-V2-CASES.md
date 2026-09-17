@@ -13,7 +13,7 @@ search; your job is to execute the cases and write a result for every one of the
 
 > **🔴 THIS IS NOT HYPOTHETICAL. The branch was redeployed on 2026-09-16 while this handoff was
 > being written** — `v26.36.7-21b4db9` → **`v26.36.7-29ca209`** — and **it wiped every seeded
-> record**: 1 of 33 survived. It was rebuilt with one command and re-proven at 35/35, which is why
+> record**: 1 of 33 survived. It was rebuilt with one command and re-proven, which is why
 > §6 exists and why the ids in the inventory are the ones from *after* the redeploy. Earlier, on the
 > same day, a different redeploy changed four behaviours overnight and blaming the search index
 > instead withdrew four TRUE findings. **Read the marker before you believe anything about the data.**
@@ -55,8 +55,8 @@ One fictional brand family — **Fibridge** — plus a few exact-identifier reco
 | customers | **3** | C44825 needs a group at **five or fewer** |
 | assets | **6** | C44825 needs a group **above five** |
 | work orders | **20** | the palette **caps every count at 20** (C53476). 30 match; 20 is the cap, and seeing 20 IS the pass |
-| purchase orders | 12 | |
-| vendor invoices | 4 | |
+| purchase orders | **6** | measured 2026-09-17; 10 exist on the vendor, 6 surface on this term |
+| vendor invoices | **3** | measured 2026-09-17; 4 exist, 3 surface on this term |
 
 🔴 **Measure on `Fib`, never on `Fibridge`.** The long form fuzzy-matches the word **"Bridge"** inside
 hundreds of staging addresses and returns 7 customers and 5 vendors that have nothing to do with us.
@@ -65,10 +65,12 @@ record** (Rule 110b).
 
 ---
 
-## §2 · THE EXACT TERMS, ALL 35 RE-PROVEN THE DAY THIS WAS WRITTEN
+## §2 · THE EXACT TERMS — ALL 39 CHECKS RE-PROVEN 2026-09-17
 
 `python3 build/global-search/seeding/verify_gsv2.py` re-runs every one of these against the live
-branch in about a minute. **Run it before you start.** If it passes, the data is good and any failure
+branch in about a minute — **39 checks** over the **39 seeded records** (33 when this handoff was
+first written; the six Quick Actions records in §3 were added afterwards). **Run it before you
+start.** If it passes, the data is good and any failure
 you then see is the product. If it does not, reseed (§6) before writing a single result.
 
 | You type | You must get |
@@ -222,13 +224,23 @@ Say **`RESEED GSV2 QA`** and it is rebuilt. The full runbook is
 ```bash
 cd build/global-search/seeding
 export SEED_MANIFEST=seed-manifest-gs-v2.json
-python3 seed.py --check && python3 seed.py --confirm
-python3 set_wo_statuses.py --confirm
-python3 seed_po_and_invoices.py --confirm
-python3 verify_gsv2.py          # ← the run is not reseeded until THIS passes
+./reseed_gsv2.sh qa             # the whole thing — seven steps, one command
 ```
 
-**A reseed is finished when the verifier passes, not when the seeder prints 33/33.** "The record
+The seven steps it runs, in the order their dependencies force (`seed.py --confirm` **is**
+find-or-create, so there is no separate `--check` step):
+
+```bash
+python3 seed.py --confirm              # 1  the 39 records
+python3 set_wo_statuses.py --confirm   # 2  the work-order status spread
+python3 seed_po_and_invoices.py --confirm  # 3  POs, invoices, payment states
+python3 complete_and_invoice.py --confirm  # 4  two WOs to Complete + Invoiced
+python3 seed_roles.py --confirm        # 5  the two role fixtures for §4a
+python3 touch_recent_entities.py --confirm # 6  the recent-activity list
+python3 verify_gsv2.py                 # 7  ← the run is not reseeded until THIS passes
+```
+
+**A reseed is finished when the verifier passes, not when the seeder prints 39/39.** "The record
 exists" is not "the search returns it".
 
 **Two things that will mislead you if you do not know them:**
@@ -328,7 +340,7 @@ cd build/global-search/seeding && ./reseed_gsv2.sh qa
 
 **It is safe to run any number of times**: every step measures first and creates only the difference,
 and a third consecutive run changes nothing. **A reseed is finished when the verifier passes, not
-when the seeder prints 33/33** — *"the record exists"* is not *"the search returns it"*.
+when the seeder prints 39/39** — *"the record exists"* is not *"the search returns it"*.
 
 Everything known about this data — every trap with the symptom it presents as, the exact count
 targets, the permission map, and what is not seedable and never will be — is on one page:
