@@ -48,6 +48,32 @@ permission actually came off: `ZZAUTOTEST No Work Orders View` · `No Customers 
 (groups stay, **prices are masked** — a hidden group here would be the wrong outcome). The stock
 **Technician**, **Sales Representative** and **Time Clock User** roles cover the rest.
 
+### 🔴 BEFORE YOU APPLY ANY ROLE TO ANYONE — RESET IT TO TEMPLATE FIRST
+
+**QA lead's standing instruction, 2026-09-17.** Manual testers edit these roles by hand. A role
+called "Service Advisor" is not necessarily *the* Service Advisor any more, so a permission case run
+against it proves nothing — and worse, it fails in a way that looks like a product defect.
+
+**Every time, in this order:**
+
+1. Open the role — **Settings → Roles & Permissions → the role → Edit**.
+2. Click **Reset To Template**.
+3. Click **Save**.
+4. *Then* assign the role to the user and run the case.
+
+**The diagnostic, which saves you a pointless save:** if clicking **Reset To Template** leaves the
+**Save button disabled**, the role was already in its default state and there is nothing to write.
+A disabled Save is the "already clean" signal, not a broken button.
+
+**This applies to the stock roles you sign in as** — Technician, Sales Representative, Time Clock
+User, Office User, Admin. **The six `ZZAUTOTEST …` fixtures are ours and are rebuilt from the
+template by the seeder**, so they do not need it; if one ever looks wrong, re-run the seeder rather
+than hand-editing it.
+
+**Checked 2026-09-17:** the live `Office User` role was byte-identical to its template — all 26
+permissions, same codes — so the six fixtures cloned from it are clean. The seeder now compares the
+two on every run and says which baseline it is standing on.
+
 **C44880 is the one Blocked case.** The second organisation exists — `ZZAUTOTEST Second Org Ltd` —
 and is visible from this login, but working inside it needs its own session, which is not available.
 **Block it, do not fail it.**
