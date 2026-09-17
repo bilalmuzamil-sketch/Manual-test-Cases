@@ -1,5 +1,11 @@
 # SV-9304 — moving a part between work orders leaves no history
 
+> **VERDICT: FAILED** (revised 17 Sep 2026 after testing the Split work order path).
+> The two move paths the fix targets pass every check. It fails because a third path —
+> **Split work order** — moves a part to another work order and records it nowhere, and the
+> ticket's Expected behaviour does not exclude it (it explicitly excludes only
+> `POST /api/part-sales/move`). Scope call is the assignee's; see the comment.
+
 Status at test time: **TESTING QA**, `QA_Validation_Required`, priority Medium, assignee Slavcho Mitrov.
 The acceptance criteria come from the re-scoped description plus Slavcho's PR comment
 ([ShopView/shopview#3066](https://github.com/ShopView/shopview/pull/3066)).
@@ -236,3 +242,35 @@ pre-existing — the same shape as `POST /api/part-sales/move`, already deferred
 **Not confirmed on production** (neither production work order I snapshotted has split events).
 
 Raised in the ticket comment as a decision for Slavcho: in scope here, or a third follow-up.
+
+
+---
+
+## Verdict revised to FAILED
+
+The QA lead's point: if the split should have recorded the part move under this ticket, the verdict
+has to say so rather than carry it as an observation.
+
+Measured against the ticket's own Expected behaviour — *"A part move records a
+`work_order.part.moved` history event: one Part History entry against the inventory part, and one
+work-order history entry on both the source and the destination work order"* — a split moves a part
+between work orders and produces **neither**. The description carves out `POST /api/part-sales/move`
+explicitly and says nothing about the split, so the split reads as in scope.
+
+Exhaustive confirmation that nothing anywhere records it:
+
+| looked at | result |
+|---|---|
+| `GET /api/work-orders/{source}/history` | `work_order.split_to` only |
+| `GET /api/work-orders/{new}/history` | `work_order.split_from` + `work_order.created` only |
+| `GET /api/work-orders/lines/{line}/history` | nothing added by the split |
+| `GET /api/parts/history/{inventoryPart}` | 10 rows before, 10 after; work orders named are S-16850, S-17292, S-17358, S-17407, S-17435 — **no S-17580** |
+
+Stated fairly in the comment: the split is not one of the two handlers the PR changes, so it is
+almost certainly pre-existing, and it was not confirmed on production. If the assignee's read is that
+it belongs to its own follow-up alongside the part-sales one, the ticket re-verdicts to passed and
+the follow-up gets raised.
+
+**One full rebuilt comment posted — 76699** — leading with `OVERALL QA STATUS: FAILED`, then a
+`WHAT FAILED` header and a `WHAT PASSED` header. Read back: 4 real attachments, 12 table rows,
+headings in order. **Comment 76697 is superseded and can be deleted.**
