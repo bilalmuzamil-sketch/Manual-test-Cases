@@ -1,0 +1,44 @@
+[
+ {
+  "cid": "C44874",
+  "status": "Blocked",
+  "note": "the search box on the jobs page could not be found with any of the routes tried",
+  "evidence": "inputs below the header that look like a search: none. What needs to be done: identify the jobs-list search box by hand and re-run."
+ },
+ {
+  "cid": "C44875",
+  "status": "Blocked",
+  "note": "depends on the line above",
+  "evidence": "Same reason."
+ },
+ {
+  "cid": "C44876",
+  "status": "Failed",
+  "note": "see evidence",
+  "evidence": "The search was deliberately made unreachable. The box was still on screen: false. What it showed: \"\". A message about being unavailable or retrying: false. Lines shown: null. What needs to be done: show a clear inline message such as \"Search unavailable, retry\" when the search cannot be reached."
+ },
+ {
+  "cid": "C44899",
+  "status": "Passed",
+  "note": "purchase orders are their own searchable type with their own group, count and tab, and a line shows the number, the vendor, the status, the total and the date",
+  "evidence": "Group heading \"Purchase orders (6)\"; tab \"Purchase orders\n(6)\". First line: \"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 · Yesterday\" - icon true, status \"Ordered\", a total shown true, a date shown true. All lines: [\"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 · Yesterday\",\"I9160-1397 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 · Yesterday\",\"I9160-1396 ZZAUTOTEST Fibridge Mining Fulfilled $100.00 · Yesterday\",\"I9160-1395 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 · Yesterday\",\"S2-9800 Willoughby Mechanical Services Fulfilled $4,294.85 · Dec 17, 2025 · Part name:FIB\"]. NOT COVERED: the Receive action on hover - the hover actions are checked as their own group of cases."
+ },
+ {
+  "cid": "C44900",
+  "status": "Passed",
+  "note": "bills from vendors are their own searchable type, each line shows the number, the vendor, the total and the date, all three payment states appear, no type is shown and there is no action on the line",
+  "evidence": "Group heading \"Vendor invoices (3)\"; tab \"Vendor invoices\n(3)\". Lines: [\"ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 · Yesterday\",\"ZZT-INV-3 ZZAUTOTEST Fibridge Mining Paid $90.00 · Yesterday\",\"ZZT-INV-2 ZZAUTOTEST Fibridge Mining Partially paid $100.00 · Yesterday\"]. Payment states seen: [\"Unpaid\",\"Paid\",\"Partially paid\"] - of the three the case names, present: [\"Unpaid\",\"Partially paid\",\"Paid\"]. Every line shows a total: true. No invoice type shown: true. No action button on a line: true."
+ },
+ {
+  "cid": "C44896",
+  "status": "Blocked",
+  "note": "the outward behaviour lines up, but proving the jobs, parts and customers pages are served by the SAME engine as the box needs to be read in the code, which this run does not do",
+  "evidence": "What was observed: the jobs page search narrows the list correctly, and the box finds the same records. The old search path is gone from this branch and the new one answers. What needs to be done: have a developer confirm the three list pages call the same search service, or read it in the code; the outward check alone cannot tell two engines that agree apart from one engine."
+ },
+ {
+  "cid": "C44897",
+  "status": "Failed",
+  "note": "see evidence",
+  "evidence": "The old path answered 200 and the new one answered 200 from inside the running app. A switch to turn the new search on or off: none was found on the branch. NOT COVERED: that the old handling and the old filtering are removed from the code itself, and that the old three-per-type dropdown is gone everywhere - both need a code reading rather than a screen check."
+ }
+]

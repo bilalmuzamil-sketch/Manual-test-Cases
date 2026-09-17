@@ -1,0 +1,38 @@
+[
+ {
+  "cid": "C44877",
+  "status": "Passed",
+  "note": "someone allowed to see parts gets a Parts group and a Parts tab",
+  "evidence": "Signed in as the main administrator (43 permissions). Groups shown: [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]. Tabs shown: [\"All (44)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]."
+ },
+ {
+  "cid": "C44878",
+  "status": "Passed",
+  "note": "a technician who is not allowed to see parts gets no Parts group and no Parts tab, and still sees everything they are allowed to",
+  "evidence": "Signed in as the technician (6 permissions, role technician). Groups shown: [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\"]. Tabs shown: [\"All (29)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\"]. A Parts group or tab present: false. They still see other types: true. For comparison the administrator sees [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]."
+ },
+ {
+  "cid": "C44881",
+  "status": "Passed",
+  "note": "a type the person cannot reach is simply not shown - not shown as an empty group",
+  "evidence": "Types the administrator sees but the technician does not: [\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"]. None of the technician's groups reads a count of zero: true. The technician's groups: [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\"]."
+ },
+ {
+  "cid": "C44882",
+  "status": "Passed",
+  "note": "a type the person cannot reach leaks neither its lines nor its count nor a tab",
+  "evidence": "Types withheld from the technician: [\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"]. Any of them still showing as a tab: []. Any of them still showing a count anywhere: []. Money still visible to the technician: [] (the administrator sees [\"$240.00\",\"$90.00\",\"$100.00\",\"$90.00\",\"$4,294.85\",\"$90.00\"]). NOT COVERED: the two purpose-made roles the handover describes (one without job access, one without customer access) are not offered on the sign-in shortcut, which only offers the administrator and the technician; and whether prices are hidden from someone without money access needs a role that has search access but not money access. What needs to be done: add those roles to the sign-in shortcut, or sign in as them directly, and repeat this comparison."
+ },
+ {
+  "cid": "C44879",
+  "status": "Blocked",
+  "note": "the role this needs - someone who can search but cannot see jobs - is not offered on the sign-in shortcut, so it could not be run",
+  "evidence": "The sign-in shortcut offers only the main administrator and a technician. The technician CAN see jobs (their tabs: [\"All (29)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\"]), so they are not the right person for this check. What needs to be done: add the purpose-made role to the sign-in shortcut, or sign in as it directly, then repeat the search and confirm no Work orders group or tab appears while the other types still do."
+ },
+ {
+  "cid": "C44880",
+  "status": "Blocked",
+  "note": "cannot be run on this branch: it has only one organisation, so there is no second one whose records could wrongly appear",
+  "evidence": "The branch has two locations, which is not the same thing as two organisations. Nothing here can prove or disprove that records stay inside one organisation. What needs to be done: run this where a second organisation exists, or have one created on this branch."
+ }
+]

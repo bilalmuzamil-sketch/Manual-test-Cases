@@ -1,0 +1,26 @@
+[
+ {
+  "cid": "C45129",
+  "status": "Passed",
+  "note": "searching the contact's email brings back the company itself, marked as a contact match, and there is no Contacts tab and no Contacts group",
+  "evidence": "positive control \"Fibridge Commercial\" returned 10 rows. On \"deshawn@fibridge-commercial.test\": no Contacts tab true; no Contacts group true; company row \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\"; carries the contact-match note true"
+ },
+ {
+  "cid": "C44879",
+  "status": "Passed",
+  "note": "someone who is not allowed to see jobs gets no Work orders group and no Work orders tab, and still sees everything else they are allowed to",
+  "evidence": "Signed in as a person whose permission to see jobs had been removed for this check (their permissions: [\"customersView\",\"scheduleView\",\"woTechViewMode\"]). Tabs shown: [\"All (9)\",\"Customers (3)\",\"Assets (6)\"]. Groups shown: [\"Customers (3)\",\"Assets (6)\"]. Lines shown: 8. No Work orders tab and no Work orders group: true; no Work orders count leaks anywhere: true; they still see the types they are allowed to: true. For comparison, the same person WITH job access saw Work orders (20), Customers (3), Assets (6). The permission was put straight back afterwards."
+ },
+ {
+  "cid": "C44874",
+  "status": "Passed",
+  "note": "typing into the jobs list search narrows the list to the matching jobs, the words stay in the box, no extra banner appears, and the columns are unchanged",
+  "evidence": "Rows before 33; after typing \"Fibridge\" 25. The box still reads \"Fibridge\". A \"showing N matching\" banner appeared: false. Columns are unchanged: true - [\"On Site\",\"Status\",\"Number\",\"Customer\",\"Asset\",\"Unit\",\"VIN/Serial #\",\"Progress\",\"Service Advisor\",\"Lead Technician\",\"Clocked In\",\"Lines\",\"Total Price\",\"Created On\"]."
+ },
+ {
+  "cid": "C44875",
+  "status": "Passed",
+  "note": "emptying the jobs list search brings the whole list back, and there is nothing to dismiss",
+  "evidence": "Rows were 33, narrowed to 25, and after emptying the box 33. Clearing the box is what restores the list - there was no banner to dismiss."
+ }
+]

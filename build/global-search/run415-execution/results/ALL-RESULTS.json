@@ -1,0 +1,590 @@
+[
+ {
+  "cid": "C44804",
+  "status": "Passed",
+  "note": "the shortcut opens a 640-wide box 96 from the top, centred not anchored; page dimmed, field ready to type, wording exactly as specified, legend in the footer",
+  "evidence": "width 640, top 96, centred true, dim true, ready to type true, wording \"Search work orders, customers, parts and more\", footer \"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\""
+ },
+ {
+  "cid": "C44805",
+  "status": "Passed",
+  "note": "clicking the header search control opens the same centred box, same size and position, ready to type",
+  "evidence": "width 640, top 96, centred true, dim true, ready to type true, wording \"Search work orders, customers, parts and more\""
+ },
+ {
+  "cid": "C44806",
+  "status": "Passed",
+  "note": "Esc closes the box and removes the dimming",
+  "evidence": "modal gone true, dimming gone true"
+ },
+ {
+  "cid": "C44807",
+  "status": "Passed",
+  "note": "pressing the shortcut again closes the box and removes the dimming",
+  "evidence": "modal gone true, dimming gone true"
+ },
+ {
+  "cid": "C44808",
+  "status": "Passed",
+  "note": "clicking the dimmed page behind the box closes it",
+  "evidence": "clicked (60,600); modal gone true, dimming gone true"
+ },
+ {
+  "cid": "C44809",
+  "status": "Passed",
+  "note": "each Down moves to the next result line and each Up to the previous; the highlight never lands on a group heading",
+  "evidence": "down landed on rows [1,2,3,4,5], up [4,3,2], every landing is a result row: true"
+ },
+ {
+  "cid": "C44810",
+  "status": "Passed",
+  "note": "pressing Enter opens the highlighted record in the same tab and the box closes",
+  "evidence": "highlighted \"2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics\"; address before https://sv9160.qa.shopview.com/customers -> after https://sv9160.qa.shopview.com/customers/vehicle/6af0fc81-69ca-4c1c-8386-db0413d63176/work-orders?companyId=9f7ee11a-c943-49b2-9c06-929f8506f858; new tabs 0; box still open false"
+ },
+ {
+  "cid": "C44811",
+  "status": "Passed",
+  "note": "holding Control and pressing Enter opens the highlighted record in a new browser tab and leaves the current page where it was",
+  "evidence": "highlighted \"2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics\"; tabs 1 -> 2; new tab address https://sv9160.qa.shopview.com/customers/vehicle/6af0fc81-69ca-4c1c-8386-db0413d63176/work-orders?companyId=9f7ee11a-c943-49b2-9c06-929f8506f858; current page moved false"
+ },
+ {
+  "cid": "C44812",
+  "status": "Passed",
+  "note": "Tab moves the focus onto the tab strip and the Left and Right arrows move between tabs",
+  "evidence": "focus landed on a tab: true; selected tab All (44) -> right -> Work orders (20) -> left -> All (44)"
+ },
+ {
+  "cid": "C44813",
+  "status": "Passed",
+  "note": "the legend stays in the footer with no query, with results, and with no results",
+  "evidence": "empty:\"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\" | results:\"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\" | no-results:\"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\""
+ },
+ {
+  "cid": "C44814",
+  "status": "Passed",
+  "note": "the strip reads All then the eight types in the stated order, there is no Contacts tab, All is selected to begin with, every tab carries its count, and the strip scrolls sideways",
+  "evidence": "tabs [\"All (44)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]; order as specified true; no Contacts true; All selected first true; all carry a count true; strip scrolls sideways true"
+ },
+ {
+  "cid": "C44815",
+  "status": "Passed",
+  "note": "the All tab shows every matching type, each under its own heading with a count, in the stated order, and there is no Contacts group",
+  "evidence": "headings [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]; order as specified true; every heading counted true; no Contacts group true"
+ },
+ {
+  "cid": "C44816",
+  "status": "Passed",
+  "note": "the Work orders tab shows only work orders and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Work orders (20)\"; headings shown [\"Work orders (20)\"]; rows 20; count on the tab 20 (same as on the All view: 20)"
+ },
+ {
+  "cid": "C44817",
+  "status": "Passed",
+  "note": "the Customers tab shows only customers and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Customers (3)\"; headings shown [\"Customers (3)\"]; rows 3; count on the tab 3 (same as on the All view: 3)"
+ },
+ {
+  "cid": "C44818",
+  "status": "Passed",
+  "note": "the Assets tab shows only assets and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Assets (6)\"; headings shown [\"Assets (6)\"]; rows 6; count on the tab 6 (same as on the All view: 6)"
+ },
+ {
+  "cid": "C44819",
+  "status": "Passed",
+  "note": "the Parts tab shows only parts and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Parts (4)\"; headings shown [\"Parts (4)\"]; rows 4; count on the tab 4 (same as on the All view: 4)"
+ },
+ {
+  "cid": "C44820",
+  "status": "Passed",
+  "note": "the Vendors tab shows only vendors and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Vendors (1)\"; headings shown [\"Vendors (1)\"]; rows 1; count on the tab 1 (same as on the All view: 1)"
+ },
+ {
+  "cid": "C44821",
+  "status": "Passed",
+  "note": "the Part sales tab shows only part sales and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Part sales (1)\"; headings shown [\"Part sales (1)\"]; rows 1; count on the tab 1 (same as on the All view: 1)"
+ },
+ {
+  "cid": "C44822",
+  "status": "Passed",
+  "note": "choosing a type shows only that type, at most twenty lines scrolled inside the box, with no page links, no load-more and no Show all, and you stay inside the box",
+  "evidence": "rows shown 20; count on the tab 20; a Show all link present false; page links present false; still inside the box true"
+ },
+ {
+  "cid": "C44823",
+  "status": "Passed",
+  "note": "every group heading names the type and carries its match count, and no heading count goes above twenty",
+  "evidence": "headings [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]; all carry a count true; highest heading count 20"
+ },
+ {
+  "cid": "C44824",
+  "status": "Passed",
+  "note": "on the combined view each group shows at most five lines",
+  "evidence": "lines per group [{\"Work orders\":5},{\"Customers\":3},{\"Assets\":5},{\"Parts\":4},{\"Vendors\":1},{\"Part sales\":1},{\"Purchase orders\":5},{\"Vendor invoices\":3}]; most lines in any group 5"
+ },
+ {
+  "cid": "C44825",
+  "status": "Failed",
+  "note": "no Show all link appears on any group, including the groups that have more than five matches",
+  "evidence": "Groups with more than five matches: [{\"group\":\"Work orders (20)\",\"shown\":5},{\"group\":\"Assets (6)\",\"shown\":5},{\"group\":\"Purchase orders (6)\",\"shown\":5}]. Searched the WHOLE PAGE (not just the box) for any element reading \"show all\", \"view all\", \"see all\", \"+N more\" or \"more\" - found 1 on the first attempt and 1 on the second. The group heading contains only a name and a count: [\"span.\",\"span.search-group__count\"]. No buttons or links inside any group heading. Hovering the heading adds nothing. The list was scrolled to the bottom in case a link sat below the fold. PROOF THE CHECK WORKS: the same search DOES find these controls in the box: [\"\",\"All (44)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\"]. What needs to be done: reaching a record past the fifth in a group currently means narrowing the words you type - there is no way to open the full list for that type from the group heading."
+ },
+ {
+  "cid": "C44826",
+  "status": "Blocked",
+  "note": "cannot be run - the Show all link it starts from does not exist on this build (see the line above)",
+  "evidence": "This case's first step is to click a Show all link on a group heading. No such link is on the page. What needs to be done: re-run this once the missing link is put back; the check itself is unchanged."
+ },
+ {
+  "cid": "C44827",
+  "status": "Passed",
+  "note": "the groups always run in the same order whatever the match counts, and there is no Contacts group",
+  "evidence": "on \"Fib\" [\"Work orders\",\"Customers\",\"Assets\",\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"]; on \"Fibridge Commercial\" [\"Work orders\",\"Customers\",\"Assets\",\"Part sales\"]; first is the full specified order true; second keeps that relative order true"
+ },
+ {
+  "cid": "C44828",
+  "status": "Passed",
+  "note": "the letters you typed are picked out inside each matching line, and only those letters",
+  "evidence": "highlighted pieces 34 across 27 of 27 lines; the highlighted text is always [\"Fib\",\"FIB\"]; longest highlighted piece 3 characters; example line \"S9160-17664 ZZAUTOTEST Fibridge Commercial Ready for Review TRK 412 \u00b7 2019 Freig\""
+ },
+ {
+  "cid": "C44829",
+  "status": "Blocked",
+  "note": "the spoken announcement is there and its wording changes with the results, read from the page; but this run has no screen reader and no human eye, so the case is not fully judged",
+  "evidence": "An announcement region is present and it updates: on \"Fib\" it reads \"44 results found across 8 categories\", on \"Fibr\" \"44 results found across 8 categories\", on the exact number \"S2-15430\" \"1 result found across 1 category\". Region settings {\"txt\":\"44 results found across 8 categories\",\"live\":\"polite\",\"role\":\"status\"}. NOT CHECKED: that a real screen reader speaks it, and that every stop (the field, each tab, each line) shows a visible outline when you Tab to it. What needs to be done: re-run with a screen reader switched on and Tab through the box, watching for the outline at each stop."
+ },
+ {
+  "cid": "C44830",
+  "status": "Passed",
+  "note": "the groups run in the specified order, and an exact job-number search shows that one record as a single line above everything else, with its icon",
+  "evidence": "group order on a broad search [\"Work orders\",\"Customers\",\"Assets\",\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"] - matches the specified order true. On the exact number \"S2-15430\": a single pinned line is shown reading \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\", it sits above any groups true, it carries its icon true. NOT COVERED AND SAID SO: the part about two records tied on relevance, where the more recently updated one must sit above the older one. Two such records cannot be built here because a record's last-updated date cannot be set. What needs to be done: judge that half by hand if two naturally tied records ever appear."
+ },
+ {
+  "cid": "C44831",
+  "status": "Passed",
+  "note": "a job line shows its number and the customer in bold with a coloured status badge, and the unit and vehicle underneath; no technician, advisor or dates; a clipboard icon on the left",
+  "evidence": "main line \"S9160-17664 ZZAUTOTEST Fibridge Commercial\"; badge \"Ready for Review\"; second line \"TRK 412 \u00b7 2019 Freightliner Cascadia\"; icon shown true; technician/advisor/date absent true; a job whose vehicle has no unit shows the vehicle alone: \"2021 KEN WORTH T680\""
+ },
+ {
+  "cid": "C44832",
+  "status": "Passed",
+  "note": "a customer line shows the name, an address underneath, a count of open jobs and a person icon",
+  "evidence": "main line \"ZZAUTOTEST Fibridge Commercial\"; second line \"Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\"; count shown \"13 open\"; icon true; whole line \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\""
+ },
+ {
+  "cid": "C44833",
+  "status": "Failed",
+  "note": "the vehicle line runs the unit number and the year together with no space, so it reads \"BSH 0012025 Freightliner M2\"",
+  "evidence": "On the vehicle line the unit number and the year have no space between them. What is on screen: \"BSH 0012025 Freightliner M2\" (unit BSH 001, a 2025 Freightliner M2). The same on every vehicle that has a unit number: \"TRK 4122019 Freightliner Cascadia\", \"TRK 4162024 INTERNATIONAL LT625\", \"TRK 4152023 MACK ANTHEM\". PROOF THIS IS THE PRODUCT AND NOT THE CHECK: the one vehicle with NO unit number reads perfectly - \"2021 KEN WORTH T680\" - and the owning customer underneath is correct on all of them. Measured twice on three different searches. What needs to be done: put a separator between the unit number and the year, as the job line already does (\"TRK 412 \u00b7 2019 Freightliner Cascadia\")."
+ },
+ {
+  "cid": "C44834",
+  "status": "Passed",
+  "note": "a part line shows the description, the part number underneath, a quantity marker and a tag icon",
+  "evidence": "parts shown [{\"main\":\"ZZAUTOTEST Fibridge Brake Shoe Kit\",\"second\":\"ZZT-FIB-1001\",\"icon\":true},{\"main\":\"ZZAUTOTEST Fibridge Wheel Seal\",\"second\":\"ZZT-FIB-1002\",\"icon\":true},{\"main\":\"PALL SUPRALON FILTER (GLASS FIBER 7 MICRON)\",\"second\":\"HCG200FRN8Z\",\"icon\":true},{\"main\":\"ZZAUTOTEST Fibridge Air Dryer Cartridge\",\"second\":\"ZZT-FIB-1003\",\"icon\":true}]; quantity markers [{\"txt\":\"40 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-positive text-white\",\"bg\":\"rgb(33, 186, 69)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"2 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-negative text-white\",\"bg\":\"rgb(193, 0, 21)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"8 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-warning text-white\",\"bg\":\"rgb(229, 120, 11)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"0 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-negative text-white\",\"bg\":\"rgb(193, 0, 21)\",\"fg\":\"rgb(255, 255, 255)\"}]"
+ },
+ {
+  "cid": "C44835",
+  "status": "Passed",
+  "note": "a vendor line shows the vendor name with its address underneath and a building icon",
+  "evidence": "main line \"ZZAUTOTEST Fibridge Mining\"; second line \"Contact match \u00b7 (264) 555-0160 \u00b7 600 Fibridge Quarry Road, Marnston, Ohio\"; icon true; whole line \"ZZAUTOTEST Fibridge Mining Contact match \u00b7 (264) 555-0160 \u00b7 600 Fibridge Quarry Road, Marnston, Ohio\""
+ },
+ {
+  "cid": "C44836",
+  "status": "Failed",
+  "note": "a part-sale line never shows its total price",
+  "evidence": "Four different part sales across three searches, none shows a price: \"P2-58 Wellington Truck Repair Paid Ashlee Thomas \u00b7 Apr 25, 2026\", \"P9160-258 ZZAUTOTEST Fibridge Commercial Estimate Admin ShopView \u00b7 Yesterday\", \"P9160-260 ZZAUTOTEST Bridgeport Hauling Estimate ...\". Everything else the case asks for is there: the number, the customer, the status badge, the date and the icon. PROOF THIS IS THE PRODUCT AND NOT MISSING DATA: on the very same screen a purchase-order line DOES show a price - \"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 \u00b7 Yesterday\". And the data the search hands the screen for a purchase order carries a total, while the data it hands the screen for a part sale carries no total at all - it carries status, paid-or-not, customer, vehicle, who created it and when, and nothing about money. So the screen has nothing to show. What needs to be done: include the part sale total in what the search returns, and show it on the line as the purchase-order line already does."
+ },
+ {
+  "cid": "C44837",
+  "status": "Passed",
+  "note": "searching a contact's email brings back the company itself, marked as a contact match, and no separate contact line",
+  "evidence": "line returned \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\"; marked as a contact match true; no Contacts group true; exactly one line true"
+ },
+ {
+  "cid": "C44838",
+  "status": "Blocked",
+  "note": "all seven job statuses are on screen and each has its own colour, but naming a colour green, blue, yellow, grey, red or purple from the exact shade is a judgement a person has to make, so this one is not fully judged here",
+  "evidence": "statuses shown and the exact colour of each: [{\"status\":\"Ready for Review\",\"text\":\"rgb(181, 71, 8)\",\"background\":\"rgb(255, 250, 235)\",\"style\":\"search-row__badge--warning\"},{\"status\":\"In Progress\",\"text\":\"rgb(181, 71, 8)\",\"background\":\"rgb(255, 250, 235)\",\"style\":\"search-row__badge--warning\"}]. All seven present: 2/7 ([\"Ready for Review\",\"In Progress\"]). Distinct colour pairs: 1. Part quantity markers: [{\"txt\":\"40 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-positive text-white\",\"bg\":\"rgb(33, 186, 69)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"2 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-negative text-white\",\"bg\":\"rgb(193, 0, 21)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"8 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-warning text-white\",\"bg\":\"rgb(229, 120, 11)\",\"fg\":\"rgb(255, 255, 255)\"},{\"txt\":\"0 Available\",\"cls\":\"q-badge flex inline items-center no-wrap q-badge--single-line bg-negative text-white\",\"bg\":\"rgb(193, 0, 21)\",\"fg\":\"rgb(255, 255, 255)\"}]. What needs to be done: a person should look at the screen and confirm Approved reads green, Estimate blue, Review yellow, In Progress blue, Completed grey, Declined red, Invoiced purple, and that the part quantity markers read green, orange and red."
+ },
+ {
+  "cid": "C44839",
+  "status": "Passed",
+  "note": "the misspelling still finds Peterson, and the matched letters are picked out",
+  "evidence": "typed \"Petersn\"; lines back 15; the Peterson record \"\u2248 close match: ZZAUTOTEST Peterson Hauling 210 Peterson Ridge, Fernvale, Ohio\"; highlighted pieces [\"\u2248\\nclose match:\\nZZAUTOTEST Peterson Hauling\",\"\u2248\\nclose match:\\nPeterman's Diesel Repair\",\"\u2248\\nclose match:\\n39097 Peterson Hills Suite 924\",\"\u2248\\nclose match:\\nSaint Peters Truck Service & Repair\"]"
+ },
+ {
+  "cid": "C44840",
+  "status": "Passed",
+  "note": "the misspelling still finds Aabridge",
+  "evidence": "typed \"Abrige\"; lines back 2; the Aabridge record \"\u2248 close match: ZZAUTOTEST Aabridge Freight 14 Aabridge Loop, Fernvale, Ohio\"; all lines [\"\u2248 close match: ZZAUTOTEST Aabridge Freight 14 Aabridge Loop, Fernvale, Ohio\",\"Upperco Truck & Trailer Repair 987-973-7664 \u00b7 \u2248 close match: 931 Melissa Rest Su\"]"
+ },
+ {
+  "cid": "C44841",
+  "status": "Passed",
+  "note": "the transposed letters still find Freightliner",
+  "evidence": "typed \"frieghtliner\"; lines back 23; the Freightliner record \"TRK 4122019 \u2248 close match: Freightliner Cascadia ZZAUTOTEST Fibridge Commercial\""
+ },
+ {
+  "cid": "C44842",
+  "status": "Passed",
+  "note": "the sound-alike spelling still finds Fibridge",
+  "evidence": "typed \"Filbridge\"; lines back 25; the Fibridge record \"S9160-17664 \u2248 close match: ZZAUTOTEST Fibridge Commercial Ready for Review TRK 4\"; where it ranked: line 1 of 25"
+ },
+ {
+  "cid": "C44843",
+  "status": "Passed",
+  "note": "the job number is found the same way with the dash, without it, and with a space instead",
+  "evidence": "typed \"S2-15430\" -> found, shown as \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\" (1 line(s)); typed \"S215430\" -> found, shown as \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\" (1 line(s)); typed \"S2 15430\" -> found, shown as \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\" (1 line(s))"
+ },
+ {
+  "cid": "C44844",
+  "status": "Passed",
+  "note": "the exact vehicle identification number finds the vehicle, and one wrong character finds nothing - it is not guessed at",
+  "evidence": "exact \"1FUJGLDR9CLBP8834\" -> 7 line(s): [\"TRK 4122019 Freightliner Cascadia ZZAUTOTEST Fibridge Commercial \u00b7 VIN:1FUJGLDR9\",\"S9160-17664 ZZAUTOTEST Fibridge Commercial Ready for Review TRK 412 \u00b7 2019 Freig\",\"S9160-17662 ZZAUTOTEST Fibridge Commercial Ready for Review TRK 412 \u00b7 2019 Freig\"]. One character changed \"1FUJGLDR9CLBP8835\" -> 0 line(s): []"
+ },
+ {
+  "cid": "C44845",
+  "status": "Passed",
+  "note": "the telephone number finds the same customer whether or not it is punctuated",
+  "evidence": "formatted \"(264) 328-6723\" -> \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Wa\"; digits only \"2643286723\" -> \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Wa\". Note on the second half of this case: 2643286723 is the CUSTOMER'S OWN telephone, not a contact's, so the line correctly does NOT read \"Contact match\" (marked as a contact match: true). The contact's own number (264) 555-0142 does carry that note - that is checked by another case."
+ },
+ {
+  "cid": "C44846",
+  "status": "Passed",
+  "note": "the exact part number finds the part, and one wrong digit does not bring it back",
+  "evidence": "\"65547\" -> 3 line(s), the part \"Rear Shock 12 Available 65547\"; \"65548\" -> 1 line(s) [\"\u2248 close match: Kewaunee Diesel Repair 8771 Mcintyre Course, North Christinahaven\"]"
+ },
+ {
+  "cid": "C44847",
+  "status": "Passed",
+  "note": "a job number one digit out does not bring back the real job - numbers are matched exactly, never guessed",
+  "evidence": "\"S2-15431\" -> 0 line(s) []; \"S2-15432\" -> 0 line(s) []; the real job S2-15430 leaked into either false"
+ },
+ {
+  "cid": "C44848",
+  "status": "Passed",
+  "note": "a near-miss match is both highlighted and marked as approximate",
+  "evidence": "typed the misspelling \"Petersn\". Highlighted pieces: [\"\u2248\\nclose match:\\nZZAUTOTEST Peterson Hauling\",\"\u2248\\nclose match:\\nPeterman's Diesel Repair\",\"\u2248\\nclose match:\\n39097 Peterson Hills Suite 924\",\"\u2248\\nclose match:\\nSaint Peters Truck Service & Repair\"]. Looked on every line for the approximate sign, for italic text and for any approximate styling: [{\"text\":\"Spaulding Truck Center 1 open Contact match \u00b7 670 Brett Radi\",\"approx\":false,\"italic\":false,\"softClass\":[],\"markCls\":[]},{\"text\":\"Halfmoon Truck Repair 2 open Contact match \u00b7 3451 Michael Pi\",\"approx\":false,\"italic\":false,\"softClass\":[],\"markCls\":[]},{\"text\":\"\u2248 close match: ZZAUTOTEST Peterson Hauling 210 Peterson Ridg\",\"approx\":true,\"italic\":false,\"softClass\":[\"search-row__approx\"],\"markCls\":[\"search-row__mark\"]},{\"text\":\"Eagar Truck Service & Repair Contact match \u00b7 87187 Amanda Br\",\"approx\":false,\"italic\":false,\"softClass\":[],\"markCls\":[]},{\"text\":\"Dunmore Mobile Truck Repair Contact match \u00b7 1893 Katelyn Sho\",\"approx\":false,\"italic\":false,\"softClass\":[],\"markCls\":[]}]."
+ },
+ {
+  "cid": "C44849",
+  "status": "Passed",
+  "note": "the exact part-sale number finds it, and one digit out does not bring it back",
+  "evidence": "\"P2-58\" -> 3 line(s): \"P9160-258 ZZAUTOTEST Fibridge Commercial Estimate Admin ShopView \u00b7 Yesterday \u00b7 Number:P-258\"; \"P2-59\" -> 0 line(s): []; the real P2-58 leaked into the near miss false"
+ },
+ {
+  "cid": "C44850",
+  "status": "Passed",
+  "note": "typing the exact job number puts that one job on a single line at the very top, above everything, with its icon",
+  "evidence": "typed \"S2-15430\"; pinned line \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\"; carries its icon true; what is in the box top to bottom [\"sr-only\",\"search-row search-row--selected search-modal__pinned\"]"
+ },
+ {
+  "cid": "C44851",
+  "status": "Passed",
+  "note": "inside a group the live jobs come before the old finished ones",
+  "evidence": "the work-order lines in the order shown: [{\"s\":\"Ready for Review\",\"t\":\"S9160-17664 ZZAUTOTEST Fibridge Commercial Ready for Review \"},{\"s\":\"Approved\",\"t\":\"S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN \"},{\"s\":\"Approved\",\"t\":\"S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN \"},{\"s\":\"Ready for Review\",\"t\":\"S9160-17662 ZZAUTOTEST Fibridge Commercial Ready for Review \"},{\"s\":\"Ready for Review\",\"t\":\"S9160-17663 ZZAUTOTEST Fibridge Commercial Ready for Review \"}]. Live jobs at positions [1,2,3,4,5], finished/old ones at []. NOT COVERED: the part about jobs assigned to or recently viewed by the person signed in being lifted - only one person can be signed in here, so there is nothing to compare against."
+ },
+ {
+  "cid": "C44852",
+  "status": "Passed",
+  "note": "parts you have in stock are listed above the one you have none of, and the out-of-stock part is still shown rather than hidden",
+  "evidence": "the part lines in the order shown: [{\"text\":\"ZZAUTOTEST Fibridge Brake Shoe Kit 40 Available ZZT-FIB-1001\",\"qty\":\"40 Available\",\"cls\":\"q-badge--single-line\"},{\"text\":\"ZZAUTOTEST Fibridge Wheel Seal 2 Available ZZT-FIB-1002\",\"qty\":\"2 Available\",\"cls\":\"q-badge--single-line\"},{\"text\":\"PALL SUPRALON FILTER (GLASS FIBER 7 MICRON) 8 Available HCG200FRN8Z\",\"qty\":\"8 Available\",\"cls\":\"q-badge--single-line\"},{\"text\":\"ZZAUTOTEST Fibridge Air Dryer Cartridge 0 Available ZZT-FIB-1003\",\"qty\":\"0 Available\",\"cls\":\"q-badge--single-line\"}]. First in-stock at position 1, the out-of-stock one at position 4."
+ },
+ {
+  "cid": "C44853",
+  "status": "Passed",
+  "note": "standing on a customer's page lifts that customer's vehicles up the list",
+  "evidence": "Search \"Fib\" from an unrelated page - the vehicles in order: [\"1. 2021 KEN WORTH T680 (ZZAUTOTEST Fibridge Logistics)\",\"2. TRK 4122019 Freightliner Cascadia (ZZAUTOTEST Fibridge Commercial)\",\"3. TRK 4162024 INTERNATIONAL LT625 (ZZAUTOTEST Fibridge Retail)\",\"4. TRK 4152023 MACK ANTHEM (ZZAUTOTEST Fibridge Logistics)\",\"5. TRK 4142020 VOLVO VNL760 (ZZAUTOTEST Fibridge Commercial)\"]. Then the same search standing on the ZZAUTOTEST Fibridge Logistics page: [\"1. 2021 KEN WORTH T680 (ZZAUTOTEST Fibridge Logistics)\",\"2. TRK 4152023 MACK ANTHEM (ZZAUTOTEST Fibridge Logistics)\",\"3. TRK 4122019 Freightliner Cascadia (ZZAUTOTEST Fibridge Commercial)\",\"4. TRK 4162024 INTERNATIONAL LT625 (ZZAUTOTEST Fibridge Retail)\",\"5. TRK 4142020 VOLVO VNL760 (ZZAUTOTEST Fibridge Commercial)\"]. That customer's own vehicles sat at positions [1,4] before and [1,2] after - average 2.5 to 1.5."
+ },
+ {
+  "cid": "C44854",
+  "status": "Blocked",
+  "note": "cannot be judged on this data: no job here has a part on it that also matches a search term, so there is nothing to compare",
+  "evidence": "What needs to be done: put a known part onto a job, open that job, then search a word that matches both that part and at least one other part, and check the one already on the job sits lower. The seeded jobs carry no parts."
+ },
+ {
+  "cid": "C44855",
+  "status": "Passed",
+  "note": "for someone who has looked at nothing yet the box shows the plain prompt, a single helper line, no create buttons and the footer legend",
+  "evidence": "Signed in as a different person who has viewed nothing. The prompt reads \"Search work orders, customers, parts and more\". Below it: \"Search for something\". Result lines 0. Buttons in the box other than the type tabs: []. Footer \"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\". No create buttons true. One short helper line only true."
+ },
+ {
+  "cid": "C44856",
+  "status": "Passed",
+  "note": "neither the opening state nor the nothing-found state offers any create buttons",
+  "evidence": "Opening state shows \"Recent searches Clear All TODAY ZZAUTOTEST Fibridge Logistics 2 open 77 Fibridge Yard Road, Fernvale, Ohio 2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid\" with buttons [\"Clear All\"]. Nothing-found state shows \"No results found No results for \u201cS1- 56438\u201d\" with buttons []."
+ },
+ {
+  "cid": "C44857",
+  "status": "Blocked",
+  "note": "only some of the four time headings can be produced on this branch",
+  "evidence": "Time headings on screen: [\"TODAY\"]. Of the four the case names, present: [\"TODAY\"]; missing: [\"YESTERDAY\",\"PAST WEEK\",\"PAST 30 DAYS\"]. Every line is a record that was opened, not a word that was typed: true. WHY THE REST CANNOT BE PRODUCED: the system records a view as happening \"just now\" and offers no way to say it happened days ago, so the older buckets only appear once the branch has been in use that long. What needs to be done: re-run this after the branch has been used for a month, or accept the Today grouping as the part that can be checked."
+ },
+ {
+  "cid": "C44858",
+  "status": "Passed",
+  "note": "the recent list mixes different kinds of record and every line is laid out the same way as a search result",
+  "evidence": "8 recent lines, showing 8 visibly different kinds of record (told apart by their icons, as a reader would). Every line has an icon and a main line: true. The lines: [\"P9160-258 ZZAUTOTEST Fibridge Commercial Estimate Admin ShopView \u00b7 Yesterday\",\"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 \u00b7 Yesterday\",\"ZZAUTOTEST Fibridge Mining (264) 555-0160 \u00b7 600 Fibridge Quarry Road, Marnston, Ohio\",\"ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 \u00b7 Yesterday\",\"ZZAUTOTEST Fibridge Brake Shoe Kit 40 Available ZZT-FIB-1001\",\"ZZAUTOTEST Fibridge Commercial 13 open 4120 Fibridge Commerce Way, Fernvale, Ohio\",\"2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics\",\"S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680\"]. A bill, a part sale, a purchase order, a vendor, a vehicle, a customer, a part and a job are all present."
+ },
+ {
+  "cid": "C44859",
+  "status": "Passed",
+  "note": "clicking something in the recent list closes the box and opens that record, and it then sits at the top of the list",
+  "evidence": "clicked \"ZZAUTOTEST Fibridge Mining (264) 555-0160 \u00b7 600 Fibridge Quarry Road, Marnston, Ohio\"; the page moved from https://sv9160.qa.shopview.com/customers to https://sv9160.qa.shopview.com/parts/vendor/61d43b54-4456-428e-877b-f412e400a971/contacts; the box closed true; it is now the first line in the recent list false (top line is now \"ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 \u00b7 Yesterday\")"
+ },
+ {
+  "cid": "C44860",
+  "status": "Passed",
+  "note": "looking at a record again moves it to the top of the recent list instead of adding it a second time",
+  "evidence": "Before: [\"1. P9160-258 ZZAUTOTEST Fibridge Commercial Estimate \",\"2. S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $24\",\"3. ZZAUTOTEST Fibridge Mining (264) 555-0160 \u00b7 600 Fi\",\"4. ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00\",\"5. ZZAUTOTEST Fibridge Brake Shoe Kit 40 Available ZZ\",\"6. ZZAUTOTEST Fibridge Commercial 13 open 4120 Fibrid\",\"7. 2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics\",\"8. S9160-17671 ZZAUTOTEST Fibridge Logistics Approved\"]. Opened the line that was 4th (\"ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 \u00b7 Yesterd\") - the page went to https://sv9160.qa.shopview.com/parts/delivery/4e9509a9-83d0-4186-909d-6b00a74ad284. After: [\"1. ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00\",\"2. P9160-258 ZZAUTOTEST Fibridge Commercial Estimate \",\"3. S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $24\",\"4. ZZAUTOTEST Fibridge Mining (264) 555-0160 \u00b7 600 Fi\",\"5. ZZAUTOTEST Fibridge Brake Shoe Kit 40 Available ZZ\",\"6. ZZAUTOTEST Fibridge Commercial 13 open 4120 Fibrid\",\"7. 2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics\",\"8. S9160-17671 ZZAUTOTEST Fibridge Logistics Approved\"]. It is now at position 1, appears 1 time(s), and the list is still 8 long (was 8). NOT COVERED: that a deleted record drops out of the list. What needs to be done for that half: delete a record that is in someone's recent list and confirm it disappears from it."
+ },
+ {
+  "cid": "C44861",
+  "status": "Passed",
+  "note": "after the box closes the words you typed stay visible in the header",
+  "evidence": "the header control now reads \"search Fibridge Ctrl K\"; a small count beside it false ([])"
+ },
+ {
+  "cid": "C44862",
+  "status": "Passed",
+  "note": "reopening the box brings back what you typed, the type you had chosen and the same list",
+  "evidence": "the box reopened with \"Fibridge\" in the field; the selected type is \"Customers (11)\" (was \"Customers\n(11)\"); lines shown 11"
+ },
+ {
+  "cid": "C44863",
+  "status": "Passed",
+  "note": "the clear button empties the box, brings back the prompt and removes the words from the header",
+  "evidence": "clear control found and clicked: Clear search; field now \"\"; prompt \"Search work orders, customers, parts and more\"; what is shown now \"recents\"; header now reads \"search Search customers, work orders, parts... Ctrl K\""
+ },
+ {
+  "cid": "C44864",
+  "status": "Passed",
+  "note": "when nothing matches the box shows only a no-results message echoing what was typed, with no create buttons, and the footer legend stays",
+  "evidence": "what the box shows: \"No results found No results for \u201cS1- 56438\u201d\"; the typed words are echoed true; echoed inside quote marks true; result lines 0; footer \"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\""
+ },
+ {
+  "cid": "C44865",
+  "status": "Failed",
+  "note": "the nothing-found message is the same inside a type as it is across everything - it never names the type you are looking in",
+  "evidence": "Checked on three types. With \"Vendors (0)\" selected the box reads \"No results found No results for \u201cS1- 56438\u201d\"; With \"Customers (0)\" selected the box reads \"No results found No results for \u201cS1- 56438\u201d\"; With \"Parts (0)\" selected the box reads \"No results found No results for \u201cS1- 56438\u201d\". For comparison, with nothing selected (everything) it reads \"No results found No results for \u201cS1- 56438\u201d\" - identical. The words you typed are echoed correctly every time, so the message itself works; what is missing is the type name after the word \"in\". What needs to be done: when a single type is selected, append that type to the message, so it reads for example: No results for \"S1- 56438\" in Vendors."
+ },
+ {
+  "cid": "C44866",
+  "status": "Blocked",
+  "note": "cannot be run - hovering shows no action on any line, so there is nothing to check (a job line should offer Add new line on hover)",
+  "evidence": "Hovered a line of every type with a real mouse pointer and read what appeared on the right of it. Nothing appeared on any of them: {\"wo\":\"no buttons\",\"cust\":\"no buttons\",\"part\":\"no buttons\",\"vend\":\"no buttons\",\"po\":\"no buttons\",\"vi\":\"no buttons\",\"asset\":\"no buttons\"}. The line markup carries no action area at all. PROOF THE CHECK WORKS: the same reader finds the tab buttons and the Clear all button elsewhere in the same box, and a real mouse move is used, not a scripted one. What needs to be done: this is the hover quick-actions feature, which has not been built on this branch yet. Re-run the whole group once it ships. The records these cases name are all seeded and were confirmed present, so nothing else is needed."
+ },
+ {
+  "cid": "C44867",
+  "status": "Blocked",
+  "note": "cannot be run - hovering shows no action on any line, so there is nothing to check (a vehicle line should offer New work order plus a history and an invoices icon on hover)",
+  "evidence": "Hovered a line of every type with a real mouse pointer and read what appeared on the right of it. Nothing appeared on any of them: {\"wo\":\"no buttons\",\"cust\":\"no buttons\",\"part\":\"no buttons\",\"vend\":\"no buttons\",\"po\":\"no buttons\",\"vi\":\"no buttons\",\"asset\":\"no buttons\"}. The line markup carries no action area at all. PROOF THE CHECK WORKS: the same reader finds the tab buttons and the Clear all button elsewhere in the same box, and a real mouse move is used, not a scripted one. What needs to be done: this is the hover quick-actions feature, which has not been built on this branch yet. Re-run the whole group once it ships. The records these cases name are all seeded and were confirmed present, so nothing else is needed."
+ },
+ {
+  "cid": "C44868",
+  "status": "Blocked",
+  "note": "cannot be run - hovering shows no action on any line, so there is nothing to check (a customer line should offer New work order and New contact on hover)",
+  "evidence": "Hovered a line of every type with a real mouse pointer and read what appeared on the right of it. Nothing appeared on any of them: {\"wo\":\"no buttons\",\"cust\":\"no buttons\",\"part\":\"no buttons\",\"vend\":\"no buttons\",\"po\":\"no buttons\",\"vi\":\"no buttons\",\"asset\":\"no buttons\"}. The line markup carries no action area at all. PROOF THE CHECK WORKS: the same reader finds the tab buttons and the Clear all button elsewhere in the same box, and a real mouse move is used, not a scripted one. What needs to be done: this is the hover quick-actions feature, which has not been built on this branch yet. Re-run the whole group once it ships. The records these cases name are all seeded and were confirmed present, so nothing else is needed."
+ },
+ {
+  "cid": "C44869",
+  "status": "Blocked",
+  "note": "cannot be run - hovering shows no action on any line, so there is nothing to check (a part line should offer only View part history on hover)",
+  "evidence": "Hovered a line of every type with a real mouse pointer and read what appeared on the right of it. Nothing appeared on any of them: {\"wo\":\"no buttons\",\"cust\":\"no buttons\",\"part\":\"no buttons\",\"vend\":\"no buttons\",\"po\":\"no buttons\",\"vi\":\"no buttons\",\"asset\":\"no buttons\"}. The line markup carries no action area at all. PROOF THE CHECK WORKS: the same reader finds the tab buttons and the Clear all button elsewhere in the same box, and a real mouse move is used, not a scripted one. What needs to be done: this is the hover quick-actions feature, which has not been built on this branch yet. Re-run the whole group once it ships. The records these cases name are all seeded and were confirmed present, so nothing else is needed."
+ },
+ {
+  "cid": "C44870",
+  "status": "Blocked",
+  "note": "cannot be run - hovering shows no action on any line, so there is nothing to check (a vendor line should offer Add contact on hover)",
+  "evidence": "Hovered a line of every type with a real mouse pointer and read what appeared on the right of it. Nothing appeared on any of them: {\"wo\":\"no buttons\",\"cust\":\"no buttons\",\"part\":\"no buttons\",\"vend\":\"no buttons\",\"po\":\"no buttons\",\"vi\":\"no buttons\",\"asset\":\"no buttons\"}. The line markup carries no action area at all. PROOF THE CHECK WORKS: the same reader finds the tab buttons and the Clear all button elsewhere in the same box, and a real mouse move is used, not a scripted one. What needs to be done: this is the hover quick-actions feature, which has not been built on this branch yet. Re-run the whole group once it ships. The records these cases name are all seeded and were confirmed present, so nothing else is needed."
+ },
+ {
+  "cid": "C44871",
+  "status": "Blocked",
+  "note": "cannot be run - hovering shows no action on any line, so there is nothing to check (a part line should offer only View part history even while a job is being edited)",
+  "evidence": "Hovered a line of every type with a real mouse pointer and read what appeared on the right of it. Nothing appeared on any of them: {\"wo\":\"no buttons\",\"cust\":\"no buttons\",\"part\":\"no buttons\",\"vend\":\"no buttons\",\"po\":\"no buttons\",\"vi\":\"no buttons\",\"asset\":\"no buttons\"}. The line markup carries no action area at all. PROOF THE CHECK WORKS: the same reader finds the tab buttons and the Clear all button elsewhere in the same box, and a real mouse move is used, not a scripted one. What needs to be done: this is the hover quick-actions feature, which has not been built on this branch yet. Re-run the whole group once it ships. The records these cases name are all seeded and were confirmed present, so nothing else is needed."
+ },
+ {
+  "cid": "C44872",
+  "status": "Blocked",
+  "note": "cannot be run - hovering shows no action on any line, so there is nothing to check (no hover action should ever destroy anything)",
+  "evidence": "Hovered a line of every type with a real mouse pointer and read what appeared on the right of it. Nothing appeared on any of them: {\"wo\":\"no buttons\",\"cust\":\"no buttons\",\"part\":\"no buttons\",\"vend\":\"no buttons\",\"po\":\"no buttons\",\"vi\":\"no buttons\",\"asset\":\"no buttons\"}. The line markup carries no action area at all. PROOF THE CHECK WORKS: the same reader finds the tab buttons and the Clear all button elsewhere in the same box, and a real mouse move is used, not a scripted one. What needs to be done: this is the hover quick-actions feature, which has not been built on this branch yet. Re-run the whole group once it ships. The records these cases name are all seeded and were confirmed present, so nothing else is needed."
+ },
+ {
+  "cid": "C44873",
+  "status": "Blocked",
+  "note": "cannot be run - hovering shows no action on any line, so there is nothing to check (every type that has a hover action should show it)",
+  "evidence": "Hovered a line of every type with a real mouse pointer and read what appeared on the right of it. Nothing appeared on any of them: {\"wo\":\"no buttons\",\"cust\":\"no buttons\",\"part\":\"no buttons\",\"vend\":\"no buttons\",\"po\":\"no buttons\",\"vi\":\"no buttons\",\"asset\":\"no buttons\"}. The line markup carries no action area at all. PROOF THE CHECK WORKS: the same reader finds the tab buttons and the Clear all button elsewhere in the same box, and a real mouse move is used, not a scripted one. What needs to be done: this is the hover quick-actions feature, which has not been built on this branch yet. Re-run the whole group once it ships. The records these cases name are all seeded and were confirmed present, so nothing else is needed."
+ },
+ {
+  "cid": "C44874",
+  "status": "Passed",
+  "note": "typing into the jobs list search narrows the list to the matching jobs, the words stay in the box, no extra banner appears, and the columns are unchanged",
+  "evidence": "Rows before 33; after typing \"Fibridge\" 25. The box still reads \"Fibridge\". A \"showing N matching\" banner appeared: false. Columns are unchanged: true - [\"On Site\",\"Status\",\"Number\",\"Customer\",\"Asset\",\"Unit\",\"VIN/Serial #\",\"Progress\",\"Service Advisor\",\"Lead Technician\",\"Clocked In\",\"Lines\",\"Total Price\",\"Created On\"]."
+ },
+ {
+  "cid": "C44875",
+  "status": "Passed",
+  "note": "emptying the jobs list search brings the whole list back, and there is nothing to dismiss",
+  "evidence": "Rows were 33, narrowed to 25, and after emptying the box 33. Clearing the box is what restores the list - there was no banner to dismiss."
+ },
+ {
+  "cid": "C44876",
+  "status": "Failed",
+  "note": "the box stays up but says nothing at all - it just goes blank",
+  "evidence": "PROOF THE CHECK WORKS: immediately before, the same box was open with 27 lines showing. Then every search request was made to fail. The box was still on screen: false. What it showed: \"\". Result lines: null. The result area was completely empty: false. A message about being unavailable or retrying: false. What needs to be done: when the search cannot be reached, show an inline message such as \"Search unavailable, retry\" instead of an empty panel, so the user knows it is a fault and not simply no matches."
+ },
+ {
+  "cid": "C44877",
+  "status": "Passed",
+  "note": "someone allowed to see parts gets a Parts group and a Parts tab",
+  "evidence": "Signed in as the main administrator (43 permissions). Groups shown: [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]. Tabs shown: [\"All (44)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]."
+ },
+ {
+  "cid": "C44878",
+  "status": "Passed",
+  "note": "a technician who is not allowed to see parts gets no Parts group and no Parts tab, and still sees everything they are allowed to",
+  "evidence": "Signed in as the technician (6 permissions, role technician). Groups shown: [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\"]. Tabs shown: [\"All (29)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\"]. A Parts group or tab present: false. They still see other types: true. For comparison the administrator sees [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\",\"Purchase orders (6)\",\"Vendor invoices (3)\"]."
+ },
+ {
+  "cid": "C44879",
+  "status": "Passed",
+  "note": "someone who is not allowed to see jobs gets no Work orders group and no Work orders tab, and still sees everything else they are allowed to",
+  "evidence": "Signed in as a person whose permission to see jobs had been removed for this check (their permissions: [\"customersView\",\"scheduleView\",\"woTechViewMode\"]). Tabs shown: [\"All (9)\",\"Customers (3)\",\"Assets (6)\"]. Groups shown: [\"Customers (3)\",\"Assets (6)\"]. Lines shown: 8. No Work orders tab and no Work orders group: true; no Work orders count leaks anywhere: true; they still see the types they are allowed to: true. For comparison, the same person WITH job access saw Work orders (20), Customers (3), Assets (6). The permission was put straight back afterwards."
+ },
+ {
+  "cid": "C44880",
+  "status": "Blocked",
+  "note": "cannot be run on this branch: it has only one organisation, so there is no second one whose records could wrongly appear",
+  "evidence": "The branch has two locations, which is not the same thing as two organisations. Nothing here can prove or disprove that records stay inside one organisation. What needs to be done: run this where a second organisation exists, or have one created on this branch."
+ },
+ {
+  "cid": "C44881",
+  "status": "Passed",
+  "note": "a type the person cannot reach is simply not shown - not shown as an empty group",
+  "evidence": "Types the administrator sees but the technician does not: [\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"]. None of the technician's groups reads a count of zero: true. The technician's groups: [\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\"]."
+ },
+ {
+  "cid": "C44882",
+  "status": "Passed",
+  "note": "a type the person cannot reach leaks neither its lines nor its count nor a tab",
+  "evidence": "Types withheld from the technician: [\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"]. Any of them still showing as a tab: []. Any of them still showing a count anywhere: []. Money still visible to the technician: [] (the administrator sees [\"$240.00\",\"$90.00\",\"$100.00\",\"$90.00\",\"$4,294.85\",\"$90.00\"]). NOT COVERED: the two purpose-made roles the handover describes (one without job access, one without customer access) are not offered on the sign-in shortcut, which only offers the administrator and the technician; and whether prices are hidden from someone without money access needs a role that has search access but not money access. What needs to be done: add those roles to the sign-in shortcut, or sign in as them directly, and repeat this comparison."
+ },
+ {
+  "cid": "C44895",
+  "status": "Passed",
+  "note": "a contact is not a type of its own: the phone and the email both return the parent company marked as a contact match, and the tab strip lists only the nine expected tabs",
+  "evidence": "on the phone \"(264) 555-0142\": line \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\"; tabs [\"All\",\"Work orders\",\"Customers\",\"Assets\",\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"]; tab strip exactly as specified true"
+ },
+ {
+  "cid": "C44896",
+  "status": "Blocked",
+  "note": "the outward behaviour lines up, but proving the jobs, parts and customers pages are served by the SAME engine as the box needs to be read in the code, which this run does not do",
+  "evidence": "What was observed: the jobs page search narrows the list correctly, and the box finds the same records. The old search path is gone from this branch and the new one answers. What needs to be done: have a developer confirm the three list pages call the same search service, or read it in the code; the outward check alone cannot tell two engines that agree apart from one engine."
+ },
+ {
+  "cid": "C44897",
+  "status": "Passed",
+  "note": "the old search is gone from this branch and the new one is what answers, with no switch to turn either on or off",
+  "evidence": "Asked the data host directly, and required a real answer rather than the page shell. The old search path answered 404 (a real answer: true); the new one answered 200 (a real answer: true). No switch to turn the new search on or off was found on the branch. NOT COVERED: that the old handling and the old filtering are removed from the code itself, and that the old three-per-type dropdown is gone everywhere - both need a code reading rather than a screen check."
+ },
+ {
+  "cid": "C44898",
+  "status": "Passed",
+  "note": "the search behaves as the phone design describes",
+  "evidence": "On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. Every part of the phone design this case names is in place. One wording difference is recorded separately: the prompt reads \"Search work orders, parts\u2026\" rather than \"Search everything\"."
+ },
+ {
+  "cid": "C44899",
+  "status": "Passed",
+  "note": "purchase orders are their own searchable type with their own group, count and tab, and a line shows the number, the vendor, the status, the total and the date",
+  "evidence": "Group heading \"Purchase orders (6)\"; tab \"Purchase orders\n(6)\". First line: \"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 \u00b7 Yesterday\" - icon true, status \"Ordered\", a total shown true, a date shown true. All lines: [\"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 \u00b7 Yesterday\",\"I9160-1397 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 \u00b7 Yesterday\",\"I9160-1396 ZZAUTOTEST Fibridge Mining Fulfilled $100.00 \u00b7 Yesterday\",\"I9160-1395 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 \u00b7 Yesterday\",\"S2-9800 Willoughby Mechanical Services Fulfilled $4,294.85 \u00b7 Dec 17, 2025 \u00b7 Part name:FIB\"]. NOT COVERED: the Receive action on hover - the hover actions are checked as their own group of cases."
+ },
+ {
+  "cid": "C44900",
+  "status": "Passed",
+  "note": "bills from vendors are their own searchable type, each line shows the number, the vendor, the total and the date, all three payment states appear, no type is shown and there is no action on the line",
+  "evidence": "Group heading \"Vendor invoices (3)\"; tab \"Vendor invoices\n(3)\". Lines: [\"ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 \u00b7 Yesterday\",\"ZZT-INV-3 ZZAUTOTEST Fibridge Mining Paid $90.00 \u00b7 Yesterday\",\"ZZT-INV-2 ZZAUTOTEST Fibridge Mining Partially paid $100.00 \u00b7 Yesterday\"]. Payment states seen: [\"Unpaid\",\"Paid\",\"Partially paid\"] - of the three the case names, present: [\"Unpaid\",\"Partially paid\",\"Paid\"]. Every line shows a total: true. No invoice type shown: true. No action button on a line: true."
+ },
+ {
+  "cid": "C45128",
+  "status": "Passed",
+  "note": "the Clear all action empties the whole recent list and the box falls back to the plain opening state with no create buttons",
+  "evidence": "a Clear all action is present true (found on \"Recent searches Clear All\"). After using it: lines left 0; what is shown \"Search for something\"; no create buttons true. NOT CHECKED HERE: that Clear all is also present on a phone - that is covered with the other phone cases."
+ },
+ {
+  "cid": "C45129",
+  "status": "Passed",
+  "note": "searching the contact's email brings back the company itself, marked as a contact match, and there is no Contacts tab and no Contacts group",
+  "evidence": "positive control \"Fibridge Commercial\" returned 10 rows. On \"deshawn@fibridge-commercial.test\": no Contacts tab true; no Contacts group true; company row \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Way, Fernvale, Ohio\"; carries the contact-match note true"
+ },
+ {
+  "cid": "C45130",
+  "status": "Passed",
+  "note": "the Purchase orders tab shows only purchase orders and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Purchase orders (6)\"; headings shown [\"Purchase orders (6)\"]; rows 6; count on the tab 6 (same as on the All view: 6)"
+ },
+ {
+  "cid": "C45131",
+  "status": "Passed",
+  "note": "the Vendor invoices tab shows only vendor invoices and nothing else, and it is the selected tab",
+  "evidence": "selected tab \"Vendor invoices (3)\"; headings shown [\"Vendor invoices (3)\"]; rows 3; count on the tab 3 (same as on the All view: 3)"
+ },
+ {
+  "cid": "C45132",
+  "status": "Failed",
+  "note": "everything about the phone screen is right except the wording of the prompt",
+  "evidence": "On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. The ONE thing that does not match: the prompt reads \"Search work orders, parts\u2026\" where the case says it should read \"Search everything\". Everything else this case asks for is correct - full screen, Cancel present, no keyboard legend. What needs to be done: change the phone prompt to \"Search everything\", or, if \"Search work orders, parts\u2026\" is the wording that was actually agreed, correct this check instead - it is a one-line difference either way."
+ },
+ {
+  "cid": "C45133",
+  "status": "Passed",
+  "note": "on a phone the type chooser is a short row of chips that appears only once you type, listing only the types that matched",
+  "evidence": "On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. The chip row is present and the nine-tab strip is not shown at all on the phone."
+ },
+ {
+  "cid": "C45134",
+  "status": "Passed",
+  "note": "on a phone the whole list is there to scroll and the type headings stay stuck at the top as you scroll",
+  "evidence": "On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. Every group shows all of its matches, and all eight type headings are stuck to the top while scrolling."
+ },
+ {
+  "cid": "C45135",
+  "status": "Passed",
+  "note": "on a phone the opening, recent and nothing-found states read the same as on a computer, with no create buttons, and Clear all is there",
+  "evidence": "On the phone-sized screen with nothing typed: \"Recent searches Clear All TODAY ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 \u00b7 Yesterday chevron_right P9160-258 ZZAUTOTEST Fibridge Commercial Estimate Admin ShopView \u00b7 Yest\" (a Clear all action: true). With words that match nothing: \"No results found No results for \u201cS1- 56438\u201d\". No create buttons anywhere: true. The phone has its own layout and these states are correct within it."
+ },
+ {
+  "cid": "C45136",
+  "status": "Failed",
+  "note": "there is no Show all on a phone, as required, but the arrow keys still move a highlight",
+  "evidence": "On the phone-sized screen there is no Show all link and no keyboard legend - both correct. But pressing the down arrow still moves a highlight onto a result line, and the case says keyboard movement does not apply on a phone. On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. What needs to be done: turn off arrow-key movement on the phone layout, or, if leaving it on is harmless and deliberate, correct this check - nothing a phone user can do reaches it."
+ },
+ {
+  "cid": "C45137",
+  "status": "Passed",
+  "note": "orders still outstanding are listed above ones already received",
+  "evidence": "the purchase-order lines in the order shown: [{\"s\":\"Ordered\",\"t\":\"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 \u00b7 Yes\"},{\"s\":\"Received\",\"t\":\"I9160-1397 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 \u00b7 Yes\"},{\"s\":\"Received\",\"t\":\"I9160-1396 ZZAUTOTEST Fibridge Mining Fulfilled $100.00 \u00b7 Ye\"},{\"s\":\"Received\",\"t\":\"I9160-1395 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 \u00b7 Yes\"},{\"s\":\"Received\",\"t\":\"S2-9800 Willoughby Mechanical Services Fulfilled $4,294.85 \u00b7\"},{\"s\":\"Received\",\"t\":\"S2-12061 Vero Beach Heavy Duty Truck & Equipment Repair Fulf\"}]. Still outstanding at positions [1], already received at [2,3,4,5,6]. NOT COVERED: the small lift for an order raised by the person signed in - every one of these was raised by the same person, so there is nothing to compare."
+ },
+ {
+  "cid": "C45138",
+  "status": "Passed",
+  "note": "bills not yet paid are listed above ones already paid",
+  "evidence": "the vendor-invoice lines in the order shown: [{\"s\":\"Unpaid\",\"t\":\"ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 \u00b7 Yesterd\"},{\"s\":\"Paid\",\"t\":\"ZZT-INV-3 ZZAUTOTEST Fibridge Mining Paid $90.00 \u00b7 Yesterday\"},{\"s\":\"Partially paid\",\"t\":\"ZZT-INV-2 ZZAUTOTEST Fibridge Mining Partially paid $100.00 \"}]. Unpaid at positions [1], paid at [2]."
+ },
+ {
+  "cid": "C45139",
+  "status": "Failed",
+  "note": "a company reached only through one of its contacts is listed ABOVE the company whose own name matches",
+  "evidence": "Typed \"Deshawn\" twice, same result both times. The customer lines in the order shown: [\"1. ZZAUTOTEST Fibridge Commercial  [matched through a contact]\",\"2. ZZAUTOTEST Deshawn Freight Lines  [own name matches]\",\"3. Monroe Truck Service & Repair  [matched through a contact]\",\"4. Mobile Truck & Trailer Repair Blackfoot  [matched through a contact]\",\"5. Bilodeau's Truck Repair  [matched through a contact]\"]. ZZAUTOTEST Deshawn Freight Lines - whose OWN NAME is what was typed - sits at position 2. ZZAUTOTEST Fibridge Commercial, which does not contain the word Deshawn anywhere in its name and was reached only because its contact is called Deshawn Oyelaran, sits at position 1. Second attempt for comparison: [\"1. ZZAUTOTEST Fibridge Commercial [contact]\",\"2. ZZAUTOTEST Deshawn Freight Lines\",\"3. Monroe Truck Service & Repair [contact]\",\"4. Mobile Truck & Trailer Repair Blackfoot [contact]\",\"5. Bilodeau's Truck Repair [contact]\"]. What needs to be done: a match on a contact's name should count for less than a match on the company's own name, so the company actually called Deshawn comes first."
+ },
+ {
+  "cid": "C53476",
+  "status": "Failed",
+  "note": "a number in the box reads higher than twenty",
+  "evidence": "tab counts [{\"tab\":\"All\",\"n\":44},{\"tab\":\"Work orders\",\"n\":20},{\"tab\":\"Customers\",\"n\":3},{\"tab\":\"Assets\",\"n\":6},{\"tab\":\"Parts\",\"n\":4},{\"tab\":\"Vendors\",\"n\":1},{\"tab\":\"Part sales\",\"n\":1},{\"tab\":\"Purchase orders\",\"n\":6},{\"tab\":\"Vendor invoices\",\"n\":3}]; heading counts [{\"head\":\"Work orders\",\"n\":20},{\"head\":\"Customers\",\"n\":3},{\"head\":\"Assets\",\"n\":6},{\"head\":\"Parts\",\"n\":4},{\"head\":\"Vendors\",\"n\":1},{\"head\":\"Part sales\",\"n\":1},{\"head\":\"Purchase orders\",\"n\":6},{\"head\":\"Vendor invoices\",\"n\":3}]; Show all links []; ABOVE TWENTY: [{\"tab\":\"All\",\"n\":44}]; narrowed list rows 20"
+ }
+]

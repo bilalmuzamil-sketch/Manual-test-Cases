@@ -1,0 +1,38 @@
+[
+ {
+  "cid": "C45132",
+  "status": "Failed",
+  "note": "everything about the phone screen is right except the wording of the prompt",
+  "evidence": "On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. The ONE thing that does not match: the prompt reads \"Search work orders, parts\u2026\" where the case says it should read \"Search everything\". Everything else this case asks for is correct - full screen, Cancel present, no keyboard legend. What needs to be done: change the phone prompt to \"Search everything\", or, if \"Search work orders, parts\u2026\" is the wording that was actually agreed, correct this check instead - it is a one-line difference either way."
+ },
+ {
+  "cid": "C45133",
+  "status": "Passed",
+  "note": "on a phone the type chooser is a short row of chips that appears only once you type, listing only the types that matched",
+  "evidence": "On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. The chip row is present and the nine-tab strip is not shown at all on the phone."
+ },
+ {
+  "cid": "C45134",
+  "status": "Passed",
+  "note": "on a phone the whole list is there to scroll and the type headings stay stuck at the top as you scroll",
+  "evidence": "On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. Every group shows all of its matches, and all eight type headings are stuck to the top while scrolling."
+ },
+ {
+  "cid": "C45135",
+  "status": "Passed",
+  "note": "on a phone the opening, recent and nothing-found states read the same as on a computer, with no create buttons, and Clear all is there",
+  "evidence": "On the phone-sized screen with nothing typed: \"Recent searches Clear All TODAY ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 \u00b7 Yesterday chevron_right P9160-258 ZZAUTOTEST Fibridge Commercial Estimate Admin ShopView \u00b7 Yest\" (a Clear all action: true). With words that match nothing: \"No results found No results for \u201cS1- 56438\u201d\". No create buttons anywhere: true. The phone has its own layout and these states are correct within it."
+ },
+ {
+  "cid": "C45136",
+  "status": "Failed",
+  "note": "there is no Show all on a phone, as required, but the arrow keys still move a highlight",
+  "evidence": "On the phone-sized screen there is no Show all link and no keyboard legend - both correct. But pressing the down arrow still moves a highlight onto a result line, and the case says keyboard movement does not apply on a phone. On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. What needs to be done: turn off arrow-key movement on the phone layout, or, if leaving it on is harmless and deliberate, correct this check - nothing a phone user can do reaches it."
+ },
+ {
+  "cid": "C44898",
+  "status": "Passed",
+  "note": "the search behaves as the phone design describes",
+  "evidence": "On a phone-sized screen (390 by 844) the search fills the whole screen (measured 390 by 844 at 0,0), shows a Cancel action, shows no keyboard legend, replaces the nine-tab strip with a row of chips that appears only once words are typed, shows every matching line rather than the first five (20 jobs, 3 customers, 6 vehicles, 4 parts, 1 vendor, 1 part sale, 6 purchase orders, 3 bills), keeps the type headings stuck to the top while scrolling, offers no Show all link, and does not scroll sideways. Every part of the phone design this case names is in place. One wording difference is recorded separately: the prompt reads \"Search work orders, parts\u2026\" rather than \"Search everything\"."
+ }
+]

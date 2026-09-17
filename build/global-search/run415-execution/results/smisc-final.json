@@ -1,0 +1,44 @@
+[
+ {
+  "cid": "C44874",
+  "status": "Passed",
+  "note": "typing into the jobs list search narrows the list to the matching jobs, the words stay in the box, no extra banner appears, and the columns are unchanged",
+  "evidence": "Rows before 33; after typing \"Fibridge\" 25. The box still reads \"Fibridge\". A \"showing N matching\" banner appeared: false. Columns are unchanged: true - [\"On Site\",\"Status\",\"Number\",\"Customer\",\"Asset\",\"Unit\",\"VIN/Serial #\",\"Progress\",\"Service Advisor\",\"Lead Technician\",\"Clocked In\",\"Lines\",\"Total Price\",\"Created On\"]."
+ },
+ {
+  "cid": "C44875",
+  "status": "Passed",
+  "note": "emptying the jobs list search brings the whole list back, and there is nothing to dismiss",
+  "evidence": "Rows were 33, narrowed to 25, and after emptying the box 33. Clearing the box is what restores the list - there was no banner to dismiss."
+ },
+ {
+  "cid": "C44876",
+  "status": "Failed",
+  "note": "the box stays up but says nothing at all - it just goes blank",
+  "evidence": "PROOF THE CHECK WORKS: immediately before, the same box was open with 27 lines showing. Then every search request was made to fail. The box was still on screen: false. What it showed: \"\". Result lines: null. The result area was completely empty: false. A message about being unavailable or retrying: false. What needs to be done: when the search cannot be reached, show an inline message such as \"Search unavailable, retry\" instead of an empty panel, so the user knows it is a fault and not simply no matches."
+ },
+ {
+  "cid": "C44899",
+  "status": "Passed",
+  "note": "purchase orders are their own searchable type with their own group, count and tab, and a line shows the number, the vendor, the status, the total and the date",
+  "evidence": "Group heading \"Purchase orders (6)\"; tab \"Purchase orders\n(6)\". First line: \"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 \u00b7 Yesterday\" - icon true, status \"Ordered\", a total shown true, a date shown true. All lines: [\"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 \u00b7 Yesterday\",\"I9160-1397 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 \u00b7 Yesterday\",\"I9160-1396 ZZAUTOTEST Fibridge Mining Fulfilled $100.00 \u00b7 Yesterday\",\"I9160-1395 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 \u00b7 Yesterday\",\"S2-9800 Willoughby Mechanical Services Fulfilled $4,294.85 \u00b7 Dec 17, 2025 \u00b7 Part name:FIB\"]. NOT COVERED: the Receive action on hover - the hover actions are checked as their own group of cases."
+ },
+ {
+  "cid": "C44900",
+  "status": "Passed",
+  "note": "bills from vendors are their own searchable type, each line shows the number, the vendor, the total and the date, all three payment states appear, no type is shown and there is no action on the line",
+  "evidence": "Group heading \"Vendor invoices (3)\"; tab \"Vendor invoices\n(3)\". Lines: [\"ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 \u00b7 Yesterday\",\"ZZT-INV-3 ZZAUTOTEST Fibridge Mining Paid $90.00 \u00b7 Yesterday\",\"ZZT-INV-2 ZZAUTOTEST Fibridge Mining Partially paid $100.00 \u00b7 Yesterday\"]. Payment states seen: [\"Unpaid\",\"Paid\",\"Partially paid\"] - of the three the case names, present: [\"Unpaid\",\"Partially paid\",\"Paid\"]. Every line shows a total: true. No invoice type shown: true. No action button on a line: true."
+ },
+ {
+  "cid": "C44896",
+  "status": "Blocked",
+  "note": "the outward behaviour lines up, but proving the jobs, parts and customers pages are served by the SAME engine as the box needs to be read in the code, which this run does not do",
+  "evidence": "What was observed: the jobs page search narrows the list correctly, and the box finds the same records. The old search path is gone from this branch and the new one answers. What needs to be done: have a developer confirm the three list pages call the same search service, or read it in the code; the outward check alone cannot tell two engines that agree apart from one engine."
+ },
+ {
+  "cid": "C44897",
+  "status": "Passed",
+  "note": "the old search is gone from this branch and the new one is what answers, with no switch to turn either on or off",
+  "evidence": "Asked the data host directly, and required a real answer rather than the page shell. The old search path answered 404 (a real answer: true); the new one answered 200 (a real answer: true). No switch to turn the new search on or off was found on the branch. NOT COVERED: that the old handling and the old filtering are removed from the code itself, and that the old three-per-type dropdown is gone everywhere - both need a code reading rather than a screen check."
+ }
+]

@@ -1,0 +1,14 @@
+[
+ {
+  "cid": "C44855",
+  "status": "Passed",
+  "note": "for someone who has looked at nothing yet the box shows the plain prompt, a single helper line, no create buttons and the footer legend",
+  "evidence": "Signed in as a different person who has viewed nothing. The prompt reads \"Search work orders, customers, parts and more\". Below it: \"Search for something\". Result lines 0. Buttons in the box other than the type tabs: []. Footer \"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\". No create buttons true. One short helper line only true."
+ },
+ {
+  "cid": "C44865",
+  "status": "Failed",
+  "note": "the nothing-found message is the same inside a type as it is across everything - it never names the type you are looking in",
+  "evidence": "Checked on three types. With \"Vendors (0)\" selected the box reads \"No results found No results for “S1- 56438”\"; With \"Customers (0)\" selected the box reads \"No results found No results for “S1- 56438”\"; With \"Parts (0)\" selected the box reads \"No results found No results for “S1- 56438”\". For comparison, with nothing selected (everything) it reads \"No results found No results for “S1- 56438”\" - identical. The words you typed are echoed correctly every time, so the message itself works; what is missing is the type name after the word \"in\". What needs to be done: when a single type is selected, append that type to the message, so it reads for example: No results for \"S1- 56438\" in Vendors."
+ }
+]

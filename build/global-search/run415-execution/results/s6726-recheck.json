@@ -1,0 +1,14 @@
+[
+ {
+  "cid": "C44853",
+  "status": "Passed",
+  "note": "standing on a customer's page lifts that customer's vehicles up the list",
+  "evidence": "Search \"Fib\" from an unrelated page - the vehicles in order: [\"1. 2021 KEN WORTH T680 (ZZAUTOTEST Fibridge Logistics)\",\"2. TRK 4122019 Freightliner Cascadia (ZZAUTOTEST Fibridge Commercial)\",\"3. TRK 4162024 INTERNATIONAL LT625 (ZZAUTOTEST Fibridge Retail)\",\"4. TRK 4152023 MACK ANTHEM (ZZAUTOTEST Fibridge Logistics)\",\"5. TRK 4142020 VOLVO VNL760 (ZZAUTOTEST Fibridge Commercial)\"]. Then the same search standing on the ZZAUTOTEST Fibridge Logistics page: [\"1. 2021 KEN WORTH T680 (ZZAUTOTEST Fibridge Logistics)\",\"2. TRK 4152023 MACK ANTHEM (ZZAUTOTEST Fibridge Logistics)\",\"3. TRK 4122019 Freightliner Cascadia (ZZAUTOTEST Fibridge Commercial)\",\"4. TRK 4162024 INTERNATIONAL LT625 (ZZAUTOTEST Fibridge Retail)\",\"5. TRK 4142020 VOLVO VNL760 (ZZAUTOTEST Fibridge Commercial)\"]. That customer's own vehicles sat at positions [1,4] before and [1,2] after - average 2.5 to 1.5."
+ },
+ {
+  "cid": "C45139",
+  "status": "Failed",
+  "note": "a company reached only through one of its contacts is listed ABOVE the company whose own name matches",
+  "evidence": "Typed \"Deshawn\" twice, same result both times. The customer lines in the order shown: [\"1. ZZAUTOTEST Fibridge Commercial  [matched through a contact]\",\"2. ZZAUTOTEST Deshawn Freight Lines  [own name matches]\",\"3. Monroe Truck Service & Repair  [matched through a contact]\",\"4. Mobile Truck & Trailer Repair Blackfoot  [matched through a contact]\",\"5. Bilodeau's Truck Repair  [matched through a contact]\"]. ZZAUTOTEST Deshawn Freight Lines - whose OWN NAME is what was typed - sits at position 2. ZZAUTOTEST Fibridge Commercial, which does not contain the word Deshawn anywhere in its name and was reached only because its contact is called Deshawn Oyelaran, sits at position 1. Second attempt for comparison: [\"1. ZZAUTOTEST Fibridge Commercial [contact]\",\"2. ZZAUTOTEST Deshawn Freight Lines\",\"3. Monroe Truck Service & Repair [contact]\",\"4. Mobile Truck & Trailer Repair Blackfoot [contact]\",\"5. Bilodeau's Truck Repair [contact]\"]. What needs to be done: a match on a contact's name should count for less than a match on the company's own name, so the company actually called Deshawn comes first."
+ }
+]

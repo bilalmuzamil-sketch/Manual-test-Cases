@@ -1,0 +1,8 @@
+[
+ {
+  "cid": "C44879",
+  "status": "Passed",
+  "note": "someone who is not allowed to see jobs gets no Work orders group and no Work orders tab, and still sees everything else they are allowed to",
+  "evidence": "Signed in as a person whose permission to see jobs had been removed for this check (their permissions: [\"customersView\",\"scheduleView\",\"woTechViewMode\"]). Tabs shown: [\"All (9)\",\"Customers (3)\",\"Assets (6)\"]. Groups shown: [\"Customers (3)\",\"Assets (6)\"]. Lines shown: 8. No Work orders tab and no Work orders group: true; no Work orders count leaks anywhere: true; they still see the types they are allowed to: true. For comparison, the same person WITH job access saw Work orders (20), Customers (3), Assets (6). The permission was put straight back afterwards."
+ }
+]

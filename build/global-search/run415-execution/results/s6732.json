@@ -1,0 +1,14 @@
+[
+ {
+  "cid": "C44874",
+  "status": "Passed",
+  "note": "typing into the jobs list search narrows the list to the matching jobs, the words stay in the box, no extra banner appears, and the columns are unchanged",
+  "evidence": "Rows before 33; after typing \"Fibridge\" 25. The box still reads \"Fibridge\". A \"showing N matching\" banner appeared: false. Columns are unchanged: true - [\"On Site\",\"Status\",\"Number\",\"Customer\",\"Asset\",\"Unit\",\"VIN/Serial #\",\"Progress\",\"Service Advisor\",\"Lead Technician\",\"Clocked In\",\"Lines\",\"Total Price\",\"Created On\"]."
+ },
+ {
+  "cid": "C44875",
+  "status": "Passed",
+  "note": "emptying the jobs list search brings the whole list back, and there is nothing to dismiss",
+  "evidence": "Rows were 33, narrowed to 25, and after emptying the box 33. Clearing the box is what restores the list - there was no banner to dismiss."
+ }
+]

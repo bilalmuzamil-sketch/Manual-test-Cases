@@ -1,0 +1,32 @@
+[
+ {
+  "cid": "C44825",
+  "status": "Failed",
+  "note": "no Show all link appears on any group, including the groups that have more than five matches",
+  "evidence": "Groups with more than five matches: [{\"group\":\"Work orders (20)\",\"shown\":5},{\"group\":\"Assets (6)\",\"shown\":5},{\"group\":\"Purchase orders (6)\",\"shown\":5}]. Searched the WHOLE PAGE (not just the box) for any element reading \"show all\", \"view all\", \"see all\", \"+N more\" or \"more\" - found 1 on the first attempt and 1 on the second. The group heading contains only a name and a count: [\"span.\",\"span.search-group__count\"]. No buttons or links inside any group heading. Hovering the heading adds nothing. The list was scrolled to the bottom in case a link sat below the fold. PROOF THE CHECK WORKS: the same search DOES find these controls in the box: [\"\",\"All (44)\",\"Work orders (20)\",\"Customers (3)\",\"Assets (6)\",\"Parts (4)\",\"Vendors (1)\",\"Part sales (1)\"]. What needs to be done: reaching a record past the fifth in a group currently means narrowing the words you type - there is no way to open the full list for that type from the group heading."
+ },
+ {
+  "cid": "C44826",
+  "status": "Blocked",
+  "note": "cannot be run - the Show all link it starts from does not exist on this build (see the line above)",
+  "evidence": "This case's first step is to click a Show all link on a group heading. No such link is on the page. What needs to be done: re-run this once the missing link is put back; the check itself is unchanged."
+ },
+ {
+  "cid": "C44828",
+  "status": "Passed",
+  "note": "the letters you typed are picked out inside each matching line, and only those letters",
+  "evidence": "highlighted pieces 34 across 27 of 27 lines; the highlighted text is always [\"Fib\",\"FIB\"]; longest highlighted piece 3 characters; example line \"S9160-17664 ZZAUTOTEST Fibridge Commercial Ready for Review TRK 412 · 2019 Freig\""
+ },
+ {
+  "cid": "C44830",
+  "status": "Passed",
+  "note": "the groups run in the specified order, and an exact job-number search shows that one record as a single line above everything else, with its icon",
+  "evidence": "group order on a broad search [\"Work orders\",\"Customers\",\"Assets\",\"Parts\",\"Vendors\",\"Part sales\",\"Purchase orders\",\"Vendor invoices\"] - matches the specified order true. On the exact number \"S2-15430\": a single pinned line is shown reading \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\", it sits above any groups true, it carries its icon true. NOT COVERED AND SAID SO: the part about two records tied on relevance, where the more recently updated one must sit above the older one. Two such records cannot be built here because a record's last-updated date cannot be set. What needs to be done: judge that half by hand if two naturally tied records ever appear."
+ },
+ {
+  "cid": "C44829",
+  "status": "Blocked",
+  "note": "the spoken announcement is there and its wording changes with the results, read from the page; but this run has no screen reader and no human eye, so the case is not fully judged",
+  "evidence": "An announcement region is present and it updates: on \"Fib\" it reads \"44 results found across 8 categories\", on \"Fibr\" \"44 results found across 8 categories\", on the exact number \"S2-15430\" \"1 result found across 1 category\". Region settings {\"txt\":\"44 results found across 8 categories\",\"live\":\"polite\",\"role\":\"status\"}. NOT CHECKED: that a real screen reader speaks it, and that every stop (the field, each tab, each line) shows a visible outline when you Tab to it. What needs to be done: re-run with a screen reader switched on and Tab through the box, watching for the outline at each stop."
+ }
+]

@@ -1,0 +1,26 @@
+[
+ {
+  "cid": "C44874",
+  "status": "Blocked",
+  "note": "the search box on the jobs page could not be found",
+  "evidence": "inputs present: []"
+ },
+ {
+  "cid": "C44875",
+  "status": "Blocked",
+  "note": "depends on the line above",
+  "evidence": "Same reason."
+ },
+ {
+  "cid": "C44876",
+  "status": "Failed",
+  "note": "the box stays up but says nothing at all - it just goes blank",
+  "evidence": "PROOF THE CHECK WORKS: immediately before, the same box was open with 27 lines showing. Then every search request was made to fail. The box was still on screen: false. What it showed: \"\". Result lines: null. The result area was completely empty: false. A message about being unavailable or retrying: false. What needs to be done: when the search cannot be reached, show an inline message such as \"Search unavailable, retry\" instead of an empty panel, so the user knows it is a fault and not simply no matches."
+ },
+ {
+  "cid": "C44897",
+  "status": "Passed",
+  "note": "the old search is gone from this branch and the new one is what answers, with no switch to turn either on or off",
+  "evidence": "Asked the data host directly, and required a real answer rather than the page shell. The old search path answered 404 (a real answer: true); the new one answered 200 (a real answer: true). No switch to turn the new search on or off was found on the branch. NOT COVERED: that the old handling and the old filtering are removed from the code itself, and that the old three-per-type dropdown is gone everywhere - both need a code reading rather than a screen check."
+ }
+]
