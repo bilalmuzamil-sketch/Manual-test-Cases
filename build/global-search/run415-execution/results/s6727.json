@@ -1,0 +1,44 @@
+[
+ {
+  "cid": "C44855",
+  "status": "Passed",
+  "note": "for someone who has looked at nothing yet the box shows the plain prompt, a single helper line, no create buttons and the footer legend",
+  "evidence": "Signed in as a different person who has viewed nothing. The prompt reads \"Search work orders, customers, parts and more\". Below it: \"Search for something\". Result lines 0. Buttons in the box other than the type tabs: []. Footer \"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\". No create buttons true. One short helper line only true."
+ },
+ {
+  "cid": "C44856",
+  "status": "Passed",
+  "note": "neither the opening state nor the nothing-found state offers any create buttons",
+  "evidence": "Opening state shows \"Recent searches Clear All TODAY ZZAUTOTEST Fibridge Logistics 2 open 77 Fibridge Yard Road, Fernvale, Ohio 2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid\" with buttons [\"Clear All\"]. Nothing-found state shows \"No results found No results for \u201cS1- 56438\u201d\" with buttons []."
+ },
+ {
+  "cid": "C44864",
+  "status": "Passed",
+  "note": "when nothing matches the box shows only a no-results message echoing what was typed, with no create buttons, and the footer legend stays",
+  "evidence": "what the box shows: \"No results found No results for \u201cS1- 56438\u201d\"; the typed words are echoed true; echoed inside quote marks true; result lines 0; footer \"Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc\""
+ },
+ {
+  "cid": "C44865",
+  "status": "Failed",
+  "note": "the nothing-found message is the same inside a type as it is across everything - it never names the type you are looking in",
+  "evidence": "Checked on three types. With \"Vendors (0)\" selected the box reads \"No results found No results for \u201cS1- 56438\u201d\"; With \"Customers (0)\" selected the box reads \"No results found No results for \u201cS1- 56438\u201d\"; With \"Parts (0)\" selected the box reads \"No results found No results for \u201cS1- 56438\u201d\". For comparison, with nothing selected (everything) it reads \"No results found No results for \u201cS1- 56438\u201d\" - identical. The words you typed are echoed correctly every time, so the message itself works; what is missing is the type name after the word \"in\". What needs to be done: when a single type is selected, append that type to the message, so it reads for example: No results for \"S1- 56438\" in Vendors."
+ },
+ {
+  "cid": "C44861",
+  "status": "Passed",
+  "note": "after the box closes the words you typed stay visible in the header",
+  "evidence": "the header control now reads \"search Fibridge Ctrl K\"; a small count beside it false ([])"
+ },
+ {
+  "cid": "C44862",
+  "status": "Passed",
+  "note": "reopening the box brings back what you typed, the type you had chosen and the same list",
+  "evidence": "the box reopened with \"Fibridge\" in the field; the selected type is \"Customers (11)\" (was \"Customers\n(11)\"); lines shown 11"
+ },
+ {
+  "cid": "C44863",
+  "status": "Passed",
+  "note": "the clear button empties the box, brings back the prompt and removes the words from the header",
+  "evidence": "clear control found and clicked: Clear search; field now \"\"; prompt \"Search work orders, customers, parts and more\"; what is shown now \"recents\"; header now reads \"search Search customers, work orders, parts... Ctrl K\""
+ }
+]

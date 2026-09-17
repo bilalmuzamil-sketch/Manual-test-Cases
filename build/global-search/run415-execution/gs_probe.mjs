@@ -51,6 +51,17 @@ export async function openPalette(page, how = 'key') {
   await page.waitForTimeout(1400);
 }
 
+/**
+ * 🔴 USE THIS, NOT openPalette(), UNLESS THE CASE IS ABOUT THE OPENING ITSELF.
+ * Ctrl+K TOGGLES. Pressing it when the box is already open CLOSES it, and the next fill() then
+ * waits 60s for a field that is not there and dies - which reads as the palette being broken.
+ * Cost one aborted section run on 2026-09-17.
+ */
+export async function ensureOpen(page) {
+  if (!(await isOpen(page))) { await page.keyboard.press('Control+k'); await page.waitForTimeout(1400); }
+  return isOpen(page);
+}
+
 export async function isOpen(page) {
   return page.evaluate(s => !!document.querySelector(s), SEL.modal);
 }
@@ -65,6 +76,7 @@ export async function isOpen(page) {
  * deliberately testing a scoped tab.
  */
 export async function type(page, q, wait = 2600, reset = true) {
+  if (!(await isOpen(page))) { await page.keyboard.press('Control+k'); await page.waitForTimeout(1400); }
   if (reset) {
     await page.evaluate(() => {
       const t = [...document.querySelectorAll('.search-tabs__tab')]
