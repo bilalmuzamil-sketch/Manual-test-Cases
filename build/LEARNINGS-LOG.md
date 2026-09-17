@@ -3069,3 +3069,73 @@ by that control.
 
 **And the one that worked:** asking before filing. The per-ticket gate is what stood between this
 and a developer being sent to look at correct code.
+
+## L0151 — "THERE IS ONLY ONE ORGANISATION ON THIS BRANCH" WAS FALSE; THE PRODUCT SHIPS A PAGE THAT MAKES ANOTHER (2026-09-17)
+
+C44880 (tenant isolation) had been Blocked for one stated reason: the branch has a single
+organisation, so there is no second one whose records could wrongly appear. That was measured
+correctly — `GET /api/organizations` returned exactly one — and the conclusion drawn from it was
+still wrong.
+
+`POST /api/organizations` answers **405, Allow: GET**. Rule 107 route 2 says *read the refusal* —
+it named the allowed method, so there is no creation route on that resource. Rule 107 route 3 says
+*try the other surface*. Four candidate front-end routes were tried; `/register` renders
+**"Register your organization here."** — administrator email, first name, last name, company name,
+work-order start number, one **Register** button. It posts to `/api/register` and returns 200, and
+`GET /api/organizations` then returns **two** organisations.
+
+**The general lesson:** an API with no write route is not the same as a product with no way to do
+the thing. Self-service onboarding lives on the unauthenticated front end, not in the authenticated
+API surface a session is already holding. Before calling a whole-tenant precondition impossible,
+walk the product's own sign-up/registration surface.
+
+**The honest second half:** creating the organisation did not finish the case. The new organisation
+contains only its administrator and an internal "Counter Sale" company, and the search indexes
+neither kind — so their absence from results proves nothing. The case stayed **Blocked**, with the
+precondition half-built, the remaining need named in one sentence, and the four closed routes
+listed. *Unblocking a precondition is not the same as verifying the case*, and reporting it as a
+pass because the hard part got easier would have been exactly the false pass Rule 106 warns about.
+
+## L0152 — THE LIST-PAGE SEARCH AND THE MAIN SEARCH ARE DIFFERENT ENGINES, AND THE SCREEN SAYS SO (2026-09-17)
+
+C44896 had been Blocked as "needs to be read in the code". It did not. Every claim in it is visible
+on the screen:
+
+* Jobs list page, its own search, `brake` → **"No work orders match the search "brake"."**
+  Main search, same word, same minute → **20 jobs**.
+* `Fibrige` (a typo for Fibridge) → main search 20 jobs, each marked *close match*; list search
+  nothing. Same for `Buad` against Buda.
+* Positive control on the same field: `Buda` → 32 rows, `Fibridge` → 25, the job number → 4.
+  The field works.
+* Underneath: `/api/work-orders?…&search=`, `/api/customers?…&search=`,
+  `/api/inventory/parts?…&search=` versus the palette's `/api/search?q=`.
+
+**Two traps worth keeping.** The list search control is `.page-search__toggle` at y≈100, and the
+header global-search trigger is `.global-search__trigger` at y≈28 — a "find the search-ish button"
+selector grabs the header one and silently measures the palette twice. And the parts list is at
+**`/parts/inventory`**; `/inventory/parts` is not a route and renders a *Back to Work Orders*
+fallback that looks like an empty page.
+
+**And the verdict was still Blocked, not Failed.** Read live from Jira the same hour: SV-9306,
+*"BE — Page search cutover: WO / Inventory Parts / Customers list search served by the unified
+engine"*, is **OBSOLETE**, and SV-9311, the check that would confirm it, is **Board Backlog**.
+Rule 112 — no defect against work that is not Ready for QA or Testing QA. The finding worth handing
+over is not a bug, it is that a requirement still written in the specification and in our case has
+had its story marked obsolete. That is a lead-and-PO question.
+
+## L0153 — THREE SMALL DURABLE FACTS FROM THE SAME PASS (2026-09-17)
+
+1. **`POST /api/user/recent-entities/touch` ignores any timestamp you give it.** Tried `viewedAt`,
+   `viewed_at` and `timestamp`: all three answered 204 and all three stored *now*. The recent list
+   also holds 12 and caps, so a day's testing pushes every older entry out of it. The Yesterday /
+   Past week / Past 30 days headings genuinely cannot be manufactured (C44857). The seeding script
+   already said so; this re-proves it by attempt rather than by assertion.
+2. **List services do not filter by organisation the way search does.** Signed in to one
+   organisation, `/api/users` returned 166 people **including the other organisation's
+   administrator** with their address and role, and `/api/companies` returned the other
+   organisation's company. **The screens are fine** — Settings → Staff does not list that person.
+   So this was recorded as a side observation for a developer, *not* as a finding: Rule 104 wants a
+   negative proved through the screen, and through the screen nothing leaks.
+3. **`jira.sh` appends `\n__HTTP:<code>` to every response.** Piping it straight into
+   `json.load` fails with a parse error that reads exactly like an expired session. Strip it
+   (`sed 's/__HTTP:.*//'`) before parsing, and do not conclude the cookies are dead.

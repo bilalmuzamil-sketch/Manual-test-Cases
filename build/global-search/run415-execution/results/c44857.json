@@ -1,0 +1,8 @@
+[
+ {
+  "cid": "C44857",
+  "status": "Blocked",
+  "note": "only the Today heading can be produced on this branch, and that has now been proved rather than assumed: the product always stamps a visited record as visited NOW, so Yesterday, Past week and Past 30 days cannot be created on demand. They appear by themselves once the branch has been in use for a while.",
+  "evidence": "RE-PROVED ON 17 SEPTEMBER 2026 (build v26.36.7-29ca209):\n1. The recent list on screen shows one heading only: TODAY, above 12 lines.\n2. Behind it, all 12 lines carry a visited time of today, the oldest 07:26 this morning. The list holds 12 and no more, so a day's testing pushes everything older out of it.\n3. The product was asked three different ways to record a visit dated 10 September - by viewedAt, by viewed_at and by timestamp. Each time it accepted the request and then stored today's date anyway. There is no way to backdate a visit.\n4. The list is per person. Signed in as the technician it starts completely empty, which is a different check (the first-time empty state) and that one passes.\n\nWhat needs to be done: leave the branch alone for a few days and re-run, or accept the Today grouping as the part that can be checked and mark the other three headings as not checkable here. Do not fake the dates."
+ }
+]
