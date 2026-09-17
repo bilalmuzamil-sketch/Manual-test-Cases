@@ -1,0 +1,50 @@
+[
+ {
+  "cid": "C44850",
+  "status": "Passed",
+  "note": "typing the exact job number puts that one job on a single line at the very top, above everything, with its icon",
+  "evidence": "typed \"S2-15430\"; pinned line \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\"; carries its icon true; what is in the box top to bottom [\"sr-only\",\"search-row search-row--selected search-modal__pinned\"]"
+ },
+ {
+  "cid": "C44851",
+  "status": "Passed",
+  "note": "inside a group the live jobs come before the old finished ones",
+  "evidence": "the work-order lines in the order shown: [{\"s\":\"Ready for Review\",\"t\":\"S9160-17664 ZZAUTOTEST Fibridge Commercial Ready for Review \"},{\"s\":\"Approved\",\"t\":\"S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN \"},{\"s\":\"Approved\",\"t\":\"S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN \"},{\"s\":\"Ready for Review\",\"t\":\"S9160-17662 ZZAUTOTEST Fibridge Commercial Ready for Review \"},{\"s\":\"Ready for Review\",\"t\":\"S9160-17663 ZZAUTOTEST Fibridge Commercial Ready for Review \"}]. Live jobs at positions [1,2,3,4,5], finished/old ones at []. NOT COVERED: the part about jobs assigned to or recently viewed by the person signed in being lifted - only one person can be signed in here, so there is nothing to compare against."
+ },
+ {
+  "cid": "C44852",
+  "status": "Passed",
+  "note": "parts you have in stock are listed above the one you have none of, and the out-of-stock part is still shown rather than hidden",
+  "evidence": "the part lines in the order shown: [{\"text\":\"ZZAUTOTEST Fibridge Brake Shoe Kit 40 Available ZZT-FIB-1001\",\"qty\":\"40 Available\",\"cls\":\"q-badge--single-line\"},{\"text\":\"ZZAUTOTEST Fibridge Wheel Seal 2 Available ZZT-FIB-1002\",\"qty\":\"2 Available\",\"cls\":\"q-badge--single-line\"},{\"text\":\"PALL SUPRALON FILTER (GLASS FIBER 7 MICRON) 8 Available HCG200FRN8Z\",\"qty\":\"8 Available\",\"cls\":\"q-badge--single-line\"},{\"text\":\"ZZAUTOTEST Fibridge Air Dryer Cartridge 0 Available ZZT-FIB-1003\",\"qty\":\"0 Available\",\"cls\":\"q-badge--single-line\"}]. First in-stock at position 1, the out-of-stock one at position 4."
+ },
+ {
+  "cid": "C44853",
+  "status": "Passed",
+  "note": "standing on a customer's page lifts that customer's vehicles up the list",
+  "evidence": "Search \"Fib\" from an unrelated page - the vehicles in order: [\"1. 2021 KEN WORTH T680 (ZZAUTOTEST Fibridge Logistics)\",\"2. TRK 4122019 Freightliner Cascadia (ZZAUTOTEST Fibridge Commercial)\",\"3. TRK 4162024 INTERNATIONAL LT625 (ZZAUTOTEST Fibridge Retail)\",\"4. TRK 4152023 MACK ANTHEM (ZZAUTOTEST Fibridge Logistics)\",\"5. TRK 4142020 VOLVO VNL760 (ZZAUTOTEST Fibridge Commercial)\"]. Then the same search standing on the ZZAUTOTEST Fibridge Logistics page: [\"1. 2021 KEN WORTH T680 (ZZAUTOTEST Fibridge Logistics)\",\"2. TRK 4152023 MACK ANTHEM (ZZAUTOTEST Fibridge Logistics)\",\"3. TRK 4122019 Freightliner Cascadia (ZZAUTOTEST Fibridge Commercial)\",\"4. TRK 4162024 INTERNATIONAL LT625 (ZZAUTOTEST Fibridge Retail)\",\"5. TRK 4142020 VOLVO VNL760 (ZZAUTOTEST Fibridge Commercial)\"]. That customer's own vehicles sat at positions [1,4] before and [1,2] after - average 2.5 to 1.5."
+ },
+ {
+  "cid": "C44854",
+  "status": "Blocked",
+  "note": "cannot be judged on this data: no job here has a part on it that also matches a search term, so there is nothing to compare",
+  "evidence": "What needs to be done: put a known part onto a job, open that job, then search a word that matches both that part and at least one other part, and check the one already on the job sits lower. The seeded jobs carry no parts."
+ },
+ {
+  "cid": "C45137",
+  "status": "Passed",
+  "note": "orders still outstanding are listed above ones already received",
+  "evidence": "the purchase-order lines in the order shown: [{\"s\":\"Ordered\",\"t\":\"S9160-17652 ZZAUTOTEST Fibridge Mining Ordered $240.00 \u00b7 Yes\"},{\"s\":\"Received\",\"t\":\"I9160-1397 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 \u00b7 Yes\"},{\"s\":\"Received\",\"t\":\"I9160-1396 ZZAUTOTEST Fibridge Mining Fulfilled $100.00 \u00b7 Ye\"},{\"s\":\"Received\",\"t\":\"I9160-1395 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 \u00b7 Yes\"},{\"s\":\"Received\",\"t\":\"S2-9800 Willoughby Mechanical Services Fulfilled $4,294.85 \u00b7\"},{\"s\":\"Received\",\"t\":\"S2-12061 Vero Beach Heavy Duty Truck & Equipment Repair Fulf\"}]. Still outstanding at positions [1], already received at [2,3,4,5,6]. NOT COVERED: the small lift for an order raised by the person signed in - every one of these was raised by the same person, so there is nothing to compare."
+ },
+ {
+  "cid": "C45138",
+  "status": "Passed",
+  "note": "bills not yet paid are listed above ones already paid",
+  "evidence": "the vendor-invoice lines in the order shown: [{\"s\":\"Unpaid\",\"t\":\"ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 \u00b7 Yesterd\"},{\"s\":\"Paid\",\"t\":\"ZZT-INV-3 ZZAUTOTEST Fibridge Mining Paid $90.00 \u00b7 Yesterday\"},{\"s\":\"Partially paid\",\"t\":\"ZZT-INV-2 ZZAUTOTEST Fibridge Mining Partially paid $100.00 \"}]. Unpaid at positions [1], paid at [2]."
+ },
+ {
+  "cid": "C45139",
+  "status": "Failed",
+  "note": "a company reached only through one of its contacts is listed ABOVE the company whose own name matches",
+  "evidence": "Typed \"Deshawn\" twice, same result both times. The customer lines in the order shown: [\"1. ZZAUTOTEST Fibridge Commercial  [matched through a contact]\",\"2. ZZAUTOTEST Deshawn Freight Lines  [own name matches]\",\"3. Monroe Truck Service & Repair  [matched through a contact]\",\"4. Mobile Truck & Trailer Repair Blackfoot  [matched through a contact]\",\"5. Bilodeau's Truck Repair  [matched through a contact]\"]. ZZAUTOTEST Deshawn Freight Lines - whose OWN NAME is what was typed - sits at position 2. ZZAUTOTEST Fibridge Commercial, which does not contain the word Deshawn anywhere in its name and was reached only because its contact is called Deshawn Oyelaran, sits at position 1. Second attempt for comparison: [\"1. ZZAUTOTEST Fibridge Commercial [contact]\",\"2. ZZAUTOTEST Deshawn Freight Lines\",\"3. Monroe Truck Service & Repair [contact]\",\"4. Mobile Truck & Trailer Repair Blackfoot [contact]\",\"5. Bilodeau's Truck Repair [contact]\"]. What needs to be done: a match on a contact's name should count for less than a match on the company's own name, so the company actually called Deshawn comes first."
+ }
+]
