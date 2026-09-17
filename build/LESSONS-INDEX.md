@@ -95,3 +95,4 @@ Read these before trusting any verdict you are about to give:
    changed underneath.
 4. **A source that moved** — the spec, the epic, the PO's answer, the build, the ticket's status. It
    moves between pass start and write start, not just between sessions.
+| 2026-09-17 | Reported a branch "issue" without checking production, risking a false regression | For any behaviour found while testing a fix, reproduce it on the pre-fix environment BEFORE raising it, and say in the ticket whether the fix introduced it (SV-10160: identical message on production, so pre-existing) | Rule 75; `build/sv9013-note-attachments-2026-09-17/FINDINGS.md` |
