@@ -141,10 +141,16 @@ The Bridgeport fixture is **intact**: customer `ZZAUTOTEST Bridgeport Hauling`, 
 **S9160-17625 / -17626 / -17627 / -17628** on the **Staging Heavy Duty** location, a 2019 Freightliner
 Cascadia (unit ZZT-4471), and a second location **Staging Lethbridge** to switch to.
 
-🔴 **Search `ZZAUTOTEST Bridgeport`, not bare `ZZAUTOTEST`.** The seeding done today added enough
-`ZZAUTOTEST` work orders that the four Bridgeport ones no longer appear in the capped top 20 for the
-bare tag. They are all still there and `Bridgeport` returns every one of them — verified 2026-09-16.
-This is a change from what the case text assumes, and it is our doing, not a defect.
+**Re-measured 2026-09-17 on `v26.36.7-29ca209`: the case is runnable exactly as written.** Typing
+`ZZAUTOTEST` returns a Work orders group of 20 (the palette cap) and **all four Bridgeport work
+orders are among the rows shown**, and **all 20 rows are Staging Heavy Duty work orders** — so
+"write down the number of any one of them and use THAT number" is safe whichever row the tester
+picks. `ZZAUTOTEST Bridgeport` narrows it to exactly the four if you want them on their own.
+
+The one stale word: the precondition says the group "lists our four test jobs", and it now lists 20,
+because this session's seeding added 22 more `ZZAUTOTEST` work orders. That does not block the test —
+it is a count in a sentence, not a record identifier — and it is in the OUTSTANDING list rather than
+silently edited.
 
 The assertion itself — that the old location's rows never flash for even a moment during the
 re-fetch — is a sub-second human-eye observation. Watch the results closely as they load.
