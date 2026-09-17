@@ -99,13 +99,18 @@
   .side-foot{ margin:0; font-size:15px; font-weight:600; padding-top:12px; border-top:1px solid var(--line-soft); }
   @media (max-width:640px){ .split{ grid-template-columns:1fr; } }
 
-  .tiles{ display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:1px; background:var(--line);
-          border:1px solid var(--line); border-radius:3px; overflow:hidden; margin-bottom:40px; }
-  .tile{ background:var(--surface); padding:16px 16px 14px; }
+  .board{ margin-bottom:40px; display:flex; flex-direction:column; gap:22px; }
+  .band-head{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:8px; }
+  .band-head h3{ font-size:15.5px; font-weight:650; letter-spacing:-.005em; }
+  .band-head .of{ font-size:13.5px; color:var(--muted); }
+  .tiles{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:var(--line);
+          border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+  .tile{ background:var(--surface); padding:15px 16px 14px; }
   .tile .v{ font-family:"Archivo",sans-serif; font-size:30px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
-  .tile .k{ font-size:13px; color:var(--muted); margin-top:6px; line-height:1.35; }
+  .tile .k{ font-size:13.5px; color:var(--ink); margin-top:6px; line-height:1.35; font-weight:600; }
+  .tile .x{ font-size:12.5px; color:var(--muted); margin-top:3px; line-height:1.4; }
   .tile.g .v{ color:var(--good); } .tile.b .v{ color:var(--bad); }
-  .tile.w .v{ color:var(--warn); } .tile.s .v{ color:var(--slate); }
+  .tile.w .v{ color:var(--warn); } .tile.s .v{ color:var(--slate); } .tile.a .v{ color:var(--accent); }
 
   section{ margin-bottom:44px; }
   .sechead{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
@@ -178,7 +183,7 @@
   <div class="bottomline">
     <div class="lbl">The bottom line</div>
     <p class="bl-main">The feature has been tested end to end. <b>139 of 165 checks pass.</b> <b>14 defects found during testing are still being worked through</b>, and the feature is ready to release once they are closed.</p>
-    <p class="bl-sub">Five parts of the feature are already clear and can be signed off now. The other seven are each waiting on one or more of those fourteen defects. This is the normal find-and-fix cycle at its closing stage, and the remaining list is small and specific.</p>
+    <p class="bl-sub">Six of the twenty-six parts of the feature have now cleared QA. Seven more are tested and are each waiting on one or more of those fourteen defects. This is the normal find-and-fix cycle at its closing stage, and the remaining list is small and specific.</p>
   </div>
 
   <div class="split">
@@ -187,7 +192,7 @@
       <p class="big"><span class="num">165</span> checks run, <span class="num">139</span> pass.</p>
       <ul class="plain">
         <li>Every one of the <b>13 failures has a defect raised</b> against it, so each is tracked and can be re&#8209;checked as soon as it is closed.</li>
-        <li><b>5 pieces of work are clear</b> and can be marked QA complete today.</li>
+        <li><b>6 parts of the feature have cleared QA</b>, four of them signed off today.</li>
         <li><b>11 checks are parked</b> &mdash; they belong to work marked obsolete, so there is nothing to run them against.</li>
         <li><b>1 fix is ready to be re&#8209;checked</b> and is on the testing list.</li>
       </ul>
@@ -200,64 +205,97 @@
         <li>They are spread across <b>four engineers</b>, with the load weighted towards one of them &mdash; worth a look if it affects sequencing.</li>
         <li><b>2 are not yet assigned</b>, so they are not currently scheduled. Assigning them is the quickest way to move the list.</li>
         <li><b>1 is itself blocked</b> and needs its blocker cleared before it can be picked up.</li>
-        <li>The rest are in the normal queue, and one is already in progress.</li>
+        <li>The rest are in the normal queue, and one is already in progress. A further one is closed and back on the testing list.</li>
       </ul>
       <p class="side-foot">As each one closes, its part of the feature can be signed off.</p>
     </div>
   </div>
 
-  <div class="tiles">
-    <div class="tile g"><div class="v num">5</div><div class="k">Ready to sign off now</div></div>
-    <div class="tile b"><div class="v num">7</div><div class="k">Waiting on open defects</div></div>
-    <div class="tile b"><div class="v num">14</div><div class="k">Defects still open</div></div>
-    <div class="tile w"><div class="v num">1</div><div class="k">Closed, ready to re-check</div></div>
-    <div class="tile s"><div class="v num">5</div><div class="k">Obsolete</div></div>
-    <div class="tile s"><div class="v num">8</div><div class="k">Not started</div></div>
+  <div class="board">
+
+    <div>
+      <div class="band-head"><h3>The feature is built in 26 parts. Here is where each one stands.</h3><span class="of">26 in total</span></div>
+      <div class="tiles">
+        <div class="tile g"><div class="v num">6</div><div class="k">Through QA</div><div class="x">Tested, signed off, nothing outstanding</div></div>
+        <div class="tile b"><div class="v num">7</div><div class="k">Waiting on defects</div><div class="x">Tested; cannot be signed off until their defects close</div></div>
+        <div class="tile s"><div class="v num">5</div><div class="k">Withdrawn from scope</div><div class="x">No longer being built for this release</div></div>
+        <div class="tile s"><div class="v num">8</div><div class="k">Still ahead</div><div class="x">Rollout, remaining verification rounds, automation</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="band-head"><h3>Testing raised 32 defects in total. Here is what has happened to them.</h3><span class="of">32 in total</span></div>
+      <div class="tiles">
+        <div class="tile g"><div class="v num">16</div><div class="k">Closed and verified</div><div class="x">Fixed and re-tested &mdash; done with</div></div>
+        <div class="tile b"><div class="v num">14</div><div class="k">Still open</div><div class="x">The work that remains before release</div></div>
+        <div class="tile w"><div class="v num">1</div><div class="k">Closed, ready to re-check</div><div class="x">Fixed; on the testing list</div></div>
+        <div class="tile s"><div class="v num">1</div><div class="k">Withdrawn</div><div class="x">No longer applies</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="band-head"><h3>The test suite is 165 checks. Here is how the current build scored.</h3><span class="of">165 in total</span></div>
+      <div class="tiles">
+        <div class="tile g"><div class="v num">139</div><div class="k">Passed</div><div class="x">Behaves as the specification requires</div></div>
+        <div class="tile b"><div class="v num">13</div><div class="k">Failed</div><div class="x">Every one has a defect raised and linked</div></div>
+        <div class="tile s"><div class="v num">11</div><div class="k">Parked</div><div class="x">Belong to parts withdrawn from scope</div></div>
+        <div class="tile w"><div class="v num">2</div><div class="k">Cannot run yet</div><div class="x">One needs older test data; one is outside this release</div></div>
+      </div>
+    </div>
+
   </div>
 
   <section>
-    <div class="sechead"><h2>Ready to be signed off</h2><span class="count c-good">5</span></div>
-    <p class="secnote">No defects are open against any of these, and every check that applies to them passes. They can move to QA complete whenever we are ready to mark them.</p>
+    <div class="sechead"><h2>Through QA</h2><span class="count c-good">6</span></div>
+    <p class="secnote">Tested, signed off, and carrying no open defects. These parts of the feature are finished from a QA point of view.</p>
     <ul class="items">
       <li>
         <div class="title-row">
-          <span class="t">The search service itself &mdash; scoped and permission&#8209;aware</span>
+          <span class="t">The search service itself &mdash; scoped and permission-aware</span>
           <span class="d">All six permission and scoping checks pass, including the one confirming a person only ever sees their own organisation&rsquo;s records.</span>
           <span class="key">SV-9162</span>
         </div>
-        <div class="right"><span class="chip ok">No defects</span><span class="sub num">6 of 6 checks pass</span></div>
+        <div class="right"><span class="chip ok">QA complete</span><span class="sub num">6 of 6 checks pass</span></div>
       </li>
       <li>
         <div class="title-row">
           <span class="t">Recording what a person recently looked at</span>
-          <span class="d">Four of five checks pass. The fifth needs a branch that has been in use for several days so the older date headings exist &mdash; it is a limitation of the test data, not a defect.</span>
+          <span class="d">Four of five checks pass. The fifth wants the older date headings, which only appear on a branch that has been in use for some days &mdash; a property of the test data, not of the product.</span>
           <span class="key">SV-9166</span>
         </div>
-        <div class="right"><span class="chip ok">No defects</span><span class="sub num">4 of 5 checks pass</span></div>
+        <div class="right"><span class="chip ok">QA complete</span><span class="sub num">4 of 5 checks pass</span></div>
       </li>
       <li>
         <div class="title-row">
           <span class="t">Keeping the last search, and grouping recent ones by time</span>
-          <span class="d">Every check on keeping the last search passes. Shares the same single data-limited check as the row above.</span>
+          <span class="d">Every check on keeping the last search passes. Shares the single data-dependent check noted above.</span>
           <span class="key">SV-9172</span>
         </div>
-        <div class="right"><span class="chip ok">No defects</span><span class="sub num">3 of 3 checks pass</span></div>
+        <div class="right"><span class="chip ok">QA complete</span><span class="sub num">3 of 3 checks pass</span></div>
       </li>
       <li>
         <div class="title-row">
           <span class="t">Removing the old search path and its wording</span>
-          <span class="d">Currently in QA. No defects have been raised against it.</span>
+          <span class="d">Confirmed on the branch: the old search is gone and the new one answers, with no switch to turn either on or off. Cleared QA and moved on to release readiness.</span>
           <span class="key">SV-9313</span>
         </div>
-        <div class="right"><span class="chip ok">No defects</span><span class="sub">In QA now</span></div>
+        <div class="right"><span class="chip ok">Ready for production</span><span class="sub">Cleared QA</span></div>
       </li>
       <li>
         <div class="title-row">
           <span class="t">The search infrastructure decision</span>
-          <span class="d">A resolved investigation. The only thing left is writing the decision down &mdash; there is nothing for QA to test.</span>
+          <span class="d">An investigation, now resolved. Its outcome is recorded as the architecture decision the build follows &mdash; it produced a decision rather than a change to the product.</span>
           <span class="key">SV-9161</span>
         </div>
-        <div class="right"><span class="chip ok">Nothing to test</span></div>
+        <div class="right"><span class="chip ok">QA complete</span><span class="sub">Investigation closed</span></div>
+      </li>
+      <li>
+        <div class="title-row">
+          <span class="t">Part sales opening correctly after creation</span>
+          <span class="d">Raised during this work and fixed. Re-tested and confirmed.</span>
+          <span class="key">SV-10031</span>
+        </div>
+        <div class="right"><span class="chip ok">QA complete</span><span class="sub">Fixed and verified</span></div>
       </li>
     </ul>
   </section>
@@ -400,8 +438,8 @@
   </section>
 
   <section>
-    <div class="sechead"><h2>Not started</h2><span class="count c-slate">8</span></div>
-    <p class="secnote">These are still ahead of us. Five are the remaining verification rounds; the other three are the rollout, the automated version of the suite, and one item that belongs to a different feature.</p>
+    <div class="sechead"><h2>Still ahead</h2><span class="count c-slate">8</span></div>
+    <p class="secnote">Scheduled but not yet begun, and in sequence they come after the current round. Five are the remaining verification rounds; the other three are the rollout, the automated version of the suite, and one item that belongs to a different feature.</p>
     <ul class="items">
       <li>
         <div class="title-row">
@@ -409,7 +447,7 @@
           <span class="d">The switch-over itself, once the defects above are closed.</span>
           <span class="key">SV-9176</span>
         </div>
-        <div class="right"><span class="chip off">Not started</span></div>
+        <div class="right"><span class="chip off">Scheduled</span></div>
       </li>
       <li>
         <div class="title-row">
@@ -417,7 +455,7 @@
           <span class="d">Five planned verification passes, all sitting in the backlog. Round five covers the page-search move, whose own work is obsolete.</span>
           <span class="key">SV-9307 &middot; SV-9308 &middot; SV-9309 &middot; SV-9311 &middot; SV-9312</span>
         </div>
-        <div class="right"><span class="chip off">Not started</span><span class="sub num">5 items</span></div>
+        <div class="right"><span class="chip off">Scheduled</span><span class="sub num">5 items</span></div>
       </li>
       <li>
         <div class="title-row">
@@ -425,7 +463,7 @@
           <span class="d">The automated version of the suite. The manual suite is complete and has been run in full; this is the planned follow-on.</span>
           <span class="key">SV-9175</span>
         </div>
-        <div class="right"><span class="chip off">Not started</span></div>
+        <div class="right"><span class="chip off">Scheduled</span></div>
       </li>
       <li>
         <div class="title-row">
@@ -433,7 +471,7 @@
           <span class="d">A different feature currently filed under this project. It is not part of search and has no checks in this suite, so it would be better tracked on its own.</span>
           <span class="key">SV-9594</span>
         </div>
-        <div class="right"><span class="chip off">Not started</span><span class="sub">Not a search item</span></div>
+        <div class="right"><span class="chip off">Separate feature</span><span class="sub">Tracked here in error</span></div>
       </li>
     </ul>
   </section>
@@ -462,7 +500,7 @@
       <li><strong>Close the 14 open defects.</strong> As each one closes, its part of the feature becomes signable. Three of the fourteen sit on the result lines, so that part moves fastest.</li>
       <li><strong>Assign the two that are not yet assigned, and clear the blocker on one more.</strong> Three of the fourteen cannot progress until that happens.</li>
       <li><strong>Settle the five withdrawn items.</strong> Their requirements are still in the specification and still in eleven checks. Either they return to scope, or the specification and the checks are updated to match.</li>
-      <li><strong>Sign off the five that are already clear</strong>, so the outstanding picture is accurate and as small as the facts allow.</li>
+      <li><strong>Keep signing off each part as its defects close</strong>, so the outstanding picture stays accurate and as small as the facts allow. Six are already through.</li>
       <li><strong>Move the Schedule item onto its own track</strong> &mdash; it is not part of search, and counting it here understates how close this feature is.</li>
     </ol>
   </section>

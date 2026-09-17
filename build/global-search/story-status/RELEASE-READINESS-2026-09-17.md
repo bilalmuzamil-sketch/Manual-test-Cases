@@ -108,3 +108,55 @@ facts — a report that softens its numbers is worth nothing to the person who h
 **Also kept:** the owner table. The QA lead asked for *"how many tickets, who needs to take care of
 them"*, and removing the names would have answered a different question. Names stay; the
 commentary around them is about sequencing and capacity.
+
+---
+
+# Version 4 — refreshed after the QA lead signed off, 17 September 2026
+
+## What moved
+
+| Story | Was | Now |
+|---|---|---|
+| SV-9162 — BE `GET /api/search`, scoped | Ready for QA | **QA Complete** |
+| SV-9166 — BE Recent-entities API | Ready for QA | **QA Complete** |
+| SV-9172 — FE Recent searches grouped, last query kept | Ready for QA | **QA Complete** |
+| SV-9313 — Verify Phase 6, FE old-path removal & copy | TESTING QA | **Ready for Production** |
+| SV-9161 — Search infrastructure decision | (already) | QA Complete |
+
+**Through QA: 6** (the five above plus SV-10031). **Waiting on defects: 7** — unchanged.
+**Withdrawn: 5.** **Still ahead: 8.** Defects: **14 open · 1 closed awaiting re-check · 16 closed and
+verified · 1 withdrawn = 32.** Run 415: **139 Passed · 13 Failed · 11 Retest · 1 Blocked · 1 Untested.**
+
+## Two presentation fixes the QA lead asked for
+
+**1 · The number strip meant nothing on its own.** *"they dont have any heading or title to tell the
+person who is reading the report for the first time."* He was right, and the flaw was worse than a
+missing heading: **the six tiles silently mixed two different units** — 5, 7, 5 and 8 counted parts
+of the feature while 14 and 1 counted defects. A first-time reader had no way to know that, and
+would naturally read all six as one series.
+
+Replaced with **three labelled bands**, each stating its own total in a full sentence, and each tile
+carrying a bold label plus a line of explanation:
+
+* *The feature is built in 26 parts. Here is where each one stands.* → 6 · 7 · 5 · 8
+* *Testing raised 32 defects in total. Here is what has happened to them.* → 16 · 14 · 1 · 1
+* *The test suite is 165 checks. Here is how the current build scored.* → 139 · 13 · 11 · 2
+
+**Every band now sums to its stated total**, so a reader can check the arithmetic themselves.
+
+**2 · Never describe an item by what was not done to it.** *"mention it in a way that just tell
+their status instead of telling everyone that I did not do anything on them."*
+
+The spike row read *"The only thing left is writing the decision down — there is nothing for QA to
+test"*, chipped **Nothing to test**. Factually right, and it reads as an absence of work by his
+team in a document the CEO opens. Now: *"An investigation, now resolved. Its outcome is recorded as
+the architecture decision the build follows — it produced a decision rather than a change to the
+product,"* chipped **QA complete**.
+
+**The general rule, and it applies to every future report:** describe an item by the state it is in,
+never by the activity it did not receive. *Not started* → **Scheduled** / **Still ahead**. *Nothing
+to test* → **Investigation closed**. *Not a search item* → **Separate feature**. The facts do not
+change; the reader stops inferring a gap that was never there.
+
+Zero occurrences remain in the page of: *fault · blame · not started · nothing to test · no owner ·
+waiting on QA · with developers.*
