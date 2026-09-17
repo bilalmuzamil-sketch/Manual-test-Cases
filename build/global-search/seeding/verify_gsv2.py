@@ -33,6 +33,21 @@ def search(q):
         if attempt < 2: _t.sleep(2 * (attempt + 1))
     return None, f'{last} after 3 attempts'
 
+def call_retry(path):
+    """🔴 EVERY direct call in this file goes through here. Three separate transient 'HTTP ERR'
+    reds were raised by this verifier against data that was perfectly fine - each one a dropped
+    connection, each one costing a run and a re-check. A transport error is retried; a real HTTP
+    STATUS is returned immediately, because that is the product answering and it is what we are
+    here to catch."""
+    import time as _t
+    r = None
+    for attempt in range(3):
+        r = call(path)
+        if r['status'] != 'ERR': return r
+        if attempt < 2: _t.sleep(2 * (attempt + 1))
+    return r
+
+
 def rows(d, gtype=None):
     out = []
     for g in d.get('groups') or []:
@@ -122,7 +137,7 @@ def status_spread():
 
 
 def main():
-    call('/api/staff/my-workplaces')
+    call_retry('/api/staff/my-workplaces')
     print(f'=== environment: {ENV} ===')
     bad = []
     print('\n=== IDENTITY CHECKS — is OUR record in the list? ===')
@@ -147,7 +162,7 @@ def main():
     print('\n=== REACHABILITY — the pinned record must OPEN, not merely be indexed ===')
     d, _ = search('S2-15430')
     p = (d or {}).get('pinned') or {}
-    v = call(f"/api/work-orders/view/{p.get('id')}") if p.get('id') else {'status': 'NO PINNED ROW'}
+    v = call_retry(f"/api/work-orders/view/{p.get('id')}") if p.get('id') else {'status': 'NO PINNED ROW'}
     ok = v.get('status') == 200
     print(f"  {'✅' if ok else '🔴'} S2-15430 opens at this workplace -> HTTP {v.get('status')}")
     if not ok:

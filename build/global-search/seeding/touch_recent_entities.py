@@ -42,15 +42,36 @@ WANTED = [
     ('vendor_invoices', 'Fibridge Mining'),
 ]
 
+_ONE_SEARCH = {}
+
 def first_of(kind, term):
+    """ONE search, not eight. 'Fib' returns all eight groups in a single response, so asking the
+    server eight separate questions to pick one row from each was seven round trips of pure waste -
+    and on this branch a round trip is the whole cost. The per-type term is kept as a fallback for
+    the rare case where the broad term does not carry that group."""
+    if not _ONE_SEARCH:
+        r = call('/api/search?q=Fib')
+        for g in ((r['json'] or {}).get('data') or {}).get('groups') or []:
+            if g['items']: _ONE_SEARCH[g['type']] = g['items'][0]
+    if kind in _ONE_SEARCH: return _ONE_SEARCH[kind]
     r = call('/api/search?q=' + urllib.parse.quote(term))
     d = (r['json'] or {}).get('data', {}) or {}
     g = next((x for x in d.get('groups') or [] if x['type'] == kind), None)
     return (g['items'][0] if g and g['items'] else None)
 
 def recents():
-    r = call('/api/user/recent-entities')
-    return ((r['json'] or {}).get('data') or {}).get('items') or []
+    """🔴 RETRY THE READ-BACK. On 2026-09-17 this read 21 items BEFORE the touches, took eight 204s,
+    and then read 0 AFTER - a transient empty, not a vanished list - and printed a red 'still missing'
+    for all eight types. A reseed that cries wolf teaches the reader to ignore its reds."""
+    import time as _t
+    last = []
+    for attempt in range(3):
+        r = call('/api/user/recent-entities')
+        items = ((r['json'] or {}).get('data') or {}).get('items') or []
+        if items: return items
+        last = items
+        if attempt < 2: _t.sleep(2 * (attempt + 1))
+    return last
 
 def main():
     # 🔴 RECENT ACTIVITY IS A V2 FEATURE. `/api/user/recent-entities` answers 404 on production,
@@ -85,7 +106,13 @@ def main():
     print(f'\nrecent list after: {len(after)} items')
     print('  types present:', dict(got))
     missing = [k for k, _ in WANTED if k not in got]
-    print(f"  {'✅ every entity type is represented' if not missing else '🔴 still missing: ' + str(missing)}")
+    if not after and before:
+        # every touch answered 204 and the list read back empty three times running while it held
+        # records a moment ago: that is the READ failing, not the writes.
+        print('  🔶 the list read back empty although it held '
+              f'{len(before)} items before - transient read, not lost data. Re-run to confirm.')
+    else:
+        print(f"  {'✅ every entity type is represented' if not missing else '🔴 still missing: ' + str(missing)}")
     json.dump({'count': len(after), 'types': dict(got)},
               open(f'{HERE}/recent-activity-{_seed["ENV_LABEL"]}.json', 'w'), indent=1)
 

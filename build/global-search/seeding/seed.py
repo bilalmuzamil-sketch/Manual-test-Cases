@@ -83,7 +83,15 @@ def _c(): return json.load(open(COOKIES))
 def _save(c):
     open(COOKIES, 'w').write(json.dumps(c)); os.chmod(COOKIES, 0o600)
 
+CALLS = {'n': 0}
+if os.environ.get('SEED_COUNT_CALLS'):
+    import atexit
+    atexit.register(lambda: print(f"__API_CALLS__ {CALLS['n']}", file=sys.stderr))
+
 def call(path, method='GET', body=None):
+    # A latency-independent measure of how much work a step does. Seconds on this branch swing by
+    # 50% run to run, so "is it faster?" can only be answered in CALLS.
+    CALLS['n'] += 1
     c = _c()
     # Send only the cookies this environment actually has. Production carries PHPSESSID alone;
     # sending empty sv_sso_session / cf_clearance values there is not the same as omitting them.

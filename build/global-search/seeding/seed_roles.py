@@ -146,6 +146,12 @@ def main():
         json.dump(state, open(STATE, 'w'), indent=1)
         print(f'\nstate: {STATE}')
 
+    # The full per-role table costs 11 extra reads and tells a reseed nothing it did not already
+    # prove. It is genuinely useful when you are DECIDING which role a case should use, so it stays -
+    # behind a flag.
+    if '--summary' not in sys.argv:
+        print('\n(run with --summary for the per-role entity-group table)')
+        return
     print('\n=== WHAT EACH ROLE SEES IN GLOBAL SEARCH (from SearchSectionAccess) ===')
     for r in list_roles():
         role = read_role(r['id']); h = set(codes(role))

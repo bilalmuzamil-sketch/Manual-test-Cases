@@ -10,11 +10,11 @@
 # healthy, and a tester then reseeds something that was never broken. Encoding it removes the choice.
 #
 # ORDER MATTERS AND IS NOT ARBITRARY:
-#   2 must precede 3  - you cannot set a status on a work order that does not exist
-#   3 must precede 4  - the purchase-order chain consumes work orders and needs them out of estimate
-#   4 must precede 5  - 5 takes the LEFTOVER estimate work orders, so 4 claims its own first
-#   5 must precede 7  - the verifier asserts all seven status badge colours
-#   6 is independent  - roles touch no records, but run before the verifier so one run proves all
+#   1 must precede 2  - you cannot set a status on a work order that does not exist
+#   2 must precede 3  - the purchase-order chain consumes work orders and needs them out of estimate
+#   3 must precede 4  - 4 takes the LEFTOVER estimate work orders, so 3 claims its own first
+#   4 must precede 7  - the verifier asserts all seven status badge colours
+#   5, 6 are independent - roles and recents touch no records, but run before the verifier
 #
 # SAFE TO RUN ANY NUMBER OF TIMES. Every step measures first and creates only the difference, and
 # the seeder drops recorded ids that no longer resolve rather than appending new ones to dead ones.
@@ -54,14 +54,17 @@ step () {                       # step <label> <command...>
   fi
 }
 
-step "1/8  measure — writes nothing"              python3 seed.py --check
-step "2/8  create the 39 records, verify fields"  python3 seed.py --confirm
-step "3/8  spread the work-order statuses"        python3 set_wo_statuses.py --confirm
-step "4/8  purchase orders, invoices, payments"   python3 seed_po_and_invoices.py --confirm
-step "5/8  drive two WOs to Complete + Invoiced"  python3 complete_and_invoice.py --confirm
-step "6/8  role fixtures for section 6734"        python3 seed_roles.py --confirm
-step "7/8  fill the recent-activity list"         python3 touch_recent_entities.py --confirm
-step "8/8  PROVE IT — $VERIFIER"                  python3 "$VERIFIER"
+# 🔴 NO SEPARATE --check STEP. `--confirm` IS find-or-create: it measures every record before it
+# creates anything, so running --check first measured all 39 twice and cost 36 of the run's 150
+# seconds for no information. `--check` still exists and is still the right thing to run by hand
+# when you want a preview that writes nothing - it is just not part of the one-command reseed.
+step "1/7  create the 39 records, verify fields"  python3 seed.py --confirm
+step "2/7  spread the work-order statuses"        python3 set_wo_statuses.py --confirm
+step "3/7  purchase orders, invoices, payments"   python3 seed_po_and_invoices.py --confirm
+step "4/7  drive two WOs to Complete + Invoiced"  python3 complete_and_invoice.py --confirm
+step "5/7  role fixtures for section 6734"        python3 seed_roles.py --confirm
+step "6/7  fill the recent-activity list"         python3 touch_recent_entities.py --confirm
+step "7/7  PROVE IT — $VERIFIER"                  python3 "$VERIFIER"
 
 echo; echo "---- writing the record inventory"
 python3 dump_seed_manifest.py > "SEED-MANIFEST-GS-V2-${SUFFIX}.md" \

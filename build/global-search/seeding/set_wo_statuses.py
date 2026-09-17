@@ -15,7 +15,7 @@ Of those, OPEN for ranking and for the customer's open-work-order chip is exactl
 
 Run:  SEED_MANIFEST=seed-manifest-gs-v2.json python3 set_wo_statuses.py [--confirm]
 """
-import json, os, sys, runpy
+import json, os, sys, runpy, urllib.parse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.environ.setdefault('SEED_MANIFEST', 'seed-manifest-gs-v2.json')
@@ -23,6 +23,8 @@ _seed = runpy.run_path(f'{HERE}/seed.py', run_name='not_main')
 call, IDS_FILE = _seed['call'], _seed['IDS_FILE']
 
 CONFIRM = '--confirm' in sys.argv
+# --force re-walks even when the search already shows the full spread
+FORCE = '--force' in sys.argv
 
 # The target spread. Deliberately NOT one work order per status: C44838 reads badge COLOURS off a
 # result list, so each status needs to be visibly present, while C44851 needs a believable bulk of
@@ -73,6 +75,23 @@ def main():
     for st, n in PLAN_NOUNIT:
         for _ in range(n):
             if i < len(nounit_ids): jobs.append((nounit_ids[i], st)); i += 1
+
+    # FAST PATH, and a BETTER check than the 22 reads it replaces. The spread this step exists to
+    # create is visible in ONE search - and the search is what the TESTER sees, whereas 22
+    # work-order reads only prove what the database holds. If every status the plan asks for is
+    # already showing, there is nothing to walk. 1 call instead of 22 on the happy path.
+    # --force re-walks anyway.
+    if not FORCE:
+        want = {t for t, _ in PLAN} | {t for t, _ in PLAN_NOUNIT}
+        r = call('/api/search?q=' + urllib.parse.quote('Fibridge Commercial'))
+        g = next((x for x in ((r['json'] or {}).get('data') or {}).get('groups') or []
+                  if x['type'] == 'work_orders'), None)
+        live = {i['fields']['status'] for i in (g['items'] if g else [])}
+        if want <= live:
+            print('  every planned status is already showing in the search - nothing to walk')
+            print('\n=== statuses visible to the tester (read back, never assumed) ===')
+            for st in sorted(live): print(f'  {st}')
+            return
 
     got = {}
     TERMINAL = {'complete', 'invoiced', 'paid'}

@@ -92,6 +92,26 @@ def drive(wo, want):
 
 def main():
     ids = json.load(open(f'{HERE}/{IDS_FILE}'))
+    # FAST PATH: the previous run recorded which two work orders it drove. Verify those two LIVE
+    # rather than reading all eighteen statuses to rediscover them - 2 calls instead of 18, and it
+    # is not a shortcut on rigour because the state file is never believed: each id is checked
+    # against the environment, and anything that does not confirm falls through to the full scan.
+    try:
+        prev = json.load(open(STATE))
+    except Exception:
+        prev = {}
+    if prev:
+        confirmed = {}
+        for want in ('complete', 'invoiced'):
+            rec = prev.get(want) or {}
+            if not rec.get('id'): continue
+            st, num = status_of(rec['id'])
+            if st in (('complete',) if want == 'complete' else ('invoiced', 'paid')):
+                confirmed[want] = (rec['id'], num, st)
+        if len(confirmed) == 2:
+            for k, (i, num, st) in confirmed.items(): print(f'  {num}: already {st}')
+            print('  both statuses already present - nothing to do (verified live, 2 calls)')
+            return
     # 🔴 ASK WHETHER THE WORK IS ALREADY DONE BEFORE ASKING WHETHER YOU CAN DO IT. The first version
     # counted spare `estimate` work orders first, so on the SECOND reseed - when the two it had
     # already driven were sitting there Complete and Invoiced exactly as intended - it found one
