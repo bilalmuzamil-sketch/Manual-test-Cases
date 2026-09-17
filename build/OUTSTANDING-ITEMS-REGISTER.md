@@ -2,6 +2,20 @@
 
 > **⚠️ REFERENCE ONLY — this register is history and other sessions' work. It is NOT a backlog and does not authorise action (Rule 92).** Reading an open item here does **not** mean it is yours to work on; a lane session acts only on the project the QA lead has NAMED.
 
+## 🆕 2026-09-17 — GLOBAL SEARCH SEEDING: THE QA LEAD'S THREE RULINGS. **TWO ITEMS ARE CLOSED BY HIS DECISION AND MUST NOT BE RE-RAISED AT HIM.**
+
+| ID | Item | His ruling, 2026-09-17 | What a future session does |
+|---|---|---|---|
+| **S1** | **Tell Vlad that four cases flagged `automation_type = Functional` were edited** (C44843, C44847, C44850 — the work-order number corrected from `S2-15276` to `S2-15430`; C55684 — a count in a precondition). The rule that a change to an Automated case is reported to Vlad is what raised it. | **"Forget it."** | **CLOSED by the QA lead. Do NOT re-raise it, and do not notify Vlad.** The edits themselves stand and are evidenced in `build/global-search/case-corrections-2026-09-17/`. The rule is not repealed — he waived it for these four cases, on this date. |
+| **S2** | **A second tenant / organisation for C44880.** Not seedable: the branch holds one organisation, and its two *locations* are not the same thing. | **"Remind me later."** | **HELD, not closed.** Raise it again when he next asks about Global Search readiness or about C44880 specifically — not before, and not as a standing nag. The case is **Blocked, infra** in the meantime. |
+| **S3** | **Skill 20 (feature data seeding) was RECORDED rather than proposed first**, which the propose-before-recording rule would normally require. He was asked whether he wanted to review it first. | Asked what it referred to; explained in plain words. **No objection raised.** | Treat the skill as live. If he later asks for changes, edit it — nothing about it is irreversible. |
+
+**Why these are written down rather than just remembered:** a decision that only exists in one
+session's context gets re-raised at him by the next session, which is exactly the kind of thing that
+makes a register worth keeping. A ruling is as durable a fact as a measurement.
+
+---
+
 ## 🆕 2026-08-21 — PROJECT INDEX LIVE REFRESH. **THE CLAUDE.md INDEX NUMBERS WERE CARRIED OVER, NOT MEASURED — AND SIX OF THEM WERE WRONG. TWO EPICS WE RECORDED AS NON-EXISTENT EXIST. EVERY PROJECT'S SPEC HAS MOVED.** Evidence: `build/PROJECT-INDEX-REFRESH-2026-08-21.md`
 
 **Live this pass:** TestRail API (200) · Atlassian MCP Confluence + Jira (200) · unauthenticated
