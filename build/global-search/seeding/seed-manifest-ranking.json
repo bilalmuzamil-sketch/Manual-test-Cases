@@ -800,6 +800,286 @@
     "whole_record": true
    },
    "_why": "LONG token \"Abcde\" - five letters. Querying \"Abcdf\" (one edit) SHOULD find it. The contrast between these two rows is the whole case."
+  },
+  {
+   "key": "rank_i_instock_inv",
+   "type": "InventoryPart",
+   "depends_on": "rank_i_instock",
+   "serves": [
+    44852
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZSTOCKPART-1001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 40,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZSTOCKPART-1001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 40
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "POSITIVE quantity. Must rank above the zero-quantity twin."
+  },
+  {
+   "key": "rank_i_outstock_inv",
+   "type": "InventoryPart",
+   "depends_on": "rank_i_outstock",
+   "serves": [
+    44852
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZSTOCKPART-1002",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 0,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZSTOCKPART-1002",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 0
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "ZERO on hand. \ud83d\udd34 It must still be RETURNED - the case asserts out-of-stock ranks lower, not that it disappears. A missing row here is a different and reportable behaviour."
+  },
+  {
+   "key": "rank_p_active_inv",
+   "type": "InventoryPart",
+   "depends_on": "rank_p_active",
+   "serves": [
+    55712
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZPARTBUSY-2001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 25,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZPARTBUSY-2001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 25
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "Same stock state as its twin, so stock cannot explain any ordering difference. The activity signal is applied in the dependent pass."
+  },
+  {
+   "key": "rank_p_quiet_inv",
+   "type": "InventoryPart",
+   "depends_on": "rank_p_quiet",
+   "serves": [
+    55712
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZPARTBUSY-2002",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 25,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZPARTBUSY-2002",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 25
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "Identical stock, no activity. The control that isolates recent-activity from in-stock."
   }
  ]
 }

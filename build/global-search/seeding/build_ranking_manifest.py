@@ -107,6 +107,35 @@ def cat_part(key, number, name, serves, why):
             'verify': ['part_number', 'name'],
             '_why': why}
 
+def inv_part(key, cat_key, number, qty, serves, why):
+    """🔴 A CATALOGUE PART IS NOT SEARCHABLE ON ITS OWN. Both ZZSTOCKPART and ZZPARTBUSY returned
+    NOTHING after their catalogue parts were created and verified present - the search indexes the
+    INVENTORY record, so a catalogue part with no stock row is invisible. Measured 2026-09-17.
+
+    The bin location cannot be conjured by name either, so it is lifted off a part that already sits
+    in one - the same "existing data is the lookup table" move the rest of the kit uses."""
+    return {'key': key, 'type': 'InventoryPart', 'depends_on': cat_key, 'serves': serves,
+            'find': {'mode': 'search', 'list': '/api/inventory/parts', 'coll': 'collection',
+                     'field': 'part_number', 'value': number, 'control': 'P550848'},
+            'create': {'endpoint': '/api/inventory/parts/create',
+                       'payload': {'quantity': qty, 'cost': 19.5, 'tags': [],
+                                   'min': 5, 'max': 200, 'sell_price': 39.99},
+                       'resolve_by_example': {'catalog_part_id': {
+                           'list': '/api/parts-catalogue/catalogue-parts', 'coll': 'collection',
+                           'match_field': 'part_number', 'value': number,
+                           'take': 'id', 'take_as': 'catalog_part_id',
+                           'also_take': {'category_id': 'category'}}},
+                       'resolve_nested': {'bins': {
+                           'list': '/api/inventory/parts', 'coll': 'collection',
+                           'search': 'P550848', 'take_path': 'binLocations.0.binLocationId',
+                           'template': [{'id': '@', 'isDefault': True, 'quantity': qty}]}},
+                       'id_from': 'data.part_id'},
+            'verify': ['part_number'],
+            'skip_verify': ['tags', 'bins', 'catalog_part_id', 'sell_price', 'cost',
+                            'quantity', 'min', 'max'],
+            '_why': why}
+
+
 R = []
 
 # ── C55707 [ZZPREFIX] prefix > whole-word > fuzzy ──────────────────────────────────────────────
@@ -218,6 +247,20 @@ R += [
  customer('fz_long', 'ZZFUZZLEN Abcde Logistics', [55713],
    'LONG token "Abcde" - five letters. Querying "Abcdf" (one edit) SHOULD find it. The contrast '
    'between these two rows is the whole case.'),
+]
+
+# ── the stock rows that make the parts findable at all ────────────────────────────────────────
+R += [
+ inv_part('rank_i_instock_inv', 'rank_i_instock', 'ZZSTOCKPART-1001', 40, [44852],
+   'POSITIVE quantity. Must rank above the zero-quantity twin.'),
+ inv_part('rank_i_outstock_inv', 'rank_i_outstock', 'ZZSTOCKPART-1002', 0, [44852],
+   'ZERO on hand. 🔴 It must still be RETURNED - the case asserts out-of-stock ranks lower, not '
+   'that it disappears. A missing row here is a different and reportable behaviour.'),
+ inv_part('rank_p_active_inv', 'rank_p_active', 'ZZPARTBUSY-2001', 25, [55712],
+   'Same stock state as its twin, so stock cannot explain any ordering difference. The activity '
+   'signal is applied in the dependent pass.'),
+ inv_part('rank_p_quiet_inv', 'rank_p_quiet', 'ZZPARTBUSY-2002', 25, [55712],
+   'Identical stock, no activity. The control that isolates recent-activity from in-stock.'),
 ]
 
 MANIFEST = {
