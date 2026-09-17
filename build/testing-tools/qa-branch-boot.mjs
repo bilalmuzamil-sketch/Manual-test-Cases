@@ -95,7 +95,18 @@ export async function bootOrigin({ app, apiHost, ssoFile, label = app, route = '
     proxy: { server: `http://127.0.0.1:${PORT}` },
     args: ['--no-sandbox', '--ignore-certificate-errors'],
   });
-  const ctx = await browser.newContext({ viewport: { width: Number(process.env.QA_VW || 1600), height: Number(process.env.QA_VH || 1000) }, deviceScaleFactor: Number(process.env.QA_DPR || 1), ignoreHTTPSErrors: true });
+  // QA_DEVICE names a Playwright device profile (e.g. "iPhone 13") and brings REAL mobile
+  // emulation with it: isMobile, hasTouch and a mobile user agent. A resized desktop window is
+  // NOT the same test - it proves layout only, never touch or a phone browser's own behaviour.
+  const dev = process.env.QA_DEVICE ? pw.devices[process.env.QA_DEVICE] : null;
+  if (process.env.QA_DEVICE && !dev) throw new Error(`unknown QA_DEVICE "${process.env.QA_DEVICE}"`);
+  const ctx = await browser.newContext({
+    ...(dev || {}),
+    viewport: { width: Number(process.env.QA_VW || (dev ? dev.viewport.width : 1600)),
+                height: Number(process.env.QA_VH || (dev ? dev.viewport.height : 1000)) },
+    deviceScaleFactor: Number(process.env.QA_DPR || (dev ? dev.deviceScaleFactor : 1)),
+    ignoreHTTPSErrors: true,
+  });
   // host-only on BOTH hosts, never a leading dot / parent domain (trap 2)
   await ctx.addCookies([{ ...sso, domain: APIH }, { ...sso, domain: APPH }]);
 

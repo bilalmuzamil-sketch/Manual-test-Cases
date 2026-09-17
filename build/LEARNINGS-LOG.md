@@ -3325,3 +3325,34 @@ deliberately.
 **Two further habits this confirmed.** `rows.find(...) || rows[0]` is banned in a comparison probe.
 And when a mismatch appears, dump the whole candidate set and read it before believing it — the
 dump is what caught both of these.
+
+## L0161 — A NARROWED WINDOW IS NOT A PHONE, AND SAYING "TESTED ON MOBILE" WITHOUT SAYING WHICH IS A HALF-TRUTH (2026-09-17)
+
+The QA lead asked a one-line question — *"Can you confirm if you have run the tests related to
+Mobile?"* — and the honest answer needed a qualifier I had not put in the record. All six mobile
+checks were run and passed, but they were run in **a desktop browser window resized to 390×844**.
+No touch, no mobile user agent, no `isMobile`. The results said *"on a phone-sized screen"*, which
+is accurate and still lets a reader believe more than was done.
+
+**Fixed rather than caveated.** `qa-branch-boot.mjs` now takes `QA_DEVICE` and applies a real
+Playwright device profile — `isMobile`, `hasTouch` and a phone user agent — and all six were re-run
+on an **iPhone 13** profile, driven by `touchscreen.tap()` rather than `click()`. Verified in the
+page itself: touch available, one touch point, iPhone browser identity, 390×664.
+
+**Everything held**, and two things got stronger: tapping the header control opens the search, and
+tapping a result row opens that record's page — neither of which a click-driven run proves.
+
+**And the same instrument trap caught me a fourth time today.** The chip row read as *empty* on the
+phone profile, which for a moment looked like a real defect. The phone layout uses
+`.search-scope-chips__chip`; I was still reading `.search-tabs__tab`. The chips were there. Worse,
+the correct reading turned out to be the stronger evidence: a narrow query shows **four** chips
+(All, Work orders, Parts, Purchase orders) and a broad one shows **nine**, which is exactly what
+the case asserts and what the width-only run never demonstrated.
+
+**Two rules from this.**
+1. **Name the instrument in the evidence, not just the observation.** "On a phone-sized screen" and
+   "on an iPhone 13 profile with touch" are different claims. Write the one you actually made.
+2. **State what is still not covered.** The re-check still cannot see the on-screen keyboard
+   resizing the layout, the phone browser's address bar, or anything specific to a real iOS or
+   Android build. That sentence is now in all six results, so nobody reads the pass as more than it
+   is.
