@@ -92,17 +92,34 @@ def drive(wo, want):
 
 def main():
     ids = json.load(open(f'{HERE}/{IDS_FILE}'))
-    spare = []
+    # 🔴 ASK WHETHER THE WORK IS ALREADY DONE BEFORE ASKING WHETHER YOU CAN DO IT. The first version
+    # counted spare `estimate` work orders first, so on the SECOND reseed - when the two it had
+    # already driven were sitting there Complete and Invoiced exactly as intended - it found one
+    # spare and reported a red "need two spare estimate work orders". A reseed that is working
+    # perfectly must not print an alarm; a reader who learns to ignore one red line will ignore the
+    # real one.
+    have = {}
     for i in ids.get('work_orders_fib_main') or []:
         st, num = status_of(i)
-        if st == 'estimate': spare.append((i, num))
-    print(f'spare estimate work orders: {[n for _, n in spare]}')
-    if len(spare) < 2:
-        print('🔴 need two spare estimate work orders; found', len(spare)); return
+        if st in ('complete', 'invoiced', 'paid'):
+            have.setdefault('invoiced' if st in ('invoiced', 'paid') else 'complete', (i, num, st))
+    if 'complete' in have and 'invoiced' in have:
+        for k, (i, num, st) in have.items(): print(f'  {num}: already {st}')
+        print('  both statuses already present - nothing to do')
+        json.dump({k: {'id': i, 'number': n, 'status': st} for k, (i, n, st) in have.items()},
+                  open(STATE, 'w'), indent=1)
+        spare = []
+    else:
+        spare = [(i, n) for i in (ids.get('work_orders_fib_main') or [])
+                 for st, n in [status_of(i)] if st == 'estimate']
+        print(f'spare estimate work orders: {[n for _, n in spare]}')
+        need = 2 - len(have)
+        if len(spare) < need:
+            print(f'🔴 need {need} spare estimate work order(s); found {len(spare)}'); return
 
     try: done = json.load(open(STATE))
     except Exception: done = {}
-    plan = [('complete', spare[0]), ('invoiced', spare[1])]
+    plan = [(w, spare[k]) for k, w in enumerate(x for x in ('complete', 'invoiced') if x not in have)]
     for want, (wo, num) in plan:
         cur, _ = status_of(wo)
         if cur == want or (want == 'invoiced' and cur in ('invoiced', 'paid')):

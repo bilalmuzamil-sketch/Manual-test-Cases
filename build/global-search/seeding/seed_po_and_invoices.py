@@ -259,13 +259,13 @@ def finish(st, tag, rec, row, order, vid):
         invno = f"ZZT-INV-{row['pn'][-1]}"
         r, _ = receive(order, vid, invno)
         ok = r['status'] in (200, 201)
-        print(f"       receive -> {r['status']}" + ('' if ok else f"  {str(r['raw'])[:220]}"))
+        print(f"       receive -> {r['status']}" + ('' if ok else f"  {str(r.get('raw') or r.get('error'))[:220]}"))
         if ok: rec['invoice_number'] = invno
     if row['pay'] and rec.get('invoice_number') and not rec.get('pay_result'):
         pr, msg = pay(vid, rec['invoice_number'], row['pay'])
         rec['pay_result'] = (f"{pr['status']} {msg}" if pr else f'FAILED {msg}')
         print(f"       pay({row['pay']}) -> {rec['pay_result']}"
-              + ('' if (pr and pr['status'] in (200, 201)) else f"  {str((pr or {}).get('raw'))[:220]}"))
+              + ('' if (pr and pr['status'] in (200, 201)) else f"  {str((pr or {}).get('raw') or (pr or {}).get('error'))[:220]}"))
     st[tag] = rec; save(st)
 
 
@@ -301,14 +301,22 @@ def main():
         # wiped row is REBUILT IN THIS PASS - not cleared for some later run that nobody may run.
         live_orders = {o['id']: o for o in orders_by_vendor(vid)}
         live_invoices = {str(d.get('invoice_number')) for d in deliveries_by_vendor(vid)}
+        # 🔴 THE DELIVERABLE IS THE INVOICE, NOT THE PURCHASE ORDER. A fulfilled purchase order
+        # drops out of /api/inventory/orders, so requiring it to still be listed declared a finished
+        # row unfinished and rebuilt it - a duplicate PO on EVERY reseed, forever. For a row that
+        # receives, the invoice existing IS the proof; the purchase order only has to be there for a
+        # row that stops at 'ordered'.
         order_live = rec.get('order_id') in live_orders
-        invoice_live = (not row['receive']) or (rec.get('invoice_number') in live_invoices)
-        done = order_live and invoice_live and (not row['pay'] or rec.get('pay_result'))
+        invoice_live = rec.get('invoice_number') in live_invoices
+        if row['receive']:
+            done = invoice_live and (not row['pay'] or rec.get('pay_result'))
+        else:
+            done = order_live
         if done:
             print(f"  {tag:14} complete -> PO {rec['order_number']} "
                   f"inv {rec.get('invoice_number')} pay={rec.get('pay_result')}")
             continue
-        if rec.get('order_number') and not order_live:
+        if rec.get('order_number') and not order_live and not invoice_live:
             print(f"  {tag:14} 🔶 recorded PO {rec.get('order_number')} is GONE from the "
                   f"environment — rebuilding it now")
             st.pop(tag, None); save(st); rec = {}

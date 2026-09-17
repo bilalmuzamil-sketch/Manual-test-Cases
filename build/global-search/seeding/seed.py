@@ -98,7 +98,11 @@ def call(path, method='GET', body=None):
     except urllib.error.HTTPError as e:
         status, raw, hdrs = e.code, e.read(), e.headers
     except Exception as e:
-        return {'status': 'ERR', 'error': str(e), 'json': None}
+        # 🔴 'raw' MUST BE PRESENT ON EVERY RETURN PATH. It was missing here, so any caller that
+        # printed r['raw'] to explain a failure died with a KeyError *instead of* reporting the
+        # failure - the error handler crashed on the error. Cost: a seven-step reseed that stopped
+        # at step 4 with a stack trace rather than a diagnosis.
+        return {'status': 'ERR', 'error': str(e), 'json': None, 'raw': str(e).encode()[:250]}
     for sc in hdrs.get_all('Set-Cookie') or []:          # playbook §Q1
         m = re.search(r'PHPSESSID=([^;]+)', sc)
         if m and m.group(1) not in ('deleted', '') and m.group(1) != c['PHPSESSID']:

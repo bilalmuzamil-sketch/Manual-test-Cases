@@ -1,5 +1,9 @@
 # RESEED — the four keywords
 
+> **📖 EVERY trap, count target, permission map and non-seedable item is in
+> [`RESEED-KNOWLEDGE.md`](RESEED-KNOWLEDGE.md) — one page, written so a reseed is a command rather
+> than an investigation. Read it before debugging anything here.**
+
 **Say one of these and nothing else. I will do the rest.**
 
 There are **two universes** of test data and they must never be mixed, so each one has its own
