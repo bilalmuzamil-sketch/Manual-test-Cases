@@ -93,3 +93,104 @@ Driven through the UI (work order ⋮ → **Audit Log**, and the Part History pa
   `build/APP-ACTIONS-PLAYBOOK.md` §AC.9 with the full seeding contract.
 * A browser Dev-Mode quick-login rotates the shared `PHPSESSID` and kills any curl cookie taken
   before it, so UI and API work need a session re-mint between them.
+
+
+### B — intra-work-order line move: PASS
+
+Same staged part moved between two lines of **S9304-17435** (CVIP inspection → Wheels off):
+
+| | new rows |
+|---|---|
+| S9304-17435 | **1** `work_order.part.moved` |
+| the other work order | **0** |
+| Part History | **0** |
+
+The single row names both lines and the same work order on each end — exactly the shape the PR
+describes:
+```
+movedFromWorkOrderNumber S-17435   movedToWorkOrderNumber S-17435
+movedFromLineName  Service - CVIP inspection single or tandem axle
+movedToLineName    Service - Wheels off single or tandem axle
+movedQuantity 1    userName Admin ShopView
+```
+No Part History row, which is right — the part did not change work order.
+
+### C — part-request (unpicked) move: PASS
+
+"Wiper blades", a vendor request of qty 2 in `authorized_to_order`, moved from S9304-17435 to
+S9304-17358.
+
+| | new rows |
+|---|---|
+| S9304-17435 (source) | **1** `work_order.part.moved` |
+| S9304-17358 (destination) | **1** `work_order.part.moved` |
+| Part History | **0** |
+
+Both rows carry `movedFrom S-17435 → movedTo S-17358`, `movedQuantity 2`, `userName Admin ShopView`,
+and `partRequestId 1a211b48…` (this path records the request id where the staged-part path records
+`partId`). **No Part History row** — correct per the ticket: an unpicked request has not left inventory.
+
+### D — core deposit: PASS
+
+Cored inventory part **FLT1443E23** (core charge $43.47, core unit `cc06f6cc…`) seeded, staged and
+moved across work orders. The part and its core travel together, and **both inventory units get their
+own Part History row**:
+
+| Part History for | new rows |
+|---|---|
+| FLT1443E23 (the part) | **1** `part.moved_to.work_order`, S-17435 → S-17358, qty 1 |
+| its core deposit unit | **1** `part.moved_to.work_order`, S-17435 → S-17358, qty 1 |
+
+This is the second defect the blind review caught, and it is fixed.
+
+Precise on the work-order side: a cored move still writes **one** `work_order.part.moved` per side,
+not two — the core is not logged separately there. Both rows physically landed on the destination line.
+
+### E — regressions
+
+**Totals still recalculate.** With a priced staged part ($40 × 2 = $80):
+
+| | parts | subtotal | total |
+|---|---|---|---|
+| S9304-17435 before | 80 | 737.46 | 774.33 |
+| S9304-17435 after | **0** | 657.46 | 690.33 |
+| S9304-17358 before | 501.40 | 1,164.18 | 1,222.39 |
+| S9304-17358 after | **581.40** | 1,244.18 | 1,306.39 |
+
+Exactly $80 moved across, and the two history rows were written in the same operation.
+
+*(An earlier run of this check was inconclusive because the part I had seeded carried cost $0 — a $0
+part cannot move a total. It was re-run with a priced part.)*
+
+**No positional-DTO shift.** The ticket warns that the ~60–90 positional history payload arguments
+will shift every event type if new fields are not appended at the very end. Compared field-by-field
+against production:
+
+* branch payload **92 fields**, production **85** — exactly the **7** new `moved*` fields added,
+  **none removed**
+* for all four event types present on both environments (`work_order.created`,
+  `work_order.line.created`, `work_order.line.status_updated`, `work_order.part.requested`) the
+  **non-null field sets are identical**
+
+Appended correctly; nothing shifted.
+
+## Checked and deliberately NOT raised (continued)
+
+* **`?quantity` on the part-request move endpoint is ignored.** Sending `quantity: 99` against a
+  qty-2 request returned 200 and moved the whole request unchanged. The endpoint's contract is only
+  `{part_request_id, target_line_id}`, so there is nothing to reject — noted so nobody reads the 200
+  as an accepted over-quantity split.
+
+## Honest limits — what was NOT exercised
+
+* **The split case.** The PR notes a fixed defect where "a split part request attributed the source
+  work order's entry to the target-side request". I could not produce a split: the move endpoint
+  accepts no quantity, so a split can only arise from a partially-received request, and creating one
+  needs the full purchase-order → partial-delivery flow. I got as far as `waiting_to_receive`, where
+  every status action is refused, and stopped there rather than build out the PO flow. **Not tested
+  by me** — it is covered by the PR's own Playwright specs and the blind review, not by this pass.
+* **`POST /api/part-sales/move`.** Declared a follow-up ticket in the description, and left alone.
+  The endpoint exists on the branch and takes `{part_request_ids, work_order_id,
+  target_work_order_id}`; I did not exercise it, so I am not asserting what it does or does not write.
+* Only **one** cored part exists on this branch and it had zero stock, so Test D required a cycle
+  count to give it stock first.
