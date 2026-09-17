@@ -2911,3 +2911,35 @@ had I filed on my own judgement the developers would have been sent to look at w
 **What I should have done earlier:** flagged the wording as a candidate case-defect when I first saw
 that every per-type count WAS capped correctly. A failure where the specific mechanism plainly works
 and only a general phrase is violated is a signal that the phrase is wrong, not the product.
+
+
+## L0143 — HE REWROTE MY TICKET AND THE LESSON WAS VOICE, NOT LAYOUT (2026-09-17)
+
+My section order was right; my writing was not. Side by side, his rewrite is shorter, harder to
+misread, and scannable in a backlog, and mine reads like a narrative someone has to parse.
+
+**Four concrete differences, now in skill 06 as the house voice:** a Title-Case title naming the
+relationship in ~70 characters instead of a 130-character sentence · a `Description` that states
+the RULE broken first, then illustrates the SHAPE of the fault in bullets, rather than opening with
+my specific test data · `Steps to Reproduce` carrying actions only, with what-you-see as sub-bullets
+and the verdict in bold Actual/Expected blocks · bold and monospace used throughout instead of
+plain prose.
+
+**And the section is called `Description`, never "The problem".** He corrected that by name.
+
+## L0144 — I DREW THE WRONG LESSON FROM HIS EDIT, AND THAT IS ITS OWN MISTAKE (2026-09-17)
+
+He replaced my picture with the same picture cropped, so I concluded *banners are clutter* and
+stripped it. He corrected me: **banners are always needed; he cropped that one because it was
+confusing.** The fault was that my banner just repeated the ticket title, which tells a layman
+nothing about which screen they are looking at. A banner should say WHAT THIS IS — *"The new search
+on the test branch, after typing Fib"*.
+
+**The general lesson is the one worth keeping: when someone edits my work, the edit shows WHAT they
+changed, not WHY.** I inferred the rule from a single diff and got it backwards. Where an edit
+admits more than one reading, ask which — it costs one line and it stopped being free the moment I
+started applying the wrong rule to everything else.
+
+**A second thing broke while I was at it:** my resizing step applied one picture's dimensions to
+every picture in the description and distorted the screenshot he had pasted in himself. Fixed to
+size each one independently, and to leave a picture it does not recognise alone rather than guess.

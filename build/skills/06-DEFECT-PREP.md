@@ -559,6 +559,89 @@ What that means in practice, from the SV-10061 rewrite that prompted it (≈900 
 **The test:** can a developer read the whole description in under a minute and then reproduce it?
 If not, it is too long — and length is not evidence of rigour.
 
+## 🛑 THE HOUSE VOICE — REFINED BY HIM 2026-09-17 FROM A TICKET HE REWROTE (SV-10161)
+
+**He rewrote one of my tickets and told me to read it: *"see how nicely … made everything stupid
+simple with clear steps of replication and current and expected behavior with simplified
+description and ticket title, you have to keep your ticket wordings like this."*** What changed is
+VOICE and SHAPE, not the section order. Copy this, not my earlier narrative style.
+
+### 1. TITLE — short, Title Case, states the relationship
+
+`Global Search – Contact Name Match Ranks Above Exact Company Name Match`
+`Global Search – "Show all N" Link Missing From Group Headers`
+
+**Feature name, en-dash, then the fault in Title Case. Around 60-75 characters.** NOT a narrative
+sentence. Mine was *"searching a person's name lists a company matched only through a contact above
+the company actually called that name"* — 130 characters and unscannable in a backlog.
+
+### 2. THE FIRST HEADING IS `Description` — **NEVER "The problem"** (his correction, 2026-09-17)
+
+Inside it, three moves in order:
+
+1. **One sentence naming the rule broken**, with the key clause in bold:
+   *"When searching for a customer by name, **Global Search is not prioritizing the stronger direct
+   company-name match over a weaker contact-name match**."*
+2. **"For example," + 3-4 bullets describing the SHAPE of the fault generically** — "one company has
+   the name directly", "another does not but a contact does", "the indirect one is displayed above".
+   **Not my test data.** The reader should recognise the class of problem before meeting an instance.
+3. **One sentence: "This appears inconsistent with … defined in *Epic SV-xxxx* and *… v1.5*."**
+
+### 3. `Steps to Reproduce` — actions only; observations as SUB-bullets; then Actual / Expected
+
+```
+# Sign in to ShopView and open *Global Search* … or press *Ctrl + K*.
+# Search for {{Deshawn}}.
+# Under the *Customers* section, observe the first result:
+#* *ZZAUTOTEST Fibridge Commercial*
+#* Displayed as *"Contact match"*
+#* {{Deshawn}} does not appear in the company name or address.
+
+*Actual Result:*
+…
+
+*Expected Result:*
+…
+```
+
+**The numbered step is the ACTION. What you see goes in `#*` sub-bullets under it. The verdict goes
+in bold `Actual Result:` / `Expected Result:` blocks immediately after the steps** — and therefore
+**the separate "Current behaviour" and "Expected behaviour" sections are GONE.** Carrying both was
+duplication; he removed them.
+
+### 4. FORMATTING IS PART OF THE CLARITY
+
+`*bold*` on every key term and record name · `{{monospace}}` on anything typed or any identifier ·
+short lines · bullets over prose. A wall of sentences is what made mine hard to read.
+
+### 5. PICTURES — **THE BANNER STAYS. MAKE IT HELPFUL (his correction, 2026-09-17)**
+
+*"No picture banners are needed always — I cropped it for this picture because it was also not very
+clear and confusing the layman PO and manual testers; you are not supposed to cut the picture
+banners, rather make them helpful and not confusing."*
+
+⛔ **I drew the wrong lesson from his crop and stripped the banner. That was wrong.** The banner
+stays on every picture. What it must NOT be is a restatement of the ticket title — that is what made
+his unclear.
+
+**A helpful banner says WHAT THE READER IS LOOKING AT:**
+* ✅ `The new search on the test branch, after typing "Fib"`
+* ❌ `A group of 20 matches offers no way to see past the first five` (the title again — tells a
+  layman nothing about which screen this is)
+
+Boxes, numbered discs and the numbered legend all stay. Keep captions short enough to fit the image
+width, and pad the image left so a disc never covers the text it points at.
+
+### 6. TWO PICTURE TRAPS, BOTH MEASURED 2026-09-17
+
+* **Size EACH picture to ITS OWN dimensions.** `size_pics.py` takes the images in document order;
+  the earlier one-size-fits-all version stretched a screenshot the QA lead had pasted in himself to
+  another picture's shape. Never assume a description holds one picture.
+* **Wiki image options split on COMMAS**, so `alt="the requirement, highlighted"` breaks the tag and
+  prints a stray quote. Keep alt text comma-free, or omit it.
+
+---
+
 **THE ORDER IS HIS, GIVEN 2026-09-10 AND AMENDED BY HIM 2026-09-16 — NOT TO BE REARRANGED:**
 
 > **🛑 AMENDMENT 2026-09-16 (QA lead, verbatim): *"I want the environent to appear after a line
