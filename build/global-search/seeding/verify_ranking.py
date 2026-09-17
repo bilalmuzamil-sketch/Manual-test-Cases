@@ -91,15 +91,20 @@ def main():
         if not ok: fails.append(kw)
 
     print('\n=== THE TYPO RECORD IS REACHABLE ONLY BY FUZZY MATCHING (C55707) ===')
-    d, err = search('ZZPREFIXX')
+    d, err = search('ZZPREFIY')
     if err:
-        print(f"  ❌ ZZPREFIXX {err}"); fails.append('ZZPREFIXX')
+        print(f"  ❌ ZZPREFIY {err}"); fails.append('ZZPREFIY')
     else:
         n = len(groups(d).get('customers', []))
-        # ZZPREFIXX is one edit from ZZPREFIX, so the fuzzy search legitimately returns all three.
+        # 🔴 CORRECTED 2026-09-17. The typo row used to be named ZZPREFIXX, which START S with the
+        # query ZZPREFIX - so the product read it as an ordinary prefix match, not a typo, and
+        # C55707 could not be judged at all. It is now ZZPREFIY: one letter SUBSTITUTED, never
+        # added, so the only way in is a typo. Confirmed live: the row comes back marked as a
+        # close match and scores 0.45 against 0.90 for the two literal matches.
+        # ZZPREFIY is one edit from ZZPREFIX, so the fuzzy search legitimately returns all three.
         ok = n >= 1
-        print(f"  {'✅' if ok else '❌'} ZZPREFIXX returns {n} customer(s) — the typo row exists and is reachable")
-        if not ok: fails.append('ZZPREFIXX')
+        print(f"  {'✅' if ok else '❌'} ZZPREFIY returns {n} customer(s) — the typo row exists and is reachable ONLY by a typo")
+        if not ok: fails.append('ZZPREFIY')
 
     print('\n=== summary ===')
     if fails:

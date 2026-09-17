@@ -3356,3 +3356,49 @@ the case asserts and what the width-only run never demonstrated.
    resizing the layout, the phone browser's address bar, or anything specific to a real iOS or
    Android build. That sentence is now in all six results, so nobody reads the pass as more than it
    is.
+
+## L0162 — A BLOCKED CASE IS A QUESTION ABOUT THE DATA, AND TWO OF THREE ANSWERED YES (2026-09-17)
+
+Three of the sixteen handoff cases were blocked on seed data. With standing authority over the
+branch, two were fixed and re-run the same evening — and **both then exonerated or convicted the
+product on evidence that did not exist an hour earlier.**
+
+**C55709 — the data was wrong, the product was right.** The work order seeded against the 2019
+vehicle sat at **Estimate**, which is not open, so neither vehicle carried the signal the case
+compares; the newer 2025 came first purely on model year. Moving that work order to **Approved**
+(one of the three open stages) flipped the order within seconds: the 2019 now ranks above the 2025,
+exactly as the case asserts. **Had it been recorded Failed, a developer would have been sent after
+correct code.**
+
+**C55707 — the data was wrong, and fixing it uncovered a real defect.** The record meant to be
+reachable "only by a typo" was named `ZZPREFIXX`, which *starts with* the query `ZZPREFIX` — so the
+product read it as an ordinary prefix match and the three-way comparison was meaningless. Renamed to
+`ZZPREFIY` (a letter **substituted**, never **added**) it now comes back marked as a close match and
+scoring 0.45. With the data finally sound, the real fault appeared: **a prefix match and a
+whole-word match score identically — 0.90000004 each** — where the requirement gives them +0.70 and
++0.50. The product names each match kind correctly and then ignores the difference.
+
+**The rule this gives me: when a ranking case is blocked on data, fixing the data is part of the
+test, not a favour to the seeder.** A blocked ranking case is worth nothing; a fixed one either
+clears the product or produces the sharpest kind of defect — one where the product's own numbers are
+the evidence.
+
+**And the design rule for a fuzzy fixture: substitute a character, never append one.** Appending
+leaves the record a literal prefix of the query, which is precisely not a typo. That single
+character cost a case its meaning and would have cost a false defect.
+
+## L0163 — THE SCOPE TAB CAUGHT ME AGAIN, IN A HELPER I WROTE MYSELF (2026-09-17)
+
+Four checks came back completely empty — including the exact-identifier one, which momentarily
+looked like a serious product failure. The previous case had left the **Customers** tab selected,
+and every following query was silently scoped to it.
+
+**My own probe library documents this exact trap** and its `type()` helper resets to *All* for that
+reason. I wrote a fresh `q()` helper for this batch and left the reset out.
+
+**The rule: a helper that queries the search resets to All first, always.** And a second one that
+cost real time in the same batch — **when choosing a one-character-off identifier to prove there is
+no typo tolerance, pick one that does not exist.** `I9160-1397` is a real purchase order on this
+branch; using it as the "typo" reads as a failure of the rule when the product is behaving perfectly.
+`I9160-1399` is the correct choice, and both are now written into the case's result for whoever
+re-runs it.
