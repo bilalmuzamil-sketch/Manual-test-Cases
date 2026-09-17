@@ -27,25 +27,29 @@ owns, and our normal practice is to tell Vlad whenever one of his is touched.
 >
 > Reference: C44843, C44847, C44850, C55684.
 
-### B. A second company account, for the one test that needs two — **you sent one; the sign-in is dead**
+### B. A second company account, for the one test that needs two — **it exists; I need one more value**
 
-**What is happening.** One test checks that a search in one company never shows another company's
-records. You sent me a second company on 17 September and said it is empty. **I cannot get in.** Every
-request comes back "session has expired", and the sign-in details carry their own timestamp: they were
-created at **06:25 on 16 September**, about **thirty hours** before I used them, and these details only
-last about a day. Asking the system for a fresh session did not help — the part that has to be copied
-from your browser is the part that has gone stale.
+**Where this stands.** The second company is real and I can see it: **ZZAUTOTEST Second Org Ltd**. The
+main company's sign-in you sent works perfectly — I re-checked all the search test data through it and
+all 39 checks still pass. What I cannot yet do is work *inside* the second company: every request there
+comes back "session has expired".
 
-**What I did not do, on purpose.** There is a shortcut that signs me in automatically, and it would
-have been the wrong thing twice over: it signs in to **the original company, not the new one**, so it
-cannot reach the new company at all — and it would have knocked *you* out of your own browser session.
-Not worth it to save you one copy-and-paste.
+**What I got wrong, and the correction.** I told you earlier that the sign-in token was the stale part
+and asked you twice for a fresh one. That was wrong. The **same** token you had already sent works fine
+for the main company — I proved it minutes later. The value that decides *which company* you are in,
+and the value that goes stale, is the **second** of the three you copy. Being wrong about that cost you
+two unnecessary round trips, and I am sorry for it.
 
-**What I need.** The same three sign-in values, copied again **now**, while you are signed into the
-second company. Everything else is ready and waiting.
+**Why the username and password could not rescue it.** Signing in here goes through Google, so no
+password I hold can create a session; the only way in is values copied from a browser that is already
+signed in.
 
-**Cost of saying nothing:** that one test stays blocked, with the reason recorded, and nothing else is
-affected.
+**What I need — one value, not three.** Open the second company in your browser, and copy the **middle
+value** (the short one, `PHPSESSID`) *while you are looking at that company*. The other two I already
+have and they are fine.
+
+**Cost of saying nothing:** that one test stays blocked, with the reason recorded. Nothing else is
+affected — the rest of the search testing is ready to run.
 
 ### C. The new written method for setting up test data — **you asked for it, it is written**
 
