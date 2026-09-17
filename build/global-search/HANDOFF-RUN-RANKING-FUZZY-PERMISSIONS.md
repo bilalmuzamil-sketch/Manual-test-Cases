@@ -153,8 +153,20 @@ own handoff. **Open the case.**
 
 ## §4 · IF THE BRANCH WAS REDEPLOYED
 
+**First ask what is actually there — do not reseed on a hunch:**
+
 ```bash
-cd build/global-search/seeding && ./reseed_everything.sh qa
+cd build/global-search/seeding && python3 status.py
+```
+
+Read-only, a few seconds. It names the build marker, says whether it changed since the last run,
+and reports every universe as PRESENT / PARTIAL / GONE with the missing records named. If the
+session is not live it stops rather than reporting your data as missing.
+
+**Then, only if something is actually gone:**
+
+```bash
+./reseed_everything.sh qa
 ```
 
 One command rebuilds **all three universes** in dependency order and runs **each one's own verifier**:
