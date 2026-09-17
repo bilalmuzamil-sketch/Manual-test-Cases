@@ -9,6 +9,13 @@
 # loudly - running the V2 verifier against production reports a dead environment that is perfectly
 # healthy, and a tester then reseeds something that was never broken. Encoding it removes the choice.
 #
+# ORDER MATTERS AND IS NOT ARBITRARY:
+#   2 must precede 3  - you cannot set a status on a work order that does not exist
+#   3 must precede 4  - the purchase-order chain consumes work orders and needs them out of estimate
+#   4 must precede 5  - 5 takes the LEFTOVER estimate work orders, so 4 claims its own first
+#   5 must precede 7  - the verifier asserts all seven status badge colours
+#   6 is independent  - roles touch no records, but run before the verifier so one run proves all
+#
 # SAFE TO RUN ANY NUMBER OF TIMES. Every step measures first and creates only the difference, and
 # the seeder drops recorded ids that no longer resolve rather than appending new ones to dead ones.
 set -uo pipefail
@@ -47,11 +54,13 @@ step () {                       # step <label> <command...>
   fi
 }
 
-step "1/5  measure — writes nothing"              python3 seed.py --check
-step "2/5  create the 33 records, verify fields"  python3 seed.py --confirm
-step "3/5  spread the work-order statuses"        python3 set_wo_statuses.py --confirm
-step "4/5  purchase orders, invoices, payments"   python3 seed_po_and_invoices.py --confirm
-step "5/5  PROVE IT — $VERIFIER"                  python3 "$VERIFIER"
+step "1/7  measure — writes nothing"              python3 seed.py --check
+step "2/7  create the 33 records, verify fields"  python3 seed.py --confirm
+step "3/7  spread the work-order statuses"        python3 set_wo_statuses.py --confirm
+step "4/7  purchase orders, invoices, payments"   python3 seed_po_and_invoices.py --confirm
+step "5/7  drive two WOs to Complete + Invoiced"  python3 complete_and_invoice.py --confirm
+step "6/7  role fixtures for section 6734"        python3 seed_roles.py --confirm
+step "7/7  PROVE IT — $VERIFIER"                  python3 "$VERIFIER"
 
 echo; echo "---- writing the record inventory"
 python3 dump_seed_manifest.py > "SEED-MANIFEST-GS-V2-${SUFFIX}.md" \

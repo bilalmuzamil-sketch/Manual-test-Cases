@@ -87,6 +87,18 @@ NEGATIVES = [
  ('matches nothing at all', 'S1- 56438', None, '44864'),
 ]
 
+def status_spread():
+    """C44838 needs all SEVEN work-order badge colours on ONE term. It cannot be "Fib": the palette
+    caps every group at 20 and there are 30 matching work orders, so the two `declined` ones rank
+    out of sight and no limit or scope tab brings them back (measured: scope=work_orders&limit=50
+    still returns 20). The narrower term "Fibridge Commercial" returns 18 - under the cap - and
+    carries every status. This check exists so a reseed cannot quietly lose one."""
+    d, err = search('Fibridge Commercial')
+    if err: return set(), err
+    g = next((x for x in (d.get('groups') or []) if x['type'] == 'work_orders'), None)
+    return {i['fields']['status'] for i in (g['items'] if g else [])}, None
+
+
 def main():
     call('/api/staff/my-workplaces')
     print(f'=== environment: {ENV} ===')
@@ -109,6 +121,16 @@ def main():
         mark = '✅' if ok(n) else '🔴'
         print(f'  {mark} {label:40} {gtype:17} = {n:3}  [C{cases.replace(" ", ", C")}]')
         if not ok(n): bad.append((label, q, f'total={n}'))
+
+    print('\n=== STATUS BADGE COLOURS — all seven on one term (C44838) ===')
+    want = {'approved', 'estimate', 'in_progress', 'ready_for_review', 'complete', 'declined', 'invoiced'}
+    got, err = status_spread()
+    missing = want - got
+    print(f"  {'✅' if not missing else '🔴'} 'Fibridge Commercial' shows {len(got & want)} of 7"
+          f"  [{', '.join(sorted(got & want))}]")
+    if missing:
+        print(f'      missing: {sorted(missing)}')
+        bad.append(('status spread', 'Fibridge Commercial', f'missing {sorted(missing)}'))
 
     print('\n=== NEGATIVES — these MUST return nothing, and a control proves the probe works ===')
     for label, q, gtype, cases in NEGATIVES:

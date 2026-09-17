@@ -98,22 +98,27 @@ Work-order numbers do **not** behave this way — `S2-15441` is safe.
 | `S2-15441`, `S2-15450` | **nothing** |
 | `S1- 56438` | **nothing** (the no-results case) |
 
-### 🔴 THE THREE CASES WHOSE PRECONDITION NAMES A WORK ORDER THAT DOES NOT EXIST
+### ✅ THE THREE EXACT-NUMBER CASES ARE CORRECTED — nothing for you to do
 
-**C44843, C44847 and C44850 name `S2-15276`. There is no such work order on this branch and there
-cannot be** — work-order numbers are assigned by the branch, and new ones here come out as
-`S9160-xxxxx`. Typing `S2-15276` returns nothing, which would produce a **false Failed**.
+**C44843, C44847 and C44850 used to name `S2-15276`, which does not exist and cannot** (work-order
+numbers are branch-assigned). They now name **`S2-15430`**, near miss **`S2-15431`**, corrected on
+the QA lead's approval under Standing Rule 111 — **the number only; every other word is byte-identical
+to the original.**
 
-**Use `S2-15440` instead.** Verified live 2026-09-16: it exists, it is pinned as the top hit, and
-`S215440`, `S2 15440`, `s2-15440` and even `15440` all return it. `S2-15441`, `S2-15442`, `S2-15445`,
-`S2-15450`, `S2-15435` and `S2-15439` all return nothing, so any of them is the near-miss.
+Verified live before the edit and again after: `S2-15430` is pinned as the top hit, `S215430`,
+`S2 15430`, `s2-15430` and `15430` all return it, `S2-15431` returns nothing, and the record **opens**
+(`S-15430`, status Paid, Staging Heavy Duty). It is pre-existing estate data that survived the
+redeploy which wiped every seeded record, so it should still be there when you run.
 
-Do the same for **C44831/C44828**, which name `S1-644 Fibridge Commercial` — that one says *"for
-example"*, and the real equivalent is any of the seeded `S9160-176xx Fibridge Commercial` rows.
+🔴 **The trap that nearly went into the case, so you do not repeat it:** the first replacement chosen
+was `S2-15440`, which the palette returns, pinned, with every variant working — and which **cannot be
+opened**, because the search index is organisation-scoped while the record is workplace-scoped and it
+lives at a workplace this login cannot reach. **A row in the palette is not proof the record is
+reachable.**
 
-**Record in your result which number you actually typed.** The cases themselves should probably be
-corrected to name a real number; that is a `update_case` decision for the QA lead, and it is in the
-OUTSTANDING list at the end.
+`S1-644` still appears in C44828, C44831, C44858, C44859 and C44866 — those say *"like"* or *"for
+example"* and the tester never types them, so they cannot cause a false Failed and were deliberately
+left alone.
 
 ---
 
@@ -127,11 +132,11 @@ cannot satisfy one, the case is **Blocked with the reason**, never Failed (Rule 
 | **6774, all 8** (C44866–C44873) | **The hover quick-actions feature is not on the build** (epic SV-9173 deferred). Confirmed absent again 2026-09-16. | Leave **parked / Not available on Build**. No seed makes them runnable. Do not investigate again — this is recorded so nobody re-derives it. |
 | **C44880** | a **second tenant/organisation** | Not seedable — the branch has one organisation (two *locations*, which is not the same thing). **Blocked, infra.** |
 | **C44857, C44858, C44859, C45128, C45135** (6728) | recent activity in the **Yesterday / past-week / past-30-day** buckets | Per-user and time-based. "Today" you generate live by opening records. The older buckets cannot be produced by opening records now. **Test what you can, Block the rest with the reason.** |
-| **C44877–C44882** (6734) | **role fixtures** | `/api/roles` is not readable by GET (405), so these were not created. Non-prod offers **quick-login `admin` and `tech`** on the login page, which covers *with* vs *without* Parts access (C44877/C44878). The five bundle-specific roles C44882 wants — no Work Orders View, no Part Sales View, no Customers View, no Catalog & Inventory View, no Financial — must be made in the roles UI. **Blocked, infra, with exactly that list.** 🔴 Rule 83: quick-login **evicts the other session on this branch**. |
+| ~~**C44877–C44882** (6734)~~ | **✅ NOW RUNNABLE — see §4a** | The roles exist. Nothing blocked. |
 | **C44876** (offline), **C44829** (screen reader), **6738** (mobile), **C44897** (rollout) | tester technique | No data needed. Use a narrow window / devtools offline / a real screen reader. |
 | **C44855** | a user with **no** recent activity | Use a fresh profile or a private window. |
 | **C44830** | two work orders tied on relevance but **different last-updated dates** | The API does not let us backdate `updated_at`. The 8 pre-existing `Fib` work orders are 4–17 months old and `paid`, and the 22 seeded ones are new and open — that contrast is real and serves **C44851** properly. For C44830's exact *tie*, judge what you can and say what you could not. |
-| **C44838** | statuses **Completed** and **Invoiced** on a `Fib` work order | Five statuses are seeded and visible: **approved, in_progress, ready_for_review, declined, estimate**, plus 8 pre-existing `paid`. Complete and Invoiced need a completed line, a mileage and a tech story per work order and were not built. **Assess the five colours you have and say plainly that two were not exercised.** |
+| **C44838** | **✅ ALL SEVEN badge colours now exist** | 🔴 **Search `Fibridge Commercial`, NOT `Fib`.** Thirty work orders match `Fib` and the palette caps every group at 20, so the two `declined` ones rank out of sight and no scope tab or limit brings them back. `Fibridge Commercial` returns 18 rows carrying **approved, estimate, in_progress, ready_for_review, complete, declined and invoiced** — all seven. |
 
 ---
 
@@ -141,13 +146,50 @@ The Bridgeport fixture is **intact**: customer `ZZAUTOTEST Bridgeport Hauling`, 
 **S9160-17625 / -17626 / -17627 / -17628** on the **Staging Heavy Duty** location, a 2019 Freightliner
 Cascadia (unit ZZT-4471), and a second location **Staging Lethbridge** to switch to.
 
-🔴 **Search `ZZAUTOTEST Bridgeport`, not bare `ZZAUTOTEST`.** The seeding done today added enough
-`ZZAUTOTEST` work orders that the four Bridgeport ones no longer appear in the capped top 20 for the
-bare tag. They are all still there and `Bridgeport` returns every one of them — verified 2026-09-16.
-This is a change from what the case text assumes, and it is our doing, not a defect.
+**Re-measured 2026-09-17 on `v26.36.7-29ca209`: the case is runnable exactly as written.** Typing
+`ZZAUTOTEST` returns a Work orders group of 20 (the palette cap) and **all four Bridgeport work
+orders are among the rows shown**, and **all 20 rows are Staging Heavy Duty work orders** — so
+"write down the number of any one of them and use THAT number" is safe whichever row the tester
+picks. `ZZAUTOTEST Bridgeport` narrows it to exactly the four if you want them on their own.
+
+The one stale word: the precondition says the group "lists our four test jobs", and it now lists 20,
+because this session's seeding added 22 more `ZZAUTOTEST` work orders. That does not block the test —
+it is a count in a sentence, not a record identifier — and it is in the OUTSTANDING list rather than
+silently edited.
 
 The assertion itself — that the old location's rows never flash for even a moment during the
 re-fetch — is a sub-second human-eye observation. Watch the results closely as they load.
+
+---
+
+## §4a · PERMISSIONS AND ROLES (section 6734) — what to sign in as
+
+The search decides which of the eight groups you see from the **role's permission bundle**, not from
+the section names in the UI. The mapping (read from the product source, `SearchSectionAccess.php`):
+
+| Group | Needs |
+|---|---|
+| Work orders | `Work Orders: View` |
+| **Customers AND Assets** | `Customers: View` — **one permission, two groups** |
+| Parts | `Catalog & Inventory: View` |
+| Part Sales | `Part Sales: View` **AND** `See Financial Data` — **three conditions, not two** |
+| Vendors, Purchase Orders, Vendor Invoices | `Vendor & Order Management: View` |
+| — | the **Time Clock** role sees **nothing at all**, whatever its bundles say |
+
+**Sign in as these. Six of the seven already shipped with the branch; two were created for you.**
+
+| Case | Sign in as | Sees |
+|---|---|---|
+| C44877 (WITH parts) | **Admin** (or Office User, Foreman, Service Advisor…) | everything |
+| C44878 (technician WITHOUT parts) | **Technician** | work orders, customers, assets only |
+| C44879 (WITHOUT work orders) | **ZZAUTOTEST No Work Orders View** ← created | everything except work orders |
+| C44881 (a type with zero accessible records) | **Technician** | Parts / Part Sales / Vendors groups are **absent**, not empty |
+| C44882 (bundles hide groups + masked prices) | **Technician** (no parts, no part sales, no financial) · **Sales Representative** (no parts, no vendor management) · **ZZAUTOTEST No Work Orders View** · **ZZAUTOTEST No Customers View** ← created · **Time Clock User** (nothing) | one bundle missing in each |
+
+**A hidden group must leak neither rows NOR its count.** "Vendors (14)" tells a technician the shop
+has 14 matching vendors — which is exactly what the bundle withholds. Check the count is gone too.
+
+🔴 **Rule 83: quick-login evicts whoever else is working on this branch.** Coordinate before using it.
 
 ---
 
@@ -196,7 +238,18 @@ exists" is not "the search returns it".
 
 ---
 
-## §7 · TWO THINGS TO CARRY INTO YOUR REPORT (found while seeding, not yet filed)
+## §7 · TWO TICKET CANDIDATES — **YOU file these, and you RE-CHECK them first**
+
+**The QA lead's instruction, 2026-09-17: this session runs the tests and files a ticket for every
+defect found — and 🔴 CHECKS EACH OF MY FINDINGS AGAIN BEFORE TRUSTING IT.**
+
+I am a different session with no more authority than you. Everything below was measured on
+`v26.36.7-29ca209` and could be stale, environment-specific, or simply wrong — one finding in this
+project was already withdrawn after a vendor's *email* was mistaken for its *website*, and four true
+findings were wrongly withdrawn by blaming a search index for a redeploy. **So before you file:
+reproduce it, apply Rule 110's three checks (attribution, identity, provenance), and search Jira for
+an existing ticket — on 2026-09-16 all six reported losses already had one.** If it does not
+reproduce, say so; that is a useful result, not an awkward one.
 
 1. **Receiving a purchase order raised from a WORK ORDER answers HTTP 500.** The identical payload
    against a standalone inventory purchase order succeeds. Measured five times on
@@ -217,8 +270,25 @@ exists" is not "the search returns it".
 
 | # | Item | Who |
 |---|---|---|
-| 1 | **C44843, C44847, C44850 name `S2-15276`, which does not exist and cannot be created.** Agree the `update_case` correction to `S2-15440` (near-miss `S2-15441`), or confirm the tester should substitute and note it in the result. | QA lead |
-| 2 | **Role fixtures for 6734** — five roles each missing one view bundle, plus a no-financial role, each on a test login. Needs someone with the roles UI. | QA lead / dev |
-| 3 | **A second tenant for C44880** — not seedable on this branch. | infra |
-| 4 | **The two ticket candidates in §7** — the work-order receive 500, and the three-vs-four payment states. Filing is blocked by the Jira hold. | QA lead |
-| 5 | **C44838 Completed/Invoiced** — confirm assessing five of seven badge colours is acceptable, or authorise building two fully invoiced work orders. | QA lead |
+| 1 | **File the two ticket candidates in §7** — after re-checking each one yourself. | you |
+| 2 | **A second tenant for C44880** — not seedable; the branch has one organisation, and two *locations* is not the same thing. **Blocked, infra.** | infra |
+| 3 | **The older recent-activity buckets (6728)** — Yesterday / past week / past 30 days cannot be produced by opening records now, and the API cannot backdate a view. Test "Today" live, Block the rest with the reason. | tester |
+| 4 | **Rule 65 notice:** C44843, C44847, C44850 and C55684 carry `automation_type = Functional` and were edited (identifier and count only). Tell Vlad. | QA lead |
+
+---
+
+## APPENDIX · IF YOU NEED THE DATA REBUILT
+
+Say **`RESEED GSV2 QA`**, or run it yourself — one command, seven steps, about ten minutes:
+
+```bash
+cd build/global-search/seeding && ./reseed_gsv2.sh qa
+```
+
+**It is safe to run any number of times**: every step measures first and creates only the difference,
+and a third consecutive run changes nothing. **A reseed is finished when the verifier passes, not
+when the seeder prints 33/33** — *"the record exists"* is not *"the search returns it"*.
+
+Everything known about this data — every trap with the symptom it presents as, the exact count
+targets, the permission map, and what is not seedable and never will be — is on one page:
+**`build/global-search/seeding/RESEED-KNOWLEDGE.md`**. Read it before debugging anything.

@@ -52,7 +52,12 @@ def read_status(wo_id):
     r = call(f'/api/work-orders/view/{wo_id}')
     d = (r['json'] or {}).get('data', {}) or {}
     raw = (d.get('work_order') or {}).get('status')
-    return None if raw is None else str(raw).strip().lower().replace(' ', '_')
+    if raw is None: return None
+    v = str(raw).strip().lower().replace(' ', '_')
+    # 🔴 THE LABEL AND THE VALUE ARE DIFFERENT WORDS. change-status is POSTed 'ready_for_review';
+    # the view reads back the LABEL 'Review'. Comparing them raw makes a successful walk report as a
+    # failure on every single run - three red marks per reseed for work orders that were correct.
+    return {'review': 'ready_for_review'}.get(v, v)
 
 def main():
     ids = json.load(open(f'{HERE}/{IDS_FILE}'))
@@ -70,8 +75,16 @@ def main():
             if i < len(nounit_ids): jobs.append((nounit_ids[i], st)); i += 1
 
     got = {}
+    TERMINAL = {'complete', 'invoiced', 'paid'}
     for wo_id, target in jobs:
         before = read_status(wo_id)
+        # 🔴 NEVER WALK A TERMINAL WORK ORDER BACK. Step 5 drives two work orders to Complete and
+        # Invoiced, and those are one-way doors. This step assigns its plan POSITIONALLY, so on the
+        # next reseed the same slots came round again and it tried to walk them back to estimate -
+        # failing, loudly, every run, on work orders that were exactly right.
+        if before in TERMINAL:
+            got.setdefault(before, []).append(wo_id)
+            print(f'  {wo_id[:8]} is {before} - terminal, left alone'); continue
         if before == target:
             got.setdefault(before, []).append(wo_id); print(f'  {wo_id[:8]} already {before}'); continue
         if not CONFIRM:

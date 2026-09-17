@@ -71,8 +71,8 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | work_orders_fib_main | S-17664 | a8c08563-237d-427a-8f22-1728817dcdda | Review | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17665 | 58be8992-daf5-4f75-80e5-ad323fa263e3 | Declined | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17666 | ac7f18e7-d49e-4359-a4d3-f9bd9868ae69 | Declined | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17667 | 9e5796e6-50c6-4b7f-9a22-d4ee4bc579b9 | Estimate | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17668 | 603f0a86-07aa-444b-baf3-b52adad8a506 | Estimate | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17667 | 9e5796e6-50c6-4b7f-9a22-d4ee4bc579b9 | Complete | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17668 | 603f0a86-07aa-444b-baf3-b52adad8a506 | Invoiced | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17669 | 636f7fc0-d7d6-4a47-ae0b-710376d9de58 | Estimate | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_nounit | S-17670 | 02fd66df-a97a-4bb7-a8de-b983cb065670 | Approved | ZZAUTOTEST Fibridge Logistics |
 | work_orders_fib_nounit | S-17671 | 4a4eae21-1786-4056-a680-493f374061b3 | Approved | ZZAUTOTEST Fibridge Logistics |
@@ -106,16 +106,18 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | tag | PO | route | invoice | payment |
 |---|---|---|---|---|
 | po_ordered | S-17652 | work_order | — | — |
-| inv_unpaid | I-1395 | stock | ZZT-INV-1 | — |
 | inv_partial | I-1396 | stock | ZZT-INV-2 | 200 paid 50.0 of 100.0 (partial) |
 | inv_paid | I-1397 | stock | ZZT-INV-3 | 200 paid 90.0 of 90.0 (full) |
+| inv_unpaid | I-1395 | stock | ZZT-INV-1 | — |
 
 ### Work-order status spread actually reached
 
 | status | count |
 |---|---|
 | approved | 8 |
-| estimate | 5 |
 | in_progress | 4 |
-| review | 3 |
+| ready_for_review | 3 |
+| estimate | 3 |
 | declined | 2 |
+| complete | 1 |
+| invoiced | 1 |
