@@ -3429,3 +3429,29 @@ Also: part sales ARE work orders behind the scenes. `/api/part-sales/<id>` is a 
 `POST /api/work-orders/change-status` answers about the same record — and its refusal
 (*"Complete work order cannot change its status again"*) is what identified which record could be
 moved. Rule 107's "read the refusal, it names the way through" paid for itself again.
+
+## L0165 — 2026-09-17 — A PASS INHERITED FROM A SIGN-OFF IS AN UNVERIFIED PASS; RE-RUN IT THE HOUR THE BRANCH COMES BACK
+
+Eleven results in run 415 read **Passed** while their own comment said *"not observed this run — the
+test branch cannot be signed in to at the moment"*; the basis was a closed report or the QA lead's
+sign-off. The branch had been reachable for hours. Re-running all eleven through the screen took
+about twenty minutes and changed the picture three ways:
+
+* **Nine were genuine** and are now evidence-backed instead of inherited.
+* **Two carried a line in their own Expected that contradicts the requirements page** — both demanded
+  the opposite of §4's *Contact-field matches* rule ("This applies whether the matched field sits on
+  the company record itself or on one of its contacts"). A tester following either case would have
+  filed a defect against a product that is behaving exactly as written. This is Rule 106's false
+  defect, caught only because the case was read against the LIVE source at run time rather than at
+  defect time.
+* **One contradicted the QA lead's own sign-off.** He had signed off "typing a job stage now returns
+  the jobs at that stage"; the build still returns one work order matched on a line item, and the
+  ticket he closed was closed with a WRITTEN DECISION — *"Status will not be a searchable field"* —
+  not with a fix. So the case, not the product, is out of date. Rule 63: the result was **left exactly
+  as he set it** and the conflict was put to him with all three readings side by side.
+
+**The rule to carry:** when a result's own comment says it was not observed, it is a to-do, not a
+result. Grep the run for *"not observed"*, *"not re-run"*, *"recorded from"* and *"sign-off"* at the
+start of every execution pass — and remember that a closed ticket can be closed as a DECISION rather
+than a FIX, so read the last comment before believing a fix shipped (Rule 61: ticket status is never
+evidence about the build).
