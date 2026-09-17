@@ -432,3 +432,24 @@ pre-ticked item checkbox, the vendor/invoice gate with its tooltip, and the Move
 button. `build/LESSONS-INDEX.md` and the ALWAYS UNBLOCK YOURSELF ruling in `CLAUDE.md` now carry the
 rule in the QA lead's own words: **"not tested because I could not do it" is never an acceptable line
 in a QA report.**
+
+### Correction: the Work Order Log is not cut off — it scrolls
+
+The QA lead pointed at the **horizontal scroll bar along the bottom of the Work Order Log dialog**.
+Measured live: the dialog is a fixed **608 px** card at any viewport width (verified at 1700 and 2300),
+its table is **885 px**, so `Details` is clipped on arrival and the remaining **327 px** are reached by
+dragging that bar. **Nothing is lost.**
+
+Two things were wrong because of it, and both are fixed:
+
+* The exhibit quoted the Details text **typed out by hand** beside a clipped screenshot. It now shows
+  the app's own rendering, scrolled across — and that turned out to be better evidence than the quote,
+  because the same view carries the whole story in three rows: **Ordered 3.00 → Received 1.00 → Part
+  moved 2.00 to S9304-17580**.
+* The comment's "Checked and deliberately not raised" list said *"The Work Order Log dialog cuts off
+  its Details column."* That was a **false finding**. It now reads that the column is wider than the
+  dialog and is read by scrolling, with nothing lost.
+
+Recorded in `build/APP-ACTIONS-PLAYBOOK.md` §AC.10 with the one-line scroll snippet for capturing it,
+and in `build/LESSONS-INDEX.md`: before reporting anything as truncated or unavailable on screen, look
+for the scroll bar and use it.
