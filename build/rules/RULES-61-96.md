@@ -2324,3 +2324,56 @@ miss** — every neighbour of a seeded work order exists, so the "returns nothin
 
 **Worked example, with the false start preserved because the false start is the lesson:**
 `build/global-search/case-corrections-2026-09-17/`.
+
+---
+
+## 112 · VERIFY AGAINST THE REAL CASE TEXT, NEVER AGAINST A SUMMARY OF IT
+
+**Ordered by the QA lead, 2026-09-17:** *"always verify against the real case text rather than
+trusting the handoff's summary — make it your rule."*
+
+### The failure it prevents
+
+**A handoff, a task card, a spreadsheet and a previous session's report are all SUMMARIES. They are
+written by someone who read the cases once, and they go stale the moment anything moves.** The case
+body in TestRail is the only thing the tester actually reads, so it is the only thing that decides
+whether the test can be run.
+
+**The failure this rule was written from (2026-09-17).** The seeding handoff said, of the eight
+Quick Actions cases in section 6774:
+
+> *"the data they need is **the same core universe from §1** (a searchable result of each entity
+> type), so **no NEW records are required beyond §1.** Record this in the manifest so nobody
+> re-investigates it."*
+
+That is confident, specific, and wrong. Reading the eight case bodies found **four separate problems
+the summary had flattened away**: three named example records that **do not exist on the branch at
+all** (`Fisquare Farms`, `Adale Transport`, `Report Beverages`), and one example term
+(`2025 Freightliner M2`) that returns **no assets whatsoever** — which turned out to be a product
+defect affecting every asset in the estate, not a data gap. A session that trusted the summary would
+have seeded nothing, reported the section ready, and handed a tester four dead ends.
+
+### What you do
+
+1. **Read the actual `custom_preconds`, `custom_steps` and `custom_expected` of every case in scope.**
+   Script it (Rule 88) — never read hundreds by hand — but read the REAL fields.
+2. **Extract what the tester will literally TYPE or LOOK FOR**, and check each one against the live
+   environment. A term named only as *"for example"* still gets typed by somebody.
+3. **Where the summary and the case disagree, THE CASE WINS** — and say so, so the summary gets fixed
+   rather than quietly believed again.
+4. **Quote the case, not the summary,** in anything you report.
+
+### The boundary
+
+This does not demote handoffs — they are how work is passed on, and a good one saves hours. It says
+a handoff is a **map, not the territory**: use it to know where to look, then look. The same applies
+to your own earlier notes, to a `PROJECT-STATE.md`, and to the index in `CLAUDE.md`, which says of
+itself that the one-line entry **is not the rule**.
+
+**Relation to other rules:** it is Rule 57's shape applied to our own artefacts — expectation comes
+from the source document, and for "can this test be run?" the source document is the case body. It
+is how Rule 111 gets triggered honestly, and it is the reading half of Rule 86 (verify from committed
+evidence, never from a session's self-report).
+
+**Worked example:** `build/global-search/case-corrections-2026-09-17/` and the §6 seeding note in
+`build/global-search/HANDOFF-RUN-THE-99-V2-CASES.md`.

@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110 and 111** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111 and 112** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -290,6 +290,17 @@ the record OPENS as the tester, and the near miss is genuinely absent. **Prefer 
 survives a reseed** — our own seeded numbers change on every redeploy, and consecutive seeded numbers
 can never satisfy a "returns nothing" near miss. Worked example, false start included:
 `build/global-search/case-corrections-2026-09-17/`.
+
+**Rule 112 (verify against the real case text, never a summary)** was ordered by the QA lead
+2026-09-17 and lives at the end of `build/rules/RULES-61-96.md`, after 111. **A handoff, a task card
+and a previous session's report are all SUMMARIES; the case body is the only thing the tester reads.**
+The seeding handoff stated that the eight Quick Actions cases needed *"no NEW records beyond §1"* —
+reading the actual case bodies found three named example records that do not exist on the branch and
+one example term returning no assets at all, which proved to be a product defect. A session trusting
+the summary would have reported the section ready and handed a tester four dead ends. Script the
+reading (88), extract what the tester will literally TYPE, check each against the live environment,
+and where the summary and the case disagree **the case wins**. A term named only as "for example"
+still gets typed by somebody.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
