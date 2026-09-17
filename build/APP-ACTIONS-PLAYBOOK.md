@@ -146,6 +146,27 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **Diagnostic ladder:** no cookies → 401; `sso_required`/only sso+cf → 409; **poisoned shared
   PHPSESSID → 500 on everything** (API root still 200). Fix a poisoned session: re-run quick-login
   `{key:'admin'}` WITHOUT sending the old PHPSESSID → fresh PHPSESSID → all 200 again.
+- **🔴 THE API IS ON ITS OWN HOSTNAME, AND POINTING A PROFILE AT THE FRONT-END HOST FAILS SILENTLY
+  (measured 2026-09-17, building a profile for a second organisation).** The app is
+  `sv9160.qa.shopview.com`; **the API is `sv9160api.qa.shopview.com`** — note the `api` infix, no dot.
+  Write the front-end host into a profile's `api` field and **every `/api/…` call returns HTTP 200
+  with the SPA's `index.html`**, because the front-end host serves the single-page app for any path it
+  does not recognise. **There is no error to read**: the status is 200, the body is a web page, and a
+  JSON parse failure looks like a broken endpoint rather than a wrong host.
+  **The control that exposes it in one call:** request a path that CANNOT exist —
+  `/api/nope-does-not-exist`. Against the real API host it answers **404 `'resource' was not found`**;
+  against the front-end host it answers **200 HTML, exactly like every other path**. A profile whose
+  nonexistent-path probe returns anything other than a 404 is pointed at the wrong host.
+  **So: never hand-write a new profile's `api` field — copy it from a profile that works.**
+- **A COOKIE SET OLDER THAN ~24 HOURS IS DEAD, AND `cf_clearance` CARRIES ITS OWN ISSUE TIME.** The
+  value's second dash-separated field is a unix timestamp — `…-1789539930-1.2.1.1-…` is
+  2026-09-16 06:25 UTC. **Read it before spending anything on a diagnosis:** a set captured ~30 hours
+  earlier answers **409 `Session has expired.`** on every call, a fresh `PHPSESSID` minted by the
+  server does not rescue it, and the only fix is a newly captured `sv_sso_session`.
+  🔴 **Do NOT reach for `quick-login` to repair a session for a DIFFERENT organisation.** It signs in
+  as *this branch's own* admin — the wrong tenant — so it cannot reach the other organisation at all,
+  and it **rotates the shared `sv_sso_session`**, which destroys the very browser session the person
+  captured the cookies from. Ask for the value by name instead.
 - **Chromium UI automation (boot2 hydration):** Chromium can't TLS through the egress proxy directly.
   `boot2(roleKey, opts)` in `staging-boot2.mjs` does quick-login → optionally `change-location` →
   reads `GET /api/auth/me/fe-permissions` → seeds cookies + localStorage (`user`,
