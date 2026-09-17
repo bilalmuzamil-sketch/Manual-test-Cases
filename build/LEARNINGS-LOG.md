@@ -3169,3 +3169,32 @@ and left it there. Re-measuring both screens properly produced a far sharper and
 statement: **In Progress is green on the Work Orders list and orange in the search** — a colour
 family change for the same job between two screens — and only inside the search do four stages
 collapse into one colour. That is the version a developer can act on without arguing.
+
+## L0155 — THE "FAULT" WAS THE RECOGNISED PATTERN, AND ONE READ OF THE MARKUP SETTLED IT (2026-09-17)
+
+C44829 was recorded Failed because Tab dead-ends on the scope-tab strip and never reaches the
+result rows — with a caution attached that the case might be wrong. Reading what the product
+actually declares settled it in one probe and turned a Failed into a Passed:
+
+* the field is `role="combobox"`, `aria-expanded="true"`, `aria-controls="search_modal_listbox"`,
+  `aria-autocomplete="list"`
+* the body is `role="listbox"`, each row is `role="option"` with a real id
+* `aria-activedescendant` names the highlighted row **and moves with ArrowDown**
+* the wrapper carries `role="dialog"` + `aria-modal="true"`
+* the live region is `polite` and reads *"57 results found across 8 categories"*
+
+That is the combobox-with-listbox pattern, complete. In it the caret **stays in the field by
+design** and Tab is not supposed to walk the options — the arrows do, and a screen reader follows
+`aria-activedescendant`. Our case's step 3 ("press Tab repeatedly to move through the input, the
+scope tabs, the result rows and the Show all links in turn") describes an arrangement this kind of
+search does not use.
+
+**The general lesson: before filing an accessibility defect, read what the component declares
+itself to be.** Keyboard behaviour is only wrong relative to a pattern, and the pattern is written
+in the markup. Measuring the behaviour without reading the declaration is measuring against my own
+assumption — which is Rule 106's false-defect case arriving through a side door, and it does not
+need a source read to catch.
+
+**And the caution is what saved it.** The result was written Failed *with* the sentence "this case
+may itself be wrong". Had it been written as a flat Failed, it would have gone into the ask list
+and a developer would have been sent to break working code.
