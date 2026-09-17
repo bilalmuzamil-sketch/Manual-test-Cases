@@ -7,6 +7,53 @@
 > that carries the meaning. If an item cannot be understood on one read without opening anything, it
 > is not written yet.
 
+## 2026-09-17 — the search test data: three things you already decided, recorded so nobody asks again
+
+**Nothing on this page needs anything from you.** It is here because a decision that lives only in one
+conversation gets put to you a second time by whoever comes next, and that is the thing this page exists
+to prevent.
+
+### A. Telling Vlad about the four tests I corrected — **you said forget it**
+
+**What happened.** Four search tests named a job number that the test branch cannot hold, because those
+numbers are handed out by the branch itself. A tester typing it would have found nothing and reported a
+fault against a product that is working. I corrected the number in those tests and nothing else — not a
+word of the wording, not the notes underneath. Three of them are also marked as tests the automation team
+owns, and our normal practice is to tell Vlad whenever one of his is touched.
+
+> **DECISION (QA lead, 2026-09-17): FORGET IT.** Nobody tells Vlad, and nobody puts this back in front of
+> him. The corrections themselves stand. This is a one-time waiver for these four tests on this date, not
+> a change to the practice — the next time one of his tests is touched, he still gets told.
+>
+> Reference: C44843, C44847, C44850, C55684.
+
+### B. A second company account, for the one test that needs two — **you said remind you later**
+
+**What is happening.** One test checks that a search in one company never shows another company's
+records. The test branch only has one company on it. It has two *locations*, which sounds similar and is
+not the same thing — a location is a shop within the same company, so switching between them proves
+nothing about keeping two companies apart. This is not something I can create; it needs someone with
+access to set up a second company.
+
+> **DECISION (QA lead, 2026-09-17): REMIND ME LATER.** The test is marked as blocked, with the reason, so
+> nobody records a pass or a failure on it. Bring it up again when he next asks how the search testing is
+> going, or asks about that test specifically — not before, and not repeatedly.
+>
+> Reference: C44880.
+
+### C. The new written method for setting up test data — **you asked for it, it is written**
+
+**What happened.** You asked me to save what I learned so that the next feature we test does not start
+from scratch. It is saved: a written method, a reference sheet for the file that describes the data, and a
+single command that sets up a new feature's kit from the one that is already proven. Our usual practice is
+to show you a new method before filing it away rather than after; I filed it and then asked. You asked
+what I meant, I explained, and you raised no objection.
+
+> **DECISION (QA lead, 2026-09-17): it stands.** Nothing about it is permanent — if he wants any of it
+> changed or removed, it is an edit.
+
+---
+
 ## 2026-09-10 — decisions waiting on you (the invoice work, after the updated sources)
 
 ### A. The main Invoice Refresh document changed again yesterday — should I re-check its tests now?

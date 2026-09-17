@@ -422,7 +422,7 @@ summary, start testing.
 | 1 | **File the two ticket candidates in §7** — after re-checking each one yourself. | you |
 | 2 | **A second tenant for C44880** — not seedable; the branch has one organisation, and two *locations* is not the same thing. **Blocked, infra.** | infra |
 | 3 | **The older recent-activity buckets (6728)** — Yesterday / past week / past 30 days cannot be produced by opening records now, and the API cannot backdate a view. Test "Today" live, Block the rest with the reason. | tester |
-| 4 | **Rule 65 notice:** C44843, C44847, C44850 and C55684 carry `automation_type = Functional` and were edited (identifier and count only). Tell Vlad. | QA lead |
+| 4 | ~~Notify Vlad that C44843, C44847, C44850 and C55684 (flagged `automation_type = Functional`) were edited~~ — **CLOSED by the QA lead on 2026-09-17: "Forget it." Do NOT raise this with him or with Vlad.** The edits stand; evidence in `build/global-search/case-corrections-2026-09-17/`. A one-time waiver for these four cases, not a change to the practice. | nobody — closed |
 
 ---
 
