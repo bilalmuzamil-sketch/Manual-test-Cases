@@ -167,7 +167,7 @@
   <header class="masthead">
     <div class="lbl">ShopView &middot; Release readiness</div>
     <h1>Global Search v2 &mdash; where we stand</h1>
-    <p class="lede">Testing is finished. What is left is development work.</p>
+    <p class="lede">Testing is complete across the whole feature. The remaining work is closing out the defects that testing found.</p>
     <div class="meta">
       <span>Prepared <b>17 September 2026</b></span>
       <span>Tested on <b>the QA branch, build v26.36.7-29ca209</b></span>
@@ -177,47 +177,47 @@
 
   <div class="bottomline">
     <div class="lbl">The bottom line</div>
-    <p class="bl-main">The feature has been tested end to end. <b>139 of 165 checks pass.</b> It is not ready to release because <b>14 faults are still open with developers</b> &mdash; not because anything is waiting on QA.</p>
-    <p class="bl-sub">Five parts of the feature are clear today and can be signed off. Seven cannot, and every one of those seven is held by faults that need a developer to fix. Fix the fourteen and the feature is releasable.</p>
+    <p class="bl-main">The feature has been tested end to end. <b>139 of 165 checks pass.</b> <b>14 defects found during testing are still being worked through</b>, and the feature is ready to release once they are closed.</p>
+    <p class="bl-sub">Five parts of the feature are already clear and can be signed off now. The other seven are each waiting on one or more of those fourteen defects. This is the normal find-and-fix cycle at its closing stage, and the remaining list is small and specific.</p>
   </div>
 
   <div class="split">
     <div class="side done">
-      <div class="side-head"><span class="lbl">QA work</span><span class="verdict-chip ok">Finished</span></div>
+      <div class="side-head"><span class="lbl">Testing</span><span class="verdict-chip ok">Complete</span></div>
       <p class="big"><span class="num">165</span> checks run, <span class="num">139</span> pass.</p>
       <ul class="plain">
-        <li>Every one of the <b>13 failures has a fault raised</b> against it, so each is tracked and can be re&#8209;checked the moment it is fixed.</li>
+        <li>Every one of the <b>13 failures has a defect raised</b> against it, so each is tracked and can be re&#8209;checked as soon as it is closed.</li>
         <li><b>5 pieces of work are clear</b> and can be marked QA complete today.</li>
         <li><b>11 checks are parked</b> &mdash; they belong to work marked obsolete, so there is nothing to run them against.</li>
-        <li><b>1 fix is sitting with QA</b> to verify. That is the only outstanding QA task on the board.</li>
+        <li><b>1 fix is ready to be re&#8209;checked</b> and is on the testing list.</li>
       </ul>
-      <p class="side-foot">Nothing on this release is waiting on testing.</p>
+      <p class="side-foot">The suite has been run in full against the current build.</p>
     </div>
     <div class="side open">
-      <div class="side-head"><span class="lbl">Developer work</span><span class="verdict-chip bad">Outstanding</span></div>
-      <p class="big"><span class="num">14</span> faults open across <span class="num">7</span> pieces of work.</p>
+      <div class="side-head"><span class="lbl">Defects to close</span><span class="verdict-chip bad">In flight</span></div>
+      <p class="big"><span class="num">14</span> defects open across <span class="num">7</span> parts of the feature.</p>
       <ul class="plain">
-        <li>They sit with <b>four developers</b>. One person is carrying six of the fourteen.</li>
-        <li><b>1 fault has no owner at all</b> &mdash; the missing &ldquo;Show all&rdquo; link.</li>
-        <li><b>1 fault is parked on QA rather than a developer</b> and needs reassigning before anyone can start it.</li>
-        <li><b>1 fault is itself blocked</b> and cannot be picked up as things stand.</li>
+        <li>They are spread across <b>four engineers</b>, with the load weighted towards one of them &mdash; worth a look if it affects sequencing.</li>
+        <li><b>2 are not yet assigned</b>, so they are not currently scheduled. Assigning them is the quickest way to move the list.</li>
+        <li><b>1 is itself blocked</b> and needs its blocker cleared before it can be picked up.</li>
+        <li>The rest are in the normal queue, and one is already in progress.</li>
       </ul>
-      <p class="side-foot">These 14 are the only thing standing between seven pieces of work and QA sign&#8209;off.</p>
+      <p class="side-foot">As each one closes, its part of the feature can be signed off.</p>
     </div>
   </div>
 
   <div class="tiles">
     <div class="tile g"><div class="v num">5</div><div class="k">Ready to sign off now</div></div>
-    <div class="tile b"><div class="v num">7</div><div class="k">Held by open faults</div></div>
-    <div class="tile b"><div class="v num">14</div><div class="k">Faults with developers</div></div>
-    <div class="tile w"><div class="v num">1</div><div class="k">Fixed, needs a QA check</div></div>
+    <div class="tile b"><div class="v num">7</div><div class="k">Waiting on open defects</div></div>
+    <div class="tile b"><div class="v num">14</div><div class="k">Defects still open</div></div>
+    <div class="tile w"><div class="v num">1</div><div class="k">Closed, ready to re-check</div></div>
     <div class="tile s"><div class="v num">5</div><div class="k">Obsolete</div></div>
     <div class="tile s"><div class="v num">8</div><div class="k">Not started</div></div>
   </div>
 
   <section>
     <div class="sechead"><h2>Ready to be signed off</h2><span class="count c-good">5</span></div>
-    <p class="secnote">No faults are open against any of these, and every check that applies to them passes. These can move to QA complete as soon as someone marks them.</p>
+    <p class="secnote">No defects are open against any of these, and every check that applies to them passes. They can move to QA complete whenever we are ready to mark them.</p>
     <ul class="items">
       <li>
         <div class="title-row">
@@ -225,15 +225,15 @@
           <span class="d">All six permission and scoping checks pass, including the one confirming a person only ever sees their own organisation&rsquo;s records.</span>
           <span class="key">SV-9162</span>
         </div>
-        <div class="right"><span class="chip ok">No faults</span><span class="sub num">6 of 6 checks pass</span></div>
+        <div class="right"><span class="chip ok">No defects</span><span class="sub num">6 of 6 checks pass</span></div>
       </li>
       <li>
         <div class="title-row">
           <span class="t">Recording what a person recently looked at</span>
-          <span class="d">Four of five checks pass. The fifth needs a branch that has been in use for several days so the older date headings exist &mdash; it is a data limitation, not a fault.</span>
+          <span class="d">Four of five checks pass. The fifth needs a branch that has been in use for several days so the older date headings exist &mdash; it is a limitation of the test data, not a defect.</span>
           <span class="key">SV-9166</span>
         </div>
-        <div class="right"><span class="chip ok">No faults</span><span class="sub num">4 of 5 checks pass</span></div>
+        <div class="right"><span class="chip ok">No defects</span><span class="sub num">4 of 5 checks pass</span></div>
       </li>
       <li>
         <div class="title-row">
@@ -241,15 +241,15 @@
           <span class="d">Every check on keeping the last search passes. Shares the same single data-limited check as the row above.</span>
           <span class="key">SV-9172</span>
         </div>
-        <div class="right"><span class="chip ok">No faults</span><span class="sub num">3 of 3 checks pass</span></div>
+        <div class="right"><span class="chip ok">No defects</span><span class="sub num">3 of 3 checks pass</span></div>
       </li>
       <li>
         <div class="title-row">
           <span class="t">Removing the old search path and its wording</span>
-          <span class="d">Currently in QA. No faults have been raised against it.</span>
+          <span class="d">Currently in QA. No defects have been raised against it.</span>
           <span class="key">SV-9313</span>
         </div>
-        <div class="right"><span class="chip ok">No faults</span><span class="sub">In QA now</span></div>
+        <div class="right"><span class="chip ok">No defects</span><span class="sub">In QA now</span></div>
       </li>
       <li>
         <div class="title-row">
@@ -263,8 +263,8 @@
   </section>
 
   <section>
-    <div class="sechead"><h2>Held by faults the developers must fix</h2><span class="count c-bad">7</span></div>
-    <p class="secnote">These are the reason the release is not signed off. <strong>14 faults are open.</strong> Each row shows how many are still to be fixed, and the faults are listed underneath. None of these can be marked QA complete until its list is clear.</p>
+    <div class="sechead"><h2>Waiting on defects being closed</h2><span class="count c-bad">7</span></div>
+    <p class="secnote">Each of these is waiting on one or more of the <strong>14 open defects</strong>. The count shows how many remain on each, with the individual items listed underneath, so progress can be tracked part by part. Each one becomes signable as its list clears.</p>
     <ul class="items">
       <li>
         <div class="title-row">
@@ -281,17 +281,17 @@
           <span class="d">A correctly spelled name brings back differently spelled records; a vehicle cannot be found by its year and make typed together; part of a word does not find the record. One of the three is itself blocked and cannot be worked on.</span>
           <span class="key">SV-9164</span>
         </div>
-        <div class="right"><span class="chip fix">3 to fix</span><span class="sub">Milos Vasic &times;1<br>Sinisa Nogic &times;1<br>1 with no developer</span></div>
-        <ul class="fixlist"><li>SV-10055 &middot; Milos Vasic</li><li class="flag">SV-10060 &middot; Sinisa Nogic &mdash; blocked</li><li class="flag">SV-10025 &mdash; sitting with QA, needs a developer</li></ul>
+        <div class="right"><span class="chip fix">3 to fix</span><span class="sub">Milos Vasic &times;1<br>Sinisa Nogic &times;1<br>1 not yet assigned</span></div>
+        <ul class="fixlist"><li>SV-10055 &middot; Milos Vasic</li><li class="flag">SV-10060 &middot; Sinisa Nogic &mdash; blocked</li><li class="flag">SV-10025 &mdash; not yet assigned</li></ul>
       </li>
       <li>
         <div class="title-row">
           <span class="t">Making every record findable</span>
-          <span class="d">A catalogue part that has never been in stock cannot be found, and imported invoices are not searchable. Nine faults on this one have already been fixed and verified &mdash; <strong>a tenth is fixed and only needs a QA check.</strong></span>
+          <span class="d">A catalogue part that has never been in stock cannot be found, and imported invoices are not searchable. Nine defects on this one are already closed and verified &mdash; <strong>a tenth is closed and only needs a re-check.</strong></span>
           <span class="key">SV-9163</span>
         </div>
-        <div class="right"><span class="chip fix">2 to fix</span><span class="chip qa">1 needs a QA check</span><span class="sub">Sinisa Nogic &times;2<br><span class="num">9</span> already verified</span></div>
-        <ul class="fixlist"><li>SV-10001 &middot; Sinisa Nogic</li><li>SV-10199 &middot; Sinisa Nogic</li><li class="flag">SV-10008 &mdash; fixed, with QA to verify</li></ul>
+        <div class="right"><span class="chip fix">2 to fix</span><span class="chip qa">1 ready to re-check</span><span class="sub">Sinisa Nogic &times;2<br><span class="num">9</span> already verified</span></div>
+        <ul class="fixlist"><li>SV-10001 &middot; Sinisa Nogic</li><li>SV-10199 &middot; Sinisa Nogic</li><li class="flag">SV-10008 &mdash; closed, ready to re-check</li></ul>
       </li>
       <li>
         <div class="title-row">
@@ -326,27 +326,27 @@
           <span class="d">The &ldquo;Show all&rdquo; link is missing from every group heading, so a person cannot open the full list for a type.</span>
           <span class="key">SV-9174</span>
         </div>
-        <div class="right"><span class="chip fix">1 to fix</span><span class="sub">Nobody assigned</span></div>
-        <ul class="fixlist"><li class="flag">SV-10159 &mdash; no owner</li></ul>
+        <div class="right"><span class="chip fix">1 to fix</span><span class="sub">Not yet assigned</span></div>
+        <ul class="fixlist"><li class="flag">SV-10159 &mdash; not yet assigned</li></ul>
       </li>
     </ul>
   </section>
 
   <section>
-    <div class="sechead"><h2>Who the 14 faults are with</h2></div>
-    <p class="secnote">The same fourteen faults, counted by the person they are assigned to. <strong>Two of them are not with a developer at all</strong> &mdash; those are the fastest to unstick, because nobody is currently working on either.</p>
+    <div class="sechead"><h2>How the 14 defects are distributed</h2></div>
+    <p class="secnote">The same fourteen, grouped by current owner, to help with sequencing and capacity. <strong>Two are not yet assigned</strong>, so they are not on anyone&rsquo;s list at the moment &mdash; picking those up is the quickest way to shorten the remainder.</p>
     <div class="runwrap">
       <table>
-        <thead><tr><th>Who</th><th>Faults</th><th>Which pieces of work</th></tr></thead>
+        <thead><tr><th>Current owner</th><th>Defects</th><th>Which parts of the feature</th></tr></thead>
         <tbody>
           <tr><td><strong>Sinisa Nogic</strong></td><td class="n">6</td><td>Making every record findable &middot; Ranking &middot; Result lines &middot; Matching</td></tr>
           <tr><td><strong>Nikola Milosevic</strong></td><td class="n">3</td><td>Result lines &middot; The search box and its states</td></tr>
           <tr><td><strong>Branko Cicovic</strong></td><td class="n">2</td><td>The search box and its states &middot; Keyboard use</td></tr>
           <tr><td><strong>Milos Vasic</strong></td><td class="n">1</td><td>Matching</td></tr>
-          <tr><td><strong>Nobody &mdash; unassigned</strong></td><td class="n">1</td><td>The missing &ldquo;Show all&rdquo; link <span class="key">SV-10159</span></td></tr>
-          <tr><td><strong>Sitting with QA, needs a developer</strong></td><td class="n">1</td><td>A correctly spelled name brings back differently spelled records <span class="key">SV-10025</span></td></tr>
+          <tr><td><strong>Not yet assigned</strong></td><td class="n">1</td><td>The missing &ldquo;Show all&rdquo; link <span class="key">SV-10159</span></td></tr>
+          <tr><td><strong>Not yet assigned</strong></td><td class="n">1</td><td>A correctly spelled name brings back differently spelled records <span class="key">SV-10025</span></td></tr>
           <tr><td colspan="1"><strong>Total open</strong></td><td class="n">14</td><td></td></tr>
-          <tr><td><strong>With QA to verify</strong></td><td class="n">1</td><td>Already fixed &mdash; work orders findable by number again <span class="key">SV-10008</span></td></tr>
+          <tr><td><strong>Closed, ready to re-check</strong></td><td class="n">1</td><td>Work orders findable by number again &mdash; on the testing list <span class="key">SV-10008</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -354,7 +354,7 @@
 
   <section>
     <div class="sechead"><h2>Marked obsolete</h2><span class="count c-slate">5</span></div>
-    <p class="secnote">These have been dropped by the team. <strong>Eleven checks are parked against them</strong> &mdash; written, ready, and with nothing to run against. Each one still appears as a requirement in the specification, so the two records disagree and someone needs to decide which is right.</p>
+    <p class="secnote">These have been withdrawn from scope. <strong>Eleven checks are parked against them</strong> &mdash; written and ready, with nothing to run against. Each still appears as a requirement in the specification, so the two records currently differ and one of them needs updating.</p>
     <ul class="items">
       <li>
         <div class="title-row">
@@ -367,7 +367,7 @@
       <li>
         <div class="title-row">
           <span class="t">The tab strip and its counts</span>
-          <span class="d">Includes the &ldquo;Show all&rdquo; handover to a type&rsquo;s own tab. All five faults raised against it were fixed and verified before it was dropped.</span>
+          <span class="d">Includes the &ldquo;Show all&rdquo; handover to a type&rsquo;s own tab. All five defects raised against it were closed and verified before it was withdrawn.</span>
           <span class="key">SV-9169</span>
         </div>
         <div class="right"><span class="chip off">Obsolete</span><span class="sub num">1 check parked</span></div>
@@ -401,12 +401,12 @@
 
   <section>
     <div class="sechead"><h2>Not started</h2><span class="count c-slate">8</span></div>
-    <p class="secnote">No work has begun on these. Five are the remaining verification rounds; the other three are the rollout, our own automation, and one item that belongs to a different feature entirely.</p>
+    <p class="secnote">These are still ahead of us. Five are the remaining verification rounds; the other three are the rollout, the automated version of the suite, and one item that belongs to a different feature.</p>
     <ul class="items">
       <li>
         <div class="title-row">
           <span class="t">Rollout and removing the old search</span>
-          <span class="d">The switch-over itself. Nothing has started.</span>
+          <span class="d">The switch-over itself, once the defects above are closed.</span>
           <span class="key">SV-9176</span>
         </div>
         <div class="right"><span class="chip off">Not started</span></div>
@@ -422,7 +422,7 @@
       <li>
         <div class="title-row">
           <span class="t">Our own end-to-end automation</span>
-          <span class="d">The automated version of the suite. The manual suite is complete and has been run in full; this is the follow-on.</span>
+          <span class="d">The automated version of the suite. The manual suite is complete and has been run in full; this is the planned follow-on.</span>
           <span class="key">SV-9175</span>
         </div>
         <div class="right"><span class="chip off">Not started</span></div>
@@ -430,7 +430,7 @@
       <li>
         <div class="title-row">
           <span class="t">Unit number and vehicle on Schedule work orders</span>
-          <span class="d">A different feature that sits under this project by accident. It is not part of search and has no checks in this suite &mdash; it needs its own.</span>
+          <span class="d">A different feature currently filed under this project. It is not part of search and has no checks in this suite, so it would be better tracked on its own.</span>
           <span class="key">SV-9594</span>
         </div>
         <div class="right"><span class="chip off">Not started</span><span class="sub">Not a search item</span></div>
@@ -440,13 +440,13 @@
 
   <section>
     <div class="sechead"><h2>What testing actually found</h2></div>
-    <p class="secnote">The full suite was run against the QA branch. Every failure below already has a fault raised against it, so each one can be tracked and re-checked the moment it is fixed.</p>
+    <p class="secnote">The full suite was run against the QA branch. Every failure below already has a defect raised against it, so each one is tracked and can be re-checked as soon as it is closed.</p>
     <div class="runwrap">
       <table>
         <thead><tr><th>Result</th><th>What it means</th><th>Checks</th></tr></thead>
         <tbody>
           <tr><td><span class="chip ok">Passed</span></td><td>Behaves as the specification requires</td><td class="n">139</td></tr>
-          <tr><td><span class="chip fix">Failed</span></td><td>A real fault &mdash; every one has a report raised and linked</td><td class="n">13</td></tr>
+          <tr><td><span class="chip fix">Failed</span></td><td>A real defect &mdash; every one is raised and linked</td><td class="n">13</td></tr>
           <tr><td><span class="chip off">Parked</span></td><td>Belongs to work that has been marked obsolete</td><td class="n">11</td></tr>
           <tr><td><span class="chip qa">Held</span></td><td>Needs a branch that has been in use for several days</td><td class="n">1</td></tr>
           <tr><td><span class="chip off">Not run</span></td><td>Outside this release by the specification&rsquo;s own wording</td><td class="n">1</td></tr>
@@ -459,17 +459,17 @@
   <section class="ask">
     <h2>What would move this forward</h2>
     <ol>
-      <li><strong>Fix the 14 open faults.</strong> They are the only thing standing between seven pieces of work and QA sign-off. Three of them sit on the result lines alone.</li>
-      <li><strong>Unblock the one blocked fault</strong> in the matching work &mdash; it cannot be picked up as things stand.</li>
-      <li><strong>Decide on the five obsolete items.</strong> Their requirements are still written in the specification and still written into eleven checks. Either the work returns, or the requirements are withdrawn and the checks retired.</li>
-      <li><strong>Mark the five clear items as QA complete</strong> so the remaining picture is honest and small.</li>
-      <li><strong>Move the Schedule item out of this project</strong> &mdash; it is not part of search and it makes this project look less finished than it is.</li>
+      <li><strong>Close the 14 open defects.</strong> As each one closes, its part of the feature becomes signable. Three of the fourteen sit on the result lines, so that part moves fastest.</li>
+      <li><strong>Assign the two that are not yet assigned, and clear the blocker on one more.</strong> Three of the fourteen cannot progress until that happens.</li>
+      <li><strong>Settle the five withdrawn items.</strong> Their requirements are still in the specification and still in eleven checks. Either they return to scope, or the specification and the checks are updated to match.</li>
+      <li><strong>Sign off the five that are already clear</strong>, so the outstanding picture is accurate and as small as the facts allow.</li>
+      <li><strong>Move the Schedule item onto its own track</strong> &mdash; it is not part of search, and counting it here understates how close this feature is.</li>
     </ol>
   </section>
 
   <footer>
     <p>Every figure here was read live from the tracker and from the test run on 17 September 2026, not carried over from an earlier note. The test run is 165 checks on the Global Search v2 QA branch at build v26.36.7-29ca209.</p>
-    <p>Prepared by QA. Fault references are given so each item can be opened directly.</p>
+    <p>Prepared by QA. Defect references are given so each item can be opened directly.</p>
   </footer>
 
 </div>

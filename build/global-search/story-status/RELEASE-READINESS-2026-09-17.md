@@ -78,3 +78,33 @@ Head audience on the QA lead's instruction:
 * per-story owner counts in the defect section, plus a **"who the 14 faults are with"** table.
 
 Ticket keys are kept but deliberately subdued: nothing in the narrative requires reading one.
+
+## Version 3 — the tone pass (QA lead: *"does not sound like I am blaming any other team"*)
+
+**The problem with version 2.** Its headline read *"14 faults are still open with developers — not
+because anything is waiting on QA."* Factually correct, and exactly the sentence that turns a status
+report into a case against another team. A report the CEO reads is also a report every named
+engineer reads.
+
+**What changed, and the principle behind each change:**
+
+| Version 2 | Version 3 | Why |
+|---|---|---|
+| "not because anything is waiting on QA" | "the feature is ready to release once they are closed" | states the condition, not whose fault the delay is |
+| "QA work / Developer work" | "Testing / Defects to close" | phases of one delivery, not two teams |
+| "Finished" / "Outstanding" | "Complete" / "In flight" | *outstanding* implies overdue; *in flight* is neutral |
+| "Held by faults the developers must fix" | "Waiting on defects being closed" | removes the instruction and the addressee |
+| "One person is carrying six of the fourteen" | "the load is weighted towards one of them — worth a look if it affects sequencing" | a capacity observation, not an indictment |
+| "1 fault has no owner at all" / "parked on QA rather than a developer" | "2 are not yet assigned" | the state is identical; the finger-pointing is gone, and it no longer singles out our own team either |
+| "Who the 14 faults are with" | "How the 14 defects are distributed" | grouping for sequencing, not attribution |
+| "dropped by the team" | "withdrawn from scope" | passive on purpose |
+| "Nothing has started" | "still ahead of us" | *us* — one team |
+| **fault** (10 uses) | **defect** throughout | *fault* carries blame in English; *defect* is the industry term and is neutral |
+
+**The one thing deliberately NOT softened:** every number. 139 of 165, 14 open, 7 waiting, 2
+unassigned, 1 blocked. Neutral tone is achieved by changing the framing, never by blurring the
+facts — a report that softens its numbers is worth nothing to the person who has to act on it.
+
+**Also kept:** the owner table. The QA lead asked for *"how many tickets, who needs to take care of
+them"*, and removing the names would have answered a different question. Names stay; the
+commentary around them is about sequencing and capacity.
