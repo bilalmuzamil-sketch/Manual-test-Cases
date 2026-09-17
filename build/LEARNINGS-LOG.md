@@ -2980,3 +2980,57 @@ business, not theirs, and the ids were clutter on a page written for them.
 This supersedes item 8 of the eight-heading layout. **Rule 8 is untouched everywhere else** — every
 report, every message to the QA lead, every deliverable still carries the C-id, the case link and
 its run. It is the Jira description, and only that, which drops them.
+
+
+## L0147 — EXAMPLES: ONE, OR TWO FOR A CONTRAST. MORE IS PADDING (2026-09-17)
+
+He deleted the surplus examples from a ticket I wrote, in both the Description and the Steps, and
+told me the rule: *"1 or max two are more than enough … Maximum two when needed, or 1 example when
+1 example can work."*
+
+**What I had been doing wrong:** treating extra examples as extra proof. They are not. Four
+run-together vehicle names do not make the fault more real than one; they make a reader skim, and
+skimming is how a real finding gets missed. **Scope belongs in a sentence** — *"every asset with a
+unit number is affected"* — not in a list.
+
+The one time a second example earns its place is when it is a **contrast**: the correct case beside
+the broken one, which a single example cannot carry.
+
+## L0148 — IF THE TEXT MAKES A COMPARISON, THE PICTURE MUST SHOW BOTH SIDES (2026-09-17)
+
+His words: *"you are giving the example of a work order but not then including the work order with
+annotation in the picture then, you are going so ilogical these days."*
+
+My ticket told the reader to compare the vehicle row with the work-order row, and the picture showed
+only vehicle rows. **I had done the comparison, found it decisive, written it down — and then not
+shown it.** That sends the reader hunting for something I had already seen, which is worse than not
+mentioning it.
+
+**The rule now: anything the text names as the comparison appears IN the picture, annotated.** The
+strongest form is *one query, both sides* — a single search that returns both, so nobody can argue
+the two halves were captured under different conditions.
+
+**The wider habit this belongs to:** I keep writing the evidence and the argument in separate
+places. A claim and its proof belong in the same frame.
+
+## L0149 — A SCREENSHOT IS A DELIVERABLE, NOT A DUMP (2026-09-17)
+
+*"the screenshots are appearing dirt and too much zoomed … make them looking Good as per the image
+global standard, and annotations should be explanatory in a way that if someone reads the image only
+they can understand the issue."*
+
+Four specific faults, all fixed in `build/testing-tools/annotate_v2.py`:
+
+1. **Captured at 1x**, so the text was coarse and the picture read as blown-up. Capture at
+   `deviceScaleFactor: 2` and downsample — sharpness comes from having pixels to throw away.
+2. **Captions in a legend under the image**, forcing the reader to match a number to a sentence.
+   They now sit in a side gutter level with the box, on a leader line.
+3. **Captions were fragments.** They are now full sentences, because the test is whether the image
+   ALONE explains the issue.
+4. **Everything was red**, so nothing said which box was the fault and which was correct. Green for
+   correct, red for the fault, with a tick or a cross.
+
+And one bug found by looking at my own output before shipping it: two labels centred independently
+on their own boxes **overlapped into an unreadable smear**. They are now laid out before drawing and
+pushed apart. **Look at the picture you made, as a reader, before it goes anywhere** — that is what
+caught it, not a test.

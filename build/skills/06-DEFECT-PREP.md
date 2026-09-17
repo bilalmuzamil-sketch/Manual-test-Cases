@@ -632,6 +632,67 @@ his unclear.
 Boxes, numbered discs and the numbered legend all stay. Keep captions short enough to fit the image
 width, and pad the image left so a disc never covers the text it points at.
 
+### 6b. HOW MANY EXAMPLES — ONE, OR TWO WHERE A CONTRAST IS NEEDED. NEVER MORE (2026-09-17)
+
+*"Do not give large description when needed multiple examples when 1 or max two are more than
+enough … Maximum two when needed, or 1 example when 1 example can work."*
+
+He deleted the surplus examples out of a ticket I had written, in BOTH the Description and the
+Steps. What he left is the rule:
+
+* **One example** states the fault. `unit *TRK 412* on a *2019 Freightliner Cascadia* reads
+  *"TRK 4122019 Freightliner Cascadia"*.`
+* **A second ONLY where it is a contrast** that a single example cannot carry — the correct case
+  beside the broken one. Two is the ceiling.
+* **Scope goes in a sentence, not in more examples.** `Every asset that has a unit number is
+  affected.` replaces listing four of them.
+
+Three more examples do not make a case stronger; they make a reader skim. **If the extra example
+proves nothing new, it is padding.**
+
+### 6c. 🛑 IF THE TEXT MAKES A COMPARISON, THE PICTURE MUST SHOW BOTH SIDES OF IT (2026-09-17)
+
+*"you are giving the example of a work order but not then including the work order with annotation
+in the picture then, you are going so ilogical these days"* — and he was right.
+
+My ticket told the reader to compare the asset row against the work-order row, and the picture
+showed only the asset rows. **A comparison stated in words and absent from the picture is worse
+than no comparison**: the reader is sent hunting for something I had already looked at.
+
+**The rule: every entity, row, screen or value the text names as the comparison appears IN the
+picture, annotated.** The strongest version of this is *one query, both sides* — on SV-10178 a single
+search for {{Fib}} returns the same vehicle as a work order AND as an asset, so both crops come from
+one screen and no one can say the two were captured differently.
+
+### 6d. THE PICTURE ITSELF — `annotate_v2.py`, AND WHY IT REPLACED `annotate_shot.py`
+
+*"the screenshots are appearing dirt and too much zoomed … make them looking Good as per the image
+global standard, and annotations should be explanatory in a way that if someone reads the image only
+they can understand the issue."*
+
+**Use `build/testing-tools/annotate_v2.py`.** What it does that the old one did not:
+
+| | Old (`annotate_shot.py`) | New (`annotate_v2.py`) |
+|---|---|---|
+| sharpness | captured at 1x, looked coarse and over-large | **capture at `deviceScaleFactor: 2`, pass `--scale 2`** — the picture is DOWNSAMPLED, which is what makes text crisp instead of zoomed |
+| where the words go | a numbered legend UNDER the image; the reader cross-references | **a side gutter, level with the box, joined by a leader line** |
+| what the words say | terse fragments | **full sentences that stand alone** — the image read on its own must explain the issue |
+| colour | everything red | **green = correct, red = the fault**, with a tick or a cross in the label |
+| crop | whole modal, whatever was on screen | **tight on the rows that matter**; stack two crops when the comparison needs it |
+
+```
+annotate_v2.py IN.png OUT.png --scale 2 \
+  --title "One search for \"Fib\" — the same vehicle on a job line and on a vehicle line" \
+  --mark "154,80,500,36:good:On the JOB line the unit and the year are separated …" \
+  --mark "154,212,456,40:bad:On the VEHICLE line they are joined …"
+```
+
+Coordinates are in the SOURCE image's own pixels, so 2x coordinates for a 2x capture. **Labels are
+laid out before drawing and never overlap** — two of them ran into each other on the first real
+ticket and made the picture unreadable, which is the very failure the tool exists to prevent.
+
+---
+
 ### 7. ⛔ NO "TEST CASES" SECTION IN THE TICKET — HE REMOVED IT 2026-09-17
 
 *"Also do not mention the test cases at the bottom."*
