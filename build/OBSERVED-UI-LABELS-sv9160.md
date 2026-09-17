@@ -37,3 +37,10 @@
 
 ## No-results state
 - **"No results found"** with the line **"No results for "<query>""**, all scope counts read (0).
+
+## Additional labels observed 2026-09-17 (v26.36.7-29ca209) — Permissions / Ranking / Fuzzy
+- **Fuzzy match indicator:** a soft/typo match is prefixed **"≈close match:"** on the matched text (e.g. `altenator` → "≈close match:…alternator…"). This is the on-screen soft-match indicator (C44848, C55715).
+- **Permission bundles** (Settings → Roles & Permissions) that gate search groups: `Work Orders: View` · `Customers: View` (gates Customers AND Assets) · `Part Sales: View` · `Catalog & Inventory: View` (Parts) · `Vendor & Order Management: View` (gates Vendors, Purchase Orders AND Vendor Invoices) · `See Financial Data` (gates price fields).
+- **Price fields in result rows** render real values (e.g. `$315.00`, `$779.92`) for a user with See Financial Data; masked otherwise (C55706, C44882).
+- **Vendor-invoice payment badge** in results: `Unpaid` (observed); tri-state Paid / Partially paid / Unpaid per doc.
+- Admin (all bundles) sees all 8 groups on a broad query: Work orders · Customers · Assets · Parts · Vendors · Part sales · Purchase orders · Vendor invoices (confirms the permission-POSITIVE cases C55702–C55705).
