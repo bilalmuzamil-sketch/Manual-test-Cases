@@ -301,9 +301,9 @@
  },
  {
   "cid": "C44854",
-  "status": "Blocked",
-  "note": "cannot be judged on this data: no job here has a part on it that also matches a search term, so there is nothing to compare",
-  "evidence": "What needs to be done: put a known part onto a job, open that job, then search a word that matches both that part and at least one other part, and check the one already on the job sits lower. The seeded jobs carry no parts."
+  "status": "Failed",
+  "note": "a part already on the job you are looking at keeps its place at the top - it is not pushed down",
+  "evidence": "To run this check a part was put onto job S9160-17671: \"ZZAUTOTEST Fibridge Brake Shoe Kit\". PROOF IT LANDED: the part is shown on that job's own page (true). Searching \"Fib\" while standing on that job, twice: [\"ZZAUTOTEST Fibridge Brake Shoe Kit\",\"ZZAUTOTEST Fibridge Wheel Seal\",\"PALL SUPRALON FILTER (GLASS FIBER 7 MICRON)\",\"ZZAUTOTEST Fibridge Air Dryer Cartridge\"] and [\"ZZAUTOTEST Fibridge Brake Shoe Kit\",\"ZZAUTOTEST Fibridge Wheel Seal\",\"PALL SUPRALON FILTER (GLASS FIBER 7 MICRON)\",\"ZZAUTOTEST Fibridge Air Dryer Cartridge\"] - the same both times, so it is not the search still catching up. The same search from an unrelated page: [\"ZZAUTOTEST Fibridge Brake Shoe Kit\",\"ZZAUTOTEST Fibridge Wheel Seal\",\"PALL SUPRALON FILTER (GLASS FIBER 7 MICRON)\",\"ZZAUTOTEST Fibridge Air Dryer Cartridge\"]. The part already on the job sits at position 1 on the job page and position 1 elsewhere - it has not moved. What needs to be done: a part already on the job being viewed should rank below the other matching parts, so the parts still needed are offered first."
  },
  {
   "cid": "C44855",
