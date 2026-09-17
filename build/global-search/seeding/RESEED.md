@@ -4,6 +4,28 @@
 > [`RESEED-KNOWLEDGE.md`](RESEED-KNOWLEDGE.md) — one page, written so a reseed is a command rather
 > than an investigation. Read it before debugging anything here.**
 
+## 🔍 FIRST, ASK WHAT IS ACTUALLY THERE — `python3 status.py`
+
+**Before reseeding anything, run the status board.** It is READ-ONLY, takes a few seconds, and
+answers the only question that matters after a redeploy: *what survived?*
+
+```bash
+cd build/global-search/seeding && python3 status.py          # quick — spine records, every universe
+python3 status.py --full                                     # then run every verifier end to end
+```
+
+It reports the **build marker and whether it changed since the last run** (a change means the branch
+redeployed and losses are expected), then each universe as **PRESENT / PARTIAL / GONE** with the
+missing records **named**, then the six role fixtures — and it ends with the exact command to fix
+whatever is missing.
+
+**It refuses to guess.** If the session is not live it stops and says so, because every probe would
+otherwise read as "missing" when the data is perfectly fine. A 5xx from the search service is
+reported as **the service, not your data**. And it checks **identity, not row counts** — a count of 1
+has already produced a false PASS on a real regression here.
+
+---
+
 **Say one of these and nothing else. I will do the rest.**
 
 There are **two universes** of test data and they must never be mixed, so each one has its own
