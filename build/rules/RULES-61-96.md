@@ -2249,3 +2249,78 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **RELATION TO OTHER RULES:** it is the evidential floor beneath Rule 12 (verified means observed —
     this says *observed how*), it gates Rule 94's admissibility check and Rule 62's per-ask filing, and
     it is the general case of Rule 104 (prove the instrument worked before reporting a negative).
+
+---
+
+## 111 · WHEN THE SEEDED RECORD'S REAL IDENTIFIER DIFFERS FROM THE ONE THE CASE NAMES, CORRECT THE IDENTIFIER IN THE CASE — **THE IDENTIFIER ONLY, AND NOTHING ELSE**
+
+**Ordered by the QA lead, 2026-09-17, verbatim:** *"if you are seeding the data for any test case, and
+you see the number in the test case for the data you seeded differs, then you should also correct that
+NUMBER in the test case too. make sure that you correct the number ONLY and do not change anything else
+in the test case, and make it the rule."*
+
+### The failure it prevents
+
+**A case that names an identifier the environment does not hold is a FALSE FAILED waiting to happen.**
+The tester types it, gets nothing, and records a defect against a product that is working perfectly.
+The suite then carries a red result that has to be investigated, explained and withdrawn — and the
+withdrawal costs more than the correction would have.
+
+This is not hypothetical. Three cases (C44843, C44847, C44850) named work order `S2-15276`, which does
+not exist on `sv9160` and **cannot** exist, because work order numbers are assigned by the branch.
+
+### What you do
+
+1. **SEED FIRST, THEN READ THE REAL IDENTIFIER BACK OFF THE ENVIRONMENT.** Never write the identifier
+   you *intended*; write the one the branch actually assigned. Most identifiers here are
+   server-assigned and unchoosable — work order numbers, part-sale P-numbers, purchase-order numbers,
+   invoice numbers.
+2. **COMPARE IT WITH EVERY IDENTIFIER THE CASE NAMES** — preconditions, steps and expected results.
+3. **WHERE THEY DIFFER, UPDATE THE CASE — CHANGING THE IDENTIFIER AND NOTHING ELSE.** Not the wording,
+   not the ordering, not the provenance line, not the automation marker, not a helpful note. The
+   identifier is a fact about the environment; everything else is the case's meaning, and the two must
+   never be edited in the same breath.
+4. **READ IT BACK AND PROVE THE NEW IDENTIFIER ACTUALLY WORKS** before you call it corrected — see the
+   reachability clause below. Compare at CONTENT level: TestRail appends a trailing newline and
+   sometimes a stray `</p>`, so a byte comparison raises false alarms (playbook §O4).
+5. **RECORD WHAT CHANGED** — the case id, the old identifier, the new one, and the evidence the new one
+   is real. Snapshot the case body first (Rule 87).
+
+### 🔴 THE REACHABILITY CLAUSE — an identifier that the SEARCH returns is not automatically usable
+
+Added the same day, from the mistake made while applying this rule the first time. The first
+replacement proposed for `S2-15276` was **`S2-15440`**, and it looked perfect: the palette returned it,
+pinned, with every normalization variant working. **It was wrong.**
+`GET /api/work-orders/view/<its id>` answers **`400 {"workOrderId":"Not found"}`** at *both* workplaces
+the test login can reach — the record lives at a third workplace, and the search index is
+**organisation-scoped while the record is WORKPLACE-scoped.** A case built on it passes step 1 and dies
+at step 2.
+
+**So the replacement identifier must be proved on THREE counts, not one:**
+
+| | Check | How |
+|---|---|---|
+| **(a)** | the search **returns** it | type it, confirm the pinned row IS that record |
+| **(b)** | the record **opens** | fetch it by id as the tester's role at the tester's workplace — a 400 here means "not yours", not "not there" |
+| **(c)** | the **near miss is genuinely absent**, where the case needs one | type it and confirm nothing comes back |
+
+**And prefer an identifier that SURVIVES A RESEED.** Our own seeded records get a new number every
+time the branch is wiped, so an identifier taken from them goes stale on the next redeploy. The
+replacement chosen, `S2-15430`, is pre-existing estate data that survived the redeploy which wiped
+every seeded record. **Consecutive seeded numbers are also disqualified wherever a case needs a near
+miss** — every neighbour of a seeded work order exists, so the "returns nothing" half can never pass.
+
+### The boundary — what this rule does NOT authorise
+
+- **It is a CORRECTION, not a rewrite.** Rule 62's creation hold is untouched: `update_case` on an
+  existing case continues; a new case still needs the QA lead.
+- **It never edits a case towards the build's behaviour.** Rule 57 stands — the expectation still comes
+  from the document. This rule changes *which record the tester looks at*, never *what they should
+  see*.
+- **It never touches a foreign case** (Rule 38) and it still reports any case TestRail flags as
+  Automated (Rules 65, 71).
+- **Rule 41 still applies:** having touched the case, re-verify the WHOLE case against the build, not
+  just the line you edited.
+
+**Worked example, with the false start preserved because the false start is the lesson:**
+`build/global-search/case-corrections-2026-09-17/`.

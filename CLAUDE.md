@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109 and 110** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110 and 111** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -275,6 +275,21 @@ produced are in **`build/APP-ACTIONS-PLAYBOOK.md` §O — Global Search**, which
 before re-deriving anything about either search version (the two endpoints, V1's two passes and its
 three-rows-per-group cap, the phone-format rule, the per-record-type field lists, and the TestRail
 delete traps).
+
+**Rule 111 (correct a stale identifier in a case — the identifier ONLY)** was ordered by the QA lead
+2026-09-17 and lives at the end of `build/rules/RULES-61-96.md`, after 110. **A case that names an
+identifier the environment does not hold is a FALSE FAILED waiting to happen** — three cases named work
+order `S2-15276`, which cannot exist because work-order numbers are branch-assigned. So: seed first,
+read the REAL identifier back off the environment, and where it differs from the case, **update the
+identifier and nothing else** — not the wording, not the provenance line, not a helpful note.
+🔴 **The reachability clause:** an identifier the SEARCH returns is not automatically usable. The first
+replacement proposed, `S2-15440`, was pinned and normalized perfectly and was still wrong — the record
+answers **400 Not found** at both workplaces the test login can reach, because **the search index is
+organisation-scoped while the record is workplace-scoped.** Prove three things: the search returns it,
+the record OPENS as the tester, and the near miss is genuinely absent. **Prefer an identifier that
+survives a reseed** — our own seeded numbers change on every redeploy, and consecutive seeded numbers
+can never satisfy a "returns nothing" near miss. Worked example, false start included:
+`build/global-search/case-corrections-2026-09-17/`.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
