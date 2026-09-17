@@ -1,0 +1,23 @@
+[
+ {"cid":"C55708","status":"Passed",
+  "note":"the customer that has an open work order comes first, the one with neither an open work order nor a recent visit comes second - which is what the check asks for",
+  "evidence":"Typed ZZCUSTOPEN and opened the Customers tab. Two customers came back, in this order: 1. ZZCUSTOPEN Haulage Open, 2. ZZCUSTOPEN Haulage Quiet. The first is the one carrying the open work order. Both carry the same address and the same kind of name match, so the open work order is the only thing separating them."},
+ {"cid":"C55710","status":"Passed",
+  "note":"the vendor with an open purchase order comes first and the one with none comes second",
+  "evidence":"Typed ZZVENDORPO and opened the Vendors tab. Two vendors came back, in this order: 1. ZZVENDORPO Supply Open, 2. ZZVENDORPO Supply Quiet. The first carries purchase order I9160-1398; the second carries none. Nothing else differs between them."},
+ {"cid":"C55712","status":"Passed",
+  "note":"the part with recent activity comes first and the quiet one second, with stock deliberately identical on both so activity is the only difference",
+  "evidence":"Typed ZZPARTBUSY and opened the Parts tab. Two parts came back, in this order: 1. ZZPARTBUSY Alternator Active, 2. ZZPARTBUSY Alternator Quiet. Stock is the same on both by design, so recent activity is the only thing that can be separating them."},
+ {"cid":"C55716","status":"Passed",
+  "note":"of two records that match equally well, the one saved most recently comes first",
+  "evidence":"Typed ZZTIEBREAK and opened the Customers tab. Two customers came back, in this order: 1. ZZTIEBREAK Transport Two, 2. ZZTIEBREAK Transport One. Transport Two was the one saved last. They share an address and the same kind of name match, so the save time is the only thing left to separate them."},
+ {"cid":"C55715","status":"Passed",
+  "note":"a misspelled word from a part's description still finds the part, and the near match is marked as one",
+  "evidence":"Typed Alternator on the Parts tab: six parts came back, among them Remanufactured Alternator and Serpentine drive belt (105a alternator). Typed the misspelling Altenator: the same parts came back, each one marked as a close match. So the typo tolerance reaches a part's description text and not only its name."},
+ {"cid":"C55713","status":"Passed",
+  "note":"a two-letter query one letter off a short name does NOT drag that record in, while the same single slip in a longer query does return its match - both halves behave as asked",
+  "evidence":"Two customers are seeded for this: ZZFUZZLEN Ab Cartage (short name) and ZZFUZZLEN Abcde Logistics (long name).\n\nSHORT QUERY: typed Ac, which is one letter off Ab. The Customers tab returned 20 customers - Lehigh Acres, Forest Acres, Accokeek and so on, all of which genuinely contain those letters. ZZFUZZLEN Ab Cartage was NOT among them. The loose short match is correctly suppressed.\n\nLONG QUERY: typed Abcdf, which is the same single slip off Abcde. Exactly one customer came back - ZZFUZZLEN Abcde Logistics - and it is marked as a close match. The longer query does return its near match.\n\nA note for whoever re-runs this: the query has to be one letter OFF the short name. Typing the short name itself proves nothing, because that is an exact match rather than a near one."},
+ {"cid":"C55714","status":"Passed",
+  "note":"both a purchase order number and a vendor invoice number need an exact match: the right number is found and put at the top, punctuation is ignored, and a number one character off returns nothing at all",
+  "evidence":"PURCHASE ORDER. Typed I9160-1398: found, and placed at the very top as a single row above the groups. Typed I-1398 and I91601398: both come back to the same purchase order, so the dash and the spacing are ignored. Typed I9160-1399, which is one character off and does not exist: nothing at all comes back.\n\nVENDOR INVOICE. Typed ZZT-INV-3: found, and placed at the top. Typed ZZT-INV-9, one character off: nothing comes back.\n\nSo neither kind of number is given any typo tolerance, which is what the check asks for.\n\nA warning for whoever re-runs this: do not use I9160-1397 as the one-character-off number. It is a real purchase order on this branch, so it comes back correctly and looks like a failure of the rule when it is nothing of the kind."}
+]
