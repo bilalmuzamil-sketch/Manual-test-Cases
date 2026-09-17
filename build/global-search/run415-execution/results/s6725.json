@@ -1,0 +1,68 @@
+[
+ {
+  "cid": "C44839",
+  "status": "Passed",
+  "note": "the misspelling still finds Peterson, and the matched letters are picked out",
+  "evidence": "typed \"Petersn\"; lines back 15; the Peterson record \"\u2248 close match: ZZAUTOTEST Peterson Hauling 210 Peterson Ridge, Fernvale, Ohio\"; highlighted pieces [\"\u2248\\nclose match:\\nZZAUTOTEST Peterson Hauling\",\"\u2248\\nclose match:\\nPeterman's Diesel Repair\",\"\u2248\\nclose match:\\n39097 Peterson Hills Suite 924\",\"\u2248\\nclose match:\\nSaint Peters Truck Service & Repair\"]"
+ },
+ {
+  "cid": "C44840",
+  "status": "Passed",
+  "note": "the misspelling still finds Aabridge",
+  "evidence": "typed \"Abrige\"; lines back 2; the Aabridge record \"\u2248 close match: ZZAUTOTEST Aabridge Freight 14 Aabridge Loop, Fernvale, Ohio\"; all lines [\"\u2248 close match: ZZAUTOTEST Aabridge Freight 14 Aabridge Loop, Fernvale, Ohio\",\"Upperco Truck & Trailer Repair 987-973-7664 \u00b7 \u2248 close match: 931 Melissa Rest Su\"]"
+ },
+ {
+  "cid": "C44841",
+  "status": "Passed",
+  "note": "the transposed letters still find Freightliner",
+  "evidence": "typed \"frieghtliner\"; lines back 23; the Freightliner record \"TRK 4122019 \u2248 close match: Freightliner Cascadia ZZAUTOTEST Fibridge Commercial\""
+ },
+ {
+  "cid": "C44842",
+  "status": "Passed",
+  "note": "the sound-alike spelling still finds Fibridge",
+  "evidence": "typed \"Filbridge\"; lines back 25; the Fibridge record \"S9160-17664 \u2248 close match: ZZAUTOTEST Fibridge Commercial Ready for Review TRK 4\"; where it ranked: line 1 of 25"
+ },
+ {
+  "cid": "C44843",
+  "status": "Passed",
+  "note": "the job number is found the same way with the dash, without it, and with a space instead",
+  "evidence": "typed \"S2-15430\" -> found, shown as \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\" (1 line(s)); typed \"S215430\" -> found, shown as \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\" (1 line(s)); typed \"S2 15430\" -> found, shown as \"S2-15430 Continental Fleet Services Paid 2020 RAM 5500\" (1 line(s))"
+ },
+ {
+  "cid": "C44844",
+  "status": "Passed",
+  "note": "the exact vehicle identification number finds the vehicle, and one wrong character finds nothing - it is not guessed at",
+  "evidence": "exact \"1FUJGLDR9CLBP8834\" -> 7 line(s): [\"TRK 4122019 Freightliner Cascadia ZZAUTOTEST Fibridge Commercial \u00b7 VIN:1FUJGLDR9\",\"S9160-17664 ZZAUTOTEST Fibridge Commercial Ready for Review TRK 412 \u00b7 2019 Freig\",\"S9160-17662 ZZAUTOTEST Fibridge Commercial Ready for Review TRK 412 \u00b7 2019 Freig\"]. One character changed \"1FUJGLDR9CLBP8835\" -> 0 line(s): []"
+ },
+ {
+  "cid": "C44845",
+  "status": "Passed",
+  "note": "the telephone number finds the same customer whether or not it is punctuated",
+  "evidence": "formatted \"(264) 328-6723\" -> \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Wa\"; digits only \"2643286723\" -> \"ZZAUTOTEST Fibridge Commercial 13 open Contact match \u00b7 4120 Fibridge Commerce Wa\". Note on the second half of this case: 2643286723 is the CUSTOMER'S OWN telephone, not a contact's, so the line correctly does NOT read \"Contact match\" (marked as a contact match: true). The contact's own number (264) 555-0142 does carry that note - that is checked by another case."
+ },
+ {
+  "cid": "C44846",
+  "status": "Passed",
+  "note": "the exact part number finds the part, and one wrong digit does not bring it back",
+  "evidence": "\"65547\" -> 3 line(s), the part \"Rear Shock 12 Available 65547\"; \"65548\" -> 1 line(s) [\"\u2248 close match: Kewaunee Diesel Repair 8771 Mcintyre Course, North Christinahaven\"]"
+ },
+ {
+  "cid": "C44847",
+  "status": "Passed",
+  "note": "a job number one digit out does not bring back the real job - numbers are matched exactly, never guessed",
+  "evidence": "\"S2-15431\" -> 0 line(s) []; \"S2-15432\" -> 0 line(s) []; the real job S2-15430 leaked into either false"
+ },
+ {
+  "cid": "C44848",
+  "status": "Passed",
+  "note": "a near-miss match is both highlighted and marked as approximate",
+  "evidence": "typed the misspelling \"Petersn\". Highlighted pieces: [\"\u2248\\nclose match:\\nZZAUTOTEST Peterson Hauling\",\"\u2248\\nclose match:\\nPeterman's Diesel Repair\",\"\u2248\\nclose match:\\n39097 Peterson Hills Suite 924\",\"\u2248\\nclose match:\\nSaint Peters Truck Service & Repair\"]. Looked on every line for the approximate sign, for italic text and for any approximate styling: [{\"text\":\"Spaulding Truck Center 1 open Contact match \u00b7 670 Brett Radi\",\"approx\":false,\"italic\":false,\"softClass\":[],\"markCls\":[]},{\"text\":\"Halfmoon Truck Repair 2 open Contact match \u00b7 3451 Michael Pi\",\"approx\":false,\"italic\":false,\"softClass\":[],\"markCls\":[]},{\"text\":\"\u2248 close match: ZZAUTOTEST Peterson Hauling 210 Peterson Ridg\",\"approx\":true,\"italic\":false,\"softClass\":[\"search-row__approx\"],\"markCls\":[\"search-row__mark\"]},{\"text\":\"Eagar Truck Service & Repair Contact match \u00b7 87187 Amanda Br\",\"approx\":false,\"italic\":false,\"softClass\":[],\"markCls\":[]},{\"text\":\"Dunmore Mobile Truck Repair Contact match \u00b7 1893 Katelyn Sho\",\"approx\":false,\"italic\":false,\"softClass\":[],\"markCls\":[]}]."
+ },
+ {
+  "cid": "C44849",
+  "status": "Passed",
+  "note": "the exact part-sale number finds it, and one digit out does not bring it back",
+  "evidence": "\"P2-58\" -> 3 line(s): \"P9160-258 ZZAUTOTEST Fibridge Commercial Estimate Admin ShopView \u00b7 Yesterday \u00b7 Number:P-258\"; \"P2-59\" -> 0 line(s): []; the real P2-58 leaked into the near miss false"
+ }
+]
