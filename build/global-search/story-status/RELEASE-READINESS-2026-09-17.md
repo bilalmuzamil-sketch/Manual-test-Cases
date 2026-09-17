@@ -214,3 +214,26 @@ in the run table's introduction, so a reader meets it before the detail.
 **A status report that counts only what is still broken erases the work that fixed everything
 else.** Sixteen closed defects are not background — they are the single largest piece of evidence
 that the testing was thorough. Report closed work by name and by count, not as a grey total.
+
+## v6 — published 2026-09-17 evening (artifact version 6)
+
+Refreshed after the evening execution pass (the handoff's 16 outstanding ranking / fuzzy /
+permission checks, plus the two fixtures repaired under the standing CRUD authorisation).
+
+Figures re-derived LIVE from run 415 immediately before publishing:
+
+| Result | Checks |
+|---|---|
+| Passed | 153 |
+| Failed | 15 (14 with a defect raised; C55707 written up, ticket held per Rule 113) |
+| Retest (parked behind obsolete work) | 11 |
+| Blocked | 1 (C55711 — part-sale comparison records not seeded) |
+| Untested | 1 (C45159 — out of this release by the spec's own wording) |
+| **Total** | **181** |
+
+Suite composition stated in the report: **115 new-feature checks + 66 regression checks**, and the
+regression half is credited with **24 of the 32 defects** — added on his instruction *"YOU MUST add
+the things we raised while testing the regresion suite do not miss anything which can show our
+efforts."*
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B

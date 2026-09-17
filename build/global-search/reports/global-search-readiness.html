@@ -176,24 +176,24 @@
     <div class="meta">
       <span>Prepared <b>17 September 2026</b></span>
       <span>Tested on <b>the QA branch, build v26.36.7-29ca209</b></span>
-      <span><b>165 checks</b> &mdash; 98 on the new feature, 66 regression</span>
+      <span><b>181 checks</b> &mdash; 115 on the new feature, 66 regression</span>
       <span>Every status read live from the tracker on the day</span>
     </div>
   </header>
 
   <div class="bottomline">
     <div class="lbl">The bottom line</div>
-    <p class="bl-main">The feature has been tested end to end. <b>139 of 165 checks pass.</b> <b>14 defects found during testing are still being worked through</b>, and the feature is ready to release once they are closed.</p>
+    <p class="bl-main">The feature has been tested end to end. <b>153 of 181 checks pass.</b> <b>14 defects found during testing are still being worked through</b>, and the feature is ready to release once they are closed.</p>
     <p class="bl-sub">Six of the twenty-six parts of the feature have now cleared QA. Seven more are tested and are each waiting on one or more of those fourteen defects. <b>Testing has raised 32 defects in total on this feature, 16 of them already fixed and re-tested</b> &mdash; this is the normal find-and-fix cycle at its closing stage, and the remaining list is small and specific.</p>
   </div>
 
   <div class="split">
     <div class="side done">
       <div class="side-head"><span class="lbl">Testing</span><span class="verdict-chip ok">Complete</span></div>
-      <p class="big"><span class="num">165</span> checks run, <span class="num">139</span> pass.</p>
+      <p class="big"><span class="num">181</span> checks run, <span class="num">153</span> pass.</p>
       <ul class="plain">
-        <li>The suite is <b>98 checks on the new feature plus 66 regression checks</b> confirming nothing findable in the old search was lost. <b>The regression half found 24 of the 32 defects.</b></li>
-        <li>Every one of the <b>13 failures has a defect raised</b> against it, so each is tracked and can be re&#8209;checked as soon as it is closed.</li>
+        <li>The suite is <b>115 checks on the new feature plus 66 regression checks</b> confirming nothing findable in the old search was lost. <b>The regression half found 24 of the 32 defects.</b></li>
+        <li><b>14 of the 15 failures have a defect raised</b> against them, so each is tracked and can be re&#8209;checked as soon as it is closed. The fifteenth was found this evening and is being written up.</li>
         <li><b>6 parts of the feature have cleared QA</b>, four of them signed off today.</li>
         <li><b>11 checks are parked</b> &mdash; they belong to work marked obsolete, so there is nothing to run them against.</li>
         <li><b>1 fix is ready to be re&#8209;checked</b> and is on the testing list.</li>
@@ -236,12 +236,12 @@
     </div>
 
     <div>
-      <div class="band-head"><h3>The test suite is 165 checks. Here is how the current build scored.</h3><span class="of">165 in total</span></div>
+      <div class="band-head"><h3>The test suite is 181 checks. Here is how the current build scored.</h3><span class="of">181 in total</span></div>
       <div class="tiles">
-        <div class="tile g"><div class="v num">139</div><div class="k">Passed</div><div class="x">Behaves as the specification requires</div></div>
-        <div class="tile b"><div class="v num">13</div><div class="k">Failed</div><div class="x">Every one has a defect raised and linked</div></div>
+        <div class="tile g"><div class="v num">153</div><div class="k">Passed</div><div class="x">Behaves as the specification requires</div></div>
+        <div class="tile b"><div class="v num">15</div><div class="k">Failed</div><div class="x">14 have a defect raised; one is newly found and being written up</div></div>
         <div class="tile s"><div class="v num">11</div><div class="k">Parked</div><div class="x">Belong to parts withdrawn from scope</div></div>
-        <div class="tile w"><div class="v num">2</div><div class="k">Cannot run yet</div><div class="x">One needs older test data; one is outside this release</div></div>
+        <div class="tile w"><div class="v num">2</div><div class="k">Cannot run yet</div><div class="x">One needs its comparison data seeded; one is outside this release</div></div>
       </div>
     </div>
 
@@ -554,17 +554,17 @@
 
   <section>
     <div class="sechead"><h2>What testing actually found</h2></div>
-    <p class="secnote">The full suite &mdash; 98 new-feature checks plus 66 regression checks &mdash; was run against the QA branch. Every failure below already has a defect raised against it, so each one is tracked and can be re-checked as soon as it is closed.</p>
+    <p class="secnote">The full suite &mdash; 115 new-feature checks plus 66 regression checks &mdash; was run against the QA branch. Fourteen of the fifteen failures already have a defect raised against them, so each is tracked and can be re-checked as soon as it is closed; the fifteenth was found this evening and is being written up.</p>
     <div class="runwrap">
       <table>
         <thead><tr><th>Result</th><th>What it means</th><th>Checks</th></tr></thead>
         <tbody>
-          <tr><td><span class="chip ok">Passed</span></td><td>Behaves as the specification requires</td><td class="n">139</td></tr>
-          <tr><td><span class="chip fix">Failed</span></td><td>A real defect &mdash; every one is raised and linked</td><td class="n">13</td></tr>
+          <tr><td><span class="chip ok">Passed</span></td><td>Behaves as the specification requires</td><td class="n">153</td></tr>
+          <tr><td><span class="chip fix">Failed</span></td><td>A real defect &mdash; 14 raised and linked, 1 being written up</td><td class="n">15</td></tr>
           <tr><td><span class="chip off">Parked</span></td><td>Belongs to work that has been marked obsolete</td><td class="n">11</td></tr>
-          <tr><td><span class="chip qa">Held</span></td><td>Needs a branch that has been in use for several days</td><td class="n">1</td></tr>
+          <tr><td><span class="chip qa">Held</span></td><td>Needs its comparison records seeding before it can mean anything</td><td class="n">1</td></tr>
           <tr><td><span class="chip off">Not run</span></td><td>Outside this release by the specification&rsquo;s own wording</td><td class="n">1</td></tr>
-          <tr><td colspan="2"><strong>Total</strong></td><td class="n">165</td></tr>
+          <tr><td colspan="2"><strong>Total</strong></td><td class="n">181</td></tr>
         </tbody>
       </table>
     </div>
