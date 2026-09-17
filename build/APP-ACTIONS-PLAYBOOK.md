@@ -146,18 +146,14 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **Diagnostic ladder:** no cookies → 401; `sso_required`/only sso+cf → 409; **poisoned shared
   PHPSESSID → 500 on everything** (API root still 200). Fix a poisoned session: re-run quick-login
   `{key:'admin'}` WITHOUT sending the old PHPSESSID → fresh PHPSESSID → all 200 again.
-- **🔴 THE API IS ON ITS OWN HOSTNAME, AND POINTING A PROFILE AT THE FRONT-END HOST FAILS SILENTLY
-  (measured 2026-09-17, building a profile for a second organisation).** The app is
-  `sv9160.qa.shopview.com`; **the API is `sv9160api.qa.shopview.com`** — note the `api` infix, no dot.
-  Write the front-end host into a profile's `api` field and **every `/api/…` call returns HTTP 200
-  with the SPA's `index.html`**, because the front-end host serves the single-page app for any path it
-  does not recognise. **There is no error to read**: the status is 200, the body is a web page, and a
-  JSON parse failure looks like a broken endpoint rather than a wrong host.
-  **The control that exposes it in one call:** request a path that CANNOT exist —
-  `/api/nope-does-not-exist`. Against the real API host it answers **404 `'resource' was not found`**;
-  against the front-end host it answers **200 HTML, exactly like every other path**. A profile whose
-  nonexistent-path probe returns anything other than a 404 is pointed at the wrong host.
-  **So: never hand-write a new profile's `api` field — copy it from a profile that works.**
+- **🔴 THE ONE-CALL CONTROL FOR "AM I POINTED AT THE RIGHT HOST?" (2026-09-17).** This is the same
+  failure as trap **(2)** below — I hit it building a profile for a second organisation *because I had
+  not read trap (2) first*, so here is the cheap control that settles it without knowing the symptom:
+  **request a path that CANNOT exist**, e.g. `/api/nope-does-not-exist`. The real API host answers
+  **404 `'resource' was not found`**; the front-end host answers **200 HTML, exactly as it does for
+  every other path**. A profile whose nonexistent-path probe returns anything but 404 is pointed at the
+  wrong host. App = `sv9160.qa.shopview.com`; **API = `sv9160api.qa.shopview.com`** (`api` infix, no
+  dot). **Never hand-write a profile's `api` field — copy it from a profile that works.**
 - **A COOKIE SET OLDER THAN ~24 HOURS IS DEAD, AND `cf_clearance` CARRIES ITS OWN ISSUE TIME.** The
   value's second dash-separated field is a unix timestamp — `…-1789539930-1.2.1.1-…` is
   2026-09-16 06:25 UTC. **Read it before spending anything on a diagnosis:** a set captured ~30 hours
