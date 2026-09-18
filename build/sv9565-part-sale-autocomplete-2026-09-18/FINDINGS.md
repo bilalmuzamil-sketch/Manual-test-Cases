@@ -1,6 +1,6 @@
 # SV-9565 — a part sale stays Approved after all parts are received, so it cannot be invoiced
 
-**Status: DONE — QA PASSED. 10 checks, all pass.** Nothing here is inferred; every line was observed
+**Status: DONE — QA PASSED. 12 checks, all pass.** Nothing here is inferred; every line was observed
 live.
 
 ## What the ticket says
@@ -61,6 +61,8 @@ part number and description prefixed `ZZ9565` / `ZZAUTOTEST`.
 | 7 | **Split parts order**: the parts moved to a new sale **P9565-255** while the purchase order still carried the old number; receiving it completed **P9565-255**, and the emptied **P9565-254** correctly fell back to Estimate | PASS |
 | 8 | **Work orders still receive correctly** — S9565-13556, three items of 6, one received 2 then 4: the two full items settled at once, the partial one split and settled on the second delivery | PASS |
 | 9 | Over-receipt **cannot be keyed into the receive screen**: 3 against an order of 1 shows *"Quantity received cannot be higher than 1"* and the Receive button will not submit | Reported, not a defect |
+| 11 | **Split parts order** — one purchase order serving two part sales; one delivery settles both and **both sales go Complete** | PASS |
+| 12 | **Split a partially received part** — the Received row and its Awaiting remainder move together; receiving the rest settles both and the new sale goes **Complete** | PASS |
 | 10 | **Back-end over-receipt** (disclosed below): 5 received where 1 remained → both request rows settle to `received` and the sale goes **Complete** | PASS |
 
 ### Check 10 — deliberate fault injection, disclosed
@@ -96,9 +98,27 @@ The **two-deliveries half** was covered on its own (checks 4 and 8), and the **o
 evidenced by check 6: two deliveries produced two real lines totalling exactly 2 × $40.00, with no
 duplicated charge.
 
-**The split-across-two-purchase-orders exclusion was not exercised either** — "Split parts order"
-splits the *part sale*, not the purchase order, and no screen puts one request on two orders. Stated
-as unexercised rather than claimed as confirmed.
+**CORRECTION (same day, after the QA lead pointed at the Split parts order menu).** My first pass
+dismissed this too quickly. Driven properly, **Split parts order** does something directly relevant:
+`POST /api/part-sales/split {workOrderId, partIds}` — no dialog, no quantity — moves the selected part
+requests to a **new part sale**, and **the purchase order is left untouched and now serves BOTH sales**.
+Two further checks, both PASS:
+
+* **Checks 11 — one purchase order, two part sales.** P9565-257 held two ordered parts; one was split
+  off to P9565-258. Both requests still pointed at purchase order P-257, which still carried both
+  items. **One delivery settled both, and both part sales moved to Complete.**
+  `ev/J3_p258_complete.png`, `ev/J4_p257_complete.png`.
+* **Check 12 — split a partially received part.** P9565-259, quantity 3, received 1 of 3 (splitting the
+  row into Received 1 + Awaiting 2), then the part was split to a new sale: **the received row and its
+  awaiting remainder travel together** and the emptied sale falls back to Estimate. Receiving the
+  remaining 2 settled both rows and the new sale **P9565-260** went **Complete**.
+  `ev/K4_p260_complete.png`.
+
+What is still true: **the split moves whole part requests, never a partial quantity** (the payload has
+no quantity field), so it does not leave a purchase-order line ordered for more than its request — the
+over-ordered shape is still not producible this way. And **one request on two purchase orders**, the
+developer's stated exclusion, still has no path: the split puts two sales on ONE order, which is the
+opposite arrangement.
 
 ## Before and after
 
@@ -128,6 +148,7 @@ first line *"OVERALL QA STATUS: PASSED"*, all seven headings present.
 * `ev/EX3_zero_lines.png` — the zero-priced duplicate lines, then a clean invoice
 * `ev/EX4_two_deliveries.png` — two deliveries, one request, no duplicate charge
 * `ev/EX5_over_receipt_blocked.png` — the receive screen refusing an over-ship
+* `ev/EX6_split_parts_order.png` — Split parts order: one order, two sales, both completing
 
 ## Test data left on the branch (no cleanup needed — per-ticket QA branch)
 
