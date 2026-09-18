@@ -366,3 +366,68 @@ Evidence: `ev/deprev_1_list.png`, `ev/deprev_2_dialog.png`, `ev/deprev_3_after.p
 **Driven by hand vs by API.** The reverse itself — the thing under test — was clicked in the UI and
 the dialog read off the screen. Only the seeding of a reversible deposit used the API, because the
 deposits table has no "add deposit" control at all.
+
+---
+
+## §8 — Checklist steps 4 and 6, reached through the REAL apply flow — **PASS**
+
+§3 read the one- and two-credit tooltips off part sales that were **already** in a spent state in the
+QA dataset. The developer's step 4 asks for something stricter, and says so: *"reaching it through
+this apply flow is exactly what is untested."* This section does that — every spent state below was
+produced by applying a credit to an invoice in the UI, on this build.
+
+### How a credit is actually spent (the flow that was missing)
+
+There is no "apply credit" button anywhere. A credit memo is spent by **taking a payment**:
+Customer → **Invoices** → tick the invoice **and** tick the credit row → **New Payment**. The dialog
+lists the credit underneath the invoice with the hint **"Fully consumed"** and subtracts it from the
+money due, so the shop pays the remainder. `POST /api/customer-account/create-customer-payment`.
+
+*(The "Applied credit" payment method is a different thing entirely — it creates a held deposit
+marked Excess Payment and consumes no credit memo. Recorded so nobody loses the hour again.)*
+
+### First, the refund instruction was followed — and it works
+
+P-250 was carrying **CM-4196 refunded**, which blocks. Chris's refund tooltip tells the shop to
+*"Reverse that refund on the Payments tab before reversing this invoice."* Done exactly as written:
+Customer → **Payments** → the Refund row → the bin icon, whose tooltip is **"Remove"** (precisely as
+Nemanja described) → *"This action will reverse the payment for all invoices associated with it…"*
+→ Reverse. `POST 201 /api/customer-account/reverse-customer-payment`.
+
+**CM-4196 went straight back to `open`, and `reverseBlockedByCredits` returned to `false`.** The
+instruction in the tooltip is followable and it clears the block — which is the half of step 5 that
+a tooltip on its own cannot prove.
+
+### Then the three tooltip formats, each produced by spending one more credit
+
+P-250 carried three open credits: CM-4196 $12.00, CM-4197 $13.00, CM-4198 $14.00.
+
+| # spent | how it was spent | Reverse | tooltip, verbatim | Chris's spec |
+|---|---|---|---|---|
+| 1 | CM-4196 → invoice **P-252** (a different invoice), $40.98 cash + $12.00 credit | **disabled** | `Credit CM-4196 ($12.00) has been applied. Unwind it before reversing.` | **exact** |
+| 2 | CM-4197 → invoice P-250, $47.75 cash + $13.00 credit | **disabled** | `Credits CM-4197 and CM-4196 ($25.00 total) have been applied. Unwind them before reversing.` | **exact** |
+| 3 | CM-4198 → invoice **P-251** (payment removed first to re-open it), $91.00 cash + $14.00 credit | **disabled** | `Credits CM-4198, CM-4197 and 1 more ($39.00 total) have been applied. Unwind them before reversing.` | **exact** |
+
+$12 + $13 = **$25.00**. $12 + $13 + $14 = **$39.00**. Both totals correct.
+
+The three-or-more form names two, counts the rest and shows the combined total — Chris's decision 3,
+met to the word. **This is the format that was outstanding after §3, and it is now verified.**
+
+The API tracked each step: every credit moved `open` → `fully_consumed` with `blocksReverse: true`
+as it was spent, and `reverseBlockedByCredits` went `false` → `true` on the first one.
+
+Evidence: `ev/ap1_ready.png`, `ev/ap1_after.png`, `ev/ap2_ready.png`, `ev/ap3_ready.png`,
+`ev/step4_one_2_tooltip.png`, `ev/step6_two_2_tooltip.png`, `ev/step6_three_2_tooltip.png`,
+`ev/paytab_dlg.png`.
+
+### One thing the developer asked Chris about that is NOT settled — flagged, not failed
+
+Nemanja's comment of 18 Sept (07:22) asks Chris for a **mixed** wording — when some blocking credits
+were applied and others refunded:
+
+> Credits CM-4353 and CM-4360 ($1,350.00 total) **have been applied or refunded.** Unwind them before reversing.
+
+He states plainly that this one **is not implemented** and that mixed sets keep the "have been
+applied" wording. **Chris has not answered.** Our sets above were all-applied, so the gap did not
+show here — but it is real, it is unanswered, and it belongs in the outstanding list rather than in
+a pass or a fail.
