@@ -4754,6 +4754,12 @@ Reached from **Parts → Returns → tick a row → Receive Credit**, which open
   **`disabled: true`** and mirroring the part. So the **instalment quantity is typed on the part row
   and the core follows it** — the same parent-follows rule as the receive screen in AE.3.
 
+⚠️ **A DUPLICATE CREDIT MEMO NUMBER IS REJECTED, AND THE MESSAGE DOES NOT SAY SO.** Re-using a
+`credit_memo_number` that already exists gives **HTTP 400** and a red toast reading only
+**"Failed to post credit — An error occurred while processing the return. Please try again or contact
+support."** Check `GET /api/inventory/returns` for the number before calling that a defect; in a
+scripted instalment loop, give every instalment its own memo number.
+
 **Do not read "disabled" as a defect.** It is the product's rule that a core moves with its part.
 A script that types into `input_received_quantity_0` after ticking a lone core row will report the
 field reading back unchanged — that is the lock, not a failed keystroke.

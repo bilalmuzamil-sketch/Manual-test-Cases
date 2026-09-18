@@ -57,6 +57,40 @@ Katina's case, because hers were cores.
 | 7 | **Regression — a quantity-1 return credited once** (BX109685SP core, S-17399): completes and leaves the list, exactly as it should. Nothing lingers | PASS |
 | 8 | The Returns list count moved consistently with the work done (59 → 54 rows across the pass), with no unexpected disappearances | PASS |
 
+## Follow-up: the core case re-done FROM SCRATCH, on a core seeded through the QA lead's own process
+
+The original pass used core returns that already existed on the branch, and the comment says so. The
+QA lead then supplied the part-sale process for creating one from nothing, so the core case was
+re-run end to end on **`sv9610`, build v26.36.8-c20bc32**, 18 September 2026.
+
+**Seeding** (the QA lead's steps, followed exactly): part sale **P9610-250** → Add Part with a part
+number never used on this organisation (**ZZ9610CORE3**), Source **Vendor**, 5 Star Truck Repair,
+quantity **3**, cost $10.00, **Core Charge 1** → Authorize → Order → Receive the main part on vendor
+invoice **ZZ9610-CORE-INV1** → return the **whole part** (the reply icon on the part row, quantity 3).
+Both the part and its **`Core for ZZAUTOTEST ZZ9610CORE3`** then appeared under **Parts → Returns** at
+quantity 3.00 — the core travels with its parent, which is the step that makes a core return.
+
+**Result — the fix holds on a core created from nothing:**
+
+| Instalment | Credit memo | Posted | Part row | Core row |
+|---|---|---|---|---|
+| 1 of 3 | `ZZ9610-FRESHCORE-1` | $11.55 | still listed, 2 outstanding | still listed, 2 outstanding |
+| 2 of 3 | `ZZ9610-FRESHCORE-2` | $11.55 | still listed, **1** outstanding | still listed, **1** outstanding |
+| 3 of 3 | `ZZ9610-FRESHCORE-3` | $11.55 | leaves the list | leaves the list |
+
+$11.55 is one part at $10.00 plus one core at $1.00 plus $0.55 tax — so each instalment credited
+exactly one of each, and all three are recorded under **Credits**. Before the fix the return would
+have disappeared after the second, stranding the third unit.
+
+**Two product facts established while doing it, both recorded in the playbook (§AE):**
+* **A core return cannot be part-credited on its own.** Tick the `Core for …` row alone and the
+  Process Return screen offers a single **disabled** accepted-quantity box. Tick the **parent part's**
+  row and two lines appear — the part editable, the core locked to it. The core is credited *with*
+  its part, and the instalment quantity is typed on the part row.
+* **A duplicate credit memo number is rejected with a message that does not say so** — HTTP 400 and a
+  toast reading only *"An error occurred while processing the return."* I hit it once and checked the
+  credits list before calling it anything, which is what it turned out to be.
+
 ## One mistake of my own, recorded because it nearly became a false regression
 
 On the first attempt at check 6 the return **did vanish** on the fix branch, which looked like the bug
@@ -78,6 +112,12 @@ first, per the new standing rule, and said no for this ticket; everything techni
 document instead. Read back from Jira: 2 exhibits in order, 9 table rows (header + 8 checks), first
 line *"OVERALL QA STATUS: PASSED"*, all four headings present, no technical section.
 
+⚠️ **The comment's last bullet is now out of date.** It says *"one thing I could not set up: I tried
+to seed a brand-new core return from scratch and could not drive the second quantity box on the
+receive screen."* That is no longer true — the from-scratch run above completed, and the second box
+is disabled **by design** (the core follows its parent). The comment should have that bullet replaced
+with the from-scratch result; **not done yet — needs the QA lead's go-ahead to edit `76798`.**
+
 ## Exhibits
 
 * `ev/EX1_before_after.png` — the same shape on both builds: quantity-2 return, credit 1. Production
@@ -90,9 +130,9 @@ line *"OVERALL QA STATUS: PASSED"*, all four headings present, no technical sect
 
 **Branch (per-ticket QA branch, no cleanup needed):** credits `ZZ9610-CM1…CM4`, `ZZ9610-CORE-A1/A2`,
 `ZZ9610-INV-1/2/3`, `ZZAUTOTEST-9610-AFTER`, `ZZAUTOTEST-9610-AFTER2`, `ZZAUTOTEST-9610-SINGLE`;
-part sale P9565-248 with part `ZZ9610-CORE1` (seeded for a core return, ordered but not received —
-the receive screen's second quantity field could not be driven, and it was not needed once the
-existing core returns served).
+part sale P9565-248 with part `ZZ9610-CORE1` (an early seeding attempt, ordered but not received);
+and the completed from-scratch core run above — part sale **P9610-250**, part **ZZ9610CORE3**, vendor
+invoice `ZZ9610-CORE-INV1`, credits `ZZ9610-FRESHCORE-1/2/3`.
 
 **Production (test organisation):** two credits were posted and **two returns are now stranded** —
 `ZZAUTOTEST-9610-BEFORE` (S-621, one core left unclaimable) and `ZZAUTOTEST-9610-PROD2` (S2-661, one
