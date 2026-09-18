@@ -604,3 +604,28 @@ and neither *New Customer Port…* nor *QA Foothills Group Inc* appears in our c
 
 **So step 7 is still not observable, but for a different and much narrower reason than before** — not
 "the portal is unreachable" but "the portal works and its card checkout returns a 400".
+
+---
+
+## §12 — The QA comment (posted)
+
+**Comment 76831 on SV-9697**, posted 2026-09-18. Built by `build_comment.py`, wiki markup through the
+v2 API, with the six exhibits uploaded first as real Jira attachments (61088–61093).
+
+**The verdict is deliberately conditional**, on the QA lead's instruction: *"lets reference this for
+the portal part at the TOP of your comment and say its ONLY qa passed after Nemanja confirms that the
+portal which is not working at the moment is confirmd to be working and verified the portal part by
+Nemanja."* So the first line reads **"PASSED ON EVERYTHING EXCEPT THE PORTAL CHECK — NOT A FULL QA
+PASS YET"**, and the panel under it links Nemanja's comment 76830 (*"I will check it on Monday and
+test the portal part."*) and states plainly that the ticket is only QA-passed once he has confirmed
+the portal works and verified that part himself.
+
+**Pre-post gate:** build marker re-read live (`v26.36.8-4ee1c0f`, unchanged since the re-checks) ·
+ticket state re-read (Blocked, priority Medium, newest comment 76830 already read and referenced) ·
+reader-facing text scanned for machine-authored tells, none found · no "Technical details for
+developers" section, per the QA lead's 2026-09-18 instruction.
+
+**Read back from Jira after posting:** six media nodes, every one `"type":"file"` with an attachment
+id — real attachments, not external links — in the intended order at 900px wide with their correct
+heights; twelve table rows (header + eleven checks); the first line is the conditional verdict; the
+link to comment 76830 is present.
