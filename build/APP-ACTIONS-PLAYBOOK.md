@@ -4788,3 +4788,116 @@ bug surviving was my own input not landing: the credit posted **$160.44** (the w
 of one unit's **$80.22**, so the return completing was correct. Read the field's `.value` back and
 abort if it is not what you intended — and when a return "vanishes", check the **posted credit amount**
 before calling it a regression (Rule 75).
+
+## §AH — CUSTOMER CREDITS: issue one, attach it to an invoice, cancel it, and read its state (proven 2026-09-18, SV-9697)
+
+**Everything below was driven end to end on `sv9697`. Do not re-derive any of it.**
+
+### AH.1 — Where credits live (and the tab that does not exist)
+
+There is **no "Credits" tab** on a customer. Credits sit on the customer's **Invoices** tab, mixed in
+with invoices and told apart by the **Type** column (`Invoice` / `Credit`). A credit created against a
+part sale shows its origin inline as **`CM9697-4198 - P9697-250`**.
+
+⚠️ **The tab defaults to "Open only", which HIDES voided credits.** Toggle it off, or you will read a
+customer's history and conclude a credit never existed. The same applies to the API:
+
+* `GET /api/customer-account/list-unpaid-transaction?accountId=<id>` → **open rows only**
+* `GET /api/customer-account/list-unpaid-transaction?accountId=<id>&openOnly=false` → **everything**,
+  each row carrying `type` · `status` (`unapplied` / `voided` / `paid` / `fully_consumed`) ·
+  `amount` · `balance` · `invoice_number` · `memo` · `origin_invoices[]`.
+
+**`GET /api/credit-memos` is POST-only and answers 405.** There is no collection read — use the
+transaction list above, or `invoiceCredits` on the work-order view (AH.4).
+
+### AH.2 — Issuing a credit: the dialog has two completely different modes
+
+⋮ (`button_part_sale_menu`) → **Issue Credit**. The checkbox
+**`checkbox_credit_memo_type_parts`** ("Parts are being returned") is **ticked by default** and
+decides which dialog you get:
+
+* **Ticked → a parts credit.** A table of the invoice's parts with
+  `input_parts_return_quantity_<woPartId>`, `input_parts_return_restocking_fee_<woPartId>` and a
+  `checkbox_select_parts_<woPartId>` per row, plus
+  `currency_text_parts_return_{subtotal,tax,total}`. **If the part sale has no received parts the
+  table reads "No parts on this invoice are available for credit" and Issue Credit stays disabled.**
+* **Unticked → an amount-only credit.** The table is replaced by a single
+  **`input_credit_memo_amount`** (validation: *"Amount cannot be lower than 0.01"*).
+
+Both then offer `radio_credit_memo_outcome_hold` (**Issue Store Credit**) /
+`radio_credit_memo_outcome_refund`, `input_credit_memo_reason`, and `button_confirm_dialog`.
+
+⚠️ **A `Core for …` row can be ticked but cannot be credited on its own** — the totals stay
+**$0.00** and Issue Credit stays **disabled**. A core is credited with its parent part, the same
+parent-follows rule as §AE.4's Process Return screen. **This is the product's rule, not a defect.**
+
+⚠️ **TICKING A ROW IS NOT THE SAME AS SELECTING IT — VERIFY BY THE TOTALS.** Two failures, both mine:
+a **coordinate click** computed before scrolling landed on the *wrong* row (I ticked the core and
+credited the $546 part), and a synthetic **`element.click()`** on the Quasar checkbox wrapper ticked
+the row visually while the Vue model stayed empty (totals `$0.00`, Confirm disabled). The working
+form is **`locator.scrollIntoViewIfNeeded()` → fresh `boundingBox()` → `page.mouse.click()` at the
+centre**, and then **read `currency_text_parts_return_total` back before confirming**. The row text
+you print is what you *aimed at*; the total is what the app *heard*.
+
+### AH.3 — Creating a credit by API, and the ONE field that attaches it to the invoice
+
+`POST /api/credit-memos`, **camelCase**, captured from the UI:
+
+```json
+{"customerAccountId":"<accountId>","amount":12,"reason":"…",
+ "originKind":"invoice","originInvoiceId":"<invoiceId>","originDate":"2026-09-18T06:00:00.000Z"}
+```
+
+An empty body answers `{"customer_account_id":"Missing required parameter"},{"amount":"Missing
+required parameter"}` — **the error names snake_case while the endpoint accepts camelCase**, so the
+validation message is not the field list to send.
+
+⚠️ **`work_order_id` and `invoice_id` are accepted and SILENTLY IGNORED.** The credit is created
+(HTTP 201) but floats free: it never appears in `invoiceCredits` and cannot block or be cancelled by
+a reverse. **`originInvoiceId` is the only field that attaches it.** Get the invoice id from
+`invoice_id` on the work-order view, or from `POST /api/invoices/create`.
+
+### AH.4 — Reading whether a credit blocks a reverse (the SV-9697 fields)
+
+`GET /api/work-orders/view/{id}` → `data.work_order` now carries:
+
+```json
+"invoiceCredits":[{"number":"CM-4198","amountCents":1400,"status":"open","statusLabel":"Open",
+                   "blocksReverse":false,"autoVoidedByReverse":true}],
+"reverseBlockedByCredits": false
+```
+
+`status` is one of `open` · `voided` · `fully_consumed`. **Only `fully_consumed` sets
+`blocksReverse`.** The legacy single flag **`has_part_sale_credits`** is still in the payload and is
+what the pre-fix front end greyed the button out from — useful for proving the fix: it can read
+`true` while `reverseBlockedByCredits` is `false`.
+
+### AH.5 — Cancelling a credit (what the customer does himself)
+
+On the customer's Invoices tab each credit row carries `button_print_credit_memo_<id>`,
+`button_cash_out_credit_<id>` and **`button_delete_credit_<id>`** (the red bin).
+
+⚠️ **The bin opens a dialog titled "Reverse Credit" whose confirm button is labelled `REVERSE`,
+not Delete or Confirm.** A confirm-matcher of `/yes|confirm|delete|ok/i` finds nothing and the run
+exits having changed nothing while looking like it worked. Match `/^(yes|confirm|delete|ok|reverse)$/i`
+on the **trimmed** label. It posts **`POST /api/credit-memos/{id}/void`** and the credit becomes
+`voided`.
+
+### AH.6 — Spending a credit: the route that does NOT work
+
+Customer → Invoices → tick an invoice row (`checkbox_transaction_<id>`) → **New Payment**.
+
+* **New Payment is disabled until a row is ticked**, and **Make Payment stays disabled until a
+  Payment Method is chosen** — the dialog says *"Payment method is a required field"*.
+* Methods offered: `EFT · Visa · Cash · E-transfer · Check · Gift card · Amex · Debit · Payroll
+  deduction · Mastercard · Applied credit · Exmerce`.
+* Fields: `input_payment_amount` (per-invoice allocation), **`input_manually_entered_credit`**
+  ("Amount to credit"), `button_make_payment`, `button_send_to_terminal`.
+
+⚠️ **MEASURED, 2026-09-18: paying with method "Applied credit" and an Amount to credit of $39.00
+posts the payment (`POST 201 /api/customer-account/create-customer-payment`) and drops the invoice
+balance $99.75 → $60.75, but draws down NO credit memo** — all three attached credits stayed
+`unapplied` at full balance. **So this is not how you make a credit `fully_consumed`.** If you need a
+spent credit for a test, the only ones on `sv9697` came with the seed data (CM-3956 · CM-2190 ·
+CM-2191 · CM-2177 · CM-2070). Whether the payment behaviour is correct is an open question, not a
+recorded fact.
