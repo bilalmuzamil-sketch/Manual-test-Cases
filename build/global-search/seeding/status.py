@@ -109,7 +109,10 @@ UNIVERSES = [
      # 🔴 a part ROW carries its NAME, not its part number - probing for the number reported a
      # record as missing that search was returning perfectly well.
      ('ZZPHON',        'parts',     'ZZPHON Alternator'),     # C55728 phonetic, names-only
-     ('ZZBROAD',       'parts',     'ZZBROAD Target Widget'), # C55730 the low-ranked target
+     # 🔴 PROBE THE NARROW TERM, NEVER THE BROAD ONE. C55730 REQUIRES this target to fall below
+     # the 20-row group cap on the broad 'ZZBROAD' query - so a broad probe reports the case's own
+     # PASS condition as a missing record. It did, and sent a status run red on healthy data.
+     ('ZZBROAD Target', 'parts',    'ZZBROAD Target Widget'), # C55730 the low-ranked target
      ('S2-15430 Holdings', 'customers', 'Holdings'),  # C55729 the competing name match
   ], 'seed-manifest-ranking.json', 'verify_ranking.py'),
 ]
