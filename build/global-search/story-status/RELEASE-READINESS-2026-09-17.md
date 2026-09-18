@@ -364,3 +364,41 @@ The 26 stories, by where they sit (read live 2026-09-18):
 | Withdrawn (5) | SV-9167 · SV-9169 · SV-9173 · SV-9306 · SV-9310 |
 
 Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
+
+## v12 — published 2026-09-18 (artifact version 12) — the "how are you counting 13?" check
+
+He asked how the thirteen was counted. Re-derived live, and two things needed correcting.
+
+**The arithmetic.** *Handed to QA* = has reached **Testing QA** in Jira.
+
+| | Count | Keys |
+|---|---|---|
+| In **TESTING QA** now | 7 | SV-9163 · SV-9164 · SV-9165 · SV-9168 · SV-9170 · SV-9171 · SV-9174 |
+| **QA Complete** | 5 | SV-9161 · SV-9162 · SV-9166 · SV-9172 · SV-10031 |
+| **Ready for Production** | 1 | SV-9313 |
+| **Handed over** | **13** | |
+| Never reached QA | 8 | SV-9307 · SV-9308 · SV-9309 · SV-9311 · SV-9312 (Board Backlog) · SV-9175 · SV-9176 · SV-9594 (Open) |
+| Withdrawn | 5 | SV-9167 · SV-9169 · SV-9173 · SV-9306 · SV-9310 |
+
+Status **history** was read for the three that do not currently sit in a QA status, to prove they
+passed through rather than skipping it: SV-9161 (Ready for QA → TESTING QA → QA Complete, 17 Sep) ·
+SV-10031 (Code Review → TESTING QA → QA Complete, 14–15 Sep) · SV-9313 (Code Review → TESTING QA
+16 Sep → **In Progress → Code Review → Ready for Production 17 Sep**).
+
+**Correction 1 — they are not all stories.** The 26 children of SV-9160 are **18 Stories, 7 Tasks
+and 1 Bug**. The report now says *"26 pieces of work — 18 stories, 7 tasks and one bug"* in the
+board heading and in the handover definition, instead of calling them all stories (v11 over-corrected
+"parts" into "stories"). The five verification rounds and the FE old-path removal are Tasks;
+SV-10031 is a Bug.
+
+**Correction 2 — SV-9313 left QA and did not come back.** It cleared Testing QA on 16 September,
+was then changed again and went In Progress → Code Review → **Ready for Production** on 17 September
+**without returning to QA**. Our own check on it (C44897) was re-run on the current branch build
+`v26.36.7-29ca209` on 17 September and passed, but that does not prove the same-day change is in
+that build. The report now says this in the item itself and asks for **one more look before
+release**.
+
+The flow section also gained a short **"How 'handed to QA' is counted"** note so the thirteen can be
+checked by anyone reading it.
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
