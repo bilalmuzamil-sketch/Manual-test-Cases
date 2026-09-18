@@ -1,6 +1,6 @@
 # SEED MANIFEST — Global Search V2 "Fibridge" universe · qa
 
-**Read back off the environment, not typed.** Build marker: `v26.36.7-29ca209`.
+**Read back off the environment, not typed.** Build marker: `v26.36.8-d146c39`.
 Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 
 ### Customers
@@ -65,11 +65,11 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 | work_orders_fib_main | S-17654 | edb63ecb-d707-4a1e-b8f4-5d46ec57d633 | Approved | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17655 | 564bf822-0e89-43dd-9acd-5d168c4f2f94 | Approved | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17656 | 2c36d7af-a522-46fa-bca7-17f95d36e4e8 | Approved | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17657 | 1391ec5c-7638-4454-b906-1a02b97946ba | Approved | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17657 | 1391ec5c-7638-4454-b906-1a02b97946ba | Estimate | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17658 | 36e9e5eb-ee74-4747-a354-a5d850164d66 | In Progress | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17659 | 4194d905-59ba-4e18-beae-93086f3c3de1 | In Progress | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17660 | 3169709d-73f0-484d-ae11-4c8f3b6738f0 | In Progress | ZZAUTOTEST Fibridge Commercial |
-| work_orders_fib_main | S-17661 | 6cffa4c0-8e4a-426d-bce9-8efad6d5ed1b | In Progress | ZZAUTOTEST Fibridge Commercial |
+| work_orders_fib_main | S-17661 | 6cffa4c0-8e4a-426d-bce9-8efad6d5ed1b | Paid | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17662 | 3725fae3-d0ee-4e00-9c64-13a40dd39693 | Review | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17663 | f4145843-f947-4f38-9825-eccc948b9f6b | Review | ZZAUTOTEST Fibridge Commercial |
 | work_orders_fib_main | S-17664 | a8c08563-237d-427a-8f22-1728817dcdda | Review | ZZAUTOTEST Fibridge Commercial |
@@ -93,12 +93,13 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 
 | number | id | status | total |
 |---|---|---|---|
-| S-17652 | 342f6e2a-6a5e-429f-af45-26f7ada197e9 | ordered | 240 |
+| S-17652 | 342f6e2a-6a5e-429f-af45-26f7ada197e9 | partial_delivery | 480 |
 
 ### Vendor invoices (a delivery IS the vendor invoice)
 
 | invoice number | id | from PO | total |
 |---|---|---|---|
+| 5445546 | f1cb8145-bb66-4a55-9b74-0cab71002926 | S-17652 | 240.00 |
 | ZZT-INV-3 | 806df545-afea-4fa4-8f28-41f682bdf4f8 | I-1397 | 90.00 |
 | ZZT-INV-2 | a33c9a5b-9891-4056-a64a-57c20d8585a7 | I-1396 | 100.00 |
 | ZZT-INV-1 | 4e9509a9-83d0-4186-909d-6b00a74ad284 | I-1395 | 90.00 |
@@ -109,7 +110,6 @@ Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 
 | tag | PO | route | invoice | payment |
 |---|---|---|---|---|
-| po_ordered | S-17652 | work_order | — | — |
 | inv_partial | I-1396 | stock | ZZT-INV-2 | 200 paid 50.0 of 100.0 (partial) |
 | inv_paid | I-1397 | stock | ZZT-INV-3 | 200 paid 90.0 of 90.0 (full) |
 | inv_unpaid | I-1395 | stock | ZZT-INV-1 | — |
