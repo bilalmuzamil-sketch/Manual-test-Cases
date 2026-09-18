@@ -340,3 +340,27 @@ Three other places carried the same over-claim and were rescoped:
   still being built.*
 
 Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
+
+## v11 — published 2026-09-18 (artifact version 11)
+
+He asked what "parts" meant and whether parts = stories. They did — it was Rule 103 plain-wording
+taken one step too far, and it made the unit of work ambiguous. **Every such use now reads
+"story"**, and the handover section opens with a one-line definition: *a story is one piece of work
+in the tracker — the unit the development side builds, hands to QA, and QA signs off.* Twenty-one
+places changed, including the headings *Where each story sits between development and QA* and
+*The feature is built as 26 stories in the tracker*, the panel label *Testing of the stories handed
+over*, and the owner table column *Which stories*.
+
+Uses of "part" that mean something else are deliberately left alone: a catalogue **part**, a
+**part sale**, **part** of a word, **part** of a VIN.
+
+The 26 stories, by where they sit (read live 2026-09-18):
+
+| Where it sits | Stories |
+|---|---|
+| Signed off by QA (6) | SV-9161 · SV-9162 · SV-9166 · SV-9172 · SV-10031 · SV-9313 |
+| Handed over and tested, waiting on defects (7) | SV-9163 · SV-9164 · SV-9165 · SV-9168 · SV-9170 · SV-9171 · SV-9174 |
+| Still with the development side (8) | SV-9307 · SV-9308 · SV-9309 · SV-9311 · SV-9312 · SV-9176 · SV-9175 · SV-9594 |
+| Withdrawn (5) | SV-9167 · SV-9169 · SV-9173 · SV-9306 · SV-9310 |
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
