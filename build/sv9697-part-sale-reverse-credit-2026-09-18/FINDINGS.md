@@ -187,3 +187,71 @@ On P-250 (which carried CM-4190 $546.00 and CM-4191 $60.00, both open):
 **One honest note:** both P-250 credits lose their `origin_invoices` back-reference, because the
 invoice they pointed at no longer exists after the reverse. That is the invoice going away, not a
 change to the credit — the status, the amount and the memo are all unchanged on CM-4190.
+
+---
+
+## §3 — A genuinely SPENT credit still blocks, and the refusal names it — **PASS for one and two credits**
+
+The developer flagged this as *"the highest-value step"* and listed it under Known mismatches as not
+browser-verified. Read live on the branch, hovering the disabled Reverse item:
+
+| Part sale | Spent credits | Tooltip, verbatim | Chris's spec |
+|---|---|---|---|
+| P2-193 | CM-3956 | `Credit CM-3956 ($231.00) has been applied. Unwind it before reversing.` | **exact match** |
+| P2-57 | CM-2190, CM-2191 | `Credits CM-2190 and CM-2191 ($240.16 total) have been applied. Unwind them before reversing.` | **exact match** |
+
+The API agrees: on both, `reverseBlockedByCredits: true` and every credit carries
+`status: "fully_consumed", blocksReverse: true`.
+
+**The three-or-more format was NOT reproduced — honest limit, see below.**
+
+---
+
+## §4 — Regressions on the shared surfaces
+
+**Service work order, branch, S2-16654 (invoiced, no credit):** ⋮ → Reverse is **enabled** and the
+confirmation is **today's wording, unchanged**:
+> This action will re-open and undo the invoice. Are you sure you want to proceed?
+
+That is exactly what Chris ruled: part sales only in this hotfix, service work orders keep the
+always-clickable button, and the shared dialog's no-credit wording does not change.
+
+**Paid-invoice guard still takes precedence:** on P2-92 (paid, one open credit) Reverse is enabled and
+clicking it gives the pre-existing **"This invoice has been paid, please delete payment before
+reversing."** — the credit change has not displaced the payment guard.
+
+---
+
+## Honest limits — what I could NOT produce on this branch
+
+**(a) The three-or-more spent-credit tooltip.** No part sale on this branch has three spent credits,
+and I could not make a third credit *spent*. What I tried: issuing three credits against one part
+sale's invoice (they attach correctly — `invoiceCredits` shows all three), then paying another invoice
+and the same invoice with payment method **Applied credit** and an **Amount to credit** of $39.00. The
+payment posts (`POST 201 /api/customer-account/create-customer-payment`, the invoice balance drops
+$99.75 → $60.75) but **no credit memo is drawn down** — all three stay `unapplied` at full balance.
+So the one- and two-credit formats are proven live and byte-exact; the three-or-more format is not.
+
+**(b) The portal-payment precedence check.** No invoice on this branch is paid through the customer
+portal, and I found no way to create one from inside the product.
+
+**(c) The corrected copy for the 25 legacy part sales.** Chris ordered
+`Reverse is unavailable for this part sale. Contact ShopView Support to correct it.` for the
+pre-rebuild part sales whose credit records are empty. **Those part sales are not on this branch at
+all.** I checked **every one of the 96 part sales** via `GET /api/work-orders/view/{id}`: only five
+carry any credit, and every one of those has a real credit record behind it —
+
+| Part sale | Credits | Blocked |
+|---|---|---|
+| P2-193 | CM-3956 fully consumed | yes |
+| P2-57 | CM-2190, CM-2191 both fully consumed | yes |
+| P2-54 | CM-2177 fully consumed | yes |
+| P2-38 | CM-2070 fully consumed | yes |
+| P2-92 | CM-2821 open | no |
+
+Nothing on this branch shows `reverseBlockedByCredits: true` with an empty credit list, which is the
+shape those 25 have. That copy needs either a seeded legacy record or a check on production after
+release.
+
+**(d) The 25-vs-23 count** in the developer's analysis could not be re-derived here for the same
+reason — the records are not on this branch.
