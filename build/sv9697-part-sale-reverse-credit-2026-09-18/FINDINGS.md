@@ -317,3 +317,52 @@ inventory quantities return to their pre-credit values after a reverse"*. The pa
 **vendor-sourced**, so it never entered inventory, and no pre-credit inventory snapshot was taken.
 Proving it needs an **inventory-sourced** part with a snapshot taken before the credit and re-read
 after the reverse. That is a clean, runnable test — it simply has not been run.
+
+---
+
+## §7 — Checklist step 9: the shared reverse dialog, on the OTHER two surfaces
+
+The developer's step 9 reads: *"Customer → Transactions → reverse a credit, and reverse a deposit.
+Expect: unchanged — same dialog was modified."* Both halves are now driven live.
+
+### 9a — Reverse a credit  → PASS (recorded in §1/§2)
+
+### 9b — Reverse a deposit → PASS
+
+**What the deposit table does with the Reverse control.** Read from the deployed build
+(`/js/DepositsTable.C3MiUjhA.js` on `v26.36.8-132baea`), then confirmed on screen:
+
+| deposit shape | Reverse control | tooltip |
+|---|---|---|
+| `status="held"` **and** no work order **and** raised by a payment (an *Excess Payment*) | **disabled** | "To remove this deposit, apply it to an open invoice. Refunding to the customer is coming soon." |
+| `status="applied"` | **disabled** | "To undo this deposit, reverse the payment that applied it — the deposit will return to held." |
+| any other held deposit (e.g. a deposit taken against a work order) | **enabled** | "Reverse" |
+
+This guard is the deposits table's own, long-standing logic. It is **not** SV-9697's, and SV-9697
+did not change it.
+
+**The live run.** DEP-4703 on Mayfield Heights Truck Centre is the first shape (Excess Payment, no
+work order), so its Reverse is greyed out by design — it could not be the test. A reversible deposit
+was seeded instead: **DEP-4705, $150.00 cash, on work order S9697-17358**, customer *Andreasen Truck
+& Equipment Repair* (`POST /api/deposits`, setup only — the deposit table has no create surface).
+
+Clicking Reverse on that row opened the shared confirmation dialog, verbatim:
+
+> **Confirmation**
+> This action will reverse the deposit and undo any amounts it applied to invoices. The deposit
+> record is preserved for audit history. Are you sure you want to proceed?
+> *Cancel · Reverse*
+
+Confirming sent `POST /api/deposits/1d542d1f-…/reverse` → **200**, and DEP-4705 left the Open-only
+list (status `reversed`); DEP-4704 beside it was untouched.
+
+**Why this is the regression the developer wanted.** The deposit copy is the deposit's own — it
+talks about amounts applied to invoices and audit history, and it carries **none** of SV-9697's
+credit-memo wording (no credit is named, no "this credit will be cancelled" line). The shared
+dialog still renders its per-type copy correctly after the change.
+
+Evidence: `ev/deprev_1_list.png`, `ev/deprev_2_dialog.png`, `ev/deprev_3_after.png`.
+
+**Driven by hand vs by API.** The reverse itself — the thing under test — was clicked in the UI and
+the dialog read off the screen. Only the seeding of a reversible deposit used the API, because the
+deposits table has no "add deposit" control at all.
