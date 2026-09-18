@@ -229,18 +229,29 @@ reversing."** — the credit change has not displaced the payment guard.
 
 ---
 
-## Honest limits — what I could NOT produce on this branch
+## What was NOT done, and why — every item names who ruled it out
 
-**(a) The three-or-more spent-credit tooltip.** No part sale on this branch has three spent credits,
-and I could not make a third credit *spent*. What I tried: issuing three credits against one part
-sale's invoice (they attach correctly — `invoiceCredits` shows all three), then paying another invoice
-and the same invoice with payment method **Applied credit** and an **Amount to credit** of $39.00. The
-payment posts (`POST 201 /api/customer-account/create-customer-payment`, the invoice balance drops
-$99.75 → $60.75) but **no credit memo is drawn down** — all three stay `unapplied` at full balance.
-So the one- and two-credit formats are proven live and byte-exact; the three-or-more format is not.
+⚠️ **THIS SECTION WAS REWRITTEN.** An earlier version of it called four things "honest limits". Two of
+them were not limits at all — they were work I had not done, and both are now done and recorded in §8
+and §10. The rule I now hold myself to: a check is only outstanding when the developer or the QA lead
+has ruled it out in writing, or the dependency genuinely cannot be obtained. Everything else is
+untested work, however well the paragraph explaining it is written.
 
-**(b) The portal-payment precedence check.** No invoice on this branch is paid through the customer
-portal, and I found no way to create one from inside the product.
+**RESOLVED — the three-or-more spent-credit tooltip.** Recorded here as a limit; it was not one. The
+missing piece was that a credit is spent by ticking the invoice **and** the credit together in
+Customer → Invoices and taking a payment — not by the "Applied credit" payment method, which makes a
+held deposit and consumes nothing. Once that was found, all three formats were produced in about
+twenty minutes. See **§8**.
+
+**RESOLVED — the credited line and the stock quantities.** Also recorded as a limit. The missing piece
+was that an inventory part on a part sale has to be **Authorized** and then **Picked** before stock
+moves at all. See **§10**.
+
+**BLOCKED, with the blocker named — the portal-payment precedence check (step 7).** All 98 invoiced or
+paid work orders on the branch were read and none is portal-paid, and the customer portal's own
+sign-in returns a server error on this environment, so no portal payment can be made. The QA lead has
+ruled this one out: *"Portal Payments can not be tested on QA, for that we have to ask the developer
+to enable Portal and Billing on the QA branch specially. SO you can SKIP portal part."* See **§9**.
 
 **(c) The corrected copy for the 25 legacy part sales.** Chris ordered
 `Reverse is unavailable for this part sale. Contact ShopView Support to correct it.` for the
