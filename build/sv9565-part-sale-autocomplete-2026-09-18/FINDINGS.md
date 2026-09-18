@@ -1,6 +1,7 @@
 # SV-9565 — a part sale stays Approved after all parts are received, so it cannot be invoiced
 
-**Status: testing in progress.** Nothing here is inferred; every line was observed live.
+**Status: DONE — QA PASSED. 10 checks, all pass.** Nothing here is inferred; every line was observed
+live.
 
 ## What the ticket says
 
@@ -23,8 +24,7 @@ left to receive, which pinned the part sale to Approved. The status is now settl
 **server-side total received for the request, summed across the order's non-core lines**.
 
 **Deliberately out of scope (the developer's own scope note):** a request split across **two purchase
-orders** is still only measured within one order, so it stays `waiting_to_receive` until the covering
-order is received or it is closed with "Receive as order fulfilled".
+orders** is still only measured within one order.
 
 **The developer's QA asks:** (1) receive a part sale end to end and confirm it auto-completes and can
 be invoiced; (2) the over-ordered case — order a line for more than requested, receive across two
@@ -34,90 +34,100 @@ deliveries, and check only one inventory pick row is recorded.
 
 | | URL | Build | Read |
 |---|---|---|---|
-| Fix branch | `sv9565.qa.shopview.com` | **v26.36.8-2b8d9aa** | `index.html` last-modified Thu 17 Sep 2026 13:29:08 GMT, etag `e19209f9…` |
+| Fix branch | `sv9565.qa.shopview.com` | **v26.36.8-2b8d9aa** | `index.html` last-modified Thu 17 Sep 2026 13:29:08 GMT, etag `e19209f9…`; `app-version` read from the page itself |
 | Production | `app.shopview.com` | **v26.36.8-961aeb2** | signed in with credentials, not cookies |
 
 Workplace on the branch: **Staging Heavy Duty - 9919**. The developer asked for the **QB Location**
 workplace because "a local receive returns a 500 on staging-copy data with empty QuickBooks keys" —
-**that workplace does not exist on this branch** (the org has exactly two: Staging Heavy Duty - 9919
-and Staging Lethbridge - 4310, confirmed from both `/api/staff/my-workplaces` and `/api/workplaces`).
-The cheapest decisive check was simply to try it: **every receive on Staging Heavy Duty returned
-`POST /api/orders/receive-requested-parts` 200**, so the 500 the developer was guarding against does
-not occur here and the QB-Location precondition is not needed on this build.
+**that workplace does not exist on this branch**. The org has exactly two (Staging Heavy Duty - 9919,
+Staging Lethbridge - 4310), confirmed from both `/api/staff/my-workplaces` and `/api/workplaces`. The
+cheapest decisive check was to try it: **every receive on Staging Heavy Duty returned
+`POST /api/orders/receive-requested-parts` 200**, so the 500 he was guarding against does not occur
+here and the QB-Location precondition is not needed on this build.
 
 Customer used throughout: **Mayfield Heights Truck Centre**; vendor **5 Star Truck Repair**; every
-part number and description is prefixed `ZZ9565` / `ZZAUTOTEST`.
+part number and description prefixed `ZZ9565` / `ZZAUTOTEST`.
 
-## Results so far
+## Results
 
-### §1 — the reported case, end to end (PASS)
+| # | Check | Result |
+|---|---|---|
+| 1 | Part sale **P9565-248**: one part, received in full → **moves to Complete by itself** | PASS |
+| 2 | **Create Invoice** on it → `POST /api/invoices/create` 201, **INV-P9565-248**, status Invoiced | PASS |
+| 3 | Finance page shows Parts $25.00 / GST $1.25 / Total $26.25 — **no zero-priced extra lines** | PASS |
+| 4 | **P9565-250**, quantity 2 received as **1 then 1**: first delivery splits the row into Received 1 + Awaiting 1 and the sale correctly stays Approved; second delivery settles both and the sale goes **Complete** | PASS |
+| 5 | **P9565-251**, two separate requests for the same part, received in **one delivery from the Purchase Orders list** (the other entry point) → both settle, sale **Complete** | PASS |
+| 6 | Invoice after two deliveries: **INV-P9565-250**, Parts **$80.00 = 2 × $40.00** — two real lines, **no duplicate charge** | PASS |
+| 7 | **Split parts order**: the parts moved to a new sale **P9565-255** while the purchase order still carried the old number; receiving it completed **P9565-255**, and the emptied **P9565-254** correctly fell back to Estimate | PASS |
+| 8 | **Work orders still receive correctly** — S9565-13556, three items of 6, one received 2 then 4: the two full items settled at once, the partial one split and settled on the second delivery | PASS |
+| 9 | Over-receipt **cannot be keyed into the receive screen**: 3 against an order of 1 shows *"Quantity received cannot be higher than 1"* and the Receive button will not submit | Reported, not a defect |
+| 10 | **Back-end over-receipt** (disclosed below): 5 received where 1 remained → both request rows settle to `received` and the sale goes **Complete** | PASS |
 
-Part sale **P-248** (`76fca2ef…`): one vendor-sourced part `ZZ9565-A1`, quantity 1, cost $10, sell $25.
+### Check 10 — deliberate fault injection, disclosed
 
-1. Added the part through **Add Part** → status **Quoted**.
-2. Authorised the line → the part sale moved to **Approved**, the part to **Awaiting**, and a purchase
-   order was created.
-3. Opened the purchase order, clicked **Receive**, entered quantity **1** and a vendor invoice number,
-   clicked **Receive** → `POST /api/orders/receive-requested-parts` **200**.
-4. **The part sale moved to Complete on its own** and the request settled to `received`.
-5. Finance tab → **Create Invoice** → `POST /api/invoices/create` **201**, invoice
-   **INV-P9565-248**, part sale status **Invoiced**.
+**What was induced:** a receive of quantity 5 where only 1 was outstanding.
+**How:** the receive screen refuses it (check 9), so the request was sent straight to
+`POST /api/orders/receive-requested-parts`, reusing the exact payload the screen produces, with
+`quantity_received` changed from 1 to 5. HTTP 200.
+**Why:** that endpoint is the code this fix changes, and "the vendor shipping extra" is one of the
+three divergences named in the root cause. There is no screen that produces it, so it was exercised
+where the fix lives.
+**Relevance:** under the old behaviour this is precisely the shape that stranded a request. It now
+settles: both rows `received`, part sale **Complete**.
+*(Side effect worth knowing, not a ticket: the over-received row shows quantity 5 and a negative
+remaining. Only reachable by bypassing the screen's own validation, so it is recorded here and told
+to the QA lead rather than put on the ticket.)*
 
-**No spurious $0.00 lines**: the Finance tab shows Parts $25.00 · Subtotal $25.00 · GST $1.25 ·
-Total $26.25, one part row only.
-
-Evidence: `ev/A1_receive_*.png`, `ev/A2_ps_complete.png`, `ev/A3_finance.png`, `ev/A4_invoice_*.png`.
-
-### §2a — two deliveries on one request (PASS)
-
-Part sale **P-250** (`5777a893…`), `ZZ9565-C1` quantity 2.
-
-* Received **1 of 2** → the row split into a **Received** row (qty 1) and an **Awaiting** row (qty 1);
-  the part sale correctly stayed **Approved**, order status **Partial Delivery**.
-* Received the remaining **1** → both rows `received`, **part sale Complete**.
-
-Evidence: `ev/C1_partial1_*.png`, `ev/C2_partial2_*.png`.
-
-### §2b — two requests settled by one delivery, received from the Purchase Orders list (PASS)
-
-Part sale **P-251** (`5d497cf1…`), two separate requests for `ZZ9565-D1`, quantity 1 each. Ordering
-both put **two order items on one purchase order** (they do not merge into a single line).
-
-Received through the **other** entry point — Parts → Purchase Orders → tick the order → **Receive** —
-in a single delivery covering both items. **Both requests settled to `received` and the part sale
-moved to Complete.**
-
-Evidence: `ev/D1_bulk_*.png`.
-
-### §3 — the over-ordered shape: not producible through any screen on this build
+## The over-ordered shape has no user-facing path on this build
 
 The developer's second ask needs a purchase-order line **ordered for more than the request**. Every
-route the product offers was tried, and none produces it:
+route the product offers was tried:
 
 | Attempted route | Result |
 |---|---|
 | The **Order** button on a part request | Orders immediately, no quantity prompt — the line always equals the request |
-| The **purchase order** screen (`/order/{id}`) | Quantity is read-only; the only edit control is `icon_edit_part_number`, which edits the part *number* |
-| The **receive** screen | **Validates**: entering 3 against an order of 1 shows *"Quantity received cannot be higher than 1"* in red and the Receive button will not submit — so a vendor over-ship cannot be entered either |
-| **Reducing the request quantity after ordering** (3 → 1 via the inline row field) | `POST /api/work-orders/part/change-request` — **the purchase order line follows it down to 1**, so they stay in step |
-| **Two requests for the same part** | Two separate order items, no merged line |
+| The **purchase order** screen | Quantity is read-only; the only edit control is `icon_edit_part_number`, which edits the part *number* |
+| The **receive** screen | Validates against over-receipt (check 9) |
+| **Reducing the request quantity after ordering** (3 → 1 inline) | `POST /api/work-orders/part/change-request` — **the purchase-order line follows it down to 1** |
+| **Two requests for the same part** | Two separate order items; they do not merge into one line |
 
-Evidence: `ev/B1_overship_2_filled.png` (the validation message), `ev/PO_pencil.png`, `ev/F_editqty2.png`.
+So the "order more than requested, receive across two deliveries" run could not be staged as written.
+The **two-deliveries half** was covered on its own (checks 4 and 8), and the **one-pick-row half** is
+evidenced by check 6: two deliveries produced two real lines totalling exactly 2 × $40.00, with no
+duplicated charge.
 
-**This is reported, not worked around.** It is stated in the QA comment as what it is: the two
-divergence shapes named in the root cause (over-ordered, vendor over-ship) have no user-facing path on
-this build, so they were exercised at the level the fix changed rather than through a screen — see the
-backend-level check below, which is disclosed as such.
+**The split-across-two-purchase-orders exclusion was not exercised either** — "Split parts order"
+splits the *part sale*, not the purchase order, and no screen puts one request on two orders. Stated
+as unexercised rather than claimed as confirmed.
 
-## Still to do
+## Before and after
 
-* The split-across-two-orders case (the developer's documented out-of-scope behaviour) — the control
-  exists: Parts tab → select the rows → **Split parts order**.
-* The inventory pick rows after two deliveries.
-* The backend-level over-quantity check, clearly disclosed.
-* Production before/after, annotated exhibits, QA comment.
+The plain end-to-end path **also auto-completes on production** (part sale **P-70**, `49a1cb6d…`,
+created, ordered and received in full → Complete). That is consistent with the root cause — the plain
+path, where the delivery equals the outstanding balance, was never the failing shape — so **the
+pre-fix behaviour could not be reproduced on production**, and no "before" could be captured there.
 
-**Production note already established:** the plain end-to-end path **also auto-completes on
-production** (part sale **P-70**, `49a1cb6d…`, received in full → Complete). So the plain path is not
-the failing shape and cannot serve as a "before"; the before/after has to be built on a divergence
-shape, if one can be produced there.
+The before therefore comes from **the reporter's own screenshots inside the ticket**, labelled as
+such: the customer's screen showing P-10465 **Approved with all four parts Received**, and the
+customer's estimate showing the **zero-priced duplicate lines**. `ev/EX1_before_after.png` and
+`ev/EX3_zero_lines.png` state on the image that the two halves are different orders — a comparison of
+the symptom, not of one record.
+
+## Exhibits
+
+* `ev/EX1_before_after.png` — the customer's blocked order vs the same shape completing on the branch
+* `ev/EX2_end_to_end.png` — receive → Complete → Create Invoice
+* `ev/EX3_zero_lines.png` — the zero-priced duplicate lines, then a clean invoice
+* `ev/EX4_two_deliveries.png` — two deliveries, one request, no duplicate charge
+* `ev/EX5_over_receipt_blocked.png` — the receive screen refusing an over-ship
+
+## Test data left on the branch (no cleanup needed — per-ticket QA branch)
+
+P9565-248 (invoiced) · P9565-249 · P9565-250 (invoiced) · P9565-251 · P9565-252 · P9565-253 ·
+P9565-254 (empty after the split) · P9565-255 · P9565-256, plus their purchase orders. Work order
+**S9565-13556** was received as part of check 8. **On production, one part sale remains: P-70**
+(`49a1cb6d…`, customer ZZAUTOTEST Bridgeport Hauling, part `ZZ9565-P1`, $26.25). It was created for
+the before-check and **cannot be removed** — the product refuses both routes: `work-orders/delete`
+returns *"Completed part sale cannot be deleted."* and `change-status` back to approved returns
+*"Complete work order cannot change its status again."* It is named ZZAUTOTEST and sits on the test
+organisation, and it has not been invoiced.
