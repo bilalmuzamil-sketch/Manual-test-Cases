@@ -555,3 +555,52 @@ Evidence: `ev/step10c_1.png`, `ev/step10c_2.png`, `ev/step10_rev_3_dialog.png`,
 * **The Issue Credit part checkbox does not respond to a click.** Neither a coordinate click nor
   Playwright's own click changes `aria-checked`. **Focus it and press Space** — then the row's
   *Qty To Credit* field appears pre-filled and the totals update.
+
+---
+
+## §11 — The branch REDEPLOYED mid-pass, and the portal was switched on — both caught by the pre-post gate
+
+**The build moved while I was assembling the comment.** Tested on **`v26.36.8-132baea`**; the live
+marker at post time read **`v26.36.8-4ee1c0f`**, last-modified **Fri 18 Sep 2026 14:32:57 GMT**. The
+cause is on the ticket: the QA lead asked Nemanja at **09:47:11-0500** to enable the portal, and
+Nemanja replied at **09:57:32-0500** *"I've set up portal as well here is the url … but you should
+access it through the navigation in the core app."* Nothing was posted against the dead build.
+
+**The three files this fix lives in are byte-identical across the redeploy** (sha256 compared against
+the copies pulled during testing): `invoiceCreditReverse.C3GmBgwF.js`, `InvoiceActionBar.CDwAp5SX.js`,
+`DepositsTable.C3MiUjhA.js`. That is code identity, not observation, so the verdicts were re-observed
+as well.
+
+**Re-observed live on `v26.36.8-4ee1c0f`:**
+
+| Path | Result |
+|---|---|
+| Enabled path — part sale P9697-253 re-invoiced with an unspent credit CM-4201 ($41.50) | Reverse enabled; confirmation reads *"…It will also cancel credit CM-4201 for $41.50…"* |
+| Blocked path — P9697-250, three spent credits | Reverse disabled; tooltip byte-identical: *"Credits CM-4198, CM-4197 and 1 more ($39.00 total) have been applied. Unwind them before reversing."* |
+| Deposit dialog — DEP9697-4706 | Unchanged, deposit wording only |
+
+### Step 7 (the portal) — the portal is now UP, and the payment still cannot be made
+
+This supersedes §9's second reason. The portal's sign-in no longer errors: **profile menu → "Customer
+Portal New"** opens `…laravel.cloud/invoices` and lists our invoices, **P-253 among them, Unpaid at
+$35.32** — the ideal specimen, because it already carries the unspent credit CM-4201, so a portal
+payment on it would put the portal message and the credit message in direct competition.
+
+**The payment itself fails.** *Pay Now* → *"Who is this payment for?"* → contact selected → amount
+pre-filled **$35.32** → **Continue to checkout** →
+
+```
+POST 400 /invoices/10133af7-1db4-4168-981d-aecac83d093a/create-checkout-session
+{"message":"Unable to process payment at this time. Please try again later."}
+```
+
+and the invoice page shows that same sentence. So the card checkout session cannot be created on this
+branch — the portal is enabled, the payment processor behind it is not.
+
+**No portal-paid invoice exists in our organisation to observe instead.** All 98 invoiced or paid work
+orders read `has_portal_payment: false`. The portal's own Payments list does hold three historic
+payments from June, but they belong to a **different organisation** (the portal opens as *Owner Demo*,
+and neither *New Customer Port…* nor *QA Foothills Group Inc* appears in our company list).
+
+**So step 7 is still not observable, but for a different and much narrower reason than before** — not
+"the portal is unreachable" but "the portal works and its card checkout returns a 400".
