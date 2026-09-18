@@ -113,6 +113,14 @@ customer's estimate showing the **zero-priced duplicate lines**. `ev/EX1_before_
 `ev/EX3_zero_lines.png` state on the image that the two halves are different orders — a comparison of
 the symptom, not of one record.
 
+## The QA comment
+
+`76778` on SV-9565, posted after the pre-post gate (build marker re-read live and identical —
+etag `e19209f9…`; ticket still TESTING QA with no new comment since Chris's review request on
+9 September; text scanned for machine-authored tells). Read back from Jira afterwards: **5 exhibits
+in the right order, all real Jira attachments** (61063–61067), 11 table rows (header + 10 checks),
+first line *"OVERALL QA STATUS: PASSED"*, all seven headings present.
+
 ## Exhibits
 
 * `ev/EX1_before_after.png` — the customer's blocked order vs the same shape completing on the branch
