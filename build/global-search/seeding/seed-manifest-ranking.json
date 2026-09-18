@@ -1727,6 +1727,76 @@
    "_why": "The part whose DESCRIPTION carries the word. A sound-alike of \"Alternator\" must NOT return it."
   },
   {
+   "key": "phon_part_inv",
+   "type": "InventoryPart",
+   "depends_on": "phon_part",
+   "serves": [
+    55728
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZPHON-3001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 8,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZPHON-3001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 8
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "THE STOCK ROW. Without it the catalogue part is invisible to search - so the case would have read as \"the part is correctly not returned\" when the part was never findable at all, which is a pass for entirely the wrong reason."
+  },
+  {
    "key": "phon_customer",
    "type": "Customer",
    "serves": [
@@ -1777,13 +1847,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZPINRIVAL Holdings",
+    "value": "S2-15430 Holdings",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZPINRIVAL Holdings",
+     "name": "S2-15430 Holdings",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -1804,7 +1874,7 @@
     "endpoint": "/api/customers/change",
     "whole_record": true
    },
-   "_why": "Renamed by apply_ranking_signals.py to \"<the seeded work order number> Holdings\" once the branch has assigned that number. A name cannot be hardcoded to a number the branch has not issued yet - that is exactly the stale-identifier trap."
+   "_why": "Its NAME BEGINS with a real work-order number, so typing that number produces the strongest possible competing name match - and the case asserts the pinned exact-ID row still wins.\n   \ud83d\udd34 S2-15430 is PRE-EXISTING ESTATE DATA, deliberately: it survived the redeploy that wiped every seeded record, and it OPENS as the tester (both re-proved 2026-09-17). Naming this after one of OUR work orders would bake in a number the next redeploy changes - the stale-identifier trap this project already paid for once."
   },
   {
    "key": "broad_01",

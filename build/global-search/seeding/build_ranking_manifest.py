@@ -436,6 +436,10 @@ R += [
 R += [
  cat_part('phon_part', 'ZZPHON-3001', 'ZZPHON Alternator Assembly', [55728],
    'The part whose DESCRIPTION carries the word. A sound-alike of "Alternator" must NOT return it.'),
+ inv_part('phon_part_inv', 'phon_part', 'ZZPHON-3001', 8, [55728],
+   'THE STOCK ROW. Without it the catalogue part is invisible to search - so the case would have '
+   'read as "the part is correctly not returned" when the part was never findable at all, which is '
+   'a pass for entirely the wrong reason.'),
  customer('phon_customer', 'ZZPHON Alternator Co', [55728],
    'THE CONTROL, and the case cannot be read without it: a NAME must still sound-alike match. If '
    'neither row comes back the sound-alike was simply wrong, not proof of names-only behaviour.'),

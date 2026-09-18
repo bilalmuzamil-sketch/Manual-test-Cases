@@ -106,8 +106,10 @@ UNIVERSES = [
      ('ZZNAMEBONUS',   'customers', 'ZZNAMEBONUS Cartage'),
      ('ZZACC',         'customers', 'Mart'),          # C55726 accents
      ('ZZPUNC',        'customers', 'Brien'),         # C55727 apostrophe / hyphen
-     ('ZZPHON',        'parts',     'ZZPHON-3001'),   # C55728 phonetic, names-only
-     ('ZZBROAD',       'parts',     'ZZBROAD-4999'),  # C55730 the low-ranked target
+     # 🔴 a part ROW carries its NAME, not its part number - probing for the number reported a
+     # record as missing that search was returning perfectly well.
+     ('ZZPHON',        'parts',     'ZZPHON Alternator'),     # C55728 phonetic, names-only
+     ('ZZBROAD',       'parts',     'ZZBROAD Target Widget'), # C55730 the low-ranked target
      ('S2-15430 Holdings', 'customers', 'Holdings'),  # C55729 the competing name match
   ], 'seed-manifest-ranking.json', 'verify_ranking.py'),
 ]
