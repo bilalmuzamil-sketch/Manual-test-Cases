@@ -8,7 +8,7 @@ actually be **executed on the build**, finalise the on-screen wording, and re-st
 |---|---|
 | **Scope** | **12 cases** in folder **6734 — Permissions & Role-Based Scoping**: C44877, C44878, C44879, **C44880**, C44881, C44882, C55702, C55703, C55704, C55705, C55706, C55717 |
 | **Run** | **R415** — <https://shopview.testrail.io/index.php?/runs/view/415> |
-| **Build** | `https://sv9160.qa.shopview.com` — marker at verification **`v26.36.7-069b8c2`** |
+| **Build** | `https://sv9160.qa.shopview.com` — marker **`v26.36.8-d146c39`** (the branch redeployed 2026-09-18; data rebuilt and re-verified on the NEW build) |
 | **Ready** | **11 of 12.** **C44880 is Blocked** — it needs a second organisation's sign-in, which does not exist yet. Everything else has its fixture, live and checked |
 
 > **This is a companion document, not a replacement.** The six newer permissions/scoping cases
@@ -37,11 +37,15 @@ Do not assume either way — read the per-universe result.
 
 ## §0 · 🔴 WHAT I COULD NOT DO THIS PASS, AND WHAT IT MEANS FOR YOU
 
-**TestRail is answering HTTP 401 to every credential pair in `/tmp/testrail/creds.json`** — I tried
-all four combinations of the stored user/email against the stored password/key at 2026-09-18, and
-all four were rejected. So **I did not re-read the 12 case bodies while writing this**, and the
-per-case table in §2 is built from the seeding handoff plus my own live checks — **not** from the
-case text.
+**TestRail is rejecting every API key available to me.** Two separate keys were tried — the one
+already stored and a freshly supplied one — and both return
+*"Authentication failed: invalid or missing user/password or session cookie."* (An earlier round of
+probing tripped TestRail's failed-login throttle; that has since cleared, and the failure is now a
+plain auth rejection, not a lockout.) Other sessions read TestRail successfully, most likely via the
+**login password** rather than an API key.
+
+So **I did not re-read the 12 case bodies while writing this**, and the per-case table in §2 is built
+from the seeding handoff plus my own live checks — **not** from the case text.
 
 Under Rule 112 that makes §2 a **summary, and the case body wins wherever they disagree.** Open each
 case and read it before you check it; that is your job anyway. Where this document and the case
@@ -54,7 +58,7 @@ You will hit the same 401 if you use the API. The credentials need refreshing �
 
 ## §1 · THE FIXTURES — ALL THIRTEEN ROLES CONFIRMED LIVE
 
-Read off `/api/iam/list-roles` on `v26.36.7-069b8c2`, by name, not by count:
+Read off `/api/iam/list-roles` on `v26.36.8-d146c39`, by name, not by count:
 
 | Role | Origin | Sees | Serves |
 |---|---|---|---|
@@ -243,7 +247,7 @@ failure clause 5 names.
 
 | # | Item | Who |
 |---|---|---|
-| 1 | **11 of 12 cases are ready.** Every role fixture is live and confirmed by name on `v26.36.7-069b8c2` — 6 stock, 7 seeded | — |
+| 1 | **11 of 12 cases are ready.** Every role fixture confirmed live by name on `v26.36.8-d146c39` after the redeploy — 6 stock, 7 seeded | — |
 | 2 | **C44880 is Blocked, and legitimately so.** `ZZAUTOTEST Second Org Ltd` exists but there is no working sign-in inside it. It needs a `PHPSESSID` captured **while signed in to that organisation** — the SSO token is shared, the PHPSESSID is what carries the org. Mark the case "not available on build" until then | QA lead |
-| 3 | **TestRail is 401** on every stored credential pair, so I could not re-read the 12 case bodies while writing this (§0). The build-verify session will hit the same wall. Credentials need refreshing | QA lead |
+| 3 | **TestRail rejects both API keys** (§0), so I could not re-read the 12 case bodies. The build-verify session will hit the same wall on the API — is API-key access enabled for that account, or do the other sessions use the login password? | QA lead |
 | 4 | The six newer permissions cases **C55718–C55723** are covered by the other handoff, not this one. If you want the 18 in a single document, say so and I will merge them | you |

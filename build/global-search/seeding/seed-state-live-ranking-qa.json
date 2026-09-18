@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-18T155358Z",
+ "when_utc": "2026-09-18T160054Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
@@ -55,6 +55,9 @@
   "phon_part": "d6d5fc88-3ce2-436c-ba47-f5e67b195ba5",
   "phon_part_inv": "e5b1cb2b-1e93-400e-9fbe-d5559828ec40",
   "phon_customer": "f3642b5d-136f-4a5a-89a4-632c55603ba5",
+  "phon2_part": "f8874454-400c-4fec-9188-7798db7d405b",
+  "phon2_part_inv": "32c33e9e-a5ab-413e-8ec3-1c724712cd05",
+  "phon2_customer": "80ca213e-70d2-44d4-b054-e706c99b2c3a",
   "pin_rival": "96f786e4-acf4-4dc1-ac36-6454b7980da9",
   "broad_01": "10b252a0-26a8-4bd4-9b84-3d0927d92caa",
   "broad_02": "9ac0ed0a-cdef-4409-a81d-6faac70d9065",
@@ -962,6 +965,56 @@
    "state": "PRESENT",
    "ids": [
     "f3642b5d-136f-4a5a-89a4-632c55603ba5"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55728
+   ]
+  },
+  {
+   "key": "phon2_part",
+   "state": "PRESENT",
+   "ids": [
+    "f8874454-400c-4fec-9188-7798db7d405b"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55728
+   ]
+  },
+  {
+   "key": "phon2_part_inv",
+   "state": "PRESENT",
+   "ids": [
+    "32c33e9e-a5ab-413e-8ec3-1c724712cd05"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55728
+   ]
+  },
+  {
+   "key": "phon2_customer",
+   "state": "PRESENT",
+   "ids": [
+    "80ca213e-70d2-44d4-b054-e706c99b2c3a"
    ],
    "fields_ok": [
     "name",

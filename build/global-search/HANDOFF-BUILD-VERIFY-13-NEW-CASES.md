@@ -8,10 +8,10 @@ actually be **executed on the build**, finalise the on-screen wording, and re-st
 |---|---|
 | **Scope** | **13 cases.** Permissions & scoping: **C55718–C55723** (6734, 6726). Search algorithm: **C55724–C55730** (6726, 6725) |
 | **Run** | **R415** — <https://shopview.testrail.io/index.php?/runs/view/415> |
-| **Build** | `https://sv9160.qa.shopview.com` — marker at seeding **`v26.36.7-069b8c2`** |
+| **Build** | `https://sv9160.qa.shopview.com` — marker **`v26.36.8-d146c39`** (the branch redeployed 2026-09-18 and this rebuild is on the NEW build) |
 | **Data** | ✅ Seeded and verified — **nothing here is waiting on me.** `build/global-search/SEED-NOTE-6-NEW-CASES-2026-09-18.md` and `SEED-NOTE-7-ALGORITHM-CASES-2026-09-18.md` carry the per-case detail |
 
-**Proven live on `v26.36.7-069b8c2`, not asserted** — `python3 status.py --full`:
+**Proven live on `v26.36.8-d146c39`, not asserted** — `python3 status.py --full`:
 
 | Universe | Spine | Full assertion set |
 |---|---|---|
@@ -60,12 +60,61 @@ Do not assume either way — read the per-universe result.
 | **C55725** | `Zqwxpol` | Nothing. **Control:** `Aabridge` must return Aabridge Freight first — otherwise the miss proves nothing |
 | **C55726** | `ZZACC Jose Martinez` then `ZZACC José Martínez` | Both find the one customer `ZZACC José Martínez` |
 | **C55727** | `ZZPUNC OBrien` · `ZZPUNC Smith Jones`, then the punctuated forms | `ZZPUNC O'Brien Haulage` and `ZZPUNC Smith-Jones Motors` |
-| **C55728** | **`Olternaytor`** | The **customer** `ZZPHON Alternator Co` returns; the **part** `ZZPHON Alternator Assembly` does **not**. The customer is the control |
+| **C55728** | see **§2A — read it first** | 🔴 **The premise does not hold on this build.** Do not use `Olternaytor`; my earlier instruction to do so was wrong and §2A says why |
 | **C55729** | `S2-15430` | The work order pins as the single top row **above** customer `S2-15430 Holdings`, whose name begins with the same text |
 | **C55730** | `ZZBROAD`, then `ZZBROAD Target` | 22 parts match; the tab shows **20**; `ZZBROAD Target Widget` is not among them. Narrowing surfaces it |
 
-**The sound-alike was discovered on this build, not guessed** — four candidates tried; all four match
-the customer and miss the part. Use **`Olternaytor`**.
+**🔴 That instruction was wrong and is withdrawn — see §2A.** It was built on a false pass.
+
+---
+
+## §2A · 🔴 C55728 — I GAVE YOU A WRONG INSTRUCTION, AND HERE IS THE CORRECTION
+
+**Withdrawn:** *"four candidates tried; all four match the customer and miss the part — use
+`Olternaytor`."* That was a **false pass caused by my own missing data**, and the fix that exposed it
+is the reason you are reading this.
+
+`ZZPHON-3001` had a catalogue row but **no inventory row**, and a catalogue part with no stock is
+invisible to search. So *"the part is correctly not returned"* was really *"the part was never
+findable at all"* — the classic Rule 110 failure: the miss proved nothing because the record was not
+reachable by any query.
+
+**With the stock row in place, measured on `v26.36.8-d146c39`:**
+
+| Query | Customer `ZZPHON Alternator Co` | Part `ZZPHON-3001` |
+|---|---|---|
+| `Olternaytor` | returned — `field=name` **`kind=fuzzy`** | returned — `field=description` **`kind=fuzzy`** |
+| `Awlternater` · `Alturnaytor` · `Ulternator` | returned | **returned** |
+
+The part is reached by the **same** mechanism as the name: **fuzzy edit-distance**, applied to
+`description`. That is not names-only.
+
+**A second pair was seeded to separate the two mechanisms** — a word whose sound and spelling
+diverge, so a sound-alike cannot also be a near-spelling. `Knight` → `Nite` is ~4 edits apart, well
+outside fuzzy range, while metaphone folds both to `NT`:
+
+| Query | `ZZPHON Knight Haulage` (customer) | `ZZPHON-3002 Knight Bracket` (part) |
+|---|---|---|
+| `Knight` — **the control** | returned, `field=name` `kind=word` | returned, `field=description` `kind=word` |
+| **`Nite`** | **not returned** | **not returned** |
+
+The control proves both records are indexed and reachable. A true sound-alike reaches **neither**.
+
+**What this means, stated no more strongly than the evidence allows:** across every probe the API
+labelled matches `exact`, `word`, `prefix` and `fuzzy` — **never `phonetic`**. On this build I found
+no evidence of a sound-alike mechanism distinct from fuzzy edit-distance, and the fuzzy mechanism is
+**not** restricted to names. The V2 search source is not in our checkout (no `sv9160` branch exists
+on the API remote, 174 branches checked), so this is measured from the API's own responses, not read
+from the implementation.
+
+**What YOU should do with C55728 — and what you must NOT do:**
+1. **Open the case body first.** I could not: TestRail is rejecting both API keys (OUTSTANDING #1).
+   Everything above is about the *data*, not about what the case actually asks for.
+2. If the case asserts phonetic matching is names-only, it is a **deviation on this build**, held
+   under Rules 57/58 with a PO question — **the expectation is NOT rewritten to match the build**,
+   and the case is not quietly failed.
+3. **Do not hand a tester `Olternaytor`.** Both `ZZPHON` pairs are seeded and verified, so whichever
+   way the case reads, the data is there.
 
 ---
 
@@ -222,6 +271,8 @@ that matched their own command line and never exited, which is the exact failure
 
 | # | Item | Who |
 |---|---|---|
-| 1 | **Nothing blocks you.** All 13 cases have their data, seeded and verified on `v26.36.7-069b8c2` | — |
+| 1 | **Nothing blocks you.** Data rebuilt and verified on `v26.36.8-d146c39` after the redeploy | — |
 | 2 | C55724's prefix-vs-whole-word deviation and the stale-index-after-delete behaviour are **candidate findings** — record them as deviations; filing tickets is the run session's lane under its own rules | you → run session |
 | 3 | C44880 (an earlier case, not in this 13) still needs a second organisation's session | QA lead |
+| 4 | 🔴 **C55728's premise does not hold on this build** (§2A) — read the case body, then treat it as a held deviation with a PO question, not a rewrite | you → PO |
+| 5 | **TestRail rejects both API keys**, so I could not read any case body this pass. Every per-case line here is a summary the case body overrides (Rule 112) | QA lead |
