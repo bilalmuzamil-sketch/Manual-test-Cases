@@ -69,6 +69,15 @@ every subsequent run does. This is the Rule-75 trap in miniature: a "vanish" tha
 regression and was explained by what was actually submitted. Checking the posted amount before calling
 it took two minutes and would have cost a false FAIL on the ticket.
 
+## The QA comment
+
+`76798` on SV-9610, posted after the pre-post gate (build marker re-read live and identical —
+etag `3062199f…`; ticket still TESTING QA with only the developer's own comment on it; text scanned
+for machine-authored tells). **No "Technical details for developers" section** — the QA lead was asked
+first, per the new standing rule, and said no for this ticket; everything technical is in this
+document instead. Read back from Jira: 2 exhibits in order, 9 table rows (header + 8 checks), first
+line *"OVERALL QA STATUS: PASSED"*, all four headings present, no technical section.
+
 ## Exhibits
 
 * `ev/EX1_before_after.png` — the same shape on both builds: quantity-2 return, credit 1. Production
