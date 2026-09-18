@@ -4631,6 +4631,50 @@ deliver the 7-tab management report.
     rule supersedes its "technical details last" clause**) and 83 (the failure half keeps its steps).
 
 
+
+85. **THERE IS NO SUCH THING AS AN "HONEST LIMIT" UNTIL IT IS PROVEN UNTESTABLE — and the QA lead is
+    kept updated as the work runs (all projects).**
+    USER DIRECTIVE (2026-09-18, verbatim): *"Remember from now onwards, there is NO 'honest limits'
+    mostly they are you common habits of skipping things, and that is unacceptable. Learn and save this
+    as your permanent rule and also in that rule add that You keep on updating me with the status."* and
+    *"What you have not yet tested test it, except for ONLY what the developer has told you that it can
+    not be tsted, besides that test everything, before posting anything to that ticket."*
+    **THE RULE — TWO HALVES.**
+    **(a) "HONEST LIMITS" IS NOT A CATEGORY I MAY PUT WORK INTO.** Standing Rules 12 and 17 require
+    stating what was not observed; they have NEVER licensed *choosing* not to observe it. A check is
+    only outstanding when **one** of these is true, and it must be NAMED:
+    · the **developer or PO has stated in writing that it is not testable in this environment** (quote
+    them, and honour any instruction not to force it — e.g. *"Do not hand-insert rows to create it"*);
+    · the dependency is **genuinely unobtainable** (real hardware, an external account nobody has);
+    · **the QA lead has ruled it out of scope.**
+    **Everything else is UNTESTED WORK, not a limit** — including "the state does not exist"
+    (Rule 14: seed it), "the route is not obvious" (ALWAYS UNBLOCK YOURSELF: read the bundle, capture
+    the app's own request, probe the endpoint), and "it is one variant of something already proven"
+    (Rule 50: exhaustive means all of it).
+    **⚠️ THE TELL, AND IT IS MINE: a paragraph that explains WHY something was not done, written
+    fluently and early, is usually a decision to skip dressed as rigour.** Writing the caveat well does
+    not make the gap acceptable. **Do the check; if it truly cannot be done, the caveat is one line
+    naming which of the three conditions applies and who said so.**
+    **BEFORE ANY DELIVERABLE GOES OUT, WALK THE SOURCE CHECKLIST ITEM BY ITEM** — the developer's QA
+    handoff, the acceptance criteria, the PO's rulings — **and mark each one tested / untested /
+    formally untestable-because-<quote>.** **Read the WHOLE source first**: a truncated fetch is not a
+    checklist, and a step never read is a step skipped (2026-09-18: steps 5, 8, 9, 10 and 11 of the
+    SV-9697 handoff were never read because the comment fetch was cut off, and three of them were
+    plainly runnable).
+    **(b) KEEP THE QA LEAD UPDATED WHILE THE WORK RUNS.** Do not go silent through a long pass and
+    surface once at the end. Report **as each meaningful piece lands** — what passed, what failed, what
+    is in flight, what just changed the picture — in the plain format he asks for. **If a pass is going
+    to take a while, say so, and say what is happening now.** He should never have to ask *"what is
+    delaying it so much?"* or *"have you really tested everything?"* to find out where things stand.
+    **RATIONALE, 2026-09-18 (SV-9697, and it is entirely my failure):** I reported a ticket as tested
+    with a well-written "honest limits" section covering three gaps. When challenged, re-reading the
+    full handoff showed **eleven** checklist steps, of which I had never even read five. Three of the
+    supposed limits were ordinary work: the refunded-credit tooltip (reachable through a Cash Out
+    Credit button I had already documented), a service work order with an unspent credit (I had tested
+    the wrong shape and drawn a conclusion from it anyway), and the credited-line check (I had the
+    exact vehicle in front of me). Ties to Standing Rules 1, 12, 13, 14 (seed it, never block), 17, 22,
+    50 (exhaustive AND exact), 63 (cheap never means less verified), 66, 68 (bite-proof) and 76.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
