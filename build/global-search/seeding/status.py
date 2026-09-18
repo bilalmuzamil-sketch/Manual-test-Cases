@@ -91,7 +91,7 @@ UNIVERSES = [
      ('P2-58',                 'part_sales', 'P2-58'),
   ], 'seed-manifest-gs-v2.json', 'verify_gsv2.py'),
 
- ('Ranking + fuzzy remainder  (6726 / 6725, 25 records)', [
+ ('Ranking + fuzzy remainder  (6726 / 6725, 39 records)', [
      ('ZZPREFIX',      'customers', 'ZZPREFIX Freight'),
      ('ZZCUSTOPEN',    'customers', 'Haulage Open'),
      ('ZZASSETLIFT',   'assets',    'ZZASSETLIFT000001'),
@@ -102,12 +102,15 @@ UNIVERSES = [
      ('ZZCONTACTONLY', 'customers', 'Northgate Cartage'),
      ('ZZFUZZLEN',     'customers', 'Abcde Logistics'),
      ('I9160-1398',    'purchase_orders', 'I9160-1398'),
+     ('ZZOPENCOUNT',   'customers', 'Freight Busy'),
+     ('ZZNAMEBONUS',   'customers', 'ZZNAMEBONUS Cartage'),
   ], 'seed-manifest-ranking.json', 'verify_ranking.py'),
 ]
 
 ROLES = ['ZZAUTOTEST No Work Orders View', 'ZZAUTOTEST No Customers View',
          'ZZAUTOTEST No Parts View', 'ZZAUTOTEST No Part Sales View',
-         'ZZAUTOTEST No Vendor Order View', 'ZZAUTOTEST No Financial Data']
+         'ZZAUTOTEST No Vendor Order View', 'ZZAUTOTEST No Financial Data',
+         'ZZAUTOTEST No Work Orders Or Vendors']   # C55720 - TWO bundles missing at once
 
 def main():
     print(f"\n{'='*78}\n ENVIRONMENT STATUS — {C['host']}\n{'='*78}")

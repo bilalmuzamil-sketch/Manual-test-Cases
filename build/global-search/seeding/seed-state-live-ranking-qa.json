@@ -1,12 +1,12 @@
 {
- "when_utc": "2026-09-17T190712Z",
+ "when_utc": "2026-09-18T075547Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
  "live_ids": {
   "rank_q_prefix": "f64bf295-c032-4735-8454-85a17e506a7a",
   "rank_q_whole": "a3e1ee3d-21ad-445a-a245-648d9d34b0cc",
-  "rank_q_typo": "79b970fa-18b5-4486-8b2b-5fd184207ddf",
+  "rank_q_typo": "1a6fd631-815d-418b-b990-bcf6e1eea0b1",
   "rank_c_open": "087078f0-0a7f-4e3f-90b8-ceaa5d0fb498",
   "rank_c_none": "4751fe38-737b-4b85-a5bc-e2822397e8a4",
   "rank_owner": "31754471-be1c-4f45-a942-c9b25d846f3e",
@@ -32,7 +32,23 @@
   "rank_c_open_contact": "8468f781-0f8d-4bb4-bf3c-734bc26b0157",
   "rank_c_open_vehicle": "8ab41bac-a826-4f20-aa1a-344c2c8f49b1",
   "wo_custopen": "00c5a36a-a7b6-4133-8eee-606a2c18c615",
-  "wo_assetlift": "54d678fd-9205-4352-8cc2-1747dbb14c24"
+  "wo_assetlift": "54d678fd-9205-4352-8cc2-1747dbb14c24",
+  "cnt_busy": "79405049-5b6b-446a-be97-b66593dcc656",
+  "cnt_quiet": "3368022b-0bba-418f-bb6f-3ce288aaf1d3",
+  "cnt_busy_contact": "aa54ae8e-3be3-4632-9608-d3a14f93f3ce",
+  "cnt_quiet_contact": "bf8e405e-9be1-48d6-a6f1-9c7ccbe14486",
+  "cnt_busy_vehicle": "8953f01d-3456-45f0-856f-8fc2d9d5e4d4",
+  "cnt_quiet_vehicle": "51f3fa65-70c3-437c-a273-5317abf7adda",
+  "wo_cnt_busy": [
+   "0d4de893-d3c1-49c9-9a31-7c8db2536f06",
+   "81e03d4f-5c27-408b-8908-81d45617fc1b",
+   "3e74e7f9-cd9f-4d44-9125-68b0d352a569",
+   "b1e1af72-9f10-4877-886f-e93470f412ae",
+   "0c022842-7fbc-4713-ba24-f5f46a29001a"
+  ],
+  "wo_cnt_quiet": "53f5c49e-a4d7-48e7-a6a8-619ab54375cc",
+  "nb_name": "0ef1dedf-89f8-421c-a401-45fbed3514e7",
+  "nb_secondary": "a2dd680a-48ed-4b64-b039-855f94fbb49c"
  },
  "records": [
   {
@@ -81,7 +97,7 @@
    "key": "rank_q_typo",
    "state": "PRESENT",
    "ids": [
-    "79b970fa-18b5-4486-8b2b-5fd184207ddf"
+    "1a6fd631-815d-418b-b990-bcf6e1eea0b1"
    ],
    "fields_ok": [
     "name",
@@ -590,6 +606,212 @@
    "not_compared": [],
    "serves": [
     55709
+   ]
+  },
+  {
+   "key": "cnt_busy",
+   "state": "PRESENT",
+   "ids": [
+    "79405049-5b6b-446a-be97-b66593dcc656"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55722
+   ]
+  },
+  {
+   "key": "cnt_quiet",
+   "state": "PRESENT",
+   "ids": [
+    "3368022b-0bba-418f-bb6f-3ce288aaf1d3"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55722
+   ]
+  },
+  {
+   "key": "cnt_busy_contact",
+   "state": "PRESENT",
+   "ids": [
+    "aa54ae8e-3be3-4632-9608-d3a14f93f3ce"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55722
+   ]
+  },
+  {
+   "key": "cnt_quiet_contact",
+   "state": "PRESENT",
+   "ids": [
+    "bf8e405e-9be1-48d6-a6f1-9c7ccbe14486"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55722
+   ]
+  },
+  {
+   "key": "cnt_busy_vehicle",
+   "state": "PRESENT",
+   "ids": [
+    "8953f01d-3456-45f0-856f-8fc2d9d5e4d4"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [
+    {
+     "field": "maker_name",
+     "why": "written as 'maker_name', but the record exposes no such key"
+    },
+    {
+     "field": "model_name",
+     "why": "written as 'model_name', but the record exposes no such key"
+    }
+   ],
+   "serves": [
+    55722
+   ]
+  },
+  {
+   "key": "cnt_quiet_vehicle",
+   "state": "PRESENT",
+   "ids": [
+    "51f3fa65-70c3-437c-a273-5317abf7adda"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [
+    {
+     "field": "maker_name",
+     "why": "written as 'maker_name', but the record exposes no such key"
+    },
+    {
+     "field": "model_name",
+     "why": "written as 'model_name', but the record exposes no such key"
+    }
+   ],
+   "serves": [
+    55722
+   ]
+  },
+  {
+   "key": "wo_cnt_busy",
+   "state": "PRESENT",
+   "ids": [
+    "0d4de893-d3c1-49c9-9a31-7c8db2536f06",
+    "81e03d4f-5c27-408b-8908-81d45617fc1b",
+    "3e74e7f9-cd9f-4d44-9125-68b0d352a569",
+    "b1e1af72-9f10-4877-886f-e93470f412ae",
+    "0c022842-7fbc-4713-ba24-f5f46a29001a"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55722
+   ]
+  },
+  {
+   "key": "wo_cnt_quiet",
+   "state": "PRESENT",
+   "ids": [
+    "53f5c49e-a4d7-48e7-a6a8-619ab54375cc"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55722
+   ]
+  },
+  {
+   "key": "nb_name",
+   "state": "PRESENT",
+   "ids": [
+    "0ef1dedf-89f8-421c-a401-45fbed3514e7"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55723
+   ]
+  },
+  {
+   "key": "nb_secondary",
+   "state": "PRESENT",
+   "ids": [
+    "a2dd680a-48ed-4b64-b039-855f94fbb49c"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55723
    ]
   }
  ],

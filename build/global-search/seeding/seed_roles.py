@@ -89,6 +89,20 @@ WANTED = [
      'gate': 'seeFinancialData', 'serves': 'C44882, C55706 inverse',
      'note': 'the groups all stay; what changes is that PRICES are masked in the rows. This is the '
              'one role where a hidden group would be the WRONG outcome.'},
+    # 🔴 C55720 needs a role missing MORE THAN ONE area AT ONCE, and that is not the same test as
+    # running the single-bundle roles above one after another: the case asserts the missing areas
+    # disappear TOGETHER - no group, no count, no scope tab for any of them - while the kept areas
+    # stay correct. Real roles are shaped like this; one-bundle-at-a-time roles are the artificial
+    # case, not this one.
+    {'name': 'ZZAUTOTEST No Work Orders Or Vendors',
+     'drop': ['workOrdersView', 'woFullViewMode',
+              'vendorOrderManagementView', 'vendorOrderManagementCreateAndEdit',
+              'vendorOrderManagementDelete'],
+     'gate': 'workOrdersView', 'serves': 'C55720',
+     'note': 'TWO bundles removed at once: Work Orders, and Vendor & Order Management which takes '
+             'Vendors, Purchase Orders AND Vendor Invoices with it - so FOUR of the eight groups '
+             'must vanish while Customers, Assets, Parts and Part Sales stay. viewMode goes null '
+             'with the work-order view, as in the single-bundle role above.'},
 ]
 
 def list_roles():
