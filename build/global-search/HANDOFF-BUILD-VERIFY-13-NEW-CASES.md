@@ -9,7 +9,16 @@ actually be **executed on the build**, finalise the on-screen wording, and re-st
 | **Scope** | **13 cases.** Permissions & scoping: **C55718–C55723** (6734, 6726). Search algorithm: **C55724–C55730** (6726, 6725) |
 | **Run** | **R415** — <https://shopview.testrail.io/index.php?/runs/view/415> |
 | **Build** | `https://sv9160.qa.shopview.com` — marker at seeding **`v26.36.7-069b8c2`** |
-| **Data** | ✅ Seeded and verified. `build/global-search/SEED-NOTE-6-NEW-CASES-2026-09-18.md` and `SEED-NOTE-7-ALGORITHM-CASES-2026-09-18.md` carry the per-case detail |
+| **Data** | ✅ Seeded and verified — **nothing here is waiting on me.** `build/global-search/SEED-NOTE-6-NEW-CASES-2026-09-18.md` and `SEED-NOTE-7-ALGORITHM-CASES-2026-09-18.md` carry the per-case detail |
+
+**Proven live on `v26.36.7-069b8c2`, not asserted** — `python3 status.py --full`:
+
+| Universe | Spine | Full assertion set |
+|---|---|---|
+| V1-regression (6769 / 8056, 11 records) | 2/2 | spine probes are the check on QA |
+| Fibridge (6721–6740, 39 records) | 6/6 | **39/39** |
+| Ranking + fuzzy + algorithm (6726 / 6725, 89 records) | 17/17 | **25/25** — 14 presence · **8 ORDER** · 2 negatives **with controls** · 1 fuzzy-reachability |
+| Permission role fixtures (6734) | 7/7 | 7 roles rebuilt from template |
 
 ## 🔴 DO THESE TWO THINGS BEFORE ANYTHING ELSE
 
@@ -95,6 +104,14 @@ any data.**
 - **Ranking is config-driven** (`search.yaml`) and can differ per environment. Verify the **ordering
   rule**, never an absolute position or score.
 - **Counts cap at 20** in every group, and a scope tab shows at most 20 rows with no pagination.
+- **🔴 C55730's target is SUPPOSED to be missing from the broad query.** Observed live: `ZZBROAD`
+  returns a Parts group of exactly **20** rows with `ZZBROAD Target Widget` **absent**; `ZZBROAD
+  Target` returns **1** row — `ZZBROAD-4999`, `quantityOnHand 0`, matched on **description**. My own
+  status board briefly called that record missing because it probed the broad term, which is the
+  case's PASS condition. If a tool tells you this record is gone, **check which query it asked**
+  before reseeding anything.
+- **A parts row carries its NAME in `primary` and its number in `secondary`.** Probing for the part
+  number against the name field reports a record as absent that search is returning perfectly well.
 
 ## §4 · WHAT BUILD VERIFICATION MEANS HERE
 
