@@ -116,6 +116,15 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 [M. Figma: extract ALL frames from a design link](#m-figma-extract-all-frames-from-a-design-link-proven-2026-07-31-filters) ·
 [Jira/Confluence access](#jiraconfluence-access)
 
+**Dated "proven" appendices (same index, later sections):**
+[§AB. "Honest notes" are not an excuse to skip a check](#ab--honest-notes-are-not-an-excuse-to-skip-a-runnable-check-hard-rule-2026-09-03) ·
+[§AC. PRINTED DOCUMENTS: QA a print-layout ticket](#ac--printed-documents-invoice--estimate--credit-memo-how-to-qa-a-print-layout-ticket-proven-2026-09-10-sv-9870--sv-9849--sv-9857) ·
+[§AD. THE BEFORE-vs-AFTER EXHIBIT](#ad--the-before-vs-after-exhibit-how-to-build-the-one-picture-an-executive-actually-reads-standing-rule-73-2026-09-10) ·
+[§AE. CORE RETURNS: seed one from scratch](#ae--core-returns-seed-one-from-scratch-on-a-part-sale-or-a-work-order-qa-leads-recipe-2026-09-18) ·
+[§AF. INVENTORY PURCHASE ORDERS](#af--inventory-purchase-orders-package-quantities-the-two-receive-screens-and-the-four-things-that-look-broken-but-are-not-proven-2026-09-10-sv-9833) ·
+[§AG. "The button is enabled and nothing happens"](#ag--the-button-is-enabled-and-nothing-happens-how-to-turn-that-into-a-finding-instead-of-a-shrug-proven-2026-09-10-move-part-to-line) ·
+[§AH. CUSTOMER CREDITS: issue, attach, cancel, read state](#ah--customer-credits-issue-one-attach-it-to-an-invoice-cancel-it-and-read-its-state-proven-2026-09-18-sv-9697)
+
 ---
 
 ## A. Auth & session
@@ -4901,3 +4910,29 @@ balance $99.75 → $60.75, but draws down NO credit memo** — all three attache
 spent credit for a test, the only ones on `sv9697` came with the seed data (CM-3956 · CM-2190 ·
 CM-2191 · CM-2177 · CM-2070). Whether the payment behaviour is correct is an open question, not a
 recorded fact.
+
+### AH.7 — Part-sale status and invoice sequencing (the three refusals, measured 2026-09-18)
+
+Seeding a part sale to the point where it can carry a credit means walking a fixed order. Each wrong
+turn answers with a different refusal, and none of them says what to do next:
+
+1. **A brand-new part sale has NO line.** `POST /api/part-sales {company_id}` returns an id, but
+   `GET /api/work-orders/{id}/parts/list-requests-by-line` returns **`{"collection":[]}`** — so the
+   `line` that `POST /api/work-orders/part/make-request` demands does not exist yet, and there is no
+   API route to it. **Add the first part through the UI** (`button_add_part`, §AE.1 step 2); the line
+   is created as a side effect and every later part can go by API.
+2. **`status:"authorized"` is not a part-sale status.** `POST /api/work-orders/change-status
+   {id, status}` answers **`{"statusValid":"Wrong status name"}`**. The value that works is
+   **`"complete"`** (and the field is **`id`**, never `work_order_id` — that gives
+   *"Work Order ID is missing."*). Authorizing for the ORDER flow is a different thing entirely:
+   the UI button `button_part_sale_action_authorized`, which posts
+   `POST /api/work-orders/lines/change-status`.
+3. **`POST /api/invoices/create` refuses anything not Complete** — **`{"error":"Work order is not
+   complete."}`**. So the order is always: add first part in the UI → (order/receive if the test needs
+   received parts) → `change-status` to `complete` → `invoices/create`.
+
+**Re-invoicing after a reverse works** — the same `invoices/create` call succeeds again and returns a
+**new** `invoice_id`. ⚠️ **Credits attach to the invoice, not the part sale**, so anything you attached
+before the reverse is orphaned from the new invoice: re-read `invoice_id` and use the new one in
+`originInvoiceId` (§AH.3). The re-invoiced balance also reflects any credited parts — a $645.75 part
+sale whose $546.00 part had been credited re-invoiced at **$99.75**, not $645.75.
