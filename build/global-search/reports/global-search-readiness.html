@@ -193,29 +193,29 @@
     <div class="meta">
       <span>Prepared <b>18 September 2026</b></span>
       <span>Tested on <b>the QA branch, build v26.36.7-29ca209</b></span>
-      <span><b>180 checks</b> &mdash; 115 on the new feature, 65 regression</span>
+      <span><b>186 checks</b> &mdash; 121 on the new feature, 65 regression</span>
       <span>Every status read live from the tracker on the day</span>
     </div>
   </header>
 
   <div class="bottomline">
     <div class="lbl">The bottom line</div>
-    <p class="bl-main"><b>Thirteen of the twenty&#8209;one stories in this release have been handed to QA, and every one of them has been tested</b> &mdash; 153 of 180 checks pass. <b>Testing has found 33 defects: 18 are already closed and 15 are still being worked through.</b> <b>Eight stories are still being built</b> and have not reached testing yet, so the feature is not finished &mdash; it is ready to release once those stories land, are tested, and the open defects close.</p>
+    <p class="bl-main"><b>Thirteen of the twenty&#8209;one stories in this release have been handed to QA, and every one of them has been tested</b> &mdash; 159 of 186 checks pass. <b>Testing has found 33 defects: 18 are already closed and 15 are still being worked through.</b> <b>Eight stories are still being built</b> and have not reached testing yet, so the feature is not finished &mdash; it is ready to release once those stories land, are tested, and the open defects close.</p>
     <p class="bl-sub"><b>Six of those thirteen are signed off</b> with nothing outstanding. The other <b>seven are tested and are each waiting only on their defects closing</b>. Of the 33 defects, <b>18 are closed</b> &mdash; 16 fixed and re-tested, one settled by a decision and one withdrawn &mdash; and <b>15 remain open</b>. Of the twenty&#8209;one, <b>eight stories are still to be completed by the development side</b>. A further <b>five stories were withdrawn from this release in September</b> &mdash; four of them on the 16th &mdash; and are not counted in the twenty&#8209;one. This is the normal find-and-fix cycle, and the open list is small and specific.</p>
   </div>
 
   <div class="split">
     <div class="side done">
       <div class="side-head"><span class="lbl">Testing of the stories handed over</span><span class="verdict-chip ok">Complete</span></div>
-      <p class="big"><span class="num">180</span> checks run, <span class="num">153</span> pass.</p>
+      <p class="big"><span class="num">186</span> checks run, <span class="num">159</span> pass.</p>
       <ul class="plain">
-        <li>The suite is <b>115 checks on the new feature plus 65 regression checks</b> confirming nothing findable in the old search was lost. <b>The regression half found 24 of the 33 defects.</b></li>
+        <li>The suite is <b>121 checks on the new feature plus 65 regression checks</b> confirming nothing findable in the old search was lost. <b>The regression half found 24 of the 33 defects.</b></li>
         <li><b>Every one of the 15 failures now has a defect raised</b> against it, so each is tracked and can be re&#8209;checked the moment it is closed. Nothing found in testing is sitting unrecorded.</li>
         <li><b>6 stories have cleared QA</b>, four of them signed off today.</li>
         <li><b>11 checks are parked</b> &mdash; they belong to work marked obsolete, so there is nothing to run them against.</li>
         <li><b>11 checks that had only been accepted on a sign-off were re-run and watched on screen.</b> Nine held. Two turned out to be asking for the opposite of the written requirement &mdash; our own wording, now being corrected, which would otherwise have sent a developer chasing a product that was behaving correctly.</li>
       </ul>
-      <p class="side-foot">Both suites have been run in full against every story handed over so far. The eight stories still being built will each be tested when they arrive.</p>
+      <p class="side-foot">Both suites have been run in full against every story handed over so far, including six checks added and run today. The eight stories still being built will each be tested when they arrive.</p>
     </div>
     <div class="side open">
       <div class="side-head"><span class="lbl">Defects to close</span><span class="verdict-chip bad">In flight</span></div>
@@ -253,9 +253,9 @@
     </div>
 
     <div>
-      <div class="band-head"><h3>The test suite is 180 checks. Here is how the current build scored.</h3><span class="of">180 in total</span></div>
+      <div class="band-head"><h3>The test suite is 186 checks. Here is how the current build scored.</h3><span class="of">186 in total</span></div>
       <div class="tiles">
-        <div class="tile g"><div class="v num">153</div><div class="k">Passed</div><div class="x">Behaves as the specification requires</div></div>
+        <div class="tile g"><div class="v num">159</div><div class="k">Passed</div><div class="x">Behaves as the specification requires</div></div>
         <div class="tile b"><div class="v num">15</div><div class="k">Failed</div><div class="x">Every one has a defect raised and linked</div></div>
         <div class="tile s"><div class="v num">11</div><div class="k">Parked</div><div class="x">Belong to stories withdrawn from scope</div></div>
         <div class="tile w"><div class="v num">1</div><div class="k">Outside this release</div><div class="x">One check the specification itself puts beyond this release</div></div>
@@ -635,16 +635,16 @@
 
   <section>
     <div class="sechead"><h2>What testing actually found</h2></div>
-    <p class="secnote">The full suite &mdash; 115 new-feature checks plus 65 regression checks &mdash; was run against the QA branch. <strong>All fifteen failures have a defect raised against them</strong>, so each is tracked and can be re-checked as soon as it is closed. Nothing is blocked: the last check that was waiting on data has been run and passed.</p>
+    <p class="secnote">The full suite &mdash; 121 new-feature checks plus 65 regression checks &mdash; was run against the QA branch. <strong>All fifteen failures have a defect raised against them</strong>, so each is tracked and can be re-checked as soon as it is closed. Nothing is blocked: the last check that was waiting on data has been run and passed.</p>
     <div class="runwrap">
       <table>
         <thead><tr><th>Result</th><th>What it means</th><th>Checks</th></tr></thead>
         <tbody>
-          <tr><td><span class="chip ok">Passed</span></td><td>Behaves as the specification requires</td><td class="n">153</td></tr>
+          <tr><td><span class="chip ok">Passed</span></td><td>Behaves as the specification requires</td><td class="n">159</td></tr>
           <tr><td><span class="chip fix">Failed</span></td><td>A real defect &mdash; all 15 raised and linked</td><td class="n">15</td></tr>
           <tr><td><span class="chip off">Parked</span></td><td>Belongs to work that has been marked obsolete</td><td class="n">11</td></tr>
           <tr><td><span class="chip off">Not run</span></td><td>Outside this release by the specification&rsquo;s own wording</td><td class="n">1</td></tr>
-          <tr><td colspan="2"><strong>Total</strong></td><td class="n">180</td></tr>
+          <tr><td colspan="2"><strong>Total</strong></td><td class="n">186</td></tr>
         </tbody>
       </table>
     </div>
@@ -663,7 +663,7 @@
   </section>
 
   <footer>
-    <p>Every figure here was read live from the tracker and from the test run on 18 September 2026, not carried over from an earlier note. The test run is 180 checks on the Global Search v2 QA branch at build v26.36.7-29ca209.</p>
+    <p>Every figure here was read live from the tracker and from the test run on 18 September 2026, not carried over from an earlier note. The test run is 186 checks on the Global Search v2 QA branch at build v26.36.7-29ca209.</p>
     <p>Prepared by QA. Defect references are given so each item can be opened directly.</p>
   </footer>
 

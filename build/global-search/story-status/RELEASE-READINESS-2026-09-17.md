@@ -481,3 +481,25 @@ Two of the five were withdrawn **out of In Progress** — work had already start
 out in the report, recorded here.
 
 Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
+
+## v16 — published 2026-09-18 (artifact version 16)
+
+The six new checks from the build-verification handoff (C55718–C55723) were run on `sv9160` build
+`v26.36.7-29ca209` and **all six passed**. Run 415 now reads:
+
+| Result | Checks |
+|---|---|
+| Passed | **159** |
+| Failed | 15 (all fifteen reported) |
+| Retest (parked behind withdrawn stories) | 11 |
+| Blocked | 0 |
+| Untested | 1 (C45159, outside this release) |
+| **Total** | **186** |
+
+Suite composition updated to **121 new-feature + 65 regression**. Story counts are unchanged — the six
+sit under stories already in the "handed over and tested" band (four under permissions, two under
+ranking), so the 6 / 7 / 8 / 5 picture holds.
+
+Evidence: `build/global-search/run415-execution/six-new-cases/RESULTS-2026-09-18.md`.
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
