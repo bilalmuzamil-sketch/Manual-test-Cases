@@ -145,8 +145,8 @@ R += [
    'PREFIX: the name STARTS with the keyword. Must rank first.'),
  customer('rank_q_whole', 'Bolton ZZPREFIX Services', [55707],
    'WHOLE WORD mid-name. Must rank below the prefix match and above the typo.'),
- customer('rank_q_typo', 'ZZPREFOX Cartage', [55707],
-   'FUZZY: one edit from the keyword (I->O), reachable only by fuzzy matching. Must rank LAST. '
+ customer('rank_q_typo', 'ZZPREFIY Cartage', [55707],
+   'FUZZY: one edit from the keyword (X->Y), reachable only by fuzzy matching. Must rank LAST. '
    '🔴 It was ZZPREFIXX, which is the keyword PLUS a letter - so it STARTS with the keyword, '
    'prefix-matched, and ranked FIRST, inverting the very order the case asserts. A typo record '
    'must be one edit away AND not a prefix of, or prefixed by, the keyword.'),
@@ -398,6 +398,86 @@ R += [
    'this outranks the name match the primary-name bonus is not being applied.',
    address='40 ZZNAMEBONUS Road'),
 ]
+
+# ══════════════════════════════════════════════════════════════════════════════════════════════
+# 2026-09-18 · THE SEVEN ALGORITHM CASES (C55724-C55730)
+#
+# Read from the real case bodies, which differ from the seeding handoff's summary in two ways that
+# matter:
+#   · C55724 names NO records at all - it says "seed three customers, identical in every other
+#     respect". The handoff's suggested names are the handoff's, not the case's. The ZZPREFIX trio
+#     already satisfies it: same address, same telephone, no contacts, no open work orders.
+#   · C55725 needs a record with a distinctive name and an UNRELATED query returning nothing.
+#     Aabridge Freight already exists in the Fibridge universe, so this needs no new record - only
+#     the negative proof, which belongs in the verifier.
+# ══════════════════════════════════════════════════════════════════════════════════════════════
+
+# ── C55726 [ZZACC] accents are ignored, both spellings find the one customer ───────────────────
+R += [
+ customer('acc_jose', 'ZZACC José Martínez', [55726],
+   'Accents on the e and the i. BOTH the plain and the accented spelling must find this one row - '
+   'so there must be exactly ONE record carrying the token, or "both find the same customer" '
+   'cannot be read off the result.'),
+]
+
+# ── C55727 [ZZPUNC] a hyphen and an apostrophe are optional ────────────────────────────────────
+R += [
+ customer('punc_obrien', "ZZPUNC O'Brien Haulage", [55727],
+   'APOSTROPHE. Must be found by ZZPUNC OBrien and by the punctuated form.'),
+ customer('punc_smith', 'ZZPUNC Smith-Jones Motors', [55727],
+   'HYPHEN. Must be found by ZZPUNC Smith Jones and by the punctuated form. Two records, one '
+   'keyword, because the case asks for both punctuation kinds.'),
+]
+
+# ── C55728 [ZZPHON] phonetic matching is NAMES ONLY ────────────────────────────────────────────
+# 🔴 The assertion is a NEGATIVE - the part must NOT come back for a sound-alike - so the control
+# matters more than the record: without a customer proving the sound-alike DOES work on names, a
+# miss on the part is indistinguishable from "the sound-alike simply matches nothing".
+R += [
+ cat_part('phon_part', 'ZZPHON-3001', 'ZZPHON Alternator Assembly', [55728],
+   'The part whose DESCRIPTION carries the word. A sound-alike of "Alternator" must NOT return it.'),
+ customer('phon_customer', 'ZZPHON Alternator Co', [55728],
+   'THE CONTROL, and the case cannot be read without it: a NAME must still sound-alike match. If '
+   'neither row comes back the sound-alike was simply wrong, not proof of names-only behaviour.'),
+]
+
+# ── C55729 [exact id beats a strong name match] ────────────────────────────────────────────────
+# The customer's name must BEGIN with the same text as the work-order number, so the pinned row is
+# competing against the strongest possible name match. Its real name is stamped in by the signals
+# script, because the work-order number is assigned by the branch and cannot be known here.
+R += [
+ customer('pin_rival', 'S2-15430 Holdings', [55729],
+   'Its NAME BEGINS with a real work-order number, so typing that number produces the strongest '
+   'possible competing name match - and the case asserts the pinned exact-ID row still wins.\n'
+   '   🔴 S2-15430 is PRE-EXISTING ESTATE DATA, deliberately: it survived the redeploy that wiped '
+   'every seeded record, and it OPENS as the tester (both re-proved 2026-09-17). Naming this after '
+   'one of OUR work orders would bake in a number the next redeploy changes - the stale-identifier '
+   'trap this project already paid for once.'),
+]
+
+# ── C55730 [ZZBROAD] a record below the top 20 is unreachable until the query narrows ──────────
+# 🔴 The scope tab caps at 20 rows with no pagination, so the broad query needs MORE than 20
+# matches or the cap never bites and the case proves nothing. 21 filler + 1 target = 22.
+#
+# 🔴 NOT ONE of the filler names may contain "Target", or the narrowing step - which is the second
+# half of the case - stops narrowing anything.
+#
+# Each part also needs a STOCK ROW: a catalogue part with no inventory record is not searchable at
+# all, measured 2026-09-17. So this is 22 catalogue parts and 22 stock rows.
+for _i in range(1, 22):
+    R.append(cat_part(f'broad_{_i:02d}', f'ZZBROAD-{4000+_i}', f'ZZBROAD Widget {_i:02d}', [55730],
+        'Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes '
+        'the target past the 20-row cap.'))
+R.append(cat_part('broad_target', 'ZZBROAD-4999', 'ZZBROAD Target Widget', [55730],
+    'THE TARGET. Left OUT OF STOCK and with no activity so it ranks low and falls outside the top '
+    '20 on the broad query. The narrow query "ZZBROAD Target" must then surface it - which is the '
+    'half of the case that proves the record was reachable all along, just not shown.'))
+for _i in range(1, 22):
+    R.append(inv_part(f'broad_{_i:02d}_inv', f'broad_{_i:02d}', f'ZZBROAD-{4000+_i}', 12, [55730],
+        'In stock, so it outranks the target.'))
+R.append(inv_part('broad_target_inv', 'broad_target', 'ZZBROAD-4999', 0, [55730],
+    'ZERO on hand - the signal that keeps the target below the fillers. It must still EXIST, or the '
+    'narrowed query has nothing to surface and the case reads as a pass for the wrong reason.'))
 
 MANIFEST = {
  '_README': 'Global Search RANKING (6726) + fuzzy remainder (6725) on sv9160. Everything ZZAUTOTEST-'

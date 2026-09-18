@@ -125,6 +125,45 @@ def signal_tiebreak():
     return (f"✅ Transport Two re-saved ({st}) — it is now the most recently updated of the pair"
             if st in (200, 201) else f"🔴 customers/change {st} {str(d)[:140]}")
 
+def signal_phonetic_probe():
+    """C55728 — FIND a sound-alike that works, rather than guessing one into the case.
+
+    The case says "a word that merely SOUNDS LIKE the description word but is not a close
+    spelling". Which strings this build treats as phonetically equal is a property of the build,
+    not something a document can assert, so this tries candidates and reports what actually
+    happens.
+
+    🔴 THE CONTROL IS THE WHOLE TEST. The assertion is a NEGATIVE - the PART must not come back -
+    and a negative is worthless without proof the probe works: if the customer control does not
+    come back either, the sound-alike is simply a word that matches nothing, and a tester would
+    record a pass for entirely the wrong reason.
+    """
+    CANDIDATES = ['Olternaytor', 'Awlternater', 'Alturnaytor', 'Ulternator']
+    rows = []
+    for cand in CANDIDATES:
+        st, d = call('/api/search?q=' + urllib.parse.quote(cand))
+        if st != 200: rows.append((cand, 'ERR', 'ERR')); continue
+        g = {x['type']: (x.get('items') or []) for x in ((d.get('data') or {}).get('groups') or [])}
+        cust = any('ZZPHON' in json.dumps(i) for i in g.get('customers', []))
+        part = any('ZZPHON' in json.dumps(i) for i in g.get('parts', []))
+        rows.append((cand, 'YES' if cust else 'no', 'YES' if part else 'no'))
+    out = ['', '   candidate      name(control)  part(must be no)']
+    good = None
+    for c, cu, pa in rows:
+        flag = ''
+        if cu == 'YES' and pa == 'no':
+            flag = '  <-- USE THIS: the control matches, the part does not'
+            good = good or c
+        elif cu == 'no' and pa == 'no':
+            flag = '  (matches nothing - proves nothing)'
+        elif pa == 'YES':
+            flag = '  🔴 the PART matched - that is the case FAILING, report it'
+        out.append(f'   {c:14} {cu:14} {pa}{flag}')
+    if not good:
+        out.append('   🔴 no candidate matched the NAME control. Do NOT hand C55728 over on this -')
+        out.append('      a miss on the part would be unreadable. Try more candidates first.')
+    return '\n'.join(out)
+
 if __name__ == '__main__':
     if not CONFIRM:
         print('DRY RUN — pass --confirm to apply\n')
@@ -132,4 +171,5 @@ if __name__ == '__main__':
     print('C55710  vendor open purchase order :', signal_vendor_po())
     print('C55712  part recent activity       :', signal_part_activity())
     print('C55716  tie-break, updated last    :', signal_tiebreak())
+    print('C55728  phonetic sound-alike probe :', signal_phonetic_probe())
     print('\n🔴 Now prove it: python3 verify_ranking.py')
