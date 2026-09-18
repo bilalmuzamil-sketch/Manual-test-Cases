@@ -345,3 +345,16 @@ ZZAUTOTEST Kestrel Parts Supply, and the supplier's record on the live product s
 neither is a case of an empty field.
 
 **B-N3 still open** — the 99 feature checks in run 415 have never been run.
+
+---
+
+## 2026-09-18 — run session (Global Search, run 415)
+
+| Row | What it is | Who decides | Cost of silence |
+|---|---|---|---|
+| **GS-R1** | **Six wording corrections to our own cases** — C55662 and C53603 (both demand the opposite of §4's *Contact-field matches* rule), plus C44829 (step 3), C45132 and C45136 (mobile wording), C55706 (drop price/total from its list). Permission to correct, per Rule 106. No product change is involved in any of them. | QA lead | The next tester to run C55662 or C53603 raises a defect against a product that is behaving exactly as written. |
+| **GS-R2** | **The eleven checks parked behind withdrawn stories** — keep, retire, or move them out of the run. Their five stories were withdrawn 10 and 16 September and the specification still describes all five. | QA lead + PO | The run carries eleven results that can never be earned, and the two records stay out of step. |
+| **GS-R3** | **C55658 was deleted from TestRail by someone else** after the status-search decision. Recorded, not questioned — but if that deletion was not intended, the case body is gone and only its history remains. | QA lead | Nothing, if intended. |
+| **GS-R4** | **Owning story on ~200 Global Search cases** — 155 cite only the epic. Offered 2026-09-17, not yet answered. | QA lead | Coverage questions keep needing a person to answer them by reading. |
+| **GS-R5** | **Branch sign-in now goes through Google** (18 September). The DEV MODE quick-login panel is gone from `sv9160` and `quick-login` itself answers `401 sso_required`, so a session can only be minted by the QA lead. Cookies were supplied at 10:50 and the run finished; **the next session will hit the same wall.** | QA lead | Every future run stops at the sign-in until a cookie arrives. Evidence: `build/global-search/run415-execution/six-new-cases/ACCESS-BLOCKER-CLAIM-2026-09-18.json`. |
+| **GS-R6** | **PERM-E / PERM-F and the location-scope question** raised by the build-verification lane need the Custom Roles spec or a PO answer before any case is written (Rule 58). Partial evidence now recorded for the "what counts as open" half: `six-new-cases/OPEN-WO-COUNT-EVIDENCE-2026-09-18.md`. | PO, via the QA lead | A family of permission and location cases stays unwritten. |
