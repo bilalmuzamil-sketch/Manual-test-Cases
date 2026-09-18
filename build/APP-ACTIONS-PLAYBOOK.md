@@ -4676,3 +4676,45 @@ on the Finance tab.
 ⚠️ **`/workorders/{id}/history` is not a real route** — it renders an empty table and fires no
 request. The audit log is a **dialog**, reached through the ⋮ menu. Do not conclude "no history
 rendered" from that URL.
+
+## §AE — CORE RETURNS: how to seed one, and the two receive surfaces (QA lead's recipe, 2026-09-18)
+
+**THE RECIPE (the QA lead's own words, with what I verified alongside):**
+1. On a **WORK ORDER** line, click **+ Add Part** → the **New Part Request** dialog. Fill Part Number,
+   Description, Quantity, Source = **Vendor**, Vendor, Cost, and — the part that matters — a value in
+   **Core Charge**. Save & Close.
+2. **Order** the part, then **Receive** it.
+3. When it asks **OK or Not OK**, click **NOT OK**.
+4. The core then appears under **Parts → Returns**. Tick the core row, open the row's **⋮** menu and
+   choose **Return to inventory** or **Delete Return**.
+
+**TWO DIFFERENT RECEIVE SURFACES — this cost me a run, so it is written down:**
+* **The work order's own "Receive parts" modal** (driven from the WO): the part row AND its
+  `Core for …` row are **both editable** — Cost, Qty Ordered, Qty Received per row, then
+  **Receive Parts (n)**.
+* **The purchase-order receive screen** (`/order/{id}?receive=1`): the core row's
+  `input_qty_{orderItemId}` is **`disabled: true`** and pre-filled with the part's quantity. It
+  follows the parent part; you cannot type into it. A script that fills every `input_qty_*` will hang
+  on it — **read `.disabled` first and skip it** (the receive still posts correctly).
+
+**A CORE CHARGE MAKES TWO PART REQUESTS.** Adding one part with `core_charge > 0` creates the part
+request AND a second request whose description is `Core for <description>` with `is_core_charge: true`
+— they land as two items on the same purchase order.
+
+**ON A PART SALE THERE IS NO CORE OK/NOT-OK CONTROL.** With both rows received on a part sale, the
+core row carries `input_core_charge_{woPartId}` but **no** `button_return_part_request_{woPartId}` —
+only the ordinary part row has one. The OK/Not-OK step in the recipe above is a **work-order** flow.
+Seed cores on a work order, not a part sale.
+
+**Endpoints seen:** returns list `GET /api/work-orders/part/list-return-requests` (the row's
+`quantity` is the **outstanding** amount, and it drops as credits are posted); credits list
+`GET /api/inventory/returns`; posting a credit `POST /api/inventory/returns/create` with
+`{vendor_id, credit_memo_number, items:[…]}` from **Parts → Returns → tick a row → Receive Credit**,
+which opens `/parts/confirm-return?ids=<returnId>` ("Process Return"): `input_credit_memo_number`,
+`input_received_quantity_0` (**the instalment**), `button_post_credit`.
+
+**ALWAYS READ THE ACCEPTED-QUANTITY FIELD BACK BEFORE POSTING.** On SV-9610 a run that looked like the
+bug surviving was my own input not landing: the credit posted **$160.44** (the whole 2 units) instead
+of one unit's **$80.22**, so the return completing was correct. Read the field's `.value` back and
+abort if it is not what you intended — and when a return "vanishes", check the **posted credit amount**
+before calling it a regression (Rule 75).
