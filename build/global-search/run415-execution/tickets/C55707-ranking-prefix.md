@@ -1,4 +1,9 @@
-# PREPARED AND HELD — awaiting the QA lead's go-ahead (Rule 62 / Rule 113)
+# FILED as SV-10211 on 17 September 2026 — https://shopview.atlassian.net/browse/SV-10211
+
+Raised on his per-ticket go-ahead. `Story Defect` · parent `SV-9165` · priority `Medium` ·
+`relates to` `SV-9165` · the annotated picture embedded inline at `|width=760,height=350!` (Jira
+forced `height=183` on the plain `|width=760!` form — the true aspect had to be stated). The ticket
+number has been appended to the check's comment in the run (Rule 113).
 
 **Type** `Story Defect` · **Parent** `SV-9165` · **Priority** `Medium` · also link `SV-9165`
 *relates to*.
