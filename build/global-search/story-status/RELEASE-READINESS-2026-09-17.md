@@ -424,3 +424,31 @@ Everything else from v12 stands: the counting note, and the SV-9313 flag asking 
 before release.
 
 Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
+
+## v14 — published 2026-09-18 (artifact version 14)
+
+His instruction: *"DO not count the obsolete stories in total stories."*
+
+**The total is now 21, not 26.** The five withdrawn stories (SV-9167 · SV-9169 · SV-9173 · SV-9306 ·
+SV-9310) are still shown — they carry eleven parked checks and the specification still describes
+them, so hiding them would lose a real outstanding item — but they sit **outside the count** and
+every place that totals the release says so.
+
+| | Count |
+|---|---|
+| Signed off by QA | 6 |
+| Handed over and tested, waiting on defects | 7 |
+| Still with the development side | 8 |
+| **Total in this release** | **21** |
+| Withdrawn, shown separately and not counted | 5 |
+
+Changed: the bottom line (*thirteen of the twenty-one*), the board heading (*The feature is 21
+stories in this release*, with "21 in total · 5 more withdrawn" beside it), the tile order (Withdrawn
+moved last and now reads *not counted in the 21*), the handover section's count chip (26 → 21) and
+its definition line, the fourth stage of the flow strip (*Outside the 21*), and the obsolete
+section's own note.
+
+The thirteen handed over is unchanged — it was always 13 of the non-withdrawn stories; only the
+denominator moves.
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
