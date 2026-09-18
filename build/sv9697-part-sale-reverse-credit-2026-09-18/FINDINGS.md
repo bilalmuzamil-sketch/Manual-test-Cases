@@ -110,3 +110,80 @@ Branch, P9697-248 before any credit existed:
 > This action will re-open and undo the invoice. Are you sure you want to proceed?
 
 No empty clause about credits, exactly as Chris required.
+
+---
+
+## §1b — The customer's exact shape: a PARTS credit on a part sale with a core charge
+
+§1 used an amount-only credit. Colby's credit came from **correcting a core charge**, so a second
+part sale was built to match his case exactly.
+
+Seeded on the branch — part sale **P-250** (`a1843a0b-fe2a-428f-8705-e5ea5bd81419`), same customer:
+
+1. Add Part → part number `ZZ9697-CORE1` (never requested before), **Source = Vendor**,
+   qty 1, cost $180, sell $520, **Core Charge 95**. One part request becomes **two**:
+   the part and `Core for ZZAUTOTEST ZZ9697-CORE1`.
+2. Authorize → Order (both rows land on purchase order `48234a14…`) → Receive with vendor
+   invoice `ZZ9697INV1`. Toast **"Received Parts"**; both rows `status: received`.
+3. Invoice → `POST /api/invoices/create` → balance **$645.75**.
+4. ⋮ → **Issue Credit**, *Parts are being returned* left ticked. The dialog lists both rows with
+   their own Qty Available For Credit. Crediting the part row gives **CM-4190, $546.00**
+   (subtotal $520.00 + tax $26.00).
+5. The API now reads **`has_part_sale_credits: true`** — the old single flag the pre-fix front end
+   greyed the button out from — while **`reverseBlockedByCredits: false`**. That is the fix in one
+   line: the old flag still says "a credit exists", and the button no longer listens to it.
+
+**Side observation, not a defect (recorded so nobody re-derives it):** the `Core for …` row can be
+ticked on its own in the Issue Credit dialog, but the totals stay **$0.00** and **Issue Credit stays
+disabled** — a core is credited with its parent part, never by itself. That is the same
+parent-follows rule already recorded for the Process Return screen in the playbook (§AE.4).
+
+---
+
+## §1c — More than one credit: the confirmation names them all and shows the total — **PASS**
+
+A second, amount-only credit of **$60.00** (CM-4191) was added to P-250 so it carried two unspent
+credits. Reverse stayed enabled and the confirmation read, live:
+
+> **This action will re-open and undo the invoice. It will also cancel credits CM-4191 and CM-4190 for $606.00 total. Are you sure you want to proceed?**
+
+$546.00 + $60.00 = **$606.00**. Chris's requirement — *"If more than one credit is affected, name
+them all and show the total"* — is met, and the sentence is still inserted into today's wording
+rather than replacing it.
+
+---
+
+## §2 — Cancel the credit yourself first, then reverse — **PASS**
+
+This is Colby's own move: he cancelled one of his two credits before coming to Support.
+
+On P-250 (which carried CM-4190 $546.00 and CM-4191 $60.00, both open):
+
+1. Customer → **Invoices** tab → the credit row's bin icon (`button_delete_credit_<id>`) →
+   dialog **"Reverse Credit — This will reverse the credit. Are you sure you want to proceed?"**
+   → REVERSE. `POST 200 /api/credit-memos/{id}/void`. CM-4190 becomes **Voided**.
+2. The API now distinguishes the two exactly as Chris's rule requires:
+   ```json
+   {"number":"CM-4191","status":"open",  "blocksReverse":false,"autoVoidedByReverse":true},
+   {"number":"CM-4190","status":"voided","blocksReverse":false,"autoVoidedByReverse":false}
+   ```
+3. ⋮ → **Reverse** — still enabled — and the confirmation names **only the one it will actually
+   cancel**:
+   > **This action will re-open and undo the invoice. It will also cancel credit CM-4191 for $60.00. Are you sure you want to proceed?**
+
+   The already-cancelled CM-4190 is not mentioned. No empty clause, and no claim about a credit it
+   will not touch.
+4. Confirmed → `POST 200 /api/invoices/reverse-invoice`; part sale back to **Complete**.
+
+**Field-by-field check of the credit records across the reverse** (customer transaction list,
+30 fields per record, before vs after):
+
+| Credit | Result |
+|---|---|
+| CM-4189 (other part sale) | **identical on all 30 fields** — untouched |
+| CM-4190 (already cancelled) | `status` stays **voided**, amount stays **−$546.00**; **no second void** |
+| CM-4191 (open) | `unapplied` → **voided**, as the confirmation promised |
+
+**One honest note:** both P-250 credits lose their `origin_invoices` back-reference, because the
+invoice they pointed at no longer exists after the reverse. That is the invoice going away, not a
+change to the credit — the status, the amount and the memo are all unchanged on CM-4190.
