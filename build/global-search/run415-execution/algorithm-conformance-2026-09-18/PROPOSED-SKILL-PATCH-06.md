@@ -44,3 +44,57 @@ tab closes — the attachment is still there, the reference is not. Reference pi
 **filename with the true aspect** (`!PIC1-vehicle.png|width=760,height=543!`) and verify with
 `GET /rest/api/2/issue/<KEY>?expand=renderedFields`: the `<img` count must equal the number of
 pictures and the `blob:` count must be zero.
+
+---
+
+# ADDITION, 2026-09-18 — the QA lead's ticket guide folded into the same patch
+
+Source: `build/skills/inputs/SHOPVIEW-JIRA-TICKET-GUIDE-2026-09-18.md`, reconciled in
+`build/skills/inputs/GUIDE-RECONCILIATION-2026-09-18.md`. **One go-ahead covers both halves.**
+
+## §1-c — SECTIONS THAT APPEAR ONLY WHEN THEY APPLY
+
+* **`Permission Configuration`** — for any permission fault, list each permission and its state
+  (`Vendor & Order Management → View = ON`, `View and Manage AP/AR Data = OFF`), then one sentence
+  naming the dependency. Never describe a role in prose.
+* **`Expected Result / Product Clarification Needed`** — where the requirement is ambiguous (Rule 58),
+  state both valid readings and what we would do under each, instead of picking one and calling it a
+  bug.
+* **`Regression Note`** — when it started, on which environment, whether the live product differs,
+  whether it is intermittent. The form of words is *"started occurring after the deployment"*, never
+  *"the deployment broke this"*, unless someone has confirmed the cause.
+* **Data or migration faults** — three blocks: the state before, what the migration should preserve,
+  the state after.
+* **A front-end action the back end refuses** — three lines: the screen offers it · the person clicks
+  it · the back end refuses. Then the two valid expectations: it should work, or it should not have
+  been offered.
+
+## §1-d — ONE TICKET, ONE PRIMARY FAILURE
+
+Several examples of the SAME failure belong in one ticket. Two different failures that happen to sit
+on the same screen belong in two.
+
+## §1-e — THE SELF-CHECK BEFORE CREATING OR EDITING ANY TICKET
+
+Can a manual tester reproduce it from the steps alone · is the fault obvious in ten seconds · is the
+actual result only what was observed · is the expected result taken from the specification or a
+recorded decision · did I avoid stating an unconfirmed cause as fact · did I keep the environment,
+the build and the test data · did I keep the annotated pictures, inline, beside what they prove ·
+**after any edit, did I re-read the rendered description and count the images** · are there zero
+`blob:` references · **if I cannot guarantee the pictures survive my edit, did I stop and hand over
+the revised text instead of overwriting the description** · is this one fault rather than several.
+
+## THREE THINGS IN THE GUIDE I HAVE NOT APPLIED, PENDING HIS RULING
+
+1. **A `Technical Evidence` section.** The guide asks for one; he removed the technical-details
+   section on 2026-09-16/17 and *"no developer-details section"* is recorded as company-wide.
+   **My recommendation: allow it, placed after Expected Result and before Environment**, holding only
+   confirmed observations — status codes, request ids, response bodies, measured scores.
+2. **Environment last.** The guide puts it last; his own instruction of 2026-09-16 put it
+   second-to-last with Sources last. **Recommendation: keep his order.**
+3. **`Spec Reference` instead of `Sources`.** **Recommendation: keep `Sources`** with the requirement
+   quoted verbatim, its page id, version and read date — the guide's paraphrase is weaker than what
+   we already do.
+
+**Also to be deleted when the skill is next edited:** the stale `Test cases` row in the eight-heading
+table — he removed case ids and run links from Jira descriptions on 2026-09-16/17.
