@@ -3502,7 +3502,7 @@ unlearning what already works. Both halves matter, so both are recorded.
 | Element | What goes wrong without it |
 |---|---|
 | **The one sentence a reader remembers** (*"a record cannot be found by the words the product itself prints for it"*) | the ticket reads as an abstraction about indexed fields and nobody feels it |
-| **Why it matters, in user terms** (people type what they read off the truck; nothing warns them; more precision makes it worse) | it gets parked behind tickets that did explain their impact |
+| ~~Why it matters, in user terms~~ — **CORRECTED 2026-09-18, same day**: this is an IMPACT PARAGRAPH, which he struck out by name on 2026-09-10 (*no assumed effects, no severity, no impact paragraph*), and his ticket guide says the same. I was out of step, not the rewrite. What replaces it is ONE FACTUAL SENTENCE of what was observed — e.g. *"adding a second valid search term removes a record the previous search had already returned, and nothing indicates that some typed words were ignored"* | an impact paragraph invites the reader to argue with the framing instead of the fault |
 | **The control that pins the diagnosis** (two words of ONE field DO work) | a developer reasonably concludes "multi-word search is broken" and fixes the wrong layer |
 | **The source quoted verbatim, with page id, version and read date** | the argument becomes "what does the spec really say", and we lose it |
 | **The honest caveat where the spec is silent** | the reply is "the specification doesn't require this" and the ticket closes |
