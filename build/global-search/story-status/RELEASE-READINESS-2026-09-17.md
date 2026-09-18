@@ -255,3 +255,36 @@ The last blocked check (C55711) was unblocked and run — see
 The "Cannot run yet — 2" tile becomes "Outside this release — 1", and the Held row leaves the
 results table. **Nothing in the run is blocked on data or access any more; the only thing waiting
 is the go-ahead on one report.**
+
+## v8 — published 2026-09-18 (artifact version 8)
+
+Refreshed after the ranking report was raised on his per-ticket go-ahead. Every figure re-derived
+live before publishing — run 415 from TestRail, all 33 defects from Jira in one query.
+
+**Two changes arrived from outside this lane and are reflected:**
+
+1. **C55658 has been DELETED from TestRail and is gone from run 415** (`get_case/55658` → HTTP 400;
+   run size 181 → **180**). That is the *work order found by typing its stage* check, and it follows
+   SV-10008 being closed with the decision *"Status will not be a searchable field."* The run
+   therefore reads **153 Passed** rather than 154, with nothing lost — the check was withdrawn, not
+   failed. The report now calls that defect **settled by a decision** rather than "closed, ready to
+   re-check", and the suite reads **115 new-feature + 65 regression**.
+2. **Assignees have moved.** Re-derived per owner: Nikola Milosevic 4 · Sinisa Nogic 4 · Branko
+   Cicovic 2 · Milos Vasic 2 · Bilal Muzamil 1 (SV-10025) · not yet assigned 2 (SV-10159, SV-10211).
+   The v7 table's "Sinisa 6 / Nikola 3 / Milos 1" was already out of date.
+
+| | v7 | v8 |
+|---|---|---|
+| Checks in the run | 181 | **180** |
+| Passed | 154 | **153** |
+| Failed | 15 (14 reported) | 15 — **all 15 reported** |
+| Defects raised in total | 32 | **33** (SV-10211) |
+| Still open | 14 | **15** |
+| Ranking (SV-9165) open | 2 | **3** |
+
+Also added, on his standing instruction to show the testing effort: the eleven checks that had only
+been accepted on a sign-off were re-run and watched on screen, and **two of them were found to be
+asking for the opposite of the written requirement** — our own wording, caught before it sent a
+developer chasing a product that was behaving correctly.
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B

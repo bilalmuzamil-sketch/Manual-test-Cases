@@ -174,40 +174,40 @@
     <h1>Global Search v2 &mdash; where we stand</h1>
     <p class="lede">Testing is complete across the whole feature. The remaining work is closing out the defects that testing found.</p>
     <div class="meta">
-      <span>Prepared <b>17 September 2026</b></span>
+      <span>Prepared <b>18 September 2026</b></span>
       <span>Tested on <b>the QA branch, build v26.36.7-29ca209</b></span>
-      <span><b>181 checks</b> &mdash; 115 on the new feature, 66 regression</span>
+      <span><b>180 checks</b> &mdash; 115 on the new feature, 65 regression</span>
       <span>Every status read live from the tracker on the day</span>
     </div>
   </header>
 
   <div class="bottomline">
     <div class="lbl">The bottom line</div>
-    <p class="bl-main">The feature has been tested end to end. <b>154 of 181 checks pass.</b> <b>14 defects found during testing are still being worked through</b>, and the feature is ready to release once they are closed.</p>
-    <p class="bl-sub">Six of the twenty-six parts of the feature have now cleared QA. Seven more are tested and are each waiting on one or more of those fourteen defects. <b>Testing has raised 32 defects in total on this feature, 16 of them already fixed and re-tested</b> &mdash; this is the normal find-and-fix cycle at its closing stage, and the remaining list is small and specific.</p>
+    <p class="bl-main">The feature has been tested end to end. <b>153 of 180 checks pass.</b> <b>15 defects found during testing are still being worked through</b>, and the feature is ready to release once they are closed.</p>
+    <p class="bl-sub">Six of the twenty-six parts of the feature have now cleared QA. Seven more are tested and are each waiting on one or more of those fifteen defects. <b>Testing has raised 33 defects in total on this feature, 16 of them already fixed and re-tested</b> &mdash; this is the normal find-and-fix cycle at its closing stage, and the remaining list is small and specific.</p>
   </div>
 
   <div class="split">
     <div class="side done">
       <div class="side-head"><span class="lbl">Testing</span><span class="verdict-chip ok">Complete</span></div>
-      <p class="big"><span class="num">181</span> checks run, <span class="num">154</span> pass.</p>
+      <p class="big"><span class="num">180</span> checks run, <span class="num">153</span> pass.</p>
       <ul class="plain">
-        <li>The suite is <b>115 checks on the new feature plus 66 regression checks</b> confirming nothing findable in the old search was lost. <b>The regression half found 24 of the 32 defects.</b></li>
-        <li><b>14 of the 15 failures have a defect raised</b> against them, so each is tracked and can be re&#8209;checked as soon as it is closed. The fifteenth was found this evening and is being written up.</li>
+        <li>The suite is <b>115 checks on the new feature plus 65 regression checks</b> confirming nothing findable in the old search was lost. <b>The regression half found 24 of the 33 defects.</b></li>
+        <li><b>Every one of the 15 failures now has a defect raised</b> against it, so each is tracked and can be re&#8209;checked the moment it is closed. Nothing found in testing is sitting unrecorded.</li>
         <li><b>6 parts of the feature have cleared QA</b>, four of them signed off today.</li>
         <li><b>11 checks are parked</b> &mdash; they belong to work marked obsolete, so there is nothing to run them against.</li>
-        <li><b>1 fix is ready to be re&#8209;checked</b> and is on the testing list.</li>
+        <li><b>11 checks that had only been accepted on a sign-off were re-run and watched on screen.</b> Nine held. Two turned out to be asking for the opposite of the written requirement &mdash; our own wording, now being corrected, which would otherwise have sent a developer chasing a product that was behaving correctly.</li>
       </ul>
       <p class="side-foot">Both suites have been run in full against the current build.</p>
     </div>
     <div class="side open">
       <div class="side-head"><span class="lbl">Defects to close</span><span class="verdict-chip bad">In flight</span></div>
-      <p class="big"><span class="num">14</span> defects open across <span class="num">7</span> parts of the feature.</p>
+      <p class="big"><span class="num">15</span> defects open across <span class="num">7</span> parts of the feature.</p>
       <ul class="plain">
-        <li>They are spread across <b>four engineers</b>, with the load weighted towards one of them &mdash; worth a look if it affects sequencing.</li>
+        <li>They are spread across <b>five people</b>, with two engineers carrying four each &mdash; worth a look if it affects sequencing.</li>
         <li><b>2 are not yet assigned</b>, so they are not currently scheduled. Assigning them is the quickest way to move the list.</li>
         <li><b>1 is itself blocked</b> and needs its blocker cleared before it can be picked up.</li>
-        <li>The rest are in the normal queue, and one is already in progress. A further one is closed and back on the testing list.</li>
+        <li>The rest are in the normal queue, and one is already in progress. A further one has been settled by a decision rather than a fix &mdash; searching by a work order&rsquo;s stage is no longer part of the product, and the check for it has been withdrawn.</li>
       </ul>
       <p class="side-foot">As each one closes, its part of the feature can be signed off.</p>
     </div>
@@ -226,20 +226,20 @@
     </div>
 
     <div>
-      <div class="band-head"><h3>Testing raised 32 defects on this feature. Here is what has happened to them.</h3><span class="of">32 in total</span></div>
+      <div class="band-head"><h3>Testing raised 33 defects on this feature. Here is what has happened to them.</h3><span class="of">33 in total</span></div>
       <div class="tiles">
         <div class="tile g"><div class="v num">16</div><div class="k">Closed and verified</div><div class="x">Fixed and re-tested &mdash; done with</div></div>
-        <div class="tile b"><div class="v num">14</div><div class="k">Still open</div><div class="x">The work that remains before release</div></div>
-        <div class="tile w"><div class="v num">1</div><div class="k">Closed, ready to re-check</div><div class="x">Fixed; on the testing list</div></div>
+        <div class="tile b"><div class="v num">15</div><div class="k">Still open</div><div class="x">The work that remains before release</div></div>
+        <div class="tile w"><div class="v num">1</div><div class="k">Settled by a decision</div><div class="x">Agreed not to be part of the product; the check has been withdrawn</div></div>
         <div class="tile s"><div class="v num">1</div><div class="k">Withdrawn</div><div class="x">No longer applies</div></div>
       </div>
     </div>
 
     <div>
-      <div class="band-head"><h3>The test suite is 181 checks. Here is how the current build scored.</h3><span class="of">181 in total</span></div>
+      <div class="band-head"><h3>The test suite is 180 checks. Here is how the current build scored.</h3><span class="of">180 in total</span></div>
       <div class="tiles">
-        <div class="tile g"><div class="v num">154</div><div class="k">Passed</div><div class="x">Behaves as the specification requires</div></div>
-        <div class="tile b"><div class="v num">15</div><div class="k">Failed</div><div class="x">14 have a defect raised; one is newly found and being written up</div></div>
+        <div class="tile g"><div class="v num">153</div><div class="k">Passed</div><div class="x">Behaves as the specification requires</div></div>
+        <div class="tile b"><div class="v num">15</div><div class="k">Failed</div><div class="x">Every one has a defect raised and linked</div></div>
         <div class="tile s"><div class="v num">11</div><div class="k">Parked</div><div class="x">Belong to parts withdrawn from scope</div></div>
         <div class="tile w"><div class="v num">1</div><div class="k">Outside this release</div><div class="x">One check the specification itself puts beyond this release</div></div>
       </div>
@@ -304,7 +304,7 @@
 
   <section>
     <div class="sechead"><h2>Waiting on defects being closed</h2><span class="count c-bad">7</span></div>
-    <p class="secnote">Each of these is waiting on one or more of the <strong>14 open defects</strong>. The count shows how many remain on each, with the individual items listed underneath, so progress can be tracked part by part. Each one becomes signable as its list clears.</p>
+    <p class="secnote">Each of these is waiting on one or more of the <strong>15 open defects</strong>. The count shows how many remain on each, with the individual items listed underneath, so progress can be tracked part by part. Each one becomes signable as its list clears.</p>
     <ul class="items">
       <li>
         <div class="title-row">
@@ -312,8 +312,8 @@
           <span class="d">A vehicle line runs the unit number and the year together; a part-sale line shows no total price; a work order&rsquo;s status is a different colour here than everywhere else in the app.</span>
           <span class="key">SV-9170</span>
         </div>
-        <div class="right"><span class="chip fix">3 to fix</span><span class="sub">Nikola Milosevic &times;2<br>Sinisa Nogic &times;1</span></div>
-        <ul class="fixlist"><li>SV-10163 &middot; Sinisa Nogic</li><li>SV-10178 &middot; Nikola Milosevic</li><li>SV-10186 &middot; Nikola Milosevic</li></ul>
+        <div class="right"><span class="chip fix">3 to fix</span><span class="sub">Nikola Milosevic &times;3</span></div>
+        <ul class="fixlist"><li>SV-10163 &middot; Nikola Milosevic</li><li>SV-10178 &middot; Nikola Milosevic</li><li>SV-10186 &middot; Nikola Milosevic</li></ul>
       </li>
       <li>
         <div class="title-row">
@@ -321,26 +321,26 @@
           <span class="d">A correctly spelled name brings back differently spelled records; a vehicle cannot be found by its year and make typed together; part of a word does not find the record. One of the three is itself blocked and cannot be worked on.</span>
           <span class="key">SV-9164</span>
         </div>
-        <div class="right"><span class="chip fix">3 to fix</span><span class="sub">Milos Vasic &times;1<br>Sinisa Nogic &times;1<br>1 not yet assigned</span></div>
-        <ul class="fixlist"><li>SV-10055 &middot; Milos Vasic</li><li class="flag">SV-10060 &middot; Sinisa Nogic &mdash; blocked</li><li class="flag">SV-10025 &mdash; not yet assigned</li></ul>
+        <div class="right"><span class="chip fix">3 to fix</span><span class="sub">Milos Vasic &times;1<br>Sinisa Nogic &times;1<br>Bilal Muzamil &times;1</span></div>
+        <ul class="fixlist"><li>SV-10055 &middot; Milos Vasic</li><li class="flag">SV-10060 &middot; Sinisa Nogic &mdash; blocked</li><li>SV-10025 &middot; Bilal Muzamil</li></ul>
       </li>
       <li>
         <div class="title-row">
           <span class="t">Making every record findable</span>
-          <span class="d">A catalogue part that has never been in stock cannot be found, and imported invoices are not searchable. Nine defects on this one are already closed and verified &mdash; <strong>a tenth is closed and only needs a re-check.</strong></span>
+          <span class="d">A catalogue part that has never been in stock cannot be found, and imported invoices are not searchable. <strong>Nine defects on this one are already closed and verified</strong>, and a tenth has been settled by a decision rather than a fix.</span>
           <span class="key">SV-9163</span>
         </div>
-        <div class="right"><span class="chip fix">2 to fix</span><span class="chip qa">1 ready to re-check</span><span class="sub">Sinisa Nogic &times;2<br><span class="num">9</span> already verified</span></div>
-        <ul class="fixlist"><li>SV-10001 &middot; Sinisa Nogic</li><li>SV-10199 &middot; Sinisa Nogic</li><li class="flag">SV-10008 &mdash; closed, ready to re-check</li></ul>
+        <div class="right"><span class="chip fix">2 to fix</span><span class="sub">Milos Vasic &times;1<br>Sinisa Nogic &times;1<br><span class="num">9</span> already verified</span></div>
+        <ul class="fixlist"><li class="flag">SV-10001 &middot; Milos Vasic &mdash; blocked</li><li>SV-10199 &middot; Sinisa Nogic</li></ul>
       </li>
       <li>
         <div class="title-row">
           <span class="t">Ranking &mdash; what comes back first</span>
-          <span class="d">A match on a contact&rsquo;s details outranks a match on the company&rsquo;s own name; a part already on a work order is not pushed down when searching from that work order.</span>
+          <span class="d">A match on a contact&rsquo;s details outranks a match on the company&rsquo;s own name; a part already on a work order is not pushed down when searching from that work order; and a name that begins with what was typed is scored no higher than one that merely contains it, so the better match can come second.</span>
           <span class="key">SV-9165</span>
         </div>
-        <div class="right"><span class="chip fix">2 to fix</span><span class="sub">Sinisa Nogic &times;2</span></div>
-        <ul class="fixlist"><li>SV-10161 &middot; Sinisa Nogic</li><li>SV-10188 &middot; Sinisa Nogic</li></ul>
+        <div class="right"><span class="chip fix">3 to fix</span><span class="sub">Sinisa Nogic &times;2<br>1 not yet assigned</span></div>
+        <ul class="fixlist"><li>SV-10161 &middot; Sinisa Nogic</li><li>SV-10188 &middot; Sinisa Nogic</li><li class="flag">SV-10211 &mdash; raised today, not yet assigned</li></ul>
       </li>
       <li>
         <div class="title-row">
@@ -373,20 +373,21 @@
   </section>
 
   <section>
-    <div class="sechead"><h2>How the 14 defects are distributed</h2></div>
-    <p class="secnote">The same fourteen, grouped by current owner, to help with sequencing and capacity. <strong>Two are not yet assigned</strong>, so they are not on anyone&rsquo;s list at the moment &mdash; picking those up is the quickest way to shorten the remainder.</p>
+    <div class="sechead"><h2>How the 15 defects are distributed</h2></div>
+    <p class="secnote">The same fifteen, grouped by current owner, to help with sequencing and capacity. <strong>Two are not yet assigned</strong>, so they are not on anyone&rsquo;s list at the moment &mdash; picking those up is the quickest way to shorten the remainder.</p>
     <div class="runwrap">
       <table>
         <thead><tr><th>Current owner</th><th>Defects</th><th>Which parts of the feature</th></tr></thead>
         <tbody>
-          <tr><td><strong>Sinisa Nogic</strong></td><td class="n">6</td><td>Making every record findable &middot; Ranking &middot; Result lines &middot; Matching</td></tr>
-          <tr><td><strong>Nikola Milosevic</strong></td><td class="n">3</td><td>Result lines &middot; The search box and its states</td></tr>
+          <tr><td><strong>Nikola Milosevic</strong></td><td class="n">4</td><td>Result lines &times;3 &middot; The search box and its states</td></tr>
+          <tr><td><strong>Sinisa Nogic</strong></td><td class="n">4</td><td>Ranking &times;2 &middot; Making every record findable &middot; Matching (blocked)</td></tr>
           <tr><td><strong>Branko Cicovic</strong></td><td class="n">2</td><td>The search box and its states &middot; Keyboard use</td></tr>
-          <tr><td><strong>Milos Vasic</strong></td><td class="n">1</td><td>Matching</td></tr>
+          <tr><td><strong>Milos Vasic</strong></td><td class="n">2</td><td>Matching &middot; Making every record findable (blocked)</td></tr>
+          <tr><td><strong>Bilal Muzamil</strong></td><td class="n">1</td><td>Matching &mdash; differently spelled names <span class="key">SV-10025</span></td></tr>
           <tr><td><strong>Not yet assigned</strong></td><td class="n">1</td><td>The missing &ldquo;Show all&rdquo; link <span class="key">SV-10159</span></td></tr>
-          <tr><td><strong>Not yet assigned</strong></td><td class="n">1</td><td>A correctly spelled name brings back differently spelled records <span class="key">SV-10025</span></td></tr>
-          <tr><td colspan="1"><strong>Total open</strong></td><td class="n">14</td><td></td></tr>
-          <tr><td><strong>Closed, ready to re-check</strong></td><td class="n">1</td><td>Work orders findable by number again &mdash; on the testing list <span class="key">SV-10008</span></td></tr>
+          <tr><td><strong>Not yet assigned</strong></td><td class="n">1</td><td>A name starting with what was typed is ranked no higher than one containing it <span class="key">SV-10211</span></td></tr>
+          <tr><td colspan="1"><strong>Total open</strong></td><td class="n">15</td><td></td></tr>
+          <tr><td><strong>Settled by a decision</strong></td><td class="n">1</td><td>Searching by a work order&rsquo;s stage is no longer part of the product; the check has been withdrawn <span class="key">SV-10008</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -479,12 +480,12 @@
   </section>
 
   <section>
-    <div class="sechead"><h2>Where the 32 defects came from</h2></div>
+    <div class="sechead"><h2>Where the 33 defects came from</h2></div>
     <p class="secnote">Two bodies of testing were run against this feature, and they do different jobs. <strong>The regression suite is what caught most of what was wrong.</strong></p>
 
     <div class="tiles" style="margin-bottom:22px;">
-      <div class="tile b"><div class="v num">24</div><div class="k">Found by regression testing</div><div class="x">66 checks confirming that everything findable in the old search is still findable in the new one</div></div>
-      <div class="tile w"><div class="v num">7</div><div class="k">Found by the new-feature checks</div><div class="x">98 checks against what the specification asks the new search to do</div></div>
+      <div class="tile b"><div class="v num">24</div><div class="k">Found by regression testing</div><div class="x">65 checks confirming that everything findable in the old search is still findable in the new one</div></div>
+      <div class="tile w"><div class="v num">8</div><div class="k">Found by the new-feature checks</div><div class="x">115 checks against what the specification asks the new search to do</div></div>
       <div class="tile s"><div class="v num">1</div><div class="k">Raised from outside testing</div><div class="x">A general interface round, raised by the product side</div></div>
     </div>
 
@@ -536,9 +537,9 @@
       <li>
         <div class="title-row">
           <span class="t">Work orders no longer findable by the stage they are at</span>
-          <span class="d">Fixed, and now back on the testing list to be re-checked.</span>
+          <span class="d">Raised, and answered with a decision: searching by stage is not something the product will offer. The check that expected it has been withdrawn, so the two records now agree.</span>
         </div>
-        <div class="right"><span class="chip qa">Closed, ready to re-check</span></div>
+        <div class="right"><span class="chip off">Settled by a decision</span></div>
       </li>
       <li>
         <div class="title-row">
@@ -549,21 +550,21 @@
       </li>
     </ul>
 
-    <p class="secnote" style="margin-top:18px;"><strong>Sixteen of the twenty-four regression findings are already fixed and re-tested.</strong> The remainder are in the open list above. The new-feature checks found seven more &mdash; the result rows, the ranking, the missing &ldquo;Show all&rdquo; link and the no-results wording &mdash; all raised today.</p>
+    <p class="secnote" style="margin-top:18px;"><strong>Sixteen of the twenty-four regression findings are already fixed and re-tested.</strong> The remainder are in the open list above. The new-feature checks found eight more &mdash; the result rows, three on ranking, the missing &ldquo;Show all&rdquo; link and the no-results wording.</p>
   </section>
 
   <section>
     <div class="sechead"><h2>What testing actually found</h2></div>
-    <p class="secnote">The full suite &mdash; 115 new-feature checks plus 66 regression checks &mdash; was run against the QA branch. Fourteen of the fifteen failures already have a defect raised against them, so each is tracked and can be re-checked as soon as it is closed; the fifteenth was found this evening and is being written up.</p>
+    <p class="secnote">The full suite &mdash; 115 new-feature checks plus 65 regression checks &mdash; was run against the QA branch. <strong>All fifteen failures have a defect raised against them</strong>, so each is tracked and can be re-checked as soon as it is closed. Nothing is blocked: the last check that was waiting on data has been run and passed.</p>
     <div class="runwrap">
       <table>
         <thead><tr><th>Result</th><th>What it means</th><th>Checks</th></tr></thead>
         <tbody>
-          <tr><td><span class="chip ok">Passed</span></td><td>Behaves as the specification requires</td><td class="n">154</td></tr>
-          <tr><td><span class="chip fix">Failed</span></td><td>A real defect &mdash; 14 raised and linked, 1 being written up</td><td class="n">15</td></tr>
+          <tr><td><span class="chip ok">Passed</span></td><td>Behaves as the specification requires</td><td class="n">153</td></tr>
+          <tr><td><span class="chip fix">Failed</span></td><td>A real defect &mdash; all 15 raised and linked</td><td class="n">15</td></tr>
           <tr><td><span class="chip off">Parked</span></td><td>Belongs to work that has been marked obsolete</td><td class="n">11</td></tr>
           <tr><td><span class="chip off">Not run</span></td><td>Outside this release by the specification&rsquo;s own wording</td><td class="n">1</td></tr>
-          <tr><td colspan="2"><strong>Total</strong></td><td class="n">181</td></tr>
+          <tr><td colspan="2"><strong>Total</strong></td><td class="n">180</td></tr>
         </tbody>
       </table>
     </div>
@@ -572,8 +573,8 @@
   <section class="ask">
     <h2>What would move this forward</h2>
     <ol>
-      <li><strong>Close the 14 open defects.</strong> As each one closes, its part of the feature becomes signable. Three of the fourteen sit on the result lines, so that part moves fastest.</li>
-      <li><strong>Assign the two that are not yet assigned, and clear the blocker on one more.</strong> Three of the fourteen cannot progress until that happens.</li>
+      <li><strong>Close the 15 open defects.</strong> As each one closes, its part of the feature becomes signable. Three of the fifteen sit on the result lines and three on the ranking, so those two parts move fastest.</li>
+      <li><strong>Assign the two that are not yet assigned, and clear the blockers on two more.</strong> Four of the fifteen cannot progress until that happens.</li>
       <li><strong>Settle the five withdrawn items.</strong> Their requirements are still in the specification and still in eleven checks. Either they return to scope, or the specification and the checks are updated to match.</li>
       <li><strong>Keep signing off each part as its defects close</strong>, so the outstanding picture stays accurate and as small as the facts allow. Six are already through.</li>
       <li><strong>Move the Schedule item onto its own track</strong> &mdash; it is not part of search, and counting it here understates how close this feature is.</li>
@@ -581,7 +582,7 @@
   </section>
 
   <footer>
-    <p>Every figure here was read live from the tracker and from the test run on 17 September 2026, not carried over from an earlier note. The test run is 165 checks on the Global Search v2 QA branch at build v26.36.7-29ca209.</p>
+    <p>Every figure here was read live from the tracker and from the test run on 18 September 2026, not carried over from an earlier note. The test run is 180 checks on the Global Search v2 QA branch at build v26.36.7-29ca209.</p>
     <p>Prepared by QA. Defect references are given so each item can be opened directly.</p>
   </footer>
 
