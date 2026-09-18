@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-18T131534Z",
+ "when_utc": "2026-09-18T131838Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
@@ -54,6 +54,7 @@
   "punc_smith": "2b9335d2-278e-4b1e-ac69-1c97235a5165",
   "phon_part": "d6d5fc88-3ce2-436c-ba47-f5e67b195ba5",
   "phon_customer": "f3642b5d-136f-4a5a-89a4-632c55603ba5",
+  "pin_rival": "fff7200b-a56d-48e5-aac3-c60e19797db7",
   "broad_01": "10b252a0-26a8-4bd4-9b84-3d0927d92caa",
   "broad_02": "9ac0ed0a-cdef-4409-a81d-6faac70d9065",
   "broad_03": "63126049-bbb2-409f-9d09-e9c676cb18c7",
@@ -88,6 +89,7 @@
   "broad_10_inv": "87b9d82a-05dc-494a-907a-c09ea3a36225",
   "broad_11_inv": "062d1f5d-2a01-4dfc-ba70-909111f18c91",
   "broad_12_inv": "5a42f837-0926-4b27-baec-49a8dcd706b8",
+  "broad_13_inv": "fdebdbf9-82fe-45eb-a453-6516ac92d9df",
   "broad_14_inv": "0b045db3-2a5e-4637-a888-03d0dae3ac68",
   "broad_15_inv": "70ab6df2-362e-4b34-9d84-a8811d3b522e",
   "broad_16_inv": "57c931e3-5ae9-4c54-9764-b4554338719a",
@@ -95,6 +97,7 @@
   "broad_18_inv": "253ef2bf-0eec-425a-a5d6-04c07d5ebb99",
   "broad_19_inv": "d478bcdb-78b3-4c6b-81d7-25201befb3e2",
   "broad_20_inv": "facf8ff9-c4f9-47a0-84c6-979722008eca",
+  "broad_21_inv": "472ec658-044a-4112-8b95-cb26a256c883",
   "broad_target_inv": "51625596-6b42-4f99-9801-95bc51db3b10"
  },
  "records": [
@@ -963,9 +966,21 @@
   },
   {
    "key": "pin_rival",
-   "state": "CREATE_FAILED",
-   "http": "ERR",
-   "body": "b'<urlopen error [Errno 104] Connection reset by peer>'",
+   "state": "PRESENT",
+   "ids": [
+    "fff7200b-a56d-48e5-aac3-c60e19797db7"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55729
    ]
@@ -1480,9 +1495,13 @@
   },
   {
    "key": "broad_13_inv",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"catalog_part_id\":\"Missing required parameter\"},{\"category_id\":\"Missing required parameter\"},{\"bins\":\"Missing required parameter\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "fdebdbf9-82fe-45eb-a453-6516ac92d9df"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
@@ -1580,9 +1599,13 @@
   },
   {
    "key": "broad_21_inv",
-   "state": "CREATE_FAILED",
-   "http": "ERR",
-   "body": "b'<urlopen error [Errno 104] Connection reset by peer>'",
+   "state": "PRESENT",
+   "ids": [
+    "472ec658-044a-4112-8b95-cb26a256c883"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]

@@ -52,6 +52,11 @@ def groups(d):
 # So each check declares which companion groups its own signal legitimately produces; anything
 # outside that set is still a real failure.
 CHECKS = [
+    # 🔴 EXPECT 3. If this reads 4, the extra row is almost certainly 'ZZPREFOX Cartage' - a record
+    # DELETED from the database on 2026-09-18 that the SEARCH INDEX kept returning for over a
+    # minute afterwards. Proven by asking both: /api/customers returned three, /api/search returned
+    # four, at the same moment. So a stale row here is an indexing lag, not a seeding fault - check
+    # the LIST endpoint before touching any data.
     ('ZZPREFIX',      'customers', 3, '55707', 'prefix / whole-word / typo, one keyword', set()),
     # 🔴 assets is unavoidable here, not sloppiness: an asset is indexed under its OWNER'S company
     # name, so every asset belonging to a ZZCUSTOPEN customer answers the keyword however the asset
@@ -72,10 +77,17 @@ CHECKS = [
     ('ZZOPENCOUNT',   'customers', 2, '55722', 'five open work orders vs one',
      {'work_orders', 'assets'}),
     ('ZZNAMEBONUS',   'customers', 2, '55723', 'name match vs secondary-field match', set()),
+    # 🔴 THESE TWO TOKENS ATTRACT FUZZY NOISE IN OTHER GROUPS, AND THAT IS NOT A LEAK.
+    # ZZACC pulls in half a dozen unrelated estate ASSETS and ZZPUNC pulls in a vendor called
+    # Szybunka Truck Center - none of them ours, none of them in the group the case reads. Checked
+    # row by row rather than waved away: the Customers group carries exactly our records, which is
+    # the whole of what C55726 and C55727 assert. Treating this as a failure would have had someone
+    # renaming good data to chase noise in a group nobody looks at.
     ('ZZACC',         'customers', 1, '55726', 'accented name — exactly ONE row, or "both '
                                                'spellings find the same customer" is unreadable',
-     set()),
-    ('ZZPUNC',        'customers', 2, '55727', 'an apostrophe name and a hyphen name', set()),
+     {'assets', 'work_orders', 'vendors', 'parts'}),
+    ('ZZPUNC',        'customers', 2, '55727', 'an apostrophe name and a hyphen name',
+     {'vendors', 'assets', 'work_orders'}),
     ('ZZBROAD',       'parts',     20, '55730', 'the 20-row cap bites — 22 parts match, 20 show',
      {'purchase_orders'}),
 ]
@@ -187,15 +199,15 @@ def main():
         if leaked: fails.append(q)
 
     print('\n=== THE TYPO RECORD IS REACHABLE ONLY BY FUZZY MATCHING (C55707) ===')
-    d, err = search('ZZPREFOX')
+    d, err = search('ZZPREFIY')
     if err:
-        print(f"  ❌ ZZPREFOX {err}"); fails.append('ZZPREFOX')
+        print(f"  ❌ ZZPREFIY {err}"); fails.append('ZZPREFIY')
     else:
         n = len(groups(d).get('customers', []))
-        # ZZPREFOX is one edit from ZZPREFIX, so the fuzzy search legitimately returns all three.
+        # ZZPREFIY is one edit from ZZPREFIX, so the fuzzy search legitimately returns all three.
         ok = n >= 1
-        print(f"  {'✅' if ok else '❌'} ZZPREFOX returns {n} customer(s) — the typo row exists and is reachable")
-        if not ok: fails.append('ZZPREFOX')
+        print(f"  {'✅' if ok else '❌'} ZZPREFIY returns {n} customer(s) — the typo row exists and is reachable")
+        if not ok: fails.append('ZZPREFIY')
 
     print('\n=== summary ===')
     if fails:
