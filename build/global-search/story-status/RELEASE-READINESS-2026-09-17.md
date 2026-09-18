@@ -402,3 +402,25 @@ The flow section also gained a short **"How 'handed to QA' is counted"** note so
 checked by anyone reading it.
 
 Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
+
+## v13 — published 2026-09-18 (artifact version 13)
+
+His ruling: *"'Pieces of work' this will be question to me and I wont be able to answer what pieces
+of work mean if they mean stories then keep them stories."*
+
+**Everything reads "stories" again**, including the board heading (*The feature is built as 26
+stories*), the handover heading, the bottom line and the counting note. The v12 phrase "pieces of
+work" is gone from the report entirely, and the definition line is one he can answer out loud:
+*a story is one item of work in the tracker — what the development side builds, hands to QA, and QA
+signs off.*
+
+**The type breakdown is deliberately NOT in the report any more** — it was the thing that would have
+drawn the question he does not want to field. It stays recorded here instead: the 26 children of
+SV-9160 are **18 Story, 7 Task (SV-9307 · SV-9308 · SV-9309 · SV-9310 · SV-9311 · SV-9312 · SV-9313)
+and 1 Bug (SV-10031)**. Every count in the report treats all 26 the same way, which is what the
+report says it does, so nothing in it is inaccurate — only simpler.
+
+Everything else from v12 stands: the counting note, and the SV-9313 flag asking for one more look
+before release.
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
