@@ -82,6 +82,28 @@ $11.55 is one part at $10.00 plus one core at $1.00 plus $0.55 tax — so each i
 exactly one of each, and all three are recorded under **Credits**. Before the fix the return would
 have disappeared after the second, stranding the third unit.
 
+### ⚠️ The branch was rebuilt during that run — so it was re-proven cleanly on the new build
+
+The pre-post gate (Rule 72) re-read the build marker before the comment went out and caught it:
+**`v26.36.8-c20bc32` → `v26.36.8-e6db43e`**, `index.html` last-modified **Fri 18 Sep 2026 11:34:51 GMT**,
+etag `3923008bf29d1e4c0f3e499a4458b110`. The from-scratch run above started at about 11:05 and finished
+at about 11:40, so **it straddles the rebuild** and is not a single-build result.
+
+Rather than disclose a split-build progression, the whole thing was **re-proven end to end on
+`v26.36.8-e6db43e`**, using the other core return already seeded on the branch — part sale **P9610-249**,
+part **4457485**, the part and its `Core for ghfjf`, quantity **5** each:
+
+| Step | Credit | Both rows |
+|---|---|---|
+| start | — | listed, **5.00** each |
+| credit 4 of 5 | `ZZ9610-NEWBUILD-1`, $46.20 | **still listed, 1 left** |
+| credit the last 1 | `ZZ9610-NEWBUILD-2`, $11.55 | **gone from the list** |
+
+The quantity was read back from the field before each post (`"4"`, then `"1"`), both posts returned
+HTTP 200, and the build marker was **identical at the start and the end of this run**. $46.20 is exactly
+four units and $11.55 exactly one, so the money split as the quantities did. Exhibit:
+`ev/EX3_core_instalments.png`. The earlier two-build exhibit was **deleted rather than shipped**.
+
 **Two product facts established while doing it, both recorded in the playbook (§AE):**
 * **A core return cannot be part-credited on its own.** Tick the `Core for …` row alone and the
   Process Return screen offers a single **disabled** accepted-quantity box. Tick the **parent part's**
@@ -112,11 +134,25 @@ first, per the new standing rule, and said no for this ticket; everything techni
 document instead. Read back from Jira: 2 exhibits in order, 9 table rows (header + 8 checks), first
 line *"OVERALL QA STATUS: PASSED"*, all four headings present, no technical section.
 
-⚠️ **The comment's last bullet is now out of date.** It says *"one thing I could not set up: I tried
-to seed a brand-new core return from scratch and could not drive the second quantity box on the
-receive screen."* That is no longer true — the from-scratch run above completed, and the second box
-is disabled **by design** (the core follows its parent). The comment should have that bullet replaced
-with the from-scratch result; **not done yet — needs the QA lead's go-ahead to edit `76798`.**
+**Comment `76798` updated 2026-09-18 06:48Z at the QA lead's instruction** — he had already removed the
+two bullets about stranded production returns and the core I could not seed, and asked for the core
+testing to be added. The comment now carries **11 checks instead of 8**, a new section *"A core return,
+built and credited from scratch"* with `EX3_core_instalments.png`, and an opening line that states
+plainly that checks 1–8 ran on `v26.36.8-c20bc32` and checks 9–11 on the rebuilt `v26.36.8-e6db43e`.
+
+**Pre-post gate (Rule 72):** build marker re-read live (it had moved — see above, and that is why the
+re-proof was done); ticket state re-read (**Ready for Production**, and a new developer comment `76804`
+was found); images uploaded as **real Jira attachments**; every figure traced to a live measurement;
+no AI fingerprint; **no technical-details section** (Rule 84). Read back from Jira afterwards: first
+text node *"OVERALL QA STATUS: PASSED"*, **3 media nodes all of type `file`** in the intended order,
+**one table of 12 rows** (header + 11 checks), `11 of 11 checks passed` and `e6db43e` both present.
+
+**Slavcho's comment `76804` (18 Sep 06:40Z)** asks the QA lead to approve a one-record data repair for
+Dannys Truck & Equipment Repair (part `BSGA31S` on P-76096 — 3 requested, 2 credited, 1 still owed),
+says the repair only reopens that return and touches no existing credit, advises Katina to take the
+last core as **one** credit memo rather than splitting it until the fix ships, and reports **33 more
+returns across 21 other customers** to be repaired as a batch afterwards. **That go-ahead is the QA
+lead's to give; nothing was answered on his behalf.**
 
 ## Exhibits
 
