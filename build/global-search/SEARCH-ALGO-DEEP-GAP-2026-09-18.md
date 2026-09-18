@@ -21,6 +21,15 @@ bullet-proof and match what the ticket taught:
   wrong reason (another signal breaking the tie) and hide a re-regression. This is the key lesson.
 - Keep C55722/C55723 (count magnitude; name-vs-secondary) which exercise adjacent scoring tiers.
 
+## A second ranking defect confirms the engine is fragile — SV-10188
+SV-10188 (Story Defect under SV-9165, Ready for QA, 2026-09-18): the §6.3 on-a-work-order contextual
+bias is not working — parts already on the current WO are NOT demoted (−0.10) and same-category parts
+are NOT boosted (+0.05); order is identical whether searched from the WO page or elsewhere. **This is
+exactly what C44854 asserts** ("On a Work Order page, parts already on that work order are pushed
+down"). So two ranking defects (SV-10211 prefix/whole-word, SV-10188 WO contextual bias) both fall on
+behaviours we already have cases for (C55707, C44854) — the suite is catching the right things, and the
+ranking engine clearly needs the tightened + finer coverage below.
+
 ## Finer FUZZY (§7) gaps — highest regression value
 | # | Sub-behaviour in the spec | Covered? | Why it matters for a fixed bug |
 |---|---|---|---|
