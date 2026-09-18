@@ -311,3 +311,32 @@ each one the day it is moved over — and says for each what QA will do when it 
 *Still ahead* section now names them as the same eight rather than repeating them as a new list.
 
 Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
+
+## v10 — published 2026-09-18 (artifact version 10)
+
+His correction, verbatim: *"That does not include the bug and the defects found and resolved number,
+Also it should not say that it has been e2e tested in a way which gives an impression that as if ALL
+the stories have been completed by dev, we need to also give an impression that the stories are yet
+to be completed."*
+
+**Before (wrong on both counts):** *"The feature has been tested end to end. 153 of 180 checks pass.
+15 defects found during testing are still being worked through, and the feature is ready to release
+once they are closed."* — it counted only the OPEN defects, and "tested end to end" read as though
+every part had been built and handed over.
+
+**After:** the bottom line now leads with **13 of the 26 parts handed to QA and all 13 tested**,
+gives **33 defects found · 18 closed · 15 open**, and says plainly that **eight parts are still being
+built and have not reached testing**, so the feature is not finished. The sub-line breaks the 18
+down (16 fixed and re-tested, one settled by a decision, one withdrawn) and names the eight still in
+build and the five withdrawn.
+
+Three other places carried the same over-claim and were rescoped:
+
+* the opening line — *"Testing is complete across the whole feature"* → *"Everything the development
+  side has handed over has been tested in full…"*;
+* the Testing panel — label now reads **"Testing of the parts handed over"**, and its closing line
+  says the eight still being built will each be tested when they arrive;
+* **"What would move this forward"** gains a second action: *finish and hand over the eight parts
+  still being built.*
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B

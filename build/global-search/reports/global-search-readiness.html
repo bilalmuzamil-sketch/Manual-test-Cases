@@ -189,7 +189,7 @@
   <header class="masthead">
     <div class="lbl">ShopView &middot; Release readiness</div>
     <h1>Global Search v2 &mdash; where we stand</h1>
-    <p class="lede">Testing is complete across the whole feature. The remaining work is closing out the defects that testing found.</p>
+    <p class="lede">Everything the development side has handed over has been tested in full. What remains is closing the defects testing found, and finishing the parts that are still being built.</p>
     <div class="meta">
       <span>Prepared <b>18 September 2026</b></span>
       <span>Tested on <b>the QA branch, build v26.36.7-29ca209</b></span>
@@ -200,13 +200,13 @@
 
   <div class="bottomline">
     <div class="lbl">The bottom line</div>
-    <p class="bl-main">The feature has been tested end to end. <b>153 of 180 checks pass.</b> <b>15 defects found during testing are still being worked through</b>, and the feature is ready to release once they are closed.</p>
-    <p class="bl-sub">Six of the twenty-six parts of the feature have now cleared QA. Seven more are tested and are each waiting on one or more of those fifteen defects. <b>Testing has raised 33 defects in total on this feature, 16 of them already fixed and re-tested</b> &mdash; this is the normal find-and-fix cycle at its closing stage, and the remaining list is small and specific.</p>
+    <p class="bl-main"><b>Thirteen of the twenty&#8209;six parts of this feature have been handed to QA, and every one of them has been tested</b> &mdash; 153 of 180 checks pass. <b>Testing has found 33 defects: 18 are already closed and 15 are still being worked through.</b> <b>Eight parts are still being built</b> and have not reached testing yet, so the feature is not finished &mdash; it is ready to release once those parts land, are tested, and the open defects close.</p>
+    <p class="bl-sub"><b>Six of those thirteen are signed off</b> with nothing outstanding. The other <b>seven are tested and are each waiting only on their defects closing</b>. Of the 33 defects, <b>18 are closed</b> &mdash; 16 fixed and re-tested, one settled by a decision and one withdrawn &mdash; and <b>15 remain open</b>. Of the parts not yet with QA, <b>eight are still to be completed by the development side</b> and <b>five have been withdrawn</b> from this release. This is the normal find-and-fix cycle, and the open list is small and specific.</p>
   </div>
 
   <div class="split">
     <div class="side done">
-      <div class="side-head"><span class="lbl">Testing</span><span class="verdict-chip ok">Complete</span></div>
+      <div class="side-head"><span class="lbl">Testing of the parts handed over</span><span class="verdict-chip ok">Complete</span></div>
       <p class="big"><span class="num">180</span> checks run, <span class="num">153</span> pass.</p>
       <ul class="plain">
         <li>The suite is <b>115 checks on the new feature plus 65 regression checks</b> confirming nothing findable in the old search was lost. <b>The regression half found 24 of the 33 defects.</b></li>
@@ -215,7 +215,7 @@
         <li><b>11 checks are parked</b> &mdash; they belong to work marked obsolete, so there is nothing to run them against.</li>
         <li><b>11 checks that had only been accepted on a sign-off were re-run and watched on screen.</b> Nine held. Two turned out to be asking for the opposite of the written requirement &mdash; our own wording, now being corrected, which would otherwise have sent a developer chasing a product that was behaving correctly.</li>
       </ul>
-      <p class="side-foot">Both suites have been run in full against the current build.</p>
+      <p class="side-foot">Both suites have been run in full against every part handed over so far. The eight parts still being built will each be tested when they arrive.</p>
     </div>
     <div class="side open">
       <div class="side-head"><span class="lbl">Defects to close</span><span class="verdict-chip bad">In flight</span></div>
@@ -653,6 +653,7 @@
     <h2>What would move this forward</h2>
     <ol>
       <li><strong>Close the 15 open defects.</strong> As each one closes, its part of the feature becomes signable. Three of the fifteen sit on the result lines and three on the ranking, so those two parts move fastest.</li>
+      <li><strong>Finish and hand over the eight parts still being built.</strong> Nothing can be tested until it reaches QA; each one is picked up the day it moves over for testing, and the suite is already written for what it covers.</li>
       <li><strong>Assign the two that are not yet assigned, and clear the blockers on two more.</strong> Four of the fifteen cannot progress until that happens.</li>
       <li><strong>Settle the five withdrawn items.</strong> Their requirements are still in the specification and still in eleven checks. Either they return to scope, or the specification and the checks are updated to match.</li>
       <li><strong>Keep signing off each part as its defects close</strong>, so the outstanding picture stays accurate and as small as the facts allow. Six are already through.</li>
