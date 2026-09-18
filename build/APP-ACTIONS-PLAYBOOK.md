@@ -4936,3 +4936,40 @@ turn answers with a different refusal, and none of them says what to do next:
 before the reverse is orphaned from the new invoice: re-read `invoice_id` and use the new one in
 `originInvoiceId` (§AH.3). The re-invoiced balance also reflects any credited parts — a $645.75 part
 sale whose $546.00 part had been credited re-invoiced at **$99.75**, not $645.75.
+
+### §AH.8 — Spending a credit memo, deposits, and picking an inventory part (SV-9697, 2026-09-18)
+
+**Applying a credit to an invoice — there is NO "apply credit" button.**
+Customer → **Invoices** tab → tick the **invoice** row *and* the **credit** row → **New Payment**.
+The dialog lists the credit under the invoice with the hint **"Fully consumed"** and subtracts it
+from the amount due; pick a payment method and pay the remainder.
+`POST /api/customer-account/create-customer-payment`. The credit goes `open → fully_consumed`.
+Any held **deposit** on the account is offered in the same dialog and is ticked by default —
+**untick `checkbox_select_transaction_<depositId>`** if you only want the credit applied.
+⚠️ The **"Applied credit" payment method** is a different thing: it creates a **held deposit**
+marked *Excess Payment* and consumes no credit memo. It is not the apply flow.
+
+**Un-applying:** Customer → **Payments** tab → the payment/refund row's bin icon, tooltip
+**"Remove"** → *"This action will reverse the payment for all invoices associated with it…"* →
+Reverse. `POST 201 /api/customer-account/reverse-customer-payment`. A refunded credit returns to
+`open` and any reverse-block it caused clears.
+
+**Deposits.** List: `GET /api/customer-deposits/list?accountId=<customer_account_id>` — note
+**`accountId`, camelCase, and the CUSTOMER-ACCOUNT id**, not the customer id. Create:
+`POST /api/deposits {work_order_id, amount, payment_method, deposit_date, memo?}` → 201 (the
+deposits table has no create control). Reverse: `POST /api/deposits/{id}/reverse`.
+**The Reverse control is disabled by design** when the deposit is `held` with **no work order** and
+raised by a payment (an *Excess Payment*), or when it is `applied` — each with its own tooltip. Only
+an ordinary held deposit (e.g. one taken against a work order) is reversible.
+
+**Picking an inventory part on a part sale — adding it is not enough.**
+Add Part → Source **Inventory** → bin quantity → Save creates a **Quoted** request and **stock does
+not move**. Then **Authorize** the part sale: the row becomes **In Stock** and grows a **Pick**
+action. **Only Pick moves stock** (`POST 201 /api/work-orders/part/perform-request-status-action`),
+after which the row reads **Received**. Verify with
+`GET /api/inventory/parts?search=<partNumber>` → `data.collection[0].quantity`.
+
+**Issue Credit dialog: the part checkbox ignores clicks.** Neither a coordinate click nor
+Playwright's actionability click changes `aria-checked` on
+`checkbox_select_parts_<workOrderPartId>`. **Focus the element and press `Space`.** Only then does
+the row's `input_parts_return_quantity_<id>` appear (pre-filled) and the totals leave $0.00.
