@@ -3480,3 +3480,51 @@ ones, so the next seeding run does not force statuses on dead records.
 For a work order that is `approved`/`in_progress`, moving DOWN the chain is reversible; `complete` and
 `paid` are one-way. When no reversible move exists, plan the rebuild BEFORE breaking the state, not after
 — and always re-run the fixture's own verifier at the end, which is what proved the repair was good.
+
+## L0167 — 2026-09-18 — THE SIMPLIFIED TICKET SHAPE (LEARNED FROM THE QA LEAD'S CHATGPT REWRITE OF SV-10238)
+
+He rewrote SV-10238 through ChatGPT, liked the result, and asked me to learn the shape **without**
+unlearning what already works. Both halves matter, so both are recorded.
+
+### ADOPT — the four things the rewrite did better
+
+1. **One named example per symptom, each with its own `h3.`** (`Example 1 - Asset`, `Example 2 - Work
+   Order`, `Example 3 - Part`) instead of one long numbered run. A reader can stop after example one
+   and still have the whole point.
+2. **Each example is 3–5 steps, no more**: the single-field search that works, then the combined one
+   that does not, then what was on screen. Anything else belongs in a later section.
+3. **A summary table right after the examples** — *record · what works · what fails* — so the pattern
+   is visible without re-reading the steps.
+4. **Short declarative sentences, and the title says the relationship, not the story.**
+
+### NEVER DROP — what the rewrite lost, and why each one is load-bearing
+
+| Element | What goes wrong without it |
+|---|---|
+| **The one sentence a reader remembers** (*"a record cannot be found by the words the product itself prints for it"*) | the ticket reads as an abstraction about indexed fields and nobody feels it |
+| **Why it matters, in user terms** (people type what they read off the truck; nothing warns them; more precision makes it worse) | it gets parked behind tickets that did explain their impact |
+| **The control that pins the diagnosis** (two words of ONE field DO work) | a developer reasonably concludes "multi-word search is broken" and fixes the wrong layer |
+| **The source quoted verbatim, with page id, version and read date** | the argument becomes "what does the spec really say", and we lose it |
+| **The honest caveat where the spec is silent** | the reply is "the specification doesn't require this" and the ticket closes |
+| **House order — Environment second-to-last, Sources last; pictures inline under their own example** | the layout he approved stops being recognisable |
+
+### THE MECHANICAL TRAP THAT CAME WITH IT
+
+The rewrite saved pictures as **`blob:https://media.staging.atl-paas.net/…|thumbnail!`** — an editor
+session handle that exists only in the browser tab that uploaded the file. Every picture rendered
+broken while the attachments were still perfectly intact on the issue.
+
+**⇒ After ANY third-party edit to a ticket, re-read the rendered description and count the images.**
+A picture is referenced by its attachment FILENAME with the true aspect stated
+(`!PIC1-vehicle.png|width=760,height=543!`); anything beginning `blob:` is a broken reference to
+re-point. Verify by fetching `renderedFields` and checking `<img` count and `blob:` count = 0.
+
+### AND THE REVIEW CAUGHT ONE OF MY OWN ERRORS
+
+My original used `Freightliner Cascadia` as the "two words in the same field" control. **Make and
+model are two different indexed fields**, so the example contradicted the claim it supported. The
+real control is `ZZMATRIX Alpha` (two words of one customer name → matched on `name`, 0.90); and the
+make/model case needed an explicit warning, because it returns rows only through a near-spelling
+match on `make` alone (0.65) and therefore looks like a counter-example while being none.
+**A simplification pass by anyone — a person, another model — is also a free review: read what they
+deleted and ask whether it was load-bearing or whether it was wrong.**
