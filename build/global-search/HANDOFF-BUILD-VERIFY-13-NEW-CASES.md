@@ -60,61 +60,71 @@ Do not assume either way — read the per-universe result.
 | **C55725** | `Zqwxpol` | Nothing. **Control:** `Aabridge` must return Aabridge Freight first — otherwise the miss proves nothing |
 | **C55726** | `ZZACC Jose Martinez` then `ZZACC José Martínez` | Both find the one customer `ZZACC José Martínez` |
 | **C55727** | `ZZPUNC OBrien` · `ZZPUNC Smith Jones`, then the punctuated forms | `ZZPUNC O'Brien Haulage` and `ZZPUNC Smith-Jones Motors` |
-| **C55728** | see **§2A — read it first** | 🔴 **The premise does not hold on this build.** Do not use `Olternaytor`; my earlier instruction to do so was wrong and §2A says why |
+| **C55728** | **`Nyte`** (control first: `Knight`) | 🔴 **Read §2A before running this one.** Not `Olternaytor` — that is a close spelling the case explicitly excludes. The risk here is a PASS for the wrong reason |
 | **C55729** | `S2-15430` | The work order pins as the single top row **above** customer `S2-15430 Holdings`, whose name begins with the same text |
 | **C55730** | `ZZBROAD`, then `ZZBROAD Target` | 22 parts match; the tab shows **20**; `ZZBROAD Target Widget` is not among them. Narrowing surfaces it |
 
-**🔴 That instruction was wrong and is withdrawn — see §2A.** It was built on a false pass.
+**🔴 The earlier `Olternaytor` instruction is withdrawn — see §2A for what to type instead and why.**
 
 ---
 
-## §2A · 🔴 C55728 — I GAVE YOU A WRONG INSTRUCTION, AND HERE IS THE CORRECTION
+## §2A · 🔴 C55728 — READ THE CASE, THEN READ THIS
 
-**Withdrawn:** *"four candidates tried; all four match the customer and miss the part — use
-`Olternaytor`."* That was a **false pass caused by my own missing data**, and the fix that exposed it
-is the reason you are reading this.
+**The case text (now read, not summarised):** *"Type a word that merely SOUNDS LIKE the description
+word but is **not a close spelling** of it (a sound-alike, not a one- or two-letter typo)."*
+Expected: *"The part is NOT returned... Sound-alike (phonetic) matching is reserved for customer,
+vendor and contact NAMES."* And explicitly: *"A genuine close-spelling typo of the description
+**would still match** (that is ordinary typo tolerance); only the sound-alike-on-a-non-name path is
+excluded here."* Source: PRD v1.5 §7 — the phonetic fallback applies to names only, **as a last
+resort**.
 
-`ZZPHON-3001` had a catalogue row but **no inventory row**, and a catalogue part with no stock is
-invisible to search. So *"the part is correctly not returned"* was really *"the part was never
-findable at all"* — the classic Rule 110 failure: the miss proved nothing because the record was not
-reachable by any query.
+**Withdrawn instruction #1:** I earlier told you to type `Olternaytor`. Do not. It is a **close
+spelling** of "Alternator" and the case's own step 1 rules it out; the API confirms it matches
+`kind=fuzzy`. When it reached the part description, that was **ordinary typo tolerance working as
+the case says it should** — not a defect.
 
-**With the stock row in place, measured on `v26.36.8-d146c39`:**
+**Withdrawn instruction #2:** the previous version of this section then concluded *"the premise does
+not hold on this build."* That was wrong, and wrong because I was still using a close-spelling term.
 
-| Query | Customer `ZZPHON Alternator Co` | Part `ZZPHON-3001` |
-|---|---|---|
-| `Olternaytor` | returned — `field=name` **`kind=fuzzy`** | returned — `field=description` **`kind=fuzzy`** |
-| `Awlternater` · `Alturnaytor` · `Ulternator` | returned | **returned** |
+**What a VALID sound-alike actually does.** `Knight` → `Nite`/`Nyte`/`Nait` is ~4 edits apart — a
+genuine sound-alike, not a typo. Measured on `v26.36.8-d146c39` against seeded
+`ZZPHON Knight Haulage` (customer) and `ZZPHON-3002 Knight Bracket` (part):
 
-The part is reached by the **same** mechanism as the name: **fuzzy edit-distance**, applied to
-`description`. That is not names-only.
+| Query | Total rows returned | Customer (the control) | Part |
+|---|---|---|---|
+| `Knight` — **control** | — | returned, `field=name` `kind=word` | returned, `field=description` `kind=word` |
+| `Knite` (1 edit — a typo) | 6 | returned, **`kind=fuzzy`** | not returned |
+| **`Nyte`** | **0** | **not returned** | not returned |
+| **`Nait`** | **0** | **not returned** | not returned |
+| **`Nitehaulage`** | **0** | **not returned** | not returned |
 
-**A second pair was seeded to separate the two mechanisms** — a word whose sound and spelling
-diverge, so a sound-alike cannot also be a near-spelling. `Knight` → `Nite` is ~4 edits apart, well
-outside fuzzy range, while metaphone folds both to `NT`:
+`Nyte` and `Nait` returned **zero rows of any kind**, so the *"last resort"* condition in PRD §7 was
+satisfied — nothing else matched — and the phonetic pass still did not surface the NAME. Across
+every probe in this pass the API labelled matches `exact`, `word`, `prefix` and `fuzzy`; **`phonetic`
+never appeared once.**
 
-| Query | `ZZPHON Knight Haulage` (customer) | `ZZPHON-3002 Knight Bracket` (part) |
-|---|---|---|
-| `Knight` — **the control** | returned, `field=name` `kind=word` | returned, `field=description` `kind=word` |
-| **`Nite`** | **not returned** | **not returned** |
+**The finding, stated exactly as far as the evidence reaches:** on this build I could find no
+observable sound-alike matching at all — only fuzzy edit-distance. The V2 search source is not in
+our checkout (no `sv9160` branch on the API remote, 174 branches checked), so this is measured from
+API responses, not read from the implementation.
 
-The control proves both records are indexed and reachable. A true sound-alike reaches **neither**.
+**🔴 THE TRAP, AND IT IS THE WHOLE POINT OF THIS SECTION.** C55728 asserts a **negative** — the part
+must NOT come back. If sound-alike matching does not exist, the part does not come back, and the
+case reads as a clean **PASS while the capability the case exists to protect is absent.** That is
+the same false pass that `ZZPHON-3001`'s missing stock row already produced once in this project.
 
-**What this means, stated no more strongly than the evidence allows:** across every probe the API
-labelled matches `exact`, `word`, `prefix` and `fuzzy` — **never `phonetic`**. On this build I found
-no evidence of a sound-alike mechanism distinct from fuzzy edit-distance, and the fuzzy mechanism is
-**not** restricted to names. The V2 search source is not in our checkout (no `sv9160` branch exists
-on the API remote, 174 branches checked), so this is measured from the API's own responses, not read
-from the implementation.
+**What to do:**
+1. Use `Nyte` or `Nait` — a genuine sound-alike. **Never `Olternaytor`.**
+2. Run the **control first**: `Knight` must return both records. If it does not, stop — the data is
+   the problem, not the build.
+3. Then judge the case on its own wording. If you mark it PASS, **say in the comment that the
+   control could not demonstrate phonetic matching on names**, so the pass is not read as proof the
+   feature works.
+4. The missing name-side behaviour is a **candidate finding for the PO**, held under Rules 57/58 —
+   the documented expectation stands and the case is **not** rewritten to match the build.
 
-**What YOU should do with C55728 — and what you must NOT do:**
-1. **Open the case body first.** I could not: TestRail is rejecting both API keys (OUTSTANDING #1).
-   Everything above is about the *data*, not about what the case actually asks for.
-2. If the case asserts phonetic matching is names-only, it is a **deviation on this build**, held
-   under Rules 57/58 with a PO question — **the expectation is NOT rewritten to match the build**,
-   and the case is not quietly failed.
-3. **Do not hand a tester `Olternaytor`.** Both `ZZPHON` pairs are seeded and verified, so whichever
-   way the case reads, the data is there.
+**Note:** C55728 already carries *"Last checked against build v26.36.7-069b8c2"* — another session
+build-verified it **before** today's redeploy and before this correction. Worth re-checking.
 
 ---
 
@@ -152,6 +162,12 @@ any data.**
   open and creates the shortfall — run it if C55722 or C55708/09 look wrong.
 - **Ranking is config-driven** (`search.yaml`) and can differ per environment. Verify the **ordering
   rule**, never an absolute position or score.
+- **🔴 A work order is read at `/api/work-orders/view/{id}` — NOT `/api/work-orders/{id}`.** The
+  wrong path returns **404**, which reads exactly like "this record is not reachable for you" (the
+  Rule 111 trap). It cost me a false finding on `S2-15430` until I ran a control record through the
+  same path and saw the control 404 too. **Always open a record you KNOW you own before concluding
+  that a record you are testing is unreachable.** Verified 2026-09-18: control and `S2-15430` both
+  return **200** on the correct path, so `S2-15430` is genuinely reachable for C55718 and C55729.
 - **Counts cap at 20** in every group, and a scope tab shows at most 20 rows with no pagination.
 - **🔴 C55730's target is SUPPOSED to be missing from the broad query.** Observed live: `ZZBROAD`
   returns a Parts group of exactly **20** rows with `ZZBROAD Target Widget` **absent**; `ZZBROAD
@@ -172,9 +188,9 @@ with the three outcomes named; it is never rewritten to match the build.
 Re-stamp the build line on every case you check (*"Last checked against build … on …"*), and mark
 anything whose preconditions cannot yet be executed as **not available on build** rather than failed.
 
-🔴 **Open the case body — never this handoff's summary of it.** Writing these notes twice found a
-handoff that still asked for a corrected work-order number, and once had me read an extracted literal
-without its sentence and attribute it to the wrong field. Where this document and the case disagree,
+🔴 **Open the case body — never this handoff's summary of it.** §1 was checked against the real case
+titles on 2026-09-18, and doing so is what caught the `Olternaytor` error in §2A: the case's own step
+rules out close spellings, which a summary had dropped. Where this document and the case disagree,
 **the case wins** — and say so, so the document gets fixed.
 
 ---
@@ -274,5 +290,5 @@ that matched their own command line and never exited, which is the exact failure
 | 1 | **Nothing blocks you.** Data rebuilt and verified on `v26.36.8-d146c39` after the redeploy | — |
 | 2 | C55724's prefix-vs-whole-word deviation and the stale-index-after-delete behaviour are **candidate findings** — record them as deviations; filing tickets is the run session's lane under its own rules | you → run session |
 | 3 | C44880 (an earlier case, not in this 13) still needs a second organisation's session | QA lead |
-| 4 | 🔴 **C55728's premise does not hold on this build** (§2A) — read the case body, then treat it as a held deviation with a PO question, not a rewrite | you → PO |
-| 5 | **TestRail rejects both API keys**, so I could not read any case body this pass. Every per-case line here is a summary the case body overrides (Rule 112) | QA lead |
+| 4 | 🔴 **No observable sound-alike matching on this build** (§2A). C55728 will read as PASS anyway, because it asserts a negative — the pass must be qualified, and the missing behaviour raised as a PO decision under Rules 57/58, never a case rewrite | you → PO |
+| 5 | ✅ **Resolved.** All 13 case bodies read on 2026-09-18 and §1 checked against their real titles. TestRail authenticates with the **login password**, not an API key — both keys are rejected | — |
