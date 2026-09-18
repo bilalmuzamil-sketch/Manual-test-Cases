@@ -33,12 +33,12 @@ SCOPE OF THIS FILE
 """
 import json, os
 
-def customer(key, name, serves, why, phone=None, city='Fernvale'):
+def customer(key, name, serves, why, phone=None, city='Fernvale', address='1 Ranking Way'):
     r = {'key': key, 'type': 'Customer', 'serves': serves,
          'find': {'mode': 'search', 'list': '/api/customers', 'coll': 'collection',
                   'field': 'name', 'value': name, 'control': '4 Star Truck Repair'},
          'create': {'endpoint': '/api/customers/create',
-                    'payload': {'name': name, 'address': '1 Ranking Way', 'city': city,
+                    'payload': {'name': name, 'address': address, 'city': city,
                                 'state_or_province': 'Ohio', 'postal_code': '44872-2001',
                                 'phone': phone or '(264) 400-0000', 'country_code': 'US'}},
          'verify': ['name', 'city'],
@@ -145,8 +145,11 @@ R += [
    'PREFIX: the name STARTS with the keyword. Must rank first.'),
  customer('rank_q_whole', 'Bolton ZZPREFIX Services', [55707],
    'WHOLE WORD mid-name. Must rank below the prefix match and above the typo.'),
- customer('rank_q_typo', 'ZZPREFIXX Cartage', [55707],
-   'FUZZY: one edit from the keyword, so it is reachable only by fuzzy matching. Must rank last.'),
+ customer('rank_q_typo', 'ZZPREFOX Cartage', [55707],
+   'FUZZY: one edit from the keyword (I->O), reachable only by fuzzy matching. Must rank LAST. '
+   '🔴 It was ZZPREFIXX, which is the keyword PLUS a letter - so it STARTS with the keyword, '
+   'prefix-matched, and ranked FIRST, inverting the very order the case asserts. A typo record '
+   'must be one edit away AND not a prefix of, or prefixed by, the keyword.'),
 ]
 
 # ── C55708 [ZZCUSTOPEN] a customer with an open work order outranks one without ───────────────────
@@ -311,6 +314,89 @@ R += [
   'skip_verify': ['is_vehicle_here'],
   '_why': 'THE SIGNAL for C55709: the 2019 asset is on an open work order, the 2025 is not. The '
           'case asserts that lift beats the newer model year.'},
+]
+
+# ══════════════════════════════════════════════════════════════════════════════════════════════
+# 2026-09-18 · THE SIX NEW CASES (C55718-C55723)
+#
+# Read the real case bodies first (Rule 112). MOST OF WHAT THEY NEED ALREADY EXISTS, which is the
+# payoff of building the kit rather than one-off records:
+#
+#   C55718  a work order with a known number + a role without Work Orders   -> S2-15430 + the role
+#   C55719  a customer matched ONLY through a contact + no Customers access  -> ZZCONTACTONLY + role
+#   C55721  a part a typo would match + no Catalog & Inventory access        -> Alternator + the role
+#
+# Only three things are genuinely new: a role missing TWO bundles at once, and the two ranking
+# pairs below.
+# ══════════════════════════════════════════════════════════════════════════════════════════════
+
+# ── C55722 [ZZOPENCOUNT] MORE open work orders ranks above FEWER ───────────────────────────────
+# The case says "many" vs "one or few", and notes the effect is log-scaled - so a gap of 5 vs 1 is
+# deliberate. Two customers that would otherwise be indistinguishable: same keyword position in the
+# name, same everything, differing ONLY in how many open jobs they carry.
+R += [
+ customer('cnt_busy', 'ZZOPENCOUNT Freight Busy', [55722],
+   'FIVE open work orders. Must rank above its twin.'),
+ customer('cnt_quiet', 'ZZOPENCOUNT Freight Quiet', [55722],
+   'ONE open work order. Not zero - the case is "more beats fewer", not "some beats none", which '
+   'C55708 already covers.'),
+ {'key': 'cnt_busy_contact', 'type': 'Contact (a PERSON at a customer company)', 'serves': [55722],
+  'find': {'mode': 'child', 'parent': 'cnt_busy', 'view': '/api/customers/view/{id}',
+           'path': 'company.contacts', 'field': 'first_name', 'value': 'Busyowner'},
+  'create': {'endpoint': '/api/contacts/create',
+             'payload': {'first_name': 'Busyowner', 'last_name': 'Contact', 'title': 'Owner',
+                         'telephone': '(264) 400-0010', 'email': 'busy@zzopencount.test'},
+             'inject': {'company_id': 'cnt_busy'}},
+  'verify': ['first_name'], '_why': 'A work order needs a contact as its customer_id.'},
+ {'key': 'cnt_quiet_contact', 'type': 'Contact (a PERSON at a customer company)', 'serves': [55722],
+  'find': {'mode': 'child', 'parent': 'cnt_quiet', 'view': '/api/customers/view/{id}',
+           'path': 'company.contacts', 'field': 'first_name', 'value': 'Quietowner'},
+  'create': {'endpoint': '/api/contacts/create',
+             'payload': {'first_name': 'Quietowner', 'last_name': 'Contact', 'title': 'Owner',
+                         'telephone': '(264) 400-0011', 'email': 'quiet@zzopencount.test'},
+             'inject': {'company_id': 'cnt_quiet'}},
+  'verify': ['first_name'], '_why': 'Same, for the quiet twin.'},
+ vehicle('cnt_busy_vehicle', 'ZZCNTBUSY00000001', 'CNTB-01', 'Freightliner', 'Cascadia', 2021,
+         [55722], 'Carries the five open work orders. 🔴 Its unit and VIN carry NO keyword - an '
+         'asset is indexed under its OWNER\'S name, so it will answer ZZOPENCOUNT anyway; giving '
+         'it the keyword too would add nothing and risk confusing the assets group.',
+         owner='cnt_busy', owner_contact='cnt_busy_contact'),
+ vehicle('cnt_quiet_vehicle', 'ZZCNTQUIET0000001', 'CNTQ-01', 'Freightliner', 'Cascadia', 2021,
+         [55722], 'Carries the single open work order.',
+         owner='cnt_quiet', owner_contact='cnt_quiet_contact'),
+ {'key': 'wo_cnt_busy', 'type': 'WorkOrder', 'serves': [55722],
+  'find': {'mode': 'ids', 'view': '/api/work-orders/view/{id}', 'coll': 'work_order',
+           'field': 'number', 'ids': []},
+  'create': {'endpoint': '/api/work-orders/create', 'payload': {'is_vehicle_here': False},
+             'inject': {'company_id': 'cnt_busy', 'vehicle_id': 'cnt_busy_vehicle',
+                        'customer_id': 'cnt_busy_contact'},
+             'id_from': 'data.work_order_id', 'repeat': 5},
+  'skip_verify': ['is_vehicle_here'],
+  '_why': 'FIVE open work orders - the signal under test. Left in their created (estimate) state, '
+          'which is open.'},
+ {'key': 'wo_cnt_quiet', 'type': 'WorkOrder', 'serves': [55722],
+  'find': {'mode': 'ids', 'view': '/api/work-orders/view/{id}', 'coll': 'work_order',
+           'field': 'number', 'ids': []},
+  'create': {'endpoint': '/api/work-orders/create', 'payload': {'is_vehicle_here': False},
+             'inject': {'company_id': 'cnt_quiet', 'vehicle_id': 'cnt_quiet_vehicle',
+                        'customer_id': 'cnt_quiet_contact'},
+             'id_from': 'data.work_order_id'},
+  'skip_verify': ['is_vehicle_here'],
+  '_why': 'ONE open work order.'},
+]
+
+# ── C55723 [ZZNAMEBONUS] a NAME match ranks above a SECONDARY-FIELD match ──────────────────────
+# 🔴 The B record's NAME must not contain the keyword, or the case proves nothing. It carries the
+# keyword in its ADDRESS instead - a field the company index definitely covers (name, phone,
+# address, website, plus its contacts). City was the case's "for example"; address is the one this
+# estate is known to index, and the case says "for example its city or address".
+R += [
+ customer('nb_name', 'ZZNAMEBONUS Cartage', [55723],
+   'Matched on its NAME. Must rank above the address-only match.'),
+ customer('nb_secondary', 'Sterling Brothers Freight', [55723],
+   'Matched ONLY on a secondary field: the keyword is in its ADDRESS and nowhere in its name. If '
+   'this outranks the name match the primary-name bonus is not being applied.',
+   address='40 ZZNAMEBONUS Road'),
 ]
 
 MANIFEST = {

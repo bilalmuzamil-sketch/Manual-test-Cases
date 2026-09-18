@@ -18,6 +18,8 @@ verify_ranking.py.
 import json, os, sys, urllib.error, urllib.parse, urllib.request, uuid
 
 CONFIRM = '--confirm' in sys.argv
+R_, X_ = '\033[31m', '\033[0m'
+HERE = os.path.dirname(os.path.abspath(__file__))
 C = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
 CK = '; '.join(f"{k}={C[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
 
@@ -40,6 +42,42 @@ def find_one(list_path, field, value, coll='collection'):
     if st != 200 or not isinstance(d, dict): return None
     rows = (d.get('data') or {}).get(coll) or []
     return next((x for x in rows if str(x.get(field) or '') == value), None)
+
+def signal_open_work_orders():
+    """🔴 AN ESTIMATE DOES NOT COUNT AS AN OPEN WORK ORDER FOR THE RANKING SIGNAL, AND A CREATED
+    WORK ORDER IS AN ESTIMATE. Measured 2026-09-18, and it is the difference between a case that
+    works and a case that fails against a working product:
+
+        five estimates vs one estimate  -> the customer with FIVE ranked SECOND (wrong)
+        five in_progress vs one         -> the customer with FIVE ranked FIRST  (right)
+
+    Worse, C55709's work order was found sitting at **Paid** - a terminal status - so the "asset on
+    an OPEN work order" signal was an asset on a CLOSED one. I could not establish how it got there
+    (the Fibridge status scripts read a different ids file and cannot reach these records), so this
+    does not rely on knowing: it SETS the status explicitly on every run instead of trusting the
+    state a record was created in. That is immune to whatever changed it.
+
+    None of this was visible to the seeder OR to the first verifier - both checked that the records
+    existed. Only the ORDER shows it, which is why verify_ranking.py now asserts order."""
+    ids_path = os.path.join(HERE, 'seed-ids-ranking-qa.json')
+    if not os.path.exists(ids_path):
+        return '🔴 no ranking ids file — run seed.py --confirm first'
+    ids = json.load(open(ids_path))
+    keys = ['wo_custopen', 'wo_assetlift', 'wo_cnt_busy', 'wo_cnt_quiet']
+    todo = [(k, w) for k in keys for w in (ids.get(k) or [])]
+    if not todo: return '🔴 no seeded work orders found in the ids file'
+    if not CONFIRM: return f'   would force {len(todo)} work order(s) to in_progress'
+    fixed = skipped = failed = 0
+    for k, w in todo:
+        st, d = call(f'/api/work-orders/view/{w}')
+        cur = ((d or {}).get('data') or {}).get('work_order', {}).get('status') if st == 200 else None
+        if str(cur).lower().replace(' ', '_') == 'in_progress':
+            skipped += 1; continue
+        st2, _ = call('/api/work-orders/change-status', 'POST', {'id': w, 'status': 'in_progress'})
+        if st2 in (200, 201): fixed += 1
+        else: failed += 1
+    return (f"✅ {fixed} set to in_progress, {skipped} already there"
+            + (f", {R_}{failed} FAILED{X_}" if failed else ""))
 
 def signal_vendor_po():
     """C55710 — the OPEN purchase order that lifts one vendor above its twin."""
@@ -90,6 +128,7 @@ def signal_tiebreak():
 if __name__ == '__main__':
     if not CONFIRM:
         print('DRY RUN — pass --confirm to apply\n')
+    print('C55708/09/22  work orders OPEN       :', signal_open_work_orders())
     print('C55710  vendor open purchase order :', signal_vendor_po())
     print('C55712  part recent activity       :', signal_part_activity())
     print('C55716  tie-break, updated last    :', signal_tiebreak())
