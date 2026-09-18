@@ -1,4 +1,17 @@
-# PROPOSED patch to `build/skills/06-DEFECT-PREP.md` — awaiting the QA lead's go-ahead (Rule 72)
+# ✅ APPLIED to `build/skills/06-DEFECT-PREP.md` on 2026-09-18 — his three answers were "keep it the way you already do"
+
+This file is now the record of what was proposed and how it was decided. The text lives in the skill
+under *"THE EXAMPLE-BLOCK SHAPE, AND THE SIX THINGS A SIMPLIFICATION MAY NEVER REMOVE"*.
+
+**His rulings, 2026-09-18:** no `Technical Evidence` section · Environment stays second-to-last with
+Sources last · the section stays named `Sources` with the requirement quoted verbatim. All three are
+written into the skill as "do NOT adopt", with the guide's wording shown beside them so nobody
+re-opens the question.
+
+---
+
+## The original proposal (kept for the record)
+
 
 Rule 72 says skills are not edited without his word, so this sits here until he gives it. The
 learning itself is already safe in `build/LEARNINGS-LOG.md` L0167; this is only the wording that
