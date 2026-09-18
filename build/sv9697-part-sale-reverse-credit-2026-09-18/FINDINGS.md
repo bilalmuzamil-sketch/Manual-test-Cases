@@ -431,3 +431,61 @@ He states plainly that this one **is not implemented** and that mixed sets keep 
 applied" wording. **Chris has not answered.** Our sets above were all-applied, so the gap did not
 show here — but it is real, it is unanswered, and it belongs in the outstanding list rather than in
 a pass or a fail.
+
+---
+
+## §9 — Checklist step 7: portal-paid invoice takes precedence — **BLOCKED, and here is exactly why**
+
+Step 7 asks for an invoice **paid through the customer portal**, which should keep Reverse disabled
+with the portal message ahead of the credit tooltip. This is the one step that could not be produced,
+and the reason is concrete, not a shrug.
+
+**1. No such invoice exists in the QA dataset.** The flag lives at
+`invoice.customer_transaction.has_portal_payment`, served by `GET /api/invoices/{id}/view`. **All 98
+invoiced or paid work orders on this branch were read and every one returns
+`has_portal_payment: false`.** Nothing to hover.
+
+**2. The customer portal cannot be entered from here — it is returning a server error.** The portal
+is a separate application (`shopview-portal-feature-branch-…laravel.cloud`), reached from
+**profile menu → "Customer Portal New"**, which mints a token (`POST /api/token` → 200) and then
+posts it to the portal's `sso-login`. Clicking it opens **no tab and shows no message**. Driving the
+same call directly explains it:
+
+```
+POST https://shopview-portal-feature-branch-xn74b9.laravel.cloud/sso-login
+  → HTTP 500
+    {"message":"Malformed UTF-8 characters, possibly incorrectly encoded",
+     "exception":"InvalidArgumentException",
+     "file":".../Illuminate/Http/JsonResponse.php","line":91}
+```
+
+Three request shapes were tried (with and without `returnJson`, with and without `destination`) —
+**all 500.** The portal's own `/login` page loads, but signing in needs a customer-portal account we
+do not have and cannot create without receiving an invitation email.
+
+**This is not SV-9697's fault** — it is a different application on its own feature branch, and it
+blocks the step rather than failing it.
+
+**What IS established, and labelled honestly as source-read, not observed.** The disable rule and the
+tooltip order are plain in the deployed bundle `InvoiceActionBar.CDwAp5SX.js` on `v26.36.8-132baea`:
+
+* the Reverse item is disabled when **portal-paid OR blocked-by-credits OR blocked-by-legacy-credit**;
+* the tooltip is chosen in this order — **portal first**, then the credit message, then the legacy
+  Support message:
+
+```
+j = customer_transaction.has_portal_payment === true
+K = workOrder.reverseBlockedByCredits === true
+z = workOrder.reverseBlockedByLegacyCredit === true
+disable = j || K || z
+tooltip = j ? "This invoice was paid through the customer portal. Credits and refunds must be
+               handled through the portal."
+        : G ? <credit message>
+        : z ? "Reverse is unavailable for this part sale. Contact ShopView Support to correct it."
+```
+
+So the precedence the step describes is what the shipped code does, and the portal wording is
+verbatim above. **It has not been seen on screen, and this section does not claim it has.**
+
+**What would unblock it:** either the portal application fixed on this environment plus a
+customer-portal login, or one QA invoice with a portal payment against it.
