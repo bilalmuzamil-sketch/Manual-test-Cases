@@ -4677,34 +4677,73 @@ on the Finance tab.
 request. The audit log is a **dialog**, reached through the ⋮ menu. Do not conclude "no history
 rendered" from that URL.
 
-## §AE — CORE RETURNS: how to seed one, and the two receive surfaces (QA lead's recipe, 2026-09-18)
+## §AE — CORE RETURNS: seed one from scratch, on a part sale or a work order (QA lead's recipe, 2026-09-18)
 
-**THE RECIPE (the QA lead's own words, with what I verified alongside):**
-1. On a **WORK ORDER** line, click **+ Add Part** → the **New Part Request** dialog. Fill Part Number,
-   Description, Quantity, Source = **Vendor**, Vendor, Cost, and — the part that matters — a value in
-   **Core Charge**. Save & Close.
+**Seeding a core return is the gate on every returns/credits test. Both routes below were driven end
+to end on `sv9610`; do not re-derive either.**
+
+### AE.1 — THE PART-SALE ROUTE (the QA lead's own process, verified 2026-09-18)
+
+1. **Parts → Part sales** → create a part sale for a customer.
+2. **Add Part** → the **New Part Request** dialog. Use a **part number you have never requested
+   before** on that organisation — a repeat number matches an existing catalogue/inventory part and
+   the vendor and core fields then behave differently. Set **Source = Vendor**, pick any vendor, fill
+   every required field (Description, Quantity, Cost, Sell Price, Category), and put **1** in
+   **Core Charge**. **Save & Close.**
+3. Click **Authorize** at the top right if the button is showing.
+4. From the far right of the part row click **Order**, then **Receive** — **for the main part**.
+5. On the receive screen enter the **vendor invoice number**, then click **Receive**.
+6. Now **return the WHOLE part**: the **return (reply) icon** on the main part row. The core travels
+   with it — this is the step that moves the core into Returns.
+7. **Parts → Returns** now carries **two new rows**: the part itself and its
+   `Core for <description>`, both at the returned quantity.
+
+### AE.2 — THE WORK-ORDER ROUTE
+
+1. On a **work order** line, **+ Add Part** → the same New Part Request dialog with a **Core Charge**
+   value, Source = **Vendor**. Save & Close.
 2. **Order** the part, then **Receive** it.
 3. When it asks **OK or Not OK**, click **NOT OK**.
-4. The core then appears under **Parts → Returns**. Tick the core row, open the row's **⋮** menu and
-   choose **Return to inventory** or **Delete Return**.
+4. The core appears under **Parts → Returns**. Tick the core row, open the row's **⋮** menu and choose
+   **Return to inventory** or **Delete Return**.
 
-**TWO DIFFERENT RECEIVE SURFACES — this cost me a run, so it is written down:**
-* **The work order's own "Receive parts" modal** (driven from the WO): the part row AND its
-  `Core for …` row are **both editable** — Cost, Qty Ordered, Qty Received per row, then
+### AE.3 — The facts behind both routes
+
+**A CORE CHARGE MAKES TWO PART REQUESTS.** One part with `core_charge > 0` creates the part request
+**and** a second request described `Core for <description>` with `is_core_charge: true`. They land as
+**two items on the same purchase order** and both settle on one receive.
+
+**ONLY THE ORDINARY PART ROW CARRIES A RETURN ICON.** On a part sale the core row has
+`input_core_charge_{woPartId}` but **no** `button_return_part_request_{woPartId}`. **That is not a dead
+end** — returning the whole part sends the core to Returns with it (AE.1 step 6). ⚠️ An earlier version
+of this section concluded from the missing icon that cores had to be seeded on a work order. **That was
+wrong**; the QA lead supplied the part-sale process above and it works.
+
+**TWO DIFFERENT RECEIVE SURFACES:**
+* **The work order's own "Receive parts" modal** (driven from the WO): the part row **and** its
+  `Core for …` row are both editable — Cost, Qty Ordered, Qty Received per row, then
   **Receive Parts (n)**.
 * **The purchase-order receive screen** (`/order/{id}?receive=1`): the core row's
-  `input_qty_{orderItemId}` is **`disabled: true`** and pre-filled with the part's quantity. It
-  follows the parent part; you cannot type into it. A script that fills every `input_qty_*` will hang
-  on it — **read `.disabled` first and skip it** (the receive still posts correctly).
+  `input_qty_{orderItemId}` is **`disabled: true`** and pre-filled to match the parent part. You
+  cannot type into it and a script that fills every `input_qty_*` will hang on it — **read `.disabled`
+  first and skip it.** The receive still posts **both** rows: the payload carries `quantity_received`
+  for the core item alongside the part.
 
-**A CORE CHARGE MAKES TWO PART REQUESTS.** Adding one part with `core_charge > 0` creates the part
-request AND a second request whose description is `Core for <description>` with `is_core_charge: true`
-— they land as two items on the same purchase order.
+**Controls (`data-test-id`), part-sale parts tab:** `button_add_part` ·
+`checkbox_part_request_<woPartId>` · `input_description_<id>` · `input_part_number_<id>` ·
+`input_quantity_<id>` · `input_cost_<id>` · `input_core_charge_<id>` · `input_sell_price_<id>` ·
+`select_part_category_<id>` · `select_vendor_<id>` · **`button_return_part_request_<id>`** (the reply
+icon) · `button_part_request_menu_<id>` · `button_bulk_action_menu` · `button_part_sale_nav_bar_menu`.
 
-**ON A PART SALE THERE IS NO CORE OK/NOT-OK CONTROL.** With both rows received on a part sale, the
-core row carries `input_core_charge_{woPartId}` but **no** `button_return_part_request_{woPartId}` —
-only the ordinary part row has one. The OK/Not-OK step in the recipe above is a **work-order** flow.
-Seed cores on a work order, not a part sale.
+**The return dialog:** `input_return_reason` · `input_return_quantity` · `button_confirm_dialog`, and
+it posts **`POST /api/work-orders/part/make-return-request`**. ⚠️ Scope the selectors to those exact
+ids — a loose `/quantity/` match grabs the row's own `input_quantity_<id>` behind the dialog, and a
+loose `/save|confirm/` match grabs `button_save_vehicle` in the header.
+
+**The purchase-order receive screen:** `select_assign_vendor_<orderId>` ·
+`input_invoice_<orderId>` · `date_input_invoice_date_<orderId>` · `checkbox_select_all_<orderId>` ·
+`checkbox_item_<orderItemId>` · `input_qty_<orderItemId>` · `button_receive_po_<orderId>`; it posts
+`POST /api/orders/receive-requested-parts` and the toast reads **"Received Parts"**.
 
 **Endpoints seen:** returns list `GET /api/work-orders/part/list-return-requests` (the row's
 `quantity` is the **outstanding** amount, and it drops as credits are posted); credits list
