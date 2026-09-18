@@ -135,7 +135,13 @@ the symptom, not of one record.
 
 ## The QA comment
 
-`76778` on SV-9565, posted after the pre-post gate (build marker re-read live and identical —
+`76778` on SV-9565 — **updated in place** (never a second comment) once the QA lead pointed at the
+Split parts order menu, so the ticket carries exactly one complete record. It now reads **12 of 12**,
+has the two split checks in the table, a *"Splitting a part sale"* section with `EX6`, and the stale
+*"was not exercised"* claim is gone — replaced by what is actually true: splitting gives two sales on
+ONE order, and one request across two orders still has no path. Read back after the update: **6
+exhibits in order**, 13 table rows, verdict still on the first line, no machine-authored tells.
+Originally posted after the pre-post gate (build marker re-read live and identical —
 etag `e19209f9…`; ticket still TESTING QA with no new comment since Chris's review request on
 9 September; text scanned for machine-authored tells). Read back from Jira afterwards: **5 exhibits
 in the right order, all real Jira attachments** (61063–61067), 11 table rows (header + 10 checks),
