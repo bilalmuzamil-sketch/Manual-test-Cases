@@ -158,6 +158,23 @@
   .ask li{ margin-bottom:8px; }
   .ask li:last-child{ margin-bottom:0; }
 
+
+  /* handover pipeline */
+  .flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line);
+         border:1px solid var(--line); border-radius:3px; overflow:hidden; margin-bottom:20px; }
+  .stage{ background:var(--surface); padding:16px 17px 17px; border-top:4px solid var(--line); }
+  .stage.s1{ border-top-color:var(--good); } .stage.s2{ border-top-color:var(--accent); }
+  .stage.s3{ border-top-color:var(--warn); } .stage.s4{ border-top-color:var(--slate); }
+  .stage .step{ font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+                color:var(--faint); display:block; margin-bottom:8px; }
+  .stage .v{ font-family:"Archivo",sans-serif; font-size:30px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
+  .stage.s1 .v{ color:var(--good); } .stage.s2 .v{ color:var(--accent); }
+  .stage.s3 .v{ color:var(--warn); } .stage.s4 .v{ color:var(--slate); }
+  .stage .k{ font-size:14px; font-weight:600; margin-top:7px; line-height:1.35; }
+  .stage .x{ font-size:12.5px; color:var(--muted); margin-top:5px; line-height:1.45; }
+  @media (max-width:760px){ .flow{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:430px){ .flow{ grid-template-columns:1fr; } }
+
   footer{ margin-top:48px; padding-top:18px; border-top:1px solid var(--line); font-size:13.5px; color:var(--faint); }
   footer p{ max-width:68ch; margin-bottom:8px; }
 
@@ -248,8 +265,70 @@
   </div>
 
   <section>
+    <div class="sechead"><h2>Where each part sits between development and QA</h2><span class="count c-slate">26</span></div>
+    <p class="secnote">Every part of this feature follows the same path: the development side builds it, hands it to QA for testing, and QA signs it off. This is where all twenty&#8209;six stand today &mdash; and what QA does with the ones that have not been handed over yet.</p>
+
+    <div class="flow">
+      <div class="stage s1">
+        <span class="step">Step 4 &middot; Finished</span>
+        <div class="v num">6</div>
+        <div class="k">Signed off by QA</div>
+        <div class="x">Tested and closed, with nothing outstanding against them.</div>
+      </div>
+      <div class="stage s2">
+        <span class="step">Step 3 &middot; With QA</span>
+        <div class="v num">7</div>
+        <div class="k">Handed over and tested</div>
+        <div class="x">QA has finished testing all seven. Each is now waiting only on its defects being closed, and is signed off the moment they are.</div>
+      </div>
+      <div class="stage s3">
+        <span class="step">Steps 1&ndash;2 &middot; Being built</span>
+        <div class="v num">8</div>
+        <div class="k">Still with the development side</div>
+        <div class="x">Not yet handed to QA, so no testing has started on them. QA begins on each one the day it moves over for testing.</div>
+      </div>
+      <div class="stage s4">
+        <span class="step">Out of scope</span>
+        <div class="v num">5</div>
+        <div class="k">Withdrawn</div>
+        <div class="x">No longer being built for this release, so there is nothing for QA to test.</div>
+      </div>
+    </div>
+
+    <p class="secnote"><strong>Nothing in the third group is held up by QA.</strong> Everything handed over so far has been tested in full; these eight have not reached testing yet. Here is what each one is, and what QA will do when it arrives.</p>
+
+    <div class="runwrap">
+      <table>
+        <thead><tr><th>What it is</th><th>Where it sits</th><th>What QA does once it is handed over</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Verification rounds one, two, three, five and six</strong> <span class="key">SV-9307 &middot; SV-9308 &middot; SV-9309 &middot; SV-9311 &middot; SV-9312</span></td>
+            <td>In the development backlog, not started</td>
+            <td>Each round is a planned pass over the area it covers. QA runs it as soon as the round opens.</td>
+          </tr>
+          <tr>
+            <td><strong>Rollout and removing the old search</strong> <span class="key">SV-9176</span></td>
+            <td>Scheduled, after the open defects close</td>
+            <td>QA re-runs the whole suite on the switched-over product before it goes live.</td>
+          </tr>
+          <tr>
+            <td><strong>The automated version of our test suite</strong> <span class="key">SV-9175</span></td>
+            <td>With QA, deliberately held</td>
+            <td>This one is ours. It starts once the manual suite stops moving, so the automation is written against something settled.</td>
+          </tr>
+          <tr>
+            <td><strong>Unit number and vehicle on Schedule work orders</strong> <span class="key">SV-9594</span></td>
+            <td>Not started, and not part of search</td>
+            <td>Nothing &mdash; it belongs to a different feature and needs its own checks, which is why it is worth moving off this list.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
     <div class="sechead"><h2>Through QA</h2><span class="count c-good">6</span></div>
-    <p class="secnote">Tested, signed off, and carrying no open defects. These parts of the feature are finished from a QA point of view.</p>
+    <p class="secnote">Handed over, tested, signed off, and carrying no open defects. These parts of the feature are finished from a QA point of view and need nothing further from either side.</p>
     <ul class="items">
       <li>
         <div class="title-row">
@@ -442,7 +521,7 @@
 
   <section>
     <div class="sechead"><h2>Still ahead</h2><span class="count c-slate">8</span></div>
-    <p class="secnote">Scheduled but not yet begun, and in sequence they come after the current round. Five are the remaining verification rounds; the other three are the rollout, the automated version of the suite, and one item that belongs to a different feature.</p>
+    <p class="secnote">The same eight parts that have not yet been handed to QA, listed in full. They come after the current round in sequence, so testing on them starts once the development side moves them over. Five are the remaining verification rounds; the other three are the rollout, the automated version of the suite, and one item that belongs to a different feature.</p>
     <ul class="items">
       <li>
         <div class="title-row">

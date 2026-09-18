@@ -288,3 +288,26 @@ asking for the opposite of the written requirement** — our own wording, caught
 developer chasing a product that was behaving correctly.
 
 Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
+
+## v9 — published 2026-09-18 (artifact version 9)
+
+Added on his instruction: *"add somewhere nicely about which stories have been QA complete and which
+are yet to be completed by the dev so once the remaining stories are completed by dev side and move
+for testing QA the work on those will start from the QA side then."*
+
+New section **"Where each part sits between development and QA"**, placed above *Through QA*: a
+four-stage handover strip plus a table of the eight not yet handed over. Every status read live
+from Jira immediately before publishing.
+
+| Stage | Count | Stories |
+|---|---|---|
+| Signed off by QA | **6** | SV-9161 · SV-9162 · SV-9166 · SV-9172 · SV-10031 (QA Complete) · SV-9313 (Ready for Production — cleared QA) |
+| Handed over and tested, waiting on defects | **7** | SV-9163 · SV-9164 · SV-9165 · SV-9168 · SV-9170 · SV-9171 · SV-9174 (all **TESTING QA**) |
+| Still with the development side — QA not started | **8** | SV-9307 · SV-9308 · SV-9309 · SV-9311 · SV-9312 (Board Backlog) · SV-9176 · SV-9175 · SV-9594 (Open) |
+| Withdrawn | **5** | SV-9167 · SV-9169 · SV-9173 · SV-9306 · SV-9310 (OBSOLETE) |
+
+The section states plainly that **nothing in the third group is held up by QA** — testing starts on
+each one the day it is moved over — and says for each what QA will do when it arrives. The later
+*Still ahead* section now names them as the same eight rather than repeating them as a new list.
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
