@@ -1837,6 +1837,146 @@
    "_why": "THE CONTROL, and the case cannot be read without it: a NAME must still sound-alike match. If neither row comes back the sound-alike was simply wrong, not proof of names-only behaviour."
   },
   {
+   "key": "phon2_part",
+   "type": "CataloguePart",
+   "serves": [
+    55728
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZPHON-3002",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZPHON Knight Bracket",
+     "part_number": "ZZPHON-3002",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "The part whose DESCRIPTION carries the word, for the readable version of the case. A sound-alike must NOT return it, and this word is far enough in edit distance that fuzzy cannot."
+  },
+  {
+   "key": "phon2_part_inv",
+   "type": "InventoryPart",
+   "depends_on": "phon2_part",
+   "serves": [
+    55728
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZPHON-3002",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 6,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZPHON-3002",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 6
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "The stock row - without it the part is invisible and the negative passes for the wrong reason, which is exactly how this case read before ZZPHON-3001 got its stock."
+  },
+  {
+   "key": "phon2_customer",
+   "type": "Customer",
+   "serves": [
+    55728
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZPHON Knight Haulage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZPHON Knight Haulage",
+     "address": "1 Ranking Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "phone": "(264) 400-0000",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "THE CONTROL for the readable version: the sound-alike must still reach a NAME. Query `Nite`."
+  },
+  {
    "key": "pin_rival",
    "type": "Customer",
    "serves": [

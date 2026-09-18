@@ -445,6 +445,27 @@ R += [
    'neither row comes back the sound-alike was simply wrong, not proof of names-only behaviour.'),
 ]
 
+# 🔴 "Alternator" IS THE WRONG WORD FOR THIS CASE, and the stock row above is what proved it.
+# Once the part became findable, every sound-alike of "Alternator" (Olternaytor, Awlternater,
+# Alturnaytor, Ulternator) also reached the PART - not phonetically, but by FUZZY match on
+# `description`, which the response labels kind=fuzzy field=description. The two mechanisms are
+# different and the case is about the first one, but for this word they cannot be told apart:
+# anything close enough to sound like "Alternator" is also close enough in EDIT DISTANCE to fuzzy-
+# match it. That is the same collision that broke the first ranking keyword scheme.
+# THE FIX IS A WORD WHOSE SOUND AND SPELLING DIVERGE. "Knight" -> "Nite" is ~4 edits apart, far
+# outside fuzzy range, while metaphone folds both to NT. So a query of `Nite` can only reach the
+# NAME phonetically - it cannot fuzzy-match the description - and the case becomes readable.
+R += [
+ cat_part('phon2_part', 'ZZPHON-3002', 'ZZPHON Knight Bracket', [55728],
+   'The part whose DESCRIPTION carries the word, for the readable version of the case. A sound-'
+   'alike must NOT return it, and this word is far enough in edit distance that fuzzy cannot.'),
+ inv_part('phon2_part_inv', 'phon2_part', 'ZZPHON-3002', 6, [55728],
+   'The stock row - without it the part is invisible and the negative passes for the wrong reason, '
+   'which is exactly how this case read before ZZPHON-3001 got its stock.'),
+ customer('phon2_customer', 'ZZPHON Knight Haulage', [55728],
+   'THE CONTROL for the readable version: the sound-alike must still reach a NAME. Query `Nite`.'),
+]
+
 # ── C55729 [exact id beats a strong name match] ────────────────────────────────────────────────
 # The customer's name must BEGIN with the same text as the work-order number, so the pinned row is
 # competing against the strongest possible name match. Its real name is stamped in by the signals
