@@ -9,7 +9,7 @@ actually be **executed on the build**, finalise the on-screen wording, and re-st
 | **Scope** | **12 cases** in folder **6734 — Permissions & Role-Based Scoping**: C44877, C44878, C44879, **C44880**, C44881, C44882, C55702, C55703, C55704, C55705, C55706, C55717 |
 | **Run** | **R415** — <https://shopview.testrail.io/index.php?/runs/view/415> |
 | **Build** | `https://sv9160.qa.shopview.com` — marker **`v26.36.8-d146c39`** (the branch redeployed 2026-09-18; data rebuilt and re-verified on the NEW build) |
-| **Ready** | **11 of 12.** **C44880 is Blocked** — it needs a second organisation's sign-in, which does not exist yet. Everything else has its fixture, live and checked |
+| **Ready** | **11 of 12**, case bodies read. **C44880 is Blocked** — it needs a second organisation's sign-in, which does not exist yet. Everything else has its fixture, live and checked |
 
 > **This is a companion document, not a replacement.** The six newer permissions/scoping cases
 > **C55718–C55723** are build-verified through
@@ -35,24 +35,18 @@ Do not assume either way — read the per-universe result.
 
 ---
 
-## §0 · 🔴 WHAT I COULD NOT DO THIS PASS, AND WHAT IT MEANS FOR YOU
+## §0 · SOURCE OF THE PER-CASE TABLE
 
-**TestRail is rejecting every API key available to me.** Two separate keys were tried — the one
-already stored and a freshly supplied one — and both return
-*"Authentication failed: invalid or missing user/password or session cookie."* (An earlier round of
-probing tripped TestRail's failed-login throttle; that has since cleared, and the failure is now a
-plain auth rejection, not a lockout.) Other sessions read TestRail successfully, most likely via the
-**login password** rather than an API key.
+**The 12 case bodies were read from TestRail on 2026-09-18** and §2 below is built from their actual
+titles, steps and expected results — not from a seeding summary. Titles are quoted verbatim.
 
-So **I did not re-read the 12 case bodies while writing this**, and the per-case table in §2 is built
-from the seeding handoff plus my own live checks — **not** from the case text.
+**Auth note for your own session:** API keys are **rejected** on this account; the **login password**
+is what authenticates against `/index.php?/api/v2/`. Two different API keys were tried and both
+returned *"Authentication failed: invalid or missing user/password or session cookie."* Repeated
+attempts trip a 10-minute failed-login throttle, so do not probe — use the login password.
 
-Under Rule 112 that makes §2 a **summary, and the case body wins wherever they disagree.** Open each
-case and read it before you check it; that is your job anyway. Where this document and the case
-disagree, follow the case and **tell me**, so the document gets corrected rather than quietly
-carried forward.
-
-You will hit the same 401 if you use the API. The credentials need refreshing — it is in OUTSTANDING.
+Rule 112 still applies: where anything here and the case body disagree, **the case wins** — say so
+and the document gets corrected.
 
 ---
 
@@ -85,26 +79,27 @@ result as a broken fixture.
 
 ## §2 · WHAT TO CHECK, PER CASE
 
-**Derived, not quoted — see §0. The case body is the authority.**
+**Titles quoted from the cases as read on 2026-09-18.** Seven of the twelve are POSITIVES — a
+permitted user must SEE the group. They are the controls for the five negatives, so run a positive
+before its matching negative or the negative proves nothing.
 
-| Case | Sign in as | The shape the build must show |
-|---|---|---|
-| **C44877** | Admin | Every group is reachable and prices are visible. The all-permissions baseline the negatives are measured against |
-| **C44878** | Technician (or `ZZAUTOTEST No Parts View`) | The **Parts** group is absent — no group, no count, no scope tab. Work orders, customers and assets stay |
-| **C44879** | `ZZAUTOTEST No Work Orders View` | The **Work Orders** group is absent, and a work order is **not pinned** even on an exact number. Check the pin separately — it is a different code path from the group |
-| **C44880** | 🔴 **BLOCKED** | Tenant isolation: a second organisation holding records with the **same searchable text** must return nothing to this org's user. `ZZAUTOTEST Second Org Ltd` exists but has no usable sign-in. **Mark "not available on build" — do not fake it and do not fail it** |
-| **C44881** | Technician | A record **type with zero accessible rows**. Prove the group's empty state, not an error. Distinguish "no permission" from "permitted but empty" — they must not look the same |
-| **C44882** | each role in turn | One bundle removed at a time: Part Sales · Customers (takes Assets too) · Vendor & Order Management (takes Vendors, POs, Vendor Invoices) · Financial Data (prices masked, groups stay) · Time Clock (nothing at all). **Six sign-ins, not one** |
-| **C55702–C55706** | Admin | The positives — each group present and correct for a fully-permitted user. These are the control for every negative above |
-| **C55717** | a user who loses access after viewing | Open a record, then remove that area's bundle, then re-check the recent list — the record must **drop off**. Needs a role edit between two observations, so plan the order before you start |
+| Case | Title (verbatim) | Sign in as | The shape the build must show |
+|---|---|---|---|
+| **C44877** | *A user WITH Parts access sees Parts results in the palette* | Admin | **Positive.** The Parts group is present and populated. Control for C44878 |
+| **C44878** | *A technician WITHOUT Parts access does NOT see Parts results* | **Technician** (stock) | The Parts group is absent — no group, no count, no scope tab |
+| **C44879** | *A user WITHOUT Work Orders access does NOT see Work Order results* | `ZZAUTOTEST No Work Orders View` | The Work Orders group is absent |
+| **C44880** | *Results are limited to the signed-in user's own tenant* | 🔴 **BLOCKED** | Needs a second organisation's sign-in. `ZZAUTOTEST Second Org Ltd` exists but has none. **Mark "not available on build" — do not fake it and do not fail it** |
+| **C44881** | *An entity type with no accessible records shows no group (and its scope tab shows the empty state)* | Technician | 🔴 **Two different assertions:** no group in the palette, **and** the scope tab shows an **empty state** — not an error, not a spinner. "Permitted but empty" must not look like "no permission" |
+| **C44882** | *Permission bundles hide whole groups, their counts and tabs; prices masked without financial access* | **each role in turn** | One bundle removed at a time — Part Sales · Customers (takes Assets) · Vendor & Order Management (takes Vendors, POs, Vendor Invoices) · Financial Data (**groups stay, prices masked**) · Time Clock (nothing at all). **Six sign-ins wearing one case number** |
+| **C55702** | *A user WITH Work Orders access sees Work Order results* | Admin | Positive — control for C44879 |
+| **C55703** | *A user WITH Customers access sees Customer and Asset results* | Admin | Positive — **both** groups, since one permission governs them |
+| **C55704** | *A user WITH Part Sales access sees Part Sale results* | Admin | Positive. Needs `partSalesView` **and** `seeFinancialData` |
+| **C55705** | *A user WITH Vendor & Order Management access sees Vendor, Purchase Order and Vendor Invoice results* | Admin | Positive — **all three** groups from one permission |
+| **C55706** | *A user WITH See Financial Data sees prices in search result rows* | Admin | Positive — **prices visible in the rows**, not a group check. Control for the masking half of C44882 |
+| **C55717** | *The recent-searches list only shows records the person can currently access* | user who loses access after viewing | Open a record, remove that area's bundle, re-check the recent list — the record must **drop off**. Two observations with a role edit between them, so plan the order before you start |
 
-🔴 **C44882 is six checks wearing one case number.** Budget for it accordingly; it is the single
-most expensive case in the folder.
-
-🔴 **"Absent" means absent four ways** — no group, no count, no scope tab, and not pinned. A group
-that is merely empty is a different result from a group that is gone, and the cases distinguish them.
-
----
+🔴 **"Absent" means absent three ways** — no group, no count, no scope tab. C44881 is the case that
+distinguishes *absent* from *present but empty*; do not let the two collapse into one observation.
 
 ## §3 · THINGS THAT WILL COST YOU TIME IF YOU DO NOT KNOW THEM
 
@@ -133,6 +128,12 @@ that is merely empty is a different result from a group that is gone, and the ca
   Assets together. Expect the collateral, and check it.
 - **Index lag is real but short.** A new record is not findable the instant it is saved. Re-search
   before calling anything absent.
+- **🔴 A work order is read at `/api/work-orders/view/{id}` — NOT `/api/work-orders/{id}`.** The
+  wrong path returns **404**, which reads exactly like "this record is not reachable for you" (the
+  Rule 111 trap). It cost me a false finding on `S2-15430` until I ran a control record through the
+  same path and saw the control 404 too. **Always open a record you KNOW you own before concluding
+  that a record you are testing is unreachable.** Verified 2026-09-18: control and `S2-15430` both
+  return **200** on the correct path, so `S2-15430` is genuinely reachable for C55718 and C55729.
 - **Counts cap at 20** in every group, and a scope tab shows at most 20 rows with no pagination.
 
 ## §4 · WHAT BUILD VERIFICATION MEANS HERE
@@ -146,9 +147,9 @@ Re-stamp the build line on every case you check (*"Last checked against build �
 anything whose preconditions cannot yet be executed as **not available on build** rather than failed.
 **C44880 is exactly that case** — blocked, not failed.
 
-🔴 **Open the case body — never this handoff's summary of it.** §0 says why that matters more than
-usual this time. Where this document and the case disagree, **the case wins** — and say so, so the
-document gets fixed.
+🔴 **Open the case body — never this handoff's summary of it.** §2 was built from the case text on
+2026-09-18, but a case can be edited after this was written. Where this document and the case
+disagree, **the case wins** — and say so, so the document gets fixed.
 
 ---
 ## §5 · THE TOKEN-DISCIPLINE CHARTER — EMBEDDED VERBATIM, BINDING FROM YOUR FIRST TURN
@@ -249,5 +250,5 @@ failure clause 5 names.
 |---|---|---|
 | 1 | **11 of 12 cases are ready.** Every role fixture confirmed live by name on `v26.36.8-d146c39` after the redeploy — 6 stock, 7 seeded | — |
 | 2 | **C44880 is Blocked, and legitimately so.** `ZZAUTOTEST Second Org Ltd` exists but there is no working sign-in inside it. It needs a `PHPSESSID` captured **while signed in to that organisation** — the SSO token is shared, the PHPSESSID is what carries the org. Mark the case "not available on build" until then | QA lead |
-| 3 | **TestRail rejects both API keys** (§0), so I could not re-read the 12 case bodies. The build-verify session will hit the same wall on the API — is API-key access enabled for that account, or do the other sessions use the login password? | QA lead |
+| 3 | ✅ **Resolved.** All 12 case bodies were read on 2026-09-18; §2 is built from them. TestRail authenticates with the **login password**, not an API key — both keys are rejected | — |
 | 4 | The six newer permissions cases **C55718–C55723** are covered by the other handoff, not this one. If you want the 18 in a single document, say so and I will merge them | you |
