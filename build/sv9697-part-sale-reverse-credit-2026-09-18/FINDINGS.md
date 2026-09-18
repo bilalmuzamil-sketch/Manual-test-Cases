@@ -209,12 +209,19 @@ The API agrees: on both, `reverseBlockedByCredits: true` and every credit carrie
 
 ## §4 — Regressions on the shared surfaces
 
-**Service work order, branch, S2-16654 (invoiced, no credit):** ⋮ → Reverse is **enabled** and the
-confirmation is **today's wording, unchanged**:
-> This action will re-open and undo the invoice. Are you sure you want to proceed?
+⚠️ **CORRECTION TO AN EARLIER VERSION OF THIS DOCUMENT.** It first recorded a service-work-order test
+against **S-16654 with NO credit**, found the wording unchanged, and concluded that this confirmed
+Chris's ruling. **That test did not touch the thing that changed.** The developer's checklist step 8
+asks for a service work order **WITH an unspent credit**, where the confirmation should now **name**
+the credit — new in `ac94c66342`. The no-credit test could never have shown that either way, and the
+conclusion drawn from it was not supported. It was re-run properly:
 
-That is exactly what Chris ruled: part sales only in this hotfix, service work orders keep the
-always-clickable button, and the shared dialog's no-credit wording does not change.
+**Service work order S-16654, invoiced, with an unspent credit CM-4199 ($250.00) attached** — ⋮ →
+Reverse is enabled and the confirmation reads:
+> **This action will re-open and undo the invoice. It will also cancel credit CM-4199 for $250.00. Are you sure you want to proceed?**
+
+**The confirmation names the credit — step 8 PASSES.** The earlier no-credit observation still stands
+on its own (unchanged wording when no credit is involved), but it is not evidence about this change.
 
 **Paid-invoice guard still takes precedence:** on P2-92 (paid, one open credit) Reverse is enabled and
 clicking it gives the pre-existing **"This invoice has been paid, please delete payment before
@@ -255,3 +262,58 @@ release.
 
 **(d) The 25-vs-23 count** in the developer's analysis could not be re-derived here for the same
 reason — the records are not on this branch.
+
+---
+
+## §5 — A REFUNDED credit blocks the reverse, with its own wording — **PASS** (checklist step 5)
+
+The developer flagged this as *"New in ac94c66342 and pending PO sign-off, so flag it rather than fail
+it if the wording differs"*, and his own caveat says all three blocked states were **staged directly
+in the local database** because *"none of those states occurs naturally outside production"*.
+
+**It is reachable through the UI.** Customer → Invoices → the credit row's middle icon
+(`button_cash_out_credit_<id>`) opens **Cash Out Credit** (Date · Amount, pre-filled · Payment Method ·
+Reason). Choosing **Cash** and confirming turns the credit into:
+
+```json
+{"number":"CM-4196","amountCents":1200,"status":"closed_via_refund",
+ "statusLabel":"Closed via Refund","blocksReverse":true,"autoVoidedByReverse":false}
+```
+
+and `reverseBlockedByCredits` flips to **true**. Hovering the now-disabled Reverse gives, live:
+
+> **Credit CM-4196 ($12.00) has been refunded. Reverse the refund before reversing this invoice.**
+
+**The wording matches his expectation exactly**, and it follows the same shape as the applied-credit
+tooltip — the credit named, the amount in brackets, and what to do about it.
+
+**Precedence is right too:** P-250 carried the refunded CM-4196 **and** two still-open credits
+(CM-4197 $13.00, CM-4198 $14.00). Only the refunded one blocks, and the tooltip names only it.
+
+Evidence: `ev/` → `cashout4196c_1_dialog.png`, `P250refund_1_menu.png`, `P250refund_2_tooltip.png`.
+
+⚠️ **A trap worth recording:** the Cash Out dialog fills correctly and its **Cash Out** button reports
+`disabled=false`, but a coordinate click on it posts **nothing** — no request, no toast, no change.
+Clicking the same button through its test-id (`button_confirm_dialog`) with Playwright's actionability
+click works. Two runs were lost to this before the state appeared.
+
+---
+
+## §6 — The credited line after a reverse (checklist step 10) — **half verified**
+
+**Verified:** on P-250, after the part was credited and the invoice reversed, the credited line is
+**still present on the order at quantity 0**, with its core line alongside it at quantity 1:
+
+| Line | Quantity | Status |
+|---|---|---|
+| ZZAUTOTEST ZZ9697-CORE1 | **0** | received |
+| Core for ZZAUTOTEST ZZ9697-CORE1 | 1 | received |
+
+That is exactly what the checklist predicts — *"the credited line stays visible on the order (quantity
+may be 0)"*.
+
+**NOT verified — and I am not going to imply otherwise:** the second half of that step, *"part/
+inventory quantities return to their pre-credit values after a reverse"*. The part used here was
+**vendor-sourced**, so it never entered inventory, and no pre-credit inventory snapshot was taken.
+Proving it needs an **inventory-sourced** part with a snapshot taken before the credit and re-read
+after the reverse. That is a clean, runnable test — it simply has not been run.
