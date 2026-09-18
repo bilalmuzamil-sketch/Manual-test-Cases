@@ -452,3 +452,32 @@ The thirteen handed over is unchanged — it was always 13 of the non-withdrawn 
 denominator moves.
 
 Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
+
+## v15 — published 2026-09-18 (artifact version 15)
+
+His instruction: *"Add the number of obsoluted stories and when they were marked as obsolete."*
+
+Dates read from each story's **status history** in Jira (the transition INTO `OBSOLETE`), not from
+any note in this repo:
+
+| Story | Withdrawn | Moved from | By |
+|---|---|---|---|
+| SV-9173 — quick actions on result rows | **2026-09-10** | Open | Milos Vasic |
+| SV-9167 — search telemetry | **2026-09-16** | Blocked | Sinisa Nogic |
+| SV-9169 — scope tab strip with live counts | **2026-09-16** | In Progress | Milos Vasic |
+| SV-9306 — page-search cutover | **2026-09-16** | In Progress | Sinisa Nogic |
+| SV-9310 — verification round four | **2026-09-16** | Board Backlog | Nikola Milosevic |
+
+**Five stories, four of them withdrawn on the same day (16 September) and one on 10 September** —
+which the report now says in so many words, because it changes how the reader reads the eleven
+parked checks: they were written against work that was in scope until a week ago, not against
+something long dead.
+
+Placed in four spots: the board tile (*Four on 16 Sep 2026, one on 10 Sep — not counted in the 21*),
+the handover strip's fourth stage, the bottom-line sub-paragraph, and the *Marked obsolete* section,
+where **each story now carries its own withdrawal date as its chip** instead of the word "Obsolete".
+
+Two of the five were withdrawn **out of In Progress** — work had already started on them. Not called
+out in the report, recorded here.
+
+Artifact: https://claude.ai/artifact/25r8mu1rsGXa5TF5xviz3B
