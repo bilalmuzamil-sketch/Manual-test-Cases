@@ -4740,17 +4740,42 @@ it posts **`POST /api/work-orders/part/make-return-request`**. ⚠️ Scope the 
 ids — a loose `/quantity/` match grabs the row's own `input_quantity_<id>` behind the dialog, and a
 loose `/save|confirm/` match grabs `button_save_vehicle` in the header.
 
+### AE.4 — Crediting a core return: the core is credited WITH its parent part, never on its own
+
+Reached from **Parts → Returns → tick a row → Receive Credit**, which opens
+`/parts/confirm-return?ids=<returnId>` ("Process Return").
+
+⚠️ **WHICH ROW YOU TICK CHANGES WHAT YOU CAN DO — measured on `sv9610`, 2026-09-18:**
+* Tick the **`Core for …` row on its own** → the screen shows **one** item and its
+  `input_received_quantity_0` is **`disabled: true`**, pre-filled at the full outstanding quantity.
+  **A core return cannot be part-credited by itself**; the only thing you can post is all of it.
+* Tick the **parent part's row** → the screen shows **two** items:
+  `input_received_quantity_0` = the part, **editable**, and `input_received_quantity_1` = its core,
+  **`disabled: true`** and mirroring the part. So the **instalment quantity is typed on the part row
+  and the core follows it** — the same parent-follows rule as the receive screen in AE.3.
+
+**Do not read "disabled" as a defect.** It is the product's rule that a core moves with its part.
+A script that types into `input_received_quantity_0` after ticking a lone core row will report the
+field reading back unchanged — that is the lock, not a failed keystroke.
+
+**Two entry gotchas on that quantity box:**
+1. It holds a **2-decimal formatted value** (`"3.00"`), so an exact string compare of the read-back
+   against `"1"` fails **even when the typing worked** — compare with `parseFloat`.
+2. Playwright's `fill()` **times out after 30 s** on the disabled variant rather than erroring
+   immediately — read `.disabled` first and skip, exactly as on the receive screen.
+
+**Endpoints:** returns list `GET /api/work-orders/part/list-return-requests` (**GET only — a POST
+answers 405**; the row's `quantity` is the **outstanding** amount and drops as credits are posted) ·
+credits list `GET /api/inventory/returns` · posting a credit `POST /api/inventory/returns/create`.
+**Process Return controls:** `button_confirm_return_vendor` · `select_vendor` ·
+`input_packaging_slip` · `input_credit_memo_number` · `input_received_quantity_<n>` ·
+`input_return_note` · `button_post_credit`. The **Credits** tab is `tab_credits`; a row's ⋮ is
+`button_manual_return_actions_<id>`; the list checkbox is `return_request_checkbox_<id>`.
+
 **The purchase-order receive screen:** `select_assign_vendor_<orderId>` ·
 `input_invoice_<orderId>` · `date_input_invoice_date_<orderId>` · `checkbox_select_all_<orderId>` ·
 `checkbox_item_<orderItemId>` · `input_qty_<orderItemId>` · `button_receive_po_<orderId>`; it posts
 `POST /api/orders/receive-requested-parts` and the toast reads **"Received Parts"**.
-
-**Endpoints seen:** returns list `GET /api/work-orders/part/list-return-requests` (the row's
-`quantity` is the **outstanding** amount, and it drops as credits are posted); credits list
-`GET /api/inventory/returns`; posting a credit `POST /api/inventory/returns/create` with
-`{vendor_id, credit_memo_number, items:[…]}` from **Parts → Returns → tick a row → Receive Credit**,
-which opens `/parts/confirm-return?ids=<returnId>` ("Process Return"): `input_credit_memo_number`,
-`input_received_quantity_0` (**the instalment**), `button_post_credit`.
 
 **ALWAYS READ THE ACCEPTED-QUANTITY FIELD BACK BEFORE POSTING.** On SV-9610 a run that looked like the
 bug surviving was my own input not landing: the credit posted **$160.44** (the whole 2 units) instead
