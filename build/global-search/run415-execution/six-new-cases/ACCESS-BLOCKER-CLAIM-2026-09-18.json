@@ -1,0 +1,33 @@
+{
+ "claim": "sv9160 cannot be signed in to by this session: the DEV MODE quick-login panel is gone and the branch now authenticates through Google, which serves a CAPTCHA",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The same browser + bridge loaded Google's own sign-in page (HTTP 200, title text read) and the API answered structured JSON, so the instrument reaches the branch. The identical harness signed in successfully on this branch last night 2026-09-17 20:00-21:00 (run-415 probes, e.g. /tmp/gs/c55711ui.mjs output)."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Opened https://sv9160.qa.shopview.com/login in Playwright: body reads 'Sign in with Google / Sign in to continue to ShopView'. No DEV MODE Admin/Tech buttons anywhere on the page (/tmp/gs/login-now.png)."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Three attempts: qa-branch-boot waited 30s for the Admin button and stopped; a second boot after restarting the bridge behaved identically; a third attempt drove the Google form and reached a CAPTCHA (/tmp/gs/sso-now.png)."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "The app host redirects to accounts.google.com/v3/signin/identifier?app_domain=https://auth.qa.shopview.com - the URL change was read back, so the page is not merely blank."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Bridge restarted and verified: ensure_bridge.sh reported 'bridge: OK -- BRIDGE_PORT=43059'. Cookie profile /tmp/qa/cookies.json rebuilt from /tmp/qa-cookies/sv9160-sso.txt before testing; seeding/status.py read the build marker (v26.36.7-29ca209, unchanged) and then reported the session 401."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "Rule 97: grepped build/APP-ACTIONS-PLAYBOOK.md and build/skills/14-ACCESS-RESILIENCE.md for 'quick-login' and 'Google'. Playbook lines 231-237 record the root cause verbatim: the app authenticates via Google SSO (OIDC via auth.<env>.shopview.com), a quick-login from a fresh jar redirects to the real Google page, there is no Google-SSO automation in this workspace, so cookies are mintable ONLY by the QA lead. Also checked ls build/BLOCKED-*.md and build/ENVIRONMENT-CREDENTIALS.md section 2 (QA branches: cookie entry, no password)."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely my fault in two ways: (1) a dead bridge - ruled out by restarting it and watching Google's page load through it; (2) a stale cookie used against a live branch - ruled out by attempting a fresh quick-login, which is itself refused with HTTP 401 {\"error\":\"sso_required\"} on GET /api/quick-login/users, POST /api/quick-login and GET /api/api/sso/check. A third possibility, wrong host, is ruled out because the API host answered JSON rather than the SPA shell."
+  }
+ }
+}
