@@ -4070,9 +4070,10 @@ deliver the 7-tab management report.
     **(6) HUMAN VOICE / NO AI FINGERPRINT — scan the reader-facing TEXT nodes** for AI self-reference,
     model names, attribution footers, and machine tics (Rule 65); a match inside an image URL path (a
     branch name) is not reader-facing and is fine.
-    **(7) FORMAT — first line is the verdict, the table/checks are complete, images are captioned,
-    technical detail is last** (the Jira comment-format convention); priority Medium on any ticket
-    created/edited (the priority rule).
+    **(7) FORMAT — first line is the verdict, the table/checks are complete, images are captioned, and
+    there is NO "Technical details for developers" section unless the QA lead approved one for this
+    ticket (Rule 84 — check the section is absent)**; priority Medium on any ticket created/edited
+    (the priority rule).
     **(8) READ IT BACK AFTER POSTING** — re-fetch the posted comment/ticket and verify the first line,
     the media count AND order, and the row counts against what was sent (the write response only echoes
     the request). A wrong post is corrected **in place** via `commentId`, never stacked (the one-complete-
@@ -4590,6 +4591,45 @@ deliver the 7-tab management report.
     reported flow), 67 (a ticket must be reproducible by a non-technical reader — this rule is its
     QA-comment twin) and 77 (the ticket-QA operating procedure).
 
+84. **NO "TECHNICAL DETAILS FOR DEVELOPERS" SECTION BY DEFAULT — AND ASK, EVERY TICKET, WHETHER HE
+    WANTS ONE (all projects).**
+    USER DIRECTIVE (2026-09-18, verbatim): *"Stop posting technical details for developers BUT always
+    and ALWAYS ask me if for any ticket I want to post similar technical details."*
+    **THE RULE:** a Jira QA comment **ends with the reader-facing content** — the verdict line, the
+    plain summary, the exhibits, the what-was-checked table, the failure reproduction (Rule 83), and
+    what could not be tested. **The "Technical details for developers" block is NOT posted.** No build
+    markers section, no endpoint list, no raw responses, no object ids, no payload dumps, no harness
+    notes — unless the QA lead says yes for that specific ticket.
+    **ASK EVERY TIME, PER TICKET, BEFORE POSTING.** One plain sentence: *"Do you want a technical
+    details section on this one?"* — with a one-line summary of what it would contain, so he can decide
+    without opening anything. **A yes on one ticket is NEVER a yes on the next** (the same shape as
+    Rule 51's API-ticket ask): ask again, every ticket, every time. Silence is not consent — if he has
+    not answered, the comment goes out **without** the section, and it can always be added afterwards
+    by updating the comment in place.
+    **NOTHING IS LOST — IT MOVES, IT IS NOT DROPPED.** Every fact that used to live in that section
+    still goes into the **findings doc** in `build/<ticket>/FINDINGS.md`, committed and pushed as usual
+    (Rule 29): build markers, endpoints and statuses, object ids, test data, disclosed fault injection
+    (Rule/playbook §Y), harness notes. **This rule changes WHERE the technical record lives, never
+    WHETHER it is kept**, and it never licenses testing or verifying less (Rules 12/50 stand).
+    **WHAT STAYS IN THE COMMENT REGARDLESS**, because they are reader-facing and load-bearing:
+    **(a)** the **environment and build marker** named in the opening sentence (*"tested on
+    <branch> (build <marker>) on <date>"*) — that is provenance, not developer detail;
+    **(b)** the **reproduction steps for a failure** (Rule 83) — they are for a person to follow, not
+    internals; **(c)** the **disclosure that a fault was deliberately induced**, in plain words, where
+    one was (playbook §Y) — a reader must never mistake an induced error for a real one; **(d)** the
+    **honest limits** section.
+    **RATIONALE, 2026-09-18:** the comments on SV-9013 and SV-9565 each carried a long technical block
+    below the rule. These tickets are read by **non-technical people at the highest positions**
+    (Rule 73), and a wall of endpoints and payload fields after the evidence makes the verdict look
+    like engineering chatter rather than a QA result — and it is the part of the comment none of those
+    readers needs. The developer gets what he needs from the reproduction steps and the exhibits; where
+    he genuinely needs more, the QA lead can call for it per ticket. Ties to Standing Rules 7 (plain
+    layman wording), 29 (the findings doc is the durable record and it is committed), 36 (an unanswered
+    ask is an OUTSTANDING item), 51 (ask again every time, a batch yes is not a standing yes), 55 (the
+    reader is non-technical), 63, 64/73 (the exhibits carry the evidence), 65 (human voice), 72 (the
+    pre-post gate now also checks the section is absent unless he approved it), 77 step 9(h) (**this
+    rule supersedes its "technical details last" clause**) and 83 (the failure half keeps its steps).
+
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -4890,9 +4930,13 @@ regression / bug-fix re-testing.
   Powertools test plan is the checklist to mirror when one exists, so ASK FOR IT before testing.
   Add a final row for any known/out-of-scope issue reproduced, marked as such. **(3) INLINE IMAGES AS
   EVIDENCE — MANDATORY**, captioned one per check, proving the test was really run on the build.
-  **(4) THEN A LINE BREAK (`rule` node) AND "Technical details for developers" LAST** — build marker,
-  raw API responses, endpoints exercised, object ids, quantified findings, test data, and any false
-  alarms of our own. **HOW TO GET IMAGES IN (proven 2026-08-05):** the Atlassian MCP has **no
+  **(4) ⚠️ NO "Technical details for developers" SECTION — SUPERSEDED 2026-09-18 BY STANDING RULE 84.**
+  The comment now **ends with the reader-facing content**; build markers, raw API responses, endpoints,
+  object ids and test data live in the findings doc instead, and the section is posted **only when the
+  QA lead says yes for that specific ticket — which must be ASKED, every ticket, every time**. The
+  environment + build marker still appear in the opening sentence, the failure reproduction still
+  appears in full (Rule 83), and any deliberately induced fault is still disclosed in plain words.
+  **HOW TO GET IMAGES IN (proven 2026-08-05):** the Atlassian MCP has **no
   attachment upload**, so commit the screenshots to this repo and embed them as **ADF external
   media** — `contentFormat:"adf"` with
   `{"type":"mediaSingle","attrs":{"layout":"full-width"},"content":[{"type":"media","attrs":{"type":"external","url":"https://raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>.png"}}]}`.
