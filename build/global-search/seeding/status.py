@@ -91,7 +91,7 @@ UNIVERSES = [
      ('P2-58',                 'part_sales', 'P2-58'),
   ], 'seed-manifest-gs-v2.json', 'verify_gsv2.py'),
 
- ('Ranking + fuzzy remainder  (6726 / 6725, 39 records)', [
+ ('Ranking + fuzzy + algorithm  (6726 / 6725, 89 records)', [
      ('ZZPREFIX',      'customers', 'ZZPREFIX Freight'),
      ('ZZCUSTOPEN',    'customers', 'Haulage Open'),
      ('ZZASSETLIFT',   'assets',    'ZZASSETLIFT000001'),
@@ -104,6 +104,16 @@ UNIVERSES = [
      ('I9160-1398',    'purchase_orders', 'I9160-1398'),
      ('ZZOPENCOUNT',   'customers', 'Freight Busy'),
      ('ZZNAMEBONUS',   'customers', 'ZZNAMEBONUS Cartage'),
+     ('ZZACC',         'customers', 'Mart'),          # C55726 accents
+     ('ZZPUNC',        'customers', 'Brien'),         # C55727 apostrophe / hyphen
+     # 🔴 a part ROW carries its NAME, not its part number - probing for the number reported a
+     # record as missing that search was returning perfectly well.
+     ('ZZPHON',        'parts',     'ZZPHON Alternator'),     # C55728 phonetic, names-only
+     # 🔴 PROBE THE NARROW TERM, NEVER THE BROAD ONE. C55730 REQUIRES this target to fall below
+     # the 20-row group cap on the broad 'ZZBROAD' query - so a broad probe reports the case's own
+     # PASS condition as a missing record. It did, and sent a status run red on healthy data.
+     ('ZZBROAD Target', 'parts',    'ZZBROAD Target Widget'), # C55730 the low-ranked target
+     ('S2-15430 Holdings', 'customers', 'Holdings'),  # C55729 the competing name match
   ], 'seed-manifest-ranking.json', 'verify_ranking.py'),
 ]
 
@@ -124,7 +134,12 @@ def main():
     print(f"\n build marker : {m or 'UNREADABLE'}")
     if last and m and last != m:
         print(f" {R}🔴 THE BRANCH WAS REDEPLOYED since this was last run ({last} → {m}).{X}")
-        print(f"    Seeded records do not survive a redeploy. Expect losses below.")
+        # 🔴 NOT every redeploy wipes the data. One on 2026-09-16 took 32 of 33 records; one on
+        # 2026-09-18 took none at all. Saying "expect losses" as fact was an overstatement, and a
+        # tool that overstates gets ignored on the day it is right - so this now says what is
+        # actually true and points at the evidence immediately below.
+        print(f"    A redeploy MAY wipe seeded records - one has taken 32 of 33, another took none.")
+        print(f"    Do not assume either way: the per-universe result below is the answer.")
     elif last and m == last:
         print(f" {G}   unchanged since the last status run — a redeploy has not wiped anything{X}")
 

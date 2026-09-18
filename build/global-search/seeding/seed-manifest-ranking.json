@@ -97,13 +97,13 @@
     "list": "/api/customers",
     "coll": "collection",
     "field": "name",
-    "value": "ZZPREFOX Cartage",
+    "value": "ZZPREFIY Cartage",
     "control": "4 Star Truck Repair"
    },
    "create": {
     "endpoint": "/api/customers/create",
     "payload": {
-     "name": "ZZPREFOX Cartage",
+     "name": "ZZPREFIY Cartage",
      "address": "1 Ranking Way",
      "city": "Fernvale",
      "state_or_province": "Ohio",
@@ -124,7 +124,7 @@
     "endpoint": "/api/customers/change",
     "whole_record": true
    },
-   "_why": "FUZZY: one edit from the keyword (I->O), reachable only by fuzzy matching. Must rank LAST. \ud83d\udd34 It was ZZPREFIXX, which is the keyword PLUS a letter - so it STARTS with the keyword, prefix-matched, and ranked FIRST, inverting the very order the case asserts. A typo record must be one edit away AND not a prefix of, or prefixed by, the keyword."
+   "_why": "FUZZY: one edit from the keyword (X->Y), reachable only by fuzzy matching. Must rank LAST. \ud83d\udd34 It was ZZPREFIXX, which is the keyword PLUS a letter - so it STARTS with the keyword, prefix-matched, and ranked FIRST, inverting the very order the case asserts. A typo record must be one edit away AND not a prefix of, or prefixed by, the keyword."
   },
   {
    "key": "rank_c_open",
@@ -1575,6 +1575,2506 @@
     "whole_record": true
    },
    "_why": "Matched ONLY on a secondary field: the keyword is in its ADDRESS and nowhere in its name. If this outranks the name match the primary-name bonus is not being applied."
+  },
+  {
+   "key": "acc_jose",
+   "type": "Customer",
+   "serves": [
+    55726
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZACC Jos\u00e9 Mart\u00ednez",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZACC Jos\u00e9 Mart\u00ednez",
+     "address": "1 Ranking Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "phone": "(264) 400-0000",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "Accents on the e and the i. BOTH the plain and the accented spelling must find this one row - so there must be exactly ONE record carrying the token, or \"both find the same customer\" cannot be read off the result."
+  },
+  {
+   "key": "punc_obrien",
+   "type": "Customer",
+   "serves": [
+    55727
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZPUNC O'Brien Haulage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZPUNC O'Brien Haulage",
+     "address": "1 Ranking Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "phone": "(264) 400-0000",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "APOSTROPHE. Must be found by ZZPUNC OBrien and by the punctuated form."
+  },
+  {
+   "key": "punc_smith",
+   "type": "Customer",
+   "serves": [
+    55727
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZPUNC Smith-Jones Motors",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZPUNC Smith-Jones Motors",
+     "address": "1 Ranking Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "phone": "(264) 400-0000",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "HYPHEN. Must be found by ZZPUNC Smith Jones and by the punctuated form. Two records, one keyword, because the case asks for both punctuation kinds."
+  },
+  {
+   "key": "phon_part",
+   "type": "CataloguePart",
+   "serves": [
+    55728
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZPHON-3001",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZPHON Alternator Assembly",
+     "part_number": "ZZPHON-3001",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "The part whose DESCRIPTION carries the word. A sound-alike of \"Alternator\" must NOT return it."
+  },
+  {
+   "key": "phon_part_inv",
+   "type": "InventoryPart",
+   "depends_on": "phon_part",
+   "serves": [
+    55728
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZPHON-3001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 8,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZPHON-3001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 8
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "THE STOCK ROW. Without it the catalogue part is invisible to search - so the case would have read as \"the part is correctly not returned\" when the part was never findable at all, which is a pass for entirely the wrong reason."
+  },
+  {
+   "key": "phon_customer",
+   "type": "Customer",
+   "serves": [
+    55728
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZPHON Alternator Co",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZPHON Alternator Co",
+     "address": "1 Ranking Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "phone": "(264) 400-0000",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "THE CONTROL, and the case cannot be read without it: a NAME must still sound-alike match. If neither row comes back the sound-alike was simply wrong, not proof of names-only behaviour."
+  },
+  {
+   "key": "pin_rival",
+   "type": "Customer",
+   "serves": [
+    55729
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "S2-15430 Holdings",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "S2-15430 Holdings",
+     "address": "1 Ranking Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "phone": "(264) 400-0000",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "Its NAME BEGINS with a real work-order number, so typing that number produces the strongest possible competing name match - and the case asserts the pinned exact-ID row still wins.\n   \ud83d\udd34 S2-15430 is PRE-EXISTING ESTATE DATA, deliberately: it survived the redeploy that wiped every seeded record, and it OPENS as the tester (both re-proved 2026-09-17). Naming this after one of OUR work orders would bake in a number the next redeploy changes - the stale-identifier trap this project already paid for once."
+  },
+  {
+   "key": "broad_01",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4001",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 01",
+     "part_number": "ZZBROAD-4001",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_02",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4002",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 02",
+     "part_number": "ZZBROAD-4002",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_03",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4003",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 03",
+     "part_number": "ZZBROAD-4003",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_04",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4004",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 04",
+     "part_number": "ZZBROAD-4004",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_05",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4005",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 05",
+     "part_number": "ZZBROAD-4005",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_06",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4006",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 06",
+     "part_number": "ZZBROAD-4006",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_07",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4007",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 07",
+     "part_number": "ZZBROAD-4007",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_08",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4008",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 08",
+     "part_number": "ZZBROAD-4008",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_09",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4009",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 09",
+     "part_number": "ZZBROAD-4009",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_10",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4010",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 10",
+     "part_number": "ZZBROAD-4010",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_11",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4011",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 11",
+     "part_number": "ZZBROAD-4011",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_12",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4012",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 12",
+     "part_number": "ZZBROAD-4012",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_13",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4013",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 13",
+     "part_number": "ZZBROAD-4013",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_14",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4014",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 14",
+     "part_number": "ZZBROAD-4014",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_15",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4015",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 15",
+     "part_number": "ZZBROAD-4015",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_16",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4016",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 16",
+     "part_number": "ZZBROAD-4016",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_17",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4017",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 17",
+     "part_number": "ZZBROAD-4017",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_18",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4018",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 18",
+     "part_number": "ZZBROAD-4018",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_19",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4019",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 19",
+     "part_number": "ZZBROAD-4019",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_20",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4020",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 20",
+     "part_number": "ZZBROAD-4020",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_21",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4021",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 21",
+     "part_number": "ZZBROAD-4021",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "Filler. Stocked and therefore ranked ABOVE the out-of-stock target, which is what pushes the target past the 20-row cap."
+  },
+  {
+   "key": "broad_target",
+   "type": "CataloguePart",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4999",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Target Widget",
+     "part_number": "ZZBROAD-4999",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "THE TARGET. Left OUT OF STOCK and with no activity so it ranks low and falls outside the top 20 on the broad query. The narrow query \"ZZBROAD Target\" must then surface it - which is the half of the case that proves the record was reachable all along, just not shown."
+  },
+  {
+   "key": "broad_01_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_01",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_02_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_02",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4002",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4002",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_03_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_03",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4003",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4003",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_04_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_04",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4004",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4004",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_05_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_05",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4005",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4005",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_06_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_06",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4006",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4006",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_07_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_07",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4007",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4007",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_08_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_08",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4008",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4008",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_09_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_09",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4009",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4009",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_10_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_10",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4010",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4010",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_11_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_11",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4011",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4011",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_12_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_12",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4012",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4012",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_13_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_13",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4013",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4013",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_14_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_14",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4014",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4014",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_15_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_15",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4015",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4015",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_16_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_16",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4016",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4016",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_17_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_17",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4017",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4017",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_18_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_18",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4018",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4018",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_19_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_19",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4019",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4019",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_20_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_20",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4020",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4020",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_21_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_21",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4021",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4021",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "In stock, so it outranks the target."
+  },
+  {
+   "key": "broad_target_inv",
+   "type": "InventoryPart",
+   "depends_on": "broad_target",
+   "serves": [
+    55730
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4999",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 0,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4999",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 0
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ],
+   "_why": "ZERO on hand - the signal that keeps the target below the fillers. It must still EXIST, or the narrowed query has nothing to surface and the case reads as a pass for the wrong reason."
   }
  ]
 }

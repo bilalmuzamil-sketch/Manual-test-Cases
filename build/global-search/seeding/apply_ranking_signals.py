@@ -67,17 +67,59 @@ def signal_open_work_orders():
     todo = [(k, w) for k in keys for w in (ids.get(k) or [])]
     if not todo: return '🔴 no seeded work orders found in the ids file'
     if not CONFIRM: return f'   would force {len(todo)} work order(s) to in_progress'
-    fixed = skipped = failed = 0
-    for k, w in todo:
-        st, d = call(f'/api/work-orders/view/{w}')
-        cur = ((d or {}).get('data') or {}).get('work_order', {}).get('status') if st == 200 else None
-        if str(cur).lower().replace(' ', '_') == 'in_progress':
-            skipped += 1; continue
-        st2, _ = call('/api/work-orders/change-status', 'POST', {'id': w, 'status': 'in_progress'})
-        if st2 in (200, 201): fixed += 1
-        else: failed += 1
-    return (f"✅ {fixed} set to in_progress, {skipped} already there"
-            + (f", {R_}{failed} FAILED{X_}" if failed else ""))
+    # 🔴 A TERMINAL WORK ORDER CANNOT BE REOPENED, SO IT MUST BE REPLACED.
+    # Measured 2026-09-18: all five of C55722's "busy" work orders were found at Complete, and
+    # change-status answers 400 "Complete work order cannot change its status again." Something on
+    # this shared branch drove them there - the same way C55709's was found at Paid. Whatever the
+    # cause, retrying the status change forever cannot fix it, and leaving it means the customer
+    # with FIVE open jobs has ZERO and the case ranks backwards.
+    # So: count what is genuinely open, and CREATE the shortfall.
+    TERMINAL = {'complete', 'completed', 'invoiced', 'paid', 'closed', 'cancelled', 'canceled'}
+    WANT = {'wo_cnt_busy': 5, 'wo_cnt_quiet': 1, 'wo_custopen': 1, 'wo_assetlift': 1}
+    PARENT = {'wo_cnt_busy':   ('cnt_busy', 'cnt_busy_vehicle', 'cnt_busy_contact'),
+              'wo_cnt_quiet':  ('cnt_quiet', 'cnt_quiet_vehicle', 'cnt_quiet_contact'),
+              'wo_custopen':   ('rank_c_open', 'rank_c_open_vehicle', 'rank_c_open_contact'),
+              'wo_assetlift':  ('rank_owner', 'rank_v_open', 'rank_owner_contact')}
+    state = {}
+    sp = os.path.join(HERE, 'seed-state-live-ranking-qa.json')
+    if os.path.exists(sp):
+        try:
+            raw = json.load(open(sp))
+            for r in (raw.get('records') or []):
+                if isinstance(r, dict) and r.get('key') and r.get('ids'): state[r['key']] = r['ids'][0]
+        except Exception: pass
+    fixed = skipped = created = stuck = 0
+    for k in keys:
+        live = list(ids.get(k) or [])
+        open_now = []
+        for w in live:
+            st, d = call(f'/api/work-orders/view/{w}')
+            cur = str(((d or {}).get('data') or {}).get('work_order', {}).get('status') or '').lower()
+            if cur in TERMINAL:
+                stuck += 1; continue
+            if cur.replace(' ', '_') == 'in_progress':
+                skipped += 1; open_now.append(w); continue
+            st2, _ = call('/api/work-orders/change-status', 'POST', {'id': w, 'status': 'in_progress'})
+            if st2 in (200, 201): fixed += 1; open_now.append(w)
+        need = WANT.get(k, 0) - len(open_now)
+        if need > 0 and k in PARENT:
+            comp, veh, con = PARENT[k]
+            for _ in range(need):
+                body = {'is_vehicle_here': False, 'company_id': state.get(comp),
+                        'vehicle_id': state.get(veh), 'customer_id': state.get(con)}
+                if not all([body['company_id'], body['vehicle_id'], body['customer_id']]):
+                    break
+                st3, d3 = call('/api/work-orders/create', 'POST', body)
+                nid = ((d3 or {}).get('data') or {}).get('work_order_id') if st3 in (200, 201) else None
+                if not nid: break
+                call('/api/work-orders/change-status', 'POST', {'id': nid, 'status': 'in_progress'})
+                open_now.append(nid); created += 1
+        ids[k] = open_now
+    json.dump(ids, open(ids_path, 'w'), indent=1)
+    return (f"✅ {skipped} already open, {fixed} reopened, {created} CREATED to replace "
+            f"{stuck} that were terminal and cannot be reopened"
+            + (f"  {R_}(still short - check the log){X_}"
+               if any(len(ids.get(k) or []) < WANT.get(k, 0) for k in keys) else ""))
 
 def signal_vendor_po():
     """C55710 — the OPEN purchase order that lifts one vendor above its twin."""
@@ -125,6 +167,45 @@ def signal_tiebreak():
     return (f"✅ Transport Two re-saved ({st}) — it is now the most recently updated of the pair"
             if st in (200, 201) else f"🔴 customers/change {st} {str(d)[:140]}")
 
+def signal_phonetic_probe():
+    """C55728 — FIND a sound-alike that works, rather than guessing one into the case.
+
+    The case says "a word that merely SOUNDS LIKE the description word but is not a close
+    spelling". Which strings this build treats as phonetically equal is a property of the build,
+    not something a document can assert, so this tries candidates and reports what actually
+    happens.
+
+    🔴 THE CONTROL IS THE WHOLE TEST. The assertion is a NEGATIVE - the PART must not come back -
+    and a negative is worthless without proof the probe works: if the customer control does not
+    come back either, the sound-alike is simply a word that matches nothing, and a tester would
+    record a pass for entirely the wrong reason.
+    """
+    CANDIDATES = ['Olternaytor', 'Awlternater', 'Alturnaytor', 'Ulternator']
+    rows = []
+    for cand in CANDIDATES:
+        st, d = call('/api/search?q=' + urllib.parse.quote(cand))
+        if st != 200: rows.append((cand, 'ERR', 'ERR')); continue
+        g = {x['type']: (x.get('items') or []) for x in ((d.get('data') or {}).get('groups') or [])}
+        cust = any('ZZPHON' in json.dumps(i) for i in g.get('customers', []))
+        part = any('ZZPHON' in json.dumps(i) for i in g.get('parts', []))
+        rows.append((cand, 'YES' if cust else 'no', 'YES' if part else 'no'))
+    out = ['', '   candidate      name(control)  part(must be no)']
+    good = None
+    for c, cu, pa in rows:
+        flag = ''
+        if cu == 'YES' and pa == 'no':
+            flag = '  <-- USE THIS: the control matches, the part does not'
+            good = good or c
+        elif cu == 'no' and pa == 'no':
+            flag = '  (matches nothing - proves nothing)'
+        elif pa == 'YES':
+            flag = '  🔴 the PART matched - that is the case FAILING, report it'
+        out.append(f'   {c:14} {cu:14} {pa}{flag}')
+    if not good:
+        out.append('   🔴 no candidate matched the NAME control. Do NOT hand C55728 over on this -')
+        out.append('      a miss on the part would be unreadable. Try more candidates first.')
+    return '\n'.join(out)
+
 if __name__ == '__main__':
     if not CONFIRM:
         print('DRY RUN — pass --confirm to apply\n')
@@ -132,4 +213,5 @@ if __name__ == '__main__':
     print('C55710  vendor open purchase order :', signal_vendor_po())
     print('C55712  part recent activity       :', signal_part_activity())
     print('C55716  tie-break, updated last    :', signal_tiebreak())
+    print('C55728  phonetic sound-alike probe :', signal_phonetic_probe())
     print('\n🔴 Now prove it: python3 verify_ranking.py')
