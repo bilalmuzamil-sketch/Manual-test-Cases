@@ -299,7 +299,7 @@ click works. Two runs were lost to this before the state appeared.
 
 ---
 
-## §6 — The credited line after a reverse (checklist step 10) — **half verified**
+## §6 — The credited line after a reverse (checklist step 10) — **half verified at the time; the other half is now done in §10**
 
 **Verified:** on P-250, after the part was credited and the invoice reversed, the credited line is
 **still present on the order at quantity 0**, with its core line alongside it at quantity 1:
@@ -489,3 +489,58 @@ verbatim above. **It has not been seen on screen, and this section does not clai
 
 **What would unblock it:** either the portal application fixed on this environment plus a
 customer-portal login, or one QA invoice with a portal payment against it.
+
+---
+
+## §10 — Checklist step 10, second half: inventory returns to its pre-credit value — **PASS**
+
+§6 proved the credited line stays on the order. It could not prove the other half — *"part/inventory
+quantities return to their pre-credit values after a reverse"* — because P-250's part was
+vendor-sourced and never entered stock. A clean inventory run was built for it.
+
+**The part sale (all of it driven on screen except the two setup calls noted):**
+
+1. Parts → Part Sales → **New Part Sale** → customer *Mayfield Heights Truck Centre* →
+   **P9697-253** (`31e8f1de-6080-4db8-a0bb-0c3911195cc0`).
+2. **Add Part** → part number `MD668D` (*ATF Bulk- Mobil Delvac 1 ATF 668*), Source **Inventory**,
+   bin quantity **2**, sell $16.82. Row lands as **Quoted**; Parts total $33.64.
+3. **Authorize** → the row becomes **In Stock** and grows a **Pick** action.
+4. **Pick** → `POST 201 /api/work-orders/part/perform-request-status-action`; row becomes
+   **Received**.
+5. Complete + invoice (setup, via the API).
+6. ⋮ → **Issue Credit**, *Parts are being returned* ticked, the MD668D row selected, Qty To Credit 2
+   → **CM-4200, $35.32** ($33.64 + $1.68 tax).
+7. ⋮ → **Reverse** — enabled, confirmation reads *"This action will re-open and undo the invoice. It
+   will also cancel credit CM-4200 for $35.32…"* → Reverse.
+
+**The inventory numbers, read live at every stage from `GET /api/inventory/parts?search=MD668D`:**
+
+| Stage | MD668D on hand |
+|---|---|
+| Before anything | 280 |
+| After the part was added (still Quoted) | 280 — *a quoted request does not take stock* |
+| **After Pick — the pre-credit value** | **278** |
+| After invoicing | 278 |
+| After the credit (2 returned to stock) | 280 |
+| **After the reverse** | **278 — back to the pre-credit value exactly** |
+
+**And the line is still there.** After the reverse the part row still reads
+`MD668D · Inventory · Received` with its quantity cleared, and its row actions are back. Same shape
+as P-250 in §6.
+
+`CM-4200` came back **voided**, as the confirmation promised.
+
+**Step 10 is now verified in full** — the line half in §6, the inventory half here.
+
+Evidence: `ev/step10c_1.png`, `ev/step10c_2.png`, `ev/step10_rev_3_dialog.png`,
+`ev/step10_after_credit.png`, `ev/step10_after_reverse.png`, `ev/pick1_after.png`.
+
+**Two things worth keeping (both cost time):**
+
+* **An inventory part on a part sale is not picked by adding it.** It has to be **Authorized**
+  first, which turns the row into *In Stock* with a **Pick** action; only the Pick moves stock. An
+  earlier attempt invoiced without that step, and stock never moved — which is why §6 was left half
+  done rather than wrong.
+* **The Issue Credit part checkbox does not respond to a click.** Neither a coordinate click nor
+  Playwright's own click changes `aria-checked`. **Focus it and press Space** — then the row's
+  *Qty To Credit* field appears pre-filled and the totals update.
