@@ -780,7 +780,7 @@ narrative is.
 | 5 | **Expected behaviour** | Short plain bullets. What should happen. Non-technical. |
 | 6 | **Environment** | **Second-to-last, a blank line above and a blank line below (2026-09-16).** Both places as clickable links — the version people use today and the new version on the test branch · build · signed in as · date · **the record used, with its FULL clickable link** so he can open it himself. |
 | 7 | **Sources** | The document name, its page id, the date read, **a clickable link**, then each requirement quoted **verbatim** in its own quote block **labelled with its id** (S1-N1, S4-E1 …) so anyone can navigate straight to it. |
-| 8 | **Test cases** | The run and its link, then each case id with its link (Rule 8 as amended 2026-09-10). |
+| ~~8~~ | ~~**Test cases**~~ | ⛔ **REMOVED BY HIM 2026-09-16/17 — there is no eighth heading. No case ids and no run links in a Jira description; the ticket number goes onto the case in the run instead (Rule 113). The layout ENDS AT SOURCES.** Kept struck through so nobody re-adds it. |
 
 ⛔ **SUPERSEDED, kept dated (1):** an earlier version of this table on 2026-09-10 put *The problem*
 first and *Current/Expected behaviour* immediately after it, before the steps. He reordered it the
@@ -788,6 +788,90 @@ same day — the two behaviour sections go AFTER the screenshots. That part stil
 ⛔ **SUPERSEDED, kept dated (2):** *"Environment — First, so the reader knows what they are looking at
 before anything else."* (2026-09-10). **Replaced 2026-09-16: Environment is second-to-last, just above
 Sources.** Use the order above.
+
+## 🛑 THE EXAMPLE-BLOCK SHAPE, AND THE SIX THINGS A SIMPLIFICATION MAY NEVER REMOVE (2026-09-18)
+
+**Where he took one of my tickets (SV-10238) through ChatGPT, kept the shape and told me to learn
+it — then sent the written guide, `build/skills/inputs/SHOPVIEW-JIRA-TICKET-GUIDE-2026-09-18.md`,
+reconciled in `build/skills/inputs/GUIDE-RECONCILIATION-2026-09-18.md`.**
+
+### The shape — ADOPT
+
+**Where one fault shows on more than one kind of record, write ONE NAMED EXAMPLE PER RECORD TYPE,
+each under its own `h3.`, each three to five steps, each with its own picture directly beneath it.**
+
+```
+h3. Example 1 - Asset
+# Search {{ZZT-4471}}.
+#* One vehicle is returned, and its row reads *2019 Freightliner Cascadia*.
+# Search {{2019 Freightliner}}.
+#* The vehicle is not returned and *Assets shows (0)*.
+
+!PIC1-vehicle.png|width=760,height=543!
+```
+
+Then a **summary table** — record · what works · what fails — so the pattern is visible without
+re-reading the steps. **A reader who stops after Example 1 must still have the whole point.**
+
+### The six things a simplification may never remove
+
+1. **The one sentence a reader remembers**, in the Description — e.g. *"a record cannot be found by
+   the words the product itself prints for it."*
+2. **The control that pins the diagnosis** — the neighbouring case that DOES work, so the fix lands
+   in the right layer. Without it a developer reasonably fixes the wrong thing.
+3. **The source quoted verbatim**, with page id, version and the date it was read.
+4. **The honest caveat where the requirement is silent**, stated before a developer can say it.
+5. **The pictures, annotated and inline**, each under the example it proves — never pooled at the end.
+6. **The house order** — Environment second-to-last, Sources last, and nothing after Sources.
+
+🔴 **NOT on that list, and never to be re-added: an IMPACT PARAGRAPH.** On 2026-09-18 I "restored"
+a *Why it matters* paragraph to SV-10238 and had to take it out again — he struck impact paragraphs
+out by name on 2026-09-10 (*no assumed effects, no severity, no impact paragraph*) and his own guide
+says the same. Where the consequence is genuinely part of the fault, it is **one factual sentence of
+what was observed**: *"adding a second valid search term removes a record the previous search had
+already returned, and nothing indicates that some typed words were ignored."*
+
+### Sections that appear only when they apply
+
+* **`Permission Configuration`** — for any permission fault, each permission and its state
+  (`Vendor & Order Management → View = ON` · `View and Manage AP/AR Data = OFF`), then one sentence
+  naming the dependency. Never a role described in prose.
+* **`Expected Result / Product Clarification Needed`** — where the requirement is ambiguous (Rule 58):
+  both valid readings and what we would do under each, instead of picking one and calling it a bug.
+* **`Regression Note`** — when it started · which environment · whether the live product differs ·
+  whether it is intermittent. The words are *"started occurring after the deployment"*, **never**
+  *"the deployment broke this"*, unless someone has confirmed the cause.
+* **Data or migration faults** — three blocks: state before · what must be preserved · state after.
+* **A screen action the back end refuses** — three lines (the screen offers it · the person clicks it ·
+  the back end refuses), then the two valid expectations: it should work, or it should not be offered.
+
+### One ticket, one primary failure
+
+Several examples of the SAME failure belong in one ticket. Two different failures that happen to sit
+on the same screen belong in two.
+
+### 🛑 THREE THINGS IN HIS GUIDE THAT WE DO **NOT** ADOPT — he ruled on each, 2026-09-18
+
+| The guide says | **His ruling: keep ours** |
+|---|---|
+| add a **`Technical Evidence`** section (status codes, request ids, response bodies) | **No.** There is no technical-details section. The layout ends at Sources. Confirmed observations that a developer needs go into the plain-English behaviour lines or a comment — never a developer section in the description. |
+| put **Environment last** | **No.** Environment is **second-to-last**, Sources last (2026-09-16). |
+| rename **`Sources`** to `Spec Reference` and paraphrase the requirement | **No.** It stays **`Sources`**, with the requirement **quoted verbatim** plus page id, version and read date. The guide's paraphrase is the floor, not the model. |
+
+### The self-check before creating OR editing any ticket
+
+Can a manual tester reproduce it from the steps alone · is the fault obvious in ten seconds · is the
+actual result only what was observed · is the expected result from the specification or a recorded
+decision · did I avoid stating an unconfirmed cause as fact · did I keep the environment, the build
+and the test data · are the annotated pictures inline beside what they prove · **after ANY edit —
+mine or anyone else's — did I re-read the RENDERED description and count the images** · are there
+**zero `blob:` references** (an editor-session handle that points at nothing once the tab closes;
+reference pictures by attachment FILENAME with the true aspect, `!PIC1-vehicle.png|width=760,height=543!`)
+· **if I cannot guarantee the pictures survive my edit, did I hand over the revised text instead of
+overwriting the description** · is this one fault rather than several.
+
+**Verify with** `GET /rest/api/2/issue/<KEY>?expand=renderedFields`: the `<img` count equals the
+number of pictures, and `blob:` appears zero times.
 
 **⚠️ WHICH MARKUP — THIS IS WHERE IT WENT WRONG.** The two doors take **different dialects**:
 
