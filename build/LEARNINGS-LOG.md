@@ -3455,3 +3455,28 @@ result. Grep the run for *"not observed"*, *"not re-run"*, *"recorded from"* and
 start of every execution pass — and remember that a closed ticket can be closed as a DECISION rather
 than a FIX, so read the last comment before believing a fix shipped (Rule 61: ticket status is never
 evidence about the build).
+
+## L0166 — 2026-09-18 — PROVE A RANKING SIGNAL BY REMOVING IT, BUT NEVER WITH A STATUS YOU CANNOT UNDO
+
+C55722 (a customer with more open work orders ranks higher) passed, but both rows carried the product's
+clamped top score of 1.0, so the NUMBER could not show the lift and the order alone was the evidence.
+Four identical reads make chance unlikely; they do not make it causal.
+
+**The A/B that settles it:** take the signal away and watch the order flip. Driving the busy customer's
+five work orders to a closed status moved it from first (score 1.0) to second (score 0.80) behind the
+quiet one — a fall of exactly the **+0.20** §6.1 gives a customer for having any open work. That is
+proof, not correlation, and it took two minutes.
+
+**The mistake inside it, and the rule that comes out:** the status chosen was **`complete`, which is
+TERMINAL** — `POST /api/work-orders/change-status` then answers `400 "Complete work order cannot change
+its status again."` on every attempt to restore. The fixture was broken by the very test that proved it.
+It was repaired by creating five new work orders for the same customer, vehicle and contact
+(`POST /api/work-orders/create {is_vehicle_here, company_id, vehicle_id, customer_id}` → `data.work_order_id`,
+then `change-status → in_progress`), re-reading the counts (5 vs 1), and re-running the full ranking
+verifier (20 of 20). `seed-ids-ranking-qa.json` was updated to the new ids with a note naming the retired
+ones, so the next seeding run does not force statuses on dead records.
+
+**⇒ Before any A/B that mutates a fixture: ask which way back exists, and pick the reversible move.**
+For a work order that is `approved`/`in_progress`, moving DOWN the chain is reversible; `complete` and
+`paid` are one-way. When no reversible move exists, plan the rebuild BEFORE breaking the state, not after
+— and always re-run the fixture's own verifier at the end, which is what proved the repair was good.
