@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-17T050657Z",
+ "when_utc": "2026-09-18T154902Z",
  "environment": {
   "app": "sv9160.qa.shopview.com",
   "api": "sv9160api.qa.shopview.com",
@@ -7,8 +7,6 @@
   "tag": "ZZAUTOTEST"
  },
  "live_ids": {
-  "customer": "e049c07d-9b16-4f95-9e01-71da22e1104a",
-  "contact": "81d84fd7-783e-4a0f-aeca-957a3cc25797",
   "asset": "14a069cd-4846-4a57-835a-05f4b32649a8",
   "work_orders": [
    "8e3b5a84-845e-4d61-b9ad-3772463e890e",
@@ -21,30 +19,12 @@
   "part_catalogue_stocked_source": "60f68cf1-6690-4cc0-99d3-e342b5a02468",
   "part_stocked": "dd48e168-4cba-417d-bfc8-86210136c322",
   "customer_fuzzy_target": "800d6015-0b7b-4e03-9db9-8fe160226a94",
-  "customer_fuzzy_nearmiss": "9f9fdcb1-76a1-4280-b4b6-bbcb34c70c47",
-  "part_sale": "a24be2e9-9c8a-4c46-8538-1ad7f02d07eb"
+  "customer_fuzzy_nearmiss": "9f9fdcb1-76a1-4280-b4b6-bbcb34c70c47"
  },
  "records": [
   {
    "key": "customer",
-   "state": "PRESENT",
-   "ids": [
-    "e049c07d-9b16-4f95-9e01-71da22e1104a"
-   ],
-   "fields_ok": [
-    "name",
-    "address",
-    "city",
-    "state_or_province",
-    "postal_code",
-    "phone",
-    "country_code",
-    "website",
-    "address_2",
-    "telephone"
-   ],
-   "gaps": [],
-   "not_compared": [],
+   "state": "MISSING",
    "serves": [
     53578,
     53581,
@@ -67,19 +47,8 @@
   },
   {
    "key": "contact",
-   "state": "PRESENT",
-   "ids": [
-    "81d84fd7-783e-4a0f-aeca-957a3cc25797"
-   ],
-   "fields_ok": [
-    "first_name",
-    "last_name",
-    "title",
-    "telephone",
-    "email"
-   ],
-   "gaps": [],
-   "not_compared": [],
+   "state": "UNVERIFIED",
+   "reason": "parent 'customer' not available yet - check the record order",
    "serves": [
     53603,
     55670,
@@ -283,13 +252,7 @@
   },
   {
    "key": "part_sale",
-   "state": "PRESENT",
-   "ids": [
-    "a24be2e9-9c8a-4c46-8538-1ad7f02d07eb"
-   ],
-   "fields_ok": [],
-   "gaps": [],
-   "not_compared": [],
+   "state": "MISSING",
    "serves": [
     55665,
     45153,
