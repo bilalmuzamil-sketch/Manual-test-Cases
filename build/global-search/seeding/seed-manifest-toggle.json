@@ -96,6 +96,10 @@
    "verify": [
     "part_number"
    ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
    "_why": "THE STOCK ROW. Search indexes the inventory record, so without this the part is invisible and the \"without access it is gone\" half of the case passes while the \"with access it appears\" half fails - which reads as a permission bug and is not one."
   },
   {
@@ -185,6 +189,10 @@
    },
    "verify": [
     "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
    ],
    "_why": "A NON-ROUND, DISTINCTIVE PRICE so the tester can tell a real price from a placeholder or a zero. This case is the one where a HIDDEN ROW would be the WRONG outcome: the row must stay and only the price may disappear."
   },
@@ -656,6 +664,100 @@
     "whole_record": true
    },
    "_why": "The case names it verbatim: \"the seeded vendor ZZTOGVEN with its purchase order and vendor invoice\". The PO and the invoice are layered on afterwards by seed_po_and_invoices.py - a declarative manifest cannot express that stateful chain."
+  },
+  {
+   "key": "tog_ven_part_cat",
+   "type": "CataloguePart",
+   "serves": [
+    55735
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZTOGVEN-9001",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZTOGVEN Supply Brake Shoe Kit",
+     "part_number": "ZZTOGVEN-9001",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "The line item the purchase order is raised for."
+  },
+  {
+   "key": "tog_ven_part_inv",
+   "type": "InventoryPart",
+   "depends_on": "tog_ven_part_cat",
+   "serves": [
+    55735
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZTOGVEN-9001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 3,
+     "cost": 55.0,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 110.0
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZTOGVEN-9001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 3
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "The stock row. The stock route is the only one that can be RECEIVED on this build, and receiving is what CREATES the vendor invoice - a work-order-routed PO would leave C55735 with no invoice to hide."
   },
   {
    "key": "count_visible_1",

@@ -123,7 +123,13 @@ def inv_part(key, cat_key, number, qty, serves, why, cost=19.5, sell=39.99):
                            'take_path': 'binLocations.0.binLocationId',
                            'template': [{'id': '@', 'isDefault': True, 'quantity': qty}]}},
                        'id_from': 'data.part_id'},
+            # 🔴 sell_price and cost are NOT verifiable as written. The server applies its own
+            # markup: 289.95 went in and 305.44 came back, and `cost` is not exposed on the list
+            # record at all. Verifying them would report a permanent GAP on a perfectly good
+            # record, so the check is that a price EXISTS and is distinctive - which is all
+            # C55736 needs, since the case is about the price being masked, not its value.
             'verify': ['part_number'],
+            'skip_verify': ['cost', 'sell_price'],
             '_why': why}
 
 # ── C55731 · ZZTOGPART — the Catalog & Inventory bundle ──────────────────────────────────────
@@ -220,6 +226,23 @@ R += [
    'The case names it verbatim: "the seeded vendor ZZTOGVEN with its purchase order and vendor '
    'invoice". The PO and the invoice are layered on afterwards by seed_po_and_invoices.py - a '
    'declarative manifest cannot express that stateful chain.'),
+]
+
+# The purchase order and vendor invoice are raised against a REAL PART, so the part has to exist
+# before the chain script runs. Its name carries the keyword deliberately: a purchase order is
+# matched on its item part names, so without the keyword on the part the PO would not come back
+# for a ZZTOGVEN search at all.
+# 🔴 SIDE EFFECT, WRITTEN DOWN RATHER THAN DISCOVERED BY A TESTER: this adds a PARTS row to the
+# ZZTOGVEN result. Parts are gated by a DIFFERENT bundle, so when Vendor & Order Management access
+# is removed the vendor, PO and invoice vanish while this part row REMAINS. That is correct
+# behaviour and not a leak - the handoff says so explicitly.
+R += [
+ cat_part('tog_ven_part_cat', 'ZZTOGVEN-9001', 'ZZTOGVEN Supply Brake Shoe Kit', [55735],
+   'The line item the purchase order is raised for.'),
+ inv_part('tog_ven_part_inv', 'tog_ven_part_cat', 'ZZTOGVEN-9001', 3, [55735],
+   'The stock row. The stock route is the only one that can be RECEIVED on this build, and '
+   'receiving is what CREATES the vendor invoice - a work-order-routed PO would leave C55735 '
+   'with no invoice to hide.', cost=55.0, sell=110.0),
 ]
 
 # ── C55737 · ZZCOUNT — a restricted record is not counted ────────────────────────────────────

@@ -1,11 +1,13 @@
 {
- "when_utc": "2026-09-19T113943Z",
+ "when_utc": "2026-09-19T114344Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
  "live_ids": {
   "tog_part_cat": "90cb5e97-b865-4ddd-ae64-7d28e9b7ce45",
+  "tog_part_inv": "e2f845d2-ba31-41a6-8306-97bc9d068861",
   "tog_price_cat": "5aa1a83d-a9a0-4fce-89e2-0da3f20d0f54",
+  "tog_price_inv": "ebaa8722-b79f-4fd3-ad2e-24d40b989be4",
   "tog_cust": "26f2284e-d8d8-4384-bb7f-2e49661fe54a",
   "tog_cust_contact": "63ef089f-0c0f-4157-a794-60736aad5d66",
   "tog_cust_vehicle": "02d9752c-a147-409d-a670-8e4f766b0d19",
@@ -18,6 +20,8 @@
   "tog_ps_vehicle": "9ba0f9b2-0420-4229-8142-fcce64a66751",
   "tog_part_sale": "1ffcc5dd-0669-46e7-9cb0-4a4c5b710eb0",
   "tog_vendor": "95bd37f1-118b-4d0c-bb25-aabfc19bfe90",
+  "tog_ven_part_cat": "5d450747-5fed-4978-a7e4-e920903be664",
+  "tog_ven_part_inv": "ee04efcb-be7d-4cd9-a993-b7be3999ac51",
   "count_visible_1": "5e4b52a0-fbb4-4d15-aeed-254bfc0ffe01",
   "count_visible_2": "520650e7-c944-4c92-a60a-baa9f5dd0902"
  },
@@ -40,9 +44,17 @@
   },
   {
    "key": "tog_part_inv",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"category_id\":\"Missing required parameter\"},{\"bins\":\"Missing required parameter\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "e2f845d2-ba31-41a6-8306-97bc9d068861"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55731
    ]
@@ -65,9 +77,17 @@
   },
   {
    "key": "tog_price_inv",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"category_id\":\"Missing required parameter\"},{\"bins\":\"Missing required parameter\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "ebaa8722-b79f-4fd3-ad2e-24d40b989be4"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55736
    ]
@@ -288,6 +308,39 @@
     "email",
     "credit_term",
     "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55735
+   ]
+  },
+  {
+   "key": "tog_ven_part_cat",
+   "state": "PRESENT",
+   "ids": [
+    "5d450747-5fed-4978-a7e4-e920903be664"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55735
+   ]
+  },
+  {
+   "key": "tog_ven_part_inv",
+   "state": "PRESENT",
+   "ids": [
+    "ee04efcb-be7d-4cd9-a993-b7be3999ac51"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
    ],
    "gaps": [],
    "not_compared": [],

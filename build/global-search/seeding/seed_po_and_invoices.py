@@ -51,8 +51,16 @@ os.environ.setdefault('SEED_MANIFEST', 'seed-manifest-gs-v2.json')
 _seed = runpy.run_path(f'{HERE}/seed.py', run_name='not_main')
 call, ENV, IDS_FILE = _seed['call'], _seed['ENV_LABEL'], _seed['IDS_FILE']
 CONFIRM = '--confirm' in sys.argv
-STATE_PATH = f'{HERE}/po-invoices-gsv2-{ENV}.json'
-VENDOR_NAME = 'ZZAUTOTEST Fibridge Mining'
+# 🔴 PARAMETERISED SO A SECOND UNIVERSE CAN REUSE THE CHAIN RATHER THAN COPY IT. The Fibridge
+# defaults are unchanged, so an existing run behaves exactly as before; the toggle universe
+# (C55735, which needs ONE vendor carrying ONE purchase order and ONE vendor invoice) sets
+# SEED_PO_VENDOR / SEED_PO_WO_KEY / SEED_PO_SLUG instead. Keying the STATE FILE by slug matters:
+# one universe's ids must never be written into another's state, which has already caused four
+# work orders to read as MISSING while sitting there untouched.
+PO_SLUG = os.environ.get('SEED_PO_SLUG', 'gsv2')
+STATE_PATH = f'{HERE}/po-invoices-{PO_SLUG}-{ENV}.json'
+VENDOR_NAME = os.environ.get('SEED_PO_VENDOR', 'ZZAUTOTEST Fibridge Mining')
+WO_KEY = os.environ.get('SEED_PO_WO_KEY', 'work_orders_fib_main')
 
 # What the cases need, and nothing more. Each row becomes one purchase order.
 #   'leave_ordered' -> C45137 needs at least one PO still Ordered, never received
@@ -75,6 +83,19 @@ PLAN = [
      'qty': 3, 'cost': 30.0, 'sell': 60.0,  'receive': True,  'pay': 'full'},
 ]
 
+# 🔴 THE TOGGLE UNIVERSE NEEDS A DIFFERENT PLAN, NOT A DIFFERENT SCRIPT. C55735 asserts that ONE
+# permission hides a vendor, its purchase order AND its vendor invoice together - so it needs
+# exactly one of each, carrying the ZZTOGVEN keyword, and none of Fibridge's payment spread.
+# 'stock' is the only route that can be RECEIVED on this build, and receiving is what CREATES the
+# vendor invoice - a work-order-routed PO would leave the case with no invoice to hide.
+PLAN_TOGGLE = [
+    {'tag': 'tog_po_invoice', 'pn': 'ZZTOGVEN-9001', 'route': 'stock',
+     'desc': 'ZZTOGVEN Supply Brake Shoe Kit',
+     'qty': 3, 'cost': 55.0, 'sell': 110.0, 'receive': True, 'pay': None},
+]
+if os.environ.get('SEED_PO_PLAN') == 'toggle':
+    PLAN = PLAN_TOGGLE
+
 def load():
     try: return json.load(open(STATE_PATH))
     except Exception: return {}
@@ -86,7 +107,11 @@ def vendor_id():
     a PAGE - the branch holds far more vendors than that - so scanning it and finding nothing means
     'not on this page', never 'not on this branch'. The first version of this function concluded the
     vendor did not exist while it was sitting there (Rule 110b: identity, not a count)."""
-    r = call('/api/parts-catalogue/vendors?search=Fibridge&limit=100')
+    # 🔴 THE SEARCH TERM MUST FOLLOW THE VENDOR, NOT BE HARDCODED. 'Fibridge' was baked in here,
+    # so pointing this script at any other vendor reported 'not found' for a vendor that exists -
+    # the same class of miss this docstring warns about, one layer up.
+    term = os.environ.get('SEED_PO_VENDOR_SEARCH') or VENDOR_NAME.split()[0]
+    r = call(f'/api/parts-catalogue/vendors?search={term}&limit=100')
     for x in (r['json'] or {}).get('data', {}).get('collection') or []:
         if x.get('name') == VENDOR_NAME: return x['id']
     # control: prove ?search= works here before believing the miss
@@ -103,7 +128,7 @@ def work_order_ids():
     script correctly reported 'ordered but no new PO appeared'. Four purchase orders therefore need
     four DIFFERENT work orders."""
     ids = json.load(open(f'{HERE}/{IDS_FILE}'))
-    lst = ids.get('work_orders_fib_main') or []
+    lst = ids.get(WO_KEY) or []
     if not lst: sys.exit('no seeded work orders - run seed.py --confirm first')
     return lst
 
@@ -256,11 +281,22 @@ def pay(vid, invoice_number, how):
 def finish(st, tag, rec, row, order, vid):
     """The receive-and-pay tail, shared by the create path and the resume path."""
     if row['receive'] and not rec.get('invoice_number'):
-        invno = f"ZZT-INV-{row['pn'][-1]}"
+        # 🔴 THE INVOICE NUMBER MUST BE UNIQUE ACROSS THE WHOLE BRANCH, NOT JUST THIS RUN.
+        # It was derived from the last character of the part number, so ZZT-FIB-1001 and
+        # ZZTOGVEN-9001 both produced 'ZZT-INV-1' and the second receive answered
+        # 400 {"error":"There is already invoice with number: ZZT-INV-1"} - a collision that
+        # reads like a broken endpoint. Keying it by universe slug AND the full part number
+        # keeps every universe's invoices distinct.
+        invno = f"ZZT-INV-{PO_SLUG.upper()}-{row['pn']}"
         r, _ = receive(order, vid, invno)
         ok = r['status'] in (200, 201)
         print(f"       receive -> {r['status']}" + ('' if ok else f"  {str(r.get('raw') or r.get('error'))[:220]}"))
-        if ok: rec['invoice_number'] = invno
+        # 🔴 RECORD WHAT THE SERVER KEPT, NOT WHAT WE SENT. The invoice number field is capped at
+        # 21 characters and the send truncates to fit, but the state used to store the FULL string.
+        # The two then never matched, so the resume check read 'invoice missing', declared a live
+        # purchase order GONE, and a --confirm run would have created a duplicate PO on every
+        # reseed, forever. Same class as the work-order id reconciliation this kit already does.
+        if ok: rec['invoice_number'] = invno[:21]
     if row['pay'] and rec.get('invoice_number') and not rec.get('pay_result'):
         pr, msg = pay(vid, rec['invoice_number'], row['pay'])
         rec['pay_result'] = (f"{pr['status']} {msg}" if pr else f'FAILED {msg}')
@@ -306,6 +342,23 @@ def main():
         # row unfinished and rebuilt it - a duplicate PO on EVERY reseed, forever. For a row that
         # receives, the invoice existing IS the proof; the purchase order only has to be there for a
         # row that stops at 'ordered'.
+        # 🔴 ADOPT WHAT THE ENVIRONMENT ALREADY HOLDS BEFORE DECIDING TO CREATE. State can be lost
+        # while the records live on - it happened here: a truncation bug took the "GONE" branch and
+        # wiped this file to {} while the purchase order and vendor invoice sat in the environment
+        # untouched. With an empty file the script would have created a SECOND purchase order for a
+        # vendor that already had one, and C55735 asserts "the SAME records" - a duplicate makes the
+        # case unreadable. The invoice number is deterministic, so if the one this row WOULD use is
+        # already on this vendor, that row is this row: adopt it instead of building another.
+        if row['receive'] and not rec.get('invoice_number'):
+            expected_inv = f"ZZT-INV-{PO_SLUG.upper()}-{row['pn']}"[:21]
+            if expected_inv in live_invoices:
+                match = next((d for d in deliveries_by_vendor(vid)
+                              if str(d.get('invoice_number')) == expected_inv), None)
+                rec = dict(rec, invoice_number=expected_inv,
+                           order_number=(match or {}).get('order_number') or rec.get('order_number'))
+                st[tag] = rec; save(st)
+                print(f"  {tag:14} adopted existing invoice {expected_inv} — not creating a duplicate")
+
         order_live = rec.get('order_id') in live_orders
         invoice_live = rec.get('invoice_number') in live_invoices
         if row['receive']:
@@ -363,7 +416,13 @@ def main():
         finish(st, tag, rec, row, order, vid)
 
     print('\n=== READ BACK from the search index (never from what we just POSTed) ===')
-    s = call('/api/search?q=Fib')
+    # 🔴 THE READBACK QUERY MUST FOLLOW THE VENDOR TOO. 'Fib' was hardcoded, so pointing this
+    # script at ZZTOGVEN searched for Fibridge's keyword, found none of our records and printed
+    # 'ours=0' over a purchase order and a vendor invoice that were both sitting in the index.
+    # A false negative in the proof step is worse than no proof step: the next session reads it
+    # as a failed seed and re-runs, or worse, starts debugging a chain that worked.
+    probe = os.environ.get('SEED_PO_READBACK') or VENDOR_NAME.split()[0]
+    s = call('/api/search?q=' + probe)
     for g in ((s['json'] or {}).get('data') or {}).get('groups') or []:
         if g['type'] in ('purchase_orders', 'vendor_invoices'):
             ours = [i for i in g['items'] if VENDOR_NAME in str(i.get('secondary'))]
