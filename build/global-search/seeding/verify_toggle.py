@@ -64,9 +64,13 @@ CHECKS = [
      'tester reading the screen rather than the row may call a pass a fail.'),
     (55733, 'ZZTOGCUST',  'customers',  'ZZTOGCUST Freight',   0, 'clean keyword'),
     (55734, 'ZZTOGPS',    'part_sales', 'P9160-',              3, 'near-spelling noise, harmless'),
-    (55735, 'ZZTOGVEN',   'vendors',    'ZZTOGVEN Supply',     1,
-     'the PO line-item part. HARMLESS but VISIBLE: parts are a different bundle, so this row '
-     'REMAINS after Vendor & Order Management access is removed. That is correct, not a leak.'),
+    # Load 0, not 1: the line-item part is NAMED 'ZZTOGVEN Supply Brake Shoe Kit', so it counts
+    # as ours rather than foreign. The tester note still stands - it is the row's VISIBILITY after
+    # the flip that matters to the case, not whether my arithmetic calls it foreign.
+    (55735, 'ZZTOGVEN',   'vendors',    'ZZTOGVEN Supply',     0,
+     'a PARTS row (the PO line item) also answers this keyword. HARMLESS but VISIBLE: parts are '
+     'a different bundle, so it REMAINS on screen after Vendor & Order Management access is '
+     'removed, while the vendor, PO and invoice all vanish. That is correct, not a leak.'),
     (55736, 'ZZTOGPRICE', 'parts',      'ZZTOGPRICE Filter',   0, 'clean keyword'),
 ]
 

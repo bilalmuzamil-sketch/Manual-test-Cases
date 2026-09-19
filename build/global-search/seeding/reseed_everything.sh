@@ -62,6 +62,23 @@ if [ "$1" = "qa" ]; then
   # pass or fail. This applies the one thing that must DIFFER between each pair.
   step "10 ranking signals (PO, activity, tie-break)" python3 apply_ranking_signals.py --confirm || exit 1
   step "11 ranking PROOF — 10 checks"       python3 verify_ranking.py            || exit 1
+
+  # ── universe 4 · SAME-RECORD PERMISSION TOGGLE (20 records, section 6734) ────────────────────
+  # C55731-C55737: flip ONE access and re-run the SAME query. The roles these cases pair against
+  # already exist from step 6, so nothing here creates a role.
+  export SEED_MANIFEST=seed-manifest-toggle.json
+  step "12 permission-toggle records"       python3 seed.py --confirm            || exit 1
+  # C55735 needs a vendor carrying a purchase order AND a vendor invoice, which a declarative
+  # manifest cannot express. Same chain script as Fibridge, pointed at this universe - the state
+  # file is keyed by slug so one universe's ids can never land in the other's.
+  # 🔴 EXPORTED AND THEN UNSET, never prefixed onto `step`. `VAR=x some_function` leaks the
+  # assignment past the call in bash, which would silently point a LATER universe's chain at this
+  # vendor and state file - exactly the cross-universe contamination this kit already got bitten by.
+  export SEED_PO_SLUG=toggle SEED_PO_VENDOR='ZZTOGVEN Supply'
+  export SEED_PO_WO_KEY=tog_work_order SEED_PO_PLAN=toggle
+  step "13 toggle PO + vendor invoice"      python3 seed_po_and_invoices.py --confirm || exit 1
+  unset SEED_PO_SLUG SEED_PO_VENDOR SEED_PO_WO_KEY SEED_PO_PLAN
+  step "14 toggle PROOF — 7 checks"         python3 verify_toggle.py             || exit 1
 fi
 
 echo

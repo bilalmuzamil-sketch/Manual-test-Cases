@@ -115,6 +115,24 @@ UNIVERSES = [
      ('ZZBROAD Target', 'parts',    'ZZBROAD Target Widget'), # C55730 the low-ranked target
      ('S2-15430 Holdings', 'customers', 'Holdings'),  # C55729 the competing name match
   ], 'seed-manifest-ranking.json', 'verify_ranking.py'),
+ ('Same-record permission toggle  (6734, 20 records)', [
+     # C55731-C55736. Each probe names OUR record, because these cases turn on identity: the
+     # assertion is "the SAME record disappeared", which a row count cannot carry.
+     ('ZZTOGPART',  'parts',           'ZZTOGPART Brake Kit'),   # C55731 Catalog & Inventory
+     ('ZZTOGWO',    'work_orders',     'S9160-'),                # C55732 Work Orders
+     ('ZZTOGCUST',  'customers',       'ZZTOGCUST Freight'),     # C55733 Customers (+ its asset)
+     ('ZZTOGPS',    'part_sales',      'P9160-'),                # C55734 Part Sales
+     ('ZZTOGVEN',   'vendors',         'ZZTOGVEN Supply'),       # C55735 vendor …
+     ('ZZTOGVEN',   'purchase_orders', 'I9160-'),                # … its PO …
+     ('ZZTOGVEN',   'vendor_invoices', 'ZZT-INV-TOGGLE'),        # … and its invoice: ALL THREE,
+     #   because C55735 asserts one permission hides them together - two of three is a half-pass
+     #   that reads as green.
+     ('ZZTOGPRICE', 'parts',           'ZZTOGPRICE Filter'),     # C55736 price masking
+     # 🔴 C55737 IS DELIBERATELY NOT PROBED HERE. Its keyword 'ZZCOUNT' matches real catalogue
+     # parts named 'Hi Count(R)' - 23 foreign rows - so a presence probe would pass while the
+     # case remains unrunnable. verify_toggle.py measures and reports that instead of hiding it
+     # behind a green tick.
+  ], 'seed-manifest-toggle.json', 'verify_toggle.py'),
 ]
 
 ROLES = ['ZZAUTOTEST No Work Orders View', 'ZZAUTOTEST No Customers View',
