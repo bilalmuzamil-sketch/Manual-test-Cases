@@ -98,6 +98,14 @@ def cat_part(key, number, name, serves, why):
             '_why': why}
 
 def inv_part(key, cat_key, number, qty, serves, why, cost=19.5, sell=39.99):
+    """🔴 A CATALOGUE PART IS NOT SEARCHABLE ON ITS OWN - search indexes the INVENTORY record.
+
+    🔴 AND THE CREATE NEEDS FOUR RESOLVED VALUES, NOT ONE. A payload carrying only
+    catalog_part_id answers 400 {"category_id":"Missing required parameter","bins":"Missing
+    required parameter"} - measured on this manifest's first run. The category rides along with
+    the catalogue part (also_take), and `bins` is a LIST OF OBJECTS, not an id, so it is built
+    from a template around a bin id lifted off a part that already sits in one. When the lookup
+    table is not exposed, the existing data IS the lookup table."""
     return {'key': key, 'type': 'InventoryPart', 'depends_on': cat_key, 'serves': serves,
             'find': {'mode': 'search', 'list': '/api/inventory/parts', 'coll': 'collection',
                      'field': 'part_number', 'value': number, 'control': 'P550848'},
@@ -107,11 +115,14 @@ def inv_part(key, cat_key, number, qty, serves, why, cost=19.5, sell=39.99):
                        'resolve_by_example': {'catalog_part_id': {
                            'list': '/api/parts-catalogue/catalogue-parts', 'coll': 'collection',
                            'match_field': 'part_number', 'value': number,
-                           'take': 'id', 'take_as': 'catalog_part_id'},
-                           'bin_location_id': {
+                           'take': 'id', 'take_as': 'catalog_part_id',
+                           'also_take': {'category_id': 'category'}}},
+                       'resolve_nested': {'bins': {
                            'list': '/api/inventory/parts', 'coll': 'collection',
-                           'match_field': 'part_number', 'value': 'P550848',
-                           'take': 'bin_location_id', 'take_as': 'bin_location_id'}}},
+                           'search': 'P550848',
+                           'take_path': 'binLocations.0.binLocationId',
+                           'template': [{'id': '@', 'isDefault': True, 'quantity': qty}]}},
+                       'id_from': 'data.part_id'},
             'verify': ['part_number'],
             '_why': why}
 

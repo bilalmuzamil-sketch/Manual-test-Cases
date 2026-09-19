@@ -70,17 +70,28 @@
       "match_field": "part_number",
       "value": "ZZTOGPART-1001",
       "take": "id",
-      "take_as": "catalog_part_id"
-     },
-     "bin_location_id": {
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
       "list": "/api/inventory/parts",
       "coll": "collection",
-      "match_field": "part_number",
-      "value": "P550848",
-      "take": "bin_location_id",
-      "take_as": "bin_location_id"
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
      }
-    }
+    },
+    "id_from": "data.part_id"
    },
    "verify": [
     "part_number"
@@ -149,17 +160,28 @@
       "match_field": "part_number",
       "value": "ZZTOGPRICE-1002",
       "take": "id",
-      "take_as": "catalog_part_id"
-     },
-     "bin_location_id": {
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
       "list": "/api/inventory/parts",
       "coll": "collection",
-      "match_field": "part_number",
-      "value": "P550848",
-      "take": "bin_location_id",
-      "take_as": "bin_location_id"
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 9
+       }
+      ]
      }
-    }
+    },
+    "id_from": "data.part_id"
    },
    "verify": [
     "part_number"
