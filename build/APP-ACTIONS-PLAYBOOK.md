@@ -3141,3 +3141,76 @@ says three, code says four → Rule 96: a PO DECISION ITEM, never a silent invar
 **Measured on the QA branch 2026-09-16:** all 155 sampled vendor invoices read `unpaid`, and purchase
 orders carry `ordered` (75), `partial_delivery` (18) and `fulfilled` (83). So the PO status spread the
 cases need already exists; only the invoice payment spread has to be created.
+
+---
+
+## §R — A QA BRANCH CAN PUT ITSELF TO SLEEP, AND IT LOOKS EXACTLY LIKE AN AUTH FAILURE (proven live 2026-09-18/19 on `sv9160`)
+
+🔴 **THIS COST MOST OF AN HOUR AND NEARLY COST A SET OF WORKING CREDENTIALS.** Read it before
+debugging any 401 / 403 on a `*.qa.shopview.com` branch.
+
+### The symptom, and why it misleads
+
+Every API call returns **403 `AccessDenied`** with `Server: AmazonS3` in the headers. That is not
+the API refusing you — it is Python **following a redirect**. The real response is:
+
+```
+GET https://sv9160api.qa.shopview.com/api/staff/my-workplaces
+-> 302  Location: https://sleep.qa.shopview.com:443/api/staff/my-workplaces?api=sv9160
+```
+
+…and the sleep host is a static S3 page, which answers `AccessDenied` for a path it does not have.
+So an environment that has simply been **switched off** presents as a credentials problem.
+
+### The two-second test that tells you which it is
+
+Send the request **with no cookies at all**, and do not follow redirects:
+
+```bash
+curl -s -o /dev/null -D - -m 25 https://sv9160api.qa.shopview.com/api/staff/my-workplaces \
+  | grep -i '^location:'
+```
+
+- **A `Location:` pointing at `sleep.qa.shopview.com`** ⇒ the branch is ASLEEP. No cookie, token or
+  `quick-login` can fix it, and `quick-login` itself returns 403 because there is nothing awake to
+  log in to.
+- **No redirect, and a 401** ⇒ an ordinary session problem; refresh the profile as usual.
+
+🔴 **A request WITH cookies and a request WITHOUT cookies behaving IDENTICALLY is the tell.**
+Credentials cannot be the cause of a failure that happens just as hard when you send none.
+
+### Waking it
+
+The sleep page carries a Wake button; it POSTs to an AWS endpoint. Same call from the shell:
+
+```bash
+curl -s -X POST https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv \
+  -H 'Content-Type: application/json' -d '{"action":"wake","env":"sv9160"}'
+# -> sv9160 is waking up.
+```
+
+`env` is the branch name, and it is handed to you in the redirect's `?api=` parameter — take it
+from there rather than guessing. Waking takes **about a minute**. Non-destructive: it starts the
+environment, it does not rebuild or wipe it — the seeded data was all still present afterwards.
+
+### Knowing when it is really up — use a control path
+
+Poll a path that **cannot exist**, never the app host:
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' https://sv9160api.qa.shopview.com/api/definitely-not-real-zz
+```
+
+- `302` ⇒ still asleep · `503` ⇒ booting · **`401`** ⇒ awake, you are unauthenticated ·
+  **`404`** ⇒ awake AND your session is good.
+
+🔴 **Never poll the app host** (`sv9160.qa.shopview.com`): it is served from S3 and returns **200
+for every path, including nonsense ones**, so it reports a dead API as healthy. That is the same
+front-end-in-the-API-profile trap recorded elsewhere in this playbook, wearing a different hat.
+
+### It goes back to sleep
+
+It slept again **within the same session**, minutes after a successful seeding run. Any long job
+against a QA branch should expect it, and any verifier should say so in its own error message
+rather than making the next person re-derive this — `verify_toggle.py` prints the wake command on a
+403 for exactly that reason.
