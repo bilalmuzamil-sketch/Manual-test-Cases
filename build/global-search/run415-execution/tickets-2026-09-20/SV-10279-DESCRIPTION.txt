@@ -40,6 +40,16 @@ QA checked every result type. A part's name is its description, which the PRD li
 
 On Parts the product records a description beginning with the search text as a whole-word match rather than a prefix match. On the other result types the equivalent match is recorded correctly.
 
+*The scoring itself is sound — only the name classification is not.* On the same search, matches on a part's other indexed fields score exactly what PRD 6.1 computes, and move as soon as a signal changes:
+
+|| Row || How it matched || What PRD 6.1 adds up to || Score returned ||
+| `AXLE SHAFT FLANGE, REAR DRIVE AXLE` (9 in stock, has a bin location) | category | 0.50 whole-word + 0.20 in stock + 0.05 bin location | *0.75* |
+| `DO NOT USE Aluminum Seal Ring, 14mm` (0 Available, has a bin location) | tags | 0.50 whole-word + 0.05 bin location | *0.55* |
+| `ZZTABQ Wheel Seal` (name begins with the search text) | description | 0.70 prefix + 0.10 primary-display-name bonus = 0.80 expected | *1.00* |
+| `Cooper ZZTABQ Cartridge` (search text in the middle) | description | 0.50 whole-word + 0.10 primary-display-name bonus = 0.60 expected | *1.00* |
+
+A tag and a category are secondary fields, so neither receives the primary-display-name bonus, and both land on the computed figure. The two matches on the part's own name do not.
+
 || Result type || Name beginning with the search text recorded as the stronger match? ||
 | Customers | yes |
 | Vendors | yes |
