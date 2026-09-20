@@ -629,3 +629,54 @@ developers" section, per the QA lead's 2026-09-18 instruction.
 id — real attachments, not external links — in the intended order at 900px wide with their correct
 heights; twelve table rows (header + eleven checks); the first line is the conditional verdict; the
 link to comment 76830 is present.
+
+---
+
+## §13 — Chris re-specified the blocked-button wording AFTER the build (comment 76885, 18 Sep 15:50)
+
+Read live 2026-09-20. **Build unchanged** — `v26.36.8-4ee1c0f`, last-modified Fri 18 Sep 14:32:57 GMT,
+same as when it was tested — and the strings in `invoiceCreditReverse.C3GmBgwF.js` are the ones
+verified on Friday.
+
+**Chris has replaced the approved copy.** His reasoning, in his words: *"'Unwind' is not our word. It
+appears nowhere in the product — eleven times in code comments and zero times in anything a customer
+reads."* The product says **used** (column *Amount used*, empty state *No credits used*) and **Void**
+(*Void payment / Void refund / Void credit memo / Void invoice*, 438 uses), and
+*"there is no unapply verb on a credit"* — a credit is spent by creating a zero-cash payment, and
+voiding that payment is the only way back.
+
+| Case | SHIPPED on the branch | CHRIS'S RULING, 18 Sep 15:50 |
+|---|---|---|
+| One credit, used | `…has been applied. Unwind it before reversing.` | `…has been used. Void the payment that used it before reversing this invoice.` |
+| One credit, refunded | `…has been refunded. Reverse the refund before reversing this invoice.` | `…was refunded. Void that refund before reversing this invoice.` |
+| Two | `Credits A and B ($X total) have been applied. Unwind them before reversing.` | `Credits A and B ($X total) have been used. Void them before reversing this invoice.` |
+| Three or more | `Credits A, B and N more ($X total) have been applied. Unwind them before reversing.` | `Credits A, B and N more ($X total) have been used. Void them before reversing this invoice.` |
+
+**All four blocked-path strings change. The confirmation strings do NOT** — Chris did not touch
+*"It will also cancel credit CM-xxxx for $NN.NN."* — so checks 1, 2, 3 and 8 are unaffected.
+
+**This is not a defect and Nemanja is not at fault.** He built the copy that was approved on
+14 September; Chris changed it on the 18th, after the build. It is a spec change, and under Rule 32
+the newest authoritative product source wins — so the shipped strings are now out of date.
+
+**Two consequences for comment 76831:**
+
+1. **Checks 4, 5 and 6 were passed against wording that has since been superseded.** They were correct
+   against the standard in force when they ran, and the behaviour they prove is unaffected — but the
+   copy no longer matches what Chris wants, so they cannot stand as plain PASSED.
+2. **The open PO question at the bottom of the comment is now ANSWERED, and the answer dissolves it.**
+   The comment says Chris had not ruled on the mixed applied-or-refunded wording. He has, and his fix
+   removes the need for a third sentence: *"'used' is true of a credit spent on an invoice and one
+   cashed out as a refund, and 'Void' undoes both, so there is no mixed case needing a third
+   sentence."*
+
+**One question Chris leaves open for the developer:** *Void refund* as a labelled control lives in the
+Accounting module; in the core app the same undo is the **Remove** icon on the Payments tab. He would
+rather the sentence match the button in front of the shop — *"if that is the case, say Remove for them
+and keep Void everywhere else."* So whether these shops are on Accounting decides one word.
+
+**On the portal, Chris has diagnosed our blocker.** The QA-branch portal is served from
+`shopview-portal-feature-branch-xn74b9.laravel.cloud`, built from **portal main — 2026-08-28, 91
+commits behind develop**, and *"endpoints that exist on develop are not there at all."* That is a
+stale portal build, not a regression in this fix — which matches the 400 on `create-checkout-session`
+exactly, and is worth Nemanja knowing before Monday.
