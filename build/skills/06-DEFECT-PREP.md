@@ -1206,6 +1206,26 @@ had to be restored the next day.**
 | A comment | The only place "it passes now" goes — `→ QA Status: Passed`, with today's screenshot. Match the QA lead's own short format. |
 | The status | **His to set.** Never moved by us, and the report is never closed by us (L0131). |
 
+### 🛑 A NUMBER THE READER CANNOT INTERPRET IS JARGON — GIVE THE PRODUCT'S OWN LABEL, OR SAY THE PLAIN THING (QA lead, 2026-09-20)
+
+**Verbatim:** *"When you say 'a part with 176 on the shelf and a part with none score the same' —
+nobody knows what 176 is and what shelf means. Please keep things simple always in your tickets."*
+
+Two separate faults in one sentence, and both are easy to repeat:
+
+1. **A BARE NUMBER CARRIES NO MEANING.** `176` is only meaningful next to the word the screen prints
+   beside it. Write **"the row says 176 Available"**, never "176 of them". If the number is not doing
+   any work, drop it: **"a part that is in stock and a part that is out of stock"** beats both.
+2. **AN INVENTED SYNONYM IS NOT PLAIN ENGLISH.** *"on the shelf"* appears nowhere in the product. The
+   row prints **Available**; the state is **in stock** / **out of stock**. This is the same rule as
+   *Vendor* not "supplier" and *VIN number* not "chassis number" — **read the word off the screen**
+   (Rule 57), and where no screen word exists use the ordinary one, never a warehouse metaphor.
+
+**The test before any ticket goes out:** for every number and every noun in the body, ask *"is this on
+the screen, and would a reader who has never used the product know what it means?"* If either answer
+is no, replace it with the product's label or with the plain state. It applies to the annotations, the
+picture tables and the captions as much as to the prose.
+
 ### 🛑 THE PRODUCT'S OWN WORD FOR A THING IS THE WORD — NEVER A "PLAINER" SYNONYM (QA lead, 2026-09-16)
 
 Plain English means **no jargon**; it does not mean **renaming what the product names**. Writing

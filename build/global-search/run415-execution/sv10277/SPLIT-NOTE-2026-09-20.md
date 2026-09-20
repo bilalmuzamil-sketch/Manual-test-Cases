@@ -55,3 +55,24 @@ tickets … everything which helps the lazy non technical … to understand."*
 Files: `pics/SIMPLE1-parts.png` (61131) · `SIMPLE2-companies.png` (61132) · `SIMPLE3-everything.png`
 (61133), inline at 760 wide, true aspect, 0 `blob:`. The `NEW*` set (61128–61130) was deleted from the
 ticket and the working copies removed so nobody picks up the superseded wording.
+
+## Third pass — the "176 on the shelf" correction (2026-09-20)
+
+Caught by the QA lead: *"nobody knows what 176 is and what shelf means."* Fixed everywhere — prose,
+annotations, picture tables and captions:
+
+| Was | Now |
+|---|---|
+| *a part with 176 on the shelf and a part with none* | *a part that is **in stock** and a part that is **out of stock*** |
+| *the part you actually have on the shelf* | *the part you actually have **in stock*** |
+| *7 of them with none on the shelf* | *7 of them showing **0 Available*** |
+| annotation *"You have 176 of these on the shelf."* | *"This part is in stock. The row says **176 Available**."* |
+| table cell *176 on the shelf* / *none on the shelf* | *the row says **176 Available*** / *the row says **0 Available*** |
+| *Credit for being in stock, and for having a bin location* | *Extra credit for being in stock* (bin location dropped from the table — it stays in the PRD quote) |
+| *whichever record was **touched** most recently* | *whichever record was **changed** most recently* |
+
+Pictures re-uploaded as `SIMPLE*-v2.png` (61134 / 61135 / 61136) — **a re-upload under the same
+filename would have resolved to the FIRST attachment and changed nothing on screen**, so fresh names
+were used and 61131–61133 deleted. Verified: 3 inline, 0 `blob:`, 760 wide at true aspect, and the
+rendered description no longer contains the phrase "on the shelf".
+Rule recorded: `06-DEFECT-PREP.md`, learning **L0169**.

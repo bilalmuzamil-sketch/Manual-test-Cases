@@ -3540,3 +3540,15 @@ picture + steps + the spec quoted verbatim in a `{quote}` block). 482 words, 3 p
 panel screenshot with a small table under it — *Result · What the spec awards it · Value returned*
 (`build/testing-tools/compose_score_table.py`). Prose asserting a number is not evidence; a picture
 carrying it is. Recorded as a standing rule in `build/skills/06-DEFECT-PREP.md`.
+
+## L0169 — A bare number is jargon, and an invented synonym is not plain English (2026-09-20)
+**QA lead, verbatim:** *"When you say 'a part with 176 on the shelf and a part with none score the
+same' — nobody knows what 176 is and what shelf means."*
+Two faults in six words. **`176` alone means nothing** — it is only readable next to the label the
+screen prints, so it is *"the row says 176 Available"*, or better, the number is dropped entirely:
+*"a part that is in stock and a part that is out of stock"*. **"on the shelf" is a metaphor I
+invented**; the product prints **Available**. Same family as Vendor-not-supplier (2026-09-16): plain
+English means no jargon, not a homemade synonym for what the screen already says.
+**Check before any ticket ships:** for every number and noun in the body, annotations, picture tables
+and captions — *is it on the screen, and would someone who has never used the product know what it
+means?* Recorded as a standing rule in `build/skills/06-DEFECT-PREP.md`.
