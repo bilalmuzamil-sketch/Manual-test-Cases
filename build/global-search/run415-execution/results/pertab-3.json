@@ -1,0 +1,22 @@
+{
+ "results": {
+  "C72120": {
+   "verdict": "Failed",
+   "observed": "on the Parts tab the part whose name begins with what you typed is credited no more strongly than the one that merely contains it - both are recorded as ordinary whole-word matches and both come back on the same score.",
+   "technical": "Checked on 20 September 2026 on build v26.36.8-d146c39, read twice with the same result.\n\nTyping ZZKRYPTON and opening the Parts tab returns:\n  1. ZZKRYPTON Brake Kit            - name BEGINS with what was typed - recorded as: whole-word match on the description - 1.00\n  2. Heavy Duty ZZKRYPTON Filter    - the text sits in the middle     - recorded as: whole-word match on the description - 1.00\n  3. ZZKRYPTOM Wheel Seal           - reachable only by a misspelling - recorded as: near-miss match - 0.41\n\nThis is outcome (1) of the three the check lists: the two rows are credited equally, which is exactly the symptom the check predicts. It is the already-reported problem, not a new one.\n\nWhat needs to be done: this is reported on SV-10279, which is open. Nothing new to raise.",
+   "todo": "Re-run once SV-10279 is fixed. Nothing new to raise - the report already exists.",
+   "ticket_held": false,
+   "ticket": "Already reported on SV-10279 (open): https://shopview.atlassian.net/browse/SV-10279"
+  },
+  "C72121": {
+   "verdict": "Passed",
+   "observed": "on the Vendors tab the vendor whose name begins with what you typed is credited more strongly than the one that merely contains it, and appears first. Read the caveat below.",
+   "technical": "Checked on 20 September 2026 on build v26.36.8-d146c39, read twice with the same result.\n\nTyping ZZMAGENTA and opening the Vendors tab returns:\n  1. ZZMAGENTA Supply Co       - name BEGINS with what was typed - recorded as: begins-with match on the name - 1.00\n  2. Northgate ZZMAGENTA Parts - the text sits in the middle     - recorded as: whole-word match on the name  - 1.00\n  3. ZZMAGENTO Traders         - reachable only by a misspelling - recorded as: near-miss match               - 0.36\n\nAll three rows are in the order this check asks for, and the first is credited as the stronger kind of match.\n\nWORTH KNOWING: the begins-with row and the contains row both come back on the highest score the search can give, 1.00. The begins-with row is credited correctly and does appear first, which is what this check asks for - but with the two scores level, the order is settled by the rule used when results tie, which puts the most recently changed record first. That wider behaviour is reported on SV-10277."
+  },
+  "C72122": {
+   "verdict": "Passed",
+   "observed": "on the Assets tab the vehicle whose name begins with what you typed is credited more strongly than the one that merely contains it, and appears first. Read the caveat below.",
+   "technical": "Checked on 20 September 2026 on build v26.36.8-d146c39, read twice with the same result.\n\nTyping ZZOBSIDIAN and opening the Assets tab returns:\n  1. 2019 ZZOBSIDIAN Trucks Hauler        - the make BEGINS with what was typed - recorded as: begins-with match on the make - 1.00\n  2. 2019 Western Heavy ZZOBSIDIAN Hauler - the text sits in the model           - recorded as: whole-word match on the model - 1.00\n  3. 2019 ZZOBSIDIAM Trucks Hauler        - reachable only by a misspelling      - recorded as: near-miss match                - 0.41\n\nAll three rows are in the order this check asks for, and the first is credited as the stronger kind of match. The make and the model are held separately, so the difference between rows 1 and 2 is genuine.\n\nWORTH KNOWING: the begins-with row and the contains row both come back on the highest score the search can give, 1.00. The begins-with row is credited correctly and does appear first, which is what this check asks for - but with the two scores level, the order is settled by the rule used when results tie, which puts the most recently changed record first. That wider behaviour is reported on SV-10277."
+  }
+ }
+}
