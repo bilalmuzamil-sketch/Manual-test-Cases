@@ -163,14 +163,23 @@ R += [
    'Customers group and muddy the comparison.'),
  contact('pertab_contact', 'pertab_owner', 'PerTab', [72122],
    'Required by /api/vehicles/create - customer_id there is the CONTACT, not the company.'),
- vehicle('pt_asset_a', 'PERTABAST0000001', 'PERTAB-A1', ASST_KW, 'Hauler', [72122],
-   'A: the MAKE is the keyword, so the displayed name reads "2019 ZZOBSIDIAN Hauler" and the '
-   'keyword is the first word after the year.'),
- vehicle('pt_asset_b', 'PERTABAST0000002', 'PERTAB-B2', 'Western', f'{ASST_KW} Hauler', [72122],
-   'B: the keyword sits LATER in the displayed name - "2019 Western ZZOBSIDIAN Hauler".'),
- vehicle('pt_asset_c', 'PERTABAST0000003', 'PERTAB-C3', ASST_TYPO, 'Hauler', [72122],
-   'C: TYPO only. Same owner, same year, same model and a neutral VIN and unit, so nothing but '
-   'the spelling differs.'),
+ # 🔴 THE MAKE AND MODEL ARE INDEXED SEPARATELY, NOT AS ONE DISPLAYED NAME - and the first
+ # attempt here ignored that, so the pair measured backwards. Make=ZZOBSIDIAN exactly gave A
+ # kind=EXACT on `make`, while B's model "ZZOBSIDIAN Hauler" BEGAN with the keyword and so gave
+ # B kind=PREFIX on `model` - putting the contains record ABOVE the begins-with record for a
+ # reason that had nothing to do with the rule under test. Measured 2026-09-20.
+ # The fix: the keyword must START a field on A (but not BE the whole field), and must sit
+ # MID-FIELD on B, so the match type is the only thing that differs.
+ vehicle('pt_asset_a', 'PERTABAST0000001', 'PERTAB-A1', f'{ASST_KW} Trucks', 'Hauler', [72122],
+   'A: the MAKE begins with the keyword and carries more text after it, so it is a PREFIX match '
+   'and not an exact one. Displayed name: "2019 ZZOBSIDIAN Trucks Hauler".'),
+ vehicle('pt_asset_b', 'PERTABAST0000002', 'PERTAB-B2', 'Western', f'Heavy {ASST_KW} Hauler',
+   [72122],
+   'B: the keyword sits MID-FIELD in the model, so it is a whole-word match and cannot be read '
+   'as a prefix of anything. Displayed name: "2019 Western Heavy ZZOBSIDIAN Hauler".'),
+ vehicle('pt_asset_c', 'PERTABAST0000003', 'PERTAB-C3', f'{ASST_TYPO} Trucks', 'Hauler', [72122],
+   'C: TYPO only, in the same field and position as A so the only difference from A is the '
+   'spelling. Same owner, year, model, and neutral VIN and unit.'),
 ]
 
 MANIFEST = {

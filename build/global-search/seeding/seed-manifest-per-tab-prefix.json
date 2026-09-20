@@ -527,7 +527,7 @@
    "create": {
     "endpoint": "/api/vehicles/create",
     "payload": {
-     "maker_name": "ZZOBSIDIAN",
+     "maker_name": "ZZOBSIDIAN Trucks",
      "model_name": "Hauler",
      "year": 2019,
      "unit": "PERTAB-A1",
@@ -551,7 +551,7 @@
     "endpoint": "/api/vehicles/change",
     "whole_record": true
    },
-   "_why": "A: the MAKE is the keyword, so the displayed name reads \"2019 ZZOBSIDIAN Hauler\" and the keyword is the first word after the year."
+   "_why": "A: the MAKE begins with the keyword and carries more text after it, so it is a PREFIX match and not an exact one. Displayed name: \"2019 ZZOBSIDIAN Trucks Hauler\"."
   },
   {
    "key": "pt_asset_b",
@@ -572,7 +572,7 @@
     "endpoint": "/api/vehicles/create",
     "payload": {
      "maker_name": "Western",
-     "model_name": "ZZOBSIDIAN Hauler",
+     "model_name": "Heavy ZZOBSIDIAN Hauler",
      "year": 2019,
      "unit": "PERTAB-B2",
      "vin": "PERTABAST0000002",
@@ -595,7 +595,7 @@
     "endpoint": "/api/vehicles/change",
     "whole_record": true
    },
-   "_why": "B: the keyword sits LATER in the displayed name - \"2019 Western ZZOBSIDIAN Hauler\"."
+   "_why": "B: the keyword sits MID-FIELD in the model, so it is a whole-word match and cannot be read as a prefix of anything. Displayed name: \"2019 Western Heavy ZZOBSIDIAN Hauler\"."
   },
   {
    "key": "pt_asset_c",
@@ -615,7 +615,7 @@
    "create": {
     "endpoint": "/api/vehicles/create",
     "payload": {
-     "maker_name": "ZZOBSIDIAM",
+     "maker_name": "ZZOBSIDIAM Trucks",
      "model_name": "Hauler",
      "year": 2019,
      "unit": "PERTAB-C3",
@@ -639,7 +639,7 @@
     "endpoint": "/api/vehicles/change",
     "whole_record": true
    },
-   "_why": "C: TYPO only. Same owner, same year, same model and a neutral VIN and unit, so nothing but the spelling differs."
+   "_why": "C: TYPO only, in the same field and position as A so the only difference from A is the spelling. Same owner, year, model, and neutral VIN and unit."
   }
  ]
 }
