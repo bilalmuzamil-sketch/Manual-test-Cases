@@ -32,3 +32,27 @@ be in — nobody is looking at it. **Put to the QA lead; not touched.**
 **Before writing "no before-and-after exists", search our OWN recorded results for the same behaviour.**
 Every pass we record is a dated measurement on a named build. The regression evidence I said was
 missing had been sitting in `results/c55707fixed.json` for two days. Learning **L0173**.
+
+## Comment posted, and the precise scope of the regression
+
+Comment **76911** on **SV-10211**: two annotated pictures (real data `diesel`, and the ticket's own
+`ZZPREFIX` example with a score table), plain Actual/Expected, the two §6.1 sentences quoted verbatim,
+the environment, and C55707 with its run link.
+
+**A distinction that must not be fudged.** I checked what C55707 and C55724 actually assert: both
+assert the **order of the three seeded rows**, not the scores. Today that order is still correct —
+begins-with, then contains, then the misspelling — so **both checks still pass on their own wording
+and I did NOT change their status.** What has come back is the ticket's fault: rows 1 and 2 are scored
+**identically (1.00 vs 1.00)**, so the order is produced by the tie-break (most recently changed)
+rather than by match strength, and in real company data that already yields the wrong order
+(`diesel` → `Stillwater Diesel Repair` first, `Diesel Diesel & Fleet Repair` fifth).
+
+Both results were re-recorded **Passed with the caveat spelled out**, naming the 18 September scores,
+today's, the tie-break, and the real-data failure. This is the Rule 106 false-pass trap exactly: a
+check that passes while the rule it exists to protect is inert.
+
+## Every other non-passing check: none is a regression
+
+Result history pulled for all 13 failing and both blocked checks (`hist.mjs`). **Not one of them has
+ever been recorded Passed** — they have been Failed or Blocked from the first run. So SV-10211 is the
+only ticket that was signed off and has since broken.

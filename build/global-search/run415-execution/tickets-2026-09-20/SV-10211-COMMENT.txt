@@ -1,0 +1,39 @@
+h3. This has come back — re-opening is needed
+
+I marked this passed on 18 September. On today's build it is failing again.
+
+h3. In real data: searching for {{diesel}}
+
+!REG1-diesel.png|width=760,height=701!
+
+*Actual Result:* the vendor actually called *Diesel Diesel & Fleet Repair* is fifth, below four vendors that merely have the word somewhere in their name.
+*Expected Result:* the vendor whose name begins with what was typed appears above the ones that merely contain it.
+
+h3. The example this ticket was raised on
+
+!REG2-final.png|width=760,height=513!
+
+*Actual Result:* both names are scored *1.00* — identical to the last digit — so the stronger kind of match earns no advantage at all. That is the exact fault this ticket described.
+*Expected Result:* the name that begins with the typed text scores higher than the one that merely contains it.
+
+h3. What changed between then and now
+
+* *18 September*, build {{v26.36.7-069b8c2}} — the two were separated and the correct one ranked first. Checked twice and recorded as passed, which is why this ticket was closed.
+* *20 September*, build {{v26.36.8-d146c39}} — both score 1.00 and the advantage is gone.
+
+The change for SV-10161 was deployed between those two dates. It raised the credit given to a match on a record's own name so far that such a match now reaches the maximum score on its own, which leaves no room for the difference between these two kinds of match to show. The wider effect is written up in SV-10277.
+
+h3. Sources
+
+Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, section 6.1, read on 20 September 2026.
+
+{quote}Prefix match on primary name field → +0.70.{quote}
+{quote}Whole-word match anywhere in indexed fields → +0.50.{quote}
+
+h3. Environment
+
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Checked 20 September 2026.
+
+h3. Test Coverage
+
+* C55707 — [case|https://shopview.testrail.io/index.php?/cases/view/55707] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]

@@ -1,0 +1,14 @@
+[
+ {
+  "cid": "C55707",
+  "status": "Passed",
+  "note": "the three rows do come back in the right order, so this check passes as written - but read the caveat, because the reason they are in that order has changed.",
+  "evidence": "Re-run on 20 September 2026 on build v26.36.8-d146c39.\n\nTyping ZZPREFIX and opening the Customers tab gives:\n  1. ZZPREFIX Freight Ltd       - the name BEGINS with what was typed\n  2. Bolton ZZPREFIX Services   - the text sits part-way through the name\n  3. ZZPREFIY Cartage           - reachable only by a misspelling\nThat is the order this check asks for, so it passes.\n\nCAVEAT, and it matters: rows 1 and 2 are now given exactly the same score - 1.00 against 1.00. On 18 September they were given different scores, and the difference was what put the first one above the second. Today the scores are level and the order comes from the fall-back rule used when results tie, which is whichever record was changed most recently. So the order is right today by luck of that fall-back, not because the stronger kind of match is being rewarded.\n\nIn real company data the same thing already produces a wrong order: typing 'diesel' puts 'Stillwater Diesel Repair' first while 'Diesel Diesel & Fleet Repair', whose name actually begins with the word, comes fifth. That is reported on SV-10211 and the wider effect on SV-10277."
+ },
+ {
+  "cid": "C55724",
+  "status": "Passed",
+  "note": "the three rows do come back in the right order, so this check passes as written - but read the caveat, because the reason they are in that order has changed.",
+  "evidence": "Re-run on 20 September 2026 on build v26.36.8-d146c39.\n\nTyping ZZPREFIX and opening the Customers tab gives:\n  1. ZZPREFIX Freight Ltd       - the name BEGINS with what was typed\n  2. Bolton ZZPREFIX Services   - the text sits part-way through the name\n  3. ZZPREFIY Cartage           - reachable only by a misspelling\nThat is the order this check asks for, so it passes.\n\nCAVEAT, and it matters: rows 1 and 2 are now given exactly the same score - 1.00 against 1.00. On 18 September they were given different scores, and the difference was what put the first one above the second. Today the scores are level and the order comes from the fall-back rule used when results tie, which is whichever record was changed most recently. So the order is right today by luck of that fall-back, not because the stronger kind of match is being rewarded.\n\nIn real company data the same thing already produces a wrong order: typing 'diesel' puts 'Stillwater Diesel Repair' first while 'Diesel Diesel & Fleet Repair', whose name actually begins with the word, comes fifth. That is reported on SV-10211 and the wider effect on SV-10277."
+ }
+]
