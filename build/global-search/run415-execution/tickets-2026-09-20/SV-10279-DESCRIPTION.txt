@@ -1,0 +1,61 @@
+h3. Description
+
+A record whose name *begins* with the search text should rank above one that merely *contains* it.
+
+This works on *Customers*, *Vendors* and *Assets*. On *Parts* it does not: a part whose name begins with the search text is treated as an ordinary whole-word match, so it receives no advantage over a part that merely contains the text.
+
+h3. Steps to Reproduce
+
+h4. Example 1 — Parts, where it does not work
+
+# Open Global Search ({{Ctrl}}+{{K}})
+# Search {{ZZTABQ}}
+# Open the *Parts* tab
+
+!PARTS1-final.png|width=760,height=567!
+
+*Actual:* both parts are treated as whole-word matches and receive the same score. Their displayed order is then determined by the recency tie-break.
+*Expected:* the part whose name begins with the search text receives the higher of the two match scores and appears above the other.
+
+The two parts were created for this check with no stock, the same bin location, never sold and never viewed, so no other signal can affect the result.
+
+{quote}Prefix match on primary name field → +0.70.{quote}
+{quote}Whole-word match anywhere in indexed fields → +0.50.{quote}
+
+h4. Example 2 — Customers, where it works
+
+# Open Global Search ({{Ctrl}}+{{K}})
+# Search {{ZZPREFIX}}
+# Open the *Customers* tab
+
+!PT2.png|width=760,height=350!
+
+*Actual and expected:* the two kinds of match are told apart correctly here. This example is included as the comparison — it shows the behaviour Parts is missing.
+
+h3. Technical Finding
+
+QA checked every result type. A part's name is its description, which the PRD lists as the field displayed as its name:
+
+{quote}Parts (Inventory). Indexed: part number, description, category, tags, vendor name. Displayed: description (primary), part number, quantity on hand badge, bin location.{quote}
+
+On Parts the product records a description beginning with the search text as a whole-word match rather than a prefix match. On the other result types the equivalent match is recorded correctly.
+
+|| Result type || Name beginning with the search text recorded as the stronger match? ||
+| Customers | yes |
+| Vendors | yes |
+| Assets | yes |
+| *Parts* | *no* |
+| Work orders, Part sales, Purchase orders, Vendor invoices | not applicable — these are found by their number, which is matched exactly |
+
+h3. Environment
+
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Verified 20 September 2026.
+
+h3. Sources
+
+Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, sections 4 and 6.1, read on 20 September 2026.
+
+h3. Test Coverage
+
+* C55707 — [case|https://shopview.testrail.io/index.php?/cases/view/55707] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]
+* C55724 — [case|https://shopview.testrail.io/index.php?/cases/view/55724] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]
