@@ -112,18 +112,20 @@ def main():
             print(f"  {R}❌{X} {group:17} MISSING — one permission must hide all three together")
 
     print('\n=== C55737 — MEASURED, NOT ASSUMED ===')
-    d = search('ZZCOUNT')
+    d = search('ZZTALLYQ')
     cust = rows(d, 'customers')
-    mine = ours(cust, 'ZZCOUNT')
+    mine = ours(cust, 'ZZTALLYQ')
     total = sum(len(g.get('items') or []) for g in (d.get('data') or {}).get('groups') or [])
     foreign = total - len(mine)
     print(f"  our customers: {len(mine)}  |  foreign rows in the whole result: {foreign}")
     if foreign:
-        print(f"  {R}🔴 C55737 IS NOT RUNNABLE ON THIS KEYWORD.{X} The case turns on knowing the "
-              f"EXACT number\n     the role may see, and 'ZZCOUNT' matches real catalogue parts "
-              f"named 'Hi Count(R)'.\n     Awaiting the QA lead's go-ahead to change the KEYWORD "
-              f"ONLY (Rule 111 shape); the\n     case is otherwise untouched (Rule 6).")
-        warns.append('C55737 keyword collides with real data')
+        print(f"  {R}🔴 THE KEYWORD HAS PICKED UP A COLLISION.{X} This case turns on knowing the "
+              f"EXACT number\n     the role may see, so ANY foreign row makes it unreadable. Its "
+              f"first keyword, 'ZZCOUNT',\n     matched real catalogue parts named 'Hi Count(R)' "
+              f"and was replaced with 'ZZTALLYQ' on\n     2026-09-20. If this fires again, the "
+              f"new keyword needs replacing too - measure a\n     candidate returns ZERO rows "
+              f"before proposing it.")
+        warns.append('C55737 keyword has collided again')
     print(f"  {Y}Separately:{X} the case needs SOME rows of a type visible and at least one HIDDEN "
           f"from the\n  same role. Every permission measured here is TYPE-level, not row-level, so "
           f"that may not be\n  expressible at all - a PO decision, not a seeding gap.")

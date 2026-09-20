@@ -128,10 +128,12 @@ UNIVERSES = [
      #   because C55735 asserts one permission hides them together - two of three is a half-pass
      #   that reads as green.
      ('ZZTOGPRICE', 'parts',           'ZZTOGPRICE Filter'),     # C55736 price masking
-     # 🔴 C55737 IS DELIBERATELY NOT PROBED HERE. Its keyword 'ZZCOUNT' matches real catalogue
-     # parts named 'Hi Count(R)' - 23 foreign rows - so a presence probe would pass while the
-     # case remains unrunnable. verify_toggle.py measures and reports that instead of hiding it
-     # behind a green tick.
+     # C55737's keyword was 'ZZCOUNT', which matched real catalogue parts named 'Hi Count(R)'
+     # and made a COUNTING case unreadable. Replaced with 'ZZTALLYQ' on 2026-09-20 with the QA
+     # lead's go-ahead (identifier only). Probed now that it is clean - but note this probe only
+     # proves the two rows exist; verify_toggle.py is what measures the collision load, which is
+     # the thing that actually decides whether this case can be run.
+     ('ZZTALLYQ',   'customers',       'ZZTALLYQ Alpha Freight'),  # C55737 count assertion
   ], 'seed-manifest-toggle.json', 'verify_toggle.py'),
 ]
 

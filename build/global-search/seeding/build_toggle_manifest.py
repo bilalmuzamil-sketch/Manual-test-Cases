@@ -253,10 +253,18 @@ R += [
 # search index is organisation-scoped while records are workplace-scoped, which is exactly this
 # shape. The rows below are the visible side; whether a genuinely hidden sibling can exist at all
 # is MEASURED by verify_toggle.py and reported, never assumed.
+# 🔴 THE KEYWORD WAS ZZCOUNT AND IT DID NOT WORK. 'Count' is an ordinary English word and the
+# catalogue is full of parts named 'Hi Count(R)' - marker lights, stop lights - which the search
+# matched by near-spelling. Typing ZZCOUNT returned 25 rows, 23 of them real product data, and
+# this case turns on knowing the EXACT number the role may see. A keyword only has to collide
+# once to make a counting case unreadable.
+# Changed to ZZTALLYQ on the QA lead's go-ahead 2026-09-20, in the case body too (identifier
+# ONLY - byte-level diff was exactly -ZZCOUNT +ZZTALLYQ in one field). Measured private first:
+# ZZTALLYQ returned 0 rows with a live control proving the search was answering.
 R += [
- customer('count_visible_1', 'ZZCOUNT Alpha Freight', [55737],
+ customer('count_visible_1', 'ZZTALLYQ Alpha Freight', [55737],
    'Visible side of the count assertion.'),
- customer('count_visible_2', 'ZZCOUNT Beta Freight', [55737],
+ customer('count_visible_2', 'ZZTALLYQ Beta Freight', [55737],
    'Visible side of the count assertion - two rows so the tester reads a count of 2, not 1. A '
    'count of 1 has already produced a false PASS on a real regression in this project.'),
 ]
