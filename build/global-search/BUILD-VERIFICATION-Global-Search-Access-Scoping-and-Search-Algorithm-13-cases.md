@@ -20,6 +20,10 @@ actually be **executed on the build**, finalise the on-screen wording, and re-st
 | Ranking + fuzzy + algorithm (6726 / 6725, 89 records) | 17/17 | **25/25** — 14 presence · **8 ORDER** · 2 negatives **with controls** · 1 fuzzy-reachability |
 | Permission role fixtures (6734) | 7/7 | 7 roles rebuilt from template |
 
+> **This is one of three build-verification documents for Global Search.** The other two are
+> `BUILD-VERIFICATION-Global-Search-Permissions-and-Role-Scoping-12-cases.md` and
+> `BUILD-VERIFICATION-Global-Search-Permission-Toggle-Same-Record-7-cases.md`. No case appears in more than one. Together they cover **32** cases.
+
 ## 🔴 DO THESE TWO THINGS BEFORE ANYTHING ELSE
 
 ```bash

@@ -11,10 +11,11 @@ actually be **executed on the build**, finalise the on-screen wording, and re-st
 | **Build** | `https://sv9160.qa.shopview.com` — marker **`v26.36.8-d146c39`** (the branch redeployed 2026-09-18; data rebuilt and re-verified on the NEW build) |
 | **Ready** | **11 of 12**, case bodies read. **C44880 is Blocked** — it needs a second organisation's sign-in, which does not exist yet. Everything else has its fixture, live and checked |
 
-> **This is a companion document, not a replacement.** The six newer permissions/scoping cases
-> **C55718–C55723** are build-verified through
-> `HANDOFF-BUILD-VERIFY-13-NEW-CASES.md`, together with the seven algorithm cases. Between the two
-> documents all **18** permissions cases are covered. Neither supersedes the other.
+> **This is one of three build-verification documents for Global Search.** The other two are
+> `BUILD-VERIFICATION-Global-Search-Access-Scoping-and-Search-Algorithm-13-cases.md` and
+> `BUILD-VERIFICATION-Global-Search-Permission-Toggle-Same-Record-7-cases.md`. No case appears in more than one. Together they cover **32** cases.
+> The other permissions cases live there: **C55718–C55723** in the access-scoping document,
+> **C55731–C55737** in the permission-toggle document.
 
 ## 🔴 DO THESE TWO THINGS BEFORE ANYTHING ELSE
 
