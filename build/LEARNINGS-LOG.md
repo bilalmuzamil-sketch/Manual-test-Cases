@@ -3528,3 +3528,15 @@ make/model case needed an explicit warning, because it returns rows only through
 match on `make` alone (0.65) and therefore looks like a counter-example while being none.
 **A simplification pass by anyone — a person, another model — is also a free review: read what they
 deleted and ask whether it was load-bearing or whether it was wrong.**
+
+## L0168 — A comment on a developer's ticket is picture-led and quotes the spec, never our own vocabulary (2026-09-20)
+**QA lead, verbatim:** *"the annotation should refer to the Specs and not to your rule book as the
+developers can not read your rule book … less words and more screenshots."*
+My first version of comment 76906 on SV-10161 was 1,100 words of prose whose annotations said
+"the rulebook says" — a phrase that means nothing to the person who has to fix it. Replaced with:
+**1. What is fixed** (picture + steps) · **2. What was correct before and is now broken** (per finding:
+picture + steps + the spec quoted verbatim in a `{quote}` block). 482 words, 3 pictures, 4 PRD quotes.
+**The mechanism that made it work:** a score the screen does not display is proved by composing the
+panel screenshot with a small table under it — *Result · What the spec awards it · Value returned*
+(`build/testing-tools/compose_score_table.py`). Prose asserting a number is not evidence; a picture
+carrying it is. Recorded as a standing rule in `build/skills/06-DEFECT-PREP.md`.

@@ -1152,6 +1152,42 @@ v2**:
 > is Replacement-Scope-only, and only where something worked before and does not now. Ask him
 > which scope before starting any task; never infer it.
 
+### 🛑 A COMMENT IS PICTURE-LED, TWO SECTIONS, AND EVERY ANNOTATION QUOTES THE SPEC — NEVER OUR RULES (QA lead, 2026-09-20)
+
+**Verbatim:** *"You are supposed to keep the comment simple with annotated screenshots and the
+annotation should refer to the Specs and not to your rule book as the developers can not read your
+rule book … there should be less words and more screenshots to explain whats wrong with the specs
+reference and steps of reproduction."*
+
+**The shape of a QA comment on a developer's ticket — exactly this order:**
+
+| # | Section | What goes in it |
+|---|---|---|
+| 1 | **What has been fixed now** | the annotated picture, then **Steps to reproduce** (numbered, UI only) |
+| 2 | **What was correct before and is now broken** | one sub-section per finding: the annotated picture, then **Steps of replication** so the reader can see it is not working as expected, then **the spec reference quoted exactly as the spec words it** |
+
+**The five hard rules:**
+1. **LESS WORDS, MORE PICTURES.** The picture carries the explanation; the text carries the steps and
+   the quote. Target well under 500 words of body text however many findings there are.
+2. **EVERY ANNOTATION CITES THE SPEC**, by section and in the spec's own words — *"PRD 6.1: 'Prefix
+   match on primary name field → +0.70'"*. **NEVER our vocabulary** ("the rulebook", "the requirements
+   page", a rule number, a skill name, a case id): the developer cannot read any of it.
+3. **QUOTE THE SPEC VERBATIM IN A `{quote}` BLOCK**, under the picture it proves — not paraphrased,
+   not summarised.
+4. **A SCORE OR ANY OTHER VALUE THE SCREEN DOES NOT SHOW IS PROVED IN THE PICTURE, NOT IN PROSE.**
+   Compose the panel screenshot with a small table UNDER it — *Result · What the spec awards it ·
+   Value returned* — so the picture alone is the evidence
+   (`build/testing-tools/compose_score_table.py`; worked examples
+   `build/global-search/run415-execution/sv10161-retest/pics/PIC1-3`).
+5. **STEPS ARE UI STEPS A LAYMAN CAN FOLLOW** — the shortcut, the word typed, the tab opened. Only the
+   last line may name the thing that must be read off the response.
+
+A short *"checked and not broken"* list at the end is allowed and earns trust — each line naming the
+spec sentence that the behaviour conforms to. Nothing else goes in.
+
+Worked example: comment **76906** on **SV-10161** (2026-09-20) — 3 pictures, 482 words, 4 verbatim
+PRD quotes, 3 reproduction blocks.
+
 ### 🛑 THE REPORT IS THE ISSUE, IN THE PRESENT TENSE — EVEN AFTER IT IS FIXED (QA lead, 2026-09-16)
 
 **Verbatim:** *"you should not change the Ticket title and description into the past that it WAS

@@ -1,57 +1,61 @@
-h2. QA re-check of the deployed change
+QA re-check on {{v26.36.8-d146c39}} (branch {{sv9160}}), 20 September 2026. Source: Global Search PRD, page {{576978945}}, version 17.
 
-Re-tested on {{v26.36.8-d146c39}} (branch {{sv9160}}) on 20 September, against the Global Search PRD as it reads today (page {{576978945}}, version 17).
+h2. 1. What is fixed
 
-The change raised the extra credit a record gets when the word you typed sits in its *own name*, from *+0.10* to *at least +0.50*. I measured that on a clean pair built for the purpose: two companies identical in every way except where the word sits — one with the word in its *name*, one with it in its *address*. The name one comes back at *1.00*, the address one at *0.50*. A whole word is worth +0.50 in both cases, so the difference between them *is* the bonus.
+!PIC1-fixed.png|width=760,height=850!
 
-h2. What the change has solved
+*Steps to reproduce*
+# Press {{Ctrl}}+{{K}}.
+# Type {{deshawn}}.
+# Open the *Customers* tab.
 
-!ANN-A-solved.png|width=760,height=701!
+The company whose own name is Deshawn is now first. Checked across 20 different person-name words and 230 customer rows: wherever a company's own name matched exactly, as a whole word or as a prefix, it ranked above every contact match.
 
-Typing a person's name now returns the company actually called that name first, above a company that merely has a person of that name on file. Measured: *1.00* against *0.95*.
+*PRD 6.1, exactly as written:*
+{quote}Bonus for match on the primary display name vs. a secondary indexed field → +0.10. A match on a contact field of a customer or vendor is a secondary-field match and does not receive this bonus (§4).{quote}
 
-This is not a one-word fix. I ran *20* different person-style words and looked at *230* customer rows. In *every* head-to-head where a company's own name matched the word exactly, as a whole word, or as a prefix, that company ranked above every contact match. Three searches returned a contact match above a name match, and in all three the name match was only a *near-miss spelling* — which §6.1 says should lose to a solid match. So those three are correct, not a relapse.
+The measured bonus is *at least +0.50*, not +0.10. The PRD needs updating to describe the behaviour shown above.
 
-*One thing to flag about the fix itself.* As the PRD reads today, this result is not what should happen. §6.1 gives a customer {{Has ≥1 open WO → +0.20}} and {{total open WO count, log-scaled, up to +0.15}}, while the name bonus is only {{+0.10}}. Measured head-to-head: a *quiet* company — no open work orders, never viewed — matching on its own name scores *1.00*, while a company with *ten* open work orders matching on a contact scores *0.95*. Under the documented weights those would be *0.60* and up to *0.95*, i.e. the busy one first — exactly the behaviour this ticket reported as wrong. *The PRD therefore still describes the old behaviour and needs updating to match what everyone agrees the product should do.*
+h2. 2. What was correct before and is now broken
 
-h2. What worked before per the PRD, and what now goes against it
+h3. 2a. The two match strengths no longer separate
 
-Only the items below are listed, and each one is listed because it conflicts with a sentence in §6.1 — not because it merely looks different.
+!PIC2-tiers.png|width=760,height=498!
 
-||What §6.1 says||What that gave before||What happens now||Against the PRD?||
-|{{Bonus for match on the primary display name vs. a secondary indexed field → +0.10}}|A name match was credited one tenth over a secondary-field match.|Measured at *at least +0.50* — five times the documented figure. It can only be measured as a floor, because the result lands on the top of the scale.|*Yes*|
-|{{Prefix match on primary name field → +0.70}} and {{Whole-word match anywhere in indexed fields → +0.50}}|A company whose name *starts with* the word outranked one that merely *contains* it, by two tenths — 0.80 against 0.60.|Both land on *1.00* and come back indistinguishable. The PRD's two match strengths no longer separate anything.|*Yes*|
-|{{Customers. Has ≥1 open WO → +0.20; total open WO count, log-scaled, up to +0.15; viewed by user in last 7 days → +0.10}} and {{Parts. In stock (>0) → +0.20; bin location present → +0.05; sold/used in last 30 days → up to +0.15}}|These decided the order among records that matched the typed word equally well.|A record whose *own name* carries the word reaches the top of the scale on the match alone, so none of these credits can lift it or separate it from any other such record.|*Yes*|
+*Steps to reproduce*
+# Press {{Ctrl}}+{{K}}.
+# Type {{ZZPREFIX}}.
+# Open the *Customers* tab.
+# Read the score on each of the two rows in the search response.
 
-h3. The two match strengths, side by side
+Both return *1.00*. Before, a name that *starts with* the word scored 0.80 and a name that merely *contains* it scored 0.60.
 
-!ANN-B-tiers.png|width=760,height=350!
+*PRD 6.1, exactly as written:*
+{quote}Prefix match on primary name field → +0.70.{quote}
+{quote}Whole-word match anywhere in indexed fields → +0.50.{quote}
 
-Two companies at the same address with no open work orders. The word *starts* one name and sits *inside* the other. The PRD separates those by two tenths. The product returns both on exactly the same score.
+h3. 2b. A part's stock and recent use no longer affect its position
 
-h3. What that looks like in real data
+!PIC3-parts.png|width=760,height=850!
 
-!ANN-C-brake.png|width=760,height=701!
+*Steps to reproduce*
+# Press {{Ctrl}}+{{K}}.
+# Type {{brake}}.
+# Open the *Parts* tab.
+# Read the score on each row in the search response.
 
-Typing {{brake}} returns *twenty* parts, *all twenty on an identical score*. A shoe kit last used three weeks ago earns a recent-use credit under §6.1; a drum last used in May earns none — yet the two are level, and so are the other eighteen.
+All *twenty* rows return *1.00*, including a shoe kit last used on 31 August next to a drum last used on 28 May.
 
-h3. Why, in one line
+*PRD 6.1, exactly as written:*
+{quote}Parts. In stock (>0) → +0.20; bin location present → +0.05; sold/used in last 30 days (frequency, log-scaled) → up to +0.15; viewed recently → +0.10.{quote}
 
-The score is capped at *1.00*. I confirmed the cap is real: nothing in 230 rows went above it, and other searches top out well below it ({{brake}} customers peak at 0.32), so it is a genuine ceiling and not simply the best row being called 1. A whole-word match on a name is now {{0.50 + 0.50}} = the ceiling, and a prefix on a name is {{0.70 + 0.50}}, also the ceiling. Everything §6.1 adds after that is absorbed.
+h2. Why both of these happen
 
-h2. What I checked and found *not* broken
+A whole-word match on a name is now {{0.50 + 0.50}} = the top of the scale, and a prefix on a name is {{0.70 + 0.50}}, also the top of the scale. Everything PRD 6.1 adds after that is absorbed. The cap is real: nothing in 230 rows scored above 1.00, and other searches top out far below it ({{brake}} customers peak at 0.32).
 
-* *Tie-breaking.* §6.1 says {{ties are broken by recency (most recently updated wins)}}. The twenty {{brake}} parts do come back in descending order of last use, so ties resolve as specified.
-* *Clamping itself.* §6.1 says {{The score is clamped to a sane range}}, so a cap is allowed. The problem is where an ordinary name match now sits relative to that cap, not that a cap exists.
-* *The pinned top row.* §6.2 pins the top result when it scores above 0.95. Typing a work order number still pins it correctly, and an ordinary name match is *not* wrongly pinned even though dozens of them now score above 0.95. Worth noting all the same: §6.2 describes a score above 0.95 as {{effectively an ID match}}, and that is no longer what such a score means.
-* *Secondary-field weighting.* A {{starts with}} hit on a contact's name still scores at the whole-word level, not the 0.70 the PRD reserves for the primary name. Correct as written.
+h2. Checked and *not* broken
 
-h2. Suggestion
-
-Two separate things, and they are both needed:
-
-# *Update §6.1* so the intended behaviour — a company's own name beating a contact match — is what the document actually says. Today the document still describes the behaviour this ticket was raised against.
-# *Re-pick the bonus* so a name match clears a busy stranger *without* landing on the ceiling, leaving headroom above it for the in-stock, open-work-order and recent-use credits to keep ordering the rest. Applying match quality and the entity signals in two stages, so the clamp cannot swallow the second stage, would do the same job.
-
-Environment: branch {{sv9160}}, build {{v26.36.8-d146c39}}, read 20 September 2026.
-Source: Global Search PRD, page {{576978945}}, version 17, §6.1 and §6.2, read live the same day.
+* Tie-breaking — {{ties are broken by recency (most recently updated wins)}}: the twenty {{brake}} parts are in descending order of last use.
+* Clamping itself — {{The score is clamped to a sane range}}: a cap is allowed by the PRD.
+* PRD 6.2's pinned row: a work order number still pins correctly, and an ordinary name match is not wrongly pinned.
+* Secondary-field weighting: a prefix hit on a contact's name still scores 0.50, not the 0.70 the PRD reserves for the primary name.
