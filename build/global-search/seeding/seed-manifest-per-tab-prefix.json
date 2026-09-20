@@ -1,0 +1,645 @@
+{
+ "environment": {
+  "workplace_name_hint": "Staging Heavy Duty"
+ },
+ "_UNIVERSE": "Per-tab prefix ranking (C72120 Parts, C72121 Vendors, C72122 Assets)",
+ "_KEYWORDS": {
+  "C72120": "ZZKRYPTON",
+  "C72121": "ZZMAGENTA",
+  "C72122": "ZZOBSIDIAN",
+  "typo variants": [
+   "ZZKRYPTOM",
+   "ZZMAGENTO",
+   "ZZOBSIDIAM"
+  ]
+ },
+ "_THE_DESIGN_RULE": "Three records per case matching one query three ways - begins-with, contains, typo - identical in every other respect.",
+ "_MEASURED_BEFORE_USE": "All six tokens returned ZERO rows on 2026-09-20 before any record was created, with a live control proving the search was answering.",
+ "records": [
+  {
+   "key": "pt_part_a_cat",
+   "type": "CataloguePart",
+   "serves": [
+    72120
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PERTAB-7001",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZKRYPTON Brake Kit",
+     "part_number": "PERTAB-7001",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "A: description BEGINS with the query. Part number deliberately neutral so the DESCRIPTION is what matches."
+  },
+  {
+   "key": "pt_part_a_inv",
+   "type": "InventoryPart",
+   "depends_on": "pt_part_a_cat",
+   "serves": [
+    72120
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PERTAB-7001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 0,
+     "cost": 50.0,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 100.0
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "PERTAB-7001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 0
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "Stock row - required for the part to be searchable at all. Zero quantity, same bin, same cost and price as its two siblings."
+  },
+  {
+   "key": "pt_part_b_cat",
+   "type": "CataloguePart",
+   "serves": [
+    72120
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PERTAB-7002",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "Heavy Duty ZZKRYPTON Filter",
+     "part_number": "PERTAB-7002",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "B: query CONTAINED part-way through. Part number deliberately neutral so the DESCRIPTION is what matches."
+  },
+  {
+   "key": "pt_part_b_inv",
+   "type": "InventoryPart",
+   "depends_on": "pt_part_b_cat",
+   "serves": [
+    72120
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PERTAB-7002",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 0,
+     "cost": 50.0,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 100.0
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "PERTAB-7002",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 0
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "Stock row - required for the part to be searchable at all. Zero quantity, same bin, same cost and price as its two siblings."
+  },
+  {
+   "key": "pt_part_c_cat",
+   "type": "CataloguePart",
+   "serves": [
+    72120
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PERTAB-7003",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZKRYPTOM Wheel Seal",
+     "part_number": "PERTAB-7003",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "C: reachable only by TYPO. Part number deliberately neutral so the DESCRIPTION is what matches."
+  },
+  {
+   "key": "pt_part_c_inv",
+   "type": "InventoryPart",
+   "depends_on": "pt_part_c_cat",
+   "serves": [
+    72120
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PERTAB-7003",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 0,
+     "cost": 50.0,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 100.0
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "PERTAB-7003",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 0
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "Stock row - required for the part to be searchable at all. Zero quantity, same bin, same cost and price as its two siblings."
+  },
+  {
+   "key": "pt_vend_a",
+   "type": "Vendor",
+   "serves": [
+    72121
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZMAGENTA Supply Co",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZMAGENTA Supply Co",
+     "address_1": "11 Per Tab Lane",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-7001",
+     "telephone": "(264) 400-0700",
+     "email": "ap@zzpertab.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "A: name BEGINS with the query."
+  },
+  {
+   "key": "pt_vend_b",
+   "type": "Vendor",
+   "serves": [
+    72121
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "Northgate ZZMAGENTA Parts",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "Northgate ZZMAGENTA Parts",
+     "address_1": "11 Per Tab Lane",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-7001",
+     "telephone": "(264) 400-0700",
+     "email": "ap@zzpertab.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "B: query CONTAINED part-way."
+  },
+  {
+   "key": "pt_vend_c",
+   "type": "Vendor",
+   "serves": [
+    72121
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZMAGENTO Traders",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZMAGENTO Traders",
+     "address_1": "11 Per Tab Lane",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-7001",
+     "telephone": "(264) 400-0700",
+     "email": "ap@zzpertab.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "C: TYPO only. Same address and telephone as A and B, and no purchase orders on any of the three, so \"not used recently\" holds equally."
+  },
+  {
+   "key": "pertab_owner",
+   "type": "Customer",
+   "serves": [
+    72122
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Per Tab Asset Holdings",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Per Tab Asset Holdings",
+     "address": "11 Per Tab Lane",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-7001",
+     "phone": "(264) 400-0700",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "ONE owner shared by all THREE vehicles, so the customer-name signal is identical across them and cannot tilt the order. Its own name carries no keyword, so it cannot appear in the Customers group and muddy the comparison."
+  },
+  {
+   "key": "pertab_contact",
+   "type": "Contact",
+   "depends_on": "pertab_owner",
+   "serves": [
+    72122
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "pertab_owner",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "PerTab"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "PerTab",
+     "last_name": "PerTab",
+     "title": "Owner",
+     "telephone": "(264) 400-0700",
+     "email": "pt@zzpertab.test"
+    },
+    "inject": {
+     "company_id": "pertab_owner"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "_why": "Required by /api/vehicles/create - customer_id there is the CONTACT, not the company."
+  },
+  {
+   "key": "pt_asset_a",
+   "type": "Vehicle",
+   "depends_on": "pertab_owner",
+   "serves": [
+    72122
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "PERTABAST0000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "ZZOBSIDIAN Trucks",
+     "model_name": "Hauler",
+     "year": 2019,
+     "unit": "PERTAB-A1",
+     "vin": "PERTABAST0000001",
+     "licence_plate": "PERTAB-A1"
+    },
+    "inject": {
+     "customer_id": "pertab_contact",
+     "company_id": "pertab_owner"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "A: the MAKE begins with the keyword and carries more text after it, so it is a PREFIX match and not an exact one. Displayed name: \"2019 ZZOBSIDIAN Trucks Hauler\"."
+  },
+  {
+   "key": "pt_asset_b",
+   "type": "Vehicle",
+   "depends_on": "pertab_owner",
+   "serves": [
+    72122
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "PERTABAST0000002",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Western",
+     "model_name": "Heavy ZZOBSIDIAN Hauler",
+     "year": 2019,
+     "unit": "PERTAB-B2",
+     "vin": "PERTABAST0000002",
+     "licence_plate": "PERTAB-B2"
+    },
+    "inject": {
+     "customer_id": "pertab_contact",
+     "company_id": "pertab_owner"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "B: the keyword sits MID-FIELD in the model, so it is a whole-word match and cannot be read as a prefix of anything. Displayed name: \"2019 Western Heavy ZZOBSIDIAN Hauler\"."
+  },
+  {
+   "key": "pt_asset_c",
+   "type": "Vehicle",
+   "depends_on": "pertab_owner",
+   "serves": [
+    72122
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "PERTABAST0000003",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "ZZOBSIDIAM Trucks",
+     "model_name": "Hauler",
+     "year": 2019,
+     "unit": "PERTAB-C3",
+     "vin": "PERTABAST0000003",
+     "licence_plate": "PERTAB-C3"
+    },
+    "inject": {
+     "customer_id": "pertab_contact",
+     "company_id": "pertab_owner"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "C: TYPO only, in the same field and position as A so the only difference from A is the spelling. Same owner, year, model, and neutral VIN and unit."
+  }
+ ]
+}

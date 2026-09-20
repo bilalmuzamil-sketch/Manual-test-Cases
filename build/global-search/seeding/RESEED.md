@@ -1,4 +1,4 @@
-# RESEED — the four keywords
+# RESEED — the reseed keywords
 
 > **📖 EVERY trap, count target, permission map and non-seedable item is in
 > [`RESEED-KNOWLEDGE.md`](RESEED-KNOWLEDGE.md) — one page, written so a reseed is a command rather
@@ -41,9 +41,13 @@ read as MISSING while sitting right there).
 | **`RESEED GSV2 LIVE`** | production | the **Fibridge** universe | `app.shopview.com`, workplace **Trucks Hill 2** |
 
 | **`RESEED RANKING QA`** | the QA branch | the **ranking + fuzzy-remainder** universe (25 records, sections 6726 / 6725) | `sv9160.qa.shopview.com` |
+| **`RESEED TOGGLE QA`** | the QA branch | the **same-record permission toggle** universe (20 records + a PO and vendor invoice, section 6734 — C55731–C55737) | `sv9160.qa.shopview.com` |
+| **`RESEED PARITY QA`** | the QA branch | the **SV-10279 prefix-parity** comparison (12 records, one keyword across customers / vendors / assets / parts) | `sv9160.qa.shopview.com` |
+| **`RESEED PERTAB QA`** | the QA branch | the **per-tab prefix** universe (14 records — C72120 Parts, C72121 Vendors, C72122 Assets) | `sv9160.qa.shopview.com` |
 
 🔴 **`RESEED EVERYTHING QA`** is now the one to reach for after a redeploy — **`./reseed_everything.sh qa`**
-rebuilds **all three** universes in dependency order and runs **each one's own verifier**
+rebuilds **all six** universes in dependency order and runs **each one's own verifier where it
+has one**
 (V1-regression → Fibridge 39 checks → ranking 10 checks). `RESEED EVERYTHING LIVE` rebuilds only the
 V1-regression universe, because production runs V1 and the other two are QA-branch features.
 

@@ -135,6 +135,26 @@ UNIVERSES = [
      # the thing that actually decides whether this case can be run.
      ('ZZTALLYQ',   'customers',       'ZZTALLYQ Alpha Freight'),  # C55737 count assertion
   ], 'seed-manifest-toggle.json', 'verify_toggle.py'),
+ ('SV-10279 prefix parity  (4 entity types, 12 records)', [
+     # The comparison pack for https://shopview.atlassian.net/browse/SV-10279 - one keyword,
+     # four entity types, two records each. Probed by NAME because the whole point is identity:
+     # a count cannot tell a begins-with row from a contains row.
+     ('ZZVORTAC', 'customers', 'ZZVORTAC Freight Ltd'),
+     ('ZZVORTAC', 'vendors',   'ZZVORTAC Supply Co'),
+     ('ZZVORTAC', 'parts',     'ZZVORTAC Brake Kit'),
+     # Asset B is deliberately NOT probed: its keyword sits mid-token, which this build does not
+     # match at all, and that absence is the evidence for the mid-token rule rather than a fault.
+     ('ZZVORTAC', 'assets',    '2019 Freightliner Cascadia'),
+  ], 'seed-manifest-prefix-parity.json', None),
+ ('Per-tab prefix  (C72120/72121/72122, 14 records)', [
+     # Three cases, three private keywords sharing no stem. Each must return its own THREE rows.
+     ('ZZKRYPTON',  'parts',     'ZZKRYPTON Brake Kit'),        # C72120 - fails, SV-10279
+     ('ZZKRYPTON',  'parts',     'ZZKRYPTOM Wheel Seal'),       # its typo sibling
+     ('ZZMAGENTA',  'vendors',   'ZZMAGENTA Supply Co'),        # C72121
+     ('ZZMAGENTA',  'vendors',   'ZZMAGENTO Traders'),
+     ('ZZOBSIDIAN', 'assets',    'ZZOBSIDIAN Trucks Hauler'),   # C72122
+     ('ZZOBSIDIAN', 'assets',    'ZZOBSIDIAM Trucks Hauler'),
+  ], 'seed-manifest-per-tab-prefix.json', None),
 ]
 
 ROLES = ['ZZAUTOTEST No Work Orders View', 'ZZAUTOTEST No Customers View',

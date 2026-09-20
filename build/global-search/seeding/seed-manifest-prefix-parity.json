@@ -1,0 +1,537 @@
+{
+ "environment": {
+  "workplace_name_hint": "Staging Heavy Duty"
+ },
+ "_UNIVERSE": "SV-10279 prefix-ranking parity across entity types",
+ "_TICKET": "https://shopview.atlassian.net/browse/SV-10279",
+ "_KEYWORD": "ZZVORTAC",
+ "_THE_CLAIM": "One keyword, four entity types, two records each, every other signal flat. Customers, Vendors and Assets should show a SCORE GAP between the begins-with row and the mid-name row; Parts should show the same gap and does not.",
+ "_WHY_KIND_NOT_ORDER": "The ticket notes that when two rows tie the winner is whichever was changed most recently, so ROW ORDER is a recency artefact a developer can dismiss. The match KIND the API returns is not: a customer beginning with the text is labelled `prefix`, a part beginning with the text is labelled `word`. Measured 2026-09-20 on v26.36.8-d146c39.",
+ "_MEASURED_NOT_ASSERTED": "Scores tie at 1 on customers as well as on parts, so a score GAP is not the evidence and this manifest does not claim one. The verifier prints kind, score and order per type and lets the reviewer read it.",
+ "records": [
+  {
+   "key": "pfx_cust_a",
+   "type": "Customer",
+   "serves": [
+    55707,
+    55724
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZVORTAC Freight Ltd",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZVORTAC Freight Ltd",
+     "address": "9 Parity Row",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "A: the name BEGINS with the keyword. PRD prefix rule, +0.70."
+  },
+  {
+   "key": "pfx_cust_b",
+   "type": "Customer",
+   "serves": [
+    55707,
+    55724
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Bolton ZZVORTAC Services",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Bolton ZZVORTAC Services",
+     "address": "9 Parity Row",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "B: the keyword sits MID-NAME as a whole word. PRD whole-word rule, +0.50. Identical to A in address, city, postcode and telephone, with no contacts and no work orders, so the ONLY difference between the pair is where the keyword sits."
+  },
+  {
+   "key": "pfx_vend_a",
+   "type": "Vendor",
+   "serves": [
+    55707
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZVORTAC Supply Co",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZVORTAC Supply Co",
+     "address_1": "9 Parity Row",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzparity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "A: name BEGINS with the keyword."
+  },
+  {
+   "key": "pfx_vend_b",
+   "type": "Vendor",
+   "serves": [
+    55707
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "Northgate ZZVORTAC Parts",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "Northgate ZZVORTAC Parts",
+     "address_1": "9 Parity Row",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzparity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "B: keyword MID-NAME. Same address and telephone."
+  },
+  {
+   "key": "pfx_asset_owner",
+   "type": "Customer",
+   "serves": [
+    55707,
+    55724
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Parity Asset Holdings",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Parity Asset Holdings",
+     "address": "9 Parity Row",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "ONE owner for BOTH assets. Sharing it keeps the customer-name signal identical across the pair - two different owners would introduce exactly the second variable this test removes. Deliberately does NOT carry the keyword, so it cannot appear in the Customers group and confuse the comparison."
+  },
+  {
+   "key": "pfx_asset_contact",
+   "type": "Contact",
+   "depends_on": "pfx_asset_owner",
+   "serves": [
+    55707
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "pfx_asset_owner",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Parity"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Parity",
+     "last_name": "Parity",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "p@zzparity.test"
+    },
+    "inject": {
+     "company_id": "pfx_asset_owner"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "_why": "Required by /api/vehicles/create - customer_id there is the CONTACT, not the company."
+  },
+  {
+   "key": "pfx_asset_a",
+   "type": "Vehicle",
+   "depends_on": "pfx_asset_owner",
+   "serves": [
+    55707
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "PARITYAST00000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Freightliner",
+     "model_name": "Cascadia",
+     "year": 2019,
+     "unit": "ZZVORTAC-A1",
+     "vin": "PARITYAST00000001",
+     "licence_plate": "ZZVORTAC-A1"
+    },
+    "inject": {
+     "customer_id": "pfx_asset_contact",
+     "company_id": "pfx_asset_owner"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "A: the unit number BEGINS with the keyword."
+  },
+  {
+   "key": "pfx_asset_b",
+   "type": "Vehicle",
+   "depends_on": "pfx_asset_owner",
+   "serves": [
+    55707
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "PARITYAST00000002",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Freightliner",
+     "model_name": "Cascadia",
+     "year": 2019,
+     "unit": "UNITBZZVORTACX2",
+     "vin": "PARITYAST00000002",
+     "licence_plate": "UNITBZZVORTACX2"
+    },
+    "inject": {
+     "customer_id": "pfx_asset_contact",
+     "company_id": "pfx_asset_owner"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "B: the keyword sits MID-FIELD with NO delimiter before it. That detail matters: on assets the product called UNIT-ZZVORTAC-B2 a `prefix` match, so it appears to treat a token START as a prefix. Without the dash the keyword is genuinely mid-token, which is the honest equivalent of \"Bolton ZZVORTAC Services\" on a customer. Same owner, make, model and year as A, so only the keyword position differs."
+  },
+  {
+   "key": "pfx_part_a_cat",
+   "type": "CataloguePart",
+   "serves": [
+    55707
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PARITYPN-9001",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZVORTAC Brake Kit",
+     "part_number": "PARITYPN-9001",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "A: the DESCRIPTION begins with the keyword. PRD section 4 names the description as the field displayed as a part's name, so this is the prefix case the rule is about."
+  },
+  {
+   "key": "pfx_part_a_inv",
+   "type": "InventoryPart",
+   "depends_on": "pfx_part_a_cat",
+   "serves": [
+    55707
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PARITYPN-9001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 0,
+     "cost": 50.0,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 100.0
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "PARITYPN-9001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 0
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "Stock row so the part is searchable at all. ZERO quantity, matching the ticket."
+  },
+  {
+   "key": "pfx_part_b_cat",
+   "type": "CataloguePart",
+   "serves": [
+    55707
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PARITYPN-9002",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "Heavy Duty ZZVORTAC Filter",
+     "part_number": "PARITYPN-9002",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "B: the keyword sits MID-DESCRIPTION as a whole word - the weaker match under the PRD."
+  },
+  {
+   "key": "pfx_part_b_inv",
+   "type": "InventoryPart",
+   "depends_on": "pfx_part_b_cat",
+   "serves": [
+    55707
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PARITYPN-9002",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 0,
+     "cost": 50.0,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 100.0
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "PARITYPN-9002",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 0
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "Stock row. Same zero quantity, same bin, same cost and price as A."
+  }
+ ]
+}
