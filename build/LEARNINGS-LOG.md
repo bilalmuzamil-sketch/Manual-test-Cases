@@ -3578,3 +3578,15 @@ unrelated disappear, open the roles and permissions screen for that same role an
 first auto-disabled the second; if it did, the disappearance is correct. Generalises: wherever setting
 A appears to change unrelated behaviour B, the screen that owns A is a source and must be read first.
 Recorded in `build/skills/06-DEFECT-PREP.md`.
+
+## L0172 — A comment is held to the same bar as a ticket: a picture, annotated, and the spec quoted (2026-09-20)
+**QA lead, verbatim:** *"your no screenshot should be NOT annotated, and your no comment should be
+without a screenshot, and your no comment should be without quoting the specs reference."*
+My first comment on **SV-10188** had the PRD quoted and **no picture at all** — 330 words asking the
+reader to take my word for what the screen showed. Replaced with two annotated pictures (the work
+order's own parts list, then the search panel opened from that same work order, showing the part
+already on the job sitting above one that is not), plain **Actual Result / Expected Result**, the
+§6.3 quote and the run link.
+**The standing bar, for comments as much as descriptions:** (1) no comment without a screenshot ·
+(2) no screenshot without annotation · (3) no comment without the spec quoted verbatim. Written for
+the Product Owner, not the developer. Recorded in `build/skills/06-DEFECT-PREP.md`.

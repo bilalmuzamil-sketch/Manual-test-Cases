@@ -1206,6 +1206,26 @@ had to be restored the next day.**
 | A comment | The only place "it passes now" goes — `→ QA Status: Passed`, with today's screenshot. Match the QA lead's own short format. |
 | The status | **His to set.** Never moved by us, and the report is never closed by us (L0131). |
 
+### 🛑 THREE THINGS EVERY COMMENT CARRIES, WITHOUT EXCEPTION (QA lead, 2026-09-20)
+
+**Verbatim:** *"keep the comment PO friendly/simplified and with annotated screenshots — your no
+screenshot should be NOT annotated, and your no comment should be without a screenshot, and your no
+comment should be without quoting the specs reference."*
+
+Three absolute rules, and they apply to a **comment** exactly as they apply to a ticket description:
+
+| # | Rule | Why it was needed |
+|---|---|---|
+| 1 | **No comment without a screenshot.** | My first comment on **SV-10188** was 330 words of prose with the PRD quoted and *no picture at all*. A reader had to take my word for what the screen showed. |
+| 2 | **No screenshot without annotation.** | A bare screenshot makes the reader hunt for the point. Every picture carries its boxes and its sentences, and the sentence leads in plain words with the spec in brackets after it (rule above). |
+| 3 | **No comment without the spec quoted.** | A claim about what *should* happen is worthless unless the reader can see the sentence it rests on — quoted verbatim in a `{quote}` block, with the page id, version and read date. |
+
+**And the comment is written for the Product Owner, not the developer**: lead with what a person
+using the product is trying to do, then the picture, then **Actual Result** / **Expected Result**,
+then the quote. Worked example: comment **76907** on SV-10188 — two annotated pictures (the work
+order's own parts, then the search opened from that same work order), 329 words, one verbatim PRD
+quote, and the test check with its run link at the bottom.
+
 ### 🛑 BEFORE CALLING A PERMISSION SIDE-EFFECT A DEFECT, OPEN THE ROLES AND PERMISSIONS SCREEN (QA lead, 2026-09-20)
 
 **Verbatim:** *"if you disable something and find that something else which apparently is not related

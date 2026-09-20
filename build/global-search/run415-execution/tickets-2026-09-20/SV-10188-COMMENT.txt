@@ -1,25 +1,36 @@
 h3. Re-checked on 20 September 2026 — this still happens
 
-Build {{v26.36.8-d146c39}} on the [sv9160|https://sv9160.qa.shopview.com/] branch.
+When you are looking at a work order and you search for a part, the parts *already on that work order* should drop to the bottom of the list. You are almost always looking for something you have not added yet. That is not happening.
 
-Work order {{S9160-17671}} was opened. It already carries a brake shoe kit and two transmission lines. The same two searches were then run twice — once from a Customers page, once from that work order page:
+h3. What is on the work order
 
-* {{Brake Shoe}} — the identical six rows, all scoring 1.00, in both places
-* {{Transmission filter}} — the identical six rows, all scoring 1.00, in both places
+!WOA1.png|width=760,height=168!
 
-*Actual Result:* being on the work order page makes no difference to what comes back or to the order it comes back in.
-*Expected Result:* a part already on the work order you are looking at is pushed below the parts that are not on it.
+h3. What comes back when you search from that same work order
+
+!WOA2.png|width=760,height=356!
+
+*Actual Result:* the brake shoe kit that is already on this work order comes back in the middle of the list, above an air dryer cartridge that is not on the work order at all.
+
+*Expected Result:* the brake shoe kit drops below both parts that are not on the work order.
+
+h3. This is not a one-off
+
+Searching {{Brake Shoe Kit}} from this work order page and from a Customers page returns the identical six parts in the identical order. Standing on the work order makes no difference to the list at all.
 
 h3. Why it cannot work at the moment
 
-PRD 6.1 caps the score at 1.00, and since the change on SV-10161 a part whose own name carries the word you typed reaches 1.00 on the match alone. The demotion is subtracted before that cap, so it never shows. This is the same underlying cause as SV-10277 and cannot be judged fixed until that is addressed.
-
-*PRD 6.3, exactly as written:*
-{quote}if on a Work Order, parts already on that WO are demoted by −0.10 (the user is usually looking for something they don't have yet) while other parts in the same category as the WO's existing parts get +0.05.{quote}
+Every result is given a score, and the score stops at a maximum. Since the change on SV-10161, a part whose own name carries the word you typed reaches that maximum on the name alone. The reduction for being already on the work order is taken off before the maximum is applied, so it never shows. This is the same underlying cause as SV-10277, and this cannot be treated as fixed until that is dealt with.
 
 h3. Sources
 
 Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, section 6.3, read on 20 September 2026.
+
+{quote}if on a Work Order, parts already on that WO are demoted by −0.10 (the user is usually looking for something they don't have yet) while other parts in the same category as the WO's existing parts get +0.05.{quote}
+
+h3. Environment
+
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Checked 20 September 2026.
 
 h3. Test Coverage
 
