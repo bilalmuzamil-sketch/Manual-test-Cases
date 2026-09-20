@@ -1,0 +1,91 @@
+*Split from SV-10161.* The fix on that ticket works and should stay. This ticket covers what stopped working as a result of it.
+
+----
+
+h3. Description
+
+Global Search is meant to put the best result at the top. It gives every result a score, and the specification adds credits on top of the match itself — a part in stock counts for more than one you have none of, a company with open work orders counts for more than a quiet one, a name that *starts with* the word you typed counts for more than one that merely contains it.
+
+The score stops at a maximum of *1.00*. Since the change on SV-10161, a record whose *own name* contains the word you typed reaches that maximum from the match alone. Every credit the specification adds after that has nowhere to go, so it changes nothing.
+
+For example,
+* a part with *176* on the shelf and a part with *none* come back on the same score
+* a company whose name *starts with* the word and one where the word sits in the middle come back on the same score
+* typing two common words returns *every* list with all twenty rows on one score
+
+h3. Steps to Reproduce
+
+*Example 1 — a part you have none of ranks level with one you have 176 of*
+
+# Press {{Ctrl}}+{{K}}
+# Type {{shoe}}
+# Open the *Parts* tab
+#* 20 parts are returned, and 7 of them show *0 Available*
+#* Every one of the 20 comes back on a score of *1.00*
+
+!NEW1-parts.png|width=760,height=785!
+
+*Actual Result:* a brake shoe kit with none on the shelf is scored exactly the same as one with 176 on the shelf.
+*Expected Result:* the part in stock scores higher, so it appears above the one that is out of stock.
+
+*PRD 6.1, exactly as written:*
+{quote}Parts. In stock (>0) → +0.20; bin location present → +0.05; sold/used in last 30 days (frequency, log-scaled) → up to +0.15; viewed recently → +0.10.{quote}
+
+----
+
+*Example 2 — a closer name match ranks level with a looser one*
+
+# Press {{Ctrl}}+{{K}}
+# Type {{mobile}}
+# Open the *Customers* tab
+#* {{Mobile Truck & Trailer Repair Island Lake}} — the name *starts* with the word
+#* {{Henderson Mobile Truck Repair}} — the word sits *inside* the name
+#* Both come back on a score of *1.00*
+
+!NEW2-companies.png|width=760,height=850!
+
+*Actual Result:* both companies are scored the same.
+*Expected Result:* the company whose name starts with the word scores higher, so it appears above the other.
+
+*PRD 6.1, exactly as written:*
+{quote}Prefix match on primary name field → +0.70.{quote}
+{quote}Whole-word match anywhere in indexed fields → +0.50.{quote}
+
+----
+
+*Example 3 — whole lists come back with nothing separating them*
+
+# Press {{Ctrl}}+{{K}}
+# Type {{truck repair}}
+#* All 20 rows in *Work orders*, *Customers*, *Vendors*, *Part sales*, *Purchase orders* and *Vendor invoices* come back on a score of *1.00*
+#* All 20 rows in *Assets* come back on a score of *0.75*
+
+!NEW3-everything.png|width=760,height=834!
+
+*Actual Result:* nothing in the specification is separating the rows in any of these lists. The order you see is decided by the fallback for ties, which is the most recently updated record.
+*Expected Result:* the credits in PRD 6.1 order the rows, and the tie fallback is used only when two rows genuinely score the same.
+
+*PRD 6.1, exactly as written:*
+{quote}Each candidate gets a numeric score combining match quality and entity-specific recency/importance signals.{quote}
+{quote}The score is clamped to a sane range; ties are broken by recency (most recently updated wins).{quote}
+
+h3. Why This Happens
+
+A whole-word match on a record's own name is now {{0.50 + 0.50}}, which is the maximum. A name that starts with the word is {{0.70 + 0.50}}, also the maximum. Everything PRD 6.1 adds afterwards is absorbed.
+
+The maximum is real, not just the best row being called 1.00 — across 230 results nothing scored above it, and plenty of searches finish well below it (the customers returned for {{brake}} peak at 0.32).
+
+The visible order can still look right, because ties fall back to the most recently updated record. It is that fallback holding the order, not the credits that are supposed to hold it.
+
+h3. Suggested Fix
+
+# Choose a value for the name credit that lifts a company's own name above a contact match *without* reaching the maximum, so the credits above still have room to work. Applying match quality and the entity credits in two stages would do the same job.
+# Update PRD 6.1, which still gives the name credit as {{+0.10}} while the product applies at least {{+0.50}}.
+
+h3. Environment
+
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Read 20 September 2026.
+
+h3. Sources
+
+Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, sections 6.1 and 6.2, read live on 20 September 2026.

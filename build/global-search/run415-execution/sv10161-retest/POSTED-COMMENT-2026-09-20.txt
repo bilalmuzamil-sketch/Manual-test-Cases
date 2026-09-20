@@ -1,6 +1,6 @@
 QA re-check on {{v26.36.8-d146c39}} (branch {{sv9160}}), 20 September 2026. Source: Global Search PRD, page {{576978945}}, version 17.
 
-h2. 1. What is fixed
+h2. The fix works
 
 !PIC1-fixed.png|width=760,height=850!
 
@@ -9,75 +9,15 @@ h2. 1. What is fixed
 # Type {{deshawn}}.
 # Open the *Customers* tab.
 
-The company whose own name is Deshawn is now first. Checked across 20 different person-name words and 230 customer rows: wherever a company's own name matched exactly, as a whole word or as a prefix, it ranked above every contact match.
+The company whose own name is Deshawn is now first, above the company that only has a contact of that name.
+
+*This is not limited to the example in this ticket.* Checked across 20 different person-name words and 230 customer rows: wherever a company's own name matched exactly, as a whole word or as a prefix, it ranked above every contact match. Three searches returned a contact match on top, and in all three the company name was only a near-miss spelling, which PRD 6.1 says should lose.
 
 *PRD 6.1, exactly as written:*
 {quote}Bonus for match on the primary display name vs. a secondary indexed field → +0.10. A match on a contact field of a customer or vendor is a secondary-field match and does not receive this bonus (§4).{quote}
 
-The measured bonus is *at least +0.50*, not +0.10. *The behaviour above is the right one and should stay* — it is the PRD that needs updating to describe it.
+The measured credit is *at least +0.50*, not +0.10. *The behaviour above is the right one and should stay* — it is the PRD that needs updating to describe it.
 
-h2. 2. What was correct before and is now broken
+h2. Follow-up raised
 
-h3. 2a. The two match strengths no longer separate
-
-!PIC2-tiers.png|width=760,height=498!
-
-*Steps to reproduce*
-# Press {{Ctrl}}+{{K}}.
-# Type {{ZZPREFIX}}.
-# Open the *Customers* tab.
-# Read the score on each of the two rows in the search response.
-
-Both return *1.00*. Before, a name that *starts with* the word scored 0.80 and a name that merely *contains* it scored 0.60.
-
-_In the shop:_ when several companies share a word, the closest name match is no longer lifted above the rest.
-
-(ZZPREFIX is QA test data seeded on this branch, so both records are there to search.)
-
-*PRD 6.1, exactly as written:*
-{quote}Prefix match on primary name field → +0.70.{quote}
-{quote}Whole-word match anywhere in indexed fields → +0.50.{quote}
-
-h3. 2b. A part's stock and recent use no longer affect its position
-
-!PIC3-parts.png|width=760,height=850!
-
-*Steps to reproduce*
-# Press {{Ctrl}}+{{K}}.
-# Type {{brake}}.
-# Open the *Parts* tab.
-# Read the score on each row in the search response.
-
-All *twenty* rows return *1.00*, including a shoe kit last used on 31 August next to a drum last used on 28 May.
-
-_In the shop:_ typing a common word like {{brake}} no longer brings the stocked, recently-used parts to the top.
-
-*PRD 6.1, exactly as written:*
-{quote}Parts. In stock (>0) → +0.20; bin location present → +0.05; sold/used in last 30 days (frequency, log-scaled) → up to +0.15; viewed recently → +0.10.{quote}
-
-h3. 2c. The same thing on the other record types
-
-*Steps to reproduce*
-# Press {{Ctrl}}+{{K}}.
-# Type {{truck repair}}.
-
-Every group comes back flat: all 20 rows return *1.00* in *Work orders*, *Customers*, *Vendors*, *Part sales*, *Purchase orders* and *Vendor invoices*. So this is not confined to Customers and Parts.
-
-h2. Why both of these happen
-
-A whole-word match on a name is now {{0.50 + 0.50}} = the top of the scale, and a prefix on a name is {{0.70 + 0.50}}, also the top of the scale. Everything PRD 6.1 adds after that is absorbed. The cap is real: nothing in 230 rows scored above 1.00, and other searches top out far below it ({{brake}} customers peak at 0.32).
-
-*The visible order can still look right*, because ties fall back to recency — but it is that fallback holding it, not the credits in PRD 6.1. Our nine ordering checks still pass; seven of them now pass on a tie rather than on a score difference.
-
-h2. What we suggest
-
-# *Keep the fix.* The result in section 1 is what the product should do.
-# *Update PRD 6.1* so it says that a match on a company's own name beats a contact match — today it still describes the behaviour this ticket was raised against.
-# *Re-pick the bonus value* so a name match clears a busy stranger without landing on the top of the scale, leaving headroom for the credits in section 2 to keep ordering the rest. Applying match quality and the entity signals in two stages would do the same job.
-
-h2. Checked and *not* broken
-
-* Tie-breaking — {{ties are broken by recency (most recently updated wins)}}: the twenty {{brake}} parts are in descending order of last use.
-* Clamping itself — {{The score is clamped to a sane range}}: a cap is allowed by the PRD.
-* PRD 6.2's pinned row: a work order number still pins correctly, and an ordinary name match is not wrongly pinned.
-* Secondary-field weighting: a prefix hit on a contact's name still scores 0.50, not the 0.70 the PRD reserves for the primary name.
+Raising that credit has stopped the other credits in PRD 6.1 from separating results, because a match on a record's own name now reaches the top of the scale on its own. That is written up separately, with examples and reproduction steps, in *SV-10277*.
