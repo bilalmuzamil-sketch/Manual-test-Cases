@@ -1,0 +1,4181 @@
+{
+ "build": "v26.36.8-d146c39",
+ "phases": {
+  "admin-baseline": {
+   "label": "admin-baseline",
+   "perms": null,
+   "permNames": null,
+   "queries": {
+    "ZZTOGVEN": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply Brake Shoe Kit",
+         "score": 1,
+         "field": "part_number"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "I9160-1399",
+         "score": 1,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZT-INV-TOGGLE-ZZTOGV",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "ZZAUTOTEST Fibridge": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 5,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.85,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.55,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "brake": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 19,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "line_texts"
+        },
+        {
+         "p": "S9160-17422",
+         "score": 0.9659313,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 14,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Palin's Truck & Trailer Repair LLC",
+         "score": 0.32,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Joseph Truck & Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        },
+        {
+         "p": "Northbridge Heavy Duty Truck & Equipment Rep",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2022 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 Freightliner Cascadia",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2023 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "Brake & Parts Cleaner",
+         "score": 1,
+         "field": "tags"
+        },
+        {
+         "p": "Brake Shoe Kit w/ Hardware, 16.5x6, Coreless",
+         "score": 1,
+         "field": "description"
+        },
+        {
+         "p": "Brake Drum, 16.5x6",
+         "score": 1,
+         "field": "description"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Humacao Truck and Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "I9160-1398",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "I9160-1392",
+         "score": 0.880844,
+         "field": "item_part_names"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "S8408136.001",
+         "score": 0.527188,
+         "field": "vendor_name"
+        },
+        {
+         "p": "203256",
+         "score": 0.50986487,
+         "field": "vendor_name"
+        },
+        {
+         "p": "S8347565.001",
+         "score": 0.4760577,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Fibrige": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 5,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 3,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.8,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 0.64197206,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 0.35,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.7,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.4,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 0.7,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 0.4,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 0.65,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 0.6602597,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 0.9593068,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 0.6593081,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 0.6593076,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 0.7857182,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 0.78408736,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 0.5340878,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Deshawn": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Deshawn Freight Lines",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.95,
+         "field": "contact_emails"
+        },
+        {
+         "p": "Monroe Truck Service & Repair",
+         "score": 0.7357143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendors",
+       "n": 2,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Garden City Semi Truck Repair",
+         "score": 0.2857143,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Madias Mechanical Services",
+         "score": 0.2857143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    }
+   },
+   "role": "administrator"
+  },
+  "no-parts": {
+   "label": "no-parts",
+   "perms": null,
+   "permNames": null,
+   "queries": {
+    "ZZTOGVEN": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "I9160-1399",
+         "score": 1,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZT-INV-TOGGLE-ZZTOGV",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "ZZAUTOTEST Fibridge": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.55,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "brake": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 19,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "line_texts"
+        },
+        {
+         "p": "S9160-17422",
+         "score": 0.9659291000000001,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 14,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Palin's Truck & Trailer Repair LLC",
+         "score": 0.32,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Joseph Truck & Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        },
+        {
+         "p": "Northbridge Heavy Duty Truck & Equipment Rep",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2022 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 Freightliner Cascadia",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2023 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Humacao Truck and Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "I9160-1398",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "I9160-1392",
+         "score": 0.88084126,
+         "field": "item_part_names"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "S8408136.001",
+         "score": 0.52718675,
+         "field": "vendor_name"
+        },
+        {
+         "p": "203256",
+         "score": 0.5098639,
+         "field": "vendor_name"
+        },
+        {
+         "p": "S8347565.001",
+         "score": 0.4760573,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Fibrige": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 0.9592844,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 0.8592842,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 0.8592763000000001,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 3,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.7,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 0.64197206,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 0.35,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.4,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 0.65,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 0.5602453,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 0.8592996,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 0.5593009,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 0.5593004,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 0.7857152,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 0.78408444,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 0.5340848,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Deshawn": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Deshawn Freight Lines",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.85,
+         "field": "contact_emails"
+        },
+        {
+         "p": "Monroe Truck Service & Repair",
+         "score": 0.6357143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendors",
+       "n": 2,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Garden City Semi Truck Repair",
+         "score": 0.2857143,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Madias Mechanical Services",
+         "score": 0.2857143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    }
+   },
+   "role": "ZZAUTOTEST No Parts View"
+  },
+  "no-workorders": {
+   "label": "no-workorders",
+   "perms": null,
+   "permNames": null,
+   "queries": {
+    "ZZTOGVEN": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply Brake Shoe Kit",
+         "score": 1,
+         "field": "part_number"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "I9160-1399",
+         "score": 1,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZT-INV-TOGGLE-ZZTOGV",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "ZZAUTOTEST Fibridge": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.55,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "brake": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 14,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Palin's Truck & Trailer Repair LLC",
+         "score": 0.32,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Joseph Truck & Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        },
+        {
+         "p": "Northbridge Heavy Duty Truck & Equipment Rep",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2022 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 Freightliner Cascadia",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2023 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "Brake & Parts Cleaner",
+         "score": 1,
+         "field": "tags"
+        },
+        {
+         "p": "Brake Shoe Kit w/ Hardware, 16.5x6, Coreless",
+         "score": 1,
+         "field": "description"
+        },
+        {
+         "p": "Brake Drum, 16.5x6",
+         "score": 1,
+         "field": "description"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Humacao Truck and Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "I9160-1398",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "I9160-1392",
+         "score": 0.88083804,
+         "field": "item_part_names"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "S8408136.001",
+         "score": 0.5271854,
+         "field": "vendor_name"
+        },
+        {
+         "p": "203256",
+         "score": 0.50986284,
+         "field": "vendor_name"
+        },
+        {
+         "p": "S8347565.001",
+         "score": 0.4760568,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Fibrige": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 3,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.7,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 0.64197206,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 0.35,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.4,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 0.4,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 0.65,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 0.56022865,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 0.8592913,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 0.5592926,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 0.55929214,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 0.78571177,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 0.78408104,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 0.5340814,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Deshawn": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Deshawn Freight Lines",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.85,
+         "field": "contact_emails"
+        },
+        {
+         "p": "Monroe Truck Service & Repair",
+         "score": 0.6357143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendors",
+       "n": 2,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Garden City Semi Truck Repair",
+         "score": 0.2857143,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Madias Mechanical Services",
+         "score": 0.2857143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    }
+   },
+   "role": "ZZAUTOTEST No Work Orders View"
+  },
+  "no-customers": {
+   "label": "no-customers",
+   "perms": null,
+   "permNames": null,
+   "queries": {
+    "ZZTOGVEN": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply Brake Shoe Kit",
+         "score": 1,
+         "field": "part_number"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "I9160-1399",
+         "score": 1,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZT-INV-TOGGLE-ZZTOGV",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "ZZAUTOTEST Fibridge": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "brake": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 19,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "line_texts"
+        },
+        {
+         "p": "S9160-17422",
+         "score": 0.9659242000000001,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "Brake & Parts Cleaner",
+         "score": 1,
+         "field": "tags"
+        },
+        {
+         "p": "Brake Shoe Kit w/ Hardware, 16.5x6, Coreless",
+         "score": 1,
+         "field": "description"
+        },
+        {
+         "p": "Brake Drum, 16.5x6",
+         "score": 1,
+         "field": "description"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Humacao Truck and Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "I9160-1398",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "I9160-1392",
+         "score": 0.8808353,
+         "field": "item_part_names"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "S8408136.001",
+         "score": 0.5271841,
+         "field": "vendor_name"
+        },
+        {
+         "p": "203256",
+         "score": 0.5098619,
+         "field": "vendor_name"
+        },
+        {
+         "p": "S8347565.001",
+         "score": 0.4760564,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Fibrige": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 0.9592689000000001,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 0.8592687999999999,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 0.8592607999999999,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 0.4,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 0.65,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 0.5602142,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 0.85928416,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 0.55928546,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 0.559285,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 0.78570884,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 0.78407806,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 0.5340785,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Deshawn": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendors",
+       "n": 2,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Garden City Semi Truck Repair",
+         "score": 0.2857143,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Madias Mechanical Services",
+         "score": 0.2857143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "purchase_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    }
+   },
+   "role": "ZZAUTOTEST No Customers View"
+  },
+  "no-wo-vendors": {
+   "label": "no-wo-vendors",
+   "perms": null,
+   "permNames": null,
+   "queries": {
+    "ZZTOGVEN": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply Brake Shoe Kit",
+         "score": 1,
+         "field": "part_number"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    },
+    "ZZAUTOTEST Fibridge": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.55,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      }
+     ]
+    },
+    "brake": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 14,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Palin's Truck & Trailer Repair LLC",
+         "score": 0.32,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Joseph Truck & Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        },
+        {
+         "p": "Northbridge Heavy Duty Truck & Equipment Rep",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2022 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 Freightliner Cascadia",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2023 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "Brake & Parts Cleaner",
+         "score": 1,
+         "field": "tags"
+        },
+        {
+         "p": "Brake Shoe Kit w/ Hardware, 16.5x6, Coreless",
+         "score": 1,
+         "field": "description"
+        },
+        {
+         "p": "Brake Drum, 16.5x6",
+         "score": 1,
+         "field": "description"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    },
+    "Fibrige": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 3,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.7,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 0.64197206,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 0.35,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.4,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 0.4,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 0.5601979,
+         "field": "customer_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Deshawn": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "customers",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Deshawn Freight Lines",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.85,
+         "field": "contact_emails"
+        },
+        {
+         "p": "Monroe Truck Service & Repair",
+         "score": 0.6357143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    }
+   },
+   "role": "ZZAUTOTEST No Work Orders Or Vendors"
+  },
+  "no-financial": {
+   "label": "no-financial",
+   "perms": null,
+   "permNames": null,
+   "queries": {
+    "ZZTOGVEN": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply Brake Shoe Kit",
+         "score": 1,
+         "field": "part_number"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "I9160-1399",
+         "score": 1,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZT-INV-TOGGLE-ZZTOGV",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "ZZAUTOTEST Fibridge": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.55,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "brake": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "line_texts"
+        },
+        {
+         "p": "S9160-17422",
+         "score": 0.9659194,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 14,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Palin's Truck & Trailer Repair LLC",
+         "score": 0.32,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Joseph Truck & Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        },
+        {
+         "p": "Northbridge Heavy Duty Truck & Equipment Rep",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2022 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 Freightliner Cascadia",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2023 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Brake & Parts Cleaner",
+         "score": 1,
+         "field": "tags"
+        },
+        {
+         "p": "Brake Shoe Kit w/ Hardware, 16.5x6, Coreless",
+         "score": 1,
+         "field": "description"
+        },
+        {
+         "p": "Brake Drum, 16.5x6",
+         "score": 1,
+         "field": "description"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Humacao Truck and Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "I9160-1398",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "I9160-1392",
+         "score": 0.88082933,
+         "field": "item_part_names"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "S8408136.001",
+         "score": 0.5271815,
+         "field": "vendor_name"
+        },
+        {
+         "p": "203256",
+         "score": 0.5098598,
+         "field": "vendor_name"
+        },
+        {
+         "p": "S8347565.001",
+         "score": 0.4760555,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Fibrige": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 0.9592536,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 0.8592535000000001,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 0.8592455999999999,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 3,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.7,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 0.64197206,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 0.35,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.4,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 0.4,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 0.65,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 0.85926884,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 0.55927014,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 0.55926967,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 0.78570247,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 0.7840718,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 0.53407216,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Deshawn": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Deshawn Freight Lines",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.85,
+         "field": "contact_emails"
+        },
+        {
+         "p": "Monroe Truck Service & Repair",
+         "score": 0.6357143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendors",
+       "n": 2,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Garden City Semi Truck Repair",
+         "score": 0.2857143,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Madias Mechanical Services",
+         "score": 0.2857143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    }
+   },
+   "role": "ZZAUTOTEST No Financial Data"
+  },
+  "no-partsales": {
+   "label": "no-partsales",
+   "perms": null,
+   "permNames": null,
+   "queries": {
+    "ZZTOGVEN": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply Brake Shoe Kit",
+         "score": 1,
+         "field": "part_number"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "I9160-1399",
+         "score": 1,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZT-INV-TOGGLE-ZZTOGV",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "ZZAUTOTEST Fibridge": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.55,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "brake": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 19,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "line_texts"
+        },
+        {
+         "p": "S9160-17422",
+         "score": 0.9659172,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 14,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Palin's Truck & Trailer Repair LLC",
+         "score": 0.32,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Joseph Truck & Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        },
+        {
+         "p": "Northbridge Heavy Duty Truck & Equipment Rep",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2022 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 Freightliner Cascadia",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2023 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "Brake & Parts Cleaner",
+         "score": 1,
+         "field": "tags"
+        },
+        {
+         "p": "Brake Shoe Kit w/ Hardware, 16.5x6, Coreless",
+         "score": 1,
+         "field": "description"
+        },
+        {
+         "p": "Brake Drum, 16.5x6",
+         "score": 1,
+         "field": "description"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Humacao Truck and Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "I9160-1398",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "I9160-1392",
+         "score": 0.8808266,
+         "field": "item_part_names"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "S8408136.001",
+         "score": 0.52718025,
+         "field": "vendor_name"
+        },
+        {
+         "p": "203256",
+         "score": 0.50985885,
+         "field": "vendor_name"
+        },
+        {
+         "p": "S8347565.001",
+         "score": 0.4760551,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Fibrige": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 0.9592464,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 0.8592463000000001,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 0.8592384,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 3,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.7,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 0.64197206,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 0.35,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.4,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 0.4,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendors",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Mining",
+         "score": 0.65,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17652",
+         "score": 0.85926163,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1397",
+         "score": 0.55926293,
+         "field": "vendor_name"
+        },
+        {
+         "p": "I9160-1396",
+         "score": 0.55926245,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 4,
+       "priced": 4,
+       "top": [
+        {
+         "p": "5445546",
+         "score": 0.7856995,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-1",
+         "score": 0.7840688,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZT-INV-3",
+         "score": 0.53406924,
+         "field": "vendor_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Deshawn": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Deshawn Freight Lines",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.85,
+         "field": "contact_emails"
+        },
+        {
+         "p": "Monroe Truck Service & Repair",
+         "score": 0.6357143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendors",
+       "n": 2,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Garden City Semi Truck Repair",
+         "score": 0.2857143,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Madias Mechanical Services",
+         "score": 0.2857143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "purchase_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "vendor_invoices",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    }
+   },
+   "role": "ZZAUTOTEST No Part Sales View"
+  },
+  "no-vendororder": {
+   "label": "no-vendororder",
+   "perms": null,
+   "permNames": null,
+   "queries": {
+    "ZZTOGVEN": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 1,
+       "priced": 1,
+       "top": [
+        {
+         "p": "ZZTOGVEN Supply Brake Shoe Kit",
+         "score": 1,
+         "field": "part_number"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    },
+    "ZZAUTOTEST Fibridge": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 1,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 4,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 1,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.75,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.55,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 1,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 1,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 1,
+         "field": "customer_name"
+        }
+       ]
+      }
+     ]
+    },
+    "brake": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 19,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 1,
+         "field": "item_part_names"
+        },
+        {
+         "p": "S9160-17652",
+         "score": 1,
+         "field": "line_texts"
+        },
+        {
+         "p": "S9160-17422",
+         "score": 0.9659149,
+         "field": "item_part_numbers"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 14,
+       "priced": 0,
+       "top": [
+        {
+         "p": "Palin's Truck & Trailer Repair LLC",
+         "score": 0.32,
+         "field": "address_line_1"
+        },
+        {
+         "p": "Joseph Truck & Trailer Repair",
+         "score": 0.32,
+         "field": "contact_names"
+        },
+        {
+         "p": "Northbridge Heavy Duty Truck & Equipment Rep",
+         "score": 0.32,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2022 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 Freightliner Cascadia",
+         "score": 0.45000002,
+         "field": "customer_name"
+        },
+        {
+         "p": "2023 Ford F-550",
+         "score": 0.45000002,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 20,
+       "priced": 20,
+       "top": [
+        {
+         "p": "Brake & Parts Cleaner",
+         "score": 1,
+         "field": "tags"
+        },
+        {
+         "p": "Brake Shoe Kit w/ Hardware, 16.5x6, Coreless",
+         "score": 1,
+         "field": "description"
+        },
+        {
+         "p": "Brake Drum, 16.5x6",
+         "score": 1,
+         "field": "description"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    },
+    "Fibrige": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 20,
+       "priced": 4,
+       "top": [
+        {
+         "p": "S9160-17671",
+         "score": 0.9592393000000001,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17670",
+         "score": 0.8592391000000001,
+         "field": "customer_name"
+        },
+        {
+         "p": "S9160-17664",
+         "score": 0.8592312,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "customers",
+       "n": 3,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.7,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Logistics",
+         "score": 0.64197206,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Retail",
+         "score": 0.35,
+         "field": "name"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 6,
+       "priced": 0,
+       "top": [
+        {
+         "p": "2021 KEN WORTH T680",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2019 Freightliner Cascadia",
+         "score": 0.6,
+         "field": "customer_name"
+        },
+        {
+         "p": "2024 INTERNATIONAL LT625",
+         "score": 0.4,
+         "field": "customer_name"
+        }
+       ]
+      },
+      {
+       "type": "parts",
+       "n": 3,
+       "priced": 3,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Fibridge Brake Shoe Kit",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Wheel Seal",
+         "score": 0.6,
+         "field": "vendor_name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Air Dryer Cartridge",
+         "score": 0.4,
+         "field": "vendor_name"
+        }
+       ]
+      },
+      {
+       "type": "part_sales",
+       "n": 1,
+       "priced": 0,
+       "top": [
+        {
+         "p": "P9160-258",
+         "score": 0.5601546,
+         "field": "customer_name"
+        }
+       ]
+      }
+     ]
+    },
+    "Deshawn": {
+     "pinned": false,
+     "groups": [
+      {
+       "type": "work_orders",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "customers",
+       "n": 20,
+       "priced": 0,
+       "top": [
+        {
+         "p": "ZZAUTOTEST Deshawn Freight Lines",
+         "score": 1,
+         "field": "name"
+        },
+        {
+         "p": "ZZAUTOTEST Fibridge Commercial",
+         "score": 0.85,
+         "field": "contact_emails"
+        },
+        {
+         "p": "Monroe Truck Service & Repair",
+         "score": 0.6357143,
+         "field": "contact_names"
+        }
+       ]
+      },
+      {
+       "type": "assets",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "parts",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      },
+      {
+       "type": "part_sales",
+       "n": 0,
+       "priced": 0,
+       "top": []
+      }
+     ]
+    }
+   },
+   "role": "ZZAUTOTEST No Vendor Order View"
+  }
+ },
+ "roleSet": "ZZAUTOTEST No Vendor Order View",
+ "restored": true
+}

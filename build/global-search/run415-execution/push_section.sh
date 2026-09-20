@@ -30,6 +30,6 @@ json.dump({'results': recs}, open('/tmp/gs/SECTION.json', 'w'), indent=1)
 print('section holds %d case(s)' % len(recs))
 PY
 python3 build/testing-tools/push_results_to_run.py --run 415 --results /tmp/gs/SECTION.json \
-  --build-marker v26.36.7-29ca209 --date "17 September 2026" --env "the sv9160 test branch" \
+  --build-marker v26.36.8-d146c39 --date "20 September 2026" --env "the sv9160 test branch" \
   --allow-non-passed \
   --footer "Checked on the test branch. It will be re-checked on Staging before release." | tail -4
