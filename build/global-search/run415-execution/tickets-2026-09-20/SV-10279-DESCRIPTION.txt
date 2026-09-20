@@ -1,61 +1,44 @@
 h3. Description
 
-A record whose name *begins* with the search text should rank above one that merely *contains* it.
+On the *Parts* tab, a part whose name *begins* with the search text is treated the same as a part that merely *contains* it, so it receives no advantage in the ranking.
 
-This works on *Customers*, *Vendors* and *Assets*. On *Parts* it does not: a part whose name begins with the search text is treated as an ordinary whole-word match, so it receives no advantage over a part that merely contains the text.
+The rest of the scoring on that same search is correct: parts matched on their tag, their category or their manufacturer all receive exactly the score the PRD defines. Only matches on a part's own name are affected.
 
 h3. Steps to Reproduce
 
-h4. Example 1 — Parts, where it does not work
-
 # Open Global Search ({{Ctrl}}+{{K}})
-# Search {{ZZTABQ}}
+# Search {{ZZVORTAC}}
 # Open the *Parts* tab
 
-!PARTS1-final.png|width=760,height=567!
+!VORTAC-parts.png|width=760,height=749!
 
-*Actual:* both parts are treated as whole-word matches and receive the same score. Their displayed order is then determined by the recency tie-break.
-*Expected:* the part whose name begins with the search text receives the higher of the two match scores and appears above the other.
+*Actual:* {{ZZVORTAC Brake Kit}}, whose name begins with the search text, and {{Heavy Duty ZZVORTAC Filter}}, where the search text sits in the middle, receive the same score. Which one appears first is then determined by the recency tie-break.
 
-The two parts were created for this check with no stock, the same bin location, never sold and never viewed, so no other signal can affect the result.
+*Expected:* {{ZZVORTAC Brake Kit}} receives the higher of the two match scores and appears above {{Heavy Duty ZZVORTAC Filter}}.
 
 {quote}Prefix match on primary name field → +0.70.{quote}
 {quote}Whole-word match anywhere in indexed fields → +0.50.{quote}
 
-h4. Example 2 — Customers, where it works
-
-# Open Global Search ({{Ctrl}}+{{K}})
-# Search {{ZZPREFIX}}
-# Open the *Customers* tab
-
-!PT2.png|width=760,height=350!
-
-*Actual and expected:* the two kinds of match are told apart correctly here. This example is included as the comparison — it shows the behaviour Parts is missing.
+Both parts show *0 Available*, share a bin location, have never been sold and have never been viewed, and their part numbers ({{PARITYPN-9001}} and {{PARITYPN-9002}}) contain no trace of the search text — so nothing other than the match itself can affect the result.
 
 h3. Technical Finding
 
-QA checked every result type. A part's name is its description, which the PRD lists as the field displayed as its name:
+The same search returns three further parts, matched on fields other than the name. Each of those lands on exactly the figure PRD 6.1 computes:
+
+|| Part || Matched on || What PRD 6.1 adds up to || Score returned ||
+| `SPINDLE NUT` — 2 Available | tag | 0.50 whole-word + 0.20 in stock + 0.05 bin location | *0.75* |
+| `PLATE STEEL 1/8"` — 0 Available | category | 0.50 whole-word + 0.05 bin location | *0.55* |
+| `DOC 2 STAGE CLEANING` — 0 Available | manufacturer | 0.50 whole-word + 0.05 bin location | *0.55* |
+| `ZZVORTAC Brake Kit` — 0 Available | *name (begins with)* | 0.70 prefix + 0.10 primary-display-name bonus = *0.80 expected* | *1.00* |
+| `Heavy Duty ZZVORTAC Filter` — 0 Available | *name (middle)* | 0.50 whole-word + 0.10 primary-display-name bonus = *0.60 expected* | *1.00* |
+
+A tag, a category and a manufacturer are secondary fields, so none of them receives the primary-display-name bonus, and all three land on their computed figure — including the in-stock signal, which is visibly working on the first row. The two matches on the part's own name do not: both reach the maximum score of 1.00.
+
+The PRD names the part's description as the field shown as its name:
 
 {quote}Parts (Inventory). Indexed: part number, description, category, tags, vendor name. Displayed: description (primary), part number, quantity on hand badge, bin location.{quote}
 
-On Parts the product records a description beginning with the search text as a whole-word match rather than a prefix match. On the other result types the equivalent match is recorded correctly.
-
-*The scoring itself is sound — only the name classification is not.* On the same search, matches on a part's other indexed fields score exactly what PRD 6.1 computes, and move as soon as a signal changes:
-
-|| Row || How it matched || What PRD 6.1 adds up to || Score returned ||
-| `AXLE SHAFT FLANGE, REAR DRIVE AXLE` (9 in stock, has a bin location) | category | 0.50 whole-word + 0.20 in stock + 0.05 bin location | *0.75* |
-| `DO NOT USE Aluminum Seal Ring, 14mm` (0 Available, has a bin location) | tags | 0.50 whole-word + 0.05 bin location | *0.55* |
-| `ZZTABQ Wheel Seal` (name begins with the search text) | description | 0.70 prefix + 0.10 primary-display-name bonus = 0.80 expected | *1.00* |
-| `Cooper ZZTABQ Cartridge` (search text in the middle) | description | 0.50 whole-word + 0.10 primary-display-name bonus = 0.60 expected | *1.00* |
-
-A tag and a category are secondary fields, so neither receives the primary-display-name bonus, and both land on the computed figure. The two matches on the part's own name do not.
-
-|| Result type || Name beginning with the search text recorded as the stronger match? ||
-| Customers | yes |
-| Vendors | yes |
-| Assets | yes |
-| *Parts* | *no* |
-| Work orders, Part sales, Purchase orders, Vendor invoices | not applicable — these are found by their number, which is matched exactly |
+QA observed that a description beginning with the search text is recorded as a whole-word match rather than a prefix match. This is offered as an observation, not as the prescribed implementation.
 
 h3. Environment
 
