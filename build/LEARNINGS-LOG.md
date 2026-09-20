@@ -3590,3 +3590,15 @@ already on the job sitting above one that is not), plain **Actual Result / Expec
 **The standing bar, for comments as much as descriptions:** (1) no comment without a screenshot ·
 (2) no screenshot without annotation · (3) no comment without the spec quoted verbatim. Written for
 the Product Owner, not the developer. Recorded in `build/skills/06-DEFECT-PREP.md`.
+
+## L0173 — Our own recorded passes ARE the before-and-after; search them before claiming none exists (2026-09-20)
+I told the QA lead in writing that I could not prove the ranking behaviours in **SV-10277** were
+correct before the SV-10161 change, "because the pre-fix build is gone and no capture of it exists",
+and that the link rested on arithmetic rather than measurement. **It was there all along.** C55707 was
+recorded **Passed on 18 September on build v26.36.7-069b8c2** — prefix above whole-word, read twice —
+and **SV-10211** was moved to QA Complete on the strength of it. Today the same comparison scores
+identically again, and in real data the wrong company comes first. So SV-10277 §2a is a **regression
+of a closed ticket**, with a dated before-and-after.
+**The rule:** every result we record is a dated measurement on a named build. Before ever writing
+"there is no before-and-after", grep `results/*.json` and the run's own history for the same behaviour.
+A recorded pass is evidence about the build it was made on, not just an administrative status.
