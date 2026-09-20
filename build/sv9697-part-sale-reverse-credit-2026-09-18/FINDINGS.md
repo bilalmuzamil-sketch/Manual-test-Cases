@@ -680,3 +680,36 @@ and keep Void everywhere else."* So whether these shops are on Accounting decide
 commits behind develop**, and *"endpoints that exist on develop are not there at all."* That is a
 stale portal build, not a regression in this fix — which matches the 400 on `create-checkout-session`
 exactly, and is worth Nemanja knowing before Monday.
+
+
+---
+
+## §14 — Comment 76831 updated in place (2026-09-20)
+
+Updated rather than stacked, per the one-complete-comment convention. Changes:
+
+* **The verdict panel now carries TWO outstanding items**, not one — the portal check (linked to
+  Nemanja's 76830) and the wording, linked to Chris's 76885, with the explicit note that the shipped
+  messages are the ones approved on 14 September and this is a copy change, not a defect.
+* **Rows 4, 5 and 6** read *"BEHAVIOUR PASSED — wording now superseded"* instead of a plain PASSED.
+* **Row 11** notes Chris has confirmed the legacy part sales stay blocked.
+* **A new section** sets the four shipped strings beside the four Chris now wants, states that the
+  confirmation copy is untouched so checks 1/2/3/8 stand, gives his reasoning in plain words, and
+  carries his open question for the developer — *Void* vs *Remove* depending on whether these shops
+  are on Accounting.
+* **The EX2 and EX3 captions** no longer say the pictures show "the wording that was agreed"; they
+  say the behaviour is right and that the copy in the picture is the 14 September version Chris has
+  since replaced.
+* **The portal section** now carries Chris's diagnosis — the portal host is built from portal main
+  2026-08-28, 91 commits behind develop — as the likely cause, and says P-253 is left ready.
+* **The closing section** no longer says the mixed applied-or-refunded question is unanswered. It
+  records that Chris answered it and that his fix removes the need for a third sentence.
+
+**Pre-post gate:** build marker re-read live (`v26.36.8-4ee1c0f`, unchanged) · ticket re-read
+(Blocked, Medium, newest comment 76885 — the one being folded in) · text scanned for
+machine-authored tells, the only hit being the word *endpoints* inside Chris's own quoted diagnosis ·
+no technical-details section.
+
+**Read back after the update:** six media nodes, all `"type":"file"`, right order and sizes ·
+17 table rows (11 checks + the new 4-row wording table + their headers) · first line is the two-item
+verdict · both comment links present · three superseded-wording rows.
