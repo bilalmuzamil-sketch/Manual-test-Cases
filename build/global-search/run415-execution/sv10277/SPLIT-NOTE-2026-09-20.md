@@ -76,3 +76,22 @@ filename would have resolved to the FIRST attachment and changed nothing on scre
 were used and 61131–61133 deleted. Verified: 3 inline, 0 `blob:`, 760 wide at true aspect, and the
 rendered description no longer contains the phrase "on the shelf".
 Rule recorded: `06-DEFECT-PREP.md`, learning **L0169**.
+
+## Fourth pass — before / fixed / broke headings, and "full marks" removed (2026-09-20)
+
+*"It should have the heading as to what you are telling was happening before the fix and what is
+happening after the fix which has fixed what was reported and broken what."*
+
+The Description was one running explanation. It is now three named sub-headings:
+
+| Heading | What it carries |
+|---|---|
+| **How search worked before the fix** | the two halves of the score, and why a contact match could beat a company's own name — i.e. the problem SV-10161 reported |
+| **What the fix corrected** | own-name matches now win; 20 person-name searches / 230 rows; *"This part is right and should stay."* |
+| **What the fix broke** | the maximum score is reached on the match alone, so in stock, open work orders, recent use and match closeness stop counting; results on the maximum fall back to whichever was changed most recently |
+
+**"Full marks" was also removed** — it is a school-marking idiom, i.e. a metaphor, and therefore
+barred by the rule recorded the same day. Everywhere it now reads **"the maximum score"**, and the
+picture tables read **"The maximum (1.00)"**. Pictures re-uploaded as `*-v3.png` (61137 / 61138 /
+61139) under fresh names again; 61134–61136 deleted. Verified in the rendered description: 3 pictures,
+0 `blob:`, and no occurrence of *full marks* or *on the shelf*.

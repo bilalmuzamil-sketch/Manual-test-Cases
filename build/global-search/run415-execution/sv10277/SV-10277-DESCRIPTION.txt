@@ -4,11 +4,23 @@
 
 h3. Description
 
-*In one sentence:* search used to put the most useful result at the top — the part you actually have in stock, the company whose name really is the one you typed — and since the change on SV-10161 it no longer does.
+h4. How search worked before the fix
 
-Search gives every result a score and shows the highest first. The score cannot go above *full marks*. Since the change, a result whose *own name* contains the word you typed gets *full marks straight away*, before anything else about it is looked at. Nothing can then lift it and nothing can hold it back — so everything else the specification counts (in stock, open work orders, used recently, how closely the name matches) stops making any difference.
+Search gives every result a score and shows the highest score first. Two things make up that score:
+* *how well the result matches* what you typed
+* *how useful the result is likely to be* — a part that is in stock, a customer with open work orders, a record somebody opened recently
 
-When several results all sit on full marks, the one shown first is simply whichever was changed most recently.
+Because the second part could be worth almost as much as the first, a company that matched only on a person's name or email address could beat a company whose *own name* matched what you typed. That is the problem reported on SV-10161.
+
+h4. What the fix corrected
+
+The credit given to a match on a record's *own name* was raised. A company whose own name matches now appears above a company that matches only on a contact's details. Checked on 20 different person-name searches across 230 customer rows — correct every time. *This part is right and should stay.*
+
+h4. What the fix broke
+
+A score cannot go above the maximum. The credit was raised so far that a result whose own name contains the word you typed now reaches *the maximum score on the match alone*, before anything else about it is counted. Nothing can lift it any further and nothing can hold it back — so being in stock, having open work orders, having been used recently, and how closely the name matches all stop making any difference.
+
+When several results sit on the maximum score together, the one shown first is simply whichever was changed most recently.
 
 For example,
 * a part that is *in stock* and a part that is *out of stock* score the same
@@ -23,7 +35,7 @@ h3. Steps to Reproduce
 # Type {{shoe}}
 # Open the *Parts* tab
 
-!SIMPLE1-parts-v2.png|width=760,height=785!
+!SIMPLE1-parts-v3.png|width=760,height=785!
 
 *Actual Result:* 20 parts come back, 7 of them showing *0 Available*, and all 20 score the same.
 *Expected Result:* the parts that are in stock score higher, so they appear above the ones showing *0 Available*.
@@ -39,7 +51,7 @@ h3. Steps to Reproduce
 # Type {{mobile}}
 # Open the *Customers* tab
 
-!SIMPLE2-companies-v2.png|width=760,height=865!
+!SIMPLE2-companies-v3.png|width=760,height=865!
 
 *Actual Result:* {{Mobile Truck & Trailer Repair Island Lake}} and {{Henderson Mobile Truck Repair}} score the same.
 *Expected Result:* the company whose name starts with the word scores higher, so it appears above the other.
@@ -55,7 +67,7 @@ h3. Steps to Reproduce
 # Press {{Ctrl}}+{{K}}
 # Type {{truck repair}}
 
-!SIMPLE3-everything-v2.png|width=760,height=849!
+!SIMPLE3-everything-v3.png|width=760,height=849!
 
 *Actual Result:* all 20 rows score the same in *Work orders*, *Customers*, *Vendors*, *Part sales*, *Purchase orders* and *Vendor invoices*, and all 20 in *Assets* score the same as each other. The order you see is whichever record was changed most recently.
 *Expected Result:* the rows are ordered by how useful each one is, and two rows are only treated as equal when they genuinely are.
@@ -66,15 +78,15 @@ h3. Steps to Reproduce
 
 h3. Why This Happens
 
-Full marks is 1.00. The word being found in a record's own name is now worth 0.50 on its own, on top of 0.50 for finding the word at all — so a name match arrives at 1.00 with nothing else counted. Everything PRD 6.1 adds after that has nowhere to go.
+The maximum score is 1.00. Finding the word in a record's own name is now worth 0.50 by itself, on top of the 0.50 for finding the word at all — so a name match arrives at 1.00 with nothing else counted. Everything PRD 6.1 adds after that has nowhere to go.
 
-Full marks really is a ceiling and not just the best row of the day: across 230 results nothing went above it, and plenty of searches finish well below it — the customers returned for {{brake}} stop at 0.32.
+1.00 really is the maximum, and not just the highest score returned that day: across 230 results nothing went above it, and plenty of searches finish well below it — the customers returned for {{brake}} stop at 0.32.
 
 *The list can still look correctly ordered*, because results on the same score fall back to whichever was changed most recently. It is that fallback holding the order, not the specification.
 
 h3. Suggested Fix
 
-# Give a record's own name enough of a lift to beat a match on somebody's contact details, but *not* enough to reach full marks — so there is still room above it for in stock, open work orders and recent use to do their job.
+# Give a record's own name enough of a lift to beat a match on somebody's contact details, but *not* enough to reach the maximum score — so there is still room above it for in stock, open work orders and recent use to do their job.
 # Update PRD 6.1, which still says this lift is *+0.10* while the product is applying at least *+0.50*.
 
 h3. Environment
