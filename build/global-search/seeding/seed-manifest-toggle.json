@@ -1,0 +1,843 @@
+{
+ "environment": {
+  "workplace_name_hint": "Staging Heavy Duty"
+ },
+ "_UNIVERSE": "Same-record permission toggle (6734) - C55731-C55737",
+ "_THE_DESIGN_RULE": "One record per bundle, found by the keyword the CASE names, unique on the branch. The assertion is identity across two runs, so the record must be nameable - a count cannot carry these cases.",
+ "_KEYWORDS_ARE_THE_CASES": "ZZTOGPART ZZTOGWO ZZTOGCUST ZZTOGPS ZZTOGVEN ZZTOGPRICE ZZCOUNT - taken verbatim from the case bodies (Rule 112), not chosen here.",
+ "_DEPENDENT_PASS": "ZZTOGVEN's purchase order and vendor invoice are added by seed_po_and_invoices.py after these records exist.",
+ "_ROLES_ALREADY_EXIST": "The six single-bundle ZZAUTOTEST roles created for section 6734 are exactly the \"identical except one access\" pairs these cases need. Do not create more - reset them to template before applying (QA lead, 2026-09-17).",
+ "records": [
+  {
+   "key": "tog_part_cat",
+   "type": "CataloguePart",
+   "serves": [
+    55731
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZTOGPART-1001",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZTOGPART Brake Kit",
+     "part_number": "ZZTOGPART-1001",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "The case names this record verbatim: \"the seeded part ZZTOGPART Brake Kit\"."
+  },
+  {
+   "key": "tog_part_inv",
+   "type": "InventoryPart",
+   "depends_on": "tog_part_cat",
+   "serves": [
+    55731
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZTOGPART-1001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 19.5,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 39.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZTOGPART-1001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "THE STOCK ROW. Search indexes the inventory record, so without this the part is invisible and the \"without access it is gone\" half of the case passes while the \"with access it appears\" half fails - which reads as a permission bug and is not one."
+  },
+  {
+   "key": "tog_price_cat",
+   "type": "CataloguePart",
+   "serves": [
+    55736
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZTOGPRICE-1002",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZTOGPRICE Filter",
+     "part_number": "ZZTOGPRICE-1002",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "The case names this record verbatim: \"the seeded priced part ZZTOGPRICE Filter\"."
+  },
+  {
+   "key": "tog_price_inv",
+   "type": "InventoryPart",
+   "depends_on": "tog_price_cat",
+   "serves": [
+    55736
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZTOGPRICE-1002",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 9,
+     "cost": 137.45,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 289.95
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZTOGPRICE-1002",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 9
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "A NON-ROUND, DISTINCTIVE PRICE so the tester can tell a real price from a placeholder or a zero. This case is the one where a HIDDEN ROW would be the WRONG outcome: the row must stay and only the price may disappear."
+  },
+  {
+   "key": "tog_cust",
+   "type": "Customer",
+   "serves": [
+    55733
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZTOGCUST Freight",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZTOGCUST Freight",
+     "address": "3 Toggle Street",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-3001",
+     "phone": "(264) 400-0300",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "The case names it verbatim: \"the seeded customer ZZTOGCUST Freight and its vehicle\"."
+  },
+  {
+   "key": "tog_cust_contact",
+   "type": "Contact",
+   "depends_on": "tog_cust",
+   "serves": [
+    55733
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "tog_cust",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Toggle"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Toggle",
+     "last_name": "Cust",
+     "title": "Owner",
+     "telephone": "(264) 400-0301",
+     "email": "toggle@zztog.test"
+    },
+    "inject": {
+     "company_id": "tog_cust"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "_why": "A vehicle cannot be created without a contact - customer_id on /api/vehicles/create is a Customer (the person), not the company."
+  },
+  {
+   "key": "tog_cust_vehicle",
+   "type": "Vehicle",
+   "depends_on": "tog_cust",
+   "serves": [
+    55733
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZTOGCUST0000000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Freightliner",
+     "model_name": "Cascadia",
+     "year": 2019,
+     "unit": "ZZTOGCUST-V1",
+     "vin": "ZZTOGCUST0000000001",
+     "licence_plate": "ZZTOGCUST-V1"
+    },
+    "inject": {
+     "customer_id": "tog_cust_contact",
+     "company_id": "tog_cust"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "THE SECOND HALF OF THE ASSERTION. The case is not \"a customer disappears\" - it is that ONE permission takes the customer AND its vehicle together, so the asset is not optional here."
+  },
+  {
+   "key": "tog_wo_cust",
+   "type": "Customer",
+   "serves": [
+    55732
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZTOGWO Haulage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZTOGWO Haulage",
+     "address": "3 Toggle Street",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-3001",
+     "phone": "(264) 400-0300",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "A work order is indexed on its CUSTOMER NAME, so the keyword has to live on the customer for the work order to be reachable by it at all. The case says so: \"the seeded work order and its customer ZZTOGWO\"."
+  },
+  {
+   "key": "tog_wo_contact",
+   "type": "Contact",
+   "depends_on": "tog_wo_cust",
+   "serves": [
+    55732
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "tog_wo_cust",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Toggle"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Toggle",
+     "last_name": "Work",
+     "title": "Owner",
+     "telephone": "(264) 400-0301",
+     "email": "toggle@zztog.test"
+    },
+    "inject": {
+     "company_id": "tog_wo_cust"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "_why": "Required by the work-order create: customer_id is the contact, and invoicing later 500s without one."
+  },
+  {
+   "key": "tog_wo_vehicle",
+   "type": "Vehicle",
+   "depends_on": "tog_wo_cust",
+   "serves": [
+    55732
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZTOGWO00000000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Freightliner",
+     "model_name": "Cascadia",
+     "year": 2019,
+     "unit": "ZZTOGWO-V1",
+     "vin": "ZZTOGWO00000000001",
+     "licence_plate": "ZZTOGWO-V1"
+    },
+    "inject": {
+     "customer_id": "tog_wo_contact",
+     "company_id": "tog_wo_cust"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "A work order needs a vehicle."
+  },
+  {
+   "key": "tog_work_order",
+   "type": "WorkOrder",
+   "count": 1,
+   "depends_on": "tog_wo_cust",
+   "serves": [
+    55732
+   ],
+   "_why": "THE RECORD THE CASE TOGGLES. One is enough - the assertion is identity (\"the SAME work order is gone\"), not volume.",
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The list starts EMPTY on purpose - a hardcoded id survives a redeploy pointing at nothing, which is how work orders kept reading as \"created but NOT FINDABLE\"."
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "tog_wo_cust",
+     "vehicle_id": "tog_wo_vehicle",
+     "customer_id": "tog_wo_contact"
+    },
+    "\ud83d\udd34 _THE_TRAP": "is_vehicle_here is REQUIRED IN PRACTICE - omit it and the server answers 500, not 400, which reads like a broken endpoint.",
+    "id_from": "data.work_order_id",
+    "repeat": 1
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ]
+  },
+  {
+   "key": "tog_ps_cust",
+   "type": "Customer",
+   "serves": [
+    55734
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZTOGPS Motors",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZTOGPS Motors",
+     "address": "3 Toggle Street",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-3001",
+     "phone": "(264) 400-0300",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "A part sale is indexed on its CUSTOMER NAME, so the keyword lives on the customer. The case says \"the seeded part sale for customer ZZTOGPS\"."
+  },
+  {
+   "key": "tog_ps_contact",
+   "type": "Contact",
+   "depends_on": "tog_ps_cust",
+   "serves": [
+    55734
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "tog_ps_cust",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Toggle"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Toggle",
+     "last_name": "Sale",
+     "title": "Owner",
+     "telephone": "(264) 400-0301",
+     "email": "toggle@zztog.test"
+    },
+    "inject": {
+     "company_id": "tog_ps_cust"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "_why": "Required by the create chain."
+  },
+  {
+   "key": "tog_ps_vehicle",
+   "type": "Vehicle",
+   "depends_on": "tog_ps_cust",
+   "serves": [
+    55734
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZTOGPS000000000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Freightliner",
+     "model_name": "Cascadia",
+     "year": 2019,
+     "unit": "ZZTOGPS-V1",
+     "vin": "ZZTOGPS000000000001",
+     "licence_plate": "ZZTOGPS-V1"
+    },
+    "inject": {
+     "customer_id": "tog_ps_contact",
+     "company_id": "tog_ps_cust"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "The part-sale create injects a vehicle."
+  },
+  {
+   "key": "tog_part_sale",
+   "type": "PartSale",
+   "depends_on": "tog_ps_cust",
+   "serves": [
+    55734
+   ],
+   "_why": "THE RECORD THE CASE TOGGLES. Note the Part Sales group needs partSalesView AND seeFinancialData, so a tester who removes the wrong one still sees the group vanish and may credit the wrong permission - the handoff says to check which was changed.",
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "companyName",
+    "value": "ZZTOGPS Motors",
+    "control": "4 Star Truck Repair",
+    "_why": "\ud83d\udd34 THE LIST KEY IS 'partSales', NOT 'collection'."
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "tog_ps_cust",
+     "vehicle_id": "tog_ps_vehicle"
+    },
+    "id_from": "data.0.id"
+   },
+   "skip_verify": [
+    "company_id",
+    "vehicle_id"
+   ]
+  },
+  {
+   "key": "tog_vendor",
+   "type": "Vendor",
+   "serves": [
+    55735
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZTOGVEN Supply",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZTOGVEN Supply",
+     "address_1": "3 Toggle Street",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-3001",
+     "telephone": "(264) 400-0302",
+     "email": "ap@zztog.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "The case names it verbatim: \"the seeded vendor ZZTOGVEN with its purchase order and vendor invoice\". The PO and the invoice are layered on afterwards by seed_po_and_invoices.py - a declarative manifest cannot express that stateful chain."
+  },
+  {
+   "key": "tog_ven_part_cat",
+   "type": "CataloguePart",
+   "serves": [
+    55735
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZTOGVEN-9001",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZTOGVEN Supply Brake Shoe Kit",
+     "part_number": "ZZTOGVEN-9001",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "The line item the purchase order is raised for."
+  },
+  {
+   "key": "tog_ven_part_inv",
+   "type": "InventoryPart",
+   "depends_on": "tog_ven_part_cat",
+   "serves": [
+    55735
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZTOGVEN-9001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 3,
+     "cost": 55.0,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 110.0
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZTOGVEN-9001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 3
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "The stock row. The stock route is the only one that can be RECEIVED on this build, and receiving is what CREATES the vendor invoice - a work-order-routed PO would leave C55735 with no invoice to hide."
+  },
+  {
+   "key": "count_visible_1",
+   "type": "Customer",
+   "serves": [
+    55737
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZTALLYQ Alpha Freight",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZTALLYQ Alpha Freight",
+     "address": "3 Toggle Street",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-3001",
+     "phone": "(264) 400-0300",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "Visible side of the count assertion."
+  },
+  {
+   "key": "count_visible_2",
+   "type": "Customer",
+   "serves": [
+    55737
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZTALLYQ Beta Freight",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZTALLYQ Beta Freight",
+     "address": "3 Toggle Street",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-3001",
+     "phone": "(264) 400-0300",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "Visible side of the count assertion - two rows so the tester reads a count of 2, not 1. A count of 1 has already produced a false PASS on a real regression in this project."
+  }
+ ]
+}

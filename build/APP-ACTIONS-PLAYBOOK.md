@@ -98,66 +98,6 @@ evidenced in the committed artifacts — confirm before relying on it.
 
 # STAGING ACTION RECIPES (quick-reference index)
 
-> ## 🔧 RECIPE — DRIVING A **QA BRANCH** SPA WITH PLAYWRIGHT, END TO END (proven 2026-08-31 on `sv8218`)
->
-> **Four things must all be true or the browser never reaches the app. Each one failed in turn on
-> 2026-08-31 and each failure has a distinct, misleading symptom.** Working harness:
-> `build/invoice-ui-refresh/build-verify-2026-08-31/tools/boot8218.mjs` — copy it, change the host.
->
-> **(1) THE MITM BRIDGE MUST BE FRESH, BECAUSE THE EGRESS PROXY PORT ROTATES *WITHIN* A SESSION.**
-> Symptom: chromium returns **`net::ERR_PROXY_CONNECTION_FAILED`** on every navigation while `curl`
-> through the egress proxy still works. Cause: the running bridge holds the egress port it was
-> started with; `$HTTPS_PROXY` had moved (`:46015` → `:45521`) and the bridge process was gone.
-> **Do not debug the app — restart the bridge and re-read `$HTTPS_PROXY` LIVE.**
-> ```sh
-> ps aux | grep -c "[b]ridge.mjs"                    # 0 = dead, and the port file is a lie
-> rm -f /tmp/atlassian/bridge-port.txt
-> export NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt NODE_USE_ENV_PROXY=1
-> setsid nohup node build/atlassian-login/bridge.mjs > /tmp/atlassian/bridge.log 2>&1 < /dev/null &
-> curl -s -o /dev/null -w '%{http_code}\n' -x http://127.0.0.1:$(cat /tmp/atlassian/bridge-port.txt) \
->      -k https://<branch>.qa.shopview.com/index.html      # expect 200
-> ```
->
-> **(2) THE BRIDGE NEEDS ITS CERT GENERATED FIRST, AND THE DOCUMENTED SAN IS TOO NARROW.**
-> Symptom: `ENOENT: no such file or directory, open '/tmp/atlassian/mitm.key'`. The `openssl` line in
-> `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` covers only `*.atlassian.net` — **add the hosts you actually
-> need**: `-addext "subjectAltName=DNS:*.atlassian.net,DNS:*.atlassian.com,DNS:*.testrail.io,DNS:*.qa.shopview.com"`.
-> **✅ 2026-09-02 — YOU NO LONGER RUN THIS BY HAND: `build/testing-tools/ensure_bridge.sh` GENERATES
-> THE PAIR ITSELF**, idempotently, from exactly this recipe (SAN widened once more, with
-> `DNS:*.staging.shopview.com`) — and it now **exits non-zero** if the bridge comes up with no port or
-> no egress instead of reporting success. Use the launcher; keep this line as the authority for what
-> it emits, and widen its `SAN=` variable if you need another host.
->
-> **(3) 🔑 COOKIES ALONE DO NOT GET YOU IN — THE SPA NEEDS `user` + `token` IN `localStorage`.**
-> **🟢 SUPERSEDED 2026-08-31 — PREFER THE UI ROUTE, and read §A "THE AUTHENTIC QA-BRANCH LOGIN"
-> FIRST.** The hydration below still works, but you no longer need it and it is the more fragile
-> path. **Click the sign-in screen's `DEV MODE — QUICK LOGIN` → `Admin` button in the browser and the
-> app mints and writes all of `localStorage` itself, from ONE cookie (`sv_sso_session`) — no
-> `PHPSESSID`, no `cf_clearance`, no 409, and nothing hand-assembled.** Harness:
-> `build/testing-tools/qa-branch-boot.mjs`. Proven on `sv9315`, 2026-08-31. Keep reading only if a
-> branch has no DEV MODE panel.
-> Symptom, and it looks like dead cookies but is not: the API probe returns **HTTP 200 with a real
-> permissions payload**, yet the browser lands on **`/login?redirect=/workorders`** showing the
-> sign-in form. Seeding `fe_permissions_wrapper` alone is not enough.
-> **The fix — mint a real session, then hydrate all three keys:**
-> ```
-> POST /api/quick-login {"key":"admin"}   ->  200, data.{token,role,details} + a ROTATED PHPSESSID
-> localStorage: user = {data:{token,role,details}} · fe_permissions_wrapper = <fe data> · token
-> then goto the real route  (order matters: cookies -> land on /login -> write localStorage -> navigate)
-> ```
-> **Swap the rotated `PHPSESSID` into your API cookie header too**, or subsequent API calls answer 409.
-> **Use `{"key":"admin"}` first** — a failed `{"key":"tech"}` burns the session and everything then
-> 409s (core §6.2). **And quick-login EVICTS any other worker on that branch**, so confirm with the QA
-> lead that nobody else is driving it (Rule 83).
->
-> **(4) THE HOST HAS NO DOT BEFORE `api`.** `sv8218api.qa.shopview.com`, never `sv8218.api…`. And
-> **probe the `…api.` host, never the app host** — the SPA serves `index.html` for any unmatched path,
-> so a 200 from the app host proves nothing (core §6 trap 2).
->
-> **Landing proof to assert, so a false success cannot pass:** the URL must NOT match `/login`, the
-> page title is the real screen (`Work Orders | ShopView`), and `document.body.innerText` is a
-> four-figure character count of real content — not the 225 characters of the sign-in form.
-
 Consolidated, copy-paste-ready staging/QA recipes so no worker re-discovers a proven
 action. Each is terse: **what · method+endpoint (minimal payload) · the gotcha · helper
 location · source**. Fuller per-action detail (UI click-paths, confidence grades) is in
@@ -191,14 +131,6 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 ---
 
 ## A. Auth & session
-
-> **🔑 THE ACCOUNTS AND PASSWORDS THEMSELVES LIVE IN `build/ENVIRONMENT-CREDENTIALS.md`** — production,
-> TestRail and Atlassian, each with the URL, the account, the password, the login method, what that
-> method returns and its traps. **Committed under the QA lead's ruling of 2026-09-03** (Standing Rule 82
-> amendment). **Staging and the QA branches have NO password — entry is by session cookie**, supplied by
-> him per branch into `/tmp` at `chmod 600`; **cookies and tokens are still NEVER committed.** And a
-> committed password is **not** authorisation: **Rule 6 still governs every TestRail write.**
-
 - **Quick-login (admin/tech):** `POST /api/quick-login {key:'admin'|'tech'}` → 200 + a fresh
   `PHPSESSID`. Gated by valid session cookies. Prefer quick-login SSO over raw-cookie API (raw
   can 409). Both `{key:'admin'}` and `{key:'tech'}` return 200 on staging (tech-403 is fixed;
@@ -215,25 +147,28 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   PHPSESSID → 500 on everything** (API root still 200). Fix a poisoned session: re-run quick-login
   `{key:'admin'}` WITHOUT sending the old PHPSESSID → fresh PHPSESSID → all 200 again.
 - **🔴 SIGN-IN ON `.qa.shopview.com` IS GOOGLE OAUTH — A USERNAME AND PASSWORD CANNOT MINT A SESSION
-  (measured 2026-09-17).** `POST /api/login {username,password}` answers **401 `sso_required`**, and
-  following that redirect lands on **`accounts.google.com/o/oauth2/v2/auth?…&hd=shopview.com`**. No
-  script can mint a session — the only route is cookies from a browser that already completed the
-  Google sign-in. (The login call still issues a fresh `PHPSESSID` while refusing: a new session id is
-  not a new session.)
+  (measured 2026-09-17).** `POST /api/login {username,password}` against the `…api.` host answers
+  **401 `sso_required`**, and following that redirect lands on
+  **`accounts.google.com/o/oauth2/v2/auth?…&hd=shopview.com`**. App credentials are not what the gate
+  wants, and **no script can mint a session** — the only route is cookies captured from a browser that
+  already completed the Google sign-in. (The login call still issues a fresh `PHPSESSID` while
+  refusing, which is a trap: a new session id is not a new session.)
 - **🔴 `PHPSESSID` CARRIES THE ORGANISATION, AND IT IS THE VALUE THAT GOES STALE — ASK FOR IT BY NAME,
   CAPTURED WHILE THE BROWSER IS IN THE ORGANISATION YOU WANT (proven 2026-09-17, after I got this
   BACKWARDS).** One person signed into Google has **one `sv_sso_session`** covering every organisation
   they can reach; **which organisation a request lands in is carried by `PHPSESSID`.**
   **The measurement that settles it:** a **byte-identical** `sv_sso_session` and `cf_clearance`
   answered **409 `Session has expired.`** with one organisation's `PHPSESSID` and **200** with
-  another's, minutes apart. A 409 does **not** mean the SSO token is dead — I concluded that and was
+  another's, minutes apart. So a 409 does **not** mean the SSO token is dead — I concluded that and was
   wrong, and it cost three rounds of asking for the wrong value.
   **Read the two refusals as naming different values:** **401 `sso_required`** = no usable SSO token
-  (or an expired `cf_clearance`, per trap (1)); **409 `Session has expired.`** = the SSO token is fine
-  and **this organisation's `PHPSESSID` has lapsed**.
-  **Listing is not access:** `GET /api/organizations` names every organisation the person belongs to,
-  so a working session can *see* another one while `GET /api/staff/my-workplaces` returns only its own.
-  To seed or verify inside another organisation you need that organisation's own `PHPSESSID`.
+  (that one really is `sv_sso_session`, or an expired `cf_clearance` per trap (1)); **409 `Session has
+  expired.`** = the SSO token is fine and **this organisation's `PHPSESSID` has lapsed**. A freshly
+  minted `PHPSESSID` from the login call does not fix a 409 either — it has no organisation attached.
+  **What "can see it" does NOT mean:** `GET /api/organizations` lists every organisation the person
+  belongs to, so a working session can *name* another organisation while `GET /api/staff/my-workplaces`
+  returns only its own. **Listing is not access** — to seed or verify inside another organisation you
+  need that organisation's own `PHPSESSID`.
 - **🔴 A LIVE ROLE IS NOT A TRUSTWORTHY BASELINE — RESET IT TO TEMPLATE BEFORE APPLYING IT TO ANYONE
   (QA lead's standing instruction, 2026-09-17).** Manual testers edit the stock roles by hand, so a
   role named "Service Advisor" may no longer carry the Service Advisor permission set. A permission
@@ -241,18 +176,74 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   **In the UI:** Settings → Roles & Permissions → the role → Edit → **Reset To Template** → **Save**,
   and only then assign it. **If Reset To Template leaves SAVE DISABLED, the role was already
   default** — a disabled Save is the "already clean" signal, not a broken button.
-  **By API:** `GET /api/role-templates`, then `GET /api/role-templates/{TEMPLATE_ID}/fe-permissions`
-  — 🔴 **the ID, not the slug; the slug answers 404**, which reads like "no template exists" rather
-  than "wrong key". Reset-to-template is a front-end operation: it loads the template's permissions
-  into the draft and `PUT /roles/{id}` saves them, so a script can do the same.
+  **By API:** the templates are `GET /api/role-templates` and their permission sets are
+  `GET /api/role-templates/{TEMPLATE_ID}/fe-permissions` — 🔴 **the ID, not the slug; the slug answers
+  404**, which reads like "no template exists" rather than "wrong key". Reset-to-template is a
+  front-end operation: it loads the template's permissions into the draft and `PUT /roles/{id}` saves
+  them, so a script can do exactly the same thing.
   **Measured 2026-09-17:** the live `Office User` matched its template exactly (26 permissions, same
-  codes), so the ZZAUTOTEST fixtures cloned from it are clean — worth proving, not assuming.
-- **🔴 THE ONE-CALL CONTROL FOR "AM I POINTED AT THE RIGHT HOST?" (2026-09-17).** Same failure as trap
-  **(2)** below — I hit it because I had not read the traps first, so here is the control that settles
-  it without knowing the symptom: **request a path that CANNOT exist**, e.g. `/api/nope-does-not-exist`.
-  The real API host answers **404 `'resource' was not found`**; the front-end host answers **200 HTML,
-  exactly as for every other path**. App = `sv9160.qa.shopview.com`; **API = `sv9160api.qa.shopview.com`**
-  (`api` infix, no dot). **Never hand-write a profile's `api` field — copy it from one that works.**
+  codes), so the ZZAUTOTEST fixtures cloned from it are clean — but that was worth proving, not
+  assuming, and `seed_roles.py` now compares the two on every run and prefers the template on drift.
+- **🔴 THE ONE-CALL CONTROL FOR "AM I POINTED AT THE RIGHT HOST?" (2026-09-17).** This is the same
+  failure as trap **(2)** below — I hit it building a profile for a second organisation *because I had
+  not read trap (2) first*, so here is the cheap control that settles it without knowing the symptom:
+  **request a path that CANNOT exist**, e.g. `/api/nope-does-not-exist`. The real API host answers
+  **404 `'resource' was not found`**; the front-end host answers **200 HTML, exactly as it does for
+  every other path**. A profile whose nonexistent-path probe returns anything but 404 is pointed at the
+  wrong host. App = `sv9160.qa.shopview.com`; **API = `sv9160api.qa.shopview.com`** (`api` infix, no
+  dot). **Never hand-write a profile's `api` field — copy it from a profile that works.**
+- **A COOKIE SET OLDER THAN ~24 HOURS IS DEAD, AND `cf_clearance` CARRIES ITS OWN ISSUE TIME.** The
+  value's second dash-separated field is a unix timestamp — `…-1789539930-1.2.1.1-…` is
+  2026-09-16 06:25 UTC. **Read it before spending anything on a diagnosis:** a set captured ~30 hours
+  earlier answers **409 `Session has expired.`** on every call, a fresh `PHPSESSID` minted by the
+  server does not rescue it, and the only fix is a newly captured `sv_sso_session`.
+  🔴 **Do NOT reach for `quick-login` to repair a session for a DIFFERENT organisation.** It signs in
+  as *this branch's own* admin — the wrong tenant — so it cannot reach the other organisation at all,
+  and it **rotates the shared `sv_sso_session`**, which destroys the very browser session the person
+  captured the cookies from. Ask for the value by name instead.
+- **Chromium UI automation (boot2 hydration):** Chromium can't TLS through the egress proxy directly.
+  `boot2(roleKey, opts)` in `staging-boot2.mjs` does quick-login → optionally `change-location` →
+  reads `GET /api/auth/me/fe-permissions` → seeds cookies + localStorage (`user`,
+  `fe_permissions_wrapper`, `token`) THEN navigates (the DEV login BUTTONS don't reliably work).
+  It points Playwright at `$HTTPS_PROXY` (read LIVE — port rotates). Exits code 2 with
+  `COOKIES_EXPIRED` on a 409. *Source: CLAUDE.md, TESTING-RUNBOOK.md.*
+- **Fresh MITM bridge (fallback when the direct proxy path fails):** `staging-bridge.mjs` — a small
+  local proxy that accepts Chromium's CONNECT and relays via Node fetch (honours
+  `NODE_USE_ENV_PROXY=1` + `NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt`). Reads `$HTTPS_PROXY`
+  live; **rebuild every run, never hard-code the port.** Prints `BRIDGE_LISTENING 127.0.0.1:<port>`;
+  launch Chromium with `--proxy-server=http://127.0.0.1:<port> --ignore-certificate-errors
+  --no-sandbox --ssl-version-max=tls1.2`.
+- **node-fetch / undici proxy gotcha:** node-fetch IGNORES the proxy → use **undici `ProxyAgent`**
+  (or Node global `fetch` with `NODE_USE_ENV_PROXY=1`). *Source: CLAUDE.md Simple Flow env note.*
+- **fe-permissions read:** `GET /api/auth/me/fe-permissions` → `{data:{fe_permissions:[<codes>],
+  view_mode, cross_toggles}}` (array of code STRINGS, not a bool map). quick-login is stateful on the
+  shared PHPSESSID → probe roles strictly SEQUENTIALLY.
+- **PRODUCTION access (`app.shopview.com` / `api.shopview.com`) — proven 2026-07-29 (SV-8721 prod
+  verification):** real login `POST /api/login {username, password}` → 200 + set-cookie `PHPSESSID`
+  (session is PHPSESSID-only, NO SSO / no cf_clearance needed via the agent proxy; quick-login 500s on
+  prod). **A fresh login for the SAME user EXPIRES the previous PHPSESSID** (old session → 409 "Session
+  has expired") — log in ONCE per run and reuse that session for API + browser + cleanup. Prod test org
+  = `72b2cc90-6964-4429-a207-76e55f946936`; workplaces via `GET /api/staff/my-workplaces` — **Trucks
+  Hill 2 = `b617914c-16e9-4485-8e8b-193cd86aa416` (Africa/Accra, HAS canned lines — use it for WO
+  seeding)**; QA Testing = `8badadec-0344-4bc3-b668-7beaedfefa8d` (Africa/Abidjan, NO canned lines).
+  Same-as-staging on prod (all confirmed live): `iam/change-location`, `work-orders/create`
+  (is_vehicle_here required), `part/make-request`, `perform-request-status-action {action:'order'}`,
+  `inventory/orders/{id}` (incl. the `*_decimal` fields), `work-orders/delete` (deleting the WO also
+  removes its un-received PO). **DIFFERENT on prod:** `POST /api/work-orders/lines/create
+  {canned_line_id,…}` → 400 "Labor or fixed prices must be set" even with a fixed-price canned line —
+  use **`POST /api/work-orders/{id}/lines/create-from-canned-line {canned_line_id, status:'authorized'}`
+  → 201** instead. Chromium boot2-style hydration works on prod: PHPSESSID cookie on `.shopview.com` +
+  localStorage `user` = `{data:<login-response data>}` (has `token`/`role`/`details`) +
+  `fe_permissions_wrapper` = fe-permissions `data`; Playwright pointed straight at `$HTTPS_PROXY`
+  worked (no bridge needed). Credentials/cookies in `/tmp` only. **Node-fetch proxy fix (proven
+  2026-07-29):** in sandboxes where plain node `fetch` bypasses the egress proxy (403 "Host not in
+  allowlist" while `curl` gets through), run node with **`NODE_USE_ENV_PROXY=1`** (Node 22.22+,
+  undici EnvHttpProxyAgent) — fetch then honors `$HTTPS_PROXY` and prod login/API work; no code
+  change needed. **Receive-screen Tax field (prod + staging):** a manual vendor-invoice dollar
+  input defaulting to $0.00 when the org's workplace tax rate is 0 (`workplace_tax` in the order
+  JSON); typing a dollar amount live-recalculates Total = Subtotal + Tax (verified: 15.32 + 0.77
+  → 16.09, SV-8721).
+
 - **🛑 THE FIVE TRAPS THAT PRODUCE A FALSE "DEAD SESSION" ON `.qa.shopview.com` — read this BEFORE
   asking for new cookies (proven live 2026-08-06 on the Schedule branch `sv8685`; the first three each
   cost a whole pass).**
@@ -293,40 +284,6 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   never invalid.
   **The cheaper lesson: do not probe `{"key":"tech"}` at all on a branch where it has already been shown
   to 403** (`sv8582` is one), because the probe costs you the working session to learn nothing new.
-- **✅ WHY QUICK-LOGIN "LOGS YOU OUT", MEASURED END TO END (controlled diagnostic 2026-08-28 on
-  `sv9500`, build `v26.35.6-4b694be`; full evidence `build/QUICK-LOGIN-DIAGNOSIS-2026-08-28.md`).**
-  **CONFIRMED: every `POST /api/quick-login` rotates the session and the previous jar is dead the same
-  second** (200 at T+0, **409 `Session has expired.`** 7 s later after one call). Two calls → two
-  rotations → two dead jars. Three corrections to what is written above, each observed live:
-  **(a) ONLY `PHPSESSID` ROTATES — `sv_sso_session` NEVER CHANGED** across the whole run. Trap 5's
-  *"rotates the shared `sv_sso_session`"* is the wrong mechanism; the sibling sign-out it warns about is
-  real, but it is the per-branch `PHPSESSID` doing it. Never rebuild the SSO value.
-  **(b) A `403 Access denied.` FROM QUICK-LOGIN IS NOT A FAILED LOGIN.** `{"key":"tech"}` answered 403
-  and the jar it set was a **working Technician session** (`view_mode: "tech"`, 6 permissions). **Take
-  the `PHPSESSID` out of the 403's own `Set-Cookie` and verify with one read — do NOT "recover" with an
-  `admin` quick-login**, which throws away the tech session you were just given. The §A recipe above is
-  still right about *how* to repair (swap only `PHPSESSID`); it is wrong that the 403 login failed.
-  **(c) THE STICKY DEAD-SESSION LATCH — the second, sneakier cause of "logged out".** A **409 response
-  hands back a `PHPSESSID` of its own** (deterministically the same dead value every time) and **that
-  value 409s forever**. Any client with ordinary cookie persistence (browser, `requests.Session()`,
-  `curl -c`) that hits ONE 409 adopts the dead id and never recovers, though a valid session exists.
-  **Turn cookie persistence OFF and re-read the jar from `/tmp` after any 409.**
-  **Also settled on `sv9500`:** the supplied raw cookies read **200 immediately** (so §N's "a raw-cookie
-  read 409s, that is normal" is branch-specific, not a law) · **`GET /api/auth/me` 404s — probe
-  `/api/auth/me/fe-permissions`** · a **five-minute** session of ordinary paging with 20–65 s idle gaps
-  produced **zero** 401/409 and no cookie change, so **idle timeout is NOT a cause** (cookie `Max-Age`
-  86400) · **four concurrent requests on one jar all returned 200** — shared concurrent use evicts
-  nothing · **`cf_clearance` is NOT needed and cannot be the problem on `sv9500`: there is no Cloudflare
-  in the path** (app host = **CloudFront/S3**, API host = bare `nginx/1.30.4`, no `cf-*` headers; an
-  unauthenticated API call returns the app's own JSON `401 sso_required`, not an edge challenge).
-  **THE RECIPE — five lines, verbatim from the diagnosis:** **(1)** probe
-  `GET /api/auth/me/fe-permissions` on the `…api.` host first — **200 ⇒ you are signed in, do NOT call
-  quick-login**; only 409 means you need one, and 401 `sso_required` means ask for a fresh
-  `sv_sso_session` by name. **(2)** call quick-login **at most once per run**, and only to CHANGE ROLE.
-  **(3)** overwrite `PHPSESSID` from the response `Set-Cookie` **even on a 403**, leave `sv_sso_session`
-  alone, and use the new jar for everything after. **(4)** never re-send a jar after a 409 and never keep
-  the `PHPSESSID` a 409 gave you. **(5)** never call quick-login while a sibling worker is live on that
-  branch (Rule 83) — one call logs every one of them out instantly.
 - **WHICH COOKIE IS SHARED, RE-PROVEN ON THREE BRANCHES AT ONCE (2026-08-06):** one supplied set for
   Reports, Filters and Schedule differed **only** in `PHPSESSID`; the `sv_sso_session` and `cf_clearance`
   values were byte-identical across all three, and each set returned **HTTP 200 with 42 permissions**
@@ -517,22 +474,6 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   `GET /api/work-orders/part/list-return-requests`. A return can't be deleted on a Complete WO —
   uncomplete first.
 
-### 🧾 Vendor invoices, receiving & the PAYMENT-SELECTION LIST — the fast path (proven SV-9096, 2026-08-31, per-ticket QA branch `sv9096`, build `v26.35.6-8176cde`)
-**Why this exists:** SV-9096 (invoice total vs payment-selection-list mismatch) took an afternoon almost entirely on route/endpoint discovery and fighting `orders/create` + the Quasar New-PO modal. With the recipe below a repeat is **~10 API calls**. **Prefer API for setup + value reads; use the UI only for the evidence screenshots.**
-
-- **ROUTES (one dead route wastes time):** Parts sub-nav → Purchase Orders = **`/parts/orders`** · Vendor Invoices = **`/parts/deliveries`** · Returns = `/parts/returns` · Vendors = `/parts/vendors`. **`/parts/purchase-orders` is a DEAD page** ("Looks like this page took a coffee break… permanently"). Opened vendor-invoice detail = **`/parts/delivery/{deliveryId}`**. A vendor's **payment-selection screen** (Unpaid Invoices) = **`/parts/vendor/{vendorId}/unpaid-invoices`**. Receive screen = **`/accept-delivery/{orderId}`**.
-- **AUTH without logging the user out** = localStorage-seed (NO quick-login; §"THIS SPA AUTHENTICATES FROM localStorage"). Seed `user={data:{details:{default_workplace:<WP>},view_mode,system_role,…}}`, `fe_permissions_wrapper`, `location`, `current_shop_id`, `timezone`, `country_code`, `bookkeeping_enabled`, then navigate. **THEN SCOPE THE SESSION: `POST /api/iam/change-location {workplace_id, workplace_timezone}`** — without it `default_workplace` is `"None"` and inventory/parts pages sit on **"Loading…"** forever. (These clones: Heavy Duty 9919 = `b3c8c820-f815-4cf1-8938-10956c5ee71a` / America/Edmonton; workplaces via `GET /api/staff/my-workplaces`.)
-- **CREATE A PO WITH A CUSTOM (fractional) COST — do NOT fight `orders/create`** (its item shape 500s: needs `id`+`is_core`+`quantity`+`part_number`+`price`+`category`+`description`, and a random `id` still 500s; the New-PO Quasar modal gates Description behind Part Number and is fragile). **Instead:** take an existing **ordered** PO — `GET /api/inventory/orders?status=ordered`, pick one with a single item that has `ioi_vendor_name` — and set its line cost/qty: **`POST /api/inventory/orders/change-item {order_id,item_id,part_number,quantity_ordered,price,category,description}` → 200** (`price` takes 5 decimals, e.g. 7.836). Verify with `GET /api/inventory/orders/{id}` → item `price_decimal` / `total_cost_decimal`.
-- **RECEIVE IT (creates the vendor invoice/delivery): `POST /api/inventory/orders/accept` — camelCase, and `items` is a JSON STRING:** `{id:<orderId>, invoiceNumber, invoiceDate:"2026-08-31T06:00:00.000Z" (ISO-Z, NOT a bare date), note, items:JSON.stringify([<the order-detail item + quantity_received + total>]), total, orderStatus:"fulfilled", tax}`. Returns `{"data":[]}` on success. **On the receive SCREEN the Cost is READ-ONLY** (comes from the PO) — only Quantity Received + Tax are editable, which is why the cost must be set at create/`change-item`. **Fractional received qty (1.5, 3.1) makes the PO `accept` 500** — fractional-qty receives live on the **work-order** path `POST /api/orders/receive-requested-parts` instead.
-- **EDIT A RECEIVED INVOICE LINE (the SV-9096 bug trigger): `POST /api/inventory/deliveries/change-item {delivery_id,item_id,quantity,price,part_number,description}` → 200.** Header/tax edit: **`POST /api/inventory/deliveries/change {delivery_id,invoice_number,vendor_id,tax,invoice_date}`**. ⚠️ The workplace **re-derives its default tax (5% GST on Heavy Duty) on ANY line edit** even if you received at tax 0 → set `tax:0` via `deliveries/change` for clean numbers (`change-item` ignores a tax field).
-- **READ THE TWO FIGURES A SV-9096-CLASS BUG COMPARES:**
-  - **Opened-invoice total:** `GET /api/inventory/deliveries?search=<invoiceNumber>` → `total_price_decimal` (delivery detail line also carries `total_cost_decimal` raw + `total_cost` round-first display).
-  - **PAYMENT-SELECTION LIST amount/balance (the vendor ledger / Unpaid Invoices):** `GET /api/parts-catalogue/vendor/transactions/list-unpaid-by-vendor-account?accountId=<vendorAccountId>&pagination%5BrowsPerPage%5D=1000`. Response is `data.response` (a dict — recurse for dicts carrying `reference_id`+`amount`; `reference_id` = the delivery id; fields `amount`,`balance`,`invoice_number`). **`accountId` is the vendor ACCOUNT id, NOT the vendor id** — grab it once by loading `/parts/vendor/{vendorId}/unpaid-invoices` and reading the `accountId=…` query on that call (attach the request listener BEFORE navigating; boot lands you on the page first).
-  - **Rounding-fix check:** correct = **multiply-then-round** (9 × 7.836 = 70.524 → **70.52**); the bug stored **round-first** (7.84 × 9 = 70.56) in the ledger. PASS ⇔ invoice `total_price` == ledger `amount` == `balance`.
-- **WORK-ORDER receive path (for WO-sourced parts, tax-computed receives — G1/F2; proven SV-9096 follow-up 2026-08-31):** WO create (§C) → add a line `POST /api/work-orders/{woId}/lines/create-from-canned-line {canned_line_id, status:"authorized"}` (canned lines list: `GET /api/work-orders/canned-lines`) → **request a vendor part `POST /api/work-orders/part/make-request {line, work_order, description, quantity, part_source_type:"vendor", part_category_id, part_number, cost, sell_price, vendor, is_core}`** — ⚠️ the category field is **`part_category_id`** (NOT `category`/`category_id`) → if it made a WO-linked order (`GET /api/inventory/orders` → `workOrderId==woId`, `vendorMissing:true`), assign a vendor `POST /api/orders/{orderId}/assign-vendor {vendorId, orderItemIds:[…]}` and set cost with `orders/change-item` → **receive on the WO receive screen `/order/{orderId}?receive=1&returnTo=WorkOrder&returnId={woId}`**: test-ids `input_invoice_{orderId}`, `input_sell_{itemId}` (must be > 0 to enable Receive), `input_qty_{itemId}`, **`input_tax_{orderId}`**, `button_receive_po_{orderId}`; the button fires **`POST /api/orders/receive-requested-parts {vendor_id, invoice_number, invoice_date, note, total, tax, items:[<full item objs>]}`** (NOT `orders/accept`). **TAX ON A WO RECEIVE is a FE-computed dollar field = rate × subtotal, ROUNDED** (86.90 × 5% = 4.345 → shows $4.35, stored 435c) — this is the G1 path; the stored invoice + payment ledger both keep the rounded value.
-- **Payment apply — RESOLVED SHAPE (SV-9096 follow-up 2026-08-31): `POST /api/parts-catalogue/vendor/payment/create {account_id, payment_date, payment_method:"<methodKey e.g. 10000_CALGARY_CHEQUING>", reference_number, description, transactions:[<THE FULL vendor_transaction object from list-unpaid-by-vendor-account, plus `transaction_payment_amount`>], payment_amount}`** → 200. The earlier "must be greater than $0.00" was because each `transactions[]` entry needs the FULL txn object incl. **`transaction_payment_amount`**, not a bare `{id,amount}`. UI to capture a fresh method key: tick **`checkbox_transaction_{txnId}`** → **`button_new_payment`** → **`select_payment_method`** + **`input_payment_amount`** (prefills from the ticked invoice) → **`button_make_payment`**. After full payment the invoice **leaves the Unpaid list** (settled $0.00, no residual cent). **A PAID delivery refuses editing:** `deliveries/change-item` → `"Cannot edit a delivery item that has already been paid. Delete payment before editing."`
-- **Vendors list** = `GET /api/parts-catalogue/vendors` (vendor objects carry NO tax config — vendor tax is entered at receive time). **Categories** = `GET /api/inventory/categories` (`{value,label}`). A transient **"Invalid parameter type" toast** shows on the Vendor-Invoices / Unpaid-Invoices list pages on this build; it does not affect the figures (consistent across every screen).
-
 ## F. Adjustments / Fees & Discounts
 - **Add a WO adjustment:** `POST /api/work-orders/adjustments/add {workOrderId, kind:'fee'|'discount'|
   'processing_fee', name, calculationType:'flat'|'pct_labor'|'pct_parts'|'pct_subtotal'|
@@ -715,28 +656,12 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
 - **⚠️ TestRail is the ONLY real/production system — NEVER create/update/delete cases, runs, or
   results without EXPLICIT user permission (Standing Rule 6).** Log ONLY Passed cases to a run; keep
   Failed/Retest/Blocked local.
-- **🛠️ `fr-view` WRITE HARNESS (`hs_write.mjs`) — CLONE + RE-RUN CHECKLIST (L0023, 2026-09-09).** When
-  you copy this harness into a new suite dir (sed-clone from an existing copy), three traps bite:
-  **(1)** grep its hard-coded constants first — the Automated whitelist must read
-  `const AUTOMATED_OK = new Set((process.env.AUTOMATED_OK||'').split(',').map(x=>x.trim()).filter(Boolean));`
-  (a cloned `new Set([])` silently ignores the env and skips every `custom_atmstatus=3` case, even
-  QA-lead-approved ones). **(2)** a Node process ALREADY RUNNING keeps its old code in memory — fixing
-  the file on disk does NOT fix a launched process; re-run the affected cases with the fixed file.
-  **(3)** the harness's `done` set reads BOTH `REPAIRED-hs.jsonl` and `FAILED-hs.jsonl` and treats a
-  `{skipped:true}` line as done, so a plain re-run skips them again — **delete the skip lines from
-  `FAILED-hs.jsonl` first**, then run `ONLY=<cids> AUTOMATED_OK=<cids> node hs_write.mjs`. Always
-  confirm with an independent live `get_case` audit (needle in `custom_expected`), never from the log.
 - **Project 1 / single suite 1 "Master"**; API v2, Basic auth. Helper `testrail-api.mjs` reads creds
   from `/tmp/testrail/creds.json` (email + password-OR-key + host) — **never hard-code creds.** Calls
   hit `{host}/index.php?/api/v2/{path}`.
-- **🛑 `add_case` MUST SEND `custom_atmstatus:1` (= "Not Automated") + a REAL `custom_automation_type`
-  (`1 E2E · 2 Functional · 3 Unit` — NEVER `0`/None; QA lead 2026-09-02). `custom_atmstatus` is NEVER
-  `3`. CORRECTED 2026-08-11 for atmstatus; automation_type made mandatory-non-zero 2026-09-02.** The
-  type is set at birth in the TestRail case AND in any CSV/XML upload file, so it is never bulk-edited
-  later (a 285-case sweep on 2026-09-02 fixed cases that were all born `0`). Rubric: Unit = isolated
-  calc/format/single-field validation; E2E = cross-feature journey / browser print / audit trail /
-  email-PDF delivery; Functional = single-feature UI behaviour (default).
-  Place any case with API content in a section whose title includes "API" (Rule 4).
+- **🛑 `add_case` MUST SEND `custom_atmstatus:1` (= "Not Automated") + `custom_automation_type:0`.
+  NEVER `3`. CORRECTED 2026-08-11 — the bullet that stood here said the opposite and was wrong on
+  both halves.** Place any case with API content in a section whose title includes "API" (Rule 4).
   **⚠️ SUPERSEDED WORDING, KEPT VISIBLE AND DATED (the Rules 31/52/53 pattern) — until 2026-08-11
   this bullet read: *"`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`
   (non-API cases)."* **THAT IS THE INSTRUCTION THAT MADE EVERY API-CREATED CASE IN THIS WORKSPACE
@@ -760,52 +685,6 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   scripts still contain `3` **deliberately** — they are the audit record of what was actually run, and
   rewriting them would make that record lie. Copy from this bullet or from the helper.
 - **Result statuses:** 1 Passed · 2 Blocked · 3 Untested · 4 Retest · 5 Failed.
-- **🛑 CASE-FIELD FORMATTING — THE ONLY SAFE FORMAT IS BLOCK-LEVEL HTML; NEVER INLINE TAGS, NEVER
-  PLAIN NEWLINES (proven live 2026-08-28, C27800 + probe round-trips).** `custom_preconds`,
-  `custom_steps`, `custom_expected` are **`format: markdown`** (read live from `get_case_fields`), but
-  TestRail runs every submitted value through a **sanitiser that WRAPS the whole value in ONE outer
-  `<p>…</p>`** on save. Consequences, all verified by round-trip:
-  - **Plain text with `\n` / `\n\n` LOSES ALL LINE BREAKS.** The blank lines end up *inside* that single
-    outer `<p>`, and a paragraph collapses internal whitespace → every paragraph runs together as one
-    block. **This is the bug that made C27800 show as a wall of text.** (It is also why the earlier
-    "plain text auto-wraps and renders cleanly" note was WRONG — it does wrap, but into ONE `<p>`.)
-  - **STYLING inline tags show LITERALLY** — `<b>`, `<i>`, `<u>`, `<code>`, `<em>`, `<strong>` were seen
-    printed as text by the tester. **Never use styling inline tags for formatting.**
-  - **⚠️ `<br>` IS ORIGIN-DEPENDENT — IT SHOWS LITERALLY WHEN WRITTEN VIA THE API (corrected
-    2026-08-28, QA lead observed our API update print `<br>` as text).** The TestRail **UI editor** stores
-    `<br>` in a way that renders (that is why the QA lead's own manual edit of C27800 looks right), but an
-    **API write** of the same `<br>` shows the literal tag. **Because our scripts write via the API, NEVER
-    emit `<br>` (or any inline tag) in an API payload.** To put each statement on its own line via the
-    API, use **separate `<p>` blocks** (wider gap) or a **`<ul><li>` list** (tight lines). A `<br>` seen
-    on a live case is normally a human's UI edit — leave it; just never generate one.
-  - **BLOCK-LEVEL tags are the ONLY thing proven to render when written via the API:** `<p>` (one per
-    paragraph — do NOT put `\n\n` inside a `<p>`), `<ol>/<ul>` with `<li>`, and `<hr />`.
-    The sanitiser strips some closing
-    `</p>` and re-nests the markup (raw read-back looks mangled: `<p>A<p>B</p>…</p>`), **but the browser
-    auto-closes an open `<p>` when the next block starts, so it renders as clean separate blocks.** Do
-    not "fix" the mangled read-back — that is expected and it renders correctly.
-  - **QA-LEAD-APPROVED REFERENCE EXAMPLE (blessed 2026-08-28): C27801** — preconditions as separate
-    `<p>` paragraphs, steps as `<ol><li>`, expected = statement + `<hr />` + a "Source of expected
-    behaviour:" `<ul><li>` list + a final `<p>` "Source-verified <date>". The QA lead confirmed this
-    layout is "ideal". Copy it for any Custom Roles / permission case.
-  - **THE RULE WHEN UPDATING ANY CASE (e.g. after source verification): MATCH THE PROVEN-GOOD FORMAT.**
-    Copy the exact block structure of a case known to render well — e.g. C27801 or Global Search
-    **C44804** — which
-    stores steps/expected as `<ol><li>…</li></ol>` and appends provenance as `<hr /><p>…</p>` after the
-    last item. **One paragraph = one `<p>`; steps = `<ol><li>`; the source block goes BELOW the expected
-    behaviour, separated by `<hr />`, as a `<p>` label + `<ul><li>` list + a final `<p>` with the
-    verification date.** No inline tags anywhere. Never send raw `\n`-separated plain text.
-  - The canonical converters already do this right: `to_ol()` / `expected_html()` in
-    `build/global-search/apply_to_testrail.py` and `.../regression-2026-08-26/push_to_testrail.py` emit
-    block-only HTML — **reuse them; do not hand-author field HTML.**
-  - **🛑 POST-WRITE RENDER SELF-CHECK IS MANDATORY (standing rule, QA lead, 2026-08-28).** After ANY
-    `add_case` / `update_case`, **fetch the case back and confirm it renders correctly for a manual
-    tester before you call the work done.** Never assume the write looks right — verify it. Run
-    **`python3 build/testing-tools/check_case_render.py <C-ID> [<C-ID> ...]`** for every C-ID you
-    touched; it fetches each case live and fails (exit 1) on inline tags, wall-of-text (blank-line
-    paragraphs with no block structure), or multi-line content with no block tags. Push/apply scripts
-    that create or edit cases should call it (or reproduce its checks) as their final step. A green
-    self-check is part of "done"; a case is not finished until it passes.
 - **⚠️ `get_sections` NEEDS PAGING, AND IT FAILS SILENTLY IF YOU FORGET (proven live 2026-08-05,
   Filters).** This project now has **625 sections**. An unpaged `get_sections/1&suite_id=1` returns
   only the **first 250**, with no error and no warning — and because the Filters group is section
@@ -936,282 +815,6 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   (`custom_mission`, `custom_goals`, `custom_steps_separated`, `custom_testrail_bdd_scenario`) are
   **null on all 753 of our cases**, so they cannot be damaged today — but if any project ever populates
   one, it joins the send-it-every-time list.
-
-- **🔴🔴 CORRECTION, 2026-08-26 — NORMALISATION #3's MITIGATION IS INVERTED AND MUST NOT BE FOLLOWED.
-  OMITTED FIELDS ARE PRESERVED; *SENT* FIELDS ARE THE ONES THAT GET RE-RENDERED. SEND ONLY WHAT YOU
-  ARE CHANGING.** Settled empirically on a **throwaway case**, never on a real one, because the two
-  recorded positions (#3 "always send all three" vs. hazard #6 "every sent field is re-wrapped")
-  cannot both be operational advice. **The old #3 text above is kept visible and is NOT deleted — but
-  its instruction *"on EVERY `update_case`, send ALL THREE text fields"* is SUPERSEDED and is now the
-  wrong thing to do.**
-
-  **THE EXPERIMENT (script `build/report-suite/writes2-2026-08-26/job4_field_preservation.py`, log
-  `logs/job4-field-preservation.log`).** One `ZZAUTOTEST`-prefixed case, `custom_atmstatus: 1`, created
-  in section 237 with distinctive multi-block preconditions/steps/expected, then **deleted** (re-GET
-  after delete → HTTP 400 `"Field :case_id is not a valid test case."` — confirmed gone).
-
-  | Test | What was sent | Result, byte-compared on a re-GET |
-  |---|---|---|
-  | **(a)** | `update_case` with **only `{"title": …}`**, all three text fields **OMITTED** | **ALL THREE PRESERVED BYTE-IDENTICAL.** `custom_preconds` sha `853db875…` before and after; `custom_steps` `48024bf0…`; `custom_expected` `dca7952b…`. **Nothing was re-rendered.** |
-  | **(b)** | `update_case` with **all four fields**, the three text values byte-identical to the re-GET | **LOSSLESS** — all three came back byte-identical to what was sent. |
-  | **(c)** | the **initial `add_case`**, plain text sent | **ALTERED ON THE WAY IN**: `'ZZAUTOTEST-PRE-B1\n1. …'` was stored as `'<p>ZZAUTOTEST-PRE-B1\n1. …</p>\n'` — sent-vs-stored identical = **False**. |
-
-  **⇒ WHICH RULE IS TRUE:** the **last worker is right**. Round-tripping is stable *once* a value has
-  been through TestRail's pipeline — which is why (b) looked lossless — but the pipeline runs on
-  **what you send**, never on what you omit. **A field you omit is untouched. A field you send is
-  re-rendered.** This CONFIRMS hazard #6 and **REFUTES normalisation #3's mitigation**: sending an
-  unchanged field "for safety" is the only way to damage it.
-
-  **⇒ THE RULE, FROM 2026-08-26:** **send ONLY the fields whose content you are actually changing.**
-  Omit the rest. Then byte-verify: the omitted fields must be byte-identical to the pre-write snapshot,
-  and the sent fields must equal the sent value **after normalisation** (`—`→`&mdash;`, `<p>` wrap if
-  the value does not already start with a block tag, trailing `\n`). Reference implementation of that
-  comparison: `build/report-suite/writes2-2026-08-26/job1_verify.py`.
-
-- **🔴🔴 THE `<p>` WRAP IS UNCONDITIONAL — AND WHETHER IT HARMS THE TESTER DEPENDS ON A PER-CASE
-  RENDER FLAG THE API DOES NOT EXPOSE. CHECK THE VIEW PAGE BEFORE ANY TEXT-FIELD WRITE (proven
-  2026-08-26).** This is the missing half of hazard #6 and it explains why some passes "got away with
-  it" and others did not.
-
-  **(i) The wrap cannot be avoided.** Eight formulations were tried on a throwaway — plain, trailing
-  `\n`, leading `\n`, CRLF, blank-line-separated, leading space, markdown bullets — and **all eight
-  came back `<p>…</p>\n`.** The only value stored unwrapped is one that **already begins with a
-  block-level tag** (`<ol>…</ol>` stored as sent, no wrapper added, and `<p>x</p>` is not
-  double-wrapped).
-
-  **(ii) The damage is decided by the container, not by the content.** TestRail's case-view page emits
-  each field into one of two containers:
-
-  | Container in the served view page | Behaviour | Effect of the `<p>` wrapper |
-  |---|---|---|
-  | `<div class="markdown fr-view">` | value emitted **RAW**, HTML renders | **invisible — harmless** |
-  | `<div class="markdown">` | value run through the **markdown renderer**, which **ESCAPES** every tag | **the tester literally reads `<p>` and `</p>`** |
-
-  **The container is a per-case property that `get_case` does not return** — it is not derivable from
-  the value's content (a `<p>`-wrapped plain body renders raw on one case and escaped on another), and
-  it is **not** the field's configured `format: markdown`. **It can only be read from the served view
-  page**, by looking for `markdown fr-view` vs `markdown`. Scanner:
-  `build/report-suite/writes2-2026-08-26/job4_render_path_scan.py`.
-
-  **(iii) THE BLAST RADIUS ALREADY INCURRED — 72 Report Suite cases are showing tag text to testers
-  right now.** All 185 cases touched on 2026-08-26 were scanned: **72 sit in an escaping `markdown`
-  container and now display a literal `<p>` and `</p>`** (three of them a `<br>` as well). **71 were
-  written by the 12:40 write pass; 1 (C30518) by the 13:1x Job 1 rewrite.** Causation is **proven, not
-  assumed**: the pre-write snapshot `build/report-suite/source-verify-2026-08-26/data/live-cases.json`
-  was captured at **11:53, before those writes**, and **all 72 contained no HTML tag at all in any of
-  the three fields at that moment**. C-ids: `build/report-suite/writes2-2026-08-26/logs/job4-damaged-cids.txt`;
-  causation split: `logs/job4-causation.json`.
-
-  **(iv) THEY CANNOT BE REPAIRED THROUGH THE API.** Any API write re-adds the wrapper, and any HTML
-  written instead is escaped by the same renderer — so on an escaping case **every possible API value
-  puts visible tag text on the tester's screen**. Repair needs the **TestRail web editor**. A
-  UI-form-post repair path was investigated and **not attempted**: `index.php?/cases/edit/<id>` does
-  not expose the three text fields as form inputs (they are JS editors) and the form carries a
-  `_token`, so reconstructing the post is not safe to do blind.
-
-  **⇒ THE PRE-WRITE GATE, FROM 2026-08-26 — do this BEFORE any text-field write:** fetch
-  `index.php?/cases/view/<id>` on a logged-in UI session and read the container. **`markdown fr-view`
-  → safe to write. Plain `markdown` → DO NOT WRITE via the API**; the write will damage the case
-  visibly, whatever you send. (Worked example: C30287 and C30536 are `fr-view` and were written safely
-  on 2026-08-26; C30518 is `markdown` and was damaged by an otherwise-correct write.)
-
-  **⇒ THE STANDING OPERATIONAL RULE (recorded 2026-08-26, after the repair was approved):**
-  **`update_case` RE-RENDERS ANY FIELD YOU SEND AND PRESERVES ANY FIELD YOU OMIT — SO SEND ONLY THE
-  FIELD YOU ACTUALLY NEED TO CHANGE.** Whether the re-render is **VISIBLE** depends on a **per-case
-  container flag** (`markdown` escapes and shows literal tags to the tester; `markdown fr-view`
-  renders correctly) which **`get_case` DOES NOT EXPOSE**. Therefore: **NEVER bulk-write plain text
-  via the API**, and **where a case's body must change and its container is unknown, prefer the UI
-  editor.** On 2026-08-26 this damaged **72 cases**.
-
-  **⇒ 🔑 sv8218 (ShopView QA) — REAL ROUTES, FOUND BY WATCHING THE APP (2026-08-31).** Guessed routes
-  404'd every single time on this project; every working one came from `page.on('request')` while
-  clicking the app's own tabs. **The convention is `/api/<thing>/view/<id>`, not `/api/<thing>/<id>`**
-  — `/api/customers/<id>` is a 404 while **`/api/customers/view/<id>` is a 200**.
-
-  | Route | Method | Notes |
-  |---|---|---|
-  | `/api/customers/view/{id}` | GET | the customer record (NOT `/api/customers/{id}`) |
-  | `/api/customer-payment/list` | GET | customer payments |
-  | `/api/customer-deposits/list` | GET | customer deposits |
-  | `/api/customer-account/list-unpaid-transaction?account_id=<id>` | GET | **the rows are at `data.response.collection`, NOT `data.collection`** — alongside `unpaid_transactions_count` and a `groupByDueDateData` ageing block. Reading `data.collection` returns `undefined`, which a loop silently treats as "no rows" and reports as zero for every account. **And it is the UNPAID list only**, so it is the wrong list for finding a credit that has been applied — ask the endpoint that answers the question (2026-09-02) |
-  | `account_id` itself | — | **`customer_account_id`, and it is ONLY on `/api/customers/view/<id>`** — the customers LIST does not carry it. Passing the customer id instead returns HTTP 200 with zero rows, on every account (2026-09-02) |
-  | `/api/customers/{id}/default-adjustments` | GET | fees & discounts defaults |
-  | `/api/part-sales` | GET | **53 part sales**, statuses paid/complete/estimate; fields include `number`, `status`, `invoiceShopId`, `invoicedDate` — but **no `invoice_id`**, and `/api/part-sales/view/{id}` is a **404**, so the part-sale document route is still unfound |
-  | `/api/credit-memos` | **POST only** | GET answers **405 `Allow: POST`**; a bare POST answers 400 *"customer_account_id: Missing required parameter, amount: Missing required parameter"* ⇒ **credit memos are created against a CUSTOMER ACCOUNT, not a work order** |
-  | `/api/work-orders/statuses` | GET | Estimate · Approved · In progress · Review · Complete · Invoiced · Paid |
-  | `/api/invoices/preview?invoice_id=<id>&type=html&isEstimate=<0\|1>&includeDeclined=<0\|1>&historyEvent=` | GET | the document render path; invoice id is `data.work_order.invoice_id` on `/api/work-orders/view/{woId}` |
-
-  **⇒ ✅ THE INVOICE UI REFRESH DOCUMENT ROUTES, ALL BUILD-VERIFIED LIVE 2026-08-31.** Two of these
-  came from a source-read by another session (`CROSS-SESSION-UNBLOCK-2026-08-31.md`, badge **never
-  build-verified**); each was then confirmed with one live call, which is what moves a lead to a fact
-  (Rule 12). **One of them did NOT behave as the source predicted — see the 500 below.**
-
-  | Document | Route | Live result |
-  |---|---|---|
-  | Invoice / Estimate (HTML) | `GET /api/invoices/preview?invoice_id=<id>&type=html&isEstimate=0\|1&includeDeclined=0\|1&historyEvent=` | 200 |
-  | Invoice / Estimate (**PDF**) | same route, **`type=pdf`** | **200, real PDF v1.7, 187 KB** |
-  | **Credit Invoice** | `GET /api/credit-memos/{creditMemoId}/pdf` | **200, PDF, `credit-memo.pdf`** |
-  | **Parts Sale** Invoice / Estimate | `GET /api/invoices/preview?invoice_id=<the part sale's invoice_id>&isEstimate=0\|1` | **200** — `INV-P2-123` / `EST-P2-123` |
-  | Parts Sale (dedicated endpoint) | `GET /api/part-sales/{workOrderId}/invoice-pdf?estimate=0\|1` | **HTTP 500** — twice, two part sales, both `estimate` values |
-
-  **🔑 A PART SALE *IS* A WORK ORDER.** `/api/part-sales/{id}/pdf` and `/api/part-sales/view/{id}`
-  are 404, but **`GET /api/work-orders/view/{partSaleId}` returns 200** and the paid one carries
-  `invoice_id` — which the ordinary preview route accepts. The `/api/part-sales` row `id` **is** the
-  work order id (the view payload echoes it back as `"id"`). The clue was in the credit memo payload:
-  `origin_invoices[0].work_order_type == 'service'` implies other work-order types exist.
-
-  **🔑 `type=pdf` WAS ALWAYS THERE.** The DTO asserts `Choice(['html','HTML','pdf','PDF'])`. A pass
-  spent a day rendering `type=html` and reported four cases blocked on *"Generate the PDF"*. **Try
-  the one-token variant of the call you are already making before reporting a capability missing.**
-
-  **🔑 `includeDeclined=1` RENDERS DECLINED WORK — the capability ships without a UI control.**
-  Live: the same invoice goes from 4,366 to 5,256 visible characters and the label **`Declined Work`**
-  appears. The **toggle** is absent from the Invoice Details dialog (proven with a firing control),
-  and no front-end code sends the param. **This is NOT Rule 24** — Rule 24 is about a permission
-  boundary correctly hidden from a user who should not act; here the control is missing for an admin
-  who *should* have it, on a story still In Progress. So it is **possibly-unfinished (Rules 49/60)**,
-  keeps the documented expectation (Rule 57) and the **NOT AVAILABLE ON BUILD** marker (Rule 69) —
-  **not a PASSED case, and not a defect ticket.**
-
-  **⚠️ A 500 IS NOT A 404, AND THE DIFFERENCE IS THE DIAGNOSIS.** On `part_sales_invoice_pdf` the
-  param is `#[MapEntity('partSaleId')] WorkOrder`, so an unresolvable id yields **404**. Getting
-  **500** proves the entity bound and the fault is inside the handler — and the same document
-  renders fine through the preview route, so template and data are good. Candidate written up at
-  `build/invoice-ui-refresh/build-verify-2026-08-31/DEFECT-CANDIDATE-partsale-invoice-pdf-500.md`
-  (not filed — hold active).
-
-  **⚠️ THE CREDIT DOCUMENT IS PDF-ONLY.** `type=html`, `format=html`, `html=1` and `?preview=1` all
-  still return `%PDF-`. Text extraction needs pypdf; this image's `cryptography` is broken
-  (`_cffi_backend` missing) and `pip install --force-reinstall cffi` fixes it. **pypdf inserts
-  kerning artefacts inside words** — the captured credit document literally reads `T ax`,
-  `T erritory` — so a label matcher needs a **space-insensitive fallback applied only after an exact
-  miss**, with controls drawn from the PDF itself. **Never edit the captured text to suit the
-  matcher.**
-
-  **⇒ 🔑 CUSTOMER CREDIT MEMOS ON sv8218 — the record is reachable, the DOCUMENT is not (2026-08-31).**
-  `GET /api/customer-account/list-unpaid-transaction?account_id=<customer_account_id>` returns them,
-  with `type: credit`, `formatted_invoice_number: CM-100`, `status_label: Unapplied`. The
-  **`customer_account_id` is `data.company.customer_account_id` on
-  `GET /api/customers/view/{customerId}`** — it is NOT the customer id. The **invoice menu's
-  "Issue Credit" action DOES create a genuine customer credit memo** (a session on 2026-08-31 first
-  concluded it made "only a part-sale credit" — wrong; the `has_part_sale_credits: true` flag was a
-  side effect). **✅ CORRECTED 2026-09-07 - THE CREDIT MEMO DOCUMENT *CAN* BE RENDERED: `GET /api/credit-memos/{creditMemoId}/pdf` -> 200, a one-page PDF.** Found by clicking the `print` action on the credit row (Customers -> the customer -> Invoices tab) with a request listener attached, rather than by guessing routes - the app DOES call a credit route, contrary to the note below. Verified live on staging build v26.35.9-9812433 with CM-4347. **Two gotchas:** the print control opens NO popup and triggers NO download, so `expect_page`/`expect_download` both time out - watch the network instead; and the row in the Invoices tab displays the number as **CM2-4347** while the DOCUMENT itself reads **CM-4347**. *(Superseded note kept verbatim below, per the dated-correction pattern:)* **The credit memo's document could not be rendered:** it is absent from the customer's
-  Invoices/Payments/Deposits tabs and from the originating work order's finance tab, 13 candidate
-  routes all 404, `/api/invoices/preview` rejects a credit memo id, and the app never calls a
-  credit/preview route. **Before re-running that hunt, read this list — it is the searched set.**
-
-  **⚠️ A 405 IS A FIND, NOT A FAILURE.** `/api/credit-memos` answering *405 Method Not Allowed
-  (Allow: POST)* proved the endpoint exists and named its method, and the 400 that followed named its
-  required parameters. **Read the error body — on this API it enumerates the missing fields.** A
-  session that treats any non-200 as "absent" will report a built feature as missing.
-
-  **⚠️ AND: `/api/work-orders/statuses` DOES NOT LIST INVOICE STATES.** On 2026-08-31 a session read
-  that list, saw no partial/void/draft, and told the QA lead those invoice states were "probably not
-  built". **Wrong: they are WORK ORDER statuses.** Partially-paid and voided/reversed invoices are
-  both explicitly in the Invoice UI Refresh spec, and Jira has shipped reversal work (SV-9087,
-  SV-9382, both Done). **Never answer "is this state built?" from a different entity's status list.**
-
-  **⚠️ THE PAID BANNER IS PORTAL-ONLY.** Spec S8-R8: the paid banner *"appears only on the Invoice
-  PDF generated by the customer portal… An Invoice PDF generated in the shop app never carries the
-  banner."* So `PAID IN FULL`, `PARTIALLY PAID`, `Payment Receipt - Payments by ShopView`,
-  `Total Charged`, `Remaining Balance`, `Convenience Fee`, `Late Fee`, `Paid By`, `Method`,
-  `Date / Time`, `Invoice Amount`, `Payment X of Y - Batch` **can never be found by rendering a
-  shop-app invoice, however it was paid.** A label absent from one render path is not absent from
-  the product — establish WHICH path is supposed to carry it before calling it a gap.
-
-  **⚠️ JIRA STORY STATUS IS NOT EVIDENCE ABOUT THE BUILD.** All 13 SV-8218 stories read **Open** on
-  2026-08-31 while the sv8218 build already rendered `Paid date:` in place of `Due date:` — net-new
-  S10-R4. **The branch runs ahead of the tickets.** Ticket status is context; only observation is
-  evidence (Rule 57, and Rule 61's *"ticket status is never evidence about the build"*).
-
-  **⇒ 🛑 THE UI-LOGIN CREDENTIAL TRAP — IT TURNS THE CONTAINER SCANNER INTO A DETECTOR THAT CANNOT
-  FIRE, AND IT REPORTS A CLEAN BILL OF HEALTH (found 2026-08-31, Invoice UI Refresh).**
-  **`/tmp/testrail/creds.json['password']` holds the TESTRAIL API KEY, not the account password.**
-  The API accepts the key as the Basic-auth password, so every `get_case` works and the file looks
-  correct. But the **web UI login form needs the real account password**, and posting the API key into
-  it **fails silently**: the POST returns HTTP 200, you land back on `/auth/login/`, and every
-  subsequent `index.php?/cases/view/<id>` fetch returns the **24 KB login shell** instead of the case.
-  The container regex then matches **nothing**, and the scan reports **"0 escaping containers"** for
-  every case — i.e. *"all safe, write via the API"* — which is the exact opposite of the truth.
-  On this pass the real split was **48 escaping / 5 fr-view**; the broken scan said **0 / 53**.
-  **⇒ Keep the UI password in a SEPARATE file (`/tmp/testrail/ui-creds.json`, `chmod 600`), and make
-  every UI-session scanner CONTROL ITSELF:** assert the post-login URL is **not** `/auth/login`, assert
-  the fetched page actually contains the case's own title, and classify a case whose container could
-  not be located as **UNKNOWN — never as "safe"**. Working scanner with all three assertions:
-  `build/invoice-ui-refresh/build-verify-2026-08-31/markers/render_scan.py`.
-  *(This is Rule 12 in miniature: "0 problems found" from a probe that cannot fire is not a result.)*
-
-  **⇒ ✅ A UI SAVE FLIPS THE CONTAINER TO `fr-view`; AN API WRITE LEAVES IT ESCAPING (measured
-  2026-08-31).** §J above says repair "needs the web editor" but not *why it sticks*. It sticks because
-  the container flag follows the **write path**, not the content:
-
-  | How the field was last written | Resulting container | Tester sees |
-  |---|---|---|
-  | `add_case` / `update_case` (API) | plain `<div class="markdown">` | **literal `<ol><li><p>` text** |
-  | the TestRail web editor (UI save) | `<div class="markdown fr-view">` | correctly rendered |
-
-  **Evidence, both directions, on one suite:** of the 53 build-verified Invoice cases, the **48 written
-  only ever by the API are all plain `markdown`**, and the **5 that had been repaired through the UI
-  editor earlier the same day are all `fr-view` — 5 of 5**. So the flag is not random and not per-suite:
-  it is a fingerprint of the last write path. **Consequences:** (a) a case authored via the API is
-  *born* showing tags if it stores any HTML, so **API-authored cases should store PLAIN TEXT, never
-  block HTML**; (b) the render repair and any content edit are **ONE operation** — do them in the same
-  UI save rather than writing twice; (c) **`fr-view` is achievable, so "the tester reads tags" is never
-  a permanent state.**
-
-  **⇒ ✅ CARVE-OUT (measured 2026-09-09, L0028): A STRUCTURE-PRESERVING API WRITE TO A FIELD THAT IS
-  ALREADY `fr-view` KEEPS `fr-view`.** The rule above ("API write leaves it escaping") is about the write
-  that *establishes the field's HTML* — an API write that INTRODUCES block tags into a plain field is born
-  escaping. It is NOT true of an API write that changes only **text inside HTML the field already holds and
-  that is already rendering fr-view** (e.g. a build-line re-stamp: `…v26.35.9-7f2e4fa on 9/8/2026` →
-  `…v26.36.0-f43b2fd on 9/9/2026` inside an existing `<ul><li>`). There the container is **preserved**.
-  **Evidence:** API-wrote C53477 and its served page matched UI-written C44988 (both fr-view=true,
-  blocks=true, escaped=false); a bulk API re-stamp of 123 cases (errors=0) followed by the FULL 167-case
-  served-page scan returned **escaped=true = 0, fr-view=false-on-real-field = 0**. **Practical payoff:** a
-  bulk build-line re-stamp is an API job (~3 min, checkpointed) — NOT a Froala/UI-editor job (~2 hrs, prone
-  to the L0010 deadlock). **The line not to cross:** *text-within-existing-fr-view-HTML = safe via API;
-  plain-text→block-HTML, or adding new tags = still needs a UI save.* Always confirm with the served-page
-  scan (`/tmp/check_served2.mjs`, or the committed equivalent) after any such bulk write — a green
-  API-stored-value check is not sufficient on its own.
-
-  **⇒ ⚠️ CORRECTION TO THE COLLAPSE CENSUS (2026-08-28 → 2026-08-31): IT MEASURED THE WRONG ARTEFACT.**
-  The census that concluded **"0 genuinely collapsed cases across the 428"** ran `genuine_collapse()`
-  over the **API-stored value**. That answers *"is a newline stranded inside a `<p>`?"* — a real
-  question, and the 0 stands **for that question**. It says **nothing** about whether the tester can
-  read the case, because **escaping is decided by the container, which the stored value does not
-  reveal.** Run on the served page instead, the same corpus's Invoice slice came back **48 of 53
-  unreadable**. **⇒ THERE ARE TWO SEPARATE DEFECTS AND EACH NEEDS ITS OWN PROBE: the bare-`\n`-inside-
-  `<p>` COLLAPSE (read the stored value) and the ESCAPING CONTAINER (read the served view page). A
-  clean bill from one is not a clean bill from the other.** Never report "the suite renders fine"
-  from the stored value alone.
-
-  **⇒ THE REPAIR ROUTE, PROVEN (C30197, then the 70-case batch, 2026-08-26).** The UI editor is
-  driven with **Playwright**, and Playwright needs the **LOCAL MITM BRIDGE** — chromium **cannot TLS
-  through the egress proxy directly** (`net::ERR_CONNECTION_RESET` on every host, `curl` through the
-  same proxy is fine). Start a **fresh** `build/atlassian-login/bridge.mjs` per run (the port rotates;
-  it writes `/tmp/atlassian/bridge-port.txt`) per `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` §1, then
-  `chromium.launch({ proxy: { server: 'http://127.0.0.1:<port>' } })`. **Import playwright as
-  `/opt/node22/lib/node_modules/playwright/index.js` (or `index.mjs`) — a bare `import 'playwright'`
-  fails outside `/opt/node22`.** Never disable TLS verification, never unset `HTTPS_PROXY`.
-  Per case: open `index.php?/cases/edit/<id>`, click the `#custom_<field>_display .fr-element` editor,
-  `Control+A` + `Delete`, **PASTE** the intended text with `keyboard.insertText` (**paste, never
-  re-type** — re-typing introduced curly apostrophes on C30197), click `#accept`, then verify by API
-  re-GET **and** by re-reading the view container. Working script:
-  `build/report-suite/damage-2026-08-26/ui_repair_batch.mjs`.
-
-- **🔧 `delete_case` — AND EVERY WRITE ENDPOINT — MUST BE A POST WITH A BODY; A GET RETURNS HTTP 404
-  AND THE CASE SURVIVES (2026-08-26).** A helper that only switches to POST when it has a payload will
-  send `delete_case/<id>` as a GET. TestRail answers **404**, which reads like "already gone" — but the
-  case is still there. Send `{}` as the body, and **always confirm with a re-GET**: a genuinely deleted
-  case returns **HTTP 400 `"Field :case_id is not a valid test case."`**, not 404.
-
-- **🔧 `add_case` REQUIRES `custom_automation_type` AS WELL AS `custom_atmstatus` (2026-08-26).**
-  Omitting it returns HTTP 400 `{"error":"Field :custom_automation_type is a required field."}`.
-  Both are required on this instance. **`custom_automation_type` must be a REAL type — `1 E2E ·
-  2 Functional · 3 Unit`, NEVER `0`/None (QA lead 2026-09-02)**; `custom_atmstatus: 1` = Not Automated
-  (**never send `3` on a throwaway** — that is the Automated flag Rule 71 protects). Same requirement on
-  any CSV/XML upload file: an Automation Type per case, never blank.
-
 - **🛑🛑 DECLARED HAZARD #6 — `update_case` NOW RENDERS THE MARKDOWN FIELDS TO HTML AND STORES THE HTML
   ON *EVERY* WRITE — A TESTRAIL-SIDE CHANGE ON 2026-08-19, AND IT IS A HARD BLOCK ON ALL TEXT-FIELD
   WRITES WHILE ACTIVE (diagnosed 2026-08-19, Report Suite; evidence
@@ -1340,35 +943,6 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
   paragraph **permanent** instead of fixing it. **Those cases must be API-rewritten (path a) FIRST**,
   then the trick is safe on the rest. **DETECT before choosing a path**, on **MID-TEXT** newlines only:
   `('\n' in text and '<p' in text.lower() and '<br' not in text.lower())`.
-  **🔴 CORRECTION 2026-08-25 — THAT DETECTOR IS WRONG AND IT COST A DAMAGED CASE. USE THE REFINED ONE.**
-  The expression above flags **any** field that contains a `<p>` anywhere plus a newline anywhere — which
-  is the **NORMAL, CORRECT shape the CSV import produces**: a field of block elements
-  (`<ol><li>…</ol>` · `<hr />` · `<p>provenance</p>` · `<p>marker</p>`) separated by newlines. Those
-  newlines sit **BETWEEN blocks**, where they are insignificant whitespace, and the field renders
-  perfectly. The prose above says *"MID-TEXT newlines only"*, but **the code as written does not
-  implement that qualifier**, and a session implementing it literally will flag most of a suite.
-  **THE REFINED DETECTOR — a newline inside ONE `<p>`'s own inner text:**
-  ```python
-  P_BLOCK = re.compile(r'<p\b[^>]*>(.*?)</p>', re.S | re.I)
-  def genuine_collapse(t):
-      return any('\n' in inner.strip() and '<br' not in inner.lower()
-                 for inner in P_BLOCK.findall(t or ''))
-  ```
-  **MEASURED BOTH WAYS over the 428 cases of the six August suites: the old detector claimed 16
-  collapsed cases; the refined one finds 0.** All 16 were the normal import shape.
-  **THE SCAR:** a batch built on the old detector wrote `<br>` throughout
-  **[C44506](https://shopview.testrail.io/index.php?/cases/view/44506)**, whose `custom_expected` was
-  correct block HTML. TestRail re-parsed the result and **relocated `</ol>` to the end of the field**, so
-  its provenance and marker paragraphs are now nested inside the ordered list. **Two API attempts to
-  restore it — the original bytes verbatim, then the blocks made contiguous — were both re-parsed the
-  same way** (see DECLARED NORMALISATION #3a-iii). **⇒ VALIDATE A DETECTOR AGAINST A KNOWN-GOOD CASE
-  BEFORE BUILDING A BATCH ON IT.** A detector that cannot distinguish the correct shape from the broken
-  one manufactures work and then damage.
-  **⇒ AND FOR STRUCTURAL DAMAGE OF THIS KIND, PATH (b) IS THE UNTRIED OPTION, NOT "PERMANENT".** The API
-  cannot rebuild the block structure; the **UI "." trick pushes the case through a DIFFERENT pipeline** —
-  the one that produced the clean structure originally. On a case with no bare-`\n`-inside-`<p>` field the
-  danger note above does **not** apply, so the trick is safe to attempt. **Say "not recoverable via the
-  API" — never "permanent" — until path (b) has actually been tried.**
   **⚠️ FALSE POSITIVE THAT COST TWO WASTED PASSES (2026-08-21) — A LONE *TRAILING* `\n` AFTER `</p>` ON
   A SINGLE-LINE FIELD IS HARMLESS.** There is no mid-text break to lose, nothing renders wrong, and
   **rewriting it INJECTS A SPURIOUS BLANK LINE** the tester then sees. **Leave it alone.** Strip the
@@ -1529,13 +1103,12 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
     Amjad · 8 Chris Amani · 9 Sasha Grossman. Ids 10+ do not exist.
   - **Practical tells beyond `created_by`** (measured over 474 of our Report Suite cases vs his 5):
     **`refs` empty** (ours: 474/474 populated — Rule 20 means we never ship a case without one) ·
-    **`template_id` 2 = Steps** (ours: 1 = Text, 474/474) · **`custom_automation_type` unset/`0`** (ours:
-    now always a real type 1/2/3 per the 2026-09-02 rule; historically `0`) · **`type_id` 7 "Other"** (ours: 6/5/1/2) · **titles over 80 chars** (ours: 0/474 —
+    **`template_id` 2 = Steps** (ours: 1 = Text, 474/474) · **`custom_automation_type` unset** (ours:
+    always 0) · **`type_id` 7 "Other"** (ours: 6/5/1/2) · **titles over 80 chars** (ours: 0/474 —
     the ≤80 title rule) · **no expected results at all** (automated cases keep the assertion in code).
     **⚠️ `custom_atmstatus` is NOT a usable tell** — it is 3 ("Automated") on his cases AND on 16 of
     ours. Field decode from `get_case_fields`: atmstatus `1 Not Automated · 2 Cannot be automated ·
-    3 Automated · 4 Pending`; **automation_type `0 None · 1 E2E · 2 Functional · 3 Unit`** (verified live
-    from `get_case_fields` 2026-09-02 — an earlier note saying "1 Ranorex" was wrong).
+    3 Automated · 4 Pending`; automation_type `0 None · 1 Ranorex`.
   - **The reusable READ-ONLY checker:** `build/testrail-foreign-cases-2026-07-31/foreign_overlap_check.py`
     — pulls every live case under a group, splits ours vs foreign by `created_by`, and ranks the
     best-matching OF-OURS cases per foreign case on **normalised assertion text** (title + preconds +
@@ -1593,34 +1166,6 @@ with `sv_sso_session` and `cf_clearance` **byte-identical** to the set that was 
     ours 474 + **foreign 5, all Vladimir Tomovic (user id 1; we are id 3)**; Filters **4110** = 110 =
     ours 110 + **0 foreign**; Schedule **4254** = 165 = ours 165 + **0 foreign**. Output kept at
     `build/gap-rootcause-2026-07-31/REVERSE-DIFF-2026-07-31.md`.
-- **🔴 `get_history_for_case` IS THE AUTHORITATIVE RECORD OF A FOREIGN EDIT — CHECK IT FIRST (proven
-    live 2026-08-28; CORRECTS A STANDING BELIEF).** `GET index.php?/api/v2/get_history_for_case/<case_id>`
-    returns **one entry per save**, each with `id`, `created_on` (unix), `user_id`, `type_id`, and a
-    **`changes[]` array carrying `field`, `old_value` AND `new_value`** — **full text bodies, not
-    truncations**: `title`, `refs`, `custom_preconds`, `custom_steps`, `custom_expected`,
-    `custom_atmstatus`. **It survives our own later overwrites**, so a foreign edit is reconstructable
-    field by field long after the fact. **Nothing may be reported as "we cannot establish what was
-    changed" until this call has been made and its output recorded** (Rule 12). Committed body
-    snapshots (Rule 87) remain useful as a **fast offline diff** and for the things history cannot do —
-    a **deleted** case has no history, history is **one call per case** so it does not scale to a
-    714-case group, and it cannot show that a case **appeared or vanished** — but **history is primary**.
-    **SUPERSEDED, kept visible per Rules 32/33:** the pre-2026-08-28 playbook/rule position that
-    *"TestRail stores only the LAST writer; there is no per-field history"* is **FALSE** — it was true
-    of `updated_by` / `updated_on` only, then wrongly generalised.
-    **Evidence:** **C29557** returned **17 entries** and recovered the 2026-08-05 Ahtasham Amjad
-    (user id 7) edit in full — three fields, a rich-text save that `<p>`-wrapped them and truncated
-    Expected Result 687 → 423 chars (`build/custom-roles/foreign-edit-C29557/HISTORY.json`). **C27792
-    and C27805** returned **exactly one entry each — `custom_atmstatus` `1 → 4 Pending`, no text change**
-    — disproving the claim that an undiffable body edit had happened to them.
-    **`custom_atmstatus` values: `1` Not Automated · `3` Automated · `4` Pending. `4` IS NOT `3`** — a
-    `1 → 4` move does **not** make a case Automated and does **not** trigger Rules 65 / 71, but it means
-    someone has queued it for automation, so **preserve the value and never send that field**.
-- **🔧 ON THE CASE EDIT PAGE, REFERENCES IS `div#refs` — `#requirements_display` IS A DIFFERENT FIELD
-    (DOM-probed 2026-08-28).** The **References** field is the **contenteditable `div#refs`**, backed by
-    the hidden input **`#refs_hidden[name=refs]`** — that hidden input is what actually submits, so a UI
-    edit must land in both. **`#requirements_display` is NOT references**: it is the unrelated **"AI
-    context"** field, and driving it silently edits the wrong thing while appearing to work. Found while
-    repairing C30518; source note `build/report-suite/damage-2026-08-26/C30518-REPAIR-2026-08-28.md` §6.
 
 ## K. PRODUCTION access & fix-verification (SV-8721, proven 2026-07-29)
 One indexed block for verifying a bug fix on PRODUCTION (`app.shopview.com` / `api.shopview.com`).
@@ -1632,14 +1177,9 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   reuse for API + browser + cleanup. `cf_clearance` NOT needed via the agent proxy. Full entry: §A
   "PRODUCTION access". *(proven 2026-07-29)*
 - **PROD browser automation:** boot2-style Chromium hydration works on prod — `PHPSESSID` cookie on
-  `.shopview.com` + localStorage `user` = `{data:<login-response data>}` + `fe_permissions_wrapper`
-  (+ `token`); Playwright. Full entry: §A. *(proven 2026-07-29)*
-  **🔴 CORRECTION 2026-09-03:** Chromium can **no longer** TLS straight through `$HTTPS_PROXY` on prod —
-  every navigation returns `net::ERR_CONNECTION_RESET`, exactly as on QA/staging. **The local MITM
-  bridge is now REQUIRED** (`build/atlassian-login/bridge.mjs`; port in `/tmp/atlassian/bridge-port.txt`,
-  rotates — never hard-code). Point Chromium at `http://127.0.0.1:<bridgePort>`. The rest of the recipe
-  (login → fe-permissions → hydrate localStorage) is unchanged. Re-proven 2026-09-03 verifying C30354
-  on `/reports/parts-velocity`.
+  `.shopview.com` + localStorage `user` = `{data:<login-response data>}` + `fe_permissions_wrapper`;
+  Playwright pointed straight at `$HTTPS_PROXY`, **no MITM bridge needed**. Full entry: §A.
+  *(proven 2026-07-29)*
 - **PROD test org / workplace:** org `72b2cc90-6964-4429-a207-76e55f946936`; seed WOs in
   **"Trucks Hill 2" `b617914c-16e9-4485-8e8b-193cd86aa416`** (HAS canned lines; "QA Testing"
   `8badadec-…` has none). Full entry: §A. *(proven 2026-07-29)*
@@ -1755,84 +1295,6 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   never force, never rebase, never `reset --hard`, because a sibling's unpushed-to-you commits are the
   very thing at risk. *(2026-08-11; the mechanism behind the stale ref is still unexplained and may
   recur in any container — see `build/RECOVERY-2026-08-11/STATE.md`.)*
-- **🛑 `git add -- <paths>` IS NOT THE GUARD. THE PATHSPEC HAS TO BE ON THE `git commit`. (Bit us
-  TWICE on 2026-09-03 — incidents four and five.)** Both workers **did** scope their `git add`, and
-  both were swept anyway: one commit took **five** foreign files (another worker's handoff and skill
-  edits), the next took **seven** (`CLAUDE.md`, rule files, skills, `build/handoffs/README.md`,
-  `build/PROCESS-AUTHORING-STANDARD.md`). **WHY SCOPING THE `add` CANNOT WORK: the index is shared and
-  the race is AFTER your add.** A sibling's `git add` lands between your `add` and your `commit`, and
-  a bare `git commit` then takes the whole index — theirs included. The commands, in one breath:
-
-  ```bash
-  git add    -- <your paths>                     # hygiene; NOT the guard
-  git commit -m "<msg>" -- <the same paths>      # THE GUARD: pathspec, immune to index state
-  git show --stat --oneline HEAD                 # read the count, then push the explicit SHA
-  ```
-- **🛑 AND THE PATHSPEC GUARD HAS ITS OWN BLIND SPOT: A PATHSPEC COMMIT SILENTLY DROPS A RENAME'S
-  DELETION SIDE, SHIPPING BOTH COPIES OF THE FILE (hit 2026-09-03).** `git mv old new` stages **two
-  halves** — the DELETE of `old` and the ADD of `new`. **`old` no longer exists in the worktree, so it
-  never makes it into the pathspec you type**, and a pathspec commit records only what it names: the
-  add lands, the delete does not, and **the commit contains BOTH files**. Caught by reading the stat
-  line; it would otherwise have shipped a duplicated rules file.
-  **THE TELL — and note the file COUNT does not catch this one:**
-
-  ```text
-   1 file changed, 1 insertion(+)          # pathspec = new path only  -> WRONG
-   create mode 100644 NEW.md               #   `create mode` with NO `delete mode`/`rename` line
-   1 file changed, 0 insertions(+)         # pathspec = BOTH paths     -> RIGHT
-   rename OLD.md => NEW.md (100%)          #   git says `rename` when it got both halves
-  ```
-
-  A correct rename prints **`rename old => new`**; the broken one prints **`create mode`** and nothing
-  about the old path. **`N files changed` reads `1` in BOTH cases** (re-verified in a scratch repo,
-  2026-09-03), so the count check that catches the sweeping trap is **not sufficient here** — in a
-  larger batch it shows up only as a count one off from the paths you meant to touch. **⇒ read the
-  mode/rename summary lines, not just the count.**
-  **THE FIX: name BOTH the old and the new path —** `git commit -F /tmp/msg.txt -- <old> <new>`. The
-  old path is still a valid pathspec although the file is gone (it matches the staged deletion; proven,
-  same scratch repo), and a sibling's separately staged file stayed untouched. Equivalently, run
-  **`git status --porcelain` before committing** and confirm every `R`/`D` entry you meant is covered
-  by your pathspec — an `R  old -> new` line is the warning that one pathspec entry is not enough.
-  **RECOVERY:** unpushed → `git commit --amend -F /tmp/msg.txt --only -- <old> <new>`; **pushed → leave
-  it and fix forward in a new commit — never rewrite pushed history** (the standing ruling below).
-- **✅ CORRECTION TO THE 2026-07-31 SYNTAX GOTCHA ABOVE (re-tested 2026-09-03, git 2.43.0):
-  `git commit -m "<msg>" -- <paths>` WORKS.** The bullet near the top of §L says it errors with *"did
-  not match any file(s)"* and routes you to `git commit -F /tmp/msg.txt -- <paths>` instead. Re-tested
-  directly — a scratch repo, a sibling's file staged in the index, a **multi-line** `-m` message with a
-  trailer — it committed **`1 file changed`**, left the sibling's staged file untouched, and exited 0.
-  **`-F` remains fine and is still the easier route for a long message; the point of the correction is
-  that the `-m` form is NOT broken**, and steering workers off it steered them onto the bare
-  `git commit` that causes this whole class of incident. (If it ever does error, the cause is a
-  pathspec that matches nothing — check the path, not the flag.)
-- **⚠️ BUT `-m "…"` HAS A REAL AND DIFFERENT HAZARD, AND IT IS SILENT: BACKTICKS IN THE MESSAGE ARE
-  COMMAND SUBSTITUTION (hit 2026-09-03, writing the commit for this very amendment).** A commit
-  message quoting code in backticks — e.g. a bare `` `except Exception: pass` `` — is a
-  **double-quoted bash string**, so the shell EXECUTES the backticked text and substitutes its
-  output. What landed in the commit was *"the activity feed's bare  would have swallowed the"*, with
-  the quoted code simply GONE. The only visible sign was one stray line on stderr
-  (`except: command not found`) **after** the commit had already succeeded — the commit itself
-  reported `6 files changed` and exit 0. **⇒ For any message containing backticks, `$`, `!` or `\`,
-  write it to a file and use `git commit -F /tmp/msg.txt -- <paths>`** (which is why the 2026-07-31
-  bullet reached for `-F` in the first place — the reasoning was right even though the stated error
-  was not). **And READ THE MESSAGE BACK — `git log -1 --format=%B` — before pushing**, exactly as you
-  read the `N files changed` line: the file count and the message are two different checks, and this
-  one fails without an error. Amending is safe here **only because nothing had been pushed**; do it
-  with `git commit --amend -F /tmp/msg.txt --only -- <the same paths>` so the amend cannot sweep a
-  sibling's index either.
-- **🛑 READ THE `N files changed` LINE. IT IS THE ONLY CHECK THAT ACTUALLY CATCHES THIS.** Compare N
-  against the number of files you changed; **if N is larger, STOP — do not push.** The second
-  2026-09-03 incident was caught exactly this way (`11 files changed` where 4 were expected).
-- **THE RECOVERY, AND ITS ONE PRECONDITION — NOTHING HAS BEEN PUSHED.** Then, in order:
-  `git reset --soft HEAD~1` (**soft** — the work stays in the tree) · **back up every affected file
-  first, the foreign ones included** · `git restore --staged -- <foreign paths>` · re-commit with an
-  explicit pathspec · **`diff`/`sha256sum` the foreign files against the backup and record that they
-  are identical.** The byte-comparison IS the evidence that the sibling's work survived; an uncommitted
-  comparison did not happen (Rule 29 R4). That is how incident five was closed the same day: reset,
-  backed up, byte-compared identical, re-committed path-scoped, nothing lost.
-  **ONCE IT IS PUSHED, DO NOT TOUCH IT** — no amend, no rebase, no force. A sibling may already have
-  fetched it, so a rewrite turns a documentation problem into a data-loss problem (the standing ruling
-  two bullets up, 2026-08-06). Report it to the coordinator and leave it. *(Rule 29 R7 amendment,
-  2026-09-03.)*
 
 ## M. Figma: extract ALL frames from a design link (proven 2026-07-31, Filters)
 **Use when** the user hands over one or more `figma.com/design/<fileKey>/...?node-id=A-B` links and
@@ -2175,136 +1637,36 @@ takes a plain string), then transition, then read back status + resolution + pri
 How to reach each screen. SPA routes are under `app.staging.shopview.com`. Top nav
 items are **gated by permission** (a hidden item means the role lacks the perm).
 
-> **↔ PER-PROJECT PATHS LIVE IN `build/<project>/NAVIGATION-MAP.md` — NOT HERE.** This section holds
-> the **shared, cross-project staging** paths. A path that is specific to a project and to the branch
-> it is tested on goes in that project's own map (template: `build/NAVIGATION-MAP-TEMPLATE.md`;
-> convention: `build/skills/03-RUN-CHECK.md` §9), which records the branch + build marker and the date
-> observed. **The two files cross-reference, never duplicate:** if a path proves general, promote it
-> here and point at it from the project map. Same discipline either way (Rules 27 / 57 / 12) — a path
-> is written only after it was **navigated successfully and observed live**, never inferred from source
-> code, a spec, a design or another branch, and the map records **navigation only, never expected
-> behaviour**.
-
-**🛑 FRESHNESS COLUMNS ADDED 2026-08-31 — EVERY EXISTING ROW IS `❌`, AND THAT IS THE HONEST ANSWER.**
-The four right-hand columns (branch + build marker · date observed · Rule 91 badge · recorded by) were
-added on **2026-08-31** to match the navigation-map convention in `build/skills/03-RUN-CHECK.md` §9.
-Every row that already existed was written **before the convention existed**, so **none of them carries
-an observation date and none can be given one now**. A `❌ unknown` cell means literally that, and the
-badge cell states it in full: *"❌ observation date unknown — recorded before the navigation-map
-convention existed (2026-08-31); not yet re-observed"*. **The date on which the row's TEXT was committed
-is NOT the date the path was observed** — do not back-fill one from git history; that is false precision
-(Rule 12: verified means observed, never inferred). **No path text, URL, label or note was changed when
-the columns were added** — the paths are exactly as they were.
-**Use a `❌` row as a starting point, not as evidence.** If it works, re-observe it properly and replace
-all four cells with the branch + build marker, today's date, a ✅ badge and your session; if it fails,
-correct the row and commit the correction in the same pass (Rule 93) — never leave a known-wrong path
-for the next session. Badges: **✅ ≤7 days · 🟠 8–14 days · 🔴 >14 days · ❌ never observed / unknown.**
-
-| Screen / Feature | Nav path (from the top) | SPA route | Notes | Branch + build marker observed on | Date observed | Freshness badge (Rule 91) | Recorded by |
-|---|---|---|---| --- | --- | --- | --- |
-| Work Orders list | Top nav → Work Orders | `/workorders` | Gated by `workOrdersView`. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Work Order detail | WO list → click a row | `/workorders/{id}/lines` | **Existing-WO detail bounces to `/workorders` on mount for ALL roles incl. admin.** Only a **freshly-created** WO reliably lands on the detail/lines page — create fresh to test line/part/finance flows. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| WO Finance tab | open WO → **Finance** tab | (within WO detail) | Gated by `invoicingPaymentsView` **AND** `seeFinancialData`. Holds Create Invoice / Add Deposit / invoice kebab (Reverse / Issue Credit). | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| WO Parts tab | open WO → **Parts** tab | `/workorders/{id}/parts` | Direct URL to `/parts` sub-route returns page-not-found without WO context (SPA needs WO loaded). Order Parts is meant to gate this tab (visibility looked identical ON/OFF — needs manual confirm). | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| WO Lines / Notes / Stats tabs | open WO → tab | (within WO detail) | Tabs render as Lines / Parts / Notes / Stats (+ Finance when invoicing+SFD on). | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Schedule (calendar) | Top nav → Schedule | `/schedule` | Gated by `scheduleView`; shows ALL users' appointments. Create/delete = click/drag on the grid (no persistent button). | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Parts (department) | Top nav → Parts | `/parts` | Gated by Parts Department parent. Parent OFF → nav item gone and inner pages redirect to `/workorders`. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Part Sales | Parts → Part Sales | `/parts/part-sales` | **Route is flaky in the harness** (sometimes never reaches `domcontentloaded`; `page.evaluate` hangs) while admin/catalog/vendor routes load fine. `/part-sales`, `/partsales` are NOT valid (page-not-found). | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Catalog | Parts → Catalog | `/parts/parts-catalogue` | Read-only without Create&Edit. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Inventory | Parts → Inventory | `/parts/inventory` (also `/inventory`) | "New Inventory Part" button with Create&Edit. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Part History (inventory) | Parts → Inventory → **clock icon** next to a part | `/parts/inventory` | Clock icon (tooltip **"Part History"**) opens that part's history. This is a **separate feature** from the WO View History Logs permission. **Part Sales has NO history.** (Confirmed with product owner.) | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Vendors | Parts → Vendors | `/parts/vendors` (also `/vendors`) | Supply-chain sub-tabs: Purchase Orders, Vendor Invoices, Returns, Vendors. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Parts → Returns | Parts → Vendors → Returns tab (or Parts → Returns) | `/parts` → Returns | Returns list; row three-dots → "Return to inventory" / "Delete Return". | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Customers | Top nav → Customers | `/customers` | Gated by `customersView`; OFF → nav gone and `/customers` redirects to `/workorders`. Customer detail tabs: Work Orders / Part Sales / Contacts / Assets(vehicles) / Notes / Payments. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Reports | Top nav → Reports | `/reports` | Gated by `reportsPageAccess`. Left nav groups: A/R Aging (Summary/Detail/Collection), A/P Aging (Summary/Detail/Unpaid Invoices), Sales Tax, Timesheet Activities. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| A/R & A/P aging reports | Reports → left nav | `/reports/ar-aging-summary`, `/reports/ap-aging-summary`, `/reports/ap-unpaid-invoices`, `/reports/ar-aging-collection` | Now follow **Reports** permission (all-or-nothing), per updated spec. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Timesheet Activities | Reports → Timesheet Activities | `/reports/punch-clock-activities` | Default report view; gated by `timesheetsView` (+ reports). | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Administration (Settings home) | left sidebar → Settings group | `/administration`, `/administration/settings` | No perms → `/administration` redirects to `/workorders`; no SETTINGS group in sidebar. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Roles & Permissions (roles list) | Settings sidebar → **Roles & Permissions** | `/administration/roles-permissions` | Heading "Roles & Permissions". "Create custom role" button. Gated by `settingsApp` (App Settings). | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Create/Edit role | Roles list → "Create custom role" (or pencil) | `/administration/roles-permissions/new` · `/administration/roles-permissions/{id}/edit` | Template picker modal → Apply → `/new?template=...`; Skip → blank `/new`. View-only summary at `/{id}/summary`. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Staff | Settings sidebar → Staff | `/administration/staff` | Role user-counts link here as `?roleName=<RoleName>`. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Locations / Departments / Taxes | Settings sidebar (App group) | `/administration/locations`, `.../departments`, `.../taxes` | App Settings group also holds Settings + Staff + Roles & Permissions. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Service settings | Settings sidebar → Service group | `/administration/labour-types` (Labor Rates), `/canned-lines` (Canned Lines), Asset Types, Inspection Templates | Gated by `settingsService`; OFF → these redirect to `/administration/locations`. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Parts settings | Settings sidebar → Parts group | Pricing, Bin Locations, Categories | Gated by `settingsParts`. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Finance settings | Settings sidebar → Finance group | Payment Methods | Gated by `settingsFinance`. **No QuickBooks entry present** (relocation not implemented). | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Data Import | Settings sidebar → Imports group | Contacts, Assets, Vendors, Inventory, Invoices | Gated by `settingsDataImport`. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Wages | (per-staff) Staff → Edit Staff Member | (modal) | `settingsWages` reveals Salary Type + Hourly Rate on the staff modal. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-| Integrations | Settings sidebar → Integrations | `/administration/quickbooks`, `/administration/finance/quickbooks` (routes exist) | Shows only **IBS**; QuickBooks absent. | ❌ unknown | ❌ unknown | ❌ observation date unknown — recorded before the navigation-map convention existed (2026-08-31); not yet re-observed | ❌ unknown |
-
-### RE-OBSERVATION ATTEMPT — 2026-08-31 · **0 of 28 rows re-observed** (no session could be minted)
-
-An attempt was made on **2026-08-31** to re-walk every row above on staging and replace the `❌` cells
-with a real date. **It reached the app but could not sign in, so NOT ONE row was re-observed and every
-row above is still `❌`.** Recorded here so the next session does not repeat the same four probes.
-
-**What WAS observed live, unauthenticated (this much is real):**
-
-| Probe | Result |
-|---|---|
-| `GET https://app.staging.shopview.com/index.html` | **HTTP 200** · build marker **`v26.35.6-49e216a`** · `last-modified: Fri, 28 Aug 2026 08:31:04 GMT` · `etag: "7ee61447ee66167ad918fee664be24ea"` |
-| `GET https://api.staging.shopview.com/` | **HTTP 200** `{"data":[]}` — the API host is up |
-
-**What FAILED, with the exact response text:**
-
-| Probe | Result |
-|---|---|
-| `GET https://api.staging.shopview.com/api/auth/me/fe-permissions` (no cookies — none exist in this container) | **HTTP 401** `{"error":"sso_required","sso_redirect_url":"https://auth.staging.shopview.com/login?return_to=…"}` |
-| `POST https://api.staging.shopview.com/api/quick-login {"key":"admin"}` | **HTTP 401** — the **identical** `sso_required` body. Confirms on **staging** what §A already proved on `sv9500api`: quick-login is itself SSO-gated and is **not** a way in from a cold jar |
-| Following the `sso_redirect_url` to `https://auth.staging.shopview.com/login?...` | **HTTP 200 — the real Google sign-in page** (`accounts.google.com`, `hd=shopview.com`, `prompt=select_account`). Exactly the §A root cause: **a staging session is mintable only by a human SSO login or by the QA lead handing over a cookie set** |
-
-**Why no fallback was tried:** `/tmp` held **no cookie file at all** (`/tmp/qa-cookies/`,
-`/tmp/staging-cookie.txt`, `/tmp/cln/cookies.json` — none present; `/tmp` is per-container and this was
-a fresh one), and §A records that `POST /api/login {username,password}` is **prod-only** and answers the
-same `sso_required` 401 on staging. **This is the state `build/BLOCKED-shopview-app-session.md` already
-describes — re-confirmed live on 2026-08-31, not a new blocker.** The unblock is unchanged: a fresh
-three-cookie set for `app.staging.shopview.com` from the QA lead, into `/tmp` only.
-**🆕 SUPERSEDED IN FORM, 2026-09-03 — the paragraph above is kept as the dated 2026-08-31 record.** The
-unblock is now **DECIDED and per-need**: the QA lead drops a live **`sv_sso_session`** (plus
-`cf_clearance` if Cloudflare demands it) into `/tmp`, `chmod 600`, **when a NAMED piece of work needs
-staging** — **a cookie, never a password** (the password route was tested 2026-09-03 and is closed).
-See §A *"HOW A STAGING SESSION IS OBTAINED"* and `build/BLOCKED-shopview-app-session.md`.
-
-### 🛑 HOW THE 28 `❌` ROWS GET FIXED — **PIGGYBACK, NEVER A DEDICATED PASS** (Rule 78, recorded 2026-09-03)
-
-**THE RULE, in one sentence: any pass that gains a working staging session re-observes THE ROWS IT
-ACTUALLY USES and stamps them in the SAME pass — nothing more, nothing less.** There is no
-re-observation project, and there is not going to be one.
-
-**Why it is written this way.** All 28 rows are **staging** paths, and staging is currently
-unreachable (register row **R1**, narrowed 2026-09-02 — a staging session cannot be self-minted; QA
-branches are no longer blocked but they are a different host and do not warrant these rows). So a
-dedicated re-observation pass **cannot run at all today**, and the moment one could, it would be
-spending a whole spawn on routes nobody had asked for. **Rule 78 says the opposite: piggyback the
-cheap check onto the next substantive worker.** Rule 93 says whatever you solve gets written into the
-playbook **in the same pass**, not queued.
-
-**What a session must actually do — four steps, and only for rows it touches:**
-
-1. **Use the `❌` row as a starting point.** It is a lead, not a licence.
-2. **🛑 A `❌` ROW IS NOT EVIDENCE.** It was recorded before the navigation-map convention existed
-   (2026-08-31), nobody has re-walked it, and **its committed date is the date the TEXT was written,
-   not the date the path was observed** — do not back-fill one from git history (Rule 12: verified
-   means observed, never inferred). **Never cite a `❌` row as a build-verified route, never quote its
-   labels into a case's preconditions, and never let it stand behind a Verified/Pass verdict.**
-   Skill `03-RUN-CHECK.md` §9 tells sessions to reuse recorded routes — **this is the boundary on that
-   reuse.**
-3. **If the row WORKS: stamp it, in the same pass.** Replace all four right-hand cells —
-   **branch + build marker · today's date · a ✅ badge · your session** — commit the stamp with the
-   work it came from. Badges: **✅ ≤7 days · 🟠 8–14 days · 🔴 >14 days · ❌ never observed / unknown.**
-4. **If the row FAILS: correct it, in the same pass, and commit the correction** (Rule 93). A
-   known-wrong path left for the next session is worse than an unbadged one — it is a route that reads
-   as authoritative and sends a manual tester somewhere that does not exist. Say what it actually is
-   now, and stamp the four cells the same way.
-
-**Do NOT re-observe a row you did not use.** Walking all 28 "while you are in there" is exactly the
-dedicated pass this rule exists to avoid — and a row observed to satisfy a checklist, rather than
-because a piece of work needed it, is the kind of stamp that goes stale unnoticed.
-
-**Consequence, stated so nobody is surprised:** the map will improve **unevenly** — the rows real work
-touches go ✅ and the rest stay ❌ indefinitely. **That is the intended outcome, not a gap.** A row
-nobody has needed in months has not earned a spawn.
-
-**Register row: `NAV-3` (opened 2026-09-02), authorised and recorded 2026-09-03.**
+| Screen / Feature | Nav path (from the top) | SPA route | Notes |
+|---|---|---|---|
+| Work Orders list | Top nav → Work Orders | `/workorders` | Gated by `workOrdersView`. |
+| Work Order detail | WO list → click a row | `/workorders/{id}/lines` | **Existing-WO detail bounces to `/workorders` on mount for ALL roles incl. admin.** Only a **freshly-created** WO reliably lands on the detail/lines page — create fresh to test line/part/finance flows. |
+| WO Finance tab | open WO → **Finance** tab | (within WO detail) | Gated by `invoicingPaymentsView` **AND** `seeFinancialData`. Holds Create Invoice / Add Deposit / invoice kebab (Reverse / Issue Credit). |
+| WO Parts tab | open WO → **Parts** tab | `/workorders/{id}/parts` | Direct URL to `/parts` sub-route returns page-not-found without WO context (SPA needs WO loaded). Order Parts is meant to gate this tab (visibility looked identical ON/OFF — needs manual confirm). |
+| WO Lines / Notes / Stats tabs | open WO → tab | (within WO detail) | Tabs render as Lines / Parts / Notes / Stats (+ Finance when invoicing+SFD on). |
+| Schedule (calendar) | Top nav → Schedule | `/schedule` | Gated by `scheduleView`; shows ALL users' appointments. Create/delete = click/drag on the grid (no persistent button). |
+| Parts (department) | Top nav → Parts | `/parts` | Gated by Parts Department parent. Parent OFF → nav item gone and inner pages redirect to `/workorders`. |
+| Part Sales | Parts → Part Sales | `/parts/part-sales` | **Route is flaky in the harness** (sometimes never reaches `domcontentloaded`; `page.evaluate` hangs) while admin/catalog/vendor routes load fine. `/part-sales`, `/partsales` are NOT valid (page-not-found). |
+| Catalog | Parts → Catalog | `/parts/parts-catalogue` | Read-only without Create&Edit. |
+| Inventory | Parts → Inventory | `/parts/inventory` (also `/inventory`) | "New Inventory Part" button with Create&Edit. |
+| Part History (inventory) | Parts → Inventory → **clock icon** next to a part | `/parts/inventory` | Clock icon (tooltip **"Part History"**) opens that part's history. This is a **separate feature** from the WO View History Logs permission. **Part Sales has NO history.** (Confirmed with product owner.) |
+| Vendors | Parts → Vendors | `/parts/vendors` (also `/vendors`) | Supply-chain sub-tabs: Purchase Orders, Vendor Invoices, Returns, Vendors. |
+| Parts → Returns | Parts → Vendors → Returns tab (or Parts → Returns) | `/parts` → Returns | Returns list; row three-dots → "Return to inventory" / "Delete Return". |
+| Customers | Top nav → Customers | `/customers` | Gated by `customersView`; OFF → nav gone and `/customers` redirects to `/workorders`. Customer detail tabs: Work Orders / Part Sales / Contacts / Assets(vehicles) / Notes / Payments. |
+| Reports | Top nav → Reports | `/reports` | Gated by `reportsPageAccess`. Left nav groups: A/R Aging (Summary/Detail/Collection), A/P Aging (Summary/Detail/Unpaid Invoices), Sales Tax, Timesheet Activities. |
+| A/R & A/P aging reports | Reports → left nav | `/reports/ar-aging-summary`, `/reports/ap-aging-summary`, `/reports/ap-unpaid-invoices`, `/reports/ar-aging-collection` | Now follow **Reports** permission (all-or-nothing), per updated spec. |
+| Timesheet Activities | Reports → Timesheet Activities | `/reports/punch-clock-activities` | Default report view; gated by `timesheetsView` (+ reports). |
+| Administration (Settings home) | left sidebar → Settings group | `/administration`, `/administration/settings` | No perms → `/administration` redirects to `/workorders`; no SETTINGS group in sidebar. |
+| Roles & Permissions (roles list) | Settings sidebar → **Roles & Permissions** | `/administration/roles-permissions` | Heading "Roles & Permissions". "Create custom role" button. Gated by `settingsApp` (App Settings). |
+| Create/Edit role | Roles list → "Create custom role" (or pencil) | `/administration/roles-permissions/new` · `/administration/roles-permissions/{id}/edit` | Template picker modal → Apply → `/new?template=...`; Skip → blank `/new`. View-only summary at `/{id}/summary`. |
+| Staff | Settings sidebar → Staff | `/administration/staff` | Role user-counts link here as `?roleName=<RoleName>`. |
+| Locations / Departments / Taxes | Settings sidebar (App group) | `/administration/locations`, `.../departments`, `.../taxes` | App Settings group also holds Settings + Staff + Roles & Permissions. |
+| Service settings | Settings sidebar → Service group | `/administration/labour-types` (Labor Rates), `/canned-lines` (Canned Lines), Asset Types, Inspection Templates | Gated by `settingsService`; OFF → these redirect to `/administration/locations`. |
+| Parts settings | Settings sidebar → Parts group | Pricing, Bin Locations, Categories | Gated by `settingsParts`. |
+| Finance settings | Settings sidebar → Finance group | Payment Methods | Gated by `settingsFinance`. **No QuickBooks entry present** (relocation not implemented). |
+| Data Import | Settings sidebar → Imports group | Contacts, Assets, Vendors, Inventory, Invoices | Gated by `settingsDataImport`. |
+| Wages | (per-staff) Staff → Edit Staff Member | (modal) | `settingsWages` reveals Salary Type + Hourly Rate on the staff modal. |
+| Integrations | Settings sidebar → Integrations | `/administration/quickbooks`, `/administration/finance/quickbooks` (routes exist) | Shows only **IBS**; QuickBooks absent. |
 
 ---
 
@@ -2481,9 +1843,6 @@ nobody has needed in months has not earned a spawn.
 - **Confidence:** High (created 201 across Foreman/SM/SA/SSA).
 
 ### Reverse an invoice
-- **⚠️ A PAID INVOICE CANNOT BE REVERSED** — `POST /api/invoices/reverse-invoice` answers **400
-  *"Customer transaction cannot be deleted."*** Reverse its payments first, or start from an unpaid
-  invoice. (Proven 2026-09-01; the previous entry only recorded the 200 and the 403.)
 - **UI path:** WO detail → Finance tab → invoice **three-dot** menu → **Reverse** → Warning ("re-open and undo the invoice") → confirm Reverse. (Part-sales invoice: Part Sales → invoice → reverse.)
 - **API:** `POST /api/invoices/reverse-invoice` body `{id}` → **200** (WO reverts "Invoiced" → "Complete", Create Invoice reappears).
 - **Preconditions:** WO-invoice reverse is gated by **Work Orders: Delete** (SM has WO Delete → reverse allowed even though `invoicingPaymentsDelete`=OFF). Foreman/Parts Manager without it → menu shows only "Issue Credit" and the endpoint returns **403 "Access denied."**
@@ -2491,153 +1850,7 @@ nobody has needed in months has not earned a spawn.
 
 ### Issue credit
 - **UI path:** WO detail → Finance tab → invoice three-dot menu → **Issue Credit** (present even for roles that lack Reverse).
-- **API (driven live 2026-09-01, 201):** `POST /api/credit-memos` —
-  `{customerAccountId, amount, reason, originKind:"invoice"|"manual", originInvoiceId, originDate,
-  lineItems:[{partNumber, description, quantity, sellPrice, restockingFee, taxAmount,
-  originatingInvoiceLineId}], refund?:{amount, paymentMethod, memo, externalReference}}`.
-  Payload read off the product's own `IssueCreditMemoDialog` chunk, then executed.
-- **🔑 `amount` IS IN DOLLARS, NOT CENTS** — and when `lineItems` is present the server derives the
-  total from the lines and ignores `amount` entirely. Passing `6084` for a manual credit created a
-  **$6,084.00** credit, not $60.84. Two credits differing only in this looked identical in the
-  request and were 100× apart in the record.
-- **Creditable parts:** `GET /api/part-sales/{id}/list-credit-available-parts` takes the **INVOICE
-  id**, not the part-sale id. The part-sale id answers **400 `{"invoiceId":"Not found"}`**, which
-  reads like a missing feature and is really a wrong id.
-- **The parts-return picker is PART-SALE ONLY** (`PartsReturnPicker` props default
-  `invoiceType:"partSale"`); a service work order's credit is a plain amount.
-- **Void / cash out:** `POST /api/credit-memos/{id}/void` · `POST /api/credit-memos/{id}/cash-out`.
-  Voiding an already-voided credit answers a clean **400** *"Cannot void a credit memo while it is
-  in status \"voided\"."* — a refusal, not a failure.
-- **⚠️ REVERSING AN INVOICE AUTO-VOIDS ANY CREDIT ISSUED AGAINST IT, AND DELETES THE INVOICE
-  RECORD.** Proven 2026-09-01: the credit went *Unapplied → Voided*, its Balance $10.94 → $0.00, and
-  the credit document's **Invoice Number column disappeared** (correct per spec S11-R3, which hides
-  it when there is no origin invoice). Afterwards `GET /api/invoices/{id}/view` answers 400 *"The
-  invoice doesn't exist"*.
-- **Confidence:** High (create, render, reverse-origin, re-render and void all executed).
-
-### Import an historical / "imported" work order  🆕 2026-09-01
-- **Why it matters:** a session on 2026-08-31 reported invoice import as **not built** on the
-  strength of four **guessed** routes all answering 404. It is built. **Four 404s from guessed routes
-  are not evidence of absence** — a guessed route and a wrong id 404 identically.
-- **API:** `POST /api/imports/work-order-historical`, **multipart, field name `file`** → 200
-  `{"duplicatedInvoices":[]}`. A bare POST answers 400 *"file file is missing or invalid"*; wrong
-  headers answer *"Invalid file headers provided!"*.
-- **The CSV contract is shipped by the product itself** — an inline template literal in the
-  `InvoicesDataImport` chunk, downloadable in-app as `invoices_template.csv`. **24 columns; the 10
-  marked `*` are required.** Keep the asterisks and the exact column order:
-  `*Shop Location,*Customer,VIN,Year,Make,Model,Unit #,Unit Type,Mileage,Hours,*Invoice Number,*Invoice Date,PO,Service Advisor,*Item,*Line Title - What are you doing,Line Description - Why are you doing it,Tech Story,Part #,Part Description,*Qty,*Rate,*Total,*Tax Amount`
-  · `*Invoice Date` is **MM/DD/YYYY** (an ISO date is read as empty) · `*Item` is one of
-  Labor / Part / Shop Supplies / Misc / Sublet / Credit Memo · `*Shop Location` and `*Customer` must
-  match existing records by name.
-- **Read them back:** `GET /api/work-orders-imported` (list) · `GET /api/work-orders-imported/{id}`.
-  They are **NOT** in `GET /api/work-orders` — `imported` is a **synthetic status on a separate
-  endpoint** and is absent from `GET /api/work-orders/statuses`. 600 work orders scanned for
-  `status == imported` found zero; the separate endpoint had them.
-- **Screen:** route `/imported-work-orders/:id`, component `ImportedWorkOrderLeftSection`.
-- **Screen navigation, tester-style:** Work Orders list → the **Imported** status chip → click the
-  row. (The route also has a guard, `requiredCheck: () => featureFlags().WorkOrders`.)
-- **🛑 A PAGE THAT LANDS ON `/` WITH ~148 BODY CHARACTERS IS THE ENVIRONMENT ASLEEP, NOT A ROUTE
-  GUARD AND NOT A MISSING SCREEN.** sv8218 auto-sleeps mid-run and every route then serves
-  `sleep.qa.shopview.com/?app=sv8218&api=sv8218` reading *"Environment Sleeping — This environment is
-  currently paused to save resources… Wake Up"*. On 2026-09-01 this was first misdiagnosed as the
-  route guard firing before the feature-flag store loaded; the body text settled it.
-  **Assert the landing, and read the body text before diagnosing** — wake with the toggleQaEnv
-  lambda (below) and re-run. **The API keeps answering for a while after the SPA host has gone to
-  sleep**, so an API-only probe will not warn you.
-- **No document route:** an imported work order has no invoice PDF of its own
-  (`/api/invoices/preview` rejects its id; `/api/work-orders-imported/{id}/pdf` is 404).
-- **Confidence:** High (seeded `ZZAUTOTEST-IMP-001` live and read it back).
-
-### Impersonation, and the inline part row  🆕 2026-09-01 (sv9315)
-- **🛑 `quick-login` DOES NOT END IMPERSONATION.** After a `switch-user`, a second `switch-user`
-  answers **400 *"You are already impersonating a user. Exit impersonation first."*** even though the
-  profile reads Admin and `view_mode` reads `full`. The exit route is **`POST /api/exit-switch-user`**
-  (read off the SPA bundle; eight guessed shapes returned 404). **Always exit before switching again,
-  and exit before handing the branch back.**
-- **A bare `quick-login` at the END of a run strands the next process.** It rotates the shared
-  PHPSESSID; if the new value is not written back to the cookie file every later call answers
-  **409 "Session has expired."** and looks like dead credentials. Persist the rotated session.
-- **Tech View needs no role change.** The **Technician** role already carries `view_mode: 'tech'` and
-  lacks `woFullViewMode`; the **Admin** carries `view_mode: 'full'` and holds it. So impersonating a
-  Technician *is* Tech View. There is also a dedicated **"Tech View"** role with one holder.
-- **⚠️ IMPERSONATE A TECHNICIAN AT THE WORK ORDER'S OWN WORKPLACE.** A technician based elsewhere sees
-  a page with no Parts controls at all, which reads exactly like the feature being absent. Compare the
-  work order's `workplace_id` (`GET /api/work-orders/view/{id}`) against the staff record's.
-- **The inline part row has TWO ids:** **`inline_part_row`** when adding and
-  **`inline_part_edit_row`** when editing. Fields: `input_inline_part_description`,
-  `select_inline_part_number`, `input_inline_part_quantity` (all views) plus
-  `select_inline_part_category`, `input_inline_part_cost`, `input_inline_part_sell_price` (Full View
-  only); controls `button_more_options_inline_part` (opens the full New/Edit Part Request modal),
-  `button_save_inline_part`, `button_cancel_inline_part`, and `button_pulled_from_bin` for the bin chip.
-
-### Document snapshots and batch invoices  🆕 2026-09-01
-- **Snapshot a document as it was at a history event:**
-  `POST /api/work-orders/invoices/snapshot {entity_event_id, work_order_id, type:"html"|"pdf"}` →
-  200. `entity_event_id` is an event from `GET /api/work-orders/{id}/history` (payload is
-  `data.history`, **not** `data.collection`) whose **`snapshotAvailable`** flag is true.
-- **🛑 THE `historyEvent` QUERY PARAM ON `/api/invoices/preview` IS NOT THE SNAPSHOT FEATURE.** It
-  binds and changes nothing — five different values including a nonsense one return a byte-identical
-  document. A pass spent a day on it and filed a defect candidate for a parameter that is simply not
-  the mechanism. **The route above is the mechanism.**
-- **⚠️ FINDING (2026-09-01): every PRE-EXISTING snapshot on sv8218 returns HTTP 500**; snapshots
-  captured the same day return 200. Proven on one work order (S8218-17113: today 200, its own
-  18/13/10 August events all 500, html and pdf), so it is the snapshot's age, not the record or the
-  document type. Candidate at
-  `build/invoice-ui-refresh/build-verify-2026-08-31/DEFECT-CANDIDATE-snapshot-500.md` (not filed).
-- **Batch invoice PDF:** `POST /api/invoices/batch-pdf {invoiceIds:[…]}` → 200, one multi-page PDF.
-  **NOT `/api/invoices/batch`**, which is a 404 and was mistaken for the feature being absent.
-- **Both the batch PDF and the imported-work-order document render the OLD template**, which is
-  correct — they are deferred to SV-9193. Tell them apart by label, not by guesswork: **old** =
-  `Invoice Date:` (capital D) · `Customer signature:` / `Printed name:` (lower case, colons) ·
-  `Software Powered by ShopView` · `Tax` · `Issue date:` (imported). **New** = `Invoice date:` ·
-  `Paid date:` when settled · `Customer Signature` / `Printed Name` · `Powered by ShopView` ·
-  `GST (5%)` · the `Addresses` and `Summary` group labels.
-
-### 🛑 NEVER WRITE "NOT BUILT" FROM A GUESSED ROUTE — FETCH THE BUNDLE  🆕 2026-09-01
-On 2026-08-31 three features were reported as not built because guessed route names answered 404.
-**All three were built** — the imported/historical import, the batch invoice PDF, and document
-snapshots. **A guessed route and a wrong id 404 identically**, so a 404 from a name you invented is
-evidence of nothing.
-
-**The product's own front-end bundle is the authority on which routes exist, and it is one fetch
-away.** It is *product source code*, so it is **never a source of expected behaviour (Rule 57)** —
-use it only to find the route to drive and the payload shape to send, then observe live.
-
-```
-C=$(cat /tmp/qa-cookies/<branch>-live-session.txt)
-curl -s -H "Cookie: $C" https://<branch>.qa.shopview.com/ | grep -o 'src="[^"]*\.js"'   # entry chunk
-# then fetch it, and follow its "./*.js" references (2-3 rounds reaches the whole graph, ~520 files)
-grep -ho '\(get\|post\)(`\?"\?[a-z][^`",)]*<keyword>[^`",)]*' *.js | sort -u
-```
-It also yields the **exact request payload** (as it did for `credit-memos`,
-`create-customer-payment` and the snapshot route) and any **CSV import template** the app ships
-inline — which is how the historical-import contract was obtained without guessing a write
-(skill 03 §8.2-w).
-
-### Create a customer payment (full payload)  🆕 2026-09-01
-- **API:** `POST /api/customer-account/create-customer-payment` → **201 `{id}`**. Payload, read off
-  `TransactionsPaymentDialog` and executed:
-  `{account_id, payment_date:"YYYY-MM-DD HH:MM:SS", payment_method:<CODE>, reference_number,
-  description, transactions:[<the row from list-unpaid-transaction with transaction_payment_amount
-  set>], primary_id:<that row's id>, new_credit:0, new_deposit:0, applied_credits:[<a credit row,
-  same shape>], applied_deposits:[], ibs_batch_id:null, payment_amount:<number>}`.
-- **The transaction row's `id` is the TRANSACTION id; `reference_id` is the invoice id.** Match on
-  `reference_id` when you are holding an invoice id.
-- **Apply a customer credit** by putting the credit's row in `applied_credits` with
-  `payment_method:"APPLIED_CREDIT"` and `payment_amount:0`; the document then shows
-  `(Credit) {date} - CM-xxxx`.
-- **Unpaid list:** `GET /api/customer-account/list-unpaid-transaction?accountId=…&openOnly=true|false`.
-  **`openOnly=true` is the "Open only" chip** — fully applied/paid rows vanish from it, which looks
-  like deleted data and is not.
-- **⚠️ AN UNCONFIGURED PAYMENT CODE IS REFUSED**, so the "unconfigured code" rendering state cannot
-  be created directly: `payment_method:"credit_card"` answers **400 *"Payment method \"credit_card\"
-  is not available for this organization."*** **Reach it instead by creating a method, paying with
-  it, then deleting the method** — `POST /api/organizations/finance/payment-methods/create
-  {name, type:1}` (the server derives `code` from the name, upper-snake) →
-  `POST /api/organizations/finance/payment-methods/delete {id}`. That leaves the payment carrying a
-  code nothing resolves, and gives a controlled A/B on one payment row.
-- **⚠️ `GET /api/organizations/finance/payment-methods` 500s with no query string** (and with a
-  pagination one); **`?type=1` works.** A 500 where a 400 belongs — recorded, not filed.
+- **Confidence:** Medium (menu item confirmed; flow not fully driven).
 
 ### Create a payment
 - **UI path:** WO Finance (after invoicing) → **New Payment** → method (e.g. Cash) → amount → **Make Payment**. Customer Payments also on Customers → customer → Payments tab.
@@ -3614,53 +2827,6 @@ then read `app-version` + `last-modified` + `etag`, and hash `index.html` — th
   **Practical consequence for tooling: with the click route gone, drag-dependent scenarios cannot be
   driven headlessly at all** — 7 cases went to `HOLD` for exactly this reason. If it is restored, use it.
 
-## §T — AN AUTOMATED KEYBOARD SWEEP CAN CLOCK YOU IN, AND IT CHANGES THE WORK ORDER'S STATUS (happened 2026-09-01, sv9315)
-
-**A Tab/Enter sweep left the quick-login Admin clocked in to a work order for about ten minutes, and
-moved that work order to In Progress.** Found only because the masthead in an unrelated screenshot
-read `stop_circle 00:04:30 S-15888`.
-
-- The masthead's `clock_in_button` is reachable by Tab like anything else, and Enter activates it.
-  Tab-order probes and any `keyboard.press('Enter')` after a focus walk can hit it.
-- Proof it was mine, not a real user's: `GET /api/technician-tasks/my-current-task` returned a task
-  with `start_date` inside the probing window, `end_date: null`, and `staff_id` = the Admin.
-- **Clock out with `POST /api/technician-tasks/check-out` and the body `{"task_id": "<id>"}`.**
-  `{"id": …}` and `{"technician_task_id": …}` both answer **400 "Task not found for the given
-  technician ID."** — only `task_id` works. Confirm with `my-current-task` returning an empty array.
-- **The work order stays at In Progress.** A clock-in advances it, and clocking out does not put it
-  back. Its prior status cannot be recovered from `GET /api/work-orders` (that list's cursor wraps —
-  §S), so **do not guess a status and write it: report the change.**
-
-**PREVENTION, and it is cheap:** before a keyboard sweep, scope it. Focus the element you mean to
-start from, bound the number of presses, and **assert that focus is still inside the row/dialog under
-test before sending Enter**. A sweep that can reach the masthead can reach anything in it.
-
-## §S — LIST ENDPOINTS DO NOT ALL TAKE THE SAME PAGING PARAMETERS, AND THE WRONG ONE IS SILENT (measured live 2026-09-01, sv9315 `v26.35.6-598cc8a`)
-
-**This produced a false "the data state does not exist" that was one message away from being handed
-to the QA lead as a blocker.** Three list endpoints, three different paging shapes, and none of them
-errors on a parameter it does not understand — it just returns the first page:
-
-| Endpoint | What actually works | What is SILENTLY IGNORED | What it cost |
-|---|---|---|---|
-| `GET /api/inventory/parts` | **`pagination[rowsPerPage]` and `pagination[page]`** — the shape the SPA's own `parts/fetchInventory` sends | `limit`, `rowsPerPage`, `page`, `per_page` | Read **100 of 6,879** parts and concluded that no part was held in more than one bin. **Nine test cases were written up as blocked on a data state that was there all along** — including a part in **four** bins (`S31S-950`), one with an already-negative bin (`TP-12-1013-CH`) and one with no prices (`6050-P`). |
-| `GET /api/work-orders` | `limit` + `page` | — but **the cursor wraps**: page 30 returns page 1's rows again, so a naive loop "found" 3,000 work orders that were 500 repeated six times | A status survey with a six-times-inflated denominator |
-| `GET /api/work-orders/part/list-requests` | nothing useful | **every** filter — `work_order_id`, `workOrderId`, `work_order`, `filter[work_order_id]` all return the same first 100 rows from across the estate | Two probes matched nothing and silently tested nothing. **Filter client-side on `work_order_id`.** |
-
-**THE RULE: before concluding that a record or a data state does not exist, PROVE THE PAGING WORKED.**
-Three checks, one minute:
-
-1. **Read the SPA's own call.** `grep` the bundle for the action name (`fetchInventory`,
-   `fetchWorkOrders`) and copy the parameter shape it sends. The client is the specification.
-2. **Compare the response's own `pagination` block with what you asked for.** Asking
-   `rowsPerPage=500` and being told `"rowsPerPage": 100` is the endpoint telling you it ignored you.
-3. **De-duplicate by id and stop when a page adds nothing new.** Never trust a `total`, and never
-   assume page N+1 differs from page N.
-
-**And the honesty consequence:** *"this data state does not exist on the branch"* is a claim about the
-branch and needs the same standard as any other finding (Rule 12). **Say how much of the set you
-actually read** — "100 of 6,879" and "6,879 of 6,879" are different sentences.
-
 ## §Q — REPORT SUITE `sv8582`: Work In Progress + Quasar recipes (proven live 2026-08-06, build `v3.5-f77875c`)
 
 **WIP EXPORT NEEDS `columns=` — WITHOUT IT YOU GET A 400 THAT LOOKS LIKE A DEFECT.**
@@ -3778,350 +2944,6 @@ branch fails, it is the per-branch session and the recipe applies. Distinguish a
 from an expired SSO session by the **shape of the refusal**: a Cloudflare block returns a challenge page,
 whereas an application-level JSON `{"error":"sso_required", …}` means the request **reached the app** and
 `cf_clearance` is still good.
-
-## §U · sv9315 — WHAT THE BUILD ITSELF WILL TELL YOU, IF YOU ASK THE RIGHT LIST (measured 2026-09-01)
-
-**WHY THIS SECTION EXISTS.** Three "the data state does not exist here" conclusions on suites 6597 and
-6617 were WRONG, and all three had the same shape: **a conclusion drawn from the wrong list.** §S was
-the first (`/api/inventory/parts` ignoring the paging parameters, so 100 of 6,879 parts were read).
-These are the rest, with the endpoint that answers each question directly.
-
-| Question | Ask this, not the data | Answer on sv9315, 2026-09-01 |
-|---|---|---|
-| Which work order statuses exist? | `GET /api/work-orders/statuses` | `estimate, approved, in_progress, ready_for_review, complete, invoiced, paid` — **seven, and NEITHER "Declined" NOR "Imported" is one of them.** A case naming those names statuses the product does not have |
-| Which line statuses exist? | `GET /api/work-orders/line-statuses` | `authorization_required, authorization_declined, authorized, complete` — **there is no "Cancelled"**, and posting it against a REAL line id answers 400 with the status field alone rejected |
-| Are there catalogue parts in no bin? | `GET /api/parts-catalogue/catalogue-parts-that-are-not-on-location` | **19,496 of them.** `/api/inventory/parts` holds only STOCKED parts, so it can never answer this |
-| Does a catalogue part carry a price? | `GET /api/parts-catalogue/catalogue-parts?search=<number>` | The record has **no cost and no sell-price field at all** (e.g. F40010212 "Slack Adjuster"). "Every part holds 0.00" was a statement about inventory rows, not catalogue parts |
-| Can a work order exist with no customer / no vehicle? | Press Save on the **New Work Order** dialog with the field empty | **"Customer is a required field"** and **"Asset is a required field"** — no request is even sent. Neither state can exist |
-| Where is the work order detail? | `GET /api/work-orders/view/<id>` → `data.work_order` | `GET /api/work-orders/<id>` is **404**. Status comes back capitalised (`"Estimate"`), so compare case-insensitively |
-| Where are its lines? | `GET /api/work-orders/lines/<id>` → `data.collection`; the id field is **`line_id`**, not `id` | 3 lines on S9315-14846 |
-
-**LINE STATUS IS A WALK, NOT A JUMP.** `POST /api/work-orders/lines/change-status {line_id, status,
-workOrderId}` from `authorization_required` straight to `complete` answers **400 "Status transition from
-authorization_required to complete is not allowed"** — go via `authorized`. And **a line with
-unfulfilled part requests cannot be completed at all**: *"Line can`t be completed with unfulfilled part
-requests."* Pick a part-free line. Walk it back the same way afterwards and verify.
-
-**SIDE EFFECT WORTH KNOWING:** completing a line moves the WORK ORDER to **Review** on screen. Reverting
-the line reverts the work order — no separate repair needed, but do not read the header mid-probe and
-report a status drift.
-
-**TECH STORY:** `POST /api/work-orders/lines/change-story {line_id, tech_story, work_order_id}` → 201.
-**`/lines/change` returns 500** — do not use it.
-
-**A ROLE PERMISSION CAN REFUSE TO COME OFF, AND ANSWER 200 WHILE DOING IT.** `PUT /api/roles/{id}` with
-`workOrdersView` removed returns **200** and the role reads back **with it still on** — the work-order
-line-edit and pick-parts permissions depend on it. Remove the whole dependent group
-(`workOrdersView`, `workOrderLinesCreateAndEdit`, `woPickParts`) and it takes. **⇒ After ANY role write,
-re-read the role. A 200 is not evidence the change landed.**
-
-**THE ROLE EDIT SCREEN IS DANGEROUS TO A KEYBOARD SWEEP.** The Technician role drifted from Tech View to
-Full View during this pass, and the likeliest cause is a stray Enter on the "View mode" radio while a
-probe was tabbing through `/administration/roles-permissions/<id>/edit` — the same sweep that clocked the
-Admin into a work order (§T). **Snapshot any shared role to disk BEFORE opening its edit screen**, not
-just before writing to it.
-
-
-## Credit memo states — how to CREATE each one (proven on sv8218, 2026-09-03)
-
-Recorded because a whole pass stalled on "the data does not exist". It does; the route to make it was
-simply unknown. Every step below was watched, and the API call each fires is named.
-
-| To get | The clicks | What fires |
-|---|---|---|
-| **Unapplied** | `Customers` → the customer → `Invoices` tab → `Issue Credit` → `Amount` → `Outcome` = `Issue Store Credit` → `Reason` → the confirm button, which **relabels from `Issue Refund` to `Issue Credit`** once the outcome is chosen | `POST /api/credit-memos` → 201 |
-| **Applied** | tick the credit's row **AND** an unpaid invoice's row together → `New Payment` → put the credit's full amount in that invoice's `Payment` box → pick a `Payment method` (`Make payment` stays disabled without one, even when a credit covers the lot) → `Make payment` | `POST /api/customer-account/create-customer-payment` → 201 |
-| **Partially applied** | the same, on an invoice whose balance is **smaller than the credit** | as above |
-| **Refunded** / partly refunded | the credit row's `Action` column → the icon whose hover tooltip reads `Cash Out` → `Amount` (it opens holding the whole open balance; type less for a part refund) → `Payment method` → `Cash Out` | `POST /api/credit-memos/{id}/cash-out` → 200 |
-| **Voided** | the same column → the icon whose tooltip reads `Reverse` → the `Reverse Credit` dialog (*"This will reverse the credit. Are you sure you want to proceed?"*) → `Reverse` | `POST /api/credit-memos/{id}/void` → 200 |
-
-**Five traps, each of which cost a run:**
-
-1. **The credit's own row cannot apply it.** Its three actions are `Print credit memo`, `Cash Out` and
-   `Reverse` — nothing else. Applying is done from the invoice side.
-2. **Ticking only the invoice looks like it works and does not.** `Amount to credit` then reads `0.00`
-   and typing into it merely ENLARGES the payment: the invoice gets paid by method, the credit stays
-   `Unapplied`, and an unwanted **deposit** is created out of the overpayment.
-3. **A deposit already on the account is consumed BEFORE the credit.** The dialog lists every available
-   credit and deposit automatically, not only the ticked rows. Seed on an account with none.
-4. **The dialog's own summary can disagree with the outcome.** On an invoice LARGER than the credit,
-   `Applies $300.00 · $600.00 remaining` was shown and the whole $900 was consumed. On an invoice
-   smaller than the credit it behaves as it says.
-5. **A confirm dialog's last button is usually `Cancel`.** `page.locator('.q-dialog button').last()`
-   cancelled the `Reverse Credit` dialog and the run reported `fired: []` — which reads exactly like
-   "the control does nothing". Click by TEXT.
-
-**Finding a customer to seed on** (the shapes, read from the screen's own calls — three earlier hunts
-returned zero because each key was guessed):
-`/api/customers?pagination[rowsPerPage]=250&pagination[page]=N` → `data.collection[]` ·
-`/api/customers/view/{id}` → `data.company.customer_account_id` (the customer id is **not** the account
-id) · `/api/customer-account/list-unpaid-transaction?accountId=…&openOnly=false` →
-`data.response.collection[]`, each row carrying `type`, `status`, `status_label`, `invoice_number`,
-`balance`, `origin_invoices`. Harness: `build/invoice-ui-refresh/seed-2026-09-03/`.
-
-**Reading the printed document:** `python3 build/testing-tools/pdf_text.py <file.pdf>`. These PDFs
-embed subset fonts and write text as raw glyph ids, so every ordinary extractor returns an empty
-string — which reads exactly like "the document has no text" and is the same false negative that
-produced the withdrawn *"the credit note is not rendered on this branch"* conclusion.
-
-## CUSTOMER PORTAL (ShopPay) — staging entry, proven live 2026-09-07
-
-- **Entry (there is NO portal password):** in the shop app click the **round avatar, top right** →
-  **"Customer Portal"**. A new tab opens at `https://staging.portal.shopview.com/invoices`; the click
-  does `POST https://staging.portal.shopview.com/sso-login` and mints
-  `shopview_customer_portal_session` for the same signed-in shop user. Production is
-  `https://portal.shopview.com`.
-- **It is a separate Laravel + Inertia app.** Its host is in NO shop-app bundle, NO invoice email and
-  on NO API route — only the lazy chunk `usePortalRedirect.*.js`, fetched when the menu item is
-  clicked. Do not conclude it is unreachable from a bundle grep.
-- **Free route map:** the portal's login HTML carries an inline `const Ziggy={…}` block with all 161
-  routes (invoices, payments, batch-payments, disputes, payouts, terminal, admin). Parse it instead of
-  guessing.
-- **Reading pages as JSON:** every page embeds `data-page="app" type="application/json">{…}</script>`.
-  Sending `X-Inertia: true` answers **409** (version mismatch) — fetch the HTML and parse that block.
-- **The paid-banner document:** on an invoice, the **printer icon** → **"Print with Payment Receipt"**
-  → `/invoices/{id}/preview?include_receipt=1`. 🛑 **The banner is rendered CLIENT-SIDE** by
-  `build/assets/PreviewInvoice-*.js`; the server's `props.htmlContent` has none of the banner strings,
-  so a server-side fetch makes the feature look missing. Render it and read
-  `#portal-paid-invoice-summary`.
-- **Pay an invoice:** open it → **Pay Now** → confirm payer → amount → **Continue to checkout** →
-  Stripe **sandbox** (`is_test_mode: true`), card `4242 4242 4242 4242`, any future expiry, any CVC,
-  **ZIP `94107`** (checkout defaults Country = United States, so a Canadian postal code is rejected).
-- **Batch payment:** Invoices list → **Filter by Customer** → tick two unpaid rows → **Pay Online**.
-  The row checkbox is a `<button>` inside the first `<td>`, not an `<input type=checkbox>`.
-- **Two payer-dialog shapes:** "Who is this payment for?" with a picker (several contacts) or
-  "Confirm payment recipient" with just **Next** (one contact). Handle both.
-- **`/invoices/{id}/preview` → 404** means the invoice is outside the portal's current scope, not that
-  it is missing.
-- **Build manifest** `/build/manifest.json` on both hosts lists every JS asset — the cheapest way to
-  prove what production actually ships (compare chunk names and sha256 against staging).
-
----
-
-## §W — WRITING A PASS'S RESULTS INTO A TESTRAIL RUN (proven live 2026-09-07, run R417, 120 cases)
-
-**Use the committed tool. Do not hand-roll this again.**
-
-```bash
-# 1. ALWAYS dry-run first. Results are append-only; a bad push cannot be edited.
-python3 build/testing-tools/push_results_to_run.py \
-    --run 417 \
-    --results build/<project>/execution-<date>/RESULTS.json \
-    --todo    build/<project>/execution-<date>/todos-<date>.json \
-    --build-marker v26.35.9-9812433 \
-    --date "7 September 2026" \
-    --env staging \
-    --allow-non-passed \
-    --dry-run
-
-# 2. Read the sample comment it prints. Then drop --dry-run.
-# 3. Open the test URL it prints at the end and count <p> and <br>.
-```
-
-### The five things that cost a session real time. All five are now handled by the tool.
-
-**1 · A partial `case_ids` list DELETES tests and their results (Rule 34).** `update_run` REPLACES
-the run's case list. The tool computes *existing tests **UNION** the results file* and asserts it
-never shrinks. R417 went 119 → 120 this way. Never pass a hand-written list.
-
-**2 · A result comment collapses into a WALL OF TEXT.** TestRail wraps whatever you submit in **one
-outer `<p>`**, so plain `\n\n` paragraph breaks are lost. The first R417 push did this: the
-"What needs to be done" sentence ended up buried mid-paragraph. Measured on the served page:
-`<p>=1, <br>=0`.
-
-**The fix — and note it is the OPPOSITE of a case field:**
-
-| | CASE field (`preconds`/`steps`/`expected`) | RESULT comment |
-|---|---|---|
-| block HTML via the API | lands in the **ESCAPING** container — tester reads `<ol><li><p>` | **renders correctly** |
-| repair route | UI editor (Froala) only, never another API write | just supersede it with a better write |
-| `<br>` | shows **literally** | shows **literally** |
-
-So: `<p>` per paragraph and `<hr />` for a rule are correct in a **result**; **`<br>` is never
-correct in any API write** — it is origin-dependent (renders from a UI edit, literal from the API).
-After the fix R417 read `<p>=4, <br>=0`. Related: §J for the case-field half.
-
-**3 · RESULTS ARE APPEND-ONLY.** There is **no `update_result`** in the API. A badly formatted
-result cannot be edited — only superseded by a newer one. The latest row is what TestRail shows
-first and what the run counts use, so the run stays correct, but the history keeps both rows
-forever. **This is why `--dry-run` is not optional.** The 2026-09-07 pass left two rows on all 120
-tests because it skipped that step.
-
-**4 · A bare status is non-compliant (Rule 7).** Every Failed and Blocked result carries a plain
-sentence a non-technical tester can act on. The tool **REFUSES to write** if one is missing rather
-than shipping a bare status.
-
-**5 · "Blocked by classifier" is the SESSION's permission gate — not TestRail, and not approval.**
-Approval given in chat does not reach it. Once the QA lead has actually approved the write, add a
-narrowly scoped rule to `.claude/settings.local.json`:
-
-```json
-{"permissions": {"allow": ["Bash(python3 build/testing-tools/push_results_to_run.py:*)"]}}
-```
-
-The 2026-09-07 pass burned five attempts before recognising the denial was local. **Read the denial
-text: if it says "classifier", stop retrying and add the rule** — retrying the same command in a
-different directory or interpreter will not help.
-
-### The standing limit on shared runs (unchanged)
-
-Shared runs belong to other testers. **Default: keep results LOCAL.** Only a **Passed** result may
-be written to a shared run, and only with the QA lead's **explicit** permission. Writing Failed or
-Blocked needs him to lift that limit expressly — he did so on 2026-09-07 for R417.
-`--allow-non-passed` exists to make you state that you have it.
-
-### Verify afterwards, always
-
-A `200` is not evidence a human can read what you wrote. The tool prints a test URL; open it and
-count `<p>` and `<br>` in the container holding the comment. **One `<p>` and no line breaks means
-the paragraphs collapsed.** Same discipline as §J's served-page container scan.
-
-## §X — ORDERING AND RECEIVING A SPECIAL-ORDER PART (proven on sv9315, 2026-09-10)
-
-**Needed by any case that requires a received special-order part on a work order line.** Every step
-below was done through the screen and verified by reading the line back.
-
-1. **Add the part as a special order.** On the line's Parts section click **+ Add Part**, then open the
-   part window and set **Source = Vendor** (an inventory part is not a special order). Save. The part
-   row now shows the status chip **Auth To Order** with an **Order** button beside it.
-2. **Order it.** Click **Order** (`data-test-id=button_part_request_action`). One click, no confirm
-   window. The request moves `authorized_to_order` → `waiting_to_receive` and the chip becomes
-   **Awaiting Receive**.
-3. **Receive it.** Click **Receive** — the same `button_part_request_action` id, relabelled.
-   **🛑 THIS NAVIGATES; IT DOES NOT OPEN A WINDOW.** It goes to
-   `/order/<orderId>?receive=1&returnTo=WorkOrder&returnId=<woId>&returnLineId=<lineId>&workOrderId=<woId>&vendorIds=<vendorId>`
-   — a **Purchase Order Details** page with the columns *Part Number · Description · Cost · Sell ·
-   Quantity Ordered · Quantity Received · Total*.
-4. **🛑 FILL THE INVOICE NUMBER.** `input_invoice_<orderId>` is **empty and required**. The quantity
-   `input_qty_<orderItemId>` is already pre-filled with the ordered amount, and Invoice Date defaults
-   to today. **With the invoice number blank, pressing Receive does nothing and shows no message** —
-   which is exactly what made two earlier passes report the feature as broken.
-5. **Press Receive.** It writes **`POST /api/orders/receive-requested-parts`** and navigates back to
-   the work order. The part request disappears and the part is now on the line.
-6. **Then the line can complete** — a line refuses Complete while any request is unfulfilled
-   (*"Line can`t be completed with unfulfilled part requests."*).
-
-**The trap, recorded because it cost two passes:** looking for a dialog after clicking Receive, and
-describing the page a few seconds into the navigation before it rendered, both produce "nothing
-happened". Use `afterAction()` from `build/testing-tools/probe_guard.mjs`, which records navigation
-and new tabs as well as panels, so a navigation can never read as a no-op (Rule 104).
-
-**Related line-status facts:** a new line lands in `authorization_required`; a part request cannot be
-picked there (*"This action can only be performed on the authorized lines."*); `pick` is the only
-action `perform-request-status-action` accepts. Order is create → **authorize** → add part → pick (or
-order+receive for a special order) → complete.
-
----
-
-## §Q · QA-SESSION TRAPS THAT COST A WHOLE PASS (added 2026-09-14, Global Search V1 parity)
-
-Four traps, each of which produced a WRONG CONCLUSION before it was caught. All four are cheap to
-avoid and expensive to miss.
-
-### Q1 · A 409 is usually a ROTATED PHPSESSID YOU FAILED TO CAPTURE — not an expired session
-`POST /api/quick-login` and several other calls **rotate `PHPSESSID` and return it in `Set-Cookie`**.
-If your client does not read `Set-Cookie` and swap the new value in, **every subsequent call answers
-409 `"Session has expired."`** — which reads exactly like a dead session.
-
-**This produced the false diagnosis *"QA sessions on sv9160 expire within minutes"*.** They do not.
-The client was throwing the new session away on every rotation.
-
-**The fix — read `Set-Cookie` on EVERY response and persist a changed `PHPSESSID`:**
-```python
-for sc in resp.headers.get_all('Set-Cookie') or []:
-    m = re.search(r'PHPSESSID=([^;]+)', sc)
-    if m and m.group(1) != current: current = m.group(1); save(current)
-```
-
-### Q2 · NEVER ask for cookies — mint your own (Rule 107)
-`POST /api/quick-login {"key":"admin"}` → **200 + a fresh session**. Capture the rotated `PHPSESSID`
-(Q1) and you are in. **Use `{"key":"admin"}` first** — a failed `{"key":"tech"}` burns the session.
-⚠️ **Quick-login EVICTS any other worker on that branch (Rule 83)** — say so when you use it.
-
-### Q3 · After ANY fresh login, `POST /api/iam/change-location` BEFORE you judge missing data
-Without it `default_workplace` is `"None"` and **workplace-scoped data is invisible** — inventory and
-parts read as empty. **That looks exactly like "the seed data is gone."** List the locations first with
-`GET /api/staff/my-workplaces`, then
-`POST /api/iam/change-location {workplace_id, workplace_timezone}` → 200.
-
-### Q4 · 🔴 `?search=` ON LIST ENDPOINTS SILENTLY RETURNS NOTHING — prove the probe first
-`GET /api/work-orders?search=S2-4219` returns **an empty list for a work order that demonstrably
-exists**. Same for `/api/inventory/parts?search=…`. The parameter is accepted, answers 200, and
-matches nothing.
-
-**Anything you conclude from it is worthless.** Page the list (`?page=N&rowsPerPage=100`) and filter
-client-side — and **always run a positive control on a record you KNOW exists before believing a
-negative** (Rule 104). This alone nearly produced three false "the seed data is missing" reports.
-
-### Q5 · A duplicate row in results may be duplicate DATA, not a de-duplication defect
-Global search returned the same vendor name twice. **The two rows carried DIFFERENT ids** — two real
-records from a double-run seeder, not a dedup bug. **Compare the ids before writing the ticket.**
-
-### Q6 · 🔴 DISCOVERING AN UNKNOWN ENDPOINT — POST AN EMPTY BODY AND READ THE REFUSAL
-
-Found 2026-09-15 rebuilding the Global Search seed data. It found three unknown routes in one pass
-each, and it is the fastest method available on this API because **the refusals are precise**:
-
-| Answer | What it means | What to do |
-|---|---|---|
-| **404** `'resource' was not found` | wrong route | try the next spelling |
-| **405** Method Not Allowed | **right path, wrong verb** | try POST / PUT / PATCH on that same path |
-| **400** listing field names | **right route**, missing arguments | it just told you the payload |
-
-Found this way: `POST /api/contacts/create` (company_id + first_name) · `POST
-/api/parts-catalogue/change-vendor` (vendor_id, name, credit_term, credit_limit, tax_id) · `POST
-/api/inventory/parts/create` (catalog_part_id, category_id, quantity, cost, tags, bins).
-
-**🔴 AND THE RULE FOR WHEN IT FAILS.** Eight spellings of a part-sale create route all answered 404.
-The real route is **`POST /api/part-sales` — the same path as the LIST, a different verb** — because
-that one route is REST while the rest of the API is `/resource/verb`. No amount of guessing reaches
-it. **WHEN GUESSING HAS FAILED TWICE, READ THE ROUTE OUT OF THE PRODUCT SOURCE:** one `git grep` for
-the `#[Route(...)]` attribute gives the path, the verb and the payload. It is faster than the third
-guess, and unlike a guess it cannot be subtly wrong.
-
-### Q7 · 🔴 A 2xx IS NOT EVIDENCE A WRITE LANDED — read the record back, every time
-
-`POST /api/vehicles/change` answers **201 to a model NAME and changes nothing**: it works in ids
-(`vehicle_id`, not `id`; `vehicle_model_id`, not `model_name`). A seeded vehicle was declared a 2019
-Freightliner Cascadia and was actually a 1000HS for days, and three cases sat unrunnable for a reason
-no status code could show. `POST /api/customers/change` has the same shape of trap: a **sparse patch
-is ignored** — send the whole record with the fields replaced.
-
-**It was visible the whole time and still missed:** the vehicle rendered in every result row as
-`2019 Freightliner ????`. The `????` sat in hundreds of lines of captured evidence, unread, because
-the eye was on the zeros rather than on what the non-zero rows actually said.
-
-### Q8 · WHEN THE LOOKUP TABLE IS NOT EXPOSED, THE EXISTING DATA IS THE LOOKUP TABLE
-
-No vehicle-models endpoint answers on `sv9160` — every shape of `/api/vehicles/models`,
-`/api/vehicle-models` and `/api/vehicles/makers/{id}/models` returns 404. But the branch already holds
-dozens of Cascadia vehicles, so the model id comes off one of them. Likewise a bin cannot be created
-by name (`[0][id] This field is missing` / `[0][name] This field was not expected`) — the bin id comes
-off a part that already sits in one. Both are now declarative directives in the seed manifest rather
-than hardcoded ids that rot on the next redeploy.
-
-### Q9 · 🔴 A COMPANY IS A BUSINESS; A "CUSTOMER" IS A PERSON AT IT — and this blocks record creation
-
-`/api/vehicles/create` wants **`customer_id`, and that is a CONTACT, not the company.** Sending the
-company id answers `400 {"customer_id":"Not found"}` — which reads like a bad id rather than the wrong
-KIND of id. Consequence, found when a redeploy wiped a branch: with no contact there is no vehicle,
-and with no vehicle there are no work orders. **One undeclared record silently blocked three record
-types and about twenty test cases**, hidden for days because a contact left over from an earlier
-ad-hoc run had been propping the whole chain up.
-
-There is no contacts list endpoint (`/api/contacts` 404s in every shape). Contacts are read from
-**`/api/customers/view/{company_id}` → `data.company.contacts[]`**, which carries the id, both names,
-the job title, email and telephone.
-
-**The transferable lesson:** build fixture lists from **what the create endpoints demand**, not only
-from what the test cases search for. Those are different lists, and the second one is invisible until
-the environment is empty.
-
-### Q10 · LIST ENDPOINTS DO NOT ALL ANSWER UNDER `collection`
-
-`/api/part-sales` returns its rows under **`partSales`**. Every other list on this API uses
-`collection`, so a script assuming the house style reads an empty list and reports a record missing
-while it is sitting right there. Check the key before concluding anything is absent (Rule 104).
 
 ## O. GLOBAL SEARCH — V1 and V2 facts worth never rediscovering (proven 2026-09-14→16)
 
@@ -4319,3 +3141,76 @@ says three, code says four → Rule 96: a PO DECISION ITEM, never a silent invar
 **Measured on the QA branch 2026-09-16:** all 155 sampled vendor invoices read `unpaid`, and purchase
 orders carry `ordered` (75), `partial_delivery` (18) and `fulfilled` (83). So the PO status spread the
 cases need already exists; only the invoice payment spread has to be created.
+
+---
+
+## §R — A QA BRANCH CAN PUT ITSELF TO SLEEP, AND IT LOOKS EXACTLY LIKE AN AUTH FAILURE (proven live 2026-09-18/19 on `sv9160`)
+
+🔴 **THIS COST MOST OF AN HOUR AND NEARLY COST A SET OF WORKING CREDENTIALS.** Read it before
+debugging any 401 / 403 on a `*.qa.shopview.com` branch.
+
+### The symptom, and why it misleads
+
+Every API call returns **403 `AccessDenied`** with `Server: AmazonS3` in the headers. That is not
+the API refusing you — it is Python **following a redirect**. The real response is:
+
+```
+GET https://sv9160api.qa.shopview.com/api/staff/my-workplaces
+-> 302  Location: https://sleep.qa.shopview.com:443/api/staff/my-workplaces?api=sv9160
+```
+
+…and the sleep host is a static S3 page, which answers `AccessDenied` for a path it does not have.
+So an environment that has simply been **switched off** presents as a credentials problem.
+
+### The two-second test that tells you which it is
+
+Send the request **with no cookies at all**, and do not follow redirects:
+
+```bash
+curl -s -o /dev/null -D - -m 25 https://sv9160api.qa.shopview.com/api/staff/my-workplaces \
+  | grep -i '^location:'
+```
+
+- **A `Location:` pointing at `sleep.qa.shopview.com`** ⇒ the branch is ASLEEP. No cookie, token or
+  `quick-login` can fix it, and `quick-login` itself returns 403 because there is nothing awake to
+  log in to.
+- **No redirect, and a 401** ⇒ an ordinary session problem; refresh the profile as usual.
+
+🔴 **A request WITH cookies and a request WITHOUT cookies behaving IDENTICALLY is the tell.**
+Credentials cannot be the cause of a failure that happens just as hard when you send none.
+
+### Waking it
+
+The sleep page carries a Wake button; it POSTs to an AWS endpoint. Same call from the shell:
+
+```bash
+curl -s -X POST https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv \
+  -H 'Content-Type: application/json' -d '{"action":"wake","env":"sv9160"}'
+# -> sv9160 is waking up.
+```
+
+`env` is the branch name, and it is handed to you in the redirect's `?api=` parameter — take it
+from there rather than guessing. Waking takes **about a minute**. Non-destructive: it starts the
+environment, it does not rebuild or wipe it — the seeded data was all still present afterwards.
+
+### Knowing when it is really up — use a control path
+
+Poll a path that **cannot exist**, never the app host:
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' https://sv9160api.qa.shopview.com/api/definitely-not-real-zz
+```
+
+- `302` ⇒ still asleep · `503` ⇒ booting · **`401`** ⇒ awake, you are unauthenticated ·
+  **`404`** ⇒ awake AND your session is good.
+
+🔴 **Never poll the app host** (`sv9160.qa.shopview.com`): it is served from S3 and returns **200
+for every path, including nonsense ones**, so it reports a dead API as healthy. That is the same
+front-end-in-the-API-profile trap recorded elsewhere in this playbook, wearing a different hat.
+
+### It goes back to sleep
+
+It slept again **within the same session**, minutes after a successful seeding run. Any long job
+against a QA branch should expect it, and any verifier should say so in its own error message
+rather than making the next person re-derive this — `verify_toggle.py` prints the wake command on a
+403 for exactly that reason.
