@@ -1206,6 +1206,36 @@ had to be restored the next day.**
 | A comment | The only place "it passes now" goes — `→ QA Status: Passed`, with today's screenshot. Match the QA lead's own short format. |
 | The status | **His to set.** Never moved by us, and the report is never closed by us (L0131). |
 
+### 🛑 THE SIMPLIFIED TICKET SHAPE — REPORT THE GAP, DO NOT PRESCRIBE THE FIX (QA lead, 2026-09-20, via a ChatGPT review he endorsed)
+
+**His instruction:** *"I want the tickets to be simplified the same way … make sure the screenshots
+are placed inline and stay related to the text, the screenshots should not look unrelated to the
+text."*
+
+**The order, and nothing else in it:**
+
+| # | Section | Contents |
+|---|---|---|
+| 1 | **Description** | 2–3 sentences: what is correct, what is now wrong, then a short bullet list of the *kinds* of thing no longer working. No theory. |
+| 2 | **Steps to Reproduce** | one `h4.` per example: numbered steps → **the picture for THAT example, immediately under its own steps** → `*Actual:*` / `*Expected:*` → the PRD sentence in a `{quote}` block |
+| 3 | **Technical Finding** | the mechanism, in two or three sentences, explicitly labelled *a QA observation, not the prescribed implementation* |
+| 4 | **Documentation Gap** *(only where the PRD and the product disagree)* | the two values side by side and the sentence *"whichever value is intended, the PRD and the product currently disagree"* |
+| 5 | **Regression Context** *(only where something was previously fixed)* | when it appeared, and **what must NOT be reverted** |
+| 6 | **Environment** · 7 **Sources** · 8 **Test Coverage** | unchanged |
+
+**Three rules this encodes:**
+1. **NEVER a "Suggested Fix" section.** QA demonstrates the gap; choosing the replacement number is a
+   product and engineering decision. **But a value the PRD and the product disagree on is a FINDING,
+   not a fix** — it moves to *Documentation Gap* and is never dropped with the suggestions.
+2. **Each picture sits under the steps that produce it**, between the steps and the verdict. A picture
+   that floats away from the text that explains it reads as unrelated and gets skipped.
+3. **Explain the mechanism once, briefly.** My version spent four paragraphs proving the score has a
+   maximum. Two sentences carry the same weight: the figure, and the one measurement that proves it is
+   a real maximum (*230 results, nothing above it; `brake` customers reach only 0.32*).
+
+Worked example: **SV-10277**, rewritten 2026-09-20 — 903 words to **657**, same three pictures, same
+five PRD quotes, same test coverage, nothing evidential lost.
+
 ### 🛑 THREE THINGS EVERY COMMENT CARRIES, WITHOUT EXCEPTION (QA lead, 2026-09-20)
 
 **Verbatim:** *"keep the comment PO friendly/simplified and with annotated screenshots — your no

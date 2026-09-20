@@ -3616,3 +3616,21 @@ nothing). Done properly, exactly one tab fails: **Parts** records a name that be
 an ordinary word match. Customers, Vendors and Assets are correct. Raised as **SV-10279**.
 **The rule:** real data almost never holds the other signals equal, and the score ceiling hides the
 difference anyway — so seed the pair, or say nothing.
+
+## L0175 — Report the gap, do not prescribe the fix; and keep every picture under the steps that produced it (2026-09-20)
+The QA lead put **SV-10277** through a ChatGPT review and endorsed the result: *"the ticket is
+explaining the scoring theory too much … keep all screenshots, PRD evidence, TestRail links and
+technical findings, but simplify the story."*
+**What I had been doing wrong:** (a) a **Suggested Fix** section — choosing the replacement number is
+a product and engineering decision, not QA's; (b) four paragraphs proving the score has a maximum,
+where two sentences carry it; (c) a long before/corrected/broke narrative where a short
+**Regression Context** section says the same thing and also states what must not be reverted.
+**What I kept that the review would have dropped:** the **+0.10 written vs +0.50 measured**
+discrepancy. It sat inside *Suggested Fix*, so removing that section would have deleted a real
+finding — it moved to a **Documentation Gap** section instead. *Check what a simplification takes
+with it before accepting it.*
+**Picture placement is part of the shape:** each picture goes directly under the steps that produce
+it and above the Actual/Expected verdict. A picture that drifts from the text explaining it reads as
+unrelated and gets skipped.
+Result: 903 words to 657, same three pictures, same five PRD quotes, same test coverage, nothing
+evidential lost. Recorded as the standing ticket shape in `build/skills/06-DEFECT-PREP.md`.

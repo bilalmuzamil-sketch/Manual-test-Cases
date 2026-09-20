@@ -1,97 +1,79 @@
-*Split from SV-10161.* The fix on that ticket works and should stay. This ticket is about what stopped working because of it.
+*Split from SV-10161.*
 
 ----
 
 h3. Description
 
-h4. How search worked before the fix
+After the fix for SV-10161, direct name matches are correctly ranked above matches found through secondary fields.
 
-Search gives every result a score and shows the highest score first. Two things make up that score:
-* *how well the result matches* what you typed
-* *how recent and how important the record is* — a part that is in stock, a customer with open work orders, a record viewed recently
+However, results with a direct name match now frequently receive the *same maximum score*, which prevents the other ranking signals defined in the PRD from affecting their order.
 
-Because the second part could be worth almost as much as the first, a company that matched only on a contact's name or email address could rank above a company whose *own name* matched what you typed. That is the problem reported on SV-10161.
+Global Search is no longer distinguishing between:
 
-h4. What the fix corrected
-
-The bonus given to a match on a record's *own name* was raised. A company whose own name matches now appears above a company that matches only on a contact's details. Checked on 20 different person-name searches across 230 customer rows — correct every time. *This part is right and should stay.*
-
-h4. What the fix broke
-
-A score cannot go above the maximum. The bonus was raised so far that a result whose own name contains the word you typed now reaches *the maximum score on the match alone*, before anything else about it is counted. No signal can raise that score and none can lower it — so being in stock, having open work orders, being viewed recently, and how closely the name matches no longer change the order.
-
-When several results reach the maximum score, the tie is broken by recency, so the most recently updated record is shown first.
-
-For example,
-* a part that is *in stock* and a part that is *out of stock* score the same
-* a company whose name *starts with* the word and one where the word is in the middle score the same
-* typing two common words returns every list with all its rows scoring the same
+* parts that are in stock and parts that are out of stock
+* a name that *begins* with the search text and one that merely *contains* it
+* results that should receive different importance and recency signals
 
 h3. Steps to Reproduce
 
-*Example 1 — an out-of-stock part scores the same as one that is in stock*
+h4. Example 1 — stock is not affecting ranking
 
-# Press {{Ctrl}}+{{K}}
-# Type {{shoe}}
+# Open Global Search ({{Ctrl}}+{{K}})
+# Search {{shoe}}
 # Open the *Parts* tab
 
 !SIMPLE1-parts-v4.png|width=760,height=785!
 
-*Actual Result:* 20 parts come back, 7 of them showing *0 Available*, and all 20 score the same.
-*Expected Result:* the parts that are in stock score higher, so they appear above the ones showing *0 Available*.
+*Actual:* all 20 parts receive the same score, including the 7 that show *0 Available*.
+*Expected:* an in-stock part receives a ranking signal the out-of-stock ones do not, so stock availability is able to affect the order.
 
-*PRD 6.1, exactly as written:*
 {quote}Parts. In stock (>0) → +0.20; bin location present → +0.05; sold/used in last 30 days (frequency, log-scaled) → up to +0.15; viewed recently → +0.10.{quote}
 
-----
+h4. Example 2 — match strength is not affecting ranking
 
-*Example 2 — a company whose name starts with the word scores the same as one where the word is in the middle*
-
-# Press {{Ctrl}}+{{K}}
-# Type {{mobile}}
+# Open Global Search ({{Ctrl}}+{{K}})
+# Search {{mobile}}
 # Open the *Customers* tab
 
 !SIMPLE2-companies-v4.png|width=760,height=850!
 
-*Actual Result:* {{Mobile Truck & Trailer Repair Island Lake}} and {{Henderson Mobile Truck Repair}} score the same.
-*Expected Result:* the company whose name starts with the word scores higher, so it appears above the other.
+*Actual:* {{Mobile Truck & Trailer Repair Island Lake}} and {{Henderson Mobile Truck Repair}} receive the same score.
+*Expected:* the PRD separates these two kinds of match, so they should not receive identical scores.
 
-*PRD 6.1, exactly as written:*
 {quote}Prefix match on primary name field → +0.70.{quote}
 {quote}Whole-word match anywhere in indexed fields → +0.50.{quote}
 
-----
+h4. Example 3 — multiple result types reach identical scores
 
-*Example 3 — every list returns rows that all score the same*
-
-# Press {{Ctrl}}+{{K}}
-# Type {{truck repair}}
+# Open Global Search ({{Ctrl}}+{{K}})
+# Search {{truck repair}}
+# Review the result tabs
 
 !SIMPLE3-everything-v4.png|width=760,height=849!
 
-*Actual Result:* all 20 rows score the same in *Work orders*, *Customers*, *Vendors*, *Part sales*, *Purchase orders* and *Vendor invoices*, and all 20 in *Assets* score the same as each other. The order shown is decided by the recency tie-break alone.
-*Expected Result:* the rows are ordered by their scores, and the tie-break is used only where two rows genuinely score the same.
+*Actual:* all 20 rows receive an identical score in *Work orders*, *Customers*, *Vendors*, *Part sales*, *Purchase orders* and *Vendor invoices*, and all 20 in *Assets* receive an identical score to each other. Their displayed order is then determined by the recency tie-break.
+*Expected:* ranking combines match quality with the entity's own recency and importance signals, and the recency tie-break decides the order only where the final scores genuinely tie.
 
-*PRD 6.1, exactly as written:*
 {quote}Each candidate gets a numeric score combining match quality and entity-specific recency/importance signals.{quote}
 {quote}The score is clamped to a sane range; ties are broken by recency (most recently updated wins).{quote}
 
-h3. Why This Happens
+h3. Technical Finding
 
-The maximum score is 1.00. The bonus for finding the word in a record's own name is now 0.50 by itself, on top of the 0.50 for a whole-word match — so a name match reaches 1.00 before any other signal is added. Every signal PRD 6.1 adds after that is clamped away.
+QA observed that the maximum score is *1.00*, and that it is a real maximum rather than the highest score of the day: across 230 results nothing exceeded it, and other searches finish well below it — the customers returned for {{brake}} reach only 0.32.
 
-1.00 really is the maximum, and not just the highest score returned that day: across 230 results nothing went above it, and plenty of searches finish well below it — the customers returned for {{brake}} stop at 0.32.
+Direct-name scoring appears able to reach 1.00 from match scoring alone, which leaves no room for the further PRD signals to change the final score. This explains the behaviour above; it is offered as a QA observation, not as the prescribed implementation.
 
-*The list can still appear correctly ordered*, because results on the same score are separated by the recency tie-break. It is that tie-break deciding the order, not the scoring rules in PRD 6.1.
+h3. Documentation Gap
 
-h3. Suggested Fix
+PRD 6.1 still gives the bonus for a match on the primary display name as *+0.10*. QA measured the bonus applied by the product as *at least +0.50*, on a pair of customers identical apart from whether the search text sits in the name or in the address. Whichever value is intended, the PRD and the product currently disagree.
 
-# Set the bonus for a record's own name high enough to rank above a contact-field match, but low enough that the score stays below the maximum — so the in-stock, open-work-order and recency signals can still change the order.
-# Update PRD 6.1, which still gives this bonus as *+0.10* while the product applies at least *+0.50*.
+h3. Regression Context
+
+This ranking behaviour appeared after the SV-10161 fix. *The SV-10161 behaviour itself is correct and should remain:* a customer's own name should rank above a match found only through contact information. That was re-checked across 20 person-name searches and 230 customer rows and was correct every time.
 
 h3. Environment
 
-Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Checked 20 September 2026.
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Verified 20 September 2026.
 
 h3. Sources
 
