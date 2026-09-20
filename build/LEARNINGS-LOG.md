@@ -3564,3 +3564,17 @@ borrowed image. Binds prose, annotations, picture tables, captions and titles.
 'reference'. Please keep a separate heading for everything."*** A single `---REFERENCE---` block is
 read and skipped as one unit, so anything buried in it is lost — including asks and warnings. Banned.
 One short named heading per subject instead. Recorded in `06-DEFECT-PREP.md` and `00-COMMON-CORE.md`.
+
+## L0171 — A permission list is data; the dependencies between permissions are rules, and they live on the settings screen (2026-09-20)
+I filed **SV-10278** claiming that removing *See Financial Data* wrongly hid the whole *Part sales*
+heading from search. My evidence was that the role's permission list, read back from the application,
+still contained `partSalesView`. **The QA lead corrected it:** the roles and permissions screen states
+the dependency outright — *"Part Sales requires See Financial Data. Enable it to grant this
+permission?"* — so switching financial data off switches Part Sales off with it and the heading is
+correctly absent. Ticket withdrawn, links removed, transitioned to OBSOLETE the same day.
+**What I actually got wrong:** I treated a derived list as the rulebook. Reading the list is not
+reading the rules. **His standing instruction:** when disabling one thing makes something apparently
+unrelated disappear, open the roles and permissions screen for that same role and check whether the
+first auto-disabled the second; if it did, the disappearance is correct. Generalises: wherever setting
+A appears to change unrelated behaviour B, the screen that owns A is a source and must be read first.
+Recorded in `build/skills/06-DEFECT-PREP.md`.

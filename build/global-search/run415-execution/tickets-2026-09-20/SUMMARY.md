@@ -47,3 +47,40 @@ The recorded ticket layout ends at **Sources** and bars case ids and run links f
 (QA lead, 2026-09-16/17). His instruction today is the opposite — *"mention the test case run link at
 the bottom of that ticket"* — so a **Test Coverage** section now follows Sources on both tickets.
 Latest wins (Rule 32); the older ruling is superseded and dated in the skill.
+
+
+---
+
+## CORRECTION, same day — SV-10278 was WRONG and is withdrawn
+
+The QA lead: *"This is an expected behaviour that part sales is tied to Financial data, so if you
+disable financial data the part sales automatically gets disabled."* The roles and permissions screen
+says it outright: **"Part Sales requires See Financial Data. Enable it to grant this permission?"**
+
+So the only anomaly my sweep found was not an anomaly. **The permission behaviour on this build is
+correct in every case measured.**
+
+**What I did about it:** withdrawal comment posted on SV-10278 naming my mistake · all three
+`relates to` links removed (SV-9162, SV-10161, SV-10277) · transitioned to **OBSOLETE** ·
+**the parent field could NOT be cleared** — Jira answers *"You can not remove a subtask's parent"* for
+this issue type, so SV-9162 still shows as its parent although the ticket is obsolete and unlinked.
+Never deleted (rule G4).
+
+**What I got wrong, precisely:** I read the role's permission list back from the application, saw
+`partSalesView` still in it, and treated that as proof the role held the permission. A permission list
+is data; the dependencies BETWEEN permissions are rules, and the rules live on the roles and
+permissions screen, which I never opened. Recorded as a standing rule in `06-DEFECT-PREP.md` and as
+learning **L0171**.
+
+**C44882's recorded result was rewritten** to state the dependency as correct behaviour rather than
+pointing at a separate report.
+
+## Gaps closed after access was restored
+
+| Check | Result |
+|---|---|
+| **C44880** records from another organisation | **Passed** — the branch holds 2 organisations; ours owns 499 companies, the other owns 1 (`Counter Sale`), which search never returns. Caveat recorded: a one-record sample. |
+| **C55717** recently viewed respects current access | **Passed** — a technician opened a work order and it appeared in their recently viewed list; with work-order access removed, every work order entry is gone and only customers remain. |
+| **C55718** an exact record number you cannot reach | **Passed** — typing `S9160-17671` with access returns it and pins it at the top; without access it returns nothing at all and every heading is empty. |
+
+Technician role restored and read back in both runs (`c55717_18.json`, `"restored": true`).

@@ -1,0 +1,26 @@
+[
+ {
+  "cid": "C44882",
+  "status": "Passed",
+  "note": "each permission bundle hides exactly the kinds of record it owns, and taking away the financial permission removes the prices.",
+  "evidence": "Re-checked on 20 September 2026 on build v26.36.8-d146c39 by switching the technician's role one bundle at a time and searching the same five words each time.\n\n  Parts taken away        -> the Parts heading is gone, nothing else changes\n  Work Orders taken away  -> the Work orders heading is gone, nothing else changes\n  Customers taken away    -> the Customers AND Assets headings are gone together\n  Vendor & Order Management taken away -> Vendors, Purchase orders and Vendor invoices are gone together\n  Part Sales taken away   -> the Part sales heading is gone, nothing else changes\n  Financial data taken away -> every price disappears from the rows that carry one (parts 3 of 3 becomes 0 of 3; purchase orders 4 of 4 becomes 0 of 4; vendor invoices 4 of 4 becomes 0 of 4)\n\nTaking the financial permission away ALSO removes the Part sales heading. That is correct and expected: the roles and permissions screen states that Part Sales requires See Financial Data, so switching the financial permission off switches Part Sales off with it.\n\nThe technician's normal role was put back afterwards and read back to confirm it."
+ },
+ {
+  "cid": "C44880",
+  "status": "Passed",
+  "note": "a company belonging to a different organisation is never returned, while our own companies are.",
+  "evidence": "Checked on 20 September 2026 on build v26.36.8-d146c39.\n\nThe branch holds two organisations. Ours owns 499 companies; the other owns one, named 'Counter Sale'.\n\n  Searching for one of our own companies returns it.\n  Searching for 'Counter Sale' returns no customer rows at all, and that company is not among them.\n\nWorth knowing when reading this: the other organisation holds only one company on this branch, so the evidence is one record rather than a broad sample. Nothing leaked, but the sample is small."
+ },
+ {
+  "cid": "C55717",
+  "status": "Passed",
+  "note": "the recently viewed list drops the records a person is no longer allowed to see.",
+  "evidence": "Checked on 20 September 2026 on build v26.36.8-d146c39.\n\nAs a technician who IS allowed to see work orders, a work order was opened and the recently viewed list then showed it, alongside several customers.\n\nThe same person's role was then changed to one WITHOUT work order access. Their recently viewed list now contains customers only - every work order entry is gone, including the one they had just opened.\n\nThe technician's normal role was put back afterwards and read back to confirm it."
+ },
+ {
+  "cid": "C55718",
+  "status": "Passed",
+  "note": "typing the exact number of a record you are not allowed to see brings back nothing at all.",
+  "evidence": "Checked on 20 September 2026 on build v26.36.8-d146c39.\n\nAs a technician who IS allowed to see work orders, typing the work order number S9160-17671 returns that work order, and it is lifted to the top of the panel as a single row.\n\nThe same person's role was then changed to one WITHOUT work order access. Typing the identical number returns nothing - no single row at the top, and every heading comes back empty.\n\nThe technician's normal role was put back afterwards and read back to confirm it."
+ }
+]

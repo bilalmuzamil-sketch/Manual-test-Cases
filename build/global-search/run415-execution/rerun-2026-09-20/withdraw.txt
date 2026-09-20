@@ -1,0 +1,9 @@
+h3. Withdrawn — this is expected behaviour, not a fault
+
+*Part Sales depends on See Financial Data.* The roles and permissions screen states it directly: when Part Sales is switched on without See Financial Data, the application asks *"Part Sales requires See Financial Data. Enable it to grant this permission?"*
+
+So switching off See Financial Data switches Part Sales off with it, and the Part sales heading is then correctly absent from search. Nothing is wrong.
+
+*My mistake, and how I made it:* I read the role's permission list back from the application and saw Part Sales still listed, and concluded from that alone that the role held the permission. I did not open the roles and permissions screen, where the dependency is stated in plain words. Reading a list is not the same as reading the rules that govern the list.
+
+This ticket is withdrawn and detached from its story. The permission checks it came from are unaffected — they pass.

@@ -1206,6 +1206,33 @@ had to be restored the next day.**
 | A comment | The only place "it passes now" goes — `→ QA Status: Passed`, with today's screenshot. Match the QA lead's own short format. |
 | The status | **His to set.** Never moved by us, and the report is never closed by us (L0131). |
 
+### 🛑 BEFORE CALLING A PERMISSION SIDE-EFFECT A DEFECT, OPEN THE ROLES AND PERMISSIONS SCREEN (QA lead, 2026-09-20)
+
+**Verbatim:** *"if you disable something and find that something else which apparently is not related
+to what you have disabled had also got disabled do check in the roles and permission for the same role
+if disabling one thing has also auto disabled that. If disabling something auto disables something
+else, and then it disappears from search then its ok."*
+
+**The incident this comes from:** I filed **SV-10278** saying that removing *See Financial Data* wrongly
+hid the whole *Part sales* heading, because the role's permission list, read back from
+`/api/auth/me/fe-permissions`, still contained `partSalesView`. The roles and permissions screen states
+the dependency in plain words — *"Part Sales requires See Financial Data. Enable it to grant this
+permission?"* — so the behaviour is correct and the ticket was withdrawn the same day.
+
+**The rule:** a permission list is DATA; the dependencies between permissions are RULES, and the rules
+live on the roles and permissions screen. **Reading the list is not reading the rules.** So when
+switching one permission off makes something apparently unrelated disappear:
+
+1. **Open the role in Administration → Staff → Roles** and look at the two permissions together.
+2. **Toggle the dependent one ON with the other OFF** and read the dialog the application shows — a
+   dependency announces itself there, in the product's own words, and that sentence is the evidence.
+3. Only if the screen shows **no** dependency is the disappearance a candidate defect.
+4. Quote the dialog verbatim in whatever you write, exactly as a spec quote (Rule 106's live-source
+   requirement applies to the product's own configuration screens, not only to the PRD).
+
+**This generalises beyond permissions:** wherever setting A appears to change unrelated behaviour B,
+the settings screen that owns A is a source and must be read before B is called broken.
+
 ### 🛑 A NUMBER THE READER CANNOT INTERPRET IS JARGON — GIVE THE PRODUCT'S OWN LABEL, OR SAY THE PLAIN THING (QA lead, 2026-09-20)
 
 **Verbatim:** *"When you say 'a part with 176 on the shelf and a part with none score the same' —
