@@ -269,7 +269,7 @@
     "list": "/api/vehicles",
     "coll": "collection",
     "field": "vin",
-    "value": "ZZVORTAC00000000001",
+    "value": "PARITYAST00000001",
     "control": null
    },
    "create": {
@@ -279,7 +279,7 @@
      "model_name": "Cascadia",
      "year": 2019,
      "unit": "ZZVORTAC-A1",
-     "vin": "ZZVORTAC00000000001",
+     "vin": "PARITYAST00000001",
      "licence_plate": "ZZVORTAC-A1"
     },
     "inject": {
@@ -313,7 +313,7 @@
     "list": "/api/vehicles",
     "coll": "collection",
     "field": "vin",
-    "value": "PARITYZZVORTAC00002",
+    "value": "PARITYAST00000002",
     "control": null
    },
    "create": {
@@ -322,9 +322,9 @@
      "maker_name": "Freightliner",
      "model_name": "Cascadia",
      "year": 2019,
-     "unit": "UNIT-ZZVORTAC-B2",
-     "vin": "PARITYZZVORTAC00002",
-     "licence_plate": "UNIT-ZZVORTAC-B2"
+     "unit": "UNITBZZVORTACX2",
+     "vin": "PARITYAST00000002",
+     "licence_plate": "UNITBZZVORTACX2"
     },
     "inject": {
      "customer_id": "pfx_asset_contact",
@@ -343,7 +343,7 @@
     "endpoint": "/api/vehicles/change",
     "whole_record": true
    },
-   "_why": "B: the keyword sits MID-FIELD. Same owner, same make, model and year as A, so only the position of the keyword differs."
+   "_why": "B: the keyword sits MID-FIELD with NO delimiter before it. That detail matters: on assets the product called UNIT-ZZVORTAC-B2 a `prefix` match, so it appears to treat a token START as a prefix. Without the dash the keyword is genuinely mid-token, which is the honest equivalent of \"Bolton ZZVORTAC Services\" on a customer. Same owner, make, model and year as A, so only the keyword position differs."
   },
   {
    "key": "pfx_part_a_cat",
@@ -356,14 +356,14 @@
     "list": "/api/parts-catalogue/catalogue-parts",
     "coll": "collection",
     "field": "part_number",
-    "value": "ZZVORTAC-9001",
+    "value": "PARITYPN-9001",
     "control": "21-361"
    },
    "create": {
     "endpoint": "/api/parts-catalogue/add-catalogue-part",
     "payload": {
      "name": "ZZVORTAC Brake Kit",
-     "part_number": "ZZVORTAC-9001",
+     "part_number": "PARITYPN-9001",
      "tags": [
       "ZZAUTOTEST"
      ]
@@ -373,7 +373,7 @@
     "part_number",
     "name"
    ],
-   "_why": "A: the DESCRIPTION begins with the keyword. Under the PRD this should score +0.70."
+   "_why": "A: the DESCRIPTION begins with the keyword. PRD section 4 names the description as the field displayed as a part's name, so this is the prefix case the rule is about."
   },
   {
    "key": "pfx_part_a_inv",
@@ -387,7 +387,7 @@
     "list": "/api/inventory/parts",
     "coll": "collection",
     "field": "part_number",
-    "value": "ZZVORTAC-9001",
+    "value": "PARITYPN-9001",
     "control": "P550848"
    },
    "create": {
@@ -405,7 +405,7 @@
       "list": "/api/parts-catalogue/catalogue-parts",
       "coll": "collection",
       "match_field": "part_number",
-      "value": "ZZVORTAC-9001",
+      "value": "PARITYPN-9001",
       "take": "id",
       "take_as": "catalog_part_id",
       "also_take": {
@@ -450,14 +450,14 @@
     "list": "/api/parts-catalogue/catalogue-parts",
     "coll": "collection",
     "field": "part_number",
-    "value": "ZZVORTAC-9002",
+    "value": "PARITYPN-9002",
     "control": "21-361"
    },
    "create": {
     "endpoint": "/api/parts-catalogue/add-catalogue-part",
     "payload": {
      "name": "Heavy Duty ZZVORTAC Filter",
-     "part_number": "ZZVORTAC-9002",
+     "part_number": "PARITYPN-9002",
      "tags": [
       "ZZAUTOTEST"
      ]
@@ -467,7 +467,7 @@
     "part_number",
     "name"
    ],
-   "_why": "B: the keyword sits MID-DESCRIPTION as a whole word. Under the PRD this should score +0.50 - i.e. BELOW A. The defect is that both come back on the same score."
+   "_why": "B: the keyword sits MID-DESCRIPTION as a whole word - the weaker match under the PRD."
   },
   {
    "key": "pfx_part_b_inv",
@@ -481,7 +481,7 @@
     "list": "/api/inventory/parts",
     "coll": "collection",
     "field": "part_number",
-    "value": "ZZVORTAC-9002",
+    "value": "PARITYPN-9002",
     "control": "P550848"
    },
    "create": {
@@ -499,7 +499,7 @@
       "list": "/api/parts-catalogue/catalogue-parts",
       "coll": "collection",
       "match_field": "part_number",
-      "value": "ZZVORTAC-9002",
+      "value": "PARITYPN-9002",
       "take": "id",
       "take_as": "catalog_part_id",
       "also_take": {

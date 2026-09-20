@@ -178,26 +178,37 @@ R += [
    'confuse the comparison.'),
  contact('pfx_asset_contact', 'pfx_asset_owner', 'Parity',
    'Required by /api/vehicles/create - customer_id there is the CONTACT, not the company.'),
- vehicle('pfx_asset_a', f'{KW}00000000001', f'{KW}-A1', 'pfx_asset_owner', 'pfx_asset_contact',
+# 🔴 THE VINs ARE NEUTRAL ON PURPOSE. First attempt put the keyword in the VIN as well, and the
+ # match then landed on `vin` for one row and `unit` for the other - two different fields, which
+ # is not a comparison. The keyword lives only in the UNIT.
+ vehicle('pfx_asset_a', 'PARITYAST00000001', f'{KW}-A1', 'pfx_asset_owner', 'pfx_asset_contact',
    'A: the unit number BEGINS with the keyword.'),
- vehicle('pfx_asset_b', f'PARITY{KW}00002', f'UNIT-{KW}-B2', 'pfx_asset_owner',
+ vehicle('pfx_asset_b', 'PARITYAST00000002', f'UNITB{KW}X2', 'pfx_asset_owner',
    'pfx_asset_contact',
-   'B: the keyword sits MID-FIELD. Same owner, same make, model and year as A, so only the '
-   'position of the keyword differs.'),
+   'B: the keyword sits MID-FIELD with NO delimiter before it. That detail matters: on assets '
+   'the product called UNIT-ZZVORTAC-B2 a `prefix` match, so it appears to treat a token START '
+   'as a prefix. Without the dash the keyword is genuinely mid-token, which is the honest '
+   'equivalent of "Bolton ZZVORTAC Services" on a customer. Same owner, make, model and year '
+   'as A, so only the keyword position differs.'),
 ]
 
 # ── D · PARTS — THE DEFECT ───────────────────────────────────────────────────────────────────
 # Section 4 of the PRD names the part's DESCRIPTION as the field displayed as its name, so the
 # prefix rule has to be tested on the description - which is what `name` carries here.
 R += [
- cat_part('pfx_part_a_cat', f'{KW}-9001', f'{KW} Brake Kit',
-   'A: the DESCRIPTION begins with the keyword. Under the PRD this should score +0.70.'),
- inv_part('pfx_part_a_inv', 'pfx_part_a_cat', f'{KW}-9001',
+# 🔴 THE PART NUMBERS MUST NOT CARRY THE KEYWORD. First attempt numbered them ZZVORTAC-9001 and
+ # ZZVORTAC-9002, and BOTH rows then came back matched on `part_number` with kind=prefix - which
+ # masked the description entirely and made the pair look identical for the wrong reason. The
+ # ticket is about the DESCRIPTION, so the part number is deliberately neutral and the keyword
+ # lives only in the description. Measured 2026-09-20.
+ cat_part('pfx_part_a_cat', 'PARITYPN-9001', f'{KW} Brake Kit',
+   'A: the DESCRIPTION begins with the keyword. PRD section 4 names the description as the field '
+   'displayed as a part\'s name, so this is the prefix case the rule is about.'),
+ inv_part('pfx_part_a_inv', 'pfx_part_a_cat', 'PARITYPN-9001',
    'Stock row so the part is searchable at all. ZERO quantity, matching the ticket.'),
- cat_part('pfx_part_b_cat', f'{KW}-9002', f'Heavy Duty {KW} Filter',
-   'B: the keyword sits MID-DESCRIPTION as a whole word. Under the PRD this should score +0.50 '
-   '- i.e. BELOW A. The defect is that both come back on the same score.'),
- inv_part('pfx_part_b_inv', 'pfx_part_b_cat', f'{KW}-9002',
+ cat_part('pfx_part_b_cat', 'PARITYPN-9002', f'Heavy Duty {KW} Filter',
+   'B: the keyword sits MID-DESCRIPTION as a whole word - the weaker match under the PRD.'),
+ inv_part('pfx_part_b_inv', 'pfx_part_b_cat', 'PARITYPN-9002',
    'Stock row. Same zero quantity, same bin, same cost and price as A.'),
 ]
 
