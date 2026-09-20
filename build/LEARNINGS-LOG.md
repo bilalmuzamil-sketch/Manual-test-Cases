@@ -3602,3 +3602,17 @@ of a closed ticket**, with a dated before-and-after.
 **The rule:** every result we record is a dated measurement on a named build. Before ever writing
 "there is no before-and-after", grep `results/*.json` and the run's own history for the same behaviour.
 A recorded pass is evidence about the build it was made on, not just an administrative status.
+
+## L0174 — A ranking comparison is only evidence when every other signal is held equal (2026-09-20)
+I commented on **SV-10211** that it had regressed, using a Vendors example from ordinary data. The QA
+lead corrected me: that ticket is about the **Customers** tab, and it is still fixed there. My example
+compared two companies that differ in how busy they are — and §6.1 counts that, so the "wrong" order
+was permitted. I also classified rows by the API's own `match.kind` labels instead of checking whether
+the name literally begins with the query, which produced more false pairs.
+**What a valid test looks like:** build the pair yourself with every other signal equal — for parts,
+no stock, the same bin, never sold, never viewed — and keep the query out of every other indexed field
+(my first attempt put the token in the part NUMBER, so both rows matched as identifiers and measured
+nothing). Done properly, exactly one tab fails: **Parts** records a name that begins with the query as
+an ordinary word match. Customers, Vendors and Assets are correct. Raised as **SV-10279**.
+**The rule:** real data almost never holds the other signals equal, and the score ceiling hides the
+difference anyway — so seed the pair, or say nothing.

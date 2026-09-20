@@ -1,0 +1,58 @@
+h3. Description
+
+When you type into search, a record whose name *begins* with what you typed is meant to rank above one that merely has those letters somewhere in the middle. That is what makes the closest answer come out on top.
+
+It works on *Customers*, on *Vendors* and on *Assets*. It does *not* work on *Parts*: the product does not recognise a part whose name begins with what you typed, and treats it the same as any part that merely contains the text.
+
+h3. Steps to Reproduce
+
+# Press {{Ctrl}}+{{K}}
+# Type {{ZZTABQ}}
+# Open the *Parts* tab
+
+!PARTS1-final.png|width=760,height=567!
+
+*Actual Result:* both parts are treated as ordinary word matches and come back on the same score, so the part whose name begins with the typed text gets no advantage. Which one appears first is then left to whichever record was changed most recently.
+*Expected Result:* the part whose name begins with the typed text scores higher, and appears above the one where the text sits in the middle.
+
+The two parts were created for this check with no stock, the same bin location, never sold and never opened, so nothing else about them can affect the result.
+
+h3. The same test on the Customers tab, which is correct
+
+!PT2.png|width=760,height=350!
+
+# Press {{Ctrl}}+{{K}}
+# Type {{ZZPREFIX}}
+# Open the *Customers* tab
+
+Here the product does tell the two apart. *Vendors* and *Assets* behave correctly as well. *Parts is the only tab that does not.*
+
+h3. Where It Does and Does Not Happen
+
+| Tab | Does a name that begins with the typed text get the stronger credit? |
+|---|---|
+| Customers | yes |
+| Vendors | yes |
+| Assets | yes |
+| *Parts* | *no* |
+| Work orders, Part sales, Purchase orders, Vendor invoices | not applicable — these are found by their number, which is matched exactly |
+
+h3. Sources
+
+Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, sections 4 and 6.1, read on 20 September 2026.
+
+The scoring rule that is not being applied:
+{quote}Prefix match on primary name field → +0.70.{quote}
+{quote}Whole-word match anywhere in indexed fields → +0.50.{quote}
+
+And section 4 names the part's description as the field shown as its name:
+{quote}Parts (Inventory). Indexed: part number, description, category, tags, vendor name. Displayed: description (primary), part number, quantity on hand badge, bin location.{quote}
+
+h3. Environment
+
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Checked 20 September 2026.
+
+h3. Test Coverage
+
+* C55707 — [case|https://shopview.testrail.io/index.php?/cases/view/55707] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]
+* C55724 — [case|https://shopview.testrail.io/index.php?/cases/view/55724] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]
