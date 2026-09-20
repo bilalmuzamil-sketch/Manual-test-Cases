@@ -1,50 +1,47 @@
-*Split from SV-10161.* The fix on that ticket works and should stay. This ticket covers what stopped working as a result of it.
+*Split from SV-10161.* The fix on that ticket works and should stay. This ticket is about what stopped working because of it.
 
 ----
 
 h3. Description
 
-Global Search is meant to put the best result at the top. It gives every result a score, and the specification adds credits on top of the match itself — a part in stock counts for more than one you have none of, a company with open work orders counts for more than a quiet one, a name that *starts with* the word you typed counts for more than one that merely contains it.
+*In one sentence:* search used to put the most useful result at the top — the part you actually have on the shelf, the company whose name really is the one you typed — and since the change on SV-10161 it no longer does.
 
-The score stops at a maximum of *1.00*. Since the change on SV-10161, a record whose *own name* contains the word you typed reaches that maximum from the match alone. Every credit the specification adds after that has nowhere to go, so it changes nothing.
+Search gives every result a score and shows the highest first. The score cannot go above *full marks*. Since the change, a result whose *own name* contains the word you typed gets *full marks straight away*, before anything else about it is looked at. Nothing can then lift it and nothing can hold it back — so everything else the specification counts (in stock, open work orders, used recently, how closely the name matches) stops making any difference.
+
+When several results all sit on full marks, the one shown first is simply whichever was touched most recently.
 
 For example,
-* a part with *176* on the shelf and a part with *none* come back on the same score
-* a company whose name *starts with* the word and one where the word sits in the middle come back on the same score
-* typing two common words returns *every* list with all twenty rows on one score
+* a part with *176* on the shelf and a part with *none* score the same
+* a company whose name *starts with* the word and one where the word is in the middle score the same
+* typing two everyday words returns *every* list with nothing separating the rows
 
 h3. Steps to Reproduce
 
-*Example 1 — a part you have none of ranks level with one you have 176 of*
+*Example 1 — a part you have none of sits level with one you have 176 of*
 
 # Press {{Ctrl}}+{{K}}
 # Type {{shoe}}
 # Open the *Parts* tab
-#* 20 parts are returned, and 7 of them show *0 Available*
-#* Every one of the 20 comes back on a score of *1.00*
 
-!NEW1-parts.png|width=760,height=785!
+!SIMPLE1-parts.png|width=760,height=785!
 
-*Actual Result:* a brake shoe kit with none on the shelf is scored exactly the same as one with 176 on the shelf.
-*Expected Result:* the part in stock scores higher, so it appears above the one that is out of stock.
+*Actual Result:* 20 parts come back, 7 of them with none on the shelf, and all 20 score the same.
+*Expected Result:* the parts you have in stock score higher, so they appear above the ones you do not.
 
 *PRD 6.1, exactly as written:*
 {quote}Parts. In stock (>0) → +0.20; bin location present → +0.05; sold/used in last 30 days (frequency, log-scaled) → up to +0.15; viewed recently → +0.10.{quote}
 
 ----
 
-*Example 2 — a closer name match ranks level with a looser one*
+*Example 2 — a company whose name really starts with the word sits level with one where it is buried*
 
 # Press {{Ctrl}}+{{K}}
 # Type {{mobile}}
 # Open the *Customers* tab
-#* {{Mobile Truck & Trailer Repair Island Lake}} — the name *starts* with the word
-#* {{Henderson Mobile Truck Repair}} — the word sits *inside* the name
-#* Both come back on a score of *1.00*
 
-!NEW2-companies.png|width=760,height=850!
+!SIMPLE2-companies.png|width=760,height=865!
 
-*Actual Result:* both companies are scored the same.
+*Actual Result:* {{Mobile Truck & Trailer Repair Island Lake}} and {{Henderson Mobile Truck Repair}} score the same.
 *Expected Result:* the company whose name starts with the word scores higher, so it appears above the other.
 
 *PRD 6.1, exactly as written:*
@@ -57,13 +54,11 @@ h3. Steps to Reproduce
 
 # Press {{Ctrl}}+{{K}}
 # Type {{truck repair}}
-#* All 20 rows in *Work orders*, *Customers*, *Vendors*, *Part sales*, *Purchase orders* and *Vendor invoices* come back on a score of *1.00*
-#* All 20 rows in *Assets* come back on a score of *0.75*
 
-!NEW3-everything.png|width=760,height=834!
+!SIMPLE3-everything.png|width=760,height=849!
 
-*Actual Result:* nothing in the specification is separating the rows in any of these lists. The order you see is decided by the fallback for ties, which is the most recently updated record.
-*Expected Result:* the credits in PRD 6.1 order the rows, and the tie fallback is used only when two rows genuinely score the same.
+*Actual Result:* all 20 rows score the same in *Work orders*, *Customers*, *Vendors*, *Part sales*, *Purchase orders* and *Vendor invoices*, and all 20 in *Assets* score the same as each other. The order you see is whichever record was touched most recently.
+*Expected Result:* the rows are ordered by how useful each one is, and two rows are only treated as equal when they genuinely are.
 
 *PRD 6.1, exactly as written:*
 {quote}Each candidate gets a numeric score combining match quality and entity-specific recency/importance signals.{quote}
@@ -71,21 +66,21 @@ h3. Steps to Reproduce
 
 h3. Why This Happens
 
-A whole-word match on a record's own name is now {{0.50 + 0.50}}, which is the maximum. A name that starts with the word is {{0.70 + 0.50}}, also the maximum. Everything PRD 6.1 adds afterwards is absorbed.
+Full marks is 1.00. The word being found in a record's own name is now worth 0.50 on its own, on top of 0.50 for finding the word at all — so a name match arrives at 1.00 with nothing else counted. Everything PRD 6.1 adds after that has nowhere to go.
 
-The maximum is real, not just the best row being called 1.00 — across 230 results nothing scored above it, and plenty of searches finish well below it (the customers returned for {{brake}} peak at 0.32).
+Full marks really is a ceiling and not just the best row of the day: across 230 results nothing went above it, and plenty of searches finish well below it — the customers returned for {{brake}} stop at 0.32.
 
-The visible order can still look right, because ties fall back to the most recently updated record. It is that fallback holding the order, not the credits that are supposed to hold it.
+*The list can still look correctly ordered*, because results on the same score fall back to most recently updated. It is that fallback holding the order, not the specification.
 
 h3. Suggested Fix
 
-# Choose a value for the name credit that lifts a company's own name above a contact match *without* reaching the maximum, so the credits above still have room to work. Applying match quality and the entity credits in two stages would do the same job.
-# Update PRD 6.1, which still gives the name credit as {{+0.10}} while the product applies at least {{+0.50}}.
+# Give a record's own name enough of a lift to beat a match on somebody's contact details, but *not* enough to reach full marks — so there is still room above it for in stock, open work orders and recent use to do their job.
+# Update PRD 6.1, which still says this lift is *+0.10* while the product is applying at least *+0.50*.
 
 h3. Environment
 
-Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Read 20 September 2026.
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Checked 20 September 2026.
 
 h3. Sources
 
-Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, sections 6.1 and 6.2, read live on 20 September 2026.
+Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, sections 6.1 and 6.2, read on 20 September 2026.

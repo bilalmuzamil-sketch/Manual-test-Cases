@@ -34,3 +34,24 @@ records **only my five deletions** (`ANN-A-solved`, `ANN-B-tiers`, `ANN-C-brake`
 `PIC3-parts` — all files I had uploaded myself) and **no deletion of those two**. Neither file is
 referenced by the description or by any comment, so nothing on the ticket is broken by their absence.
 I cannot account for it and have not tried to restore anything. Raised with the QA lead.
+
+## Simplified for non-technical readers (2026-09-20, QA lead's second pass)
+
+*"it should be the simplest enough for those who are telling me that I am creating complicated
+tickets … everything which helps the lazy non technical … to understand."*
+
+**Six changes, all in service of one idea — a reader should get it from the pictures alone:**
+
+| Was | Now |
+|---|---|
+| no summary line | **"In one sentence:"** opens the Description — *search used to put the most useful result at the top … and since the change it no longer does* |
+| *"comes back on a score of 1.00"* in the prose | **"full marks"**; the raw numbers survive only inside the PRD quotes, the *Why This Happens* paragraph and the picture tables (as *"Full marks (1.00)"*, so a developer still gets the figure) |
+| picture titles *"Search: shoe (Parts)"* | **"Someone searches for: shoe"** |
+| annotations opened with the spec | **plain sentence first, spec in brackets after** — *"You have NONE of these — and it scores exactly the same. The specification says a part in stock should score higher. (PRD 6.1: …)"* |
+| table headers *"What PRD 6.1 awards it"* / *"Score returned"* | **"What the specification says it should get"** / **"What it actually scores"** |
+| steps ended with *"read the score on each row in the search response"* | that line is **gone** — every step is now something the reader can do; the score is proved by the table inside the picture |
+| *"Applying match quality and the entity signals in two stages"* | **"not enough to reach full marks — so there is still room above it"** |
+
+Files: `pics/SIMPLE1-parts.png` (61131) · `SIMPLE2-companies.png` (61132) · `SIMPLE3-everything.png`
+(61133), inline at 760 wide, true aspect, 0 `blob:`. The `NEW*` set (61128–61130) was deleted from the
+ticket and the working copies removed so nobody picks up the superseded wording.
