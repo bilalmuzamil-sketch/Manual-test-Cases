@@ -1,0 +1,26 @@
+h3. Re-checked on 20 September 2026 — this still happens
+
+Build {{v26.36.8-d146c39}} on the [sv9160|https://sv9160.qa.shopview.com/] branch.
+
+Work order {{S9160-17671}} was opened. It already carries a brake shoe kit and two transmission lines. The same two searches were then run twice — once from a Customers page, once from that work order page:
+
+* {{Brake Shoe}} — the identical six rows, all scoring 1.00, in both places
+* {{Transmission filter}} — the identical six rows, all scoring 1.00, in both places
+
+*Actual Result:* being on the work order page makes no difference to what comes back or to the order it comes back in.
+*Expected Result:* a part already on the work order you are looking at is pushed below the parts that are not on it.
+
+h3. Why it cannot work at the moment
+
+PRD 6.1 caps the score at 1.00, and since the change on SV-10161 a part whose own name carries the word you typed reaches 1.00 on the match alone. The demotion is subtracted before that cap, so it never shows. This is the same underlying cause as SV-10277 and cannot be judged fixed until that is addressed.
+
+*PRD 6.3, exactly as written:*
+{quote}if on a Work Order, parts already on that WO are demoted by −0.10 (the user is usually looking for something they don't have yet) while other parts in the same category as the WO's existing parts get +0.05.{quote}
+
+h3. Sources
+
+Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, section 6.3, read on 20 September 2026.
+
+h3. Test Coverage
+
+* C44854 — [case|https://shopview.testrail.io/index.php?/cases/view/44854] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]

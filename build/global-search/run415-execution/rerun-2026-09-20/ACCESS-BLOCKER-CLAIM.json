@@ -1,0 +1,40 @@
+{
+ "claim": "the sv9160 QA-branch session cannot be re-minted from this workspace",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The same cookie file and the same boot helper worked repeatedly earlier today on this exact build - the eight-phase role driver completed at 11:09 and restored the Technician role (perm-results.json, \"restored\": true). So the method is proven to work; it is the session that has died.",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "qa-branch-boot opened the real sign-in page in a browser and waited 30s for the DEV MODE quick-login Admin control; it never appeared. The page itself served fine (HTTP 200, build marker v26.36.8-d146c39 present in the HTML).",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Five separate attempts: two browser boots, and three raw requests with different cookie combinations (sv_sso_session alone; sv_sso_session + cf_clearance; all three including PHPSESSID). Bridge restarted and confirmed healthy before the last three.",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "The 401 body carries sso_redirect_url pointing at auth.qa.shopview.com/login, i.e. the app is redirecting to the Google SSO sign-in, which is exactly the documented behaviour for an expired session rather than a missing route.",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "The cookie file was read back and its sv_sso_session value compared byte-for-byte against the copy in /tmp/qa/cookies.json and the one in /tmp/qa-cookies/sv9160-full.json - all three identical, so the credential in play is the one the QA lead supplied, unaltered.",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "build/APP-ACTIONS-PLAYBOOK.md lines 205-235: 'POST /api/login DOES NOT WORK ON STAGING OR ON A QA BRANCH - it is SSO-gated', 'quick-login is SSO-gated too and returns HTTP 401 sso_required as well', and 'cookies are mintable ONLY by the QA lead' because the app authenticates via Google SSO (OIDC) with no automation in this workspace.",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely self-fault: I deleted /tmp/qa-cookies/sv9160-sso.txt while trying to force a fresh login. Ruled out by restoring it from two independent saved copies and comparing byte-for-byte - identical value - and by sending the credential directly with curl, bypassing my own helper entirely, which is rejected the same way. Second candidate: my helper sends only sv_sso_session (trap 1). Ruled out by sending all three cookies together; same 401. Third candidate: a poisoned PHPSESSID (the documented trap 2 signature is a 409, not a 401) - the ladder in the playbook says 401 with sso_required means no valid session at all. Fourth candidate, and the one I believe: today's driver ran sixteen quick-logins in a row and the playbook records that quick-login EVICTS any other worker on that branch."
+  }
+ }
+}

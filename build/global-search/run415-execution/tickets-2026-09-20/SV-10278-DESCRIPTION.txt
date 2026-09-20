@@ -1,0 +1,54 @@
+h3. Description
+
+A person can be given permission to see Part Sales and, separately, permission to see financial information. Those are two different switches.
+
+Turning off *financial* access is supposed to hide *prices*. On Part Sales it does something else: it hides *the Part sales heading altogether*, so a person who is allowed to see Part Sales cannot find a single one through search.
+
+This was found while re-checking the permission tests on 20 September 2026. Everywhere else the two switches behave correctly.
+
+h3. Steps to Reproduce
+
+# Open *Administration* and then *Staff*
+# Edit a member of staff and give them a role that *includes* Part Sales access and *excludes* financial access
+# Sign in as that person
+# Press {{Ctrl}}+{{K}} and type {{ZZAUTOTEST Fibridge}}
+
+!PERM1-partsales.png|width=760,height=233!
+
+*Actual Result:* no *Part sales* heading appears at all. The records are not there to be found.
+*Expected Result:* the *Part sales* heading appears with its matching rows, and the total price is hidden on those rows.
+
+h3. Everywhere Else the Same Switch Behaves Correctly
+
+!PERM2-prices.png|width=760,height=232!
+
+Parts, Purchase orders and Vendor invoices all keep their headings and lose their prices, which is what the specification asks for. Part sales is the only one that loses the records instead.
+
+h3. How We Know This Is Not a Badly Built Role
+
+Each role's own permission list was read back from the application itself:
+
+* the role used above reports that it *holds* Part Sales access and does *not* hold financial access
+* a second role, which holds financial access but *not* Part Sales access, also returns no Part sales heading — which is correct
+
+So the heading is being removed by the financial switch, not by a missing Part Sales switch.
+
+h3. Sources
+
+Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, sections 4 and 6.1, read on 20 September 2026.
+
+The specification lists what each kind of record shows, and puts the total price among the *displayed* fields of a Part Sale:
+{quote}Part Sales. Indexed: P-number, customer name, part names on the sale. Displayed: P-number + customer (primary), status badge, total + date.{quote}
+
+It also treats prices as something that is masked rather than something that removes records, and it governs ranking and visibility per kind of record:
+{quote}Each candidate gets a numeric score combining match quality and entity-specific recency/importance signals.{quote}
+
+h3. Environment
+
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Checked 20 September 2026.
+
+h3. Test Coverage
+
+* C44882 — [case|https://shopview.testrail.io/index.php?/cases/view/44882] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]
+* C55704 — [case|https://shopview.testrail.io/index.php?/cases/view/55704] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]
+* C55706 — [case|https://shopview.testrail.io/index.php?/cases/view/55706] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]
