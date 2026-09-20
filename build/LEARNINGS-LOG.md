@@ -3552,3 +3552,15 @@ English means no jargon, not a homemade synonym for what the screen already says
 **Check before any ticket ships:** for every number and noun in the body, annotations, picture tables
 and captions — *is it on the screen, and would someone who has never used the product know what it
 means?* Recorded as a standing rule in `build/skills/06-DEFECT-PREP.md`.
+
+## L0170 — No metaphors, and no single "Reference" dump at the end of a message (2026-09-20)
+Two rulings in one message.
+**(a) *"Never use metaphore, always use everything and glossary from the build."*** This closes the
+loophole L0169 left open: it is not enough to avoid a *wrong* synonym, the rule is that the build's
+own glossary is the ONLY vocabulary. *on the shelf* → **Available** · *supplier* → **Vendor** ·
+*chassis number* → **VIN number**. Where the screen has no word, use the plain state, never a
+borrowed image. Binds prose, annotations, picture tables, captions and titles.
+**(b) *"under reference you put a lot of things, which I usually ignore because it says all under
+'reference'. Please keep a separate heading for everything."*** A single `---REFERENCE---` block is
+read and skipped as one unit, so anything buried in it is lost — including asks and warnings. Banned.
+One short named heading per subject instead. Recorded in `06-DEFECT-PREP.md` and `00-COMMON-CORE.md`.

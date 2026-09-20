@@ -28,6 +28,22 @@
 ---
 
 
+## 🛑 EVERY MESSAGE TO THE QA LEAD IS BROKEN INTO NAMED HEADINGS — NEVER ONE "REFERENCE" DUMP (2026-09-20)
+
+**Verbatim:** *"under reference you put a lot of things, which I usually ignore because it says all
+under 'reference'. Please keep a separate heading for everything."*
+
+A single `---REFERENCE---` block at the end is **read as one unit and skipped as one unit**, so
+everything inside it is lost — ticket numbers, the thing I need him to decide, the thing I am warning
+him about. It is banned.
+
+**Instead: one short heading per subject, each naming its own subject**, e.g. *"Tickets"*,
+*"What I still need from you"*, *"What I could not explain"*, *"Where the evidence is"*,
+*"What is running now"*. He can then skip the ones that do not concern him and still see the rest.
+Rule 8 is unchanged — a case id still travels with its link and its run — but those now sit under a
+heading that says what they are, not under the word *reference*.
+Rule 103 still governs the wording inside every heading. Learning **L0170**.
+
 ## 🛑 §0 — BEFORE ANYTHING ELSE: ASK WHICH SCOPE (Rule 110, QA lead 2026-09-16)
 
 **This comes before reading the rest of this file.** The moment he gives you work — a suite, one

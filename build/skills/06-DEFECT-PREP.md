@@ -1221,6 +1221,15 @@ Two separate faults in one sentence, and both are easy to repeat:
    *Vendor* not "supplier" and *VIN number* not "chassis number" — **read the word off the screen**
    (Rule 57), and where no screen word exists use the ordinary one, never a warehouse metaphor.
 
+3. **NEVER A METAPHOR — THE BUILD'S GLOSSARY IS THE ONLY VOCABULARY (QA lead, 2026-09-20:
+   *"Never use metaphore, always use everything and glossary from the build."*).** Not *on the shelf*
+   for **Available**, not *supplier* for **Vendor**, not *chassis number* for **VIN number**, not
+   *jump straight to it* for the pinned row. If the screen has a word, that word is the word. If the
+   screen has no word for it, use the ordinary description of the state (*in stock* / *out of stock*),
+   never an image borrowed from somewhere else. This binds the prose, the annotations, the picture
+   tables, the captions and the titles alike. The observed glossary lives in
+   `build/OBSERVED-UI-LABELS-<env>.md` — read it rather than inventing a word.
+
 **The test before any ticket goes out:** for every number and every noun in the body, ask *"is this on
 the screen, and would a reader who has never used the product know what it means?"* If either answer
 is no, replace it with the product's label or with the plain state. It applies to the annotations, the
