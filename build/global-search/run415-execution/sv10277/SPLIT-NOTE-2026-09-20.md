@@ -95,3 +95,34 @@ barred by the rule recorded the same day. Everywhere it now reads **"the maximum
 picture tables read **"The maximum (1.00)"**. Pictures re-uploaded as `*-v3.png` (61137 / 61138 /
 61139) under fresh names again; 61134–61136 deleted. Verified in the rendered description: 3 pictures,
 0 `blob:`, and no occurrence of *full marks* or *on the shelf*.
+
+## Fifth pass — every word taken from the app or the PRD, no metaphors (2026-09-20)
+
+*"Make sure that all the words are from the app glossary and not the metaphores."* Scanned the whole
+description and the picture tables; every replacement takes the PRD's own term or the app's own label.
+
+| Metaphor / my own word | Replaced with (source) |
+|---|---|
+| *credit* | **bonus** — PRD 6.1's own word (*"Bonus for match on the primary display name"*) |
+| *lift* (×3) | **bonus** · **raise the score** · **rank above** |
+| *nothing can lift it, nothing can hold it back* | **no signal can raise that score and none can lower it** |
+| *has nowhere to go* | **is clamped away** — PRD 6.1 (*"The score is clamped to a sane range"*) |
+| *still room above it … to do their job* | **the score stays below the maximum … the signals can still change the order** |
+| *fall back / fallback* | **the recency tie-break** — PRD 6.1 (*"ties are broken by recency"*) |
+| *sits level with* | **scores the same as** |
+| *whole lists come back with nothing separating them* | **every list returns rows that all score the same** |
+| *beat* | **rank above** |
+| *how useful the result is likely to be* | **how recent and how important the record is** — PRD 6.1's *"recency/importance signals"* |
+| *a person's name or email address* | **a contact's name or email address** — the app prints **Contact match** |
+| *somebody opened recently* | **viewed recently** — PRD 6.1's own term |
+| *everyday words* | **common words** |
+| *arrives at 1.00* | **reaches 1.00** |
+| *stop making any difference* | **no longer change the order** |
+
+**The picture tables changed too.** The middle column is now headed *"What PRD 6.1 says it should
+get"* and carries the specification's literal notation — `In stock (>0) -> +0.20`,
+`Prefix match on primary name field -> +0.70`, `Whole-word match anywhere in indexed fields -> +0.50`
+— instead of my paraphrases ("the higher credit", "extra credit for being in stock").
+
+Pictures re-uploaded as `*-v4.png` (61148 / 61149 / 61150); 61137–61139 deleted. Verified in the
+rendered description: 3 pictures, 0 `blob:`, and none of the fifteen suspect words present.
