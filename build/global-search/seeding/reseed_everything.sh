@@ -79,6 +79,25 @@ if [ "$1" = "qa" ]; then
   step "13 toggle PO + vendor invoice"      python3 seed_po_and_invoices.py --confirm || exit 1
   unset SEED_PO_SLUG SEED_PO_VENDOR SEED_PO_WO_KEY SEED_PO_PLAN
   step "14 toggle PROOF — 7 checks"         python3 verify_toggle.py             || exit 1
+
+  # ── universe 5 · SV-10279 PREFIX PARITY (12 records, 4 entity types) ─────────────────────────
+  # The comparison pack behind https://shopview.atlassian.net/browse/SV-10279 - one keyword across
+  # customers, vendors, assets and parts, so a reviewer sees the rule applied on three types and
+  # not on the fourth in ONE response.
+  export SEED_MANIFEST=seed-manifest-prefix-parity.json
+  step "15 SV-10279 prefix-parity records"  python3 seed.py --confirm            || exit 1
+
+  # ── universe 6 · PER-TAB PREFIX (14 records, C72120/72121/72122) ─────────────────────────────
+  # Three cases, three private keywords, three records each: begins-with / contains / typo.
+  export SEED_MANIFEST=seed-manifest-per-tab-prefix.json
+  step "16 per-tab prefix records"          python3 seed.py --confirm            || exit 1
+
+  # 🔴 BOTH OF THESE ARE PROVED BY status.py, NOT BY A DEDICATED VERIFIER. Their assertion is a
+  # RANKING one - which match label each row carries - and on Parts the expected answer is
+  # currently the WRONG one, because SV-10279 is open. A verifier that failed on that would be
+  # crying wolf on every run; one that passed would be asserting the defect is correct. So the
+  # status board proves the records are PRESENT, and the evidence documents carry the measured
+  # labels with their date and build marker.
 fi
 
 echo
