@@ -1,0 +1,42 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C44853": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. Standing on a customer's own page and searching a word that matches jobs belonging to several customers, the top five results are all that customer's own jobs. Running the identical search from an unrelated page puts a different customer's jobs on top instead. So where you are standing does change the order, which is what the requirement asks for. Measured through the search box on both pages, because asking the service directly never tells it which page you are on.",
+   "not_observed": null
+  },
+  "C55730": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. The old fixture could not answer this - there were exactly twenty matching parts, so nothing could fall outside the list. I added six more. The tab now shows twenty rows and stops there, one of the new parts is not among them, and typing that part's number brings it straight back as a single result. Narrowing the words is how you reach a record beyond the twenty, exactly as the requirement says.",
+   "not_observed": null
+  },
+  "C45139": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. A customer reached only through its contact's name and email comes back as the COMPANY row, marked Contact match, and it ranks below a customer matched on its own name - so the contact match does not earn the name bonus. There is no Contacts tab and no Contacts group anywhere in the panel, so contacts are not ranked or grouped on their own.",
+   "not_observed": null
+  },
+  "C55711": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. Reading the part-sale rows with their dates, statuses and creators on screen: the newest sales sit at the top and the oldest at the bottom, so recency dominates. Within that, a sale created by the signed-in user dated 16 September sits ABOVE one dated 17 September created by someone else, which is the small extra lift for your own sales showing through. The paid ones present are all older and sit further down, so the paid lift is not large enough to overcome age - consistent with the requirement, which describes it as small.",
+   "not_observed": "A paid and an unpaid sale of the SAME age were not available, so the size of the paid lift on its own was not isolated."
+  },
+  "C45137": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. This cannot be judged as written. The requirement talks about two states only - a purchase order still ordered, and one that has been received - but the product has a middle state, Partial Delivery, that the requirement never mentions. Comparing purchase orders from one vendor, so they all match the same way: a Partial Delivery from July sits ABOVE an Ordered one from January. Whether that is right depends entirely on whether a partly received order still counts as not yet received, and the requirement does not say.",
+   "not_observed": "Whether an Ordered purchase order outranks a fully received one of the same age - the records available do not offer that pair.",
+   "todo": "Ask the product owner where a partly delivered purchase order is meant to sit - with the still-ordered ones, or with the received ones. The check can be judged as soon as that is answered. It blocks nothing else."
+  },
+  "C45138": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. Half of this is confirmed and half cannot be seen. The recency half holds: the invoices come back newest first, 18 September, 18 September, 17 September, 17 September, 31 August, 28 August. The other half cannot be checked because EVERY vendor invoice on this branch is unpaid - there is no paid one anywhere to compare against, so nothing could have come out differently.",
+   "not_observed": "Whether an unpaid invoice outranks a paid one - there is no paid vendor invoice on this branch.",
+   "todo": "Either mark one vendor invoice as paid on the test branch, or accept the recency half only. As soon as one paid invoice exists this can be finished in a minute."
+  }
+ }
+}

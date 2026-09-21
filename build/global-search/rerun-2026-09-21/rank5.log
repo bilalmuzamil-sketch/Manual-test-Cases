@@ -1,0 +1,16 @@
+=== C55730 - find a ZZBROAD part that is NOT in the capped list, then narrow to it
+   parts the engine returns for the broad query: 20
+   rows shown on the Parts tab: 20 | capped at 20: true
+   a part number returned but NOT shown: (none - everything fits)
+
+=== C45137 - hunt a CONTROLLED purchase-order pair (same vendor, one Ordered one received)
+   ZZ-tagged purchase orders available: 6
+    Mobile Truck & Trailer Repai -> [{"n":"I9160-1392","st":"ordered","d":"2026-08-28T15:42:31Z"},{"n":"S9160-16769","st":"partial_delivery","d":"2026-07-28T19:50:06Z"},{"n":"S2-12433","st":"ordered","d":"2026-01-12T20:36:16Z"
+    Butautas' Truck & Trailer Re -> [{"n":"I9160-1387","st":"ordered","d":"2026-08-28T15:08:44Z"},{"n":"I9160-1364","st":"partial_delivery","d":"2026-08-14T20:47:20Z"},{"n":"I9160-1315","st":"partial_delivery","d":"2026-07-25T
+    Chernovol's Truck & Trailer  -> [{"n":"S9160-17503","st":"partial_delivery","d":"2026-08-27T21:40:31Z"},{"n":"S9160-17481","st":"partial_delivery","d":"2026-08-26T20:36:11Z"}]
+    Fate Roadside Truck Repair -> [{"n":"S2-13288","st":"ordered","d":"2026-02-26T16:39:04Z"},{"n":"S2-12729","st":"ordered","d":"2026-01-27T11:19:51Z"}]
+
+=== C45138 - are there BOTH paid and unpaid vendor invoices to compare?
+   statuses among the invoices returned: {"?":20}
+   fields on an invoice row: paymentStatus, vendorId, vendorName, receivedByName, note, receivedAt, invoiceDate, totalPrice
+EXIT=0

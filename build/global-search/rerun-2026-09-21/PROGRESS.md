@@ -16,11 +16,11 @@ recorded with `ticket_held` and listed for him) · no Expected edited, ever (114
 
 | # | Folder | Checks | State |
 |---|---|---|---|
-| 1 | Ranking and Prioritization | 23 | IN PROGRESS |
+| 1 | Ranking and Prioritization | 23 | **DONE** — 19 passed · 1 failed (C55716, ticket held) · 3 blocked (C45137, C45138, C55709) |
 | 2 | Per-Entity Result Shape | 9 | to do |
 | 3 | Grouped Results and Counts | 9 | to do |
 | 4 | Scope Tabs | 12 | to do |
-| 5 | Fuzzy Matching | 18 | to do |
+| 5 | Fuzzy Matching | 18 | IN PROGRESS |
 | 6 | Permissions and Role-Based Scoping | 23 | to do |
 | 7 | Palette Open, Close and Keyboard | 10 | to do |
 | 8 | Recent Activity Default State | 5 | to do |

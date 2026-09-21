@@ -1,0 +1,32 @@
+=== C44851 open/active work orders above old closed ones
+   work orders the engine returns and their status/date:
+     S9160-17671       approved          2026-09-16T20:48:07Z
+     S9160-17670       approved          2026-09-16T20:48:06Z
+     S9160-17662       ready_for_review  2026-09-16T20:46:59Z
+     S9160-17664       ready_for_review  2026-09-16T20:47:00Z
+     S9160-17663       ready_for_review  2026-09-16T20:46:59Z
+     S9160-17656       approved          2026-09-16T20:46:56Z
+     S9160-17660       in_progress       2026-09-16T20:46:58Z
+     S9160-17658       in_progress       2026-09-16T20:46:57Z
+     S9160-17659       in_progress       2026-09-16T20:46:57Z
+     S9160-17653       approved          2026-09-16T20:46:54Z
+     S9160-17655       approved          2026-09-16T20:46:55Z
+     S9160-17654       approved          2026-09-16T20:46:55Z
+   statuses present: ["approved","ready_for_review","in_progress","estimate","invoiced","complete","declined"]
+   order on the Work orders tab:
+     1. S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680
+     2. S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680
+     3. S9160-17664 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 20
+     4. S9160-17660 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Fr
+     5. S9160-17662 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 20
+     6. S9160-17663 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 20
+     7. S9160-17656 ZZAUTOTEST Fibridge Commercial Approved TRK 412 · 2019 Freig
+     8. S9160-17658 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Fr
+     9. S9160-17659 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Fr
+     10. S9160-17653 ZZAUTOTEST Fibridge Commercial Approved TRK 412 · 2019 Freig
+
+=== C55709 build two alike assets, one attached to an open job
+   create ZZASSETQ-A -> 400 {"errors":[{"customer_id":"Missing required parameter"}]}
+   create ZZASSETQ-B -> 400 {"errors":[{"customer_id":"Missing required parameter"}]}
+   assets now: 
+EXIT=0

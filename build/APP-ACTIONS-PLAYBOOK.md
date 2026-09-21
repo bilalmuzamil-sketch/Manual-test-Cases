@@ -810,6 +810,20 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   auto-apply fees on new WOs (`appliedBy=customer_default`). **Gotcha:** create can 500 in some staging
   sessions → create via the UI instead (UI recipe: `/workorders` → New → pick Customer + Asset →
   Save → Confirmation "over credit limit" → Create). *Source: CLAUDE.md, UI-seeding appendix 2026-07-15.*
+- **🔑 CREATE A VEHICLE / ASSET — `POST /api/vehicles/create` needs BOTH `company_id` AND
+  `customer_id`, and `customer_id` is a CONTACT id, not the company's** (learned 2026-09-21 from the
+  refusals). Sending the company id as `customer_id` gives `{"customer_id":"Not found"}`; omitting it
+  gives `Missing required parameter`. Make a contact first — `POST /api/contacts/create {company_id,
+  first_name, last_name, email}` → 200 `{contact_id}` — then `POST /api/vehicles/create {company_id,
+  customer_id:<contact_id>, year, vin, …}` → 200.
+  **⚠️ INCOMPLETE ROUTE, DO NOT TRUST IT FOR A FIXTURE:** `make`, `model` and `unit_number` are
+  **silently ignored** on create — the record comes back with `make`/`model` null and no unit, so the
+  search row reads only the year and the owner and two such vehicles are **indistinguishable on
+  screen**. `POST /api/vehicles/change` wants **`vehicle_id`** (not `id`) — untested beyond that. The
+  existing vehicle shape uses **`unit`** (not `unit_number`) and `vehicle_maker_id` / `vehicle_model_id`
+  rather than free text, so a usable asset fixture probably has to be built **through the vehicle
+  screen**. Cost the night of 2026-09-21: C55709 left Blocked rather than judged on a pair that could
+  not be told apart.
 - **🔑 MOVE A WO OUT OF `Estimate` — `POST /api/work-orders/change-status {id, status:'approved'}` → 201
   (learned 2026-09-21 from the refusals, Rule 107 route 2).** **`work_order_id` is the WRONG field name
   here** — the 400 reads `{"id":"Work Order ID is missing."}` — and the status must be the lowercase

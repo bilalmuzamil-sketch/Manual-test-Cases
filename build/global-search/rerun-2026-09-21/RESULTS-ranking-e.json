@@ -1,0 +1,26 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C44851": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. On the Work orders tab the top ten are all live jobs - approved, in progress and ready for review. The full set the search holds for that word also contains estimates, invoiced, complete and declined jobs, and none of those reaches the top ten, so the finished ones are pushed down as the requirement asks.",
+   "not_observed": "The extra lift for a job assigned to, or recently opened by, the signed-in user was not isolated - every job in this group belongs to the same handful of people, so that part could not be separated from the rest."
+  },
+  "C55709": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. The existing three vehicles differ in HOW they match the search word, not in whether they have an open job, so they cannot answer this - nothing could come out differently. I tried to build a proper pair and got part of the way: two vehicles were created, but the product would not accept a make, model or unit number through the route I used, so both come back on screen as just the year and the owner and cannot be told apart. I will not judge a check on a pair I cannot tell apart.",
+   "not_observed": "Whether a vehicle with an open job outranks an equal vehicle without one.",
+   "todo": "Give the two new vehicles a make, model and unit number so they can be told apart on screen - through the vehicle screen rather than behind it - then attach an open job to the one listed second and look again. Everything else is already in place and this takes minutes."
+  },
+  "C44854": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. Re-checked earlier today on this same build and confirmed twice in each direction. Standing on a job and searching for parts, the part already on that job drops below the one that is not; step off the job and it returns to the top. The second half also holds: on a purpose-built pair alike in every other way, the part sharing the job's category leads only when the search is run from the job.",
+   "not_observed": null
+  }
+ }
+}

@@ -1,0 +1,38 @@
+=== C45138 invoice payment statuses
+   statuses: {"unpaid":20}
+    dfgdsgsfggsfdgsd         unpaid 2026-09-18T06:00:00Z
+    fdsgsdgsg                unpaid 2026-09-18T06:00:00Z
+    445456                   unpaid 2026-09-17T06:00:00Z
+    5445546                  unpaid 2026-09-17T06:00:00Z
+    102-050011               unpaid 2026-08-31T06:00:00Z
+    X101366629:01            unpaid 2026-08-28T06:00:00Z
+
+=== C45137 controlled pair at one vendor (same field matched for both)
+    I9160-1392         ordered 2026-08-28T15:42:31Z
+    S9160-16769        partial_delivery 2026-07-28T19:50:06Z
+    S2-12433           ordered 2026-01-12T20:36:16Z
+    S2-6282            ordered 2025-04-08T16:22:25Z
+    S2-5187            ordered 2025-02-26T10:40:34Z
+    S2-6857            ordered 2025-05-01T13:29:30Z
+    S2-10002           ordered 2025-09-18T22:22:12Z
+    S9160-17415        fulfilled 2026-08-24T20:37:03Z
+   --- on the screen, Purchase orders tab, two rounds:
+     r1 1. I9160-1392 Mobile Truck & Trailer Repair Hampton Ordered $956.77 · Aug 28, 2026
+     r1 2. S9160-16769 Mobile Truck & Trailer Repair Temple Terrace Partial Delivery $2,713.32 
+     r1 3. S2-12433 Mobile Truck & Trailer Repair Hampton Ordered $7,737.46 · Jan 12, 2026
+     r1 4. S2-6282 Mobile Truck & Trailer Repair Hampton Ordered $5,678.73 · Apr 8, 2025
+     r1 5. S2-5187 Mobile Truck & Trailer Repair Hampton Ordered $517.22 · Feb 26, 2025
+     r1 6. S2-6857 Mobile Truck & Trailer Repair Hampton Ordered $1,200.70 · May 1, 2025
+     r2 1. I9160-1392 Mobile Truck & Trailer Repair Hampton Ordered $956.77 · Aug 28, 2026
+     r2 2. S9160-16769 Mobile Truck & Trailer Repair Temple Terrace Partial Delivery $2,713.32 
+     r2 3. S2-12433 Mobile Truck & Trailer Repair Hampton Ordered $7,737.46 · Jan 12, 2026
+     r2 4. S2-6282 Mobile Truck & Trailer Repair Hampton Ordered $5,678.73 · Apr 8, 2025
+     r2 5. S2-5187 Mobile Truck & Trailer Repair Hampton Ordered $517.22 · Feb 26, 2025
+     r2 6. S2-6857 Mobile Truck & Trailer Repair Hampton Ordered $1,200.70 · May 1, 2025
+
+=== C55730 seeding past the cap
+   extra parts created: 6
+   rows shown for the broad query now: 20
+   is ZZBROAD-4027 in that list: false
+   after narrowing to it: 1 rows | it appears: true
+EXIT=0
