@@ -1,0 +1,28 @@
+=== SV-10178 re-check: the ticket says unit and year run together, e.g. "TRK 4122019 Freightliner"
+   ASSET row: TRK 412 · 2019 Freightliner Cascadia ZZAUTOTEST Fibridge Commercial · Unit:TRK 412
+   WORK ORDER row: S9160-17664 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Ca
+   WORK ORDER row: S9160-17660 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Freightliner Cascadi
+   WORK ORDER row: S9160-17662 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Ca
+   WORK ORDER row: S9160-17663 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Ca
+   WORK ORDER row: S9160-17658 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Freightliner Cascadi
+   WORK ORDER row: S9160-17659 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Freightliner Cascadi
+
+=== SV-10186 re-check: status colours in search vs the rest of the app
+   statuses as SEARCH paints them: {
+ "Approved": "rgb(224, 242, 241) / rgb(0, 105, 92)"
+}
+   statuses as the WORK ORDERS LIST paints them: {
+ "AS": "rgb(49, 55, 74) / rgb(255, 255, 255)",
+ "Status": "rgba(0, 0, 0, 0) / rgb(54, 65, 82)",
+ "Assigned to me": "rgba(0, 0, 0, 0) / rgb(54, 65, 82)",
+ "Asset on Site": "rgba(0, 0, 0, 0) / rgb(54, 65, 82)",
+ "Approved": "rgba(0, 0, 0, 0) / rgb(0, 0, 0)",
+ "0%": "rgb(238, 238, 238) / rgb(117, 117, 117)",
+ "Paid": "rgba(0, 0, 0, 0) / rgb(0, 0, 0)",
+ "95%": "rgb(56, 116, 255) / rgb(255, 255, 255)",
+ "87%": "rgb(56, 116, 255) / rgb(255, 255, 255)",
+ "90%": "rgb(56, 116, 255) / rgb(255, 255, 255)",
+ "85%": "rgb(56, 
+   statuses visible in both places: ["Approved"]
+     Approved         search: rgb(224, 242, 241) / rgb(0, 105, 92) list: rgba(0, 0, 0, 0) / rgb(0, 0, 0)   SAME: false
+EXIT=0

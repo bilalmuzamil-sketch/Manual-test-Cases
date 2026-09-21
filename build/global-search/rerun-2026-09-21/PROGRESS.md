@@ -17,21 +17,21 @@ recorded with `ticket_held` and listed for him) · no Expected edited, ever (114
 | # | Folder | Checks | State |
 |---|---|---|---|
 | 1 | Ranking and Prioritization | 23 | **DONE** — 19 passed · 1 failed (C55716, ticket held) · 3 blocked (C45137, C45138, C55709) |
-| 2 | Per-Entity Result Shape | 9 | IN PROGRESS |
+| 2 | Per-Entity Result Shape | 9 | **DONE** — 7 passed · 2 failed (both already ticketed) |
 | 3 | Grouped Results and Counts | 9 | **DONE** — 6 passed · 2 failed (C44825 already ticketed, C53476 ticket held) · 1 blocked (C44826) |
 | 4 | Scope Tabs | 12 | **DONE** — 12 passed |
 | 5 | Fuzzy Matching | 18 | **DONE** — 18 passed |
 | 6 | Permissions and Role-Based Scoping | 23 | to do |
 | 7 | Palette Open, Close and Keyboard | 10 | **DONE** — 10 passed |
 | 8 | Recent Activity Default State | 5 | to do |
-| 9 | Mobile Global Search (v2) | 6 | to do |
+| 9 | Mobile Global Search (v2) | 6 | IN PROGRESS |
 | 10 | Persisting Query | 3 | **DONE** — 2 passed · 1 failed (C44861, ticket held) |
 | 11 | Empty and First-Time State | 2 | **DONE** — 2 passed |
 | 12 | No-Results State | 2 | **DONE** — 1 passed · 1 failed (C44865, already ticketed) |
 | 13 | Page-Search Cutover (v2) | 2 | to do |
 | 14 | In-Page Work Orders List Search | 2 | to do |
-| 15 | Purchase Orders Entity (v2) | 1 | to do |
-| 16 | Vendor Invoices Entity (v2) | 1 | to do |
+| 15 | Purchase Orders Entity (v2) | 1 | **DONE** — passed |
+| 16 | Vendor Invoices Entity (v2) | 1 | **DONE** — passed |
 | 17 | Error State | 1 | **DONE** — passed |
 
 ## Fixtures present on the branch (enumerated live 21 Sep)
@@ -61,3 +61,5 @@ result rows. Caught by reading the panel's own text (`Recent searches / TODAY`).
 pass uses two characters or more.
 
 **Second instrument note:** cutting a request off inside the browser (`route.abort`) is NOT a server failure — the panel simply closes, which reads as a crash. Make the server answer **500** instead, and the product shows its Search unavailable / Retry banner correctly.
+
+**A reported fault is FIXED:** SV-10178 (asset rows joining the unit number to the year with no separator) does not reproduce — the row now reads `TRK 412 · 2019 Freightliner Cascadia`, matching the work-order row. Checked against the ticket's own steps. The ticket is still *In Progress*, so the QA lead may want to move it.

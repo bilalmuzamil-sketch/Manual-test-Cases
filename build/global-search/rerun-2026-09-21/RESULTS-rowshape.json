@@ -1,0 +1,69 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C44831": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. A job row reads the job number and the customer on the bold line, a coloured status label beneath it, and the unit and vehicle on the third line.",
+   "not_observed": null
+  },
+  "C44832": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. A customer row reads the customer name, then a small open-jobs count where there are any (16 open, 8 open), then the address.",
+   "not_observed": null
+  },
+  "C44833": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. THE REPORTED FAULT IS FIXED. The report says a vehicle's unit number runs straight into the year with nothing between them, giving TRK 4122019 Freightliner Cascadia. On this build that same vehicle now reads TRK 412 - 2019 Freightliner Cascadia, with a separator, and it matches how the job row shows the same two facts on the same screen. Checked against the report's own steps. The owning customer appears as the smaller second line.",
+   "not_observed": null
+  },
+  "C44834": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. A part row reads the description, then a coloured quantity label, then the part number.",
+   "not_observed": null
+  },
+  "C44835": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. A vendor row reads the vendor name, then the telephone and address.",
+   "not_observed": "The small picture at the left of the row is drawn as a shape rather than text, so which picture it is was not judged."
+  },
+  "C44836": {
+   "verdict": "Failed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. A part-sale row reads the number and customer, then a coloured status, then who created it - but there is no total price anywhere on the row. This is the fault already reported.",
+   "ticket": "SV-10163 - Global Search - Part Sale Rows Do Not Show a Total Price - https://shopview.atlassian.net/browse/SV-10163 (open, Ready to Fix)",
+   "todo": "Nothing new to raise - already reported and waiting on the development team.",
+   "not_observed": null
+  },
+  "C44837": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. A customer reached only through its contact still appears, as the company row, and its second line reads Contact match so you can see why it came back.",
+   "not_observed": null
+  },
+  "C44838": {
+   "verdict": "Failed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. Recorded as still failing on the evidence in the existing report, which checked every status one at a time and found none matching.",
+   "not_observed": "Tonight's re-check could not compare the colours fairly - my reader picked up the filter controls on the jobs list rather than the status labels on the rows, so this run neither confirms nor clears it. The verdict rests on the earlier check recorded in the report, not on tonight's.",
+   "ticket": "SV-10186 - Work Order Status Colours in Search Do Not Match the Rest of the App - https://shopview.atlassian.net/browse/SV-10186 (open, In Progress)",
+   "todo": "Re-check the colours properly once the fix lands, comparing the status label on a jobs-list ROW with the same job's label in search."
+  },
+  "C44895": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. There is no Contacts tab and no Contacts group. A contact match brings back its company instead, marked Contact match.",
+   "not_observed": null
+  },
+  "C44899": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. Purchase orders are searchable in their own right, with their own tab and their own group carrying a count. A row reads the order number and vendor, a coloured status such as Partial Delivery or Fulfilled, and the total.",
+   "not_observed": "The hover action on the row was not judged - that work is cancelled and those checks are parked at the QA lead's instruction."
+  },
+  "C44900": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. Vendor invoices are searchable in their own right, with their own tab and group and count. A row reads the invoice number and vendor, a coloured payment label, and the total.",
+   "not_observed": "Only unpaid invoices exist on this branch, so the payment label was seen in one of its states, not all three."
+  }
+ }
+}
