@@ -92,14 +92,19 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
   — exit 1 means REFUSE to commit. **Never claim a scan that did not run.**
-- **EXPECTED BEHAVIOUR COMES FROM THE DOCUMENTS, NEVER FROM THE BUILD (57).** The sources are: the
-  **spec/PRD**, the **epic's stories**, the **PO's verified answers**, the **design**, **Figma**, the
-  **technical design**, **shared `.md` files**, and **any newer written statement** shared with us —
-  and the list is **OPEN-ENDED**: a new document type counts without a rule amendment. **From the build
-  we take EXACTLY TWO THINGS: the on-screen labels/navigation, and the pass/fail verdict.** If the
-  build differs, the case KEEPS the documented expectation and becomes a deviation with a ticket.
-  **A closed ticket is not a spec change. An ambiguous source is never resolved by looking at the
-  build (58) — hold the case and ask.**
+- **EXPECTED BEHAVIOUR COMES FROM THE DOCUMENTS, NEVER FROM THE BUILD, AND IS THE SOURCE'S VERBATIM
+  QUOTE (57 · 114).** The sources are: the **spec/PRD**, the **epic's stories**, the **PO's verified
+  answers**, the **design**, **Figma**, the **technical design**, **shared `.md` files**, and **any newer
+  written statement** shared with us — and the list is **OPEN-ENDED**: a new document type counts without
+  a rule amendment. **From the build we take EXACTLY TWO THINGS: the on-screen labels/navigation, and the
+  pass/fail verdict.** **The Expected Result is written as the SOURCE'S EXACT WORDS (quoted, with page/
+  section/version on the provenance line, 54) — never paraphrased, softened, sharpened, or edited to
+  match the build (114).** If the build differs, the case KEEPS the documented expectation and becomes a
+  deviation with the three outcomes (62-b). The **only** permitted edit to an Expected is correcting it
+  **back to the source quote** when the case disagrees with the live source (106) — never away from it,
+  never towards the build. Layman/build-label wording (7/9) governs **preconditions and steps**, not the
+  Expected's substance. **A closed ticket is not a spec change. An ambiguous source is never resolved by
+  looking at the build (58) — hold the case and ask.**
 - **🛑 A LABEL IS READ FROM THE SMALLEST ELEMENT THAT OWNS IT, AND QUOTED AS DISPLAYED (2026-09-03).**
   **(a) WHICH ELEMENT.** `cells[i]` per column header, `value` for an input, `textContent` otherwise,
   icons stripped. Flattened text answers "does this appear", NEVER "this is the label".
@@ -457,6 +462,7 @@ rule. Generated from the split files' own headers.
 | **111** | A TEST CASE IS NOT FINISHED UNTIL ITS DATA IS SEEDED OR EXPLICITLY ACCOUNTED FOR, in the same pass that wrote it — every case ends SEEDED · NEEDS NO DATA · SELF-SEEDING, written into the project's seed manifest. A case whose data is missing fails misleadingly and produces false defects |
 | **112** | WHEN THE SEEDED RECORD'S REAL IDENTIFIER DIFFERS FROM THE ONE THE CASE NAMES, CORRECT THE IDENTIFIER IN THE CASE — **THE IDENTIFIER ONLY, AND NOTHING ELSE** (QA lead, 2026-09-17) |
 | **113** | VERIFY AGAINST THE **REAL CASE TEXT**, NEVER AGAINST A SUMMARY OF IT — a handoff is a map, not the territory (QA lead, 2026-09-17) |
+| **114** | THE EXPECTED RESULT IS THE **VERBATIM QUOTE FROM THE SOURCE, AND IS NEVER CHANGED** — quoted in the source's own words with page/section/version cited (54), never paraphrased/softened/sharpened or edited to match the build; a build that differs is a deviation (62-b), and the only permitted edit is correcting it BACK to the source quote (106). Hardens Rule 57 (QA lead, 2026-09-21) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -601,8 +607,10 @@ Compact form — **the rule named in brackets is the authority; read it before r
 
 - **Plain, layman English** throughout; numbered **Preconditions / Steps / Expected**, each on its own
   line. [7, 9]
-- **Expected Results state what the DOCUMENT requires**, never how the build behaves. If the build
-  differs, keep the documented expectation and raise a deviation. [57]
+- **Expected Results state what the DOCUMENT requires, in the SOURCE'S VERBATIM WORDS**, never how the
+  build behaves and never a paraphrase. Quote the source line, cite its page/section/version (54). If the
+  build differs, keep the documented expectation and raise a deviation; the only edit ever made to an
+  Expected is correcting it back to the source quote (106), never away from it. [57 · 114]
 - **PRD, design and Figma are expected to AGREE.** Where they disagree that is a **finding to raise**
   (a PO question + the outstanding register), never a side to pick silently; meanwhile the case follows
   the most recent authoritative source and DISCLOSES the divergence. "Everything should match the

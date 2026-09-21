@@ -4006,3 +4006,38 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     the source document, and for *"can this test be run?"* the source document is the case body); the
     honest trigger for Rule 112; and the reading half of Rule 86.
     **NOTE ON NUMBERING:** the parity branch carries this same rule as **112**. Same rule, two numbers.
+
+114. **THE EXPECTED RESULT IS THE VERBATIM QUOTE FROM THE SOURCE, AND IS NEVER CHANGED (all projects,
+    permanent; QA lead, 2026-09-21).**
+    **THE ORDER (QA lead, 2026-09-21):** *"the expected behavior should be the exact QUOTE from the
+    specs/source, that MUST NOT ever be changed. Save it as your rule for ever."*
+    **THE RULE.** A test case's **Expected Result is the requirement as the SOURCE states it** — copied
+    from the spec/PRD, the epic's story, the PO's verified written answer, the design or Figma, or the
+    technical design (the Rule 57 list) — **quoted in the source's own words**, with its page id, section
+    and version cited on the provenance line (Rule 54). It is **not paraphrased into a new claim, not
+    softened, not sharpened, not "cleaned up", and above all NEVER edited to match how the build
+    behaves.** Once written from the source it is **frozen**: a build that differs is a **deviation**
+    handled by the three outcomes (Rule 62-b), never a reason to touch the Expected.
+    **WHY THIS HARDENS RULE 57.** Rule 57 already says the expectation comes from the document, not the
+    build. This says *how the expectation is written*: as the **source's exact words**, so no session can
+    quietly reword an Expected into something the source never said and then defend it as "from the
+    document". The quote is the anchor; a reader can put the case's Expected next to the cited source line
+    and see they are the same.
+    **THE ONLY PERMITTED EDIT TO AN EXPECTED, AND IT IS STILL NEVER AN INVENTION.** If the Expected on a
+    case is found to disagree with the live source, the **case is wrong** — under Rule 106 you ask
+    permission to **correct the Expected BACK TO the source quote**, showing both wordings. That is
+    restoring the quote, not changing it. You never move an Expected AWAY from the source, and never
+    towards the build (Rules 57, 109 for V1-vs-V2).
+    **BOUNDARY WITH THE LAYMAN RULES (7/9).** Plain-language, build-label wording governs **preconditions
+    and steps** (the tester-facing how-to) and PO questionnaires — not the substance of the Expected. The
+    Expected keeps the source's meaning verbatim; where the source line is itself technical, quote it and,
+    only if a tester truly needs it, add a plain gloss **after** the quote without altering the quote.
+    **HOW TO WRITE IT.** (1) Open the live source (Rule 100/108), find the requirement line, copy it.
+    (2) Put that quote in Expected; cite page/section/version on the provenance line (Rule 54). (3) On any
+    later touch, re-verify the whole case (Rule 41) but **do not reword the Expected** — a stale build
+    stamp is re-stamped; the Expected quote is not.
+    **RELATION TO OTHER RULES:** the writing standard for Rule 57 (source not build); enforced by Rule 25
+    (cite the verbatim source wording on every deviation call) and Rule 54 (provenance line); its only
+    edit path is Rule 106 (reconcile the case against the live source; correct the case, not the ticket);
+    Rule 62-b turns a build-vs-Expected gap into three outcomes, never an Expected rewrite; Rule 109 keeps
+    a V1-vs-V2 comparison case's Expected on the V1 behaviour, never the V2 spec.
