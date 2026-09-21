@@ -810,6 +810,33 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   auto-apply fees on new WOs (`appliedBy=customer_default`). **Gotcha:** create can 500 in some staging
   sessions → create via the UI instead (UI recipe: `/workorders` → New → pick Customer + Asset →
   Save → Confirmation "over credit limit" → Create). *Source: CLAUDE.md, UI-seeding appendix 2026-07-15.*
+- **🔑 TEST A PERMISSION WITHOUT A SECOND LOGIN — IMPERSONATE, THEN EDIT THE ROLE** (proven live on
+  `sv9160`, 22 September 2026; the QA lead authorised role edits on the QA branch).
+  **(1) A restricted session:** `POST /api/switch-user {user_id}` with an **active** staff id from
+  `GET /api/staff?limit=200` (each row carries `is_active`, `role_label`, `role_id`). An **inactive**
+  user answers 400 *"Cannot impersonate an inactive user"* and some answer 403 — walk the list until
+  one returns 200. **Switch BACK with the same call** using an active Admin's staff id; no re-login is
+  needed, so one browser can alternate all night. ⚠️ **The `tech` quick-login on `sv9160` is an
+  ADMINISTRATOR** (`template_slug: administrator`, 57 permissions) — judge by `template_slug`, never by
+  the button you pressed.
+  **(2) Read a role:** `GET /api/roles/{roleId}` → 200 `{id,name,description,default,editable,deletable,
+  fe_permissions:[{id,name,code}],template_id,view_mode,cross_toggles}`. `GET /api/roles` is **405**
+  (POST-only) and the settings screen for roles is a **404** on this build, so there is no list — take
+  `role_id` off the staff rows. `GET /api/role-templates` → the eleven templates.
+  **(3) Write a role:** **`PUT /api/roles/{roleId}` with `fe_permissions` as an array of permission
+  IDs** → 200. Echoing the objects back gives a **500**; `POST /api/roles/{id}`, `/change` and
+  `/update` are **405/404**; creating a copy with `POST /api/roles` is a **500**. Build the id
+  catalogue by reading every distinct `role_id` on staff (58 codes on this branch).
+  **(4) ⚠️ SOME PERMISSIONS ARE PUT BACK BY THEIR SIBLINGS.** Removing **`workOrdersView`** alone
+  silently returns it — `woPickParts`, `workOrderLinesCreateAndEdit`, `woTechViewMode` and
+  `scheduleView` imply it. To take work orders away, remove the **whole family**. Always **read the
+  role back** after a write and check the code you removed is actually gone, or the phase proves
+  nothing. Likewise **`partSalesView` on its own does not surface Part Sales** — part sales are tied to
+  `seeFinancialData` (the QA lead confirmed this is intended), and `seeFinancialData` did not persist
+  on its own either.
+  **(5) RESTORE AND READ BACK after every phase**, and save the original role to disk BEFORE the first
+  write (`build/global-search/rerun-2026-09-21/ORIGINAL-technician-role.json`) so any session can put it
+  back. Verified restored exactly after all seven phases.
 - **🔑 CREATE A VEHICLE / ASSET — `POST /api/vehicles/create` needs BOTH `company_id` AND
   `customer_id`, and `customer_id` is a CONTACT id, not the company's** (learned 2026-09-21 from the
   refusals). Sending the company id as `customer_id` gives `{"customer_id":"Not found"}`; omitting it

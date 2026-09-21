@@ -1,0 +1,51 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "22 September 2026"
+ },
+ "results": {
+  "C44879": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21/22 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live on 21 September. Measured on the screen while signed in as a real technician, with one area of access switched at a time on her role and the role put back and read back after every single change. With jobs access taken away, there is no Work orders group, no job rows, and the Work orders tab carries no number at all - while Customers and Vehicles carry on showing their rows and counts exactly as before. Only the area she lost disappears.",
+   "not_observed": null
+  },
+  "C55732": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21/22 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live on 21 September. Measured on the screen while signed in as a real technician, with one area of access switched at a time on her role and the role put back and read back after every single change. With jobs access the Work orders group shows twenty rows and its count; with it taken away the SAME jobs are gone - group, count and the number on the tab all with them, and the overall total drops from 30 to 10. Worth recording for whoever repeats this: taking away only the one jobs-view permission does not stick, because the other job permissions put it straight back. The whole job family has to come off together.",
+   "not_observed": null
+  },
+  "C55733": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21/22 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live on 21 September. Measured on the screen while signed in as a real technician, with one area of access switched at a time on her role and the role put back and read back after every single change. With customer access, Customers shows four and Vehicles shows six. With ONLY that one permission taken away, BOTH groups vanish together - the vehicles go with the customers, exactly as the mapping says - and the total drops from 30 to 20.",
+   "not_observed": null
+  },
+  "C55719": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21/22 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live on 21 September. Measured on the screen while signed in as a real technician, with one area of access switched at a time on her role and the role put back and read back after every single change. With customer access taken away, searching a word that only matches through a contact returns nothing at all. A contact match comes back as its company, and with no access to companies there is nothing to return.",
+   "not_observed": null
+  },
+  "C55731": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21/22 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live on 21 September. Measured on the screen while signed in as a real technician, with one area of access switched at a time on her role and the role put back and read back after every single change. Adding ONLY parts access makes the Parts group appear with its three rows and puts a count on the Parts tab; taking that one permission away again removes the same three parts completely. Nothing else moved.",
+   "not_observed": null
+  },
+  "C55735": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21/22 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live on 21 September. Measured on the screen while signed in as a real technician, with one area of access switched at a time on her role and the role put back and read back after every single change. Adding ONLY vendor-and-orders access makes all THREE of Vendors, Purchase orders and Vendor invoices appear at once, with their rows and counts; taking that one permission away removes all three together. The total moves from 30 to 39 and back.",
+   "not_observed": null
+  },
+  "C55717": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21/22 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live on 21 September. Measured on the screen while signed in as a real technician, with one area of access switched at a time on her role and the role put back and read back after every single change. Built properly this time. Signed in as the technician while she still had jobs access, she opened a job, and it appeared in her own recent list. Her jobs access was then taken away and her recent list looked at again: it is empty - the job she can no longer reach has gone from it. The list obeys what she can reach now, not what she could reach when she opened it.",
+   "not_observed": null
+  },
+  "C55734": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21/22 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live on 21 September. Measured on the screen while signed in as a real technician, with one area of access switched at a time on her role and the role put back and read back after every single change. This one cannot be done as written, and the reason is a product rule you already told me about. Adding ONLY part-sales access does not make part sales appear - the group stays away and the total does not move. Part sales are tied to seeing financial information, and that permission could not be added to her role on its own either. So there is no way to switch part-sales access on by itself and watch the same record appear.",
+   "not_observed": "The same part sale appearing and disappearing with only part-sales access changed.",
+   "todo": "Either reword this check to switch part-sales access AND financial access together, which is how the product actually works, or confirm with the product owner that the two being tied is intended and retire the check. The wording is yours to decide - I do not change what a check expects."
+  }
+ }
+}

@@ -1,0 +1,22 @@
+=== why would removing workOrdersView not stick?
+  removing it alone -> 200 | role now: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+  did it come back: true
+  removing the whole work-order family -> 200 | role now: customersView,woTechViewMode
+  switch to the technician -> 200
+  signed in as: {"slug":"technician","n":2,"has":false}
+   -> rows 9 | groups ["Customers (4) ZZAUTOTEST F","Assets (6) 2021 KEN WORTH "]
+      tabs ["All (10)","Work orders","Customers (4)","Assets (6)","Parts","Vendors","Part sales","Purchase orders","Vendor invoices"]
+   C55717 the recent list with jobs access taken away: []
+  back to admin -> 200
+  restore -> woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+
+=== C55734 part sales, adding the financial permission too (the known dependency)
+  role now: partSalesView,woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+  switch to the technician -> 200
+   -> rows 14 | groups ["Work orders (20) S9160-176","Customers (4) ZZAUTOTEST F","Assets (6) 2021 KEN WORTH "] | money amounts 0
+      tabs ["All (30)","Work orders (20)","Customers (4)","Assets (6)","Parts","Vendors","Part sales","Purchase orders","Vendor invoices"]
+  back to admin -> 200
+
+FINAL restore -> 200 | role: customersView,scheduleView,woPickParts,woTechViewMode,workOrderLinesCreateAndEdit,workOrdersView
+matches the original: true
+EXIT=0

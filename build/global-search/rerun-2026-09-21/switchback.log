@@ -1,0 +1,11 @@
+start: administrator/57
+my own account: {}
+an active admin staff member: Krystal Davis 0201ef09-fc90-43e3-8996-a9fe260e870b
+switch to Brandi -> 200
+  now: technician/6
+switch BACK to the admin staff -> 200
+  now: administrator/57
+  can still read the role: 200 | permissions: 6
+  write it back unchanged -> 405 {"errors":[{"error":"No route found for \u0022POST http:\/\/sv9160api.qa.shopview.com\/api\/roles\/af8d02b5-ecd1-4205-a8
+  read back after the no-op write: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+EXIT=0

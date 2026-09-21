@@ -1,0 +1,17 @@
+STEP 1 — as the technician WITH jobs access, open a job so it enters her own recent list
+  switch -> 200
+  opened: "S9160-17671 ZZAUTOTEST Fibridge Logistics Ap" -> workorders/4a4eae21-1786-4056-a680-493f374061b3
+  her recent list now: ["S9160-17671 ZZAUTOTEST Fibridge Logistics Appr"]
+  contains a job: true
+
+STEP 2 — take her jobs access away, then look at that same list again
+  back to admin -> 200
+  role set to: customersView,woTechViewMode
+  switch back to her -> 200
+  her recent list now: []
+  still contains a job: false
+
+  back to admin -> 200
+FINAL restore: customersView,scheduleView,woPickParts,woTechViewMode,workOrderLinesCreateAndEdit,workOrdersView
+matches the original: true
+EXIT=0

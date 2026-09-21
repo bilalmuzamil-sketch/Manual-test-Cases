@@ -21,7 +21,7 @@ recorded with `ticket_held` and listed for him) · no Expected edited, ever (114
 | 3 | Grouped Results and Counts | 9 | **DONE** — 6 passed · 2 failed (C44825 already ticketed, C53476 ticket held) · 1 blocked (C44826) |
 | 4 | Scope Tabs | 12 | **DONE** — 12 passed |
 | 5 | Fuzzy Matching | 18 | **DONE** — 18 passed |
-| 6 | Permissions and Role-Based Scoping | 23 | **DONE** — 12 passed · 10 blocked · 1 failed (already ticketed) |
+| 6 | Permissions and Role-Based Scoping | 23 | **DONE** — 19 passed · 3 blocked (C55734 product dependency, C55736/C55737 held wording) · 1 failed (already ticketed) |
 | 7 | Palette Open, Close and Keyboard | 10 | **DONE** — 10 passed |
 | 8 | Recent Activity Default State | 5 | **DONE** — 4 passed · 1 blocked |
 | 9 | Mobile Global Search (v2) | 6 | **DONE** — 6 passed |
@@ -85,3 +85,5 @@ on the record listed second; in every rebuilt case the order actually moved.
 **Impersonation is the route to a restricted sign-in:** `POST /api/switch-user {user_id}` with an
 **active** staff id (`GET /api/staff?limit=200` → `is_active`). Brandi Smith is a real technician with
 six permissions. Note the `tech` quick-login on this branch is an **administrator**, not a technician.
+
+**Role editing authorised 22 Sep** — seven single-area flips run on the technician role, each restored and read back; the role ends exactly as it started. Route and traps recorded in playbook §C.

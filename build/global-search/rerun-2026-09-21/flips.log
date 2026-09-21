@@ -1,0 +1,52 @@
+baseline technician permissions: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+
+================ A remove workOrdersView
+  role set -> 200 | now: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+  switch to the technician -> 200
+  signed in as: {"slug":"technician","n":6}
+   "ZZAUTOTEST Fibridge" -> rows 14 | groups ["Work orders (20) S9160-176","Customers (4) ZZAUTOTEST F","Assets (6) 2021 KEN WORTH "]
+        tabs ["All (30)","Work orders (20)","Customers (4)","Assets (6)","Parts","Vendors","Part sales","Purchase orders","Vendor invoices"]
+  switch back to admin -> 200
+  role RESTORED -> 200 | now: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit | matches the original: true
+
+================ B remove customersView
+  role set -> 200 | now: woPickParts,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+  switch to the technician -> 200
+  signed in as: {"slug":"technician","n":5}
+   "ZZAUTOTEST Fibridge" -> rows 5 | groups ["Work orders (20) S9160-176"]
+        tabs ["All (20)","Work orders (20)","Customers","Assets","Parts","Vendors","Part sales","Purchase orders","Vendor invoices"]
+   "ZZSECONDARYQ" -> rows 0 | groups []
+        tabs ["All (0)","Work orders (0)","Customers","Assets","Parts","Vendors","Part sales","Purchase orders","Vendor invoices"]
+  switch back to admin -> 200
+  role RESTORED -> 200 | now: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit | matches the original: true
+
+================ C add catalogInventoryView
+  role set -> 200 | now: woPickParts,customersView,scheduleView,woTechViewMode,catalogInventoryView,workOrdersView,workOrderLinesCreateAndEdit
+  switch to the technician -> 200
+  signed in as: {"slug":"technician","n":7}
+   "ZZAUTOTEST Fibridge" -> rows 17 | groups ["Work orders (20) S9160-176","Customers (4) ZZAUTOTEST F","Assets (6) 2021 KEN WORTH ","Parts (3) ZZAUTOTEST Fibri"]
+        tabs ["All (33)","Work orders (20)","Customers (4)","Assets (6)","Parts (3)","Vendors","Part sales","Purchase orders","Vendor invoices"]
+  switch back to admin -> 200
+  role RESTORED -> 200 | now: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit | matches the original: true
+
+================ D add partSalesView
+  role set -> 200 | now: partSalesView,woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+  switch to the technician -> 200
+  signed in as: {"slug":"technician","n":7}
+   "ZZAUTOTEST Fibridge" -> rows 14 | groups ["Work orders (20) S9160-176","Customers (4) ZZAUTOTEST F","Assets (6) 2021 KEN WORTH "]
+        tabs ["All (30)","Work orders (20)","Customers (4)","Assets (6)","Parts","Vendors","Part sales","Purchase orders","Vendor invoices"]
+  switch back to admin -> 200
+  role RESTORED -> 200 | now: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit | matches the original: true
+
+================ E add vendorOrderManagementView
+  role set -> 200 | now: woPickParts,customersView,scheduleView,vendorOrderManagementView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+  switch to the technician -> 200
+  signed in as: {"slug":"technician","n":7}
+   "ZZAUTOTEST Fibridge" -> rows 23 | groups ["Work orders (20) S9160-176","Customers (4) ZZAUTOTEST F","Assets (6) 2021 KEN WORTH ","Vendors (1) ZZAUTOTEST Fib","Purchase orders (4) S9160-","Vendor invoices (4) 544554"]
+        tabs ["All (39)","Work orders (20)","Customers (4)","Assets (6)","Parts","Vendors (1)","Part sales","Purchase orders (4)","Vendor invoices (4)"]
+  switch back to admin -> 200
+  role RESTORED -> 200 | now: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit | matches the original: true
+
+FINAL CHECK - the technician role is exactly as it was: true
+   customersView,scheduleView,woPickParts,woTechViewMode,workOrderLinesCreateAndEdit,workOrdersView
+EXIT=0
