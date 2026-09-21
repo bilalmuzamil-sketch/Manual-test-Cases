@@ -18,8 +18,11 @@ that a prior edit had left in.
 - **C55736** — See Financial Data masking. Expected now states: the vendor-invoice row shows number/vendor/status/total; without See Financial Data the total is hidden and the row remains. Sourced to §4 (VI displayed fields) + §9 + the 2026-08-12 engineering resolution. Removed the build-flavoured note ("a part row does not print a price for anyone"); replaced with the §4 basis for choosing a vendor-invoice row.
 - **C55737** — counts filtered by permission. Expected now states: a permitted kind shows its group/count/tab and is in the All count; a non-permitted kind shows no group/count/tab and is not counted; counts are capped at twenty. Sourced to §9 + the 2026-08-12 resolution + §5.2. Removed "the All count drops by exactly that kind's contribution" (not in source and defeated by the §5.2 cap).
 
-## STILL TO RECONCILE (same source issue) — needs the QA lead's nod on the exact edit
-Two cases still name money fields that §4 does NOT list among a result row's displayed fields:
-- **C44882** — masks list reads "part purchase/sell price, part-sale total, work-order total, PO total, vendor-invoice total". Per §4 the displayed money fields are ONLY: **part-sale total, purchase-order total, vendor-invoice total**. A Part row shows no price; a Work Order row shows no total. → correct the list to those three.
-- **C55706** — prices-shown positive case lists the same over-broad set; correct to the same three §4 money fields.
-These are the Rule 106 pattern (case disagrees with source ⇒ correct the case). Proposed correction above; awaiting go-ahead to apply.
+## RECONCILED 2026-09-21 (QA lead go-ahead given)
+- **C44882** — point 3 corrected: the masked money fields are now quoted from §4 as the part-sale total, the purchase-order total and the vendor-invoice total; part price and work-order total removed (§4 displays neither). Source block now quotes §4 displayed fields, §9, and the 2026-08-12 engineering resolution verbatim. fr-view confirmed.
+- **C55706** — corrected the same way (prices-shown positive): the priced rows are part sales, purchase orders and vendor invoices only. fr-view confirmed.
+
+## Standing rule now in force (Rule 57 amendment 2026-09-21)
+Expected = the source's VERBATIM QUOTE with complete references, never reworded/changed. Any case whose
+Expected is not an exact quote with complete references is to be corrected to the source (this pass began
+that; a full sweep over the remaining GS cases follows).
