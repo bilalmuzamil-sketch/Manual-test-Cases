@@ -89,7 +89,7 @@ h3. Where the portal check stands
 
 *And a payment went all the way through.* I paid invoice S-17303 (Tucson Truck Center, $326.55) from the portal with a card, on the test card details the sandbox accepts. The portal said _"Payment Successful - Your payment has been processed successfully."_, the invoice flipped to *Paid*, and the portal's own payments list records it as *Succeeded*, $337.63 charged, $323.85 net.
 
-*But ShopView has not seen it.* Back in the app, the same invoice still shows a balance of *$326.55* with no payment against it at all. I checked four times over about forty minutes and it never changed. I also checked every invoice on both locations - 120 of them - and not one is marked as having been paid through the portal.
+*But ShopView has not seen it.* Back in the app, the same invoice still shows a balance of *$326.55* with no payment against it at all. I checked four times over about forty minutes and it never changed. I also went through every invoiced or paid work order the app lists on both locations - 98 on Staging Heavy Duty and 97 on Lethbridge, 195 in all - and not one of them is marked as having been paid through the portal. (The work order list hands back at most 100 per location, so that is everything the app shows rather than every record in the database.)
 
 So the money moved and the portal knows about it, but the shop's own system does not, which means the portal message on the Reverse button still cannot be seen and *check 7 is still not done*. The blocker has simply moved: it is no longer the portal being down, it is that a successful portal payment is not reaching ShopView.
 
@@ -105,5 +105,5 @@ h3. What I did not treat as a fault
 h3. The mixed applied-or-refunded question is now closed
 
 An earlier version of this comment flagged that there was no agreed wording for a part sale where some blocking credits had been used and others refunded. Chris has answered it, and his answer removes the problem rather than adding a sentence for it: "used" is true of a credit spent on an invoice and of one cashed out as a refund, and "Void" undoes both, so a mixed set needs no special case."""
-json.dump({"body": B}, open('/tmp/sv9697/body3.json','w'))
+json.dump({"body": B}, open('/tmp/sv9697/body4.json','w'))
 print('chars', len(B))

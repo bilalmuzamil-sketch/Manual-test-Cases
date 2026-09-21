@@ -988,10 +988,19 @@ three checkout attempts I abandoned while working out the Stripe form:
 **There is no resync control** on the row — the Actions column is empty for it, so the
 `PaymentResyncModal` chunk the page loads is not reachable from here.
 
-**And no invoice anywhere on this branch is flagged as portal-paid.** `has_portal_payment` was read
-on **120 invoiced-or-paid work orders across both workplaces** (60 on Staging Heavy Duty - 9919, 60 on
-Lethbridge - 4310): **zero** come back true — including S3-17303 itself, forty minutes after its
-payment succeeded.
+**And no invoice anywhere on this branch is flagged as portal-paid.** First pass read
+`has_portal_payment` on 60 per workplace; **that was a sample and it was written up as though it were
+the population, which is a Rule-50 failure and it reached the posted comment.** Re-run properly against
+**every invoiced or paid work order the app returns on both workplaces — 98 on Staging Heavy Duty - 9919
+and 97 on Staging Lethbridge - 4310, 195 in all, 0 unreadable**: **zero** come back true, including
+S3-17303 itself forty minutes after its payment succeeded. `GET /api/staff/my-workplaces` confirms
+there are exactly **two** workplaces, so no location was skipped.
+
+**Honest ceiling on that number, stated because it is not the same as "every record":**
+`GET /api/work-orders` **ignores `page`, `limit`, `rowsPerPage` and `offset`** — all four return the
+identical 100 rows with `pagination.page` stuck at 1 — and the Work Orders screen has **no paging
+control at all**. So 195 is *everything the application hands back*, not provably every row in the
+database. The comment now says exactly that.
 
 **Stated as what it is:** the money moved on the payment provider and the portal knows about it; the
 shop's own system does not. Whether that is a scheduled job that has not run, a webhook that is not
