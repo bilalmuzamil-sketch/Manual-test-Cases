@@ -18,11 +18,11 @@ recorded with `ticket_held` and listed for him) · no Expected edited, ever (114
 |---|---|---|---|
 | 1 | Ranking and Prioritization | 23 | **DONE** — 19 passed · 1 failed (C55716, ticket held) · 3 blocked (C45137, C45138, C55709) |
 | 2 | Per-Entity Result Shape | 9 | to do |
-| 3 | Grouped Results and Counts | 9 | IN PROGRESS |
-| 4 | Scope Tabs | 12 | IN PROGRESS |
+| 3 | Grouped Results and Counts | 9 | **DONE** — 6 passed · 2 failed (C44825 already ticketed, C53476 ticket held) · 1 blocked (C44826) |
+| 4 | Scope Tabs | 12 | **DONE** — 12 passed |
 | 5 | Fuzzy Matching | 18 | **DONE** — 18 passed |
 | 6 | Permissions and Role-Based Scoping | 23 | to do |
-| 7 | Palette Open, Close and Keyboard | 10 | to do |
+| 7 | Palette Open, Close and Keyboard | 10 | IN PROGRESS |
 | 8 | Recent Activity Default State | 5 | to do |
 | 9 | Mobile Global Search (v2) | 6 | to do |
 | 10 | Persisting Query | 3 | to do |
@@ -51,3 +51,11 @@ Skill 19 + skill 20: observed **on the screen** through the control a person use
 take **two alternating rounds** · a fixture must be **discriminating** · a **positive control** before
 any negative · build marker recorded · *"what would make this my fault?"* answered. Nothing is judged
 from a value read behind the screen.
+
+
+## Instrument note, 21 Sep
+
+**A one-letter query is below the product's two-character minimum and returns the RECENT list, not results.**
+An earlier sweep that used `a` as a broad query was therefore reading recent items and reporting them as
+result rows. Caught by reading the panel's own text (`Recent searches / TODAY`). Every broad query in this
+pass uses two characters or more.
