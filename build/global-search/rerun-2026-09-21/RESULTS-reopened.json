@@ -1,0 +1,37 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "22 September 2026"
+ },
+ "results": {
+  "C44838": {
+   "verdict": "Passed",
+   "observed": "Re-checked on 22 September 2026, QA branch sv9160, build v26.36.8-d146c39, against requirements page 576978945 version 17. Measured on the screen. THE REPORTED FAULT IS FIXED. The report says search keeps its own set of colours and that not one status comes out the same in both places. I compared every status that appears in both, seven of them - estimate, approved, in progress, ready for review, complete, invoiced and declined - reading the colour off the label inside a jobs-list ROW and off the same label in search. All seven match exactly, background and text. The one the report calls out by name, in progress, is green in both. My earlier attempt at this was inconclusive because I was reading the filter controls at the top of the jobs list instead of the labels on its rows.",
+   "not_observed": null
+  },
+  "C55709": {
+   "verdict": "Passed",
+   "observed": "Re-checked on 22 September 2026, QA branch sv9160, build v26.36.8-d146c39, against requirements page 576978945 version 17. Measured on the screen. Built properly this time. Two vehicles identical in every way - same year, same make and model, same owner, both found through their unit number, which is the only thing that differs - listed A then B. I gave the SECOND one an open job and it moved to the TOP. The order changed, so this proves the rule rather than agreeing with it.",
+   "not_observed": null
+  },
+  "C55734": {
+   "verdict": "Passed",
+   "observed": "Re-checked on 22 September 2026, QA branch sv9160, build v26.36.8-d146c39, against requirements page 576978945 version 17. Measured on the screen. Done properly now. Part sales cannot be switched on by themselves - they need the financial setting too, which is not an ordinary permission but a separate switch on the role, and that is why my first attempt looked as though nothing happened. With the financial switch left ON throughout and ONLY part-sales access flipped: with it, the Part sales group appears with its row and its count and the overall total reads 31; without it, the same part sale is gone - group, count and the number on the tab - and the total reads 30. One thing changed, and only that one thing moved.",
+   "not_observed": null
+  },
+  "C45137": {
+   "verdict": "Blocked",
+   "observed": "Re-checked on 22 September 2026, QA branch sv9160, build v26.36.8-d146c39, against requirements page 576978945 version 17. Measured on the screen. Still cannot be judged, and I have now proved it is the requirement rather than my effort. The requirement describes two states, still ordered and received, but the product has a middle one, Partial Delivery, that it never mentions. I searched the whole branch for a controlled pair - the same vendor, one still ordered, one fully received, with the received one NEWER so that age and state pull in opposite directions. No such pair exists in the data, and there is no way to set a purchase order's state directly: the only route to received is the full goods-receiving flow. Without knowing where a partly delivered order is meant to sit, the check has no answer even with a perfect fixture.",
+   "not_observed": "Where a partly delivered purchase order is meant to rank.",
+   "todo": "Ask the product owner one question: does a partly delivered purchase order count as still ordered, or as received? The check can be judged the moment that is answered."
+  },
+  "C45138": {
+   "verdict": "Blocked",
+   "observed": "Re-checked on 22 September 2026, QA branch sv9160, build v26.36.8-d146c39, against requirements page 576978945 version 17. Measured on the screen. Half of this is confirmed - the invoices come back newest first. The other half cannot be seen because every vendor invoice on this branch is unpaid, and I could not make a paid one. I tried six ways: the vendor invoices list page is missing on this build, the invoice's own page carries no payment control and does not mention payment at all, its edit control opens nothing, and five different service addresses for paying one all answer not found. Payment state comes from the accounting side, which this branch does not expose.",
+   "not_observed": "Whether an unpaid invoice outranks a paid one.",
+   "todo": "Have someone with accounting access mark one vendor invoice paid on this branch, then this finishes in a minute. Nothing else is held up by it."
+  }
+ }
+}

@@ -1,0 +1,15 @@
+=== the vendor invoices page — what is on it?
+   Skip to main content ShopHub expand_more Work Orders Schedule Customers Parts Reports search Search customers, work orders, parts... Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 AS The technician says this page is totaled 💥 home Back To Work Orders
+  buttons: ["ShopHub expand_more","timer Clock In"]
+
+=== can a purchase order status be set directly?
+  a purchase order: S9160-13556 92c14ca0-34bf-414b-aace-5a2e491be8c3 | status ordered
+   /api/orders/change-status                  404 {"errors":[{"error":"\u0027resource\u0027 was not found."}]}
+   /api/inventory/orders/change-status        405 {"errors":[{"error":"No route found for \u0022POST http:\/\/sv9160api.qa.shopview.com\/api\/inventory\/orders\/change-st
+   /api/orders/92c14ca0-34bf-414b-aace-5a2e491be8c3/status 404 {"errors":[{"error":"\u0027resource\u0027 was not found."}]}
+   /api/inventory/orders/change               405 {"errors":[{"error":"No route found for \u0022POST http:\/\/sv9160api.qa.shopview.com\/api\/inventory\/orders\/change\u0
+
+=== order statuses list?
+   /api/orders/statuses               404 {"errors":[{"error":"'resource' was not found."}]}
+   /api/inventory/orders/statuses     400 {"errors":[{"orderId":"Invalid UUID"}]}
+EXIT=0

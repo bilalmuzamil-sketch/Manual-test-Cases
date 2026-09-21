@@ -1,0 +1,19 @@
+=== C45137 hunt a pair at one vendor where the RECEIVED one is NEWER than the ordered one
+  FOUND: vendor "Stillwater Diesel Repair" ordered S2-4587 (2025-01-23) vs fulfilled S2-12603 (2026-01-15)
+  order returned for that vendor:
+     1. S9160-13556     ordered           2026-08-31
+     2. I9160-1390      ordered           2026-08-28
+     3. I9160-1385      ordered           2026-08-27
+     4. I9160-1368      partial_delivery  2026-08-20
+     5. S2-6126         ordered           2025-04-04
+     6. S2-6323         ordered           2025-04-09
+     7. S2-9561         ordered           2025-08-26
+     8. S2-4198         ordered           2025-01-24
+  the ORDERED one sits at 9 | the FULFILLED (newer) one at 0 | ordered ranks higher: false
+
+=== C45138 how does the app mark a vendor invoice paid?
+   /vendor-invoices               page exists
+  calls seen: [
+ "GET /vendor-invoices"
+]
+EXIT=0

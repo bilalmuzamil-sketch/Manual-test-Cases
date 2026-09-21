@@ -1,0 +1,17 @@
+=== C55734 — part-sales access WITH the financial toggle on
+  role -> 200 | permissions: partSalesView,woPickParts,customersView,scheduleView,seeFinancialData,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit | toggles: {"seeFinancialData":true,"seeApArData":false,"viewHistoryLogs":false}
+  switch -> 200
+   groups: ["Work orders (20) S9160-1","Customers (4) ZZAUTOTEST","Assets (6) 2021 KEN WORT","Part sales (1) P9160-258"]
+   tabs  : ["All (31)","Work orders (20)","Customers (4)","Assets (6)","Parts","Vendors","Part sales (1)","Purchase orders","Vendor invoices"] | money amounts: 0
+  back -> 200
+
+=== now take ONLY part-sales access away, leaving the financial toggle on
+  role -> woPickParts,customersView,scheduleView,seeFinancialData,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit | toggles: {"seeFinancialData":true,"seeApArData":false,"viewHistoryLogs":false}
+  switch -> 200
+   groups: ["Work orders (20) S9160-1","Customers (4) ZZAUTOTEST","Assets (6) 2021 KEN WORT"]
+   tabs  : ["All (30)","Work orders (20)","Customers (4)","Assets (6)","Parts","Vendors","Part sales","Purchase orders","Vendor invoices"] | money amounts: 0
+  back -> 200
+
+FINAL restore -> permissions: customersView,scheduleView,woPickParts,woTechViewMode,workOrderLinesCreateAndEdit,workOrdersView | toggles: {"seeFinancialData":false,"seeApArData":false,"viewHistoryLogs":false}
+matches the original: true
+EXIT=0

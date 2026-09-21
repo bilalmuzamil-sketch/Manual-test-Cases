@@ -810,6 +810,29 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   auto-apply fees on new WOs (`appliedBy=customer_default`). **Gotcha:** create can 500 in some staging
   sessions → create via the UI instead (UI recipe: `/workorders` → New → pick Customer + Asset →
   Save → Confirmation "over credit limit" → Create). *Source: CLAUDE.md, UI-seeding appendix 2026-07-15.*
+- **🔑 `seeFinancialData` IS A CROSS TOGGLE, NOT A PERMISSION — that is why adding it to
+  `fe_permissions` silently does nothing** (cost two failed attempts, 22 September 2026). A role's
+  body carries **`cross_toggles: {seeFinancialData, seeApArData, viewHistoryLogs}`** as booleans
+  alongside `fe_permissions`. Grant it with
+  `PUT /api/roles/{id} {…, cross_toggles:{...orig.cross_toggles, seeFinancialData:true}}` → the role
+  then reports `seeFinancialData` **inside `fe_permissions` on read**, which is what makes the trap so
+  convincing. **Part Sales depend on it:** `partSalesView` alone shows no Part sales group in search;
+  with the toggle on, the group appears — the QA lead confirmed 2026-09-20 that the tie is intended.
+  Restore the toggles explicitly, not just the permission list.
+- **🔑 SET A VEHICLE'S MAKE, MODEL AND UNIT — `POST /api/vehicles/change {vehicle_id, company_id,
+  customer_id, unit, year, vehicle_maker_id, vehicle_model_id, vin}` → 201.** It is **`vehicle_id`**
+  (not `id`), **`unit`** (not `unit_number`), and make/model are **ids**, not free text —
+  `GET /api/vehicle-makers` lists 100 (there is no `/api/vehicle-models`; borrow
+  `vehicle_maker_id`/`vehicle_model_id` off an existing vehicle via `GET /api/vehicles`). **Create
+  silently ignores make/model/unit**, so a freshly created pair is indistinguishable on screen — create
+  then `change`. Proven seeding C55709.
+- **⛔ A PURCHASE ORDER'S STATE CANNOT BE SET DIRECTLY, AND VENDOR-INVOICE PAYMENT IS NOT EXPOSED on
+  `sv9160`** (six routes tried 22 September 2026): `orders/change-status`, `inventory/orders/change-status`,
+  `orders/{id}/status`, `inventory/orders/change` all 404/405; `/vendor-invoices` as a page is a **404**
+  on this build; the invoice's own page (`/parts/delivery/{id}`) carries **no payment control and never
+  mentions payment**. The only route to *received* is the full goods-receiving flow (§C above), and
+  paid/unpaid comes from the accounting side. Record this as a **proved environment limit**, not as
+  something untried.
 - **🔑 TEST A PERMISSION WITHOUT A SECOND LOGIN — IMPERSONATE, THEN EDIT THE ROLE** (proven live on
   `sv9160`, 22 September 2026; the QA lead authorised role edits on the QA branch).
   **(1) A restricted session:** `POST /api/switch-user {user_id}` with an **active** staff id from

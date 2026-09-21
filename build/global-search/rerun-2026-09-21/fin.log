@@ -1,0 +1,18 @@
+role cross_toggles: {"seeFinancialData":false,"seeApArData":false,"viewHistoryLogs":false}
+
+--- why will seeFinancialData not stick?
+   seeFinancialData alone                   200 | financial present: false | part sales present: false | 6 permissions
+   with settingsFinance                     200 | financial present: false | part sales present: false | 7 permissions
+   with seeApArData                         200 | financial present: false | part sales present: false | 6 permissions
+   with partSalesView + invoicingPaymentsView 200 | financial present: false | part sales present: true | 8 permissions
+
+--- restore: woPickParts,customersView,scheduleView,woTechViewMode,workOrdersView,workOrderLinesCreateAndEdit
+
+=== C45138 make a PAID vendor invoice exist
+  invoice list rows: 0
+   /api/vendor-invoices               404 {"errors":[{"error":"'resource' was not found."}]}
+   /api/inventory/vendor-invoices     404 {"errors":[{"error":"'resource' was not found."}]}
+   /api/invoices/vendor               404 {"errors":[{"error":"'resource' was not found."}]}
+   /api/vendor-invoice/pay            404 {"errors":[{"error":"'resource' was not found."}]}
+   /api/vendor-invoices/pay           404 {"errors":[{"error":"'resource' was not found."}]}
+EXIT=0
