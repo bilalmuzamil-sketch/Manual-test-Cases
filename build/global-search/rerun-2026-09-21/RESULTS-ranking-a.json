@@ -1,0 +1,58 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C55724": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39. Checked against the requirements page 576978945 version 17, re-read live the same day. Watched on the screen through the search box, not read from behind it, and every ordering reading was taken twice with the rounds agreeing. Typing the shared word on the Customers tab returns, in order: the customer whose name BEGINS with it, then the one that contains it part-way through, then the close-match one. Exactly the order the requirement asks for, and the three are alike in every other way.",
+   "not_observed": null
+  },
+  "C55707": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39. Checked against the requirements page 576978945 version 17, re-read live the same day. Watched on the screen through the search box, not read from behind it, and every ordering reading was taken twice with the rounds agreeing. Same three records read without narrowing to a tab: begins-with first, contains second, close match third. Match strength decides the order.",
+   "not_observed": null
+  },
+  "C72120": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39. Checked against the requirements page 576978945 version 17, re-read live the same day. Watched on the screen through the search box, not read from behind it, and every ordering reading was taken twice with the rounds agreeing. On the Parts tab the part whose description BEGINS with the word comes first and the one that merely contains it comes second, with the close matches last. Note for the tester: the fixture now also contains a part carrying that word as its CATEGORY and another carrying it as a TAG, and those two sit between the contains match and the close matches. That is legitimate - category and tag are searchable fields for parts - and it does not disturb the three fixture parts, which are in the required order.",
+   "not_observed": null
+  },
+  "C72121": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39. Checked against the requirements page 576978945 version 17, re-read live the same day. Watched on the screen through the search box, not read from behind it, and every ordering reading was taken twice with the rounds agreeing. On the Vendors tab: begins-with first, contains second, close match third.",
+   "not_observed": null
+  },
+  "C72122": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39. Checked against the requirements page 576978945 version 17, re-read live the same day. Watched on the screen through the search box, not read from behind it, and every ordering reading was taken twice with the rounds agreeing. On the Vehicles tab: begins-with first, contains second, close match third.",
+   "not_observed": null
+  },
+  "C55708": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39. Checked against the requirements page 576978945 version 17, re-read live the same day. Watched on the screen through the search box, not read from behind it, and every ordering reading was taken twice with the rounds agreeing. The customer with an open job ranks above the one with none, and the row itself shows the open-job count, so the difference is visible on screen rather than assumed. Read back first: one customer has one open job, the other none; they are otherwise alike.",
+   "not_observed": null
+  },
+  "C55710": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39. Checked against the requirements page 576978945 version 17, re-read live the same day. Watched on the screen through the search box, not read from behind it, and every ordering reading was taken twice with the rounds agreeing. The vendor with an open purchase order ranks above the vendor with none. Read back first: one has an open purchase order and was used recently, the other has neither, and they are otherwise alike.",
+   "not_observed": null
+  },
+  "C44852": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39. Checked against the requirements page 576978945 version 17, re-read live the same day. Watched on the screen through the search box, not read from behind it, and every ordering reading was taken twice with the rounds agreeing. The part with stock ranks above the part with none, and the out-of-stock part is still shown rather than hidden - the row reads none available. Both were read back as alike in every other way.",
+   "not_observed": null
+  },
+  "C55716": {
+   "verdict": "Failed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39. Checked against the requirements page 576978945 version 17, re-read live the same day. Watched on the screen through the search box, not read from behind it, and every ordering reading was taken twice with the rounds agreeing. The requirement says that when two records are otherwise equal the one updated more recently comes first. It does not happen. Two customers alike in every way sit in a fixed order. I changed the SECOND one so it became the most recently updated, and confirmed the change had actually saved by reading it back. The order did not move, checked again after fifteen, thirty-five and sixty-five seconds. I then proved this was not my own doing: I renamed that same customer, and the new name appeared in the search within twenty-five seconds, so the search does pick up changes to this exact record. The name change shows; the position never does. The name was put back afterwards.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "Held with the QA lead - the report is written and waiting for his go-ahead before it is raised.",
+   "todo": "Report to development that two otherwise-equal results keep a fixed order and the more recently updated one does not come first. A report is prepared and waiting on the QA lead."
+  }
+ }
+}

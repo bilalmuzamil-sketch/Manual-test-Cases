@@ -1,0 +1,22 @@
+=== ZZVENDORPO (vendors)
+   ZZVENDORPO Supply Open                   {"hasOpenPurchaseOrder":true,"lastUsedAt":"2026-09-17T19:09:41Z"}
+   ZZVENDORPO Supply Quiet                  {"hasOpenPurchaseOrder":false,"lastUsedAt":null}
+=== ZZPARTBUSY (parts)
+   ZZPARTBUSY Alternator Active             {"binLocation":"H3B","quantityOnHand":25,"minQuantity":5,"maxQuantity":200,"lastSoldAt":null}
+   ZZPARTBUSY Alternator Quiet              {"binLocation":"H3B","quantityOnHand":25,"minQuantity":5,"maxQuantity":200,"lastSoldAt":null}
+=== ZZTALLYQ (customers)
+   ZZTALLYQ Beta Freight                    {"countryCode":"US","openWorkOrderCount":0,"createdAt":null}
+   ZZTALLYQ Alpha Freight                   {"countryCode":"US","openWorkOrderCount":0,"createdAt":null}
+=== ZZCUSTOPEN (customers)
+   ZZCUSTOPEN Haulage Open                  {"countryCode":"US","openWorkOrderCount":1,"createdAt":null}
+   ZZCUSTOPEN Haulage Quiet                 {"countryCode":"US","openWorkOrderCount":0,"createdAt":null}
+=== ZZTIEBREAK (customers)
+   ZZTIEBREAK Transport Two                 {"countryCode":"US","openWorkOrderCount":0,"createdAt":null}
+   ZZTIEBREAK Transport One                 {"countryCode":"US","openWorkOrderCount":0,"createdAt":null}
+
+=== all field KEYS a customer row carries (so I know what the engine exposes)
+    addressLine1, addressLine2, city, state, postalCode, countryCode, phone, contactNames, openWorkOrderCount, createdAt
+
+=== all field KEYS a part row carries
+    partNumber, tags, category, manufacturer, vendorId, vendorName, binLocation, quantityOnHand, minQuantity, maxQuantity, lastSoldAt, purchasePrice
+EXIT=0

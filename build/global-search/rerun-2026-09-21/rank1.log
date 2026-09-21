@@ -1,0 +1,76 @@
+build marker: v26.36.8-d146c39
+
+--- C55724 customers prefix > whole-word > typo   query="ZZPREFIX" tab=Customers   rounds agree: true
+   1. ZZPREFIX Freight Ltd 1 Ranking Way, Fernvale, Ohio
+   2. Bolton ZZPREFIX Services 1 Ranking Way, Fernvale, Ohio
+   3. ≈ close match: ZZPREFIY Cartage 1 Ranking Way, Fernvale, Ohio
+
+--- C55707 prefix > whole-word > fuzzy (any group)   query="ZZPREFIX"   rounds agree: true
+   1. ZZPREFIX Freight Ltd 1 Ranking Way, Fernvale, Ohio
+   2. Bolton ZZPREFIX Services 1 Ranking Way, Fernvale, Ohio
+   3. ≈ close match: ZZPREFIY Cartage 1 Ranking Way, Fernvale, Ohio
+
+--- C72120 Parts tab begins-with > contains > typo   query="ZZTABQ" tab=Parts   rounds agree: true
+   1. ZZTABQ Wheel Seal 3 Available PQ-7001
+   2. Cooper ZZTABQ Cartridge 0 Available PQ-7002
+   3. AXLE SHAFT FLANGE, REAR DRIVE AXLE 9 Available 2208H476 · Category:ZZTABQ
+   4. DO NOT USE Aluminum Seal Ring, 14mm 0 Available N000000001069 · Tag:ZZTABQ
+   5. ≈ close match: ZZTABP Wheel Seal 0 Available ZZTABP-3001
+   6. ≈ close match: Cooper ZZTABP Cartridge 0 Available ZZTABP-3002
+
+--- C72121 Vendors tab begins-with   query="ZZMAGENTA" tab=Vendors   rounds agree: true
+   1. ZZMAGENTA Supply Co (264) 400-0700 · 11 Per Tab Lane, Fernvale, Ohio
+   2. Northgate ZZMAGENTA Parts (264) 400-0700 · 11 Per Tab Lane, Fernvale, Ohio
+   3. ≈ close match: ZZMAGENTO Traders (264) 400-0700 · 11 Per Tab Lane, Fernvale,
+
+--- C72122 Assets tab begins-with   query="ZZOBSIDIAN" tab=Assets   rounds agree: true
+   1. PERTAB-A1 · 2019 ZZOBSIDIAN Trucks Hauler Per Tab Asset Holdings
+   2. PERTAB-B2 · 2019 Western Heavy ZZOBSIDIAN Hauler Per Tab Asset Holdings
+   3. PERTAB-C3 · 2019 ≈ close match: ZZOBSIDIAM Trucks Hauler Per Tab Asset Holdi
+
+--- C55716 tie broken by most recently updated   query="ZZTIEBREAK" tab=Customers   rounds agree: true
+   1. ZZTIEBREAK Transport Two 1 Ranking Way, Fernvale, Ohio
+   2. ZZTIEBREAK Transport One 1 Ranking Way, Fernvale, Ohio
+
+--- C55722 more open work orders ranks higher   query="ZZTALLYQ" tab=Customers   rounds agree: true
+   1. ZZTALLYQ Beta Freight 3 Toggle Street, Fernvale, Ohio
+   2. ZZTALLYQ Alpha Freight 3 Toggle Street, Fernvale, Ohio
+
+--- C55708 customer with open WO + recently viewed   query="ZZCUSTOPEN" tab=Customers   rounds agree: true
+   1. ZZCUSTOPEN Haulage Open 1 open Contact match · 1 Ranking Way, Fernvale, Ohio
+   2. ZZCUSTOPEN Haulage Quiet 1 Ranking Way, Fernvale, Ohio
+
+--- C55709 asset with open WO ranks higher   query="ZZOBSIDIAN" tab=Assets   rounds agree: true
+   1. PERTAB-A1 · 2019 ZZOBSIDIAN Trucks Hauler Per Tab Asset Holdings
+   2. PERTAB-B2 · 2019 Western Heavy ZZOBSIDIAN Hauler Per Tab Asset Holdings
+   3. PERTAB-C3 · 2019 ≈ close match: ZZOBSIDIAM Trucks Hauler Per Tab Asset Holdi
+
+--- C55710 vendor with open POs ranks higher   query="ZZVENDORPO" tab=Vendors   rounds agree: true
+   1. ZZVENDORPO Supply Open (264) 400-0001 · 2 Ranking Road, Fernvale, Ohio
+   2. ZZVENDORPO Supply Quiet (264) 400-0001 · 2 Ranking Road, Fernvale, Ohio
+
+--- C55711 part sales recency/yours/paid   query="ZZPSRANK" tab=Part sales   rounds agree: true
+   1. P9160-261 Tannus Diesel Services Inc ZZPSRANK Estimate Admin ShopView · Sep 
+   2. P9160-260 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Complete Admin ShopView · S
+   3. P9160-262 Tannus Diesel Services Inc ZZPSRANK Estimate Tech ShopView · Sep 1
+   4. P9160-246 Rainsville Truck Repair ZZPSRANK Paid Jeffrey Jordan · Aug 28, 202
+   5. P2-13 Mobile Truck & Trailer Repair Muscatine ZZPSRANK Paid Jeffrey Jordan ·
+   6. P9160-243 Tannus Diesel Services Inc ZZPSRANK Complete Jeffrey Jordan · Aug 
+
+--- C55712 recently sold/viewed parts rank higher   query="ZZPARTBUSY" tab=Parts   rounds agree: true
+   1. ZZPARTBUSY Alternator Active 25 Available ZZPARTBUSY-2001
+   2. ZZPARTBUSY Alternator Quiet 25 Available ZZPARTBUSY-2002
+
+--- C44852 in-stock above out-of-stock, not hidden   query="ZZSTOCKPART" tab=Parts   rounds agree: true
+   1. ZZSTOCKPART Brake Drum In Stock 40 Available ZZSTOCKPART-1001
+   2. ZZSTOCKPART Brake Drum Out Of Stock 0 Available ZZSTOCKPART-1002
+
+--- C55723 name match above secondary-field match   query="ZZPHON" tab=Customers   rounds agree: true
+   1. ZZPHON Knight Haulage 1 Ranking Way, Fernvale, Ohio
+   2. ZZPHON Alternator Co 1 Ranking Way, Fernvale, Ohio
+
+--- C55729 exact identifier pinned even vs strong name   query="ZZPINRIVAL"   rounds agree: true
+   1. ZZPINRIVAL Holdings 1 Ranking Way, Fernvale, Ohio
+
+written to rank-round1.json
+EXIT=0
