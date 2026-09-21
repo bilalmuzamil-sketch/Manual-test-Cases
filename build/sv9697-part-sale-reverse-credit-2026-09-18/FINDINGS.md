@@ -893,3 +893,80 @@ different number. They were only spotted by opening the PNG and looking at it. T
 row's own bounding box. **Identical hashes are correct here for the matching pairs** —
 baseline == after-credit (276) and after-pick == after-reverse (274) — which is the assertion itself.
 
+
+---
+
+## §18 — Checklist step 7 (portal-paid invoice): the portal now works, a payment went through, and the app has not seen it
+
+Nemanja reported in comment
+[76919](https://shopview.atlassian.net/browse/SV-9697?focusedCommentId=76919): *"Portal: fixed, and
+working on the QA environment now — so Bilal's outstanding check 7 is unblocked."* That is right about
+the portal, and check 7 is still not finished. Here is exactly how far it got.
+
+### The portal is fixed — confirmed, not taken on trust
+
+§9 recorded `POST /sso-login` returning **HTTP 500 "Malformed UTF-8 characters"** on three request
+shapes. Driven again today with a freshly minted token:
+
+```
+POST https://shopview-portal-feature-branch-xn74b9.laravel.cloud/sso-login
+  → HTTP 200 {"message":"SSO login successful","redirect":"https://shopview-portal-feature-branch-xn74b9.laravel.cloud"}
+```
+
+The portal opens on **Invoices**, 269 pages of them, signed in as *Owner Demo*.
+
+**A finding worth keeping, because §9 chased it:** the portal **strips the branch prefix from every
+number**. The app's `S9697-17580` is the portal's `S-17580`; the app's `P2-161` is the portal's
+`P-161`. §9's assumption that no part sale reaches the portal was wrong — **P-193, P-92, P-111 and
+P-103 are all there.** Searching the portal for `P9697…` will always return nothing.
+
+### A payment was made, end to end, and it succeeded
+
+Invoice **S-17303** (app `S3-17303`, `3b57e04f-5038-436f-a578-62c4f760c122`), Tucson Truck Center,
+Lethbridge - 4310, **$326.55** unpaid.
+
+Portal → **Pay Now** → *"Who is this payment for?"* → customer contact *Justin Davis* → **Next** →
+*Select a payment method* → **Card** → **Continue to checkout** → **Stripe Checkout, Sandbox mode**
+(`cs_test_…`) → test card `4242 4242 4242 4242`, 12/34, CVC 123, ZIP 10001 → **Pay**.
+
+Result on the portal: **"Payment Successful — Your payment has been processed successfully."**, the
+invoice flips to **Paid**, and the portal's *Payments & refunds* panel lists it:
+
+| Date | Status | Customer | Type | Reference | Method | Gross | Fee | Net |
+|---|---|---|---|---|---|---|---|---|
+| Sep 21, 2026 | **Succeeded** | Tucson Truck Center | Invoice | S-17303 | 💳 Card | **$337.63** | $13.78 | $323.85 |
+
+**A trap worth recording:** the Stripe country defaults to **United States**, so a Canadian postal
+code is silently truncated — `T1H6N4` became `164` and the form would not submit. A 5-digit ZIP
+(`10001`) works.
+
+### But ShopView has not seen it — so the tooltip still cannot be observed
+
+Back in the app, on the same invoice, switched to the Lethbridge workplace, checked twice about ten
+minutes apart:
+
+* **Balance still reads `$326.55`** on the Finance tab.
+* **No payment rows at all** (`invoice-payment-row` returns an empty list).
+* **Reverse is ENABLED, with no tooltip** — which is the correct behaviour *for an unpaid invoice with
+  no credits*. The portal guard has nothing to fire on, because `has_portal_payment` is not true here.
+
+So **check 7 remains unobserved**, and the reason has changed: it is no longer the portal being down,
+it is that the successful portal payment has not reached the work order.
+
+### What this is, and what it is not
+
+**It is not SV-9697.** Nothing in this ticket's diff touches payment ingestion; the Reverse guard is
+reading the invoice correctly given what the invoice says.
+
+**It is not yet a defect either, and it is not being called one.** A payment-sync job on an interval
+longer than ten minutes would produce exactly this, and the portal ships a *PaymentResyncModal*, which
+suggests a resync path exists. A third re-check is running.
+
+**What it does mean for the checklist:** step 7 cannot be signed off until a portal payment actually
+lands on a ShopView invoice — and, to test the precedence the step is really about, it should land on
+a **part sale that also carries a spent credit**, so that the portal message can be seen winning over
+the credit message. `P-193` is the natural fixture: it is in the portal, it is a part sale, and it
+already blocks Reverse with `Credit CM-3956 ($231.00) has been applied.`
+
+Evidence: `ev/r2_portal_home.png`, `ev/r2_method.png`, `ev/r2_stripe_filled.png`, `ev/r2_paid.png`,
+`ev/r2_portal_payments.png`, `ev/r2_portal_tooltip2.png`.
