@@ -1,0 +1,103 @@
+# SV-10188 — the developer is right, and the ticket should be closed
+
+**Date** 21 September 2026 · **Branch** `sv9160` · **Build marker read live: `v26.36.8-d146c39`**
+— **the same build the 20 and 21 September readings were taken on. No deployment happened in
+between, so the product did not change. My measurement was wrong.**
+
+Ticket: https://shopview.atlassian.net/browse/SV-10188 (status **REJECTED FROM TESTING**, parent
+`SV-9165`, which is **TESTING QA**). Developer comment **76921**, Sinisa Nogic, 21 September 2026:
+
+> That part that is last on the list should be there. There are 0 of them available, and it does not
+> get a +0.2 bonus for that. You cannot take scores selectively. You have to calculate all of them.
+
+---
+
+## 1 · What I got wrong, and why
+
+My earlier evidence for "standing on the work order makes no difference to the order at all" was
+produced by calling the search endpoint **directly from a script**:
+
+```js
+const off = await get('/api/search?q=' + encodeURIComponent(word));   // from a neutral page
+const on  = await get('/api/search?q=' + encodeURIComponent(word));   // from the work order page
+```
+
+Both calls send **nothing but the query**. §8 of the PRD says the front end must
+*"query the backend search endpoint with the current query, scope, **and page context**"* — the
+page context is added **by the search box**, not by the URL. A raw call therefore **cannot** carry
+it, and the two lists were always going to be identical. That identity was an artefact of my
+instrument, not a fact about the product.
+
+**This is Rule 104 exactly — I did not prove the instrument could observe the thing I was calling
+absent.** The positive control that would have caught it (does the order EVER change with the page?)
+was never run.
+
+## 2 · What the screen actually does — measured through the search box
+
+Query `ZZAUTOTEST Fibridge`, Parts tab, read off the rendered rows. Two full passes, alternating
+pages, both passes agreeing with each other:
+
+| Standing on | 1st | 2nd | 3rd |
+|---|---|---|---|
+| Customers page (unrelated) | **Brake Shoe Kit** (40 available) | Wheel Seal (2) | Air Dryer Cartridge (0) |
+| Work order `S9160-17671` | Wheel Seal (2) | **Brake Shoe Kit** (40) | Air Dryer Cartridge (0) |
+| Customers page again | **Brake Shoe Kit** | Wheel Seal | Air Dryer Cartridge |
+| Work order again | Wheel Seal | **Brake Shoe Kit** | Air Dryer Cartridge |
+
+`Off the work order, both passes agree: true` · `On the work order, both passes agree: true` ·
+`THE ORDER CHANGES WITH WHERE YOU STAND: true`
+
+**Precondition read back off the screen** (work order → Parts tab, `Parts (3)`): exactly one row
+carries a description — **`ZZAUTOTEST Fibridge Brake Shoe Kit`**, requested Sep 17 2026, status
+`In Stock`. The other two rows are empty `Auth To Order` lines. So exactly one of the three search
+results is on the work order — and that is the one, and the only one, that moves down when you
+search from it.
+
+**Instrument check (Rule 104 positive control):** the broad query returns 3 rows, the narrower
+`ZZAUTOTEST Fibridge Wheel` returns 2. The panel is reading real, query-sensitive data.
+
+## 3 · Against the source
+
+`build/global-search/source-verify-2026-09-17/spec-576978945-v17-2026-09-17.txt`, §6.3, read
+21 September 2026:
+
+> If the user is currently on a Customer page, all candidate Assets and Work Orders owned by that
+> customer get a +0.20 boost; if on a Work Order, parts already on that WO are demoted by −0.10
+> (the user is usually looking for something they don't have yet) while other parts in the same
+> category as the WO's existing parts get +0.05.
+
+§6.1, Parts: *in stock (>0) → +0.20*. The Air Dryer Cartridge has **0 available**, so it does not
+earn that, and last is where it belongs — which is Sinisa's point, and it is correct.
+
+**Verdict: the demotion half of §6.3 is working. SV-10188's stated defect does not reproduce.
+The ticket should be closed / marked obsolete.**
+
+## 4 · The one thing still untested — and I could not isolate it
+
+§6.3's second half — *"other parts in the same category as the WO's existing parts get +0.05"* —
+is **NOT VERIFIED**, and three purpose-built fixtures failed to isolate it. Each was a pair of
+inventory parts created identical in every §6.1 signal (0 available, the same bin, never sold,
+never viewed, one query token shared) and differing **only** in category, one matching the category
+of the part already on `S9160-17671`:
+
+| Fixture | same-category part | created | neutral-page order | work-order order | discriminating? |
+|---|---|---|---|---|---|
+| `ZZCATLIFT` | Hose Clamp | first | Clamp, Clips | Clamp, Clips | **no** — already top |
+| `ZZCATMOVE` | Hose Zulu | second | Zulu, Alfa | Zulu, Alfa | **no** — already top |
+| `ZZCATROLL` | Hose Zulu | first | Zulu, Alfa | Zulu, Alfa | **no** — already top |
+
+In all three the same-category part already sat first **on the neutral page**, where no lift applies,
+so a +0.05 lift had nowhere to show. The tie-break between two identically-scored parts is not
+creation order (`ZZCATMOVE` and `ZZCATROLL` reverse it and get the same winner) and not alphabetical
+(`ZZCATLIFT` ranks ascending, the other two descending), so I cannot yet steer which of a pair leads
+— and without that I cannot build a pair the lift would visibly reorder. The smallest signal I can
+add or remove is the bin-location +0.05, which only produces an exact tie.
+
+**This is recorded as NOT VERIFIED (Rule 12), not as a failure.** No negative claim is made about the
+same-category lift, and it is not a reason to keep SV-10188 open — the ticket's stated defect is the
+demotion, and the demotion works.
+
+## 5 · Evidence in this folder
+
+`off-wo.png` · `on-wo.png` · `wo-lines.png` · `wo-parts-tab.png` · probes `/tmp/gs/sv10188ctx2.mjs`,
+`/tmp/gs/sv10188confirm.mjs`, `/tmp/gs/woparts.mjs`, `/tmp/gs/catlift.mjs`.

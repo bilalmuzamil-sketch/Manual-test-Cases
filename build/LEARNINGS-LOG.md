@@ -3705,3 +3705,33 @@ source **sentence** require it — quote it; (3) have I reproduced the **user-fa
 **The habit underneath both, and behind the two reversals on SV-10277:** concluding before running the
 measurement that would settle it. The fix is mechanical — design the test so the two possible answers
 point in **opposite** directions, run it, then speak. Recorded in `build/skills/06-DEFECT-PREP.md`.
+
+## L0180 — 2026-09-21 — A RAW CALL TO THE SEARCH SERVICE CANNOT OBSERVE PAGE CONTEXT, SO IT CAN NEVER DISPROVE A CONTEXT RULE
+
+**What happened.** SV-10188 said the search does not push down parts already on the work order you
+are standing on. I "proved" it by calling `/api/search?q=…` from a script while the browser sat on
+the work order page, and again from a neutral page, and comparing the two lists. They were
+identical, twice, on two different days — so I reported, twice, that standing on the work order
+makes no difference at all. The developer pushed back. Re-measured **through the search box on the
+screen**, the order changes every time: the part already on the work order drops below the one that
+is not, and goes back up when you leave the page. Same build marker, `v26.36.8-d146c39` — nothing
+was redeployed, so the product never changed. **My instrument could not see the thing I was calling
+absent.**
+
+**Why the instrument was blind.** PRD §8: the front end must *"query the backend search endpoint
+with the current query, scope, **and page context**"*. The page context is attached **by the search
+box**, not by the URL or the cookie. A `fetch()` issued from page JavaScript sends the query and
+nothing else — so the two lists were identical *by construction*. The identity was an artefact of
+my method, and I read it as a fact about the product.
+
+**The rule this gives.** **Any requirement whose wording contains "if the user is currently on …",
+"depending on where you are", "in the context of …" is UNTESTABLE through a direct service call.**
+Test it through the screen, and run the positive control *"does this output EVER differ between the
+two states?"* before reporting that it never differs. If the answer is "never, under any condition",
+suspect the instrument first — Rule 104's seventh proof, *what would make this MY fault?*, is
+exactly this question and I did not ask it.
+
+**Carried by:** `build/skills/03-RUN-CHECK.md` (probe design), `build/skills/06-DEFECT-PREP.md`
+(before any "the product ignores X" claim), `build/testing-tools/probe_guard.mjs` (assertNegative
+positive control). Evidence:
+`build/global-search/run415-execution/sv10188-recheck/DEVELOPER-IS-RIGHT-2026-09-21.md`.
