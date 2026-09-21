@@ -4110,7 +4110,7 @@ screenshot or a commit.**
 
 ---
 
-## RULE 114 — THE EXPECTED BEHAVIOUR IS NEVER CHANGED, NOT EVER, FOR ANY REASON
+## RULE 114 — THE EXPECTED BEHAVIOUR IS THE SOURCE'S EXACT QUOTE, AND IS NEVER CHANGED
 
 **QA lead, 2026-09-21, verbatim:** *"NO, you MUST NEVER change the expected behavioer ever, save this
 as a rule forever."*
@@ -4170,3 +4170,38 @@ requirement it was built to defend is no longer being defended by anything. **A 
 false defect**: a false defect is argued down by a developer the same day; a false pass is believed for
 years. That is why this rule has no exception clause — an exception is exactly the door the mistake
 walks through.
+
+
+### 114 (a) — EXTENDED 2026-09-21: IT MUST BE THE SOURCE'S EXACT QUOTE
+
+**QA lead, verbatim:** *"So REMEMBER always, the expected behavior should be the exact QUOTE from the
+specs/source, that MUST NOT ever be changed. Save it as your rule for ever."*
+
+Said immediately after establishing that **neither** C55736 nor C55737 quoted anything. Both were our
+own restatements, and both named a §9 sentence — *"results, group counts and scope tabs are all
+filtered by the user's permissions"* — **that does not appear in the PRD at all**.
+
+**The standard, from now on:**
+
+1. **Expected Results carry the source's own sentence, word for word**, inside a quotation, followed by
+   the document, its version or page id, its section, and the date it was read.
+2. **A paraphrase in Expected is a defect in the case.** However faithful it feels, it is our sentence,
+   not the requirement, and it drifts — C55737's restatement quietly widened *"hidden groups leak
+   neither rows nor counts"* (a **group**) into a claim about **individual records**, which no source
+   makes.
+3. **A paraphrase PRESENTED AS the source's words is the worse fault.** It cannot be caught by reading
+   the case; only by opening the document. Both of these cases carried one for months.
+4. **No source sentence covers it ⇒ there is no Expected to write.** Raise it with the QA lead (Rules
+   64, 58). Never compose one and never infer one from the build.
+5. **Our own words still belong in the case — outside Expected.** The plain-English reading for the
+   tester goes in the steps or a note under the quote; the quote itself stays untouched.
+
+**Both halves bind together:** (a) the Expected is the quote · (b) the quote is never edited. Together
+they mean the case is anchored to a sentence somebody else wrote, and that anchor cannot be moved by
+anyone testing against it.
+
+**Known consequence, recorded rather than acted on:** the Global Search suite's existing Expecteds are
+paraphrases in the same pattern — *"This is the expected behaviour as per epic SV-9160 and the …
+specification version 1.5 …, section N (restatement)"* — seen in every one of roughly twenty cases read
+on 20–21 September. Under 114(a) they are non-compliant. **They are NOT to be rewritten**, because
+114(b) forbids editing them. The conflict is the QA lead's to resolve; it is reported, not fixed.

@@ -1256,7 +1256,7 @@ then the quote. Worked example: comment **76907** on SV-10188 — two annotated 
 order's own parts, then the search opened from that same work order), 329 words, one verbatim PRD
 quote, and the test check with its run link at the bottom.
 
-### 🛑 RULE 114 — THE EXPECTED BEHAVIOUR IS NEVER CHANGED, NOT EVER (QA lead, 2026-09-21)
+### 🛑 RULE 114 — THE EXPECTED BEHAVIOUR IS THE SOURCE'S EXACT QUOTE, AND IS NEVER CHANGED (QA lead, 2026-09-21)
 
 **Verbatim:** *"NO, you MUST NEVER change the expected behavioer ever, save this as a rule forever."*
 
@@ -1270,6 +1270,25 @@ go-ahead — he has withdrawn that go-ahead for this field.
 | the state or permission does not exist in the product | **Blocked**, and report it |
 | the Expected contradicts the source | **report it and leave the text alone** |
 | the Expected quotes a source sentence that does not exist | **report it; never silently repair it** |
+
+#### 114 (a) — EXTENDED 2026-09-21: THE EXPECTED MUST BE THE SOURCE'S EXACT QUOTE
+
+**Verbatim:** *"the expected behavior should be the exact QUOTE from the specs/source, that MUST NOT
+ever be changed. Save it as your rule for ever."*
+
+1. Expected Results carry **the source's own sentence, word for word**, in a quotation, followed by the
+   document, its version or page id, its section, and the date read.
+2. **A paraphrase in Expected is a defect in the case** — it is our sentence, not the requirement, and
+   it drifts. C55737's restatement widened *"hidden groups leak neither rows nor counts"* (a **group**)
+   into a claim about **individual records**, which no source makes.
+3. **A paraphrase presented AS the source's words is worse** — it cannot be caught by reading the case,
+   only by opening the document. C55736 and C55737 both cited a §9 sentence the PRD does not contain.
+4. **No source sentence covers it ⇒ there is no Expected to write.** Raise it (Rules 64, 58). Never
+   compose one, never infer one from the build.
+5. **Our plain-English wording still belongs in the case — outside Expected**, in the steps or a note
+   under the quote.
+
+Both halves bind: **(a)** the Expected is the quote · **(b)** the quote is never edited.
 
 ⛔ **Supersedes Rule 106's "ask permission to CORRECT the case's Expected".** Rule 106's
 **reconciliation** stands and matters more than ever — compare the case's Expected against the live

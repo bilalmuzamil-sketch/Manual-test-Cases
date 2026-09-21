@@ -3654,3 +3654,21 @@ document.
 the source ⇒ **report it and leave it**. Preconditions, steps, title and the provenance line stay
 editable with his go-ahead; `custom_expected` does not. Recorded as **Rule 114** in CLAUDE.md §1, the
 rule index, `RULES-61-ONWARD.md`, and skills 06 and 09.
+
+## L0177 — The Expected behaviour IS the source's exact quote (2026-09-21)
+**QA lead, verbatim:** *"the expected behavior should be the exact QUOTE from the specs/source, that
+MUST NOT ever be changed. Save it as your rule for ever."*
+Said after I confirmed that **neither** C55736 nor C55737 quoted anything: both were our own
+restatements, and both attributed themselves to a §9 sentence — *"results, group counts and scope tabs
+are all filtered by the user's permissions"* — **that is not in the PRD**.
+**The standard now:** Expected carries the source's own sentence word for word, with document, version,
+section and read date. A paraphrase is a defect in the case; a paraphrase presented as the source's
+words is worse, because only opening the document catches it. **Where no source sentence covers the
+behaviour there is no Expected to write** — raise it, never compose one.
+**Why paraphrase is not harmless:** C55737's restatement widened *"hidden groups leak neither rows nor
+counts"* (about a **group**) into a claim about **individual records** — a requirement nobody wrote,
+which then could not be tested and sat blocked for days.
+**The consequence I must not act on:** the suite's existing Expecteds follow the same paraphrase
+pattern, in every one of ~20 cases read on 20–21 September. Under 114(a) they are non-compliant; under
+114(b) they may not be rewritten. **Reported to the QA lead, not fixed.**
+Recorded as Rule 114(a) in CLAUDE.md §1, the rule index, `RULES-61-ONWARD.md`, and skills 01, 06, 09.
