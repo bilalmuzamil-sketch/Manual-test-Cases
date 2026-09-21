@@ -1,0 +1,45 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C45132": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on a phone-sized screen, 390 by 844, through the on-screen controls. On a phone the search takes over the whole screen - it measures 390 wide by 844 tall, starting at the very top left, so it replaces the page rather than floating over it. The top bar carries a Cancel action beside the box, and the guide text is the shorter phone wording, Search work orders, parts. Nothing scrolls sideways.",
+   "not_observed": null
+  },
+  "C45133": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on a phone-sized screen, 390 by 844, through the on-screen controls. Before anything is typed there are no scope chips at all. Once a word is typed a row of chips appears across the top, and it lists ONLY the kinds of record that actually matched - on a word that matches three kinds the row read All, Customers, Parts and Purchase orders, and nothing else. Each chip carries its own count.",
+   "not_observed": null
+  },
+  "C45134": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on a phone-sized screen, 390 by 844, through the on-screen controls. On a phone the whole grouped list scrolls - 160 rows across eight groups, twenty to a group rather than the five the computer screen shows - and there is no see-all overflow anywhere. Each group heading sticks to the top of the screen as you scroll past it.",
+   "not_observed": null
+  },
+  "C45135": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on a phone-sized screen, 390 by 844, through the on-screen controls. The first-time state reads Search for something, the same as on a computer, and searching for something with no matches reads No results found with the words echoed back. Neither state offers any create buttons.",
+   "not_observed": null
+  },
+  "C45136": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on a phone-sized screen, 390 by 844, through the on-screen controls. There is no see-all overflow on a phone - the All view shows the full grouped list - and the keyboard hint strip that the computer screen carries along the bottom is not shown at all.",
+   "not_observed": null
+  },
+  "C44898": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on a phone-sized screen, 390 by 844, through the on-screen controls. Taken together: the search is a full-screen screen on a phone rather than a floating box, nothing scrolls sideways, scope is chosen from a chip row that lists only what matched, the grouped list is uncapped and scrolls with its headings sticking, and the empty and no-results states match the computer ones.",
+   "not_observed": null
+  },
+  "C44897": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026 on build v26.36.8-d146c39. The new search is what everyone gets - there is no switch to turn it on or off anywhere, and it is what has been in use throughout this whole run. The old search's own address has been taken away: asking for it directly answers not found, as does the older form of it.",
+   "not_observed": "Whether the old code was deleted from the product's source, as opposed to its address no longer answering, cannot be seen from outside."
+  }
+ }
+}
