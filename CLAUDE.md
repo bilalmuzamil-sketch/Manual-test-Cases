@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111 and 112** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112 and 113** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -56,6 +56,17 @@ These are stated here **in full** because a session that gets only this far must
   build differs, the case KEEPS the documented expectation and becomes a deviation with a ticket.
   **A closed ticket is not a spec change. An ambiguous source is never resolved by looking at the
   build (58) — hold the case and ask.**
+- **🔴 THE EXPECTED RESULT IS THE SOURCE'S OWN WORDS, QUOTED VERBATIM — AND NEVER CHANGED (113).**
+  Ordered by the QA lead 2026-09-21: *"the expected behavior should be the exact QUOTE from the
+  specs/source, that MUST NOT ever be changed."* Copy the sentence, mark it as a quote, cite the
+  document + version + section. **It changes only when the SOURCE changes.** A build that disagrees
+  is a DEVIATION (57/61); a reviewer who disagrees is a PO QUESTION; neither permits editing the
+  sentence. **If you are improving the wording of an Expected Result, stop — that is the failure
+  this rule exists to prevent**, because a case rewritten towards the build can never fail.
+  Plain-language wording (7/9) is ADDED AFTER the quote, clearly marked as our restatement, and
+  never replaces it. No quotable sentence ⇒ hold the case and ask (58/64), never invent one and
+  never look at the build.
+
 - **VERIFIED MEANS OBSERVED, NEVER INFERRED (12).** Only mark Verified / Pass / Fail / present /
   absent if it was observed live, with evidence captured that run. Anything not observed is labelled
   **NOT VERIFIED** or **Blocked-with-reason**. Never fill a gap with inference to look complete.
@@ -302,6 +313,23 @@ reading (88), extract what the tester will literally TYPE, check each against th
 and where the summary and the case disagree **the case wins**. A term named only as "for example"
 still gets typed by somebody.
 
+**Rule 113 (the Expected Result is the source's own words, quoted verbatim)** was ordered by the QA
+lead **2026-09-21** and lives at the end of `build/rules/RULES-61-96.md`, after 112. **It is the
+strongest form of Rule 57 and it binds every case we write or touch.** A paraphrase is a small,
+invisible act of interpretation, and interpretation drifts towards whatever the author is looking
+at — the build. Once the Expected Result is OUR sentence rather than the SPEC's sentence, the case
+can no longer fail: it has been quietly rewritten to describe the thing it is supposed to test.
+**Quote it, attribute it (document + version + section), and change it only when the SOURCE
+changes.** Plain-language wording for testers is **added after** the quote and clearly marked as
+our restatement — never a replacement, and where they could be read as disagreeing the quote wins.
+**Forbidden outright:** rewriting Expected because the build differs · tidying grammar, tense or
+spelling · merging or splitting source sentences without showing the original · quoting a SUMMARY
+(a handoff, a task card, a Jira description that restates the PRD — quote the source itself, 112) ·
+carrying a quote forward without re-checking the source version (31/32/59). **No quotable sentence
+exists** ⇒ hold the case and raise a PO question (58/64); never invent one and never resolve it
+from the build. Worked example: the line that moved SV-10279 was the PRD's own
+*"Prefix match on primary name field → +0.70"* set against the product's own match label.
+
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
@@ -466,8 +494,14 @@ Compact form — **the rule named in brackets is the authority; read it before r
 
 - **Plain, layman English** throughout; numbered **Preconditions / Steps / Expected**, each on its own
   line. [7, 9]
-- **Expected Results state what the DOCUMENT requires**, never how the build behaves. If the build
-  differs, keep the documented expectation and raise a deviation. [57]
+- **🔴 Expected Results QUOTE THE DOCUMENT VERBATIM — the source's own sentence, unaltered**, with
+  the document, its version and the section named. Never paraphrased, tidied, merged, split or
+  adjusted towards the build; it changes only when the SOURCE changes. A build that differs is a
+  deviation; a reviewer who differs is a PO question. **Improving the wording of an Expected Result
+  is the failure the rule exists to prevent** — a case rewritten towards the build can never fail.
+  Plain-language wording is ADDED AFTER the quote, marked as our restatement, never replacing it;
+  where they could disagree the quote wins. No quotable sentence ⇒ hold the case and ask.
+  [**113**, 57, 58, 64, 7, 9]
 - **PRD, design and Figma are expected to AGREE.** Where they disagree that is a **finding to raise**
   (a PO question + the outstanding register), never a side to pick silently; meanwhile the case follows
   the most recent authoritative source and DISCLOSES the divergence. "Everything should match the

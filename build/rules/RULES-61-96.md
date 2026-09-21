@@ -2377,3 +2377,78 @@ evidence, never from a session's self-report).
 
 **Worked example:** `build/global-search/case-corrections-2026-09-17/` and the §6 seeding note in
 `build/global-search/HANDOFF-RUN-THE-99-V2-CASES.md`.
+
+---
+
+## 113 · THE EXPECTED RESULT IS THE SOURCE'S OWN WORDS, QUOTED VERBATIM — AND THOSE WORDS ARE NEVER CHANGED
+
+**Ordered by the QA lead, 2026-09-21, verbatim: *"the expected behavior should be the exact QUOTE
+from the specs/source, that MUST NOT ever be changed."*** Permanent. This is the strongest form of
+Rule 57 and it governs every case we write or touch, on every project.
+
+### The rule
+
+**A case's Expected Result carries the requirement in the source's OWN WORDS, quoted exactly.**
+Not paraphrased, not tightened, not "clarified", not modernised, not re-worded to read better, and
+above all **never adjusted towards what the build does.** Copy the sentence. Mark it as a quote.
+Cite where it came from — document, version, section — so the next reader can put the two side by
+side and see they are identical.
+
+**The quote is immutable.** It changes when and only when **the SOURCE changes**, and then it is
+re-quoted from the new source with the new version recorded. A build that disagrees with the quote
+is a **deviation** (Rule 57, three outcomes under Rule 61); a reviewer who disagrees with the quote
+is raising a **question for the PO**; neither is a licence to edit the sentence. **If you find
+yourself improving the wording of an Expected Result, stop — that is the failure this rule exists
+to prevent.**
+
+### Why it is this strict
+
+A paraphrase is a small, invisible act of interpretation, and interpretation drifts towards
+whatever the person is looking at — which is the build. Once the Expected Result is *our* sentence
+rather than the *spec's* sentence, the case can no longer fail: it has been quietly rewritten to
+describe the thing it is supposed to be testing. A case rewritten to match the build passes forever
+and protects nothing.
+
+Quoting also settles arguments. When a developer disputes a finding, *"the specification says, in
+these words…"* ends the discussion in a way that *"we understood it to mean…"* never does. The
+SV-10279 work is the worked example: the evidence that moved it was the PRD's own line
+(*"Prefix match on primary name field → +0.70"*) set against the product's own label.
+
+### How it sits with plain-language wording (Rules 7 and 9)
+
+Testers and POs read plain English, and specs are often not written in it. **Both survive, in this
+order and never merged:**
+
+1. **The verbatim quote comes first and is never altered** — attributed, with the document, its
+   version and the section.
+2. **A plain-language rendering may follow it**, clearly marked as our restatement, to tell a
+   tester what to look at on screen.
+
+The plain wording is an *addition*, never a *replacement*, and it never silently becomes the
+expectation. Where the two could be read as disagreeing, the quote wins and the restatement is
+corrected.
+
+### What this forbids, concretely
+
+- Rewriting an Expected Result because the build behaves differently. **Never.**
+- "Tidying" spec wording — grammar, tense, terminology, British/American spelling, anything.
+- Merging two source sentences into one of ours, or splitting one into several, without showing the
+  original.
+- Quoting a *summary* of the source — a handoff, a task card, a previous session's report, a Jira
+  description that restates the PRD. Those are summaries (Rule 112); quote the source itself.
+- Carrying a quote forward without re-checking the source version when the source has moved
+  (Rules 31, 32, 59).
+
+### What to do when the source will not give you a sentence
+
+Sometimes there is no quotable line — the spec is silent, or ambiguous, or two sources disagree.
+**Do not invent one and do not fall back on the build (Rule 58).** Hold the case, mark the
+expectation as unresolved, and raise a PO question (Rule 7 / Rule 55). An Expected Result with no
+source should not exist (Rule 64).
+
+### The check, before any case is written or edited
+
+> Can I point at the exact sentence in the source that this Expected Result quotes, and is my text
+> character-for-character that sentence?
+
+If no: either find the sentence, or the case is not ready.
