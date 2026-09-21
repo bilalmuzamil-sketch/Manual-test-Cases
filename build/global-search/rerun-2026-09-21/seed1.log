@@ -1,0 +1,12 @@
+=== C55729 fixture
+  category: undefined | bin: 12954f55-479b-11f1-9bed-020a144de1a3
+  catalogue part -> 201 {"data":{"catalogue_part_id":"2fdd489a-a784-4ed0-84ff-73ab660bf921"}}
+  inventory part -> 400 {"errors":[{"category_id":"Missing required parameter"}]}
+  rival customer -> 201 {"data":{"company_id":"679a24e5-3ddd-4187-837a-d6aeb3ab8e86"}}
+
+=== C55723 fixture
+  name-match customer -> 201 {"data":{"company_id":"c59b1417-0eb7-41a4-a9a9-9db74c4239a7"}}
+  contact-match customer -> 201 {"data":{"company_id":"103b70fa-9dd2-4400-9a74-b2f44c5607a5"}}
+  rival id: 103b70fa-9dd2-4400-9a74-b2f44c5607a5
+  try /api/contacts/create -> 200 {"data":{"contact_id":"e474a2a1-ed41-434f-a774-5ccd188f3c6c"}}
+EXIT=0

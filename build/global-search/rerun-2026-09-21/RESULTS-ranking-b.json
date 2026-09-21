@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C55723": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. The old fixture could not answer this - both customers matched on their own name, so nothing could have come out differently. I built a proper one: one customer whose NAME carries the search word, and a second whose name does not, reached only through a contact's name and email. The one matched on its name ranks first; the one matched through its contact ranks second and its row is marked Contact match, so the reader can see which is which.",
+   "not_observed": null
+  },
+  "C55729": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. The old fixture could not answer this either - there was no record whose identifier equalled the search word. I built one: a part whose part number IS the word, and a customer whose name contains the same word. Typing it puts the part on its own row at the very top, sitting outside the grouped results, while the customer appears below inside the Customers group. That is exactly the type the number, jump straight to it behaviour the requirement describes.",
+   "not_observed": null
+  },
+  "C44850": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Watched on the screen, two rounds, rounds agreeing. Typing a work order number in full returns that work order on its own row at the top, placed outside the grouped results rather than inside the Work orders group.",
+   "not_observed": "That particular search returned only the one record, so there were no other groups for it to sit above. The same placement WAS observed with groups present on the part-number fixture recorded against the related check, which exercises the same behaviour."
+  }
+ }
+}
