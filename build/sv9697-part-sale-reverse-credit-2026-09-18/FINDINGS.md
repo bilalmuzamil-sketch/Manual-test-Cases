@@ -1037,3 +1037,32 @@ said *"this morning"* when the checks ran through the afternoon.
 **Read back after posting:** first line is the verdict panel · **6 media nodes, all `"type":"file"`,
 in the intended order** · tables 12 rows (11 checks + header) and 5 rows (4 wording rows + header) ·
 `updated` 2026-09-21T11:59:51-0500.
+
+---
+
+## §20 — Claim-by-claim audit of the POSTED comment, and four corrections (2026-09-21, after posting)
+
+Having caught one overstated sentence by re-reading my own posted text, I read the whole comment back
+from Jira and checked every factual claim in it against what was actually observed. **Four things were
+wrong. None of them was challenged by anyone — they were found by reading.**
+
+| # | What it said | Why it was wrong | Now |
+|---|---|---|---|
+| 1 | *"I also checked every invoice on both locations - 120 of them"* | **120 was a 60-per-workplace SAMPLE of 195**, written as if it were the population. A false completeness claim, in front of the PO and the developer. | Re-scanned **all 195** (98 + 97, 0 unreadable, zero portal-paid), and the sentence now states the population, the split and the ceiling. |
+| 2 | *"P-193, one spent credit"* / *"P-57, two spent credits"* | Those are the **portal's** spellings, used in a paragraph describing **the app's screen**. A developer searching the app for "P-193" finds nothing. | **P2-193** and **P2-57**, the numbers the app itself shows. |
+| 3 | *"our P9697-253 is simply P-253 there"* — the example for the prefix finding | **P-253 does not exist in the portal.** I searched for it and got "No results", then used it as the worked example anyway. A reader following it would conclude the whole paragraph was wrong. | Replaced with **P2-193 → P-193**, which I verified by matching customer and amount (Una Truck Center, $700.99). The S-number example was dropped entirely: the app shows **both** `S9697-17580` and `S3-17303` on different surfaces, so I could not state a general rule honestly. |
+| 4 | The closing section quoted *"used"* and *"Void"*, and opened *"An earlier version of this comment flagged…"* | Those are Chris's **18 September** words, which **he himself replaced on 21 September** — so the comment was quoting superseded copy as the answer. And the opening was a self-revision narrative, which the QA lead has barred from Jira. | Rewritten to quote the **21 September** wording (*"applied"* / *"Remove"*) and to state the position directly. |
+
+**The pattern in all four: a sentence that was true when it was drafted, or true on a different
+surface, carried into a deliverable without being re-checked against what was actually observed.**
+Numbers 1 and 3 are the dangerous ones — both would survive any amount of re-reading *for sense*, and
+both only fall over when someone goes and looks.
+
+**Claims re-checked and found sound:** the build-unchanged reasoning (identical `index.html` etag,
+last-modified and app-version, plus the byte-compared message module) · the two live tooltips · the
+"no Payments tab / no Remove sentence" bundle claim · nine-pass arithmetic · the portal payment
+figures ($337.63 gross / $323.85 net / Succeeded) · the four unchanged balance readings · the
+refunded-credit route · the Inventory figures.
+
+**Verified after each write:** 6 media, all `"type":"file"` · tables 12 and 5 rows · the four
+corrections present and the four old strings absent.

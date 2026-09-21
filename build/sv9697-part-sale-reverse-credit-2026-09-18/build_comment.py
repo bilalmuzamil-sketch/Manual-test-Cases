@@ -44,8 +44,8 @@ Chris has now settled this twice. His 18 September copy used "used" and "Void"; 
 
 *I checked today whether the new copy is already on the branch. It is not.* I hovered the greyed-out Reverse button on two part sales and read what it actually says:
 
-* P-193, one spent credit: _"Credit CM-3956 ($231.00) has been applied. *Unwind* it before reversing."_
-* P-57, two spent credits: _"Credits CM-2190 and CM-2191 ($240.16 total) have been applied. *Unwind* them before reversing."_
+* P2-193, one spent credit: _"Credit CM-3956 ($231.00) has been applied. *Unwind* it before reversing."_
+* P2-57, two spent credits: _"Credits CM-2190 and CM-2191 ($240.16 total) have been applied. *Unwind* them before reversing."_
 
 Both still say *Unwind*, which is the word everyone has now agreed is not ours. The deployed code agrees with the screen - the file these four messages live in still contains both "Unwind" sentences, and contains no "Payments tab" and no "Remove" sentence at all. The branch itself has not been rebuilt since 18 September.
 
@@ -95,15 +95,15 @@ So the money moved and the portal knows about it, but the shop's own system does
 
 *To be clear, this is nothing to do with this fix* - the Reverse button is reading the invoice correctly, and the invoice genuinely is unpaid as far as ShopView is concerned. [~accountid:712020:8f740284-c818-4164-82d3-e6f98ccbba71] this one is for you: is there a sync job or a webhook for portal payments that is not running on this branch? Once a portal payment lands on a ShopView invoice, the check itself is ten minutes.
 
-One useful thing I found while looking: *the portal strips the branch prefix from every number*, so our P9697-253 is simply "P-253" there and our S9697-17303 is "S-17303". Searching the portal for a full branch number will always come back empty, which is what made me think last week that part sales never reach the portal. They do - P-193, P-92, P-111 and P-103 are all in there.
+One useful thing I found while looking: *the portal shows these numbers without the prefix the app puts on them* - our part sale P2-193 is simply "P-193" in the portal, and the invoice I paid is "S-17303" there. So searching the portal for a number exactly as the app writes it comes back empty, which is what made me think last week that part sales never reach the portal. They do - P-193, P-92, P-111 and P-103 are all listed. (Part sales created this week are not appearing in the portal at all, under any spelling I tried. That is a separate question and not this ticket.)
 
 h3. What I did not treat as a fault
 
 * On the customer's Deposits tab, Reverse is greyed out for a deposit that came from an overpayment and for one that has already been applied. That is the deposit screen's own long-standing rule, each with its own explanation on screen, and it is not part of this change.
 * The paid-invoice guard still comes first: on a paid part sale with an open credit, Reverse still gives "This invoice has been paid, please delete payment before reversing." The credit change has not displaced it.
 
-h3. The mixed applied-or-refunded question is now closed
+h3. The mixed applied-or-refunded question is closed
 
-An earlier version of this comment flagged that there was no agreed wording for a part sale where some blocking credits had been used and others refunded. Chris has answered it, and his answer removes the problem rather than adding a sentence for it: "used" is true of a credit spent on an invoice and of one cashed out as a refund, and "Void" undoes both, so a mixed set needs no special case."""
-json.dump({"body": B}, open('/tmp/sv9697/body4.json','w'))
+A part sale where some blocking credits were used on a payment and others were cashed out as a refund needs no third sentence. Chris settled it in his 21 September wording: _"applied"_ is true of a credit spent on an invoice and of one refunded, and _"Remove"_ undoes both, so a mixed set is covered by the sentences already specified."""
+json.dump({"body": B}, open('/tmp/sv9697/body6.json','w'))
 print('chars', len(B))
