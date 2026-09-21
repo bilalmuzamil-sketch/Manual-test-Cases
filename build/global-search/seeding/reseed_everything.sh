@@ -27,6 +27,92 @@ esac
 
 echo "=============================================================="
 echo " RESEED EVERYTHING — ${1}"
+echo "=============================================================="
+
+# ── PREFLIGHT ─────────────────────────────────────────────────────────────────────────────────
+# 🔴 THE TWO THINGS THAT WASTE THE MOST TIME AT SPEED, CHECKED BEFORE ANY WRITE.
+# Both present as a generic failure at step 1, and both were diagnosed the slow way once already:
+#   · the branch SWITCHES ITSELF OFF, and then every call answers 403 AccessDenied - which is not
+#     the API refusing you, it is a redirect to a static parking page. No cookie fixes it and
+#     quick-login returns 403 too, because there is nothing awake to log in to (playbook section R).
+#   · the SSO token expires, and then quick-login cannot rescue the session either - it needs a
+#     live SSO session to work. That one needs a human, so say so immediately instead of failing
+#     sixteen steps deep.
+if [ "${1}" = "qa" ]; then
+  API="https://sv9160api.qa.shopview.com"
+  # A path that CANNOT exist: 302 = asleep · 503 = booting · 401 = awake, unauthenticated ·
+  # 404 = awake AND authenticated. Never probe the app host - it is served from S3 and answers
+  # 200 to any nonsense path, so it reports a dead API as healthy.
+  probe() { curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$API/api/definitely-not-real-zz"; }
+  CODE=$(probe)
+  if [ "$CODE" = "302" ]; then
+    echo "---- branch is ASLEEP (302 to the parking page) — waking it"
+    curl -s --max-time 60 -X POST \
+      https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv \
+      -H 'Content-Type: application/json' -d '{"action":"wake","env":"sv9160"}'; echo
+    for i in $(seq 1 30); do sleep 20; CODE=$(probe)
+      [ "$CODE" != "302" ] && [ "$CODE" != "503" ] && break
+      echo "     still coming up (HTTP $CODE) …"; done
+  fi
+  echo "---- API readiness probe: HTTP $CODE"
+  if [ "$CODE" = "302" ] || [ "$CODE" = "503" ]; then
+    echo "🔴 the branch did not come up. Nothing seeded."; exit 1; fi
+
+  # Session: a live one answers 200 here. A 401 carrying sso_required means the SSO token is gone
+  # and NO amount of retrying will fix it - a human must supply a fresh cookie.
+  SESS=$(curl -s -o /tmp/reseed-sess.$$ -w '%{http_code}' --max-time 25 \
+         -H "Cookie: $(python3 - <<'EOF'
+import json,os
+c=json.load(open(os.environ.get('SEED_PROFILE','/tmp/qa/cookies.json')))
+print('; '.join(f"{k}={c[k]}" for k in ('sv_sso_session','PHPSESSID','cf_clearance') if c.get(k)))
+EOF
+)" -H 'Accept: application/json' "$API/api/staff/my-workplaces")
+  # 🔴 A 401 IS NOT ONE THING, AND THE DIFFERENCE DECIDES WHETHER A HUMAN IS NEEDED.
+  #   {"errors":[{"error":"session_expired"}]} -> the ORGANISATION session (PHPSESSID) lapsed.
+  #        quick-login mints a new one, so this heals itself and the reseed carries on.
+  #   {"error":"sso_required", ...}            -> the SSO TOKEN itself is gone. quick-login
+  #        CANNOT rescue it, because quick-login needs a live SSO session of its own. A human
+  #        must supply a fresh cookie, and saying so at once beats failing sixteen steps deep.
+  # Treating both as "not live" threw away the one case that fixes itself.
+  if [ "$SESS" != "200" ]; then
+    if grep -q 'sso_required' /tmp/reseed-sess.$$ 2>/dev/null; then
+      echo "🔴 sso_required — the SSO TOKEN has expired. Nothing seeded, nothing changed."
+      echo "   quick-login cannot rescue this; it needs a live SSO session itself."
+      echo "   ASK FOR: a fresh sv_sso_session and PHPSESSID, then re-run."
+      rm -f /tmp/reseed-sess.$$; exit 1
+    fi
+    echo "---- session not live (HTTP $SESS) — recovering via seed.py's own ensure_session()"
+    echo "     (Rule 83: quick-login evicts other workers on this branch, the accepted cost of"
+    echo "      an unattended reseed)"
+    # 🔴 CALL THE ENGINE'S SESSION LOGIC, DO NOT REIMPLEMENT IT. A hand-rolled quick-login here
+    # returned 200 and left the session dead, because quick-login ROTATES the PHPSESSID and hands
+    # it back in Set-Cookie - and the inline version threw that header away. seed.py already
+    # captures and persists it (playbook Q1); duplicating that was the bug.
+    python3 - <<'PYEOF' || true
+import os, runpy
+os.environ.setdefault('SEED_MANIFEST', 'seed-manifest.json')
+_s = runpy.run_path('seed.py', run_name='not_main')
+_s['ensure_session']()
+print("     ensure_session() completed")
+PYEOF
+    SESS=$(curl -s -o /tmp/reseed-sess.$$ -w '%{http_code}' --max-time 25 \
+           -H "Cookie: $(python3 -c "
+import json,os
+c=json.load(open(os.environ.get('SEED_PROFILE','/tmp/qa/cookies.json')))
+print('; '.join(f'{k}={c[k]}' for k in ('sv_sso_session','PHPSESSID','cf_clearance') if c.get(k)))
+")" -H 'Accept: application/json' "$API/api/staff/my-workplaces")
+    if [ "$SESS" != "200" ]; then
+      echo "🔴 STILL NOT LIVE after recovery (HTTP $SESS). Nothing seeded, nothing changed."
+      echo "   ASK FOR: a fresh sv_sso_session and PHPSESSID, then re-run."
+      rm -f /tmp/reseed-sess.$$; exit 1
+    fi
+    echo "---- session recovered by quick-login (200)"
+  else
+    echo "---- session live (200)"
+  fi
+  rm -f /tmp/reseed-sess.$$
+fi
+
 echo " build marker before: $(curl -s --max-time 20 "$HOST/" | grep -o 'content="v[^"]*"' | head -1)"
 echo "=============================================================="
 
