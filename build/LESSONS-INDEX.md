@@ -16,6 +16,25 @@ different feature entirely.
 
 ---
 
+## 🛑 READ THESE TWO FIRST — they name the habit underneath most of the rows below
+
+| Skill | What it is for | When to read it |
+|---|---|---|
+| **`build/skills/19-HOW-NOT-TO-TEST.md`** | The **single root cause** under most of our wrong calls: *I judged the product from a proxy instead of from the screen*. Five real wrong calls, the eight forbidden moves, the 13-step drill, and what a challenge triggers (**re-measure before replying — never answer a challenge in the turn it arrives**). | **Before the first observation of any pass.** |
+| **`build/skills/20-API-VALUES-VS-WHAT-THE-USER-SEES.md`** | The specific case of that habit. **A value read from an endpoint is evidence about the endpoint, never a pass or a fail about what a person sees.** Twelve real cases, the three mechanisms that make the two disagree (different SURFACE / LAYER / MOMENT), when an API read *is* admissible, and the five questions to ask before trusting one. | **Before the first probe of any pass.** |
+
+**⚠️ Note for whoever works here next (added 2026-09-21 when these two were saved):** both files were
+written against a repository layout this one does not yet carry. They cross-reference
+`build/LEARNINGS-LOG.md` (L0168–L0181), `build/skills/00-COMMON-CORE.md`, `03-RUN-CHECK.md`,
+`06-DEFECT-PREP.md`, `09-TEST-EXECUTION.md`, `build/testing-tools/probe_guard.mjs` and
+`build/testing-tools/blocker_gate.py` — **none of which exist here** — and they cite Standing Rules up to
+**114**, while this repo's `CLAUDE.md` stops at **85**. The *content* of both files stands on its own and
+is what matters; the cross-references are pointers to things that have not landed here yet. Do not delete
+them as dead links, and do not fabricate the missing files — say plainly that a cited tool does not exist
+if you need it.
+
+---
+
 ## The corrections, newest first
 
 | Date | What went wrong | What we do now | Where it lives |
@@ -114,3 +133,5 @@ Read these before trusting any verdict you are about to give:
 | An inventory part was invoiced with stock untouched, so an inventory assertion could not be made | On a part sale, **Authorize** then **Pick** — only Pick moves stock; adding the part does not | `build/APP-ACTIONS-PLAYBOOK.md` §AH.8 |
 | Issue Credit totals stayed $0.00 and Confirm stayed disabled through every kind of click | Focus the Quasar checkbox and press **Space**; the quantity field then appears pre-filled | `build/APP-ACTIONS-PLAYBOOK.md` §AH.8 |
 | Called a step untestable before proving it: scanned **all 98** invoices and drove the portal's own SSO to get a 500 first | A "blocked" verdict names what was scanned, what was driven, and the exact error | `build/sv9697-part-sale-reverse-credit-2026-09-18/FINDINGS.md` §9 |
+| 2026-09-21 | Reported `/tmp/atlassian/` as missing from a listing I had **truncated with `head -5`**, and asked the QA lead for access I already had — the Jira session was live the whole time | **Test the thing, never a listing of the thing.** Before reporting any credential/file/route as absent, *use* it: one `GET /rest/api/3/myself` would have returned 200. This is Skill 19 §1 in its purest form — a proxy (a truncated `ls`) stood in for the real condition | `build/skills/19-HOW-NOT-TO-TEST.md` §1; Rule 68 |
+| 2026-09-21 | **Self-caught on re-reading Skill 20:** SV-9697 check 10 asserts *"part and stock quantities return to where they were"* — a number a person reads on the Inventory screen — and every figure in it (280 → 278 → 280 → 278) came from `GET /api/inventory/parts`. The credited-line half WAS observed on screen; the stock half was not | A stock count shown to a user is a **screen** claim. Read it off the Inventory screen, and quote the endpoint only as corroboration. Under Skill 20 this is mechanism (b) — a layer proxy — and it decides a pass, which is the one thing an API read may never do | `build/skills/20-API-VALUES-VS-WHAT-THE-USER-SEES.md` §§1(b), 3; `build/sv9697-part-sale-reverse-credit-2026-09-18/FINDINGS.md` §15 |
