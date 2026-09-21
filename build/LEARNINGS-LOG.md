@@ -3735,3 +3735,44 @@ exactly this question and I did not ask it.
 (before any "the product ignores X" claim), `build/testing-tools/probe_guard.mjs` (assertNegative
 positive control). Evidence:
 `build/global-search/run415-execution/sv10188-recheck/DEVELOPER-IS-RIGHT-2026-09-21.md`.
+
+## L0181 — 2026-09-21 — THE FIVE WRONG CALLS WERE ONE MISTAKE FIVE TIMES: JUDGING THE PRODUCT FROM A PROXY
+
+**The QA lead's instruction:** *"learn from them as to how NOT to test and then HOW to test from
+today's learning and make sure that you must not repeat the mistakes."*
+
+**The consolidation.** L0174, L0178, L0179, L0180 and the SV-10278 withdrawal (L0171) read as five
+unrelated slips. They are not. In every one, the thing measured was a **machine-readable stand-in**
+for the behaviour, and the stand-in could not carry it:
+
+| Claim | Proxy measured | Why it could not carry the behaviour |
+|---|---|---|
+| ranking flattened (SV-10277) | the capped `score` number | the engine sorts on the real uncapped value |
+| begins-with credit missing (SV-10279) | the row's internal match label | no source defines that field; the credit WAS applied |
+| context rule ignored (SV-10188) | two direct calls to the search service | page context is attached by the search box, not the URL — the lists were identical by construction |
+| customer fix regressed (SV-10211) | a Vendors example from found data | other ranking signals differed; wrong tab, wrong fixture |
+| permission side-effect (SV-10278) | the role record's permission list | the dependency lives on the Roles and Permissions screen, and is deliberate |
+
+**A defect is a statement about what a person sees happen. A proxy is supporting detail, never the
+observation.**
+
+**Second root cause, same two days.** On SV-10277 I **conceded** to the developer before re-checking
+and the QA lead's *"are you sure?"* caught it; on SV-10188 I **defended** and started a rebuttal, and
+a re-measurement showed the developer was right. Conceding and defending are the same error wearing
+opposite clothes — an answer given without evidence. **A challenge triggers a re-measurement on
+today's build, on the screen, before a word of reply is written.**
+
+**What was built so it cannot repeat.** `build/skills/19-HOW-NOT-TO-TEST.md` (the root cause, the
+eight forbidden moves, the thirteen-step drill, what a challenge triggers), pointed at from skills
+00, 03, 06 and 09; and two new gates in `build/testing-tools/probe_guard.mjs` —
+**`assertBehaviour(...)`**, which refuses an ordering or behaviour claim without a verbatim source
+sentence, a screen observation, named confounders held equal by a BUILT fixture, two agreeing
+alternating rounds, a discriminating fixture, a passing positive control, the build marker, and an
+answer to *"what would make this MY fault?"*; and **`assertContextRuleMethod(...)`**, which throws
+when a requirement worded *"if the user is currently on …"* is about to be measured by a direct
+service call. Both were unit-checked on the SV-10188 shape before being committed.
+
+**One more thing the fourth fixture taught.** Three of the four same-category fixtures were
+**non-discriminating** — the record that should move was already at the extreme, so a lift had
+nowhere to show. **A non-discriminating run is not evidence either way** and must be labelled
+inconclusive; reading it as a negative is how a false defect is born.

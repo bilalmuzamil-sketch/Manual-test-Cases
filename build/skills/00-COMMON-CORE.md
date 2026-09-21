@@ -2529,3 +2529,25 @@ absent from its own tab, which was the defect. Four confirmed defects were nearl
 - **An outage looks exactly like a clean negative.** Detect the app's own failure banner
   (e.g. *"Search unavailable"*, an error toast) and treat it as an INSTRUMENT FAILURE under Rule 104 —
   record nothing, retry, and say the service was down. Never let an outage become a reported result.
+
+---
+
+## 🛑 BEFORE THE FIRST OBSERVATION — READ `build/skills/19-HOW-NOT-TO-TEST.md`
+
+**Five wrong calls in two days (SV-10277 · SV-10279 · SV-10188 · SV-10211 · SV-10278) were ONE
+mistake five times: the product was judged from a machine-readable PROXY instead of from the
+screen** — a capped score number, an internal match label, a direct service call that could not
+carry page context, a fixture whose other signals differed, and a stored permission list.
+
+**The three moves that prevent it:** observe it **on the screen** through the control a person uses ·
+**BUILD** the fixture so every other signal is held equal, and check it is **discriminating** (could
+it have shown the opposite?) · take it **twice, alternating** (A, B, A, B) with a **positive
+control** and the **build marker** recorded.
+
+**Enforced, not advisory:** `assertBehaviour(...)` and `assertContextRuleMethod(...)` in
+`build/testing-tools/probe_guard.mjs` refuse an unmeasured behaviour or ordering claim. A
+requirement whose wording contains *"if the user is currently on …"* is **untestable by a direct
+service call** and the guard throws.
+
+**And a challenge — from a developer, from the QA lead, or from my own second thought — triggers a
+RE-MEASUREMENT, never a reply.** Conceding and defending are both answers given without evidence.
