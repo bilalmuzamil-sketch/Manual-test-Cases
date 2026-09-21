@@ -1196,3 +1196,33 @@ tagged to Chris as his call.
 **Posted as comment 76975**, 2026-09-21T12:49:13-0500. Read back: verdict line first, 1 media
 `"type":"file"`, 3 mentions (@Nemanja ×2, @Chris ×1), links to SV-10298 and comment 76957, table 7
 rows. 76831, 76969 and 76974 untouched.
+
+---
+
+## §24 — I flagged a problem to the PO and never actually asked him anything (comment 76976)
+
+**The QA lead's question: *"Have you asked Chris the question you want to ask?"*** I checked the
+posted comment rather than my memory of it. **Comment 76975 contains ZERO question marks.** What it
+says to Chris is:
+
+> *"it is your copy, so it is your call how you want that ticket worded - but as it stands it points
+> at the version you withdrew."*
+
+**That is a statement handed back, not a question.** It gives him nothing to answer, no options, and no
+indication that anything is waiting on him — and it leaves *me* without the one fact I need: **which
+wording SV-10298 should be built to, because that is the expected result I will assert against when I
+test it.** Flagging a risk and then saying "your call" looks like deference and is actually an
+unclosed loop: the ticket moves on, nobody answers, and I test against an assumption.
+
+**Posted as comment 76976** in the project's standard PO-question shape (Rule 55): one question, the
+two candidate wordings quoted **in full so he can pick without opening anything**, a blank for the
+answer, my working assumption stated openly (**A**, his 21 September copy) with the reason, and the
+consequence if it is A — **SV-10298's title still says B and will be built to B unless someone
+changes it**, which is Nemanja's to action once Chris answers.
+
+Read back: 1 question, both options present, the answer blank present, mentions resolving to
+@Chris Ward and @Nemanja Djuric ×2, links to SV-10298 and comment 76957.
+
+**The rule I am taking from this: a flag is not an ask.** If a deliverable needs a decision from
+someone, the comment has to contain an actual question, with the options, and a place to put the
+answer. "It's your call" is how an open question quietly becomes a silent assumption.
