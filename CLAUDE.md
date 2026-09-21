@@ -20,7 +20,8 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **108 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
+**plus Rules 109, 110, 111, 112 and 113** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -30,64 +31,19 @@ old file did; grep it, or read the relevant `RULES-*.md`.
 
 ## 1 · CRITICAL CORE — obey these even if you read nothing else
 
-Every **imperative** here is stated in full, because a session that gets only this far must still be
-safe. The **evidence** for each one lives in the rule or skill the bullet points at.
-
-> **🔒 §1 ADMISSION GATE — approved by the QA lead 2026-09-02, clause 1 amended by him 2026-09-03
-> (Rule 72); recorded in `build/rules/INTEGRITY.md`.** A §1 bullet is **≤ 400 bytes PER SUBJECT and
-> states the IMPERATIVE ONLY**; a **compound standard** whose imperatives alone exceed that is **ONE
-> bullet with LABELLED PARTS** `(a)`/`(b)`/`(c)`, never two bullets (precedent 2026-09-02, the two
-> TestRail formatting halves). **400 IS A BUDGET PER SUBJECT, NOT A CEILING ON A MERGED BULLET — AN
-> IMPERATIVE IS NEVER DROPPED TO MEET A BYTE BUDGET** (95 clause 12): demote the evidence and merge the
-> bullets instead. The
-> **verbatim quote, the worked example and the incident history live in the rule or the skill**, reached
-> by the pointer the bullet carries — **§1 carries the instruction, the authority carries the evidence.**
-> A **refinement AMENDS the existing bullet** on that subject; it never adds a second bullet about it.
-> **§1 is hard-capped at 20,000 bytes** — at the cap, the next admission must demote something first.
-> **NOTHING IS DELETED BY THIS GATE:** content is MOVED to its rule/skill and pointed at, and the move is
-> verified by grep before the §1 text is shortened. **A gate that loses a ruling has failed.**
+These are stated here **in full** because a session that gets only this far must still be safe.
 
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
   freely there, tag throwaway data `ZZAUTOTEST`, restore what you change.
-- **🛑 WE CREATE NO EXTERNAL ARTEFACT WITHOUT HIS EXPLICIT PERMISSION — AND WE DO NOT CREATE DEFECTS AT
-  ALL (62; QA lead 2026-08-10 and 2026-09-01).**
-  **(a) TESTRAIL IS NOT HELD; JIRA IS.** **CREATING TESTRAIL TEST CASES IS *NOT* HELD AND NEVER WAS —
-  `add_case` and `update_case` are PERMITTED AND EXPECTED, on every project.** If you are about to report
-  a requirement as uncoverable "while the hold stands", you have made the mistake two workers already
-  made — **write the case.** For Jira, permission is **PER ASK**: an earlier batch approval never covers a
-  later ticket, and a finding being real and obviously worth filing is not permission. **ACTIVE HOLD
-  (2026-08-10): no Jira ticket of any type, and no new artefact in any other external system of record;
-  TestRail cases are expressly carved out.** The hold is **TEMPORARY, lift condition = his next order — a
-  session reading this later must CHECK whether it has been lifted, not assume it is standing law.**
-  Register row **H1** in `build/OUTSTANDING-ITEMS-REGISTER.md`.
-  **(b) A PASS NEVER ENDS IN A DEFECT — IT ENDS IN A RUNNABLE TEST (2026-09-01).** Where the build does
-  not match the document: the documented expectation STAYS (57), the case gains the **three outcomes** in
-  plain words so the tester runs it and marks it **Failed**, the marker stays `AUTOMATION: READY` (an
-  `EXPECT FAIL` marker needs a live ticket and there is none), and the finding is reported **with its
-  C-id** — no ticket text, no ask, no candidate file. This **supersedes Rules 51/52/53/62/73/94 and
-  `build/skills/06-DEFECT-PREP.md` for the lane's own output**; skill 06's shape still governs *if he asks
-  for a ticket*.
-  **(c) IF HE EVER SAYS GO AHEAD, THAT IS PERMISSION TO LOOK AGAIN, NOT TO FILE (2026-09-01).** Three
-  gates in order: **(1)** every candidate is HELD, on every suite · **(2)** his go-ahead means re-open the
-  question, never file · **(3)** reproduce it on the build as it stands that day — if it no longer
-  reproduces, CLOSE the candidate and say so; if it does, ASK for permission **per candidate**. The
-  re-verification comes BEFORE the ask; it does not replace it.
-  Verbatim quotes, the worked examples (C45068 · C45060 · C44996) and the full treatment:
-  `build/rules/RULES-61-ONWARD.md` rule 62 (2026-09-01 amendment) and `build/skills/06-DEFECT-PREP.md` §A10-b.
-  **🛑 (d) AND RECONCILE THE CASE AGAINST THE LIVE SOURCE FIRST — THREE WAYS (106; QA lead 2026-09-10,
-  after a draft cited spec rules quoted from my own notes, never opened).** Before ANY defect is put to
-  him: **the CASE's Expected** (read live from TestRail) · **the SOURCE as it reads TODAY** (fetched
-  this pass, quoted VERBATIM with page id, requirement id and read date — our own case text, a
-  `requirements.md` extract or a remembered version is NOT the source, Rule 100) · **the BUILD observed**
-  (12, 104). **Case agrees, build differs ⇒ real defect, ask to file with the quote. CASE DISAGREES WITH
-  SOURCE ⇒ THE CASE IS THE DEFECT — do NOT ask to file; ask permission to CORRECT the case's Expected,
-  showing both wordings. Source silent/ambiguous ⇒ hold and ask (58).** Always the LATEST version; where
-  the version integer cannot be read, say so rather than repeating one from our own text. Write the
-  reconciliation to `build/<project>/source-verify-<date>/`, and **answer the nearest apparently
-  contradicting rule in advance**. Worked example:
-  `build/inline-add-edit-parts/source-verify-2026-09-10/DECLINED-QUOTES.md`.
+- **NO JIRA TICKET CREATION WITHOUT PERMISSION, AND A CREATION HOLD IS ACTIVE (62).** Permission is
+  **PER ASK** — an earlier batch approval never covers a later ticket, and a finding being real and
+  obviously worth filing is not permission. **ACTIVE HOLD (QA lead, 2026-08-10, verbatim: *"Do not
+  create anything until my next order."*)** — no Jira ticket, no new TestRail case, no new artefact in
+  any external system of record. **`update_case` on EXISTING cases CONTINUES — that is correction, not
+  creation.** **This hold is TEMPORARY with a lift condition (his next order) — a session reading this
+  later must CHECK whether it has been lifted, not assume it is standing law.** Register row **H1**.
 - **SECRETS: `/tmp` ONLY, `chmod 600`, NEVER COMMITTED — THIS REPO IS PUBLIC (82).** Cookies, tokens,
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
@@ -99,48 +55,26 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   we take EXACTLY TWO THINGS: the on-screen labels/navigation, and the pass/fail verdict.** If the
   build differs, the case KEEPS the documented expectation and becomes a deviation with a ticket.
   **A closed ticket is not a spec change. An ambiguous source is never resolved by looking at the
-  build (58) — hold the case and ask.** **🛑 AND THE EXPECTED RESULT IS THE SOURCE'S VERBATIM QUOTE,
-  NEVER CHANGED (57, QA lead 2026-09-21: *"the expected behavior should be the exact QUOTE from the
-  sources, that MUST NOT ever be changed"*):** reproduce the source word for word with its page/section
-  id; the clear/plain/glossary wording (102, 7/9/18) applies to preconditions, steps and bracketed
-  labels — NEVER to the asserted Expected. Source wording unclear ⇒ hold and ask (58), never reword.
-- **🛑 A LABEL IS READ FROM THE SMALLEST ELEMENT THAT OWNS IT, AND QUOTED AS DISPLAYED (2026-09-03).**
-  **(a) WHICH ELEMENT.** `cells[i]` per column header, `value` for an input, `textContent` otherwise,
-  icons stripped. Flattened text answers "does this appear", NEVER "this is the label".
-  **(b) WHICH STRING.** Quote what the tester SEES: where CSS `text-transform` is set, `textContent` is
-  NOT the label — RECONCILE the two before changing a character. Capitalisation alone is still no
-  divergence. A WRITE-hold (71) is not an OBSERVATION-hold. Full text: `build/skills/03-RUN-CHECK.md`.
+  build (58) — hold the case and ask.**
+- **🔴 THE EXPECTED RESULT IS THE SOURCE'S OWN WORDS, QUOTED VERBATIM — AND NEVER CHANGED (113).**
+  Ordered by the QA lead 2026-09-21: *"the expected behavior should be the exact QUOTE from the
+  specs/source, that MUST NOT ever be changed."* Copy the sentence, mark it as a quote, cite the
+  document + version + section. **It changes only when the SOURCE changes.** A build that disagrees
+  is a DEVIATION (57/61); a reviewer who disagrees is a PO QUESTION; neither permits editing the
+  sentence. **If you are improving the wording of an Expected Result, stop — that is the failure
+  this rule exists to prevent**, because a case rewritten towards the build can never fail.
+  Plain-language wording (7/9) is ADDED AFTER the quote, clearly marked as our restatement, and
+  never replaces it. No quotable sentence ⇒ hold the case and ask (58/64), never invent one and
+  never look at the build.
+
 - **VERIFIED MEANS OBSERVED, NEVER INFERRED (12).** Only mark Verified / Pass / Fail / present /
   absent if it was observed live, with evidence captured that run. Anything not observed is labelled
   **NOT VERIFIED** or **Blocked-with-reason**. Never fill a gap with inference to look complete.
-- **🛑 AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT IT — MEASURE IT ON DISK (100).**
-  Context, system prompt and memory go stale by commits, silently. Before reporting a file's size, its
-  contents, whether a pointer resolves or whether a rule exists: `git fetch origin`, then `wc -c` ·
-  `grep -n` · `git show origin/<branch>:<path>`. Never hand a worker a recollection as a premise.
-- **WHICH STANDARD APPLIES — DECIDE PER CASE, NEVER PER PROJECT (109 + 57).** A V2 project runs **two
-  suites under two standards at once.** *Does V2 do what the V2 documents require?* → **the V2
-  documents (57)**. *Did V2 keep what V1 could do?* → **the V1 product code at a named commit (109)**.
-  *A V2 feature V1 never had?* → **the V2 documents; Rule 109 is SILENT and must not be stretched —
-  "V1 did not do it" is never a reason to skip testing a new feature.** *Is V2 right because V2's code
-  does it?* → **never a valid standard, in any suite.** *A V1 behaviour that looks like a bug?* → **a PO
-  decision item, never a silent invariant (96).** Full table in Rule 109.
 - **A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET (96).** What the V2 spec does NOT
   mention is still a requirement: **silence defaults to "must not change"**, and high-collateral-risk
   silence is escalated as a PO question rather than assumed. **Documents establish intent; code
   establishes fact** — and a code-vs-document conflict is a **PO DECISION ITEM, never a silent
   invariant.** Skill: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`.
-- **🛑 COUNT FROM THE SYSTEM OF RECORD, NEVER A LOCAL SNAPSHOT (2026-09-02).** Cases, sections
-  and runs are counted LIVE from TestRail, paged; app facts come from the endpoint that answers the
-  question. Never the id-map, a `cases/*.json`, a repo note, or a figure remembered. Ask: "which list
-  did this come from, and is it the list the question is about?" `build/skills/00-COMMON-CORE.md`.
-- **🛑 A RULE'S AMENDMENT IS PART OF THE RULE.** Read the rule in its file to the END,
-  amendments included, and encode the amendment in any check you write — project-scoped, never a
-  blanket allowance. Worked miss: `build/rules/RULES-21-40.md` rule 38 amendment of 2026-09-02 and
-  `build/skills/00-COMMON-CORE.md` §5.0.
-- **🛑 THE MISTAKE-PREVENTION MECHANISM IS TWO FILES, NOT A CHECKLIST (QA lead, 2026-09-02).**
-  Before reporting a suite run `python3 build/testing-tools/verify_suite.py`; before reading anything
-  off the build use `build/testing-tools/probe_lib.mjs`. When a gate flags a label, check the
-  REFERENCE first; a PASS is not the end of a case. Full text: `build/skills/00-COMMON-CORE.md`.
 - **NEVER BULK-READ; SCRIPT THE BULK WORK (88).** A session with direct tools must not read hundreds
   of cases, spec bodies or archives into its own context. Write a script, run it, read its SUMMARY.
   Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` (or any 100 KB+ artefact) whole.
@@ -152,178 +86,41 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 - **MINIMISE SUBAGENT SPAWNS (76).** Every spawn pays the full context tax. Batch related work into
   one worker; piggyback cheap checks onto the next substantive worker (78) rather than spending a
   dedicated spawn on them.
-- **🛑 FIND A ROUTE BY WALKING THE UI, NEVER BY GUESSING — AND RECORD IT (2026-09-02, amended 09-03).**
-  Drill: `route_registry.mjs find` → `qa-branch-boot.mjs` → `find_ui_route.mjs` → `RECORD_AS=`.
-  **Enumerate EVERY row** (`ENUMERATE_ROWS_FN`) — a one-row or one-state "nothing here" is void.
-  **Walk stalls ⇒ grep the build's chunks.** API only to SEED (14) or READ a set. `03-RUN-CHECK.md`.
-- **NEVER DECLARE A BLOCKER — OR RUN THE FIRST PROBE — WITHOUT SEARCHING THE REPO FIRST (97, amended
-  2026-09-02).** **STEP 0 IS `git fetch origin`** — never search, measure or report a repository fact from
-  a stale checkout — and if you are on a different branch, search the canonical one **without checking it
-  out**: `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` (or
-  `git show`). **"Not on this branch" is NEVER a reason to conclude something does not
-  exist.** Before reporting anything as impossible, blocked, unavailable or unreconstructable — **and
-  before the FIRST PROBE of any environment, not after the first failure** — **grep the workspace using
-  the EXACT ERROR TEXT**, plus `grep -n "<the thing>" build/APP-ACTIONS-PLAYBOOK.md` and
-  `ls build/testing-tools/`. **A committed harness is reused, never rebuilt.** Four places, in order:
-  `build/APP-ACTIONS-PLAYBOOK.md` · `build/skills/14-ACCESS-RESILIENCE.md` ·
-  `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` · `build/rules/RULES-*.md` (grep, never read whole). Also
-  `ls build/BLOCKED-*.md` (several are RESOLVED, with the cause) and `git log --all --grep=`.
-  **If you still cannot find it, REPORT THE SEARCHES YOU RAN** so the gap is known to be real rather than
-  unsearched. One tool failing is a fact about that tool, never about the task (68). **Solve something
-  new ⇒ write it into the playbook or the skill IN THE SAME PASS** (93). The QA lead's verbatim ruling on
-  sequencing, the eight-probe incident and the five 2026-08-28 false blockers:
-  `build/rules/RULES-61-ONWARD.md` rule 97.
-  **🛑 AND PROVE THE INSTRUMENT WORKED BEFORE ANY NEGATIVE CLAIM (104; QA lead 2026-09-10 — five false
-  blockers in one day, ALL my own selector/timing/route/method blamed on the product, two of them
-  already unblocked by him earlier).** *Absent · nothing · broken · impossible · cannot* needs SEVEN
-  proofs with evidence: **positive control · through the SCREEN not a script · ≥2 attempts on a settled
-  page · navigation and new-tab checked · precondition read back (a 200 is not proof a write landed) ·
-  repo searched (97) · "what would make this MY fault, and how did I rule it out?"** Enforced, not
-  advisory: build probes on **`build/testing-tools/probe_guard.mjs`** (`assertNegative` THROWS without a
-  positive control — fix the probe, never file the finding; `afterAction` forbids "nothing happened"
-  unless navigation, new tab, panel, DOM change and server write are ALL empty), and **nothing negative
-  reaches a `BLOCKED-*.md`, a candidate, an ask, or a Blocked/Failed-as-unavailable result until
-  `python3 build/testing-tools/blocker_gate.py --check <claim>` exits 0.** An unclosable proof is
-  reported as an OPEN GAP, never as a proved blocker. **First `ls build/BLOCKED-*.md` — several are
-  RESOLVED or WITHDRAWN with the route that worked.** Learning L0036.
-  **🛑 AND YOU ARE STANDING-AUTHORISED TO UNBLOCK YOURSELF — DO WHATEVER THE TEST ENVIRONMENT NEEDS
-  (107; QA lead 2026-09-10: *"you are authorized to do anything to unblock yourself, give it what it
-  takes"*).** On any QA branch or Staging, WITHOUT ASKING AGAIN: create/change/delete any test data ·
-  **edit roles and permissions and assign them to staff** · switch workplace · use the screen or go
-  behind it, whichever reaches the state · walk a neighbouring feature to build a precondition · write
-  the tooling. Tag `ZZAUTOTEST`, restore what is not the point of the test (6). **SEVEN ROUTES, ALL
-  TRIED AND NAMED IN THE REPORT BEFORE "BLOCKED" IS EVEN CONSIDERED:** search the repo (97) · read the
-  refusal (it names the missing field or allowed method) · try the OTHER surface · SEED the state ·
-  walk the neighbouring feature · change the role/permission/data in the way · prove the instrument
-  (104). *"It failed the way I first tried"* is step 1 of 7, not a blocker. **107 NEVER overrides the
-  standing holds: no Jira/external artefact (62) · no TestRail write without his go-ahead (6) ·
-  Vladimir's cases never (38) · Automated cases held (71) · secrets never committed (82) · production
-  is not a test environment.**
-- **STRATEGY FIRST (79), AND NEVER GO IDLE WHILE WORK REMAINS (105; QA lead 2026-09-10 — *"Are you
-  done? I do not see any running task"*, asked while a finished probe sat with no successor).** Devise
-  or recall the smartest quota-efficient plan, then begin. **Queue EVERY remaining step into
-  `build/testing-tools/run_queue.sh <queue> <tag>` rather than hand-launching one at a time** — it
-  refreshes the bridge per step, spaces them for login trap 2, survives a crash, and `--status <tag>`
-  answers "is anything running?" in one line. **THE LAST ACTION BEFORE ANY REPORT IS TO START THE NEXT
-  WORK AND CONFIRM IT IS RUNNING**, and every status names the step in flight. The only legitimate
-  stops: the queue is empty · a decision only he can make, already put to him (103) · a blocker that
-  passed the gate (104). *"I finished a step and hadn't decided what's next"* is not one.
+- **STRATEGY FIRST (79).** Before starting ANY task, devise or recall the smartest quota-efficient
+  plan — then begin. One pass, then exit.
 - **TELL THE LAST-DONE DATE AND ASK BEFORE RE-RUNNING (80).** Never silently repeat a verification,
   VIU or ordered task: say when it was last done and ask whether to run it again. A check within the
   last 3 builds / 3 source versions still COUNTS, with its date shown (77).
-- **🛑 SOURCE VERIFICATION IS OFFERED AND GATED, NEVER AUTO-RUN — HE DECIDES, EVERY SESSION (81;
-  re-confirmed 2026-09-03).** On a build-verify / VIU order: name the need · give the **last-done DATE +
-  spec version** · **ASK** with-or-without · **WAIT**. Never pull sources on your own initiative, and
-  never inherit an earlier session's answer. Once he says yes, "all the sources" = the Rule 57 list.
-  Both 2026-09-03 rulings: `RULES-61-ONWARD.md` rule 81.
-- **🛑 THERE IS NO DELTA — EVERY VERIFICATION IS FULL, ON EVERY CASE (101; QA lead 2026-09-09).** A source
-  verify, build verify, VIU or re-verify covers the **ENTIRE suite, every case**, re-read/re-walked/
-  re-observed on the CURRENT build — never only the changed stories, the shared labels, or a build-line
-  re-stamp standing in for a re-walk. **"Unchanged, so carried over" is the forbidden delta.** Rules 77/80
-  still decide WHETHER to run; when you run, it is full. Can't do it all ⇒ report the rest **NOT VERIFIED
-  THIS BUILD** (12) — never let a partial pass be stamped or reported as verified. Full text + the two
-  incidents: `RULES-61-ONWARD.md` rule 101.
-- **🛑 BUILD-VERIFY MAKES ALL THREE PARTS RUNNABLE — PRECONDS · STEPS · EXPECTED (102; QA lead 2026-09-09).**
-  Preconditions runnable (reach the state by UI clicks) · Steps of replication runnable (followable in the
-  build's labels) · **Expected stays INTACT in substance (documents, Rule 57) but its WORDING is made clear,
-  meaningful and consistent with the Build Glossary** (the `OBSERVED-UI-LABELS-<env>.md` terms the tester
-  sees) — align the words to the screen, never the asserted outcome. Wording-to-glossary ≠ changing Expected
-  to match build behaviour (that stays a three-outcomes conflict, 62-b). Full text: `RULES-61-ONWARD.md` rule 102.
-- **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY (2026-09-02).** Run
-  `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. Carry `sv_sso_session` ONLY,
-  scoped **HOST-ONLY** — a domain-scoped cookie 409s right after a 200 login, which looks like a dead
-  session and is not. Judge by `fe_permissions.length`, not `role.name`.
-  Traps: `build/APP-ACTIONS-PLAYBOOK.md` §A.
+- **SOURCE VERIFICATION IS OFFERED AND GATED, NEVER AUTO-RUN (81).** Make the source current FIRST,
+  but ask before spending the quota on it.
 - **AUTOMATED CASES ARE READ-ASSESSED, THEN HELD FOR THE QA LEAD (71).** Never change or delete a case
   TestRail flags as Automated without his go-ahead; if a pass does change one, TELL VLAD (65).
 - **COMMIT AND PUSH AFTER EVERY STEP, PATH-SCOPED (29).** Git is the only durable store; the container
   and `/tmp` are ephemeral. `git add -- <paths>` only — **never `git add -A` / `git add .`**.
 - **ALWAYS PAIR AN INTERNAL ID WITH ITS C-ID AND LINK (8).** Never a bare `FLT-…`/`SCH-…`: give
   `C#####` and `https://shopview.testrail.io/index.php?/cases/view/<id>` — in files AND in chat.
-- **🛑 EVERY REPORT IS FIVE TABLES, NAMES ITS C-IDS, AND ENDS WITH "OUTSTANDING — what I need from you"
-  (98 · 99 · 36; QA lead 2026-09-01).** The five tables: **DONE · LEFT · BLOCKED · HOW TO UNBLOCK ·
-  HANDOFF-READY.** **Prose is not a report.** **Table 2 must say how to finish each item concretely enough
-  for a DIFFERENT session to execute it without asking · Table 3 must name what the blocker does NOT block
-  (68) · Table 5's last row is a bare YES or NO and is NO unless every gate above it passed.** **Every row
-  names its C-ids, never just a count**, and a completed-versus-left figure states **both numbers AND
-  lists the ids of what is left.** **Every ask is SELF-CONTAINED AND EXECUTABLE (99):** each item he must
-  decide carries five things in plain words — **what it is** · **how it came up** · **the question** ·
-  **the options**, each saying what we would then DO · **the cost of silence** and what it does not block
-  (68). If answering needs a file opened, it is not finished. Say *"nothing outstanding"* if that is true;
-  never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
-  **🛑 AND EVERYTHING HE READS IS IN HIS LANGUAGE — EVERY MESSAGE, NOT ONLY ASKS (103; QA lead
-  2026-09-10, widened the same day after a STATUS line slipped through: *"keep things simple for me to
-  understand, for everything you share with me all the time"*).** Lead with what a USER would see and
-  why it matters, then the decision, the options each saying what we would DO, and the cost of silence.
-  **BARRED from anything he reads: run numbers · case/test ids · ticket keys · suite numbers · API
-  paths · status codes · HTTP verbs · selector/probe/tool names · payload/endpoint/DOM/JSON ·
-  precondition · verdict · settled · "not observed" · "clause 3" — and BARE TALLIES: a count is always
-  followed by what it MEANS for him (what is finished, what is left, what he must do).** C-ids and keys
-  go after a `---REFERENCE---` line (8), never carrying the meaning. **RUN THE CHECK BEFORE SENDING:
-  `python3 build/testing-tools/plain_check.py <draft>` — exit 1 names every phrase he would stop at.**
-  If he must decode it, or open anything to understand it, it is NOT WRITTEN YET. Internal files stay
-  technical; 103 governs what is put to HIM. Full text: `build/rules/RULES-61-ONWARD.md` rules 98, 99, 103.
-- **🛑 A QUESTION SHEET IS ALWAYS A SPREADSHEET, NEVER A MARKDOWN TABLE (55 · 66 · 7/9; QA lead
-  2026-09-01).** Deliver **`.xlsx`** (or a Google Sheet) in the established column shape —
-  **`# · Topic · What happens now · The question · Options · Your answer`** — one sheet per feature, plus a
-  final **QA internal** sheet carrying the case ids and requirement anchors that the PO is not meant to
-  read. **The PO-facing sheets contain no case ids, no spec anchors, no API or HTTP terms, no field names**
-  (7/9); every question offers **OPTIONS** so it can be answered by ticking one. Still governed by Rule 55
-  (project and feature named on every row, answerable by a non-technical reader) and Rule 66 (the sheet is
-  the LAST thing sent). Generator + the enforced layman check and his verbatim ruling:
-  `build/testing-tools/make_question_sheet.py`, `build/skills/07-PO-QUESTIONS.md`.
-- **🎨 A DESIGN REFERENCE IS A LINK *AND* A ROUTE (QA lead, 2026-09-01).** Provenance reads
-  `Design: the Design Document (<link>) — open "<view>" → "<document>", then <the block>.
-  (<toggle>.)` in the design's **own button labels, read out of the file**. Verify every anchor
-  before writing it; read the design BEFORE escalating a question.
-  Technique: `build/skills/02-SOURCE-CHECK.md`.
+- **EVERY REPORT ENDS WITH "OUTSTANDING — what I need from you" (36).** Say *"nothing outstanding"* if
+  that is true; never omit the section. Keep `build/OUTSTANDING-ITEMS-REGISTER.md` current.
 - **PLAIN LAYMAN WORDING (7/9).** Tester-facing and PO-facing text uses the build's exact labels and
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
-- **🛑 EVERY CASE IS RUNNABLE FROM THE UI BY A LAYMAN, AND RUNNABILITY IS A DELIVERABLE OF BUILD
-  VERIFICATION, NOT A TIDY-UP (skill 18; QA lead 2026-08-31 + 2026-09-01; UNIVERSAL — ALL cases, ALL
-  suites, NOT only build-verified ones).**
-  **(a) THE STANDARD.** A precondition that asserts a *state* ("a document exists whose work order has …
-  set") or a step that *summarizes* an action ("Generate the Invoice") is DEFECTIVE. Preconditions carry
-  the **route as UI clicks** — the five things: (1) entry point (top-menu/screen, exact label) · (2) which
-  record to open and how you know it is the right one · (3) the tab/panel · (4) where the thing appears ·
-  (5) any default-on filter that hides it. Steps describe the check; **Expected Results still come from
-  the documents, never the build (57).** **NEVER make a step followable by inventing a path or a state a
-  tester cannot actually reach.** A build-verification pass is **NOT done when the verdicts are in** — it
-  is done when **every case in the suite**, verified this run or not, is followable; spec-level
-  preconditions or steps mean NOT tester-ready (84).
-  **(b) TWO GATES, ALWAYS BOTH — runnable-SHAPED is not build-VERIFIED, the labels are read off the
-  screen.** `python3 build/testing-tools/check_runnable_cases.py --section-prefix "<suite>"` (shape; reads
-  TestRail LIVE, exit 1 on any failure — drive it to zero before reporting a suite done) **and**
-  `python3 build/testing-tools/check_precond_labels.py --sections <ids> --observed build/OBSERVED-UI-LABELS-<env>.md`
-  (are the quoted labels real). A label enters the observed file **only from a probe with committed
-  evidence** — never from an API field name, a spec, or a note in this repo.
-  **(c) LIFECYCLE + COORDINATION.** PROVISIONAL at source-verification (no build yet, Rule 85: draft the
-  route from the design/spec and mark it provisional, never fabricated) → **FINALISED at
-  build-verification** (the build's own labels + `AUTOMATION: READY`). Before any runnability pass, verify
-  live (86) whether a QA build now exists (a "QA env: none" line can be STALE) and whether a parallel
-  session is already build-verifying that suite — if so it OWNS the routes: **DEFER**, never run a
-  design-provisional pass over it (concurrent UI edits collide / can downgrade a build-verified route).
-  Both QA-lead quotes, both label incidents, the `check_layman_steps.py` replacement and the hard line:
-  `build/skills/18-LAYMAN-UI-STEPS.md`.
-- **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N / live
-  total M. **ALWAYS NAME THE CREATOR when you call a case foreign** (look up the TestRail user, e.g.
-  `get_user/<id>`) — the QA lead decides scope by who authored it. **A case authored by the project's
-  designated MANUAL QA TESTER is NOT foreign — treat it as IN-SCOPE (as if created by the QA lead):
-  source-verify it, keep it tester-ready, update it.** **THE TWO TESTERS ARE ASSIGNED PER SUITE — do not
-  merge them:** **Invoice UI Refresh → Mudassir Qamar** (TestRail user **6**, `mudassir.qamar@shopview.com`)
-  · **Inline Add and Edit Parts (6597) and Printer Friendly WO (6617) → Viktoria Videnovic** (TestRail
-  user **4**); **spelling is "Viktoria"**, not "Victoria" — older notes have it wrong, and a handover names
-  the tester who actually owns that suite. **🛑 VLADIMIR TOMOVIC'S CASES ARE NEVER CHANGED** — TestRail
-  user **1**; **the test is `created_by == 1` checked before the write, never the title.** It does not
-  matter that the case fails a gate, has no steps, or is the only thing between a suite and a clean score:
-  report it, name the author, leave it. **No general go-ahead reaches his cases and we do not re-ask per
-  case**, whatever else a session has been authorised to override. (Still respect Rule 71: never change a
-  case flagged **Automated** without the QA lead — even a tester's.) Verbatim rulings and the naming
-  history: `build/rules/RULES-21-40.md` rule 38.
+- **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N /
+  live total M.
+- **🔴 A RESULT IS NOT EVIDENCE UNTIL IT IS ATTRIBUTED, IDENTIFIED AND DATED (110).** Ratified
+  2026-09-16 after three failures in one week, all the same error: **a search returned something and
+  that was treated as proof.** Three checks, or the claim is UNPROVEN: **(a) ATTRIBUTION** — blank the
+  field and search again; still found ⇒ the match came from elsewhere (SV-10110 was withdrawn because a
+  vendor's **website** matched via its **EMAIL**, which contains it, and V1's vendor query has no
+  website column). **(b) IDENTITY** — is OUR record in the list, never "were there results"; a count is
+  not a verdict (a count of 1 produced a false PASS on a real regression). **(c) PROVENANCE** — record
+  the build marker; a QA branch redeploys unannounced, and misreading that as a slow index withdrew
+  **four TRUE findings**. **Search Jira for an existing ticket before reporting any loss** — all six
+  already had one. **The answer is usually one grep away in our own repo. Try to break your own finding
+  before you ship it.** Tool: `build/global-search/field-attribution-audit-2026-09-16/attribution_check.py`.
+  Facts: `build/APP-ACTIONS-PLAYBOOK.md` §O.
 
 ---
 
-## 2 · THE RULE INDEX — all 108 rules, and where each one lives
+## 2 · THE RULE INDEX — all 96 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -393,9 +190,9 @@ rule. Generated from the split files' own headers.
 | **48** | NEVER say "waiting on you" or "frozen by your ruling" without the CONTEXT — quote the ruling, |
 | **49** | A NON-FINAL BUILD yields PROVISIONAL findings ONLY — record the build marker, queue every |
 | **50** | VERIFY EXHAUSTIVELY — "byte-level" means NOTHING is skipped, sampled, or assumed |
-| **51** | RETIRED / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — the filing half moved to Rule 62 §62-T1; the API-reachability test STAYS here and is still live |
-| **52** | RETIRED / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — the whole ticket-shape recipe and the eight-item evidence bar moved to Rule 62 §62-T2 |
-| **53** | RETIRED IN PART / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — the priority half moved to Rule 62 §62-T3; ***never "restore" a field the QA lead has changed*** STAYS here and is still live |
+| **51** | NEVER file an API-related ticket without ASKING — every time, even inside an approved batch |
+| **52** | A defect ticket is filed as a `Story Defect` parented to the OWNING STORY — and because that... |
+| **53** | NEVER set a ticket's priority to High — always file at Medium; and NEVER "restore" a field th... |
 | **54** | EVERY TEST CASE STATES WHAT ITS EXPECTATION IS BASED ON — a provenance line under Expected |
 | **55** | A PO QUESTIONNAIRE NAMES THE PROJECT AND THE FEATURE ON EVERY ROW, IS ANSWERABLE BY A |
 | **56** | WHERE A CASE FOLLOWS A LATER DECISION THAT DIFFERS FROM AN EARLIER SOURCE, THE CASE MUST SAY |
@@ -404,12 +201,12 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-ONWARD.md` — rules 61–102 (**range-free name, permanent since 2026-09-03 — it is NOT renamed when a rule is added; see `build/rules/INTEGRITY.md`**)
+### `build/rules/RULES-61-96.md` — rules 61–96
 
 | # | Rule (short title) |
 |---|---|
 | **61** | THE EXPECT-FAIL MARKER IS AN INSTRUCTION, NOT A PREDICTION — NAME THE SYMPTOM, AND LET THE |
-| **62** | NO **JIRA TICKET** IS EVER CREATED WITHOUT THE QA LEAD'S EXPLICIT PERMISSION — **JIRA ONLY; CREATING TESTRAIL TEST CASES IS *NOT* HELD AND NEVER WAS** (`add_case`/`update_case` permitted and expected, every project) |
+| **62** | NO JIRA TICKET IS EVER CREATED WITHOUT THE QA LEAD'S EXPLICIT PERMISSION, ASKED FOR AND GRANTED |
 | **63** | WHEN HIS INSTRUCTION CONFLICTS WITH A RECORDED RULE, STOP AND SURFACE THE CONFLICT BEFORE |
 | **64** | EVERY TEST CASE MUST HAVE A SOURCE — a case with NO source should not exist; but CHECK THE |
 | **65** | CHANGE A CASE THAT TESTRAIL FLAGS AS AUTOMATED → TELL VLAD. Every pass that writes to cases |
@@ -420,7 +217,7 @@ rule. Generated from the split files' own headers.
 | **70** | COMMUNICATE WITH THE QA LEAD CLEARLY: ACTION-FIRST, PLAIN-LANGUAGE, TABLE-FORM — tell him |
 | **71** | PROTECT "AUTOMATED" CASES — never change or delete a case TestRail flags as Automated without |
 | **72** | PROPOSE SKILL / RULE CHANGES BEFORE RECORDING THEM — never add to the Skills or CLAUDE.md |
-| **73** | WHEN THE HOLD LIFTS, THE GO-AHEAD IS PERMISSION TO RE-VERIFY — NOT TO FILE (all projects; reinforces Rules 51/52/53/62) |
+| **73** | WHEN THE JIRA CREATION HOLD LIFTS, RESUME ONE TICKET AT A TIME — AND EVERY TICKET MUST CLEAR THE |
 | **74** | NO PRESENT FEATURE IS LEFT UN-BUILD-VERIFIED — SEED DATA AND LOG IN AS NEEDED; THE ONLY |
 | **75** | LONG-RUNNING WORK RUNS DETACHED AND SELF-COMMITTING; AN AGENT LAUNCHES IT AND EXITS — IT NEVE... |
 | **76** | QUOTA DISCIPLINE — MINIMIZE SUBAGENT SPAWNS; EVERY SPAWN PAYS THE FULL CONTEXT TAX (all proje... |
@@ -434,44 +231,115 @@ rule. Generated from the split files' own headers.
 | **84** | THE TESTER-READINESS GATE — nothing reaches a manual tester until it passes (all projects, pe... |
 | **85** | A PROJECT WITH NO QA BUILD IS REPORTED AS "SOURCE-VERIFIED ONLY — NO BUILD EXISTS YET" (all p... |
 | **86** | CROSS-SESSION TRUST — VERIFY FROM COMMITTED EVIDENCE, NEVER FROM A SESSION'S SELF-REPORT; AND... |
-| **87** | SNAPSHOT CASE BODIES SO A FOREIGN EDIT IS ALWAYS DIFFABLE — **but CHECK `get_history_for_case` FIRST: corrected 2026-08-28, it IS the authoritative per-field record (old + new values, full bodies), so nothing is "unreconstructable" until that call has been made; the snapshot is the fast offline diff, not the only evidence** (all projects, permanent) |
+| **87** | SNAPSHOT CASE BODIES SO A FOREIGN EDIT IS ALWAYS DIFFABLE (all projects, permanent) |
 | **88** | LANE-SESSION CONTEXT DISCIPLINE — a session WITH direct tools must never bulk-read; script it |
 | **89** | ACCESS RESILIENCE AND MCP HYGIENE — every session keeps a working path to every source, and |
 | **90** | SHARED-QUOTA BUDGET ALLOCATION ACROSS SESSIONS (all projects) |
 | **91** | THE VERIFICATION FRESHNESS BADGE — every build/source verification claim is shown with a COLOUR |
 | **92** | A LANE SESSION IS A PROJECT-AGNOSTIC ENGINE — IT WORKS ONLY ON THE PROJECT IT IS GIVEN, AND EXISTING PROJECT STATE IS REFERENCE, NOT A BACKLOG |
 | **93** | THE LEARNING LOOP — EVERY PROJECT ENDS WITH A RETRO THAT PROPOSES RULE AND SKILL IMPROVEMENTS (it PROPOSES; Rule 72 records) |
-| **94** | RETIRED / SUBSUMED INTO STANDING RULE 62 ON 2026-09-03 — the ten admissibility checks A1–A10 moved to Rule 62 §62-T4 |
+| **94** | THE DEFECT ADMISSIBILITY GATE — NO TICKET IS FILED UNTIL IT PASSES EVERY CHECK, AND THE LANE'S OUTPUT IS APPROVED CANDIDATES, NOT FILED TICKETS |
 | **95** | THE TOKEN-DISCIPLINE CHARTER IS CARRIED BY EVERY SESSION AND EVERY HANDOFF — AND QUALITY IS NEVER WHAT GETS CUT |
 | **96** | A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET — WHAT THE SPEC DOES NOT MENTION IS STILL A REQUIREMENT |
-| **97** | NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST — THE ANSWER IS USUALLY ALREADY WRITTEN DOWN |
-| **98** | EVERY REPORT IS A TABLE THAT ANSWERS FIVE QUESTIONS — DONE · LEFT · BLOCKED · HOW TO UNBLOCK · HANDOFF-READY |
-| **99** | EVERY ASK IS SELF-CONTAINED AND EXECUTABLE — HE MUST NEVER HAVE TO LOOK SOMETHING UP TO UNDERSTAND WHAT IS BEING ASKED |
-| **100** | AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT THAT FILE — MEASURE IT ON DISK |
-| **101** | THERE IS NO SUCH THING AS A DELTA VERIFICATION — EVERY VERIFICATION IS FULL, ALWAYS, ON EVERY CASE |
-| **102** | BUILD VERIFICATION MAKES ALL THREE PARTS RUNNABLE — PRECONDITIONS · STEPS · EXPECTED (intact, but worded to the Build Glossary) |
-| **103** | EVERYTHING THE QA LEAD READS IS IN HIS LANGUAGE — every message, not only asks; no ids/codes/jargon carrying the meaning, no bare tallies; run `plain_check.py` before sending |
-| **104** | A NEGATIVE FINDING MUST PROVE THE INSTRUMENT WORKED — seven proofs, enforced by `probe_guard.mjs` and `blocker_gate.py`; never re-block on something already unblocked |
-| **105** | NEVER GO IDLE WHILE WORK REMAINS — queue every step with `run_queue.sh`; the last action before any report is to START the next work |
-| **106** | BEFORE PROPOSING A DEFECT, RECONCILE THE CASE'S EXPECTED AGAINST THE **LIVE** SOURCE — if they disagree the CASE is wrong, ask to fix the case, not to file a ticket |
-| **107** | STANDING AUTHORISATION TO UNBLOCK — seed/change/delete any test data, edit roles, use either surface; seven routes tried and NAMED before anything is called blocked; the standing holds (62 · 6 · 38 · 71 · 82) are untouched |
-| **108** | A SOURCE VERIFICATION READS THE WHOLE DOCUMENT AND EVERY LINK IT NAMES — requirement body + full Q&A/decision log (Q1..QN, grows) + User Feedback Summary + Change Log + header + every ticket/page/design the doc links; reading only the requirement section is non-compliant |
-| **109** | FOR A V1-vs-V2 COMPARISON SUITE, **V1 IS THE SPECIFICATION** — and V1 means the V1 PRODUCT REPOSITORY at a named commit, not any document; the V2 spec is NEVER consulted to decide whether a case exists, a deliberate V2 removal never subtracts one, the expected result and SOURCE line state the V1 behaviour, and a comparison case is NEVER edited towards the V2 spec |
-| **110** | NEVER USE A LABEL, CODE OR ABBREVIATION WITHOUT ITS PLAIN-WORDS MEANING BESIDE IT — a code is filing shorthand only; it appears alongside the thing it stands for, in shop-floor words. Three tests: the cold-read test · the shop-floor test · a plain-words key at the TOP of any document that uses codes |
-| **111** | A TEST CASE IS NOT FINISHED UNTIL ITS DATA IS SEEDED OR EXPLICITLY ACCOUNTED FOR, in the same pass that wrote it — every case ends SEEDED · NEEDS NO DATA · SELF-SEEDING, written into the project's seed manifest. A case whose data is missing fails misleadingly and produces false defects |
-| **112** | WHEN THE SEEDED RECORD'S REAL IDENTIFIER DIFFERS FROM THE ONE THE CASE NAMES, CORRECT THE IDENTIFIER IN THE CASE — **THE IDENTIFIER ONLY, AND NOTHING ELSE** (QA lead, 2026-09-17) |
-| **113** | VERIFY AGAINST THE **REAL CASE TEXT**, NEVER AGAINST A SUMMARY OF IT — a handoff is a map, not the territory (QA lead, 2026-09-17) |
 
-**Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
-`build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
-(project type asked at intake, `15-NEW-PROJECT-INTAKE.md` §1a) · **97** → the SEARCH-BEFORE-YOU-GIVE-UP
-drill, carried inline by every handoff · **89** → `build/skills/14-ACCESS-RESILIENCE.md` ·
-**91** → `build/testing-tools/verification_badge.py`. When each rule was added, and the file's rename
-history, are in `build/rules/INTEGRITY.md`.
-**Rule 91 badges: ✅ ≤7 days · 🟠 8–14 days · 🔴 >14 days · ❌ never build-verified** — always with the
-date (and build marker or spec version). Rule 91's correction (**the branches are NOT final**, so Rules
-49 and 60 stay in force and a gap is possibly-unfinished, not automatically a defect) is stated in full
-in `build/skills/00-COMMON-CORE.md` §16.0.
+**Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-96.md`. Its
+canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses
+(strategy first · never bulk-read, script it · the reading rule · spawn discipline · never poll · batch
+writes · piggyback cheap checks · never re-do work · answer in text · the budget · the week-start guard ·
+**quality is never the thing cut**). **EVERY handoff embeds the twelve clauses VERBATIM and every session
+applies them from its first turn; a handoff without them is non-compliant and must not be issued.**
+Routers take it by pointer only.
+
+**Rule 96 (the V1→V2 invariant set)** was added 2026-08-26 in `build/rules/RULES-61-96.md`, which was
+renamed on the same day from its previous 61-to-95 filename. Operator form:
+**`build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`**. **A V2 spec describes only what CHANGES and is
+SILENT about everything else, so a V2 build can break a V1 behaviour with every case still passing.**
+Derive **INVARIANTS = V1 baseline − (changed ∪ removed ∪ replaced)**; **silence defaults to "must not
+change"**, and a **high-collateral-risk silence is escalated as a PO question, never assumed**.
+**Documents establish INTENT; product source code establishes FACT and is NEVER a source of expectation
+(57) — a code-vs-document conflict is a PO DECISION ITEM, never a silent invariant, and the case is HELD
+(58).** Superseded V1 cases are **retired or rewritten, never preserved** (94). The project type is asked
+at intake — **(i) NEW · (ii) V2/UPGRADE · (iii) REVIVAL** — in `build/skills/15-NEW-PROJECT-INTAKE.md`
+§1a, and **type (ii) triggers the skill**. **The source-cited V1 baseline that Step 1 subtracts the
+delta from is built with the companion `build/skills/V1-BASELINE-FROM-SOURCE.md`** (added 2026-08-26;
+worked example `build/global-search/GLOBAL-SEARCH-V1-BASELINE-INVARIANTS.md`).
+
+**Rule 109 (V1 IS the specification for a V1-vs-V2 comparison suite)** was added 2026-09-14 at the end of
+`build/rules/RULES-61-96.md`. **For a comparison suite the specification is the V1 PRODUCT REPOSITORY at a
+named commit — not the V1 PRD, not the V2 PRD, not the epic, not the design.** The V2 specification is
+**never consulted to decide whether a case should exist**; the only question is *"could a user do this in
+V1?"*, and a V2 document that deliberately removes a capability **never subtracts a case**. The expected
+result states the V1 behaviour and the **SOURCE line leads with the V1 repo, commit, file and lines**.
+**Never edit an existing comparison case towards the V2 spec** — a case rewritten to match the thing it
+tests cannot fail. Operator form: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md` §6.0. Worked example
+(and the mistake that produced the rule): `build/global-search/v1-parity-audit-2026-09-14/`.
+🔴 **Numbered 109 to continue CANONICAL's sequence (canonical is at 108, in the renamed
+`build/rules/RULES-61-ONWARD.md`) — it must be carried across, or the next session will not have it.**
+
+**Rule 110 (a result is not evidence until it is attributed, identified and dated)** was ratified
+2026-09-16 and lives at the end of `build/rules/RULES-61-96.md`, after 109. **Read it before reporting
+any pass, failure or regression.** It is the evidential floor under Rule 12 — Rule 12 says *verified
+means observed*, Rule 110 says **observed how**: attribution (blank the field), identity (is OUR record
+there), provenance (which build, how long after the write). Operator form:
+`build/global-search/field-attribution-audit-2026-09-16/attribution_check.py`. The durable facts it
+produced are in **`build/APP-ACTIONS-PLAYBOOK.md` §O — Global Search**, which is the place to look
+before re-deriving anything about either search version (the two endpoints, V1's two passes and its
+three-rows-per-group cap, the phone-format rule, the per-record-type field lists, and the TestRail
+delete traps).
+
+**Rule 111 (correct a stale identifier in a case — the identifier ONLY)** was ordered by the QA lead
+2026-09-17 and lives at the end of `build/rules/RULES-61-96.md`, after 110. **A case that names an
+identifier the environment does not hold is a FALSE FAILED waiting to happen** — three cases named work
+order `S2-15276`, which cannot exist because work-order numbers are branch-assigned. So: seed first,
+read the REAL identifier back off the environment, and where it differs from the case, **update the
+identifier and nothing else** — not the wording, not the provenance line, not a helpful note.
+🔴 **The reachability clause:** an identifier the SEARCH returns is not automatically usable. The first
+replacement proposed, `S2-15440`, was pinned and normalized perfectly and was still wrong — the record
+answers **400 Not found** at both workplaces the test login can reach, because **the search index is
+organisation-scoped while the record is workplace-scoped.** Prove three things: the search returns it,
+the record OPENS as the tester, and the near miss is genuinely absent. **Prefer an identifier that
+survives a reseed** — our own seeded numbers change on every redeploy, and consecutive seeded numbers
+can never satisfy a "returns nothing" near miss. Worked example, false start included:
+`build/global-search/case-corrections-2026-09-17/`.
+
+**Rule 112 (verify against the real case text, never a summary)** was ordered by the QA lead
+2026-09-17 and lives at the end of `build/rules/RULES-61-96.md`, after 111. **A handoff, a task card
+and a previous session's report are all SUMMARIES; the case body is the only thing the tester reads.**
+The seeding handoff stated that the eight Quick Actions cases needed *"no NEW records beyond §1"* —
+reading the actual case bodies found three named example records that do not exist on the branch and
+one example term returning no assets at all, which proved to be a product defect. A session trusting
+the summary would have reported the section ready and handed a tester four dead ends. Script the
+reading (88), extract what the tester will literally TYPE, check each against the live environment,
+and where the summary and the case disagree **the case wins**. A term named only as "for example"
+still gets typed by somebody.
+
+**Rule 113 (the Expected Result is the source's own words, quoted verbatim)** was ordered by the QA
+lead **2026-09-21** and lives at the end of `build/rules/RULES-61-96.md`, after 112. **It is the
+strongest form of Rule 57 and it binds every case we write or touch.** A paraphrase is a small,
+invisible act of interpretation, and interpretation drifts towards whatever the author is looking
+at — the build. Once the Expected Result is OUR sentence rather than the SPEC's sentence, the case
+can no longer fail: it has been quietly rewritten to describe the thing it is supposed to test.
+**Quote it, attribute it (document + version + section), and change it only when the SOURCE
+changes.** Plain-language wording for testers is **added after** the quote and clearly marked as
+our restatement — never a replacement, and where they could be read as disagreeing the quote wins.
+**Forbidden outright:** rewriting Expected because the build differs · tidying grammar, tense or
+spelling · merging or splitting source sentences without showing the original · quoting a SUMMARY
+(a handoff, a task card, a Jira description that restates the PRD — quote the source itself, 112) ·
+carrying a quote forward without re-checking the source version (31/32/59). **No quotable sentence
+exists** ⇒ hold the case and raise a PO question (58/64); never invent one and never resolve it
+from the build. Worked example: the line that moved SV-10279 was the PRD's own
+*"Prefix match on primary name field → +0.70"* set against the product's own match label.
+
+**Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
+2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
+`build/skills/14-ACCESS-RESILIENCE.md`.
+
+**Rule 91 (the verification freshness badge)** was added 2026-08-21 in the same file. **Its second
+half is a CORRECTION: the branches are NOT final** — they are continuously updated as ad-hoc
+decisions are made and will not be final until release day, so **Rules 49 and 60 remain in force**
+and a gap is **possibly-unfinished** rather than automatically a defect. Badges: **✅ ≤7 days ·
+🟠 8–14 days · 🔴 >14 days · ❌ never build-verified**, always with the date (and build marker or
+spec version). Tool: `build/testing-tools/verification_badge.py` (requires `--today`).
 
 ---
 
@@ -495,17 +363,16 @@ project's spec page has in fact moved since its last check (§3 of the evidence 
 
 | Project | Status (live 2026-08-21) | Build badge | Source badge | PO · resume doc |
 |---|---|---|---|---|
-| **Report Suite** (6 reports, epic **SV-8582** — **114** children, was 105) | **ACTIVE** — **516 cases ours** (live 532 incl. 16 foreign), run 359 = **516 tests / 535 results**. **Corrected 2026-08-28: the row said 509, which was wrong; the damage sweep re-derived 513 that morning and three WIP cases (C45208–C45210) were authored the same day.** Branch final for **WIP · Technician Utilization · Sales By Customer** only; SBR/PV/IV not final (Rule 49 amendment 2026-08-10). Verified on **staging**, not on `sv8582` (that host → **HTTP 502**) | ✅ **2026-08-20** (`v3.8-d0e135e`; staging now `v3.10-49b5fe3`) | 🟠 **2026-08-11** — **all six specs moved since** (2026-08-13 / 2026-08-20); Inventory Value measured at **Confluence v10** vs our v5 | Chris Ward · `build/report-suite/PROJECT-STATE.md` |
+| **Report Suite** (6 reports, epic **SV-8582** — **114** children, was 105) | **ACTIVE** — **509 cases ours** (live 523 incl. 14 foreign; CLAUDE.md said 476), run 359. Branch final for **WIP · Technician Utilization · Sales By Customer** only; SBR/PV/IV not final (Rule 49 amendment 2026-08-10). Verified on **staging**, not on `sv8582` (that host → **HTTP 502**) | ✅ **2026-08-20** (`v3.8-d0e135e`; staging now `v3.10-49b5fe3`) | 🟠 **2026-08-11** — **all six specs moved since** (2026-08-13 / 2026-08-20); Inventory Value measured at **Confluence v10** vs our v5 | Chris Ward · `build/report-suite/PROJECT-STATE.md` |
 | **Schedule** (epic **SV-8685** — **40** children, was 24) | **ACTIVE** — **195 cases** (0 foreign; CLAUDE.md said 168), run 357. Rule-49 queue OPEN; verdicts PROVISIONAL | ✅ **2026-08-20** (`v3.8-d0e135e`, staging; own branch `sv8685` = `v3.8-bc7508a`) | 🟠 **2026-08-11** (Confluence **v27**) — **page moved 2026-08-20, uningested** | Branko · `build/schedule/PROJECT-STATE.md` |
 | **Filters** (epic **SV-8785** — **34** children, unchanged) | **ACTIVE** — **124 cases ours** (live 129 incl. 5 foreign; CLAUDE.md said 114), run 352. Rule-49 queue OPEN; verdicts PROVISIONAL | ✅ **2026-08-19** (`v3.8-d0e135e`, staging; own branch `sv8785` = `v3.7-6e2d301`) | ✅ **2026-08-18** (Confluence **v21**) — **but the page moved 2026-08-20, so the badge is fresh and the source is behind**. Spec page id **`572030978`** (was "TO CONFIRM"); in-body "1.8" is the Rule-31(a) trap | Branko · `build/filters/PROJECT-STATE.md` |
-| **Global Search** (epic **SV-9160** — **24** children; **epic EXISTS since 2026-08-12**, our record said "not available") | **REVIVED as V2** — **118 cases ours**, live under **group 6720 *Global Search V2 (Aug 2026)*** (126 in the Global Search tree incl. **8 foreign**, all Vladimir Tomovic's, sitting directly in section 49). **Corrected 2026-08-28: the row said "86 cases in group 4094"; section 4094 NO LONGER EXISTS and every one of our 118 was created 2026-08-25 (98) or 2026-08-26 (20) — the V2 revival push, not a miscount.** ⚠️ **12 API cases from the id-map (C44883–C44894) are gone from TestRail**, which the 2026-08-25 note *"lossless, nothing deleted"* does not explain — see `build/global-search/PROJECT-STATE.md`. No QA branch exists, so nothing has ever been observed | ❌ **NEVER build-verified** | 🔴 **2026-07-16** — PRD moved **2026-08-20**; the epic also carries 4 open questions + 2 PRD corrections (PRD says PostgreSQL/`pg_trgm`; says "React context", app is **Vue 3 + Quasar**). 🔴 **CORRECTED 2026-09-14 — BOTH earlier readings of the engine were WRONG.** V2 search does **not** match text in the application database at all: it runs on **OpenSearch**, records are copied into it, and matching/scoring/ranking happen there (`api/src/Search/Infrastructure/OpenSearch/`, branch `SV-9160-global-search-v2` commit `7869ff2a`). Three consequences: a new record takes a moment to become findable, **search can be down while everything else works**, and relevance is a set of environment switches (`api/config/packages/search.yaml`) so two environments can differ legitimately. Evidence + measured scores: `build/global-search/V2-SEARCH-ENGINE-CORRECTION-2026-09-14.md` on `origin/claude/global-search-v1-baseline-6ax9ul` | Branko · `build/global-search/PROJECT-STATE.md` |
+| **Global Search** (epic **SV-9160** — **24** children; **epic EXISTS since 2026-08-12**, our record said "not available") | **POSTPONED** (2026-07-27 ruling) — **but all 86 cases ARE LIVE in TestRail** (group 4094, every one ours). The old line *"authored, never pushed"* is **false**. No QA branch exists, so nothing has ever been observed | ❌ **NEVER build-verified** | 🔴 **2026-07-16** — PRD moved **2026-08-20**; the epic also carries 4 open questions + 2 PRD corrections (PRD says PostgreSQL/`pg_trgm`, stack is **MySQL on Aurora**; says "React context", app is **Vue 3 + Quasar**) | Branko · `build/global-search/PROJECT-STATE.md` |
 | **Simple Flow** (epic **SV-7301** — **25** children) | **COMPLETED** (2026-07-27 ruling) — docs retained. **185 cases ours** live (2 foreign); local id-map says 189 — **4-case mismatch, reported not investigated** | 🔴 **2026-07-29** (`sv7301` = `v2.320-44e5b70`) | 🔴 **2026-07-17** (V2.6) — spec page unchanged since 2026-07-16 | Milos · `build/simple-flow/PROJECT-STATE.md` |
 | **Fees & Discounts V1** (epic **SV-7387**, Done — **24** children) | **COMPLETED** (2026-07-27 ruling) — docs retained. **200 cases ours** live (2 foreign); local id-map says 203 — **3-case mismatch, reported not investigated** | 🔴 **2026-07-22** (`qb` = `v3.1-4eaa076`) | 🔴 **2026-07-20** (V1_3) — spec page unchanged since 2026-07-14 | Chris Ward · `build/fees-discounts/PROJECT-STATE.md` |
-| **Custom Roles & Permissions** (epic **SV-7388** — **269** children) | **RECURRING** — re-run the 4-layer permission VIU after EVERY feature release (it regresses when other features ship). **515 cases ours** live under group 3527 (714 total, **199 foreign**) and **no `testrail-id-map.csv` exists**, so current scope cannot be reconciled locally | 🔴 **2026-07-27** (staging now `v3.10-49b5fe3`) | 🔴 **2026-07-27** — spec page unchanged since 2026-07-17 | **Sasha Grosman** (recorded 2026-08-28; TestRail user 9 spells it "Grossman" — spelling unconfirmed with him) · `build/custom-roles/PROJECT-STATE.md` |
+| **Custom Roles & Permissions** (epic **SV-7388** — **269** children) | **RECURRING** — re-run the 4-layer permission VIU after EVERY feature release (it regresses when other features ship). **515 cases ours** live under group 3527 (714 total, **199 foreign**) and **no `testrail-id-map.csv` exists**, so current scope cannot be reconciled locally | 🔴 **2026-07-27** (staging now `v3.10-49b5fe3`) | 🔴 **2026-07-27** — spec page unchanged since 2026-07-17 | **PO UNKNOWN — must be asked** (spec owner is Sasha Grosman) · `build/custom-roles-run/release-regression-2026-07-27/RELEASE-REGRESSION-STATE-2026-07-27.md` |
 
 **BLOCKED, with the exact ask in each file (all in `build/OUTSTANDING-ITEMS-REGISTER.md` as R1–R6):**
-`BLOCKED-shopview-app-session.md` (**STAGING ONLY** since 2026-09-02 — QA-branch login is proven and
-routine: playbook §A) ·
+`BLOCKED-shopview-app-session.md` (every stored cookie → **HTTP 401**; blocks every live verdict) ·
 `BLOCKED-confluence-version-integers.md` (12 of 13 version integers unread — access is fine, the only
 version-bearing MCP call returns the whole page body) · `BLOCKED-qa-branch-sv8582.md` (**HTTP 502** ×3)
 · `BLOCKED-global-search-build.md`.
@@ -546,10 +413,9 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/13-CROSS-SESSION-SAFETY.md` | Before the first write of any lane session (Rules 82–87 as commands) |
 | `build/skills/14-ACCESS-RESILIENCE.md` | Keeping a working path to TestRail / Jira / ShopView / Figma; MCP hygiene (Rule 89) |
 | `build/skills/15-NEW-PROJECT-INTAKE.md` | **The moment a project is NAMED** — required input set, PRESENT/MISSING intake checklist, source-currency block, and the REVIVAL path (Rules 92–93) |
-| `build/skills/18-LAYMAN-UI-STEPS.md` | **Before any handover to a manual tester** — every build-verified case must be followable from the UI by a layman: the entry point, the record, the tab, where the thing appears, and any default-on filter that hides it. Carries the observed routes for sv8218 and the hard line: making a step followable must NEVER make an unreachable state reachable on paper (QA lead, 2026-08-31; testers Viktoria, Mudassir Qamar) |
-| `build/skills/19-V1-V2-PARITY-SUITE.md` | **The task is "make sure V2 still does everything V1 could"** (Rule 109) — the END-TO-END pipeline that Skill 17's analysis feeds: pin the V1 baseline commit · extract the capability list **BY SCRIPT** from V1's source · map every capability to a case · **prove coverage LIVE in both directions** · audit that every case is **sourced to V1, not to the V2 spec** · seed with unique keywords and a control record · build-verify the screen · hand off both halves. Tools: `build/testing-tools/parity_coverage_proof.py` and `parity_source_audit.py`. Carries the eight traps that were hit for real |
 | `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md` | **The project is a V2 / upgrade of an existing feature** (Rule 96) — a V2 spec says only what CHANGES and is SILENT about the rest, so derive the **invariant set** (V1 baseline − changed ∪ removed ∪ replaced), escalate the dangerous silences, retire the superseded V1 cases. No build, no cookies |
-| `build/skills/20-FEATURE-DATA-SEEDING.md` | **The feature's cases need data the environment does not hold** — the project-agnostic method for seeding AND reseeding any area of the app (Rule 111's operator form beyond Global Search). **The engine is generic; only the manifest is per-feature**, so the second feature area costs a fraction of the first. Nine steps (read the CASES not a summary · measure before creating · write the DESIGN RULE first · a keyword that cannot collide · manifest with `serves` and `_why` · seed and VERIFY as separate steps · prove idempotence by running it three times · reconcile server-assigned identifiers · write the traps down), the five-point reseed contract, thirteen feature-independent traps with the symptom each presents as, and what is NEVER seedable. Scaffold: `python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature>"` · schema: `build/testing-tools/seeding/MANIFEST-SCHEMA.md` · reference implementation: `build/global-search/seeding/` |
+| `build/skills/V1-BASELINE-FROM-SOURCE.md` | **Companion to Skill 17 (Rule 96)** — the method for its Step 1 / §3.3: read the CURRENT product source code and produce a **source-cited V1 behaviour baseline** (invariant register + collateral-risk map + existing-coverage list + self-check, pinned to a commit SHA) for the V2 session to subtract the delta from. Use when you have source read access; it feeds Skill 17, it does not derive invariants or author cases. Worked example: `build/global-search/GLOBAL-SEARCH-V1-BASELINE-INVARIANTS.md` |
+| `build/skills/20-FEATURE-DATA-SEEDING.md` | **The feature's cases need data the environment does not hold** — the project-agnostic method for seeding AND reseeding any area of the app. **The engine is generic; only the manifest is per-feature**, so the second feature area costs a fraction of the first. Nine steps (read the CASES not a summary · measure before creating · write the DESIGN RULE first · a keyword that cannot collide · manifest with `serves` and `_why` · seed and VERIFY as separate steps · prove idempotence by running it three times · reconcile server-assigned identifiers · write the traps down), the five-point reseed contract, thirteen feature-independent traps with the symptom each presents as, and what is NEVER seedable. Scaffold: `python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature>"` · schema: `build/testing-tools/seeding/MANIFEST-SCHEMA.md` · reference implementation: `build/global-search/seeding/` |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |
 | `build/handoffs/README.md` | **Four** copy-paste lane briefings for a fresh session |
@@ -567,35 +433,58 @@ cannot drift; **procedure found inside one is a bug in that router.**
 and 60 apply in full and findings stay PROVISIONAL. §16.1 is the superseded 2026-08-11 "the branches
 are FINAL" text, kept visible and dated.
 
-**🌱 SEEDING AND RESEEDING TEST DATA FOR ANY FEATURE — `build/skills/20-FEATURE-DATA-SEEDING.md`.**
-Other areas of the app will need seeded data, and reseeding it must stay a command rather than an
-investigation. Each feature gets **`RESEED <FEATURE> QA`** / **`RESEED <FEATURE> LIVE`**, registered
-in `build/global-search/seeding/RESEED.md` (which is the register for ALL features, not just Global
-Search). **The engine is generic and only the manifest is per-feature**, so stand a new kit up with
+**🌱 SEEDING AND RESEEDING TEST DATA — THE METHOD IS `build/skills/20-FEATURE-DATA-SEEDING.md`,
+THE KEYWORD REGISTER IS `build/global-search/seeding/RESEED.md`, AND IT COVERS EVERY FEATURE, NOT
+JUST GLOBAL SEARCH.** Other areas of the app will need seeded data too; each gets
+**`RESEED <FEATURE> QA`** / **`RESEED <FEATURE> LIVE`**, registered in that file. **The engine is
+generic and only the manifest is per-feature**, so stand a new kit up with
 `python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature Name>"` rather than writing
-one from scratch. Schema: `build/testing-tools/seeding/MANIFEST-SCHEMA.md`. Worked reference:
-`build/global-search/seeding/`. 🔴 **A reseed is finished when the VERIFIER passes, never when the
-seeder prints its count**, and **a branch redeploy is the usual reason data "disappeared" — check the
-build marker before explaining any change in behaviour.**
+one from scratch — schema at `build/testing-tools/seeding/MANIFEST-SCHEMA.md`, worked reference at
+`build/global-search/seeding/`.
 
-**Other standing infrastructure docs:** `build/LEARNINGS-LOG.md` (**the continuous, retrievable ledger of
-every learning — append the moment you learn something durable; read/grep it to retrieve ALL learnings**) ·
-`build/PROCESS-CATALOG.md` (every callable process) ·
+**🌱 GLOBAL SEARCH SPECIFICALLY — FOUR KEYWORDS, `build/global-search/seeding/RESEED.md`.**
+🔴 **A RESEED THAT FINDS 0 OF 11 RECORDS USUALLY MEANS THE BRANCH WAS REDEPLOYED — SO CHECK THE BUILD
+MARKER BEFORE EXPLAINING ANY CHANGE IN BEHAVIOUR** (`curl -s https://sv9160.qa.shopview.com/ | grep
+app-version`). On 2026-09-16 the branch went `v26.36.4-7869ff2` → `v26.36.7-893d13a` overnight and
+four behaviours changed with it; blaming the search index instead withdrew **four TRUE findings** that
+then had to be restored. **Prove a "not found" with a control on the SAME record (search a different
+field of it), re-check minutes apart, and check the IDENTITY of what came back — never the row count.**
+A count of 1 is not a pass. **And before reporting any loss, check Jira for an existing ticket** — on
+2026-09-16 every one of six already had one.
+**TWO UNIVERSES, NEVER MIXED.** `RESEED QA` / `RESEED LIVE` rebuild the **V1-regression** 11 records
+(sections 6769 / 8056); **`RESEED GSV2 QA`** / **`RESEED GSV2 LIVE`** rebuild the **Global Search V2
+"Fibridge"** universe — 33 records plus the work-order status spread, the purchase orders and the
+three vendor-invoice payment states (sections 6721–6740, run R415). Ids and state are keyed by
+universe AND environment, so one can no longer overwrite the other. 🔴 **The proof step is a
+DIFFERENT script per environment**: `verify_gsv2.py` on the QA branch (V2, `/api/search`) and
+`verify_gsv2_v1.py` on production (V1, `/api/global-search/fetch`) — running the V2 one against
+production reports a dead environment that is perfectly healthy. A run is finished when the verifier
+passes, never when the seeder prints 33/33: *"the record exists"* is not *"the search returns it"*.
+Record inventory with real ids: `build/global-search/seeding/SEED-MANIFEST-GS-V2-{qa,prod}.md`.
+
+The QA lead says **`RESEED QA`** (branch `sv9160`) or **`RESEED LIVE`** (the production test account
+`app.shopview.com`, workplace **Trucks Hill 2**) and the session does the rest: `seed.py --check`,
+`--confirm`, `--check` again, proving **11/11 present, 0 field gaps**. Production needs
+`SEED_PROFILE` + `SEED_WORKPLACE` and a **single** login per run (a fresh login expires that user's
+previous session). **`0 of 11` is NEVER a clean bill of health** — the seeder says so itself. Four
+traps are recorded there and must not be simplified back out: a liveness probe must not use an
+endpoint only one version has (`/api/search` 404s on V1); a probe "control" record belongs to ONE
+estate and must calibrate against the environment in front of it; **one estate's record ids must
+never be written into the shared manifest** (a production run once overwrote the QA branch's and four
+work orders read as MISSING while sitting there); and **work orders cannot be found by searching**, so
+losing their captured ids means the seeder creates duplicates — remove extras with
+`POST /api/work-orders/delete {"work_order_id": …}` (**`work_order_id`, not `id`**).
+
+**Other standing infrastructure docs:** `build/PROCESS-CATALOG.md` (every callable process) ·
 `build/APP-ACTIONS-PLAYBOOK.md` (proven staging/QA action recipes — **read before any staging
-action**; §J TestRail case-field traps, §K production access, **§W writing a pass's results into a
-TestRail run — use `build/testing-tools/push_results_to_run.py`, never hand-roll it**) ·
-`build/ENVIRONMENT-CREDENTIALS.md` (**the committed logins** — prod · TestRail · Atlassian; staging/QA
-are cookie-only and tokens are never committed; a password there is **not** write authorisation, Rule 6
-stands — Rule 82 amendment 2026-09-03) · `build/TESTING-RUNBOOK.md` ·
+action**; §J TestRail traps, §K production access) · `build/TESTING-RUNBOOK.md` ·
 `build/OUTSTANDING-ITEMS-REGISTER.md` · `build/NO-WORK-LOSS-STRATEGY.md` ·
 `build/QA-QUALITY-PIPELINE-EXPLAINER.md` · `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` ·
 `build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md` · `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` ·
 `build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md` · `build/MISSING-TRACEABILITY-PROCESS.md` ·
 `build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md` · `build/PROD-VS-STAGING-COMPARE-METHOD.md` ·
 `build/COMPARISON-WORKBOOK-RECIPE.md` · `build/PROCESS-AUTHORING-STANDARD.md` ·
-`build/LESSONS-2026-07-31.md` · `build/NAVIGATION-MAP-TEMPLATE.md` (copy to
-`build/<project>/NAVIGATION-MAP.md` — navigation paths OBSERVED once on the build and RECORDED, then
-reused; convention in `build/skills/03-RUN-CHECK.md` §9).
+`build/LESSONS-2026-07-31.md`.
 
 ---
 
@@ -605,8 +494,14 @@ Compact form — **the rule named in brackets is the authority; read it before r
 
 - **Plain, layman English** throughout; numbered **Preconditions / Steps / Expected**, each on its own
   line. [7, 9]
-- **Expected Results state what the DOCUMENT requires**, never how the build behaves. If the build
-  differs, keep the documented expectation and raise a deviation. [57]
+- **🔴 Expected Results QUOTE THE DOCUMENT VERBATIM — the source's own sentence, unaltered**, with
+  the document, its version and the section named. Never paraphrased, tidied, merged, split or
+  adjusted towards the build; it changes only when the SOURCE changes. A build that differs is a
+  deviation; a reviewer who differs is a PO question. **Improving the wording of an Expected Result
+  is the failure the rule exists to prevent** — a case rewritten towards the build can never fail.
+  Plain-language wording is ADDED AFTER the quote, marked as our restatement, never replacing it;
+  where they could disagree the quote wins. No quotable sentence ⇒ hold the case and ask.
+  [**113**, 57, 58, 64, 7, 9]
 - **PRD, design and Figma are expected to AGREE.** Where they disagree that is a **finding to raise**
   (a PO question + the outstanding register), never a side to pick silently; meanwhile the case follows
   the most recent authoritative source and DISCLOSES the divergence. "Everything should match the
@@ -623,19 +518,6 @@ Compact form — **the rule named in brackets is the authority; read it before r
   PO answer file with link and date). Sentence 2 is optional and records the check: *"Last checked
   against build v3.5-16cf83f on 8/5/2026."* Re-stamped on every spec/epic/build re-check — a stale
   stamp is a finding. Never the word "VIU", never a flag name. [54]
-  **🛑 RE-STAMPING SENTENCE 2 IS A MANDATORY DELIVERABLE OF EVERY BUILD-VERIFICATION PASS, NEVER
-  OPTIONAL/COSMETIC (QA lead 2026-09-08).** A suite is not build-verified-complete while any verified case
-  still names an older build — `verify_suite.py` check 9 must be clear; drive the re-stamp to zero
-  (`surgical_replace.mjs` checkpoints, so retry through deadlocks to completion). Scope `created_by=3`,
-  authorised Automated included, Vladimir's (user 1) never. Full text: `RULES-41-60.md` rule 54 amendment. [54, 91]
-- **"MANUALLY ADDED" SOURCE — for a case the QA lead authors from PRODUCT KNOWLEDGE, not the spec
-  pipeline** (field-level editability, pricing-matrix behaviour, etc. not spelled out in the PRD): the
-  provenance reads **"Source: Manually added (QA lead, <date>)"** instead of the "as per epic …
-  specification version …" sentence, and it carries **AUTOMATION: HOLD — manually added; to be
-  build-verified** with any UI labels flagged PROVISIONAL. It must still be runnable
-  (`check_runnable_cases.py`) and render `fr-view`. Worked example: C44996 was split into the manually-added
-  C45250–C45253 (Inline). Full pattern (split one vague case into concrete single-behaviour cases, each
-  building its own state) in `build/skills/18-LAYMAN-UI-STEPS.md`. [2026-09-01]
 - **The build is named ONLY as what a case was last checked against.** *"as per the build tested on…"*
   is **BARRED**. Not yet checked against any build ⇒ omit sentence 2 or say plainly it has not been
   checked. [54, 57]
@@ -643,44 +525,13 @@ Compact form — **the rule named in brackets is the authority; read it before r
   that differs from an earlier source** — where the PO asked for it (file + link + date), where it
   differs, and that we take the latest as prevailing. **Never added where nothing contradicted it.**
   [56]
-- **🛑 AUTOMATION TYPE FIELD IS SET ON CREATION, NEVER LEFT NONE (QA lead, 2026-09-02).** Verbatim:
-  *"going forward every test case you directly create in Testrail or if you give me the CSV/XML file to
-  upload these must contain the AUTOMATION type for each test case, so that we never have to edit the
-  testrail test cases for this again."* This is the TestRail **`custom_automation_type`** field
-  (`0 None · 1 E2E · 2 Functional · 3 Unit`) — **DISTINCT from the `AUTOMATION:` marker literal below
-  and from `custom_atmstatus`.** Every `add_case`, and every **CSV/XML/import deliverable** handed over
-  for upload, carries a **real type per case — 1/2/3, never 0/None, never blank.** Rubric: **Unit** =
-  isolated calculation / format / single-field validation · **E2E** = cross-feature journey, browser
-  print dialog, audit trail, or email/PDF delivery · **Functional** = single-feature UI behaviour
-  (default). A not-yet-automated case (`custom_atmstatus: 1`) still declares the KIND of automated test
-  it would become. **This supersedes the older "`custom_automation_type: 0`" instruction** (a 285-case
-  sweep on 2026-09-02 had to backfill the field precisely because cases were born `0`). Full text +
-  the corrected field map: `build/skills/01-CASE-BUILD.md`, `build/skills/00-COMMON-CORE.md` §3.1. [61]
 - **AUTOMATION MARKER — the LAST thing in Expected Results**, after the provenance line, blank line
   before and a line break after. Exactly one of: `AUTOMATION: READY` ·
-  `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <short plain reason>` ·
-  `AUTOMATION: Not available on Build to test Yet - Last checked <M/D/YYYY>` (**the FOURTH form, Rule
-  69 — a gate coded from a three-string list flagged 4 valid cases**). A machine-
+  `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <short plain reason>`. A machine-
   findable literal — never reworded or abbreviated, exactly one per case. **A tool flag never justifies
   HOLD** (devtools, DOM/network, PDF/CSV reading, seeded data, viewports are all automatable); only a
   genuinely unobtainable thing does. **NOT-BUILT cases are excluded from any ready-to-automate figure.**
   Arithmetic gate: READY + EXPECT-FAIL = total − HOLD, read back from the live cases. [61, 60]
-  **🆕 2026-08-31 — THE STAGING-ONLY HOLD.** A case that puts the tester on a **customer-portal screen**
-  cannot be tested on a QA branch at all (QA lead, 2026-08-31: *"Customer portal related
-  tickets can only be tested on staging and not on the QA branch. We need to put this marker on such
-  tickets aswell."*). It carries
-  `AUTOMATION: HOLD - customer portal only exists on staging; this case cannot run on the QA branch`
-  — a HOLD, so the arithmetic gate above is unaffected. **⇒ THE SCOPING TEST IS THREE PARTS, CORRECTED
-  2026-09-03 — RUN ALL THREE:** **(i)** read the **PRECONDITIONS *AND* THE STEPS** — either one can put
-  the tester on a portal screen, and **a precondition-only scan is not a scan** (it missed C18671,
-  C18672, C18728, C18729, whose STEP opens the invoice in the portal) · **(ii)** never scope from the
-  **word "portal"** alone — a case verifying the portal feature's ABSENCE on the shop-app path is
-  testable and must not be parked · **(iii)** a portal **SCREEN** is not a portal **DATA STATE** — a
-  data state is **SEEDED, not parked** (Rule 14), and it is a HOLD only if the seeding route needs a
-  portal credential (example C45245, **Vladimir's and hands-off, 38**).
-  ⛔ **SUPERSEDED 2026-09-03, kept dated:** *"Scope it from the preconditions, never from the word
-  'portal'."* — preconditions-only; part (i) is the fix, part (iii) is new. **CANONICAL, full treatment
-  and every worked example: `build/skills/00-COMMON-CORE.md` §5.0-b.**
 - **An `EXPECT FAIL` case carries the SYMPTOM and ALL THREE OUTCOMES**, before the provenance line:
   what you should see today; **(1)** exactly that ⇒ mark FAILED, raise nothing new; **(2)** fails
   DIFFERENTLY ⇒ a NEW problem, report it; **(3)** PASSES ⇒ the fix shipped, tell the QA lead. Where the
@@ -707,45 +558,6 @@ Compact form — **the rule named in brackets is the authority; read it before r
   needs to be done / Other actions"), action-first, table-form where it helps. [70]
 - **Concise TestRail titles — ≤ ~80 characters**, so nothing truncates on the case page. [ref: title
   convention]
-- **🛑 TESTRAIL CASE-FIELD FORMATTING AND THE API-WRITE ESCAPING-CONTAINER TRAP — ONE BULLET, TWO HALVES
-  (merged 2026-09-02; full trap, round-trip evidence and the served-page scanner:
-  `build/APP-ACTIONS-PLAYBOOK.md` §J).**
-  **(i) WHAT TO EMIT — `<p>`/LIST BLOCKS ONLY, NEVER STYLING INLINE TAGS, NEVER PLAIN NEWLINES.** The
-  `preconds`/`steps`/`expected` fields are Markdown but TestRail wraps every submitted value in ONE
-  outer `<p>`, so plain `\n\n` **loses all line breaks** (collapses to a wall of text) and **styling**
-  inline tags (`<b>`, `<i>`, `<code>`, `<em>`, `<strong>`) **show literally**. **`<br>` is
-  ORIGIN-DEPENDENT: it renders from a UI edit but shows LITERALLY when written via the API** — so
-  **never emit `<br>` (or any inline tag) in an API payload**; to put lines on their own rows use
-  separate `<p>` blocks or a `<ul><li>` list. Format with block tags only: **`<p>` per paragraph,
-  `<ol>/<ul><li>` for lists, `<hr />` for a separator** — and put the **source / provenance BELOW the
-  expected behaviour after an `<hr />`**, as a `<p>` label + `<ul><li>` list + a final `<p>` date. When
-  editing a case after source verification, **keep formatting 100% intact**: copy the proven-good
-  structure (e.g. Global Search C44804) or reuse the block-only converters in
-  `build/global-search/apply_to_testrail.py`; never hand-author inline HTML. [proven live 2026-08-28,
-  C27800]
-  **(ii) WHERE IT LANDS — BLOCK HTML WRITTEN VIA THE API IS OFTEN UNREADABLE, AND
-  `check_case_render.py` CANNOT SEE IT (measured 2026-08-31).** TestRail serves each field in one of two
-  containers, invisible to the API: `<div class="markdown fr-view">` renders block HTML; plain
-  `<div class="markdown">` **ESCAPES it** so the tester literally reads `<ol><li><p>`. **An API
-  `update_case`/`add_case` leaves the field in the ESCAPING container; only a UI SAVE flips it to
-  `fr-view`.** So a case can PASS `check_case_render.py` (which reads the API-stored value) and still be
-  unreadable on screen. **⇒ (a) the
-  post-write check is TWO steps now: the stored-value check AND a served-page container scan (log into the
-  UI, GET `/index.php?/cases/view/<id>`, require `markdown fr-view`); (b) repair escaping cases through
-  the UI editor (Playwright), NEVER by another API write — proven recipe in
-  `build/build-verify-session-2026-08-21/repair-2026-08-25/` and playbook §J; (c) plain text in an
-  escaping container still renders as text, so do NOT "upgrade" a readable plain-text case to block HTML
-  via the API — that makes it WORSE.**
-  **🆕 STANDARD (QA lead, 2026-08-31): after ANY API-write pass, the served-page container scan + UI-repair
-  of every escaping case to `fr-view` is the REQUIRED post-step — not optional.** Proven recipe (Playwright →
-  Froala `html.set` → deadlock-retry): `build/inline-add-edit-parts/render-repair-2026-08-31/` and
-  `build/build-verify-session-2026-08-21/repair-2026-08-25/`. The 76-of-118 worked example that
-  established this is in `build/inline-add-edit-parts/PROJECT-STATE.md`.
-- **🛑 POST-WRITE RENDER SELF-CHECK — after ANY case create/update, fetch it back and confirm it
-  renders correctly before calling it done.** Never assume the write looks right; verify it. Run
-  `python3 build/testing-tools/check_case_render.py <C-ID> …` (fails on inline tags, wall-of-text, or
-  no block structure) **AND then the served-page container scan** (above) — a green stored-value check is
-  NOT sufficient on its own. A case is "done" only when the served page shows `fr-view`. [standing rule, 2026-08-28; served-page correction 2026-08-31]
 - **Blocked-revisit loop:** a tester marks anything that seems off as **Blocked** (never skips, never
   guesses); every Blocked case gets a manual revisit against the current spec + build and an
   authorised correction.
@@ -763,7 +575,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61 onward (full text — 61–108 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
+| Standing Rules 61–96 (full text) | `build/rules/RULES-61-96.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |
