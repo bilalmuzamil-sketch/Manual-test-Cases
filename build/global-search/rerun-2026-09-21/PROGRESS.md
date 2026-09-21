@@ -1,0 +1,53 @@
+# Re-run of 21 September 2026 — unattended pass
+
+**Authorised by the QA lead 21 Sep:** run everything **except** sections 6767, 6769, 6774, 8056;
+results go into **run 415** as new results with the tests marked accordingly; requirements re-read
+first (done — PRD v17, unchanged); *"Continue unattended as I am going to sleep now"*; *"You are
+authorized to CRUD the QA branch in order to keep yourself unblocked."*
+
+**Scope** 129 checks · 17 folders · build `v26.36.8-d146c39` · source PRD 576978945 **v17** read
+live 21 Sep · yardstick **GENERAL** (written requirements only).
+
+**Standing holds that do NOT lift while he sleeps:** no Jira issue of any kind (62/113 — a failure is
+recorded with `ticket_held` and listed for him) · no Expected edited, ever (114) · Vladimir's cases
+(38) and Automated cases (71) — neither is in scope this pass.
+
+## Folder progress
+
+| # | Folder | Checks | State |
+|---|---|---|---|
+| 1 | Ranking and Prioritization | 23 | IN PROGRESS |
+| 2 | Per-Entity Result Shape | 9 | to do |
+| 3 | Grouped Results and Counts | 9 | to do |
+| 4 | Scope Tabs | 12 | to do |
+| 5 | Fuzzy Matching | 18 | to do |
+| 6 | Permissions and Role-Based Scoping | 23 | to do |
+| 7 | Palette Open, Close and Keyboard | 10 | to do |
+| 8 | Recent Activity Default State | 5 | to do |
+| 9 | Mobile Global Search (v2) | 6 | to do |
+| 10 | Persisting Query | 3 | to do |
+| 11 | Empty and First-Time State | 2 | to do |
+| 12 | No-Results State | 2 | to do |
+| 13 | Page-Search Cutover (v2) | 2 | to do |
+| 14 | In-Page Work Orders List Search | 2 | to do |
+| 15 | Purchase Orders Entity (v2) | 1 | to do |
+| 16 | Vendor Invoices Entity (v2) | 1 | to do |
+| 17 | Error State | 1 | to do |
+
+## Fixtures present on the branch (enumerated live 21 Sep)
+
+customers ZZACC · ZZAUTOTEST(21) · ZZCAP161 · ZZCUSTOPEN(3) · ZZMATRIX/ZZMATROX · ZZOPENCOUNT(4) ·
+ZZPHON(4) · ZZPINRIVAL(2) · ZZPREFIX(2)/ZZPREFIY · ZZPSRANK(3) · ZZPUNC(3) · ZZTALLYQ(4) ·
+ZZTIEBREAK(3) · ZZTOGCUST/ZZTOGPS/ZZTOGWO · ZZVORTAC(3)
+parts ZZAUTOTEST(10) · ZZBROAD(15) · ZZCATBIN/ZZCATLIFT/ZZCATMOVE/ZZCATROLL · ZZPARTBUSY(3) ·
+ZZPHON(3) · ZZPRXQ(2) · ZZSORTX(2) · ZZSTOCKPART(2) · ZZTABP(2) · ZZTABQ(3) · ZZTOGPART ·
+ZZTOGPRICE · ZZTOGVEN · ZZVORTAC(2)
+vendors ZZAUTOTEST(6) · ZZMAGENTA(2)/ZZMAGENTO · ZZTOGVEN(2) · ZZVENDORPO(4) · ZZVORTAC(4)
+assets ZZOBSIDIAN(4)/ZZOBSIDIAM(2) · vendor invoices ZZTOGV(2)
+
+## Method for every check this pass
+
+Skill 19 + skill 20: observed **on the screen** through the control a person uses · ordering claims
+take **two alternating rounds** · a fixture must be **discriminating** · a **positive control** before
+any negative · build marker recorded · *"what would make this my fault?"* answered. Nothing is judged
+from a value read behind the screen.
