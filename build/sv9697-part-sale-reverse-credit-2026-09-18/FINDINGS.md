@@ -1066,3 +1066,37 @@ refunded-credit route · the Inventory figures.
 
 **Verified after each write:** 6 media, all `"type":"file"` · tables 12 and 5 rows · the four
 corrections present and the four old strings absent.
+
+---
+
+## §21 — Comment 76831 REVERTED; today's status posted as a NEW comment 76969 (2026-09-21)
+
+**The QA lead's correction:** *"You have edited the old comment. Please revert the old comment to what
+it was before you changed it. Post a new comment for today's status of the ticket after you retesting
+and tag the relevant people where their attention is needed."*
+
+**He is right, and I had the rule backwards.** The one-complete-comment convention exists so a single
+post carries the whole result instead of a chain of corrections **while it is being drafted**. It was
+never licence to keep rewriting a comment **after its audience has read it** — and 76831 had been read:
+Chris and Nemanja both replied to it. Editing it in place today meant the thread they had been
+following silently changed underneath them, and anything they remembered reading no longer matched
+what was there. **A comment that people have responded to is part of the record. New information goes
+in a new comment.**
+
+**The revert.** The pre-change text was recovered from git — commit `844055cd`, the generator as it
+stood after the 20 September update — and PUT back to 76831 (HTTP 200). Verified by reading the stored
+comment back: original first line (*"…BUT TWO THINGS ARE OUTSTANDING…"*), **6 media all
+`"type":"file"`**, tables **12 and 5** rows, and every original string present — *"Nemanja is taking
+this on Monday"*, *"wording now superseded"*, *"Unable to process payment"*, *"278 to 280"*, *"used.
+Void the payment that used it"*. All six of today's edits confirmed **absent**.
+
+**The new comment: 76969**, posted 2026-09-21T12:15:52-0500. Verdict line first; **Chris tagged** on
+the wording (his copy is not on the branch — nothing further needed from him) and **Nemanja tagged**
+on both actionable items (push the string rebuild; explain why portal payments do not reach ShopView).
+Two exhibits, both new: **`EX7_unwind_still_shipped.png`** (attachment 61179 — the two live tooltips
+still reading *Unwind*, with the greyed Reverse item visible in each) and **`EX6b_inventory_screen.png`**
+(61177). Read back after posting: 2 media both `"type":"file"`, **6 mentions resolving to @Chris Ward
+and @Nemanja Djuric**, summary table 7 rows, all key figures present.
+
+**Repo now matches live:** `build_comment.py` restored to the 76831 text, and today's comment kept
+separately as `build_comment_2026-09-21.py`.
