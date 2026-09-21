@@ -1,0 +1,15 @@
+import { open, ensureOpen, type as tp, SEL } from '/home/user/Manual-test-Cases/build/global-search/run415-execution/gs_probe.mjs';
+import fs from 'fs';
+const OUT='/home/user/Manual-test-Cases/build/global-search/run415-execution/sv10161-retest/pics/';
+const { page, browser } = await open('sv9160','/workorders','admin');
+await page.waitForTimeout(2200);
+await ensureOpen(page); await tp(page,'ZZSORTX',3200);
+await page.evaluate(()=>{const t=[...document.querySelectorAll('.search-tabs__tab')].find(x=>/^Parts/i.test(x.innerText.trim())); if(t)t.click();});
+await page.waitForTimeout(1500);
+const el=await page.$(SEL.modal); await el.screenshot({path:OUT+'SORT-proof.png'});
+const g=await page.evaluate(s=>{const m=document.querySelector(s);const mb=m.getBoundingClientRect();
+ return {w:Math.round(mb.width),h:Math.round(mb.height),rows:[...m.querySelectorAll('.search-row')].map(r=>{const b=r.getBoundingClientRect();return{t:(r.innerText||'').replace(/\s+/g,' ').trim().slice(0,52),y:Math.round(b.top-mb.top),h:Math.round(b.height)};})};},SEL.modal);
+console.log('SORT-proof.png',g.w+'x'+g.h);
+g.rows.forEach((r,i)=>console.log('   ',i+1,r.y,r.h,'|',r.t));
+fs.writeFileSync('/tmp/gs/geosort.json',JSON.stringify(g,null,1));
+await browser.close();

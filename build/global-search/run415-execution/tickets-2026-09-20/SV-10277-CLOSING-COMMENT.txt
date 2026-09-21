@@ -1,0 +1,28 @@
+h3. Closing this — the reported behaviour is not a defect
+
+This was raised on an observation that every result in a list came back with the same score of *1.00*, and on the concern that the other ranking signals could therefore no longer affect the order.
+
+The development team explained that *1.00* is a cap on the number in the response, while the engine sorts on the real value, which can be higher. QA tested that rather than accepting it on trust.
+
+h3. How it was tested
+
+Two parts were created, identical except for stock, with the tie-break deliberately pointed the other way: the part *with* stock was created *first*, so it is the *older* of the two, and the empty one *second*, so it is the *newer*.
+
+* if the list were ordered by the *reported* number, both are 1.00 and the newer part should come first
+* if it is ordered by the *real* value, the part with stock should come first
+
+!SORT-EVIDENCE.png|width=760,height=490!
+
+*Result: the part with stock came first, on both readings.*
+
+Confirmed independently on real data: searching {{shoe}} returns 20 parts all reporting *1.00*, and the seven showing *0 Available* sit at the bottom of the list rather than scattered through it — which only sorting on the real value explains.
+
+h3. Conclusion
+
+Ranking is working. The identical figures in the response are the capped value being displayed, not a symptom of anything. Closing as obsolete.
+
+h3. Not closed with it
+
+* *SV-10279* — on the *Parts* tab a name that begins with the search text is recorded as a whole-word match, where Customers, Vendors and Assets record it as a prefix match. That evidence is the match *label*, not the score, so none of the above touches it. It remains open.
+* *A documentation correction* — PRD 6.1 gives the primary-display-name bonus as *+0.10*, while the applied value is at least *+0.50*. Raised with the owner of the requirements page, not as a defect.
+* *One open question for the development team*, asked separately: searching {{door}} on the Parts tab returns {{Door Hold Back}} (0 Available, last sold 54 days ago) above {{SEAL DOOR SEALOK}} (24 Available), with the same match kind on the same field. Under PRD 6.1 the in-stock row earns 0.20 more and *viewed recently* is worth only 0.10, so the gap cannot be closed. If the first row is being scored as a prefix internally the two tie and the tie-break decides, which would also answer SV-10279.
