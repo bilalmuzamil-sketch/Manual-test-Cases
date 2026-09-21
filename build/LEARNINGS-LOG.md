@@ -3776,3 +3776,31 @@ service call. Both were unit-checked on the SV-10188 shape before being committe
 **non-discriminating** — the record that should move was already at the extreme, so a lift had
 nowhere to show. **A non-discriminating run is not evidence either way** and must be labelled
 inconclusive; reading it as a negative is how a false defect is born.
+
+## L0182 — 2026-09-21 — THE API-VERSUS-SCREEN LESSON NOW HAS ITS OWN FILE, WITH TWELVE MEASURED CASES
+
+The QA lead asked for the endpoint-versus-screen lesson to be written down on its own, so other
+sessions do not learn it the way this one did. **`build/skills/20-API-VALUES-VS-WHAT-THE-USER-SEES.md`.**
+
+It names **three mechanisms**, which is what makes the trap predictable rather than a list of
+anecdotes: the endpoint is a different **SURFACE** (the front end attaches page context, scope,
+workplace and debounce that a hand-rolled call never sends — so the feature *cannot* appear and its
+absence is guaranteed by the method); a different **LAYER** (the value is capped, uppercased,
+escaped, masked or re-labelled before a human sees it); a different **MOMENT** (a `200` is not proof
+a write landed).
+
+Twelve cases, all measured in this repo: the capped `score` that the engine still sorts past
+(SV-10277) · the undefined match label (SV-10279) · `/api/search` carrying no page context
+(SV-10188) · the role record's permission list versus the Roles and Permissions screen (SV-10278) ·
+`GET /api/version` returning `{"version":"0.1"}` while the real marker is `meta[name=app-version]`
+= `v26.36.8-d146c39` · the TestRail `fr-view` escaping container that `check_case_render.py` cannot
+see · `role.name` versus `fe_permissions.length` · the Quasar `<label>` wrapper versus the `<input>` ·
+`textContent` versus a CSS `text-transform` label · a `200` versus a read-back · **a synthetic
+`dispatchEvent('mouseover')` not triggering CSS `:hover`, where a real `hover()` did** · and a button
+that could have been rendered outside the row element.
+
+It also states **when an API read IS admissible** — seeding, enumerating, reading a precondition back
+alongside the screen, corroborating a screen finding, and an API-titled case where the endpoint *is*
+the user (Rule 4) — and it reconciles **Rule 24** (front end blocks + back end allows = PASSED) as the
+honourable exception rather than a contradiction. Pointed at from skills 00, 03, 06, 09 and 19 and
+from `build/skills/README.md`.

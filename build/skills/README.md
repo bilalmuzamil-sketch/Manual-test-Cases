@@ -223,3 +223,19 @@ Each is treated fully in the core; they are listed here because **they are the o
 | How a process doc must be written | `build/PROCESS-AUTHORING-STANDARD.md` |
 | The three-dimension quality gate in full | `build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md` |
 | Per-project cold-resume snapshots | `build/<project>/PROJECT-STATE.md` |
+
+---
+
+## 🛑 ADDED 2026-09-21 — TWO FILES ABOUT HOW WE GET IT WRONG, NOT ABOUT WHAT TO PRODUCE
+
+Both came out of a single bad run: five wrong calls in two days, two Jira tickets retracted, one wrong
+answer given to a developer. Read them **before the first observation of any pass**, not after a finding.
+
+| File | Read it when |
+|---|---|
+| `19-HOW-NOT-TO-TEST.md` | **Always, before the first observation.** The five wrong calls were ONE mistake five times — judging the product from a machine-readable proxy instead of from the screen. The eight forbidden moves, the thirteen-step drill, and what a challenge from a developer or the QA lead triggers (a re-measurement, never a reply). |
+| `20-API-VALUES-VS-WHAT-THE-USER-SEES.md` | **Before the first probe, and before any defect.** The specific case: a value read from an endpoint is evidence about the endpoint, never a verdict about what a person sees. Twelve real measured cases, the three mechanisms (different SURFACE · different LAYER · different MOMENT), when an API read IS admissible, and the five questions to ask first. |
+
+Both are enforced, not advisory: `build/testing-tools/probe_guard.mjs` carries `assertBehaviour(...)`
+and `assertContextRuleMethod(...)` alongside the older `assertNegative(...)`, and
+`blocker_gate.py --check` still gates every negative claim.

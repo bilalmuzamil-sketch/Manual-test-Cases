@@ -1512,3 +1512,9 @@ service call** and the guard throws.
 
 **And a challenge — from a developer, from the QA lead, or from my own second thought — triggers a
 RE-MEASUREMENT, never a reply.** Conceding and defending are both answers given without evidence.
+
+**🛑 THE SPECIFIC CASE OF THIS HABIT — `build/skills/20-API-VALUES-VS-WHAT-THE-USER-SEES.md`.** What a
+value read from an endpoint says is **evidence about the endpoint**, never a pass or a fail about what a
+person sees. Twelve real cases, the three mechanisms that make the two disagree (different SURFACE,
+different LAYER, different MOMENT), when an API read IS admissible, and the five questions to ask before
+trusting one. Read it before the first probe of any pass.

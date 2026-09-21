@@ -141,3 +141,9 @@ savings come from how the work is executed, and this drill is faster than one re
 is put to him) · `build/skills/09-TEST-EXECUTION.md` (before any Failed result) ·
 `build/testing-tools/probe_guard.mjs` (`assertBehaviour`, `assertNegative`) ·
 `build/LEARNINGS-LOG.md` L0168–L0181 · Rules 12, 57, 97, 104, 106, 114.
+
+**🛑 THE SPECIFIC CASE OF THIS HABIT — `build/skills/20-API-VALUES-VS-WHAT-THE-USER-SEES.md`.** What a
+value read from an endpoint says is **evidence about the endpoint**, never a pass or a fail about what a
+person sees. Twelve real cases, the three mechanisms that make the two disagree (different SURFACE,
+different LAYER, different MOMENT), when an API read IS admissible, and the five questions to ask before
+trusting one. Read it before the first probe of any pass.
