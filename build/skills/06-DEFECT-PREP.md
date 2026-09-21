@@ -1256,6 +1256,30 @@ then the quote. Worked example: comment **76907** on SV-10188 — two annotated 
 order's own parts, then the search opened from that same work order), 329 words, one verbatim PRD
 quote, and the test check with its run link at the bottom.
 
+### 🛑 NEVER RAISE A DEFECT FROM AN INTERNAL FIELD — ONLY FROM BEHAVIOUR THE SOURCE REQUIRES (QA lead, 2026-09-21: *"your mistakes are costing me a lot"*)
+
+**The incident.** SV-10279 was raised because the search response reports a begins-with match on the
+Parts tab under a different `match.kind` value than on the other tabs. From that **label** I concluded
+the match earned no advantage. A controlled pair then proved the advantage **is** applied — the label
+is simply reported differently, and **the specification does not define that field anywhere.** The
+ticket had already reached the developer before I checked. Withdrawn 21 September.
+
+**Three tests before any defect, in this order:**
+
+| # | Ask | If the answer is no |
+|---|---|---|
+| 1 | **Is the thing I am judging visible to a user, or is it an internal value in a response?** | an internal value is **evidence to investigate**, never the finding itself |
+| 2 | **Does a source sentence require it?** Quote it. | no sentence ⇒ **no defect** — raise a question instead (Rules 58, 64) |
+| 3 | **Have I reproduced the user-facing consequence?** | no consequence ⇒ **no defect**, however wrong the internal value looks |
+
+**The pattern this closes.** Twice in two days I filed from a value in an API response — a permission
+list (SV-10278) and a match label (SV-10279) — instead of from behaviour. Both were withdrawn, and in
+both the product was right. **A response field tells you where to look. It is never what you report.**
+
+**And the general form of the same error:** stating a conclusion before the measurement that would
+settle it. Both withdrawals, and the two reversals on SV-10277, are one habit. **Design the test so
+the two possible answers point in opposite directions, run it, then speak.**
+
 ### 🛑 RULE 114 — THE EXPECTED BEHAVIOUR IS THE SOURCE'S EXACT QUOTE, AND IS NEVER CHANGED (QA lead, 2026-09-21)
 
 **Verbatim:** *"NO, you MUST NEVER change the expected behavioer ever, save this as a rule forever."*

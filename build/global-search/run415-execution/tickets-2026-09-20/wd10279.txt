@@ -1,0 +1,38 @@
+h3. Withdrawn — the ranking on the Parts tab is correct
+
+This was raised because the search response reports a part whose name *begins with* the search text as an ordinary *word* match, where Customers, Vendors and Assets report it as a *prefix* match. The ticket concluded from that label that a begins-with part was receiving no advantage.
+
+*That conclusion was wrong. The advantage is applied.*
+
+h3. How it was tested
+
+Two parts were created for it, identical in every way that PRD 6.1 counts — both showing *0 Available*, both in the same bin location, neither ever sold — and the search word was kept out of both part numbers so only the name could match. One part's name *begins* with the word; the other has it in the middle. Then *only the second one* was opened, so it alone carries the *viewed recently* credit.
+
+!WITHDRAW-10279.png|width=760,height=504!
+
+If a begins-with match were not being credited, the second part would be *strictly higher* — 1.15 against 1.05 — with no tie, so no tie-break could put the first one on top.
+
+*The first part comes first.* The begins-with credit is being applied.
+
+h3. Everything the specification requires on this tab is working
+
+* ordering — proven above
+* the matched text is highlighted on the row:
+{quote}The matched substring of the query is highlighted in the primary and secondary text — searching Fib highlights "Fib" in "S1-644 Fibridge Commercial".{quote}
+* a near-miss is shown with the soft-match treatment:
+{quote}When a match is fuzzy rather than exact, the matched token in the row is still highlighted, and a subtle ≈ or italicized treatment indicates the soft match.{quote}
+Both confirmed on the Parts tab on this build.
+
+h3. Nothing is left open by this withdrawal
+
+The only difference that remains between Parts and the other tabs is the *kind* value the response reports for the match. *The specification does not define that field anywhere* — what it defines is what the user sees, and all of that is correct. The value is invisible in the product and it does not affect the order.
+
+It is worth one note to the development team as a courtesy rather than a defect: the reported label is what led QA to the wrong conclusion here, and aligning it with the other entity types would stop the next person making the same mistake.
+
+h3. Environment
+
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Verified 21 September 2026.
+
+h3. Sources
+
+Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, sections 4, 5.2 and 6.1, read on 20 and 21 September 2026.

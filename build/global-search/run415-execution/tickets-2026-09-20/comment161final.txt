@@ -1,0 +1,27 @@
+QA re-check on {{v26.36.8-d146c39}} (branch {{sv9160}}), 20 September 2026. Source: Global Search PRD, page {{576978945}}, version 17.
+
+h2. The fix works
+
+!PIC1-fixed.png|width=760,height=850!
+
+*Steps to reproduce*
+# Press {{Ctrl}}+{{K}}.
+# Type {{deshawn}}.
+# Open the *Customers* tab.
+
+The company whose own name is Deshawn is now first, above the company that only has a contact of that name.
+
+*This is not limited to the example in this ticket.* Checked across 20 different person-name words and 230 customer rows: wherever a company's own name matched exactly, as a whole word or as a prefix, it ranked above every contact match. Three searches returned a contact match on top, and in all three the company name was only a near-miss spelling, which PRD 6.1 says should lose.
+
+*PRD 6.1, exactly as written:*
+{quote}Bonus for match on the primary display name vs. a secondary indexed field → +0.10. A match on a contact field of a customer or vendor is a secondary-field match and does not receive this bonus (§4).{quote}
+
+The measured credit is *at least +0.50*, not +0.10. *The behaviour above is the right one and should stay* — it is the PRD that needs updating to describe it.
+
+h2. Follow-up — raised, then withdrawn
+
+A follow-up was raised (*SV-10277*) on the observation that results were coming back with the same score of 1.00, and the concern that the other credits in PRD 6.1 could no longer separate them.
+
+*It has since been withdrawn.* 1.00 is a cap on the number in the response; the engine orders results on the real value, which can be higher. That was tested with two parts identical except for stock, with the in-stock one deliberately made the older of the two so a recency tie-break would have favoured the other — the in-stock one came first. Ranking is working, and the evidence is on that ticket.
+
+*Nothing is left open against this change.*

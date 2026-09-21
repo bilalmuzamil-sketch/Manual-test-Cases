@@ -1,0 +1,39 @@
+h3. Re-checked on 20 September 2026 — this still happens
+
+When you are looking at a work order and you search for a part, the parts *already on that work order* should drop to the bottom of the list. You are almost always looking for something you have not added yet. That is not happening.
+
+h3. What is on the work order
+
+!WOA1.png|width=760,height=168!
+
+h3. What comes back when you search from that same work order
+
+!WOA2.png|width=760,height=356!
+
+*Actual Result:* the brake shoe kit that is already on this work order comes back in the middle of the list, above an air dryer cartridge that is not on the work order at all.
+
+*Expected Result:* the brake shoe kit drops below both parts that are not on the work order.
+
+h3. This is not a one-off
+
+Searching {{Brake Shoe Kit}} from this work order page and from a Customers page returns the identical six parts in the identical order. Standing on the work order makes no difference to the list at all.
+
+h3. Correction to an earlier note on this ticket
+
+An earlier version of this comment said the reduction could not show because the score stops at a maximum. *That explanation was wrong and is withdrawn.* The number in the response is capped, but the search orders results on the real value, which can be higher — so a reduction would still change the order.
+
+Re-checked on 21 September 2026 on the same build: standing on the work order makes no difference to the list at all. The part already on the job stays first, above two parts that are not on it. The reduction simply is not being applied.
+
+h3. Sources
+
+Global Search PRD — [page 576978945|https://shopview.atlassian.net/wiki/spaces/SV/pages/576978945], version 17, section 6.3, read on 20 September 2026.
+
+{quote}if on a Work Order, parts already on that WO are demoted by −0.10 (the user is usually looking for something they don't have yet) while other parts in the same category as the WO's existing parts get +0.05.{quote}
+
+h3. Environment
+
+Branch: [sv9160|https://sv9160.qa.shopview.com/] · Build: {{v26.36.8-d146c39}} · Checked 20 September 2026.
+
+h3. Test Coverage
+
+* C44854 — [case|https://shopview.testrail.io/index.php?/cases/view/44854] — [result in run 415|https://shopview.testrail.io/index.php?/runs/view/415]

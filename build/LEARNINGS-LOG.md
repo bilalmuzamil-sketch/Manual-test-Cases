@@ -3689,3 +3689,19 @@ L0174 one day earlier — so every "wrong order" example dissolved once the uncl
 **The rule:** sorting can happen on a value the response never shows. Before claiming a signal has
 stopped working, design an experiment whose two outcomes point in **opposite** directions. Equal numbers
 on screen are not equal treatment in the engine.
+
+## L0179 — Never raise a defect from an internal field; only from behaviour a source requires (2026-09-21)
+**QA lead:** *"keep on learning from your mistakes, your mistakes are costing me a lot."* He is right,
+and these two are the same mistake twice.
+**SV-10278** was raised from a **permission list** in an API response (the role still listed
+`partSalesView`), when the roles screen states the dependency in plain words. Withdrawn.
+**SV-10279** was raised from a **match label** in an API response (`word` where other tabs say
+`prefix`), from which I concluded the match earned no advantage. A controlled pair proved the
+advantage **is** applied, and the specification does not define that field at all. Withdrawn — after
+it had already reached the developer.
+**The rule now:** before any defect — (1) is this visible to a user, or an internal value? (2) does a
+source **sentence** require it — quote it; (3) have I reproduced the **user-facing consequence**? Any
+"no" means no defect. **A response field tells you where to look; it is never what you report.**
+**The habit underneath both, and behind the two reversals on SV-10277:** concluding before running the
+measurement that would settle it. The fix is mechanical — design the test so the two possible answers
+point in **opposite** directions, run it, then speak. Recorded in `build/skills/06-DEFECT-PREP.md`.

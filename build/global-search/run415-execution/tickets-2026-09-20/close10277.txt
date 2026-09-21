@@ -1,0 +1,28 @@
+h3. Closing this — the reported behaviour is not a defect
+
+This was raised on an observation that every result in a list came back with the same score of *1.00*, and on the concern that the other ranking signals could therefore no longer affect the order.
+
+The development team explained that *1.00* is a cap on the number in the response, while the engine sorts on the real value, which can be higher. QA tested that rather than accepting it on trust.
+
+h3. How it was tested
+
+Two parts were created, identical except for stock, with the tie-break deliberately pointed the other way: the part *with* stock was created *first*, so it is the *older* of the two, and the empty one *second*, so it is the *newer*.
+
+* if the list were ordered by the *reported* number, both are 1.00 and the newer part should come first
+* if it is ordered by the *real* value, the part with stock should come first
+
+!SORT-EVIDENCE.png|width=760,height=490!
+
+*Result: the part with stock came first, on both readings.*
+
+Confirmed independently on real data: searching {{shoe}} returns 20 parts all reporting *1.00*, and the seven showing *0 Available* sit at the bottom of the list rather than scattered through it — which only sorting on the real value explains.
+
+h3. Conclusion
+
+Ranking is working. The identical figures in the response are the capped value being displayed, not a symptom of anything. Closing as obsolete.
+
+h3. Not closed with it
+
+* *SV-10279* — *also withdrawn, on 21 September.* It was raised because the Parts tab reports a begins-with match under a different label from the other tabs, and concluded from that label that the match earned no advantage. A controlled pair showed the advantage is applied; only the label differs, and no requirement covers it. Evidence is on that ticket.
+* *A documentation correction* — PRD 6.1 gives the primary-display-name bonus as *+0.10*, while the applied value is at least *+0.50*. Raised with the owner of the requirements page, not as a defect.
+* *One ordering that looked wrong has since been explained.* Searching {{door}} on the Parts tab returns {{Door Hold Back}} (0 Available) above {{SEAL DOOR SEALOK}} (24 Available). {{Door Hold Back}} begins with the word, so it is credited the stronger match; the two land level and the tie-break decides. Nothing is wrong, and no question is left with the development team.
