@@ -244,6 +244,18 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   **🛑 EXTENDED 2026-09-16 (QA lead: *"you are authorized to CRUD anything on production and QA
   branch"*) — PRODUCTION IS NOW IN SCOPE TOO, on the same terms.** ⛔ Supersedes *"production is not a
   test environment."*
+  **🛑 EXTENDED AGAIN 2026-09-22 — TOTAL, AND A SELF-IMPOSED BLOCKER IS A RULE BREACH (QA lead:
+  *"you are 100% authorized to unblock yourself and give it whatever it takes … feel free to edit any
+  role or assign as needed. I don't want any test to be left pending because of your self assumed
+  restrictions on yourself."*).** On any branch given for testing: **edit/create/delete/assign ANY
+  role, including one other staff share**, create or delete ANY record, impersonate anyone — restore
+  after and read the restore back. **"I could have but chose not to, to be safe" IS NOT A BLOCKED
+  REASON.** Blocked is now only: a product fault that stops the step · a source gap (58) · a hold HE
+  placed · a proved environment limit. **Test before writing Blocked: would this still be blocked for
+  someone with every permission and no fear of breaking the branch?** If no, go and do it. Cost of the
+  miss: ten permission checks parked overnight that took one hour once he repeated the authorisation.
+  Still held, unchanged: Jira per ticket (62/113) · TestRail case writes (6) · Vladimir's (38) ·
+  Automated (71) · secrets (82) · the Expected is never edited (114).
   **🛑 AND `app.shopview.com` IS A DUMMY ENVIRONMENT — ALL FOUR RESERVATIONS I RAISED ARE WITHDRAWN BY
   HIM, SAME DAY:** *"the data in both the branches is NOT real … No need to ever clean up the data dont
   wate the time … Feel free to sign in as me whenever needed."* ⇒ **there are no real customers'
