@@ -1,0 +1,12 @@
+load the customers list                      new analytics event names: ["user_engagement","user_engagement","page_view","page_view"]
+open the search panel                        new analytics event names: []
+type a query                                 new analytics event names: []
+click a scope tab                            new analytics event names: []
+select a result row                          new analytics event names: []
+open a work order list page                  new analytics event names: ["page_view","page_search","user_engagement","page_view","page_search","user_engagement","page_view","page_view","page_view"]
+
+ALL analytics event names seen on the network: ["user_engagement","page_view","page_search"]
+in-page gtag/dataLayer calls captured: 10 ["[{\"0\":\"js\",\"1\":\"2026-09-21T08:55:48.335Z\"}]","[{\"0\":\"config\",\"1\":\"G-CMYCXL13C9\",\"2\":{\"debug_mode\":true}}]","[{\"0\":\"set\",\"1\":{\"user_id\":\"6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\"}}]","[{\"0\":\"set\",\"1\":\"user_properties\",\"2\":{\"user_role\":\"admin\"}}]","[{\"0\":\"set\",\"1\":{\"user_id\":\"6d71382d-4ddb-4707-a0f3-33b4bb78b0b8\"}}]","[{\"0\":\"set\",\"1\":\"user_properties\",\"2\":{\"user_role\":\"admin\"}}]","[{\"0\":\"event\",\"1\":\"page_view\",\"2\":{\"page_path\":\"/workorders\",\"page_title\":\"WorkOrders\"}}]","[{\"event\":\"gtm.dom\"}]"]
+
+ANY custom (non page_view) analytics event fires anywhere in this app on this branch: true ["user_engagement","page_search"]
+EXIT=0

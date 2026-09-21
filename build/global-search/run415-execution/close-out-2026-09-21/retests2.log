@@ -1,0 +1,96 @@
+=== C45160 - analytics hits caused by selecting a result: 2
+    GET https://sv9160.qa.shopview.com/js/useInspectionAnalytics.DvpZ81rG.js | event name: (none in url/body)
+    POST https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je69g1h1v9250300735za200zd9250300735xf1& | event name: page_view
+       params: ["page_view"]
+ANY hit naming a global-search usage event: false
+
+=== C44826 - every visible control that could be a "show all" (wide net):
+[
+ {
+  "t": "ShopHub expand_more",
+  "cls": "row items-center"
+ },
+ {
+  "t": "ShopHub expand_more",
+  "cls": "module-selector-root"
+ },
+ {
+  "t": "ShopHub expand_more",
+  "cls": "module-selector module-selector--trigger"
+ },
+ {
+  "t": "AI SHOPCOACH ANALYSIS more_vert New Line",
+  "cls": "row q-gutter-xs items-center"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn__content text-center col items-center q-anchor--skip j"
+ },
+ {
+  "t": "expand_less 1 more_vert",
+  "cls": "actions-content"
+ },
+ {
+  "t": "1 more_vert",
+  "cls": "q-chip row inline no-wrap items-center q-chip--clickable cur"
+ },
+ {
+  "t": "1 more_vert",
+  "cls": "q-chip__content col row no-wrap items-center q-anchor--skip"
+ },
+ {
+  "t": "Unassigned more_vert Start",
+  "cls": "row justify-between items-center"
+ },
+ {
+  "t": "Unassigned more_vert",
+  "cls": "row items-center no-wrap q-gutter-x-xs"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn__content text-center col items-center q-anchor--skip j"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn__content text-center col items-center q-anchor--skip j"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn__content text-center col items-center q-anchor--skip j"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn"
+ },
+ {
+  "t": "more_vert",
+  "cls": "q-btn__content text-center col items-center q-anchor--skip j"
+ }
+]
+group headings seen: [
+ "search a Ctrl K",
+ "Lines (1) Parts (3) Notes Stats Finance AI SHOPCOACH ANALYSIS more_vert New Line",
+ "Parts add Add Part",
+ "Parts",
+ "TODAY",
+ "YESTERDAY",
+ "PAST WEEK"
+]
+POSITIVE CONTROL - the panel controls are visible to this scan, tabs: ["All","Work orders","Customers","Assets","Parts","Vendors","Part sales","Purchase orders","Vendor invoices"]
+EXIT=0
