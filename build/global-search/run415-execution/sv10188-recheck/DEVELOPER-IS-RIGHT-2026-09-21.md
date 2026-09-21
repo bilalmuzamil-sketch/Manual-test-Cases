@@ -69,35 +69,46 @@ search from it.
 §6.1, Parts: *in stock (>0) → +0.20*. The Air Dryer Cartridge has **0 available**, so it does not
 earn that, and last is where it belongs — which is Sinisa's point, and it is correct.
 
-**Verdict: the demotion half of §6.3 is working. SV-10188's stated defect does not reproduce.
-The ticket should be closed / marked obsolete.**
+**Verdict: §6.3 is working — both the demotion and the same-category lift (§4 below).
+SV-10188's stated defect does not reproduce. The ticket should be closed / marked obsolete.**
 
-## 4 · The one thing still untested — and I could not isolate it
+## 4 · The second half of §6.3 — also proved working, on the fourth fixture
 
-§6.3's second half — *"other parts in the same category as the WO's existing parts get +0.05"* —
-is **NOT VERIFIED**, and three purpose-built fixtures failed to isolate it. Each was a pair of
-inventory parts created identical in every §6.1 signal (0 available, the same bin, never sold,
-never viewed, one query token shared) and differing **only** in category, one matching the category
-of the part already on `S9160-17671`:
+*"other parts in the same category as the WO's existing parts get +0.05."*
 
-| Fixture | same-category part | created | neutral-page order | work-order order | discriminating? |
+Three fixtures failed to isolate it, each for the same reason: the same-category part already sat
+first **on the neutral page**, so a lift had nowhere to show.
+
+| Fixture | same-category part | created | neutral page | work order | discriminating? |
 |---|---|---|---|---|---|
-| `ZZCATLIFT` | Hose Clamp | first | Clamp, Clips | Clamp, Clips | **no** — already top |
-| `ZZCATMOVE` | Hose Zulu | second | Zulu, Alfa | Zulu, Alfa | **no** — already top |
-| `ZZCATROLL` | Hose Zulu | first | Zulu, Alfa | Zulu, Alfa | **no** — already top |
+| `ZZCATLIFT` | Hose Clamp | 1st | Clamp, Clips | Clamp, Clips | no — already top |
+| `ZZCATMOVE` | Hose Zulu | 2nd | Zulu, Alfa | Zulu, Alfa | no — already top |
+| `ZZCATROLL` | Hose Zulu | 1st | Zulu, Alfa | Zulu, Alfa | no — already top |
+| **`ZZCATBIN`** | **Hose Sierra** | 1st | **Tango, Sierra** | **Sierra, Tango** | **YES** |
 
-In all three the same-category part already sat first **on the neutral page**, where no lift applies,
-so a +0.05 lift had nowhere to show. The tie-break between two identically-scored parts is not
-creation order (`ZZCATMOVE` and `ZZCATROLL` reverse it and get the same winner) and not alphabetical
-(`ZZCATLIFT` ranks ascending, the other two descending), so I cannot yet steer which of a pair leads
-— and without that I cannot build a pair the lift would visibly reorder. The smallest signal I can
-add or remove is the bin-location +0.05, which only produces an exact tie.
+`ZZCATBIN` is the pair that landed the same-category part **second** on the neutral page, so the
+lift had somewhere to go — and it went there. Two full passes, alternating pages:
 
-**This is recorded as NOT VERIFIED (Rule 12), not as a failure.** No negative claim is made about the
-same-category lift, and it is not a reason to keep SV-10188 open — the ticket's stated defect is the
-demotion, and the demotion works.
+| Standing on | 1st | 2nd |
+|---|---|---|
+| Customers page | Hose Tango (`HD-Fasteners`, a different category) | Hose Sierra (`Uncategorized`) |
+| Work order `S9160-17671` | **Hose Sierra** — shares the category of the part already on the order | Hose Tango |
+| Customers page again | Hose Tango | Hose Sierra |
+| Work order again | **Hose Sierra** | Hose Tango |
+
+`off agrees across passes: true` · `on agrees across passes: true` ·
+`the same-category part leads ONLY on the work order: true`
+
+Both parts are identical in every §6.1 signal — 0 available, the same bin, never sold, never
+viewed, one shared query token, names of equal length — and differ **only** in category. The only
+rule in the specification that can reorder them by where the searcher is standing is §6.3.
+(The intended extra handicap, stripping the bin off one part, was refused by the product — the
+change call wants `catalog_part_id` and `purchase_price` — and turned out to be unnecessary.)
+
+**⇒ BOTH halves of §6.3 work. C44854 passes in full.**
 
 ## 5 · Evidence in this folder
 
 `off-wo.png` · `on-wo.png` · `wo-lines.png` · `wo-parts-tab.png` · probes `/tmp/gs/sv10188ctx2.mjs`,
-`/tmp/gs/sv10188confirm.mjs`, `/tmp/gs/woparts.mjs`, `/tmp/gs/catlift.mjs`.
+`/tmp/gs/sv10188confirm.mjs`, `/tmp/gs/woparts.mjs`, `/tmp/gs/catlift.mjs`, `/tmp/gs/catmove.mjs`, `/tmp/gs/catroll.mjs`,
+`/tmp/gs/catnobin.mjs`, `/tmp/gs/catbin2.mjs`; pictures `cat-off.png`, `cat-on.png`.
