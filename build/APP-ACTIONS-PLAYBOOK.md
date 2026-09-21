@@ -810,6 +810,23 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   auto-apply fees on new WOs (`appliedBy=customer_default`). **Gotcha:** create can 500 in some staging
   sessions → create via the UI instead (UI recipe: `/workorders` → New → pick Customer + Asset →
   Save → Confirmation "over credit limit" → Create). *Source: CLAUDE.md, UI-seeding appendix 2026-07-15.*
+- **🔑 MOVE A WO OUT OF `Estimate` — `POST /api/work-orders/change-status {id, status:'approved'}` → 201
+  (learned 2026-09-21 from the refusals, Rule 107 route 2).** **`work_order_id` is the WRONG field name
+  here** — the 400 reads `{"id":"Work Order ID is missing."}` — and the status must be the lowercase
+  **`value`**, not the label: `GET /api/work-orders/statuses` → `{value:'approved', label:'Approved'}`.
+  Sending `status:'Approved'` gives `{"statusValid":"Wrong status name"}`, and sending `status_id`
+  gives a **500**. Values: `estimate · approved · in_progress · ready_for_review · complete ·
+  invoiced · paid`.
+  **WHY IT MATTERS FOR SEEDING A RANKING FIXTURE:** `POST /api/work-orders/create` lands the WO in
+  **`Estimate`**, and an Estimate does **not** count towards a customer's `openWorkOrderCount` in
+  search — the count stays 0 and the fixture silently proves nothing. Approve it, then allow ~20s for
+  the search index. Proven live on `sv9160` seeding C55722.
+- **🔑 GIVE A PART A REAL "recently used" DATE** (the §6.1 sales-frequency signal, ledger origin
+  `WorkOrderPartPick`): create + approve a WO → `POST /api/work-orders/{woId}/lines/create-from-canned-line
+  {canned_line_id, status:'authorized'}` (→ `data.line_id`) → `POST /api/work-orders/part/make-request
+  {line, work_order, description, quantity, part_source_type:'inventory', part_number,
+  part_category_id, cost, sell_price, inventory_part_id}` → 201. The part's `lastSoldAt` is set within
+  ~20s and its on-hand drops by the quantity. Proven live seeding C55712.
 - **Delete WO:** `POST /api/work-orders/delete {work_order_id}`. **Move the WO to Uncomplete first**
   (a Complete WO → 400 "Completed work order cannot be deleted"). On staging, WO delete can be
   UI-only (top ⋮ → Delete Work Order) if the API 404s.
