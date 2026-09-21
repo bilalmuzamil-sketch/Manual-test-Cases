@@ -970,3 +970,61 @@ already blocks Reverse with `Credit CM-3956 ($231.00) has been applied.`
 
 Evidence: `ev/r2_portal_home.png`, `ev/r2_method.png`, `ev/r2_stripe_filled.png`, `ev/r2_paid.png`,
 `ev/r2_portal_payments.png`, `ev/r2_portal_tooltip2.png`.
+
+### Followed up rather than left at one attempt
+
+**Three screen checks over roughly forty minutes** — immediately after the payment, ~10 minutes
+later, and ~40 minutes later. Every one: balance `$326.55`, no payment rows, Reverse enabled, no
+tooltip.
+
+**The portal's own Payments list** (`/payments`) shows the payment is real and settled, alongside the
+three checkout attempts I abandoned while working out the Stripe form:
+
+| Date | Status | Customer | Type | Reference | Gross | Fee | Net |
+|---|---|---|---|---|---|---|---|
+| Sep 21, 2026 | **Succeeded** | Tucson Truck Center | Invoice | S-17303 | $337.63 | $13.78 | $323.85 |
+| Sep 21, 2026 | Canceled ×3 | Tucson Truck Center | Invoice | S-17303 | $337.63 | $11.08 | — |
+
+**There is no resync control** on the row — the Actions column is empty for it, so the
+`PaymentResyncModal` chunk the page loads is not reachable from here.
+
+**And no invoice anywhere on this branch is flagged as portal-paid.** `has_portal_payment` was read
+on **120 invoiced-or-paid work orders across both workplaces** (60 on Staging Heavy Duty - 9919, 60 on
+Lethbridge - 4310): **zero** come back true — including S3-17303 itself, forty minutes after its
+payment succeeded.
+
+**Stated as what it is:** the money moved on the payment provider and the portal knows about it; the
+shop's own system does not. Whether that is a scheduled job that has not run, a webhook that is not
+wired on this branch, or something else, is Nemanja's to say — **it is not a defect claim, and it is
+not SV-9697.** What it means for us is concrete: **step 7 cannot be closed until a portal payment
+lands on a ShopView invoice.**
+
+---
+
+## §19 — Comment 76831 updated in place (2026-09-21, 16:59 UTC)
+
+Rebuilt as one complete comment rather than chained, per the standing rule. What changed:
+
+* **The status panel** now carries the two live blockers: the new wording is not built, and a portal
+  payment succeeded but has not reached ShopView.
+* **Checks 4, 5, 6** read *"BEHAVIOUR PASSED - new wording not built yet, cannot re-run"*, with the
+  two live tooltips quoted so Chris can see for himself that the branch still says *Unwind*.
+* **The wording table** now shows Chris's **21 September** copy (Remove / Payments tab), which
+  supersedes his own 18 September version. Both his reversals are explained in one sentence rather
+  than as a correction narrative.
+* **Check 10** reads *"PASSED - re-checked on the Inventory screen"*, and **EX6 was replaced** with
+  **`EX6b_inventory_screen.png`** (attachment **61177**) — four real captures of the Inventory row
+  instead of the table of figures the old exhibit carried.
+* **The portal section** was rewritten around what actually happened today, and asks Nemanja the one
+  question that matters: is there a sync job or webhook for portal payments that is not running here?
+
+**Pre-post gate (Rule 72), run and read before writing:** build marker re-read live —
+`v26.36.8-4ee1c0f`, last-modified Fri 18 Sep 2026 14:32:57 GMT, etag `7b426f64…`, **unchanged** ·
+ticket re-read — newest comment still **76957**, nothing new since, status now **Blocked** · all six
+attachments confirmed present by id · reader-facing text scanned for machine tells — **clean** · no
+technical-details section (Rule 84) · one false detail caught and fixed before sending: two sentences
+said *"this morning"* when the checks ran through the afternoon.
+
+**Read back after posting:** first line is the verdict panel · **6 media nodes, all `"type":"file"`,
+in the intended order** · tables 12 rows (11 checks + header) and 5 rows (4 wording rows + header) ·
+`updated` 2026-09-21T11:59:51-0500.
