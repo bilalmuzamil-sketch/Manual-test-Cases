@@ -1,0 +1,14 @@
+staff fields available: id, email, first_name, last_name, created_on, confirmed_invitation_on, avatar_url, is_active, role_label, staff_id, job_title, salary_type, salary, billable, clockable, is_sales_rep, is_default, departments, defaultWorkplace, defaultWorkplaceName, salary_type_label, workplace_id, deletable, role_id
+total staff: 66 | not obviously inactive: 33
+   Admin -> 21 e.g. Krystal Davis
+   Technician -> 9 e.g. Stephen Grimes
+   Senior Service Advisor -> 1 e.g. Jessica Stanton
+   Foreman -> 2 e.g. Dylan Rush
+try Technician Stephen Grimes -> 403 {"errors":[{"error":"Access denied."}]}
+try Technician Craig Mckee -> 403 {"errors":[{"error":"Access denied."}]}
+try Technician Brandi Smith -> 200 {"data":{"role":{"id":"af8d02b5-ecd1-4205-a82f-32a4d5bb1015"
+
+NOW SIGNED IN AS: Brandi Smith | Technician
+  template: technician | permissions: 6
+  the ones that matter: ["customersView","woPickParts","workOrderLinesCreateAndEdit","workOrdersView"]
+EXIT=0

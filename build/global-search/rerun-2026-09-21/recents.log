@@ -1,0 +1,53 @@
+=== C44857 recent activity, query cleared first
+  time headings: ["TODAY"]
+  Clear all present: true
+  panel reads: All Work orders Customers Assets Parts Vendors Part sales Purchase orders Vendor invoices Recent searches Clear All TODAY ZZSECONDARYQ Direct Haulage 1 Ranking Way, Fernv
+  C44858 the kinds of record in the recent list:
+     1. ZZSECONDARYQ Direct Haulage 1 Ranking Way, Fernvale,
+
+=== C44859 clicking a recent item opens that record
+  url changed: true -> 9b1417-0eb7-41a4-a9a9-9db74c4239a7/work-orders
+  C44860 top of the recent list now: "ZZSECONDARYQ Direct Haulage 1 Ranking Way, Fernv"
+
+=== C45128 Clear all empties the history
+  clicked -> panel now reads: Search for something Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc
+
+=== In-page Work Orders list: find its own search control
+{
+ "inputs": [],
+ "searchish": [
+  {
+   "tag": "DIV",
+   "cls": "global-search header-search"
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "global-search__trigger"
+  },
+  {
+   "tag": "SPAN",
+   "cls": "global-search__label"
+  },
+  {
+   "tag": "SPAN",
+   "cls": "global-search__shortcut"
+  },
+  {
+   "tag": "KBD",
+   "cls": "global-search__key"
+  },
+  {
+   "tag": "KBD",
+   "cls": "global-search__key"
+  },
+  {
+   "tag": "DIV",
+   "cls": "page-search work-orders-page-search"
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "q-btn q-btn-item non-selectable no-outli"
+  }
+ ]
+}
+EXIT=0

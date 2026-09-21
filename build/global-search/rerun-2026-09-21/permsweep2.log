@@ -1,0 +1,11 @@
+candidates: Jessica Stanton / Senior Service Advisor | Dylan Rush / Foreman | Jose Sheppard / Foreman
+  cannot impersonate Jessica Stanton -> 403
+
+=== as Dylan Rush / Foreman -> template foreman | permissions 23
+   has work orders view: true | has customers view: true
+   relevant: ["customersCreateAndEdit","customersView","partSalesView","seeFinancialData","vendorOrderManagementCreateAndEdit","vendorOrderManagementView","woOrderParts","woPickParts","woReviewWorkOrders","workOrderLinesCreateAndEdit","workOrderLinesDelete","workOrdersCreateAndEdit","workOrdersView"]
+
+=== as Jose Sheppard / Foreman -> template foreman | permissions 23
+   has work orders view: true | has customers view: true
+   relevant: ["customersCreateAndEdit","customersView","partSalesView","seeFinancialData","vendorOrderManagementCreateAndEdit","vendorOrderManagementView","woOrderParts","woPickParts","woReviewWorkOrders","workOrderLinesCreateAndEdit","workOrderLinesDelete","workOrdersCreateAndEdit","workOrdersView"]
+EXIT=0

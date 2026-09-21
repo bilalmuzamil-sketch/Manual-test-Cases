@@ -1,0 +1,45 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C44857": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on the screen. With nothing typed, the panel shows your recent activity under a Recent searches heading with a Clear All action, and the items sit under a time heading - TODAY in this case.",
+   "not_observed": "Only today's activity exists on this branch, so the Yesterday, Past week and Past 30 days headings were not seen. Each heading appears only when there is something under it."
+  },
+  "C44858": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on the screen. After opening four different kinds of record in turn, the recent list holds all four - a vehicle, a vendor, a part and a job - each drawn exactly like a normal search result.",
+   "not_observed": null
+  },
+  "C44859": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on the screen. Clicking a recent item closes the panel and opens that record, and reopening the panel shows it moved to the top of the recent list.",
+   "not_observed": null
+  },
+  "C44860": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on the screen. Opening a record puts it straight into the recent list, at the top, and the list is the signed-in person's own - it only ever showed records reachable by this sign-in.",
+   "not_observed": "Whether another person's recent list stays separate was not checked from a second sign-in this pass."
+  },
+  "C45128": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on the screen. Clear all empties the whole history, and the panel drops back to the first-time state reading Search for something.",
+   "not_observed": null
+  },
+  "C44874": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on the screen. The jobs list has its own search control. Typing a customer's name narrows the list from 33 rows to the 26 that match, the word stays in the box, and no separate showing-N banner appears.",
+   "not_observed": null
+  },
+  "C44875": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven on the screen. Emptying that box brings all 33 rows straight back, and there is no banner to dismiss - clearing the box is what restores the list.",
+   "not_observed": null
+  }
+ }
+}

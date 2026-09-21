@@ -1,0 +1,18 @@
+=== AS ADMIN === {"slug":"administrator","n":57}
+  tabs  : ["All (43)","Work orders (20)","Customers (4)","Assets (6)","Parts (3)","Vendors (1)","Part sales (1)","Purchase orders (4)","Vendor invoices (4)"]
+  groups: ["Work orders (20) S9160-17671 Z","Customers (4) ZZAUTOTEST Fibri","Assets (6) 2021 KEN WORTH T680","Parts (3) ZZAUTOTEST Fibridge ","Vendors (1) ZZAUTOTEST Fibridg","Part sales (1) P9160-258 ZZAUT","Purchase orders (4) S9160-1765","Vendor invoices (4) 5445546 ZZ"]
+  rows  : 27 | money amounts on screen: 8
+  a part search as admin -> rows 13 | groups ["Work orders (17) S2-16541 Amer","Parts (3) FILTER ASSY. 2 Avail","Purchase orders (9) S2-4636 Un"]
+  recent list as admin: ["2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logi","Jefferson Truck Center - Roanoke 285-069-228","FILTER ASSY. 2 Available CF19900","S9160-17680 4 Star Truck Repair Approved 201"]
+
+=== SWITCH TO THE TECHNICIAN ===
+  switch-user -> 200
+  now: {"slug":"technician","n":6}
+  tabs  : ["All (30)","Work orders (20)","Customers (4)","Assets (6)","Parts","Vendors","Part sales","Purchase orders","Vendor invoices"]
+  groups: ["Work orders (20) S9160-17671 Z","Customers (4) ZZAUTOTEST Fibri","Assets (6) 2021 KEN WORTH T680"]
+  rows  : 14 | money amounts on screen: 0
+  the same part search -> rows 5 | groups ["Work orders (17) S2-16541 Amer"] | All (17) Work orders (17) Customers (0) Assets (0) Parts Vendors Part sales Purchase order
+  a typo search for a part -> rows 1 | groups ["Customers (1) ≈ close match: Z"]
+  the exact number of a purchase order -> rows 0 | groups []
+  recent list as the technician: []
+EXIT=0

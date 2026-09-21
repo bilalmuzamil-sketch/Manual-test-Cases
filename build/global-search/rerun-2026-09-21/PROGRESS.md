@@ -21,15 +21,15 @@ recorded with `ticket_held` and listed for him) · no Expected edited, ever (114
 | 3 | Grouped Results and Counts | 9 | **DONE** — 6 passed · 2 failed (C44825 already ticketed, C53476 ticket held) · 1 blocked (C44826) |
 | 4 | Scope Tabs | 12 | **DONE** — 12 passed |
 | 5 | Fuzzy Matching | 18 | **DONE** — 18 passed |
-| 6 | Permissions and Role-Based Scoping | 23 | to do |
+| 6 | Permissions and Role-Based Scoping | 23 | **DONE** — 12 passed · 10 blocked · 1 failed (already ticketed) |
 | 7 | Palette Open, Close and Keyboard | 10 | **DONE** — 10 passed |
-| 8 | Recent Activity Default State | 5 | to do |
-| 9 | Mobile Global Search (v2) | 6 | IN PROGRESS |
+| 8 | Recent Activity Default State | 5 | **DONE** — 4 passed · 1 blocked |
+| 9 | Mobile Global Search (v2) | 6 | **DONE** — 6 passed |
 | 10 | Persisting Query | 3 | **DONE** — 2 passed · 1 failed (C44861, ticket held) |
 | 11 | Empty and First-Time State | 2 | **DONE** — 2 passed |
 | 12 | No-Results State | 2 | **DONE** — 1 passed · 1 failed (C44865, already ticketed) |
-| 13 | Page-Search Cutover (v2) | 2 | to do |
-| 14 | In-Page Work Orders List Search | 2 | to do |
+| 13 | Page-Search Cutover (v2) | 2 | **DONE** — 1 passed · 1 blocked (cancelled story) |
+| 14 | In-Page Work Orders List Search | 2 | **DONE** — 2 passed |
 | 15 | Purchase Orders Entity (v2) | 1 | **DONE** — passed |
 | 16 | Vendor Invoices Entity (v2) | 1 | **DONE** — passed |
 | 17 | Error State | 1 | **DONE** — passed |
@@ -63,3 +63,25 @@ pass uses two characters or more.
 **Second instrument note:** cutting a request off inside the browser (`route.abort`) is NOT a server failure — the panel simply closes, which reads as a crash. Make the server answer **500** instead, and the product shows its Search unavailable / Retry banner correctly.
 
 **A reported fault is FIXED:** SV-10178 (asset rows joining the unit number to the year with no separator) does not reproduce — the row now reads `TRK 412 · 2019 Freightliner Cascadia`, matching the work-order row. Checked against the ticket's own steps. The ticket is still *In Progress*, so the QA lead may want to move it.
+
+## ALL 129 IN-SCOPE CHECKS MEASURED — 21/22 September 2026
+
+Run 415 now reads **164 passed · 24 blocked · 15 failed · 0 retest · 0 untested** across all 203 tests
+(the 74 excluded ones keep this morning's results).
+
+**Instrument errors caught before they became reports — five in one night:**
+1. a one-letter query is below the two-character minimum and returns the RECENT list, not results;
+2. arrow keys DO move the chosen scope tab — only the focus ring stays on the strip;
+3. the error banner DOES appear on a real server failure — aborting the request inside the browser is
+   not a server failure and merely closes the panel;
+4. a sound-alike test that was really a near SPELLING made phonetics look as though they reached part
+   descriptions;
+5. the phone layout uses a different control, so the desktop selector found nothing and the panel
+   looked broken.
+
+**Six ranking fixtures carried the same signal on both sides** and were rebuilt so the advantage sits
+on the record listed second; in every rebuilt case the order actually moved.
+
+**Impersonation is the route to a restricted sign-in:** `POST /api/switch-user {user_id}` with an
+**active** staff id (`GET /api/staff?limit=200` → `is_active`). Brandi Smith is a real technician with
+six permissions. Note the `tech` quick-login on this branch is an **administrator**, not a technician.

@@ -1,0 +1,130 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C44877": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. With parts access, a Parts group appears with its rows and count, and the Parts tab shows the same.",
+   "not_observed": null
+  },
+  "C44878": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. The technician has no parts access. There is no Parts group and no part rows at all, and searching directly for a part by name returns only the jobs that mention it - the part itself never appears.",
+   "not_observed": null
+  },
+  "C44881": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. For the technician, the kinds of record she cannot reach have no group at all - they are simply not drawn - and their tabs carry no number beside them, while the kinds she can reach show their groups and counts normally.",
+   "not_observed": null
+  },
+  "C44882": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. The mapping holds exactly. Jobs access shows jobs; customer access shows BOTH customers and vehicles; and with parts, vendor-and-orders, part-sales and financial access all absent, every one of Parts, Vendors, Part sales, Purchase orders and Vendor invoices disappears together - group, count and all. Prices go with them: eight money amounts on screen with full access, none at all as the technician.",
+   "not_observed": null
+  },
+  "C55702": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. With jobs access the Work orders group appears with its rows and count, and its tab shows the same.",
+   "not_observed": null
+  },
+  "C55703": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. With customer access BOTH the Customers group and the Vehicles group appear, with rows and counts - the two travel together, as the mapping says.",
+   "not_observed": null
+  },
+  "C55704": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. With part-sales access the Part sales group appears with its row and count.",
+   "not_observed": null
+  },
+  "C55705": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. With vendor-and-orders access all three of Vendors, Purchase orders and Vendor invoices appear, each with rows and a count.",
+   "not_observed": null
+  },
+  "C55718": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. Typing the exact number of a purchase order the technician cannot reach returns nothing at all - it is not pinned at the top and it is not in any group.",
+   "not_observed": null
+  },
+  "C55720": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. The technician's role is missing four areas at once, and all four vanish together - no group, no count and no number on the tab for Parts, Vendors, Part sales, Purchase orders or Vendor invoices - while the areas she does have keep their groups and counts intact.",
+   "not_observed": null
+  },
+  "C55721": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. A misspelled search for a part returns no parts for the technician - only a customer that genuinely matched. Access is applied to near-miss matches too, not just exact ones.",
+   "not_observed": null
+  },
+  "C44880": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. Every record returned in the whole night's testing belonged to this organisation - nothing from anywhere else ever appeared.",
+   "not_observed": "There is no second organisation's data on this branch to search for, so this is an absence of anything foreign rather than a positive demonstration that another organisation's records are held back."
+  },
+  "C55717": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. The technician's recent list is empty, but that proves nothing: the list belongs to each person individually and she has never opened anything, so it would be empty whether it filters by access or not.",
+   "not_observed": "Whether a record the person can no longer reach is dropped from their own recent list.",
+   "todo": "Sign in as the technician, open a few records she CAN reach, then have her access to one of those kinds taken away, and look at her recent list again. Nothing else is held up by this."
+  },
+  "C44879": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. Every person available to sign in as on this branch has jobs access - the technician, the foremen and the administrators all do. The people available to sign in as on this branch all have this access, so there is no way to see the behaviour without it. Doing it properly means switching one single permission off on the technician role, looking, and switching it back. That role is shared by nine technicians, so I have not done it unattended overnight - a half-finished change there would be felt by everyone on it in the morning.",
+   "not_observed": "What the panel shows to someone without jobs access.",
+   "todo": "Switch jobs access off on the technician role, look, and switch it back. About ten minutes with someone watching."
+  },
+  "C55719": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. This needs someone who CANNOT see customers, so that a contact match has no company to return. Every person available to sign in as has customer access. The people available to sign in as on this branch all have this access, so there is no way to see the behaviour without it. Doing it properly means switching one single permission off on the technician role, looking, and switching it back. That role is shared by nine technicians, so I have not done it unattended overnight - a half-finished change there would be felt by everyone on it in the morning.",
+   "not_observed": "Whether a contact match is hidden when its company is out of reach.",
+   "todo": "Switch customer access off on the technician role, search for the contact, and switch it back."
+  },
+  "C55731": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. This check asks for ONE permission to be switched off and the same record watched as it disappears. Comparing two different people instead changes several permissions at once, so it cannot answer this - the record does vanish between the two sign-ins, but not for a reason this check could pin on parts access alone. The people available to sign in as on this branch all have this access, so there is no way to see the behaviour without it. Doing it properly means switching one single permission off on the technician role, looking, and switching it back. That role is shared by nine technicians, so I have not done it unattended overnight - a half-finished change there would be felt by everyone on it in the morning.",
+   "not_observed": "The same record appearing and then disappearing with only parts access changed.",
+   "todo": "Switch parts access off on the technician role on its own, look at the seeded record, and switch it back."
+  },
+  "C55732": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. This check asks for ONE permission to be switched off and the same record watched as it disappears. Comparing two different people instead changes several permissions at once, so it cannot answer this - the record does vanish between the two sign-ins, but not for a reason this check could pin on jobs access alone. The people available to sign in as on this branch all have this access, so there is no way to see the behaviour without it. Doing it properly means switching one single permission off on the technician role, looking, and switching it back. That role is shared by nine technicians, so I have not done it unattended overnight - a half-finished change there would be felt by everyone on it in the morning.",
+   "not_observed": "The same record appearing and then disappearing with only jobs access changed.",
+   "todo": "Switch jobs access off on the technician role on its own, look at the seeded record, and switch it back."
+  },
+  "C55733": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. This check asks for ONE permission to be switched off and the same record watched as it disappears. Comparing two different people instead changes several permissions at once, so it cannot answer this - the record does vanish between the two sign-ins, but not for a reason this check could pin on customers access alone. The people available to sign in as on this branch all have this access, so there is no way to see the behaviour without it. Doing it properly means switching one single permission off on the technician role, looking, and switching it back. That role is shared by nine technicians, so I have not done it unattended overnight - a half-finished change there would be felt by everyone on it in the morning.",
+   "not_observed": "The same record appearing and then disappearing with only customers access changed.",
+   "todo": "Switch customers access off on the technician role on its own, look at the seeded record, and switch it back."
+  },
+  "C55734": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. This check asks for ONE permission to be switched off and the same record watched as it disappears. Comparing two different people instead changes several permissions at once, so it cannot answer this - the record does vanish between the two sign-ins, but not for a reason this check could pin on part sales access alone. The people available to sign in as on this branch all have this access, so there is no way to see the behaviour without it. Doing it properly means switching one single permission off on the technician role, looking, and switching it back. That role is shared by nine technicians, so I have not done it unattended overnight - a half-finished change there would be felt by everyone on it in the morning.",
+   "not_observed": "The same record appearing and then disappearing with only part sales access changed.",
+   "todo": "Switch part sales access off on the technician role on its own, look at the seeded record, and switch it back."
+  },
+  "C55735": {
+   "verdict": "Blocked",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Measured on the screen, signed in first with full access and then as a real technician with six permissions. This check asks for ONE permission to be switched off and the same record watched as it disappears. Comparing two different people instead changes several permissions at once, so it cannot answer this - the record does vanish between the two sign-ins, but not for a reason this check could pin on vendors and orders access alone. The people available to sign in as on this branch all have this access, so there is no way to see the behaviour without it. Doing it properly means switching one single permission off on the technician role, looking, and switching it back. That role is shared by nine technicians, so I have not done it unattended overnight - a half-finished change there would be felt by everyone on it in the morning.",
+   "not_observed": "The same record appearing and then disappearing with only vendors and orders access changed.",
+   "todo": "Switch vendors and orders access off on the technician role on its own, look at the seeded record, and switch it back."
+  },
+  "C55736": {
+   "verdict": "Blocked",
+   "observed": "Not judged this pass. The wording of what this check expects was altered on 20 September and the QA lead has held the question of putting it back, so judging the product against wording that is itself under review would not mean anything.",
+   "not_observed": "Everything this check asks about.",
+   "todo": "Decide what this check's expected wording should say - it is one of the two the QA lead asked to hold - then run it. The measurement itself takes minutes."
+  },
+  "C55737": {
+   "verdict": "Blocked",
+   "observed": "Not judged this pass. The wording of what this check expects was altered on 20 September and the QA lead has held the question of putting it back, so judging the product against wording that is itself under review would not mean anything.",
+   "not_observed": "Everything this check asks about.",
+   "todo": "Decide what this check's expected wording should say - it is one of the two the QA lead asked to hold - then run it. The measurement itself takes minutes."
+  }
+ }
+}
