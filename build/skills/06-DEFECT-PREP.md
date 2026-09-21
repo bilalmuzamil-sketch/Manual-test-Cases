@@ -1256,6 +1256,34 @@ then the quote. Worked example: comment **76907** on SV-10188 — two annotated 
 order's own parts, then the search opened from that same work order), 329 words, one verbatim PRD
 quote, and the test check with its run link at the bottom.
 
+### 🛑 RULE 114 — THE EXPECTED BEHAVIOUR IS NEVER CHANGED, NOT EVER (QA lead, 2026-09-21)
+
+**Verbatim:** *"NO, you MUST NEVER change the expected behavioer ever, save this as a rule forever."*
+
+**You TEST AGAINST the Expected. You never edit it.** Not because the build cannot demonstrate it, not
+because the state cannot be seeded, not because it contradicts the source, and not on an earlier
+go-ahead — he has withdrawn that go-ahead for this field.
+
+| Situation | What you do |
+|---|---|
+| cannot be run on this build | **Blocked**, reason in plain words (Rule 69's marker where it fits) |
+| the state or permission does not exist in the product | **Blocked**, and report it |
+| the Expected contradicts the source | **report it and leave the text alone** |
+| the Expected quotes a source sentence that does not exist | **report it; never silently repair it** |
+
+⛔ **Supersedes Rule 106's "ask permission to CORRECT the case's Expected".** Rule 106's
+**reconciliation** stands and matters more than ever — compare the case's Expected against the live
+source and the build every pass — but it now **ends in a report, never in a write**.
+
+**Editable with his go-ahead:** preconditions · steps · title · the automation marker · the provenance
+line below the Expected. **Never editable:** the Expected behaviour itself.
+
+**Why there is no exception clause:** a rewritten Expected does not announce itself. The check goes
+green, the run looks healthier, and the requirement it existed to defend is defended by nothing. A
+false pass outlives a false defect — a false defect is argued down the same day; a false pass is
+believed for years. Incident: C55736 and C55737, 2026-09-20 (full account in `RULES-61-ONWARD.md`
+rule 114).
+
 ### 🛑 BEFORE CALLING A PERMISSION SIDE-EFFECT A DEFECT, OPEN THE ROLES AND PERMISSIONS SCREEN (QA lead, 2026-09-20)
 
 **Verbatim:** *"if you disable something and find that something else which apparently is not related

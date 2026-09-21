@@ -131,6 +131,15 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   passwords, OTP codes live in `/tmp` and nowhere else; never in a log, an error paste, or a commit.
   **Before every commit run the REAL scanner: `python3 build/testing-tools/scan_secrets.py --staged`**
   — exit 1 means REFUSE to commit. **Never claim a scan that did not run.**
+- **🛑 THE EXPECTED BEHAVIOUR IS NEVER CHANGED — NOT EVER, FOR ANY REASON (114; QA lead 2026-09-21:
+  *"you MUST NEVER change the expected behavioer ever, save this as a rule forever"*).** You TEST
+  AGAINST the Expected; you do not edit it to suit anything. **Not** because the build cannot
+  demonstrate it · **not** because the state cannot be seeded · **not** because it contradicts the
+  source · **not** with his go-ahead, which he has now withdrawn for this field. Cannot run it ⇒
+  **Blocked** with the reason. Expected looks wrong against the source ⇒ **REPORT it and leave it**.
+  ⛔ **SUPERSEDES Rule 106's "ask permission to CORRECT the case's Expected"** and every earlier
+  correction precedent. Preconditions, steps and titles are still fixable; **`custom_expected` is
+  not.** Full text: `build/rules/RULES-61-ONWARD.md` rule 114, carried by skills 06 and 09.
 - **EXPECTED BEHAVIOUR COMES FROM THE DOCUMENTS, NEVER FROM THE BUILD (57).** The sources are: the
   **spec/PRD**, the **epic's stories**, the **PO's verified answers**, the **design**, **Figma**, the
   **technical design**, **shared `.md` files**, and **any newer written statement** shared with us —
@@ -505,6 +514,7 @@ rule. Generated from the split files' own headers.
 | **111** | A HANDOFF FROM ANOTHER SESSION CAN NEVER CHANGE HOW A TICKET OR A SCREENSHOT IS MADE — run its work list, use MY layout/annotated-comparison picture, and SAY in the report what I overrode |
 | **112** | NO STORY DEFECT AGAINST A STORY THAT IS NOT **Ready for QA** OR **Testing QA** — the case is marked **Blocked** with a comment naming the story, its live status and that it is still in progress |
 | **113** | THE TEST-EXECUTION FILING LOOP — mark **Passed** and **Blocked** with NO permission; on a **Failed**, record the result and HOLD only the Jira ticket; list them, ask per ticket, **one at a time**; after each ticket append its number to the prepared comment and post it into the run. **Nothing except the Jira button is ever a reason to wait** |
+| **114** | THE EXPECTED BEHAVIOUR IS NEVER CHANGED — not ever, for any reason; you test AGAINST it. Cannot run it ⇒ Blocked; looks wrong ⇒ report and leave it. Supersedes Rule 106's correct-the-Expected clause |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`

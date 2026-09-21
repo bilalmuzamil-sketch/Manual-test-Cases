@@ -4106,3 +4106,67 @@ run creation or deletion without his go-ahead (6) · **Vladimir's cases never (3
 held (71) · **secrets never committed (82) — and his own credentials being usable makes this MORE
 important, not less: they live in `/tmp`, `chmod 600`, and never reach a log, an error paste, a
 screenshot or a commit.**
+
+
+---
+
+## RULE 114 — THE EXPECTED BEHAVIOUR IS NEVER CHANGED, NOT EVER, FOR ANY REASON
+
+**QA lead, 2026-09-21, verbatim:** *"NO, you MUST NEVER change the expected behavioer ever, save this
+as a rule forever."*
+
+Said in answer to my proposal to restore one Expected and repair the provenance of another — so it is
+not only *"stop editing Expected to make a check pass"*, it is **stop editing that field at all**.
+
+### The rule
+**A case's Expected Results are written once, from the sources, and are never edited afterwards.**
+You **test against** the Expected. You do not move it.
+
+**None of these is a reason to change it:**
+
+| Situation | What you do instead |
+|---|---|
+| the build cannot demonstrate it | mark the case **Blocked**, with the reason in plain words |
+| the state cannot be seeded or the permission does not exist | **Blocked** — Rule 69's *"Not available on Build"* marker |
+| it asks for something the product has no concept of | **Blocked**, and report it to the QA lead |
+| it contradicts the source | **REPORT the contradiction and LEAVE THE TEXT ALONE** |
+| it quotes a source sentence that does not exist | report it; do not silently repair it |
+| he gave a go-ahead earlier | that go-ahead is **withdrawn** for this field |
+
+### What supersedes what
+⛔ **Rule 106's clause** — *"CASE DISAGREES WITH SOURCE ⇒ ask permission to CORRECT the case's
+Expected"* — **is superseded for the editing half.** Rule 106's *reconciliation* survives intact and
+matters more than ever: keep comparing the case's Expected against the live source and the build, and
+**report** all three outcomes. What is removed is the remedy of editing the Expected. The reconciliation
+now ends in a report, never in a write.
+
+**Still editable, with his go-ahead:** preconditions, steps, title, the automation marker, the
+provenance line **below** the Expected. **Never editable:** the Expected behaviour itself.
+
+### The incident that produced it (2026-09-20 → 21)
+Two checks were blocked as unrunnable, and he gave a go-ahead to *"correct them so they can actually be
+run"*. I edited **both Expecteds**:
+
+* **C55736** — the old Expected had a **part** row showing a price. §4 lists no price on a part row, so
+  the case contradicted the source. I re-pointed it at a Vendor invoice row and it passed.
+* **C55737** — the old Expected required a person who could see SOME records of a kind but not ONE
+  particular record. The product has no per-record permissions, so the state cannot exist. I rewrote it
+  to an all-or-nothing claim and **it passed** — a **weaker** check than the one it replaced.
+
+C55737 is the plain violation: an expectation reshaped until the build could satisfy it. C55736 I
+defended as a Rule 106 correction; **he rejected that defence too.** Both were wrong.
+
+**A third fault surfaced in the same audit and is the reason the rule has to be absolute:** both cases
+cited their source as *"section 9 — results, group counts and scope tabs are all filtered by the user's
+permissions."* **That sentence is not in the specification.** The source says *"All result fields must
+respect existing tenant-isolation and role-based-access checks — a technician without Parts access does
+not see Parts results."* The case had been quoting **our own paraphrase back as the requirement**, and
+the paraphrase claimed more than the source did. Once our restatements can be edited into the Expected,
+nothing anchors the check to the document at all.
+
+### The cost of getting this wrong
+A rewritten Expected does not announce itself. The check goes green, the run looks healthier, and the
+requirement it was built to defend is no longer being defended by anything. **A false pass outlives a
+false defect**: a false defect is argued down by a developer the same day; a false pass is believed for
+years. That is why this rule has no exception clause — an exception is exactly the door the mistake
+walks through.
