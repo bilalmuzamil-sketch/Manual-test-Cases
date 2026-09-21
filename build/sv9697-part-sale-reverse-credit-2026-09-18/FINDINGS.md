@@ -1147,3 +1147,52 @@ P2-193 → `Credit CM-3956 ($231.00) has been applied. Unwind it before reversin
 **Posted as comment 76974**, 2026-09-21T12:42:40-0500. Read back: first line is the verdict, 1 media
 `"type":"file"`, **5 mentions resolving to @Nemanja Djuric ×3 and @Chris Ward ×2**, summary table 7
 rows. No technical-details section (Rule 84). **76831 and 76969 were not touched.**
+
+---
+
+## §23 — Check 7 VERIFIED LIVE, and two things I had missed inside 76973
+
+**I had read 76973's text and never opened what was in it.** The QA lead sent me back to it. Two things
+were sitting there:
+
+**(1) An `inlineCard` node my first read did not surface: [SV-10298](https://shopview.atlassian.net/browse/SV-10298).**
+I had asked Nemanja in 76974 for "the number of the wording ticket" — **he had already linked it in the
+comment I was replying to.** My ADF flattener printed `text` and `mention` nodes and silently dropped
+`inlineCard`, so the link never reached me. **Fixed the extractor; the lesson is that a comment is not
+read until every node type in it has been rendered.**
+
+**(2) The attachment, `18981.jpg` (61180), which I cited as "proof attached" without looking at.**
+Opening it changed the day's outcome. It is a phone capture of the customer transactions view showing
+a **Payment, "Payment made Online.", $35.32, Paid**, against invoice **P9697-253** — *one of our own
+part sales on this branch*. Total charged $36.79, Stripe fee −$1.76, net $35.03.
+
+### What that made possible
+
+P9697-253 is portal-paid **on sv9697**, so the thing §9 and §18 could never produce was sitting on the
+branch all along. Opened it live:
+
+* status **Paid**, invoice **INV-P9697-253**, invoice date Sep 18, **paid date Sep 21**
+* payment row **`Sep 21, 2026 - Online $35.32`**, balance **$0.00**
+* **Reverse is disabled**, and the tooltip reads, verbatim:
+  **`This invoice was paid through the customer portal. Credits and refunds must be handled through the portal.`**
+
+That is the exact string §9 could only read out of `InvoiceActionBar` and explicitly refused to claim
+as observed. **Check 7 is now PASSED on our own live observation** — exhibit
+`ev/EX8_portal_blocks_reverse.png` (attachment 61182).
+
+**The limit, stated rather than glossed:** `GET /work-orders/view` returns **`credits: []`** for
+P9697-253, so it carries no credit. What is proven is that a portal payment blocks the reverse and
+shows the specified message. **The ordering — portal message ahead of a blocking-credit message — is
+still only what the code says, not something observed**, because no order on this branch has both.
+
+### And a real catch on the follow-up ticket
+
+**SV-10298** is titled *"Reverse-blocked tooltip copy: say 'used' and 'Void', not 'applied' and
+'Unwind'"* — Task, Board Backlog. **That is Chris's 18 September wording, the one he himself withdrew
+on 21 September** after Nemanja proved "Void" and "used" appear nowhere in the released frontend. Built
+to its own title, SV-10298 ships the words both of them already ruled out. Raised in the comment,
+tagged to Chris as his call.
+
+**Posted as comment 76975**, 2026-09-21T12:49:13-0500. Read back: verdict line first, 1 media
+`"type":"file"`, 3 mentions (@Nemanja ×2, @Chris ×1), links to SV-10298 and comment 76957, table 7
+rows. 76831, 76969 and 76974 untouched.
