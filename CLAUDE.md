@@ -99,7 +99,11 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   we take EXACTLY TWO THINGS: the on-screen labels/navigation, and the pass/fail verdict.** If the
   build differs, the case KEEPS the documented expectation and becomes a deviation with a ticket.
   **A closed ticket is not a spec change. An ambiguous source is never resolved by looking at the
-  build (58) — hold the case and ask.**
+  build (58) — hold the case and ask.** **🛑 AND THE EXPECTED RESULT IS THE SOURCE'S VERBATIM QUOTE,
+  NEVER CHANGED (57, QA lead 2026-09-21: *"the expected behavior should be the exact QUOTE from the
+  sources, that MUST NOT ever be changed"*):** reproduce the source word for word with its page/section
+  id; the clear/plain/glossary wording (102, 7/9/18) applies to preconditions, steps and bracketed
+  labels — NEVER to the asserted Expected. Source wording unclear ⇒ hold and ask (58), never reword.
 - **🛑 A LABEL IS READ FROM THE SMALLEST ELEMENT THAT OWNS IT, AND QUOTED AS DISPLAYED (2026-09-03).**
   **(a) WHICH ELEMENT.** `cells[i]` per column header, `value` for an input, `textContent` otherwise,
   icons stripped. Flattened text answers "does this appear", NEVER "this is the label".

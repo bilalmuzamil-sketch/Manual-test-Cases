@@ -1294,6 +1294,21 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     line this sentence sits with).
 57. **THE SOURCE OF EXPECTED BEHAVIOUR IS THE DOCUMENT, NEVER THE BUILD — from the build we take
     only the labels and the verdict (all projects).**
+    **⇒ AMENDMENT, 2026-09-21 — THE EXPECTED RESULT IS THE VERBATIM QUOTE FROM THE SOURCE AND IS NEVER
+    CHANGED. USER DIRECTIVE (2026-09-21, verbatim):** *"So REMEMBER always, the expected behavior should
+    be the exact QUOTE from the sources, that MUST NOT ever be changed. Save it as your rule forever."*
+    **⇒ A CASE'S EXPECTED RESULT IS A VERBATIM QUOTE OF THE SOURCE** (the spec/PRD, epic story, PO
+    verified answer, or design per this rule's source list) — **reproduced exactly, word for word, and
+    NEVER reworded, paraphrased, summarised, softened, or edited toward the build.** Quote it with its
+    location (page/section/requirement id) so it is traceable. Where a case's Expected does not match the
+    source, it is corrected **TO** the quote (Rule 106), never away from it; where the build differs, the
+    quote STAYS and the case becomes a deviation (three outcomes, Rule 62-b). **RECONCILES WITH RULES 102
+    AND 7/9/18:** the clear / plain / Build-Glossary wording those rules require applies to the
+    **PRECONDITIONS and STEPS** (how the tester reaches and performs the check) and to clarifying LABELS
+    in brackets — it does **NOT** license rewording the **asserted Expected behaviour**, which remains the
+    source's exact words. **If the source's own wording is unclear or ambiguous, HOLD and ask (Rule 58);
+    never "clarify" it by rewriting it.** Worked precedent: C55736/C55737 were re-quoted to PRD 576978945
+    §4/§5.2/§9 + the 2026-08-12 engineering resolution on 2026-09-21 (`build/global-search/source-reconcile-expected-2026-09-21.md`).
     USER DIRECTIVE (2026-08-05, verbatim): *"The expected behaviors are NOT the ones 'how the build
     is behaving'. Expected behaviors are the ones which are either in PRD-COnfluence/Epic STories/
     Verified in the Anser sheets by the PO. From the Build we are JUST doing the VIU and the
