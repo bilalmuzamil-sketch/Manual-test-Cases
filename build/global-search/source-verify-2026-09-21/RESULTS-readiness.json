@@ -1,0 +1,34 @@
+{
+ "pass_meta": {
+  "pass": "Defect-readiness gates before filing",
+  "date": "21 September 2026",
+  "build": "v26.36.8-d146c39",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C53476": {
+   "verdict": "Failed",
+   "observed": "Re-checked today on build v26.36.8-d146c39. One search for 'ZZ': the All tab reads All (111), while every tab for a single record type is correct and stops at 20 - Work orders (20), Customers (20), Assets (20), Parts (20), Vendors (11), Part sales (9), Purchase orders (6), Vendor invoices (5). 20+20+20+20+11+9+6+5 = 111, so the All figure is the per-type figures added together. A second search for 'ZZAUTOTEST' behaves the same way: All (61), which is 20+14+9+4+3+3+4+4. The same uncapped number is also read out to screen-reader users as '111 results found across 8 categories'; that text is not visible on the screen. The requirement says no count in the box reads higher than 20, the tab included, so this is a genuine fault and not a wording disagreement.",
+   "not_observed": "The 'Show all N' links are absent on this build, so the third place the limit applies could not be read; that absence is already reported separately.",
+   "todo": "What needs to be done: a report has been prepared and is waiting for the QA lead to approve raising it. One point still needs his decision - the story this belongs to was closed as no longer needed, so he must say which live story it should be raised against. Nothing has been raised yet.",
+   "ticket_held": true,
+   "ticket": "No report raised yet - it is with the QA lead. The report is written and waiting for him to approve raising it, and to name the live story it should sit under."
+  },
+  "C55716": {
+   "verdict": "Failed",
+   "observed": "Re-checked today on build v26.36.8-d146c39 with everything else held equal: two customers with the same name start, the same address, no jobs at all on either one, and both records opened first so neither counts as more recently looked at. The second one was changed, three times over 45 seconds the list was read, and the order never moved. A rename to the same record did show up in search within 15 seconds, so the search does notice changes to this record. HOWEVER: no customer record on this branch carries a 'last changed' date anywhere we can read, so it cannot be shown that one customer really is more recently updated than the other. 'The rule is not applied' and 'a customer has no date for the rule to read' look exactly the same from outside.",
+   "not_observed": "Whether a customer record stores a last-changed time at all. No other record type on this branch both lacks its own recency scoring and shows a last-changed date, so the rule could not be re-tested elsewhere.",
+   "todo": "What needs to be done: this is NOT being raised as a fault, because it cannot be proved the product was given anything to work with. It goes to the product owner as a question instead - does the most-recently-changed rule apply to customers at all, given customer records carry no dates? A near-identical report in this area was closed as not-a-defect three days ago, so this one waits for that answer.",
+   "ticket_held": true,
+   "ticket": "No report raised, on purpose - the question is with the QA lead. It cannot be proved the product was given a date to work with, so this goes to the product owner as a question instead of being raised as a fault."
+  },
+  "C44861": {
+   "verdict": "Failed",
+   "observed": "Re-checked today on build v26.36.8-d146c39. The first half of what this test asks for WORKS: after the box is closed, the header keeps the last thing searched for, shown as plain text. The second half - a small count marker beside it - does not appear. On checking the requirement as it reads today, THE REQUIREMENT DOES NOT ASK FOR ONE: it says only that the text is kept as plain text and comes back when the box is reopened. The count marker comes from a July design picture that the requirement has since replaced. So the product is right and this test's expected result is out of date.",
+   "not_observed": null,
+   "todo": "What needs to be done: nothing is being raised against the product - raising it would have been a false report. The expected wording of this test needs the QA lead's decision, because expected wording is never changed without him. It sits with the other two wording questions already waiting with him.",
+   "ticket_held": true,
+   "ticket": "No report raised, on purpose - the wording question is with the QA lead. The product matches the requirement as it reads today; it is this test's expected wording that is out of date, and only he changes expected wording."
+  }
+ }
+}
