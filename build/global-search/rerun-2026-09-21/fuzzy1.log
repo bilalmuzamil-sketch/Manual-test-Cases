@@ -1,0 +1,61 @@
+build marker: v26.36.8-d146c39
+
+--- C44839 misspelled name   query="Petersn"  rows=15  highlight-marks=1  close-match-marker=true
+     1. Spaulding Truck Center 1 open Contact match · 670 Brett Radial Apt. 347, Lake 
+     2. Halfmoon Truck Repair Contact match · 3451 Michael Pike, East Haley, Alberta
+     3. Eagar Truck Service & Repair Contact match · 87187 Amanda Brooks, Mckinneystad
+     4. Dunmore Mobile Truck Repair Contact match · 1893 Katelyn Shore, South Johnfort
+
+--- C44839 control - correct spelling   query="Peterson"  rows=15  highlight-marks=1  close-match-marker=true
+     1. ZZAUTOTEST Peterson Hauling 210 Peterson Ridge, Fernvale, Ohio
+     2. Desert Edge Truck Service & Repair 8 open Contact match · 2478 Dan Islands, We
+     3. Lexington Park Diesel Repair 11 open Contact match · 961 Jacob Lodge, Port Emi
+     4. Spaulding Truck Center 1 open Contact match · 670 Brett Radial Apt. 347, Lake 
+
+--- C44840 Abrige -> Aabridge   query="Abrige"  rows=2  highlight-marks=1  close-match-marker=true
+     1. ≈ close match: ZZAUTOTEST Aabridge Freight 14 Aabridge Loop, Fernvale, Ohio
+     2. Upperco Truck & Trailer Repair 987-973-7664 · ≈ close match: 931 Melissa Rest 
+
+--- C44841 transposed letters   query="frieghtliner"  rows=25  highlight-marks=1  close-match-marker=true
+     1. S9160-17698 ZZOPENCOUNT Freight Busy In Progress CNTB-01 · 2021 ≈ close match:
+     2. S9160-17697 ZZOPENCOUNT Freight Busy In Progress CNTB-01 · 2021 ≈ close match:
+     3. S9160-17696 ZZOPENCOUNT Freight Busy In Progress CNTB-01 · 2021 ≈ close match:
+     4. S9160-17695 ZZOPENCOUNT Freight Busy In Progress CNTB-01 · 2021 ≈ close match:
+
+--- C44842 sound-alike name   query="Filbridge"  rows=26  highlight-marks=1  close-match-marker=true
+     1. S9160-17671 ≈ close match: ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WOR
+     2. S9160-17670 ≈ close match: ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WOR
+     3. S9160-17664 ≈ close match: ZZAUTOTEST Fibridge Commercial Ready For Review TRK
+     4. S9160-17662 ≈ close match: ZZAUTOTEST Fibridge Commercial Ready For Review TRK
+
+--- C44843a WO number with dash   query="S9160-17671"  rows=1  highlight-marks=1  close-match-marker=false
+     1. S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680
+
+--- C44843b WO number no dash   query="S916017671"  rows=1  highlight-marks=1  close-match-marker=false
+     1. S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680
+
+--- C44843c WO number with a space   query="S9160 17671"  rows=1  highlight-marks=1  close-match-marker=false
+     1. S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680
+
+--- C44847 near-miss WO number   query="S9160-17999"  rows=0  highlight-marks=1  close-match-marker=false
+
+--- C55725 clearly unrelated   query="Zqwxpol"  rows=0  highlight-marks=1  close-match-marker=false
+
+--- C55713 short noisy query   query="Fib"  rows=28  highlight-marks=1  close-match-marker=false
+     1. S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680
+     2. S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680
+     3. S9160-17664 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Fre
+     4. S9160-17662 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Fre
+
+--- C55715 typo in a part description   query="Altenator"  rows=11  highlight-marks=1  close-match-marker=true
+     1. ≈ close match: ZZPHON Alternator Co 1 Ranking Way, Fernvale, Ohio
+     2. ≈ close match: ZZPARTBUSY Alternator Quiet 24 Available ZZPARTBUSY-2002
+     3. ≈ close match: Serpentine drive belt (105a alternator) 1 Available K060923
+     4. ≈ close match: ZZPARTBUSY Alternator Active 25 Available ZZPARTBUSY-2001
+
+--- C55728 sound-alike on a part description   query="Alternaytor"  rows=11  highlight-marks=1  close-match-marker=true
+     1. ≈ close match: ZZPHON Alternator Co 1 Ranking Way, Fernvale, Ohio
+     2. ≈ close match: ZZPARTBUSY Alternator Quiet 24 Available ZZPARTBUSY-2002
+     3. ≈ close match: Serpentine drive belt (105a alternator) 1 Available K060923
+     4. ≈ close match: ZZPARTBUSY Alternator Active 25 Available ZZPARTBUSY-2001
+EXIT=0

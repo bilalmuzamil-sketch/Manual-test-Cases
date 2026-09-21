@@ -1,0 +1,100 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C44839": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. Typing the name with a letter missing still brings the record back, shown with the close-match marker in front of it and the matching letters picked out in the row.",
+   "not_observed": "It does not lead the list - closer matches on other records sit above it, which is what you would expect."
+  },
+  "C44840": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. The misspelling brings the right company back as the first result, marked as a close match.",
+   "not_observed": null
+  },
+  "C44841": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. Swapping two letters around still finds the vehicles of that make, all marked as close matches.",
+   "not_observed": null
+  },
+  "C44842": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. A name that only SOUNDS like the real one still finds it, marked as a close match.",
+   "not_observed": null
+  },
+  "C44843": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. The job number typed with the dash, without the dash, and with a space instead all return the same single job. Punctuation in the number makes no difference.",
+   "not_observed": null
+  },
+  "C44844": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. The full vehicle number finds the vehicle and its jobs. Changing one character of it returns nothing at all - no near-miss guessing on a vehicle number, which is what the requirement asks for.",
+   "not_observed": null
+  },
+  "C44845": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. The telephone number typed as bare digits and typed with brackets, spaces and a dash both return the same single customer, so the formatting is ignored.",
+   "not_observed": "Which field the number sits on - the company's own or a contact's - was not separated, so the wording on the row was not judged."
+  },
+  "C44846": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. The exact part number finds the part. One character different returns nothing - part numbers are treated as exact, as the requirement asks.",
+   "not_observed": null
+  },
+  "C44847": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. A job number one digit off a real one returns nothing at all. The real job is not offered as a near miss.",
+   "not_observed": null
+  },
+  "C44848": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. On a misspelled search the row carries the close-match marker in front of the name AND the matching letters are picked out within the text, so a soft match is visibly different from an exact one.",
+   "not_observed": null
+  },
+  "C44849": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. The exact part-sale number finds it; one digit off returns nothing, so the real one is never offered as a near miss.",
+   "not_observed": null
+  },
+  "C55713": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. A three-letter search returns only a genuine exact match on those three letters and nothing loose. Short searches do not throw up noisy near misses.",
+   "not_observed": null
+  },
+  "C55714": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. The exact purchase-order number finds the order and the invoice that refers to it. Changing the last character returns only the record that genuinely carries that other number - the first order is never offered as a near miss.",
+   "not_observed": null
+  },
+  "C55715": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. A misspelled word from a part's description still finds the parts, marked as close matches, so typo tolerance does apply to what a part is called.",
+   "not_observed": null
+  },
+  "C55725": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. A word with no relation to anything returns nothing at all. Near-miss matching does not stretch that far.",
+   "not_observed": null
+  },
+  "C55726": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. I created a customer whose name carries accents. Typing the name with the accents and typing it without them both return that same customer at the top. Accents make no difference.",
+   "not_observed": null
+  },
+  "C55727": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. I created one customer with an apostrophe in its name and one with a hyphen. Both are found with the punctuation and without it - four searches, same records each time.",
+   "not_observed": null
+  },
+  "C55728": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Typed into the search box and read off the screen. A word that merely SOUNDS like a part's description returns nothing at all, while the same kind of sound-alike on a company NAME does find the company. So sound-alike matching is reserved for names and is not applied to what a part is called, exactly as the requirement says. Worth recording: my first attempt at this used a word that was actually a near SPELLING rather than a sound-alike, and it did return parts - which would have been reported as a fault. The properly built sound-alike shows the product is right.",
+   "not_observed": null
+  }
+ }
+}

@@ -1,0 +1,63 @@
+a real VIN: 1XKYDP9X1MJ441077
+a real part number: CF19900
+a real part-sale number: P9160-265
+a real purchase-order number: P9160-263
+a customer with a phone: ZZAUTOTEST Fibridge Commercial (264) 328-6723
+
+--- C44844a exact VIN  query="1XKYDP9X1MJ441077"  rows=5
+     1. 2021 KEN WORTH T680 ZZAUTOTEST Fibridge Logistics · VIN:1XKYDP9X1MJ441077
+     2. S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 · VIN
+     3. S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 · VIN
+     highlight elements: ["LABEL.q-field","SPAN.search-row__match-label","MARK.search-row__mark"] e.g. " | VIN: | 1XKYDP9X1MJ441077 | VIN:"
+
+--- C44844b VIN with one wrong character  query="1XKYDP9X1MJ441071"  rows=0
+     highlight elements: ["LABEL.q-field"] e.g. ""
+
+--- C44846a exact part number  query="CF19900"  rows=2
+     1. FILTER ASSY. 2 Available CF19900
+     2. S2-16541 American Heavy Duty Truck Repair Paid UNIT 23 · 2006 Peterbilt 378 
+     highlight elements: ["LABEL.q-field","MARK.search-row__mark","SPAN.search-row__match-label"] e.g. " | CF19900 | Part number: | CF19900"
+
+--- C44846b part number one character off  query="CF19901"  rows=0
+     highlight elements: ["LABEL.q-field"] e.g. ""
+
+--- C44849a exact part-sale number  query="P9160-265"  rows=1
+     1. P9160-265 ZZTOGPS Motors Estimate Admin ShopView · 2 days ago
+     highlight elements: ["LABEL.q-field","MARK.search-row__mark"] e.g. " | P9160-265"
+
+--- C44849b one digit off  query="P9160-266"  rows=0
+     highlight elements: ["LABEL.q-field"] e.g. ""
+
+--- C55714a exact purchase-order number  query="P9160-263"  rows=3
+     1. P9160-263 5 Star Truck Repair Partial Delivery $40.00 · Sep 17, 2026
+     2. P9160-263 7 Star Truck Repair Approved Admin ShopView · Sep 17, 2026
+     3. cv124 5 Star Truck Repair Unpaid $21.00 · Sep 17, 2026 · PO number:P9160-263
+     highlight elements: ["LABEL.q-field","MARK.search-row__mark","SPAN.search-row__match-label"] e.g. " | P9160-263 | P9160-263 | PO number:"
+
+--- C55714b one character off  query="P9160-264"  rows=1
+     1. P9160-264 ZZAUTOTEST Bridgeport Hauling Estimate Admin ShopView · Sep 18, 20
+     highlight elements: ["LABEL.q-field","MARK.search-row__mark"] e.g. " | P9160-264"
+
+--- C44845a phone, digits only  query="2643286723"  rows=1
+     1. ZZAUTOTEST Fibridge Commercial 11 open Contact match · 4120 Fibridge Commerc
+     highlight elements: ["LABEL.q-field"] e.g. ""
+
+--- C44845b phone, formatted  query="(264) 328-6723"  rows=1
+     1. ZZAUTOTEST Fibridge Commercial 11 open Contact match · 4120 Fibridge Commerc
+     highlight elements: ["LABEL.q-field"] e.g. ""
+
+--- C44848 highlighting on a fuzzy match  query="Petersn"  rows=15
+     1. Spaulding Truck Center 1 open Contact match · 670 Brett Radial Apt. 347, Lak
+     2. Halfmoon Truck Repair Contact match · 3451 Michael Pike, East Haley, Alberta
+     highlight elements: ["LABEL.q-field","MARK.search-row__mark"] e.g. " | ≈close match:Peterman's Diesel Repair | ≈close match:Pete"
+
+--- C55728 a true sound-alike, not a near spelling  query="Awlturnaytor"  rows=7
+     1. ≈ close match: ZZPHON Alternator Co 1 Ranking Way, Fernvale, Ohio
+     2. ≈ close match: Remanufactured Alternator 0 Available 213-4760
+     3. S2-4915 Grand Haven Diesel Services LLC Ordered $68,354.53 · Mar 17, 2025 · 
+     highlight elements: ["LABEL.q-field","MARK.search-row__mark","SPAN.search-row__match-label"] e.g. " | ≈close match:ZZPHON Alternator Co | ≈close match:Remanufa"
+
+--- C55713 a three-letter query one letter off  query="Fbr"  rows=1
+     1. 15290 · 2017 Gmc Sierra Fenton Trailer Repair Ltd · Matched:FBR
+     highlight elements: ["LABEL.q-field","SPAN.search-row__match-label","MARK.search-row__mark"] e.g. " | Matched: | FBR"
+EXIT=0

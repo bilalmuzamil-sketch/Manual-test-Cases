@@ -1,0 +1,56 @@
+=== C44839 does the Peterson record itself come back for the typo?
+   rows: 15 | a Peterson-named record present: true
+   the ones that are Peterson-ish: [
+  'Amimi Diesel Services Inc 919-554-7176 · ≈ close match: 39',
+  '≈ close match: Saint Peters Truck Service & Repair 356-098'
+]
+
+=== C55728 sound-alike must NOT reach part numbers or descriptions
+
+---   a sound-alike of a PART description  query="Filtur Assee"  rows=0
+
+---   control - the same part by its real description  query="FILTER ASSY"  rows=13
+     1. S2-16541 American Heavy Duty Truck Repair Paid UNIT 23 · 2006 Peterbilt 378 · 
+     2. S2-16324 Monroe Truck Service & Repair Paid E10024 · 2010 Peterbilt 367 · Part
+     3. S2-15541 Mobile Truck & Trailer Repair Island Lake Paid SV1510 · 2015 Ford F-5
+     4. S2-15621 Lamkin Diesel Services Inc Paid A5103R · 2015 Freightliner 114sd · Pa
+
+---   a sound-alike of a CUSTOMER name (phonetics ARE allowed here)  query="Feebridge"  rows=27
+     1. S9160-17671 ≈ close match: ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WOR
+     2. S9160-17670 ≈ close match: ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WOR
+     3. S9160-17664 ≈ close match: ZZAUTOTEST Fibridge Commercial Ready For Review TRK
+     4. S9160-17662 ≈ close match: ZZAUTOTEST Fibridge Commercial Ready For Review TRK
+
+=== C55726 / C55727 seeding an accented name and an apostrophe name
+   create "José Martínez Transport" -> 201 {"data":{"company_id":"cc7e26e0-7d29-4882-ab31-5ed831afdc25"}}
+   create "O'Brien Haulage Ltd" -> 201 {"data":{"company_id":"97f7e4af-0a63-49bf-b7db-9817b344b96c"}}
+   create "Smith-Jones Motors" -> 201 {"data":{"company_id":"b636a1eb-a386-451f-aec2-881a5d6cfc70"}}
+
+--- C55726a without accents  query="Jose Martinez"  rows=4
+     1. José Martínez Transport 9 Fuzzy Lane, Fernvale, Ohio
+     2. ZZACC José Martínez 1 Ranking Way, Fernvale, Ohio
+     3. Monroe Truck Service & Repair 16 open Contact match · 938 Zachary Lodge Apt. 4
+     4. Ironclad Diesel Performance Contact match · 945 Shah Isle, Goodwinmouth, Princ
+
+--- C55726b with accents  query="José Martínez"  rows=4
+     1. José Martínez Transport 9 Fuzzy Lane, Fernvale, Ohio
+     2. ZZACC José Martínez 1 Ranking Way, Fernvale, Ohio
+     3. Monroe Truck Service & Repair 16 open Contact match · 938 Zachary Lodge Apt. 4
+     4. Ironclad Diesel Performance Contact match · 945 Shah Isle, Goodwinmouth, Princ
+
+--- C55727a without the apostrophe  query="OBrien Haulage"  rows=2
+     1. O'Brien Haulage Ltd 9 Fuzzy Lane, Fernvale, Ohio
+     2. ZZPUNC O'Brien ≈ close match: Haulage 1 Ranking Way, Fernvale, Ohio
+
+--- C55727b with the apostrophe  query="O'Brien Haulage"  rows=2
+     1. O'Brien Haulage Ltd 9 Fuzzy Lane, Fernvale, Ohio
+     2. ZZPUNC O'Brien Haulage 1 Ranking Way, Fernvale, Ohio
+
+--- C55727c hyphen replaced by a space  query="Smith Jones Motors"  rows=2
+     1. Smith-Jones Motors 9 Fuzzy Lane, Fernvale, Ohio
+     2. ZZPUNC Smith-Jones Motors 1 Ranking Way, Fernvale, Ohio
+
+--- C55727d with the hyphen  query="Smith-Jones Motors"  rows=2
+     1. Smith-Jones Motors 9 Fuzzy Lane, Fernvale, Ohio
+     2. ZZPUNC Smith-Jones Motors 1 Ranking Way, Fernvale, Ohio
+EXIT=0
