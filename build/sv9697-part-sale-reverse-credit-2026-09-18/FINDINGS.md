@@ -1100,3 +1100,50 @@ and @Nemanja Djuric**, summary table 7 rows, all key figures present.
 
 **Repo now matches live:** `build_comment.py` restored to the 76831 text, and today's comment kept
 separately as `build_comment_2026-09-21.py`.
+
+---
+
+## §22 — Nemanja answers the portal, the wording leaves the ticket, and the state is posted as 76974
+
+**Two comments from Nemanja changed the position, and the pre-post gate caught the second one.**
+
+**[76971](https://shopview.atlassian.net/browse/SV-9697?focusedCommentId=76971), 12:25:35:** *"I told
+you I tested this and then switched portal feature branch for a different feature and a different QA
+env, that is why it failed for you. Portal side is unchanged for this feature."*
+
+That accounts for **everything** §18 recorded and it is self-consistent: the portal app was up (SSO
+200), the card payment genuinely succeeded, and it landed in a different environment's data — which
+is exactly why `has_portal_payment` stayed false on all 195 sv9697 invoices. These branches are clones
+of the same seed data, so the portal listing matching sv9697's records (S-17303, P-193 with the right
+customers and amounts) is not evidence it was pointed here.
+
+**Check 7 is therefore closed on HIS evidence, not ours** — the QA lead's ruling (*"I think we can
+trust Nemanja's testing based on this comment"*), and Rule 85's first condition: the developer has
+stated in writing that the environment was not the one under test. **The comment says so in those
+words** rather than implying we observed it (Rule 12).
+
+**[76973](https://shopview.atlassian.net/browse/SV-9697?focusedCommentId=76973), 12:36:23** — posted
+**while the status comment was being drafted, and caught by the Rule-72 gate before it went out:**
+proof attached (`18981.jpg`, attachment 61180) **and** *"wording will be done on a different ticket
+against develop branch as we agreed on the meet."*
+
+**That removes checks 4/5/6 from this ticket.** A meeting decision is the later authoritative source
+(Rule 32), so it stands over Chris's written 21 September argument for a string-only rebuild here.
+
+**The consequence was surfaced once, neutrally, because it is a real one.** With the copy moving off,
+this branch ships the 14 September wording — *"Unwind it before reversing."* — which is precisely what
+Chris argued against in 76957 on the grounds that the word exists nowhere in the product and the
+ticket began with a shop hitting a dead end with no explanation. The comment states that plainly,
+says explicitly that it is a product call and not QA's, and asks Chris only to confirm he is content.
+**It does not re-argue the decision.** It also asks Nemanja for the wording ticket's number so the
+four messages stay traceable from here to there.
+
+**Re-verified live before writing** (workplace switched back to Heavy Duty through the profile menu —
+the `change-location` endpoint returns 200 and does **not** move the SPA, which cost three runs):
+P2-193 → `Credit CM-3956 ($231.00) has been applied. Unwind it before reversing.` · P2-57 →
+`Credits CM-2190 and CM-2191 ($240.16 total) have been applied. Unwind them before reversing.` Build
+`v26.36.8-4ee1c0f` throughout.
+
+**Posted as comment 76974**, 2026-09-21T12:42:40-0500. Read back: first line is the verdict, 1 media
+`"type":"file"`, **5 mentions resolving to @Nemanja Djuric ×3 and @Chris Ward ×2**, summary table 7
+rows. No technical-details section (Rule 84). **76831 and 76969 were not touched.**
