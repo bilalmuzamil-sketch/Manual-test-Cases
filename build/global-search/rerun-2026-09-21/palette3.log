@@ -1,0 +1,32 @@
+=== C44810 Enter opens the highlighted result in the same tab
+  highlighted: ≈ close match: ZZAUTOTEST Aabridge Freig
+  url before: https://sv9160.qa.shopview.com/customers -> after: 3f2d64-fd9d-4da8-be30-941fd49abc86/work-orders | changed: true
+  panel closed: true | new browser tabs opened: 0
+
+=== C44811 Ctrl+Enter opens it in a NEW browser tab
+  tabs before: 1 -> after: 2 | a new tab opened: true
+  original tab still on: the same page
+
+=== C44861 / C44862 / C44863 the query is kept, restored, and can be cleared
+  C44861 header field after closing: "ShopHub expand_more Work Orders Schedule Customers Parts Rep"
+  C44862 on reopening: {"value":"Fibridge","active":["Customers\n(11)"],"rows":11}
+  C44863 clear control: clicked "Close" | after: {"value":"Fibridge","text":"All (58) Work orders (20) Customers (11) Assets (6) Parts (4) Vendors (6) Part sales (1) Purchase orders (6) Vendor invo"}
+
+=== C44876 error state - block the search endpoint and type
+  panel with the search unreachable: (panel gone)
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.fill: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for locator('.search-modal input')[22m
+
+    at _type (/home/user/Manual-test-Cases/build/global-search/run415-execution/gs_probe.mjs:92:14)
+    at type (/home/user/Manual-test-Cases/build/global-search/run415-execution/gs_probe.mjs:88:10)
+    at async file:///tmp/gs/palette3.mjs:55:1 {
+  name: 'TimeoutError'
+}
+
+Node.js v22.22.2
+EXIT=1

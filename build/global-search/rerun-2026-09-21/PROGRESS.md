@@ -17,22 +17,22 @@ recorded with `ticket_held` and listed for him) · no Expected edited, ever (114
 | # | Folder | Checks | State |
 |---|---|---|---|
 | 1 | Ranking and Prioritization | 23 | **DONE** — 19 passed · 1 failed (C55716, ticket held) · 3 blocked (C45137, C45138, C55709) |
-| 2 | Per-Entity Result Shape | 9 | to do |
+| 2 | Per-Entity Result Shape | 9 | IN PROGRESS |
 | 3 | Grouped Results and Counts | 9 | **DONE** — 6 passed · 2 failed (C44825 already ticketed, C53476 ticket held) · 1 blocked (C44826) |
 | 4 | Scope Tabs | 12 | **DONE** — 12 passed |
 | 5 | Fuzzy Matching | 18 | **DONE** — 18 passed |
 | 6 | Permissions and Role-Based Scoping | 23 | to do |
-| 7 | Palette Open, Close and Keyboard | 10 | IN PROGRESS |
+| 7 | Palette Open, Close and Keyboard | 10 | **DONE** — 10 passed |
 | 8 | Recent Activity Default State | 5 | to do |
 | 9 | Mobile Global Search (v2) | 6 | to do |
-| 10 | Persisting Query | 3 | to do |
-| 11 | Empty and First-Time State | 2 | to do |
-| 12 | No-Results State | 2 | to do |
+| 10 | Persisting Query | 3 | **DONE** — 2 passed · 1 failed (C44861, ticket held) |
+| 11 | Empty and First-Time State | 2 | **DONE** — 2 passed |
+| 12 | No-Results State | 2 | **DONE** — 1 passed · 1 failed (C44865, already ticketed) |
 | 13 | Page-Search Cutover (v2) | 2 | to do |
 | 14 | In-Page Work Orders List Search | 2 | to do |
 | 15 | Purchase Orders Entity (v2) | 1 | to do |
 | 16 | Vendor Invoices Entity (v2) | 1 | to do |
-| 17 | Error State | 1 | to do |
+| 17 | Error State | 1 | **DONE** — passed |
 
 ## Fixtures present on the branch (enumerated live 21 Sep)
 
@@ -59,3 +59,5 @@ from a value read behind the screen.
 An earlier sweep that used `a` as a broad query was therefore reading recent items and reporting them as
 result rows. Caught by reading the panel's own text (`Recent searches / TODAY`). Every broad query in this
 pass uses two characters or more.
+
+**Second instrument note:** cutting a request off inside the browser (`route.abort`) is NOT a server failure — the panel simply closes, which reads as a crash. Make the server answer **500** instead, and the product shows its Search unavailable / Retry banner correctly.

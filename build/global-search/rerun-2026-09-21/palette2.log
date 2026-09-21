@@ -1,0 +1,20 @@
+=== C44812 arrow keys on the tab strip - does the ACTIVE tab move, or the focus?
+  after Tab      : {"focus":"All (160)","focusCls":"search-tabs__tab","active":["All (160)"]}
+  after ArrowRight : {"focus":"All (160)","focusCls":"search-tabs__tab","active":["Work orders (20)"]}
+  after ArrowRight : {"focus":"All (160)","focusCls":"search-tabs__tab","active":["Customers (20)"]}
+  after ArrowLeft  : {"focus":"All (160)","focusCls":"search-tabs__tab","active":["Work orders (20)"]}
+  -- control: does a real click move the active tab?
+  after clicking Parts: {"focus":"All (160)","focusCls":"search-tabs__tab","active":["Parts (20)"]}
+
+=== C44829 focus ring on the search field itself (checked on the WRAPPER, not the inner input)
+   {"wrapperClass":"q-field row no-wrap items-start q-field--borderless q-input ","wrapperFocusedClass":true,"wrapperOutline":"none 0px","wrapperShadow":"none","wrapperBorder":"rgb(0, 0, 0)","innerOutline":"none"}
+
+=== C44855 the TRUE first-time state - clear the recent list first
+  found and clicked Clear All: false
+  placeholder: "Search work orders, customers, parts and more"
+  panel now reads: All (160) Work orders (20) Customers (20) Assets (20) Parts (20) Vendors (20) Part sales (20) Purchase orders (20) Vendor invoices (20) 160 results found across 8 categories Parts (20) TRUCK BOX TARP CRANK 1 Available 00
+
+=== C44864 / C44865 no-results wording
+  All tab : All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No results found No results for “ZZNOTHINGATALL” Arrow down and arrow up navigate, Enter selec
+  Parts tab: All (0) Work orders (0) Customers (0) Assets (0) Parts (0) Vendors (0) Part sales (0) Purchase orders (0) Vendor invoices (0) No results found No results for “ZZNOTHINGATALL” Arrow down and arrow up navigate, Enter selec
+EXIT=0

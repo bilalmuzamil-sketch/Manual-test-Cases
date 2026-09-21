@@ -1,0 +1,11 @@
+--- POSITIVE CONTROL: same typing with the search working
+   panel open: true | All (160) Work orders (20) Customers (20) Assets (20) Parts (20) Vendors (20) Part sales (20) Purchase orders 
+
+--- the server answers 500
+   panel open: true
+   shows: All (0) Work orders Customers Assets Parts Vendors Part sales Purchase orders Vendor invoices cloud_off Search unavailable Retry Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc
+
+--- the server times out (no response)
+   panel open: true
+   shows: All (0) Work orders Customers Assets Parts Vendors Part sales Purchase orders Vendor invoices No results found Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc
+EXIT=0

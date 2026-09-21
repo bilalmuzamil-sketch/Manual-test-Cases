@@ -1,0 +1,93 @@
+=== C44861 what the header shows after the panel closes
+  header controls: [
+ {
+  "cls": "module-selector module-selector--trigger",
+  "text": "ShopHub expand_more"
+ },
+ {
+  "cls": "global-search header-search",
+  "text": "search Fibridge Ctrl K"
+ },
+ {
+  "cls": "global-search__trigger global-search__tr",
+  "text": "search Fibridge Ctrl K"
+ },
+ {
+  "cls": "global-search__label",
+  "text": "Fibridge"
+ },
+ {
+  "cls": "q-btn q-btn-item non-selectable no-outli",
+  "text": "timer Clock In"
+ },
+ {
+  "cls": "q-btn q-btn-item non-selectable no-outli",
+  "text": "Staging Heavy 
+
+=== C44863 the clear (x) control inside the panel
+  controls in the panel: [
+ {
+  "tag": "BUTTON",
+  "cls": "q-btn q-btn-item non-selectable no-outline q",
+  "text": "",
+  "aria": "Clear search"
+ },
+ {
+  "tag": "BUTTON",
+  "cls": "search-tabs__tab search-tabs__tab--active",
+  "text": "All (58)",
+  "aria": ""
+ },
+ {
+  "tag": "BUTTON",
+  "cls": "search-tabs__tab",
+  "text": "Work orders (20)",
+  "aria": ""
+ },
+ {
+  "tag": "BUTTON",
+  "cls": "search-tabs__tab",
+  "text": "Customers (11)",
+  "aria": ""
+ },
+ {
+  "tag": "BUTTON",
+  "cls": "search-tabs__tab",
+  "text": "Assets (6)",
+  "aria": ""
+ },
+ {
+  "tag": "BUTTON",
+  "cls": "search-tabs__tab",
+  "text": "Parts (4)",
+  "aria": ""
+ },
+ {
+  "tag": "BUTTON",
+  "cls": "search-tabs__tab",
+  "text": "Vendors (6)",
+  "aria": ""
+ },
+ {
+  "tag": "BUTTON",
+  "cls": "search-tabs__tab",
+  "text": "Part sales (1)",
+  "aria": ""
+ },
+ {
+  "tag": "BUTTON",
+  "cls": "search-tabs__tab",
+  "text": "Purchase orders (6",
+  "aria": ""
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.evaluate: TypeError: undefined is not iterable (cannot read property Symbol(Symbol.iterator))
+    at eval (eval at evaluate (:290:30), <anonymous>:1:1)
+    at UtilityScript.evaluate (<anonymous>:292:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at /tmp/gs/palette4.mjs:22:22
+
+Node.js v22.22.2
+EXIT=1

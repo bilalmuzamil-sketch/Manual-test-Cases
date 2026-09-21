@@ -1,0 +1,41 @@
+=== C44804 open with the keyboard shortcut
+  open: true | geometry: {"w":640,"top":96,"left":480,"vw":1600} | dimmed backdrop: true
+
+=== C44813 footer legend visible in the empty state
+  footer: Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc
+
+=== C44855 first-time empty state
+  placeholder: "Search work orders, customers, parts and more"
+  panel text: All Work orders Customers Assets Parts Vendors Part sales Purchase orders Vendor invoices Recent searches Clear All TODAY O'Brien Haulage Ltd 9 Fuzzy Lane, Fernvale, Ohio Smith-Jones Motors 9 Fuzzy La
+  C44856 any quick-create buttons: false
+
+=== C44807 toggle closed with the same shortcut
+  open after second press: false | backdrop gone: true
+
+=== C44805 open by clicking the header search field
+  open: true | geometry: {"w":640,"top":96,"left":480,"vw":1600}
+
+=== C44806 close with Esc
+  open after Esc: false | backdrop gone: true
+
+=== C44808 close by clicking the dimmed area behind
+  open after clicking outside: false
+
+=== C44809 arrow keys move the highlight across rows only
+  selected on open: TRUCK · 2018 Freightliner Cascadia Johnson T
+   after Down 1: S9160-17680 4 Star Truck Repair Approved 201
+   after Down 2: S9160-17313 Portage Truck & Equipment Repair
+   after Down 3: S9160-17579 Buda Truck Repair Approved 854 ·
+   after Down 4: S9160-17578 Buda Truck Repair Approved 854 ·
+   after Up 1: S9160-17579 Buda Truck Repair Approved 854 ·
+   after Up 2: S9160-17313 Portage Truck & Equipment Repair
+
+=== C44813 footer legend visible with results shown
+  footer: Arrow down and arrow up navigate, Enter selects, Escape closes Navigate Select Close esc
+
+=== C44812 Tab moves focus to the tab strip, Left/Right cycle
+  focus after Tab: BUTTON.search-tabs__tab "All (160)"
+   after ArrowRight: focus on "All (160)"
+   after ArrowRight: focus on "All (160)"
+   after ArrowLeft: focus on "All (160)"
+EXIT=0

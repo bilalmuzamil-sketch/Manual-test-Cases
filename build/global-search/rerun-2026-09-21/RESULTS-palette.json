@@ -1,0 +1,110 @@
+{
+ "pass_meta": {
+  "run": 415,
+  "branch": "sv9160",
+  "build": "v26.36.8-d146c39",
+  "date": "21 September 2026"
+ },
+ "results": {
+  "C44804": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. The shortcut opens a box 640 wide, 96 down from the top and centred across a 1600-wide window - not hanging off the header - with the page behind it dimmed.",
+   "not_observed": null
+  },
+  "C44805": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Clicking the search field in the header opens the same box in the same place, centred and not attached to the field.",
+   "not_observed": null
+  },
+  "C44806": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Escape closes it and the dimming goes with it.",
+   "not_observed": null
+  },
+  "C44807": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Pressing the shortcut a second time closes it and removes the dimming.",
+   "not_observed": null
+  },
+  "C44808": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Clicking the dimmed page behind closes it.",
+   "not_observed": null
+  },
+  "C44809": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Each press of the down arrow moves the highlight to the next result and each up arrow moves it back. It only ever lands on results, never on a group heading.",
+   "not_observed": null
+  },
+  "C44810": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. With a result highlighted, Enter closes the box and opens that record in the same browser tab - the address changes to the record's own page and no second tab opens.",
+   "not_observed": null
+  },
+  "C44811": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Ctrl and Enter together open the highlighted record in a NEW browser tab and leave the page you were on untouched.",
+   "not_observed": null
+  },
+  "C44812": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Tab puts you on the tab strip, and each right arrow moves the chosen tab one to the right, each left arrow one back - All, then Work orders, then Customers, then back to Work orders. Worth noting for whoever automates this: the thing that moves is which tab is CHOSEN; the keyboard outline stays on the strip itself, which is the normal way a tab strip behaves. Read only the outline and you would wrongly think nothing happens.",
+   "not_observed": null
+  },
+  "C44813": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. The footer reads Navigate, Select and Close esc, and it is there in the empty state, with results showing, and on the no-results screen.",
+   "not_observed": null
+  },
+  "C44829": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. The panel carries a live announcement region that reads 160 results found across 8 categories, and it updates by itself when the search is narrowed, to 6 results found across 2 categories. Tabs take a clear blue outline when reached by keyboard and the highlighted result takes a distinct background.",
+   "not_observed": "The search field itself shows a caret rather than an outline when focused - its wrapper does take a focused state, but whether that reads as a visible ring to a sighted keyboard user was not judged, as it needs an eye rather than a measurement."
+  },
+  "C44861": {
+   "verdict": "Failed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Half of this works. After closing, the header does still show the last thing you searched for. But there is no small count beside it - the header holds only the magnifier, the word you searched for, and the shortcut. Nothing numeric anywhere on it.",
+   "ticket_held": true,
+   "ticket": "Held with the QA lead - the report is written and waiting for his go-ahead.",
+   "todo": "Report that the header keeps the last search but shows no count beside it.",
+   "not_observed": null
+  },
+  "C44862": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Reopening brings back the last thing searched for, the tab that was chosen at the time, and that tab's results - eleven customers in this case, exactly as they were.",
+   "not_observed": null
+  },
+  "C44863": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. The clear control empties the box, puts the guide text back, and returns the panel to the recent-activity state.",
+   "not_observed": null
+  },
+  "C44855": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. With the recent list cleared, the first-time state reads Search for something and nothing else, above the footer. The guide text in the box reads Search work orders, customers, parts and more, with no mention of asking a question.",
+   "not_observed": null
+  },
+  "C44856": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Neither the first-time state nor the no-results state offers any create buttons - no new job, no new customer, no new part.",
+   "not_observed": null
+  },
+  "C44864": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. Typing something with no matches shows a centred line reading No results found, with the exact words you typed echoed in quotes beneath it, and nothing else - no create buttons.",
+   "not_observed": null
+  },
+  "C44865": {
+   "verdict": "Failed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. On a chosen tab the message is word for word the same as on All - it never names the tab you are in. This is the fault already reported.",
+   "ticket": "SV-10181 - Global Search - \"No results\" Message Does Not Name the Selected Tab - https://shopview.atlassian.net/browse/SV-10181 (open, Ready to Fix)",
+   "todo": "Nothing new to raise - already reported and waiting on the development team.",
+   "not_observed": null
+  },
+  "C44876": {
+   "verdict": "Passed",
+   "observed": "Re-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. With the search service made to fail, the panel stays open and shows a cloud-off symbol, the words Search unavailable, and a Retry control. It does not go blank and it does not crash. Worth recording: my first attempt cut the request off inside the browser instead, which is something the app never sees as a server failure - and on that the panel simply closed, which would have been reported as a fault. Made to fail properly, the product does the right thing.",
+   "not_observed": "A request that hangs with no answer at all behaves differently again - the panel stays open but reads No results found rather than showing the unavailable banner. That is worth a look but it is not what this check asks about."
+  }
+ }
+}
