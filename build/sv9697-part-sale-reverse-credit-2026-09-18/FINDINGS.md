@@ -795,3 +795,101 @@ truncated with `head -5`**. The session was live the whole time; one `GET /rest/
 **200**. A truncated `ls` is a proxy, and I read a verdict out of it. Same shape as everything in the
 table above.
 
+
+---
+
+## §16 — Chris asked for checks 4, 5 and 6 to be re-run against his new wording. **The new wording is not built yet.** (2026-09-21)
+
+**What he asked**, comment
+[76957](https://shopview.atlassian.net/browse/SV-9697?focusedCommentId=76957), 21 Sep 09:50:
+> *"nothing you have already passed is invalidated. Four tooltip strings change; the button
+> behaviour, the confirmation and the legacy Support message are all exactly what you tested.
+> Re-run checks 4, 5 and 6 against the new wording and this is done."*
+
+He also says in the same comment: *"This is a string-only rebuild and a re-run of steps 4 to 6."*
+**The rebuild has not happened.** There is nothing to re-run against yet.
+
+### Established two ways, screen first
+
+**1. On the screen.** Hovering the disabled **Reverse** item (Finance tab → ⋮), live, on
+`v26.36.8-4ee1c0f`:
+
+| Part sale | Tooltip today, verbatim | Chris's new copy |
+|---|---|---|
+| **P2-193** (`405b68e2…`) | `Credit CM-3956 ($231.00) has been applied. Unwind it before reversing.` | *"…has been applied. **Remove the payment that used it on the Payments tab** before reversing this invoice."* |
+| **P2-57** (`b7c55aea…`) | `Credits CM-2190 and CM-2191 ($240.16 total) have been applied. Unwind them before reversing.` | *"…have been applied. **Remove the payments that used them on the Payments tab** before reversing this invoice."* |
+
+Both still say **Unwind** — the one word Chris and Nemanja have now agreed appears nowhere in the
+product on either line.
+
+**2. In the deployed bundle, as corroboration.** The copy lives in
+`js/invoiceCreditReverse.BaWwGD8X.js`, loaded by the Finance page this pass:
+
+* `"Unwind it before reversing."` and `"Unwind them before reversing."` — **both present**
+* `"Payments tab"` — **absent**
+* any `"Remove th…"` string — **absent**
+* `"has been refunded. Reverse the refund before reversing this invoice."` — **still the old refund
+  sentence**
+
+### And the chunk is byte-for-byte the same module I read on 18 September
+
+The file name changed (`invoiceCreditReverse.C3GmBgwF.js` → `…BaWwGD8X.js`) which looks like a
+rebuild, so it was checked rather than assumed. Diffing the two copies: **same size, 1350 bytes**, and
+the **only** difference is the import path and the export binding —
+`index.VoHfmjDM.js` → `index.y2Fyik_O.js`, `bb` → `bd`. **Every literal string is identical.** The
+earlier name came from the pre-redeploy build `v26.36.8-132baea` recorded in §11, not from a later
+change.
+
+`index.html` is unchanged too — **last-modified Fri 18 Sep 2026 14:32:57 GMT, etag
+`7b426f64fdce7ef7d433ee3a45042bca`, app-version `v26.36.8-4ee1c0f`** — and it references
+`js/index.y2Fyik_O.js`, which is what the browser loads. So the branch has not been rebuilt since
+18 September.
+
+### What this means for the ticket
+
+Checks 4, 5 and 6 **cannot be re-run yet** — not blocked by anything on our side, simply waiting on
+the string-only rebuild Chris costed in his own comment. The moment it lands, all three are quick:
+the fixtures already exist (P2-193 one applied credit, P2-57 two applied credits, and a refunded
+credit is one Cash Out away), and the assertion is a straight string comparison against the four
+sentences he specified.
+
+**Reported, not assumed:** nothing was failed here. A build that predates a copy decision is not a
+defect.
+
+---
+
+## §17 — Check 10's stock figures, now READ OFF THE INVENTORY SCREEN (closes the §15 self-audit hit)
+
+§15 recorded that the stock half of check 10 had been decided from `GET /api/inventory/parts`. It has
+now been re-run end to end with **every figure read off Parts → Inventory**, on the same build,
+`v26.36.8-4ee1c0f`.
+
+**Part sale `P9697-256` (`8c1b4b33-c7ff-4c81-aa93-869246f5cd37`)**, customer *Mayfield Heights Truck
+Centre*, part **MD668D — ATF Bulk- Mobil Delvac 1 ATF 668**, quantity 2, all steps driven on screen:
+Add Part → Authorize → Pick → Create Invoice → ⋮ Issue Credit (parts returned, $33.64 + $1.68 tax =
+**$35.32**, credit **CM-4203**) → ⋮ Reverse.
+
+**The Inventory screen, at each stage — `Bin Location / Quantity` and `Total Quantity` columns:**
+
+| Stage | Bin Location / Quantity | Total Quantity |
+|---|---|---|
+| Before anything | SHOP **276** | **276 Available** |
+| **After Pick — the pre-credit value** | SHOP **274** | **274 Available** |
+| After the credit (2 returned to stock) | SHOP **276** | **276 Available** |
+| **After the reverse** | SHOP **274** | **274 Available** — back to the pre-credit value |
+
+Captures: `ev/r3f_s0_baseline_row.png` · `ev/r3f_s1_after_pick_row.png` ·
+`ev/r3f_s2_after_credit_row.png` · `ev/r3f_s3_after_reverse_row.png` (plus full-page `_full` versions).
+
+**The verdict is unchanged — check 10 still PASSES — but it is now evidenced by the thing the
+requirement is actually about.** The earlier run's figures (280 → 278 → 280 → 278) were correct; they
+were simply read from the wrong surface.
+
+**A capture defect caught before it shipped, worth recording.** The first four captures came back
+**byte-identical to each other** because the Inventory table scrolls horizontally and a 1500-px clip
+cut off before the quantity columns — four pictures of the same left-hand half, each captioned with a
+different number. They were only spotted by opening the PNG and looking at it. The fix: a
+**2560-px viewport**, scroll every horizontally-scrollable container fully right, then clip on the
+row's own bounding box. **Identical hashes are correct here for the matching pairs** —
+baseline == after-credit (276) and after-pick == after-reverse (274) — which is the assertion itself.
+
