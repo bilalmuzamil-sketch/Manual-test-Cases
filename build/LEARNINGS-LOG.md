@@ -3672,3 +3672,20 @@ which then could not be tested and sat blocked for days.
 pattern, in every one of ~20 cases read on 20–21 September. Under 114(a) they are non-compliant; under
 114(b) they may not be rewritten. **Reported to the QA lead, not fixed.**
 Recorded as Rule 114(a) in CLAUDE.md §1, the rule index, `RULES-61-ONWARD.md`, and skills 01, 06, 09.
+
+## L0178 — A clamped number in a response is not evidence about ordering (2026-09-21)
+The developer pushed back on **SV-10277**: *"1 is the maximum and can be reached easily, but the score
+in the engine still sorts them by the actual number, which can be larger than one."* **He is right, and
+the ticket's central claim is wrong.**
+**The experiment that settled it** — built so the two hypotheses predict opposite outcomes: two parts
+identical but for stock, with the recency tie-break deliberately favouring the *other* one. Beta
+(created first, 25 in stock, true score 1.25) against Alpha (created second, 0 in stock, true score
+1.05). Clamped-plus-recency sorting predicts Alpha first; true-score sorting predicts Beta. **Beta won.**
+Confirmed independently: `shoe` returns 20 parts all reporting 1.00, and the seven showing 0 Available
+sit at rows 14–20 — grouped at the bottom, which only true-score sorting explains.
+**What I did wrong:** I proved the returned number is capped and wrote it up as though the ordering were
+broken. I also compared rows without holding match quality equal — the exact mistake I had recorded as
+L0174 one day earlier — so every "wrong order" example dissolved once the unclamped arithmetic was done.
+**The rule:** sorting can happen on a value the response never shows. Before claiming a signal has
+stopped working, design an experiment whose two outcomes point in **opposite** directions. Equal numbers
+on screen are not equal treatment in the engine.
