@@ -99,3 +99,33 @@ min **5**, max **6**, quantities **2** and **99** — every field back to its or
   20 July), which MAX identifies as the same mechanism. If the fix here is the string-vs-number
   submission, that ticket is very likely fixed by the same change and worth re-checking.
 * The customer's own five Michelin parts — their data is not on either environment tested.
+
+## §5 — SV-8447 is the same fault, and it now has a reproduction
+
+**[SV-8447](https://shopview.atlassian.net/browse/SV-8447)** — *"Inventory page shows Average Cost as
+$3.00 instead of $3,896.04"*, Brian Orban / Midwest Diesel Service of Alpena — has been **Blocked since
+20 July** with *"Steps to Reproduce: 1. Unable to replicate"*.
+
+| environment | what was done | result |
+|---|---|---|
+| **PRODUCTION** | Average Cost set to **3896.04**, saved, reloaded | **`3,896.04`** ✓ |
+| **PRODUCTION** | then one unrelated save (Min 5 → 4) | **`3.00`** — the reported symptom, reproduced |
+| **fix branch** | the same value, then a second save (Min/Max 7/9 → 3/4) | **`3,896.04`** both times |
+
+The branch payloads carried `"purchasePrice":3896.04` as a **number** on both saves; production's second
+save carried it as the **comma-formatted string**. **So SV-8447 is the same truncation, it has a
+reproduction now, and it appears to be fixed by this change.** Worth re-checking against this build
+while the branch is up.
+
+## §6 — Production restored, and the restore had to be corrected
+
+First restore put cost, Min and Max back but **the Sell Price did not return** — the app had recalculated
+it from the corrupted cost, and it read **100** where the original was **300.00**. Caught by reading the
+part back from the API rather than trusting the restore script's own output, and corrected in a second
+pass through the same dialog.
+
+**Final state, read back live: cost `10.00`, sell `300.00`, core `1.00`, min `5`, max `6`, bins
+`Location57` = 2 and `BIN-ZZT-77` = 99** — every field as found.
+
+**The lesson is Rule 68's: a restore is not restored until it is compared field by field.** Restoring the
+field you changed is not enough when the application derives other fields from it.
