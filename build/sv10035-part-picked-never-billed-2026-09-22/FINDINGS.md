@@ -212,3 +212,49 @@ on the same action:
 |---|---|---|
 | change Category on a priced part | price expected to be **wiped** — the mechanism that created the broken records | price expected to be **kept** |
 | then pick it | expected to strand the part: stock down, nothing on Lines/Finance | expected to bill at its real price |
+
+## §5 — What the tabs actually show before a pick, and why it reframes the bug
+
+Before picking, with the request still `in_stock`:
+
+```
+line.parts (billable rows)            0
+line.total_parts_sell_price           89.20
+Lines tab on screen                   part_sell_price_<req> = "$89.20", qty "1"
+Finance tab on screen                 "FUEL/WATER SEPARATOR, (FS19732, 33732, BF1385-SPS)  1  $89.20  $89.20"
+```
+
+**The unpicked request already renders on Lines and on Finance** even though no billable row exists.
+That is the fallback renderer the handoff names in §3.
+
+So the customer's symptom is not *"the part never appears"*. The pick response carries
+**`removeFromPartRequests: true`** — picking **removes the request from that fallback** — and before
+the fix the real billable row that should replace it was never created. **The part therefore
+disappeared from both tabs at the moment of picking, after the stock had already gone.** That is
+also why adding it a second time produced the duplicate he saw: the second request rendered through
+the fallback while the first had vanished.
+
+This sharpens check 3 beyond the handoff's wording: after a successful pick there must be **exactly
+one** row — the real one — and the fallback must stop firing for that request.
+
+## §6 — CHECK: a priced part picks and bills at its real price (checks 2, 3 and 9) — PASS
+
+Driven on the screen. Work order **S2-17528**, line `782ecc8c` *"Diagnose - Engine"*, part
+**P550848** (FUEL/WATER SEPARATOR) seeded at its catalogue price **$89.20**, quantity 1.
+
+**The Pick control is the Parts-tab row button `button_part_request_action`** — it is not a kebab:
+clicking it fires `POST /api/work-orders/part/perform-request-status-action` immediately (the earlier
+run's empty menu was the tell).
+
+| | before | after |
+|---|---|---|
+| billable rows on the line | **0** | **1** |
+| the row | — | `FUEL/WATER SEPARATOR …` qty 1, sell **89.2** |
+| line total_parts_sell_price | 89.20 | **89.20** |
+| inventory stock (P550848) | 6 | **5** |
+| request status | `in_stock` | **`received`** |
+
+**It bills at its real $89.20, not $0.00** — the handoff's §6 regression — **the stock moved by
+exactly the picked quantity**, and **the line total did not double-count**: the fallback row was
+replaced by the real row at the same price, which is check 3's substance proven by arithmetic rather
+than by counting rows on a screenshot.
