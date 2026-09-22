@@ -109,3 +109,37 @@ S2-917 were deliberately avoided because they are artefacts of this morning's SV
 mixing the two records would muddy both.
 
 *Filter on the state the action actually needs, not on the parent record's state.*
+
+## §2 — Production attempt 1: the bug did NOT reproduce, and my script drew a false conclusion
+
+Work order **S2-861**, line `6f8048f3` (" EMpty LIne", authorized, 3 existing part rows, line total
+$90.00). Inventory part **1238213 / A427** — stock 6, sell price 151.38, cost 16.82, category
+*Uncategorized*, not fixed-price, no core.
+
+```
+SEED (inventory, qty 2)   201 | status in_stock | sell_price "0.00" | cost "16.82"
+PICK                      201 | status received                    <- no 500, no crash
+STOCK                     6 -> 4                                   <- deducted
+LINE AFTER                parts 3 -> 4, new row  {"A427", qty 2, sell 0}
+```
+
+**The billable row WAS created, at $0.00, on the pre-fix production build.** So this configuration
+does **not** reproduce SV-10035, and it must not be presented as a BEFORE.
+
+**Two things my own script got wrong, recorded rather than quietly re-run:**
+
+1. **It reported *"PRICE WIPED by category Trailer"* and that is FALSE.** The category-change call
+   returned **HTTP 400** — my payload was wrong — so nothing was changed. The request's sell price was
+   **already `"0.00"` straight out of the seed**, and my exit condition (`sell_price === 0`) fired on
+   the first iteration regardless of the 400 it had just printed. *A loop that tests the outcome
+   without first checking the action succeeded will confirm whatever it was looking for.*
+2. **The seed produced `"0.00"`, not NULL** — and the fix is about a **missing** sell price, not a
+   zero one. The handoff is explicit that the route which *"reliably produces a part request with a
+   NULL sell price"* is **Add Part → Source Type = Found → blank Sell Price**, which is exactly why it
+   says to use it. Attempt 1 used the inventory route and so never created the precondition.
+
+The real `change-request` contract was learned from the server rather than guessed: an empty POST
+answers **`{"id":"Missing required parameter"}`**, so the key is **`id`**, not `part_request_id`.
+
+Attempt 2 therefore runs the **Found** route, and this time the precondition — `sell_price` genuinely
+absent — is checked before anything is concluded from what follows.
