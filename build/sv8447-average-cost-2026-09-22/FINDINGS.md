@@ -260,3 +260,40 @@ unadjudicated for want of a documented formula; and the receive comparison was r
 because the receive screen carries no cost input, making a production receive incapable of showing the
 reported truncation either way.
 
+## §7 — Comment posted, and the pre-post gate
+
+**Comment `77061`** posted to SV-8447 on 2026-09-22T10:32:26-0500.
+
+**Pre-post gate (Standing Rule 72), run at the moment of posting:**
+- **build markers re-read live** — branch `v26.36.9-e96da48` (last-mod Tue 22 Sep 12:52:44 GMT),
+  production `v26.36.9-8d1613f` (09:38:08 GMT). **Both unchanged** from when the findings were taken;
+  neither environment redeployed under the pass.
+- **ticket re-read** — still `TESTING QA`, still 3 comments, no new activity since Dusan's 16 Sep note.
+- **production re-verified restored** — `purchase_price '10.00'`, `sell_price '300.00'`,
+  `is_fixed_price true`, min 5, max 6, quantity 101.
+- **read back from Jira after posting** — first line is the verdict; **2 media items, both
+  `type: "file"`** (real attachments `61239` / `61240`, not external links, per Standing Rule 81);
+  checks table 6 rows = header + 5; `PASSED` appears 6 times; **0 AI-fingerprint matches**;
+  **no "Technical details" section**; **no mention of the §5 observation**.
+
+**Two QA-lead decisions carried into the comment (both asked, both answered "No"):** no technical
+details section, and the `$747.32` observation stays in this document rather than on the ticket.
+
+**Books updated in the same turn** (Standing Rule 82): playbook **§AC.13** — the inventory
+Average-Cost surface, its two-destinations-per-row dialog quirk, the receive contract, the weighted
+average, and four traps; plus **six rows** in `build/LESSONS-INDEX.md`.
+
+## §8 — Environment state left behind
+
+**Production (`app.shopview.com`) — restored and verified field by field**, twice, including after a
+reload: part `1237944` back to cost `$10.00`, sell `$300.00` with the Fixed Sell Price marker, min 5,
+max 6, quantity 101.
+
+**QA branch `sv9940` — left as-is, per the standing ruling that per-ticket branches need no cleanup.**
+What was changed there, named so the next person is not puzzled by it:
+- part `P550848` — Average Cost `$3,896.04`, Min 3;
+- part `CS-RB-268` — Average Cost `$747.32`, quantity 14, received against invoice `ZZAUTOTEST8447`;
+- purchase order `I9940-1390` received against invoice `ZZAUTOTEST8447B` (parts `3111`, `66432`,
+  `66433`, `66434`).
+
+Both throwaway invoice numbers carry the `ZZAUTOTEST` tag.
