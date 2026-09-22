@@ -4706,6 +4706,55 @@ deliver the 7-tab management report.
     (the build is a source and its marker is recorded), 59 (re-read the sources before writing), 72 (the
     pre-post gate), 73 (**this rule fixes which environment 73's BEFORE comes from**) and 74.
 
+87. **NEVER LEAVE A CHECK UNRUN FOR WANT OF A STATE — BUILD, SEED AND CRUD WHATEVER IT TAKES (all
+    projects).**
+    USER DIRECTIVE (2026-09-22, verbatim): *"Make a rule that you must never leave such gaps and build
+    and seed and CRUD whatever you need to unblock yourself"*.
+    **THE RULE:** a required check is **never** reported as untested, skipped, not-applicable or
+    "condition not present" because the **data state it needs does not currently exist**. The state is
+    something the product creates, so **create it** — with full authority to **CREATE, READ, UPDATE and
+    DELETE** anything needed on the environments given: work orders, lines, part requests, purchase
+    orders, receipts, invoices, customers, vehicles, inventory parts, bins, **categories, pricing
+    matrices, taxes, labour rates**, roles, staff, org settings and feature toggles.
+    **"THE WORK ORDER HAS NO LINE LIKE THAT" IS A SET-UP INSTRUCTION, NOT A VERDICT.** So is *"no
+    category without a markup exists"*, *"no line has a fixed total"*, *"nothing is in that status"*,
+    *"there is no part with a core"*. Every one of those is a thing to go and make.
+    **THE ORDER OF ATTACK** (the same as the ALWAYS-UNBLOCK ruling, applied to *preconditions* rather
+    than to actions): **(1)** ask what state the check needs, precisely; **(2)** find the screen a user
+    would build it on — **the Administration area is where most of these live** (Categories, Pricing
+    matrices, Taxes, Labour Rates, Bins, Staff, Roles, Settings); **(3)** capture the app's own request
+    from that screen rather than guessing an endpoint (playbook §U.1) — a blind probe answering **404 or
+    405 is not proof the thing cannot be created**; **(4)** build it, then **prove the state exists**
+    before drawing any conclusion from what follows.
+    **THE GATE THAT MAKES THIS SAFE:** an effect is only evidence once its cause is proven present
+    (Rules 50/85). Seed, **verify the seed took**, then test.
+    **WHAT STILL COUNTS AS GENUINELY BLOCKED** — and it is a short list: a **physical device**, an
+    **external account nobody has**, a **written instruction from the developer or PO not to construct
+    it**, or a **QA-lead ruling that it is out of scope**. Nothing else. And even then it is a
+    **named, evidenced, labelled** verdict, never a bare "not tested".
+    **CLEAN-UP FOLLOWS THE ENVIRONMENT, NOT THE CONVENIENCE:** per-ticket QA branches need none;
+    **staging, qb and PRODUCTION keep the restore-after discipline** — record every value before
+    touching it, restore after, and **read it back**. Where something genuinely cannot be removed
+    (2026-09-22: the app creates part categories but exposes no delete), **name it and where it is**
+    rather than leaving it silently behind.
+    **RATIONALE, 2026-09-22 (SV-10035, and the gap was mine):** the handoff's §6 regression asks that a
+    line with a **fixed line total** not shift when a part is edited. Every line on the work order
+    reported `fixed_line_total: null`, and I wrote the check up as **"NOT RUN — the condition does not
+    exist on this work order"**. The QA lead replied: *"Why don't you create the fixed line total?"* —
+    and gave the recipe in two sentences (open a line that is not declined or complete, use the dropdown
+    where the labour rate is selected, take **Fixed Line Total** from the bottom, set the labour and
+    parts costs). **It was a thirty-second set-up I had written off as an environment limitation.**
+    The same pass had already done this correctly once — a missing **category with no pricing matrix**
+    was *built* through Administration → Categories rather than waived — which is exactly why leaving
+    the second gap was inconsistent as well as wrong. Ties to Standing Rules 5 (self-service test data),
+    6 (the environments are disposable test accounts — act freely), 12 (observed, never inferred), 13,
+    14 (**never mark anything NOT-VERIFIED for a missing data-state — seed it**; this rule is its
+    hardened restatement), 17 (complete data in, complete data out), 22, 26, 27 (reuse the recorded
+    recipes), 50 (exhaustive **and** exact), 63 (be cheap — but cheapness never buys a skipped check),
+    75 (configuration first — and configuration is something you can *set*), 76, 77 and 85 (**there is
+    no such thing as an honest limit until it is proven untestable — this rule names the commonest
+    fake one: a state you could have created**).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
