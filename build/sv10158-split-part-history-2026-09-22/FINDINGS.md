@@ -234,3 +234,38 @@ unaffected; they are cosmetic rows on a work order that already exists.
 **the server overwrites the description on an inventory part request** with the inventory part's own
 (`"A427"`). Match on `inventory_part_id`, and judge a cleanup by the thing that must move — the
 **stock quantity** — not by how many rows the pass believed it removed.
+
+## §6 — The QA comment: gate, post, read-back
+
+**Pre-post gate (Standing Rule 72), run at the moment of posting, 22 Sep 2026 ~12:46 UTC-5:**
+
+| Check | Result |
+|---|---|
+| branch build marker re-read live | `v26.36.9-58de7bb`, last-mod Tue 22 Sep 10:11:10 GMT — **unchanged** since pass start |
+| production build marker re-read live | `v26.36.9-8d1613f`, last-mod Tue 22 Sep 09:38:08 GMT — **unchanged** |
+| ticket state re-read live | status **TESTING QA**, priority **Medium**, **1 comment** (the developer's `77024`) — nothing new since it was read |
+| AI-fingerprint scan of the body text | 0 hits |
+| technical-details section | **absent** — per the QA lead's answer for this ticket (Standing Rule 84) |
+
+**Posted:** comment **`77076`**, 2026-09-22T12:47:07-0500. Exhibits uploaded as **real Jira
+attachments** (`61267` / `61268` / `61269`), not external links.
+
+**Read back from Jira in ADF (Standing Rule 81 — verify what the reader gets, not what was sent):**
+
+```
+first text   "OVERALL QA STATUS: PASSED"
+table rows   6  (header + 5 checks)
+media 1      after "Before and after"                         980x400  type=file
+media 2      after "Checks 1 and 2 — one entry per part…"      980x371  type=file
+media 3      after "Checks 4 and 5 — the ordinary Move…"       980x243  type=file
+fingerprints 0            technical-details section  absent
+```
+
+**The read-back caught a real defect and it was fixed in place.** The first post used
+`!file.png|width=980!`, and Jira filled in a **height of 183 for all three images** — a single default
+rather than each image's own aspect — so every exhibit would have rendered **squashed**. The comment
+was updated in place (`PUT …/comment/77076`) with an explicit `width=980,height=<computed>` per image
+and re-read to confirm 400 / 371 / 243. **This is exactly the Rule-81 failure mode: the upload
+succeeded, the attachments were real, and the reader would still have seen sloppy work.** Worth
+carrying forward: *a wiki-markup image with `width` alone does not keep its aspect ratio — give it
+both, computed from the file.*
