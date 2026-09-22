@@ -258,3 +258,43 @@ run's empty menu was the tell).
 exactly the picked quantity**, and **the line total did not double-count**: the fallback row was
 replaced by the real row at the same price, which is check 3's substance proven by arithmetic rather
 than by counting rows on a screenshot.
+
+## §7 — THE CORE FIX, PROVEN: a part with a blank sell price picks and bills at $0.00 (checks 1–4) — PASS
+
+The precondition the API could never build, the screen builds in one gesture. **Clearing the Sell
+Price cell on the Parts grid and tabbing out sends, on the wire:**
+
+```
+POST /api/work-orders/part/change-request   {"id":"8aba67a1-…","sell_price":null}
+```
+
+**A genuine NULL** — not the `"0.00"` the API's `make-request` stores. The cell then redisplays
+`0.00`, which is why this was invisible until the request itself was read.
+
+Then the pick, driven on the screen with `button_part_request_action`:
+
+```
+POST /api/work-orders/part/perform-request-status-action   -> 201   (no 500, no error, no no-op)
+```
+
+| | before | after |
+|---|---|---|
+| billable rows on the line | 1 | **2** |
+| the new row | — | `FUEL/WATER SEPARATOR …` qty 1, sell **0** |
+| inventory stock (P550848) | 5 | **4** |
+| request status | `in_stock` | **`received`** |
+| Finance tab | — | shows **both** `… 1 $89.20 $89.20` **and** `… 1 $0.00 $0.00` |
+
+**Every part of the customer's complaint is answered:**
+
+- **the pick succeeds** — no crash after the stock has already moved (check 1);
+- **the part reaches Lines and Finance**, at $0.00, instead of vanishing from both (check 2) — and
+  $0.00 is *visible and correctable*, which is the whole point of the developer's choice;
+- **exactly one row per pick** — the two rows present are the two separate parts picked in this pass
+  ($89.20 and $0.00), not one part rendered twice (check 3);
+- **stock moved by exactly the picked quantity** (check 4).
+
+**Honest note on how it was driven.** The *setup* — creating the request — was API scaffolding. The
+two things under test, **clearing the price** and **the pick**, were both driven on the screen, which
+is where the null originates and where a user does it. That split is deliberate and is stated here
+rather than left for a reader to assume (Standing Rule 64).
