@@ -405,3 +405,56 @@ the intended order; the checks table carries 15 rows (header + 14); the first li
 
 **No defect ticket filed** — nothing was found wrong with the change itself, and the two open items are
 questions, not findings.
+
+## §14 — The customer portal: found, entered, and still not able to answer the question
+
+**Prompted by the QA lead: *"it has portal access on staging, so test on staging"*.** Two things had to
+be said before running anything: **staging is the PRE-FIX build**, so a portal test there is a *before*,
+not proof of the fix — and the fix branch is what needs the *after*.
+
+### What was found, all live
+
+| | |
+|---|---|
+| **The staging portal exists** | **`staging.portal.shopview.com`** — my earlier guesses were `portal.staging.shopview.com` and friends, which is why I reported it missing. Found by opening the staging app's **profile menu → "Customer Portal New"** and watching the request, which is the playbook's own method (§U.1) and the thing I should have done first |
+| **Its backend** | `shopview_app_url = https://app.staging.shopview.com`, tenant `d55bc308…` *Foothills Group Inc* — so it really is staging |
+| **The QA portal** | `shopview-portal-feature-branch-xn74b9.laravel.cloud` is backed by **`sv10240.qa.shopview.com`** — not sv8801, and not staging |
+| **How to get in** | `POST /api/token` on the app's API → `POST {portal}/sso-login` with `Authorization: Bearer <token>` and `{"returnJson":true,"portalType":"customer"}` → **200**, session cookie set |
+
+**The sv10240 mapping was proven, not inferred.** The portal's own prop says it, and a record check
+agrees: the portal's invoice **S-17580** is work order `b37e2b09…`, status **paid**, customer
+*Andreasen Truck & Equipment Repair*, $105.00 — while sv8801's **S8801-17580** is `d542775f…`, status
+**approved**, customer *Abode Trucking & Repair*. Same number, different record, so different database.
+**The portal strips the branch prefix, which is what makes the numbers look identical.**
+
+### Why the cross-org test still could not be run — and how I know
+
+Fixture seeded properly on staging: a note in **Org B** (`302f69e8…`) with attachment
+`3ab7ea3b-8b95-4c65-8fce-af66d8e2865e` (`_zzp.txt`, 50 bytes), created through Org B's own session.
+
+From the Org A portal session, `GET /attachments/3ab7ea3b…/download` **redirected back to the invoices
+page** rather than serving the file. That looks like a refusal — **and it is not one.**
+
+**The positive control fails identically.** Org A's *own* attachment
+(`7469cd3a-74b5-4269-9796-d4ad3ac6139f`, `image (6).png`, 705 303 bytes) gives the **same 184 498-byte
+redirect** to the same page. A refusal a legitimate request also gets is not evidence of anything.
+
+The reason is the session type: an SSO from the app lands as a portal **ADMIN**
+(`auth.user` = *Admin ShopView*, carrying an `admins` array, `customerId: []`), not as a **customer**.
+The portal's attachment routes are customer-scoped, so they bounce for every attachment regardless of
+organization. `nova-api/*` is on a separate host (`teamtools.portal.shopview.com`) and returns the SPA
+here, so the portal's own `impersonate-login/{user}` could not be pointed at a customer either.
+
+### What would actually finish it
+
+**One genuine customer-portal account.** The portal has `invite/{token}`, `register` and
+`impersonate-login/{user}` — any of the three would do it, and an invitation email is now readable
+(Gmail plus-addressing, proven in §11). With a customer session the check is two requests.
+
+**And for the AFTER rather than the before, still: a portal pointed at `sv8801api.qa.shopview.com`, or
+that portal's API key.** Nothing found today changes that — the two portals that exist point at staging
+and at sv10240.
+
+**The posted comment `77006` remains accurate:** it says no portal is deployed *against this branch* and
+that the portal which does exist points at a different branch. Both still hold. It does not claim
+staging has no portal.
