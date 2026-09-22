@@ -214,3 +214,59 @@ I checked it rather than took it on trust, and I am not raising it.
 * **No `Content-Disposition` header at all.**
 * **No Org B note id** — `2e250fdf…` does not appear anywhere in headers or body.
 * The `x-organization-id` header echoes **Org A's own** organization, the requester's, not Org B's.
+
+## §8 — Same-organization regression: the full lifecycle, as admin and as a technician
+
+Handoff check 3. Nothing legitimate may break.
+
+**As admin, on work order S2-4219** (`04ab678b…`), note `12eb53a5…`:
+
+| Step | Result |
+|---|---|
+| create | **201** |
+| edit | **200**, re-read as `…same-org WO note EDITED` |
+| toggle read status | **200** `{"is_read":true}`, re-read `isRead: true` |
+| add attachment (`_zz.png`, 4 328 bytes) | **201** |
+| download it | **200**, **4 328 bytes, md5 `3bca593e…` — byte-identical to what was uploaded** |
+| **thumbnails** | `small` **200**, a real 250×167 PNG · `large` **200**, a real 600×400 PNG |
+| delete attachment | **200**, and a re-download now says not-found |
+| delete note | **200**, and the note is gone from the work order's list |
+
+**The thumbnail path is the one the handoff singles out** — the note JSON exposes thumbnails as
+`note/download-attachment?id=…&thumbnail=small|large`, so they run through the newly guarded endpoint,
+and a tenancy regression would show as broken images rather than an error. Both sizes returned real
+image data. **And the guard still applies to them:** the same thumbnail request for Org B's attachment
+comes back **400 not-found**.
+
+### As a technician — and this is where 403 and 400 have to stay apart
+
+Impersonated **Stephen Grimes, Technician**, whose permission set is exactly six atoms and
+**does not include `workOrdersDelete`**:
+`customersView, scheduleView, woPickParts, woTechViewMode, workOrderLinesCreateAndEdit, workOrdersView`.
+
+His own note (`368e3d9f…` on S2-13311): create **201** → edit **200** → toggle **200** → attach **201**
+→ download **200 with the identical md5 `3bca593e…`** → delete attachment **200** → delete note **200**.
+Nothing about the fix gets in a legitimate user's way.
+
+**Then handoff check 4, the distinction that matters — the same user, the same request shape, two
+different refusals:**
+
+| From the technician | Status | Body |
+|---|---|---|
+| delete a **co-worker's** note in **his own** organization | **403** | `{"errors":[{"error":"Access denied."}]}` |
+| delete **Org B's** note | **400** | ``Note `2e250fdf…` not found.`` |
+| update **Org B's** note | **400** | ``Note `2e250fdf…` not found.`` |
+| download **Org B's** attachment | **400** | ``Attachment `83d2ddc9…` not found.`` |
+
+**Permission still answers 403; tenancy answers 400 not-found.** The handoff is explicit that a 403 for
+another organization's note would itself be a bug, because it confirms the note exists — that does not
+happen.
+
+Two supporting observations, both correct rather than faults, recorded so nobody re-raises them:
+
+* The technician **can update** a co-worker's note (**200**) while being unable to **delete** it. That
+  is the existing SV-8003 rule — Work Orders **View** carries create/edit of any note, Work Orders
+  **Delete** carries deleting anyone else's — and it confirms `NoteVoter` is untouched and still
+  discriminating in both directions.
+* He **can delete his own** note without `workOrdersDelete`, which is the authorship half of the same
+  rule.
