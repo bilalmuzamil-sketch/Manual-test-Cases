@@ -5020,3 +5020,58 @@ pass** and uses the session's — switch first with
 the session's workplace (its number gains that shop's prefix, `CM2-` / `CM3-`) and **a credit created in
 one location does not appear in the customer's Invoices tab when you are signed into another** — which
 will silently drop it out of a payment selection.
+
+### §AC.13 — INVENTORY AVERAGE COST: the surface, the endpoints, and four traps (proven 2026-09-22, SV-8447/SV-9940)
+
+**The screen.** `/parts/inventory` — the list carries an **Average Cost** column. Search with
+`?search=<part number>`; the URL is honoured on load, which is far cheaper than paging.
+
+**Reaching a part's row and its two different dialogs — this catches people out:**
+- every row has `button_part_history_<partId>`;
+- **clicking that button opens PART HISTORY**;
+- **clicking the row ~260 px to the right of it opens the EDIT dialog.**
+  Same row, two destinations. `p.mouse.click(hb.x+260, hb.y+hb.height/2)` for the editor.
+
+**Edit dialog controls** (there is no "Fixed Sell Price" toggle — the flag is derived):
+`input_average_cost` · `input_sell_price` · `input_core_charge` · `input_min` · `input_max` ·
+`select_catalogue_part` / `select_vendor` / `select_category` / `select_tags` ·
+`select_bin_location_<n>` + `input_quantity_<n>` · `button_add_bin_location` ·
+`button_confirm_dialog` (Save) · `button_cancel_dialog`.
+Save posts **`POST /api/inventory/parts/change`**; Average Cost travels as **`purchasePrice`**.
+
+**Part History** is **`GET /api/parts/history/{partId}?pagination[rowsPerPage]=30&pagination[page]=1&…`**
+— found by opening the screen and watching the request. Blind probes at
+`/api/inventory/parts/{id}/history` return **404** and `/api/inventory/parts/history?partId=` returns
+**500**; neither is the route (§U.1 — capture, do not guess).
+
+**Receiving into inventory** — `/order/{orderId}?receive=1`:
+`input_invoice_<orderId>` · `date_input_invoice_date_<orderId>` · `input_qty_<orderItemId>` (prefilled
+with the ordered quantity) · `input_tax_<orderId>` · **`button_receive_po_<orderId>`** →
+**`POST /api/inventory/orders/accept`** `{id, invoiceNumber, note, total, tax, items:[…]}` → **201**.
+**Cost is READ-ONLY on this screen** (rendered `$20.69000`, five decimals) — it comes from the
+purchase order, so nothing on the receive form can alter a unit cost.
+
+**Average cost on receipt is a plain weighted average, and it is exact** (four cases, 2026-09-22):
+zero-stock parts take the PO cost verbatim (`$1.34`, `$2.11`, `$4.19`); a part with 4 at `$3.25`
+receiving 10 at `$2.97` lands on `$3.05` = (4×3.25 + 10×2.97)/14. If a result does not reconcile,
+**solve for the opening quantity** — on a part whose history carries cycle counts and a negative
+unassigned bin the valuation used 3 where the list displayed 1.
+
+**THE FOUR TRAPS:**
+1. **The Average Cost column sits around x≈1900.** At a 1600-px viewport it is **off-screen**, so a
+   "screenshot of the value" contains no value. Read the cell's `getBoundingClientRect().x` and set
+   the viewport wider (2560 works) *before* trusting any capture.
+2. **`min` greater than `max` is silently rejected** — the save no-ops, nothing errors, and an
+   "after" screenshot comes back **byte-identical** to the "before". Alternate min inside the
+   existing max (e.g. 3↔4) when you need an unrelated-but-real edit.
+3. **Changing Average Cost recalculates Sell Price from a markup and clears the fixed-price flag.**
+   This is intended and Part History logs it (*"Average cost updated | Original cost … | Original
+   sell price … | New sell price …"*). It also means a restore must put the **sell price** back too,
+   in **its own save** — filling sell price in the same dialog as the cost loses a race with the
+   recalculation and the sell price does not stick. Typing an explicit sell price restores
+   `is_fixed_price = true`.
+4. **A QA-branch API session cannot be minted with curl** — `POST /api/quick-login` returns **401
+   `sso_required`** with raw cookies, and a failed attempt will overwrite a good `PHPSESSID` if you
+   blindly capture `set-cookie`. **Boot the browser (its `button_quick_login_admin` works), then
+   export `ctx.cookies()` to the cookie file** and curl with those. Recipe:
+   `grab-session.mjs` in `build/sv8447-average-cost-2026-09-22/ev/`.
