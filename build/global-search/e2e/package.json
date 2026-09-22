@@ -1,0 +1,19 @@
+{
+  "name": "shopview-global-search-e2e",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Global Search V2 end-to-end suite, converted from the probes used to execute TestRail run 415 on sv9160.",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:findability": "playwright test tests/findability.spec.ts",
+    "test:ranking": "playwright test tests/ranking.spec.ts",
+    "list": "playwright test --list",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

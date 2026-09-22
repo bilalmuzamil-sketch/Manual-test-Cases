@@ -3876,3 +3876,24 @@ about the day it was written, not about now.* Trap 1 was right in early Septembe
 22nd. When a documented certainty and a live measurement disagree, **the measurement wins and the
 note gets corrected in the same pass** (Rule 93). Four curl calls settled what had already cost one
 aborted run and nearly cost an hour of his time.
+
+## L0187 — 2026-09-22 — a branch sign-in lasts about an hour, and says so two different ways
+Cookies stored 13:30 were refused at 14:28. **Roughly 58 minutes.** Any pass longer than that needs
+fresh cookies part way through, which explains a great deal of this week's friction — runs that
+looked like a dead environment were sessions quietly ageing out mid-flight.
+**Two different refusals, and they mean different things:**
+`{"error":"sso_required"}` = the cookie set is incomplete (both `sv_sso_session` AND `PHPSESSID` are
+needed since the branch moved to Google sign-in — L0186).
+`{"errors":[{"error":"session_expired"}]}` = the session was valid and has timed out; ask for a new one.
+**Treat them differently:** the first is fixable by me, the second is a one-line ask.
+
+## L0188 — 2026-09-22 — the probes were all in /tmp, one restart from gone
+130 probe files driving 194 executed checks lived in `/tmp/gs`, which the container wipes. Only a
+handful had been copied into the repo. **Converted into a committed Playwright suite** at
+`build/global-search/e2e` — 48 tests across 4 files, each named with its C-id.
+**The lesson is not "write tests".** It is that the value of those probes was never the assertions;
+it was the dozen traps discovered the hard way — five rows per group, the sticky tab, the settle
+discipline, the two-character minimum, `lucide-icon` on every row, the role the product refuses to
+create. Those were recorded in comments scattered across throwaway files. They are now
+**encoded in the harness**, so the next session cannot repeat them by accident rather than merely
+being warned not to.
