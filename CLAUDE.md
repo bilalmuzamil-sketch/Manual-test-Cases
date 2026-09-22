@@ -330,6 +330,25 @@ exists** ⇒ hold the case and raise a PO question (58/64); never invent one and
 from the build. Worked example: the line that moved SV-10279 was the PRD's own
 *"Prefix match on primary name field → +0.70"* set against the product's own match label.
 
+**Rule 114 (every case must be runnable by a human manual QA tester)** was ordered by the QA lead
+**2026-09-22** and lives at the end of `build/rules/RULES-61-96.md`, after 113. **It is the executable
+half of the tester-readiness gate (84): 113 governs what Expected SAYS, 114 governs whether a human
+can actually DO the whole case by reading it.** A manual tester, reading only the case, must reach the
+**preconditions**, perform every **step**, and judge the **expected result** — by hand, in the
+product UI, with no API, no database, no devtools, no code, and no knowledge the case does not give
+them. **Preconditions** name the exact data (seeded keyword or create-steps), roles/settings, build
+and starting screen — never a bare *"the conditions in Sx are met"*; an unreachable precondition is a
+blocker to surface (68). **Steps** are numbered, one UI action per line, in the build's exact labels;
+no step may need what a manual tester cannot do — where a rule can only be proven outside the UI
+(server enforcement, forced failure, true concurrency) either express it as something a human really
+can do (two real logins, two browser sessions) OR mark `AUTOMATION: HOLD - <reason>` and say plainly
+which part cannot be checked by hand; **never leave an uncarryable instruction in a manual case.**
+**Expected** keeps the verbatim quote first (113) but the tester acts on the plain restatement, which
+says what they SEE, no ids/jargon/HTTP terms (7/9). The three parts must line up. Check:
+*"Could a tester who has never seen this feature reach the preconditions, do every step in the UI, and
+decide pass/fail from what they see, with no help and no tool beyond the product?"* If no, fix it or
+mark honestly — it is **not tester-ready and does not ship.**
+
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.

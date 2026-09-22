@@ -58,6 +58,22 @@ file is the durable record of that rebuild.
 
 Link form: `https://shopview.testrail.io/index.php?/cases/view/<id>`.
 
+## Rule 114 pass (2026-09-22) — every case runnable by a human manual tester
+After authoring, all 87 cases were re-checked against **Rule 114** (preconditions, steps and expected
+must all be runnable and readable by a manual QA tester by hand). 13 cases carried instructions a
+tester could not perform as written and were fixed:
+- Concurrency / two-permission checks reworded to concrete two-login / second-browser steps
+  (C88518, C88522, C88528, C88533).
+- Server-enforcement and forced-failure checks that cannot be done by hand are now stated honestly
+  in-step as developer/automated checks, with the manual part spelled out (C88516 server bypass,
+  C88540 record-write failure, C88548 forced empty/failed ShopCoach, C88590 server submit-refusal).
+- ShopCoach brief internals (not visible on screen) rewritten to verify via the resulting proposed
+  lines, with an honest note (C88541).
+- Upload-failure made a real manual action (interrupt the network) (C88561).
+- Bare "the S2 conditions are met" / anchor pointers spelled out in plain terms (C88519, C88523;
+  C88591 tidied). Verbatim Expected quotes were left unchanged throughout (Rule 113).
+Re-scan: 0 remaining instructions a human cannot perform. All edited cases re-confirmed fr-view.
+
 ## Outstanding for the QA lead
 - **Not build-verified yet.** No QA-build verification was run (source-verify + authoring only). When
   the suite is executed against `https://sv8181.qa.shopview.com`, re-stamp read/build dates and flip

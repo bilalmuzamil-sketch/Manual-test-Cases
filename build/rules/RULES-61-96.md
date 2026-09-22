@@ -2452,3 +2452,67 @@ source should not exist (Rule 64).
 > character-for-character that sentence?
 
 If no: either find the sentence, or the case is not ready.
+
+## 114 · EVERY CASE MUST BE RUNNABLE BY A HUMAN MANUAL QA TESTER — PRECONDITIONS, STEPS AND EXPECTED, ALL OF THEM
+
+**Ordered by the QA lead, 2026-09-22, verbatim: *"Please make sure that the preconditions, steps of
+reproduction and expected results are ALL runnable by a manual QA tester. A human has to read them.
+Make it as a rule."*** Permanent, all projects. This is the executable half of the tester-readiness
+gate (Rule 84): Rule 113 governs what the Expected *says*, this rule governs whether a human can
+actually *do* the whole case by reading it.
+
+### The rule
+
+**A manual QA tester, reading only the case, must be able to reach the preconditions, perform every
+step, and judge the expected result — by hand, in the product's own interface, with no developer
+tools, no API calls, no database access, no code, and no knowledge the case does not give them.**
+All three parts are held to this, not just the steps.
+
+### Preconditions — a state the tester can actually reach
+
+- Concrete and achievable: the exact data to have in place (seeded with the named keyword, or created
+  by named steps), the roles / permissions / settings to switch on, the environment and build, and
+  the screen to start on.
+- Name the data. If a case needs a record, a template, a work order or a file that the environment
+  does not already hold, say which one and how the tester gets it — do **not** leave a bare pointer
+  like *"the conditions in Sx are met"* as the only instruction; if you cite another area, still spell
+  out here what that means in practice.
+- A precondition the tester cannot create by hand is a **blocker to surface** (Rule 68), not a line
+  to leave sitting in the case.
+
+### Steps — actions a human performs in the UI
+
+- Numbered, **one action per line**, each a thing a person does on screen: open, tap, type "…",
+  select, upload the file named "…", switch a toggle. Use the build's **exact on-screen labels**.
+- **No step may require what a manual tester cannot do**: a raw API request, a database edit, browser
+  devtools, injecting or forcing an internal failure, running a script, or reading code.
+- Where a requirement can only be proven outside the UI — server-side enforcement, a forced write
+  failure, two users acting at the same instant — do one of two things, never a third:
+  1. **express it as something the tester genuinely can do by hand** (e.g. two browser sessions signed
+     in as two users for a concurrency check; a second real login for a permission check); or
+  2. if it truly cannot be done by hand, **mark the case `AUTOMATION: HOLD - <reason>`** and state in
+     the steps, in plain words, exactly which part a manual tester cannot verify and why.
+  **Never leave an instruction a human cannot carry out sitting in a manual case as though they
+  could.**
+
+### Expected — readable and checkable by eye
+
+- The verbatim source quote stays and comes first (Rule 113). But the tester **acts on the plain
+  restatement**, which must say what they should **see on screen**, in the build's words — no jargon,
+  no case or requirement ids, no HTTP or other technical terms (Rules 7, 9).
+- It must be checkable by looking at the screen, against the step that produced it.
+
+### The three parts line up
+
+Every step has an expected outcome; nothing in Expected depends on a step that is not written; and
+nothing in Steps needs a precondition that is not set. A reader must never have to supply a missing
+action, a missing bit of data, or a missing piece of knowledge.
+
+### The check, before any case ships
+
+> Could a manual tester who has never seen this feature take this case, reach the preconditions,
+> perform every step in the UI by hand, and decide pass or fail from what they see — without asking
+> anyone and without any tool beyond the product?
+
+If no: fix the case, or mark honestly what cannot be done by hand. A case that fails this check is
+**not tester-ready (Rule 84) and does not ship.**
