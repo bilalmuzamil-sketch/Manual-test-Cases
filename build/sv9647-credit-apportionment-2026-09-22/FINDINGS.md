@@ -169,86 +169,44 @@ directions.
   `POST /api/work-orders/change-engine-hours {work_order_id, engine_hours:'120'}`, both → 201. Passing
   `engine_hours` to `change-mileage` returns 201 and silently does nothing.
 
-## §0c — Correction to my earlier note about the staging Accept Delivery 500
+## §0c — I WAS WRONG TWICE ABOUT "STAGING CANNOT RECEIVE". It can. I was on the wrong screen.
 
-Earlier I wrote that receiving is broken environment-wide on staging, on the strength of a "control" run
-against a pre-existing purchase order. **That control was invalid**: the purchase order I used,
-**S-33368 `bca430f5…`**, has `vendorMissing: true` and no vendor at all, so it was failing for a reason
-that has nothing to do with my fixture. **Configuration first — I should have read the purchase order's
-state before drawing a conclusion (Standing Rule 75).**
+**What I claimed, in two escalating versions, and both were wrong.**
 
-What is actually established, signed in as **Quick login → Admin**:
+*First*, I wrote that receiving is broken environment-wide on staging, on the strength of a "control" run
+against a pre-existing purchase order. **That control was invalid**: the order I used, **S-33368
+`bca430f5…`**, has `vendorMissing: true` and no vendor at all, so it was failing for a reason that has
+nothing to do with my fixture. I should have read the order's state before drawing a conclusion
+(Standing Rule 75 — configuration first).
 
-* On **P-2145 `628ad251…`**, which does have a vendor (*Brookline Truck Repair*, `vendorMissing: false`),
-  the receive still fails — **HTTP 500**, requestId `6a409ed9-679f-4e4a-8eba-4ec117aa0c5e`.
-* That was sent by **the application's own form**, not by me: I captured the outgoing request from the
-  Accept Delivery screen. The payload is camelCase with `items` as a JSON **string**
-  (`{id, invoiceNumber, invoiceDate, note, items:"[…]", total, orderStatus:"fulfilled", tax}`), which is
-  also why my hand-built snake-case probe got a different, misleading 400.
-* Screens: the Accept Delivery page for that order is
-  https://app.staging.shopview.com/accept-delivery/628ad251-567f-4136-9957-a0899bb112f3
+*Then*, having fixed the control, I still reported the receive as failing: **HTTP 500** on
+`POST /api/inventory/orders/accept`, requestId `6a409ed9-679f-4e4a-8eba-4ec117aa0c5e`, sent by **the
+application's own form** on `/accept-delivery/628ad251…` while signed in through **Quick login → Admin**
+on an order that *does* have a vendor. All of that is accurately reported and all of it is beside the
+point, because **`/accept-delivery/{orderId}` is not the screen a part sale is received from.**
 
-**I have not yet run a valid control** — a pre-existing staging purchase order that *does* have a vendor —
-so I am not calling this environment-wide, and I am not calling it a defect of this ticket either: it is
-display-only work and receiving is not on its path. It is recorded here and it is the reason the before
-capture was built from labour-only work orders instead.
+**The QA lead pointed at the right one and it works first time.** From the part sale's own **Part
+Requests** tab — `/parts/part-sale/{partSaleId}/part-requests` — the row carries a **Receive** button
+which opens a *Receive parts* panel grouped by vendor (vendor selector, Vendor Invoice Number, Invoice
+Date, Delivery Note, per-row Qty Received, Tax, and a **Receive Parts (n)** button). That panel posts
+**`POST /api/orders/receive-requested-parts`** — a different endpoint entirely — and it returned
+**HTTP 200**, with the row flipping to **Received**. The same worked on the second part sale
+(`ZZ9647-BEF-B`, item `416f4890…`) → **200, Received**.
 
-## §0d — The matched pair: the SAME invoice, the SAME credits, on both builds
+* Received this way: **P-2145** (part sale `0dcaa2bc…`, invoice number `ZZ9647-BEF-A`) and **P-2146**
+  (part sale `c40b9af5-1ecf-43e5-b908-18f2d7af135f`, `ZZ9647-BEF-B`).
+* Control ids for the panel: vendor group `f7f509b5-3cfe-4041-852b-b5c4662bb0e8`,
+  `input_invoice_number_<group>`, `input_quantity_<itemId>`, `button_receive_vendor_<group>`.
 
-§1 proved the fix works, but its fixture (part sales, $4.66 / $87.74, tax-exempt customer) is not the
-same document as the staging before. A before-and-after picture built from two different documents is
-worthless, so I rebuilt the staging fixture **identically on the fix branch** — same canned lines, same
-vehicle, same workplace, same credit faces — and the totals came out **to the cent**: **$145.04** and
-**$406.09** on both builds.
+**The lesson, and it is one already written down in the playbook (§U.0, question 2): "is there more than
+one surface for this action, and am I on the one the product uses?"** I spent a long time proving, very
+rigorously, that a screen the product does not use for this flow returns a 500 — and then reported it as
+an environment fault. Rigour on the wrong surface is not rigour.
 
-| | BEFORE — staging `v26.36.8-e2c29c5` | AFTER — branch `v26.36.8-fc4dd05` |
-|---|---|---|
-| Customer | ZZAUTOTEST SV-9647 Credit Split **BEFORE** `27bfb198…` | ZZAUTOTEST SV-9647 Credit Split **AFTER** `53277e2c…` |
-| Small invoice | **INV-S2-33369**, $145.04 (WO `669d5baf…`) | **S-17583**, $145.04 (WO `eb5c8250…`) |
-| Large invoice | **INV-S2-33370**, $406.09 (WO `14fe4f27…`) | **S-17584**, $406.09 (WO `deca25bd…`) |
-| Credits | CM2-4398 $200.00 · CM2-4399 $300.00 | CM-4191 $200.00 · CM-4192 $300.00 |
-| Payment | one CASH payment, remainder $51.13, ref `ZZ-9647-BEFORE` | one CASH payment, remainder $51.13, ref `ZZ-9647-AFTER` |
-
-### The $145.04 document, side by side
-
-```
-BEFORE (staging)                          AFTER (fix branch)
-Total                     $145.04         Total                     $145.04
-Payments                                  Payments
-  Cash                     $51.13           Cash                     $51.13
-  (Credit) CM-4399        $300.00           (Credit) CM-4191         $37.56
-  (Credit) CM-4398        $200.00           (Credit) CM-4192         $56.35
-BALANCE                     $0.00         BALANCE                     $0.00
-                    ——————————                                ——————————
-payments printed          $551.13         payments printed          $145.04
-```
-
-### The $406.09 document
-
-```
-BEFORE (staging)                          AFTER (fix branch)
-  (Credit) CM-4399        $300.00           (Credit) CM-4191        $162.44
-  (Credit) CM-4398        $200.00           (Credit) CM-4192        $243.65
-payments printed          $500.00         payments printed          $406.09
-```
-
-### It reconciles in both directions on the fixed build
-
-| | small $145.04 | large $406.09 | memo face |
-|---|---|---|---|
-| CM-4191 | $37.56 | $162.44 | **$200.00** ✓ |
-| CM-4192 | $56.35 | $243.65 | **$300.00** ✓ |
-| Cash | $51.13 | — | $51.13 |
-| **document total** | **$145.04** ✓ | **$406.09** ✓ | |
-
-**And the figures were predicted before they were read.** Cash settles $51.13 of the small invoice,
-leaving $93.91; the two credits then split that in proportion to their faces —
-$200/$500 × $93.91 = **$37.56** and $300/$500 × $93.91 = **$56.35**. Both to the cent. The same rule
-gives $162.44 and $243.65 on the large one. This is the same apportionment rule §1 derived independently
-from the part-sale fixture, so two differently-shaped fixtures agree on it.
-
-**`$200.00`, `$300.00` and `$500.00` appear nowhere on either fixed document**, and `$145.04` appears
-nowhere on the large one — checked by searching the rendered text, not by eye.
+**What is left genuinely open:** `/accept-delivery/{orderId}` really does return 500 for this order, as
+the application's own form sends it. That may be a dead or mis-wired route rather than a defect, and it
+is **not** on SV-9647's path. I am not filing anything on it; it is recorded here in case it matters to
+someone.
 
 ## §2 — Cross-workplace, same organization: the fix PASSES, and a separate pre-existing gap sits next to it
 
