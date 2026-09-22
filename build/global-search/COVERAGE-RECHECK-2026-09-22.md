@@ -30,12 +30,24 @@ Against the sources **as last verified (PRD 576978945 v1.5, read live 2026-09-17
 - Parked PO questions: PO-GS-5 (telemetry in V1?), PO-GS-6 (vendor-invoice badge 2 vs 3 states),
   OQ-3 (does the AI "ask a question" placeholder ship in V1?).
 
-## 🔴 Currency NOT re-confirmed this session (Rule 12/31/110)
-The Atlassian connector timed out on all five attempts (Confluence CQL, Jira JQL, getConfluencePage)
-on 2026-09-22, so I could NOT re-confirm that PRD 576978945 is still at v1.5 or that epic SV-9160 has
-gained no new stories since 2026-09-18. The completeness verdict above holds **for the v1.5 source
-version**; if the PRD/epic moved in the last few days, that delta is unchecked. Re-run the currency
-check when the connector is back.
+## ✅ Currency CONFIRMED live 2026-09-22 (after connector recovered)
+- **PRD 576978945** — "Global Search - Product Requirements", **Version 1.5, Last Updated 2026-09-08**
+  (author Branko Cicovic). **UNCHANGED** since the last audit — the completeness verdict above is
+  against the current PRD version. No delta to check.
+- **Epic SV-9160 — 26 children** (was 24). The two new ones add **no** global-search requirement:
+  - **SV-9594** "Show unit number and vehicle on Schedule work orders" — a *Schedule* story, Open,
+    updated 2026-09-21. Domain is Schedule, not global search; looks **mis-parented**. Flag to PO;
+    not a GS coverage item.
+  - **SV-10031** "Part Sales: a new part sale is created but the app cannot open it…" — a *Bug*
+    (QA Complete), not a requirement to cover.
+- **Scope REMOVED since (stories now OBSOLETE), which subtracts nothing from coverage but answers
+  open questions:** telemetry **SV-9167 OBSOLETE** (→ PO-GS-5 effectively answered: telemetry not in
+  V1; TestRail section 6768 correctly holds 0 cases); contextual quick actions **SV-9173 OBSOLETE**;
+  page-search cutover BE **SV-9306 OBSOLETE** (but its verify task **SV-9311** is still in Code
+  Review, so PERM-F page-search parity stays an open question); scope-tab FE **SV-9169 OBSOLETE**.
+
+**Net: the suite is coverage-complete against the current, confirmed source (PRD v1.5 / epic
+SV-9160). No new requirement is uncovered.**
 
 ## Not part of V1 palette completeness (separate universes)
 - V1-regression suite for GS V2 lives in sections 6769 (66) and 8056 (1); "Out of V1 Scope" 6767 (1);
