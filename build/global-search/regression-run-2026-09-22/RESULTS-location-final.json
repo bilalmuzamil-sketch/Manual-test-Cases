@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "pass": "Location scoping, with a job seeded at each Location",
+  "date": "22 September 2026",
+  "build": "v26.36.8-d146c39",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C45151": {
+   "verdict": "Passed",
+   "observed": "Proved with data seeded for it. One job was created at each of the two Locations on this test site - S-17717 at Staging Heavy Duty - 9919 and S-17718 at Staging Lethbridge - 4310. Standing at Heavy Duty, search returns that Location's own job S-17717 and does NOT return S-17718, which belongs to the other Location. The job it does return is the positive control: the search is working, and it is leaving out only the record that belongs somewhere else.",
+   "not_observed": null
+  },
+  "C45152": {
+   "verdict": "Blocked",
+   "observed": "The Location shown in the app never changes for this sign-in, so a before-and-after cannot be read. Six ways were tried: the change behind the screen, the Change Location item in the profile menu, a full page reload after the change, three readings there-and-back-and-there, signing in as a staff member whose own Location is the second one, and finally a job seeded at each Location so the data itself would show the difference. The app stays on Staging Heavy Duty - 9919 throughout.",
+   "not_observed": "Whether search refreshes when the Location actually changes.",
+   "todo": "What needs to be done: one sign-in whose Location genuinely moves, or a staff account tied to Staging Lethbridge - 4310 that keeps that Location when signed in as. With that, this takes minutes. The jobs are already seeded at both Locations and waiting. This blocks nothing else - every other check on this suite is finished."
+  },
+  "C55684": {
+   "verdict": "Blocked",
+   "observed": "Same reason as the check above: the Location shown never changes for this sign-in, so it cannot be shown that the previous Location's jobs stop being returned after a change. What CAN be said is on the first of these three checks: standing at one Location, the other Location's job is not returned.",
+   "not_observed": "Whether the previous Location's records disappear after changing Location.",
+   "todo": "What needs to be done: the same one thing - a sign-in whose Location genuinely moves, or a staff account tied to Staging Lethbridge - 4310. The seeded jobs are in place at both Locations already."
+  }
+ }
+}

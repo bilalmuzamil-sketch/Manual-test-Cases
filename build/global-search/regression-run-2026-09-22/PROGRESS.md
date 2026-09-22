@@ -286,3 +286,44 @@ Three throwaway jobs (`S-17714`, `S-17715`, `S-17716`) could not be removed — 
 answers 400 and the job-list endpoint returns nothing to find them by. The Technician role was
 restored and **read back identical** after every permission run. The branch is back on
 **Staging Heavy Duty - 9919**.
+
+---
+
+## UPDATE — the seeding he ordered unblocked one of the three
+
+**The word was wrong in everything above: the product calls it a LOCATION, not a branch.** The
+profile menu carries **"Change Location"**, and this test site has two — **Staging Heavy Duty -
+9919** (Calgary) and **Staging Lethbridge - 4310**. "Branch" is kept for the test site `sv9160`
+only. Evidence: `label-workplace-picker.png`.
+
+**Seeded, on his instruction:** one job at each Location — **S-17717** at Heavy Duty, **S-17718** at
+Lethbridge. Both created 201.
+
+**C45151 → PASSED.** It never needed the Location to move. Standing at Heavy Duty, search returns
+that Location's own job **S-17717** and does **not** return **S-17718**, which belongs to the other
+Location. The job it does return is the positive control in the same reading: the search works, and
+it is leaving out only the record that belongs elsewhere.
+
+**C45152 · C55684 → still Blocked.** These genuinely need the Location to change, and it will not:
+
+| # | Route tried | What happened |
+|---|---|---|
+| 1 | the change behind the screen | reports success, nothing moves |
+| 2 | the **Change Location** item in the profile menu | the item is found and clicked; what it opens matches no option selector tried |
+| 3 | a full page reload after the change | no movement |
+| 4 | three readings, there and back and there | the same Location and the same 20 jobs each time |
+| 5 | signing in as **Jennifer Phillips**, whose own Location is Lethbridge | the app still shows Heavy Duty |
+| 6 | a job seeded at each Location so the data itself would show it | both readings identical |
+
+**To finish: one sign-in whose Location genuinely moves, or a staff account tied to Staging
+Lethbridge - 4310 that keeps that Location.** The jobs are already seeded at both and waiting.
+
+### Two more faults of mine in this stretch
+
+7. The unique word was written to the job **description** — **a field search does not look at**
+   (§4 lists number, customer, asset, unit, VIN, technicians and line descriptions). It could never
+   have been found, and the search for it returned nothing at both Locations, which read as the
+   scoping failing. **The job number is indexed; that is the discriminator.**
+8. I never checked that tag write succeeded. It had not.
+
+## REVISED FINAL — **56 Passed · 7 Failed · 2 Blocked · 0 Untested**
