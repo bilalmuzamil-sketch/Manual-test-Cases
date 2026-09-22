@@ -53,3 +53,29 @@ sv8311. Type = NEW feature (not a V1→V2 comparison; old dashboard scrapped, it
 ## Currency (Rule 31/32) — confirmed live 2026-09-22
 PRD 788430850 last modified 2026-09-16 (read today). Epic SV-490 children read today: SV-9573..9584 Open,
 SV-93xx/9451/9699 obsolete. No newer source known.
+
+## STATUS 2026-09-22 — SUITE AUTHORED (33 cases, C88594–C88626)
+Authored the full Dashboards suite into 12166 across 12 per-story subfolders (12167–12178), covering
+all 131 PRD requirement anchors (S1–S12), each exactly once. Expected Results in the 2026-09-22 layout
+(plain results / Source / exact verbatim quotes, Rule 113); preconditions+steps runnable by a manual
+tester (Rule 114); **AUTOMATION: HOLD — not yet build-verified on sv8311** on all 33 (source-verified
+only, per QA-lead choice). All fr-view confirmed. Reproducible: `build_dash.py` + `plain-bullets.txt` +
+`anchor_lib.py` + `section-map.json`.
+| Story (subfolder) | Cases | C-ids |
+|---|---|---|
+| S1 Access & Entry Point (12167) | 5 | C88594–C88598 |
+| S2 One Fixed Layout (12168) | 2 | C88599–C88600 |
+| S3 Measure Formulas & Parity (12169) | 3 | C88601–C88603 |
+| S4 KPI Hero Tiles (12170) | 4 | C88604–C88607 |
+| S5 Count Tiles (12171) | 4 | C88608–C88611 |
+| S6 Expanding a Tile (12172) | 5 | C88612–C88616 |
+| S7 Per-Tile Date Ranges (12173) | 2 | C88617–C88618 |
+| S8 Chart Filters (12174) | 2 | C88619–C88620 |
+| S9 Chart Behavior (12175) | 2 | C88621–C88622 |
+| S10 Report Drill-In (12176) | 1 | C88623 |
+| S11 Chart on the Report Page (12177) | 2 | C88624–C88625 |
+| S12 Visual Conformance (12178) | 1 | C88626 |
+
+Outstanding: build verification on sv8311 (offered, gated — flip markers when run); create/sync a test
+run (Rule 34); the S1-R7/S3-R1/S1-N9 server-side/analytics checks are flagged in-case as developer/
+automated (not manual).
