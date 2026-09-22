@@ -129,3 +129,15 @@ pass through the same dialog.
 
 **The lesson is Rule 68's: a restore is not restored until it is compared field by field.** Restoring the
 field you changed is not enough when the application derives other fields from it.
+
+**Confirmed a second time from the edit dialog itself** (the surface the original values were recorded
+from), after the restore:
+
+```
+DIALOG: {"cost":"10.00","sell":"300.00","core":"1.00","min":"5","max":"6","q0":"2","q1":"99"}
+```
+
+One field needs saying plainly so nobody re-opens it: the **inventory *list* API reports `sell_price: 100`
+for this part, and it reported 100 BEFORE the pass as well.** It is a different, derived figure — not the
+Sell Price the dialog edits — and it never moved. Production part `0085fddf-7299-49aa-b2f4-c40c98fbce71`
+(org `72b2cc90…`) is fully back to how it was found.
