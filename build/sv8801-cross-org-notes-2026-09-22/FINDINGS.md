@@ -320,3 +320,65 @@ empty body reaches the validator and answers **400** `{"tasks":"Missing required
 The branch is cut from `main` rather than `develop` (the handoff says so), which is a plain explanation
 for an older permission set. **Nothing here touches note tenancy, and it would refuse identically with
 this change reverted.** Reported, not filed.
+
+## §11 — Customer-visible note emails (handoff check 5): tested, and it needs the developer
+
+This is the one the handoff calls a **silent** tripwire — no error, no failed job, simply no emails — so a
+"no exception was thrown" answer would be worth nothing. I went looking for an actual mailbox.
+
+**Mail from this branch does reach a real inbox.** Two invitation emails from `noreply@shopview.com`
+arrived during this pass — 03:09:31Z to `bilal.muzamil+8801@shopview.com` and 03:52:30Z to
+`bilal.muzamil+orgB@shopview.com` — sent by the branch itself when the two test organizations were
+created. So the mailer is alive and outbound delivery works.
+
+**Set-up, so the notification had a real address to go to.** The work order's contact was pointed at a
+mailbox I can actually read: contact Heather Best (`f6b18290…`) changed from
+`heather.best@staging.shopview.local` — a domain that does not exist — to
+**`bilal.muzamil+sv8801@shopview.com`**, and set as the contact on work order **S8801-17580**
+(`d542775f…`, customer *Abode Trucking & Repair*).
+
+**Then three customer-visible notes on that work order:**
+
+| # | How | Result |
+|---|---|---|
+| 1 | API `note/update` with `customer_visible: true` | **200**, re-read `customerVisible: true` |
+| 2 | API `note/create` with `customer_visible: true` | **201**, re-read `customerVisible: true` |
+| 3 | **through the screen** — New Note, tick **Customer Visible**, Save | **201**; the screen sends exactly `{"type":"work_order","reference_id":"d542775f…","customer_visible":true}`, which confirms the two API calls above were faithful |
+
+**No notification email arrived, in about fifteen minutes of watching the inbox.**
+
+**I am NOT calling that a defect, and here is the honest reason.** I could not establish the baseline:
+
+* I could not get the same set-up onto the unfixed staging build to compare — staging's sign-in goes
+  through Google SSO, so the second organization's screens are not reachable from here, and staging has
+  no contacts-list endpoint I could find to repoint an address by API. **Without the before, a missing
+  email could equally be normal.**
+* The feature may legitimately require something I have not given it — portal enrolment for that
+  contact, a different recipient than the work-order contact, or customer-portal mail switched off on QA
+  branches. I found no portal-access flag on the contact record and no portal-enrolment endpoint to
+  check.
+
+**So this is a question for the developer, not a finding:** with the contact email set to a real
+address and the note marked customer visible, should `SendCustomerNoteNotificationJob` have fired on
+this branch — and did it? They can see the queue; I cannot. Everything they need to look it up is
+above: the work order, the contact, the three note ids, and the timestamps.
+
+## §12 — What was changed on the environments
+
+**On the QA branch** (`sv8801`, no cleanup expected on per-ticket branches — the QA lead's ruling), all
+tagged `ZZAUTOTEST` where the field allowed it:
+
+* two organizations and their notes/attachments, per §1;
+* work order **S8801-17580** created, then status moved `estimate → approved`, and its contact set to
+  Heather Best;
+* contact **Heather Best's email changed** to `bilal.muzamil+sv8801@shopview.com` (was
+  `heather.best@staging.shopview.local`) — **worth knowing if anyone re-uses this customer**;
+* vehicle **ZZ8801** created under *Abode Trucking & Repair*; vehicle *Trailtech Trailers 14674* had its
+  **Color** set to `ZZAUTOTEST-8801`;
+* several notes created on work orders, a customer and an asset, some with a PNG attachment;
+* **all 37 of Org A's notes had their read status toggled and toggled back** during the §9 probe;
+* the Admin role was **not** modified — the `woMoveLabor` gap in §10 is how the branch was seeded, not
+  something we changed.
+
+**On staging** (shared, so restored): one demo note was created in the second organization and
+**deleted again — that organization is back to 0 notes, verified**. Nothing else was written.
