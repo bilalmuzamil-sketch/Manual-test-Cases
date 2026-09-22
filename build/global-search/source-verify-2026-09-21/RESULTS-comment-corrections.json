@@ -1,0 +1,25 @@
+{
+ "pass_meta": {
+  "pass": "Correcting two run comments that still say a report is waiting",
+  "date": "22 September 2026",
+  "build": "v26.36.8-d146c39",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C45160": {
+   "verdict": "Failed",
+   "observed": "CORRECTING AN EARLIER NOTE ON THIS TEST. The earlier note said a report was written and waiting for the QA lead's go-ahead. That is no longer true and nothing is waiting. What was found still stands - choosing a search result records no usage event, proved against a working comparison on the same branch. But on reading the requirements as they stand today, usage recording was deliberately taken OUT of this version: the goals section excludes it in as many words, the change list records it being deleted from the document, and the piece of work that would have built it was cancelled. The product is doing what was asked of it, so no report goes to the developers.",
+   "not_observed": null,
+   "ticket_held": true,
+   "ticket": "No report will be raised - the decision is with the QA lead and the product owner, not the developers. Nothing is queued behind this.",
+   "todo": "What needs to be done: this test needs the same exclusion note its twin already carries, so it is recorded as not applicable to this version rather than as a failure. That wording is the QA lead's to approve. No report is being prepared and none is waiting to be raised."
+  },
+  "C55685": {
+   "verdict": "Failed",
+   "observed": "CORRECTING AN EARLIER NOTE ON THIS TEST. The earlier note said no report had been written yet. A report DOES exist and covers exactly this: typing a correctly spelled name brings back records that have nothing to do with it. It is raised and sits at Ready to Fix. The finding itself is unchanged and was re-checked on 18 September: each unrelated row now carries a visible 'close match' marker, but the list is the same - typing one name returns eighteen results and sixteen of them do not contain the word typed.",
+   "not_observed": null,
+   "ticket": "Already raised as SV-10025 - https://shopview.atlassian.net/browse/SV-10025 - status Ready to Fix. Nothing is waiting with the QA lead for this one, and no second report should be raised.",
+   "todo": "What needs to be done: nothing from us. The fix is with the developers under the report above. If anyone reads the older note on this test, ignore it - it predates the report being raised."
+  }
+ }
+}
