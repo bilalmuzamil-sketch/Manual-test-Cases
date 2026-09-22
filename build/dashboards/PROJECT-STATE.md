@@ -80,3 +80,14 @@ only, per QA-lead choice). All fr-view confirmed. Reproducible: `build_dash.py` 
 Outstanding: build verification on sv8311 (offered, gated — flip markers when run); create/sync a test
 run (Rule 34); the S1-R7/S3-R1/S1-N9 server-side/analytics checks are flagged in-case as developer/
 automated (not manual).
+
+## STATUS 2026-09-22 (later) — DATA-ACCURACY SUITE ADDED → 59 cases total
+Per QA-lead Rules 115/116 and the data-correctness mandate, drove the design end-to-end (New Dashboard
+only; evidence in design-exploration-2026-09-22/) and added a rigorous **DATA · Accuracy & Report Parity**
+suite (subfolder 12180): C88633–C88652 (20 cases) proving each number is correct — exact value from
+seeded known inputs, parity with the matching report at every range/filter, and every arithmetic hazard
+(ratios pooled not averaged; zero-denominator n/a; void/credit/negative; distinct counting; proportional
+tech-time split incl. zero-clock; rounding/precision; sparkline bucket boundaries; timezone/day-boundary;
+month-end as-of; workplace scoping; freshness/no-stale-window; internal consistency).
+Suite now **59 cases**: 33 base (S1–S12) + 6 design/tech-plan (C88627–88632) + 20 data-accuracy (C88633–88652).
+Subfolders: 12167–12178 (S1–S12), 12179 (NF), 12180 (DATA). All AUTOMATION: HOLD (not build-verified).

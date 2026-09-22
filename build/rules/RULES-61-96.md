@@ -2582,3 +2582,58 @@ Emit a per-source coverage verdict (Rule 43): PRD ✓, design ✓, tech plan ✓
 was covered and what was deliberately excluded and why. Do not report a suite "complete" until every
 provided source has been explored and reconciled. **"It won't bite me" is a claim you must be able to
 show, source by source.**
+
+### Driving the design is END-TO-END, and EVERY time (amendment 2026-09-22)
+
+**Ordered by the QA lead, 2026-09-22: *"always drive the designs end to end to its 100% for 100%
+coverage… it should not be a one time task it should be your rule. Never skip anything when creating
+test cases."*** Driving the design means EVERY interactive state, not a sample: toggle every variant
+(and use only the named one), open every dropdown and read its full option list, expand every card /
+panel, apply every filter, hover for every tooltip, flip light/dark, and resize to every breakpoint —
+capturing each state. This is done **on every suite that has a design, every time**, never once. A
+state you did not drive is coverage you cannot claim. If the tooling to drive it is missing, install it
+(this env: Playwright + the pre-installed Chromium via `build/testing-tools/drive_design.py`) rather
+than downgrading to a static read.
+
+## 116 · RIGOROUS DATA / NUMERICAL-ACCURACY COVERAGE — A WRONG NUMBER MUST BE IMPOSSIBLE TO SHIP
+
+**Ordered by the QA lead, 2026-09-22, verbatim: *"rigorous data-correctness / numerical-accuracy for
+all the test cases for every testing suite you create… anything that is related to statistics and
+data/dashboard they are fully covered with your test cases always that they can never show a wrong
+number."*** Permanent, ALL projects and suites. Wherever the product shows a number — a dashboard tile,
+a report figure, a count, a percentage, a total, a ratio, a chart point, a sparkline, an aggregate —
+the suite must make it **impossible to ship a wrong number**, and this is not optional or feature-specific.
+
+### What every numeric feature's suite must prove
+
+1. **Exact value from known inputs.** Seed data whose correct answer is computable by hand, then assert
+   the displayed figure equals the computed figure to the stated precision (cents, decimal places,
+   whole-number percents). Not "a number appears" — the RIGHT number.
+2. **Parity with every source of the same figure.** If the number also lives on a report/another
+   surface, assert they are equal for the same inputs, filters and range — at every option, not one.
+3. **The arithmetic hazards, each its own case:**
+   - **Ratios are pooled, never averaged** — a shop-wide ratio is SUM(numerator) ÷ SUM(denominator),
+     never the mean of per-row percentages (averaging ratios is the classic statistical error; test it
+     with uneven volumes so the two differ).
+   - **Zero/empty denominators** read as the spec's empty token (e.g. "n/a"), never a misleading 0.
+   - **Negative / credit / refund / void / reversal** cases produce the true figure, and excluded
+     records (voids) contribute nothing everywhere they appear.
+   - **Distinct counting / de-duplication** — an entity counted once however many rows it has.
+   - **Proportional splits / allocations** sum back to the whole and handle a zero-share member.
+   - **Rounding and precision** — the displayed rounding is correct and parts sum as the spec says.
+   - **Time-bucketing / recency / as-of** — each bucket recomputes the same way as the headline; bucket
+     boundaries are tested on both sides; timezone/day-boundary and month-end as-of are exact.
+   - **Scoping** — figures are for the selected scope (workplace/tenant/filter) only; nothing bleeds.
+   - **Freshness** — the figure equals its source even immediately after the data changes; no stale
+     window.
+4. **Internal consistency** — headline, chart points, and detail-table totals reconcile with each other.
+
+### How
+
+Seed the exact records (Rule 14 — never mark a number NOT-VERIFIED for want of data; seed it), compute
+the answer independently, and assert equality — never eyeball "looks right". Where the exact mechanism
+is only provable outside the UI (server-side calc, cache invalidation), verify the observable equality
+by hand and mark the code-level part as a developer/automated check (Rule 114). A numeric suite that
+does not carry these cases is **incomplete**, whatever its requirement coverage looks like. A number
+the user can see and act on that we did not prove correct is exactly the failure this rule exists to
+prevent.

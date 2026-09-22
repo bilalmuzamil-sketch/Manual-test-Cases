@@ -369,7 +369,24 @@ NFRs); it informs, never overrules (30/57), a code-vs-doc conflict is a PO item 
 CONFIRM (nothing) / ADD (author it, cited to that source, 57) / DIVERGE (PO question, 56, never pick
 silently). **Coverage is PROVEN per source (a per-source verdict, 43), not asserted** — report PRD ✓,
 design ✓, tech plan ✓, epic ✓ with what was covered and what was excluded and why, before calling a
-suite complete.
+suite complete. **Amendment 2026-09-22:** the design is driven **END TO END, every state, every time**
+(every variant/dropdown/expand/filter/tooltip/theme/breakpoint) — never a one-time or sampled task;
+never skip anything; install the driver if missing (`build/testing-tools/drive_design.py`).
+
+**Rule 116 (rigorous data / numerical-accuracy — a wrong number must be impossible to ship)** was
+ordered by the QA lead **2026-09-22** and lives at the end of `build/rules/RULES-61-96.md`, after 115.
+**Wherever the product shows a number (dashboard tile, report figure, count, %, total, ratio, chart
+point, sparkline, aggregate) the suite must make a wrong number impossible to ship — every project,
+always.** Prove: (1) EXACT value from seeded known inputs to the stated precision (the right number, not
+"a number"); (2) PARITY with every other surface showing the same figure, at every range/filter; (3)
+each arithmetic hazard as its own case — **ratios pooled not averaged** (SUM÷SUM, never mean of
+percentages — the classic statistical error), zero/empty denominators as the empty token not a
+misleading 0, negative/credit/void/reversal true figures with voids excluded everywhere, distinct/
+de-duplicated counting, proportional splits that sum back (and a zero-share member), rounding/precision,
+time-bucketing/recency/as-of with boundaries + timezone tested, scope isolation, and freshness (equals
+source even right after a change); (4) internal consistency (headline = chart points = table totals).
+Seed the data and compute independently (Rules 14/12) — never eyeball; code-only mechanisms verified by
+observable equality + marked developer/automated (114). A numeric suite lacking these is INCOMPLETE.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
