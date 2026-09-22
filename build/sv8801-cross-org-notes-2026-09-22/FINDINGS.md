@@ -87,3 +87,51 @@ A negative result only means something if the same calls succeed when they shoul
   has to be looked at, not status-checked.
 * **Not to be filed** (developer's instruction): delete-attachment returns different error bodies for
   a nonexistent attachment id vs another org's.
+
+---
+
+## §5 — THE BEFORE-CAPTURE: the bug reproduces in full on staging
+
+**Staging `app.staging.shopview.com`, build `v26.36.8-339df81`** — a different build from the fix
+branch. Two organizations, both sessions live at once:
+
+* **staging Org A** = `d55bc308-e61a-438d-b5f1-c7a73c89d49f`
+* **staging Org B** = `302f69e8-5f45-4d4c-9d9b-002dc8abb2a4`
+
+Same fixture discipline as the branch: a note created **through Org B's own session**
+(`69aaaf08-b2f0-46e3-9492-0b6029b70f8c`, attachment `31909873-7673-444a-b953-c4cce4f6b9c4`), proven
+**absent from Org A's 55 notes** before anything was attempted.
+
+**Then, from Org A's session, against Org B's note — every step verified by re-reading as Org B:**
+
+| # | Attempt from Org A | Status | What actually happened in Org B |
+|---|---|---|---|
+| 1 | `note/update` | **200** | content overwritten — now reads `TAMPERED BY ANOTHER ORGANIZATION` |
+| 2 | `note/add-attachments` | **201** | file planted — attachments went **1 → 2** |
+| 3 | `note/download-attachment` | **200, 38 bytes** | **the other organization's file contents came back**: `ZZAUTOTEST SV-8801 staging attachment` |
+| 4 | `note/delete-attachment` | **200** | attachment destroyed — **2 → 1** |
+| 5 | `note/delete` | **200** | **the note is gone** |
+
+**Every endpoint is exploitable on the unfixed build, and each one really mutated the row** — exactly
+the trap the developer warned about, where a status-only assertion proves nothing because the status
+was 200 *and* the data changed.
+
+### This also settles which build carries the fix
+
+The question `SETUP.md` left open is now answered empirically rather than assumed: **staging
+(`v26.36.8-339df81`) does NOT have the fix; the branch (`v26.36.8-18877c9`) does.** The same five calls
+against the same kind of fixture behave in exactly opposite ways.
+
+### One thing the ticket title understates
+
+The summary says users can *"edit, delete, and attach files to"* another organization's notes.
+**Step 3 shows they can also READ another organization's file content** — `download-attachment`
+returned the bytes. That is data exfiltration, not just tampering, and it is not in the title.
+**The fix does close it** (the branch returns 400 for the same call), so this is a note about how the
+issue is described, not an additional defect.
+
+### Staging left clean
+
+The only staging records touched were the throwaway note and attachments created for this test, and
+the test itself destroyed them. **Nothing pre-existing on staging was read, modified or deleted** —
+every cross-org call was aimed at the `ZZAUTOTEST` note and no other id was ever used.
