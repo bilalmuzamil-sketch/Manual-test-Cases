@@ -98,3 +98,97 @@ correct.
 * A **QuickBooks sync warning** appears after the payment (*"The payment was saved, but the QuickBooks
   sync did not complete"*) — this organization is not QuickBooks-connected, so it is expected noise, not
   a finding.
+
+## §0 — The pre-fix BEFORE, captured on staging
+
+**Build `v26.36.8-e2c29c5`**, `app.staging.shopview.com`, `index.html` last-modified Tue 22 Sep 2026
+05:34:18 GMT, etag `f3e1dab3640788cf201b1adbc7553592`. Organization `d55bc308…`, signed in through the
+**Quick login → Admin** button.
+
+**The fixture** — deliberately built from **work orders with fixed-price canned lines** rather than part
+sales, so no part has to be ordered or received (see the receive note below). Same *shape* as the
+customer's case: one customer, two invoices, two credit memos, settled in **ONE** payment.
+
+| | |
+|---|---|
+| Customer | **ZZAUTOTEST SV-9647 Credit Split BEFORE** `27bfb198-95a0-491b-820a-59566432e598`, account `17c6e8d6-ca8c-43b8-8498-7e2d3235b39e` |
+| Contact | **ZZ Tester** `2288624a-ba8b-4778-a183-0d5d805a73c6` |
+| Work order 1 | **S2-33369** `669d5baf…` — canned line *Service - Wheels off trailer single or tandem*, labour $125.00 → invoice **INV-S2-33369**, total **$145.04** (labour $125.00 + shop supplies $13.13 + GST $6.91) |
+| Work order 2 | **S2-33370** `14fe4f27…` — labour $350.00 → invoice **INV-S2-33370**, total **$406.09** |
+| Credit memo 1 | **CM2-4398** `174b7c47…` — **$200.00** |
+| Credit memo 2 | **CM2-4399** `452a6f71…` — **$300.00** |
+| The payment | ONE payment, both invoices and both credits ticked together; both credits shown **"Fully consumed"**, cash remainder **$51.13**, method CASH, reference `ZZ-9647-BEFORE` |
+
+### What the pre-fix build prints — the bug, exactly as reported
+
+**INV-S2-33369 — total $145.04:**
+
+```
+Total                                  $145.04
+Payments
+  Sep 22, 2026 - Cash                   $51.13
+  (Credit) Sep 22, 2026 - CM-4399      $300.00
+  (Credit) Sep 22, 2026 - CM-4398      $200.00
+BALANCE                                  $0.00
+```
+
+**$51.13 + $300.00 + $200.00 = $551.13 of payments printed against a $145.04 invoice**, and the document
+still ends *BALANCE $0.00*. That is Brian Orban's complaint word for word.
+
+**INV-S2-33370 — total $406.09** is wrong in the same way, just less absurdly:
+
+```
+Total                                  $406.09
+Payments
+  (Credit) Sep 22, 2026 - CM-4399      $300.00
+  (Credit) Sep 22, 2026 - CM-4398      $200.00
+BALANCE                                  $0.00
+```
+
+$500.00 of credits against a $406.09 invoice. **So pre-fix, every document prints the FULL FACE of every
+credit in the payment, regardless of how much of that credit the invoice in front of you actually
+consumed** — and the cash row lands wherever the payment allocated it (here entirely on the small
+invoice, the opposite of the branch).
+
+Compare §1: on the fix branch each document prints only its own slice, and the slices reconcile in both
+directions.
+
+## §0b — Two staging blockers that are worth recording, because both cost time
+
+* **A work order created through `POST /api/work-orders/create` has NO customer contact, and without one
+  the whole invoice path dies** — `Create Invoice` renders **disabled with no tooltip**,
+  `POST /api/work-orders/invoices/estimate` → **500**, `GET /api/invoices/{woId}/details` → **500**.
+  It looks like a status or permission problem and is neither. Fix:
+  `POST /api/contacts/create {company_id, first_name}` then
+  `POST /api/work-orders/change-contact {work_order_id, vehicle_id, contact_id, update_vehicle:true}` →
+  200, after which estimate and details both return 200 and the button enables. **This was already
+  written down in `APP-ACTIONS-PLAYBOOK.md` §R.7a and I re-derived it the hard way — read the playbook
+  first (Standing Rule 27).**
+* **Completing a work order needs mileage AND engine hours**, and they are two separate endpoints:
+  `POST /api/work-orders/change-mileage {work_order_id, mileage:'100000'}` and
+  `POST /api/work-orders/change-engine-hours {work_order_id, engine_hours:'120'}`, both → 201. Passing
+  `engine_hours` to `change-mileage` returns 201 and silently does nothing.
+
+## §0c — Correction to my earlier note about the staging Accept Delivery 500
+
+Earlier I wrote that receiving is broken environment-wide on staging, on the strength of a "control" run
+against a pre-existing purchase order. **That control was invalid**: the purchase order I used,
+**S-33368 `bca430f5…`**, has `vendorMissing: true` and no vendor at all, so it was failing for a reason
+that has nothing to do with my fixture. **Configuration first — I should have read the purchase order's
+state before drawing a conclusion (Standing Rule 75).**
+
+What is actually established, signed in as **Quick login → Admin**:
+
+* On **P-2145 `628ad251…`**, which does have a vendor (*Brookline Truck Repair*, `vendorMissing: false`),
+  the receive still fails — **HTTP 500**, requestId `6a409ed9-679f-4e4a-8eba-4ec117aa0c5e`.
+* That was sent by **the application's own form**, not by me: I captured the outgoing request from the
+  Accept Delivery screen. The payload is camelCase with `items` as a JSON **string**
+  (`{id, invoiceNumber, invoiceDate, note, items:"[…]", total, orderStatus:"fulfilled", tax}`), which is
+  also why my hand-built snake-case probe got a different, misleading 400.
+* Screens: the Accept Delivery page for that order is
+  https://app.staging.shopview.com/accept-delivery/628ad251-567f-4136-9957-a0899bb112f3
+
+**I have not yet run a valid control** — a pre-existing staging purchase order that *does* have a vendor —
+so I am not calling this environment-wide, and I am not calling it a defect of this ticket either: it is
+display-only work and receiving is not on its path. It is recorded here and it is the reason the before
+capture was built from labour-only work orders instead.
