@@ -4597,6 +4597,71 @@ order. Same two-step-confirm family as the §U.0b trap and the SV-8527 menu. **C
 (`page.mouse.click` on the element's rect centre) — Playwright actionability clicks are unreliable on
 these Quasar menus.
 
+### §AC.10b — Part History and work-order history: the response shapes, the id-carrying test-ids, and the event vocabulary (SV-10158, 2026-09-22)
+
+**Two different history surfaces, two different shapes. Reading the wrong key returns `[]` and looks
+exactly like "the product wrote nothing" — which is a false FAIL waiting to happen.**
+
+```
+PART history       GET /api/parts/history/{inventoryPartId}
+                     ?pagination[rowsPerPage]=30&pagination[page]=1
+                     &pagination[sortBy]=&pagination[descending]=false&search=
+                   ->  data.collection[]          <-- collection
+WORK ORDER history GET /api/work-orders/{workOrderId}/history?...same pagination...
+                   ->  data.history[]             <-- history, NOT collection
+WO LINES           GET /api/work-orders/lines/{workOrderId}
+                   ->  data.collection[], and each row's id field is  line_id  (not id)
+```
+Every entry carries `{id, eventType, eventName, ...}`; **diff by `id`** before/after rather than by
+count, so a concurrently-written row cannot be mistaken for yours.
+
+**The event vocabulary seen on these two surfaces** (useful for asserting "the right kind of entry"):
+
+| eventType | eventName | rendered |
+|---|---|---|
+| `part.moved_to.work_order` | `Moved` | `Moved 2 from WO # S2-17435 to WO # S10158-17581` |
+| `work_order.split_to` | `Split to` | on the ORIGINAL work order, one per split performed |
+| `work_order.split_from` | `Split from` | on the NEW work order |
+
+A **split** and an ordinary **Move** produce the *same* `eventType` and the *same* wording — they
+differ only in the quantity, so never try to tell them apart by the entry text.
+
+**⭐ THE STAGED PART'S ⋮ CARRIES BOTH IDS IN ITS `data-test-id` — this is the cheapest way to get a
+`work_order_part_id` out of the DOM:**
+```
+button_part_context_menu_<workOrderPartId>_line_<lineId>
+```
+So `[...document.querySelectorAll('[data-test-id^="button_part_context_menu_"]')]` on
+`/workorders/{id}/lines` gives you every staged part **and** the line it sits on, in one read — no
+API call, no guessing which `id` the move endpoint wants (§AC.10: it wants the `work_order_part_id`).
+It doubles as the **seeding gate**: if that menu is absent after seeding, the part is **not staged**
+and any "no history was written" conclusion is invalid (the §AC.9 auto-pick trap).
+
+### §AC.10c — ⭐ DRIVE THE API FROM INSIDE THE AUTHENTICATED PAGE — stop juggling cookies entirely
+
+When a pass needs both the screen and the API (most of them do), do **not** keep a parallel curl
+cookie jar. The browser already holds a live session; borrow it:
+
+```js
+export function mkApi(page){
+  return async (method, path, body) => await page.evaluate(async ({m,u,b}) => {
+    const r = await fetch('https://<env>api.qa.shopview.com' + u, {
+      method: m, credentials: 'include',
+      headers: b ? {'Content-Type':'application/json'} : {},
+      body:    b ? JSON.stringify(b) : undefined });
+    let j = null; try { j = await r.json(); } catch(e) {}
+    return { status: r.status, body: j };
+  }, {m:method, u:path, b:body||null});
+}
+```
+**Why it is worth making the default:** it is immune to the PHPSESSID rotation described in §AC.9
+(there is only ever one session, and the browser owns it), it never 409s mid-run, and interleaving
+"seed by API → act on the screen → verify by API" costs nothing.
+
+**The one thing it CANNOT do** (§"AUTH" rule 6): an in-page `fetch` cannot read `Set-Cookie`, so it
+cannot capture a rotated session. That is the *only* case that still needs a direct node fetch —
+everything after the session exists should go through the page.
+
 ### §AC.11 — SEEDING A PARTIALLY-RECEIVED PART REQUEST (the "split part request" state) — 5 steps
 
 The state a part-request move needs in order to *split*: ordered 3, received 1, 2 still awaiting. The
