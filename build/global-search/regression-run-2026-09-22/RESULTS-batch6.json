@@ -1,0 +1,219 @@
+{
+ "marker": "v26.36.8-d146c39",
+ "checks": {
+  "C45157": {
+   "verdict": "Failed",
+   "why": "the name appears 2 time(s) in search but only 1 record(s) carry it",
+   "detail": {
+    "recordsWithThatName": [
+     {
+      "id": "72dbfa1d-62cd-453c-af8e-3d5342978aa1",
+      "city": "Fernvale",
+      "tel": "(419) 555-0143"
+     }
+    ],
+    "rowsShown": [
+     "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+     "ZZAUTOTEST Bridgeport Hauling ZZPSRANK Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio"
+    ]
+   }
+  },
+  "C45158": {
+   "verdict": "Passed",
+   "why": "search opens and returns results for an ordinary signed-in user with no setting switched on first",
+   "detail": {
+    "tabs": {
+     "All": 15,
+     "Work orders": 4,
+     "Customers": 8,
+     "Assets": 1,
+     "Parts": 0,
+     "Vendors": 0,
+     "Part sales": 2,
+     "Purchase orders": 0,
+     "Vendor invoices": 0
+    }
+   }
+  },
+  "C53587": {
+   "verdict": "Blocked",
+   "why": "the work order could not be created, so the check could not be run",
+   "detail": {
+    "create": 500,
+    "number": null
+   }
+  },
+  "C45151": {
+   "verdict": "Failed",
+   "why": "the same jobs are returned at both locations",
+   "detail": {
+    "Staging Heavy Duty - 9919": {
+     "tabs": {
+      "All": 62,
+      "Work orders": 20,
+      "Customers": 15,
+      "Assets": 9,
+      "Parts": 4,
+      "Vendors": 3,
+      "Part sales": 3,
+      "Purchase orders": 4,
+      "Vendor invoices": 4
+     },
+     "rows": [
+      "S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17664 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17660 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17662 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17663 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia"
+     ]
+    },
+    "Staging Lethbridge - 4310": {
+     "tabs": {
+      "All": 62,
+      "Work orders": 20,
+      "Customers": 15,
+      "Assets": 9,
+      "Parts": 4,
+      "Vendors": 3,
+      "Part sales": 3,
+      "Purchase orders": 4,
+      "Vendor invoices": 4
+     },
+     "rows": [
+      "S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17664 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17660 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17662 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17663 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia"
+     ]
+    }
+   }
+  },
+  "C45152": {
+   "verdict": "Failed",
+   "why": "switching location changed nothing",
+   "detail": {
+    "Staging Heavy Duty - 9919": {
+     "tabs": {
+      "All": 62,
+      "Work orders": 20,
+      "Customers": 15,
+      "Assets": 9,
+      "Parts": 4,
+      "Vendors": 3,
+      "Part sales": 3,
+      "Purchase orders": 4,
+      "Vendor invoices": 4
+     },
+     "rows": [
+      "S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17664 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17660 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17662 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17663 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia"
+     ]
+    },
+    "Staging Lethbridge - 4310": {
+     "tabs": {
+      "All": 62,
+      "Work orders": 20,
+      "Customers": 15,
+      "Assets": 9,
+      "Parts": 4,
+      "Vendors": 3,
+      "Part sales": 3,
+      "Purchase orders": 4,
+      "Vendor invoices": 4
+     },
+     "rows": [
+      "S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17664 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17660 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17662 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17663 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia"
+     ]
+    }
+   }
+  },
+  "C55684": {
+   "verdict": "Failed",
+   "why": "the other location's jobs are still listed",
+   "detail": {
+    "Staging Heavy Duty - 9919": {
+     "tabs": {
+      "All": 62,
+      "Work orders": 20,
+      "Customers": 15,
+      "Assets": 9,
+      "Parts": 4,
+      "Vendors": 3,
+      "Part sales": 3,
+      "Purchase orders": 4,
+      "Vendor invoices": 4
+     },
+     "rows": [
+      "S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17664 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17660 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17662 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17663 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia"
+     ]
+    },
+    "Staging Lethbridge - 4310": {
+     "tabs": {
+      "All": 62,
+      "Work orders": 20,
+      "Customers": 15,
+      "Assets": 9,
+      "Parts": 4,
+      "Vendors": 3,
+      "Part sales": 3,
+      "Purchase orders": 4,
+      "Vendor invoices": 4
+     },
+     "rows": [
+      "S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+      "S9160-17664 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17660 ZZAUTOTEST Fibridge Commercial In Progress TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17662 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia",
+      "S9160-17663 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 Freightliner Cascadia"
+     ]
+    }
+   }
+  },
+  "C45150": {
+   "verdict": "Passed",
+   "why": "every customer returned belongs to this organisation - all 15 rows match records this sign-in can list",
+   "detail": {
+    "rows": 15,
+    "foreign": []
+   }
+  },
+  "C45149": {
+   "verdict": "Passed",
+   "why": "the recent list shows 33 items for this sign-in; the restricted-access half of this check is covered by the permission batch, where removing an area removed its results entirely",
+   "detail": {
+    "rows": 33,
+    "body": "62 results found across 8 categories Work orders (20) S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH "
+   }
+  }
+ },
+ "workplaces": [
+  {
+   "id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "name": "Staging Heavy Duty - 9919",
+   "tz": "America/Edmonton"
+  },
+  {
+   "id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "name": "Staging Lethbridge - 4310",
+   "tz": "America/Edmonton"
+  }
+ ]
+}
