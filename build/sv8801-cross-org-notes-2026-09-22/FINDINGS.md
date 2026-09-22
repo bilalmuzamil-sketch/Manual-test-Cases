@@ -382,3 +382,26 @@ tagged `ZZAUTOTEST` where the field allowed it:
 
 **On staging** (shared, so restored): one demo note was created in the second organization and
 **deleted again — that organization is back to 0 notes, verified**. Nothing else was written.
+
+## §13 — The comment, and the pre-post gate
+
+**Posted as comment `77006` on SV-8801**, 22 September 2026.
+
+**Pre-post gate (Standing Rule 72), all run immediately before posting:**
+
+* **build marker re-read live** — `v26.36.8-18877c9`, last-modified Mon 21 Sep 13:33:09 GMT, etag
+  `0c261af634bfc5c5ebcdc4909a6a8527`, and `index.html` **sha256-identical** to the copy fetched at the
+  start of the pass, so nothing redeployed underneath the run;
+* **ticket re-read** — still `TESTING QA`, priority Medium, one prior comment (Slavcho's 18 Sep
+  handoff), nothing new since;
+* **images** — uploaded as **real Jira attachments** (`61197`–`61200`) and referenced in wiki markup,
+  not as external media (Rule 81);
+* **voice scan** — no AI self-reference anywhere in the reader-facing text;
+* **format** — verdict on the first line, and **no "Technical details for developers" section**
+  (Rule 84 — not posted, and the question put to the QA lead instead).
+
+**Read back from Jira after posting:** four media nodes, all `"type":"file"` with attachment uuids, in
+the intended order; the checks table carries 15 rows (header + 14); the first line is the verdict.
+
+**No defect ticket filed** — nothing was found wrong with the change itself, and the two open items are
+questions, not findings.
