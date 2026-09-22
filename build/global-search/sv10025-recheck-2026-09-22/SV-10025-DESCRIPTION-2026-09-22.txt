@@ -1,0 +1,67 @@
+h3. Description
+
+Search now forgives spelling, and it forgives it generously. Type a customer's name spelled exactly right and nineteen results come back — three that really carry the name, and sixteen that merely look like it.
+
+This is not a fault. The product is doing what the requirement asks: a word counts as a match when about 70% of its letters agree, and on a seven-letter name that allows two letters to differ. So *Marlene* also finds *Darlene*, *Charlene*, *Martens*, *Marine* and *Alene*.
+
+It is, though, a change from the version people use today, which returned only records that genuinely contained what was typed. So this is a decision to be made on purpose rather than a bug to be fixed — and it is the Product Owner's decision.
+
+h3. Steps to Reproduce
+
+# Open search and type {{Marlene}} — the name of the customer {{ZZAUTOTEST Marlene Freight Lines}}, spelled exactly as their record spells it.
+# Read the list.
+
+h3. Actual Result
+
+Nineteen results across five groups:
+
+* *3 genuinely carry the name* — the customer itself, and two rows for a company whose contact really is called Marlene.
+* *16 do not* — Darlene ×5, Marine ×5 (battery parts), Martens ×3, Charlene ×2 (street names), Alene ×1 (a supplier).
+
+!SV-10025.png|width=588!
+
+h3. Expected Result
+
+A name spelled correctly returns the records that carry it, without filling the list with words that merely look similar — which is how the version in use today behaves.
+
+h3. What has already improved since this was raised
+
+Worth knowing before deciding, because the list is no longer as confusing as the picture above:
+
+* *The customer you are looking for is now listed first.* When this was raised it sat further down.
+* *Every row now says why it is there* — a near-spelling carries a {{≈}} mark and the matching letters are picked out. That was added on 17 September and it works. It makes the noise explainable; it does not make the list shorter.
+
+h3. The decision for the Product Owner
+
+Three options, and what each one costs.
+
+|| Option || What it removes || What it costs ||
+| *1. Leave it as it is* | nothing | the list stays nineteen long — but every row now explains itself |
+| *2. Ask for a closer spelling* — about 80% of letters agreeing instead of 70% | Martens, Marine, Alene and Charlene: three quarters of the noise | *nothing.* It is a setting, not code — no change to the product and no release needed. The genuine typo cases the feature was built for (*petersn* for Peterson, *frieghtliner* for Freightliner) agree on 88% and 92% of their letters, so they are untouched |
+| *3. Hold back near-spellings whenever an exact match already exists* | all of it, Darlene included | needs development work. It is the only option that also removes Darlene, which is genuinely one letter from Marlene and survives any setting |
+
+h3. One smaller thing, in the same area
+
+Where the near-spelling is found on a *contact's* name rather than the company's, the row gives no sign of it — it reads only {{Contact match}}, and the contact's name is not shown. So the reader is told the contact matched, when that contact is in fact called something else. Everywhere else a near-spelling is marked; here it is not.
+
+Checked three ways. With {{Marlene}}, none of the 4 such rows were marked; with {{Darlene}}, none of 3; with {{Petersn}} — the requirement's own worked example — none of 14. In the very same lists, near-spellings found in a *company* name were marked every time.
+
+!SV-10025-contact-match.png|width=760!
+
+This one is a plain miss against the requirement rather than a decision, and can be put right whichever option above is chosen.
+
+h3. Environment
+
+QA branch [https://sv9160.qa.shopview.com] · build {{v26.36.8-fa74ea8}} · re-checked 22 September 2026. Compared against the version in use today, [https://app.shopview.com], on 14 September 2026, with the same records seeded on both.
+
+h3. Sources
+
+*Global Search - Product Requirements*, Confluence page 576978945, version 17 (v1.5 in the body), read live on 22 September 2026.
+
+Section 7, Fuzzy Matching:
+
+{quote}Accept the candidate as a fuzzy match when similarity >= 0.70 for queries of length >= 4, and >= 0.80 for shorter queries (to avoid noisy 2–3 letter matches).{quote}
+
+Section 7, Highlighting:
+
+{quote}When a match is fuzzy rather than exact, the matched token in the row is still highlighted, and a subtle ≈ or italicized treatment indicates the soft match.{quote}
