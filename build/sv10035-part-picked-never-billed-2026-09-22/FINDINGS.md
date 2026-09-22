@@ -408,3 +408,26 @@ the price when no new price can be calculated) never had its condition arise.
 fix branch in all eight scenarios. Either production already carries this fix, or the trigger needs a
 condition neither environment can still produce. That difference matters to the release plan and to
 the separate data-repair task, so it is asked rather than assumed.
+
+## §11 — Production restored, and the one thing left behind
+
+Production keeps the restore-after discipline (it is not a throwaway per-ticket branch). Work order
+**S2-861**, line `6f8048f3`:
+
+```
+billable rows at pass start   3
+peak during testing          10
+after cleanup                 3      <- back to its original count
+```
+
+Six of the seven seeded rows were removed with
+`POST /api/work-orders/parts/delete {part_id, work_order_id}` → 201 each. The seventh,
+**`Core for A158`**, answered `400 {"part_id":"Not found"}` — it is a **child of the parent row that
+had already been removed**, so it went with its parent; the row count confirms it (3, not 4).
+
+**Left behind, deliberately and named: the part category `ZZAUTOTEST NoMarkup`**
+(`83dbef51-64bd-4b11-8df7-fff12c9cbe8d`) on production. The app creates categories
+(`POST /api/parts-catalogue/add-category`) but **exposes no delete** — `delete-category` and
+`remove-category` both answer **404**. It holds no data and no part references it. Removing it needs
+either a UI affordance I could not find or a developer; it is recorded here rather than quietly
+abandoned. The same category exists on the branch (`d3914028-…`), where no cleanup is required.
