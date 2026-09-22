@@ -44,3 +44,58 @@ is the specific thing MAX identified as proof the cost is being written wrong. B
 `POST /api/inventory/parts/change` → **201**.
 
 Read back from the dialog's own inputs after a full page reload each time, not from the list view.
+
+## §2 — PRODUCTION reproduces the bug, and the request payload shows exactly why
+
+Part **`0085fddf-7299-49aa-b2f4-c40c98fbce71`** on production, org `72b2cc90…`. Original values recorded
+first: cost **10.00**, sell 300.00, core 1.00, min 5, max 6, quantities 2 and 99.
+
+| step | what was done, in the screen | result after Save + reload |
+|---|---|---|
+| 1 | Average Cost `10.00` → typed **`1069.03`**, Save | **`1,069.03`** — the direct edit is fine |
+| 2 | **Touch nothing but Min/Max** (5/6 → 2/2), Save | **cost `1.00`** ← the customer's bug, reproduced |
+
+### The mechanism, taken off the wire rather than inferred
+
+The two saves posted the same endpoint with the cost in **two different shapes**:
+
+```
+save 1 (typed the cost)    "purchasePrice": 1069.03      <- a NUMBER
+save 2 (only touched Min/Max)  "purchasePrice": "1,069.03"   <- a comma-formatted STRING
+```
+
+**The second save re-submits the field as its formatted display string, and the value lands as 1.00.**
+That is MAX's truncation theory confirmed from the request itself, and it explains every detail the
+customer reported:
+
+* **why the direct edit "works" and then reverts** — the freshly typed value is a plain number, so save 1
+  is correct; the next save of *anything else on that part* re-sends it as `"1,069.03"` and destroys it;
+* **why Min/Max was the trend** — adding Min/Max is simply the most common reason to open and save the
+  part again. Any other edit would do it too;
+* **why the >$1,000 hose with no Min/Max never reverted** — nobody re-saved it;
+* **why only four-figure costs are hit** — below $1,000 the display has no comma, so the string still
+  parses.
+
+### The same step on the fix branch
+
+```
+branch save (only touched Min/Max, 2/2 -> 7/9)   "purchasePrice": 1069.03   <- a NUMBER
+```
+
+cost after save + reload: **`1,069.03`**, sell **`1,527.22`** — unchanged. **The front end no longer
+re-submits the formatted string.** Case A of §1 shows the same on a `10,000.00` part.
+
+## §3 — Production left exactly as found
+
+Restored through the same dialog and read back after a reload: cost **10.00**, sell 300.00, core 1.00,
+min **5**, max **6**, quantities **2** and **99** — every field back to its original value.
+
+## §4 — What this does NOT cover
+
+* **The Min/Max reverting to 13 and 20** that Mike Freeman reported on 17 Sep. That is a separate claim
+  in the same ticket, it is the one Dusan disputes, and nothing in this pass addresses it. Min/Max saved
+  and survived correctly in every case here.
+* **[SV-8447](https://shopview.atlassian.net/browse/SV-8447)** (`$3,896.04` → `$3.00`, Blocked since
+  20 July), which MAX identifies as the same mechanism. If the fix here is the string-vs-number
+  submission, that ticket is very likely fixed by the same change and worth re-checking.
+* The customer's own five Michelin parts — their data is not on either environment tested.
