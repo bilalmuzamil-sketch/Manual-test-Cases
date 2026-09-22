@@ -4304,3 +4304,42 @@ uses Google SSO and cannot be logged in by script.
 `build/global-search/e2e` — 48 tests over 4 files for the Global Search V2 run, each named with its
 C-id, the twelve traps from run 415 encoded in the harness, six known faults carrying their report
 keys, and a README listing what is not covered and why (194 executed, 48 automated).
+
+### 🛑 RULE 115 AMENDED, same day — PER PROJECT, AS A BACKFILL, AND IT MUST NOT SLOW US DOWN
+
+**QA lead, 22 September 2026:** *"I agree with you on per project and it as a backfill exercise.
+Also we have to make sure that it does not slow us down."*
+
+**That last sentence is the binding half.** A rule that adds a second job to every case will be
+skipped, or worse, obeyed badly — specs written to satisfy the rule rather than to catch anything.
+Six mechanics keep the cost at roughly zero. They are not suggestions.
+
+**1. THE PROBE YOU ALREADY WRITE *IS* THE SPEC.** Executing a case against the build already means
+driving the screen and reading it back. **Write that as `spec.ts` in the first place** instead of a
+throwaway script, and the spec costs nothing — it is the same work in a file that survives. Run 415
+produced 130 throwaway probes in `/tmp`, one container restart from gone, and converting them
+afterwards cost an afternoon that writing them as specs would not have cost at all.
+
+**2. NEVER WRITE A SPEC FOR A CHECK NOT YET RUN BY HAND.** Automating an expectation nobody has
+confirmed produces a green test that proves nothing, or a red one that starts an investigation into
+the spec. **Manual pass first, spec second, always.**
+
+**3. TABLE-DRIVEN, NOT ONE FILE PER CASE.** Nineteen findability checks are one array and one loop —
+about twenty lines, each test still named with its own C-id. **One spec *per case* means one named
+test per case, NOT one file per case.** Anyone producing 194 files has misread this rule.
+
+**4. THE BACKFILL RIDES ALONG — IT IS NEVER A SWEEP.** Existing cases get their spec **when that
+project is next worked on anyway**. No session is ever tasked with "go and write the missing
+specs"; that is the version of this that eats a week and delivers tests nobody trusts.
+
+**5. THE THREE-RUN TEST.** If a spec would take longer to write than running the check by hand
+three times, **do not write it** — record it in the README as manual-only with that reason. A spec
+is an investment in repetition; where there is no repetition there is no return.
+
+**6. A FLAKY SPEC IS DELETED, NOT NURSED.** A test that cannot be made to give the same answer twice
+is worse than no test: it trains everyone to ignore red. **Two attempts to stabilise it, then delete
+it and name it in the README.** Never mark it skipped and leave it to rot.
+
+**THE MEASURE OF WHETHER THIS IS WORKING:** the suite should grow as a by-product of passes that
+were happening anyway. **If a status report ever says "spent the day writing specs", this rule has
+failed** and is to be raised with him rather than quietly continued.

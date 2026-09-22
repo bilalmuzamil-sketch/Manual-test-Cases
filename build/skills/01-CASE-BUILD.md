@@ -636,3 +636,12 @@ its own reasons is worse than no test, because it looks like coverage.
 Lives in `build/<project>/e2e/`. **Secrets never enter a spec (82).**
 Worked example: `build/global-search/e2e` — 48 tests, twelve traps encoded, README stating 194
 executed against 48 automated and why each gap exists. Full text: `RULES-61-ONWARD.md` rule 115.
+
+**🛑 AMENDED SAME DAY — AND THIS HALF IS BINDING:** *"per project and it as a backfill exercise.
+Also we have to make sure that it does not slow us down."* **The probe you already write to execute
+the case IS the spec** — write it as `spec.ts` rather than a throwaway and it costs nothing.
+Never automate a check not yet run by hand. **Table-driven: one named test per case, not one file
+per case.** The backfill rides along with work already happening on that project, never a sweep.
+Costs more than running it by hand three times ⇒ don't write it, note it manual-only. A flaky spec
+is deleted after two attempts, never nursed. **If a status ever reads "spent the day writing specs",
+the rule has failed — raise it with him.**
