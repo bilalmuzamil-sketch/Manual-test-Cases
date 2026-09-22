@@ -1,0 +1,16 @@
+{
+ "pass_meta": {
+  "pass": "The most-recently-changed rule, seven routes",
+  "date": "22 September 2026",
+  "build": "v26.36.8-2a96702",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C55716": {
+   "verdict": "Blocked",
+   "observed": "Cannot be isolated on this test site, and the honest answer is that I cannot tell whether the rule works. Two jobs were built for the purpose - same customer, same vehicle, same shop, created seconds apart - which makes them equal on everything the ranking scores, so only this rule should decide their order. Every way of nudging one of them either does not reach the search, or is ignored, or moves something stronger. Changing the engine hours saved but search does not look at that field. Assigning a technician reported success and saved nothing at all. Adding a job line DID move that job to the top - but the same change flipped it from Estimate to Approved, and being open is a stronger ranking signal than this rule, so the climb proves nothing. Putting both jobs on the same status to remove that advantage left no way to nudge either of them: the line could not be added a second time.",
+   "not_observed": "Whether the most-recently-changed rule is applied at all. It was nearly reported as broken, and separately nearly reported as working - both would have been wrong.",
+   "todo": "What needs to be done: one of two things. Either the developers say what makes a job re-enter the search after an edit, so a change can be made that search notices without also changing the job's status - or the same test is done on a record type that shows a last-changed date, since neither customers nor jobs show one anywhere readable. Until then this stays open rather than being called a fault. Nothing else is held up by it."
+  }
+ }
+}

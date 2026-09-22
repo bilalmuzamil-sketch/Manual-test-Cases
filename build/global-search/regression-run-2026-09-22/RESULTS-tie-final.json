@@ -1,53 +1,34 @@
 {
  "marker": "v26.36.8-2a96702",
- "rounds": [
+ "steps": [
+  {
+   "label": "both approved",
+   "a": 1,
+   "b": 0,
+   "sa": "Approved",
+   "sb": "Approved",
+   "rows": [
+    "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Approved ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17719 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Approved ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+   ]
+  },
   {
    "label": "after touching 17719",
-   "a": 0,
-   "b": 1,
+   "a": 1,
+   "b": 0,
+   "sa": "Approved",
+   "sb": "Approved",
    "rows": [
+    "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Approved ZZT-4471 · 2019 Freightliner Cascadia",
     "S9160-17719 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Approved ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17716 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
-   ]
-  },
-  {
-   "label": "after touching 17720",
-   "a": 0,
-   "b": 1,
-   "rows": [
-    "S9160-17719 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Approved ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17716 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
-   ]
-  },
-  {
-   "label": "after touching 17720",
-   "a": 0,
-   "b": 1,
-   "rows": [
-    "S9160-17719 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Approved ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17716 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
-   ]
-  },
-  {
-   "label": "after touching 17720",
-   "a": 0,
-   "b": 1,
-   "rows": [
-    "S9160-17719 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Approved ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
-    "S9160-17716 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
-   ]
+    "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+   ],
+   "wrote": 0
   }
  ],
  "verdict": {
-  "verdict": "Passed",
-  "why": "changing the older of two otherwise identical jobs moved it to the top, so the most-recently-changed rule is applied. The reverse round did not complete within the time allowed"
+  "verdict": "Blocked",
+  "why": "no change could be made to the second-placed job that search would notice, so the rule could not be isolated"
  }
 }
