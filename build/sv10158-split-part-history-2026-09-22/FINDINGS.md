@@ -163,3 +163,60 @@ at its endpoint** after the Quasar target-line dropdown proved awkward to automa
 neighbouring feature rather than the thing under test, and the endpoint is the one the dialog itself
 calls.
 
+
+## §4 — PRODUCTION (the BEFORE): the same split writes nothing
+
+Standing Rule 86 — the BEFORE half of the comparison comes from production, the build customers are
+actually running, never from staging.
+
+**Two production attempts before this one were INVALID, and both failed the same way as §1**: the
+seeded inventory request came back **`status: "quoted"`**, the explicit pick was refused
+(*"Part request … is not available to pick."*), and Part History was of course unchanged. The reason
+is one the branch run never hit, because there the line was already authorized:
+
+> **a part request inherits the state of the line it sits on.** Seed onto a line that is still
+> *quoted* and the request is quoted too — not orderable, not pickable, not inventory-linked. Nothing
+> is due in Part History for it, so "0 new entries" proves nothing at all.
+
+So the third attempt **authorizes the line first**
+(`POST /api/work-orders/lines/change-lines {workOrderId, lines:[lineId], field:"status",
+value:"authorized"}`), then picks, and — the part that matters — **refuses to split until the part is
+proven staged**, by requiring the staged part's own context menu
+(`button_part_context_menu_<workOrderPartId>_line_<lineId>`) to be present on the lines page. An
+absence is only evidence once the precondition is proven present.
+
+**The valid production run.** `app.shopview.com`, build **`v26.36.9-8d1613f`**, 22 Sep 2026 17:37–17:38 UTC:
+
+```
+autoPickInventoryParts = false                       (production, read live)
+LINES on S2-811     5945bfdb:authorized  0690821f:complete
+SEED                201 | status = in_stock          (authorized line -> pickable request)
+PICK                201 {"pickedCount":1}
+GATE                button_part_context_menu_aae96044-…_line_5945bfdb-…     <-- part IS staged
+HISTORY BEFORE      1   (part.picked.qty — "Picked qty 2 on WO # S2-811, Qty: 6 -> 4 (-2)")
+SPLIT               POST /api/work-orders/split {"ids":["5945bfdb-…"]} -> 201
+                    browser landed on new work order ee9adbb2-…
+HISTORY AFTER       1  |  NEW 0
+```
+
+**Nothing was written.** The part left S2-811 for a brand-new work order and its Part History still
+shows only the pick. Screens: `ev/PROD-Q1-history-before.png` and `ev/PROD-Q2-history-after.png`
+(distinct captures, one minute and one split apart — sha256 `732495f4…` and `14eb880f…`).
+
+This is the defect the ticket reports, still live on the build customers are running today, proven
+with the precondition established rather than assumed.
+
+## §5 — What was left behind on production, stated plainly
+
+Production keeps the restore-after discipline, and **a split cannot be undone** — it creates a new
+work order and moves the line onto it. Deleting those new work orders would destroy the lines they
+now carry, which is worse than leaving them, so they are left in place and named here instead:
+
+| Created by | New work order | Line moved onto it |
+|---|---|---|
+| the first invalid attempt | `281adfa7-5925-4718-936d-91d12cda3873` | `04790952-…` ("Fdgfdg") |
+| the valid attempt | `ee9adbb2-0df5-4e12-8771-506591445638` | `5945bfdb-…` |
+
+Both carry a part request described **ZZAUTOTEST SV-10158**. Line `5945bfdb` was **already
+`authorized`** before the run, so the authorize call was a no-op (`{"data":[]}`) and no line status
+was changed. The seeded parts are removed in the cleanup below so inventory returns to where it was.
