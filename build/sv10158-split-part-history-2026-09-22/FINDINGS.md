@@ -217,6 +217,20 @@ now carry, which is worse than leaving them, so they are left in place and named
 | the first invalid attempt | `281adfa7-5925-4718-936d-91d12cda3873` | `04790952-…` ("Fdgfdg") |
 | the valid attempt | `ee9adbb2-0df5-4e12-8771-506591445638` | `5945bfdb-…` |
 
-Both carry a part request described **ZZAUTOTEST SV-10158**. Line `5945bfdb` was **already
-`authorized`** before the run, so the authorize call was a no-op (`{"data":[]}`) and no line status
-was changed. The seeded parts are removed in the cleanup below so inventory returns to where it was.
+Line `5945bfdb` was **already `authorized`** before the run, so the authorize call was a no-op
+(`{"data":[]}`) and no line status was changed.
+
+**Inventory is fully restored.** Part **1238213 / A427** is back at **quantity 6**, exactly where it
+started — the one genuinely picked request (`ee651c2f`, work-order-part `aae96044`) was removed with
+`POST /api/work-orders/parts/delete {part_id: <work_order_part_id>, work_order_id}` → 201, and the
+stock read back 4 → **6**.
+
+**Two unpicked `quoted` requests remain on `281adfa7`** (`a86add05`, `fd2fa876`), left by the two
+invalid attempts. They hold **no stock** — nothing was ever picked for them — so inventory is
+unaffected; they are cosmetic rows on a work order that already exists.
+
+**A cleanup trap worth keeping.** The first cleanup pass filtered on the description
+`ZZAUTOTEST SV-10158` and found **zero matches across all three work orders** — because
+**the server overwrites the description on an inventory part request** with the inventory part's own
+(`"A427"`). Match on `inventory_part_id`, and judge a cleanup by the thing that must move — the
+**stock quantity** — not by how many rows the pass believed it removed.
