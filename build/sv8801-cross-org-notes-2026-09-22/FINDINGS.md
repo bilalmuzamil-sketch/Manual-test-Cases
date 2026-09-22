@@ -135,3 +135,82 @@ issue is described, not an additional defect.
 The only staging records touched were the throwaway note and attachments created for this test, and
 the test itself destroyed them. **Nothing pre-existing on staging was read, modified or deleted** —
 every cross-org call was aimed at the `ZZAUTOTEST` note and no other id was ever used.
+
+---
+
+## §6 — The Powertools plan arrived, and it named two endpoints I had not covered
+
+The handoff enumerates **six** internal endpoints plus the Customer Portal one. Five internal were
+already covered in §2. The sixth is `POST /api/note/toggle-read-status`.
+
+### `POST /api/note/toggle-read-status`
+
+| From Org A, against | Status | Body |
+|---|---|---|
+| Org B's note id | **400** | `{"errors":[{"note_id":"Not found"}]}` |
+| a random UUID | **400** | `{"errors":[{"note_id":"Not found"}]}` — **byte-identical** |
+| **its own** note (control) | **200** | `{"data":{"is_read":true}}` |
+
+The handoff asks for the exact body `{"errors":[{"note_id":"Not found"}]}` — that is what came back,
+word for word.
+
+**And no read-status was written.** Re-read from Org B's own session afterwards, the note still reports
+`isRead: false`. The positive control on the same endpoint flipped Org A's own note to `is_read: true`
+in the same minute, so the instrument does record a toggle when it is allowed to.
+
+Contract note: the body field is **`note_id`** (snake_case). An empty body answers
+`{"note_id":"Missing required parameter"}`, which is how the field name was established rather than
+guessed.
+
+### `GET /api/external/customer-portal/attachments/{attachmentId}` — NOT RUN, and why
+
+This one is **blocked on something only the developer can give me**, and I would rather say so than
+pass it on the strength of the handoff's own sentence that it "inherits the same guard".
+
+* The endpoint answers **401 `{"errors":[{"error":"Invalid API key."}]}`** — it authenticates with a
+  portal API key, not with a ShopView session, so `X-Organization-Id` / `X-Customer-Email` alone are
+  not enough to reach it.
+* That key lives in the portal application's own server configuration. It is not in the ShopView SPA
+  bundle, not exposed by any organization/settings/integration endpoint I could find, and not
+  derivable from the app.
+* **No customer portal is deployed against this branch.** `sv8801portal`, `portal.sv8801` and
+  `sv8801-portal` under `qa.shopview.com` all fail to resolve. The portal that exists
+  (`shopview-portal-feature-branch-xn74b9.laravel.cloud`) was stood up for SV-9697 and points at the
+  **sv9697** API, which does not carry this fix — so a test there would be a *before*, not an *after*.
+
+**What would unblock it, either one:** the portal API key for this API host, or a portal deployment
+pointed at `sv8801api.qa.shopview.com`. With either, the check is a single request.
+
+## §7 — Non-enumerability: a foreign note looks exactly like one that does not exist
+
+Handoff check 2. Each endpoint called twice from Org A — once with Org B's real id, once with a random
+UUID — and the two responses compared.
+
+| Endpoint | Foreign id | Random UUID | Identical? |
+|---|---|---|---|
+| `note/update` | 400 ``Note `2e250fdf…` not found.`` | 400 ``Note `3f2a91c4…` not found.`` | **yes** |
+| `note/delete` | 400 ``Note `2e250fdf…` not found.`` | 400 ``Note `3f2a91c4…` not found.`` | **yes** |
+| `note/add-attachments` | 400 ``Note `2e250fdf…` not found.`` | 400 ``Note `3f2a91c4…` not found.`` | **yes** |
+| `note/toggle-read-status` | 400 `{"note_id":"Not found"}` | 400 `{"note_id":"Not found"}` | **yes** |
+| `note/download-attachment` | 400 ``Attachment `83d2ddc9…` not found.`` | 400 ``Attachment `8b1d4c72…` not found.`` | **yes** |
+
+Same status, same body shape, differing only in the echoed id — which is what the handoff asks for.
+
+**The one documented exception reproduces exactly as described, and is deliberately NOT being filed.**
+`POST /api/note/delete-attachment` answers a foreign attachment with
+``Attachment `83d2ddc9…` not found.`` but a nonexistent one with
+`Entity "App\Communication\Notes\Domain\Attachment" with property "id": "8b1d4c72…" does not exist.`
+That is the accepted residual the handoff names — an unscoped validator running ahead of the guard.
+It is an existence oracle only; the delete itself is still blocked (§3 proved the attachment survived).
+I checked it rather than took it on trust, and I am not raising it.
+
+### Download refusal hygiene
+
+`GET /api/note/download-attachment` on Org B's attachment, full response captured:
+
+* **400**, `content-type: application/problem+json`, body **85 bytes** of JSON.
+* **No file bytes** — the 38-byte payload `ZZAUTOTEST SV-8801 attachment payload` does not appear.
+* **No original filename** — `zzautotest_8801.txt` does not appear.
+* **No `Content-Disposition` header at all.**
+* **No Org B note id** — `2e250fdf…` does not appear anywhere in headers or body.
+* The `x-organization-id` header echoes **Org A's own** organization, the requester's, not Org B's.
