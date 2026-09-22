@@ -1,0 +1,101 @@
+{
+ "marker": "v26.36.8-2a96702",
+ "checks": {
+  "C44861": {
+   "verdict": "Passed",
+   "why": "after closing, the header still shows the last thing searched for as plain text; on reopening it restores the query \"Fibridge\", its tab and 34 results, with the text pre-selected so typing replaces it",
+   "detail": {
+    "header": [
+     {
+      "txt": "ShopHub expand_more Work Orders Schedule Customers Parts Reports search Fibridge Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 AS",
+      "val": ""
+     },
+     {
+      "txt": "search Fibridge Ctrl K",
+      "val": ""
+     },
+     {
+      "txt": "search Fibridge Ctrl K",
+      "val": ""
+     }
+    ],
+    "reopened": {
+     "value": "Fibridge",
+     "selected": true,
+     "rows": 34,
+     "tab": "All\n(58)"
+    }
+   }
+  },
+  "C55716": {
+   "verdict": "Blocked",
+   "why": "both jobs are not returned together by one search, so their order cannot be read",
+   "detail": {
+    "round1": {
+     "rows": [
+      "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17719 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17716 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17677 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17676 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+     ],
+     "posOlder": -1,
+     "posNewer": -1
+    },
+    "round2": {
+     "rows": [
+      "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17719 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17716 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17677 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+      "S9160-17676 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+     ],
+     "posOlder": -1,
+     "posNewer": -1
+    },
+    "touch": 201
+   }
+  }
+ },
+ "tieFixture": [
+  {
+   "id": "51bcb599-9ff6-40ac-95bd-9f4678d01fa0",
+   "num": "S-17719",
+   "status": 201
+  },
+  {
+   "id": "6ee2bacd-fca8-42d4-94b4-554a6cc7344e",
+   "num": "S-17720",
+   "status": 201
+  }
+ ],
+ "tie": {
+  "round1": {
+   "rows": [
+    "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17719 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17716 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17677 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17676 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+   ],
+   "posOlder": -1,
+   "posNewer": -1
+  },
+  "round2": {
+   "rows": [
+    "S9160-17720 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17719 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17717 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17716 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17677 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+    "S9160-17676 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+   ],
+   "posOlder": -1,
+   "posNewer": -1
+  },
+  "touch": 201
+ }
+}
