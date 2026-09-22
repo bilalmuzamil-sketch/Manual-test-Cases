@@ -476,3 +476,42 @@ legitimate edits**, which is the specific worry the handoff's regression hotspot
 description of an inventory part request with the inventory part's own name**, the same trap recorded
 on SV-10158. The evidence above is therefore the **row-count delta and the per-request status**, both
 read from the API, not a description match.
+
+## §13 — Permissions regression (handoff §8) — PASS, with the Rule-24 note
+
+The diff changes no permission code; this is a regression guard only.
+
+```
+ADMIN   workOrdersCreateAndEdit = true   — and every admin call in this pass returned 200/201
+TECH    6 permissions | workOrdersCreateAndEdit = FALSE | woPickParts = TRUE
+        make-request     -> 201
+        change-request   -> 200
+        pick             -> 201
+        >>> any 500s?  NO   (codes 201, 200, 201)
+```
+
+**The two things the handoff asks for are both satisfied.** The **technician carve-out** is intact —
+Tech holds `woPickParts` and picks successfully, exactly as before this change. And **nothing
+returns a 500**, which is the specific failure mode §8 exists to rule out.
+
+**The honest reading of the 201/200 on create/edit.** Tech does *not* hold
+`workOrdersCreateAndEdit`, yet those endpoints accepted the calls. That is **ShopView's documented
+enforcement model — granular permissions are front-end gates the backend does not independently
+enforce** — and under **Standing Rule 24 (front-end blocks + back-end allows = a PASS, not a
+defect)** it is not raised as one. It is also **not attributable to this diff**, which touches no
+access-control code. Recorded so the result is not mistaken for an unnoticed over-grant.
+
+## §14 — Fixed line total (handoff §6) — NOT RUN, and not claimed as passed
+
+The check needs a line with a **fixed line total**. Every line on S2-17528 reports
+`fixed_price: null` and `fixed_line_total: null` (one is `0`), so the condition does not exist on
+this work order:
+
+```
+782ecc8c fixed null / total null      84ede85a null/null     5515af16 null/null
+845688bd null/null                    70e8b4de null/null     ba877cc9 null/0      db1b42b0 null/null
+```
+
+Editing a part's price on the ordinary line moved `total_parts_sell_price` 95.56 → 195.55, which is
+the **correct** behaviour for a line that is *not* fixed — it says nothing about the fixed case.
+**This check is untested. It is listed here as untested rather than folded into the pass count.**
