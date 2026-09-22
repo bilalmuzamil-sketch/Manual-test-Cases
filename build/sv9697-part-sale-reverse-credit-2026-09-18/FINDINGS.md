@@ -1226,3 +1226,42 @@ Read back: 1 question, both options present, the answer blank present, mentions 
 **The rule I am taking from this: a flag is not an ask.** If a deliverable needs a decision from
 someone, the comment has to contain an actual question, with the options, and a place to put the
 answer. "It's your call" is how an open question quietly becomes a silent assumption.
+
+---
+
+## §25 — The overnight re-check fired, was already moot, and could not have run anyway (2026-09-22, 02:03 UTC)
+
+The self-scheduled check-in from yesterday fired on time. **Its premise was already out of date** — it
+was written to chase the S-17303 portal payment as *"the only thing blocking checklist step 7"*, and
+check 7 had been closed hours later by a different route entirely (P9697-253, §23). **Its step 3 also
+told me to update comment 76831**, which is exactly the thing the QA lead had corrected. A reminder is
+a note from a past self, not an instruction: it gets re-judged against what is true now.
+
+**It could not have run in any case. The QA branch is no longer reachable from this container.**
+Tested straight through the agent proxy, not through our MITM bridge:
+
+| Host | Result |
+|---|---|
+| `sv9697.qa.shopview.com` | **rejected** — `connect_rejected` |
+| `sv9697api.qa.shopview.com` | **rejected** — `connect_rejected` |
+| `app.shopview.com` (production) | **200** |
+| the customer portal host | **200** |
+| Atlassian | **200** |
+
+So it is **not** expired cookies, **not** the bridge, and **not** a general egress outage — it is
+specific to the two `sv9697` hosts. Most likely the per-ticket branch has been torn down now the work
+on it is finished, which is normal for these environments.
+
+**Consequence for SV-9697: none.** All eleven checks were settled before the branch went, and the only
+testing still to come belongs to SV-10298 on develop, which is a different environment. **Consequence
+worth knowing: no further live check on this ticket is possible**, so if Chris's answer had implied a
+re-test here, it could not be done.
+
+**A harness mistake of my own, recorded because it cost the run.** Seeing six `staging-bridge`
+processes I called them stale and killed them all by PID — they were **three live bridges, parent and
+child each**, including the one that had been serving every run that afternoon. Three background tasks
+reported "failed" at that exact moment. **Count the processes against the bridges you started before
+deciding any are stale, and test whether one is serving before killing it.** (`pkill -f` is already
+barred for killing the shell; this is the neighbouring trap.)
+
+The trigger disabled itself as designed — `enabled: false`, `ended_reason: run_once_fired`.
