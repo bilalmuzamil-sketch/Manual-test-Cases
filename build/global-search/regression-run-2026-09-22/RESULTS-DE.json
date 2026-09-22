@@ -1,0 +1,51 @@
+{
+ "marker": "v26.36.8-2a96702",
+ "checks": {
+  "C45138": {
+   "verdict": "Blocked",
+   "why": "the list returned for this vendor does not contain both a paid and an unpaid invoice, so their order cannot be compared: [\"Paid\",\"Paid\"]",
+   "detail": {
+    "rows": [
+     "99878 Invoice number 5 Star Truck Repair Paid $138.60 · Sep 18, 2026",
+     "cv124 5 Star Truck Repair Paid $21.00 · Sep 17, 2026"
+    ],
+    "seq": [
+     "Paid",
+     "Paid"
+    ],
+    "invNo": "99878 Invoice number",
+    "vend": "5 Star Truck Repair"
+   }
+  },
+  "C45137": {
+   "verdict": "Blocked",
+   "why": "the list returned does not contain both a still-ordered and a received purchase order, so the documented part of the ranking cannot be compared: []",
+   "detail": {
+    "poNo": "P-263",
+    "stat": "partial_delivery",
+    "vend": "Airoldi Trucking & Repair",
+    "rows": [],
+    "seq": []
+   }
+  }
+ },
+ "paidInvoice": {
+  "invNo": "99878 Invoice number",
+  "vend": "5 Star Truck Repair",
+  "rows": [
+   "99878 Invoice number 5 Star Truck Repair Paid $138.60 · Sep 18, 2026",
+   "cv124 5 Star Truck Repair Paid $21.00 · Sep 17, 2026"
+  ],
+  "seq": [
+   "Paid",
+   "Paid"
+  ]
+ },
+ "partialOrder": {
+  "poNo": "P-263",
+  "stat": "partial_delivery",
+  "vend": "Airoldi Trucking & Repair",
+  "rows": [],
+  "seq": []
+ }
+}
