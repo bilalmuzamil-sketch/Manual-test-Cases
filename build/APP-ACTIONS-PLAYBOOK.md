@@ -5161,3 +5161,89 @@ unassigned bin the valuation used 3 where the list displayed 1.
    blindly capture `set-cookie`. **Boot the browser (its `button_quick_login_admin` works), then
    export `ctx.cookies()` to the cookie file** and curl with those. Recipe:
    `grab-session.mjs` in `build/sv8447-average-cost-2026-09-22/ev/`.
+
+## §AI — WORK-ORDER LINE PRICING: Fixed Line Total / Fixed Labor Total, and where every control actually lives (proven 2026-09-22, SV-10035)
+
+**Read this before hunting any line-level pricing control.** The one that cost an hour was hidden
+behind a control nobody would guess, and three plausible routes to it are all dead.
+
+### §AI.1 — Setting a FIXED LINE TOTAL (the QA lead's recipe, verified live)
+
+It is a **Labor Rate option**, not a separate feature and not a menu entry.
+
+1. Open the work order's **Lines** tab: `/workorders/{woId}/lines`.
+2. **Click the LINE TITLE** — the line's Name/Description cell (`data-test-id="line_title"` inside
+   that line's `<tr>`). This opens the **Edit Line** dialog. The line must **not** be Declined or
+   Complete.
+3. In that dialog open **`select_labour_type`** (labelled *Labor Rate*). The option list is the 30
+   labour rates **plus two extra entries at the very bottom**:
+   **`Fixed Labor Total`** and **`Fixed Line Total`**.
+4. Choosing **Fixed Line Total** reveals three amount fields that were not there before:
+   **`input_fixed_line_total`** · **`input_labor_portion`** · **`input_parts_portion`**.
+5. Fill them and press **`button_save_close`** → `POST /api/work-orders/lines/change` → **201**.
+
+**Proof the state took** (do this — Standing Rule 87's gate): the line's Total cell
+(`line_total_cost_{lineId}`) becomes the fixed figure, and the work order's **Parts** figure
+(`item_value_Parts`) becomes **the parts portion** instead of the real sum of the parts.
+Observed: row total `$857.5` → **`$1000`**; WO Parts `$197.70` → **`$300.00`** for a
+1000 / 700 / 300 split.
+
+**Behaviour once set:** editing a part's sell price does **not** move the line total or the work
+order figures — verified across `89.20 → 250.00 → 500.00`, a tab switch and a hard reload, all
+four WO figures byte-identical. The part's **margin %** does move, which is how you prove the edit
+reached the line rather than failing silently.
+
+### §AI.2 — The three dead routes, so nobody re-walks them
+
+- **The API is deliberately closed.** `POST /api/work-orders/lines/change-lines` answers
+  **400 `{"error":"Currently only status field change is supported."}`** for *every* field name:
+  `fixed_line_total`, `fixedLineTotal`, `fixed_price`, `is_fixed_line_total`, `line_pricing_type`,
+  `pricing_type`. Use the Edit Line dialog (§AI.1), whose save endpoint is
+  `/api/work-orders/lines/change`.
+- **It is NOT a labour type.** All 34 rows of `GET /api/labour-types` were fetched and **none**
+  matches `/fixed/i` — the two Fixed options are appended by the front end, so searching the
+  labour-type list for them finds nothing.
+- **"Edit labor" is the wrong menu entry.** The line's ⋮ (column 0 of the line row) opens
+  *Request part · Add line note · Save as canned line · Story history · Audit log · Add inspection ·
+  **Edit labor***. **Edit labor** opens a dialog carrying **only** `select_technician` — no rate,
+  no fixed fields. The Rate cell in the lines grid (`$164.95`) is a plain `<span>` and opens nothing.
+
+### §AI.3 — Editing a part's SELL PRICE (the surface a user uses)
+
+The **Parts tab grid** has an inline cell per part: **`input_sell_price_{partOrRequestId}`**
+(siblings: `input_quantity_{id}`, `select_part_category_{id}`, row menu
+`button_part_request_action`). Click it, `Control+A`, type, **Tab** → `POST
+/api/work-orders/parts/change` → **201**. Read the cell back after a reload to prove it persisted.
+
+⚠️ **The grid cell and the line row can show different numbers for the same part** — the grid shows
+the request's sell price, the line row shows the picked row's figure, and under a fixed line total
+the line row shows an apportioned amount instead of the raw price. **Do not treat one as a check on
+the other**; read whichever surface the assertion is actually about (Standing Rule 89).
+
+⚠️ **`POST /api/work-orders/part/make-request` always stores `sell_price` as `"0.00"`, never NULL.**
+To get a genuinely *missing* price you must **clear the grid cell**, which sends `{"sell_price":
+null}`. A dialog leaving a field blank and an API call omitting it are not the same request
+(Standing Rule 88).
+
+### §AI.4 — The ids and endpoints this pass proved
+
+| Thing | How |
+|---|---|
+| Lines tab / Parts tab / Finance tab | `link_lines_tab` · `link_part_requests_tab` · `link_finance_tab` (click by bounding box; `/workorders/{id}/parts` as a URL renders the app's error page — see §W) |
+| A line's row total | `line_total_cost_{lineId}` |
+| Work-order money panel | `item_value_Parts` · `item_value_Labor` · `item_value_{Shop Supplies,Subtotal,GST,Total}` |
+| Line row controls | `line_checkbox_{id}` · `button_line_expand_{id}` · `line_number_{id}` · `line_title` · `badge_line_status_{id}` · `button_action_complete_line_{id}` · `button_add_labor_adjustment_{id}` · `line_tech_story_{id}` |
+| A part inside a line | `button_part_context_menu_{partId}_line_{lineId}` (picked) · `button_requested_part_context_menu_{reqId}_line_{lineId}` (request). Menu = **Move · Add Part Fee / Discount** only — there is **no Edit here**; price edits happen on the Parts grid |
+| Lines with fields | `GET /api/work-orders/lines/{woId}` → `data.collection[]` (**not** `/api/work-orders/{woId}/lines`, which returns a different shape) |
+| Part requests by line | `GET /api/work-orders/{woId}/parts/list-requests-by-line?search=` |
+| Save a line | `POST /api/work-orders/lines/change` → 201 |
+| Save a part | `POST /api/work-orders/parts/change` → 201 |
+
+### §AI.5 — Two harness traps hit again in this pass (both already in §U.0b — they still bite)
+
+1. **`pkill -f staging-bridge` kills your own shell** (the command line contains the pattern) — the
+   Bash call dies with exit 144 and the bridge is not restarted. **Just start a new bridge**; the
+   old one is harmless.
+2. **The bridge dies whenever the worker restarts**, because the upstream `$HTTPS_PROXY` port
+   rotates. Symptom: `page.goto: net::ERR_PROXY_CONNECTION_FAILED`. Fix: start a fresh bridge,
+   re-read the port into `port.txt`, and `curl` it once for a 200 before re-running anything.
