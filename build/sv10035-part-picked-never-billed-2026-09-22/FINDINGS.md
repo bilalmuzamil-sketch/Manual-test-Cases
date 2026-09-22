@@ -332,3 +332,47 @@ what the developer said, and exactly what this org's data cannot exercise.
 **This is Standing Rule 75 in its plainest form: a difference (or a non-difference) between two
 environments is a configuration difference until proven otherwise.** The absence of the bug here is
 the absence of a category without a markup — not evidence about the fix.
+
+## §9 — The precondition was BUILT, not waived — and production still does not fail
+
+Rather than record "no category without a markup exists" as a limit, I made one. The app's own
+Administration → **Categories** screen creates them, and the contract was captured from the wire
+rather than guessed (a blind `POST /api/inventory/categories` had answered **405, GET only**):
+
+```
+POST /api/parts-catalogue/add-category   {"name":"ZZAUTOTEST NoMarkup","isTaxExempt":false}   -> 201
+```
+
+A brand-new category has **no pricing matrix** (matrices live at Administration → **Pricing**, with
+`input_rule_markup` / `input_rule_margin` rules), so it is exactly the state in which the resolver has
+no value to return. On **production**, with a priced part moved into it:
+
+```
+seed                    sell_price 21.15
+change-request -> ZZAUTOTEST NoMarkup    200 | resp sellPrice 21.15 | STORED 21.15
+>>> PRICE WIPED?        false
+PICK                    201, status received
+billable rows           9 -> 10   (new row A224, qty 1, sell 21.15)
+stock                   5 -> 4
+>>> STRANDED?           false
+```
+
+**The price was kept and the part billed at its real $21.15.** That is the eighth route, and the
+first one that targeted the named mechanism with the precondition genuinely constructed.
+
+### What this most likely means, stated as a hypothesis and not as a finding
+
+**Production behaves identically to the fix branch in all eight scenarios** — no wipe, no crash, no
+stranding, correct billing every time. The simplest explanation is that **the pre-fix code path is
+not reachable on `app.shopview.com` as it stands today**, and the two candidates are:
+
+1. **production already carries this fix (or an equivalent)** — both builds are `v26.36.9`
+   (`-8d1613f` vs `-2a3614f`), and the developer's note says the change *"targets main, so it ships
+   with the next bugfix release"*, which would make production pre-fix — but every observation here
+   is consistent with it already behaving as fixed; or
+2. **the trigger needs a condition still not constructed** — the customer's records were created some
+   time ago, and whatever produced a genuine NULL `sell_price` may no longer be producible at all,
+   which is itself consistent with *"the Category route is now closed"*.
+
+**I am not choosing between these from the evidence I have**, and the difference matters to the
+release plan, so it goes to the developer as a question rather than into the verdict as a claim.
