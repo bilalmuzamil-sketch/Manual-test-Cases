@@ -145,3 +145,36 @@ a change to the steps, which needs his word (Rule 6), and the Expected is never 
    each kind. **The product is right.**
 
 **Running total of instrument faults caught on this run before anything was written down: ten.**
+
+---
+
+## Batch 4 — permissions: **6 of 7 pass**, and the technician's access was restored exactly
+
+Route: impersonate a real technician, edit the Technician role one area at a time, read the panel on
+the screen as her, restore and **read the role back**. Baseline captured before any edit and
+committed first: `ORIGINAL-technician-role.json`.
+
+| Check | Result |
+|---|---|
+| C45142 | **Passed** — strip every work-order permission and the Work orders group and its count both disappear. (All the siblings must go together: `woPickParts`, `workOrderLinesCreateAndEdit`, `woTechViewMode` and `scheduleView` each re-grant it on their own) |
+| C45144 | **Passed** — no parts access, the Parts tab carries no count at all; grant Catalog & Inventory and it reads 4 |
+| C45145 | **Passed** — no vendor access, no Vendors count; grant Vendor & Order Management and Vendors reads 3 (and Purchase orders 4, Vendor invoices 4 come with it) |
+| C45146 | **Passed** — remove Customers access and **both** Customers and Assets go, exactly as the check requires |
+| C45147 | **Passed** — a time-clock-only user gets nothing of any kind |
+| C45148 | **Passed** — types the role was never granted show nothing |
+| **C45143** | **Failed — under investigation, see below** |
+
+**RESTORE VERIFIED:** the role ends with exactly the six permissions it started with —
+`customersView, scheduleView, woPickParts, woTechViewMode, workOrderLinesCreateAndEdit,
+workOrdersView` — read back from the product, not assumed.
+
+### C45143 — a Part-Sales-only user sees no Part sales at all
+
+Grant the part-sales permission and **nothing appears** — not Parts, not Vendors, and not Part sales
+either. Reproduced on **two separate days** (21 and 22 September) with the permission definitely
+granted and read back.
+
+Before this is called a fault, a discriminating run is measuring **what the product is actually
+gating on**: the permission, or the separate *See Financial Data* switch, which is a role toggle
+rather than a permission and which a neighbouring check (C55734) already suspects. An administrator
+control is measured first, in the same session, so the query is known to have part sales in it.

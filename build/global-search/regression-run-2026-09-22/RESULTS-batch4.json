@@ -1,0 +1,339 @@
+{
+ "marker": "v26.36.8-d146c39",
+ "when": "2026-09-22T04:14:34.209Z",
+ "baseline": [
+  "customersView",
+  "scheduleView",
+  "woPickParts",
+  "woTechViewMode",
+  "workOrderLinesCreateAndEdit",
+  "workOrdersView"
+ ],
+ "checks": {
+  "C45142": {
+   "verdict": "Passed",
+   "why": "with no work-order access the Work orders group and its count are gone",
+   "detail": {
+    "label": "no work-order access at all",
+    "role": [
+     "customersView",
+     "woTechViewMode"
+    ],
+    "seen": {
+     "groups": [
+      "Customers (14)",
+      "Assets (9)"
+     ],
+     "rows": 10,
+     "body": "23 results found across 2 categories Customers (14) ZZAUTOTEST Fibridge Commercial 11 open 4120 Fibridge Commerce Way, Fernvale, Ohio ZZAUTO",
+     "tabs": {
+      "All": 23,
+      "Work orders": null,
+      "Customers": 14,
+      "Assets": 9,
+      "Parts": null,
+      "Vendors": null,
+      "Part sales": null,
+      "Purchase orders": null,
+      "Vendor invoices": null
+     }
+    }
+   }
+  },
+  "C45144": {
+   "verdict": "Passed",
+   "why": "without parts access the Parts count reads null; with it, 4",
+   "detail": {
+    "without": {
+     "label": "parts access removed",
+     "role": [
+      "customersView",
+      "scheduleView",
+      "woPickParts",
+      "woTechViewMode",
+      "workOrderLinesCreateAndEdit",
+      "workOrdersView"
+     ],
+     "seen": {
+      "groups": [
+       "Work orders (20)",
+       "Customers (14)",
+       "Assets (9)"
+      ],
+      "rows": 15,
+      "body": "43 results found across 3 categories Work orders (20) S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17670 ZZA",
+      "tabs": {
+       "All": 43,
+       "Work orders": 20,
+       "Customers": 14,
+       "Assets": 9,
+       "Parts": null,
+       "Vendors": null,
+       "Part sales": null,
+       "Purchase orders": null,
+       "Vendor invoices": null
+      }
+     }
+    },
+    "with": {
+     "label": "parts access added",
+     "role": [
+      "catalogInventoryView",
+      "customersView",
+      "scheduleView",
+      "woPickParts",
+      "woTechViewMode",
+      "workOrderLinesCreateAndEdit",
+      "workOrdersView"
+     ],
+     "seen": {
+      "groups": [
+       "Work orders (20)",
+       "Customers (14)",
+       "Assets (9)",
+       "Parts (4)"
+      ],
+      "rows": 19,
+      "body": "47 results found across 4 categories Work orders (20) S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17670 ZZA",
+      "tabs": {
+       "All": 47,
+       "Work orders": 20,
+       "Customers": 14,
+       "Assets": 9,
+       "Parts": 4,
+       "Vendors": null,
+       "Part sales": null,
+       "Purchase orders": null,
+       "Vendor invoices": null
+      }
+     }
+    }
+   }
+  },
+  "C45145": {
+   "verdict": "Passed",
+   "why": "without vendor access the Vendors count reads null; with it, 3",
+   "detail": {
+    "without": {
+     "label": "vendor access removed",
+     "role": [
+      "customersView",
+      "scheduleView",
+      "woPickParts",
+      "woTechViewMode",
+      "workOrderLinesCreateAndEdit",
+      "workOrdersView"
+     ],
+     "seen": {
+      "groups": [
+       "Work orders (20)",
+       "Customers (14)",
+       "Assets (9)"
+      ],
+      "rows": 15,
+      "body": "43 results found across 3 categories Work orders (20) S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17670 ZZA",
+      "tabs": {
+       "All": 43,
+       "Work orders": 20,
+       "Customers": 14,
+       "Assets": 9,
+       "Parts": null,
+       "Vendors": null,
+       "Part sales": null,
+       "Purchase orders": null,
+       "Vendor invoices": null
+      }
+     }
+    },
+    "with": {
+     "label": "vendor access added",
+     "role": [
+      "customersView",
+      "scheduleView",
+      "vendorOrderManagementView",
+      "woPickParts",
+      "woTechViewMode",
+      "workOrderLinesCreateAndEdit",
+      "workOrdersView"
+     ],
+     "seen": {
+      "groups": [
+       "Work orders (20)",
+       "Customers (14)",
+       "Assets (9)",
+       "Vendors (3)",
+       "Purchase orders (4)",
+       "Vendor invoices (4)"
+      ],
+      "rows": 26,
+      "body": "54 results found across 6 categories Work orders (20) S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17670 ZZA",
+      "tabs": {
+       "All": 54,
+       "Work orders": 20,
+       "Customers": 14,
+       "Assets": 9,
+       "Parts": null,
+       "Vendors": 3,
+       "Part sales": null,
+       "Purchase orders": 4,
+       "Vendor invoices": 4
+      }
+     }
+    }
+   }
+  },
+  "C45146": {
+   "verdict": "Passed",
+   "why": "without customer access Customers reads null and Assets reads null (both must be empty)",
+   "detail": {
+    "label": "customer access removed",
+    "role": [
+     "scheduleView",
+     "woPickParts",
+     "woTechViewMode",
+     "workOrderLinesCreateAndEdit",
+     "workOrdersView"
+    ],
+    "seen": {
+     "groups": [
+      "Work orders (20)"
+     ],
+     "rows": 5,
+     "body": "20 results found across 1 category Work orders (20) S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17670 ZZAUT",
+     "tabs": {
+      "All": 20,
+      "Work orders": 20,
+      "Customers": null,
+      "Assets": null,
+      "Parts": null,
+      "Vendors": null,
+      "Part sales": null,
+      "Purchase orders": null,
+      "Vendor invoices": null
+     }
+    }
+   }
+  },
+  "C45143": {
+   "verdict": "Failed",
+   "why": "a part-sales-only user sees Part sales null, Parts null, Vendors null",
+   "detail": {
+    "label": "part sales only",
+    "role": [
+     "partSalesView",
+     "woTechViewMode"
+    ],
+    "seen": {
+     "groups": [],
+     "rows": 0,
+     "body": "No results found No results for “ZZAUTOTEST”",
+     "tabs": {
+      "All": 0,
+      "Work orders": null,
+      "Customers": null,
+      "Assets": null,
+      "Parts": null,
+      "Vendors": null,
+      "Part sales": null,
+      "Purchase orders": null,
+      "Vendor invoices": null
+     }
+    }
+   }
+  },
+  "C45147": {
+   "verdict": "Passed",
+   "why": "a time-clock-only user gets no results of any kind",
+   "detail": {
+    "label": "timesheets only",
+    "role": [
+     "timesheetsView",
+     "woTechViewMode"
+    ],
+    "seen": {
+     "groups": [],
+     "rows": 0,
+     "body": "No results found No results for “ZZAUTOTEST”",
+     "tabs": {
+      "All": 0,
+      "Work orders": null,
+      "Customers": null,
+      "Assets": null,
+      "Parts": null,
+      "Vendors": null,
+      "Part sales": null,
+      "Purchase orders": null,
+      "Vendor invoices": null
+     }
+    }
+   }
+  },
+  "C45148": {
+   "verdict": "Passed",
+   "why": "types the role was never granted show nothing - purchase orders and vendor invoices are both empty",
+   "detail": {
+    "label": "baseline technician again",
+    "role": [
+     "customersView",
+     "scheduleView",
+     "woPickParts",
+     "woTechViewMode",
+     "workOrderLinesCreateAndEdit",
+     "workOrdersView"
+    ],
+    "seen": {
+     "groups": [
+      "Work orders (20)",
+      "Customers (14)",
+      "Assets (9)"
+     ],
+     "rows": 15,
+     "body": "43 results found across 3 categories Work orders (20) S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17670 ZZA",
+     "tabs": {
+      "All": 43,
+      "Work orders": 20,
+      "Customers": 14,
+      "Assets": 9,
+      "Parts": null,
+      "Vendors": null,
+      "Part sales": null,
+      "Purchase orders": null,
+      "Vendor invoices": null
+     }
+    }
+   }
+  }
+ },
+ "baselineSeen": {
+  "groups": [
+   "Work orders (20)",
+   "Customers (14)",
+   "Assets (9)"
+  ],
+  "rows": 15,
+  "body": "43 results found across 3 categories Work orders (20) S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17670 ZZA",
+  "tabs": {
+   "All": 43,
+   "Work orders": 20,
+   "Customers": 14,
+   "Assets": 9,
+   "Parts": null,
+   "Vendors": null,
+   "Part sales": null,
+   "Purchase orders": null,
+   "Vendor invoices": null
+  }
+ },
+ "restore": {
+  "status": 200,
+  "identical": true,
+  "now": [
+   "customersView",
+   "scheduleView",
+   "woPickParts",
+   "woTechViewMode",
+   "workOrderLinesCreateAndEdit",
+   "workOrdersView"
+  ]
+ }
+}
