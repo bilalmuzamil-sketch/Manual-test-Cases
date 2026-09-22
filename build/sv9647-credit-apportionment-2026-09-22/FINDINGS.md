@@ -273,3 +273,40 @@ of the same payment contains the Cash row and the credit row, each exactly once.
 * **Not claiming** it is out of scope either — it is one query away from what this ticket touches, and
   the handoff's own reasoning is about exactly this flow. Whether it becomes its own ticket is the QA
   lead's call.
+
+## §0e — The customer's own document type: a matched PART-SALE pair, now that receiving works
+
+With the right receive screen (§0c) the staging part sales could be driven to invoice, so the fixture
+from §1 — which is a **part sale**, the thing Brian Orban actually complained about — now exists on both
+builds with **identical totals and identical credit faces**.
+
+| | BEFORE — staging `v26.36.8-e2c29c5` | AFTER — branch `v26.36.8-fc4dd05` |
+|---|---|---|
+| Small invoice | **P2-2145**, $4.66 (part sale `0dcaa2bc…`) | **INV-P9647-248**, $4.66 |
+| Large invoice | **P2-2146**, $87.74 (part sale `c40b9af5-1ecf…`) | **INV-P9647-249**, $87.74 |
+| Credits | CM2-4402 **$22.00** · CM2-4403 **$65.98** | CM-4189 **$22.00** · CM-4190 **$65.98** |
+| Payment | one CASH payment, both credits *Fully consumed*, remainder $4.42 | same |
+
+### The $4.66 document, side by side
+
+```
+BEFORE (staging)                          AFTER (fix branch)
+Total                       $4.66         Total                       $4.66
+Payments                                  Payments
+  (Credit) CM-4402         $22.00           (Credit) CM-4189          $1.17
+  (Credit) CM-4403         $65.98           (Credit) CM-4190          $3.49
+BALANCE                     $0.00         BALANCE                     $0.00
+                    ——————————                                ——————————
+payments printed           $87.98         payments printed            $4.66
+```
+
+**$87.98 of credits printed on a $4.66 invoice**, with the document still ending *BALANCE $0.00* — the
+reported defect, on the reported document type, reproduced from scratch. On the fixed build the same
+invoice prints $1.17 + $3.49 = $4.66, and the remainder of each memo appears on the invoice that
+consumed it.
+
+`$87.98` and `$87.99` appear nowhere on the fixed document, and `$22.00` / `$65.98` appear nowhere on it
+either — searched in the rendered text.
+
+**So the pair now exists twice over: once on work orders (§0d, $145.04 / $406.09) and once on part sales
+(here, $4.66 / $87.74). Both shapes give the same answer.**
