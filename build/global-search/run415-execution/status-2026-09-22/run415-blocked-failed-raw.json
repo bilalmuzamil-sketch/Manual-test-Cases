@@ -1,0 +1,319 @@
+[
+ {
+  "case_id": 44825,
+  "test_id": 2723895,
+  "status": "Failed",
+  "title": "A 'Show all N' link appears when a group has more than five matches",
+  "section": "Grouped Results and Counts",
+  "tickets": [
+   "SV-10159"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nRe-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Read inside the search panel only, on the screen. Searched a word that matches every kind of record, then opened each tab in turn. Every one of the eight groups has twenty matches and shows five rows, so all eight should carry a see-all link. Not one of them does - there is no see-all link anywhere in the panel. This is the fault already reported.\nSV-10159 - Global Search - \"Show all N\" Link Missing From Group Headers - https://shopview.atlassian.net/browse/SV-10159 (open, Ready to Fix)\nNothing new to raise - already reported and waiting on the development team."
+ },
+ {
+  "case_id": 44826,
+  "test_id": 2723896,
+  "status": "Blocked",
+  "title": "Clicking 'Show all N' switches the modal to that entity's scope tab",
+  "section": "Grouped Results and Counts",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nThis cannot be executed because the thing it asks you to click is not there. The case starts by clicking a 'Show all N' link on a group heading; no such link appears in the panel. Looked for it with a wide net - every visible control whose text reads show all, see all, view all, more, or a number followed by more - and the only matches were unrelated controls on the page behind. The scope tabs themselves are present and work (All, Work orders, Customers, Assets, Parts, Vendors, Part sales, Purchase orders, Vendor invoices), so the panel controls are visible to the same scan.\nNot observed this run: Everything after the first step: whether the panel stays open, whether the scoped tab caps at twenty rows, and whether a Show all link appears inside the scoped tab.\nRun this again once the missing 'Show all N' link is delivered - it is already reported on the case above this one (C44825). Nothing else blocks it."
+ },
+ {
+  "case_id": 53476,
+  "test_id": 2868064,
+  "status": "Failed",
+  "title": "No count in the search modal reads higher than 20",
+  "section": "Grouped Results and Counts",
+  "tickets": [
+   "SV-10320"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-measured at the moment of raising, on build v26.36.8-d146c39. One search for 'ZZ': the All tab reads All (111) while every tab for a single record type is correct and stops at 20 - Work orders (20), Customers (20), Assets (20), Parts (20), Vendors (11), Part sales (9), Purchase orders (6), Vendor invoices (5). 20+20+20+20+11+9+6+5 = 111, so the All figure is the per-type figures added together. A second search for 'ZZAUTOTEST' behaves the same way: All (61), which is 20+14+9+4+3+3+4+4. The same uncapped number is also read out to screen-reader users; that text is not visible on the screen. The requirement says no count in the box reads higher than 20, the tab included.\nNot observed this run: The 'Show all N' links are absent on this build, so the third place the limit applies could not be read; that absence is already reported separately.\nRaised as SV-10320 - https://shopview.atlassian.net/browse/SV-10320 - with the marked-up picture and the requirement quoted word for word. It sits under the work covering wiring the search box up to the results, which is still with QA.\nWhat needs to be done: nothing further from us. The report is with the developers under the link above, and this test is re-run once it is fixed."
+ },
+ {
+  "case_id": 44836,
+  "test_id": 2723906,
+  "status": "Failed",
+  "title": "A Part Sale result shows the P-number, customer, status badge, total price and date",
+  "section": "Per-Entity Result Shape",
+  "tickets": [
+   "SV-10163"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nRe-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Rows read off the screen. A part-sale row reads the number and customer, then a coloured status, then who created it - but there is no total price anywhere on the row. This is the fault already reported.\nSV-10163 - Global Search - Part Sale Rows Do Not Show a Total Price - https://shopview.atlassian.net/browse/SV-10163 (open, Ready to Fix)\nNothing new to raise - already reported and waiting on the development team."
+ },
+ {
+  "case_id": 45137,
+  "test_id": 2728115,
+  "status": "Blocked",
+  "title": "Purchase Orders rank by Ordered status and recency",
+  "section": "Ranking and Prioritization",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-checked on 22 September 2026, QA branch sv9160, build v26.36.8-d146c39, against requirements page 576978945 version 17. Measured on the screen. Still cannot be judged, and I have now proved it is the requirement rather than my effort. The requirement describes two states, still ordered and received, but the product has a middle one, Partial Delivery, that it never mentions. I searched the whole branch for a controlled pair - the same vendor, one still ordered, one fully received, with the received one NEWER so that age and state pull in opposite directions. No such pair exists in the data, and there is no way to set a purchase order's state directly: the only route to received is the full goods-receiving flow. Without knowing where a partly delivered order is meant to sit, the check has no answer even with a perfect fixture.\nNot observed this run: Where a partly delivered purchase order is meant to rank.\nAsk the product owner one question: does a partly delivered purchase order count as still ordered, or as received? The check can be judged the moment that is answered."
+ },
+ {
+  "case_id": 45138,
+  "test_id": 2728116,
+  "status": "Blocked",
+  "title": "Vendor Invoices rank Unpaid first and by recency",
+  "section": "Ranking and Prioritization",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-checked on 22 September 2026, QA branch sv9160, build v26.36.8-d146c39, against requirements page 576978945 version 17. Measured on the screen. Half of this is confirmed - the invoices come back newest first. The other half cannot be seen because every vendor invoice on this branch is unpaid, and I could not make a paid one. I tried six ways: the vendor invoices list page is missing on this build, the invoice's own page carries no payment control and does not mention payment at all, its edit control opens nothing, and five different service addresses for paying one all answer not found. Payment state comes from the accounting side, which this branch does not expose.\nNot observed this run: Whether an unpaid invoice outranks a paid one.\nHave someone with accounting access mark one vendor invoice paid on this branch, then this finishes in a minute. Nothing else is held up by it."
+ },
+ {
+  "case_id": 55716,
+  "test_id": 3051908,
+  "status": "Failed",
+  "title": "When two results are otherwise equal, the most recently updated one ranks first",
+  "section": "Ranking and Prioritization",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nRe-checked today on build v26.36.8-d146c39 with everything else held equal: two customers with the same name start, the same address, no jobs at all on either one, and both records opened first so neither counts as more recently looked at. The second one was changed, three times over 45 seconds the list was read, and the order never moved. A rename to the same record did show up in search within 15 seconds, so the search does notice changes to this record. HOWEVER: no customer record on this branch carries a 'last changed' date anywhere we can read, so it cannot be shown that one customer really is more recently updated than the other. 'The rule is not applied' and 'a customer has no date for the rule to read' look exactly the same from outside.\nNot observed this run: Whether a customer record stores a last-changed time at all. No other record type on this branch both lacks its own recency scoring and shows a last-changed date, so the rule could not be re-tested elsewhere.\nNo report raised, on purpose - the question is with the QA lead. It cannot be proved the product was given a date to work with, so this goes to the product owner as a question instead of being raised as a fault.\nWhat needs to be done: this is NOT being raised as a fault, because it cannot be proved the product was given anything to work with. It goes to the product owner as a question instead - does the most-recently-changed rule apply to customers at all, given customer records carry no dates? A near-identical report in this area was closed as not-a-defect three days ago, so this one waits for that answer."
+ },
+ {
+  "case_id": 44861,
+  "test_id": 2723931,
+  "status": "Failed",
+  "title": "The typed query is retained in the header search field after the palette closes",
+  "section": "Persisting Query",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nRe-checked today on build v26.36.8-d146c39. The first half of what this test asks for WORKS: after the box is closed, the header keeps the last thing searched for, shown as plain text. The second half - a small count marker beside it - does not appear. On checking the requirement as it reads today, THE REQUIREMENT DOES NOT ASK FOR ONE: it says only that the text is kept as plain text and comes back when the box is reopened. The count marker comes from a July design picture that the requirement has since replaced. So the product is right and this test's expected result is out of date.\nNo report raised, on purpose - the wording question is with the QA lead. The product matches the requirement as it reads today; it is this test's expected wording that is out of date, and only he changes expected wording.\nWhat needs to be done: nothing is being raised against the product - raising it would have been a false report. The expected wording of this test needs the QA lead's decision, because expected wording is never changed without him. It sits with the other two wording questions already waiting with him."
+ },
+ {
+  "case_id": 44865,
+  "test_id": 2723935,
+  "status": "Failed",
+  "title": "No-results in a scoped tab reads 'No results for [query] in [Tab]'",
+  "section": "No-Results State",
+  "tickets": [
+   "SV-10181"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nRe-run on 21 September 2026, QA branch sv9160, build v26.36.8-d146c39, checked against requirements page 576978945 version 17 re-read live the same day. Driven from the keyboard and the screen. On a chosen tab the message is word for word the same as on All - it never names the tab you are in. This is the fault already reported.\nSV-10181 - Global Search - \"No results\" Message Does Not Name the Selected Tab - https://shopview.atlassian.net/browse/SV-10181 (open, Ready to Fix)\nNothing new to raise - already reported and waiting on the development team."
+ },
+ {
+  "case_id": 55706,
+  "test_id": 3050566,
+  "status": "Failed",
+  "title": "A user WITH See Financial Data sees prices in search result rows",
+  "section": "Permissions and Role-Based Scoping",
+  "tickets": [
+   "SV-10163"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nRe-checked on the screen on 21 September 2026. Signed in with full access to financial information. Every money field the specification puts on a search line shows its real value with nothing hidden - purchase order totals and vendor invoice totals all show in full - except one: a part sale line shows no total price at all. That is the whole of this failure.\nSV-10163 - Global Search - Part Sale Rows Do Not Show a Total Price - https://shopview.atlassian.net/browse/SV-10163 (open, Ready to Fix)\nNothing new to raise. The missing part sale total is already reported and is waiting on the development team. Re-run this check when that report is fixed."
+ },
+ {
+  "case_id": 55736,
+  "test_id": 3077894,
+  "status": "Blocked",
+  "title": "Removing See Financial Data hides the total on a Vendor invoice row but keeps the row",
+  "section": "Permissions and Role-Based Scoping",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNot judged this pass. The wording of what this check expects was altered on 20 September and the QA lead has held the question of putting it back, so judging the product against wording that is itself under review would not mean anything.\nNot observed this run: Everything this check asks about.\nDecide what this check's expected wording should say - it is one of the two the QA lead asked to hold - then run it. The measurement itself takes minutes."
+ },
+ {
+  "case_id": 55737,
+  "test_id": 3077895,
+  "status": "Blocked",
+  "title": "Records a person cannot see are not counted in any heading, tab or total",
+  "section": "Permissions and Role-Based Scoping",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNot judged this pass. The wording of what this check expects was altered on 20 September and the QA lead has held the question of putting it back, so judging the product against wording that is itself under review would not mean anything.\nNot observed this run: Everything this check asks about.\nDecide what this check's expected wording should say - it is one of the two the QA lead asked to hold - then run it. The measurement itself takes minutes."
+ },
+ {
+  "case_id": 44896,
+  "test_id": 2723966,
+  "status": "Blocked",
+  "title": "WO, Inventory Parts and Customers list search served by the unified engine",
+  "section": "Page-Search Cutover (v2)",
+  "tickets": [
+   "SV-9306"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nThe owning story for this behaviour, SV-9306 (BE - Page search cutover: work orders / inventory parts / customers list search served by the unified engine), was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done. The cutover has been cancelled, so the list pages are not expected to be served by the same engine and this cannot be judged. Observed alongside: the work orders list page still runs its own separate search - it fires its own page search each time, which the global search never does.\nNot observed this run: The matching comparison between each list page and global search was not run, because the requirement it tests has been cancelled.\nAsk the product owner whether the list-page cutover is dropped for good. If it is, retire this case; if not, the cancelled story has to be reopened. Do not raise a defect while the owning story is cancelled."
+ },
+ {
+  "case_id": 45140,
+  "test_id": 2728118,
+  "status": "Blocked",
+  "title": "Search telemetry (impression/click logging) is out of v1 scope",
+  "section": "Global Search - Out of V1 Scope (not tested this release)",
+  "tickets": [
+   "SV-9167"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNot executed, deliberately. This case's own expected result states that search telemetry is excluded from this release and says in terms: do not execute this against the v1 build. The owning story SV-9167 (Search telemetry) was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done, which confirms it.\nNot observed this run: Nothing was executed against the build for this case.\nKeep this case for the release in which telemetry ships. Nothing to do on this build."
+ },
+ {
+  "case_id": 45152,
+  "test_id": 2738733,
+  "status": "Blocked",
+  "title": "Switching location refreshes results to the new location",
+  "section": "Global Search V2 - V1 Regression Suite",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nThe Location shown in the app never changes for this sign-in, so a before-and-after cannot be read. Six ways were tried: the change behind the screen, the Change Location item in the profile menu, a full page reload after the change, three readings there-and-back-and-there, signing in as a staff member whose own Location is the second one, and finally a job seeded at each Location so the data itself would show the difference. The app stays on Staging Heavy Duty - 9919 throughout.\nNot observed this run: Whether search refreshes when the Location actually changes.\nWhat needs to be done: one sign-in whose Location genuinely moves, or a staff account tied to Staging Lethbridge - 4310 that keeps that Location when signed in as. With that, this takes minutes. The jobs are already seeded at both Locations and waiting. This blocks nothing else - every other check on this suite is finished."
+ },
+ {
+  "case_id": 45160,
+  "test_id": 2738741,
+  "status": "Failed",
+  "title": "Selecting a result records a usage analytics event",
+  "section": "Global Search V2 - V1 Regression Suite",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-run on build v26.36.8-d146c39 on 22 September, read on the screen. Choosing a result records no usage event; usage recording was deliberately removed from this version, so no report is due.\nNo report raised, on purpose - the decision is with the QA lead. Usage recording was deliberately taken out of this version, so there is nothing to report to the developers.\nWhat needs to be done: this check needs the same exclusion note its twin already carries, which is the QA lead's to approve. Nothing goes to the developers."
+ },
+ {
+  "case_id": 53582,
+  "test_id": 2959359,
+  "status": "Failed",
+  "title": "Finding a customer by address, city or postal code still works",
+  "section": "Global Search V2 - V1 Regression Suite",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-run on build v26.36.8-d146c39 on 22 September, read on the screen. Typing the town or the state returns twenty other customers that outrank the seeded one; the field itself is searchable - every row returned is in that town.\nNo report raised, on purpose - the wording is with the QA lead. The product is fine; our own test data has crowded this record out of its own test.\nWhat needs to be done: give this check a town that belongs to its own customer alone, so other test records cannot outrank it. That is a change to the steps and needs the QA lead's word."
+ },
+ {
+  "case_id": 53601,
+  "test_id": 2959367,
+  "status": "Failed",
+  "title": "A catalogue part that is not in inventory can still be found",
+  "section": "Global Search V2 - V1 Regression Suite",
+  "tickets": [
+   "SV-10001"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-run on build v26.36.8-d146c39 on 22 September, read on the screen. These searches did not return the record: \"Vernway\" in Parts (group empty), \"ZZT-77-3300\" in Parts (group empty).\nAlready raised as SV-10001 - https://shopview.atlassian.net/browse/SV-10001.\nWhat needs to be done: nothing further from us. The fix is with the developers under the report above; this check is re-run once it lands."
+ },
+ {
+  "case_id": 53605,
+  "test_id": 2959371,
+  "status": "Failed",
+  "title": "Finding an asset by its year and make typed together",
+  "section": "Global Search V2 - V1 Regression Suite",
+  "tickets": [
+   "SV-10055"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-run on build v26.36.8-d146c39 on 22 September, read on the screen. These searches did not return the record: \"2019 Freightliner\" in Assets (group empty).\nAlready raised as SV-10055 - https://shopview.atlassian.net/browse/SV-10055.\nWhat needs to be done: nothing further from us. The fix is with the developers under the report above; this check is re-run once it lands."
+ },
+ {
+  "case_id": 55660,
+  "test_id": 2977472,
+  "status": "Failed",
+  "title": "Finding a record by a fragment from the middle of a word still works",
+  "section": "Global Search V2 - V1 Regression Suite",
+  "tickets": [
+   "SV-10060"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-run on build v26.36.8-d146c39 on 22 September, read on the screen. These searches did not return the record: \"ernva\" in Customers (group empty), \"idgepor\" in Customers (missing: ZZAUTOTEST Bridgeport Hauling).\nAlready raised as SV-10060 - https://shopview.atlassian.net/browse/SV-10060.\nWhat needs to be done: nothing further from us. The fix is with the developers under the report above; this check is re-run once it lands."
+ },
+ {
+  "case_id": 55679,
+  "test_id": 2981982,
+  "status": "Failed",
+  "title": "Your recent items come back when a search finds nothing",
+  "section": "Global Search V2 - V1 Regression Suite",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-run on build v26.36.8-d146c39 on 22 September, read on the screen. Only the no-results message is shown - the recent list does not come back.\nNo report raised yet - it is with the QA lead. This is behaviour the old version had and this one does not, and the check itself says to wait for the product owner's ruling before raising it.\nWhat needs to be done: the product owner decides whether leaving someone at a dead end after a fruitless search is acceptable. Until then nothing is raised."
+ },
+ {
+  "case_id": 55685,
+  "test_id": 2984234,
+  "status": "Failed",
+  "title": "Typing a name does not bring back other differently spelled names",
+  "section": "Global Search V2 - V1 Regression Suite",
+  "tickets": [
+   "SV-10025"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nRe-run on build v26.36.8-d146c39 on 22 September, read on the screen. Typing a correctly spelled name returns 12 customers, 11 of which do not contain the word typed.\nAlready raised as SV-10025 - https://shopview.atlassian.net/browse/SV-10025.\nWhat needs to be done: nothing further from us. The fix is with the developers under the report above; this check is re-run once it lands."
+ },
+ {
+  "case_id": 44866,
+  "test_id": 2723936,
+  "status": "Blocked",
+  "title": "Hovering a Work Order result shows an 'Add new line' action",
+  "section": "Quick Actions on Hover (v1)",
+  "tickets": [
+   "SV-9173"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNo quick action appears on any search result row. Measured on the screen with a real mouse hover: two rounds over two queries (27 rows and 96 rows), 40 row-hovers in all, covering work orders, customers, assets, parts and vendors; then a second pass over 12 rows that watched the WHOLE page, not just the row, for any button appearing. Nothing appeared anywhere, and nothing appeared when the keyboard selection was moved either. The instrument is proved: every one of those hovers DID change the row on screen, and the same scan found 23 other buttons already on the page, so a quick action would have been seen. The owning story for this behaviour, SV-9173 (FE - Contextual quick actions on result rows), was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done. The story has been cancelled, so this cannot be judged as a product defect and no ticket is raised (Rule 112). The requirement is still written in the specification (page 576978945 version 17, section 8: 'show contextual quick actions on hover for each entity (desktop only)'), so the specification and the delivered scope now disagree. That disagreement is a question for the product owner, not a defect.\nAsk the product owner whether contextual quick actions are dropped from this release. If they are dropped, the specification needs updating and these cases are retired. If they are not dropped, the cancelled story has to be reopened. Do not raise a defect while the owning story is cancelled."
+ },
+ {
+  "case_id": 44867,
+  "test_id": 2723937,
+  "status": "Blocked",
+  "title": "Hovering an Asset result shows 'New work order' plus history and invoices icons",
+  "section": "Quick Actions on Hover (v1)",
+  "tickets": [
+   "SV-9173"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNo quick action appears on any search result row. Measured on the screen with a real mouse hover: two rounds over two queries (27 rows and 96 rows), 40 row-hovers in all, covering work orders, customers, assets, parts and vendors; then a second pass over 12 rows that watched the WHOLE page, not just the row, for any button appearing. Nothing appeared anywhere, and nothing appeared when the keyboard selection was moved either. The instrument is proved: every one of those hovers DID change the row on screen, and the same scan found 23 other buttons already on the page, so a quick action would have been seen. The owning story for this behaviour, SV-9173 (FE - Contextual quick actions on result rows), was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done. The story has been cancelled, so this cannot be judged as a product defect and no ticket is raised (Rule 112). The requirement is still written in the specification (page 576978945 version 17, section 8: 'show contextual quick actions on hover for each entity (desktop only)'), so the specification and the delivered scope now disagree. That disagreement is a question for the product owner, not a defect.\nAsk the product owner whether contextual quick actions are dropped from this release. If they are dropped, the specification needs updating and these cases are retired. If they are not dropped, the cancelled story has to be reopened. Do not raise a defect while the owning story is cancelled."
+ },
+ {
+  "case_id": 44868,
+  "test_id": 2723938,
+  "status": "Blocked",
+  "title": "Hovering a Customer result shows 'New work order' and 'New contact'",
+  "section": "Quick Actions on Hover (v1)",
+  "tickets": [
+   "SV-9173"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNo quick action appears on any search result row. Measured on the screen with a real mouse hover: two rounds over two queries (27 rows and 96 rows), 40 row-hovers in all, covering work orders, customers, assets, parts and vendors; then a second pass over 12 rows that watched the WHOLE page, not just the row, for any button appearing. Nothing appeared anywhere, and nothing appeared when the keyboard selection was moved either. The instrument is proved: every one of those hovers DID change the row on screen, and the same scan found 23 other buttons already on the page, so a quick action would have been seen. The owning story for this behaviour, SV-9173 (FE - Contextual quick actions on result rows), was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done. The story has been cancelled, so this cannot be judged as a product defect and no ticket is raised (Rule 112). The requirement is still written in the specification (page 576978945 version 17, section 8: 'show contextual quick actions on hover for each entity (desktop only)'), so the specification and the delivered scope now disagree. That disagreement is a question for the product owner, not a defect.\nAsk the product owner whether contextual quick actions are dropped from this release. If they are dropped, the specification needs updating and these cases are retired. If they are not dropped, the cancelled story has to be reopened. Do not raise a defect while the owning story is cancelled."
+ },
+ {
+  "case_id": 44869,
+  "test_id": 2723939,
+  "status": "Blocked",
+  "title": "Hovering a Part result shows only 'View part history'",
+  "section": "Quick Actions on Hover (v1)",
+  "tickets": [
+   "SV-9173"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNo quick action appears on any search result row. Measured on the screen with a real mouse hover: two rounds over two queries (27 rows and 96 rows), 40 row-hovers in all, covering work orders, customers, assets, parts and vendors; then a second pass over 12 rows that watched the WHOLE page, not just the row, for any button appearing. Nothing appeared anywhere, and nothing appeared when the keyboard selection was moved either. The instrument is proved: every one of those hovers DID change the row on screen, and the same scan found 23 other buttons already on the page, so a quick action would have been seen. The owning story for this behaviour, SV-9173 (FE - Contextual quick actions on result rows), was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done. The story has been cancelled, so this cannot be judged as a product defect and no ticket is raised (Rule 112). The requirement is still written in the specification (page 576978945 version 17, section 8: 'show contextual quick actions on hover for each entity (desktop only)'), so the specification and the delivered scope now disagree. That disagreement is a question for the product owner, not a defect.\nAsk the product owner whether contextual quick actions are dropped from this release. If they are dropped, the specification needs updating and these cases are retired. If they are not dropped, the cancelled story has to be reopened. Do not raise a defect while the owning story is cancelled."
+ },
+ {
+  "case_id": 44870,
+  "test_id": 2723940,
+  "status": "Blocked",
+  "title": "Hovering a Vendor result shows 'Add contact'",
+  "section": "Quick Actions on Hover (v1)",
+  "tickets": [
+   "SV-9173"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNo quick action appears on any search result row. Measured on the screen with a real mouse hover: two rounds over two queries (27 rows and 96 rows), 40 row-hovers in all, covering work orders, customers, assets, parts and vendors; then a second pass over 12 rows that watched the WHOLE page, not just the row, for any button appearing. Nothing appeared anywhere, and nothing appeared when the keyboard selection was moved either. The instrument is proved: every one of those hovers DID change the row on screen, and the same scan found 23 other buttons already on the page, so a quick action would have been seen. The owning story for this behaviour, SV-9173 (FE - Contextual quick actions on result rows), was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done. The story has been cancelled, so this cannot be judged as a product defect and no ticket is raised (Rule 112). The requirement is still written in the specification (page 576978945 version 17, section 8: 'show contextual quick actions on hover for each entity (desktop only)'), so the specification and the delivered scope now disagree. That disagreement is a question for the product owner, not a defect.\nAsk the product owner whether contextual quick actions are dropped from this release. If they are dropped, the specification needs updating and these cases are retired. If they are not dropped, the cancelled story has to be reopened. Do not raise a defect while the owning story is cancelled."
+ },
+ {
+  "case_id": 44871,
+  "test_id": 2723941,
+  "status": "Blocked",
+  "title": "A Part row shows only 'View part history', even while editing a work order",
+  "section": "Quick Actions on Hover (v1)",
+  "tickets": [
+   "SV-9173"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNo quick action appears on any search result row. Measured on the screen with a real mouse hover: two rounds over two queries (27 rows and 96 rows), 40 row-hovers in all, covering work orders, customers, assets, parts and vendors; then a second pass over 12 rows that watched the WHOLE page, not just the row, for any button appearing. Nothing appeared anywhere, and nothing appeared when the keyboard selection was moved either. The instrument is proved: every one of those hovers DID change the row on screen, and the same scan found 23 other buttons already on the page, so a quick action would have been seen. The owning story for this behaviour, SV-9173 (FE - Contextual quick actions on result rows), was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done. The story has been cancelled, so this cannot be judged as a product defect and no ticket is raised (Rule 112). The requirement is still written in the specification (page 576978945 version 17, section 8: 'show contextual quick actions on hover for each entity (desktop only)'), so the specification and the delivered scope now disagree. That disagreement is a question for the product owner, not a defect.\nAsk the product owner whether contextual quick actions are dropped from this release. If they are dropped, the specification needs updating and these cases are retired. If they are not dropped, the cancelled story has to be reopened. Do not raise a defect while the owning story is cancelled."
+ },
+ {
+  "case_id": 44872,
+  "test_id": 2723942,
+  "status": "Blocked",
+  "title": "Quick actions never trigger a destructive operation",
+  "section": "Quick Actions on Hover (v1)",
+  "tickets": [
+   "SV-9173"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNo quick action appears on any search result row. Measured on the screen with a real mouse hover: two rounds over two queries (27 rows and 96 rows), 40 row-hovers in all, covering work orders, customers, assets, parts and vendors; then a second pass over 12 rows that watched the WHOLE page, not just the row, for any button appearing. Nothing appeared anywhere, and nothing appeared when the keyboard selection was moved either. The instrument is proved: every one of those hovers DID change the row on screen, and the same scan found 23 other buttons already on the page, so a quick action would have been seen. The owning story for this behaviour, SV-9173 (FE - Contextual quick actions on result rows), was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done. The story has been cancelled, so this cannot be judged as a product defect and no ticket is raised (Rule 112). The requirement is still written in the specification (page 576978945 version 17, section 8: 'show contextual quick actions on hover for each entity (desktop only)'), so the specification and the delivered scope now disagree. That disagreement is a question for the product owner, not a defect.\nAsk the product owner whether contextual quick actions are dropped from this release. If they are dropped, the specification needs updating and these cases are retired. If they are not dropped, the cancelled story has to be reopened. Do not raise a defect while the owning story is cancelled."
+ },
+ {
+  "case_id": 44873,
+  "test_id": 2723943,
+  "status": "Blocked",
+  "title": "Quick actions on hover are shown for each entity (v1)",
+  "section": "Quick Actions on Hover (v1)",
+  "tickets": [
+   "SV-9173"
+  ],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 21 September 2026.\nNo quick action appears on any search result row. Measured on the screen with a real mouse hover: two rounds over two queries (27 rows and 96 rows), 40 row-hovers in all, covering work orders, customers, assets, parts and vendors; then a second pass over 12 rows that watched the WHOLE page, not just the row, for any button appearing. Nothing appeared anywhere, and nothing appeared when the keyboard selection was moved either. The instrument is proved: every one of those hovers DID change the row on screen, and the same scan found 23 other buttons already on the page, so a quick action would have been seen. The owning story for this behaviour, SV-9173 (FE - Contextual quick actions on result rows), was read live in Jira on 21 September 2026 and its status is OBSOLETE, resolved Done. The story has been cancelled, so this cannot be judged as a product defect and no ticket is raised (Rule 112). The requirement is still written in the specification (page 576978945 version 17, section 8: 'show contextual quick actions on hover for each entity (desktop only)'), so the specification and the delivered scope now disagree. That disagreement is a question for the product owner, not a defect.\nAsk the product owner whether contextual quick actions are dropped from this release. If they are dropped, the specification needs updating and these cases are retired. If they are not dropped, the cancelled story has to be reopened. Do not raise a defect while the owning story is cancelled."
+ },
+ {
+  "case_id": 55684,
+  "test_id": 2983591,
+  "status": "Blocked",
+  "title": "After switching location you never see the old location's records",
+  "section": "Global Search V2 - V1 Regression (derived from V1 automated tests)",
+  "tickets": [],
+  "comment": "Tested on QA branch sv9160, build v26.36.8-d146c39, on 22 September 2026.\nSame reason as the check above: the Location shown never changes for this sign-in, so it cannot be shown that the previous Location's jobs stop being returned after a change. What CAN be said is on the first of these three checks: standing at one Location, the other Location's job is not returned.\nNot observed this run: Whether the previous Location's records disappear after changing Location.\nWhat needs to be done: the same one thing - a sign-in whose Location genuinely moves, or a staff account tied to Staging Lethbridge - 4310. The seeded jobs are in place at both Locations already."
+ }
+]
