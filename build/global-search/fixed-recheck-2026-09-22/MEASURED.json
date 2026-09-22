@@ -1,0 +1,148 @@
+{
+ "marker": "v26.36.8-fa74ea8",
+ "date": "2026-09-22",
+ "c44825": {
+  "snapshot": {
+   "url": "/workorders?status=invoiced",
+   "modalOpen": true,
+   "tabs": [
+    "All (77)",
+    "Work orders (20)",
+    "Customers (20)",
+    "Assets (17)",
+    "Parts (6)",
+    "Vendors (3)",
+    "Part sales (3)",
+    "Purchase orders (4)",
+    "Vendor invoices (4)"
+   ],
+   "activeTab": "All (77)",
+   "groups": [
+    {
+     "head": "Work orders (20) Show All",
+     "showAll": "Show All",
+     "rows": 5
+    },
+    {
+     "head": "Customers (20) Show All",
+     "showAll": "Show All",
+     "rows": 5
+    },
+    {
+     "head": "Assets (17) Show All",
+     "showAll": "Show All",
+     "rows": 5
+    },
+    {
+     "head": "Parts (6) Show All",
+     "showAll": "Show All",
+     "rows": 5
+    },
+    {
+     "head": "Vendors (3)",
+     "showAll": null,
+     "rows": 3
+    },
+    {
+     "head": "Part sales (3)",
+     "showAll": null,
+     "rows": 3
+    },
+    {
+     "head": "Purchase orders (4)",
+     "showAll": null,
+     "rows": 4
+    },
+    {
+     "head": "Vendor invoices (4)",
+     "showAll": null,
+     "rows": 4
+    }
+   ],
+   "rowCount": 34,
+   "banner": null
+  },
+  "clauses": {
+   "1 group >5 has the link": true,
+   "2 group <=5 has NO link": true,
+   "3 N never above 20": true,
+   "4 every group incl. Assets": true
+  }
+ },
+ "c44826": {
+  "before": {
+   "url": "/workorders?status=invoiced",
+   "activeTab": "All (77)"
+  },
+  "after": {
+   "url": "/workorders?status=invoiced",
+   "modalOpen": true,
+   "tabs": [
+    "All (77)",
+    "Work orders (20)",
+    "Customers (20)",
+    "Assets (17)",
+    "Parts (6)",
+    "Vendors (3)",
+    "Part sales (3)",
+    "Purchase orders (4)",
+    "Vendor invoices (4)"
+   ],
+   "activeTab": "Work orders (20)",
+   "groups": [
+    {
+     "head": "Work orders (20)",
+     "showAll": null,
+     "rows": 20
+    }
+   ],
+   "rowCount": 20,
+   "banner": null
+  },
+  "clicked": "clicked",
+  "insideShowAll": false,
+  "clauses": {
+   "1 modal stays open, switches to that tab": true,
+   "2 up to 20 rows in the modal": true,
+   "3 no Show-all inside the scoped tab": true,
+   "4 no results banner": true
+  }
+ },
+ "c53605": {
+  "tabs": [
+   "All (38)",
+   "Work orders (5)",
+   "Customers (0)",
+   "Assets (20)",
+   "Parts (1)",
+   "Vendors (0)",
+   "Part sales (4)",
+   "Purchase orders (8)",
+   "Vendor invoices (0)"
+  ],
+  "rows": [
+   "ZZT-4471 · 2019 Freightliner Cascadia ZZAUTOTEST Bridgeport Hauling ZZPSRANK",
+   "ZZASSETLIFT-01 · 2019 Freightliner Cascadia Fernvale Asset Holdings",
+   "TRK 412 · 2019 Freightliner Cascadia ZZAUTOTEST Fibridge Commercial",
+   "2 · 2019 Freightliner 114sd Orchard City Truck & Trailer Repair",
+   "506 · 2019 Freightliner M2 Portage Truck & Equipment Repair",
+   "UNITBZZVORTACX2 · 2019 Freightliner Cascadia Parity Asset Holdings",
+   "ZZVORTAC-A1 · 2019 Freightliner Cascadia Parity Asset Holdings",
+   "ZZTOGPS-V1 · 2019 Freightliner Cascadia ZZTOGPS Motors",
+   "ZZTOGWO-V1 · 2019 Freightliner Cascadia ZZTOGWO Haulage",
+   "ZZTOGCUST-V1 · 2019 Freightliner Cascadia ZZTOGCUST Freight",
+   "ZZYEARTIE-NEW · 2019 Freightliner Cascadia ZZMATRIX Alpha Freight",
+   "707 · 2019 Freightliner Cascadia Seymour Heavy Truck Repair Inc",
+   "2019 Freightliner Cascadia",
+   "5483 · 2019 Freightliner 108sd Dorr Truck Center",
+   "365472 · 2019 Freightliner 108sd Dorr Truck Center",
+   "2019 Freightliner M2 Jonesboro Fleet Services",
+   "3244 · 2019 Freightliner M2 Irving Heavy Truck Repair Inc",
+   "2019 Freightliner M2 Forest Park Mobile Truck Repair",
+   "2019 Freightliner Cascadia Spanish Fork Diesel & Fleet Repair",
+   "L14 · 2019 Freightliner M2 Earlimart Fleet Services"
+  ],
+  "cascadiaReturned": true,
+  "assetRows": 20
+ }
+}

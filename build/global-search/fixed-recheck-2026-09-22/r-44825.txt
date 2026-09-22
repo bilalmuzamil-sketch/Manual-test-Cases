@@ -1,0 +1,11 @@
+Failed - re-run on 22 September 2026 on build v26.36.8-fa74ea8, QA branch sv9160, read on the screen. It now fails DIFFERENTLY from before, which the check itself says to treat as a new problem rather than the old one.
+
+WHAT IS FIXED: the control exists now. A group with more than five matches carries a Show all control on its heading, and a group with five or fewer does not - checked on the same search, where four groups had more than five and four had five or fewer, and the split was exactly right. Every kind of record gets it, assets included. That was the whole of the original report and it is genuinely put right.
+
+WHAT IS STILL WRONG: the control carries no number. It reads simply "Show all". The requirement asks for the count to be in it, three separate times, and gives the worked example itself - a search matching thirty-four work orders is to show "Work Orders (20)" on the tab and "Show all 20" on the link. Today the heading carries its count but the control beside it does not.
+
+Read twice on a settled panel, from the control itself rather than the heading around it, and on groups whose counts were seventeen and six - so the missing number cannot be confused with the tab's own count. The heading right beside it shows its number correctly, which is what proves the reading is sound rather than a fault in how it was measured.
+
+Report: ticket_held. This is a different fault from the one already reported and needs the QA lead's go-ahead before anything is raised or re-opened.
+
+What needs to be done: the QA lead decides whether this re-opens the existing report or becomes its own. Nothing else is blocked by it.

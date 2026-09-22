@@ -1,0 +1,11 @@
+Passed - re-run on 22 September 2026 on build v26.36.8-fa74ea8, QA branch sv9160, read on the screen. This check was Blocked before today because the control it starts by clicking did not exist; it does now, so the check could finally be run.
+
+Searched a term that brings back a work-orders group of more than five, then clicked Show all on that group's heading. All four things the check asks for happened:
+  - the search panel stayed open and switched to the Work orders tab - the page behind it did not change and no separate results screen opened;
+  - twenty rows were listed, scrolling inside the panel;
+  - there is no Show all control inside the scoped tab, and nothing loads further;
+  - there is no results banner and the typed word was not handed off to a list page.
+
+Not a claim from the report being marked fixed - every one of the four was read off the screen today.
+
+What needs to be done: nothing. This behaviour is correct on this build.
