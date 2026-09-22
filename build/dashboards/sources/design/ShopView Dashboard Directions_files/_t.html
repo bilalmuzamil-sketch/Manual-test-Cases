@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)https://9a71339c-e477-4895-8501-ac95d6143825.frame.claudeusercontent.com/_f/1787948849-691e/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- frame-runtime --><script>window.__FRAME_PREAMBLE={"v":1,"cred":"cookie","capabilities":{"artifact":"artifact.Kiow93e4.js","assets":"assets.DOAjpBS9.js","comments":"comments.DrhK3r8W.js","db":"db.zFlAA4qL.js","downloads":"downloads.axDW2QAi.js","embed":"embed.DcZf-TSv.js","endpoints":"endpoints.BPfoKaE1.js","mcp":"mcp.C8qKIFvQ.js","network":"network.B5UA9Su4.js","permissions":"permissions.DWFFeHI0.js","room":"room.BF1j0KPr.js","sample":"sample.C7KQQdQj.js","self":"artifact.Kiow93e4.js","user":"user.CCh6oTS_.js"},"transforms":"_transforms.CkRgqq9F.js","comments":"_comments.DUaNQZcg.js","translate":"_translate.DqxC5ek1.js","ldx":"_ldx.CqNtBrkk.js"}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </script><script>(function(){"use strict";function sr(t){return t==="cookie"||t==="query"?t:void 0}var Kn=3e5;function ir(t,e){try{const r=t("navigation")[0],n=[r.responseStart,r.redirectEnd-r.redirectStart,r.domContentLoadedEventStart,e(),r.connectEnd-r.domainLookupStart,r.responseStart-r.requestStart];r.requestStart>0||(n.length=4);for(let a=0;a<n.length;a++)if(n[a]>=0&&n[a]<=3e5)n[a]=n[a]|0;else{if(a<4)return;n.length=4}return n}catch{return}}var lr=["light","dark","system"],cr=/^[A-Za-z0-9_-]{1,64}$/,St=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,ur=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function fr(t){const e=t.toLowerCase();return e.startsWith("data-")||e.startsWith("aria-")||ur.has(e)}var At="data-ldx-props";function dr(t,e){if(e.toLowerCase()===At)return!0;const r=t.getAttribute(At);if(r===null)return!1;try{const n=JSON.parse(r);if(n===null||typeof n!="object"||Array.isArray(n))return!0;const a=e.toLowerCase();return Object.keys(n).some(s=>s.toLowerCase()===a)}catch{return!0}}var Gn="http://www.w3.org/1999/xhtml",hr="http://www.w3.org/2000/svg",pr=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),mr=new Set(["script","style"]);function vr(t){const e=t.localName.toLowerCase();return t.namespaceURI==="http://www.w3.org/1999/xhtml"?!pr.has(e):t.namespaceURI===hr?!mr.has(e):!1}function Ve(t,e){return t===e||(t===160||t===32)&&(e===160||e===32)}function _r(t,e){const r=t.length,n=e.length;let a=0;for(;a<r&&a<n&&Ve(t.charCodeAt(a),e.charCodeAt(a));)a++;let s=0;for(;s<r-a&&s<n-a&&Ve(t.charCodeAt(r-1-s),e.charCodeAt(n-1-s));)s++;return{p:a,s}}function yr(t,e){const r=t.firstChild;if(t.childNodes.length!==1||r===null||r.nodeType!==Node.TEXT_NODE){t.textContent=e;return}const n=r.data,a=n.length,s=e.length,{p:c,s:d}=_r(n,e);c===a&&d===0&&a===s||r.replaceData(c,a-c-d,e.slice(c,s-d));const O=r.data,w=t.ownerDocument.getSelection?.()??null,b=w!==null&&w.rangeCount>0&&(w.anchorNode===r||w.focusNode===r)?{anchor:w.anchorNode,anchorOffset:w.anchorOffset,focus:w.focusNode,focusOffset:w.focusOffset}:null;let m=-1,R=-1;for(let h=0;h<O.length&&h<e.length;h++){const p=O.charCodeAt(h),D=e.charCodeAt(h);p!==D&&Ve(p,D)&&(m<0&&(m=h),R=h)}const M=m>=0;if(M&&r.replaceData(m,R-m+1,e.slice(m,R+1)),M&&b!==null&&b.anchor!==null&&b.focus!==null)try{w.setBaseAndExtent(b.anchor,b.anchorOffset,b.focus,b.focusOffset)}catch{}}var gr=new Set(["html","head","body","frameset"]);function wr(t){return t.namespaceURI==="http://www.w3.org/1999/xhtml"&&gr.has(t.localName)}function br(t){if(t===null||typeof t!="object")return!1;const e=t;if(typeof e.target!="string"||!cr.test(e.target)||e.text!==void 0&&typeof e.text!="string")return!1;if(e.attrsSet!==void 0){if(e.attrsSet===null||typeof e.attrsSet!="object")return!1;for(const[r,n]of Object.entries(e.attrsSet))if(!St.test(r)||typeof n!="string")return!1}if(e.attrsRemoved!==void 0){if(!Array.isArray(e.attrsRemoved))return!1;for(const r of e.attrsRemoved)if(typeof r!="string"||!St.test(r))return!1}return!0}function Er(t,e){if(t===null||typeof t!="object")return!1;const{seq:r,elements:n}=t;if(typeof r!="number"||!Number.isSafeInteger(r)||!Array.isArray(n)||n.length===0||n.length>64)return!1;for(let a=0;a<n.length;a++)if(!e(n[a]))return!1;return!0}function Sr(t){return t===null||typeof t!="object"?!1:Er(t.__frame_patch,br)}function Ar(t){if(t===null||typeof t!="object")return!1;const e=t.__frame_init;return e!==null&&typeof e=="object"}function kr(t){return t!==null&&typeof t=="object"&&t.__frame_size_poke===!0}function Rr(t){if(t===null||typeof t!="object")return!1;const e=t.__frame_host_visible;return e!==null&&typeof e=="object"&&typeof e.visible=="boolean"}function Tr(t){if(t===null||typeof t!="object")return!1;const e=t.__frame_theme;if(e===null||typeof e!="object")return!1;const r=e.theme;return typeof r=="string"&&lr.includes(r)}var Lr=["ok","empty","snapshot_error","snapshot_timeout","unclonable","oversize","unavailable","restore_error","withheld"],Or=["TypeError","RangeError","ReferenceError","SyntaxError","DataCloneError","QuotaExceededError","AbortError","TimeoutError","SecurityError","Error","other"];function Mr(t){return typeof t=="string"&&Or.includes(t)?t:"other"}var Pr=Object.freeze({until:null,now:!1}),Nr="__claude_hot",Cr="__claude_hot_in",jr=/^__claude_hot(?:_in)?(?::|$)/,kt=/^[0-9a-z]{1,32}$/,Xe=t=>t===void 0?Nr:"__claude_hot:"+t,be=t=>t===void 0?Cr:"__claude_hot_in:"+t;function Fr(t,e){const r=[];for(let n=0;n<t.length;n++){const a=t.key(n);a!==null&&a!==e&&jr.test(a)&&r.push(a)}for(const n of r)t.removeItem(n)}function Ir(t){let e=null;try{e=q(JSON.parse(t)?.hot)}catch{return null}return e===null||typeof e.k!="string"||!kt.test(e.k)?null:le(e.g)?{k:e.k,g:e.g}:{k:e.k}}var zn=262144,Dr=3e3,xr=5e3,Rt=/^[a-z0-9._:-]{1,64}$/,Hr=["none","hot-restart","hard-reload"],qr=["asset","doc","added","removed"],Br=1500,Ur=/^[0-9a-f]{64}$/;function q(t){return t!==null&&typeof t=="object"?t:null}function le(t){return typeof t=="number"&&Number.isInteger(t)&&t>=0&&t<2**31}function Tt(t){return t===void 0||typeof t=="number"&&Number.isFinite(t)}function Kr(t){return t===void 0||typeof t=="string"&&Rt.test(t)}function Lt(t){const e=q(t);return e!==null&&(e.until===null||typeof e.until=="number"&&Number.isFinite(e.until))&&typeof e.now=="boolean"}function Ye(t){const e=q(t);return e!==null&&typeof e.ver=="string"&&e.ver.length<=128&&Tt(e.seq)&&typeof e.handoff=="string"&&Lr.includes(e.handoff)&&Kr(e.note)}function Gr(t){const e=q(t);return e!==null&&le(e.gen)&&(e.phase==="final"||e.phase==="pending")&&(e.from===null||Ye(e.from))}function zr(t){const e=q(t);return e!==null&&e.kv===1&&le(e.gen)&&Ye(e.from)&&Object.hasOwn(e,"data")}function $r(t){const e=q(t);return e!==null&&e.__frame_hot_snapshot===!0&&le(e.gen)&&typeof e.timeoutMs=="number"&&e.timeoutMs>=0&&e.timeoutMs<=6e4&&(e.handoff===void 0||typeof e.handoff=="boolean")&&(e.deadline===void 0||Lt(e.deadline))&&Tt(e.seq)&&(e.note===void 0||typeof e.note=="string")&&(e.key===void 0||typeof e.key=="string")}function Wr(t){const e=q(t);return e!==null&&e.__frame_hot_start===!0&&le(e.gen)&&Ye(e.from)}function Vr(t){return typeof t=="string"&&t.length>=1&&t.length<=128}function Ot(t){return q(t)!==null&&!Array.isArray(t)}function Xr(t){const e=q(t);return e!==null&&e.__frame_cap_grant===!0&&typeof e.cap=="string"&&Vr(e.ver)&&(e.grant===void 0||Ot(e.grant))&&(e.budgets===void 0||Ot(e.budgets)&&Object.values(e.budgets).every(Number.isFinite))&&(e.brokerGen===void 0||le(e.brokerGen))}function Yr(t){const e=q(t);return e!==null&&e.__frame_cap_rewired===!0&&(e.caps===void 0||Array.isArray(e.caps)&&e.caps.every(r=>typeof r=="string"))&&(e.brokerGen===void 0||le(e.brokerGen))}function Mt(t){const e=q(t);return e!==null&&typeof e.ver=="string"&&e.ver.length<=128&&Number.isFinite(e.seq)}function Pt(t){if(t==null||typeof t=="string")return!0;const e=q(t);return e!==null&&typeof e.doc=="string"&&typeof e.profile=="string"}function Jr(t){const e=q(t);return e!==null&&typeof e.path=="string"&&qr.includes(e.kind)&&Pt(e.from)&&Pt(e.to)}function Zr(t){return t===null?null:Object.freeze(t.filter(Jr))}function Qr(t){const e=q(t);return e!==null&&e.__frame_hot_update===!0&&Number.isFinite(e.id)&&Mt(e.from)&&Mt(e.to)&&(e.changed===null||Array.isArray(e.changed))&&Hr.includes(e.required)&&Lt(e.deadline)&&typeof e.verdictTimeoutMs=="number"&&e.verdictTimeoutMs>=0&&e.verdictTimeoutMs<=6e4&&(e.preflight===void 0||typeof e.preflight=="string"&&Ur.test(e.preflight))}var ce=/^[\w.-]+\.js$/;function en(t,e,r){return r?"inert":typeof e=="string"&&ce.test(e)?t?[e]:"inert":t?"inert":"framed"}var Nt=Object.freeze({[Symbol("claude.hot.restart")]:!0});function Ct(t,e){let r;try{r=t??sessionStorage}catch{return null}const n=Xe(e?.k),a=be(e?.k);let s=null;try{s=r.getItem(n)}catch{}try{r.removeItem(n)}catch{}try{Fr(r,a)}catch{}let c=null;if(s!==null&&!(e!==null&&e.g===void 0))try{const d=JSON.parse(s);zr(d)&&(e===null||d.gen===e.g)&&(c=d)}catch{}if(c===null)try{r.removeItem(a)}catch{}return c}function jt(){const t=/^\/_f\/([^/]{1,128})\//.exec(location.pathname);return t?t[1]:""}var tn=/^[^/\\?#]{1,128}$/,Ft=t=>tn.test(t)&&t!=="."&&t!=="..";function It(t,e,r){const n=new URL(t),a="/_f/"+e+"/";if(!e||!n.pathname.startsWith(a)||!Ft(r))return null;const s=n.search.slice(1).split("&").filter(c=>!/^__frame_t(?:=|$)/.test(c)).join("&");return n.origin+"/_f/"+r+"/"+n.pathname.slice(a.length)+(s?"?"+s:"")+n.hash}var Fe="{}";function Ee(t){if(!t)return null;const e={ver:t.ver,handoff:t.handoff};return t.seq!==void 0&&(e.seq=t.seq),t.note!==void 0&&(e.note=t.note),e}function Dt(t,e){return t!==null&&t.note===void 0&&e?.note!==void 0?{...t,note:e.note}:t}function xt(t){const e=t?.k;return e!==null&&typeof e=="object"?e:void 0}function rn(t,e,r,n=null){const a=setTimeout,s=clearTimeout,c=queueMicrotask,d=performance.now.bind(performance),O=new TextEncoder;let w=null,b=null;try{w=history,b=w.replaceState.bind(w)}catch{}const m=(...o)=>{try{console.warn(...o)}catch{}};let R=jt(),M=null;try{M=sessionStorage}catch{}const h={storage:M,fetch:typeof fetch=="function"?fetch.bind(globalThis):null,entry:location.origin+location.pathname+location.search,ver:R,key:n?.k};let p=n?.k;const D=typeof requestAnimationFrame=="function"?requestAnimationFrame:o=>a(()=>o(d()),16);let _=e?.data??{},C=Ee(e?.from),P=e?.gen??0,x=e!==null,W=!1,J=!1,X=null,Te=!1;const Le=new AbortController;let Oe=null,H=null,me=null,qe=!1,oe=()=>{};const l=new Promise(o=>{oe=o});let v=!1,E=!1,I=!1,j,L=null,K=!1,Me=!1,Z=!1,Be=!1,ae=!1,de=!1;const Pe=o=>{for(const u of[Xe(o),be(o)])try{M?.removeItem(u)}catch{}},V=(o,u)=>{try{u!==null&&r.post(o,u)}catch{}},se=()=>ae||=Z&&(H===null||Be),B=()=>{const o={__frame_hot:!0,ready:H!==null,accept:me!==null,demand:!0};de=!ae,de&&(o.booting=!0),v&&(o.readData=!0),I&&(o.threw=!0),L?.assess&&(o.preflight=!0),V(o,X)};let ve=!1,Ne=!1,ie=!1,Ce=!1;const i=()=>{ve||!Te||ie||(ve=!0,V({__frame_reveal_hold:!0},"*"))},g=()=>new Promise(o=>{let u,f=0;const S=F=>{if(u===void 0)u=F;else if(F!==u||++f>=8){o();return}try{D(S)}catch{o()}};try{D(S)}catch{o()}}),y=()=>{ie=!0,V({__frame_reveal_ready:!0},"*")},k=o=>{Ne||(Ne=!0,o.then(u=>{if(u===!1)return;let f=null;try{f=L?.settle?.()??null}catch{}return(f===null?g():new Promise(S=>{a(S,50),Promise.resolve(f).then(S,S)}).then(g)).then(y)}))},Q=()=>{if(Ce||!ie)return;Ce=!0;const o=()=>{try{L?.afterReveal?.()}catch{}};o(),g().then(()=>{o(),y()})},G=(o=!1)=>{if(qe||H===null||!x||!J)return;qe=!0;const u=H,f=_;c(()=>{let S;try{S=u(f)}catch(U){throw oe(!1),U}let F=!1;try{F=typeof S?.then=="function"}catch{}if(!F){oe(!0);return}Promise.resolve(S).then(()=>oe(!0),U=>{oe(!1),c(()=>{throw U})})}),k(o?l:r.dcl.then(()=>l))},ee=o=>typeof o=="string"&&Rt.test(o)?o:void 0,dt=o=>{const u={__frame_hot_restart:!0},f=ee(o?.note);f!==void 0&&(u.note=f),o?.required==="hard-reload"&&(u.required="hard-reload"),V(u,X)},Zt=Object.freeze({get data(){return J||(E=!0),!x&&!v&&(v=!0,J&&B()),_},get from(){return C},get gen(){return P},signal:Le.signal,snapshot(o){typeof o=="function"&&(Oe=o)},ready(o){typeof o!="function"||H!==null||(H=o,i(),B(),W&&V({__frame_hot_ready:!0,gen:P},X),G())},accept(o){typeof o=="function"&&(me=o,B())},restart(o){const u={note:o?.note,required:o?.required};if(J){dt(u);return}const f=j;j={note:ee(f?.note)??u.note,required:f?.required==="hard-reload"||u.required==="hard-reload"?"hard-reload":void 0}}});let Ue=null,Qt=()=>{};const Fn=new Promise(o=>{Qt=o});let In=null;const er=()=>In??=r.dcl.then(()=>{let o=!1;try{o=Ue!==null&&Ue.expect()}catch{}if(!o)return;const u=Ue.maxMs;return new Promise(f=>{Fn.then(f),a(f,u)})}),tr=()=>{if(!K||Me||L===null)return;Me=!0;const o=L;er().then(()=>{try{ie||o.afterStart(xt(e),!1)}catch{}})},rr=o=>{e!==null&&E&&(v=!0),_={},C=null,P=0;try{M?.removeItem(be(n?.k))}catch{}e!==null&&!o&&k(r.dcl.then(()=>H!==null?l:void 0))},Dn=()=>{K=!0,k(er().then(()=>H!==null?l:void 0)),tr()};try{addEventListener("error",()=>{I||H!==null||(I=!0,B())})}catch{}const nr=()=>{a(()=>{!ae&&se()&&de&&B()},0)};try{Z=document.readyState==="complete",Z||addEventListener("load",()=>{Z=!0,nr()},{once:!0})}catch{Z=!0}se(),l.then(()=>{Be=!0,nr()});let he=-1,ht,pt,je=!0,mt=!1,vt,Ke=null;const _t=o=>{const u=Ke===null;Ke=je&&o[0]!=="withheld"?o:["withheld",o[1],Fe];let f=o[0];if(je&&f!=="withheld"){const F={ver:R,handoff:f};ht!==void 0&&(F.seq=ht),pt!==void 0&&(F.note=pt);try{if(M===null)throw new Error("no storage");M.setItem(Xe(p),'{"kv":1,"gen":'+he+',"from":'+JSON.stringify(F)+(vt!==void 0?',"k":'+JSON.stringify(vt):"")+',"data":'+(f==="ok"?o[2]:Fe)+"}")}catch{f="unavailable"}}else{f="withheld",Pe(p);try{L?.release?.()}catch{}}const S={__frame_hot_snapshotted:!0,gen:he,handoff:f,bytes:o[1]};o[3]!==void 0&&(S.errName=o[3]),V(S,X),u&&(f==="snapshot_error"||f==="unclonable"||f==="oversize")&&m("claude.hot: snapshot",f,o[3])},_e=o=>{try{return Mr(o?.name)}catch{return"other"}},ye=(o,u,f=0)=>_t(u===void 0?[o,f,Fe]:[o,f,Fe,_e(u)]),xn=o=>{if(o.gen<=he)return;const u=he>=0;if(he=o.gen,ht=o.seq,pt=ee(o.note),typeof o.key=="string"&&kt.test(o.key)&&o.key!==p&&(Pe(p),p=o.key),je&&=o.handoff!==!1,u){Ke!==null?_t(Ke):mt&&V({__frame_hot_held:!0,gen:he},X);return}Le.abort();const f=Object.freeze({handoff:je,timeoutMs:o.timeoutMs,deadline:o.deadline??Pr}),S=Oe,F=()=>{if(je)try{vt=L?.capture()}catch{}if(S===null){ye("empty");return}let T=!1;const z=a(()=>{T||(T=!0,ye("snapshot_timeout"))},Math.max(0,f.timeoutMs));Promise.resolve().then(()=>S(f)).then(ge=>{if(T)return;T=!0,s(z);let re;try{re=JSON.stringify(ge)}catch(yt){ye("unclonable",yt);return}if(typeof re!="string"){ye("unclonable");return}let ne=re.length;try{ne=O.encode(re).length}catch{}if(ne>262144){ye("oversize",void 0,ne);return}_t(["ok",ne,re])},ge=>{T||(T=!0,s(z),ye("snapshot_error",ge))})};let U=null;try{U=L?.holdForIme()??null}catch{}if(U===null)F();else{mt=!0,V({__frame_hot_held:!0,gen:he},X);const T=()=>{mt=!1,F()};U.then(T,T)}},Hn=o=>{if(!W||x||H===null||o.gen!==P)return;let u=null;try{u=Ct(M,n&&{k:n.k,g:o.gen})}catch{}if(u!==null&&u.gen!==o.gen){u=null;try{M?.removeItem(be(n?.k))}catch{}}_=u?.data??{},C=Dt(Ee(u?.from??o.from),Ee(o.from)),u!==null&&(P=u.gen),x=!0,W=!1;const f=xt(u);l.then(S=>{try{S&&L?.afterStart(f,!0)}catch{}}),G(!0)};let Ge=0;const qn=o=>{const u=me;if(u===null||o.id<=Ge)return;Ge=o.id;const f=L?.assess;if(o.preflight===void 0||f===void 0){or(o,u);return}let S=!1;const F=z=>{S||(S=!0,s(T),o.id===Ge&&or(o,u,z))},U=()=>F(f.timeout(o)),T=a(U,Br+100);f.run(o,window).then(F,U)},or=(o,u,f)=>{let S,F=!1,U=!1,T,z,ge=null;const re=A=>{if(U)return!1;if(T!==void 0&&T!==A)return m(`claude.hot: u.${A}() ignored - u.${T}() was called first`),!1;const te=T===void 0;return T=A,te},ne=A=>{T="restart",m(`claude.hot: ${A} - restarting`)},yt=()=>{if(!re("adopt")||o.id!==Ge)return;const A=o.to.ver;if(ze.required!=="none"){ne(`u.adopt() needs required 'none', it is '${ze.required}'`);return}if(!Ft(A)){ne("u.adopt() cannot address this version");return}if(!R||A===R)return;const te=R,Y=h.entry;let $e="",wt,we=null,We;try{$e=location.href,wt=w.state,we=It($e,te,A),we!==null&&(b(wt,"",we),location.pathname.startsWith("/_f/"+A+"/")?we=location.href:We="navigate event canceled")}catch(Et){We=_e(Et)}if(We!==void 0){z="adopt_failed",ne(`adopt_failed ${We}; URL not changed`);return}we===null?(z="adopt_skipped",m(`claude.hot: adopt_skipped - page already left /_f/${te}/; URL not changed, update still applied`)):z="adopted",R=h.ver=A;try{h.entry=It(Y,te,A)??Y}catch{}const bt=we;ge=()=>{if(R===A){if(bt!==null)try{if(location.href!==bt)m("claude.hot: adopt_revert_skipped - update not applied; URL left where the page navigated");else{if(b(wt,"",$e),location.href!==$e){m("claude.hot: adopt_revert_failed navigate event canceled - URL still at the new version");return}z="adopt_reverted",m("claude.hot: adopt_reverted - adopt() was called but the handler threw; URL restored")}}catch(Et){m(`claude.hot: adopt_revert_failed ${_e(Et)} - URL still at the new version`);return}R=h.ver=te,h.entry=Y,bt===null&&(z=void 0)}}},ze=Object.freeze({from:{ver:o.from.ver,seq:o.from.seq},to:{ver:o.to.ver,seq:o.to.seq},changed:Zr(o.changed),required:o.required,deadline:o.deadline,adopt:yt,defer(){return re("defer")&&ze.deadline.now&&ne("u.defer() past the deadline"),Nt},restart(A){return re("restart"),T==="restart"&&!U&&(S??=ee(A?.note),F||=A?.required==="hard-reload"),Nt},...f?.update}),Bn=(A,te)=>{U=!0,A==="threw"?(ge?.(),S??=_e(te).toLowerCase()):T===void 0&&m(A==="timeout"?"claude.hot: accept handler did not answer in time - restarting":"claude.hot: accept handler settled without defer/restart/adopt - restarting");const Y={__frame_hot_verdict:!0,id:o.id};Y.verdict=A==="threw"||T===void 0||T==="restart"?"restart":T==="adopt"?"applied":"deferred",Y.verdict==="restart"&&(F&&(Y.required="hard-reload"),S!==void 0&&(Y.note=S)),z!==void 0&&(Y.verdict==="applied"||z!=="adopted")&&(Y.adopt=z),V(Object.assign(Y,f?.verdict),X)};let ar=!1;const gt=(A,te)=>ar?!1:(ar=!0,s(Un),Bn(A,te),!0),Un=a(()=>gt("timeout"),o.verdictTimeoutMs);Promise.resolve().then(()=>u(ze)).then(()=>gt("settled"),A=>{!gt("threw",A)&&T==="adopt"&&dt({note:_e(A).toLowerCase()}),m("claude.hot: accept",_e(A))})};try{t.hot===void 0&&Object.defineProperty(t,"hot",{value:Zt,writable:!1,configurable:!1,enumerable:!1})}catch{}return{hot:Zt,boot:h,afterConnect(){Te=!0,(e!==null||H!==null)&&i()},onInit(o,u){X=u,J=!0;const f=Gr(o)?o:null;f?.phase==="final"&&e!==null&&e.gen===f.gen?(x=!0,C=Dt(C,Ee(f.from)),Dn()):(W=f?.phase==="pending",rr(W),x=!W,P=f?.gen??0,C=Ee(f?.from)),B(),de&&a(()=>{ae||(ae=!0,B())},xr),W&&H!==null&&V({__frame_hot_ready:!0,gen:P},u),j!==void 0&&(dt(j),j=void 0),G()},onNoInit(){J=!0,rr(!1),x=!0,G()},onShell(o){return o?.__frame_revealed===!0?(Q(),!1):$r(o)?(xn(o),!0):Wr(o)?(Hn(o),!0):Qr(o)?(qn(o),!0):!1},attachExtras(o){L=o,tr(),o.assess&&B()},inSlot:()=>be(p),hydration(o,u){Ue??={expect:o,maxMs:u}},hydrated(){Qt()},carried(){return x?_:{}},presented:()=>ie}}var $n="frame_ldx_runtime",nn="frame_ldx_build",Wn="script#an-form",on=256;function Ht(t,e,r){for(const n of t)r(n)&&t.delete(n);t.size>=on&&!t.has(e)&&t.delete(t.values().next().value),t.add(e)}function Je(t,e,r){try{const n=t[e];if(typeof n!="function")return;t[e]=function(...a){const s=n.apply(this,a);try{r(this)}catch{}return s}}catch{}}var Ze;function an(){if(Ze)return Ze;const t={media:new Set,contexts:new Set,onStart:null,onPause:null};Ze=t;const e=window.HTMLMediaElement?.prototype;e&&(Je(e,"play",a=>{Ht(t.media,a,s=>s.paused),t.onStart?.(a)}),Je(e,"pause",a=>t.onPause?.(a)));const r=window.AudioContext,n=window.AudioNode?.prototype;return r&&n&&Je(n,"connect",a=>{const s=a.context;s instanceof r&&(Ht(t.contexts,s,c=>c.state==="closed"),t.onStart?.(s))}),t}function sn(t){let e=window;for(let r=0;e.parent&&e.parent!==e&&r<8;r++)if(e=e.parent,t(e))return!0;return!1}function ln(){let t=null;const e=()=>t??parent,r=n=>t?n===t:sn(a=>a===n);return{post(n,a){if(t){e().postMessage(n,a);return}let s=parent;for(let c=0;c<8&&(s.postMessage(n,a),!(!s.parent||s.parent===s));c++)s=s.parent},on(n){const a=s=>{const c=s.source;r(c)&&n(s.data,s.origin,s.isTrusted,()=>{t??=c})};return addEventListener("message",a),()=>removeEventListener("message",a)},port:n=>({post(a,s){if(s?.activation){e().postMessage(a,{targetOrigin:n,includeUserActivation:!0});return}if(s?.transfer){e().postMessage(a,n,s.transfer);return}e().postMessage(a,n)},on(a,s){const c=d=>{r(d.source)&&d.origin===n&&a(d.data,d)};return addEventListener("message",c,s),()=>removeEventListener("message",c,s)}})}}function cn(){const t={post:()=>{},on:()=>()=>{}};return{...t,port:()=>t}}var un=500,fn=2e4,dn="data-token-reads",hn="data-frame-refused-watch",pn="data-frame-unsupported",mn=/(?:^|\s)stylesheet(?:\s|$)/i;function vn(t,e){let r="";if(t instanceof HTMLScriptElement?r=t.src:t instanceof HTMLLinkElement&&mn.test(t.rel)&&(r=t.href),!r)return null;try{const n=new URL(r);return n.origin===location.origin&&n.pathname.startsWith(e)?n.origin+n.pathname:null}catch{return null}}function _n(t,e,r){if(!t||e!=="query")return;const n="/_f/"+t+"/";document.documentElement.setAttribute(hn,"");const a=location.href,s=fetch,c=setTimeout,d={method:"HEAD",cache:"no-store",credentials:"same-origin"},O=h=>h.ok||h.status===304;let w=!1,b=!1;const m=()=>removeEventListener("error",M,!0),R=async h=>{const p=await s(h,d);if(O(p))b=!0;else if(p.status===403){const D=await s(a,d);if(O(D)){const _=(await s(h,d)).status;_===403?(b=!0,document.documentElement.setAttribute(pn,""),r()):_<500&&(b=!0)}else D.status>=400&&D.status<500&&(b=!0)}},M=h=>{if(b||w)return;if(document.documentElement.hasAttribute(dn)){b=!0,m();return}const p=vn(h.target,n);p&&(w=!0,c(()=>{R(p).catch(()=>{}).finally(()=>{w=!1,b&&m()})},un))};addEventListener("error",M,!0),addEventListener("load",m,{once:!0}),c(m,fn)}var Qe="__frame_scroll",yn=150,gn=310,wn=160,bn=3e4;function En(){let t=0,e=!1,r=!1,n=!1,a=0,s=null;const c=_=>{try{sessionStorage.setItem(Qe,JSON.stringify({y:_}))}catch{}},d=()=>{if(clearTimeout(t),s===null)return;const _=s;s=null,c(_)},O=()=>{if(e){e=!1;return}r=!0,s=scrollY,clearTimeout(t),t=setTimeout(d,yn)};try{addEventListener("scroll",O,{passive:!0}),addEventListener("pagehide",d)}catch{}const w=()=>{let _;try{_=sessionStorage.getItem(Qe)}catch{return null}if(_===null)return null;let C;try{C=JSON.parse(_)}catch{C=null}const P=C?.y;if(!(typeof P=="number"&&Number.isFinite(P)&&P>=0)){try{sessionStorage.removeItem(Qe)}catch{}return null}return P};let b=!1;const m=_=>{try{const C=scrollY;scrollTo({top:_,left:0,behavior:"instant"}),a=_,n=!0,clearTimeout(t),s=null,c(_);const P=scrollY;P!==C&&(e=!0),P!==_&&!b&&(b=!0,addEventListener("load",()=>{try{if(scrollY===P){const x=w();m(x!==null?x:a)}}catch{}},{once:!0}))}catch{}},R=()=>{try{return!!location.hash}catch{return!0}};let M=!1;const h=()=>{try{if(M||innerWidth>gn||innerHeight>wn)return;M=!0;const _=Date.now(),C=()=>{try{removeEventListener("resize",C)}catch{}if(Date.now()-_>bn||r||R())return;const P=w();m(P!==null?P:a)};addEventListener("resize",C)}catch{}};let p=!1,D=!1;return{restore(){if(p||(p=!0,R()))return;const _=w();_!==null&&(m(_),h())},promoted(){if(D||(D=!0,R()))return;const _=w();_!==null?(m(_),h()):n&&m(a)}}}function Sn(t,e,r,n){let a=null;try{a=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:O=>O})??null}catch{}const s=window.Worker,c=s?.prototype,d=Object.freeze({Worker:s,workerOn:c?.addEventListener,workerPost:c?.postMessage,workerTerminate:c?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,now:Date.now,policy:a,origins:e});r(t).then(O=>O?.bootTopLevel?O.bootTopLevel(d,n):n.settle()).catch(()=>n.settle())}var Vn="modulepreload",Xn=function(t){return"/"+t},Yn={},An=function(e,r,n){let a=Promise.resolve();function s(c){const d=new Event("vite:preloadError",{cancelable:!0});if(d.payload=c,window.dispatchEvent(d),!d.defaultPrevented)throw c}return a.then(c=>{for(const d of c||[])d.status==="rejected"&&s(d.reason);return e().catch(s)})},kn=window===top,qt=Object.getOwnPropertyDescriptor(window,"claude"),Ie=en(kn,window.__FRAME_PREAMBLE?.topLevel,qt?.writable===!1),et=typeof Ie=="object"&&Ie[0],N=et?cn():ln();(function(){const t=Object.defineProperty,e=globalThis,r=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let n=0;for(let a=0;a<r.length;a++){const s=r[a];try{t(e,s,{value:void 0,writable:!1,configurable:!1})}catch{try{delete e[s]}catch{}try{t(e,s,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof e[s]=="function"&&n++}if(n&&Ie==="framed")try{N.post({__frame_rtc_lockdown_failed:n},"*")}catch{}})();var Bt=1e4,Rn=2e3,tt=2e3,rt=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function Ut(t){for(const e of rt)if(e.endsWith(":*"))try{const r=new URL(t);if(`${r.protocol}//${r.hostname}:*`===e)return!0}catch{}else if(t===e)return!0;return!1}var Se=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),Ae=window.__FRAME_PREAMBLE?.transforms,nt=window.__FRAME_PREAMBLE?.comments,ot=window.__FRAME_PREAMBLE?.translate,ke=window.__FRAME_PREAMBLE?.ldx,at=sr(window.__FRAME_PREAMBLE?.cred);function Kt(t){return An(()=>import("/_runtime/"+t),void 0)}var Re=new Set,Gt=setTimeout,Tn=fetch,Ln=AbortController,On=800+800*Math.random(),Mn=3e3,De=null,zt=new Map;function Pn(t,e){let r=zt.get(t);return r||zt.set(t,r=Nn(t,e)),r}function Nn(t,e){if(De?.has(t))return Promise.resolve("csp");if(navigator.onLine===!1)return Promise.resolve("offline");const r=new Ln;let n=!1;return Gt(()=>{n=!0,r.abort()},Mn),Tn("/_runtime/"+t,{signal:r.signal}).then(a=>(r.abort(),a.ok?/javascript/i.test(a.headers.get("content-type")??"")?e instanceof Error&&/:\d+:\d+\)?$/m.test(e.stack??"")?"eval":"served":"mime":"http"),()=>n?"timeout":De?.has(t)?"csp":"net")}function ue(t){if(!De){const e=De=new Set;try{document.addEventListener("securitypolicyviolation",r=>{const n=/\/_runtime\/([^/?#]+)/.exec(r.blockedURI);n&&r.disposition!=="report"&&e.add(n[1])})}catch{}}return Kt(t).catch(()=>new Promise(e=>Gt(e,On)).then(()=>Kt(t+"?r=1")).then(e=>(e!==void 0&&Re.add(t),e)))}function $t(t,e,r){return{contract:t.contract,changes:new Set(t.changes??[]),flags:new Set(t.flags??[]),capabilities:t.capabilities??{},capBudgets:t.capBudgets??{},brokerGen:t.brokerGen,transforms:new Map,shellOrigin:e,shell:r,mount:ft,hooks:xe,pipe:()=>({wrap:(n,a)=>(...s)=>{try{return a(...s)}catch(c){return Promise.reject(c)}}})}}var pe=null,$=null;function Wt(t,e,r){try{Object.defineProperty(t,e,{value:r,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(t,e,{value:r,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var st=!1,xe={editBefore:null,edit:null};function Cn(t,e,r=!1){const n=[];let a;if(r)try{xe.editBefore?.(t)}catch{}for(const s of t.elements){const c=document.querySelector(`[data-id="${s.target}"]`);if(!c){a=s.target;break}if([...Object.keys(s.attrsSet??{}),...s.attrsRemoved??[]].some(d=>!fr(d)||dr(c,d))){a=s.target;break}if(s.text!==void 0&&(!vr(c)||wr(c))){a=s.target;break}for(const[d,O]of Object.entries(s.attrsSet??{}))if(!Xt(c,d)){try{c.setAttribute(d,O)}catch{}Vt(c,d,O)}for(const d of s.attrsRemoved??[])Xt(c,d)||(c.removeAttribute(d),Vt(c,d,null));typeof s.text=="string"&&yr(c,s.text),n.push(s.target)}if(r)try{xe.edit?.(t.seq,n,a)}catch{}if(a!==void 0){N.post({__frame_patch_miss:{seq:t.seq}},e);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:t.seq,targets:n}}))}catch{}}function Vt(t,e,r){if(!(t instanceof HTMLInputElement))return;const n=e.toLowerCase();n==="checked"?t.checked=r!==null:n==="value"&&t.type!=="file"&&(t.value=r??"")}function Xt(t,e){const r=e.toLowerCase(),n=t;return r==="data-id"||(r==="value"||r==="checked")&&(n.__artifactSecret===!0||/^(password|hidden|file)$/.test(n.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${t.getAttribute("autocomplete")??""} ${n.autocomplete??""}`))}function Yt(t){const e=document.documentElement;t==="light"||t==="dark"?(e.dataset.theme=t,e.style.colorScheme=t,st=!0):st&&(delete e.dataset.theme,e.style.colorScheme="",st=!1)}var fe=new Map,it=null;function lt(){let t;const e={u:new Promise(r=>{t=r}),r:r=>{e.done=!0,t(r)},done:!1,nulled:!1};return e}function He(t,e){t.nulled=!0,t.ver=e,t.r(null)}function ct(t,e){for(const[r,n]of fe)n.done||(e&&n.asked?e(r,n):He(n,t))}var jn=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),ut=!1,ft=(t,e)=>{let r=fe.get(t);if(r?.nulled&&ut)r=lt(),fe.set(t,r);else if(!r||r.done){r?.nulled&&$&&N.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:t,phase:"install"}},$);return}const n=typeof e=="function"?Object.setPrototypeOf(e,jn):Object.assign(Object.create(null),e);typeof n.then=="function"&&delete n.then,r.want=void 0,r.r(Object.freeze(n))};function Jt(){const t=qt?.value??{};Wt(window,"claude",t);for(const e of Object.keys(Se)){if(t[e]!==void 0){Wt(t,e,t[e]);continue}fe.set(e,lt())}if(t.use===void 0){const e=r=>{if(typeof r!="string"||!Object.hasOwn(Se,r))return Promise.resolve(null);let n=fe.get(r);return n?(it&&(n.nulled||n.want!==void 0)&&(n=it(r,n)),n.asked=!0,n.u):Promise.resolve(t[r]??null)};try{Object.defineProperty(t,"use",{value:e,writable:!0,configurable:!0,enumerable:!1})}catch{}}return t}if(Ie==="framed"){let t;const e=Ae&&ce.test(Ae)?ue(Ae).catch(l=>{t={f:Ae,e:l}}):Promise.resolve(void 0),r=l=>{if(l.type==="auxclick"&&l.button!==1)return;const v=l.target,E=v&&v.closest?v.closest("a[href],area[href]"):null;if(!E)return;const I=E.getAttribute("href");if(!I)return;let j;try{j=new URL(I,document.baseURI)}catch{return}if((j.protocol==="http:"||j.protocol==="https:")&&j.origin!==location.origin){l.preventDefault();const L=(E.getAttribute("target")??"").toLowerCase(),K=l.type==="auxclick"||l.metaKey||l.ctrlKey||l.shiftKey||l.altKey||!["","_self","_top","_parent"].includes(L);N.post({__frame_nav:!0,url:j.href,newTab:K},"*")}};addEventListener("click",r,!0),addEventListener("auxclick",r,!0);const n={},a=l=>{l.isTrusted&&(n.pointer=!0)},s=l=>{l.isTrusted&&(n.click=!0)};addEventListener("pointermove",a,{capture:!0,passive:!0}),addEventListener("click",s,{capture:!0,passive:!0});const c={cb:null};addEventListener("keydown",l=>c.cb?.(l),!0);const d={cb:null};addEventListener("keydown",l=>d.cb?.(l));const O=an();e.then(l=>l?.installEscapeForward?.(c,v=>{$&&N.post(v,$)})),e.then(l=>{try{l?.installFocusKeep?.()}catch{}}),e.then(l=>{if(!l?.wireNav)return;const v=N.port("*");l.wireNav(v),removeEventListener("click",r,!0),removeEventListener("auxclick",r,!0),removeEventListener("pointermove",a,!0),removeEventListener("click",s,!0),l.wireEngagement?.(n,v,O)});let w=null;try{w=En()}catch{}const b=document.readyState==="loading"?new Promise(l=>document.addEventListener("DOMContentLoaded",()=>l(),{once:!0})):Promise.resolve();let m=null,R=null;try{R=Ir(window.name),m=Ct(null,R)}catch{}const M=Jt();let h=null;try{h=rn(M,m,{post:(l,v)=>N.post(l,v),dcl:b},R)}catch{}e.then(l=>{try{h&&l?.installHotExtras?.(h)}catch{}});let p=null;const D=()=>Array.isArray(p?.flags)&&p.flags.includes("frame_ldx_runtime")&&!!ke&&ce.test(ke)&&document.querySelector("script#an-form")!==null;try{h?.hydration(D,Dr)}catch{}let _=null,C=0;const P=N.on((l,v,E,I)=>{Ut(v)&&Ar(l)&&(I(),p=l.__frame_init,$=v,P(),clearTimeout(C),_?.())});if(at)for(const l of rt)try{l.endsWith(":*")||N.post({__frame_cred:at},l)}catch{}N.post({__frame_connect:!0},"*");try{h?.afterConnect()}catch{}const x=setTimeout,W=clearTimeout;let J=()=>NaN,X=()=>[];try{J=performance.now.bind(performance),X=performance.getEntriesByType.bind(performance)}catch{}let Te=0;const Le=()=>{try{N.post({__frame_alive:!0},"*")}catch{}Te=x(Le,Rn)},Oe=()=>W(Te);Le(),addEventListener("load",Oe,{once:!0});const H=new Promise(l=>{_=l,C=setTimeout(()=>{P(),l()},Bt)}),me=new WeakSet;addEventListener("error",l=>{l.target&&me.add(l.target)},!0);try{_n(jt(),at,()=>{e.then(l=>{try{l?.drawRefusedNotice?.()}catch{}})})}catch{}const qe=()=>{let l=[];try{l=[...document.querySelectorAll("link[rel~=stylesheet]:not([rel~=alternate])")].filter(E=>!E.sheet&&!E.disabled&&!me.has(E)&&E.getAttribute("href")&&URL.canParse(E.href)&&(!E.media||matchMedia(E.media).matches))}catch{}let v=l.length;return v===0?Promise.resolve():new Promise(E=>{try{const I=tt-J(),j=x(E,I>0?I<tt?I:tt:0),L=()=>{--v===0&&(W(j),E())};for(const K of l)K.addEventListener("load",L,{once:!0}),K.addEventListener("error",L,{once:!0})}catch{E()}})};b.then(()=>{try{w?.restore()}catch{}}),Promise.all([H,b,e]).then(([,,l])=>{if(p?.hostOverlays!==!0||!$)return;let v=!1;try{v=l?.declaresCover?.()===!0}catch{}N.post({__frame_layout:{cover:v}},$)});const oe={cb:null};N.on((l,v)=>{if(Ut(v)&&kr(l)){try{w?.promoted()}catch{}oe.cb?.()}}),H.then(async()=>{if(!p||!$){ct();try{h?.onNoInit()}catch{}return}if(Yt(p.theme),p.hostVisible===!1&&e.then(i=>i?.applyHostVisible?.(!1,O)),p.hostKeys!==void 0){const i=$,g=p.hostKeys;e.then(y=>y?.installHostKeyForward?.(d,g,k=>N.post(k,i)))}try{h?.onInit(p.hot,$)}catch{}const l=$,v=N.port(l),E=(i,g)=>N.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:i,phase:g}},l),I=(i,g,y)=>{new Promise(k=>k(Pn(g,y))).then(k=>E(i,k),()=>E(i))},j=i=>N.post({__frame_cap_recovered:{cap:i}},l);let L=p.brokerGen;const K=()=>h?.boot.ver??"",Me=K(),Z=(i,g)=>{const y=K();W(g.t),g.want=y,g.t=x(()=>{g.done||He(g,y)},Bt),N.post({__frame_cap_want:!0,cap:i,ver:y},l)},Be=(i,g)=>{const y=fe.get(i.cap),k=Se[i.cap];if(!g||!y||y.done||y.want!==i.ver||!ce.test(k))return;if(W(y.t),y.want=void 0,L=i.brokerGen??L,i.ver!==K()){Z(i.cap,y);return}if(!i.grant||i.cap==="network"){He(y,i.ver);return}const Q=pe,G=pe={...Q,capabilities:{...Q.capabilities,[i.cap]:i.grant},capBudgets:{...Q.capBudgets,[i.cap]:{...Q.capBudgets[i.cap],...i.budgets}}};ue(k).then(ee=>{Re.has(k)&&j(i.cap),G.brokerGen=L,ut=!0;try{ee?.install?.(G)}catch{E(i.cap,"install")}finally{ut=!1}},ee=>I(i.cap,k,ee)).then(()=>{y.done||He(y,i.ver)})};let ae=!1,de=!1;N.on((i,g,y)=>{if(g!==l)return;try{if(h?.onShell(i))return}catch{}if(Tr(i)&&Yt(i.__frame_theme.theme),Xr(i)&&Be(i,y),y&&Yr(i)&&(L=i.brokerGen??L),Rr(i)){const G=i.__frame_host_visible.visible;e.then(ee=>ee?.applyHostVisible?.(G,O))}Sr(i)&&Cn(i.__frame_patch,l,y);const k=i?.__fc_mode;k&&typeof k=="object"&&!ae&&nt&&ce.test(nt)&&(ae=!0,ue(nt).then(G=>G.install?.(l,k.on===!0,v)).catch(()=>{}));const Q=i?.__ft_cmd;Q&&typeof Q=="object"&&!de&&ot&&ce.test(ot)&&(de=!0,ue(ot).then(G=>G.install?.(l,Q,v)).catch(()=>{}))});const Pe=Object.keys(p.capabilities??{}).filter(i=>Object.hasOwn(Se,i)).map(i=>[i,Se[i]]).filter(i=>typeof i[1]=="string"&&ce.test(i[1])),V=await Promise.allSettled(Pe.map(([,i])=>ue(i))),se=await e,B=l;if(se?.buildBoot||(t?I("_transforms",t.f,t.e):E("_transforms")),se?.buildBoot)try{pe=se.buildBoot(p,se.TRANSFORMS??{},{shellOrigin:B,mount:ft,hooks:xe,shell:v},i=>N.post({__frame_cap_telemetry:i},B))}catch{E("_transforms","install"),pe=$t(p,B,v)}else pe=$t(p,B,v);se?.buildBoot&&Re.has(Ae??"")&&j("_transforms");const ve=pe;ve.brokerGen=L,V.forEach((i,g)=>{const[y,k]=Pe[g];if(i.status!=="fulfilled"){I(y,k,i.reason);return}Re.has(k)&&j(y);try{i.value?.install?.(ve)}catch{E(y,"install")}});const Ne=p.capWants===!0;Ne&&(it=(i,g)=>{const y=K();if(!y)return g;if(!g.nulled)return g.want!==y&&Z(i,g),g;if(y===g.ver)return g;const k=lt();return fe.set(i,k),Z(i,k),k}),ct(Me,Ne&&K()!==Me?Z:void 0),await b,await qe(),Oe();const ie=ir(X,J);N.post(ie?{__frame_ready:!0,nav:ie}:{__frame_ready:!0},$),e.then(i=>{i?.installSizeReporter?.(B,oe,v),i?.installPaintReporter?.(v)});let Ce=!1;try{Ce=D()}catch{}ke&&Ce?ue(ke).then(i=>i?.boot?.({shellOrigin:l,build:ve.flags.has(nn),hot:h?.hot??null,carried:h?.carried(),presented:()=>h?.presented()??!0})).catch(()=>!1).then(i=>{h?.hydrated(),i!==!0?E("_ldx"):Re.has(ke)&&j("_ldx")}):h?.hydrated()})}else et&&(Jt(),Sn(et,rt,ue,{settle:ct,mount:ft}))})();</script><!-- /frame-runtime --><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+
+<title>ShopView Dashboard Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link rel="stylesheet" href="./css2">
+<style>
+:root{
+  --page-bg:#EEF2F6; --page-panel:#FFFFFF; --page-ink:#202939; --page-ink2:#4B5565;
+  --page-muted:#697586; --page-hair:#E3E8EF; --page-accent:#175CD3; --sv-blue:#257CFF;
+  --ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+:root:not([data-theme="light"]){@media (prefers-color-scheme:dark){
+  --page-bg:#0F1114; --page-panel:#1B1E24; --page-ink:#E6E9EF; --page-ink2:#A9B1BE;
+  --page-muted:#7A828F; --page-hair:#2C313A; --page-accent:#8FBEFF;}}
+:root[data-theme="dark"]{
+  --page-bg:#0F1114; --page-panel:#1B1E24; --page-ink:#E6E9EF; --page-ink2:#A9B1BE;
+  --page-muted:#7A828F; --page-hair:#2C313A; --page-accent:#8FBEFF;}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--page-bg);color:var(--page-ink);font-family:var(--ui);-webkit-font-smoothing:antialiased;line-height:1.5}
+.tnum{font-variant-numeric:tabular-nums}
+.wrap{max-width:1560px;margin:0 auto;padding:40px 30px 90px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--page-accent);margin-bottom:12px}
+h1.lead{font-size:clamp(28px,4vw,44px);line-height:1.04;font-weight:800;letter-spacing:-.03em;margin:0 0 14px;text-wrap:balance}
+.lead .g{color:var(--sv-blue)}
+.sub{font-size:15.5px;line-height:1.65;color:var(--page-ink2);max-width:74ch;margin:0}
+.crit{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px}
+.crit span{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--page-ink2);background:var(--page-panel);border:1px solid var(--page-hair);border-radius:999px;padding:7px 13px}
+.crit b{color:var(--page-ink);font-weight:700}
+.crit .n{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:var(--sv-blue);color:#fff;font-size:11px;font-weight:800}
+
+.switch{position:sticky;top:0;z-index:40;margin:30px 0 20px;padding:14px 0;background:linear-gradient(var(--page-bg),var(--page-bg) 68%,transparent)}
+.switchrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.seg{display:inline-flex;gap:4px;background:var(--page-panel);border:1px solid var(--page-hair);border-radius:14px;padding:5px;box-shadow:0 4px 16px rgba(16,26,48,.06)}
+.seg button{font-family:var(--ui);font-size:13.5px;font-weight:600;color:var(--page-ink2);background:transparent;border:0;border-radius:10px;padding:9px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:.16s}
+.seg button .dot{width:9px;height:9px;border-radius:50%;background:#9aa4b2}
+.seg button[data-o="nacc"] .dot{background:#257CFF}
+.seg button:hover{color:var(--page-ink)}
+.seg button.on{background:var(--page-ink);color:var(--page-bg)}
+.modetgl{font-family:var(--ui);font-size:13px;font-weight:700;color:var(--page-ink);background:var(--page-panel);border:1px solid var(--page-hair);border-radius:12px;padding:11px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;box-shadow:0 4px 16px rgba(16,26,48,.06)}
+.modetgl svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
+.modetgl .lbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--page-muted);font-weight:700}
+.optline{margin-top:12px;font-size:13.5px;color:var(--page-ink2);min-height:20px}
+.optline b{color:var(--page-ink)}
+
+.stage{
+  --radius:8px; --gap:16px;
+  --app:#F8FAFC; --surface:#FFFFFF; --surface2:#FFFFFF; --topbar:#FFFFFF;
+  --ink:#364152; --ink2:#697586; --muted:#828A98; --hair:#E3E8EF; --divide:#EEF2F6;
+  --accent:#257CFF; --accent-soft:#E9F5FF; --pos:#16B364; --neg:#F04438;
+  --chip:#E9F5FF; --grid:#EEF2F6; --kpi-fig:26px; --tile-pad:16px;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace; --display:'Inter',system-ui,sans-serif; --warn:#F79009;
+  --shadow-soft:0 1px 2px rgba(11,23,51,.05),0 1px 3px rgba(11,23,51,.05); --shadow:none;
+  --c1:#257CFF; --c2:#E5A400; --c3:#15B79E; --c4:#EE46BC; --c5:#875BF7; --c6:#06AED4;
+  --navfg:#697586; --navhair:#E3E8EF; --navactivefg:#175CD3; --navactivebg:#E9F5FF; --navsearch:#F8FAFC; --navchip:#E9F5FF;
+  border-radius:20px;overflow:hidden;border:1px solid var(--page-hair);
+  box-shadow:0 12px 24px rgba(11,23,51,.10),0 4px 8px rgba(11,23,51,.05);background:var(--app);
+}
+.stage[data-mode="dark"]{
+  --app:#16181D; --surface:#1B1E24; --surface2:#22262E; --topbar:#16181D;
+  --ink:#E6E9EF; --ink2:#A9B1BE; --muted:#7A828F; --hair:#2C313A; --divide:#22262E;
+  --accent:#4B96FF; --accent-soft:#1C2A44; --pos:#3CCB7F; --neg:#F97066;
+  --chip:#1C2A44; --grid:rgba(255,255,255,.06); --warn:#FB9A3E;
+  --shadow-soft:0 1px 2px rgba(0,0,0,.40);
+  --c1:#5E9DFF; --c2:#E5C158; --c3:#34C7AD; --c4:#E86FBF; --c5:#9B7DF5; --c6:#38C4E0;
+  --navfg:#A9B1BE; --navhair:#2C313A; --navactivefg:#8FBEFF; --navactivebg:#1C2A44; --navsearch:rgba(255,255,255,.05); --navchip:#1C2A44;
+}
+/* ═══ In-page layout switch: hide Current's card canvas, reveal the active nested layout ═══ */
+.layout-nacc{display:none}
+.stage[data-opt="nacc"] .canvas{display:none}
+.stage[data-opt="nacc"] .layout-nacc{display:block}
+
+/* ── shared nested primitives ── */
+.nh-ic{width:24px;height:24px;border-radius:7px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}
+.nh-ic svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.1}
+.nh-lbl{font-size:14.5px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nh-per{font-size:10.5px;color:var(--muted);white-space:nowrap}
+.nh-fig{font-family:var(--display);font-size:23px;font-weight:800;letter-spacing:-.03em;color:var(--ink);margin-top:11px;line-height:1}
+.nh-fig.neg{color:var(--neg)}
+.nh-unit{font-size:12px;font-weight:600;color:var(--muted);margin-left:3px;letter-spacing:0}
+.nh-delta{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;margin-top:8px}
+.nh-delta.down{color:var(--neg)}.nh-delta.up{color:var(--pos)}
+.nh-delta em{font-style:normal;font-weight:600;color:var(--muted)}
+.nh-sub{font-size:11.5px;color:var(--muted);margin-top:7px}
+.nh-spark{width:100%;height:30px;margin-top:12px;display:block}
+.nh-chev,.nc-chev{color:var(--muted);flex:none;transition:transform .2s;display:inline-flex}
+.nh-chev svg,.nc-chev svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2}
+.nnest-chart{padding:4px 2px 2px}
+.nnest-chart svg{width:100%;display:block;overflow:visible}
+.nnest-h{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:12px 2px 6px}
+/* date-range picker chip (simulates the app WidgetDateLabel) */
+.nh-date{display:inline-flex;align-items:center;gap:6px;height:1.75rem;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-soft);border:none;border-radius:100px;padding:0 10px;cursor:pointer;white-space:nowrap;flex:none;transition:.14s;margin-left:auto}
+.nh-date:hover{filter:brightness(.96)}
+.nh-date .cal{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.9;flex:none}
+.nh-date .cvt{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.2;opacity:.6;flex:none}
+.nh-date-lbl{max-width:120px;overflow:hidden;text-overflow:ellipsis}
+/* report drill-in link */
+.nh-link{position:relative;width:24px;height:24px;border-radius:7px;display:inline-grid;place-items:center;color:var(--muted);cursor:pointer;flex:none;text-decoration:none;transition:.14s}
+.nh-link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.nh-link:hover{color:var(--accent);background:var(--accent-soft)}
+.nh-tip{position:absolute;bottom:calc(100% + 7px);right:0;background:var(--ink);color:var(--surface);font-size:10.5px;font-weight:700;white-space:nowrap;padding:5px 8px;border-radius:6px;opacity:0;transform:translateY(3px);pointer-events:none;transition:.14s;box-shadow:0 6px 18px rgba(11,23,51,.22);z-index:60}
+.nh-tip::after{content:"";position:absolute;top:100%;right:9px;border:4px solid transparent;border-top-color:var(--ink)}
+.nh-link:hover .nh-tip{opacity:1;transform:translateY(0)}
+.nh-spark-cap{font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.ld-pos{color:var(--pos);font-weight:600}
+.ld-neg{color:var(--neg);font-weight:600}
+/* the ONE expand control — a full-width footer handle */
+.nh-exp{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 16px;font-size:11.5px;font-weight:700;color:var(--accent);cursor:pointer;border-top:1px solid var(--divide);background:var(--surface);transition:background .14s;user-select:none}
+.nh-exp:hover{background:var(--accent-soft)}
+.nh-exp-chev{display:inline-flex;transition:transform .22s}
+.nh-exp-chev svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.4}
+.nh.on .nh-exp-chev,.ncard.open .nh-exp-chev{transform:rotate(180deg)}
+.nh .nh-exp{margin:auto -16px -15px;border-radius:0 0 11px 11px}
+.nh-spark{margin-bottom:2px}
+/* floating date-range menu (lives inside .app so it inherits the stage theme vars) */
+.nh-menu{display:none;position:absolute;z-index:100;background:var(--surface);border:1px solid var(--hair);border-radius:9px;box-shadow:0 12px 32px rgba(11,23,51,.20);padding:5px;min-width:152px}
+.nh-menu button{display:block;width:100%;text-align:left;font-family:var(--ui);font-size:11.5px;font-weight:600;color:var(--ink2);background:transparent;border:0;border-radius:6px;padding:8px 10px;cursor:pointer;white-space:nowrap}
+.nh-menu button:hover{background:var(--accent-soft);color:var(--accent)}
+.nh-menu button.sel{color:var(--accent);font-weight:800}
+
+/* ── New Dashboard — compact heroes, one full-width detail panel below ── */
+.layout-nacc{padding:22px 24px 28px;background:var(--app)}
+.nacc-hint{font-size:11.5px;color:var(--muted);margin:0 2px 12px}
+.nacc-top{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.nacc-heros{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.nsec{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:2px 2px 10px}
+.nh{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:15px 16px;box-shadow:var(--shadow-soft);cursor:default;display:flex;flex-direction:column;min-width:0;transition:.14s;position:relative}
+.nh:hover{border-color:var(--accent)}
+.nh.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft),var(--shadow-soft)}
+.nh.on .nh-chev{transform:rotate(180deg);color:var(--accent)}
+.nh-top{display:flex;align-items:center;gap:9px}
+.nacc-panel{margin-top:14px;background:var(--surface);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--shadow-soft);overflow:hidden}
+.nacc-panel-h{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--hair)}
+.nacc-panel-h .t{font-size:14.5px;font-weight:800;color:var(--ink);margin-right:auto;letter-spacing:-.01em}
+.nacc-close{font-size:12px;font-weight:700;color:var(--ink2);cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--hair);border-radius:8px;padding:6px 11px}
+.nacc-close:hover{color:var(--neg);border-color:var(--neg)}
+.nacc-body{padding:14px 18px 16px}
+.nacc-body .nnest-chart svg{height:210px}
+.nacc-body .legend{padding:0 0 10px}
+@media(max-width:820px){.nacc-heros{grid-template-columns:1fr 1fr}.nacc-top{grid-template-columns:1fr}}
+/* view toggle bar */
+.nacc-bar{display:flex;align-items:center;gap:12px;margin:0 2px 14px}
+.nacc-bar .nacc-hint{margin:0;margin-right:auto}
+.nacc-viewseg{display:inline-flex;gap:3px;background:var(--surface2);border:1px solid var(--hair);border-radius:9px;padding:3px;flex:none}
+.nacc-viewseg button{font-family:var(--ui);font-size:11.5px;font-weight:700;color:var(--ink2);background:transparent;border:0;border-radius:7px;padding:6px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.14s}
+.nacc-viewseg button svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2}
+.nacc-viewseg button.on{background:var(--accent);color:#fff}
+.nacc-bar .xall{flex:none}
+/* connected spotlight panel — caret points up to the active tile's row */
+.nacc-panelwrap{position:relative;animation:naccOpen .22s ease}
+.nacc-panelwrap::before{content:"";position:absolute;top:8px;left:var(--caret,40px);margin-left:-6px;width:12px;height:12px;background:var(--surface);border-left:1px solid var(--hair);border-top:1px solid var(--hair);transform:rotate(45deg);z-index:3;transition:left .22s ease}
+@keyframes naccOpen{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:translateY(0)}}
+.nacc-heros:not(.inline) .nh.on,.nacc-top:not(.inline) .nh.on{transform:translateY(-1px)}
+/* inline mode — each tile expands in place; roomy 2-col so multi-open reflows cleanly */
+.nacc-heros.inline{grid-template-columns:1fr 1fr;align-items:start}
+.nacc-top.inline{align-items:start}
+.nh--inline .nnest{display:none}
+.nh--inline.on .nh-exp{margin:auto -16px 0;border-radius:0}
+.nh--inline.on .nnest{display:block;margin:0 -16px -15px;border-top:1px solid var(--divide);padding:10px 16px 14px;border-radius:0 0 11px 11px}
+.nh--inline .nnest-chart svg{height:150px}
+
+/* Expand-all control (shared by the New Dashboard inline view) */
+.xall{font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);border:1px solid transparent;border-radius:9px;padding:8px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.xall:hover{filter:brightness(.97)}
+.xall svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2}
+
+.app{display:flex;flex-direction:column;background:var(--app);font-size:14px;color:var(--ink);min-height:640px;position:relative}
+.topnav{display:flex;align-items:center;gap:20px;height:56px;padding:0 20px;background:var(--topbar);border-bottom:1px solid var(--navhair)}
+.logo{width:32px;height:32px;border-radius:9px;background:#257CFF;display:grid;place-items:center;flex:none;box-shadow:0 3px 10px rgba(37,124,255,.28)}
+.logo svg{width:22px;height:22px;display:block}
+.nav{display:flex;gap:2px}
+.nav a{font-size:13.5px;font-weight:600;color:var(--navfg);padding:7px 12px;border-radius:8px;white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.nav a.on{color:var(--navactivefg);background:var(--navactivebg);font-weight:700}
+.nav .new{font-size:9px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--pos);border-radius:5px;padding:2px 5px}
+.tsearch{margin-left:auto;width:200px;display:flex;align-items:center;gap:8px;background:var(--navsearch);border:1px solid var(--navhair);border-radius:9px;padding:7px 11px;color:var(--navfg);font-size:12.5px}
+.tsearch svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.tsearch .kbd{margin-left:auto;font-size:10px;font-weight:700;color:var(--navfg);background:var(--navchip);border-radius:5px;padding:2px 6px}
+.tright{display:flex;align-items:center;gap:14px}
+.bell{position:relative;color:var(--navfg)}
+.bell svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8}
+.bell b{position:absolute;top:-6px;right:-6px;font-size:9px;font-weight:800;color:#fff;background:var(--neg);border-radius:999px;min-width:15px;height:15px;display:grid;place-items:center;padding:0 3px}
+.who{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--navfg)}
+.who .av{width:28px;height:28px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:700;font-size:11px;background:var(--accent)}
+
+.canvas{padding:22px;overflow:auto}
+.dhead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.dhead .t{font-size:21px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.dhead .s{font-size:13px;color:var(--muted);margin-top:3px}
+
+.grid{display:grid;gap:var(--gap)}
+.kpis{grid-template-columns:repeat(4,1fr);margin-bottom:var(--gap)}
+.tile{background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);padding:var(--tile-pad);box-shadow:var(--shadow);min-width:0}
+.krow{display:flex;align-items:flex-start;justify-content:flex-start;gap:8px}
+.klbl{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink);margin-right:auto}
+.klbl .ic{width:22px;height:22px;border-radius:6px;background:var(--accent-soft);color:var(--accent);display:none;place-items:center;flex:none}
+.klbl .ic svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.1}
+.kper{font-size:11px;color:var(--muted);white-space:nowrap}
+.kfig{font-size:var(--kpi-fig);font-weight:800;letter-spacing:-.03em;color:var(--ink);margin:8px 0 4px;line-height:1}
+.ksub{font-size:11px;color:var(--muted)}
+.ksub b{color:var(--ink2);font-weight:700}
+.spark{display:none;margin-top:12px;height:28px;width:100%}
+.stage:not([data-opt="current"]) .klbl .ic{display:grid}
+.stage:not([data-opt="current"]) .spark{display:block}
+
+.row2{grid-template-columns:1fr 1fr;margin-top:var(--gap)}
+.card{background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}
+.chead{display:flex;align-items:center;justify-content:flex-start;gap:10px;padding:15px 18px 8px}
+.chead .ct{font-size:14.5px;font-weight:700;color:var(--ink);letter-spacing:-.01em;display:flex;align-items:center;gap:7px;margin-right:auto}
+.rlink{width:26px;height:26px;border-radius:8px;display:inline-grid;place-items:center;color:var(--muted);cursor:pointer;flex:none;text-decoration:none;border:1px solid transparent;transition:.14s}
+.rlink svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.rlink:hover{color:#fff;background:var(--accent);border-color:var(--accent)}
+.krow .rlink{margin-top:-2px}
+.chead .ct .i{width:15px;height:15px;border-radius:50%;border:1.4px solid var(--muted);color:var(--muted);font-size:10px;font-weight:800;display:grid;place-items:center}
+.chead .meta{font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.chead .dd{font-size:11.5px;font-weight:600;color:var(--ink2);border:1px solid var(--hair);border-radius:7px;padding:5px 9px;display:inline-flex;gap:6px;align-items:center;background:var(--surface2)}
+.pill{font-size:10.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 9px;letter-spacing:.03em;text-transform:uppercase}
+.chartbox{padding:6px 14px 16px}
+.chartbox svg{width:100%;height:150px;display:block;overflow:visible}
+.legend{display:flex;flex-wrap:wrap;gap:5px 13px;padding:0 18px 8px}
+.legend span{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink2);font-weight:600}
+.legend i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.axtx{fill:var(--muted);font-size:9px;font-family:var(--ui)}
+
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{font-size:9.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);text-align:right;padding:9px 18px;border-bottom:1px solid var(--hair)}
+.tbl th:first-child{text-align:left}
+.tbl td{padding:9px 18px;border-bottom:1px solid var(--divide);text-align:right;color:var(--ink2);font-variant-numeric:tabular-nums}
+.tbl td:first-child{text-align:left;color:var(--ink);font-weight:600}
+.tbl tr:last-child td{border-bottom:0}
+.tbl a{color:var(--accent);font-weight:600;text-decoration:none}
+.tbl .cust{display:flex;align-items:center;gap:9px}
+.tbl .mono{width:24px;height:24px;border-radius:6px;background:var(--accent-soft);color:var(--accent);display:none;place-items:center;font-size:10px;font-weight:800;flex:none}
+.stage:not([data-opt="current"]) .tbl .mono{display:grid}
+.nnest .tbl td,.nnest .tbl th,.nacc-body .tbl td,.nacc-body .tbl th{padding-left:2px;padding-right:2px}
+.tbl .sub{font-weight:800;color:var(--ink)}
+.pos{color:var(--pos);font-weight:700}.neg{color:var(--neg);font-weight:700}
+.pgn{display:flex;justify-content:flex-end;gap:8px;align-items:center;padding:10px 18px;font-size:11.5px;color:var(--muted)}
+.pgn b{color:var(--ink2)}
+
+.reportsec{margin-top:34px}
+.reportsec h2{font-size:20px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+.reportsec p{color:var(--page-ink2);font-size:14px;max-width:66ch;margin:0 0 18px}
+.repframe{border-radius:16px;overflow:hidden;border:1px solid var(--page-hair);box-shadow:0 20px 44px rgba(13,22,42,.13);background:var(--app)}
+.rep-toolbar{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--topbar);border-bottom:1px solid var(--hair)}
+.rep-toolbar .rt{font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.rep-toolbar .toggle{margin-left:auto;display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+.rep-toolbar .sw{width:38px;height:22px;border-radius:999px;background:var(--accent);position:relative}
+.rep-toolbar .sw::after{content:"";position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.rep-chart{background:var(--surface);margin:16px;border-radius:var(--radius);border:1px solid var(--hair);box-shadow:var(--shadow)}
+.rep-table{margin:0 16px 16px}
+
+@media (max-width:840px){
+  .kpis{grid-template-columns:repeat(2,1fr)} .row2{grid-template-columns:1fr}
+  .nav .lbl,.tsearch{display:none} .who .nm{display:none}
+}
+.foot{margin-top:34px;padding-top:20px;border-top:1px solid var(--page-hair);display:flex;flex-wrap:wrap;gap:10px 26px;font-size:12.5px;color:var(--page-muted)}
+.foot b{color:var(--page-ink2)}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">ShopView · Manager Dashboard</div>
+  <h1 class="lead">Nesting the dashboard — <span class="g">details tucked under their hero</span>, one click away.</h1>
+  <p class="sub">The same real dashboard, reorganised to kill scrolling. The four hero KPIs stay compact, and each one opens to reveal its own chart and detail table — on click. <b>Sales by Customer</b> and <b>At Risk Customers</b> read as heroes too — a headline <b>count</b> rather than a revenue figure (revenue already belongs to the Revenue hero) — sitting just below the four KPIs and opening the same way. Each hero's date filter is a blue filter pill, and its full report opens from the arrow-in-a-square icon right beside the hero name. <b>Current</b> is the baseline. Flip <b>Light / Dark</b> on either.</p>
+
+  <div class="crit">
+    <span><i class="n">1</i> Minimise <b>scrolling</b></span>
+    <span><i class="n">2</i> <b>Click</b> to expand</span>
+    <span><i class="n">3</i> <b>Sparkline</b>, no deltas</span>
+    <span><i class="n">4</i> Current + <b>2 nested</b> · light + dark</span>
+  </div>
+
+  <div class="switch">
+    <div class="switchrow">
+      <div class="seg" id="seg">
+        <button data-o="current" class=""><span class="dot"></span>Current</button>
+        <button data-o="nacc" class="on"><span class="dot"></span>New Dashboard</button>
+      </div>
+      <button class="modetgl" id="modetgl"><span class="lbl">Mode</span><span id="modeicon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"></path></svg></span><span id="modename">Light</span></button>
+    </div>
+    <div class="optline" id="optline"><b>New Dashboard</b> — the four hero KPIs sit in one compact row, with Sales by Customer and At Risk Customers as two more heroes just below (a headline count, not a dollar figure). Click any card and its chart + detail table open in a single full-width panel below — click another and the panel swaps. Minimal scroll, one thing in focus at a time.</div>
+  </div>
+
+  <div class="stage" id="stage" data-opt="nacc" data-mode="light" style="">
+    <div class="app">
+      <div class="topnav">
+        <div class="logo"><svg viewBox="0 0 100 100" fill="#fff" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ShopView"><path d="M73.0787 60.9336L63.6353 51.4902C66.7831 54.7748 69.9309 57.9226 73.0787 60.9336Z"></path><path d="M84.5575 12.489H31.729C20.6432 12.489 16.1268 17.2792 13.937 27.6806L3.94616 74.8978C3.53557 77.2244 3.125 79.1405 3.125 80.9197C3.125 82.562 3.39871 84.0675 3.94616 85.1624C12.5684 77.635 20.2327 68.8759 28.9918 61.4854C32.687 64.2226 35.698 67.6441 38.1615 71.4763C31.4553 77.635 24.4754 83.6569 18.0429 90.2262H68.1341C79.3568 90.2262 83.7363 85.4361 86.063 75.0347L96.0538 27.8175C96.4644 25.4909 96.875 23.5748 96.875 21.7956C96.7381 15.3631 93.4535 12.489 84.5575 12.489ZM51.8476 82.2883C50.8896 83.1095 50.0684 84.0675 49.1104 84.8886C46.6469 81.8777 43.0885 79.4142 42.6779 75.3084C41.4462 66.5492 34.4662 58.7481 25.844 57.1058C21.6013 56.5584 19.0009 53 16.1268 50.1259L38.9826 27.27L39.2564 26.9963L39.3932 27.1332L63.7545 51.4945C66.9024 54.6423 69.9133 57.7901 73.198 60.9379L51.8476 82.2883ZM74.9772 59.1587L41.0356 25.2171L44.3203 21.9324L78.2618 55.8741L74.9772 59.1587ZM80.041 54.0948L46.0994 20.1533L49.3841 16.8686L83.3257 50.8102L80.041 54.0948Z"></path><path d="M46.0917 59.9816C48.8884 59.9816 51.1556 57.7144 51.1556 54.9177C51.1556 52.121 48.8884 49.8538 46.0917 49.8538C43.295 49.8538 41.0278 52.121 41.0278 54.9177C41.0278 57.7144 43.295 59.9816 46.0917 59.9816Z"></path></svg></div>
+        <div class="nav">
+          <a><span class="lbl">Work Orders</span></a>
+          <a><span class="lbl">Schedule</span><span class="new">New</span></a>
+          <a><span class="lbl">Customers</span></a>
+          <a><span class="lbl">Parts</span></a>
+          <a><span class="lbl">Reports</span></a>
+          <a class="on"><span class="lbl">Dashboard</span></a>
+        </div>
+        <div class="tsearch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4-4"></path></svg>Search<span class="kbd">Ctrl K</span></div>
+        <div class="tright">
+          <span class="bell"><svg viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 7 2 8 2 8H4s2-1 2-8"></path><path d="M10 21a2 2 0 0 0 4 0"></path></svg><b>4</b></span>
+          <span class="who"><span class="nm">QA Testing</span><span class="av">MH</span></span>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div class="dhead"><div><div class="t">Dashboard</div><div class="s">Shop health at a glance · QA Testing</div></div></div>
+
+        <!-- 1. KPIs: Technician Utilization, Technician Efficiency, Revenue, Billing Efficiency -->
+        <div class="grid kpis">
+          <div class="tile kpi-pct">
+            <div class="krow"><div class="klbl"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg></span>Technician Utilization</div><span class="kper">This Month</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <div class="kfig tnum">81.13%</div><div class="ksub"><b>543.12</b> WO Hrs / <b>669.47</b> Clocked</div>
+            <svg class="spark" id="sp-util" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 24.3 L28.9 17.5 L57.8 31.0 L86.7 10.8 L115.6 14.1 L144.4 7.4 L173.3 10.8 L202.2 4.0 L231.1 7.4 L260.0 7.4 L260 34 L0 34 Z" fill="#257CFF" opacity=".13"></path><path d="M0.0 24.3 L28.9 17.5 L57.8 31.0 L86.7 10.8 L115.6 14.1 L144.4 7.4 L173.3 10.8 L202.2 4.0 L231.1 7.4 L260.0 7.4" fill="none" stroke="#257CFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="7.375" r="2.6" fill="#257CFF"></circle></svg>
+          </div>
+          <div class="tile kpi-pct">
+            <div class="krow"><div class="klbl"><span class="ic"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z"></path></svg></span>Technician Efficiency</div><span class="kper">This Month</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <div class="kfig tnum">18.13%</div><div class="ksub"><b>17.00</b> Invoiced Tech Hrs / <b>93.75</b> Clocked</div>
+            <svg class="spark" id="sp-eff" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 4.0 L28.9 16.0 L57.8 22.0 L86.7 28.0 L115.6 31.0 L144.4 25.0 L173.3 22.0 L202.2 25.0 L231.1 22.0 L260.0 22.0 L260 34 L0 34 Z" fill="#F04438" opacity=".13"></path><path d="M0.0 4.0 L28.9 16.0 L57.8 22.0 L86.7 28.0 L115.6 31.0 L144.4 25.0 L173.3 22.0 L202.2 25.0 L231.1 22.0 L260.0 22.0" fill="none" stroke="#F04438" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="22" r="2.6" fill="#F04438"></circle></svg>
+          </div>
+          <div class="tile kpi-rev">
+            <div class="krow"><div class="klbl"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>Revenue</div><span class="kper">This Month</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <div class="kfig tnum">$1,545,465.50</div><div class="ksub"><b>Parts</b> 0% · <b>Labor</b> 100%</div>
+            <svg class="spark" id="sp-rev" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 31.0 L28.9 30.4 L57.8 31.0 L86.7 30.4 L115.6 30.4 L144.4 29.9 L173.3 5.7 L202.2 4.0 L231.1 5.1 L260.0 5.7 L260 34 L0 34 Z" fill="#257CFF" opacity=".13"></path><path d="M0.0 31.0 L28.9 30.4 L57.8 31.0 L86.7 30.4 L115.6 30.4 L144.4 29.9 L173.3 5.7 L202.2 4.0 L231.1 5.1 L260.0 5.7" fill="none" stroke="#257CFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="5.653061224489793" r="2.6" fill="#257CFF"></circle></svg>
+          </div>
+          <div class="tile kpi-pct">
+            <div class="krow"><div class="klbl"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l3-4 3 3 5-7"></path></svg></span>Billing Efficiency</div><span class="kper">This Year</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <div class="kfig tnum">116.28%</div><div class="ksub"><b>766.17</b> Invoiced / <b>658.89</b> Clocked</div>
+            <svg class="spark" id="sp-bill" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 31.0 L28.9 22.0 L57.8 13.0 L86.7 17.5 L115.6 4.0 L144.4 8.5 L173.3 4.0 L202.2 4.0 L231.1 4.0 L260.0 4.0 L260 34 L0 34 Z" fill="#15B79E" opacity=".13"></path><path d="M0.0 31.0 L28.9 22.0 L57.8 13.0 L86.7 17.5 L115.6 4.0 L144.4 8.5 L173.3 4.0 L202.2 4.0 L231.1 4.0 L260.0 4.0" fill="none" stroke="#15B79E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="4" r="2.6" fill="#15B79E"></circle></svg>
+          </div>
+        </div>
+
+        <!-- 2. Advisor Analysis | At Risk Customers -->
+        <div class="grid row2">
+          <div class="card">
+            <div class="chead"><div class="ct">Advisor Analysis <span class="i">i</span></div><span class="meta">This Month</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <table class="tbl">
+              <thead><tr><th>Advisor</th><th>Worked Hours</th><th>Invoiced Hrs</th><th>Billing Efficiency</th><th>ELR</th></tr></thead>
+              <tbody>
+                <tr><td><div class="cust"><span class="mono">MH</span>Matt Holst</div></td><td class="tnum">77.06</td><td class="tnum">50.00</td><td class="tnum">64.88%</td><td class="tnum">$87.59</td></tr>
+                <tr><td><div class="cust"><span class="mono">JC</span>James Cone</div></td><td class="tnum">16.73</td><td class="tnum">4.00</td><td class="tnum">23.91%</td><td class="tnum">$20.02</td></tr>
+                <tr><td><div class="cust"><span class="mono">SC</span>Sarah Chen</div></td><td class="tnum">68.40</td><td class="tnum">44.10</td><td class="tnum">61.20%</td><td class="tnum">$79.30</td></tr>
+                <tr><td><div class="cust"><span class="mono">DM</span>Derek Malloy</div></td><td class="tnum">52.18</td><td class="tnum">30.05</td><td class="tnum">57.60%</td><td class="tnum">$71.15</td></tr>
+                <tr><td><div class="cust"><span class="mono">PN</span>Priya Nair</div></td><td class="tnum">41.92</td><td class="tnum">22.40</td><td class="tnum">53.40%</td><td class="tnum">$64.80</td></tr>
+                <tr><td><div class="cust"><span class="mono">TR</span>Tomas Rivera</div></td><td class="tnum">33.75</td><td class="tnum">15.20</td><td class="tnum">45.05%</td><td class="tnum">$52.40</td></tr>
+                <tr><td><div class="cust"><span class="mono">AW</span>Angela Woods</div></td><td class="tnum">22.60</td><td class="tnum">8.10</td><td class="tnum">35.84%</td><td class="tnum">$38.90</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="chead"><div class="ct">At Risk Customers <span class="i">i</span></div><span class="dd">Inactive for 180 Days ▾</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <table class="tbl">
+              <thead><tr><th>Customer</th><th>Last Invoice Date</th><th>Lifetime Invoices</th><th>Revenue (12 Mo)</th></tr></thead>
+              <tbody>
+                <tr><td><div class="cust"><span class="mono">RP</span><a>Ruline Partners</a></div></td><td class="tnum">Oct 10, 2025</td><td class="tnum">1</td><td class="tnum"><a>$40.50</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3. Revenue chart | Technician Efficiency chart -->
+        <div class="grid row2">
+          <div class="card">
+            <div class="chead"><div class="ct">Revenue <span class="i">i</span></div><span class="meta">Last 12 Months</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <div class="chartbox"><svg id="chart-rev" viewBox="0 0 560 160" preserveAspectRatio="none"><line x1="6" y1="138" x2="554" y2="138" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="6" y="135">$0M</text><line x1="6" y1="73" x2="554" y2="73" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="6" y="70">$1M</text><line x1="6" y1="8" x2="554" y2="8" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="6" y="5">$2M</text><text class="axtx" x="28.833333333333332" y="153" text-anchor="middle">Sep</text><text class="axtx" x="74.5" y="153" text-anchor="middle">Oct</text><text class="axtx" x="120.16666666666666" y="153" text-anchor="middle">Nov</text><text class="axtx" x="165.83333333333334" y="153" text-anchor="middle">Dec</text><text class="axtx" x="211.5" y="153" text-anchor="middle">Jan</text><text class="axtx" x="257.16666666666663" y="153" text-anchor="middle">Feb</text><text class="axtx" x="302.8333333333333" y="153" text-anchor="middle">Mar</text><text class="axtx" x="348.49999999999994" y="153" text-anchor="middle">Apr</text><text class="axtx" x="394.16666666666663" y="153" text-anchor="middle">May</text><text class="axtx" x="439.8333333333333" y="153" text-anchor="middle">Jun</text><rect x="474.0833333333333" y="14.5" width="22.833333333333332" height="123.5" rx="3" fill="var(--accent)"></rect><text class="axtx" x="485.49999999999994" y="153" text-anchor="middle">Jul</text><rect x="519.75" y="37.54477499999999" width="22.833333333333332" height="100.45522500000001" rx="3" fill="var(--accent)"></rect><text class="axtx" x="531.1666666666666" y="153" text-anchor="middle">Aug</text></svg></div>
+          </div>
+          <div class="card">
+            <div class="chead"><div class="ct">Technician Efficiency <span class="i">i</span></div><span class="meta">This Month <span class="dd">Filter Technicians ▾</span></span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <div class="legend" id="eff-legend"><span><i style="background:#257CFF"></i>Elena Sandoval</span><span><i style="background:#E5A400"></i>James Cone</span><span><i style="background:#15B79E"></i>Matt Holst</span><span><i style="background:#EE46BC"></i>Matt Wong</span><span><i style="background:#875BF7"></i>Terry Kelly</span></div>
+            <div class="chartbox"><svg id="chart-eff" viewBox="0 0 560 150" preserveAspectRatio="none"><line x1="26" y1="132" x2="552" y2="132" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="135" text-anchor="end">0%</text><line x1="26" y1="70" x2="552" y2="70" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="73" text-anchor="end">100%</text><line x1="26" y1="8" x2="552" y2="8" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="11" text-anchor="end">200%</text><line x1="26" y1="70" x2="552" y2="70" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" opacity=".5"></line><path d="M26.0 126.4 L73.8 125.2 L121.6 125.8 L169.5 124.6 L217.3 123.3 L265.1 125.2 L312.9 123.9 L360.7 124.6 L408.5 123.3 L456.4 122.7 L504.2 123.9 L552.0 123.3" fill="none" stroke="#257CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="123.3" r="2.4" fill="#257CFF"></circle><path d="M26.0 115.9 L73.8 119.6 L121.6 122.7 L169.5 124.6 L217.3 123.3 L265.1 123.9 L312.9 124.6 L360.7 123.9 L408.5 123.3 L456.4 123.9 L504.2 122.7 L552.0 123.3" fill="none" stroke="#E5A400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="123.3" r="2.4" fill="#E5A400"></circle><path d="M26.0 126.4 L73.8 124.6 L121.6 125.8 L169.5 125.2 L217.3 124.6 L265.1 125.2 L312.9 123.9 L360.7 124.6 L408.5 123.3 L456.4 123.9 L504.2 122.7 L552.0 125.8" fill="none" stroke="#15B79E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="125.8" r="2.4" fill="#15B79E"></circle><path d="M26.0 125.8 L73.8 123.3 L121.6 124.6 L169.5 123.9 L217.3 124.6 L265.1 123.3 L312.9 122.7 L360.7 123.9 L408.5 123.3 L456.4 122.7 L504.2 123.3 L552.0 122.7" fill="none" stroke="#EE46BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="122.7" r="2.4" fill="#EE46BC"></circle><path d="M26.0 103.5 L73.8 113.4 L121.6 120.8 L169.5 124.6 L217.3 125.2 L265.1 123.9 L312.9 124.6 L360.7 125.2 L408.5 124.6 L456.4 123.9 L504.2 123.3 L552.0 123.9" fill="none" stroke="#875BF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="123.9" r="2.4" fill="#875BF7"></circle></svg></div>
+          </div>
+        </div>
+
+        <!-- 4. Billing Efficiency chart | Technician Utilization chart -->
+        <div class="grid row2">
+          <div class="card">
+            <div class="chead"><div class="ct">Billing Efficiency <span class="i">i</span></div><span class="meta">This Month <span class="dd">Filter Advisors ▾</span></span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <div class="legend" id="bill-legend"><span><i style="background:#257CFF"></i>James Cone</span><span><i style="background:#E5A400"></i>Matt Holst</span></div>
+            <div class="chartbox"><svg id="chart-billc" viewBox="0 0 560 150" preserveAspectRatio="none"><line x1="26" y1="132" x2="552" y2="132" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="135" text-anchor="end">0%</text><line x1="26" y1="70" x2="552" y2="70" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="73" text-anchor="end">100%</text><line x1="26" y1="8" x2="552" y2="8" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="11" text-anchor="end">200%</text><line x1="26" y1="70" x2="552" y2="70" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" opacity=".5"></line><path d="M26.0 117.1 L73.8 115.9 L121.6 116.5 L169.5 117.1 L217.3 116.5 L265.1 117.1 L312.9 115.9 L360.7 116.5 L408.5 117.1 L456.4 116.5 L504.2 117.1 L552.0 117.1" fill="none" stroke="#257CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="117.1" r="2.4" fill="#257CFF"></circle><path d="M26.0 92.3 L73.8 96.0 L121.6 93.6 L169.5 94.8 L217.3 91.7 L265.1 92.9 L312.9 91.1 L360.7 92.3 L408.5 91.7 L456.4 92.9 L504.2 92.3 L552.0 91.7" fill="none" stroke="#E5A400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="91.7" r="2.4" fill="#E5A400"></circle></svg></div>
+          </div>
+          <div class="card">
+            <div class="chead"><div class="ct">Technician Utilization <span class="i">i</span></div><span class="meta">Last 12 Months <span class="dd">Filter Technicians ▾</span></span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <div class="legend" id="utilc-legend"><span><i style="background:#257CFF"></i>Matt Wong</span><span><i style="background:#E5A400"></i>James Cone</span><span><i style="background:#15B79E"></i>Matt Holst</span><span><i style="background:#875BF7"></i>Elena Sandoval</span><span><i style="background:#EE46BC"></i>Terry Kelly</span><span><i style="background:#06AED4"></i>Taylor Suitor</span></div>
+            <div class="chartbox"><svg id="chart-utilc" viewBox="0 0 560 150" preserveAspectRatio="none"><line x1="26" y1="132" x2="552" y2="132" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="135" text-anchor="end">0%</text><line x1="26" y1="70" x2="552" y2="70" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="73" text-anchor="end">100%</text><line x1="26" y1="8" x2="552" y2="8" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="11" text-anchor="end">200%</text><line x1="26" y1="70" x2="552" y2="70" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" opacity=".5"></line><path d="M26.0 70.0 L73.8 70.0 L121.6 70.0 L169.5 70.0 L217.3 70.0 L265.1 70.0 L312.9 70.0 L360.7 70.0 L408.5 70.0 L456.4 70.0 L504.2 70.0 L552.0 70.0" fill="none" stroke="#257CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="70.0" r="2.4" fill="#257CFF"></circle><path d="M26.0 70.0 L73.8 70.0 L121.6 70.0 L169.5 70.0 L217.3 70.0 L265.1 70.0 L312.9 70.0 L360.7 70.0 L408.5 70.0 L456.4 70.0 L504.2 70.0 L552.0 103.5" fill="none" stroke="#E5A400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="103.5" r="2.4" fill="#E5A400"></circle><path d="M26.0 70.0 L73.8 70.0 L121.6 70.0 L169.5 70.0 L217.3 70.0 L265.1 70.0 L312.9 70.0 L360.7 70.0 L408.5 70.0 L456.4 70.0 L504.2 70.0 L552.0 70.0" fill="none" stroke="#15B79E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="70.0" r="2.4" fill="#15B79E"></circle><path d="M26.0 70.0 L73.8 70.0 L121.6 70.0 L169.5 70.0 L217.3 70.0 L265.1 70.0 L312.9 70.0 L360.7 70.0 L408.5 70.0 L456.4 70.0 L504.2 70.0 L552.0 71.2" fill="none" stroke="#875BF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="71.2" r="2.4" fill="#875BF7"></circle><path d="M26.0 70.0 L73.8 70.0 L121.6 70.0 L169.5 70.0 L217.3 70.0 L265.1 70.0 L312.9 70.0 L360.7 70.0 L408.5 70.0 L456.4 70.0 L504.2 70.0 L552.0 107.8" fill="none" stroke="#EE46BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="107.8" r="2.4" fill="#EE46BC"></circle><path d="M26.0 70.0 L73.8 70.0 L121.6 70.0 L169.5 70.0 L217.3 70.0 L265.1 70.0 L312.9 70.0 L360.7 70.0 L408.5 70.0 L456.4 70.0 L504.2 70.0 L552.0 77.4" fill="none" stroke="#06AED4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="552.0" cy="77.4" r="2.4" fill="#06AED4"></circle></svg></div>
+          </div>
+        </div>
+
+        <!-- 5. Technician Efficiency table | Technician Utilization table -->
+        <div class="grid row2">
+          <div class="card">
+            <div class="chead"><div class="ct">Technician Efficiency <span class="i">i</span></div><span class="meta">This Month</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <table class="tbl">
+              <thead><tr><th>Tech</th><th>Clocked Hrs</th><th>Invoiced Tech Hrs</th><th>Efficiency</th></tr></thead>
+              <tbody>
+                <tr><td><div class="cust"><span class="mono">TK</span>Terry Kelly</div></td><td class="tnum">13.94</td><td class="tnum">6.48</td><td class="tnum">46.48%</td></tr>
+                <tr><td><div class="cust"><span class="mono">JC</span>James Cone</div></td><td class="tnum">17.19</td><td class="tnum">4.51</td><td class="tnum">26.24%</td></tr>
+                <tr><td><div class="cust"><span class="mono">MW</span>Matt Wong</div></td><td class="tnum">19.96</td><td class="tnum">2.02</td><td class="tnum">10.12%</td></tr>
+                <tr><td><div class="cust"><span class="mono">MH</span>Matt Holst</div></td><td class="tnum">21.44</td><td class="tnum">2.07</td><td class="tnum">9.65%</td></tr>
+                <tr><td><div class="cust"><span class="mono">ES</span>Elena Sandoval</div></td><td class="tnum">21.23</td><td class="tnum">1.91</td><td class="tnum">9.00%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="chead"><div class="ct">Technician Utilization <span class="i">i</span></div><span class="meta">This Month</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <table class="tbl">
+              <thead><tr><th>Tech</th><th>WO Hours</th><th>Internal Hours</th><th>Total Hours</th><th>Utilization %</th></tr></thead>
+              <tbody>
+                <tr><td><div class="cust"><span class="mono">MW</span>Matt Wong</div></td><td class="tnum">89.16</td><td class="tnum">0.00</td><td class="tnum">89.16</td><td class="tnum">100.00%</td></tr>
+                <tr><td><div class="cust"><span class="mono">MH</span>Matt Holst</div></td><td class="tnum">262.93</td><td class="tnum">0.00</td><td class="tnum">262.93</td><td class="tnum">100.00%</td></tr>
+                <tr><td><div class="cust"><span class="mono">ES</span>Elena Sandoval</div></td><td class="tnum">99.33</td><td class="tnum">2.12</td><td class="tnum">101.45</td><td class="tnum">97.91%</td></tr>
+                <tr><td><div class="cust"><span class="mono">JC</span>James Cone</div></td><td class="tnum">50.21</td><td class="tnum">59.76</td><td class="tnum">109.97</td><td class="tnum">45.66%</td></tr>
+                <tr><td><div class="cust"><span class="mono">TK</span>Terry Kelly</div></td><td class="tnum">41.49</td><td class="tnum">64.47</td><td class="tnum">105.96</td><td class="tnum">39.16%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 6. Sales by Customer (half-width, left) -->
+        <div class="grid row2" style="margin-top:var(--gap)">
+          <div class="card">
+            <div class="chead"><div class="ct">Sales by Customer <span class="i">i</span></div><span class="meta">Last 12 Months</span><a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></div>
+            <table class="tbl">
+              <thead><tr><th>Customer</th><th>Invoices</th><th>Labor Delta</th><th>Subtotal</th></tr></thead>
+              <tbody>
+                <tr><td><div class="cust"><span class="mono">MC</span><a>Maple Creek Equipment</a></div></td><td class="tnum">28</td><td class="tnum ld-pos">+3.2</td><td class="tnum sub">$12,480.00</td></tr>
+                <tr><td><div class="cust"><span class="mono">MR</span><a>Mesa Ridge Construction</a></div></td><td class="tnum">21</td><td class="tnum ld-neg">-1.5</td><td class="tnum sub">$9,340.00</td></tr>
+                <tr><td><div class="cust"><span class="mono">MD</span><a>Metro Delivery Group</a></div></td><td class="tnum">18</td><td class="tnum ld-pos">+0.8</td><td class="tnum sub">$7,910.00</td></tr>
+                <tr><td><div class="cust"><span class="mono">WF</span><a>Westview Fleet Services</a></div></td><td class="tnum">15</td><td class="tnum">0.0</td><td class="tnum sub">$6,225.00</td></tr>
+                <tr><td><div class="cust"><span class="mono">SC</span><a>Summit Construction Group</a></div></td><td class="tnum">13</td><td class="tnum ld-neg">-2.1</td><td class="tnum sub">$4,880.00</td></tr>
+              </tbody>
+            </table>
+            <div class="pgn"><b>1–10 of 15</b> ‹ ›</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ New Dashboard: compact heroes, one full-width detail panel ═══ -->
+      <div class="layout-nacc" id="layout-nacc">
+        <div class="nacc-bar">
+          <p class="nacc-hint" id="nacc-hint">Click any card to open its chart &amp; details right below its row — one at a time.</p>
+        </div>
+        <div class="nacc-heros" id="nacc-heros"><div class="nh" data-nk="rev"><div class="nh-top"><span class="nh-lbl">Revenue</span><a class="nh-link" href="https://9a71339c-e477-4895-8501-ac95d6143825.frame.claudeusercontent.com/_f/1787948849-691e/#" target="_blank" aria-label="Open Sales Report"><span class="nh-tip">Sales Report</span><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4.5"></path></svg></a><span class="nh-date" data-dk="rev"><svg class="cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2.5"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path></svg><span class="nh-date-lbl">This Month</span><svg class="cvt" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div><div class="nh-fig">$1,545,465.50</div><div class="nh-sub">Parts 0% · Labor 100%</div><svg class="nh-spark" id="nacc-sp-rev" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 31.0 L23.6 30.5 L47.3 30.8 L70.9 30.7 L94.5 30.4 L118.2 30.4 L141.8 29.9 L165.5 12.0 L189.1 4.4 L212.7 4.0 L236.4 4.8 L260.0 5.3 L260 34 L0 34 Z" fill="#257CFF" opacity=".13"></path><path d="M0.0 31.0 L23.6 30.5 L47.3 30.8 L70.9 30.7 L94.5 30.4 L118.2 30.4 L141.8 29.9 L165.5 12.0 L189.1 4.4 L212.7 4.0 L236.4 4.8 L260.0 5.3" fill="none" stroke="#257CFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="5.271186440677969" r="2.6" fill="#257CFF"></circle></svg><div class="nh-exp"><span class="nh-exp-t">View details</span><span class="nh-exp-chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div></div><div class="nh" data-nk="bill"><div class="nh-top"><span class="nh-lbl">Billing Efficiency</span><a class="nh-link" href="https://9a71339c-e477-4895-8501-ac95d6143825.frame.claudeusercontent.com/_f/1787948849-691e/#" target="_blank" aria-label="Open Advisor Analysis Report"><span class="nh-tip">Advisor Analysis Report</span><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4.5"></path></svg></a><span class="nh-date" data-dk="bill"><svg class="cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2.5"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path></svg><span class="nh-date-lbl">This Month</span><svg class="cvt" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div><div class="nh-fig">57.58%</div><div class="nh-sub">379.40 Invoiced / 658.89 Clocked</div><svg class="nh-spark" id="nacc-sp-bill" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 4.0 L23.6 7.6 L47.3 11.1 L70.9 15.7 L94.5 20.4 L118.2 24.0 L141.8 27.5 L165.5 26.3 L189.1 28.1 L212.7 30.1 L236.4 30.3 L260.0 31.0 L260 34 L0 34 Z" fill="#15B79E" opacity=".13"></path><path d="M0.0 4.0 L23.6 7.6 L47.3 11.1 L70.9 15.7 L94.5 20.4 L118.2 24.0 L141.8 27.5 L165.5 26.3 L189.1 28.1 L212.7 30.1 L236.4 30.3 L260.0 31.0" fill="none" stroke="#15B79E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="31" r="2.6" fill="#15B79E"></circle></svg><div class="nh-exp"><span class="nh-exp-t">View details</span><span class="nh-exp-chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div></div><div class="nh" data-nk="eff"><div class="nh-top"><span class="nh-lbl">Technician Efficiency</span><a class="nh-link" href="https://9a71339c-e477-4895-8501-ac95d6143825.frame.claudeusercontent.com/_f/1787948849-691e/#" target="_blank" aria-label="Open Technician Efficiency Report"><span class="nh-tip">Technician Efficiency Report</span><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4.5"></path></svg></a><span class="nh-date" data-dk="eff"><svg class="cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2.5"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path></svg><span class="nh-date-lbl">This Month</span><svg class="cvt" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div><div class="nh-fig neg">18.13%</div><div class="nh-sub">17.00 Invoiced Tech Hrs / 93.75 Clocked</div><svg class="nh-spark" id="nacc-sp-eff" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 4.0 L23.6 14.0 L47.3 20.1 L70.9 25.2 L94.5 29.3 L118.2 31.0 L141.8 26.0 L165.5 23.2 L189.1 24.0 L212.7 24.3 L236.4 22.3 L260.0 22.0 L260 34 L0 34 Z" fill="#F04438" opacity=".13"></path><path d="M0.0 4.0 L23.6 14.0 L47.3 20.1 L70.9 25.2 L94.5 29.3 L118.2 31.0 L141.8 26.0 L165.5 23.2 L189.1 24.0 L212.7 24.3 L236.4 22.3 L260.0 22.0" fill="none" stroke="#F04438" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="21.97309278350516" r="2.6" fill="#F04438"></circle></svg><div class="nh-exp"><span class="nh-exp-t">View details</span><span class="nh-exp-chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div></div><div class="nh" data-nk="util"><div class="nh-top"><span class="nh-lbl">Technician Utilization</span><a class="nh-link" href="https://9a71339c-e477-4895-8501-ac95d6143825.frame.claudeusercontent.com/_f/1787948849-691e/#" target="_blank" aria-label="Open Technician Utilization Report"><span class="nh-tip">Technician Utilization Report</span><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4.5"></path></svg></a><span class="nh-date" data-dk="util"><svg class="cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2.5"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path></svg><span class="nh-date-lbl">This Month</span><svg class="cvt" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div><div class="nh-fig">81.96%</div><div class="nh-sub">543.12 WO Hrs / 662.66 Clocked</div><svg class="nh-spark" id="nacc-sp-util" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 28.7 L23.6 21.9 L47.3 31.0 L70.9 25.7 L94.5 13.3 L118.2 15.5 L141.8 8.7 L165.5 11.0 L189.1 7.6 L212.7 5.3 L236.4 7.3 L260.0 4.0 L260 34 L0 34 Z" fill="#257CFF" opacity=".13"></path><path d="M0.0 28.7 L23.6 21.9 L47.3 31.0 L70.9 25.7 L94.5 13.3 L118.2 15.5 L141.8 8.7 L165.5 11.0 L189.1 7.6 L212.7 5.3 L236.4 7.3 L260.0 4.0" fill="none" stroke="#257CFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="4" r="2.6" fill="#257CFF"></circle></svg><div class="nh-exp"><span class="nh-exp-t">View details</span><span class="nh-exp-chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div></div></div>
+        <div id="nacc-panel-host-heros"></div>
+        <div class="nsec">Customers</div>
+        <div class="nacc-top" id="nacc-top"><div class="nh" data-nk="sales"><div class="nh-top"><span class="nh-lbl">Sales by Customer</span><a class="nh-link" href="https://9a71339c-e477-4895-8501-ac95d6143825.frame.claudeusercontent.com/_f/1787948849-691e/#" target="_blank" aria-label="Open Sales By Customer Report"><span class="nh-tip">Sales By Customer Report</span><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4.5"></path></svg></a><span class="nh-date" data-dk="sales"><svg class="cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2.5"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path></svg><span class="nh-date-lbl">Last 12 Months</span><svg class="cvt" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div><div class="nh-fig">15 <span class="nh-unit">customers</span></div><div class="nh-sub">Top: Maple Creek Equipment</div><svg class="nh-spark" id="nacc-sp-sales" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 31.0 L23.6 27.3 L47.3 23.6 L70.9 22.0 L94.5 20.8 L118.2 17.1 L141.8 13.4 L165.5 16.3 L189.1 12.6 L212.7 8.5 L236.4 7.7 L260.0 4.0 L260 34 L0 34 Z" fill="#15B79E" opacity=".13"></path><path d="M0.0 31.0 L23.6 27.3 L47.3 23.6 L70.9 22.0 L94.5 20.8 L118.2 17.1 L141.8 13.4 L165.5 16.3 L189.1 12.6 L212.7 8.5 L236.4 7.7 L260.0 4.0" fill="none" stroke="#15B79E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="4" r="2.6" fill="#15B79E"></circle></svg><div class="nh-exp"><span class="nh-exp-t">View details</span><span class="nh-exp-chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div></div><div class="nh" data-nk="risk"><div class="nh-top"><span class="nh-lbl">At Risk Customers</span><span class="nh-date" data-dk="risk"><svg class="cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2.5"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path></svg><span class="nh-date-lbl">120 days</span><svg class="cvt" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div><div class="nh-fig">1 <span class="nh-unit">at risk</span></div><div class="nh-sub">$40.50 (12mo) · Ruline Partners</div><svg class="nh-spark" id="nacc-sp-risk" viewBox="0 0 260 34" preserveAspectRatio="none"><path d="M0.0 4.0 L28.9 4.0 L57.8 17.5 L86.7 17.5 L115.6 17.5 L144.4 31.0 L173.3 17.5 L202.2 17.5 L231.1 17.5 L260.0 31.0 L260 34 L0 34 Z" fill="#257CFF" opacity=".13"></path><path d="M0.0 4.0 L28.9 4.0 L57.8 17.5 L86.7 17.5 L115.6 17.5 L144.4 31.0 L173.3 17.5 L202.2 17.5 L231.1 17.5 L260.0 31.0" fill="none" stroke="#257CFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="260" cy="31" r="2.6" fill="#257CFF"></circle></svg><div class="nh-exp"><span class="nh-exp-t">View details</span><span class="nh-exp-chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span></div></div></div>
+        <div id="nacc-panel-host-top"></div>
+      </div>
+
+
+      <div class="nh-menu" id="nhmenu" style="display: none;"></div>
+    </div>
+  </div>
+
+  <div class="reportsec">
+    <h2>Charts, embedded in the report</h2>
+    <p>The Fabian + Sasha decision: a widget links to its full report, and its chart is promoted onto that report page — full-width, above the details, with a show/hide. It follows the same direction and light/dark mode.</p>
+    <div class="stage repframe" id="repstage" data-opt="nacc" data-mode="light" style="box-shadow:0 20px 44px rgba(13,22,42,.13)">
+      <div class="rep-toolbar"><div class="rt">Technician Efficiency</div><div class="toggle">Show chart<span class="sw"></span></div></div>
+      <div class="rep-chart">
+        <div class="legend" id="rep-legend" style="padding:14px 18px 4px"><span><i style="background:#257CFF"></i>Elena Sandoval</span><span><i style="background:#E5A400"></i>James Cone</span><span><i style="background:#15B79E"></i>Matt Holst</span><span><i style="background:#EE46BC"></i>Matt Wong</span><span><i style="background:#875BF7"></i>Terry Kelly</span></div>
+        <div class="chartbox"><svg id="chart-rep" viewBox="0 0 1040 160" preserveAspectRatio="none"><line x1="26" y1="132" x2="1032" y2="132" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="135" text-anchor="end">0%</text><line x1="26" y1="70" x2="1032" y2="70" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="73" text-anchor="end">100%</text><line x1="26" y1="8" x2="1032" y2="8" stroke="var(--grid)" stroke-width="1"></line><text class="axtx" x="22" y="11" text-anchor="end">200%</text><line x1="26" y1="70" x2="1032" y2="70" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" opacity=".5"></line><path d="M26.0 126.4 L117.5 125.2 L208.9 125.8 L300.4 124.6 L391.8 123.3 L483.3 125.2 L574.7 123.9 L666.2 124.6 L757.6 123.3 L849.1 122.7 L940.5 123.9 L1032.0 123.3" fill="none" stroke="#257CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="1032.0" cy="123.3" r="2.4" fill="#257CFF"></circle><path d="M26.0 115.9 L117.5 119.6 L208.9 122.7 L300.4 124.6 L391.8 123.3 L483.3 123.9 L574.7 124.6 L666.2 123.9 L757.6 123.3 L849.1 123.9 L940.5 122.7 L1032.0 123.3" fill="none" stroke="#E5A400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="1032.0" cy="123.3" r="2.4" fill="#E5A400"></circle><path d="M26.0 126.4 L117.5 124.6 L208.9 125.8 L300.4 125.2 L391.8 124.6 L483.3 125.2 L574.7 123.9 L666.2 124.6 L757.6 123.3 L849.1 123.9 L940.5 122.7 L1032.0 125.8" fill="none" stroke="#15B79E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="1032.0" cy="125.8" r="2.4" fill="#15B79E"></circle><path d="M26.0 125.8 L117.5 123.3 L208.9 124.6 L300.4 123.9 L391.8 124.6 L483.3 123.3 L574.7 122.7 L666.2 123.9 L757.6 123.3 L849.1 122.7 L940.5 123.3 L1032.0 122.7" fill="none" stroke="#EE46BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="1032.0" cy="122.7" r="2.4" fill="#EE46BC"></circle><path d="M26.0 103.5 L117.5 113.4 L208.9 120.8 L300.4 124.6 L391.8 125.2 L483.3 123.9 L574.7 124.6 L666.2 125.2 L757.6 124.6 L849.1 123.9 L940.5 123.3 L1032.0 123.9" fill="none" stroke="#875BF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="1032.0" cy="123.9" r="2.4" fill="#875BF7"></circle></svg></div>
+      </div>
+      <div class="rep-table card" style="box-shadow:none">
+        <table class="tbl">
+          <thead><tr><th>Technician</th><th>Clocked Hrs</th><th>Invoiced Tech Hrs</th><th>Efficiency</th></tr></thead>
+          <tbody>
+            <tr><td><div class="cust"><span class="mono">TK</span>Terry Kelly</div></td><td class="tnum">13.94</td><td class="tnum">6.48</td><td class="tnum">46.48%</td></tr>
+            <tr><td><div class="cust"><span class="mono">JC</span>James Cone</div></td><td class="tnum">17.19</td><td class="tnum">4.51</td><td class="tnum">26.24%</td></tr>
+            <tr><td><div class="cust"><span class="mono">MW</span>Matt Wong</div></td><td class="tnum">19.96</td><td class="tnum">2.02</td><td class="tnum">10.12%</td></tr>
+            <tr><td><div class="cust"><span class="mono">MH</span>Matt Holst</div></td><td class="tnum">21.44</td><td class="tnum">2.07</td><td class="tnum">9.65%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span><b>Nesting concept:</b> 4 hero KPIs (Revenue · Billing Efficiency · Tech Efficiency · Tech Utilization) each open to their chart + table; Sales by Customer + At Risk Customers styled as two more heroes below — a headline count, not a revenue figure.</span>
+    <span><b>Native light + dark</b> · collapsed by default to cut scrolling · one detail panel open at a time.</span>
+    <span><b>Real values</b> from localhost:7200/dashboard, QA Testing.</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage'),repstage=document.getElementById('repstage'),
+      seg=document.getElementById('seg'),optline=document.getElementById('optline'),
+      modetgl=document.getElementById('modetgl'),modeicon=document.getElementById('modeicon'),modename=document.getElementById('modename');
+  var opt='current',mode='light';
+  var SUN='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>';
+  var MOON='<svg viewBox="0 0 24 24"><path d="M21 12.8A8 8 0 1 1 11.2 3a6.3 6.3 0 0 0 9.8 9.8z"/></svg>';
+  var CHEV='<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+  var CAL='<svg class="cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>';
+  var CVT='<svg class="cvt" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+  var ARR='<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 13.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4.5"/></svg>';
+  var notes={
+    current:'<b>Current</b> — the real dashboard today: flat white cards, thin borders, four KPIs, then every chart and table stacked down the page. The baseline this nesting is meant to shorten.',
+    nacc:'<b>New Dashboard</b> — the four hero KPIs sit in one compact row, with Sales by Customer and At Risk Customers as two more heroes just below (a headline count, not a dollar figure). Click any card and its chart + detail table open in a single full-width panel below — click another and the panel swaps. Minimal scroll, one thing in focus at a time.'
+  };
+  function apply(){
+    stage.setAttribute('data-opt',opt);stage.setAttribute('data-mode',mode);
+    repstage.setAttribute('data-opt',opt);repstage.setAttribute('data-mode',mode);
+    optline.innerHTML=notes[opt];
+    [].forEach.call(seg.children,function(b){b.classList.toggle('on',b.getAttribute('data-o')===opt);});
+    modeicon.innerHTML=mode==='light'?SUN:MOON;modename.textContent=mode==='light'?'Light':'Dark';
+    stage.style.boxShadow=(opt==='current'&&mode==='light')?'0 20px 44px rgba(13,22,42,.10)':'';
+    draw();
+  }
+  seg.addEventListener('click',function(e){var b=e.target.closest('button');if(b){opt=b.getAttribute('data-o');apply();}});
+  modetgl.addEventListener('click',function(){mode=mode==='light'?'dark':'light';apply();});
+
+  function css(v){return getComputedStyle(stage).getPropertyValue(v).trim()||v;}
+  function P(pts){return pts.map(function(p,i){return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1);}).join(' ');}
+  function spark(id,vals,color){
+    var el=document.getElementById(id);if(!el)return;var W=260,H=34,mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals),r=(mx-mn)||1;
+    var pts=vals.map(function(v,i){return[i/(vals.length-1)*W,H-3-((v-mn)/r)*(H-7)];});var d=P(pts);
+    el.innerHTML='<path d="'+d+' L'+W+' '+H+' L0 '+H+' Z" fill="'+color+'" opacity=".13"/>'+
+      '<path d="'+d+'" fill="none" stroke="'+color+'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>'+
+      '<circle cx="'+pts[pts.length-1][0]+'" cy="'+pts[pts.length-1][1]+'" r="2.6" fill="'+color+'"/>';
+  }
+  function revBar(id){
+    var el=document.getElementById(id);if(!el)return;var W=560,H=160,pt=8,pb=22,pl=6;
+    var months=['Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'];
+    var vals=[0,0,0,0,0,0,0,0,0,0,1900000,1545465],mx=2000000,iw=(W-pl*2)/vals.length,bw=iw*0.5,g='';
+    [0,1000000,2000000].forEach(function(v){var y=pt+(1-v/mx)*(H-pt-pb);g+='<line x1="'+pl+'" y1="'+y+'" x2="'+(W-pl)+'" y2="'+y+'" stroke="var(--grid)" stroke-width="1"/><text class="axtx" x="'+pl+'" y="'+(y-3)+'">$'+(v/1000000)+'M</text>';});
+    vals.forEach(function(v,i){var h=(v/mx)*(H-pt-pb),x=pl+i*iw+(iw-bw)/2,y=H-pb-h;if(h>0)g+='<rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+h+'" rx="3" fill="var(--accent)"/>';
+      g+='<text class="axtx" x="'+(pl+i*iw+iw/2)+'" y="'+(H-7)+'" text-anchor="middle">'+months[i]+'</text>';});
+    el.innerHTML=g;
+  }
+  function lineChart(id,W,series,max,mark){
+    var el=document.getElementById(id);if(!el)return;
+    var H=150,pt=8,pb=18,pl=26,n=series[0].v.length;
+    var x=function(i){return pl+i/(n-1)*(W-pl-8);},y=function(v){return pt+(1-v/max)*(H-pt-pb);},g='';
+    var ticks=max===200?[0,100,200]:[0,50,100];
+    ticks.forEach(function(v){var gy=y(v);g+='<line x1="'+pl+'" y1="'+gy+'" x2="'+(W-8)+'" y2="'+gy+'" stroke="var(--grid)" stroke-width="1"/><text class="axtx" x="'+(pl-4)+'" y="'+(gy+3)+'" text-anchor="end">'+v+'%</text>';});
+    if(mark){var ym=y(mark);g+='<line x1="'+pl+'" y1="'+ym+'" x2="'+(W-8)+'" y2="'+ym+'" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" opacity=".5"/>';}
+    series.forEach(function(t){var col=css(t.k),pts=t.v.map(function(v,i){return[x(i),y(v)];}),lp=pts[pts.length-1];
+      g+='<path d="'+P(pts)+'" fill="none" stroke="'+col+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+        '<circle cx="'+lp[0].toFixed(1)+'" cy="'+lp[1].toFixed(1)+'" r="2.4" fill="'+col+'"/>';});
+    el.innerHTML=g;
+  }
+  var TECHS=[
+    {n:'Elena Sandoval',k:'--c1',v:[9,11,10,12,14,11,13,12,14,15,13,14]},
+    {n:'James Cone',k:'--c2',v:[26,20,15,12,14,13,12,13,14,13,15,14]},
+    {n:'Matt Holst',k:'--c3',v:[9,12,10,11,12,11,13,12,14,13,15,10]},
+    {n:'Matt Wong',k:'--c4',v:[10,14,12,13,12,14,15,13,14,15,14,15]},
+    {n:'Terry Kelly',k:'--c5',v:[46,30,18,12,11,13,12,11,12,13,14,13]}
+  ];
+  var ADV=[
+    {n:'James Cone',k:'--c1',v:[24,26,25,24,25,24,26,25,24,25,24,24]},
+    {n:'Matt Holst',k:'--c2',v:[64,58,62,60,65,63,66,64,65,63,64,65]}
+  ];
+  var UTILT=[
+    {n:'Matt Wong',k:'--c1',v:[100,100,100,100,100,100,100,100,100,100,100,100]},
+    {n:'James Cone',k:'--c2',v:[100,100,100,100,100,100,100,100,100,100,100,46]},
+    {n:'Matt Holst',k:'--c3',v:[100,100,100,100,100,100,100,100,100,100,100,100]},
+    {n:'Elena Sandoval',k:'--c5',v:[100,100,100,100,100,100,100,100,100,100,100,98]},
+    {n:'Terry Kelly',k:'--c4',v:[100,100,100,100,100,100,100,100,100,100,100,39]},
+    {n:'Taylor Suitor',k:'--c6',v:[100,100,100,100,100,100,100,100,100,100,100,88]}
+  ];
+  function legend(id,arr){var el=document.getElementById(id);if(el)el.innerHTML=arr.map(function(t){return '<span><i style="background:'+css(t.k)+'"></i>'+t.n+'</span>';}).join('');}
+
+  /* detail table rows reused by both nested directions */
+  var EFF_ROWS=[['Terry Kelly','13.94','6.48','46.48%'],['James Cone','17.19','4.51','26.24%'],['Matt Wong','19.96','2.02','10.12%'],['Matt Holst','21.44','2.07','9.65%'],['Elena Sandoval','21.23','1.91','9.00%']];
+  var UTIL_ROWS=[['Matt Wong','89.16','0.00','89.16','100.00%'],['Matt Holst','262.93','0.00','262.93','100.00%'],['Elena Sandoval','99.33','2.12','101.45','97.91%'],['James Cone','50.21','59.76','109.97','45.66%'],['Terry Kelly','41.49','64.47','105.96','39.16%']];
+  var ADV_ROWS=[['Matt Holst','77.06','50.00','64.88%','$87.59'],['Sarah Chen','68.40','44.10','61.20%','$79.30'],['Derek Malloy','52.18','30.05','57.60%','$71.15'],['Priya Nair','41.92','22.40','53.40%','$64.80'],['Tomas Rivera','33.75','15.20','45.05%','$52.40'],['Angela Woods','22.60','8.10','35.84%','$38.90'],['James Cone','16.73','4.00','23.91%','$20.02']];
+  var CUST_ROWS=[['Maple Creek Equipment','28','<span class="ld-pos">+3.2</span>','$12,480.00'],['Mesa Ridge Construction','21','<span class="ld-neg">-1.5</span>','$9,340.00'],['Metro Delivery Group','18','<span class="ld-pos">+0.8</span>','$7,910.00'],['Westview Fleet Services','15','0.0','$6,225.00'],['Summit Construction Group','13','<span class="ld-neg">-2.1</span>','$4,880.00']];
+
+  var IC={
+    rev:'<svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    bill:'<svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 14l3-4 3 3 5-7"/></svg>',
+    eff:'<svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>',
+    util:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
+    cust:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.4 20a5.6 5.6 0 0 1 11.2 0"/><path d="M16 5.4a3 3 0 0 1 0 5.9M17.4 20a5.6 5.6 0 0 0-3-4.9"/></svg>',
+    risk:'<svg viewBox="0 0 24 24"><path d="M12 3.2l9 16.3H3z"/><path d="M12 10v4.2M12 17.4v.02"/></svg>'
+  };
+  /* hero → nested chart + table; Sales & At Risk are top cards with a table only */
+  var HEROES=[
+    {key:'rev',lbl:'Revenue',per:'This Month',fig:'$1,545,465.50',ic:IC.rev,ranged:true,rtype:'money',rbase:1545465.5,sub:'Parts 0% · Labor 100%',
+      delta:{d:'down',t:'2.7%',c:'vs last month'},spark:{v:[3,4,3,4,4,5,49,52,50,49],col:'--accent'},sparkBase:[3,4,3,4,4,5,49,52,50,49],
+      chart:{type:'bar'}},
+    {key:'bill',lbl:'Billing Efficiency',per:'This Month',fig:'57.58%',ic:IC.bill,ranged:true,rtype:'pct',rbase:57.58,sub:'379.40 Invoiced / 658.89 Clocked',
+      delta:{d:'down',t:'74.6%',c:'vs last month'},spark:{v:[70,68,66,63,61,59,60,58,58,57.58],col:'--c3'},sparkBase:[70,68,66,63,61,59,60,58,58,57.58],
+      chart:{type:'line',series:ADV,legend:ADV},table:{h:'By advisor',head:['Advisor','Worked Hrs','Invoiced Hrs','Billing Efficiency','ELR'],rows:ADV_ROWS}},
+    {key:'eff',lbl:'Technician Efficiency',per:'This Month',fig:'18.13%',neg:true,ic:IC.eff,ranged:true,rtype:'pct',rbase:18.13,sub:'17.00 Invoiced Tech Hrs / 93.75 Clocked',
+      delta:{d:'down',t:'29.7%',c:'vs last month'},spark:{v:[24,20,18,16,15,17,18,17,18,18.13],col:'--neg'},sparkBase:[24,20,18,16,15,17,18,17,18,18.13],
+      chart:{type:'line',series:TECHS,legend:TECHS},table:{h:'By technician',head:['Tech','Clocked Hrs','Invoiced Tech Hrs','Efficiency'],rows:EFF_ROWS}},
+    {key:'util',lbl:'Technician Utilization',per:'This Month',fig:'81.96%',ic:IC.util,ranged:true,rtype:'pct',rbase:81.96,sub:'543.12 WO Hrs / 662.66 Clocked',
+      delta:{d:'down',t:'18.0%',c:'vs last month'},spark:{v:[76,78,74,80,79,81,80,82,81,81.96],col:'--accent'},sparkBase:[76,78,74,80,79,81,80,82,81,81.96],
+      chart:{type:'line',series:UTILT,legend:UTILT},table:{h:'By technician',head:['Tech','WO Hours','Internal Hours','Total Hours','Utilization %'],rows:UTIL_ROWS}}
+  ];
+  var TOPCARDS=[
+    {key:'sales',lbl:'Sales by Customer',per:'Last 12 Months',ic:IC.cust,fig:'15',unit:'customers',ranged:true,rtype:'count',rbase:15,
+      sub:'Top: Maple Creek Equipment',spark:{v:[9,10,11,11,12,13,12,14,14,15],col:'--c3'},sparkBase:[9,10,11,11,12,13,12,14,14,15],
+      table:{h:'Top customers',head:['Customer','Invoices','Labor Delta','Subtotal'],rows:CUST_ROWS}},
+    {key:'risk',lbl:'At Risk Customers',per:'Inactive 120+ days',ic:IC.risk,fig:'1',unit:'at risk',
+      sub:'$40.50 (12mo) · Ruline Partners',spark:{v:[3,3,2,2,2,1,2,1,1,1],col:'--warn'},
+      table:{h:'',head:['Customer','Last Invoice Date','Lifetime Invoices','Revenue (12 Mo)'],rows:[['Ruline Partners','Oct 10, 2025','1','$40.50']]}}
+  ];
+  var ALLITEMS=HEROES.concat(TOPCARDS);
+  function findItem(k){for(var i=0;i<ALLITEMS.length;i++)if(ALLITEMS[i].key===k)return ALLITEMS[i];return null;}
+
+  /* ── per-card date/threshold picker (simulates the app's WidgetDateLabel) ── */
+  var RANGES=['Last 12 Months','This Year','Last Year','This Quarter','Last Quarter','This Month','Last Month','This Week','Last Week'];
+  var RISK=['30 days','60 days','90 days','120 days','180 days'];
+  var DSTATE={};
+  ALLITEMS.forEach(function(it){DSTATE[it.key]=(it.key==='risk')?'120 days':it.per;});
+  function dopts(key){return key==='risk'?RISK:RANGES;}
+  function dateChip(key){return '<span class="nh-date" data-dk="'+key+'">'+CAL+'<span class="nh-date-lbl">'+DSTATE[key]+'</span>'+CVT+'</span>';}
+  var REPORTNAME={rev:'Sales Report',bill:'Advisor Analysis Report',eff:'Technician Efficiency Report',util:'Technician Utilization Report',sales:'Sales By Customer Report'};
+  function repLink(item){var rn=REPORTNAME[item.key];if(!rn)return '';return '<a class="nh-link" href="#" target="_blank" aria-label="Open '+rn+'"><span class="nh-tip">'+rn+'</span>'+ARR+'</a>';}
+  function expBar(open){return '<div class="nh-exp"><span class="nh-exp-t">'+(open?'Hide details':'View details')+'</span><span class="nh-exp-chev">'+CHEV+'</span></div>';}
+  function nestTable(t){
+    var th=t.head.map(function(x){return '<th>'+x+'</th>';}).join('');
+    var body=t.rows.map(function(r){return '<tr>'+r.map(function(c,i){return i?'<td class="tnum">'+c+'</td>':'<td><div class="cust">'+c+'</div></td>';}).join('')+'</tr>';}).join('');
+    return '<table class="tbl"><thead><tr>'+th+'</tr></thead><tbody>'+body+'</tbody></table>';
+  }
+
+  /* ── model A: the picker drives fig + delta + sparkline (window & granularity) ── */
+  var RMETA={
+   'This Week':{c:'vs last week',n:7,ms:0.06,cs:0.34},
+   'Last Week':{c:'vs prior week',n:7,ms:0.055,cs:0.31},
+   'This Month':{c:'vs last month',n:12,ms:1,cs:0.72},
+   'Last Month':{c:'vs prior month',n:12,ms:1.03,cs:0.75},
+   'This Quarter':{c:'vs last quarter',n:13,ms:3.0,cs:0.9},
+   'Last Quarter':{c:'vs prior quarter',n:13,ms:2.85,cs:0.87},
+   'This Year':{c:'vs last year',n:12,ms:8.0,cs:1.0},
+   'Last Year':{c:'vs prior year',n:12,ms:12.2,cs:1.0},
+   'Last 12 Months':{c:'vs prior 12 mo',n:12,ms:12.0,cs:1.0}
+  };
+  /* At Risk is threshold-driven: looser threshold (fewer days) → more customers at risk */
+  /* At Risk delta: fewer at-risk = GOOD (green, down arrow); more = BAD (red, up arrow).
+     d drives colour (up=green/pos, down=red/neg per CSS); arw sets the arrow independently. */
+  var RISKDATA={
+   '30 days':{fig:'9',series:[6,7,8,7,9,8,10,9,8,9],delta:{d:'down',arw:'▲',t:'1',c:'vs last month'}},
+   '60 days':{fig:'6',series:[4,5,6,5,7,6,7,6,7,6],delta:{d:'up',arw:'▼',t:'1',c:'vs last month'}},
+   '90 days':{fig:'4',series:[3,4,5,4,5,4,6,5,6,4],delta:{d:'up',arw:'▼',t:'2',c:'vs last month'}},
+   '120 days':{fig:'1',series:[3,3,2,2,2,1,2,2,2,1],delta:{d:'up',arw:'▼',t:'1',c:'vs last month'}},
+   '180 days':{fig:'1',series:[2,2,1,1,1,1,1,2,2,1],delta:{d:'up',arw:'▼',t:'1',c:'vs last month'}}
+  };
+  function hashf(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0)/4294967296;}
+  function resample(arr,n){if(n===arr.length)return arr.slice();var out=[];for(var i=0;i<n;i++){var t=i/(n-1)*(arr.length-1),lo=Math.floor(t),hi=Math.min(lo+1,arr.length-1);out.push(arr[lo]+(arr[hi]-arr[lo])*(t-lo));}return out;}
+  function fmtMoney(v,key,range){if(key==='rev'&&range==='This Month')return '$1,545,465.50';return '$'+Math.round(v).toLocaleString('en-US')+'.00';}
+  function computeRange(item,range){
+    var m=RMETA[range]||RMETA['This Month'],fig,sp=resample(item.sparkBase,m.n);
+    if(item.rtype==='money')fig=fmtMoney(item.rbase*m.ms,item.key,range);
+    else if(item.rtype==='count')fig=String(Math.max(1,Math.round(item.rbase*m.cs)));
+    else{var wob=(range===item.per)?0:(hashf(item.key+range)*9-4);fig=(item.rbase+wob).toFixed(2)+'%';}
+    var delta;
+    if(range===item.per&&item.delta)delta={d:item.delta.d,t:item.delta.t,c:item.delta.c};
+    else delta={d:(hashf(item.key+'s'+range)>0.5?'up':'down'),t:(1+hashf(item.key+'d'+range)*7).toFixed(1)+'%',c:m.c};
+    return{fig:fig,delta:delta,spark:sp};
+  }
+  /* unified per-card view — resolves the current range/threshold into fig/delta/spark */
+  function view(item,forNacc){
+    if(item.key==='risk'){var rd=RISKDATA[DSTATE.risk]||RISKDATA['120 days'];
+      /* At Risk is inverted vs the revenue-style heroes: fewer at-risk (▼) is GOOD (green = 'up' class),
+         more at-risk (▲) is BAD (red = 'down' class). Derive the colour from the arrow so it can never
+         drift into a green ▲ / red ▼. */
+      var rdel=rd.delta?{d:(rd.delta.arw==='▲'?'down':'up'),arw:rd.delta.arw,t:rd.delta.t,c:rd.delta.c}:null;
+      if(forNacc)return{fig:rd.fig,unit:item.unit,neg:false,delta:rdel,sub:item.sub,sparkVals:rd.series,col:'--accent'};
+      return{fig:rd.fig,unit:item.unit,neg:false,delta:null,sub:item.sub,sparkVals:rd.series,col:item.spark.col,stick:true,cap:'12-mo avg · below = good'};}
+    if(item.ranged){var ci=computeRange(item,DSTATE[item.key]);
+      return{fig:ci.fig,unit:item.unit,neg:item.neg,delta:ci.delta,sub:item.sub,sparkVals:ci.spark,col:item.spark.col};}
+    return{fig:item.fig,unit:item.unit,neg:item.neg,delta:item.delta,sub:item.sub,sparkVals:item.spark?item.spark.v:null,col:item.spark?item.spark.col:'--accent'};
+  }
+  /* At Risk sparkline: count trend + dashed baseline (avg) measuring stick; dot green below / red above */
+  function riskSpark(id,vals){
+    var el=document.getElementById(id);if(!el)return;
+    var W=260,H=34,mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals),r=(mx-mn)||1;
+    var avg=vals.reduce(function(a,b){return a+b;},0)/vals.length,yF=function(v){return H-3-((v-mn)/r)*(H-9);};
+    var pts=vals.map(function(v,i){return[i/(vals.length-1)*W,yF(v)];}),d=P(pts),last=vals[vals.length-1];
+    var dotCol=css(last<=avg?'--pos':'--neg'),ln=css('--muted'),ay=yF(avg);
+    el.innerHTML='<path d="'+d+' L'+W+' '+H+' L0 '+H+' Z" fill="'+ln+'" opacity=".08"/>'+
+      '<line x1="0" y1="'+ay.toFixed(1)+'" x2="'+W+'" y2="'+ay.toFixed(1)+'" stroke="'+css('--ink2')+'" stroke-width="1.3" stroke-dasharray="4 3" opacity=".65"/>'+
+      '<path d="'+d+'" fill="none" stroke="'+ln+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'+
+      '<circle cx="'+pts[pts.length-1][0].toFixed(1)+'" cy="'+pts[pts.length-1][1].toFixed(1)+'" r="3.1" fill="'+dotCol+'"/>';
+  }
+  function drawCardSpark(prefix,item){var forNacc=(prefix==='nacc-sp-');var v=view(item,forNacc);if(!v.sparkVals)return;var id=prefix+item.key;if(v.stick)riskSpark(id,v.sparkVals);else spark(id,v.sparkVals,css(v.col));}
+
+  /* ── New Dashboard: Panel (connected spotlight) + Inline (expand in place) ── */
+  var naccView='panel',naccActive=null,naccInlineOpen={};
+  function buildDetail(item,cvId,lgId,vbw){
+    var chart='';
+    if(item.chart){
+      var isBar=item.chart.type==='bar',vb=isBar?'0 0 560 160':'0 0 '+vbw+' 150';
+      chart='<div class="nnest-chart">'+(item.chart.legend?'<div class="legend" id="'+lgId+'"></div>':'')+'<svg id="'+cvId+'" viewBox="'+vb+'" preserveAspectRatio="none"></svg></div>';
+    }
+    var tbl=item.table?((item.table.h?'<div class="nnest-h">'+item.table.h+'</div>':'')+nestTable(item.table)):'';
+    return chart+tbl;
+  }
+  function drawDetail(item,cvId,lgId,w){
+    if(!item.chart)return;
+    if(item.chart.type==='bar')revBar(cvId);
+    else{lineChart(cvId,w,item.chart.series,200,100);if(item.chart.legend&&lgId)legend(lgId,item.chart.legend);}
+  }
+  function naccCard(item){
+    var inline=naccView==='inline',on=inline?!!naccInlineOpen[item.key]:(item.key===naccActive),v=view(item,true),mid='';
+    if(v.sub)mid+='<div class="nh-sub">'+v.sub+'</div>';
+    var sp=v.sparkVals?'<svg class="nh-spark" id="nacc-sp-'+item.key+'" viewBox="0 0 260 34" preserveAspectRatio="none"></svg>'+(v.cap?'<div class="nh-spark-cap">'+v.cap+'</div>':''):'';
+    var nest=inline?'<div class="nnest">'+buildDetail(item,'nacc-in-cv-'+item.key,'nacc-in-lg-'+item.key,560)+'</div>':'';
+    return '<div class="nh'+(on?' on':'')+(inline?' nh--inline':'')+'" data-nk="'+item.key+'">'+
+      '<div class="nh-top">'+'<span class="nh-lbl">'+item.lbl+'</span>'+repLink(item)+dateChip(item.key)+'</div>'+
+      (v.fig?'<div class="nh-fig'+(v.neg?' neg':'')+'">'+v.fig+(v.unit?' <span class="nh-unit">'+v.unit+'</span>':'')+'</div>':'')+mid+sp+
+      expBar(on)+nest+
+    '</div>';
+  }
+  function positionCaret(host,key){
+    var wrap=host.querySelector('.nacc-panelwrap'),panel=host.querySelector('.nacc-panel');if(!wrap||!panel)return;
+    var card=document.querySelector('#layout-nacc .nh[data-nk="'+key+'"]');if(!card)return;
+    var cr=card.getBoundingClientRect(),pr=panel.getBoundingClientRect();
+    if(!pr.width)return;
+    var x=cr.left+cr.width/2-pr.left;x=Math.max(20,Math.min(pr.width-20,x));
+    wrap.style.setProperty('--caret',x+'px');
+  }
+  function renderNacc(){
+    var top=document.getElementById('nacc-top'),heros=document.getElementById('nacc-heros'),
+        hostH=document.getElementById('nacc-panel-host-heros'),hostT=document.getElementById('nacc-panel-host-top'),
+        seg=document.getElementById('nacc-viewseg'),xall=document.getElementById('nacc-xall'),hint=document.getElementById('nacc-hint');
+    if(!heros)return;
+    var inline=naccView==='inline';
+    heros.classList.toggle('inline',inline);top.classList.toggle('inline',inline);
+    if(seg)[].forEach.call(seg.children,function(b){b.classList.toggle('on',b.getAttribute('data-v')===naccView);});
+    if(xall)xall.style.display=inline?'inline-flex':'none';
+    if(hint)hint.textContent=inline?'Open as many cards as you like — each opens in place. Or use Expand all.':'Click any card to open its chart & details right below its row — one at a time.';
+    top.innerHTML=TOPCARDS.map(naccCard).join('');
+    heros.innerHTML=HEROES.map(naccCard).join('');
+    ALLITEMS.forEach(function(h){drawCardSpark('nacc-sp-',h);});
+    hostH.innerHTML='';hostT.innerHTML='';
+    if(inline){
+      ALLITEMS.forEach(function(it){if(naccInlineOpen[it.key])drawDetail(it,'nacc-in-cv-'+it.key,'nacc-in-lg-'+it.key,560);});
+      var allOpen=ALLITEMS.every(function(it){return naccInlineOpen[it.key];});
+      if(xall)xall.querySelector('span').textContent=allOpen?'Collapse all':'Expand all';
+    }else{
+      var item=findItem(naccActive);
+      if(item){
+        var isTop=TOPCARDS.indexOf(item)>=0,host=isTop?hostT:hostH;
+        host.innerHTML='<div class="nacc-panelwrap"><div class="nacc-panel"><div class="nacc-panel-h"><span class="t">'+item.lbl+' · '+DSTATE[item.key]+'</span><span class="nacc-close">Collapse ✕</span></div><div class="nacc-body">'+buildDetail(item,'nacc-cv','nacc-lg',1040)+'</div></div></div>';
+        drawDetail(item,'nacc-cv','nacc-lg',1040);
+        positionCaret(host,item.key);
+      }
+    }
+  }
+
+
+  function draw(){
+    /* Current — the real dashboard, card for card */
+    spark('sp-util',[76,78,74,80,79,81,80,82,81,81],css('--accent'));
+    spark('sp-eff',[24,20,18,16,15,17,18,17,18,18],css('--neg'));
+    spark('sp-rev',[3,4,3,4,4,5,49,52,50,49],css('--accent'));
+    spark('sp-bill',[110,112,114,113,116,115,116,116,116,116],css('--c3'));
+    revBar('chart-rev');
+    legend('eff-legend',TECHS);legend('bill-legend',ADV);legend('utilc-legend',UTILT);legend('rep-legend',TECHS);
+    lineChart('chart-eff',560,TECHS,200,100);
+    lineChart('chart-billc',560,ADV,200,100);
+    lineChart('chart-utilc',560,UTILT,200,100);
+    lineChart('chart-rep',1040,TECHS,200,100);
+    /* New Dashboard direction */
+    renderNacc();
+  }
+
+  /* Expand is driven ONLY by the footer handle (.nh-exp), not the whole card. */
+  var lnacc=document.getElementById('layout-nacc');
+  if(lnacc)lnacc.addEventListener('click',function(e){
+    var vb=e.target.closest('#nacc-viewseg button');
+    if(vb){naccView=vb.getAttribute('data-v');closeMenu();renderNacc();return;}
+    if(e.target.closest('#nacc-xall')){var allOpen=ALLITEMS.every(function(it){return naccInlineOpen[it.key];});ALLITEMS.forEach(function(it){naccInlineOpen[it.key]=!allOpen;});closeMenu();renderNacc();return;}
+    if(e.target.closest('.nacc-close')){naccActive=null;closeMenu();renderNacc();return;}
+    var exp=e.target.closest('.nh-exp');
+    if(exp){var card=exp.closest('.nh[data-nk]');if(card){var k=card.getAttribute('data-nk');
+      if(naccView==='inline')naccInlineOpen[k]=!naccInlineOpen[k];else naccActive=(naccActive===k?null:k);
+      closeMenu();renderNacc();}}
+  });
+
+  /* date-range picker menu */
+  var nhmenu=document.getElementById('nhmenu'),appEl=document.querySelector('#stage .app'),menuKey=null;
+  function closeMenu(){if(nhmenu){nhmenu.style.display='none';}menuKey=null;}
+  function openMenu(chip,key){
+    if(!nhmenu||!appEl)return;
+    menuKey=key;var opts=dopts(key),cur=DSTATE[key];
+    nhmenu.innerHTML=opts.map(function(o){return '<button data-v="'+o+'"'+(o===cur?' class="sel"':'')+'>'+o+'</button>';}).join('');
+    nhmenu.style.display='block';
+    var ar=appEl.getBoundingClientRect(),r=chip.getBoundingClientRect();
+    var mw=nhmenu.offsetWidth,mh=nhmenu.offsetHeight;
+    var left=r.left-ar.left;if(left+mw>ar.width-8)left=ar.width-mw-8;if(left<8)left=8;
+    var top=r.bottom-ar.top+6;
+    if(r.bottom+mh+10>ar.bottom)top=r.top-ar.top-mh-6; /* flip up near the bottom edge */
+    nhmenu.style.left=left+'px';nhmenu.style.top=top+'px';
+  }
+  if(nhmenu)nhmenu.addEventListener('click',function(e){
+    var b=e.target.closest('button');
+    if(b&&menuKey){DSTATE[menuKey]=b.getAttribute('data-v');closeMenu();renderNacc();renderNcol();}
+    e.stopPropagation();
+  });
+  document.addEventListener('click',function(e){
+    var link=e.target.closest('.nh-link');if(link){e.preventDefault();return;}
+    var chip=e.target.closest('.nh-date');
+    if(chip){var key=chip.getAttribute('data-dk');if(menuKey===key)closeMenu();else openMenu(chip,key);return;}
+    if(!e.target.closest('#nhmenu'))closeMenu();
+  });
+
+  var RLINK='<a class="rlink" title="Open the full report" aria-label="Open report"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>';
+  function addLinks(){
+    document.querySelectorAll('#stage .chead').forEach(function(h){ if(!h.querySelector('.rlink')) h.insertAdjacentHTML('beforeend',RLINK); });
+    document.querySelectorAll('#stage .kpis .krow').forEach(function(k){ if(!k.querySelector('.rlink')) k.insertAdjacentHTML('beforeend',RLINK); });
+  }
+  addLinks();
+  apply();
+})();
+</script>
+
+</body></html>
