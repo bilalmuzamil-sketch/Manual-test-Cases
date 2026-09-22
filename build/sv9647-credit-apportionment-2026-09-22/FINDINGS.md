@@ -353,3 +353,81 @@ a redirect and no content.
   and someone should say whether it is intended. Not filed.
 * The work-order-lines endpoint answers a **500** where the others answer a clean 400 not-found. It leaks
   nothing, it is not on this ticket's path, and I am not filing it — recorded so it is not lost.
+
+## §4a — The SV-6581 overflow guard: the handoff's wording and SV-6581's own wording DISAGREE
+
+The handoff calls this *"the highest-risk thing to accidentally 'fix'"* and states the acceptance line as:
+
+> **SV-6581 overflow:** a credit whose face **exceeds the single invoice it settled**, never touching
+> another work order, must still print its **full face** (e.g. $300.00 credit on a $148.50 invoice →
+> still shows $300.00)
+
+**The fixture, exactly that shape.** One work order **S-17590**, $145.04, one credit **CM-4195**
+**$300.00**, settled alone; the credit touched no other work order. Read back from the payment record:
+cash **$0**, `applied_credits` **−145.04**, invoice **paid**.
+
+**What the fixed build prints:**
+
+```
+Total                                  $145.04
+Payments
+  (Credit) Sep 22, 2026 - CM-4195      $145.04
+BALANCE                                  $0.00
+```
+
+**$145.04 — the consumed slice, not the $300.00 face.** `$300.00` appears nowhere on the document.
+
+### So is that a regression? I read SV-6581 rather than take the handoff's word for it
+
+**[SV-6581](https://shopview.atlassian.net/browse/SV-6581)** — *"BUG: Applied Credit Not Deducted from
+Invoice Total During Payment"*, reported by Samantha Nealon of Caledonia Truck & Trailer Repair Inc.,
+Done and `Verified_on_prod`. Its **Expected Result**, verbatim and complete:
+
+> * payment amount should be amount that is equal to invoice amount minus credit amount (down to 0)
+> * if credit is bigger than invoice, payment is still 0, (Payment Amount: $0.00 | Payment Type: Payment
+>   | New credit will be created for the remaining credit amount)
+> * if credit is smaller than invoice, payment is invoice amount minus credit amount
+> * if credit and invoice are same amount, payment is 0
+> * **in payments on invoice credit is visible if credit is applied to payment of that invoice**
+
+**SV-6581 is about the PAYMENT AMOUNT, and its only requirement about the invoice document is that the
+credit is VISIBLE. It never says the full face must print.** Measured against the ticket rather than
+against the handoff's paraphrase:
+
+| SV-6581 requirement | observed on the fix branch | |
+|---|---|---|
+| Credit bigger than invoice → payment amount **$0.00** | payment record: cash **$0** | ✓ |
+| The remaining credit amount is preserved | CM9647-4195 now reads **−$300.00 total, −$154.96 balance, "Partially Applied"**, and the customer balance is **−$154.96** | ✓ (kept on the same memo rather than issued as a new one — pre-existing behaviour, not something this change touches) |
+| The credit is **visible** in the invoice's payments | it is, as `(Credit) … CM-4195` | ✓ |
+| *"must still print its full face"* | **NOT met — it prints $145.04** | ⚠ the handoff says this; **SV-6581 does not** |
+
+### What I am doing about it
+
+**I am not calling this a regression, and I am not filing anything.** The only source that states the
+full-face rule is the developer's own handoff, and the ticket it cites says something narrower that the
+build satisfies. Calling it a defect on a paraphrase would be the same mistake as reporting a false
+regression from a settings difference.
+
+**It is a QUESTION for the developer, and it belongs in the QA comment:** *the handoff's acceptance line
+for the SV-6581 overflow case says the full face must still print; the build prints the consumed slice
+instead; SV-6581 itself only requires the credit to be visible — which reading is intended?* Under the
+apportionment this change introduces, printing the slice is the internally consistent answer.
+
+### Honest limit on this one
+
+**The pre-fix comparison for this exact shape is NOT captured.** The staging session expired mid-pass
+(`sso_required` on every call; the build marker is unchanged at `v26.36.8-e2c29c5`, etag
+`f3e1dab3640788cf201b1adbc7553592`, so it is an ordinary ~24 h expiry and not a redeploy). Until fresh
+staging cookies land I cannot say what the old build printed here, and that is the single measurement
+that would settle the question outright.
+
+### Two build facts found on the way, worth keeping
+
+* **A credit-only settlement cannot be completed from the New Payment dialog in the obvious way.** With
+  one invoice and one larger credit ticked, the credit row reads *"Applies $145.04 · $154.96 remaining"*,
+  *Payment amount* reads **$0.00** — and **Make Payment stays disabled**, with the Payment Method menu
+  refusing to open. Typing anything into the invoice's payment cell (even `1`) and choosing a method
+  enables it, and the posted record then still shows **cash $0 / credits −$145.04**. Zeroing the cell
+  instead flips the credit row to *"Not needed — invoice fully covered"* and the button stays disabled.
+* The invoice's **Payment** cell is the credit-application amount, not a cash amount — which is why it
+  reads `145.04` while the summary reads *Payment amount: $0.00*.
