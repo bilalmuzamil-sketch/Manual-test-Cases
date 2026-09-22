@@ -431,3 +431,48 @@ had already been removed**, so it went with its parent; the row count confirms i
 `remove-category` both answer **404**. It holds no data and no part references it. Removing it needs
 either a UI affordance I could not find or a developer; it is recorded here rather than quietly
 abandoned. The same category exists on the branch (`d3914028-…`), where no cleanup is required.
+
+## §12 — The checks I had not reached, now run (handoff §2 last bullet, §4, §6) — ALL PASS
+
+### Pick All over a mixed set (handoff §4) — PASS
+
+One priced part ($2.15) and two with the price cleared to null, picked together:
+
+```
+POST /api/work-orders/{wo}/pick-inventory-parts   ->  201  {"pickedCount":3}
+all three            status in_stock -> received
+the priced one       kept 2.15          the two unpriced      0.00
+billable rows        2 -> 5  (added 3)
+```
+
+**All three were billed** — the bulk path creates a row for the unpriced ones exactly as the single
+Pick does, which is the point of the handoff's §4.
+
+### Automatically Pick Inventory Parts = ON (handoff §2, last bullet) — PASS
+
+The org setting was flipped `false -> true`, a part added, and **nothing clicked**:
+
+```
+seeded request       status "received"  straight away (auto-picked)
+billable rows        5 -> 6   (added 1)
+setting restored     -> false, re-read and confirmed
+```
+
+The implicit path inherits the fix: adding a part with auto-pick on produces the billable row without
+any Pick click.
+
+### Sell-price and margin edits (handoff §6) — PASS
+
+```
+sell price 42.42  ->  stored 42.42,  margin recalculated to 97.57
+margin     50     ->  sell recalculated to 2.06, cost 1.03, margin 50
+```
+
+Both directions of the pricing resolver still work — **the fix did not over-correct into ignoring
+legitimate edits**, which is the specific worry the handoff's regression hotspot 4 names.
+
+**A measurement caveat, stated because it affects how these were read.** My filters on the row
+*description* matched nothing (`our bulk rows: []`, `its row: null`) — **the server overwrites the
+description of an inventory part request with the inventory part's own name**, the same trap recorded
+on SV-10158. The evidence above is therefore the **row-count delta and the per-request status**, both
+read from the API, not a description match.
