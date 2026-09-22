@@ -4973,3 +4973,50 @@ after which the row reads **Received**. Verify with
 Playwright's actionability click changes `aria-checked` on
 `checkbox_select_parts_<workOrderPartId>`. **Focus the element and press `Space`.** Only then does
 the row's `input_parts_return_quantity_<id>` appear (pre-filled) and the totals leave $0.00.
+
+### AC.12 ⚠️ RECEIVING PARTS: the screen the product actually uses (staging + branches, proven 2026-09-22)
+
+**There are TWO receive surfaces and only one of them is the product's path for a part sale or a work
+order's requested parts. Getting this wrong cost most of a pass and produced a false "the environment is
+broken" report** (playbook §U.0, question 2).
+
+**THE PATH THAT WORKS — the Part Requests tab:**
+
+1. `/parts/part-sale/{partSaleId}/part-requests` (work orders: the Parts tab equivalent). Each awaiting
+   row carries a **Receive** button, test id **`button_part_request_action`**.
+2. Clicking it opens a **Receive parts** panel *in place*, grouped by vendor. Control ids all carry the
+   **vendor-group id** as a suffix, and the part rows carry the **order-item id**:
+   * `input_invoice_number_<groupId>` — Vendor Invoice Number
+   * `date_input_invoice_date_<groupId>` — prefilled with today; only fill it if `inputValue()` is empty
+   * `input_note_<groupId>` · `input_tax_<groupId>` · `select_assign_vendor_<groupId>`
+   * `input_cost_<itemId>` · **`input_quantity_<itemId>`** (Qty Received) · `checkbox_receive_part_<itemId>`
+   * **`button_receive_vendor_<groupId>`** — the *Receive Parts (n)* button
+3. Discover both ids at runtime rather than hard-coding: take `button_receive_vendor_` and
+   `input_quantity_` off `$$eval('[data-test-id]')` after the panel opens.
+4. It posts **`POST /api/orders/receive-requested-parts`** → **200**, and the row flips to **Received**.
+   Payload: `{vendor_id:<groupId>, invoice_number, invoice_date (ISO), note, total, tax, items:[ …full
+   row objects… ]}`.
+
+**THE PATH THAT DOES NOT — `/accept-delivery/{orderId}`:** it renders, its form fills, and its
+**`POST /api/inventory/orders/accept` returns 500** even as Quick-login Admin on an order that has a
+vendor. Its payload is camelCase with `items` as a JSON **string**
+(`{id, invoiceNumber, invoiceDate, note, items:"[…]", total, orderStatus:"fulfilled", tax}`) — note the
+server's empty-body validator answers in **snake_case**, so probing it that way produces a confidently
+wrong 400. Do not use this route, and do not report its 500 as an environment fault.
+*(The third link the QA lead named, `/order/{orderId}?receive=1`, is the purchase-order screen's own
+receive entry — same destination as the panel above.)*
+
+**Completing a work order so it can be invoiced** needs BOTH, as separate calls:
+`POST /api/work-orders/change-mileage {work_order_id, mileage:'100000'}` **and**
+`POST /api/work-orders/change-engine-hours {work_order_id, engine_hours:'120'}` (both → 201). Passing
+`engine_hours` to `change-mileage` returns 201 and silently does nothing. Then
+`lines/change-status → complete` (which on some builds auto-completes the work order) and
+`work-orders/change-status {id, status:'complete'}`. **And read §R.7a first: without a customer contact
+the invoice path dies with a disabled button and two 500s.**
+
+**Cross-location facts worth keeping:** `POST /api/work-orders/create` **ignores the `workplace_id` you
+pass** and uses the session's — switch first with
+`POST /api/iam/change-location {workplace_id, workplace_timezone}`. A credit memo is likewise created in
+the session's workplace (its number gains that shop's prefix, `CM2-` / `CM3-`) and **a credit created in
+one location does not appear in the customer's Invoices tab when you are signed into another** — which
+will silently drop it out of a payment selection.
