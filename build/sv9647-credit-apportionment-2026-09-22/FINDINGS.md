@@ -192,3 +192,60 @@ What is actually established, signed in as **Quick login → Admin**:
 so I am not calling this environment-wide, and I am not calling it a defect of this ticket either: it is
 display-only work and receiving is not on its path. It is recorded here and it is the reason the before
 capture was built from labour-only work orders instead.
+
+## §0d — The matched pair: the SAME invoice, the SAME credits, on both builds
+
+§1 proved the fix works, but its fixture (part sales, $4.66 / $87.74, tax-exempt customer) is not the
+same document as the staging before. A before-and-after picture built from two different documents is
+worthless, so I rebuilt the staging fixture **identically on the fix branch** — same canned lines, same
+vehicle, same workplace, same credit faces — and the totals came out **to the cent**: **$145.04** and
+**$406.09** on both builds.
+
+| | BEFORE — staging `v26.36.8-e2c29c5` | AFTER — branch `v26.36.8-fc4dd05` |
+|---|---|---|
+| Customer | ZZAUTOTEST SV-9647 Credit Split **BEFORE** `27bfb198…` | ZZAUTOTEST SV-9647 Credit Split **AFTER** `53277e2c…` |
+| Small invoice | **INV-S2-33369**, $145.04 (WO `669d5baf…`) | **S-17583**, $145.04 (WO `eb5c8250…`) |
+| Large invoice | **INV-S2-33370**, $406.09 (WO `14fe4f27…`) | **S-17584**, $406.09 (WO `deca25bd…`) |
+| Credits | CM2-4398 $200.00 · CM2-4399 $300.00 | CM-4191 $200.00 · CM-4192 $300.00 |
+| Payment | one CASH payment, remainder $51.13, ref `ZZ-9647-BEFORE` | one CASH payment, remainder $51.13, ref `ZZ-9647-AFTER` |
+
+### The $145.04 document, side by side
+
+```
+BEFORE (staging)                          AFTER (fix branch)
+Total                     $145.04         Total                     $145.04
+Payments                                  Payments
+  Cash                     $51.13           Cash                     $51.13
+  (Credit) CM-4399        $300.00           (Credit) CM-4191         $37.56
+  (Credit) CM-4398        $200.00           (Credit) CM-4192         $56.35
+BALANCE                     $0.00         BALANCE                     $0.00
+                    ——————————                                ——————————
+payments printed          $551.13         payments printed          $145.04
+```
+
+### The $406.09 document
+
+```
+BEFORE (staging)                          AFTER (fix branch)
+  (Credit) CM-4399        $300.00           (Credit) CM-4191        $162.44
+  (Credit) CM-4398        $200.00           (Credit) CM-4192        $243.65
+payments printed          $500.00         payments printed          $406.09
+```
+
+### It reconciles in both directions on the fixed build
+
+| | small $145.04 | large $406.09 | memo face |
+|---|---|---|---|
+| CM-4191 | $37.56 | $162.44 | **$200.00** ✓ |
+| CM-4192 | $56.35 | $243.65 | **$300.00** ✓ |
+| Cash | $51.13 | — | $51.13 |
+| **document total** | **$145.04** ✓ | **$406.09** ✓ | |
+
+**And the figures were predicted before they were read.** Cash settles $51.13 of the small invoice,
+leaving $93.91; the two credits then split that in proportion to their faces —
+$200/$500 × $93.91 = **$37.56** and $300/$500 × $93.91 = **$56.35**. Both to the cent. The same rule
+gives $162.44 and $243.65 on the large one. This is the same apportionment rule §1 derived independently
+from the part-sale fixture, so two differently-shaped fixtures agree on it.
+
+**`$200.00`, `$300.00` and `$500.00` appear nowhere on either fixed document**, and `$145.04` appears
+nowhere on the large one — checked by searching the rendered text, not by eye.
