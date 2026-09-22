@@ -4675,6 +4675,37 @@ deliver the 7-tab management report.
     exact vehicle in front of me). Ties to Standing Rules 1, 12, 13, 14 (seed it, never block), 17, 22,
     50 (exhaustive AND exact), 63 (cheap never means less verified), 66, 68 (bite-proof) and 76.
 
+86. **THE "BEFORE" HALF OF EVERY COMPARISON COMES FROM PRODUCTION, NEVER FROM STAGING (all projects).**
+    USER DIRECTIVE (2026-09-22, verbatim): *"for before and after never use Staing for BEFORE rather the
+    production, you already have production credentials."*
+    **THE RULE:** whenever a deliverable shows a **BEFORE vs AFTER** (Standing Rule 73's executive
+    exhibit, Rule 74's whole-output diff, or any "what does the current behaviour look like" claim), the
+    BEFORE is captured on **PRODUCTION `app.shopview.com`** — the build customers are actually running —
+    **not on staging**. Staging is a pre-release environment: it can already carry the fix, it can carry
+    a *different* half-shipped state, and it redeploys without notice (it moved twice in one day on
+    2026-09-22), so a "current live behaviour" panel taken there can be wrong about customers in either
+    direction.
+    **ACCESS IS NOT A REASON TO FALL BACK TO STAGING** — production takes **credentials, not cookies**
+    (`POST /api/login {username, password}` → PHPSESSID; browser: the login form at
+    `https://app.shopview.com/`), they are already held for this engagement, and the QA lead has ruled
+    that production is a disposable TEST org (`72b2cc90…`) that may be exercised freely.
+    **PRODUCTION STILL KEEPS THE RESTORE-AFTER DISCIPLINE**, unlike the per-ticket QA branches: record
+    every field's original value **before** touching it, restore it afterwards, and **read it back after
+    a reload** to prove the restore (2026-09-22: an inventory part was taken 10.00 → 1,069.03 → 1.00 and
+    put back to 10.00 / 300.00 / core 1.00 / min 5 / max 6 / qty 2 + 99, verified field by field).
+    **IF THE BEFORE GENUINELY CANNOT BE CAPTURED ON PRODUCTION** — the data shape does not exist there and
+    cannot be seeded, or the flow is gated — say so in one plain line in the deliverable and name what
+    was used instead. **A staging BEFORE is a labelled fallback, never the default.**
+    **RATIONALE, 2026-09-22:** SV-9647's before-capture was taken on staging, and staging then redeployed
+    twice during the pass — the exhibits had to be relabelled and the behaviour re-confirmed on the newer
+    build before posting (Rule 72 caught it). On SV-9940 the production capture did something a staging
+    capture never could: it reproduced the customer's bug on the build they are running **and** exposed
+    the mechanism in the request payload (`"purchasePrice": "1,069.03"` as a comma-formatted string on
+    production versus `1069.03` as a number on the fix branch). Ties to Standing Rules 12 (observed, never
+    inferred), 22 (ask for the environment up front — **ask for production access, not staging**), 49/60
+    (the build is a source and its marker is recorded), 59 (re-read the sources before writing), 72 (the
+    pre-post gate), 73 (**this rule fixes which environment 73's BEFORE comes from**) and 74.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
