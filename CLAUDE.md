@@ -356,6 +356,21 @@ says what they SEE, no ids/jargon/HTTP terms (7/9). The three parts must line up
 decide pass/fail from what they see, with no help and no tool beyond the product?"* If no, fix it or
 mark honestly — it is **not tester-ready and does not ship.**
 
+**Rule 115 (100% coverage from EVERY provided source — design and tech plan, not just the PRD)** was
+ordered by the QA lead **2026-09-22** and lives at the end of `build/rules/RULES-61-96.md`, after 114.
+**"Covered everything" / "won't bite me" = 100% coverage against every source provided for the feature:
+the PRD, the DESIGN, the technical-plan / any `.md`, the epic + stories, PO answers, and anything else
+shared** — not the PRD alone. The **design must be EXPLORED, not skimmed**: open and drive it (click
+every card/expand, open every filter, hover tooltips, toggle light/dark, change widths — this env has
+Chromium + Playwright), and where it compares variants use ONLY the named target, never the baseline
+(Dashboards: "New Dashboard" is ours, "Current" is not). The **tech plan / md** is read for testable
+behaviour it adds (release-note changes, error/empty/loading states, exercisable flows, checkable
+NFRs); it informs, never overrules (30/57), a code-vs-doc conflict is a PO item (96). Each source is
+CONFIRM (nothing) / ADD (author it, cited to that source, 57) / DIVERGE (PO question, 56, never pick
+silently). **Coverage is PROVEN per source (a per-source verdict, 43), not asserted** — report PRD ✓,
+design ✓, tech plan ✓, epic ✓ with what was covered and what was excluded and why, before calling a
+suite complete.
+
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.

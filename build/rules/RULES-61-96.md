@@ -2531,3 +2531,54 @@ action, a missing bit of data, or a missing piece of knowledge.
 
 If no: fix the case, or mark honestly what cannot be done by hand. A case that fails this check is
 **not tester-ready (Rule 84) and does not ship.**
+
+## 115 · 100% COVERAGE FROM EVERY PROVIDED SOURCE — ALWAYS THE DESIGN AND THE TECH PLAN, NOT JUST THE PRD
+
+**Ordered by the QA lead, 2026-09-22, verbatim: *"you MUST ALWAYS consider design when creating test
+cases also the [tech-plan] md file to see if that is also needed for test cases. Make it your rule
+forever. When I say your work should not bite me it means I need 100% coverage from you for the test
+cases from all the sources I provide to you."*** Permanent, all projects. This is the coverage floor
+under Rule 57 (which names the sources) and Rule 20 (traceability): naming a source is not enough —
+every source must be COVERED.
+
+### The rule
+
+**"Covered everything" / "it won't bite me" means 100% coverage measured against EVERY source the QA
+lead provided for the feature — not just the PRD.** The source set includes, whenever provided: the
+spec/PRD, the **design** (Figma / Claude design / interactive prototype), the **technical
+implementation plan or any `.md`**, the **epic and its stories**, PO answers, and any other shared
+file. A suite authored from the PRD alone, with the design and the tech plan left unread, is
+**incomplete** even when every PRD requirement is covered.
+
+### The design must be EXPLORED, not skimmed
+
+- **Open it and drive it.** Click every card / expand, open every filter and dropdown, hover for
+  tooltips, toggle light/dark, switch responsive widths — see every state it can show. A static read
+  of the export text is not exploring it. Where the tooling allows, render and click it (this
+  environment has Chromium + Playwright).
+- **Use only the variant the QA lead names.** A design that compares variants (e.g. **"New Dashboard"**
+  vs a **"Current"** baseline) is authored from the NAMED target ONLY; never take a label, a layout or
+  a state from the baseline. (Dashboards 2026-09-22: "New Dashboard" is ours; "Current" is not.)
+- The design supplies build-accurate on-screen labels, affordances, states and layouts (Rules 9, 40);
+  where it shows something the PRD did not enumerate, that is coverage to ADD.
+
+### The tech plan / any `.md` is a source too
+
+Read it for testable behaviour it adds — release-note-driven changes, error/empty/loading states,
+endpoints or flows a tester can exercise, checkable NFRs. It **informs, never overrules** the PRD
+(Rules 30, 57); product source code is fact, not intent, and a code-vs-document conflict is a **PO
+decision item** (Rule 96). But it is a SOURCE and its testable content must be covered or explicitly
+excluded with a reason.
+
+### Every source is CONFIRM / ADD / DIVERGE
+
+For each source: **Confirm** (already covered) needs nothing; **Add** (it carries a testable thing the
+others did not) ⇒ author the case, cited to that source (Rule 57); **Diverge** (it contradicts another
+source) ⇒ raise a PO question (Rule 56), never silently pick a side.
+
+### Coverage is PROVEN per source, not asserted
+
+Emit a per-source coverage verdict (Rule 43): PRD ✓, design ✓, tech plan ✓, epic ✓ — each with what
+was covered and what was deliberately excluded and why. Do not report a suite "complete" until every
+provided source has been explored and reconciled. **"It won't bite me" is a claim you must be able to
+show, source by source.**
