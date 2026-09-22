@@ -74,6 +74,16 @@ tester could not perform as written and were fixed:
   C88591 tidied). Verbatim Expected quotes were left unchanged throughout (Rule 113).
 Re-scan: 0 remaining instructions a human cannot perform. All edited cases re-confirmed fr-view.
 
+## Expected-Result layout reformat (2026-09-22, QA lead order)
+All 87 cases were reformatted to the layout the QA lead set (Rule 113 amendment): Expected Results now
+have three line-break-separated parts — **(1) Expected results in our plain words, one result per line
+(bullets); (2) Source — the story/spec/section reference; (3) the exact verbatim quotes, one per result,
+each referenced** — then the AUTOMATION marker. The plain results lead so the case is runnable at a
+glance; the verbatim quotes are unchanged, moved below as backing. Preconditions/steps (including the
+Rule-114 fixes) were left untouched — only `custom_expected` was rewritten. All fr-view re-confirmed.
+Reproducible from `build_dvi.py --update` + `plain-bullets.txt` + `anchor_lib.py` in this folder
+(one plain bullet per anchor, meaning locked to the quote).
+
 ## Outstanding for the QA lead
 - **Not build-verified yet.** No QA-build verification was run (source-verify + authoring only). When
   the suite is executed against `https://sv8181.qa.shopview.com`, re-stamp read/build dates and flip
