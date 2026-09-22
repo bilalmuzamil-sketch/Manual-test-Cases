@@ -84,3 +84,28 @@ that nothing here was invented from the build (Standing Rule 57).
 on a $0.00 fallback (§9 — *"intentional … Do not raise it as a bug"*), vendor purchase-order
 receiving (never reaches the changed listener), and work orders **already** stranded in the bad state
 (the fix is forward-only).
+
+## §1 — Finding a work order to test on, and a mistake worth recording
+
+The first two production attempts reported **"no suitable work order"** and stopped. That was **my
+filter, not the environment**: I searched for work orders whose *own* status was `in_progress` /
+`authorized` / `open`, when what a part request actually needs is a **LINE** in `authorized` status —
+and those live on work orders whose status is `approved`.
+
+Surveying 30 production work orders and their per-line statuses made it obvious in one read:
+
+```
+S2-918  approved          lines=1  [authorized]            <- created by my own SV-10158 split today
+S2-917  estimate          lines=1  [authorization_required] <- same
+S2-861  approved          lines=1  [authorized]            <- USED
+S2-808  approved          lines=1  [authorized]
+S2-803  approved          lines=1  [authorized]
+S2-811  ready_for_review  lines=1  [complete]
+S2-810  ready_for_review  lines=4  [complete,complete,authorization_declined,complete]
+```
+
+Seven usable work orders were there the whole time. **S2-861** (`47abc3c7-…`) was chosen; S2-918 and
+S2-917 were deliberately avoided because they are artefacts of this morning's SV-10158 pass and
+mixing the two records would muddy both.
+
+*Filter on the state the action actually needs, not on the parent record's state.*
