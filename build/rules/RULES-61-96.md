@@ -2414,19 +2414,34 @@ these words…"* ends the discussion in a way that *"we understood it to mean…
 SV-10279 work is the worked example: the evidence that moved it was the PRD's own line
 (*"Prefix match on primary name field → +0.70"*) set against the product's own label.
 
-### How it sits with plain-language wording (Rules 7 and 9)
+### How it sits with plain-language wording (Rules 7 and 9) — presentation order set 2026-09-22
 
-Testers and POs read plain English, and specs are often not written in it. **Both survive, in this
-order and never merged:**
+Testers and POs read plain English, and specs are often not written in it. **The QA lead set the
+layout on 2026-09-22, verbatim: *"The expected results should be worded in your words in bullet points
+one result per line — correct meaning which MUST NEVER deviate from the spec's expected behavior…
+Then a line break for the source section… the sources section MUST mention the reference from the
+story/sources/specs… then after another line break it should show the exact QUOTES for each expected
+result with proper reference. The goal is that the test remains runnable by the Manual QA tester and
+by anyone who wants to reproduce the scenario."*** The Expected Result has THREE parts, in this order,
+separated by line breaks, never merged:
 
-1. **The verbatim quote comes first and is never altered** — attributed, with the document, its
-   version and the section.
-2. **A plain-language rendering may follow it**, clearly marked as our restatement, to tell a
-   tester what to look at on screen.
+1. **Expected results — OUR words, one result per line (bullets).** Plain, tester-runnable, and the
+   meaning **MUST NEVER deviate from the spec's expected behaviour**. This is what the manual tester
+   reads to run and judge the test.
+2. *(line break)* **Source — where the behaviour comes from.** The reference: epic/story + spec with
+   its version + the section(s), and/or the PO answer file with link and date (Rule 54).
+3. *(line break)* **Exact quotes from the source.** The verbatim spec sentence backing **each**
+   expected result, one per line, each with its own reference (anchor / section). This is the
+   immutable quote — it changes only when the source changes.
 
-The plain wording is an *addition*, never a *replacement*, and it never silently becomes the
-expectation. Where the two could be read as disagreeing, the quote wins and the restatement is
-corrected.
+**This REVERSES the earlier "the verbatim quote comes first" ordering** (the plain results now lead,
+so the case is runnable at a glance), but the quote itself is unchanged: still verbatim, still
+attributed, still immutable — it simply sits **below** the plain results as the backing evidence, and
+is never weakened or dropped. The plain results are an *addition*, never a *replacement*; where a
+plain result could be read as disagreeing with its quote, **the quote wins and the plain result is
+corrected**. Pair them one-to-one: each plain result has exactly one backing quote, so a reader can
+check every line against its source. This is also the executable half of Rule 114 — the plain results
+are what make the Expected runnable by hand.
 
 ### What this forbids, concretely
 

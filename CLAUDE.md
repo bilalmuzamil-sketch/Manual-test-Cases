@@ -63,9 +63,13 @@ These are stated here **in full** because a session that gets only this far must
   is a DEVIATION (57/61); a reviewer who disagrees is a PO QUESTION; neither permits editing the
   sentence. **If you are improving the wording of an Expected Result, stop — that is the failure
   this rule exists to prevent**, because a case rewritten towards the build can never fail.
-  Plain-language wording (7/9) is ADDED AFTER the quote, clearly marked as our restatement, and
-  never replaces it. No quotable sentence ⇒ hold the case and ask (58/64), never invent one and
-  never look at the build.
+  **Layout set by the QA lead 2026-09-22 (3 parts, line-break separated): (1) Expected results in
+  OUR plain words, one result per line as bullets, meaning never deviating from the spec; (2) Source —
+  the story/spec/section reference; (3) the exact verbatim QUOTES, one per result, each referenced.**
+  The plain results now lead so the case is runnable at a glance; the quote is unchanged, just moved
+  below as backing (never weakened/dropped). Where a plain result could disagree with its quote, the
+  quote wins. No quotable sentence ⇒ hold the case and ask (58/64), never invent one and never look at
+  the build.
 
 - **VERIFIED MEANS OBSERVED, NEVER INFERRED (12).** Only mark Verified / Pass / Fail / present /
   absent if it was observed live, with evidence captured that run. Anything not observed is labelled
@@ -320,8 +324,11 @@ invisible act of interpretation, and interpretation drifts towards whatever the 
 at — the build. Once the Expected Result is OUR sentence rather than the SPEC's sentence, the case
 can no longer fail: it has been quietly rewritten to describe the thing it is supposed to test.
 **Quote it, attribute it (document + version + section), and change it only when the SOURCE
-changes.** Plain-language wording for testers is **added after** the quote and clearly marked as
-our restatement — never a replacement, and where they could be read as disagreeing the quote wins.
+changes.** **Layout amended by the QA lead 2026-09-22 (3 parts, line-break separated): plain results
+in OUR words, one per line, LEAD; then the Source reference; then the exact verbatim QUOTES, one per
+result, each referenced.** The plain results lead so the case is runnable, but the quote is unchanged —
+moved below as backing, never weakened; where a plain result could disagree with its quote the quote
+wins and the plain result is corrected.
 **Forbidden outright:** rewriting Expected because the build differs · tidying grammar, tense or
 spelling · merging or splitting source sentences without showing the original · quoting a SUMMARY
 (a handoff, a task card, a Jira description that restates the PRD — quote the source itself, 112) ·
@@ -513,14 +520,16 @@ Compact form — **the rule named in brackets is the authority; read it before r
 
 - **Plain, layman English** throughout; numbered **Preconditions / Steps / Expected**, each on its own
   line. [7, 9]
-- **🔴 Expected Results QUOTE THE DOCUMENT VERBATIM — the source's own sentence, unaltered**, with
-  the document, its version and the section named. Never paraphrased, tidied, merged, split or
-  adjusted towards the build; it changes only when the SOURCE changes. A build that differs is a
-  deviation; a reviewer who differs is a PO question. **Improving the wording of an Expected Result
-  is the failure the rule exists to prevent** — a case rewritten towards the build can never fail.
-  Plain-language wording is ADDED AFTER the quote, marked as our restatement, never replacing it;
-  where they could disagree the quote wins. No quotable sentence ⇒ hold the case and ask.
-  [**113**, 57, 58, 64, 7, 9]
+- **🔴 Expected Results — THREE parts, line-break separated (layout set by QA lead 2026-09-22):**
+  **(1) Expected results in OUR plain words, one result per line as bullets** — tester-runnable,
+  meaning that MUST NEVER deviate from the spec; **(2) Source** — the story/spec + version + section
+  reference (and/or PO answer file + date); **(3) Exact QUOTES** — the source's own sentence, unaltered,
+  one per result, each referenced. The quote is never paraphrased, tidied, merged, split or adjusted
+  towards the build; it changes only when the SOURCE changes. The plain results LEAD (so the case is
+  runnable at a glance) and the quote sits below as backing — moved, never weakened or dropped. Pair
+  them one-to-one; where a plain result could disagree with its quote, the quote wins and the plain
+  result is corrected. **Improving/​drifting the quote is the failure the rule exists to prevent.**
+  No quotable sentence ⇒ hold the case and ask. [**113**, **114**, 57, 58, 64, 7, 9]
 - **PRD, design and Figma are expected to AGREE.** Where they disagree that is a **finding to raise**
   (a PO question + the outstanding register), never a side to pick silently; meanwhile the case follows
   the most recent authoritative source and DISCLOSES the divergence. "Everything should match the
