@@ -3897,3 +3897,23 @@ discipline, the two-character minimum, `lucide-icon` on every row, the role the 
 create. Those were recorded in comments scattered across throwaway files. They are now
 **encoded in the harness**, so the next session cannot repeat them by accident rather than merely
 being warned not to.
+
+## L0189 — 2026-09-22 — A tie-break check on the Parts tab must be built on INVENTORY parts, never catalogue parts
+Two catalogue parts with an identical description were created (both 201) and the search returned **nothing** —
+because a catalogue part that is not in inventory is not findable on this build at all, which is its own
+already-failing check (C53601). The tie only appears once an inventory part is created from each catalogue
+part (`POST /api/inventory/parts/create {catalog_part_id, category_id, quantity, cost, tags, bins}`), and the
+displayed description then follows the CATALOGUE part, so `POST /api/parts-catalogue/change-catalogue-part`
+is what makes the one-letter edit show in the results. Proved the tie-break Failed on Parts, the third tab.
+**The general shape: when a seeded record does not appear, ask whether the thing you created is the thing the
+tab actually lists, before concluding anything about the search.**
+
+## L0190 — 2026-09-22 — Seven routes named before "not proved", and the refusal text is the map
+`POST /api/vehicles/change` refuses with `Cannot remove VIN form vehicle, update to valid one` when no VIN is
+sent, and answers **500 on this build whenever a VIN IS sent** — every variant tried (unit+vin, vin alone, no
+customer_id). The screen route is `/customers/vehicle/{vehicleId}/work-orders?companyId={companyId}` (the
+product told me by my clicking a search result, after four guessed URLs 404'd — Rule: walk the UI, never guess),
+and its Edit Vehicle form makes **Make** required, which these records have no value for, so the form will not
+save either. That is written up as an instrument limit with all seven routes named, NOT as a product finding —
+the distinction Rule 104 exists for. Two earlier runs had recorded the same thing as "INCONCLUSIVE - the edit
+never showed", which was true but told nobody why.
