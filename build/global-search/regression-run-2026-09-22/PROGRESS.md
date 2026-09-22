@@ -199,3 +199,27 @@ it insists on, nothing else: the user sees **Part sales (3)** and **neither Part
 which is precisely what the check asks for. **Passed.**
 
 The role was restored and read back identical to baseline after both runs.
+
+---
+
+## Batch 5 — opening records, freshness, widths: **6 of 8 pass**
+
+| Check | Result |
+|---|---|
+| C53588 | **Passed** — the jobs list comes back ordered and populated (a strict newest-first order is explicitly **not** what this check wants) |
+| C53589 | **Passed** — typing straight through a search in flight loses nothing: the box ends reading `Bridgeport Hauling` and the results match the full text |
+| C55674 | **Passed** — search is reachable and finds the customer at **desktop (1600px), tablet (900px) and phone (400px)** |
+| C53586 | **Passed** — a customer created seconds earlier is returned inside the 30-second window |
+| C45153 | **Passed** — clicking a row opens the right record every time: the customer row opens that customer's jobs, the vehicle row opens that vehicle's jobs under its owner, the supplier row opens the supplier |
+| C45154 | **Passed** — selecting the record already open does not navigate again |
+| C55685 | **Failed** — a correctly spelled name returns 12 customers and **11 of them do not contain the word typed**. Unchanged, and already reported as **SV-10025** (Ready to Fix) |
+| C45157 | under investigation — see below |
+
+### C45157 — one record twice, or two records with the same name?
+
+The seeded customer's name appears **twice** in the Customers list. That is only a fault if it is
+**one** record listed twice. Two things say it is not: the stored seed state shows the customer's
+identity **changed** between 17 and 22 September, and in this same batch the vehicle row opened
+under owner `e049c07d…` while the seeded customer is now `72dbfa1d…` — **two different companies
+carrying the same name**, left behind by a reseed. Being confirmed by counting the records that
+carry that name and comparing with the rows shown.

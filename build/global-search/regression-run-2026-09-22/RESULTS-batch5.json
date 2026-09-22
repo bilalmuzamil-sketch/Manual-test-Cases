@@ -1,0 +1,142 @@
+{
+ "marker": "v26.36.8-d146c39",
+ "when": "2026-09-22T04:22:41.435Z",
+ "checks": {
+  "C45157": {
+   "verdict": "Failed",
+   "why": "the seeded customer matches on its name, its address and its website, and appears 2 time(s) in the Customers list",
+   "detail": {
+    "count": 2,
+    "rows": [
+     "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+     "ZZAUTOTEST Bridgeport Hauling ZZPSRANK Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+     "Dorr Truck Center 1 open Contact match · 4734 Wang Harbors Suite 526, Shepardtown, Alberta",
+     "Forest's Truck Repair 3058 Dakota Locks Suite 883, ≈ close match: South Brianaport, New Brunswick",
+     "Palmetto Bay Truck Service & Repair Contact match · 30827 Rogers Hollow Suite 454, Elijahville, Prince Edward Island",
+     "Keller Trucking & Repair Contact match · 615 Lopez Loop, Moralesfort, Saskatchewan",
+     "Doyle's Mobile Diesel Repair Contact match · 264 Robertson Tunnel Apt. 999, New Steven, Saskatchewan",
+     "Badger Diesel & Fleet Repair 22903 Matthew Ports, ≈ close match: Priceport, Saskatchewan"
+    ]
+   }
+  },
+  "C53588": {
+   "verdict": "Passed",
+   "why": "the Work orders list is ordered and not empty - 4 jobs, read top to bottom; a strict newest-first order is explicitly NOT expected",
+   "detail": {
+    "rows": [
+     "S9160-17677 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+     "S9160-17676 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+     "S9160-17674 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia",
+     "S9160-17675 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimate ZZT-4471 · 2019 Freightliner Cascadia"
+    ]
+   }
+  },
+  "C53589": {
+   "verdict": "Passed",
+   "why": "every character typed is still in the box (\"Bridgeport Hauling\"); the results shown match the full text",
+   "detail": {
+    "value": "Bridgeport Hauling",
+    "rows": 9,
+    "body": "9 results found across 4 categories Work orders (4) S9160-17677 ZZAUTOTEST Bridgeport Hauling ZZPSRANK Estimat"
+   }
+  },
+  "C55674": {
+   "verdict": "Passed",
+   "why": "search reachable and the customer found at: desktop yes, tablet yes, phone yes",
+   "detail": {
+    "desktop": {
+     "reachable": true,
+     "found": true,
+     "rows": 12
+    },
+    "tablet": {
+     "reachable": true,
+     "found": true,
+     "rows": 15
+    },
+    "phone": {
+     "reachable": true,
+     "found": true,
+     "rows": 15
+    }
+   }
+  },
+  "C55685": {
+   "verdict": "Failed",
+   "why": "typing a correctly spelled name returns 12 customers, 11 of which do not contain the word typed",
+   "detail": {
+    "total": 12,
+    "noise": [
+     "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+     "ZZAUTOTEST Bridgeport Hauling ZZPSRANK Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+     "Helena-West Helena Heavy Duty Truck & Equipment Repair Contact match · 44250 Lopez Alley Apt. 860, West Lawrencemouth, Prince Edward Island",
+     "Fullthrottle Mobile Truck & Trailer Repair Contact match · 4707 Hector Field Apt. 772, Carterport, Quebec",
+     "≈ close match: ZZAUTOTEST Darlene Cartage 77 Ridgeway Spur, Fernvale, Ohio",
+     "Hanford Roadside Truck Repair Contact match · 804 Weber Fields, Ericton, Quebec",
+     "Independence Truck Service & Repair Contact match · 943 John Point Apt. 232, New Robertbury, Quebec",
+     "Hamilton Heavy Duty Truck & Equipment Repair ≈ close match: 0926 Charlene Route Apt. 765, Riverachester, Northwest Territories"
+    ],
+    "rows": [
+     "ZZAUTOTEST Marlene Freight Lines 820 Tallow Bend Road, Fernvale, Ohio",
+     "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+     "ZZAUTOTEST Bridgeport Hauling ZZPSRANK Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+     "Helena-West Helena Heavy Duty Truck & Equipment Repair Contact match · 44250 Lopez Alley Apt. 860, West Lawrencemouth, Prince Edward Island",
+     "Fullthrottle Mobile Truck & Trailer Repair Contact match · 4707 Hector Field Apt. 772, Carterport, Quebec",
+     "≈ close match: ZZAUTOTEST Darlene Cartage 77 Ridgeway Spur, Fernvale, Ohio",
+     "Hanford Roadside Truck Repair Contact match · 804 Weber Fields, Ericton, Quebec",
+     "Independence Truck Service & Repair Contact match · 943 John Point Apt. 232, New Robertbury, Quebec",
+     "Hamilton Heavy Duty Truck & Equipment Repair ≈ close match: 0926 Charlene Route Apt. 765, Riverachester, Northwest Territories",
+     "Kanney's Truck Repair ≈ close match: 90027 Charlene Station, South Daniel, Alberta",
+     "≈ close match: Martens Truck & Machine Service 3001 Howard Junction Suite 180, Ballside, Quebec",
+     "≈ close match: Martens' Diesel Repair 91320 Kyle Glen Apt. 554, Port Gilbertland, Saskatchewan"
+    ]
+   }
+  },
+  "C53586": {
+   "verdict": "Passed",
+   "why": "the brand-new customer is returned by search within the 30-second window",
+   "detail": {
+    "name": "ZZAUTOTEST Halloway Freight 054434",
+    "created": 201
+   }
+  },
+  "C45153": {
+   "verdict": "Passed",
+   "why": "clicking a row opened a record every time: Customers yes, Assets yes, Vendors yes",
+   "detail": [
+    {
+     "q": "Bridgeport",
+     "grp": "Customers",
+     "clicked": "ZZAUTOTEST Bridgeport Hauling Contact match ",
+     "before": "https://sv9160.qa.shopview.com/work-orders",
+     "after": "https://sv9160.qa.shopview.com/customers/72dbfa1d-62cd-453c-af8e-3d5342978aa1/work-orders",
+     "moved": true
+    },
+    {
+     "q": "ZZT-4471",
+     "grp": "Assets",
+     "clicked": "ZZT-4471 · 2019 Freightliner Cascadia ZZAUTO",
+     "before": "https://sv9160.qa.shopview.com/work-orders",
+     "after": "https://sv9160.qa.shopview.com/customers/vehicle/14a069cd-4846-4a57-835a-05f4b32649a8/work-orders?companyId=e049c07d-9b16-4f95-9e01-71da22e1104a",
+     "moved": true
+    },
+    {
+     "q": "ZZAUTOTEST Kestrel Parts Supply",
+     "grp": "Vendors",
+     "clicked": "ZZAUTOTEST Kestrel Parts Supply (614) 555-01",
+     "before": "https://sv9160.qa.shopview.com/work-orders",
+     "after": "https://sv9160.qa.shopview.com/parts/vendor/cd7434ce-07b6-4612-b583-36961453fc5d/contacts",
+     "moved": true
+    }
+   ]
+  },
+  "C45154": {
+   "verdict": "Passed",
+   "why": "selecting the record already open did not navigate again",
+   "detail": {
+    "before": "https://sv9160.qa.shopview.com/parts/vendor/cd7434ce-07b6-4612-b583-36961453fc5d/contacts",
+    "after": "https://sv9160.qa.shopview.com/parts/vendor/cd7434ce-07b6-4612-b583-36961453fc5d/contacts"
+   }
+  }
+ }
+}
