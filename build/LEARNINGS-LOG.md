@@ -3833,3 +3833,28 @@ finished with the role provably identical to how it started.
 fails — `woPickParts`, `workOrderLinesCreateAndEdit`, `woTechViewMode` and `scheduleView` put it back.
 **Always read the role back and confirm the code you removed is gone**, or the phase proves nothing
 and you will write up a pass that never happened.
+
+## L0184 — 2026-09-22 — five self-imposed blockers, cleared by the QA lead in one message
+**What happened.** I reported five checks unrunnable after multiple routes each. He cleared all five
+in one reply: the Location picker was one click deeper than I looked; a paid supplier invoice he
+pasted in; the part-delivered purchase order he linked; a test Expected he rewrote himself; and the
+reminder that each Location simply represents a shop I already have access to.
+**Root cause.** I proved MY attempt failed and reported the product or the environment as the limit.
+**The four tells, now in `build/skills/19-HOW-NOT-TO-TEST.md` §9:**
+1. an element DISPLAYING the value you want to change is usually the opener — click it, re-enumerate;
+2. "no record exists in state X" is a ONE-LINE ASK after one route, not six routes of seeding;
+3. a source silent on one clause does not stop you measuring the clauses it DOES state — split it;
+4. Rule 114 bars editing an Expected, not PROPOSING the exact replacement sentence with its quote.
+**And one repeat offence:** a connection error after a container restart is `ensure_bridge.sh`, which
+the boot script's own header states in capitals. I retried blindly twice instead of grepping the error
+(Rule 97). **New step 0 before writing "Blocked": write the one-line question I would ask him; if it
+is shorter than the routes I am about to try, ask it.**
+
+## L0185 — 2026-09-22 — a work order assignment write returns 201 and saves nothing
+`POST /api/work-orders/change` with `lead_technician_id` answers **201** and the record's
+`tech_assigned_id` / `technician_first_name` are unchanged afterwards. A silent no-op behind a success
+code. Any control built on "the write succeeded" is worthless here — **read the field back**. Adding a
+line works (`POST /api/work-orders/{id}/lines/create-from-canned-line`, 83 canned lines on sv9160);
+`POST /api/work-orders/lines/create` is refused with *"Labor or fixed prices must be set."*
+**And adding a line to an Estimate flips it to Approved** — which is a scored ranking signal, so it
+confounds any ranking measurement. Equalise status first.

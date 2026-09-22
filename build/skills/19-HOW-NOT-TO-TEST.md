@@ -147,3 +147,79 @@ value read from an endpoint says is **evidence about the endpoint**, never a pas
 person sees. Twelve real cases, the three mechanisms that make the two disagree (different SURFACE,
 different LAYER, different MOMENT), when an API read IS admissible, and the five questions to ask before
 trusting one. Read it before the first probe of any pass.
+
+---
+
+# §9 — THE SELF-BLOCK PATTERN (22 September 2026, from five things the QA lead unblocked in one message)
+
+**Every one of these I had declared unrunnable after multiple routes. Each took him seconds.** The
+common shape: **I proved my own attempt failed and then reported the PRODUCT or the ENVIRONMENT as
+the limit.** Rule 107 already forbids that; these are the concrete tells.
+
+## 9.1 A control that DISPLAYS the current value is usually the OPENER, not the target
+
+**What I did.** Six routes to change Location — the call behind the screen, a full reload, three
+readings, impersonating staff whose own Location was the other one — then reported *"this sign-in
+cannot be moved; it needs a different account."* **He replied: "You have the access already."**
+
+**Where the door was.** Profile menu → a label reading *"Change Location:"* → **an orange BUTTON
+carrying the current Location** → click THAT → a list of both with a tick. I had opened the menu and
+**stopped one click short**, then searched for the two Locations as direct menu items, found none,
+and concluded the product would not move.
+
+**⇒ THE RULE.** When a panel shows the value you want to change, **the element displaying it is
+almost always the thing you click to change it.** Before reporting a control as absent: enumerate
+what the panel contains, click the element bearing the current value, and enumerate again. A
+selector that finds nothing is a fact about the selector (104).
+
+## 9.2 "No record exists in state X" is an ASK, not six routes
+
+**What I did.** *"Every supplier invoice on this branch is unpaid; I tried six ways to pay one"* —
+Blocked. **He pasted one paid invoice and the check passed in a single reading.**
+
+**⇒ THE RULE.** When the gap is a **data state** rather than a behaviour, spend ONE route, then
+**ask with the exact record you need, in one line** — *"I need one supplier invoice marked paid;
+any will do"*. Seeding is standing-authorised (107) and always tried first, but where the state
+needs a permission or a screen this session cannot reach, **asking early costs him ten seconds and
+saves an hour.** A data state he can hand over is not a blocker; it is a one-line request.
+
+## 9.3 A silent source does NOT stop you measuring what the source DOES say
+
+**What I did.** The requirements describe purchase orders as ordered-or-received; the product has a
+third state, Partial Delivery, that they never mention. I reported the whole check unjudgeable.
+
+**⇒ THE RULE.** **Split the check.** Measure every clause the source DOES state and record those
+verdicts; raise the silence separately as the product-owner question it is (58, 96). A gap about one
+clause is not a gap about the others. Two of that check's three clauses were provable all along.
+
+## 9.4 If the Expected is wrong, PROPOSE THE EXACT REPLACEMENT — never just report it
+
+**What I did.** Correctly refused to edit an Expected (114) and reported that it demanded a count
+badge the requirement does not mention. **He rewrote it himself and the check passed immediately.**
+
+**⇒ THE RULE.** Rule 114 bars me from CHANGING it. It does not bar me from **writing the exact
+sentence I would put there, quoted from the source, ready to paste.** Report + proposed wording +
+the source quote it comes from. Make his decision one click, not one drafting job.
+
+## 9.5 An error message is a repo search, not a conclusion
+
+**What I did.** The browser returned a connection failure after a container restart. I called it a
+broken network and retried blindly — twice.
+
+**The answer was already written down.** The browser reaches the branch through a local relay that
+**dies with the container** and is restored by one line: `source build/testing-tools/ensure_bridge.sh`.
+The boot script's own header says so, in capitals.
+
+**⇒ THE RULE (97, restated because I broke it).** **Before the second attempt at anything that
+errored, grep the repo for the exact error text.** Not after the fifth.
+
+## 9.6 The scoreboard
+
+Sixteen instrument faults caught before reaching him on 21–22 September, and **five self-imposed
+blockers he cleared in one message.** The faults were caught because controls exist. The blockers
+were NOT caught, because **nothing in the drill asks "would this still be blocked for someone with
+every permission, who could simply ask?"** — Rule 107's own test, which I did not apply.
+
+**Add it to the thirteen-step drill as step 0:** *before writing the word Blocked, write the
+one-line question I would ask him. If that question is shorter than the routes I am about to try,
+ASK IT.*
