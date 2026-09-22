@@ -270,3 +270,53 @@ Two supporting observations, both correct rather than faults, recorded so nobody
   discriminating in both directions.
 * He **can delete his own** note without `workOrdersDelete`, which is the authorship half of the same
   rule.
+
+## §9 — Legacy `organization_id IS NULL` rows: none in this organization
+
+Handoff check 7. The failure shape is a note that is **visible in the list** but answers **400 not-found**
+on a write, because the list read path is not organization-scoped while the write paths now are.
+
+`GET /api/notes` returns Org A's **whole** note list — worth knowing, because **`reference_id` is
+ignored**: the same 37 notes come back for three different work-order ids and for
+`00000000-0000-0000-0000-000000000000`. So the list below is **every note Org A can see, not a sample.**
+
+**All 37 were probed with `toggle-read-status` (and toggled back where it succeeded): 37 × 200, zero
+400s.** No note in this organization is visible-but-unwritable, so the legacy-row caveat does not arise
+here and there is nothing to file under check 7.
+
+The developer still owes the production count of
+`SELECT type, COUNT(*) FROM communication_note WHERE organization_id IS NULL GROUP BY type;` — that is
+what sizes this on real data, and it is listed as owed in their own handoff.
+
+## §10 — Shared `#[MapEntity]` infrastructure smoke (handoff check 6)
+
+`RequestPayloadValueResolver` is used by every `#[MapEntity]` consumer in the application, so this is the
+blast-radius check even though no behaviour change is expected.
+
+| Consumer | How | Result |
+|---|---|---|
+| **Work order — create** | API | **201**, and the work order opens and renders (`S8801-17580`) |
+| **Work order — edit** | API `work-orders/change-status` | **201**, re-read shows the status really moved `estimate → approved` |
+| **Vehicle — create** | **through the screen**, New Asset dialog | **200**, and the new asset appears in the customer's Assets list (`ZZ8801`) |
+| **Vehicle — edit** | **through the screen**, Edit Vehicle dialog | **201**, Color `ZZAUTOTEST-8801` still on screen after a full page reload |
+| **Technician task — move** | see below | **not runnable on this branch — and it is not this change's doing** |
+
+### The task move, and why it is not a finding
+
+`POST /api/work-orders/tasks/move` answers **403 `Access denied.`** on the branch for a full
+administrator — even for an empty body, so the voter runs ahead of validation. On **staging** the same
+empty body reaches the validator and answers **400** `{"tasks":"Missing required parameter"},
+{"line_id":"Missing required parameter"}`.
+
+**That difference is configuration, not code, and I checked before calling it anything:**
+
+* the permission behind this action is **`woMoveLabor`** (SV-8911);
+* the branch administrator holds **42** permissions and **`woMoveLabor` is not among them**, while the
+  staging administrator holds **59** and **does** have it;
+* decisively, the branch's **own permission catalogue** — `GET /api/fe-permissions` — contains **43
+  atoms and `woMoveLabor` is not one of them**. The atom does not exist in this build's data at all, so
+  the endpoint refuses **everyone**, not just us.
+
+The branch is cut from `main` rather than `develop` (the handoff says so), which is a plain explanation
+for an older permission set. **Nothing here touches note tenancy, and it would refuse identically with
+this change reverted.** Reported, not filed.
