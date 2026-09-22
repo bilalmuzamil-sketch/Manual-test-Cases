@@ -298,3 +298,37 @@ POST /api/work-orders/part/perform-request-status-action   -> 201   (no 500, no 
 two things under test, **clearing the price** and **the pick**, were both driven on the screen, which
 is where the null originates and where a user does it. That split is deliberate and is stated here
 rather than left for a reader to assume (Standing Rule 64).
+
+## §8 — WHY the pre-fix defect could not be reproduced: the trigger is a DATA condition this org does not have
+
+Seven routes were tried on the **pre-fix production build**. Every one of them billed correctly —
+`201`, a real billable row, stock deducted by the picked quantity:
+
+| # | route | request state | result on production |
+|---|---|---|---|
+| 1 | inventory seed, no price given | `sell_price "0.00"` | billed at $0.00, row created |
+| 2 | Found route, no price given | `sell_price "0.00"`, `cost null` | billed at $0.00, row created |
+| 3 | grid: clear Sell Price → pick | wire sends `sell_price:null` | billed at $0.00, row created |
+| 4 | API: `sell_price:null` + `cost:null` | both cleared | billed at $0.00, row created |
+| 5 | **core part**, both cleared | core sibling present | **parent row AND `Core for A158` row** created |
+| 6 | Category change (first attempt) | — | **invalid: my payload 400'd**, see §2 |
+| 7 | Category change, correct contract | 12 categories tried | **price recalculated every time — never wiped** |
+
+**Route 7 is the answer, and it is a configuration fact, not a product fact.** Changing Category on a
+priced, non-fixed-price part recalculated a valid price for **every one of the twelve categories
+tried** — Trailer 23.50, Lighting 23.50, Tax Free 2.59, Air Conditioning 5.17, Filters 23.50, Engine
+5.17, Cde 16.45, Parts 3.53, Tires 23.50, Bilal2 16.45, Test Bilal 21.15 — all HTTP 200, all stored.
+
+> **The defect needs a category with NO markup / no pricing rule**, so the resolver has no value to
+> return and wipes the stored price to null. **Every category in this organisation has a markup, so
+> that branch is never reached and the bug cannot occur here.**
+
+That also explains the second thing I could not do: **`change-request {sell_price:null}` stores `0`,
+not NULL** — the response reads back `sellPrice: 0` every time. So none of routes 1–5 ever created a
+genuine NULL in the database either; they created a **zero**, and a zero price bills correctly on
+both builds. **The only known producer of a real NULL is the category-wipe path** — which is exactly
+what the developer said, and exactly what this org's data cannot exercise.
+
+**This is Standing Rule 75 in its plainest form: a difference (or a non-difference) between two
+environments is a configuration difference until proven otherwise.** The absence of the bug here is
+the absence of a category without a markup — not evidence about the fix.
