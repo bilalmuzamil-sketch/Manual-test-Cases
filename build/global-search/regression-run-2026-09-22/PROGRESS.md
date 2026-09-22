@@ -74,3 +74,39 @@ the wrong record. Every expectation now names the seeded record in full
 **Both fixed in `reglib.mjs`, and the whole batch re-run — not only the failures (Rule 101).**
 Nothing from the first pass is reported. This is the same class of mistake as the five caught on
 21 September: *the instrument, not the product.*
+
+---
+
+## Batch 1 — findability by field: **24 of 28 pass** (build `v26.36.8-d146c39`, 22 Sep)
+
+Read on the screen through the scope tab. Every earlier "new failure" disappeared once the reader
+was corrected: the licence plate, the unit number, the VIN in full, the vendor's email, the vendor's
+phone in both forms, the part number with and without its dashes, and the state — **all found.**
+
+Four fail, and three of them are the ones already reported:
+
+| Check | What happens | Standing |
+|---|---|---|
+| C53601 | the catalogue-only part is not findable by either its description word or its number — the Parts tab reads 0 | already reported (SV-10001) |
+| C53605 | typing the year and make together returns no vehicle — the Assets tab reads 0 | already reported (SV-10055) |
+| C55660 | a fragment from the middle of a word finds nothing (`ernva` → 0) or the wrong records (`idgepor` → 2, neither the seeded one) | already reported (SV-10060) |
+| **C53582** | **new — see below** | **not a product fault** |
+
+### C53582 — the city and the state: the field works, our own test data crowded the record out
+
+The check types the customer's **city** (`Fernvale`) and its **state** (`Ohio`) and expects the
+seeded customer back. It does not come back. **But the field is plainly searchable:** the search
+returns **twenty customers and every single one of them shows Fernvale in its address line.** The
+list stops at twenty, and at least twenty other Fernvale customers now outrank the seeded one.
+
+**Why it passed on 15 September and does not now:** the ranking and toggle fixtures seeded since
+then — `ZZTALLYQ`, `ZZOPENCOUNT`, `ZZPINRIVAL`, `Per Tab Asset Holdings` and the rest — all carry
+**Fernvale, Ohio** addresses. **We crowded out our own fixture.** The record is still reachable the
+moment the query is narrowed (`Bridgeport Hauling` returns it immediately), which is exactly what
+the requirement says to do when a list is capped.
+
+**So it is not a capability loss and it is not a defect** — under the old product a search returned
+only three customers of a type, so the seeded record would not have been among them either. **It is
+our test that has stopped discriminating.** Recorded Failed against the case as written, with this
+reason, and no report raised. Fixing it means giving the check a city unique to its own customer —
+a change to the steps, which needs his word (Rule 6), and the Expected is never touched (Rule 114).
