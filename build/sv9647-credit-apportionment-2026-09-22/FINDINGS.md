@@ -546,3 +546,48 @@ The handoff notes ordering is newly deterministic and that a changed order with 
 expected. Observed: on the $4.66 part-sale invoice the branch lists **CM-4189 then CM-4190** while
 staging lists **CM-4402 then CM-4403** — ascending by memo in both, so no visible reordering to flag,
 and every amount reconciles.
+
+## §6 — The QA comment, the pre-post gate, and what the gate caught
+
+**Posted: comment `77025` on [SV-9647](https://shopview.atlassian.net/browse/SV-9647), 2026-09-22.**
+Verdict **PASSED**, 12 checks, four annotated exhibits, attachments **61204–61207**.
+
+### The gate (Standing Rule 72), run immediately before posting
+
+| check | result |
+|---|---|
+| Branch build marker re-read live | **`v26.36.8-fc4dd05`**, etag `02d7ad48…` — **unchanged** since the pass began, so every branch verdict stands |
+| Staging build marker re-read live | **CHANGED — `v26.36.8-e2c29c5` → `v26.36.8-5a10cdf`**, last-modified Tue 22 Sep 08:52:46 GMT |
+| Ticket state re-read | TESTING QA, Medium, Slavcho Mitrov, 2 comments, nothing new since 21 Sep |
+| Human-voice scan of the body text | 0 hits on the bar-word list |
+| Format | first line is the verdict · no "Technical details" section · 4 image refs |
+| Read-back after posting | **4 media nodes, all `type: "file"`** (real attachments, not external links) · **13 table rows** = 1 header + 12 checks · first line correct · `PASSED` ×13 |
+
+### What the gate caught, and what I did about it
+
+**Staging redeployed during the pass**, after the before-captures were taken. So the exhibits' label
+*"current live behaviour"* was no longer provably true at the moment of posting.
+
+**I re-read the same staging document on the new build before saying anything**: `P2-2145`, $4.66, still
+prints `CM-4402 $22.00` + `CM-4403 $65.98`. **The behaviour is unchanged on `v26.36.8-5a10cdf`, so the
+fix has not reached staging and the before-panels do represent what customers see today.**
+
+Two corrections went in rather than being waved through:
+
+* the exhibits were **relabelled** *"the build without the fix (staging, v26.36.8-e2c29c5)"* — naming
+  the build they were actually captured on instead of the vaguer "current" — and re-uploaded
+  (**61202/61203 deleted, 61206/61207 uploaded** so the filenames resolve unambiguously);
+* the first caption now says plainly that staging redeployed mid-test to `v26.36.8-5a10cdf` and that the
+  same invoice was re-checked there and still lists $87.98.
+
+**This is exactly what Standing Rule 59 exists for** — the sources were read at pass start and the build
+moved before the writes began. Reading them once would have shipped a caption that was quietly wrong.
+
+### Two things deliberately left out of the comment, on the QA lead's instruction
+
+* **No ticket for the cross-workplace missing credit row** (§2) — his ruling: *"No if its NOT a
+  regression and leave it like that."* It reproduces on the pre-fix build, so it is not a regression.
+  It stays recorded here.
+* **No "Technical details for developers" section**, and **no mention of the two surfaces I could not
+  close** (the emailed PDF's bytes and the Customer Portal) — his instruction: *"Do not mention about
+  that part in your comment for this ticket."* Both remain written up in §5 above.
