@@ -1,0 +1,538 @@
+{
+ "marker": "v26.36.8-d146c39",
+ "when": "2026-09-22T04:06:11.118Z",
+ "checks": {
+  "C53579": {
+   "verdict": "Passed",
+   "why": "all five forms find the same job",
+   "detail": [
+    {
+     "form": "S-17670",
+     "hit": true,
+     "rows": [
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 · Number:S-17670"
+     ],
+     "count": 1
+    },
+    {
+     "form": "S17670",
+     "hit": true,
+     "rows": [
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 · Number:S-17670"
+     ],
+     "count": 1
+    },
+    {
+     "form": "S916017670",
+     "hit": true,
+     "rows": [
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+     ],
+     "count": 1
+    },
+    {
+     "form": "S9160-17670",
+     "hit": true,
+     "rows": [
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+     ],
+     "count": 1
+    },
+    {
+     "form": "9160-17670",
+     "hit": true,
+     "rows": [
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+     ],
+     "count": 1
+    }
+   ]
+  },
+  "C55659": {
+   "verdict": "Passed",
+   "why": "every fragment finds its record",
+   "detail": [
+    {
+     "q": "17670",
+     "g": "Work orders",
+     "want": "17670",
+     "hit": true,
+     "count": 1,
+     "rows": [
+      "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+     ]
+    },
+    {
+     "q": "4412",
+     "g": "Parts",
+     "want": "Brake Chamber",
+     "hit": true,
+     "count": 1,
+     "rows": [
+      "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412"
+     ]
+    },
+    {
+     "q": "4471",
+     "g": "Assets",
+     "want": "ZZT-4471",
+     "hit": true,
+     "count": 3,
+     "rows": [
+      "ZZT-4471 · 2019 Freightliner Cascadia ZZAUTOTEST Bridgeport Hauling ZZPSRANK · Unit:4471",
+      "250 · 2022 Western Star 49x Chassis Gonsoulin Diesel Services Inc · Matched:4471",
+      "516 · 2019 Gmc Savana Winona Fleet Services · Matched:4471"
+     ]
+    }
+   ]
+  },
+  "C55672": {
+   "verdict": "Passed",
+   "why": "typing 17670 alone returns the job",
+   "detail": {
+    "q": "17670",
+    "count": 1,
+    "rows": [
+     "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+    ]
+   }
+  },
+  "C55661": {
+   "verdict": "Passed",
+   "why": "every type with matches has a group on the All view",
+   "detail": {
+    "tabs": {
+     "All": 61,
+     "Work orders": 20,
+     "Customers": 14,
+     "Assets": 9,
+     "Parts": 4,
+     "Vendors": 3,
+     "Part sales": 3,
+     "Purchase orders": 4,
+     "Vendor invoices": 4
+    },
+    "groupHeads": [
+     "Work orders (20)",
+     "Customers (14)",
+     "Assets (9)",
+     "Parts (4)",
+     "Vendors (3)",
+     "Part sales (3)",
+     "Purchase orders (4)",
+     "Vendor invoices (4)"
+    ]
+   }
+  },
+  "C55686": {
+   "verdict": "Passed",
+   "why": "the real Marlene record is first; Enter opened a record",
+   "detail": {
+    "rows": [
+     "ZZAUTOTEST Marlene Freight Lines 820 Tallow Bend Road, Fernvale, Ohio",
+     "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+     "ZZAUTOTEST Bridgeport Hauling ZZPSRANK Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+     "Helena-West Helena Heavy Duty Truck & Equipment Repair Contact match · 44250 Lopez Alley Apt. 860, West Lawrencemouth, Prince Edward Island",
+     "Fullthrottle Mobile Truck & Trailer Repair Contact match · 4707 Hector Field Apt. 772, Carterport, Quebec"
+    ],
+    "urlBefore": "https://sv9160.qa.shopview.com/work-orders",
+    "urlAfter": "https://sv9160.qa.shopview.com/parts/inventory?search=5516P"
+   }
+  },
+  "C55673": {
+   "verdict": "Passed",
+   "why": "Enter alone opened the top result",
+   "detail": {
+    "urlBefore": "https://sv9160.qa.shopview.com/work-orders",
+    "urlAfter": "https://sv9160.qa.shopview.com/customers/18b7a7dc-87d9-44bb-a714-fe9183307d25/work-orders"
+   }
+  },
+  "C55680": {
+   "verdict": "Passed",
+   "why": "the highlight moves through rows and never landed on a group heading",
+   "detail": {
+    "down": [
+     "ZZAUTOTEST Adale Transport 12 Adale Way,",
+     "ZZAUTOTEST Deshawn Freight Lines 88 Desh",
+     "2021 KEN WORTH T680 ZZAUTOTEST Fibridge ",
+     "TRK 412 · 2019 Freightliner Cascadia ZZA",
+     "FSQ 001 · 2024 Freightliner M2 ZZAUTOTES",
+     "ZZT-4471 · 2019 Freightliner Cascadia ZZ",
+     "BSH 001 · 2025 Freightliner M2 ZZAUTOTES",
+     "ZZAUTOTEST Fibridge Brake Shoe Kit 40 Av",
+     "ZZAUTOTEST Fibridge Wheel Seal 2 Availab",
+     "ZZAUTOTEST Brake Chamber Kestrel 25 Avai",
+     "ZZAUTOTEST Fibridge Air Dryer Cartridge ",
+     "ZZAUTOTEST Fibridge Mining (264) 555-016",
+     "ZZAUTOTEST Report Beverages (264) 555-01",
+     "ZZAUTOTEST Kestrel Parts Supply (614) 55"
+    ],
+    "up": [
+     "ZZAUTOTEST Report Beverages (264) 555-01",
+     "ZZAUTOTEST Fibridge Mining (264) 555-016",
+     "ZZAUTOTEST Fibridge Air Dryer Cartridge ",
+     "ZZAUTOTEST Brake Chamber Kestrel 25 Avai",
+     "ZZAUTOTEST Fibridge Wheel Seal 2 Availab",
+     "ZZAUTOTEST Fibridge Brake Shoe Kit 40 Av"
+    ]
+   }
+  },
+  "C55675": {
+   "verdict": "Passed",
+   "why": "the panel says: \"No results found No results for “ZZNOSUCHRECORD9999”\"",
+   "detail": {
+    "body": "No results found No results for “ZZNOSUCHRECORD9999”",
+    "beforeTyping": "61 results found across 8 categories Work orders (20) S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S916"
+   }
+  },
+  "C55679": {
+   "verdict": "Failed",
+   "why": "only the no-results message is shown - the recent list does not come back",
+   "detail": {
+    "body": "No results found No results for “ZZNOSUCHRECORD9999”",
+    "beforeTyping": "61 results found across 8 categories Work orders (20) S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S916"
+   }
+  },
+  "C45161": {
+   "verdict": "Failed",
+   "why": "one character already shows results",
+   "detail": {
+    "one": {
+     "body": "Recent searches Clear All TODAY Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick MARINE/POST ADAPTER TERMINAL, POS. 1 Availabl",
+     "tabs": 9
+    },
+    "two": {
+     "body": "142 results found across 8 categories Work orders (20) S9160-17573 Eller Brothers Truck Repair Approved 2007 Freightliner S9160-17677 ZZAUTOTEST Bridgeport Haul",
+     "tabs": 9
+    }
+   }
+  },
+  "C45155": {
+   "verdict": "Passed",
+   "why": "the group and its tab both read Assets, never Vehicles",
+   "detail": {
+    "heads": [
+     "Work orders (20)",
+     "Assets (20)",
+     "Parts (5)",
+     "Vendors (1)",
+     "Part sales (4)"
+    ],
+    "tabs": [
+     "All",
+     "Work orders",
+     "Customers",
+     "Assets",
+     "Parts",
+     "Vendors",
+     "Part sales",
+     "Purchase orders",
+     "Vendor invoices"
+    ]
+   }
+  },
+  "C45156": {
+   "verdict": "Passed",
+   "why": "the shortcut opened it with the field ready to type",
+   "detail": {
+    "closed": true,
+    "opened": {
+     "present": true,
+     "focused": true
+    }
+   }
+  },
+  "C55683": {
+   "verdict": "Passed",
+   "why": "the header search box shows the shortcut",
+   "detail": [
+    {
+     "t": "ShopHub expand_more Work Orders Schedule Customers Parts Reports search Cascadia Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 AS",
+     "title": ""
+    },
+    {
+     "t": "search Cascadia Ctrl K",
+     "title": ""
+    },
+    {
+     "t": "search Cascadia Ctrl K",
+     "title": "Shortcut: Ctrl+K"
+    }
+   ]
+  },
+  "C55682": {
+   "verdict": "Failed",
+   "why": "some rows carry no icon; rows of the same kind carry the same icon",
+   "detail": {
+    "count": 0,
+    "perType": {}
+   }
+  }
+ },
+ "C53579": {
+  "verdict": "Passed",
+  "why": "all five forms find the same job",
+  "detail": [
+   {
+    "form": "S-17670",
+    "hit": true,
+    "rows": [
+     "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 · Number:S-17670"
+    ],
+    "count": 1
+   },
+   {
+    "form": "S17670",
+    "hit": true,
+    "rows": [
+     "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 · Number:S-17670"
+    ],
+    "count": 1
+   },
+   {
+    "form": "S916017670",
+    "hit": true,
+    "rows": [
+     "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+    ],
+    "count": 1
+   },
+   {
+    "form": "S9160-17670",
+    "hit": true,
+    "rows": [
+     "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+    ],
+    "count": 1
+   },
+   {
+    "form": "9160-17670",
+    "hit": true,
+    "rows": [
+     "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+    ],
+    "count": 1
+   }
+  ]
+ },
+ "C55659": {
+  "verdict": "Passed",
+  "why": "every fragment finds its record",
+  "detail": [
+   {
+    "q": "17670",
+    "g": "Work orders",
+    "want": "17670",
+    "hit": true,
+    "count": 1,
+    "rows": [
+     "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+    ]
+   },
+   {
+    "q": "4412",
+    "g": "Parts",
+    "want": "Brake Chamber",
+    "hit": true,
+    "count": 1,
+    "rows": [
+     "ZZAUTOTEST Brake Chamber Kestrel 25 Available ZZT-88-4412"
+    ]
+   },
+   {
+    "q": "4471",
+    "g": "Assets",
+    "want": "ZZT-4471",
+    "hit": true,
+    "count": 3,
+    "rows": [
+     "ZZT-4471 · 2019 Freightliner Cascadia ZZAUTOTEST Bridgeport Hauling ZZPSRANK · Unit:4471",
+     "250 · 2022 Western Star 49x Chassis Gonsoulin Diesel Services Inc · Matched:4471",
+     "516 · 2019 Gmc Savana Winona Fleet Services · Matched:4471"
+    ]
+   }
+  ]
+ },
+ "C55672": {
+  "verdict": "Passed",
+  "why": "typing 17670 alone returns the job",
+  "detail": {
+   "q": "17670",
+   "count": 1,
+   "rows": [
+    "S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680"
+   ]
+  }
+ },
+ "C55661": {
+  "verdict": "Passed",
+  "why": "every type with matches has a group on the All view",
+  "detail": {
+   "tabs": {
+    "All": 61,
+    "Work orders": 20,
+    "Customers": 14,
+    "Assets": 9,
+    "Parts": 4,
+    "Vendors": 3,
+    "Part sales": 3,
+    "Purchase orders": 4,
+    "Vendor invoices": 4
+   },
+   "groupHeads": [
+    "Work orders (20)",
+    "Customers (14)",
+    "Assets (9)",
+    "Parts (4)",
+    "Vendors (3)",
+    "Part sales (3)",
+    "Purchase orders (4)",
+    "Vendor invoices (4)"
+   ]
+  }
+ },
+ "C55686": {
+  "verdict": "Passed",
+  "why": "the real Marlene record is first; Enter opened a record",
+  "detail": {
+   "rows": [
+    "ZZAUTOTEST Marlene Freight Lines 820 Tallow Bend Road, Fernvale, Ohio",
+    "ZZAUTOTEST Bridgeport Hauling Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+    "ZZAUTOTEST Bridgeport Hauling ZZPSRANK Contact match · 1450 Kestrelway Industrial, Fernvale, Ohio",
+    "Helena-West Helena Heavy Duty Truck & Equipment Repair Contact match · 44250 Lopez Alley Apt. 860, West Lawrencemouth, Prince Edward Island",
+    "Fullthrottle Mobile Truck & Trailer Repair Contact match · 4707 Hector Field Apt. 772, Carterport, Quebec"
+   ],
+   "urlBefore": "https://sv9160.qa.shopview.com/work-orders",
+   "urlAfter": "https://sv9160.qa.shopview.com/parts/inventory?search=5516P"
+  }
+ },
+ "C55673": {
+  "verdict": "Passed",
+  "why": "Enter alone opened the top result",
+  "detail": {
+   "urlBefore": "https://sv9160.qa.shopview.com/work-orders",
+   "urlAfter": "https://sv9160.qa.shopview.com/customers/18b7a7dc-87d9-44bb-a714-fe9183307d25/work-orders"
+  }
+ },
+ "C55680": {
+  "verdict": "Passed",
+  "why": "the highlight moves through rows and never landed on a group heading",
+  "detail": {
+   "down": [
+    "ZZAUTOTEST Adale Transport 12 Adale Way,",
+    "ZZAUTOTEST Deshawn Freight Lines 88 Desh",
+    "2021 KEN WORTH T680 ZZAUTOTEST Fibridge ",
+    "TRK 412 · 2019 Freightliner Cascadia ZZA",
+    "FSQ 001 · 2024 Freightliner M2 ZZAUTOTES",
+    "ZZT-4471 · 2019 Freightliner Cascadia ZZ",
+    "BSH 001 · 2025 Freightliner M2 ZZAUTOTES",
+    "ZZAUTOTEST Fibridge Brake Shoe Kit 40 Av",
+    "ZZAUTOTEST Fibridge Wheel Seal 2 Availab",
+    "ZZAUTOTEST Brake Chamber Kestrel 25 Avai",
+    "ZZAUTOTEST Fibridge Air Dryer Cartridge ",
+    "ZZAUTOTEST Fibridge Mining (264) 555-016",
+    "ZZAUTOTEST Report Beverages (264) 555-01",
+    "ZZAUTOTEST Kestrel Parts Supply (614) 55"
+   ],
+   "up": [
+    "ZZAUTOTEST Report Beverages (264) 555-01",
+    "ZZAUTOTEST Fibridge Mining (264) 555-016",
+    "ZZAUTOTEST Fibridge Air Dryer Cartridge ",
+    "ZZAUTOTEST Brake Chamber Kestrel 25 Avai",
+    "ZZAUTOTEST Fibridge Wheel Seal 2 Availab",
+    "ZZAUTOTEST Fibridge Brake Shoe Kit 40 Av"
+   ]
+  }
+ },
+ "C55675": {
+  "verdict": "Passed",
+  "why": "the panel says: \"No results found No results for “ZZNOSUCHRECORD9999”\"",
+  "detail": {
+   "body": "No results found No results for “ZZNOSUCHRECORD9999”",
+   "beforeTyping": "61 results found across 8 categories Work orders (20) S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S916"
+  }
+ },
+ "C55679": {
+  "verdict": "Failed",
+  "why": "only the no-results message is shown - the recent list does not come back",
+  "detail": {
+   "body": "No results found No results for “ZZNOSUCHRECORD9999”",
+   "beforeTyping": "61 results found across 8 categories Work orders (20) S9160-17670 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S9160-17671 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680 S916"
+  }
+ },
+ "C45161": {
+  "verdict": "Failed",
+  "why": "one character already shows results",
+  "detail": {
+   "one": {
+    "body": "Recent searches Clear All TODAY Forest's Truck Repair 3058 Dakota Locks Suite 883, South Brianaport, New Brunswick MARINE/POST ADAPTER TERMINAL, POS. 1 Availabl",
+    "tabs": 9
+   },
+   "two": {
+    "body": "142 results found across 8 categories Work orders (20) S9160-17573 Eller Brothers Truck Repair Approved 2007 Freightliner S9160-17677 ZZAUTOTEST Bridgeport Haul",
+    "tabs": 9
+   }
+  }
+ },
+ "C45155": {
+  "verdict": "Passed",
+  "why": "the group and its tab both read Assets, never Vehicles",
+  "detail": {
+   "heads": [
+    "Work orders (20)",
+    "Assets (20)",
+    "Parts (5)",
+    "Vendors (1)",
+    "Part sales (4)"
+   ],
+   "tabs": [
+    "All",
+    "Work orders",
+    "Customers",
+    "Assets",
+    "Parts",
+    "Vendors",
+    "Part sales",
+    "Purchase orders",
+    "Vendor invoices"
+   ]
+  }
+ },
+ "C45156": {
+  "verdict": "Passed",
+  "why": "the shortcut opened it with the field ready to type",
+  "detail": {
+   "closed": true,
+   "opened": {
+    "present": true,
+    "focused": true
+   }
+  }
+ },
+ "C55683": {
+  "verdict": "Passed",
+  "why": "the header search box shows the shortcut",
+  "detail": [
+   {
+    "t": "ShopHub expand_more Work Orders Schedule Customers Parts Reports search Cascadia Ctrl K timer Clock In notifications Staging Heavy Duty - 9919 AS",
+    "title": ""
+   },
+   {
+    "t": "search Cascadia Ctrl K",
+    "title": ""
+   },
+   {
+    "t": "search Cascadia Ctrl K",
+    "title": "Shortcut: Ctrl+K"
+   }
+  ]
+ },
+ "C55682": {
+  "verdict": "Failed",
+  "why": "some rows carry no icon; rows of the same kind carry the same icon",
+  "detail": {
+   "count": 0,
+   "perType": {}
+  }
+ }
+}

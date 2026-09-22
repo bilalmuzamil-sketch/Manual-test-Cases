@@ -110,3 +110,38 @@ only three customers of a type, so the seeded record would not have been among t
 our test that has stopped discriminating.** Recorded Failed against the case as written, with this
 reason, and no report raised. Fixing it means giving the check a city unique to its own customer —
 a change to the steps, which needs his word (Rule 6), and the Expected is never touched (Rule 114).
+
+---
+
+## Batch 2 — number forms, keyboard and panel behaviour: **14 of 15 pass**
+
+| Check | Result |
+|---|---|
+| C53579 | **Passed** — all five shapes of the job number find the same job (`S-17670`, `S17670`, `S916017670`, `S9160-17670`, `9160-17670`) |
+| C55659 | **Passed** — a fragment of any number finds its record: the job by its last five digits, the part by `4412`, the vehicle by `4471` |
+| C55672 | **Passed** — the bare number with no letter and no shop number returns the job |
+| C55661 | **Passed** — every record type that has matches has a group on the combined view |
+| C55686 | **Passed** — the record that genuinely contains the word is top of its group, and Enter opens it |
+| **C55673** | **Passed — this one was failing and is now fixed.** Enter alone opens the top result with no arrow key first. Its report **SV-10061 is already OBSOLETE** |
+| C55680 | **Passed** — arrowing moves through rows and never lands on a group heading |
+| C55675 | **Passed** — *"No results found / No results for "ZZNOSUCHRECORD9999""* |
+| **C55679** | **Failed** — only the message is shown; the recent list does not come back. **This is the V1 behaviour that has gone, and the case itself says so and says not to raise it until the product owner rules.** No report raised |
+| C45161 | **Passed** — one character runs no search; two characters do |
+| C45155 | **Passed** — the group and its tab read *Assets*, never *Vehicles* |
+| C45156 | **Passed** — the shortcut opens it with the field ready to type |
+| C55683 | **Passed** — the header box shows the shortcut |
+| C55682 | **Passed** — all 33 rows carry an icon, one icon per kind, eight different icons across eight kinds |
+
+### 🔴 Two more instrument faults caught here, both of which would have been false failures
+
+1. **"One character already shows results."** It does not. **The tab strip is on screen the whole
+   time, even before anything is typed** — what tells you a search has run is whether the tabs carry
+   **counts**. Counting tab *elements* therefore says "a search ran" when nothing ran. Measured
+   properly: empty box → 9 tabs, no counts, recent list; `B` → identical; `Br` → counts appear
+   (`All (142)`) and 37 rows render. **The product is right.**
+2. **"Some rows carry no icon / only one icon across all kinds."** Wrong both ways. Every row has
+   one, and the class is `lucide-icon` on all of them — **the shape is in the drawing itself**, not
+   the class. Reading the drawing shows **eight distinct icons for eight kinds**, consistent within
+   each kind. **The product is right.**
+
+**Running total of instrument faults caught on this run before anything was written down: ten.**
