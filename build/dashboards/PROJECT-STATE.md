@@ -54,7 +54,8 @@ sv8311. Type = NEW feature (not a V1→V2 comparison; old dashboard scrapped, it
 PRD 788430850 last modified 2026-09-16 (read today). Epic SV-490 children read today: SV-9573..9584 Open,
 SV-93xx/9451/9699 obsolete. No newer source known.
 
-## STATUS 2026-09-22 — SUITE AUTHORED (33 cases, C88594–C88626)
+## STATUS 2026-09-22 — SUITE AUTHORED (39 cases: C88594–C88626 base + C88627–C88632 design/tech-plan gaps)
+After the QA lead's Rule-115 instruction, the design (New Dashboard variant only) and the tech plan were explored and reconciled; 6 gap cases added (detail-table columns, New Dashboard visual, At Risk aggregate FR-016, NFR-001 performance, NFR-010 report corrections). See DESIGN-REVIEW-2026-09-22.md for the per-source coverage verdict. NF subfolder = 12179.
 Authored the full Dashboards suite into 12166 across 12 per-story subfolders (12167–12178), covering
 all 131 PRD requirement anchors (S1–S12), each exactly once. Expected Results in the 2026-09-22 layout
 (plain results / Source / exact verbatim quotes, Rule 113); preconditions+steps runnable by a manual
