@@ -110,3 +110,96 @@ carry a sell price computed from `$3.00`. That is a pricing exposure, not just a
 single variable changed, and it is not what SV-8447 reports. It is carried into the branch testing to
 be settled there.
 
+## §2 — PRODUCTION: the boundary is exactly $1,000.00
+
+Five values, each entered into Average Cost and saved, then the part saved a second time with **only
+the Min value changed**. Read off the Inventory page list each time; `purchasePrice` captured off the
+wire on every save.
+
+| Entered | After the first save | After ONE unrelated save | Payload on the 2nd save | Verdict |
+|---|---|---|---|---|
+| `999.99` | `$999.99` | **`$999.99`** | `"999.99"` | survives |
+| `1000.00` | `$1,000.00` | **`$1.00`** | `"1,000.00"` | collapses |
+| `1234.56` | `$1,234.56` | **`$1.00`** | `"1,234.56"` | collapses |
+| `3896.04` | `$3,896.04` | **`$3.00`** | `"3,896.04"` | collapses — the reported case |
+| `12345.67` | `$12,345.67` | **`$12.00`** | `"12,345.67"` | collapses |
+
+**Every save re-sends the field as a quoted string** — `"999.99"` just as much as `"3,896.04"`. The
+string is not the fault; the **thousands separator inside it** is. Below `$1,000` the displayed text
+has no comma and survives the round trip untouched. At `$1,000` and above it does, and what is stored
+is the part before the comma: `12,345.67` → `12`.
+
+So the defect is precisely: **any inventory part whose Average Cost is $1,000 or more loses all but
+its thousands digits the next time that part is saved for any reason at all.**
+
+That also settles why two months of triage could not reproduce it. Chris Ward wrote *"I cannot
+replicate this … possibly a previously entered value"*. Entering a cost and checking it always looks
+right — it is the **second, unrelated save** that does the damage, and nothing in the report pointed
+at one.
+
+## §3 — FIX BRANCH (AFTER): all five values survive, and the payload is a number
+
+Environment `sv9940.qa.shopview.com`, build **`v26.36.9-e96da48`**, part
+`000657fe-522f-4c3f-9680-621c5449e2bd`. Identical script to §2 — same five values, same
+"save again changing only Min", same reading off the Inventory page list.
+
+| Entered | After the first save | After ONE unrelated save | Payload on the 2nd save | Verdict |
+|---|---|---|---|---|
+| `999.99` | `$999.99` | `$999.99` | `999.99` | survives |
+| `1000.00` | `$1,000.00` | **`$1,000.00`** | `1000` | **survives** |
+| `1234.56` | `$1,234.56` | **`$1,234.56`** | `1234.56` | **survives** |
+| `3896.04` | `$3,896.04` | **`$3,896.04`** | `3896.04` | **survives — the reported case** |
+| `12345.67` | `$12,345.67` | **`$12,345.67`** | `12345.67` | **survives** |
+
+**Ten saves, ten numeric payloads, zero quoted strings.** On production every second save carried
+`"3,896.04"`; on the branch it carries `3896.04`. The screen now sends the value rather than the text
+it is displaying, so there is no separator to truncate at.
+
+The `999.99` row is the regression control: it was never broken and is still correct, so the change
+has not disturbed values below the threshold.
+
+## §4 — The RECEIVING path: the reporter's actual flow
+
+The reporter did not describe editing the part. They described a **vendor-invoice receipt**, so the
+receiving path had to be examined on its own rather than assumed to be covered.
+
+**(a) The receive screen has no cost field at all.** Driving
+`/order/{id}?receive=1` on the branch and dumping every control: the editable inputs are the **vendor
+invoice number**, the **invoice date**, a **Quantity Received** box per line, and **Tax**. The Cost
+column is **read-only display text** (`$20.69000`, five decimals), carried from the purchase order.
+Full dump: `ev/recv-form.json`.
+
+That matters directly: the §1/§2 defect is a form re-submitting a *displayed, formatted* value. **The
+receive screen has no cost value to re-submit**, so it cannot introduce a thousands separator, and the
+truncation cannot arise on this path.
+
+**(b) Receiving with a cost above $1,000 in play.** No purchase order on the branch had a line at or
+above $1,000, so the condition was seeded instead of skipped: part **CS-RB-268**
+(`ecaae871-…`, 1 unit at `$20.69`) had its Average Cost set to **`$3,896.04`** through the now-fixed
+dialog, and then its purchase order (13 units at `$20.69`, vendor **Mobile Truck & Trailer Repair
+Hampton**) was received against vendor invoice **`ZZAUTOTEST8447`** — `POST /api/inventory/orders/accept`
+→ **201**.
+
+| | Average Cost | Quantity |
+|---|---|---|
+| before | `$20.69` | 1 |
+| after setting the cost | **`$3,896.04`** | 1 |
+| after receiving 13 at `$20.69` | **`$747.32`** | 14 |
+
+**The $3,896.04 was not truncated by the receipt** — no `$3.00`, no `$3,896.04 → $3`. The value went
+into a recalculation, which is what receiving is supposed to do.
+
+**(c) Part History records the cost correctly** — exactly as the customer reported it does:
+
+```
+Received | Mobile Truck & Trailer Repair Hampton - ZZAUTOTEST8447 | Bin: D2B | Starting qty: 1 | New qty: 14 | Qty change: 13
+Average cost updated | Original cost: $20.69 | New cost: $3896.04 | Original sell price: $38.32 | New sell price: $5126.41
+```
+
+Full capture: `ev/history.txt`.
+
+**(d) This also settles §1b — the sell price following the cost is BY DESIGN, not a defect.** Part
+History logs the sell-price change as part of the same "Average cost updated" event, with both the old
+and new sell price named. It is deliberate, logged behaviour. **The §1b hypothesis is withdrawn**, and
+it is not raised as a finding.
+
