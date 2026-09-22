@@ -203,3 +203,60 @@ History logs the sell-price change as part of the same "Average cost updated" ev
 and new sell price named. It is deliberate, logged behaviour. **The §1b hypothesis is withdrawn**, and
 it is not raised as a finding.
 
+## §5 — The $747.32 figure: chased down, and it is the data, not the build
+
+§4(b) left one number unexplained. A naive weighted average of 1 unit at `$3,896.04` and 13 at
+`$20.69` is `$297.50`, and the build produced **`$747.32`**. That was not left as a loose end.
+
+**A second, clean receipt was run on purchase order `I9940-1390`** (Stillwater Diesel Repair, invoice
+`ZZAUTOTEST8447B`), covering four parts — three with **zero** starting stock and one with existing
+stock, so the formula could be read off directly:
+
+| Part | Starting qty | Received | PO cost | Resulting Average Cost | Weighted average | |
+|---|---|---|---|---|---|---|
+| `66432` | 0 | 5 | `$1.34` | **`$1.34`** | `$1.34` | exact |
+| `66433` | 0 | 5 | `$2.11` | **`$2.11`** | `$2.11` | exact |
+| `66434` | 0 | 5 | `$4.19` | **`$4.19`** | `$4.19` | exact |
+| `3111` | 4 (at `$3.25`) | 10 | `$2.97` | **`$3.05`** | (4×3.25 + 10×2.97)/14 = `$3.05` | exact |
+
+**The averaging is exact to the cent in all four.** So the formula is sound and receiving is not
+mis-handling cost.
+
+**What produced `$747.32` is arithmetic on that one part's stock.** Solving
+`(x × 3896.04 + 13 × 20.69) / (x + 13) = 747.32` gives **x = 3.0000** exactly: the calculation used an
+opening quantity of **3**, while the Inventory list displayed **1 Available**. CS-RB-268's own history
+explains where a 3 comes from — it carries `Cycle Count | Qty: 3 → 1 (-2)` and `Cycle Count | Qty: 1 →
+3 (+2)` on the same minute, and a pick recorded against `Bin: Unassigned | Starting qty: 0 | Remaining
+qty: -2`. A displayed total that nets a negative unassigned row against a positive bin will not equal
+the quantity the valuation walks.
+
+**This is reported as an observation, not a defect, and deliberately not raised as one:**
+- it is **not** what SV-8447 reports (that ticket is a truncation, and the customer's receipt and part
+  history were both correct);
+- **no document states the intended formula**, so there is no requirement to judge it against
+  (Standing Rule 57);
+- and it sits in **server-side valuation**, which a front-end number-formatting change cannot reach —
+  so it is neither caused nor fixed by SV-9940.
+
+It is written down here so it is visible rather than silently dropped, and it is the one thing in this
+pass I would want a second opinion on before anyone calls it fine.
+
+## §6 — Verdict
+
+**SV-8447 PASSES on `sv9940.qa.shopview.com` (build `v26.36.9-e96da48`).**
+
+- The reported symptom — Inventory page Average Cost reading **`$3.00`** where the receipt said
+  **`$3,896.04`** — **reproduces on production** and **does not reproduce on the fix branch**.
+- The trigger is now understood and stated: not entering the cost, but **saving the part again
+  afterwards**, for any reason, at **$1,000 or more**.
+- The cause is proven off the wire on both builds: production re-submits `"3,896.04"`, the branch
+  sends `3896.04`.
+- The receiving path the customer described is **not a route for this defect** — the receive screen
+  has no cost field — and receiving computes average cost exactly.
+- The under-$1,000 control (`999.99`) is unchanged, so nothing below the threshold was disturbed.
+
+**Honest limits.** Two parts of this pass are worth stating plainly: the `$747.32` observation in §5 is
+unadjudicated for want of a documented formula; and the receive comparison was run on the branch only,
+because the receive screen carries no cost input, making a production receive incapable of showing the
+reported truncation either way.
+
