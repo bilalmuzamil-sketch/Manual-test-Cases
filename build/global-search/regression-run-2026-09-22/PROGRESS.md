@@ -223,3 +223,66 @@ identity **changed** between 17 and 22 September, and in this same batch the veh
 under owner `e049c07d…` while the seeded customer is now `72dbfa1d…` — **two different companies
 carrying the same name**, left behind by a reseed. Being confirmed by counting the records that
 carry that name and comparing with the rows shown.
+
+---
+
+# FINAL — all 65 measured on build `v26.36.8-d146c39`, 22 September 2026
+
+**55 Passed · 7 Failed · 3 Blocked · 0 Untested.** Standing before this run: 58 Passed · 7 Failed.
+Written into run 415, which now reads **171 passed · 14 failed · 18 blocked · 0 untested** across
+all 203 tests.
+
+## Every failure, and why none of them is a new report
+
+| Check | What happens | Standing |
+|---|---|---|
+| C53601 | a catalogue-only part is not findable by its description word or its number | [SV-10001](https://shopview.atlassian.net/browse/SV-10001) |
+| C53605 | the year and make typed together return no vehicle | [SV-10055](https://shopview.atlassian.net/browse/SV-10055) |
+| C55660 | a fragment from the middle of a word finds nothing, or the wrong records | [SV-10060](https://shopview.atlassian.net/browse/SV-10060) |
+| C55685 | a correct spelling returns 12 customers, 11 unrelated | [SV-10025](https://shopview.atlassian.net/browse/SV-10025) |
+| C45160 | choosing a result records no usage event | **deliberate non-goal** — withdrawn 21 Sep, no report due |
+| C55679 | the recent list does not come back after a fruitless search | **a real V1 loss**; the case itself says to wait for the PO ruling |
+| C53582 | typing the town or state does not return the seeded customer | **ours** — later fixtures all carry the same town and outrank it; the field is searchable, every row returned is in that town |
+
+**⇒ ZERO new defects to raise from these 65 checks.**
+
+## One recovered since 17 September
+
+**C55673** — Enter now opens the top result with no arrow key first. Its report
+[SV-10061](https://shopview.atlassian.net/browse/SV-10061) is already OBSOLETE.
+
+## The three blocked, and the one thing that finishes them
+
+**C45151 · C45152 · C55684** — branch scoping. **Five routes tried and the branch never moves for
+this sign-in:** the switch behind the screen (reports success, nothing moves) · the branch picker on
+screen · a full page reload after the change · three readings there-and-back-and-there ·
+**signing in as Jennifer Phillips, whose own branch IS the second one** — the app still shows the
+first. **To finish: one staff account genuinely tied to the second branch, or a sign-in whose branch
+moves.** Not a fault in search, and it blocks nothing else.
+
+**Contrary evidence worth keeping:** earlier in the session the branch did sit on the second one,
+and the same word returned **2 jobs instead of 20** — which is the scoping working.
+
+## 🔴 THIRTEEN instrument faults caught on this run before anything was written down
+
+| # | I nearly reported | It was |
+|---|---|---|
+| 1–8 | eight findability checks "broken" | the All view lists only **five** rows per group; the record sat below it. Reading the scope tab, all eight pass |
+| 9 | expectations matching the wrong record | *"Brake Chamber"* also matches two unrelated stock parts |
+| 10 | *"one character already runs a search"* | the tab strip is on screen before you type; what says a search ran is the **counts** |
+| 11 | *"rows carry no icon / only one icon"* | every icon shares the class `lucide-icon`; the shape is in the drawing. **Eight icons, eight kinds** |
+| 12 | *"a part-sales role sees nothing"* | I built a role **the product refuses to create**. [SV-10278](https://shopview.atlassian.net/browse/SV-10278) was withdrawn 20 Sep for exactly this |
+| 13 | *"the same customer is listed twice"* | two **different** customers whose names start with the same words |
+
+**And one false statement about the product that was written and is recorded rather than quietly
+fixed:** a run of mine wrote *"the product refuses to create a work order — a server error every
+time."* **Untrue.** The create returned 201 twice; my code failed to read the new job's id, which
+the reply carries as `work_order_id`. Read correctly, **C53587 passes** — a job created minutes
+earlier is found in about 8 seconds.
+
+## State left on the branch
+
+Three throwaway jobs (`S-17714`, `S-17715`, `S-17716`) could not be removed — the delete call
+answers 400 and the job-list endpoint returns nothing to find them by. The Technician role was
+restored and **read back identical** after every permission run. The branch is back on
+**Staging Heavy Duty - 9919**.

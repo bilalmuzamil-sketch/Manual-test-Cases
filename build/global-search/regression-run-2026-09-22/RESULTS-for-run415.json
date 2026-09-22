@@ -1,0 +1,355 @@
+{
+ "pass_meta": {
+  "pass": "V1 regression suite re-run, both folders",
+  "date": "22 September 2026",
+  "build": "v26.36.8-d146c39",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C53516": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53578": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53580": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53581": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53582": {
+   "verdict": "Failed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Typing the town or the state returns twenty other customers that outrank the seeded one; the field itself is searchable - every row returned is in that town.",
+   "not_observed": null,
+   "ticket": "No report raised, on purpose - the wording is with the QA lead. The product is fine; our own test data has crowded this record out of its own test.",
+   "ticket_held": true,
+   "todo": "What needs to be done: give this check a town that belongs to its own customer alone, so other test records cannot outrank it. That is a change to the steps and needs the QA lead's word."
+  },
+  "C53583": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53584": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53585": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53601": {
+   "verdict": "Failed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. These searches did not return the record: \"Vernway\" in Parts (group empty), \"ZZT-77-3300\" in Parts (group empty).",
+   "not_observed": null,
+   "ticket": "Already raised as SV-10001 - https://shopview.atlassian.net/browse/SV-10001.",
+   "todo": "What needs to be done: nothing further from us. The fix is with the developers under the report above; this check is re-run once it lands."
+  },
+  "C53602": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53603": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53604": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53605": {
+   "verdict": "Failed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. These searches did not return the record: \"2019 Freightliner\" in Assets (group empty).",
+   "not_observed": null,
+   "ticket": "Already raised as SV-10055 - https://shopview.atlassian.net/browse/SV-10055.",
+   "todo": "What needs to be done: nothing further from us. The fix is with the developers under the report above; this check is re-run once it lands."
+  },
+  "C53606": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53607": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55660": {
+   "verdict": "Failed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. These searches did not return the record: \"ernva\" in Customers (group empty), \"idgepor\" in Customers (missing: ZZAUTOTEST Bridgeport Hauling).",
+   "not_observed": null,
+   "ticket": "Already raised as SV-10060 - https://shopview.atlassian.net/browse/SV-10060.",
+   "todo": "What needs to be done: nothing further from us. The fix is with the developers under the report above; this check is re-run once it lands."
+  },
+  "C55662": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55663": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55664": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55665": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55666": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55667": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55668": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55669": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55670": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55671": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55688": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C55689": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every search returned its record.",
+   "not_observed": null
+  },
+  "C53579": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. All five forms find the same job.",
+   "not_observed": null
+  },
+  "C55659": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every fragment finds its record.",
+   "not_observed": null
+  },
+  "C55672": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Typing 17670 alone returns the job.",
+   "not_observed": null
+  },
+  "C55661": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every type with matches has a group on the All view.",
+   "not_observed": null
+  },
+  "C55686": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The real Marlene record is first; Enter opened a record.",
+   "not_observed": null
+  },
+  "C55673": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Enter alone opened the top result.",
+   "not_observed": null
+  },
+  "C55680": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The highlight moves through rows and never landed on a group heading.",
+   "not_observed": null
+  },
+  "C55675": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The panel says: \"No results found No results for \u201cZZNOSUCHRECORD9999\u201d\".",
+   "not_observed": null
+  },
+  "C55679": {
+   "verdict": "Failed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Only the no-results message is shown - the recent list does not come back.",
+   "not_observed": null,
+   "ticket": "No report raised yet - it is with the QA lead. This is behaviour the old version had and this one does not, and the check itself says to wait for the product owner's ruling before raising it.",
+   "ticket_held": true,
+   "todo": "What needs to be done: the product owner decides whether leaving someone at a dead end after a fruitless search is acceptable. Until then nothing is raised."
+  },
+  "C45161": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. With one character no search runs - the tabs carry no counts and the recent list is shown; with two characters the tabs carry counts and results appear.",
+   "not_observed": null
+  },
+  "C45155": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The group and its tab both read Assets, never Vehicles.",
+   "not_observed": null
+  },
+  "C45156": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The shortcut opened it with the field ready to type.",
+   "not_observed": null
+  },
+  "C55683": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The header search box shows the shortcut.",
+   "not_observed": null
+  },
+  "C55682": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every one of the 33 rows carries an icon; rows of the same kind share one icon; 8 different icons across 8 kinds.",
+   "not_observed": null
+  },
+  "C45142": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. With no work-order access the Work orders group and its count are gone.",
+   "not_observed": null
+  },
+  "C45144": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Without parts access the Parts count reads null; with it, 4.",
+   "not_observed": null
+  },
+  "C45145": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Without vendor access the Vendors count reads null; with it, 3.",
+   "not_observed": null
+  },
+  "C45146": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Without customer access Customers reads null and Assets reads null (both must be empty).",
+   "not_observed": null
+  },
+  "C45143": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. With the role the product actually allows - part sales plus the See Financial Data switch it insists on - the user sees Part sales (3) and neither Parts nor Vendors.",
+   "not_observed": null
+  },
+  "C45147": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. A time-clock-only user gets no results of any kind.",
+   "not_observed": null
+  },
+  "C45148": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Types the role was never granted show nothing - purchase orders and vendor invoices are both empty.",
+   "not_observed": null
+  },
+  "C45157": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The two rows are two different customers whose names both begin with the same words - ZZAUTOTEST Bridgeport Hauling Contact match \u00b7 1450 Kestrelway Industrial, Fernvale, Ohio / ZZAUTOTEST Bridgeport Hauling ZZPSRANK Contact match \u00b7 1450 Kestrelway Industrial, Fernvale, Ohio - so no record is listed twice.",
+   "not_observed": null
+  },
+  "C53588": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The Work orders list is ordered and not empty - 4 jobs, read top to bottom; a strict newest-first order is explicitly NOT expected.",
+   "not_observed": null
+  },
+  "C53589": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every character typed is still in the box (\"Bridgeport Hauling\"); the results shown match the full text.",
+   "not_observed": null
+  },
+  "C55674": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Search reachable and the customer found at: desktop yes, tablet yes, phone yes.",
+   "not_observed": null
+  },
+  "C55685": {
+   "verdict": "Failed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Typing a correctly spelled name returns 12 customers, 11 of which do not contain the word typed.",
+   "not_observed": null,
+   "ticket": "Already raised as SV-10025 - https://shopview.atlassian.net/browse/SV-10025.",
+   "todo": "What needs to be done: nothing further from us. The fix is with the developers under the report above; this check is re-run once it lands."
+  },
+  "C53586": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The brand-new customer is returned by search within the 30-second window.",
+   "not_observed": null
+  },
+  "C45153": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Clicking a row opened a record every time: Customers yes, Assets yes, Vendors yes.",
+   "not_observed": null
+  },
+  "C45154": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Selecting the record already open did not navigate again.",
+   "not_observed": null
+  },
+  "C45158": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Search opens and returns results for an ordinary signed-in user with no setting switched on first.",
+   "not_observed": null
+  },
+  "C53587": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. A work order created minutes earlier is returned by search - confirmed at about 8s of watching, well inside the 30-second window the check allows.",
+   "not_observed": null
+  },
+  "C45151": {
+   "verdict": "Blocked",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Even signed in as Jennifer Phillips, whose own branch is the other one, the app shows the same branch - so the two cannot be compared.",
+   "not_observed": null,
+   "todo": "What needs to be done: one staff account tied to the second branch, or a sign-in whose branch actually moves. Five ways were tried: switching behind the screen, the branch picker on screen, a full reload afterwards, three readings there-and-back, and signing in as someone whose own branch is the second one. The branch never moves, so the two cannot be compared. This does not block anything else - every other check on this suite is finished."
+  },
+  "C45152": {
+   "verdict": "Blocked",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Even signed in as Jennifer Phillips, whose own branch is the other one, the app shows the same branch - so the two cannot be compared.",
+   "not_observed": null,
+   "todo": "What needs to be done: one staff account tied to the second branch, or a sign-in whose branch actually moves. Five ways were tried: switching behind the screen, the branch picker on screen, a full reload afterwards, three readings there-and-back, and signing in as someone whose own branch is the second one. The branch never moves, so the two cannot be compared. This does not block anything else - every other check on this suite is finished."
+  },
+  "C55684": {
+   "verdict": "Blocked",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Even signed in as Jennifer Phillips, whose own branch is the other one, the app shows the same branch - so the two cannot be compared.",
+   "not_observed": null,
+   "todo": "What needs to be done: one staff account tied to the second branch, or a sign-in whose branch actually moves. Five ways were tried: switching behind the screen, the branch picker on screen, a full reload afterwards, three readings there-and-back, and signing in as someone whose own branch is the second one. The branch never moves, so the two cannot be compared. This does not block anything else - every other check on this suite is finished."
+  },
+  "C45150": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Every customer returned belongs to this organisation - all 15 rows match records this sign-in can list.",
+   "not_observed": null
+  },
+  "C45149": {
+   "verdict": "Passed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. The recent list is shown with 13 items. The restricted half of this check is covered by the permission batch: taking an area away removed its results entirely, recent items included.",
+   "not_observed": null
+  },
+  "C45160": {
+   "verdict": "Failed",
+   "observed": "Re-run on build v26.36.8-d146c39 on 22 September, read on the screen. Choosing a result records no usage event; usage recording was deliberately removed from this version, so no report is due.",
+   "not_observed": null,
+   "ticket": "No report raised, on purpose - the decision is with the QA lead. Usage recording was deliberately taken out of this version, so there is nothing to report to the developers.",
+   "ticket_held": true,
+   "todo": "What needs to be done: this check needs the same exclusion note its twin already carries, which is the QA lead's to approve. Nothing goes to the developers."
+  }
+ }
+}
