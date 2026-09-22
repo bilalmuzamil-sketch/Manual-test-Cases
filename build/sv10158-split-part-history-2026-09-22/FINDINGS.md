@@ -83,3 +83,83 @@ it is already written down: playbook **§AC.9 — "Inventory parts arrive ALREAD
 is on — check the setting before seeding."** It was not read before seeding. The retest below turns
 the flag on first and verifies the seeded request really comes back picked, rather than assuming it.
 
+## §2 — FIX BRANCH: the reported flow now records the move
+
+Auto-pick was turned **on** first (`POST /api/organizations/settings/change` → 200, re-read confirms
+`"autoPickInventoryParts": true`), so the seeded part is genuinely picked — the seed came back
+**`status: "received"`**, which is the state §1 was missing.
+
+Work order **S2-17435**, line 1 *"Service - CVIP inspection single or tandem axle"*, part **MD668D**
+seeded at **quantity 2**. Split driven **through the screen** exactly as the ticket's steps describe —
+hover the line, tick the box that appears (`aria-checked` verified `true`), the ⋮ beside the
+select-all box, then **Split work order clicked twice** — `POST /api/work-orders/split
+{"ids":["522f44cc-…"]}` → **201**, and the browser landed on a brand-new work order.
+
+| | Part History for MD668D |
+|---|---|
+| before the split | 4 entries |
+| after the split | **5 entries — exactly one new** |
+
+The new entry:
+
+```
+eventType : part.moved_to.work_order
+eventName : Moved
+on screen : "Moved 2 from WO # S2-17435 to WO # S10158-17581"
+```
+
+The quantity in the entry (**2**) matches the quantity seeded onto the line. This is the ticket's
+Expected Behaviour met as written: *"An entry showing the part moved from the original work order to
+the new one."*
+
+## §3 — The developer's three claims, each tested
+
+**Claim 1 — *"one per inventory-linked part on the split line"*. HOLDS.** Line 2 of the same work
+order was given **two different** inventory parts — MD668D at quantity 3 and 2208H476 at quantity 1 —
+and then split:
+
+| Part | Entries before | Entries after | New | Entry on screen |
+|---|---|---|---|---|
+| MD668D | 6 | 7 | **1** | `Moved 3 from WO # S2-17435 to WO # S10158-17582` |
+| 2208H476 | 1 | 2 | **1** | `Moved 1 from WO # S2-17435 to WO # S10158-17582` |
+
+One entry each, never two, never none, and each carries its own correct quantity. MD668D now shows
+both of its splits separately (`Moved 3 … to S10158-17582` and `Moved 2 … to S10158-17581`), so
+repeated splits accumulate properly rather than overwriting.
+
+**Claim 3 — *"the existing Split to / Split from work-order entries are unaffected"*. HOLDS.**
+
+| Work order | History entries | Split-related |
+|---|---|---|
+| **S2-17435** (original) | 17 | **3 × `work_order.split_to` "Split to"** — one per split performed |
+| **S10158-17581** (new) | 2 | **1 × `work_order.split_from` "Split from"** |
+| **S10158-17582** (new) | 2 | **1 × `work_order.split_from` "Split from"** |
+
+Worth noting: the **first, invalid split from §1** — the one whose part was never picked — still
+produced its `Split to` / `Split from` pair. The work-order-level record is about the *line* moving
+and is independent of whether any part was inventory-linked, which is the correct separation.
+
+**Regression guard — the ordinary Move still writes its entry (SV-9304 undisturbed). HOLDS.**
+A staged part (**P550848**) was moved from S2-17435 to a line on S10158-17581:
+
+```
+eventType : part.moved_to.work_order
+eventName : Moved
+on screen : "Moved 1 from WO # S2-17435 to WO # S10158-17581"
+```
+
+**Which also answers the ticket's "same kind of entry" requirement (check 5).** Split and Move now
+produce the **same `eventType` and the same wording**, differing only in the quantity:
+
+```
+split :  part.moved_to.work_order   "Moved 2 from WO # S2-17435 to WO # S10158-17581"
+move  :  part.moved_to.work_order   "Moved 1 from WO # S2-17435 to WO # S10158-17581"
+```
+
+**Honest note on how each was driven (the UI-vs-API split).** The **feature under test — the split —
+was driven entirely through the screen**, including the two-click menu, because that is what a user
+does and the screen can send a different payload than a script. The **Move regression guard was driven
+at its endpoint** after the Quasar target-line dropdown proved awkward to automate; it is a guard on a
+neighbouring feature rather than the thing under test, and the endpoint is the one the dialog itself
+calls.
+
