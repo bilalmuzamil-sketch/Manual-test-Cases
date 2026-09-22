@@ -4755,6 +4755,53 @@ deliver the 7-tab management report.
     no such thing as an honest limit until it is proven untestable — this rule names the commonest
     fake one: a state you could have created**).
 
+88. **WHEN ONE SURFACE WON'T DO IT, SWITCH TO THE OTHER — UI ↔ API, BOTH DIRECTIONS (all projects).**
+    USER DIRECTIVE (2026-09-22, verbatim): *"Also make a rule that you should try using UI when API
+    doesn't help and vice versa"*.
+    **THE RULE:** the screen and the endpoint are **two routes to the same product**, and neither is
+    the fallback. **The moment one of them stalls, try the other before concluding anything.** A thing
+    that "cannot be done" on one surface is, far more often than not, ordinary on the other.
+    **API STALLS → GO TO THE SCREEN.** Typical tells: a blind probe answers **404 / 405** · a guessed
+    payload answers **400** with a field name you did not expect · a value comes back **coerced** (a
+    blank stored as `0`, a decimal rounded) · the endpoint simply is not documented anywhere. **The
+    screen always knows the route and the exact payload** — open the page a user would, do the thing,
+    and **capture the app's own request** (playbook §U.1). That is not a workaround; it is the
+    authoritative answer.
+    **SCREEN STALLS → GO TO THE ENDPOINT.** Typical tells: a control has **no `data-test-id`** · a
+    Quasar select or dialog will not take an actionability click · an element is **in the DOM but not
+    visible** so `boundingBox()` returns null · the row is inside a collapsed container · the page
+    needs a state that is tedious to click through. **Drive the endpoint the dialog itself calls** —
+    and where the endpoint is unknown, get it by doing the action once on any *reachable* record and
+    watching the traffic.
+    **THE HONEST LINE THAT MUST FOLLOW (Standing Rule 64 / the UI-vs-API split):** driving the
+    **SET-UP** by API is a free speed choice; driving **THE THING UNDER TEST** by API instead of the
+    screen is a **coverage gap**, because the screen can send a different payload than you do — which
+    is exactly how this rule was earned. So **say in the report which parts were clicked and which
+    were called**, and keep the feature under test on the screen wherever it can be driven at all.
+    **NEITHER SURFACE FAILING IS THE ONLY REAL BLOCK** — one of them failing is just a signal to try
+    the other (Rules 85/87).
+    **RATIONALE, 2026-09-22 (SV-10035 — four switches in one pass, in both directions):**
+    **(1) API → UI, and it was the whole ticket.** `POST /api/work-orders/part/make-request` **always
+    stores `sell_price` as `"0.00"`**, so the API could not build the *missing*-price state the fix is
+    about; **clearing the cell on the Parts grid sends `{"sell_price": null}`** — a genuine NULL — and
+    that one gesture unlocked the core check after four failed API attempts. *A dialog leaving a field
+    blank and an API call omitting it are not the same request.*
+    **(2) API → UI for a contract.** A guessed category-change payload answered **400**, and my loop
+    reported a price "wiped" that never was; the server's own error named the key (`id`), and the
+    screen confirmed it.
+    **(3) API → UI for a whole feature.** A blind `POST /api/inventory/categories` answered **405, GET
+    only** — which looks like "categories cannot be created" and is not: Administration → Categories
+    creates them, and the capture gave `POST /api/parts-catalogue/add-category {"name","isTaxExempt"}`.
+    **(4) UI → API, the reverse.** The labour-rate dropdown that sets **Fixed Line Total** carries
+    **no `data-test-id`** on the lines grid (only `button_add_labor_adjustment_<lineId>` and the clock
+    toggle do), so the selector found nothing — the way forward is the endpoint behind it, or locating
+    the control by its visible text rather than by id.
+    Ties to Standing Rules 9 (build-accurate labels come from the screen), 12, 13, 14 (**its self-seed
+    playbook clause (b) is the seed of this rule; this is its full statement**), 27 (reuse the recorded
+    recipe for whichever surface), 50, 63 (**picking the right surface first is the single biggest cost
+    multiplier**), 64 (the feature under test is driven on the screen, and the split is declared), 85,
+    87 (build the state — on whichever surface will build it) and playbook §U.0 question 2 / §U.1.
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
