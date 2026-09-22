@@ -1,0 +1,47 @@
+# DVI V2 — delete manifest (2026-09-22): 43 old cases removed for from-scratch rebuild
+
+Authorised by the QA lead 2026-09-22 (delete-and-rebuild). Full bodies snapshotted in cases-dump.md. All created_by=3, atm=1.
+
+- C44506 [Capturing Findings] | Note-required option on checkbox and per-axle fields, on by default
+- C44507 [Capturing Findings] | A required note is enforced on submit and listed in outstanding items
+- C44508 [Capturing Findings] | Note rule negatives and edge cases (off, OK/NA, spaces, changed response)
+- C44509 [Capturing Findings] | 'Photo required if Not OK' on checkbox fields, on by default, enforced on submit
+- C44510 [Capturing Findings] | Photo-required: interaction with unconditional rule; negatives and edges
+- C44511 [Capturing Findings] | Per axle is its own field type, prefilled with four measurement rows
+- C44512 [Capturing Findings] | Per-axle rows: rename in place, add/remove, last row protected, reference file
+- C44513 [Capturing Findings] | Filling an axle: Single/Dual, Drum/Disc, per-position values and verdicts
+- C44514 [Capturing Findings] | Derived verdicts worst-first; fill-time unit change; Single/Dual preserves
+- C44515 [Capturing Findings] | Axle diagram, add/clear/delete axles, expand behaviour
+- C44516 [Capturing Findings] | Per-axle output, per-position counting, and one finding per flagged row
+- C44517 [Capturing Findings] | Per-axle negatives and edges: unanswered, N/A vs value, free text, road train
+- C44518 [Capturing Findings] | Any field holds one 'Attach File' reference; types stated up front
+- C44519 [Capturing Findings] | Technician opens the reference file full-page; survives republish; negatives
+- C44520 [Building Work From Findings] | Build turns every Monitor and Not OK finding into a work order line
+- C44521 [Building Work From Findings] | Target work order chosen up front; closed WO forces a new one
+- C44522 [Building Work From Findings] | Navigation precedes drafting; state changes only on Add Lines
+- C44523 [Building Work From Findings] | Build negatives: no ShopCoach, not completed, no findings, permission gates
+- C44524 [Building Work From Findings] | Build edge cases: closed-by-another, deleted WO, concurrent, no labour types
+- C44525 [Building Work From Findings] | Build Work Order action on the completed inspection, phone-capable
+- C44526 [Building Work From Findings] | S3 negatives/edges: absent (not disabled) when no findings/rights/ShopCoach
+- C44527 [Building Work From Findings] | Build action on the work order's inspection report note
+- C44528 [Building Work From Findings] | S4 negatives: passes-only, deleted inspection, history view, no ShopCoach
+- C44529 [Building Work From Findings] | Build from an asset Inspections-tab row via an up-front target menu
+- C44530 [Building Work From Findings] | S6 negatives: closed/deleted WO, no create rights, no ShopCoach, no bulk
+- C44531 [Building Work From Findings] | Build records a note and an Audit Log entry naming the source inspection
+- C44532 [Building Work From Findings] | ShopCoach brief is composed from the inspection; user never types a prompt
+- C44533 [Building Work From Findings] | ShopCoach action reads as AI; named once; drafting concurrent with navigation
+- C44534 [Building Work From Findings] | Proposed lines are selected, editable in place, added only on Add Lines
+- C44535 [Building Work From Findings] | ShopCoach failure and empty-result are stated plainly; nothing added
+- C44536 [Inspection History] | Asset record gains an Inspections tab listing every inspection, newest first
+- C44537 [Inspection History] | Findings column, action states, filter row and 'N of M need a work order'
+- C44538 [Inspection History] | Counts read the same for everyone; counting definition; phone layout
+- C44539 [Inspection History] | S5 negatives and edges: tab gating, empty/edge rows, deleted WO, cutoff
+- C44540 [Template Builder] | New template shows only the starting-point choice until one is picked
+- C44541 [Template Builder] | Starting points Brake and Axle, PM Service; later sections = field types
+- C44542 [Template Builder] | Field properties panel: per-axle row cards, response options, validation errors
+- C44543 [Template Builder] | Canvas rows, empty-section restraint, and one merged Text field
+- C44544 [Template Builder] | S12 negatives and edges: starting-point limits, empty-label block, deletions
+- C44545 [Customer Report] | Report content: title, removed elements, work order number and dates
+- C44546 [Customer Report] | Report addressing, versioning, and negatives/edges
+- C44547 [Phone Filling] | Per-axle and reference-file rendering on a phone; no sideways scroll
+- C44548 [Phone Filling] | Outstanding work surfaced on the section action; negatives
