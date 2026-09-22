@@ -108,7 +108,26 @@ export async function bootOrigin({ app, apiHost, ssoFile, label = app, route = '
     ignoreHTTPSErrors: true,
   });
   // host-only on BOTH hosts, never a leading dot / parent domain (trap 2)
-  await ctx.addCookies([{ ...sso, domain: APIH }, { ...sso, domain: APPH }]);
+  const jar = [{ ...sso, domain: APIH }, { ...sso, domain: APPH }];
+  // 🔴 CORRECTED 2026-09-22 — trap 1 above ("ONLY sv_sso_session IS NEEDED") IS NO LONGER TRUE.
+  // Since the branch moved to Google sign-in, the API refuses sv_sso_session ON ITS OWN with
+  // {"error":"sso_required"} and 401. Measured this day, same cookie set, four ways:
+  //     sso only  401   ·   PHPSESSID only  401   ·   sso + PHPSESSID  200   ·   all three  200
+  // So BOTH are required now. This cost a run that read as an expired session and was not one.
+  // The trap 2 warning still stands and is why this is HOST-ONLY: a PHPSESSID scoped to
+  // `.qa.shopview.com` sits alongside the host-only one, the server reads the stale copy, and
+  // fe-permissions answers 409 right after a successful sign-in.
+  try {
+    const fullPath = ssoFile.replace(/-sso\.txt$/, '-full.json');
+    if (fs.existsSync(fullPath)) {
+      const full = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+      if (full.PHPSESSID) {
+        const php = { name: 'PHPSESSID', value: full.PHPSESSID, path: '/', secure: true, sameSite: 'None' };
+        jar.push({ ...php, domain: APIH }, { ...php, domain: APPH });
+      }
+    }
+  } catch (e) { /* the sso cookie alone is still tried; the liveness check below reports the truth */ }
+  await ctx.addCookies(jar);
 
   const page = await ctx.newPage();
   page.setDefaultTimeout(60000);

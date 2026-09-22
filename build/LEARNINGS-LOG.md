@@ -3858,3 +3858,21 @@ line works (`POST /api/work-orders/{id}/lines/create-from-canned-line`, 83 canne
 `POST /api/work-orders/lines/create` is refused with *"Labor or fixed prices must be set."*
 **And adding a line to an Estimate flips it to Approved** — which is a scored ranking signal, so it
 confounds any ranking measurement. Equalise status first.
+
+## L0186 — 2026-09-22 — the branch now needs TWO cookies; the boot script said one, in capitals
+**Symptom.** Every call answered `{"error":"sso_required"}` and 401 with a freshly supplied cookie
+set, and the boot fell through to hunting a DEV MODE panel that no longer exists. It read exactly
+like an expired session and was not one.
+**Measured, same cookie set, four ways:** `sv_sso_session` alone → **401** · `PHPSESSID` alone →
+**401** · **`sv_sso_session` + `PHPSESSID` → 200** · all three → **200**.
+**Cause.** Since the branch moved to Google sign-in, the sign-in cookie is no longer sufficient on
+its own. `qa-branch-boot.mjs` trap 1 said *"ONLY sv_sso_session IS NEEDED. Do NOT carry PHPSESSID"* —
+true before that change, wrong now, and stated in capitals, so it reads as settled fact.
+**Fixed in the boot:** it now also carries `PHPSESSID` from `<branch>-full.json` when present,
+**host-only on both hosts** — trap 2 still holds, a domain-scoped copy alongside the host-only one
+makes the server read the stale one and answer 409 right after a good sign-in.
+**The general lesson, and it is the third time today:** *a confident note in the repo is evidence
+about the day it was written, not about now.* Trap 1 was right in early September and wrong by the
+22nd. When a documented certainty and a live measurement disagree, **the measurement wins and the
+note gets corrected in the same pass** (Rule 93). Four curl calls settled what had already cost one
+aborted run and nearly cost an hour of his time.
