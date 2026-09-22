@@ -249,3 +249,69 @@ from the part-sale fixture, so two differently-shaped fixtures agree on it.
 
 **`$200.00`, `$300.00` and `$500.00` appear nowhere on either fixed document**, and `$145.04` appears
 nowhere on the large one — checked by searching the rendered text, not by eye.
+
+## §2 — Cross-workplace, same organization: the fix PASSES, and a separate pre-existing gap sits next to it
+
+The handoff calls this the highest-risk shape: *"one payment settling invoices across two workplaces of
+the same org is a real, already-supported flow (SV-7761)… scoping it to workplace would have silently
+re-created the bug on exactly those invoices"*, with the acceptance line **"if either document shows the
+full $100.00 face, the fix has regressed"**.
+
+**Neither document shows the full face. Check 2 passes.**
+
+### Fixture A — credit issued in Heavy Duty
+
+Two $145.04 work orders, one in **Staging Heavy Duty - 9919** (`b3c8c820…`) and one in **Staging
+Lethbridge - 4310** (`f8a8b802…`), same customer, settled in **one** payment with **one $250.00 credit**
+plus $40.08 cash. The payment dialog itself confirms it is a cross-location payment — it prints
+*"Select invoices from a single location to pay by terminal."*
+
+Allocation read back from the payment record: cash $40.08 → **S-17585 (Heavy Duty)**, cash $0 →
+**S-17587 (Lethbridge)**, `applied_credits: -250`.
+
+| document | workplace | what it prints |
+|---|---|---|
+| **S-17585** | Heavy Duty | Cash **$40.08** · (Credit) CM-4193 **$104.96** → sums to **$145.04** ✓ |
+| **S-17587** | Lethbridge | **Payments section EMPTY** — no cash row (correct, it is $0) and **no credit row** — BALANCE **$0.00** |
+
+### Fixture B — the same thing with the credit issued in Lethbridge
+
+| document | workplace | what it prints |
+|---|---|---|
+| **S-17589** | Lethbridge | (Credit) CM-4194 **$145.04** → its own slice ✓ |
+| **S-17588** | Heavy Duty | Cash **$40.08** only — **the $104.96 credit slice is missing** — BALANCE **$0.00** |
+
+**The two fixtures are mirror images, which is what makes the rule readable rather than guessable: the
+credit row renders ONLY on invoices belonging to the credit memo's own workplace.** Wherever it does
+render, the amount is the correct apportioned slice — so the thing SV-9647 changes is working. What is
+missing is the row itself on the invoice in the other location.
+
+### It is PRE-EXISTING, not a regression — proven on staging
+
+The same cross-workplace fixture on staging (`v26.36.8-e2c29c5`), credit CM-4401 issued in Heavy Duty,
+cash $40.08 allocated to the Lethbridge invoice:
+
+| document | workplace | staging (pre-fix) prints |
+|---|---|---|
+| **S-33373** | Heavy Duty | (Credit) CM-4401 **$250.00** — the full face on a $145.04 invoice, i.e. the SV-9647 bug |
+| **S-33374** | Lethbridge | Cash **$40.08** only — **no credit row** |
+
+**So the foreign-workplace omission is present on both builds and is not caused by this change.** What
+the fix changed is the amount on the row that does render: **$250.00 → $104.96**.
+
+### How this was verified
+
+Counted in the rendered document HTML from `GET /api/invoices/preview`, not read off a screenshot: the
+Lethbridge invoice contains **zero** `data-test-id="invoice-payment-row"` elements, an
+`invoice-payments-heading` with nothing under it, and `invoice-balance` = $0.00. The Heavy Duty invoice
+of the same payment contains the Cash row and the credit row, each exactly once.
+
+### What I am claiming, and what I am not
+
+* **Claiming:** on both builds, an invoice settled by a credit belonging to another workplace prints no
+  credit row, so a customer sees *Balance $0.00* with nothing explaining how it was settled — and in
+  fixture A the Lethbridge document shows **no payment information at all**.
+* **Not claiming:** that SV-9647 caused it. It reproduces byte-for-byte on the pre-fix build.
+* **Not claiming** it is out of scope either — it is one query away from what this ticket touches, and
+  the handoff's own reasoning is about exactly this flow. Whether it becomes its own ticket is the QA
+  lead's call.
