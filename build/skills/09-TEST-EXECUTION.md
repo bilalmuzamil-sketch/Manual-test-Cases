@@ -598,3 +598,35 @@ value read from an endpoint says is **evidence about the endpoint**, never a pas
 person sees. Twelve real cases, the three mechanisms that make the two disagree (different SURFACE,
 different LAYER, different MOMENT), when an API read IS admissible, and the five questions to ask before
 trusting one. Read it before the first probe of any pass.
+
+---
+
+## 🛑 RULE 115 — THE CASE IS NOT FINISHED WITHOUT ITS `spec.ts` (QA lead, 22 September 2026)
+
+*"going forward we would need the specs for each test case too"* — and, asked what he meant:
+***"Specs = spec.ts file"***.
+
+**One Playwright spec per case, named with the C-id FIRST**, so a red result points at a case
+without anybody cross-referencing:
+
+```ts
+test('C55716 — the record changed most recently is listed first', async () => { … });
+```
+
+It carries four things beyond the assertion:
+
+1. **the source** it asserts — same document, version and section as the case's provenance line
+   (54, 114). A spec asserting something the source does not say is the same defect as a case that does;
+2. **the traps** that would make the measurement lie, commented where they bite — this, not the
+   assertion, is what a spec is actually worth;
+3. **a positive control** for any negative assertion (104) — *"nothing is returned"* proves nothing
+   until the instrument is shown to work;
+4. **`[expected to fail: SV-xxxxx]`** on anything reproducing a known fault, so red is recognised.
+
+**Do NOT write one** for a case that cannot be fairly automated, or that needs a state the product
+refuses to create. Name it in the suite's README with the reason instead — a test that goes red for
+its own reasons is worse than no test, because it looks like coverage.
+
+Lives in `build/<project>/e2e/`. **Secrets never enter a spec (82).**
+Worked example: `build/global-search/e2e` — 48 tests, twelve traps encoded, README stating 194
+executed against 48 automated and why each gap exists. Full text: `RULES-61-ONWARD.md` rule 115.

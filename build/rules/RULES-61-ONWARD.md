@@ -4241,3 +4241,66 @@ assumed restrictions on yourself."*
 permission and no fear of breaking the branch?* If the answer is no, **it is not blocked — go and do
 it.** Save the original state to disk first, change what you need, restore it, and read the restore
 back.
+
+---
+
+## RULE 115 — EVERY TEST CASE SHIPS WITH ITS OWN `spec.ts`
+
+**QA lead, 22 September 2026:** *"going forward we would need the specs for each test case too"*,
+clarified in the same breath: ***"Specs = spec.ts file"***.
+
+### The rule
+
+**From now on, a test case is not finished when its steps are written. It is finished when it has a
+Playwright `spec.ts` alongside it.** This applies to **every case we author and every case we
+execute** — new cases, cases we correct, and cases we run in an execution pass.
+
+**One spec per case.** The test is **named with the case's C-id first**, so a red result points
+straight at a case in the run without anybody cross-referencing:
+
+```ts
+test('C55716 — the record changed most recently is listed first', async () => { … });
+```
+
+A spec covering several cases names all of them (`C45151 · C45152 · C55684 — …`) and only when the
+cases genuinely share one measurement; **convenience is not a reason to merge them.**
+
+### What a spec must carry, beyond the assertion
+
+1. **The C-id in the test name**, first, always.
+2. **A comment naming the source** the Expected comes from — the same document, version and section
+   the case's provenance line carries (Rules 54, 114). A spec that asserts something the source does
+   not say is the same defect as a case that does.
+3. **The traps that would make the measurement lie**, in comments, at the point they bite. The value
+   of a spec is not the assertion — it is that the next person cannot repeat the mistake by accident.
+4. **A positive control wherever the assertion is negative** (Rule 104). A spec that asserts
+   *"nothing is returned"* without first proving the instrument works is worthless, and worse than
+   worthless because it looks like coverage.
+5. **A named report for any test expected to fail** — `[expected to fail: SV-xxxxx]` in the title,
+   so red is recognised as a known fault rather than re-investigated.
+
+### What must NOT be written
+
+- **A spec for a case that cannot be fairly automated.** Say so in the suite's README, with the
+  reason, rather than writing something that goes red for its own reasons. A test that fails because
+  our own fixtures crowded the record out measures nothing (worked example: C53582).
+- **A spec that needs a state the product refuses to create.** Writing the state straight to the
+  database bypasses the guard a person meets on screen and judges the product by something no user
+  could reach (worked example: the part-sales role, SV-10278, withdrawn for exactly that).
+- **A spec whose expectation is looser than the case's.** A substring match can pass on the wrong
+  record (*"Brake Chamber"* also matches two unrelated stock parts). Name the seeded record in full.
+
+### Where they live
+
+`build/<project>/e2e/` — `playwright.config.ts`, `fixtures/`, `tests/*.spec.ts`, and a **README that
+states plainly how many cases were executed, how many are automated, and why each gap exists.**
+Coverage that is implied rather than stated is how a suite starts lying about itself.
+
+**Secrets never enter a spec** (Rule 82). Sign-in reads cookies from `/tmp` at run time; the branch
+uses Google SSO and cannot be logged in by script.
+
+### Worked example
+
+`build/global-search/e2e` — 48 tests over 4 files for the Global Search V2 run, each named with its
+C-id, the twelve traps from run 415 encoded in the harness, six known faults carrying their report
+keys, and a README listing what is not covered and why (194 executed, 48 automated).
