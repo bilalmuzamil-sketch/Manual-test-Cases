@@ -148,7 +148,7 @@ a change to the steps, which needs his word (Rule 6), and the Expected is never 
 
 ---
 
-## Batch 4 — permissions: **6 of 7 pass**, and the technician's access was restored exactly
+## Batch 4 — permissions: **7 of 7 pass**, and the technician's access was restored exactly
 
 Route: impersonate a real technician, edit the Technician role one area at a time, read the panel on
 the screen as her, restore and **read the role back**. Baseline captured before any edit and
@@ -162,19 +162,40 @@ committed first: `ORIGINAL-technician-role.json`.
 | C45146 | **Passed** — remove Customers access and **both** Customers and Assets go, exactly as the check requires |
 | C45147 | **Passed** — a time-clock-only user gets nothing of any kind |
 | C45148 | **Passed** — types the role was never granted show nothing |
-| **C45143** | **Failed — under investigation, see below** |
+| **C45143** | **Passed** — once the role is built the way the product actually allows. See below |
 
 **RESTORE VERIFIED:** the role ends with exactly the six permissions it started with —
 `customersView, scheduleView, woPickParts, woTechViewMode, workOrderLinesCreateAndEdit,
 workOrdersView` — read back from the product, not assumed.
 
-### C45143 — a Part-Sales-only user sees no Part sales at all
+### 🔴 C45143 — the eleventh instrument fault, and one HE had already ruled on
 
-Grant the part-sales permission and **nothing appears** — not Parts, not Vendors, and not Part sales
-either. Reproduced on **two separate days** (21 and 22 September) with the permission definitely
-granted and read back.
+Granting the part-sales permission showed **nothing** — not Part sales, not anything. Reproduced on
+two separate days with the permission read back as granted. It looked solid.
 
-Before this is called a fault, a discriminating run is measuring **what the product is actually
-gating on**: the permission, or the separate *See Financial Data* switch, which is a role toggle
-rather than a permission and which a neighbouring check (C55734) already suspects. An administrator
-control is measured first, in the same session, so the query is known to have part sales in it.
+**The discriminating run settled it in four phases, with an administrator control first:**
+
+| What the role held | Part sales |
+|---|---|
+| administrator (control) | **3** |
+| technician + part-sales permission, financial switch **off** | **nothing** |
+| technician + part-sales permission, financial switch **ON** | **3** |
+| part-sales permission + financial switch, nothing else | **3**, and Parts and Vendors both empty |
+
+**The gate is the *See Financial Data* switch, not the permission** — and that is deliberate.
+**[SV-10278](https://shopview.atlassian.net/browse/SV-10278) was withdrawn by the QA lead on
+20 September for exactly this**, in his own words:
+
+> *"Part Sales depends on See Financial Data. The roles and permissions screen states it directly:
+> when Part Sales is switched on without See Financial Data, the application asks 'Part Sales
+> requires See Financial Data. Enable it to grant this permission?'"*
+
+**So my failure came from a role the product refuses to create.** Writing the permission straight
+to the role bypassed the guard the roles screen puts in front of a person — and skill 18 is explicit
+that a state a tester cannot actually reach must never be used to judge the product.
+
+**Re-measured with the role as the product allows it** — the part-sales permission plus the switch
+it insists on, nothing else: the user sees **Part sales (3)** and **neither Parts nor Vendors**,
+which is precisely what the check asks for. **Passed.**
+
+The role was restored and read back identical to baseline after both runs.

@@ -1,0 +1,49 @@
+{
+ "marker": "v26.36.8-d146c39",
+ "C45143": {
+  "verdict": "Passed",
+  "role": [
+   "partSalesView",
+   "seeFinancialData",
+   "woTechViewMode"
+  ],
+  "toggles": {
+   "seeFinancialData": true,
+   "seeApArData": false,
+   "viewHistoryLogs": false
+  },
+  "seen": {
+   "tabs": {
+    "All": 3,
+    "Work orders": null,
+    "Customers": null,
+    "Assets": null,
+    "Parts": null,
+    "Vendors": null,
+    "Part sales": 3,
+    "Purchase orders": null,
+    "Vendor invoices": null
+   },
+   "groups": [
+    "Part sales (3)"
+   ]
+  },
+  "why": "with the role the product actually allows - part sales plus the See Financial Data switch it insists on - the user sees Part sales (3) and neither Parts nor Vendors"
+ },
+ "restore": {
+  "identical": true,
+  "perms": [
+   "customersView",
+   "scheduleView",
+   "woPickParts",
+   "woTechViewMode",
+   "workOrderLinesCreateAndEdit",
+   "workOrdersView"
+  ],
+  "toggles": {
+   "seeFinancialData": false,
+   "seeApArData": false,
+   "viewHistoryLogs": false
+  }
+ }
+}

@@ -1,0 +1,158 @@
+{
+ "marker": "v26.36.8-d146c39",
+ "baseline": [
+  "customersView",
+  "scheduleView",
+  "woPickParts",
+  "woTechViewMode",
+  "workOrderLinesCreateAndEdit",
+  "workOrdersView"
+ ],
+ "baselineToggles": {
+  "seeFinancialData": false,
+  "seeApArData": false,
+  "viewHistoryLogs": false
+ },
+ "phases": {
+  "1. technician + partSalesView": {
+   "role": [
+    "customersView",
+    "partSalesView",
+    "scheduleView",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersView"
+   ],
+   "toggles": {
+    "seeFinancialData": false,
+    "seeApArData": false,
+    "viewHistoryLogs": false
+   },
+   "seen": {
+    "tabs": {
+     "All": 43,
+     "Work orders": 20,
+     "Customers": 14,
+     "Assets": 9,
+     "Parts": null,
+     "Vendors": null,
+     "Part sales": null,
+     "Purchase orders": null,
+     "Vendor invoices": null
+    },
+    "groups": [
+     "Work orders (20)",
+     "Customers (14)",
+     "Assets (9)"
+    ]
+   }
+  },
+  "2. technician + partSalesView + seeFinancialData ON": {
+   "role": [
+    "customersView",
+    "partSalesView",
+    "scheduleView",
+    "seeFinancialData",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersView"
+   ],
+   "toggles": {
+    "seeFinancialData": true,
+    "seeApArData": false,
+    "viewHistoryLogs": false
+   },
+   "seen": {
+    "tabs": {
+     "All": 46,
+     "Work orders": 20,
+     "Customers": 14,
+     "Assets": 9,
+     "Parts": null,
+     "Vendors": null,
+     "Part sales": 3,
+     "Purchase orders": null,
+     "Vendor invoices": null
+    },
+    "groups": [
+     "Work orders (20)",
+     "Customers (14)",
+     "Assets (9)",
+     "Part sales (3)"
+    ]
+   }
+  },
+  "3. partSalesView + customersView only": {
+   "role": [
+    "customersView",
+    "partSalesView",
+    "seeFinancialData",
+    "woTechViewMode"
+   ],
+   "toggles": {
+    "seeFinancialData": true,
+    "seeApArData": false,
+    "viewHistoryLogs": false
+   },
+   "seen": {
+    "tabs": {
+     "All": 26,
+     "Work orders": null,
+     "Customers": 14,
+     "Assets": 9,
+     "Parts": null,
+     "Vendors": null,
+     "Part sales": 3,
+     "Purchase orders": null,
+     "Vendor invoices": null
+    },
+    "groups": [
+     "Customers (14)",
+     "Assets (9)",
+     "Part sales (3)"
+    ]
+   }
+  }
+ },
+ "control": {
+  "tabs": {
+   "All": 61,
+   "Work orders": 20,
+   "Customers": 14,
+   "Assets": 9,
+   "Parts": 4,
+   "Vendors": 3,
+   "Part sales": 3,
+   "Purchase orders": 4,
+   "Vendor invoices": 4
+  },
+  "groups": [
+   "Work orders (20)",
+   "Customers (14)",
+   "Assets (9)",
+   "Parts (4)",
+   "Vendors (3)",
+   "Part sales (3)",
+   "Purchase orders (4)",
+   "Vendor invoices (4)"
+  ]
+ },
+ "restore": {
+  "identical": true,
+  "perms": [
+   "customersView",
+   "scheduleView",
+   "woPickParts",
+   "woTechViewMode",
+   "workOrderLinesCreateAndEdit",
+   "workOrdersView"
+  ],
+  "toggles": {
+   "seeFinancialData": false,
+   "seeApArData": false,
+   "viewHistoryLogs": false
+  }
+ }
+}
