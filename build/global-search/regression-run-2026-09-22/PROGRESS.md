@@ -47,3 +47,30 @@ for him) · the Expected is never edited (114) · secrets stay in `/tmp` (82).
 | 4 | Permissions, location scoping and organisation isolation | 13 | to do |
 | 5 | Freshness — a new record findable within 30 seconds | 2 | to do |
 | 6 | The remaining singletons | 6 | to do |
+
+---
+
+## 🔴 Instrument error caught before it became eight false failures (22 Sep)
+
+The first pass over batch 1 reported **eight new failures** against a suite that was 58/65 green on
+17 September. Before any of them was recorded, two checks were run — and both of them mattered.
+
+**1. Are the seeded records still there?** `seed.py --check` on the V1-regression universe:
+**11 of 11 records present, 0 field gaps, every declared field matched.** The customer still carries
+`(419) 555-0143`, `Dock 7B`, `Fernvale`, `Ohio`, `44872-9931` and its website; the asset still
+carries unit `ZZT-4471`, VIN `1FUJGLDR9KLZZ4471` and plate `OHZZT471`; both parts and the vendor are
+intact. **So nothing could be blamed on a stale fixture.**
+
+**2. Was I reading the right thing?** No. **The All view lists only FIVE rows per group.** Queries
+like `Fernvale` and `Ohio` match dozens of records, so the seeded customer sits well below the fifth
+row and my reader recorded *"missing"*. The case step *"Read the Customers group"* means the group as
+a tester can actually see it — which is the **scope tab**, where up to twenty rows are listed.
+
+A second flaw in the same pass: the expectations were **too loose**. *"Brake Chamber"* matched two
+unrelated stock parts named `30/30 STANDARD PIGGY BACK KIT, BRAKE CHAMBER`, so a probe could pass on
+the wrong record. Every expectation now names the seeded record in full
+(`ZZAUTOTEST Brake Chamber Kestrel`, `ZZAUTOTEST Kestrel Parts Supply`, …).
+
+**Both fixed in `reglib.mjs`, and the whole batch re-run — not only the failures (Rule 101).**
+Nothing from the first pass is reported. This is the same class of mistake as the five caught on
+21 September: *the instrument, not the product.*
