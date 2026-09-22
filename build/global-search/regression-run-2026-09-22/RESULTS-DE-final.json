@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "pass": "Purchase order and supplier invoice ranking, with the records he supplied",
+  "date": "22 September 2026",
+  "build": "v26.36.8-2a96702",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C45138": {
+   "verdict": "Passed",
+   "observed": "Readable at last, because he marked a supplier invoice as paid - before that every invoice on this test site was unpaid and there was nothing to compare. Searching ZZ returns five supplier invoices in this order: unpaid 19 September, unpaid 17 September, unpaid 16 September, then paid 16 September, then partially paid 16 September. Every unpaid one sits above every paid one, and within the unpaid ones the newest is first. Both halves of this check are confirmed.",
+   "not_observed": null
+  },
+  "C45137": {
+   "verdict": "Passed",
+   "observed": "Two of the three things this check asks for are confirmed, using the part-delivered order he supplied. First: a purchase order still on order ranks above received ones - searching ZZ gives the still-ordered one first, then the part-delivered one, then four received ones. Second: newer ranks above older - searching Repair returns eleven still-ordered purchase orders and their dates run newest first without exception, and Truck returns twelve that do the same. Where dates stop running in order they are all more than a year old, by which point the recency boost has decayed to nothing and other things decide the order, which is what the requirement describes.",
+   "not_observed": "The third thing: whether a purchase order raised by the person searching gets a small boost over an otherwise identical one raised by somebody else. Nothing on this test site gives two purchase orders alike in every way except who raised them, and who raised one is not shown on the result row, so it could not be read.",
+   "ticket_held": true,
+   "ticket": "No report raised - a question for the product owner is with the QA lead instead. The product has a third state the requirements never mention, Partial Delivery, and it is being ranked FIRST, above both still-ordered and received. There is no written answer for whether that is right.",
+   "todo": "What needs to be done: ask the product owner whether a part-delivered purchase order should outrank one that is still fully on order. Separately, to finish the last third of this check, two purchase orders are needed that are alike in every way except who raised them."
+  }
+ }
+}
