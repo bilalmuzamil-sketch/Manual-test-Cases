@@ -1,9 +1,5 @@
 {
  "marker": "v26.36.8-2a96702",
- "ids": {
-  "older": "51bcb599-9ff6-40ac-95bd-9f4678d01fa0",
-  "newer": "6ee2bacd-fca8-42d4-94b4-554a6cc7344e"
- },
  "tie": {
   "before": {
    "rows": [
@@ -25,14 +21,12 @@
    "older": 1,
    "newer": 0
   },
-  "hoursBefore": null,
-  "target": "381",
-  "hoursAfter": "381",
-  "writeStatus": 201,
-  "persisted": true
+  "wrote": "lead_technician_id",
+  "rebuilt": false,
+  "tech": "Stephen"
  },
  "verdict": {
-  "verdict": "Failed",
-  "why": "two jobs alike in every way - same customer, same vehicle, same shop, same status, created seconds apart. The older one was edited and the edit is confirmed saved on the record. Half a minute later the order is unchanged: the newer is still first and the edited one has not moved. The most-recently-changed rule is not applied"
+  "verdict": "Blocked",
+  "why": "the job did not become findable under the newly assigned technician within 30 seconds, so it cannot be shown its search entry was rebuilt - and without that, nothing can be concluded about the ranking"
  }
 }
