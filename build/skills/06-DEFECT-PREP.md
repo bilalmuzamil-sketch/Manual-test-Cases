@@ -1626,3 +1626,51 @@ value read from an endpoint says is **evidence about the endpoint**, never a pas
 person sees. Twelve real cases, the three mechanisms that make the two disagree (different SURFACE,
 different LAYER, different MOMENT), when an API read IS admissible, and the five questions to ask before
 trusting one. Read it before the first probe of any pass.
+
+---
+
+## §9 · PICTURE SIZING AND SHARPNESS — THE TWO FAULTS THE QA LEAD CAUGHT ON 2026-09-22
+
+> *"The screenshots should fit nicely at the moment they look so tiny, make sure that when they fit
+> in they do not look over zoomed to start looking blurred"*
+
+Two separate faults, and the fix for each. **Both must be applied to every ticket that carries a
+picture** — the earlier instruction `|width=760!` is necessary but NOT sufficient.
+
+### 9.1 · A TALL PICTURE IS SHOWN AS A THUMBNAIL — COMPOSE LANDSCAPE
+
+`SV-10025.png` was **588 × 1201** — an old-vs-new comparison stacked vertically. Jira caps the height
+of an embedded picture, so it shrank the whole thing to roughly a hundred pixels wide: unreadable,
+and `|width=588!` did not save it. **A comparison goes SIDE BY SIDE, not stacked.** Recompose to a
+landscape shape (aim for about 16:9 to 2:1) with each half captioned under its own panel, and crop
+the long side to the rows that carry the point — *"the first six of twelve are shown"* in the caption
+is honest and keeps the picture readable. Worked example:
+`build/global-search/sv10025-recheck-2026-09-22/` and the composer inlined in that pass.
+
+### 9.2 · RUN `size_pics.py` AFTER EVERY WIKI-MARKUP DESCRIPTION WRITE — IT IS NOT OPTIONAL
+
+`PUT /rest/api/2/issue/{KEY}` with wiki markup creates each picture as a media node **without a
+layout**, so it renders at whatever size Jira picks. **`python3 build/testing-tools/size_pics.py
+<KEY> <img1> <img2> …`**, with the local files **in the order they appear in the description**, sets
+each node's true width and height and `layout: full-width`, so every picture spans the description
+frame at its own aspect ratio. Verify afterwards by reading the ADF back and checking every
+`mediaSingle` says `full-width` and every `media` carries the file's real pixel size.
+⚠️ It writes ADF via the v3 route, so **a later wiki PUT undoes it** — description first, sizing second.
+
+### 9.3 · CAPTURE AT TWICE THE WIDTH IT WILL BE SHOWN AT
+
+Sharpness is decided at capture, not in the ticket. The description frame is roughly **1000 px**, so
+a picture is crisp when its source is **about 2000 px wide and its content was captured at 2×** — the
+browser then downsamples, which looks sharp. Upscaling a 1× capture to fill the frame is what makes
+text look soft and "over zoomed". Recipe: set the viewport wide (2560 × 1700),
+`document.documentElement.style.zoom = '2'`, read the element rectangles **after** the zoom, and crop
+to them. Where one half of a comparison only exists as an old 1× capture (the live product, which we
+can no longer sign in to), upscale **that half only** with LANCZOS and accept it — it ends up no worse
+on screen than it is today, while the other half gains.
+
+### 9.4 · `annotate_v2.py --scale` MUST MATCH THE CAPTURE
+
+`--scale 2` draws the boxes and captions at 2× and downsamples the finished picture, which is what
+keeps the caption text proportionate to the screenshot. **Passing `--scale 1` on a 2× capture leaves
+the captions tiny beside the screenshot** — measured both ways on this pass. So: capture at 2×,
+annotate with `--scale 2`, and if the result is near the frame width it is already right.

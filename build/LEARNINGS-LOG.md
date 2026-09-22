@@ -3917,3 +3917,17 @@ and its Edit Vehicle form makes **Make** required, which these records have no v
 save either. That is written up as an instrument limit with all seven routes named, NOT as a product finding —
 the distinction Rule 104 exists for. Two earlier runs had recorded the same thing as "INCONCLUSIVE - the edit
 never showed", which was true but told nobody why.
+
+## L0191 — 2026-09-22 — A ticket picture is sized in THREE places, and `|width=N!` is only one of them
+The QA lead: *"The screenshots should fit nicely at the moment they look so tiny, make sure that when
+they fit in they do not look over zoomed to start looking blurred"*. Three separate causes, all live on
+the same ticket. **(1) Shape** — a 588×1201 stacked comparison is portrait, Jira caps embedded height
+and shrank it to a thumbnail; recomposed side by side at 1930×1128 it fills the frame. **(2) Layout** —
+a wiki-markup description creates media nodes with no layout, so `|width=N!` does not settle it;
+`build/testing-tools/size_pics.py <KEY> <imgs…>` sets each node's true size and `full-width`, and it
+must run AFTER the description write because it writes ADF that a later wiki PUT would undo. **(3)
+Resolution** — the frame is about 1000 px, so the source wants to be ~2000 px of 2×-captured content
+so the browser DOWNsamples; upscaling a 1× capture is exactly the blur he is describing. Also
+measured: `annotate_v2.py --scale 1` on a 2× capture leaves the captions tiny next to the screenshot —
+`--scale` must match the capture. Applied to SV-10025 and, on the same pass, to SV-10340, whose two
+pictures had the same unsized media nodes. Full recipe: `build/skills/06-DEFECT-PREP.md` §9.
