@@ -4647,6 +4647,13 @@ value:"authorized"}` — and the same seed comes back **`in_stock`** and picks c
 (`{"pickedCount":1}`). This bit twice on 2026-09-22, each time producing a convincing false
 "the product wrote no history".
 
+The same gate blocks removal at the other end: `POST /api/work-orders/part/perform-request-status-action`
+answers **400 `"This action can only be performed on the authorized lines."`** for *every* action —
+`cancel`, `delete`, `remove`, `decline` and an invented one alike — when the line is not authorized.
+So a request seeded onto a quoted line **cannot be tidied away through that endpoint either**; it
+holds no stock, so the honest move is to leave it and say so rather than authorize a production line
+purely to delete debris.
+
 **⚠️ THE SERVER OVERWRITES YOUR `description` ON AN INVENTORY REQUEST** with the inventory part's own
 description — so a cleanup pass that filters on `ZZAUTOTEST …` finds **nothing**. Match on
 `inventory_part_id` instead.

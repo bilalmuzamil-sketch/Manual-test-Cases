@@ -269,3 +269,11 @@ and re-read to confirm 400 / 371 / 243. **This is exactly the Rule-81 failure mo
 succeeded, the attachments were real, and the reader would still have seen sloppy work.** Worth
 carrying forward: *a wiki-markup image with `width` alone does not keep its aspect ratio — give it
 both, computed from the file.*
+
+**The two leftover requests were deliberately NOT removed.** Every action on
+`POST /api/work-orders/part/perform-request-status-action` — `cancel`, `delete`, `remove`, `decline`,
+and an invented action as a control — answers **400 `"This action can only be performed on the
+authorized lines."`**, because they sit on a line that is still quoted. That is the same gate that
+caused the invalid runs, seen from the other end. Removing them would mean **authorizing a production
+line purely to delete debris**, which is a larger state change than the debris itself. They hold no
+stock, inventory is proven back at 6, and they are named above.
