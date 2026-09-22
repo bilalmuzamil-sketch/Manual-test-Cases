@@ -2,24 +2,30 @@
  "marker": "v26.36.8-fa74ea8",
  "created": [
   {
-   "status": 400,
+   "status": 201,
    "body": {
-    "errors": [
-     {
-      "tax_id": "Invalid UUID"
-     }
-    ]
+    "data": {
+     "vendor_id": "386758b1-2f5b-47d7-95de-bae9b99284cd"
+    }
    }
   },
   {
-   "status": 400,
+   "status": 201,
    "body": {
-    "errors": [
-     {
-      "tax_id": "Invalid UUID"
-     }
-    ]
+    "data": {
+     "vendor_id": "7d74abe4-acbf-4729-ad8f-ea8d5d7a41e6"
+    }
    }
   }
- ]
+ ],
+ "before": [
+  "ZZTIEV2159 Halloway Brothers Contact match · (264) 555-0900 · 9 Tie Street, Fernvale, Ohio",
+  "ZZTIEV2159 Halloway Brothers Contact match · (264) 555-0900 · 9 Tie Street, Fernvale, Ohio"
+ ],
+ "after": [
+  "ZZTIEV2159 Halloway Brothers Contact match · (264) 555-0900 · 9 Tie Street, Fernvale, Ohio",
+  "ZZTIEV2159 Halloway brothers Contact match · (264) 555-0900 · 9 Tie Street, Fernvale, Ohio"
+ ],
+ "rebuilt": true,
+ "verdict": "FAILS - the most recently changed vendor is NOT listed first"
 }

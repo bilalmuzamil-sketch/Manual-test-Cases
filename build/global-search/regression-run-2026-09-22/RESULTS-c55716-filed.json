@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "pass": "The most-recently-changed rule, reproduced with his fixture",
+  "date": "22 September 2026",
+  "build": "v26.36.8-fa74ea8",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C55716": {
+   "verdict": "Failed",
+   "observed": "Reproduced using the steps the QA lead supplied, which work where seven of my own attempts did not. Two vendors were created with the identical name ZZTIEV2159 Halloway Brothers, the same telephone and the same address, so nothing but this rule can separate them. Both appear in the results. The one listed SECOND was then renamed by a single letter - the capital B of Brothers made a small b - and nothing else was touched. The small letter then appears in the results, which proves search picked the edit up. The order is unchanged: the vendor edited seconds ago is still listed second, below the one nobody has touched. Why this fixture settles it where mine did not: a name is a field search matches on, so the change must be indexed, and matching is case-blind, so the change cannot alter how well either one matches.",
+   "not_observed": null,
+   "ticket": "Raised as SV-10340 - https://shopview.atlassian.net/browse/SV-10340 - with the annotated picture, the requirement quoted word for word, and the two likely challenges answered in advance.",
+   "todo": "What needs to be done: nothing further from us. The report is with the developers under the link above, and this check is run again once it is fixed."
+  }
+ }
+}
