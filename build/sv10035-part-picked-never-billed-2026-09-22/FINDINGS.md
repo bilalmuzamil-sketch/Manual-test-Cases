@@ -176,3 +176,39 @@ driven for the feature under test anyway.
 whose sell price is **zero** bills it correctly at $0.00 on the line. Whatever SV-10035 is, it is not
 triggered by a zero price — which narrows it to a genuinely absent one and matches the developer's
 own account of the cause.
+
+## §4 — Reaching the Parts tab, and what the grid actually offers
+
+Navigating straight to `/workorders/{id}/parts` returned the app's own error page — *"The technician
+says this page is totaled 💥"* — and I spent a run hunting for an Add Part control that was never
+rendered. **Playbook §W records this already**: the sub-route 404s without work-order context. The
+documented way works first time:
+
+```
+land on a working page  ->  history.pushState('/workorders/{id}/lines')  ->  dispatch popstate
+->  click [data-test-id="link_part_requests_tab"]     (the tab reads "Parts (7)")
+->  URL becomes /workorders/{id}/part-requests
+```
+
+**The Parts grid gives every request its own controls, keyed by request id** — which is the surface
+the second fix is about, and it means the Category test can be driven exactly as a user would:
+
+```
+select_part_request_description_<reqId>   input_part_number_<reqId>    input_quantity_<reqId>
+input_cost_<reqId>       input_core_charge_<reqId>    input_sell_price_<reqId>
+input_margin_<reqId>     select_part_category_<reqId>  select_vendor_<reqId>
+button_part_request_action     button_expand_line_<lineId>     button_expand_collapse_all
+```
+
+The work-order tabs are `link_lines_tab` · `link_part_requests_tab` · `link_notes_tab` ·
+`link_time_sheets_tab` · `link_history_tab` · `link_statistics_tab` · `link_finance_tab`.
+
+This also reshapes the plan for the better. **The Category control is right there on the grid**, so
+the developer's second fix can be tested on the exact surface his comment names — and because that
+route is *closed* on the fix branch but still *open* on production, it gives a true before/after pair
+on the same action:
+
+| | production (pre-fix) | branch (fixed) |
+|---|---|---|
+| change Category on a priced part | price expected to be **wiped** — the mechanism that created the broken records | price expected to be **kept** |
+| then pick it | expected to strand the part: stock down, nothing on Lines/Finance | expected to bill at its real price |
