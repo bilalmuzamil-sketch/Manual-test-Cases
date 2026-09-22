@@ -143,3 +143,36 @@ answers **`{"id":"Missing required parameter"}`**, so the key is **`id`**, not `
 
 Attempt 2 therefore runs the **Found** route, and this time the precondition — `sell_price` genuinely
 absent — is checked before anything is concluded from what follows.
+
+## §3 — Production attempt 2: the Found route through the API also fails to produce the precondition
+
+Same work order and line. **Add Part → Source Type = Found, no sell price given**, through
+`POST /api/work-orders/part/make-request`:
+
+```
+FOUND SEED   201 | status in_stock | sell_price "0.00" | cost null
+PICK         201 | status received
+LINE AFTER   parts 4 -> 5, new row {"ZZAUTOTEST SV-10035 FOUND", qty 3, sell 0}
+PARTS TAB    exactly 1 row for it
+```
+
+**Again the billable row was created, on the pre-fix build.** Note `cost` came back **`null`** — so the
+Found route does drop the cost — but **`sell_price` is stored as `"0.00"`, not NULL**, and the fix is
+about a sell price that is *missing*, not one that is zero.
+
+**The conclusion is about my method, not about the product: the API route defaults the sell price to
+zero, so it cannot build the state this ticket is about.** The handoff never said to use the API — it
+says, in as many words, *"Open any open work order → **Parts** tab → **Add Part**. Set **Part Source
+Type = Found** … and **leave Sell Price blank**."* A dialog that leaves a field blank and an API call
+that omits it are **not the same request**, and this is playbook §U.0's second question — *is there
+more than one surface for this action, and am I on the one the product uses?* — answering itself
+again.
+
+So the remaining work moves to the **screen**, which is where it belonged from the start: it is the
+surface the handoff prescribes, the surface the customer used, and the surface Standing Rule 64 wants
+driven for the feature under test anyway.
+
+**What is already proven, and it is not nothing:** on the pre-fix production build, picking a part
+whose sell price is **zero** bills it correctly at $0.00 on the line. Whatever SV-10035 is, it is not
+triggered by a zero price — which narrows it to a genuinely absent one and matches the developer's
+own account of the cause.
