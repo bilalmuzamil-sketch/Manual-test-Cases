@@ -1,0 +1,13 @@
+Failed - re-checked on 22 September 2026 on build v26.36.8-fa74ea8, QA branch sv9160, read on the screen and against the product's own answer for why each row matched.
+
+Not fixed. Typing the correctly spelled customer name Marlene still returns 19 rows across five groups, and only three of them carry the word typed: the customer itself, and two rows for a company whose contact really is called Marlene Okonkwo. The other sixteen are near-spellings of something else - Darlene five times, Marine five times, Martens three times, Charlene twice and Alene once.
+
+The acceptance figure has not moved. Every noise row still reports the same closeness figure to seven decimal places as it did on 14 and 18 September, so the setting that decides how close is close enough is untouched.
+
+Two things HAVE improved since 18 September: the record the person asked for is now listed FIRST, where a week ago it was second; and the rows now say why they matched - a small close-match mark in front of near-spellings, and a Contact match label where the hit came through a contact.
+
+Correction to our own earlier wording: the customers reached through a contact were previously counted among the unrelated results. Two of them are genuine. The honest split is three genuine out of nineteen, not two out of eighteen.
+
+Already raised as SV-10025 - https://shopview.atlassian.net/browse/SV-10025 - which is Blocked and has moved from Nikola Milosevic to Sinisa Nogic.
+
+What needs to be done: nothing further from us on this check. The decision on how close is close enough sits with the Product Owner; re-run this once it is made.

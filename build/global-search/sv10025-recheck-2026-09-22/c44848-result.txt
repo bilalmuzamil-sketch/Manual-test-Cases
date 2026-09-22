@@ -1,0 +1,16 @@
+Failed - re-judged on 22 September 2026 on build v26.36.8-fa74ea8, QA branch sv9160. This check passed on 21 September; that pass was measured on a near-spelling found in a company name, and did not cover the case below.
+
+What the requirement asks for, word for word from the requirements page read live on 22 September, section 7, Highlighting: "When a match is fuzzy rather than exact, the matched token in the row is still highlighted, and a subtle close-match treatment indicates the soft match."
+
+Where it is not met: when the near-spelling is found on a CONTACT'S name, the row carries no close-match mark at all and the contact's name is not shown. It reads only "Contact match", so the reader is told the contact matched when the contact is in fact called something else - typing Marlene brings back a company whose contact is Darlene, presented as a plain contact match.
+
+Measured on three different searches, each with its own control - in the very same list, a near-spelling found in a COMPANY name always carries the mark, which is what rules out the reading itself as the cause:
+  - Marlene: company-name near-spellings 5 of 5 marked; contact-name near-spellings 0 of 4 marked.
+  - Darlene: 1 of 1 marked; 0 of 3 marked.
+  - Petersn, the requirement's own worked example: 2 of 2 marked; 0 of 14 marked.
+
+Evidence committed: build/global-search/sv10025-recheck-2026-09-22/ - the annotated picture contact-nomarker.png, and the paired readings in INDICATOR-CONFIRM.json.
+
+Report: ticket_held - this is a new finding and needs the QA lead's go-ahead before anything is raised.
+
+What needs to be done: the QA lead decides whether this is raised. Nothing else is blocked by it.
