@@ -376,3 +376,35 @@ not reachable on `app.shopview.com` as it stands today**, and the two candidates
 
 **I am not choosing between these from the evidence I have**, and the difference matters to the
 release plan, so it goes to the developer as a question rather than into the verdict as a claim.
+
+## §10 — Verdict
+
+**The fix branch does everything this ticket asks for**, verified live on the screen. **The pre-fix
+failure could not be reproduced on production across eight routes**, and that limit is stated in the
+comment rather than buried.
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Picking a part with no sell price succeeds — no crash after the stock has moved | **PASS** |
+| 2 | It reaches **Lines** and **Finance** at $0.00 instead of vanishing from both | **PASS** |
+| 3 | Exactly one row per pick — the fallback stops firing once a real row exists | **PASS** |
+| 4 | Inventory drops by exactly the picked quantity | **PASS** |
+| 9a | A **priced** part still bills at its real price ($89.20), not $0.00 | **PASS** |
+| 10 | A **core** part creates the parent row **and** its `Core for …` row | **PASS** (observed on production) |
+| 7 | Changing Category keeps the stored Sell Price | **NOT DIFFERENTIALLY TESTABLE** — see below |
+| 12 | The BEFORE: the same flows fail on the pre-fix build | **NOT REPRODUCED** — eight routes, §2/§3/§8/§9 |
+
+**Checks deliberately not reached**, and why — these are untested, not passed: auto-pick ON (§5 of
+the handoff), Pick All over a mixed set (§4), margin edit and fixed-line-total (§6), the permission
+matrix (§8), and the Sentry log (§9, which needs Sentry access I do not have). The pass ran long
+because the precondition took eight attempts to construct; these remain open.
+
+**Why check 7 could not be given a verdict.** Changing Category recalculated a valid price in every
+case tried — twelve existing categories **and** a purpose-built one with no pricing matrix. Both
+builds behave the same, so there is nothing to differentiate: the fix's stated effect (stop wiping
+the price when no new price can be calculated) never had its condition arise.
+
+**What goes to the developer as a question, not an assertion:** production behaves identically to the
+fix branch in all eight scenarios. Either production already carries this fix, or the trigger needs a
+condition neither environment can still produce. That difference matters to the release plan and to
+the separate data-repair task, so it is asked rather than assumed.
