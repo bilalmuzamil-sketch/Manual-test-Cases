@@ -4343,3 +4343,103 @@ it and name it in the README.** Never mark it skipped and leave it to rot.
 **THE MEASURE OF WHETHER THIS IS WORKING:** the suite should grow as a by-product of passes that
 were happening anyway. **If a status report ever says "spent the day writing specs", this rule has
 failed** and is to be raised with him rather than quietly continued.
+
+---
+
+## RULE 116 — AN INLINE PICTURE IS COMPOSED LANDSCAPE, SIZED FULL-WIDTH, AND CAPTURED AT TWICE THE WIDTH IT IS SHOWN AT
+
+**Added 2026-09-22 on the QA lead's explicit instruction, after he approved the pictures on SV-10025:**
+
+> *"This is the best way of posting an inline image. Please save this rule for ever to keep the
+> images like this."*
+
+Which followed his complaint the same day:
+
+> *"The screenshots should fit nicely at the moment they look so tiny, make sure that when they fit
+> in they do not look over zoomed to start looking blurred"*
+
+**THIS RULE IS PERMANENT AND APPLIES TO EVERY PICTURE IN EVERY TICKET, ON EVERY PROJECT.** It does
+not replace the eight-heading ticket shape or the annotated-screenshot standard — it says how the
+picture is built and posted. ⛔ **It SUPERSEDES the bare `|width=760!` instruction**, which is
+necessary but was never sufficient and on its own produced a thumbnail.
+
+### 116.1 · THREE SEPARATE CAUSES, ALL THREE MUST BE FIXED
+
+A picture can be wrong in three independent ways. Fixing one and not the others still leaves it
+tiny or blurred, which is how SV-10025 shipped with a hundred-pixel-wide comparison nobody could
+read.
+
+| # | Cause | What it looks like | The fix |
+|---|---|---|---|
+| 1 | **Shape** — the picture is portrait | shrunk to a thumbnail; the width hint is ignored | compose **landscape** |
+| 2 | **Layout** — the media node carries no size | renders at whatever the page picks | run **`size_pics.py`** |
+| 3 | **Resolution** — the source is smaller than the frame | text goes soft, looks "over zoomed" | capture at **2×** |
+
+### 116.2 · SHAPE — LANDSCAPE, NEVER STACKED
+
+`SV-10025.png` was **588 × 1201**: an old-versus-new comparison stacked vertically. Jira caps the
+height of an embedded picture, so it shrank the whole thing to roughly a hundred pixels wide.
+`|width=588!` did not save it.
+
+- **A comparison goes SIDE BY SIDE.** Aim for roughly **16:9 to 2:1**; never taller than wide.
+- **Caption each half UNDER its own panel**, not in one legend at the bottom.
+- **Crop the long side to the rows that carry the point**, and say so honestly in the caption —
+  *"the first six of twelve customers are shown"*. A readable extract beats an unreadable whole.
+- The banner still says **what the reader is looking at**, never the ticket title again
+  (`06-DEFECT-PREP.md` §§1-8, unchanged).
+
+Worked example and the composer: `build/global-search/sv10025-recheck-2026-09-22/old-vs-new.png`.
+
+### 116.3 · LAYOUT — `size_pics.py` RUNS AFTER EVERY DESCRIPTION WRITE, ALWAYS
+
+`PUT /rest/api/2/issue/{KEY}` with wiki markup creates each picture as a media node **with no
+layout and no size**. So:
+
+```
+python3 build/testing-tools/size_pics.py <KEY> <img1> <img2> …
+```
+
+with the local files **in the order they appear in the description**. It sets each node's true
+width and height and `layout: full-width`, so every picture spans the description frame at its own
+aspect ratio — each picture its own true size, never one shape applied to them all (the bug that
+tool was written to fix, 2026-09-17).
+
+- **⚠️ IT WRITES ADF VIA THE v3 ROUTE, SO A LATER WIKI PUT UNDOES IT.** Order is always
+  **description first, sizing second.** Re-post the description ⇒ re-run the sizing.
+- **VERIFY, DO NOT ASSUME (12):** read the stored document back and confirm **every `mediaSingle`
+  says `full-width`** and **every `media` carries the file's real pixel size**.
+- A ticket that already has pictures posted before this rule is **fixed in place by running the
+  tool on it** — done on SV-10340 the same day, whose two pictures had the same unsized nodes.
+
+### 116.4 · RESOLUTION — CAPTURE AT TWICE THE DISPLAY WIDTH
+
+Sharpness is decided at capture, not in the ticket. The description frame is roughly **1000 px**,
+so a picture is crisp when its source is about **2000 px wide carrying 2×-captured content**: the
+browser then **downsamples**, which looks sharp. **Upscaling a 1× capture to fill the frame is
+exactly the blur he is describing.**
+
+Recipe: viewport **2560 × 1700** → `document.documentElement.style.zoom = '2'` → read the element
+rectangles **after** the zoom → crop to them. Never read the rectangles first and zoom afterwards.
+
+**Where one half of a comparison exists only as an older 1× capture** — the live product, which we
+can no longer sign in to — **upscale THAT HALF ONLY with LANCZOS and say nothing louder about it.**
+It ends up no worse on screen than it is today while the other half gains. Never present an
+upscaled half as if it were freshly captured.
+
+### 116.5 · `annotate_v2.py --scale` MUST MATCH THE CAPTURE
+
+`--scale 2` draws the boxes and captions at 2× and downsamples the finished picture, which is what
+keeps the caption text proportionate to the screenshot. **Passing `--scale 1` on a 2× capture leaves
+the captions tiny beside the screenshot** — measured both ways on this pass (1622 × 1324 with
+unreadable labels against 992 × 704 with correct ones). Capture at 2×, annotate with `--scale 2`,
+and if the result lands near the frame width it is already right.
+
+### 116.6 · THE CHECK BEFORE YOU CALL A TICKET DONE
+
+1. Is every picture **wider than it is tall**?
+2. Was every picture **captured at 2×**, or is it an old capture that is knowingly the only copy?
+3. Did **`size_pics.py`** run **after** the last description write?
+4. Did you **read the document back** and see `full-width` plus true sizes on every picture?
+5. Does each picture's **banner say what the reader is looking at**?
+
+Any "no" means the ticket is not finished. Full operator recipe: `build/skills/06-DEFECT-PREP.md` §9.

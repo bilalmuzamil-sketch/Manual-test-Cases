@@ -1629,12 +1629,19 @@ trusting one. Read it before the first probe of any pass.
 
 ---
 
-## §9 · PICTURE SIZING AND SHARPNESS — THE TWO FAULTS THE QA LEAD CAUGHT ON 2026-09-22
+## §9 · PICTURE SIZING AND SHARPNESS — **STANDING RULE 116**, PERMANENT
+
+> **The QA lead, 2026-09-22, on the rebuilt pictures: *"This is the best way of posting an inline
+> image. Please save this rule for ever to keep the images like this."*** Recorded as
+> **Standing Rule 116** in `build/rules/RULES-61-ONWARD.md` and indexed in `CLAUDE.md` §2. What
+> follows is the operator form; the rule is the authority and carries the full history.
+
+It began as his complaint the same day:
 
 > *"The screenshots should fit nicely at the moment they look so tiny, make sure that when they fit
 > in they do not look over zoomed to start looking blurred"*
 
-Two separate faults, and the fix for each. **Both must be applied to every ticket that carries a
+**Three** separate faults, and the fix for each. **Both must be applied to every ticket that carries a
 picture** — the earlier instruction `|width=760!` is necessary but NOT sufficient.
 
 ### 9.1 · A TALL PICTURE IS SHOWN AS A THUMBNAIL — COMPOSE LANDSCAPE

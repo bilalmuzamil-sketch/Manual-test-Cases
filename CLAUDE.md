@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **113 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **116 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -535,6 +535,7 @@ rule. Generated from the split files' own headers.
 | **113** | THE TEST-EXECUTION FILING LOOP — mark **Passed** and **Blocked** with NO permission; on a **Failed**, record the result and HOLD only the Jira ticket; list them, ask per ticket, **one at a time**; after each ticket append its number to the prepared comment and post it into the run. **Nothing except the Jira button is ever a reason to wait** |
 | **114** | THE EXPECTED BEHAVIOUR IS THE SOURCE'S **EXACT QUOTE**, AND IS NEVER CHANGED — verbatim sentence + document + version + section, never our restatement; you test AGAINST it. Cannot run it ⇒ Blocked; looks wrong ⇒ report and leave it. Supersedes Rule 106's correct-the-Expected clause |
 | **115** | **EVERY TEST CASE SHIPS WITH ITS OWN `spec.ts`** — a case is finished when it has a Playwright spec beside it, named **C-id first**, carrying the source it asserts, the traps that would make the measurement lie, and a positive control for any negative claim. **No spec for a case that cannot be fairly automated** — say so in the README with the reason. Lives in `build/<project>/e2e/` |
+| **116** | **AN INLINE PICTURE IS COMPOSED LANDSCAPE, SIZED FULL-WIDTH, AND CAPTURED AT TWICE THE WIDTH IT IS SHOWN AT** — three separate causes and all three must be fixed: a portrait picture is shrunk to a thumbnail (compose side by side) · a wiki-markup write leaves the media node with no size, so `size_pics.py <KEY> <imgs…>` runs AFTER every description write and is read back to confirm `full-width` + true sizes · the frame is ~1000px, so the source is ~2000px of 2×-captured content and is DOWNsampled, never upscaled. `annotate_v2.py --scale` must match the capture. ⛔ Supersedes the bare `\|width=760!` |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -750,7 +751,7 @@ Compact form — **the rule named in brackets is the authority; read it before r
   what I always ask you but you keep on forgetting"*, then gave the order himself; **ENVIRONMENT MOVED
   TO SECOND-TO-LAST BY HIM 2026-09-16**):** **1 The problem** (plain; **NEVER an assumed effect/impact**)
   · **2 Steps to reproduce** (easiest route a layman can follow, including making the data) ·
-  **3 Screenshots INLINE + annotated, sized to fit the description frame** (`|width=760!`) ·
+  **3 Screenshots INLINE + annotated, and sized by RULE 116** — landscape, `size_pics.py` run after the description write and read back, source captured at 2× (`|width=760!` alone is NOT sufficient and produced a thumbnail on SV-10025) ·
   **4 Current behaviour** · **5 Expected behaviour** (both plain bullets, layman) ·
   **6 Environment** — **a blank line above it and a blank line below it, directly above Sources**,
   both places as clickable links + the record's FULL link · **7 Sources**,
