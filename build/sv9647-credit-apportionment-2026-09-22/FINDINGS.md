@@ -431,3 +431,35 @@ that would settle the question outright.
   instead flips the credit row to *"Not needed — invoice fully covered"* and the button stays disabled.
 * The invoice's **Payment** cell is the credit-application amount, not a cash amount — which is why it
   reads `145.04` while the summary reads *Payment amount: $0.00*.
+
+## §4a (concluded) — the pre-fix build prints $145.04 too. The guard PASSES; the handoff's wording is simply wrong
+
+Fresh staging cookies arrived, so the one measurement that settles this was taken. Same fixture,
+pre-fix build **`v26.36.8-e2c29c5`**: work order **S-33375**, $145.04, credit **CM-4404** **$300.00**,
+settled alone — payment record cash **$0**, `applied_credits` **−145.04**, invoice **paid**.
+
+```
+BEFORE (staging v26.36.8-e2c29c5)         AFTER (branch v26.36.8-fc4dd05)
+Total                       $145.04       Total                       $145.04
+Payments                                  Payments
+  (Credit) CM-4404         $145.04          (Credit) CM-4195         $145.04
+BALANCE                       $0.00       BALANCE                       $0.00
+```
+
+**Byte for byte the same shape, and `$300.00` appears on neither.**
+
+**So check 4's SV-6581 guard PASSES: this change did not alter the single-invoice overflow case at all.**
+The full-face rule the handoff states as the acceptance line **does not describe the pre-fix build
+either** — it is an inaccuracy in the handoff, not a behaviour that was lost. And it never conflicted
+with **[SV-6581](https://shopview.atlassian.net/browse/SV-6581)**, whose only documented requirement
+about the invoice document is that *"in payments on invoice credit is visible if credit is applied to
+payment of that invoice"* — which both builds satisfy.
+
+**Nothing is raised, and the question I had drafted for the developer is withdrawn**: there was no
+divergence to ask about. Worth one sentence in the QA comment so nobody re-derives it: *the handoff's
+SV-6581 line says the full face must print; neither build does that, so it is a wording slip rather than
+a regression.*
+
+**This is the second time today that building the pre-fix counterpart turned an apparent regression into
+a non-event** — the first was the cross-workplace missing credit row (§2). Both would have been
+confidently wrong reports.
