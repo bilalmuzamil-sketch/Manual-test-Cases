@@ -4637,6 +4637,20 @@ API call, no guessing which `id` the move endpoint wants (§AC.10: it wants the 
 It doubles as the **seeding gate**: if that menu is absent after seeding, the part is **not staged**
 and any "no history was written" conclusion is invalid (the §AC.9 auto-pick trap).
 
+**⚠️ A PART REQUEST INHERITS THE STATUS OF THE LINE IT SITS ON — seed onto an AUTHORIZED line.**
+Seed an inventory request onto a line that is still *quoted* and the request comes back
+`status: "quoted"`: not orderable, not pickable (`pick-inventory-parts` answers **400** *"Part request
+… is not available to pick."*), and therefore **not inventory-linked**, so nothing is ever due in its
+Part History. Authorize the line first —
+`POST /api/work-orders/lines/change-lines {workOrderId, lines:[lineId], field:"status",
+value:"authorized"}` — and the same seed comes back **`in_stock`** and picks cleanly
+(`{"pickedCount":1}`). This bit twice on 2026-09-22, each time producing a convincing false
+"the product wrote no history".
+
+**⚠️ THE SERVER OVERWRITES YOUR `description` ON AN INVENTORY REQUEST** with the inventory part's own
+description — so a cleanup pass that filters on `ZZAUTOTEST …` finds **nothing**. Match on
+`inventory_part_id` instead.
+
 ### §AC.10c — ⭐ DRIVE THE API FROM INSIDE THE AUTHENTICATED PAGE — stop juggling cookies entirely
 
 When a pass needs both the screen and the API (most of them do), do **not** keep a parallel curl
