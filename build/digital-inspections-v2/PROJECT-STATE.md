@@ -1,6 +1,19 @@
 # Digital Inspection V2 — PROJECT-STATE
 
-**Started:** 2026-09-22 (source verification). PO/spec owner: TBC (epic reporter). Manual tester: TBC.
+**Started:** 2026-09-22 (source verification). PO/spec owner: Milos Vasic (spec 768507905). Manual tester: TBC.
+
+## 🔴 STATUS 2026-09-22 — SUITE DELETED AND REBUILT FROM SCRATCH
+The QA lead authorised deleting the old 43-case suite and rebuilding from scratch against the CURRENT
+spec (**Confluence 768507905**, last modified 2026-09-18). Done:
+- Old 43 cases deleted (snapshot in `source-verify-2026-09-22/cases-dump.md`); 6 old generic subfolders
+  removed; **16 per-story subfolders** created (ids in `source-verify-2026-09-22/section-map.json`).
+- **87 new cases authored (C88507–C88593)** covering every one of the 373 R/N/E anchors in the current
+  spec, Expected quoted verbatim by anchor (Rule 113) + plain restatement. All fr-view.
+- **AUTOMATION marker = `HOLD - not yet build-verified` on all 87** (not build-verified ⇒ not
+  automation-ready; QA lead 2026-09-22).
+- Full record + folder→C-id map: **`source-verify-2026-09-22/REBUILD-COMPLETE-2026-09-22.md`**.
+- Still outstanding: build verification on `sv8181.qa.shopview.com` (with ShopCoach enabled), then
+  re-stamp dates and flip markers; create/sync a test run (union-only).
 
 ## What this is
 Digital Vehicle Inspections V2 (DVI V2), epic **SV-8181** ("Digital Inspection V2", Ready for
