@@ -310,3 +310,46 @@ either — searched in the rendered text.
 
 **So the pair now exists twice over: once on work orders (§0d, $145.04 / $406.09) and once on part sales
 (here, $4.66 / $87.74). Both shapes give the same answer.**
+
+## §3 — Cross-organization isolation: PASSES, and the second organization had to be built first
+
+The branch shipped with **exactly one organization** (`Staging Foothills Group Inc` `d55bc308…`), so this
+check was not runnable as it stood, and there is no organization-create endpoint in the API
+(`POST /api/organizations` → 405, `/api/organizations/create` → 404).
+
+**Rather than record it as an honest limit, I created one.** `POST /api/register`
+`{admin_email, admin_first_name, admin_last_name, company_name, work_order_start_number}` → 200 sends an
+invitation; the invitation arrived at **`bilal.muzamil+sv9647orgb@shopview.com`** within a minute; the
+*Accept Invitation* link redirects to a **Set credentials** page (email pre-filled and disabled, password
++ repeat) which, once submitted, signs you straight in. Two gotchas: the link must carry the branch's
+`sv_sso_session` + `cf_clearance` cookies or it answers `sso_required`, and the redirect lands on the
+**API** host — rewrite it to the **app** host (`sv9647.qa.shopview.com/confirm-invitation?…`) or it 404s.
+
+**Organization B = `ZZAUTOTEST SV-9647 Org B` `f132a899-1ca6-459a-b316-2072d2712a39`**, brand new, with
+no locations, no customers and no work orders — i.e. a user with effectively **no organization context**
+for any of organization A's data, which is what the third bullet asks for.
+
+### What organization B gets when it asks for organization A's things
+
+| request | result |
+|---|---|
+| **The invoice document** — `GET /api/invoices/preview?invoice_id=<A's invoice>` | **400 `{"invoice_id":"Not found"}`** — a **50-byte** body |
+| Invoice details — `GET /api/invoices/<A's work order>/details` | **400 `{"workOrderId":"Not found"}`** |
+| The customer — `GET /api/customers/view/<A's customer>` | **400 `{"companyId":"Not found"}`** |
+| The payment list for A's customer account | **200 with an EMPTY collection** |
+| Work-order lines | **500** generic error, no data |
+
+**No partial render, and nothing of organization A's in the bytes.** Counted in the refused document
+response: `145.04` ×0, `406.09` ×0, `CM-419` ×0, `ZZAUTOTEST` ×0, `Credit Split` ×0, `S-17583` ×0,
+`Foothills` ×0, `invoice-payment-row` ×0, `Balance` ×0.
+
+**Unauthenticated** — no cookies at all — the same document endpoint returns **401 `sso_required`** with
+a redirect and no content.
+
+### Two honest notes
+
+* **`GET /api/organizations` lists BOTH organizations to BOTH sessions** (id, name, admin email). That
+  predates this change and is nothing to do with credit apportionment, but it is a cross-tenant listing
+  and someone should say whether it is intended. Not filed.
+* The work-order-lines endpoint answers a **500** where the others answer a clean 400 not-found. It leaks
+  nothing, it is not on this ticket's path, and I am not filing it — recorded so it is not lost.
