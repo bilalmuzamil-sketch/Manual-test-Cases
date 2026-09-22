@@ -2,22 +2,20 @@
  "marker": "v26.36.8-fa74ea8",
  "tabs": {
   "Customers": {
-   "verdict": "INCONCLUSIVE - the edit never showed, so the entry did not rebuild",
-   "rebuilt": false,
-   "editedFirst": false,
+   "verdict": "FAILS - the edited record stayed second",
    "before": [
-    "ZZTIEBREAK Transport Two 1 Ranking Way, Fernvale, Ohio",
-    "ZZTIEBREAK Transport One 1 Ranking Way, Fernvale, Ohio"
-   ],
-   "after": [
     "ZZTIEBREAK Transport Two 1 Ranking Way, Fernvale, Ohio",
     "ZZTIEBREAK Transport one 1 Ranking Way, Fernvale, Ohio"
-   ]
+   ],
+   "after": [
+    "ZZTIEBREAK Transport two 1 Ranking Way, Fernvale, Ohio",
+    "ZZTIEBREAK Transport one 1 Ranking Way, Fernvale, Ohio"
+   ],
+   "flip": 200,
+   "bothEdited": true
   },
   "Assets": {
-   "verdict": "INCONCLUSIVE - the edit never showed, so the entry did not rebuild",
-   "rebuilt": false,
-   "editedFirst": false,
+   "verdict": "INCONCLUSIVE - the edit never showed",
    "before": [
     "ZZTASSET2486-UNIT · Asset ZZAUTOTEST Bridgeport Hauling · Unit:ZZTASSET2486",
     "ZZTASSET2486-UNIT · Asset ZZAUTOTEST Bridgeport Hauling · Unit:ZZTASSET2486"
@@ -25,7 +23,8 @@
    "after": [
     "ZZTASSET2486-UNIT · Asset ZZAUTOTEST Bridgeport Hauling · Unit:ZZTASSET2486",
     "ZZTASSET2486-UNIT · Asset ZZAUTOTEST Bridgeport Hauling · Unit:ZZTASSET2486"
-   ]
+   ],
+   "write": 400
   }
  }
 }
