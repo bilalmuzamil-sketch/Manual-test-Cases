@@ -71,3 +71,19 @@ requirement — build/PO to confirm if it carries content); NFR-002…009 (inter
 request, read-replica, EXPLAIN, APM — not user-observable, supported indirectly by parity/independent-load
 cases). **Open question to raise (do not invent, Rule 58):** tech-plan §7 blocker 1 — is the ratio
 denominator workplace-scoped so a workplace with no clock records yields "n/a" rather than an empty tile?
+
+## Design DRIVEN interactively (2026-09-22) — capability established
+Installed Playwright (python) and drove the design with the pre-installed Chromium (no browser download),
+via `build/testing-tools/drive_design.py` (reusable). Clicked: Current→New Dashboard toggle, a hero card's
+"View details" (expands to a full-width "Revenue · This Month" panel with a "Collapse ×", one panel at a
+time), and Light→Dark. Evidence: `design-exploration-2026-09-22/` (00 = Current baseline, NOT ours; 01 =
+New Dashboard; 02 = expanded panel; 03 = dark). Confirms every New-Dashboard case authored above.
+
+### New finding to raise (not invented into a case — Rule 58)
+- **The Technician Efficiency KPI headline renders in RED (18.13%) while the other three KPI headlines are
+  dark.** The PRD and the tech plan state no headline colour rule (S12 only fixes the descriptive-text
+  colour; S4-N1 bars a delta indicator). This looks like conditional colour-coding of the KPI value by a
+  threshold, which no source defines. **PO/design question:** does the KPI headline colour-code by value
+  (e.g. red below a threshold)? If so, what threshold per measure? Held pending answer; no case invents it.
+- Minor: the expanded panel carries a "{Measure} · {Range}" title and a "Collapse ×" control (design detail,
+  consistent with S6; covered by the expansion cases).
