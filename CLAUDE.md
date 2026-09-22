@@ -4802,6 +4802,56 @@ deliver the 7-tab management report.
     multiplier**), 64 (the feature under test is driven on the screen, and the split is declared), 85,
     87 (build the state — on whichever surface will build it) and playbook §U.0 question 2 / §U.1.
 
+89. **NEVER FAIL A TICKET ON AN API VALUE ALONE — THE SCREEN DECIDES THE VERDICT, THE API EXPLAINS THE
+    MECHANISM (all projects).**
+    USER DIRECTIVE (2026-09-22, verbatim): *"make a rule to guard me from being bitten again by
+    something similar as happened in another session where that session took the verdict from API value
+    in the response and failed the ticket when in the UI it was working as expected, so you have to
+    make a rule to avoid failing me the same way"*.
+    **THE RULE:** a **PASS/FAIL verdict is a statement about what the user experiences**, so it is
+    decided on the **surface the user actually looks at**. An API response is **evidence about the
+    mechanism** — it explains *why*, it quantifies, it proves a write happened — but **it is never, on
+    its own, sufficient to FAIL a ticket.** Before any FAIL is written down, **the failure must be
+    reproduced on the screen** and captured there (Rule 64's annotated shot).
+    **THE ASYMMETRY IS DELIBERATE: a false FAIL costs more than a missed PASS.** It sends a developer
+    hunting a defect that does not exist, it reverses correct work, and it makes every other verdict in
+    the same report suspect (Rule 75's lesson, in a new place).
+    **WHEN THE API AND THE SCREEN DISAGREE, THAT IS A QUESTION, NOT A VERDICT.** Resolve it before
+    concluding anything, and the usual answers are mundane:
+    · **you are reading a different field from the one the UI renders** (a raw value vs a formatted or
+    resolved one) · **an AGGREGATE that lags or is computed elsewhere** — already recorded in this very
+    file for Simple Flow: *"line-items authoritative, WO totalPrice aggregate lags/inverts"* ·
+    **a read-time ECHO or derived copy** (TestRail's `case_title` / `case_refs` on run results, playbook
+    §J) · **a server-side coercion** (a `null` you sent stored as `0`; a description overwritten with the
+    inventory part's own name — both hit in SV-10035) · **a cache or a stale list** where the detail
+    endpoint is current · **a field that is simply not what the screen sums.**
+    **THE PROCEDURE, in order:** (1) see it on the screen; (2) if the screen looks right, **the ticket
+    is not failing** — go and find out what the field actually means; (3) name the discrepancy in the
+    report as a **technical observation** (and, where it deserves one, a *separate* question to the
+    developer), **not** as the ticket's verdict; (4) only when the screen itself is wrong does a FAIL
+    get written, and then the API detail goes in as supporting evidence of the cause.
+    **THE ONE PLACE AN API VALUE CAN CARRY A VERDICT BY ITSELF** is a check whose *subject* is the API —
+    a documented status code, an access-control 403, a response-contract assertion in an API-surface
+    ticket (Rule 63(a)). Even there, if the same operation is reachable from a screen, **look at the
+    screen too before failing**.
+    **TIES DIRECTLY TO STANDING RULE 24, WHICH IS THE SAME PRINCIPLE ALREADY SETTLED FOR PERMISSIONS:**
+    front-end blocks + back-end allows = **a PASS**, because *"the front-end gate IS the tester-facing
+    behaviour and is the pass criterion."* **Rule 89 generalises that from permissions to every
+    verdict.**
+    **HONESTY CLAUSE — this does not licence ignoring the API.** Where the back end is genuinely wrong
+    in a way the screen hides today (a wrong number stored, money mis-persisted, an FE-exposure defect
+    per Rule 24's inverse), that is real and must be reported — **as its own finding, with its own
+    evidence, on its own ticket** — rather than smuggled in as a FAIL on a ticket whose user-facing
+    behaviour is correct.
+    Ties to Standing Rules 9 (the screen's labels are the build-accurate source), 12/13 (observed live —
+    and *what* was observed matters), 24 (**the settled precedent this generalises**), 25 (cite the exact
+    value and where it came from), 57 (the document defines the expectation; the screen shows whether it
+    is met), 63(a) (an API-surface ticket is the narrow exception), 64 (a UI verdict owes annotated
+    screenshots), 66 (test the reported flow as the reporter experiences it), 74/75 (account for every
+    difference, configuration first — a field mismatch is usually neither a bug nor a regression), 81
+    (verify what the reader/user receives, not a proxy for it) and 88 (surfaces — this rule says which
+    one the verdict comes from).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
