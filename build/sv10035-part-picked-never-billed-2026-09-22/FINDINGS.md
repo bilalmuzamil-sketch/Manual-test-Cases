@@ -394,10 +394,18 @@ comment rather than buried.
 | 7 | Changing Category keeps the stored Sell Price | **NOT DIFFERENTIALLY TESTABLE** — see below |
 | 12 | The BEFORE: the same flows fail on the pre-fix build | **NOT REPRODUCED** — eight routes, §2/§3/§8/§9 |
 
-**Checks deliberately not reached**, and why — these are untested, not passed: auto-pick ON (§5 of
-the handoff), Pick All over a mixed set (§4), margin edit and fixed-line-total (§6), the permission
-matrix (§8), and the Sentry log (§9, which needs Sentry access I do not have). The pass ran long
-because the precondition took eight attempts to construct; these remain open.
+| 4 | **Pick All** over a mixed set bills every part | **PASS** — §12 |
+| 5 | **Auto-pick ON** creates the row | **PASS** — §12 |
+| 6a | Sell-price edit recalculates | **PASS** — §12 |
+| 6b | Margin edit recalculates | **PASS** — §12 |
+| 6c | A **fixed line total** does not shift when a part's price is edited | **PASS** — §14 |
+| 8 | Permissions: no 500s, Technician keeps `woPickParts` | **PASS** — §13 |
+
+**The one check still open, and it is a genuine external dependency:** the **Sentry log** (handoff
+§9) needs Sentry access this session does not have. Nothing else on the handoff is untested — the
+earlier note here that listed auto-pick, Pick All, the margin edit, the permission matrix and the
+fixed line total as "deliberately not reached" was **written before §12/§13/§14 ran, and was wrong
+to stand**; all five now carry live verdicts above.
 
 **Why check 7 could not be given a verdict.** Changing Category recalculated a valid price in every
 case tried — twelve existing categories **and** a purpose-built one with no pricing matrix. Both
@@ -501,17 +509,83 @@ enforce** — and under **Standing Rule 24 (front-end blocks + back-end allows =
 defect)** it is not raised as one. It is also **not attributable to this diff**, which touches no
 access-control code. Recorded so the result is not mistaken for an unnoticed over-grant.
 
-## §14 — Fixed line total (handoff §6) — NOT RUN, and not claimed as passed
+## §14 — Fixed line total (handoff §6) — PASS
 
-The check needs a line with a **fixed line total**. Every line on S2-17528 reports
-`fixed_price: null` and `fixed_line_total: null` (one is `0`), so the condition does not exist on
-this work order:
+### The gap, and how it was closed
+
+I first wrote this check up as **"NOT RUN — the condition does not exist on this work order"**,
+because every line on S2-17528 reported `fixed_price: null` and `fixed_line_total: null`:
 
 ```
 782ecc8c fixed null / total null      84ede85a null/null     5515af16 null/null
 845688bd null/null                    70e8b4de null/null     ba877cc9 null/0      db1b42b0 null/null
 ```
 
-Editing a part's price on the ordinary line moved `total_parts_sell_price` 95.56 → 195.55, which is
-the **correct** behaviour for a line that is *not* fixed — it says nothing about the fixed case.
-**This check is untested. It is listed here as untested rather than folded into the pass count.**
+**That was a decision to skip dressed up as an environment limitation.** The QA lead's reply —
+*"Why don't you create the fixed line total?"* — came with the recipe, and it took under a minute:
+open a line that is not declined or complete, open the **Labor Rate** dropdown, take **Fixed Line
+Total** from the bottom of the list, and fill in the labour and parts amounts. This is now
+**Standing Rule 87**.
+
+### Finding the control (it is not where the API suggested)
+
+The API route is deliberately closed: `POST /api/work-orders/lines/change-lines` answers
+**400 `{"error":"Currently only status field change is supported."}`** for every field name tried
+(`fixed_line_total`, `fixedLineTotal`, `fixed_price`, `is_fixed_line_total`, `line_pricing_type`,
+`pricing_type`). *Fixed Line Total* is also **not** a labour type — all 34 rows of
+`GET /api/labour-types` were fetched and none matches `/fixed/i`. The **Edit labor** entry on the
+line's ⋮ menu opens a dialog carrying only `select_technician`.
+
+The control lives behind the **line title**: clicking the line's Name/Description opens the
+**Edit Line** dialog, whose `select_labour_type` ends with two extra options after the rate list —
+**"Fixed Labor Total"** and **"Fixed Line Total"**. Choosing the latter reveals three new fields:
+`input_fixed_line_total`, `input_labor_portion`, `input_parts_portion`. Recorded in the playbook
+so it is never hunted again.
+
+### Building the state (UI, on the screen a user would use)
+
+Line 1 of S2-17528 — **"Diagnose - Engine"**, `782ecc8c-2763-4081-a782-f88ccbbe950c`, status
+Approved, labour rate *HD Door Rate* — was set to **Fixed Line Total 1,000.00 / Labor Portion
+700.00 / Parts Portion 300.00** and saved with **Save & Close**
+(`POST /api/work-orders/lines/change` → **201**).
+
+The state is **proven present**, not assumed:
+
+| | before | after |
+|---|---|---|
+| line row Total | `$857.5` | **`$1000`** |
+| work order **Parts** | `$197.70` | **`$300.00`** (= the parts portion, not the real parts sum) |
+| work order **Labor** | `$2,009.35` | `$2,049.55` |
+| work order **Total** | `$2,538.95` | `$2,693.04` |
+
+The Parts figure moving from the genuine parts sum (`$197.70`) to exactly the entered parts portion
+(`$300.00`) is itself the proof the fixed total is now governing the line.
+
+### The check itself
+
+With that line fixed, the target part's sell price was edited **on the Parts tab grid** — the
+screen a user edits prices on — twice, in two separate passes:
+
+| edit | grid cell `input_sell_price_e6bfa58e…` | saved | line row Total | WO Parts | WO Subtotal | WO Total |
+|---|---|---|---|---|---|---|
+| start | `89.20` | — | `$1000` | `$300.00` | `$2,564.75` | `$2,693.04` |
+| 1st → 250.00 | `250.00` | `POST /api/work-orders/parts/change` → **201** | `$1000` | `$300.00` | `$2,564.75` | `$2,693.04` |
+| after hard reload | `250.00` (persisted) | — | `$1000` | `$300.00` | `$2,564.75` | `$2,693.04` |
+| 2nd → 500.00 | `500.00` | **201** | `$1000` | `$300.00` | `$2,564.75` | `$2,693.04` |
+
+**The fixed line total does not shift when a part's price is edited.** Every figure above is read
+off the screen, and the hard reload rules out a stale client value — these are server figures.
+
+**The cause is proven present, not assumed** (Rule 87's gate): the grid cell read back the new
+value after each save and survived a reload, and the part's **margin on the line moved 40% → 79%**
+as the sell price rose — so the edit demonstrably reaches the line. What does **not** move is the
+money, which is exactly what a fixed line total is for.
+
+**One observation recorded without a claim built on it:** under a fixed line total the part rows
+inside the line display `$140.53` rather than the raw sell price, and that display did not change
+across either edit. I did not establish how that figure is derived and I am not asserting anything
+about it — the check turns on the line total and the work-order figures, all of which held.
+
+Evidence: `V1-before-part-edit.png` · `V2-parts-tab.png` · `V3-price-edited.png` ·
+`V4-after-part-edit.png` · `V5-after-reload.png` · `W1-second-edit.png` · `W2-lines-after.png`
+(scripts `br20`–`br27`).
