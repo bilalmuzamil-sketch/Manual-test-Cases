@@ -1,0 +1,80 @@
+{
+ "marker": "v26.36.8-2a96702",
+ "checks": {
+  "C45152": {
+   "verdict": "Passed",
+   "why": "after moving to \"Staging Lethbridge - 4310\" search returns that shop's job S-17718 and no longer returns S-17717, with no sign-out",
+   "detail": {
+    "sw": {
+     "openedButton": "Staging Heavy Duty - 9919",
+     "optionsOffered": [
+      "Change Location: Staging Heavy Duty - 9919",
+      "check Staging Heavy Duty - 9919",
+      "check Staging Lethbridge - 4310"
+     ],
+     "picked": "check Staging Lethbridge - 4310",
+     "nowShows": "Staging Lethbridge - 4310"
+    },
+    "before": {
+     "location": "Staging Heavy Duty - 9919",
+     "S-17717": true,
+     "S-17718": false
+    },
+    "after": {
+     "location": "Staging Lethbridge - 4310",
+     "S-17717": false,
+     "S-17718": true
+    }
+   }
+  },
+  "C55684": {
+   "verdict": "Passed",
+   "why": "after moving, the previous shop's job S-17717 is no longer returned",
+   "detail": {
+    "sw": {
+     "openedButton": "Staging Heavy Duty - 9919",
+     "optionsOffered": [
+      "Change Location: Staging Heavy Duty - 9919",
+      "check Staging Heavy Duty - 9919",
+      "check Staging Lethbridge - 4310"
+     ],
+     "picked": "check Staging Lethbridge - 4310",
+     "nowShows": "Staging Lethbridge - 4310"
+    },
+    "before": {
+     "location": "Staging Heavy Duty - 9919",
+     "S-17717": true,
+     "S-17718": false
+    },
+    "after": {
+     "location": "Staging Lethbridge - 4310",
+     "S-17717": false,
+     "S-17718": true
+    }
+   }
+  }
+ },
+ "switch": {
+  "sw": {
+   "openedButton": "Staging Heavy Duty - 9919",
+   "optionsOffered": [
+    "Change Location: Staging Heavy Duty - 9919",
+    "check Staging Heavy Duty - 9919",
+    "check Staging Lethbridge - 4310"
+   ],
+   "picked": "check Staging Lethbridge - 4310",
+   "nowShows": "Staging Lethbridge - 4310"
+  },
+  "before": {
+   "location": "Staging Heavy Duty - 9919",
+   "S-17717": true,
+   "S-17718": false
+  },
+  "after": {
+   "location": "Staging Lethbridge - 4310",
+   "S-17717": false,
+   "S-17718": true
+  }
+ },
+ "restoredTo": "Staging Heavy Duty - 9919"
+}

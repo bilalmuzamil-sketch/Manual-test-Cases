@@ -1,0 +1,20 @@
+{
+ "pass_meta": {
+  "pass": "Location switching, via the picker in the profile menu",
+  "date": "22 September 2026",
+  "build": "v26.36.8-2a96702",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C45152": {
+   "verdict": "Passed",
+   "observed": "Proved with a job seeded at each shop - S-17717 at Staging Heavy Duty - 9919 and S-17718 at Staging Lethbridge - 4310. Standing at Heavy Duty, search returns S-17717 and not S-17718. The shop was then changed from the profile menu, the way a person does it, to Staging Lethbridge - 4310 - no sign-out and no reload. Search then returns S-17718 and no longer returns S-17717. The two readings are a clean swap, so changing shop refreshes what search gives you.",
+   "not_observed": null
+  },
+  "C55684": {
+   "verdict": "Passed",
+   "observed": "Same reading as the check above. After moving from Staging Heavy Duty - 9919 to Staging Lethbridge - 4310, the job belonging to the first shop, S-17717, is no longer returned by search, while the second shop's own job S-17718 is. The previous shop's work disappears as it should.",
+   "not_observed": null
+  }
+ }
+}
