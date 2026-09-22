@@ -1,0 +1,166 @@
+{
+ "marker": "v26.36.8-2a96702",
+ "checks": {
+  "C45138": {
+   "verdict": "Passed",
+   "why": "unpaid supplier invoices are listed above paid ones - the order reads Unpaid, Unpaid, Unpaid, Paid, Partially Paid. The dates top to bottom read Sep 19, 2026, Sep 17, 2026, Sep 16, 2026, Sep 16, 2026, Sep 16, 2026",
+   "detail": {
+    "query": "ZZ",
+    "rows": [
+     "ZZT-INV-TOGGLE-ZZTOGV ZZTOGVEN Supply Unpaid $165.00 · Sep 19, 2026",
+     "5445546 ZZAUTOTEST Fibridge Mining Unpaid $240.00 · Sep 17, 2026",
+     "ZZT-INV-1 ZZAUTOTEST Fibridge Mining Unpaid $90.00 · Sep 16, 2026",
+     "ZZT-INV-3 ZZAUTOTEST Fibridge Mining Paid $90.00 · Sep 16, 2026",
+     "ZZT-INV-2 ZZAUTOTEST Fibridge Mining Partially Paid $100.00 · Sep 16, 2026"
+    ],
+    "seq": [
+     "Unpaid",
+     "Unpaid",
+     "Unpaid",
+     "Paid",
+     "Partially Paid"
+    ],
+    "dates": [
+     "Sep 19, 2026",
+     "Sep 17, 2026",
+     "Sep 16, 2026",
+     "Sep 16, 2026",
+     "Sep 16, 2026"
+    ]
+   }
+  },
+  "C45137": {
+   "verdict": "Blocked",
+   "why": "the order is reachable (found at Heavy Duty and found at Lethbridge), so the documented half of the ranking can be read - but the state the product gives it, Partial Delivery, is not mentioned anywhere in the requirements, so there is no stated answer for where it should rank",
+   "detail": {
+    "seen": {
+     "Staging Heavy Duty - 9919": {
+      "P-263 / Purchase orders": {
+       "rows": 1,
+       "sample": [
+        "P9160-263 5 Star Truck Repair Partial Delivery $40.00 · Sep 17, 2026 · Number:P-263"
+       ]
+      },
+      "263 / Purchase orders": {
+       "rows": 13,
+       "sample": [
+        "P9160-263 5 Star Truck Repair Partial Delivery $40.00 · Sep 17, 2026",
+        "I9160-263 Vero Beach Heavy Duty Truck & Equipment Repair Fulfilled $71.20 · Apr 4, 2025",
+        "S2-6323 Stillwater Diesel Repair Ordered $1,426.95 · Apr 9, 2025"
+       ]
+      },
+      "Airoldi / Purchase orders": {
+       "rows": 0,
+       "sample": []
+      },
+      "Airoldi Trucking / Vendors": {
+       "rows": 1,
+       "sample": [
+        "Airoldi Trucking & Repair 870-326-6209 · 9252 Donald Curve, Jaclynburgh, Saskatchewan"
+       ]
+      }
+     },
+     "Staging Lethbridge - 4310": {
+      "P-263 / Purchase orders": {
+       "rows": 1,
+       "sample": [
+        "P9160-263 5 Star Truck Repair Partial Delivery $40.00 · Sep 17, 2026 · Number:P-263"
+       ]
+      },
+      "263 / Purchase orders": {
+       "rows": 13,
+       "sample": [
+        "P9160-263 5 Star Truck Repair Partial Delivery $40.00 · Sep 17, 2026",
+        "I9160-263 Vero Beach Heavy Duty Truck & Equipment Repair Fulfilled $71.20 · Apr 4, 2025",
+        "S2-6323 Stillwater Diesel Repair Ordered $1,426.95 · Apr 9, 2025"
+       ]
+      },
+      "Airoldi / Purchase orders": {
+       "rows": 0,
+       "sample": []
+      },
+      "Airoldi Trucking / Vendors": {
+       "rows": 1,
+       "sample": [
+        "Airoldi Trucking & Repair 870-326-6209 · 9252 Donald Curve, Jaclynburgh, Saskatchewan"
+       ]
+      }
+     }
+    }
+   }
+  }
+ },
+ "invoices": {
+  "query": "ZZ",
+  "seq": [
+   "Unpaid",
+   "Unpaid",
+   "Unpaid",
+   "Paid",
+   "Partially Paid"
+  ],
+  "dates": [
+   "Sep 19, 2026",
+   "Sep 17, 2026",
+   "Sep 16, 2026",
+   "Sep 16, 2026",
+   "Sep 16, 2026"
+  ]
+ },
+ "partial": {
+  "seen": {
+   "Staging Heavy Duty - 9919": {
+    "P-263 / Purchase orders": {
+     "rows": 1,
+     "sample": [
+      "P9160-263 5 Star Truck Repair Partial Delivery $40.00 · Sep 17, 2026 · Number:P-263"
+     ]
+    },
+    "263 / Purchase orders": {
+     "rows": 13,
+     "sample": [
+      "P9160-263 5 Star Truck Repair Partial Delivery $40.00 · Sep 17, 2026",
+      "I9160-263 Vero Beach Heavy Duty Truck & Equipment Repair Fulfilled $71.20 · Apr 4, 2025",
+      "S2-6323 Stillwater Diesel Repair Ordered $1,426.95 · Apr 9, 2025"
+     ]
+    },
+    "Airoldi / Purchase orders": {
+     "rows": 0,
+     "sample": []
+    },
+    "Airoldi Trucking / Vendors": {
+     "rows": 1,
+     "sample": [
+      "Airoldi Trucking & Repair 870-326-6209 · 9252 Donald Curve, Jaclynburgh, Saskatchewan"
+     ]
+    }
+   },
+   "Staging Lethbridge - 4310": {
+    "P-263 / Purchase orders": {
+     "rows": 1,
+     "sample": [
+      "P9160-263 5 Star Truck Repair Partial Delivery $40.00 · Sep 17, 2026 · Number:P-263"
+     ]
+    },
+    "263 / Purchase orders": {
+     "rows": 13,
+     "sample": [
+      "P9160-263 5 Star Truck Repair Partial Delivery $40.00 · Sep 17, 2026",
+      "I9160-263 Vero Beach Heavy Duty Truck & Equipment Repair Fulfilled $71.20 · Apr 4, 2025",
+      "S2-6323 Stillwater Diesel Repair Ordered $1,426.95 · Apr 9, 2025"
+     ]
+    },
+    "Airoldi / Purchase orders": {
+     "rows": 0,
+     "sample": []
+    },
+    "Airoldi Trucking / Vendors": {
+     "rows": 1,
+     "sample": [
+      "Airoldi Trucking & Repair 870-326-6209 · 9252 Donald Curve, Jaclynburgh, Saskatchewan"
+     ]
+    }
+   }
+  }
+ }
+}
