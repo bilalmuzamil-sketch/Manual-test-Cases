@@ -4,11 +4,11 @@
 read live, every non-passed test's latest comment was scanned for held-ticket wording, and every
 ticket key found was checked live in Jira.
 
-## The answer: **ONE.**
+## The answer was **ONE**, and it was raised on 22 September as [SV-10320](https://shopview.atlassian.net/browse/SV-10320).
 
 | # | Test | Heading the ticket would carry | State |
 |---|---|---|---|
-| 1 | **C53476** | *Global Search All Tab Counts Past the 20-Result Limit the Other Tabs Respect* | **PREPARED — body, picture, sources all written; nothing filed.** Needs his go-ahead **and** a decision on the owning story, because the natural owner **SV-9169 is OBSOLETE** |
+| 1 | **C53476** | *Global Search All Tab Counts Past the 20-Result Limit the Other Tabs Respect* | **RAISED 22 Sep as [SV-10320](https://shopview.atlassian.net/browse/SV-10320)** — Story Defect · parent **SV-9174** (Testing QA, confirmed live at the moment of filing) · Medium · picture embedded inline · re-measured on build v26.36.8-d146c39 immediately before filing. The natural owner SV-9169 is OBSOLETE, which is why SV-9174 carries it. |
 
 Body: `TICKET-DRAFT-C53476.md`. Picture: `../rerun-2026-09-21/TICKET-53476-all-tab-count.png`.
 Reconciliation: `DEFECT-READINESS-2026-09-21.md` §1.
@@ -36,3 +36,22 @@ among them SV-9917 and SV-9918 — and have since been moved to OBSOLETE. That s
 not part of this count.
 
 **Run 415 as it stands: 203 tests · 174 passed · 14 failed · 15 blocked · 0 untested.**
+
+
+---
+
+## Update, 22 September 2026 — the one was raised, and **nothing is now waiting on the Jira button**
+
+**[SV-10320](https://shopview.atlassian.net/browse/SV-10320)** — *Global Search All Tab Counts Past
+the 20-Result Limit the Other Tabs Respect*. Story Defect · parent **SV-9174** · Medium · linked
+*relates to* SV-9174 · annotated picture embedded inline (verified: the rendered description carries
+a real image and no literal markup). The run's own result now names the ticket.
+
+**Layout note (his instruction, 22 Sep, from the SV-10188 example):** Steps to Reproduce are written
+**generically** — no test data in them — and the concrete data appears separately as a
+***QA Example:*** block under **Actual Result**. Everything else stays as our own house layout:
+Description first, bold Actual/Expected, Environment second-to-last, Sources last with the
+requirement quoted verbatim. Nothing from the example ticket was allowed to override the rest.
+
+**Held count after this: ZERO.** Every failure on run 415 now carries either a live ticket or a
+written reason why no ticket is due.

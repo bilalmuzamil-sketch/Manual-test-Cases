@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "pass": "Ticket raised for the count-cap failure",
+  "date": "22 September 2026",
+  "build": "v26.36.8-d146c39",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C53476": {
+   "verdict": "Failed",
+   "observed": "Re-measured at the moment of raising, on build v26.36.8-d146c39. One search for 'ZZ': the All tab reads All (111) while every tab for a single record type is correct and stops at 20 - Work orders (20), Customers (20), Assets (20), Parts (20), Vendors (11), Part sales (9), Purchase orders (6), Vendor invoices (5). 20+20+20+20+11+9+6+5 = 111, so the All figure is the per-type figures added together. A second search for 'ZZAUTOTEST' behaves the same way: All (61), which is 20+14+9+4+3+3+4+4. The same uncapped number is also read out to screen-reader users; that text is not visible on the screen. The requirement says no count in the box reads higher than 20, the tab included.",
+   "not_observed": "The 'Show all N' links are absent on this build, so the third place the limit applies could not be read; that absence is already reported separately.",
+   "ticket": "Raised as SV-10320 - https://shopview.atlassian.net/browse/SV-10320 - with the marked-up picture and the requirement quoted word for word. It sits under the work covering wiring the search box up to the results, which is still with QA.",
+   "todo": "What needs to be done: nothing further from us. The report is with the developers under the link above, and this test is re-run once it is fixed."
+  }
+ }
+}
