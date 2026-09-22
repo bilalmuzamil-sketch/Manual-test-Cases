@@ -463,3 +463,86 @@ a regression.*
 **This is the second time today that building the pre-fix counterpart turned an apparent regression into
 a non-event** — the first was the cross-workplace missing credit row (§2). Both would have been
 confidently wrong reports.
+
+## §4b–e — the other shapes that must be unchanged
+
+| shape | observed | |
+|---|---|---|
+| **Cash rows** | render as `Sep 22, 2026 - Cash  $51.13` / `$40.08` on every settled document across both builds, at the allocated amount | ✓ |
+| **Non-cash payment method** | a **Gift card** deposit renders as `(Deposit) Sep 22, 2026 - Gift card` — the method name is carried through unchanged | ✓ |
+| **Deposit row + the overflow sub-line** | intact and correct (below) | ✓ |
+| **Totals, Balance, Financial Info sidebar** | Labor / Parts / Shop supplies / Subtotal / GST / Total identical on every document in this pass, on both builds, and Balance **$0.00** wherever settled; the sidebar figures on the Finance tab match the document | ✓ |
+| **Estimate documents** | unchanged (below) | ✓ |
+
+### The deposit overflow sub-line — the one worth quoting
+
+Work order **S-17591**, total **$145.04**, with a **$200.00** deposit taken through *Add Deposit*
+(`POST /api/deposits`, method `GIFT_CARD`, reference `ZZ-9647-DEP`), then completed and invoiced:
+
+```
+Payments
+  (Deposit) Sep 22, 2026 - Gift card
+  of $200.00 — $54.96 will be credited          $145.04
+BALANCE                                           $0.00
+```
+
+The row carries **the applied amount ($145.04)** and the sub-line names **the deposit's full face
+($200.00)** and **the overflow ($54.96)**. That is exactly the shape the handoff says must survive, and
+it does — untouched by the credit-apportionment change, which is the right outcome: deposits and credits
+are separate row types.
+
+### Estimate documents
+
+Work order **S-17586** (complete, never invoiced) renders as an **Estimate**: the word appears 7 times,
+it ends with **`Estimated Total $145.04`**, and it has **no Payments section and no Balance line at all**
+(`Payments` ×0, `Balance` ×0 in the rendered text). Document id `EST-S9647-17591` on the deposit
+work order's pre-invoice view likewise. Nothing about this change reaches the estimate template.
+
+## §5 — Surface consistency
+
+### On-screen preview vs downloaded PDF — identical, figure for figure
+
+Same invoice (**S-17583**, $145.04, credits CM-4191 $37.56 + CM-4192 $56.35 + cash $51.13), fetched
+twice from the same endpoint with `type=html` and `type=pdf`, and the PDF's text extracted:
+
+| figure | PDF | on-screen |
+|---|---|---|
+| `$51.13` | 1 | 1 |
+| `$37.56` | 1 | 1 |
+| `$56.35` | 1 | 1 |
+| `$145.04` | 1 | 1 |
+| `CM-4191` / `CM-4192` | 1 / 1 | 1 / 1 |
+| **`$200.00` / `$300.00`** (the full faces) | **0 / 0** | **0 / 0** |
+
+### Emailed PDF — generated and delivered, but its bytes were not readable from here
+
+The invoice was emailed from the Finance tab (`POST /api/work-order/invoice/send-email` → **201**) to a
+mailbox I can read, and arrived within a minute: *"Invoice for order number: S9647-17583"* from
+`reply@shopview.com`, attachment **`invoice-for-order-S9647-17583.pdf`**, message size 136 263 bytes —
+consistent with the 88 344-byte PDF above once base64-encoded (~117 800) plus headers and body.
+
+**Honest limit, stated precisely: I confirmed the emailed PDF exists, is attached and is named for the
+right work order, but the mail tooling available here exposes no attachment download, so I did not read
+its figures.** The on-screen and downloaded surfaces are proven identical to each other; the emailed one
+is corroborated by size and by the handoff's statement that all three share a backend fetcher, which is
+weaker and is labelled as such. One attachment-download call would close it.
+
+### Part sale as well as work order
+
+Done twice over — §1 and §0e are part sales, §0d and everything in §2/§4 are work orders. Both shapes
+give the same apportionment answer.
+
+### Customer Portal
+
+**Not tested, and the reason is recorded rather than worked around.** The QA portal deployment reads a
+fixed backend (`shopview_app_url`) rather than following the token you sign in with — established on
+SV-8801 earlier today, where the portal that exists points at a different branch entirely. Opening
+"the same invoice" there would render a different organization's record with a coincidentally similar
+number, which is worse than not testing it. **A portal pointed at `sv9647` would close this.**
+
+### Credit-line ordering
+
+The handoff notes ordering is newly deterministic and that a changed order with correct amounts is
+expected. Observed: on the $4.66 part-sale invoice the branch lists **CM-4189 then CM-4190** while
+staging lists **CM-4402 then CM-4403** — ascending by memo in both, so no visible reordering to flag,
+and every amount reconciles.
