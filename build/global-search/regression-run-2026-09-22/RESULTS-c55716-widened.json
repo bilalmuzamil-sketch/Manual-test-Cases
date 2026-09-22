@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "pass": "Tie-break widened to every tab, on his point",
+  "date": "22 September 2026",
+  "build": "v26.36.8-fa74ea8",
+  "env": "QA branch sv9160"
+ },
+ "results": {
+  "C55716": {
+   "verdict": "Failed",
+   "observed": "Widened on the QA lead's point that this rule applies to every tab, which the requirement bears out - the sentence sits after all the per-record-type scoring and applies to the final score, so it is the shared last step of the ranking. Now proved on TWO tabs. Suppliers: two with the identical name, telephone and address; the one listed second renamed by a single letter; the small letter shows in the results, proving search saw the edit, and it is still second. Customers: the product refuses two with the same name, so two that match the typed word equally were used; the second was renamed by one letter, the small letter shows, and it is still second. One shared rule failing in two independent places points at the shared step rather than at either record type.",
+   "not_observed": "Vehicles and Parts could not be proved either way - every edit I could make to a vehicle was refused, and two parts cannot be given the same description through the route available here. Jobs, part sales, purchase orders and supplier invoices cannot be tested this way at all: all four carry system-generated numbers, so nothing can be altered without also changing something the ranking scores.",
+   "ticket": "Raised and widened as SV-10340 - https://shopview.atlassian.net/browse/SV-10340 - which now carries a tab-by-tab table saying what was proved, what was not, and why, and asks for all eight tabs to be re-checked once the shared fix lands.",
+   "todo": "What needs to be done: nothing further from us. The report is with the developers. When it is fixed, re-run this check on every tab, not only the two proved here."
+  }
+ }
+}
