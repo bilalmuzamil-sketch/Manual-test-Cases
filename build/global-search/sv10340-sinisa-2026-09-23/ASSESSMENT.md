@@ -102,3 +102,14 @@ to match a developer's comment. It flips when the PRD sentence changes, not befo
 the product's behaviour is reasonable; the document should say what is true.
 
 **No comment has been posted on the ticket.** The QA lead said not to without his permission.
+
+---
+
+## 5 · Closed by the QA lead, 23 September — *"Ok leave it"*
+
+No reply was drafted or posted to Sinisa, and none is to be. **Do not re-open this with him.**
+
+State left as it stands: SV-10340 is **Open**, and **C55716 stays Failed** — measured against the
+requirement, which is unchanged (page 576978945 still v17, 8 September). It flips if and when that
+sentence changes, not on the strength of an unresolved margin note. The analysis above is kept as
+the record of why, so a later session finding the check red can read it rather than ask him again.
