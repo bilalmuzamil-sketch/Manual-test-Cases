@@ -1,0 +1,233 @@
+# Plain tester-facing result per requirement anchor. Format:  S#-R# ::= plain sentence
+# Meaning is locked to the verbatim quote in anchor-quotes.json; wording is layman, no ids/jargon (Rules 7/9/113/114).
+
+# ---------- Story 1: Switch between display options ----------
+S1-R1 ::= The Work Orders toolbar shows three display-option controls: List, Tech View, and Board View.
+S1-R9 ::= The control for the display you are currently viewing is clearly marked as the active one.
+S1-R2 ::= For a brand-new user who has never chosen a display, the page opens in List.
+S1-R3 ::= Switching the display re-lays out the same work orders instantly; the filter tab, search text, and filters do not change.
+S1-R4 ::= Your chosen display is remembered and comes back after logging out and in, on another device, and at another location.
+S1-R5 ::= A user with Work Orders view permission sees the All, Work Orders, Estimates, and Completed filter tabs.
+S1-R10 ::= Work Orders is the filter tab that is selected by default.
+S1-R11 ::= Search, filter persistence, and which results appear behave the same in List, Tech View, and Board View.
+S1-R7 ::= When you return to List, the List sort you had saved is restored.
+S1-R8 ::= Using the browser Back button restores both the up/down and the left/right scroll position of the Work Orders page.
+S1-R12 ::= Opening a filter tab directly by its link starts you at the top-left of the page.
+S1-N1 ::= When filters match nothing, every display shows the existing "No work orders match your filters" empty state with a Clear filters action.
+S1-N2 ::= If your saved display preference cannot be loaded, the page falls back to List.
+S1-N3 ::= If saving your display preference fails, your previously saved preference is kept.
+S1-N4 ::= A failed preference save does not stop you switching displays or trying the save again.
+S1-N5 ::= If you change the preference in two tabs at once, the last request is the one that sticks.
+S1-E1 ::= With "Assigned to me" on, you see only the work that matches the existing assignment-filter rules.
+S1-E2 ::= Changing location opens that location's existing default page.
+S1-E3 ::= "Assigned to me" turns itself off when you change location, exactly as it does today.
+
+# ---------- Story 2: Tech View ----------
+S2-R1 ::= Tech View groups the work-order table under each lead technician, with a visible separator between groups.
+S2-R12 ::= Each group header shows the technician's name, avatar, and the count of matching work orders.
+S2-R2 ::= An Unassigned group holding work orders with no lead technician sits fixed before all technician groups.
+S2-R3 ::= Before you reorder anything, technicians are ordered by first name A–Z, then last name A–Z, then the earliest-created staff record for identical names.
+S2-R4 ::= Tech View offers the same columns and the same column chooser as List.
+S2-R5 ::= Each technician group can be collapsed and expanded.
+S2-R13 ::= A group's collapsed/expanded state is remembered per user across sessions, logout/login, refreshes, new tabs, and reopening.
+S2-R6 ::= Until you save a manual order, work orders inside a group use List's default work-order sort.
+S2-R7 ::= The technicians shown are those who are Clockable, Active, enrolled in the current location, and whose role is neither Office nor Time Clock User.
+S2-R14 ::= Every eligible technician appears even if they have no matching work (except in the filtered-empty state).
+S2-R15 ::= An eligible technician with no matching work shows the label "No work orders".
+S2-R16 ::= There is no control that hides empty eligible technician groups.
+S2-R8 ::= You can open a work order from Tech View.
+S2-N1 ::= When Unassigned has no work and "Assigned to me" is off, the Unassigned group stays present with its empty state and can still receive dropped work.
+S2-N2 ::= Work led by a technician who has been deactivated stays visible under that technician.
+S2-N3 ::= A deactivated technician's group header is marked as inactive.
+S2-E1 ::= While you scroll within a tall group, that group's technician header stays visible.
+S2-E2 ::= After the lead is changed somewhere else, the work order moves to its new technician group on the next refresh.
+S2-R9 ::= Whenever "Assigned to me" is on, the Unassigned group is hidden.
+S2-R10 ::= Hovering a technician header or avatar reveals the technician's name.
+S2-R11 ::= Tech View allows up to three pinned technician groups.
+
+# ---------- Story 3: Board View ----------
+S3-R1 ::= Board View shows one column per eligible technician plus an Unassigned column.
+S3-R12 ::= Each column header shows the technician's name, avatar, and the count of matching work orders.
+S3-R2 ::= The Unassigned column is first and stays fixed in place while you scroll the technician columns left and right.
+S3-R3 ::= The column headers (names and counts) stay pinned at the top while you scroll down a long column.
+S3-R4 ::= Board View cards always include the mandatory fields (work order number, unit number when present, and status).
+S3-R5 ::= Each card's status badge stays in a fixed spot on the card.
+S3-R13 ::= A card's more-actions menu appears when you hover the card or move keyboard focus to it.
+S3-R14 ::= The card's more-actions menu includes "Reassign lead technician".
+S3-R6 ::= Clicking a card anywhere except the more-actions control opens the work order.
+S3-R7 ::= You can pin a technician from the column header.
+S3-R15 ::= Pinned technicians appear after the fixed Unassigned column and before the unpinned technicians.
+S3-R16 ::= Each newly pinned technician is added after the technicians already pinned.
+S3-R17 ::= The pin selection is the same set shared between Tech View and Board View.
+S3-R18 ::= Pins are remembered per user across sessions, logout/login, and devices.
+S3-R8 ::= When three technicians are pinned, the other pin controls are disabled and show "You can pin up to 3 technicians."
+S3-R19 ::= Unpinning a technician frees a pin slot in both Tech View and Board View.
+S3-R9 ::= Empty eligible technician columns stay visible and can receive dropped work (except in the filtered-empty state).
+S3-R20 ::= A column with no matching work shows a short empty state.
+S3-R21 ::= There is no control that hides empty eligible technician columns.
+S3-N1 ::= With "Assigned to me" on, the Unassigned column is hidden.
+S3-N3 ::= While "Assigned to me" is on, pinning is not offered.
+S3-N2 ::= Work led by a deactivated technician stays visible in that technician's column.
+S3-N4 ::= A deactivated technician's column shows an inactive indicator.
+S3-E1 ::= When Unassigned has more cards than fit, it scrolls up and down on its own while the other columns and the pinned headers stay visible.
+S3-E2 ::= When technician columns exceed the width, the board scrolls left and right; technicians are never hidden automatically.
+S3-E3 ::= A technician keeps their pin after being deactivated.
+S3-E5 ::= You can manually unpin a deactivated technician.
+S3-E4 ::= All selected content on a card stays reachable by scrolling, whatever the card height or density.
+S3-R11 ::= Board View provides the shared Density control from Story 6.
+
+# ---------- Story 4: Reassign / unassign lead ----------
+S4-R1 ::= The reassignment rules in this story also govern the drag interactions in Story 9.
+S4-R4 ::= The card or row more-actions menu opens the "Reassign lead technician" dialog.
+S4-R12 ::= The dialog offers the eligible active technicians in the current location plus Unassigned.
+S4-R13 ::= Confirming the dialog changes the lead to the selected technician, or to Unassigned.
+S4-R14 ::= Cancelling the dialog leaves the lead unchanged.
+S4-R15 ::= The "N open" count in the dialog counts work orders in Approved, In Progress, and Ready for Review.
+S4-R5 ::= After a successful reassignment you see "Lead technician updated"; after unassigning you see "Lead technician removed".
+S4-R16 ::= The success toasts dismiss themselves automatically.
+S4-R6 ::= The existing work-order detail-page notification behaviour still happens when the lead changes.
+S4-R7 ::= The counts in column/group headers update immediately after a successful change.
+S4-R8 ::= On every path that assigns, changes, or removes the lead, work-order lines move according to the line-movement table (unassigned lines and lines implicitly following the outgoing lead move to the new lead; explicit assignments, Complete lines, lines with logged labor, and actively clocked-in lines do not move).
+S4-R9 ::= Every lead change records exactly one audit entry with the previous lead, new lead, the logged-in actor, and the time.
+S4-R17 ::= No separate audit entries are created for the implicit line movements caused by a lead change.
+S4-R18 ::= Technician changes made directly on a work-order line keep their existing line auditing.
+S4-R10 ::= The prohibited-status rule is enforced on every lead-change path, including requests that bypass the interface.
+S4-R11 ::= Changing the lead in Board View or Tech View asks whether to clear the outgoing lead's whole-work-order scheduled shifts.
+S4-R19 ::= Making a Schedule change does not change the work order's lead technician.
+S4-R20 ::= A lead change leaves the work order's status unchanged.
+S4-R21 ::= A lead change and any optional shift clearing leave active, recorded, and locked time unchanged.
+S4-R22 ::= Choosing to clear shifts removes only the outgoing lead's shifts scheduled against the whole work order.
+S4-R23 ::= Choosing to keep shifts changes the lead and leaves the existing shifts in place.
+S4-R24 ::= This prompt never clears shifts scheduled against individual work-order lines.
+S4-N1 ::= Dragging work orders or opening "Reassign lead technician" requires Work Orders create and edit permission.
+S4-N2 ::= Lead reassignment and dragging are blocked when the work order is Invoiced, Paid, Declined, or Imported.
+S4-N6 ::= A disabled reassignment action explains the status reason.
+S4-N7 ::= A status-restricted work order is visibly marked as not draggable.
+S4-N3 ::= If a reassignment fails, the card or row returns to its original column or group.
+S4-N8 ::= A failed reassignment shows a dismissible alert: "Failed to update lead technician, please try again."
+S4-N4 ::= Selecting the technician who is already the lead changes nothing and shows no reassignment toast.
+S4-N5 ::= Nothing can be dropped onto an inactive technician's column or group.
+S4-E1 ::= You can change the lead while the outgoing lead is clocked into a work-order line.
+S4-E6 ::= An actively clocked-in line keeps its assigned technician, even when that assignment is implicit or has no earlier logged labor.
+S4-E2 ::= When two users reassign the same work order, the later change wins.
+S4-E7 ::= After a concurrent reassignment, both users see the final lead once they refresh.
+S4-E3 ::= If the status becomes prohibited during a drag, the drop is rejected with a status explanation and the card returns to origin.
+S4-E4 ::= The Reassign dialog lets you pick destinations that are outside the current filter.
+S4-E8 ::= After reassignment, a work order that no longer matches the filter is removed from the results.
+S4-E5 ::= For a work order with mixed line assignments, the line-movement rules are applied to each line independently.
+
+# ---------- Story 5: Fields and columns ----------
+S5-R1 ::= List and Tech View share one optional-column selection.
+S5-R8 ::= The List/Tech View column selection is saved per user across sessions, logout/login, devices, and locations.
+S5-R2 ::= Board View has its own "Fields to display" picker, in the same toolbar spot and working the same way as the column chooser.
+S5-R9 ::= Optional Board View fields can be turned on and off.
+S5-R10 ::= The Board View field selection is saved per user across sessions, logout/login, devices, and locations.
+S5-R3 ::= Work order number, unit number when present, and status are mandatory and cannot be turned off.
+S5-R11 ::= The optional fields offered use their existing production meaning: lead technician name, customer, asset (year/make/model), VIN/serial, progress, service advisor, clocked-in time, line count, line technicians, estimated hours, total price, on-site indicator, and created date.
+S5-R4 ::= With no saved column preference, Tech View uses the current production List default columns.
+S5-R12 ::= Existing saved List/Tech View column selections are kept.
+S5-R13 ::= Board View's default fields are lead technician name, work order number, customer, unit number, asset, progress, total price, and the mandatory status — with total price subject to financial permission.
+S5-R5 ::= Field changes apply immediately to all visible cards, with no page reload.
+S5-R7 ::= Display, field, and density usage is measured as specified in Story 12.
+S5-N1 ::= If every optional field is turned off, only the mandatory fields and the missing-unit fallback remain.
+S5-N2 ::= If field preferences cannot load, the current display uses its List/Tech View default columns or Board View default fields.
+S5-N3 ::= After a preference-load failure, your next field selection is saved.
+S5-E1 ::= If unit number is missing, the available asset year/make/model is shown in its place.
+S5-E3 ::= Optional fields with no value are left out.
+S5-E4 ::= A genuine zero is shown as a value, not treated as missing.
+S5-E5 ::= If both unit number and the fallback asset details are missing, that content is left out.
+S5-E2 ::= Without "see financial data" permission, all dollar-amount fields are hidden from displays, filters, and the field/column pickers.
+S5-E6 ::= Saved filters and field selections never reveal financial values when "see financial data" is off.
+
+# ---------- Story 6: Density ----------
+S6-R1 ::= Compact, Regular, and Comfortable density are offered in List, Tech View, and Board View.
+S6-R5 ::= Regular is the default density.
+S6-R2 ::= Density changes the spacing and the size of rows, cards, and their elements.
+S6-R6 ::= Changing density never changes which fields, columns, or values are shown.
+S6-R3 ::= One density selection is shared across List, Tech View, and Board View.
+S6-R7 ::= Density is saved per user across sessions, logout/login, devices, and locations.
+S6-R4 ::= Compact density never shrinks text below the application's minimum body text size.
+S6-N2 ::= If a saved density cannot be loaded, Regular is used.
+S6-E1 ::= Density applies to List rows, Tech View rows, and Board View cards on Work Orders only; other application tables are unaffected.
+
+# ---------- Story 7: Line-technician avatars ----------
+S7-R1 ::= Board View cards (when the line-technicians field is on) and the List/Tech View Assigned Tech column show a compact avatar group of the lead plus the distinct technicians assigned to the lines.
+S7-R2 ::= Each visible avatar's own area is its hover target.
+S7-R3 ::= The lead technician is placed first in the avatar group.
+S7-R5 ::= Each technician appears once, even when they are both the lead and assigned to lines.
+S7-R4 ::= When there are more avatars than fit, the first avatars are shown followed by a "+N" overflow indicator.
+S7-R6 ::= Every involved technician stays discoverable by name.
+S7-N1 ::= The avatar field/column is blank only when there is no lead technician and no assigned line technician.
+S7-E1 ::= A technician assigned to several lines of the same work order appears once.
+
+# ---------- Story 8: Remove tech-story check-mark ----------
+S8-R1 ::= The check mark that appeared on a work-order line when a tech story was entered is gone everywhere it used to show, including the Simple Flow tech-view mode.
+S8-R2 ::= Entering, editing, and requiring a tech story work exactly as before; only the indicator is removed.
+S8-N1 ::= Lines that never had a tech story look the same before and after this change.
+S8-E1 ::= No replacement required-tech-story indicator is added by this change (any such indicator would need its own spec).
+
+# ---------- Story 9: Drag to reorder ----------
+S9-R1 ::= You can drag work orders within a technician group/column and between technician groups/columns in Tech View and Board View.
+S9-R6 ::= Dragging a work order to another technician reassigns its lead under the Story 4 rules.
+S9-R7 ::= Dragging a work order to Unassigned removes its lead; dragging it out of Unassigned assigns the destination technician as lead.
+S9-R2 ::= A user with Work Orders view permission can reorder technician groups/columns.
+S9-R8 ::= Unassigned stays fixed while technicians are being reordered.
+S9-R9 ::= Pinned technicians can only be reordered within the pinned area.
+S9-R10 ::= Reordering technicians does not change any work order assignments.
+S9-R3 ::= After you reorder items, the saved manual order is used instead of the initial sort.
+S9-R11 ::= The saved manual order is shared between Tech View and Board View per user.
+S9-R12 ::= The manual order persists across sessions, logout/login, and devices.
+S9-R13 ::= Dragging does not change the sort you have selected in List.
+S9-R4 ::= Newly eligible technicians are added after the existing unpinned technicians.
+S9-R14 ::= A work order assigned from its detail page is added to the bottom of the destination technician's work in both views.
+S9-R5 ::= A successful between-technician move uses Story 4's toast and count updates.
+S9-R15 ::= Reordering a work order within one technician changes only its position, with no assignment change and no reassignment toast.
+S9-N1 ::= The Story 4 permission and status restrictions apply to every work-order drag.
+S9-N2 ::= The inactive-destination restriction and the failure recovery from Story 4 apply to drag reassignment.
+S9-N3 ::= A cancelled drag leaves both the order and the assignment unchanged.
+S9-E1 ::= If status or permission changes before a drop finishes, the move is re-checked and an unauthorized reassignment is rejected.
+S9-E2 ::= When reordering filtered results, the moved item is placed immediately before or after a visible unmoved anchor item.
+S9-E3 ::= That relative position is kept when the filters are cleared (per the confirmed filtered-order examples).
+
+# ---------- Story 10: List more-actions ----------
+S10-R1 ::= List rows have a more-actions menu.
+S10-R2 ::= List's "Reassign lead technician" action opens the same dialog as Story 4.
+S10-R3 ::= Story 4's reassignment rules apply on List, except the Board View/Tech View shift-clearing prompt.
+S10-N1 ::= Story 4's permission and status restrictions apply to the List action.
+S10-N2 ::= Story 4's cancellation and failure behaviour applies to the List dialog.
+S10-E1 ::= If reassignment removes a work order from the List results, its row is removed and the success toast is still shown.
+
+# ---------- Story 11: Keyboard & focus (design-pending except N1) ----------
+S11-R1 ::= There is a defined, working way for keyboard focus to enter a work order card or row (exact keys per final design).
+S11-R3 ::= There is defined keyboard navigation between cards/rows and technician groups/columns (exact keys per final design).
+S11-R4 ::= Enter has a defined action (per final design).
+S11-R5 ::= Escape has a defined way to cancel an interaction (per final design).
+S11-R6 ::= Focus returns to a defined place after a dialog closes (per final design).
+S11-R2 ::= The more-actions menu is reachable by keyboard (per final design).
+S11-R7 ::= Pin and unpin are reachable by keyboard (per final design).
+S11-R8 ::= Group collapse and expand are reachable by keyboard (per final design).
+S11-R9 ::= Reordering and reassignment can be done by keyboard (per final design).
+S11-R10 ::= Opening a work order coexists with dragging via keyboard (per final design).
+S11-N1 ::= Keyboard access never bypasses action permissions or work order status restrictions.
+S11-E1 ::= Keyboard focus recovers sensibly when a work order leaves the filter results (per final design).
+S11-E2 ::= Keyboard focus recovers sensibly when a technician becomes inactive (per final design).
+
+# ---------- Story 12: Analytics ----------
+S12-R1 ::= A display-view event is recorded once after the display finishes loading and once on each display or filter-view switch.
+S12-R6 ::= Ordinary row refreshes are not counted as new display views.
+S12-R2 ::= A field-exposure event is recorded once per field available to the user, including untouched defaults and restored preferences.
+S12-R7 ::= Financial fields that are unavailable are excluded from field-exposure measurement and from its denominator.
+S12-R3 ::= A field-change event is recorded only after a field-selection save succeeds.
+S12-R8 ::= A density-change event is recorded only after a density save succeeds.
+S12-R9 ::= Cancelled or failed saves do not produce successful-change events.
+S12-R4 ::= Weekly display usage is reported by distinct users.
+S12-R10 ::= Field selection rate is reported per field and display as distinct exposed users who selected the field divided by distinct users exposed to that available field.
+S12-R11 ::= Density distribution is reported.
+S12-R12 ::= Default, saved, and fallback preference cohorts are reported separately.
+S12-R13 ::= Repeated events from one user do not count that user more than once.
+S12-R14 ::= Product defaults are never changed automatically based on analytics.
+S12-R5 ::= Analytics may contain predefined field keys and setting values only — never displayed record values, names, identifiers, search text, or dollar amounts.
+S12-R15 ::= Analytics reuses the existing analytics identity and adds no new customer identifier.
+S12-N1 ::= An analytics failure, opt-out, or unavailability never blocks loading, preference changes, or reassignment.
+S12-E1 ::= Analytics is verified for first use, restored preferences, fallback loading, view changes, successful and failed saves, and financial-visibility-off.
+S12-E2 ::= Event multiplicity and sample reporting calculations are verified.

@@ -91,3 +91,9 @@ tech-time split incl. zero-clock; rounding/precision; sparkline bucket boundarie
 month-end as-of; workplace scoping; freshness/no-stale-window; internal consistency).
 Suite now **59 cases**: 33 base (S1–S12) + 6 design/tech-plan (C88627–88632) + 20 data-accuracy (C88633–88652).
 Subfolders: 12167–12178 (S1–S12), 12179 (NF), 12180 (DATA). All AUTOMATION: HOLD (not build-verified).
+
+## PARKED 2026-09-23 — QA lead switched to new project "WO Board and Tech View"
+Dashboards left COMPLETE as source-verified authoring: 59 cases (33 base + 6 design/tech-plan + 20 data-accuracy),
+subfolders 12167–12180, all AUTOMATION: HOLD. Design driven end-to-end (New Dashboard only). Per-source coverage
+verdict in DESIGN-REVIEW-2026-09-22.md. Outstanding: build verification on sv8311; test-run creation; PO questions
+(red KPI headline colour rule; Sales-by-Customer "Labor Delta" column; ratio-denominator workplace-scoping open item).

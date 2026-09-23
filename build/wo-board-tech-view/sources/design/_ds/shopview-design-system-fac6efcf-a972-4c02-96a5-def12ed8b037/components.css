@@ -1,0 +1,536 @@
+/* ============================================================================
+   Shopview Design System — component layer
+   ----------------------------------------------------------------------------
+   Pairs with colors_and_type.css, which remains the ONLY source of tokens.
+   This file defines NO tokens and redefines NO :root variable. It only spends
+   them.
+
+   Every rule here is transcribed from the spec cards in preview/ so that the
+   class, the React component and the documentation card cannot drift apart.
+
+   Load order:
+     <link rel="stylesheet" href="colors_and_type.css">   <- tokens
+     <link rel="stylesheet" href="components.css">        <- this file
+
+   Everything is namespaced `sv-`. Nothing here styles a bare element, so it
+   can never fight an artboard's own CSS.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- BUTTON --
+   Spec: preview/buttons.html — 36px, radius 8, Inter 600/14, gap 8.
+   Variants: primary | secondary | tertiary | link (all specced)
+             danger (extension — README documents a destructive style in prose,
+             the spec card does not draw one; built from --sv-danger-*)
+   Sizes:    md 36px (canonical) | sm 32px (extension, for dense table rows)
+   -------------------------------------------------------------------------- */
+.sv-btn {
+  height: 36px;
+  padding: 8px 14px;
+  border-radius: var(--sv-radius-md);
+  border: 1px solid transparent;
+  font-family: var(--sv-font-ui);
+  font-size: var(--sv-body-size);
+  font-weight: var(--sv-body-semibold-weight);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sv-space-2);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 120ms ease-out, border-color 120ms ease-out, color 120ms ease-out;
+}
+.sv-btn > svg { width: 20px; height: 20px; display: block; flex-shrink: 0; }
+.sv-btn--sm { height: 32px; padding: 6px 12px; }
+.sv-btn--sm > svg { width: 16px; height: 16px; }
+.sv-btn:disabled { cursor: not-allowed; }
+
+.sv-btn--primary { background: var(--sv-accent); color: var(--sv-accent-on-solid); }
+.sv-btn--primary:hover:not(:disabled) { background: var(--sv-accent-hover); }
+.sv-btn--primary:focus-visible { outline: none; box-shadow: var(--sv-focus-ring); }
+.sv-btn--primary:disabled { opacity: 0.4; }
+
+.sv-btn--secondary {
+  background: var(--sv-surface);
+  color: var(--sv-text-primary);
+  border-color: var(--sv-border-strong);
+  box-shadow: var(--sv-elev-1-shadow);
+}
+.sv-btn--secondary:hover:not(:disabled) { background: var(--sv-surface-hover); }
+/* focus ring REPLACES the elevation shadow — it does not stack. */
+.sv-btn--secondary:focus-visible { outline: none; border-color: var(--sv-border-focus); box-shadow: var(--sv-focus-ring); }
+.sv-btn--secondary:disabled { color: var(--sv-text-disabled); border-color: var(--sv-border-subtle); }
+
+.sv-btn--tertiary { background: transparent; color: var(--sv-text-primary); }
+.sv-btn--tertiary:hover:not(:disabled) { background: var(--sv-surface-hover); }
+.sv-btn--tertiary:focus-visible { outline: none; box-shadow: var(--sv-focus-ring); }
+.sv-btn--tertiary:disabled { color: var(--sv-text-disabled); }
+
+.sv-btn--link { background: transparent; color: var(--sv-accent); padding: 8px 4px; }
+.sv-btn--link:hover:not(:disabled) { color: var(--sv-accent-hover); text-decoration: underline; text-underline-offset: 3px; }
+.sv-btn--link:focus-visible { outline: none; box-shadow: var(--sv-focus-ring); border-radius: var(--sv-radius-sm); }
+.sv-btn--link:disabled { color: var(--sv-text-disabled); }
+
+/* Extension, not on the spec card. Use only for delete / remove / reset. */
+.sv-btn--danger { background: var(--sv-danger); color: var(--sv-accent-on-solid); }
+.sv-btn--danger:hover:not(:disabled) { background: var(--sv-danger-hover); }
+.sv-btn--danger:focus-visible { outline: none; box-shadow: var(--sv-focus-ring); }
+.sv-btn--danger:disabled { opacity: 0.4; }
+
+/* Split button — label | 1px divider | 32px caret, all inside one 36px shell. */
+.sv-split {
+  display: inline-flex;
+  height: 36px;
+  border-radius: var(--sv-radius-md);
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  font-family: var(--sv-font-ui);
+  font-size: var(--sv-body-size);
+  font-weight: var(--sv-body-semibold-weight);
+  cursor: pointer;
+}
+/* inner buttons must be fully transparent — the shell paints the fill */
+.sv-split__label, .sv-split__caret { background: transparent; border: 0; color: inherit; font: inherit; cursor: inherit; padding: 0; }
+.sv-split__label { padding: 0 14px; height: 100%; flex: 1; display: inline-flex; align-items: center; justify-content: center; }
+.sv-split__divider { width: 1px; align-self: stretch; flex-shrink: 0; }
+.sv-split__caret { width: 32px; height: 100%; display: inline-flex; align-items: center; justify-content: center; }
+.sv-split__label:focus-visible, .sv-split__caret:focus-visible { outline: none; box-shadow: var(--sv-focus-ring); }
+.sv-split__caret > svg { width: 14px; height: 14px; }
+.sv-split--primary { background: var(--sv-accent); color: var(--sv-accent-on-solid); }
+.sv-split--primary:hover { background: var(--sv-accent-hover); }
+/* The spec card hardcodes rgba(10,27,51,0.22) here, which does not theme and
+   reads wrong on the dark accent. Replaced with a themed mix. */
+.sv-split--primary .sv-split__divider { background: color-mix(in srgb, var(--sv-accent-on-solid) 28%, transparent); }
+.sv-split--secondary { background: var(--sv-surface); color: var(--sv-text-primary); border: 1px solid var(--sv-border-strong); box-shadow: var(--sv-elev-1-shadow); }
+.sv-split--secondary:hover { background: var(--sv-surface-hover); }
+.sv-split--secondary .sv-split__divider { background: var(--sv-border-strong); }
+.sv-split:disabled { opacity: 0.4; cursor: not-allowed; }
+.sv-split:disabled .sv-split__divider { background: var(--sv-border-subtle); }
+
+/* ----------------------------------------------------------------- INPUT --
+   Spec: preview/inputs.html — FLOATING label, 40px, radius 8.
+   Two non-obvious requirements, both load-bearing:
+     1. the <input> must come BEFORE the <label> in the DOM (sibling combinator)
+     2. the input must carry placeholder=" " (one space) or it never floats
+   -------------------------------------------------------------------------- */
+.sv-field { position: relative; height: 40px; }
+.sv-field > input,
+.sv-field > select,
+.sv-field > textarea {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--sv-border-strong);
+  border-radius: var(--sv-radius-md);
+  background: var(--sv-surface);
+  color: var(--sv-text-primary);
+  font-family: inherit;
+  font-size: var(--sv-body-size);
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.sv-field > label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 4px;
+  /* the label paints the surface colour to "cut" a notch in the border */
+  background: var(--sv-surface);
+  color: var(--sv-text-secondary);
+  font-size: var(--sv-body-size);
+  line-height: 1;
+  pointer-events: none;
+  transition: top 160ms cubic-bezier(.2,.8,.2,1), font-size 160ms cubic-bezier(.2,.8,.2,1), color 120ms ease;
+}
+.sv-field > input:hover:not(:disabled):not(:focus) { border-color: var(--sv-text-muted); }
+.sv-field > input:focus { border-color: var(--sv-border-focus); box-shadow: var(--sv-focus-ring); }
+.sv-field > input:focus + label,
+.sv-field > input:not(:placeholder-shown) + label { top: 0; font-size: var(--sv-body2-size); }
+.sv-field > input:focus + label { color: var(--sv-accent-text); }
+.sv-field > input:disabled { background: var(--sv-surface-sunken); color: var(--sv-text-muted); border-color: var(--sv-border-default); cursor: not-allowed; }
+.sv-field > input:disabled + label { background: var(--sv-surface-sunken); }
+
+.sv-field--select > input { padding-right: 32px; cursor: pointer; }
+.sv-field__chevron { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--sv-text-secondary); pointer-events: none; }
+.sv-field > input:focus ~ .sv-field__chevron { color: var(--sv-accent-text); }
+
+.sv-field--error > input { border-color: var(--sv-danger); }
+.sv-field--error > input:focus { box-shadow: 0 0 0 4px color-mix(in srgb, var(--sv-danger) 24%, transparent); }
+.sv-field--error > input:focus + label,
+.sv-field--error > input:not(:placeholder-shown) + label { color: var(--sv-danger-text); }
+.sv-field--error .sv-field__chevron { color: var(--sv-danger); }
+
+.sv-hint { margin-top: 6px; font-size: var(--sv-body2-size); color: var(--sv-text-secondary); }
+.sv-hint--error { color: var(--sv-danger-text); }
+
+/* -------------------------------------------------------------- CONTROLS --
+   Spec: preview/controls.html
+   Checked checkbox/radio use a TINTED fill with an accent glyph — not a solid
+   accent fill with a white glyph. This is the opposite of most kits.
+   -------------------------------------------------------------------------- */
+.sv-check, .sv-radio {
+  width: 16px; height: 16px; flex: none;
+  border: 1px solid var(--sv-border-strong);
+  background: var(--sv-surface);
+  color: var(--sv-accent);
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+.sv-check { border-radius: var(--sv-radius-xs); }
+.sv-radio { border-radius: 50%; }
+.sv-check > svg { width: 10px; height: 10px; }
+.sv-check:hover:not(.is-checked):not(.is-disabled),
+.sv-radio:hover:not(.is-checked):not(.is-disabled) { background: var(--sv-surface-hover); }
+.sv-check.is-checked, .sv-radio.is-checked { background: var(--sv-accent-subtle); border-color: var(--sv-accent); }
+.sv-check:focus-visible, .sv-radio:focus-visible { outline: none; border-color: var(--sv-accent); box-shadow: var(--sv-focus-ring); }
+.sv-check.is-disabled, .sv-radio.is-disabled { background: var(--sv-surface-sunken); border-color: var(--sv-border-default); color: var(--sv-text-disabled); cursor: not-allowed; }
+.sv-radio__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sv-accent); }
+.sv-radio.is-disabled .sv-radio__dot { background: var(--sv-text-disabled); }
+
+.sv-toggle {
+  width: 36px; height: 20px; flex: none;
+  border-radius: 12px; border: 0; padding: 0;
+  position: relative; cursor: pointer;
+  background: var(--sv-border-strong);
+  transition: background-color 120ms ease;
+}
+.sv-toggle:hover:not(.is-on):not(.is-disabled) { background: var(--sv-text-muted); }
+.sv-toggle.is-on { background: var(--sv-accent); }
+.sv-toggle.is-on:hover:not(.is-disabled) { background: var(--sv-accent-hover); }
+.sv-toggle:focus-visible { outline: none; box-shadow: var(--sv-focus-ring); }
+/* Spec: disabled-on and disabled-off are the same colour. Only the thumb moves. */
+.sv-toggle.is-disabled, .sv-toggle.is-on.is-disabled { background: var(--sv-border-default); cursor: not-allowed; }
+.sv-toggle__thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--sv-surface);
+  box-shadow: var(--sv-elev-1-shadow);
+  transition: left 120ms ease-out;
+}
+.sv-toggle.is-on .sv-toggle__thumb { left: 18px; }
+.sv-toggle.is-disabled .sv-toggle__thumb { background: var(--sv-surface-sunken); }
+
+.sv-control-row { display: inline-flex; align-items: center; gap: var(--sv-space-2); cursor: pointer; font-size: var(--sv-body-size); line-height: var(--sv-body-lh); font-weight: var(--sv-body-medium-weight); color: var(--sv-text-primary); }
+
+/* ----------------------------------------------------------------- BADGE --
+   Spec: badge.jsx + preview/badges.html — pill or square, bordered, tinted.
+   md 22px / Inter 500 11px · sm auto / Inter 600 10px
+   -------------------------------------------------------------------------- */
+.sv-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  height: 22px; padding: 2px 8px;
+  box-sizing: border-box; white-space: nowrap;
+  font-family: var(--sv-font-ui); font-size: var(--sv-micro-size); line-height: 1; font-weight: var(--sv-body-medium-weight);
+  border-radius: var(--sv-radius-pill);
+  border: 1px solid transparent;
+}
+.sv-badge--square { border-radius: var(--sv-radius-md); }
+.sv-badge--sm { height: auto; padding: 1px 7px; font-size: var(--sv-caption-size); font-weight: var(--sv-caption-weight); line-height: 12px; letter-spacing: var(--sv-caption-tracking); gap: 3px; white-space: normal; }
+.sv-badge--success { background: var(--sv-success-fill); border-color: var(--sv-success-border); color: var(--sv-success-text); }
+.sv-badge--warning { background: var(--sv-warning-fill); border-color: var(--sv-warning-border); color: var(--sv-warning-text); }
+.sv-badge--danger  { background: var(--sv-danger-fill);  border-color: var(--sv-danger-border);  color: var(--sv-danger-text); }
+.sv-badge--info    { background: var(--sv-info-fill);    border-color: var(--sv-info-border);    color: var(--sv-info-text); }
+.sv-badge--neutral { background: var(--sv-surface-sunken); border-color: var(--sv-border-strong); color: var(--sv-text-primary); }
+/* teal — promoted from the Work Orders screen, where Approved needed a tone
+   of its own so it stopped reading as "in progress". */
+.sv-badge--teal    { background: var(--sv-cat-teal-fill); border-color: var(--sv-cat-teal-accent); color: var(--sv-cat-teal-text); }
+/* must follow the tone rules — same specificity, later wins */
+.sv-badge--flat { border-color: transparent; }
+
+/* ------------------------------------------------------------------ CARD -- */
+.sv-card {
+  background: var(--sv-surface);
+  border: 1px solid var(--sv-border-default);
+  border-radius: var(--sv-radius-lg);
+  box-shadow: var(--sv-elev-1-shadow);
+  padding: var(--sv-space-5);
+}
+.sv-card--flush { padding: 0; overflow: hidden; }
+/* a table fills a flush card edge to edge — the card already draws the frame */
+.sv-card--flush > .sv-table { border: 0; border-radius: 0; }
+
+/* ------------------------------------------------------------------ TABS --
+   Spec: preview/tabs.html — pill only, 32px, radius 6.
+   Selected is visually identical to hover; only aria-selected distinguishes
+   them. Count badges are parenthesised text, NOT chips.
+   -------------------------------------------------------------------------- */
+.sv-tabs { display: inline-flex; gap: 2px; }
+.sv-tab {
+  height: 32px; padding: 0 12px;
+  border: 0; background: transparent;
+  border-radius: var(--sv-radius-sm);
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--sv-font-ui);
+  font-size: var(--sv-body-size); line-height: var(--sv-body-lh); font-weight: var(--sv-body-medium-weight);
+  color: var(--sv-text-secondary);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+.sv-tab:hover:not([aria-selected="true"]) { background: var(--sv-surface-hover); color: var(--sv-text-primary); }
+.sv-tab[aria-selected="true"] { background: var(--sv-surface-hover); color: var(--sv-text-primary); }
+.sv-tab:focus-visible { outline: none; box-shadow: var(--sv-focus-ring); }
+.sv-tab__count { height: 20px; color: inherit; font-weight: inherit; }
+.sv-tab__count::before { content: "("; }
+.sv-tab__count::after  { content: ")"; }
+.sv-tab__chev { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ----------------------------------------------------------------- TABLE --
+   Spec: preview/table.html — 13px body, 12px/600 head, 10px 14px cells.
+   Head divider is --sv-border-default; body dividers are --sv-border-subtle.
+   The spec draws no hover / selected / sort / empty state. Those are marked
+   as extensions below so you can tell spec from addition at a glance.
+   -------------------------------------------------------------------------- */
+.sv-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* radius only survives with overflow:hidden alongside border-collapse */
+  border: 1px solid var(--sv-border-default);
+  border-radius: var(--sv-radius-md);
+  overflow: hidden;
+  background: var(--sv-surface);
+  font-family: var(--sv-font-ui);
+  font-size: var(--sv-dense-size);
+}
+.sv-table th {
+  padding: 10px 14px;
+  text-align: left;
+  background: var(--sv-surface);
+  color: var(--sv-text-secondary);
+  border-bottom: 1px solid var(--sv-border-default);
+  font-size: var(--sv-body2-size);
+  font-weight: var(--sv-body-semibold-weight);
+  letter-spacing: var(--sv-tracking-wide);
+}
+.sv-table td {
+  padding: 10px 14px;
+  color: var(--sv-text-primary);
+  border-bottom: 1px solid var(--sv-border-subtle);
+}
+.sv-table tr:last-child td { border-bottom: 0; }
+/* right-align must be set on the th AND the td — it is not inherited */
+.sv-table .sv-num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* extensions — not drawn on the spec card */
+.sv-table--hover tbody tr:hover { background: var(--sv-surface-hover); }
+.sv-table tbody tr[aria-selected="true"] { background: var(--sv-surface-selected); }
+.sv-table__sort { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; color: inherit; background: none; border: 0; font: inherit; letter-spacing: inherit; padding: 0; }
+/* the arrow is quiet until the column is sorted or hovered, so a sortable
+   table does not read as a row of arrows */
+.sv-table__sort svg { width: 12px; height: 12px; opacity: 0; transition: opacity 120ms ease; }
+.sv-table__sort:hover svg { opacity: 0.5; }
+.sv-table__sort[aria-sort] svg { opacity: 1; color: var(--sv-accent); }
+.sv-table__sort[aria-sort] { color: var(--sv-text-primary); }
+.sv-table__check { width: 44px; }
+.sv-table__empty { padding: var(--sv-space-10) var(--sv-space-4); text-align: center; color: var(--sv-text-muted); font-size: var(--sv-body-size); }
+
+/* ----------------------------------------------------------------- MODAL --
+   Spec: preview/modals.html
+   Radius differs by header type: 12 for the title header, 8 for the
+   icon+subtitle confirmation. The spec card draws no scrim; --sv-scrim is.
+   -------------------------------------------------------------------------- */
+.sv-scrim { position: fixed; inset: 0; background: var(--sv-scrim); display: flex; align-items: flex-start; justify-content: center; padding-top: 96px; z-index: 200; }
+.sv-modal { background: var(--sv-surface); border: 1px solid var(--sv-border-default); border-radius: var(--sv-radius-lg); box-shadow: var(--sv-elev-3-shadow); overflow: hidden; display: flex; flex-direction: column; }
+.sv-modal--confirm { border-radius: var(--sv-radius-md); }
+.sv-modal__header { height: 68px; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: var(--sv-space-3); border-bottom: 1px solid var(--sv-border-subtle); }
+.sv-modal__title { font-size: var(--sv-h3-size); line-height: var(--sv-h3-lh); font-weight: var(--sv-h3-weight); color: var(--sv-text-primary); }
+.sv-modal__header--stacked { height: auto; padding: 16px 24px 20px; flex-direction: column; align-items: stretch; border-bottom: 0; }
+.sv-modal__toprow { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+.sv-modal__textblock { display: flex; flex-direction: column; gap: 4px; }
+.sv-modal__subtitle { font-size: var(--sv-body-size); line-height: 22px; font-weight: var(--sv-body-medium-weight); color: var(--sv-text-secondary); }
+.sv-modal__icon { width: 52px; height: 52px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; position: relative; }
+.sv-modal__icon::before { content: ""; position: absolute; width: 37px; height: 37px; border-radius: 50%; border: 1px solid currentColor; opacity: 0.6; }
+.sv-modal__icon > svg { width: 24px; height: 24px; z-index: 1; }
+.sv-modal__close { width: 36px; height: 36px; border-radius: var(--sv-radius-md); border: 0; background: transparent; color: var(--sv-text-secondary); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; transition: background 120ms ease-out; }
+.sv-modal__close:hover { background: var(--sv-surface-hover); }
+.sv-modal__close > svg { width: 20px; height: 20px; }
+.sv-modal__body { padding: 20px 24px; min-height: 60px; }
+.sv-modal__body--form { padding: 24px; display: flex; flex-direction: column; gap: var(--sv-space-6); }
+.sv-modal__footer { padding: 16px 24px; display: flex; align-items: center; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--sv-border-subtle); }
+.sv-modal__footer--split { justify-content: space-between; }
+.sv-modal__footer-group { display: flex; gap: 10px; }
+
+/* ------------------------------------------------------------------ MENU --
+   Spec: preview/menus.html — 260px panel at elevation 2, 40px rows, gap 2.
+   The 2px gap between rows is real; a plain block layout renders too tight.
+   -------------------------------------------------------------------------- */
+.sv-menu {
+  width: 260px; padding: 6px 0;
+  display: flex; flex-direction: column; gap: 2px;
+  background: var(--sv-elev-2-bg);
+  border: 1px solid var(--sv-elev-2-border);
+  border-radius: var(--sv-radius-md);
+  box-shadow: var(--sv-elev-2-shadow);
+}
+.sv-menu--wide { width: 280px; }
+.sv-menu__row {
+  height: 40px; padding: 10px 12px;
+  display: flex; align-items: center; gap: 10px;
+  color: var(--sv-text-primary);
+  font-family: var(--sv-font-ui);
+  font-size: var(--sv-body-size); line-height: var(--sv-body-lh); font-weight: var(--sv-body-medium-weight);
+  border: 0; background: transparent; width: 100%; text-align: left;
+  cursor: default; user-select: none;
+}
+.sv-menu__row > svg { width: 16px; height: 16px; flex: none; }
+.sv-menu__label { flex: 1; }
+.sv-menu__row:hover:not(.is-disabled) { background: var(--sv-surface-hover); }
+.sv-menu__row.is-active { background: var(--sv-accent-subtle); color: var(--sv-accent-subtle-text); }
+/* danger rows recolour the text only — no red hover background */
+.sv-menu__row.is-danger { color: var(--sv-danger-text); }
+.sv-menu__row.is-disabled { color: var(--sv-text-disabled); }
+/* checkable menus reserve the 16px gutter even when unchecked */
+.sv-menu__gutter { display: inline-block; width: 16px; flex: none; }
+.sv-menu__sep { height: 1px; margin: 6px 8px; background: var(--sv-border-subtle); }
+.sv-menu__section { padding: 8px 12px 4px; color: var(--sv-text-muted); font-size: var(--sv-micro-size); font-weight: var(--sv-body-semibold-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; }
+.sv-menu__badge { background: var(--sv-accent-subtle); color: var(--sv-accent-subtle-text); padding: 2px 8px; border-radius: var(--sv-radius-pill); font-size: var(--sv-micro-size); line-height: 1; font-weight: var(--sv-body-medium-weight); }
+.sv-menu__kbd { font-family: var(--sv-font-mono); font-size: var(--sv-micro-size); line-height: var(--sv-micro-lh); font-weight: var(--sv-body-medium-weight); color: var(--sv-text-muted); background: var(--sv-surface); border: 1px solid var(--sv-border-default); padding: 1px 6px; border-radius: var(--sv-radius-xs); }
+.sv-menu__chev { color: var(--sv-text-muted); }
+
+/* --------------------------------------------------------------- TOOLTIP --
+   Spec: preview/tooltips.html
+   The placement class and the arrow class are INVERSES: a tooltip above the
+   trigger carries an arrow on its bottom edge.
+   -------------------------------------------------------------------------- */
+.sv-tt-wrap { display: inline-flex; flex-direction: column; align-items: center; }
+.sv-tt-wrap--row { flex-direction: row; align-items: center; }
+.sv-tt {
+  background: var(--sv-surface-inverse);
+  border-radius: var(--sv-radius-md);
+  padding: 8px 12px;
+  max-width: 326px;
+  display: inline-flex; flex-direction: column; gap: 4px;
+  box-shadow: var(--sv-elev-2-shadow);
+}
+.sv-tt--has-sub { padding: 12px; }
+.sv-tt__label { color: var(--sv-text-on-inverse); font-size: var(--sv-body2-size); line-height: 18px; font-weight: var(--sv-body-bold-weight); white-space: nowrap; }
+.sv-tt__sub { color: color-mix(in srgb, var(--sv-text-on-inverse) 78%, transparent); font-size: var(--sv-body2-size); line-height: 18px; font-weight: var(--sv-body-medium-weight); max-width: 302px; white-space: normal; }
+.sv-tt__arrow { width: 12px; height: 12px; flex-shrink: 0; background: var(--sv-surface-inverse); border-radius: 1px 0 1px 0; transform: rotate(45deg); }
+.sv-tt-wrap--arrow-top    .sv-tt__arrow { margin-bottom: -6px; }
+.sv-tt-wrap--arrow-bottom .sv-tt__arrow { margin-top: -6px; }
+.sv-tt-wrap--arrow-left   .sv-tt__arrow { margin-right: -6px; }
+.sv-tt-wrap--arrow-right  .sv-tt__arrow { margin-left: -6px; }
+
+.sv-tt-host { position: relative; display: inline-flex; }
+.sv-tt-pop { position: absolute; z-index: 10; pointer-events: none; opacity: 0; white-space: nowrap; transition: opacity 120ms ease-out, transform 120ms ease-out; }
+.sv-tt-pop--top    { bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px); }
+.sv-tt-pop--bottom { top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-4px); }
+.sv-tt-pop--right  { left: calc(100% + 10px); top: 50%; transform: translateY(-50%) translateX(-4px); }
+.sv-tt-pop--left   { right: calc(100% + 10px); top: 50%; transform: translateY(-50%) translateX(4px); }
+.sv-tt-host:hover .sv-tt-pop--top,
+.sv-tt-host:focus-within .sv-tt-pop--top { opacity: 1; transform: translateX(-50%) translateY(0); }
+.sv-tt-host:hover .sv-tt-pop--bottom,
+.sv-tt-host:focus-within .sv-tt-pop--bottom { opacity: 1; transform: translateX(-50%) translateY(0); }
+.sv-tt-host:hover .sv-tt-pop--right,
+.sv-tt-host:focus-within .sv-tt-pop--right { opacity: 1; transform: translateY(-50%) translateX(0); }
+.sv-tt-host:hover .sv-tt-pop--left,
+.sv-tt-host:focus-within .sv-tt-pop--left { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+/* --------------------------------------------------- ALERT / TOAST -------
+   Spec: preview/notifications.html — inline alert (tinted banner) and
+   floating toast (400px card at elevation 2).
+   -------------------------------------------------------------------------- */
+.sv-alert { display: flex; align-items: flex-start; gap: var(--sv-space-3); padding: 12px 14px; border-radius: var(--sv-radius-md); border: 1px solid transparent; }
+.sv-alert__body { flex: 1; padding-top: 1px; }
+.sv-alert .sv-alert__title { color: inherit; font-size: var(--sv-body-size); line-height: var(--sv-body-lh); font-weight: var(--sv-body-bold-weight); }
+.sv-alert .sv-alert__support { color: inherit; opacity: 0.85; font-size: var(--sv-body-size); line-height: var(--sv-body-lh); }
+.sv-alert__icon { width: 20px; height: 20px; flex: none; color: inherit; }
+.sv-alert__close { width: 20px; height: 20px; border: 0; background: none; padding: 0; color: currentColor; opacity: 0.6; cursor: pointer; }
+.sv-alert--success { background: var(--sv-success-fill); border-color: var(--sv-success-border); color: var(--sv-success-text); }
+.sv-alert--warning { background: var(--sv-warning-fill); border-color: var(--sv-warning-border); color: var(--sv-warning-text); }
+.sv-alert--danger  { background: var(--sv-danger-fill);  border-color: var(--sv-danger-border);  color: var(--sv-danger-text); }
+.sv-alert--info    { background: var(--sv-info-fill);    border-color: var(--sv-info-border);    color: var(--sv-info-text); }
+
+.sv-toast { position: relative; width: 400px; padding: var(--sv-space-4); display: flex; align-items: flex-start; gap: var(--sv-space-3); border-radius: var(--sv-radius-lg); overflow: hidden; background: var(--sv-elev-2-bg); border: 1px solid var(--sv-elev-2-border); box-shadow: var(--sv-elev-2-shadow); }
+.sv-toast--compact { padding: 10px 16px; align-items: center; }
+.sv-toast__featured { width: 40px; height: 40px; border-radius: var(--sv-radius-pill); flex: none; display: inline-flex; align-items: center; justify-content: center; }
+.sv-toast__featured > svg { width: 20px; height: 20px; }
+.sv-toast__body { flex: 1; min-width: 0; }
+.sv-toast__title { display: flex; align-items: baseline; gap: var(--sv-space-2); font-size: var(--sv-body-size); line-height: var(--sv-body-lh); font-weight: var(--sv-body-bold-weight); color: var(--sv-text-primary); }
+.sv-toast--compact .sv-toast__title { font-weight: var(--sv-body-semibold-weight); }
+.sv-toast__meta { font-size: var(--sv-dense-size); font-weight: var(--sv-body-weight); color: var(--sv-text-muted); }
+.sv-toast__support { margin-top: 4px; font-size: var(--sv-body-size); line-height: var(--sv-body-lh); color: var(--sv-text-secondary); }
+.sv-toast__actions { margin-top: var(--sv-space-3); display: flex; gap: var(--sv-space-4); }
+.sv-toast__close { width: 20px; height: 20px; border: 0; background: none; padding: 0; color: var(--sv-text-muted); cursor: pointer; flex: none; }
+.sv-toast--success .sv-toast__featured { background: var(--sv-success-fill); color: var(--sv-success-text); }
+.sv-toast--warning .sv-toast__featured { background: var(--sv-warning-fill); color: var(--sv-warning-text); }
+.sv-toast--danger  .sv-toast__featured { background: var(--sv-danger-fill);  color: var(--sv-danger-text); }
+.sv-toast--info    .sv-toast__featured { background: var(--sv-info-fill);    color: var(--sv-info-text); }
+
+/* ------------------------------------------------------------ BREADCRUMB --
+   Extension: the Figma file lists Breadcrumbs but no spec card was exported.
+   Built from menu/tab type so it sits in the system.
+   -------------------------------------------------------------------------- */
+.sv-crumbs { display: flex; align-items: center; gap: var(--sv-space-2); font-family: var(--sv-font-ui); font-size: var(--sv-body-size); line-height: var(--sv-body-lh); font-weight: var(--sv-body-medium-weight); }
+.sv-crumbs a, .sv-crumbs__link { color: var(--sv-text-secondary); text-decoration: none; border-radius: var(--sv-radius-xs); }
+.sv-crumbs a:hover, .sv-crumbs__link:hover { color: var(--sv-text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.sv-crumbs__sep { color: var(--sv-text-muted); display: inline-flex; }
+.sv-crumbs__sep > svg { width: 16px; height: 16px; }
+.sv-crumbs__current { color: var(--sv-text-primary); font-weight: var(--sv-body-semibold-weight); }
+
+/* ----------------------------------------------------------------- SHELL --
+   Spec: preview/header.html — 64px bar, every dimension from --sv-header-*.
+   Never hardcode a header height; change the token instead.
+   -------------------------------------------------------------------------- */
+.sv-app { display: flex; flex-direction: column; height: 100%; background: var(--sv-surface-canvas); }
+.sv-header {
+  height: var(--sv-header-height);
+  padding: var(--sv-header-padding);
+  gap: var(--sv-header-gap);
+  display: flex; align-items: center;
+  background: var(--sv-surface);
+  border-bottom: 1px solid var(--sv-border-default);
+  flex: none;
+}
+.sv-header__logo { width: var(--sv-header-logo-size); height: var(--sv-header-logo-size); display: inline-flex; align-items: center; justify-content: center; color: var(--sv-accent); flex: none; }
+.sv-header__logo > svg { width: 30px; height: 30px; }
+.sv-header__nav { display: flex; gap: 2px; }
+.sv-header__nav a, .sv-header__nav button {
+  height: var(--sv-header-control-height);
+  border-radius: var(--sv-header-control-radius);
+  padding: 8px 10px; border: 0; background: transparent;
+  display: inline-flex; align-items: center;
+  font-family: var(--sv-font-ui); font-size: var(--sv-body-size); line-height: var(--sv-body-lh); font-weight: var(--sv-body-medium-weight);
+  color: var(--sv-text-primary); white-space: nowrap; text-decoration: none; cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+.sv-header__nav a:hover:not([aria-current]), .sv-header__nav button:hover:not([aria-current]) { background: var(--sv-surface-hover); }
+.sv-header__nav [aria-current="page"] { background: var(--sv-surface-nav-selected); }
+.sv-header__spacer { flex: 1; }
+.sv-header__search {
+  height: var(--sv-header-control-height);
+  border-radius: var(--sv-header-control-radius);
+  width: 320px; min-width: 140px; flex-shrink: 1; box-sizing: border-box;
+  padding: 8px 12px; gap: var(--sv-space-2);
+  display: inline-flex; align-items: center;
+  background: var(--sv-surface-sunken); border: 1px solid var(--sv-border-default);
+  font-size: var(--sv-body-size); font-weight: var(--sv-body-medium-weight); color: var(--sv-text-secondary);
+  cursor: pointer;
+}
+.sv-header__search > svg { width: 20px; height: 20px; flex: none; }
+.sv-kbd { display: inline-flex; gap: 2px; }
+.sv-kbd > span { width: 16px; height: 16px; border-radius: var(--sv-radius-xs); background: var(--sv-surface); border: 1px solid var(--sv-border-default); font-size: var(--sv-micro-size); font-weight: var(--sv-body-medium-weight); line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+.sv-header__right { display: flex; align-items: center; gap: 14px; }
+
+.sv-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--sv-accent-subtle); color: var(--sv-accent-subtle-text); font-weight: var(--sv-body-semibold-weight); font-size: var(--sv-body2-size); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+
+.sv-main { flex: 1; display: flex; min-height: 0; }
+.sv-side {
+  width: 300px; flex: none;
+  padding: var(--sv-space-5);
+  display: flex; flex-direction: column; gap: var(--sv-space-4);
+  overflow-y: auto;
+  background: var(--sv-surface-canvas);
+  border-right: 1px solid var(--sv-border-default);
+}
+.sv-side__title { font-size: var(--sv-micro-size); font-weight: var(--sv-body-semibold-weight); letter-spacing: var(--sv-tracking-wider); text-transform: uppercase; color: var(--sv-text-muted); }
+.sv-content { flex: 1; min-width: 0; overflow-y: auto; padding: var(--sv-space-6) var(--sv-space-8); }
+.sv-page-head { display: flex; align-items: center; gap: var(--sv-space-3); margin-bottom: var(--sv-space-5); }
+/* tracking comes from the base h1 rule in colors_and_type.css — not repeated here */
+.sv-page-head h1 { font-size: var(--sv-h1-size); line-height: var(--sv-h1-lh); font-weight: var(--sv-h1-weight); color: var(--sv-text-primary); margin: 0; }
+.sv-page-head__spacer { flex: 1; }
+.sv-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sv-space-3); margin-bottom: var(--sv-space-5); }
+.sv-stat__label { font-size: var(--sv-body2-size); line-height: var(--sv-body2-lh); font-weight: var(--sv-body2-weight); color: var(--sv-text-secondary); }
+.sv-stat__value { display: flex; align-items: baseline; gap: var(--sv-space-2); margin-top: 4px; font-size: var(--sv-h2-size); line-height: var(--sv-h2-lh); font-weight: var(--sv-h2-weight); color: var(--sv-text-primary); }
