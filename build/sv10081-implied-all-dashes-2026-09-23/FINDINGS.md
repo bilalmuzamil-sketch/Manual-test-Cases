@@ -136,3 +136,42 @@ caption with the right noun:
 | Reports → Sales By Customer | Customer (50) | "All customers" |
 
 **16 of 16.** Caption wording is `All <noun> are included. Pick one or more to narrow.` in every case.
+
+## §7 — Honest notes on method
+
+- **Two harness errors of mine, both caught and re-run** (Rule 79c — a bad result is a defect in my
+  own check until proven otherwise). (i) In the first pass at check 1 I clicked a **stale
+  coordinate**: the panel narrows from 352px to 252px once a bin is picked, so the second click
+  landed on the next bin down and produced "2 bin locations". Re-run clicking rows **by name**.
+  (ii) The first delete attempt clicked the table **cell** rather than the trash icon inside it —
+  the classic "a click that worked but changed nothing" (playbook §U.0b).
+- **Sales By Customer showed "No results" at first, and that was the date range, not a defect**
+  (Rule 75 — configuration before code). At the default "This month" the report genuinely had 2
+  rows and no customers to list. Widened to "This year": 33 rows and a 51-row customer panel. Worth
+  saying plainly, because it looked like a broken filter for about ten minutes.
+- **The handoff's route for Staff is wrong**: it says `/staff`, which 404s ("This page is more
+  missing than your 10mm socket"). The page is `/administration/staff`. Documentation only.
+- **The handoff contradicts itself on one point, and the build follows the right half.** Its check 1
+  says that after picking one bin the other rows become "a plain empty box (not a dash)"; its check
+  2 says they are "a muted grey dash on a transparent fill". The build does the former, which is
+  also the sensible behaviour — once you have narrowed, nothing else is in scope. The tick-vs-dash
+  comparison the check is really after is visible in the *unselected* state, and that is where I
+  measured it.
+- **The handoff describes the ticked box as "blue-filled"**; measured, it is a transparent fill with
+  a blue tick glyph (`rgb(56,116,255)`). The two tiers are still clearly distinct. Cosmetic wording.
+- **What I did not measure**: the checklist asks that the caption be "the same weight as the 'Clear
+  selection' footer text". I read the caption (13px / 400) but my selector did not find a footer
+  element in the panel I measured, so I am not claiming that specific comparison — only that the
+  caption is secondary to the option text and readable in both themes.
+
+## §8 — Test data left on the branch
+
+Per-ticket QA branches need no cleanup, so this is a record rather than an apology:
+
+- Location **ZZAUTOTEST SV-10081 One Bin** (Calgary, Alberta, America/Edmonton), created to give a
+  filter exactly one option. It holds one bin, **General Storage**.
+- A second bin `ZZ-ONLY-BIN` was created and then deleted (`DELETE 204`) to get to exactly one.
+- The signed-in location was **switched back to Staging Heavy Duty - 9919** and verified, so nobody
+  else testing this branch lands in the throwaway location.
+- Theme was switched to Dark for the contrast measurement and **switched back to Light**, verified
+  (`body--dark` false).
