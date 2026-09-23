@@ -35,19 +35,35 @@ measurements and his explanation agree about the behaviour.
 **"Recency is already in the score" is also true** — §6.1 carries per-entity recency decay (e.g.
 *"recency of invoice date, exponential decay with 30-day half-life, up to +0.20"*).
 
-## 2 · One thing in his framing is not right, and it matters
+## 2 · One thing in his framing is not right — the exact order, and what is NOT being claimed
 
-> *"There is also a comment in the PRD explaining how this works."*
+**THE ORDER, all in UTC, each read live:**
 
-That reads as pre-existing documentation QA should have read. It is not.
+| # | When | What |
+|---|---|---|
+| 1 | **22 Sep 13:40:02** | SV-10340 raised (by us) |
+| 2 | **22 Sep 17:24:53** | Sinisa adds the note to the requirements page — **3h 44m after the report** |
+| 3 | **23 Sep 06:55:17** | Sinisa comments on the ticket pointing at that note — **13h 30m after writing it** |
 
-| | |
-|---|---|
-| SV-10340 raised | **22 Sep, 08:40** (−0500) = 13:40 UTC |
-| The PRD comment written | **22 Sep, 12:24** (−0500) = 17:24 UTC |
+**⚠️ WHAT IS NOT BEING CLAIMED.** He did **not** add the note after commenting on the ticket — the
+note came first, the ticket comment second. Nor is any of this an accusation of back-filling: a
+developer writing up an explanation in response to a bug report is normal and useful, and the
+explanation is a good one.
 
-**The comment was written three hours and forty-four minutes AFTER the ticket was raised, by him.**
-It could not have been read beforehand. Nothing was missed.
+**AND THE SHARPER POINT: he did not update the PRD at all.** Page 576978945's own version history,
+read live:
+
+| version | when | note |
+|---|---|---|
+| **v17 (current)** | **2026-09-08 10:55** | v1.5 — engineering questions from #fs-global-search resolved |
+| v16 | 2026-09-04 13:10 | v1.4 correction — result counts cap at 20 |
+
+**No version exists after 8 September.** The requirement's text has not been touched. What was added
+is an inline note in the margin against the sentence — which is why *"there is a comment in the PRD
+explaining how this works"* is literally true and still does not dispose of the report.
+
+**Why the timing matters at all:** only because his wording presents the note as pre-existing
+documentation QA should have consulted. It was not available to consult when the report was written.
 
 ## 3 · Where it leaves the ticket — it does not dispose of it
 
