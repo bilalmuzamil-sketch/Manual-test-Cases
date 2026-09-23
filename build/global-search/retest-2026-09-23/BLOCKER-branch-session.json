@@ -1,0 +1,34 @@
+{
+ "claim": "The sv9160 QA branch cannot be driven today: the session cookies supplied on 22 September have expired, so every route redirects to Google sign-in and the DEV MODE quick-login panel is never rendered.",
+ "what_it_does_not_block": "Everything that is not driving the branch. The ticket statuses were all read live today, the reasoning about which cases may change is done, and the ruling that a closed-as-obsolete ticket does not license passing its case stands on its own.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The local relay is healthy and the browser reaches the host: three different routes were fetched and each returned a real page - Google's sign-in form, served through the same bridge in the same run. A dead bridge returns a connection error instead, which is what it did earlier today before ensure_bridge.sh restarted it."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Driven with Playwright through the actual pages, not a script-only API call: /workorders, /login and / were each navigated and their rendered body read."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Three routes attempted, each given 6-7 seconds to settle after domcontentloaded; all three landed on accounts.google.com."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "The landing URL was read after navigation settled; it is accounts.google.com/v3/signin/identifier with a redirect_after back to sv9160.qa.shopview.com/login. No new tab is involved."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "The cookie file on disk was read back: /tmp/qa-cookies/sv9160-full.json carries sv_sso_session, PHPSESSID and cf_clearance, last written 2026-09-22T14:48 - about nineteen hours old, against a recorded session life of roughly 58 minutes."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "Searched the playbook and the credentials file for this exact symptom. Found the recorded trap 'a sleeping branch is not a dead token' (playbook line 357) and checked it: the URL does NOT contain sleep.qa.shopview.com and the page's only button is not Wake Up, so this is NOT the sleeping-branch case. Also confirmed the recorded entry method: ENVIRONMENT-CREDENTIALS section 2 - a QA branch has no username or password, entry is a session cookie supplied by the QA lead per branch, and none is to be hunted for or invented."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Four candidates ruled out. (a) A dead relay - ruled out, it was restarted and the same browser loaded pages over it. (b) The branch asleep - ruled out by the URL and the absent Wake Up button. (c) The wrong host - ruled out, the redirect's own redirect_after names sv9160.qa.shopview.com. (d) Cookies not applied - ruled out, they were added to the context and the file was read back; they are simply expired. What remains is the credential."
+  }
+ }
+}
