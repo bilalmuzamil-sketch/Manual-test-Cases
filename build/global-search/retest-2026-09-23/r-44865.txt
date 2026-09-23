@@ -1,0 +1,13 @@
+Passed - re-run on 23 September 2026 on build v26.36.9-a90a3f0, QA branch sv9160, read on the screen.
+
+Re-tested because the report behind it moved to Ready for QA - development finished and waiting on us. The verdict below is what was seen.
+
+The message now names the tab. Typed Freightliner, which returns rows in several tabs and none under Customers, then clicked the Customers tab. The centred message reads, word for word:
+
+  No results for "Freightliner" in Customers
+
+Confirmed a second time with a different word, Cascadia, which also returns nothing under Customers: "No results for "Cascadia" in Customers". Nothing else is shown on the panel and the keyboard legend along the bottom stays visible, which is the rest of what this case asks for.
+
+A note on how this was measured, because the first attempt was wrong and it would have been easy to report it as still failing. A search matching nothing anywhere makes every tab empty and the panel falls back to All, so the message has no tab to name - that tests the unscoped message, not this one. The query has to return rows in some tabs and none in the chosen one, so the scope stays put.
+
+What needs to be done: nothing. This behaviour is correct on this build.

@@ -1,0 +1,14 @@
+Passed - re-run on 23 September 2026 on build v26.36.9-a90a3f0, QA branch sv9160, read on the screen. The build moved overnight; this is a newer one than the last run.
+
+Re-tested because the report behind it is now marked QA complete - but the verdict below is what was seen, not what the report says.
+
+All five things this case asks for are on the row. Typed P9160-263 and read the part-sale row:
+  1. the number and the customer on the main line - "P9160-263  7 Star Truck Repair";
+  2. a status badge - "Approved", in green on a pale green background;
+  3. a total price - $168.00. This is what was missing before;
+  4. a created date - Sep 17, 2026;
+  5. an icon on the left of the row.
+
+One thing worth knowing rather than hiding: six of the twenty part sales returned for P9160 show no money. Every one of them is an Estimate or a Declined, and the product's own answer for those rows carries no total at all - the record genuinely has none stored yet, so there is nothing for the row to show. That is data, not a display fault. A tester who happens to land on an estimate will see no price and should not read that as a failure.
+
+What needs to be done: nothing. This behaviour is correct on this build.

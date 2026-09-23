@@ -61,3 +61,47 @@ Checked against the recorded trap first: **this is not the sleeping-branch case*
 the ruling on the obsolete four. Only the three re-runs in group A are waiting, and they need one
 thing: **a fresh session cookie for `sv9160`**, which per `ENVIRONMENT-CREDENTIALS.md` §2 only he can
 supply. There is no password for a QA branch and none is to be invented.
+
+---
+
+## RE-RUN — 23 September, once he supplied a fresh branch cookie
+
+**Build had moved overnight: `v26.36.9-a90a3f0`** (yesterday was `v26.36.8-fa74ea8`).
+
+### All three in group A now pass — measured, not inferred
+
+| Check | Verdict | What was seen |
+|---|---|---|
+| **C44836** Part sale row | **Passed** | all five assertions: number + customer on the main line · `Approved` badge in green · **$168.00** · `Sep 17, 2026` · an icon |
+| **C55706** money visible with financial access | **Passed** | purchase-order totals 20/20 · supplier-invoice totals 20/20 · part-sale totals shown wherever one is stored |
+| **C44865** scoped no-results message | **Passed** | reads `No results for "Freightliner" in Customers`, confirmed twice |
+
+### Two things I checked rather than assumed, either of which would have produced a wrong verdict
+
+**Six part sales showed no money — I nearly had a false failure.** All six are *Estimate* or
+*Declined*, and the product's own answer for those rows **carries no total field at all**: the
+record has none stored, so the row has nothing to show. That is data, not a display fault. The
+difference between *hidden* and *absent* is the entire point of C55706, so it had to be settled
+from the product's answer rather than from the row.
+
+**My first run of C44865 was wrong and would have reported it still failing.** I searched a word
+matching nothing anywhere — so every tab went to zero, the panel fell back to **All**, and the
+message had no tab to name. That tests the unscoped message. The query has to return rows in some
+tabs and none in the chosen one so the scope stays put. Caught before it reached the run.
+
+### One tension worth recording — no build stamp was re-written
+
+Rule 54's amendment makes re-stamping *"Last checked against build …"* a mandatory deliverable of a
+build-verification pass. **That line lives inside `custom_expected`, and Rule 114 bars editing that
+field at all — it explicitly supersedes earlier correction precedents.** So the three cases now
+carry a build line older than the run that passed them. Flagged rather than resolved: this is a
+collision between two standing rules and is his to settle, not mine to pick a side on. (It is also
+not a build-verification pass — it is a targeted re-test of three cases.)
+
+### Run 415 after this pass
+
+**202 checks — 184 passed, 10 failed, 8 parked, none blocked.**
+
+Still failing, and why: C44825 (report declined by him) · C53476, C53601, C55660, C55685 (reports
+closed OBSOLETE — not a fix, see group B above) · C44848, C96844, C96845, C55716 (reports live) ·
+C45160 (his decision pending).

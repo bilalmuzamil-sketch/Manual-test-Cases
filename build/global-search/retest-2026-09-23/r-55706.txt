@@ -1,0 +1,12 @@
+Passed - re-run on 23 September 2026 on build v26.36.9-a90a3f0, QA branch sv9160, read on the screen, signed in with full access to financial information.
+
+Re-tested because the report behind it is now marked QA complete - but the verdict below is what was seen, not what the report says.
+
+Every money field the requirement puts on a search row shows its real value, none masked:
+  - purchase order totals: all twenty rows returned showed an amount;
+  - supplier invoice totals: all twenty rows returned showed an amount;
+  - part sale totals: shown on every part sale that has one.
+
+On part sales, six of twenty showed no amount. All six are Estimates or Declined, and the product's own answer for those rows carries no total at all, so there is nothing being hidden - the record has none. Checked rather than assumed, because "no price on the row" is exactly what this case exists to catch and the difference between hidden and absent is the whole point.
+
+What needs to be done: nothing. This behaviour is correct on this build.
