@@ -623,3 +623,25 @@ both rows plainly.** This is Standing Rule 79(c) — *a "missing" result is a bu
 until proven* — and the screenshot is what proved it.
 
 Evidence: `ev/exhibit-5-core-part.png`, raw `Z3-after-core-pick.png` / `X-E.png`.
+
+## §16 — The pre-post gate, and the comment (Standing Rule 72)
+
+**Ran immediately before posting, on 23 September:**
+
+| check | result |
+|---|---|
+| Build marker re-read live | `v26.36.9-2a3614f`, last-mod `Tue, 22 Sep 2026 11:06:39 GMT`, etag `44fc03f3…` — **identical to the marker the pass ran on**, no redeploy |
+| Ticket state re-read live | `SV-10035`, status **TESTING QA**, priority **Medium**, no newer comment |
+| Every figure traced | all twelve rows trace to a live observation recorded in §7 / §12 / §13 / §14 / §15 |
+| Named test data still live | S2-17528 and both P550848 rows confirmed on the branch during exhibit capture |
+| Human-voice scan | clean — no AI self-reference, model name or attribution line |
+| Format | verdict is the first line; no "Technical details for developers" section (**the QA lead was asked and said no for this ticket** — Rule 84) |
+
+**Posted as comment `77089`**, then read back in ADF and verified as the reader receives it (Rule 81):
+first text node `OVERALL QA STATUS: PASSED` · **5 media nodes, every one `"type":"file"` with a uuid —
+0 external** · all sized `900 × 584`, the true aspect · **13 table rows** = 1 header + 12 checks.
+
+**Two things were deliberately left out of the comment, on the QA lead's instruction:** the note that
+the pre-fix failure never reproduced on production across eight routes, and the developer question
+that went with it. **Both remain recorded here** in §2/§3/§8/§9 and §10 — the finding was not dropped,
+only the Jira comment was scoped.
