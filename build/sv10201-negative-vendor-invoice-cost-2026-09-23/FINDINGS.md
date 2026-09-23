@@ -136,3 +136,21 @@ only sell price and quantity are editable. So there is no second door to a negat
   briefly set to 6 for the rounding probe and restored to 1. All three figures verified identical to
   the starting state.
 - No new records created on either environment.
+
+## §9 — Pre-post gate (Rule 72) and the posted comment
+
+| Check | Result |
+|---|---|
+| Branch build marker re-read at post time | `v26.36.9-0eb636d`, last-mod Wed 23 Sep 15:44:36 GMT, etag `7f8e5a38…` — matches the exhibits |
+| Production build marker re-read | `v26.36.9-8d1613f`, last-mod Tue 22 Sep 09:38:08 GMT, etag `bb2fc982…` — matches the exhibits |
+| Ticket state re-read | ⚠️ **changed during the pass** — TESTING QA → **QA Complete**, updated 2026-09-23T11:34:36-0500, **still 0 comments**. Somebody moved it while testing was running, leaving no evidence on the ticket. Exactly what Rule 59 exists to catch. Nothing in the testing depended on the status, so the pass stands; raised with the QA lead. |
+| Named test data still live | branch invoice `446f574f-…` and production ZZ-P-DEL1 both read this run |
+| Human voice / no AI fingerprint | scanned the reader-facing text nodes — clean |
+| No technical-details section | absent (Rule 84 — the QA lead said no for this ticket); the endpoint's rejection message is kept in the body as plain evidence because it *is* the finding |
+
+**Comment [77169](https://shopview.atlassian.net/browse/SV-10201?focusedCommentId=77169)**, verdict
+PASSED. Two exhibits uploaded as **real Jira attachments** (61346, 61347), not external links
+(Rule 81). Read back in ADF and verified: first line `OVERALL QA STATUS: PASSED`; 2 media, both
+`type: file`, aspect ratios matching exhibits 1–2 in order; 10 table rows (header + 9 checks);
+"PASSED" appears 10 times; no technical-details section; the unanswered product question is stated
+on the ticket (Rule 78).
