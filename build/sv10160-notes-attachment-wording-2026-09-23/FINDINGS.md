@@ -91,3 +91,39 @@ Per-ticket QA branches need no cleanup, so this is a record, not an apology: one
 **S3-16829** with ten `ZZAUTOTEST` PDFs, and one note on customer **4 Star Truck Repair**. All
 prefixed `ZZAUTOTEST`. **Nothing was left on production** — every production dialog was cancelled,
 and no note was created there.
+
+---
+
+## §7 — Exhibits
+
+Built with PIL over the raw captures in `ev/`. No image is simulated or reconstructed; every
+panel is a real screenshot, labelled with the environment, the build marker and the date it
+was taken.
+
+| Exhibit | File | What it shows |
+|---|---|---|
+| 1 | `ev/exhibit-1-before-after.png` | **Rule 73 before/after.** Production (`v26.36.9-8d1613f`) beside the branch (`v26.36.9-4e4ea7d`), the same eleven PDFs on the same kind of note. Left: "Unsupported files … These file(s) aren't supported". Right: "Too many files … You can attach 10 files at a time, so this one was left out". |
+| 2 | `ev/exhibit-2-the-other-messages.png` | The other three messages on the branch — over the size limit, unsupported type, and the mixed case with one line per reason. |
+| 3 | `ev/exhibit-3-create-attaches-ten.png` | Create attaches exactly ten — all of ZZAUTOTEST-01 … -10 visible in one frame, the eleventh absent. |
+| 4 | `ev/exhibit-4-everywhere.png` | The same message on a customer note and when adding files to a note that already exists, where the wording correctly reads "Upload the remaining 10 files?" with an **Upload** button rather than Create. |
+
+**Re-capture note (honest method, Rule 12).** The first capture of the Create result was taken
+at a 1900px viewport, where the attachment strip scrolls horizontally and only nine of the ten
+cards were in frame — a reader could not have verified "exactly ten" from that picture. It was
+re-taken at 2560px (`ev/B-E3b-wide.png`), where the note block measures 2051px and all ten fit.
+The card count was also read from the DOM in the same run: **10**, named
+`ZZAUTOTEST-01 … ZZAUTOTEST-10`, with no `ZZAUTOTEST-11.pdf`. Work order **S3-16829**
+(`5841df7a-4bb8-4602-b964-3d621bbbda9f`) still carries the note.
+
+## §8 — Pre-post gate (Rule 72), run 23 Sep 2026
+
+| Check | Result |
+|---|---|
+| Branch build marker re-read live | `v26.36.9-4e4ea7d`, last-modified Wed 23 Sep 2026 10:34:03 GMT, etag `b58a0941b140d935a2e7cc5c91c8dbca` — matches the exhibits |
+| Production build marker re-read live | `v26.36.9-8d1613f`, last-modified Tue 22 Sep 2026 09:38:08 GMT, etag `bb2fc9820ec15cc1d8c1161c3477a7dc` — matches the exhibits |
+| Ticket state re-read | SV-10160, status TESTING QA, priority Medium, 1 comment (the developer's handoff, 77120). Nothing new since testing began. |
+| Named test data still live | Work order S3-16829 opened and its ten attachments counted this run |
+| Every figure traced to a live measurement | Yes — the four message strings, the 10/11 counts and the two build markers were all read this pass |
+| Human voice / no AI fingerprint | Scanned the comment text nodes before posting |
+| No technical-details section | Absent unless the QA lead asks for one (Rule 84) |
+| Read back after posting | Pending — to be done at post time |
