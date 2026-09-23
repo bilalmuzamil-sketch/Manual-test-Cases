@@ -126,4 +126,22 @@ The card count was also read from the DOM in the same run: **10**, named
 | Every figure traced to a live measurement | Yes — the four message strings, the 10/11 counts and the two build markers were all read this pass |
 | Human voice / no AI fingerprint | Scanned the comment text nodes before posting |
 | No technical-details section | Absent unless the QA lead asks for one (Rule 84) |
-| Read back after posting | Pending — to be done at post time |
+| Read back after posting | Done — see below |
+
+## §9 — Posted
+
+**Comment [77129](https://shopview.atlassian.net/browse/SV-10160?focusedCommentId=77129)**, verdict
+PASSED, posted 23 Sep 2026. Four exhibits uploaded as **real Jira attachments** (61298–61301), not
+external links (Rule 81).
+
+Read back from Jira in ADF and verified:
+
+| | expected | read back |
+|---|---|---|
+| first line | `OVERALL QA STATUS: PASSED` | matches |
+| media | 4, all `type: file`, in order | 4, all `file`, aspect ratios match exhibits 1–4 in order |
+| table rows | 11 (header + 10 checks) | 11 |
+| "PASSED" occurrences | 11 (verdict + 10 rows) | 11 |
+| technical-details section | absent (Rule 84 — the QA lead said no for this ticket) | absent |
+| AI fingerprint in reader-facing text | none | none |
+
