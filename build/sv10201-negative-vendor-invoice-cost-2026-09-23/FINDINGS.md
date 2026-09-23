@@ -87,3 +87,52 @@ to reach a negative line total is closed too.
 | `-0.01` | rejected, dialog stays open, the typed value is left there to correct, stored cost untouched |
 | blank | rejected, dialog stays open |
 | `238.32000` (a normal edit) | **saves normally**, toast "Item updated successfully" — the fix has not broken ordinary editing |
+
+## §5 — The one difference I had to explain before calling this a pass
+
+After the probing, the invoice's tax came back **$71.50** where it had started at **$71.52** — a
+two-cent move on a financial document, in a ticket that is *about* tax going wrong. Rules 74/75 say
+account for every difference and prove the explanation rather than assume it, so:
+
+1. **A no-op save preserved it exactly** — saving the dialog without changing anything left tax at
+   $71.52. So merely saving does not move it.
+2. **The move appeared only after the cost actually changed** — my own API probe wrote `price: 0`,
+   and re-entering 238.32 then produced 71.50.
+3. **Proved which rounding it uses, rather than assuming.** Set the cost to `100.05 × 6 = $600.30`:
+   tax came back **$30.02**. Per-unit rounding would give `5.00 × 6 = $30.00`; rounding the total
+   once gives `round(30.015) = $30.02`. So a cost change recomputes tax on the **invoice total**.
+   The original $71.52 was `11.92 × 6`, i.e. written per-unit at receive time.
+4. **Proved it is not new.** The identical probe on **production** (`100.05 × 6`) also returned
+   **$30.02**. Same behaviour on the pre-fix build.
+
+**Conclusion: not a regression, and nothing to do with this fix** — any cost change on either build
+recomputes tax the same way. Recorded because it is a real difference between the figure written at
+receive time and the figure written at edit time, but it is pre-existing and out of scope here.
+
+Production was restored and **verified identical on all three figures** ($10.00 / $0.50 / $10.50).
+
+## §6 — The adjacent way in, checked
+
+Cost is written by one endpoint, `change-item`, which is now guarded at the API — so every screen
+built on it is covered. The other place a delivery could take a cost is the **receive** screen
+(`/order/{id}?receive=1`): there the cost is a **read-only `<span>`** (`currency_text_cost_…`), and
+only sell price and quantity are editable. So there is no second door to a negative line cost.
+
+## §7 — Honest notes on method
+
+- **My first API attempt was wrong and would have produced a false result** (Rule 79c). I posted to
+  `sv10201.qa.shopview.com/api/…` and got a **403 that came from CloudFront**, not the app — and the
+  payload field is `price`, not `cost`, so setting `cost` would have changed nothing anyway. Both
+  caught by capturing the app's *own* request first (playbook §U.1). Had I stopped there I would have
+  reported "the API rejects it" for entirely the wrong reason.
+- **`price: 0` is accepted**, which is correct against the message ("cannot be **lower than** 0") but
+  worth knowing: a zero-cost line is still possible, by design.
+- The negative-quantity guard on the same endpoint was found in passing, not asked for.
+
+## §8 — Test data
+
+- Branch invoice `446f574f-…` — left at its original **$238.32000 × 6**, verified.
+- Production **ZZ-P-DEL1** — negative cost written and then restored to **$10.00000 × 1**; quantity
+  briefly set to 6 for the rounding probe and restored to 1. All three figures verified identical to
+  the starting state.
+- No new records created on either environment.
