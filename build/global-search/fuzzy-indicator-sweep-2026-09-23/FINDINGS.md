@@ -142,3 +142,54 @@ rather than counted as passing.
 `DISCOVERY.json` · `SWEEP.json` (first pass) · `FIELD-MATRIX.json` (per-field harvest and probe) ·
 `FINAL.json` (mark + visibility) · `UNION.json` (both runs combined, 30 combinations).
 Build `v26.36.8-fa74ea8`. Nothing posted to any ticket.
+
+---
+
+## PROVED — the seven fields that produced no near-spelling match (23 September)
+
+The QA lead: *"before that you must prove what you could not prove."* Right — *"never produced one"*
+is an absence, not a proof. Each field was re-run with a **control**:
+
+1. **Control** — search the value **exactly**. If the product returns the record *and names that
+   field* as what matched, the field is indexed and reachable, so the reading works.
+2. **Test** — search a misspelling of the same value and see whether anything comes back matched
+   **on that same field**.
+
+Without step 1, "no near-spelling match" only means "my query was wrong" (Rule 104).
+
+| Field | Control (exact) | Misspelling | Verdict |
+|---|---|---|---|
+| Customer telephone | `customers\|phone` exact, 1 row | 0 rows | **findable exactly, never on a near spelling** |
+| Customer state/province | `customers\|state` word, 40 rows | 0 rows on that field | **findable exactly, never on a near spelling** |
+| Supplier telephone | `vendors\|phone` exact, 1 row | 0 rows | **findable exactly, never on a near spelling** |
+| Supplier email | `vendors\|email` exact, 1 row | 0 rows | **findable exactly, never on a near spelling** |
+| Part bin location | `parts\|bin_location` word, 20 rows | 0 rows | **findable exactly, never on a near spelling** |
+| Asset year | `work_orders\|asset_year` word, 103 rows | 0 rows on that field | **findable exactly, never on a near spelling** |
+| Asset unit number | `work_orders\|unit` + `assets\|unit` exact, 4 rows | 0 rows | **findable exactly, never on a near spelling** |
+| Staff name (advisor / created-by) | — | matches on `customers\|contact_names` | **DOES match** — already one of the two failures |
+
+**⚠️ A correction to my own first run.** Its verdict counted *any* near-spelling row returned by the
+misspelled query, so state/province and asset year were briefly scored as "does match" when the
+near-spelling hits were on **other** fields entirely (contact names, addresses, part descriptions).
+Re-scored against **the same field as the control**, both are non-fuzzy. `PROVED-CORRECTED.json`
+holds the corrected scoring; `PROVED.json` is the raw run.
+
+**Consequence: no new combinations. The 30 stands, and the two failures stand.**
+
+### One observation, not a defect
+
+§7 says the trigram index is built on *"names (customer, contact, vendor, asset make/model), part
+descriptions, and tags"*. The build in fact matches near spellings on **more** than that — addresses,
+city, part category, manufacturer, technician name, ordered-by name, line texts. That is the
+product being *more* forgiving than the document, which is not a fault, but it is a place where the
+document understates what was built. Raised here for the record, not as a ticket.
+
+## The ticket raised — SV-10385
+
+On his instruction, once the proof above was done: **SV-10385 — "Supplier Results Found by Contact
+Name Are Not Marked as Near Spellings"**, `Story Defect` · parent **SV-9164** (TESTING QA) ·
+**Medium** · linked *relates to* SV-9164 and SV-10346. Body `SV-10385-DESCRIPTION.txt`, picture
+`vendor-contact-not-marked.png` (992×589, 2× capture, full-width — Rule 116), verified in the stored
+document: 6 headings, 2 tables, 1 picture at its true size.
+
+**C44848** in run 415 now carries the whole sweep and both ticket numbers.

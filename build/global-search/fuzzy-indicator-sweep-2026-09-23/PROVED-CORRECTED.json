@@ -1,0 +1,91 @@
+[
+ {
+  "field": "customer telephone",
+  "control": [
+   "customers|phone|exact"
+  ],
+  "fuzzy": [],
+  "sameField": [],
+  "verdict": "PROVED: findable exactly, NEVER on a near spelling of itself"
+ },
+ {
+  "field": "customer state/province",
+  "control": [
+   "customers|state|word"
+  ],
+  "fuzzy": [
+   "customers|contact_names",
+   "customers|address_line_1",
+   "customers|name"
+  ],
+  "sameField": [],
+  "verdict": "PROVED: findable exactly, NEVER on a near spelling of itself"
+ },
+ {
+  "field": "vendor telephone",
+  "control": [
+   "vendors|phone|exact"
+  ],
+  "fuzzy": [],
+  "sameField": [],
+  "verdict": "PROVED: findable exactly, NEVER on a near spelling of itself"
+ },
+ {
+  "field": "vendor email",
+  "control": [
+   "vendors|email|exact"
+  ],
+  "fuzzy": [],
+  "sameField": [],
+  "verdict": "PROVED: findable exactly, NEVER on a near spelling of itself"
+ },
+ {
+  "field": "part bin location",
+  "control": [
+   "parts|bin_location|word",
+   "assets|unit|exact"
+  ],
+  "fuzzy": [],
+  "sameField": [],
+  "verdict": "PROVED: findable exactly, NEVER on a near spelling of itself"
+ },
+ {
+  "field": "asset year",
+  "control": [
+   "work_orders|asset_year|word",
+   "work_orders|item_part_names|word",
+   "work_orders|item_part_numbers|prefix"
+  ],
+  "fuzzy": [
+   "parts|description",
+   "parts|tags",
+   "customers|address_line_1",
+   "customers|address_line_2"
+  ],
+  "sameField": [],
+  "verdict": "PROVED: findable exactly, NEVER on a near spelling of itself"
+ },
+ {
+  "field": "asset unit number",
+  "control": [
+   "work_orders|unit|exact",
+   "assets|unit|exact"
+  ],
+  "fuzzy": [],
+  "sameField": [],
+  "verdict": "PROVED: findable exactly, NEVER on a near spelling of itself"
+ },
+ {
+  "field": "staff name (advisor / created-by)",
+  "control": [
+   "customers|contact_names|fuzzy"
+  ],
+  "fuzzy": [
+   "customers|contact_names"
+  ],
+  "sameField": [
+   "customers|contact_names"
+  ],
+  "verdict": "DOES match on a near spelling (customers|contact_names)"
+ }
+]

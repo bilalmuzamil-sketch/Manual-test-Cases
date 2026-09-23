@@ -1,0 +1,25 @@
+Failed - reported. Swept exhaustively on 23 September 2026, build v26.36.8-fa74ea8, QA branch sv9160.
+
+WHAT THE REQUIREMENT ASKS, word for word from the requirements page read live on 23 September, section 7, Highlighting: "When a match is fuzzy rather than exact, the matched token in the row is still highlighted, and a subtle close-match treatment indicates the soft match."
+
+HOW FAR THIS WAS CHECKED. Not a sample. Every field the requirements say each of the eight tabs searches on was exercised, driven off that list rather than off chosen queries: a real value was taken from the branch, misspelled, and the field counted as covered only where the product itself reported a near-spelling match against it. Thirty combinations were reached.
+
+TWENTY-EIGHT ARE CORRECT - the matched text is shown and carries the close-match mark:
+  - Jobs: customer name, asset make, asset model, lead technician, line text, part names on the line.
+  - Customers: name, address line 1, address line 2, town.
+  - Assets: make, model, owning customer.
+  - Parts: description, tags, category, manufacturer, supplier name.
+  - Suppliers: name, address line 1, address line 2, town.
+  - Part sales: customer name, asset.
+  - Purchase orders: supplier name, part names on the order, who ordered it.
+  - Supplier invoices: supplier name.
+
+TWO ARE WRONG, and both are contact names. Neither half of the requirement is met on them - the contact's name is not shown at all, so there is nothing to pick out, and there is no close-match mark:
+  - Customers found through a contact's name: 18 near-spelling rows, none marked, none showing the name. Reported as SV-10346 - https://shopview.atlassian.net/browse/SV-10346
+  - Suppliers found through a contact's name: 11 near-spelling rows, none marked, none showing the name. Reported as SV-10385 - https://shopview.atlassian.net/browse/SV-10385 - raised 23 September on the QA lead's instruction, after the seven unproved fields below were proved.
+
+SEVEN FIELDS WERE PROVED NOT TO MATCH ON NEAR SPELLINGS AT ALL, so they are out of scope rather than untested. Each was proved with a control: the exact value was searched first and did return the record naming that field, which shows the field is indexed and the reading works; the misspelling then returned nothing on it. They are customer telephone, customer state or province, supplier telephone, supplier email, part bin location, asset year, and asset unit number.
+
+Evidence committed: build/global-search/fuzzy-indicator-sweep-2026-09-23/ - the full matrix in FINDINGS.md, the per-field probe, the proof runs, and the annotated picture.
+
+What needs to be done: nothing further from us. Re-run this once the fix lands, and check contact matches on BOTH customers and suppliers, not only the one named in the older report.

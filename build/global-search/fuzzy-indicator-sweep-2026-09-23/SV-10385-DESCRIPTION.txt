@@ -1,0 +1,74 @@
+h3. Description
+
+A near-spelling match must be visible as one. When global search returns a *supplier* because a near spelling matched one of its *contacts*, neither half of that happens: the contact's name is not shown, and there is no close-match mark.
+
+The row reads only {{Contact match}}. The reader is told a contact matched, and cannot see which contact, nor that the spelling was only close — so a supplier whose contact is called something else entirely looks like a genuine hit.
+
+It is inconsistent *within the same list*. Searching one misspelled name returns six suppliers, and near spellings found in the supplier's *name* or *address* are shown and marked, while the ones found on a *contact* are not.
+
+*This is the supplier counterpart of SV-10346, which covers customers only.* A fix scoped to that ticket's wording would leave this untouched.
+
+h3. Steps to Reproduce
+
+# Open global search and type a misspelling of a person who is a contact on a supplier — for example {{Petersn}} for *Peterson*.
+# Open the *Vendors* tab.
+#* six suppliers come back
+# Read each row and compare how the match is presented.
+#* rows matched on the supplier's *name* or *address* show the matched text with a {{≈}} in front of it
+#* rows matched on a *contact* show only {{Contact match}} — no {{≈}}, and the contact's name appears nowhere
+
+*Actual Result*
+
+A supplier found through a near spelling of a contact's name shows {{Contact match}} and nothing else. The contact's name is not displayed and there is no close-match mark.
+
+Measured across three searches on the same build: *11 supplier rows* were returned as near-spelling matches on a contact name. *None* carried the mark, and *none* showed the name that matched.
+
+*Expected Result*
+
+The contact's name that matched is shown in the row and picked out, with a {{≈}} indicating the spelling was only close — exactly as already happens when the near spelling is in the supplier's own name or address.
+
+!SV-10385-contact-not-marked.png!
+
+h3. How far this was checked
+
+Every field the requirement says each tab searches on was exercised, driving off §4 rather than sample queries: a real value was taken from the branch, misspelled, and counted only where the product itself reported a near-spelling match against that field.
+
+*30 combinations across all eight tabs behave correctly except two, and both are contact names:*
+
+|| Tab || Fields that match on a near spelling and are marked correctly ||
+| Work orders | customer name · asset make · asset model · lead technician · line text · part names |
+| Customers | name · address line 1 · address line 2 · city |
+| Assets | make · model · owning customer |
+| Parts | description · tags · category · manufacturer · supplier name |
+| Vendors | name · address line 1 · address line 2 · city |
+| Part sales | customer name · asset |
+| Purchase orders | supplier name · part names · ordered-by |
+| Vendor invoices | supplier name |
+
+|| Not marked || rows seen || marked || matched text shown ||
+| *Vendors — contact names* | 11 | *0* | *0* |
+| Customers — contact names (SV-10346) | 18 | *0* | *0* |
+
+Seven further fields were proved *not* to match on near spellings at all, each with an exact-value control confirming the field is indexed and reachable: customer telephone, customer state/province, supplier telephone, supplier email, part bin location, asset year, asset unit number. They are therefore out of scope for this, not silently untested.
+
+h3. Environment
+
+QA branch [https://sv9160.qa.shopview.com] · build {{v26.36.8-fa74ea8}} · signed in as an administrator · desktop · observed 23 September 2026.
+
+h3. Sources
+
+*Global Search - Product Requirements*, Confluence page 576978945, version 17 (v1.5 in the body), read live 23 September 2026.
+
+Section 7, Highlighting:
+
+{quote}When a match is fuzzy rather than exact, the matched token in the row is still highlighted, and a subtle ≈ or italicized treatment indicates the soft match.{quote}
+
+Section 4, Vendors — confirming a contact's name is an indexed field on a supplier:
+
+{quote}Vendors. Indexed: name, telephone, email, address, city, plus the names, telephone numbers and email addresses of the vendor's contacts.{quote}
+
+h3. Two things this will be challenged on, answered in advance
+
+*"Contact matches are meant to look different."* Then they should still say the spelling was only close. The requirement makes no exception, and the same row already distinguishes an exact contact match from a near-spelling one nowhere — both read {{Contact match}}.
+
+*"You could not read the mark."* In the very same list, on the same reading, four other rows carried it. The mark renders; it is absent on these rows specifically.

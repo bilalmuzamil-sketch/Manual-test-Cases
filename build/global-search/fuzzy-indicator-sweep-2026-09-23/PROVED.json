@@ -1,0 +1,305 @@
+{
+ "marker": "v26.36.8-fa74ea8",
+ "results": [
+  {
+   "field": "customer telephone",
+   "tried": [
+    {
+     "value": "730-246-8895",
+     "typo": "7302486895",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "609-461-6502",
+     "typo": "6094661502",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "885-670-3999",
+     "typo": "8856730999",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "958-590-3025",
+     "typo": "9585930025",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    }
+   ],
+   "controlWorked": true,
+   "fuzzyWorked": false,
+   "controlFields": [
+    "customers|phone|exact"
+   ],
+   "fuzzyFields": [],
+   "verdict": "PROVED: indexed and findable exactly, but NEVER on a near spelling"
+  },
+  {
+   "field": "customer state/province",
+   "tried": [
+    {
+     "value": "British Columbia",
+     "typo": "British Colubmia",
+     "exactRows": 40,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "Nunavut",
+     "typo": "Nunvaut",
+     "exactRows": 40,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "Ontario",
+     "typo": "Ontraio",
+     "exactRows": 41,
+     "typoRows": 28,
+     "typoFuzzy": 28
+    },
+    {
+     "value": "Nova Scotia",
+     "typo": "Nova Scoita",
+     "exactRows": 40,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    }
+   ],
+   "controlWorked": true,
+   "fuzzyWorked": true,
+   "controlFields": [
+    "customers|state|word"
+   ],
+   "fuzzyFields": [
+    "customers|contact_names",
+    "customers|address_line_1",
+    "customers|name"
+   ],
+   "verdict": "DOES match on a near spelling"
+  },
+  {
+   "field": "vendor telephone",
+   "tried": [
+    {
+     "value": "517-560-6942",
+     "typo": "5175660942",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "489-420-2491",
+     "typo": "4894220491",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "088-310-8959",
+     "typo": "0883180959",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "802-602-6974",
+     "typo": "8026062974",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    }
+   ],
+   "controlWorked": true,
+   "fuzzyWorked": false,
+   "controlFields": [
+    "vendors|phone|exact"
+   ],
+   "fuzzyFields": [],
+   "verdict": "PROVED: indexed and findable exactly, but NEVER on a near spelling"
+  },
+  {
+   "field": "vendor email",
+   "tried": [
+    {
+     "value": "jay.harrison@staging.shopview.loca",
+     "typo": "jay.harrison@stagnig.shopview.loca",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "wendy.jenkins@staging.shopview.loc",
+     "typo": "wendy.jenkins@stagnig.shopview.loc",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "mark.chambers@staging.shopview.loc",
+     "typo": "mark.chambers@stagnig.shopview.loc",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "anthony.alexander@staging.shopview",
+     "typo": "anthony.alexander@stgaing.shopview",
+     "exactRows": 1,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    }
+   ],
+   "controlWorked": true,
+   "fuzzyWorked": false,
+   "controlFields": [
+    "vendors|email|exact"
+   ],
+   "fuzzyFields": [],
+   "verdict": "PROVED: indexed and findable exactly, but NEVER on a near spelling"
+  },
+  {
+   "field": "part bin location",
+   "tried": [
+    {
+     "value": "ST24BIN25",
+     "typo": "ST24IBN25",
+     "exactRows": 20,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "Unassigned",
+     "typo": "Unassgined",
+     "exactRows": 21,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    }
+   ],
+   "controlWorked": true,
+   "fuzzyWorked": false,
+   "controlFields": [
+    "parts|bin_location|word",
+    "assets|unit|exact"
+   ],
+   "fuzzyFields": [],
+   "verdict": "PROVED: indexed and findable exactly, but NEVER on a near spelling"
+  },
+  {
+   "field": "asset year",
+   "tried": [
+    {
+     "value": "2020",
+     "typo": "2002",
+     "exactRows": 103,
+     "typoRows": 66,
+     "typoFuzzy": 3
+    },
+    {
+     "value": "2017",
+     "typo": "2071",
+     "exactRows": 67,
+     "typoRows": 18,
+     "typoFuzzy": 6
+    },
+    {
+     "value": "2014",
+     "typo": "2041",
+     "exactRows": 83,
+     "typoRows": 21,
+     "typoFuzzy": 4
+    },
+    {
+     "value": "2008",
+     "typo": "2080",
+     "exactRows": 61,
+     "typoRows": 33,
+     "typoFuzzy": 2
+    }
+   ],
+   "controlWorked": true,
+   "fuzzyWorked": true,
+   "controlFields": [
+    "work_orders|asset_year|word",
+    "work_orders|item_part_names|word",
+    "work_orders|item_part_numbers|prefix"
+   ],
+   "fuzzyFields": [
+    "parts|description",
+    "parts|tags",
+    "customers|address_line_1",
+    "customers|address_line_2"
+   ],
+   "verdict": "DOES match on a near spelling"
+  },
+  {
+   "field": "asset unit number",
+   "tried": [
+    {
+     "value": "TAW12803",
+     "typo": "TAW18203",
+     "exactRows": 4,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    }
+   ],
+   "controlWorked": true,
+   "fuzzyWorked": false,
+   "controlFields": [
+    "work_orders|unit|exact",
+    "assets|unit|exact"
+   ],
+   "fuzzyFields": [],
+   "verdict": "PROVED: indexed and findable exactly, but NEVER on a near spelling"
+  },
+  {
+   "field": "staff name (advisor / created-by)",
+   "tried": [
+    {
+     "value": "Cory Galvan",
+     "typo": "Cory Galavn",
+     "exactRows": 0,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "Troy Stein",
+     "typo": "Troy Stien",
+     "exactRows": 0,
+     "typoRows": 0,
+     "typoFuzzy": 0
+    },
+    {
+     "value": "Amanda Williams",
+     "typo": "Amanda Willaims",
+     "exactRows": 2,
+     "typoRows": 2,
+     "typoFuzzy": 2
+    },
+    {
+     "value": "Krystal Davis",
+     "typo": "Krytsal Davis",
+     "exactRows": 4,
+     "typoRows": 4,
+     "typoFuzzy": 4
+    }
+   ],
+   "controlWorked": true,
+   "fuzzyWorked": true,
+   "controlFields": [
+    "customers|contact_names|fuzzy"
+   ],
+   "fuzzyFields": [
+    "customers|contact_names"
+   ],
+   "verdict": "DOES match on a near spelling"
+  }
+ ]
+}
