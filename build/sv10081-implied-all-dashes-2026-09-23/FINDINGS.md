@@ -175,3 +175,21 @@ Per-ticket QA branches need no cleanup, so this is a record rather than an apolo
   else testing this branch lands in the throwaway location.
 - Theme was switched to Dark for the contrast measurement and **switched back to Light**, verified
   (`body--dark` false).
+
+## §9 — Pre-post gate (Rule 72) and the posted comment
+
+| Check | Result |
+|---|---|
+| Branch build marker re-read live at post time | `v26.36.9-291a034`, last-mod Wed 23 Sep 2026 10:27:15 GMT, etag `769a9daa…` — matches the exhibits |
+| Production build marker re-read live | `v26.36.9-8d1613f`, last-mod Tue 22 Sep 2026 09:38:08 GMT, etag `bb2fc982…` — matches the exhibits |
+| Ticket state re-read | TESTING QA, priority Medium, 7 comments — unchanged since testing began |
+| Named test data still live | ZZAUTOTEST SV-10081 One Bin and its single bin verified this run |
+| Human voice / no AI fingerprint | scanned the reader-facing text nodes — clean |
+| No technical-details section | absent (Rule 84 — the QA lead said no for this ticket) |
+
+**Comment [77154](https://shopview.atlassian.net/browse/SV-10081?focusedCommentId=77154)**, verdict
+PASSED. Four exhibits uploaded as **real Jira attachments** (61312–61315), not external links
+(Rule 81). Read back in ADF and verified: first line `OVERALL QA STATUS: PASSED`; 4 media, all
+`type: file`, aspect ratios matching exhibits 1–4 in order; 14 table rows (header + 13 checks);
+"PASSED" appears 14 times; no technical-details section; Chris Ward's decision stated in the body
+(Rule 78).
