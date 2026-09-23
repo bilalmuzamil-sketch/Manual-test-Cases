@@ -61,13 +61,84 @@ say Customer. **A developer implementing exactly what it asks could leave the ve
 Everything else in global search is consistent. That is worth saying plainly on the ticket: this is a
 single gap in one field type, not a scattered problem.
 
-## Still open at the time of writing
+## COMPLETE — every tab, every indexed field (finished 23 September)
 
-- **The other half of §7** — whether the matched token is *shown and highlighted* at all. On a
-  contact match the contact's name is never displayed, so both halves look to fail there; being
-  measured (`VISIBILITY.json`).
-- **Coverage of fields the first queries never triggered** — service advisor name, part manufacturer,
-  state/province, vendor email, created-by user. Targeted pass running (`GAP.json`). Until it
-  finishes, the honest claim is **27 pairs this branch's data produced**, not every field in §4.
+The sweep was then driven off **§4's own indexed-field list for all eight tabs**, not off hand-written
+queries: for each field a real value was harvested from the branch, misspelled by transposing two
+letters, and the product asked what it matched on. A field counts as covered only when the product
+actually reported a near-spelling match against it.
 
-Nothing has been posted to any ticket.
+**30 combinations reached in total across both runs. 28 correct, 2 wrong.**
+
+| Tab | Field | Can go fuzzy? | Carries the mark |
+|---|---|---|---|
+| **Work orders** | customer name | yes | ✅ |
+| | asset make | yes | ✅ |
+| | asset model | yes | ✅ |
+| | lead technician name | yes | ✅ |
+| | line item descriptions (line texts) | yes | ✅ |
+| | line item descriptions (part names) | yes | ✅ |
+| | job number, VIN | **no — identifier, §7** | n/a |
+| | asset year, unit number, service advisor | never produced one on this branch | not reached |
+| **Customers** | name | yes | ✅ |
+| | address line 1 | yes | ✅ |
+| | address line 2 | yes | ✅ |
+| | city | yes | ✅ |
+| | **contact names** | yes | ❌ **NO MARK** |
+| | telephone, contact telephone, contact email, state/province | never produced one | not reached |
+| **Assets** | make · model · owning customer name | yes | ✅ ✅ ✅ |
+| | VIN | **no — identifier** | n/a |
+| | year, unit number | never produced one | not reached |
+| **Parts** | description · tags · category · manufacturer · vendor name | yes | ✅ ×5 |
+| | part number | **no — identifier** | n/a |
+| | bin location | never produced one | not reached |
+| **Vendors** | name · address line 1 · address line 2 · city | yes | ✅ ×4 |
+| | **contact names** | yes | ❌ **NO MARK** |
+| | telephone, email, contact telephone, contact email | never produced one | not reached |
+| **Part sales** | customer name · asset description | yes | ✅ ✅ |
+| | P-number, VIN | **no — identifier** | n/a |
+| **Purchase orders** | vendor name · item part names · ordered-by name | yes | ✅ ✅ ✅ |
+| | PO number, part numbers | **no — identifier** | n/a |
+| **Vendor invoices** | vendor name | yes | ✅ |
+| | invoice number, PO number | **no — identifier** | n/a |
+
+### The other half of the requirement fails in the same two places
+
+§7 asks for two things: the matched token is **highlighted**, *and* a ≈ **indicates** the soft match.
+Measured on every combination:
+
+- **28 of 30** — the text that matched is present in the row **and** carries the mark.
+- **The 2 contact-name ones — the matched text is not in the row at all.** Searching `Petersn`
+  returns *Schwartz's Diesel Repair* because its contact is **Sandra Peterson**; the row shows only
+  `Contact match` and never the name. So both halves fail, not just the indicator.
+
+### The two failures, exactly
+
+| Combination | fuzzy rows seen | marked | matched text shown | reported? |
+|---|---|---|---|---|
+| Customers — contact names | 18 | **0** | **0** | yes — **SV-10346** |
+| **Vendors — contact names** | 11 | **0** | **0** | **NO** |
+
+### What this means for the ticket
+
+**The fault is contact names wherever they are indexed, and §4 indexes them on both customers and
+vendors.** SV-10346's title, steps and expected result all say *Customer*. A developer implementing
+exactly what it asks could fix the customer side and leave the vendor side untouched. The ticket
+should be widened to both, and should name the second half too — the contact's name is never shown,
+so there is nothing to highlight.
+
+Everything else in global search is consistent. This is one gap in one field type, not a scattered
+problem — worth saying plainly, because it makes the fix small and checkable.
+
+### Not reached, and honestly so (Rule 12)
+
+Telephone numbers, email addresses, bin location, asset year, unit number and state/province never
+produced a near-spelling match with this branch's data. That may be correct — numbers and addresses
+behave like identifiers — but it is **not proved either way here**, and is recorded as not reached
+rather than counted as passing.
+
+### Evidence
+
+`DISCOVERY.json` · `SWEEP.json` (first pass) · `FIELD-MATRIX.json` (per-field harvest and probe) ·
+`FINAL.json` (mark + visibility) · `UNION.json` (both runs combined, 30 combinations).
+Build `v26.36.8-fa74ea8`. Nothing posted to any ticket.
