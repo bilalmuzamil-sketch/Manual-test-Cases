@@ -589,3 +589,37 @@ about it — the check turns on the line total and the work-order figures, all o
 Evidence: `V1-before-part-edit.png` · `V2-parts-tab.png` · `V3-price-edited.png` ·
 `V4-after-part-edit.png` · `V5-after-reload.png` · `W1-second-edit.png` · `W2-lines-after.png`
 (scripts `br20`–`br27`).
+
+## §15 — The core/deposit case, re-run ON THE FIX BRANCH (handoff §7) — PASS
+
+The core row in §10 was carried from the production investigation. Since the QA comment states its
+verdicts against the fix branch, the check was **re-run there** so no row in that table rests on a
+different environment.
+
+**The state had to be built** (Standing Rule 87): the branch has exactly **two** cored inventory
+parts — `FLT1443E23` (core charge **43.47**, core sibling `cc06f6cc…`) and `213-4760` (32.76) — and
+**both had zero stock**, so neither could be picked. Stock was added through
+**Parts → Inventory → the part row → Edit Inventory Part → `input_quantity_0` = 5 → Save**
+(`POST /api/inventory/parts/change` → **201**; re-read confirmed `quantity: 5`).
+
+Then: a request for it was seeded on line 1, **its sell price was cleared on the Parts grid**
+(`POST /api/work-orders/part/change-request {"sell_price": null}` → 200 — the only route that stores
+a genuine blank, §3), and it was **picked from the row menu**
+(`POST /api/work-orders/part/perform-request-status-action` → **201**).
+
+**Result — both rows exist, and the unpriced parent bills at $0.00:**
+
+| row | Part Number | Cost | Core | Sell Price | Status |
+|---|---|---|---|---|---|
+| `REMANUFACTURED BRAKE SHOE KIT` | FLT1443E23 | $56.97 | $43.47 | **$0.00** | Received |
+| `Core for REMANUFACTURED BRAKE SHOE KIT` | FLT1443E23 | $43.47 | $0.00 | **$43.47** | Received |
+
+**A correction to my own first read of this run.** The script reported **"CORE ROWS: 0"** and
+"no Pick entry", and I nearly wrote the check up as not reproducible. Both were **artefacts of the
+script, not the product**: the row-menu dump ran before the menu rendered (while the click itself had
+already fired the pick — the `201` is in the request log), and the core-row search looked at the
+**Lines** tab, where those rows are keyed differently. **The screenshot taken in the same run showed
+both rows plainly.** This is Standing Rule 79(c) — *a "missing" result is a bug in your own check
+until proven* — and the screenshot is what proved it.
+
+Evidence: `ev/exhibit-5-core-part.png`, raw `Z3-after-core-pick.png` / `X-E.png`.

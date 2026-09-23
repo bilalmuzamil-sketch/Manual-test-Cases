@@ -5247,3 +5247,32 @@ null}`. A dialog leaving a field blank and an API call omitting it are not the s
 2. **The bridge dies whenever the worker restarts**, because the upstream `$HTTPS_PROXY` port
    rotates. Symptom: `page.goto: net::ERR_PROXY_CONNECTION_FAILED`. Fix: start a fresh bridge,
    re-read the port into `port.txt`, and `curl` it once for a 200 before re-running anything.
+
+3. **⭐ A per-ticket QA branch PARKS ITSELF when idle — "Environment Sleeping"** (first hit
+   2026-09-22, sv10035). After some minutes without traffic the host serves a plain page reading
+   *"This environment is currently paused to save resources. Click below to wake it up — it usually
+   takes around 1 minute."* with a **`Wake Up`** button. **Nothing is broken and nothing is lost** —
+   the data is exactly as you left it. The trap is that it is **not** an app page, so every
+   `data-test-id` lookup returns `null` and the run dies somewhere later with
+   `Cannot read properties of null`, which looks like a selector problem and is not.
+   **Build the wake into the boot helper** rather than handling it per script — it costs nothing when
+   the branch is awake:
+   ```js
+   for (let i = 0; i < 10; i++) {
+     const wake = await p.evaluate(() => {
+       const el = [...document.querySelectorAll('button,a')]
+         .find(e => /^wake up$/i.test((e.innerText || '').trim()));
+       if (!el) return null;
+       const r = el.getBoundingClientRect();
+       return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+     });
+     if (!wake) break;                       // awake — carry on
+     await p.mouse.click(wake.x, wake.y);
+     await p.waitForTimeout(45000);          // the host's own estimate is ~1 min
+     await p.goto(LOGIN, { waitUntil: 'domcontentloaded', timeout: 120000 });
+     await p.waitForTimeout(8000);
+   }
+   ```
+   **It took TWO clicks to come up** in the observed case, which is why this is a loop and not a
+   single `if`. Allow a generous script timeout on the first run after a quiet spell (900 s was
+   comfortable; the default 120 s is not).
