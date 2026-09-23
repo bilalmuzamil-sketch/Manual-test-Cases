@@ -111,3 +111,42 @@ list a Vendor matched on its *address* and another on its own *name* both carry 
 proves the mark renders and is absent on contact rows specifically.
 
 **Run 415 now: 202 tests — 181 passed, 13 failed, 8 retest, 0 blocked.**
+
+---
+
+## RESTYLED — 23 September, on his note about how C44848 reads
+
+> *"here in steps of reproduction it is saying … 'Type a misspelling of a record OWN NAME - for
+> example Petersn for Peterson' … Which means it is also giving the exact steps at the same time
+> giving the example too. The two tests which you have created should also be like this."*
+
+Right, and the two new cases did not read that way: their step 2 was a bare **"Type: Oknokwo"** — the
+example with no general instruction, so a tester learns what to type but not *what kind of thing*
+they are typing, and cannot adapt it when the data moves.
+
+**Both rewritten so every step states the general action and carries its example in the same
+sentence**, matching C44848:
+
+> *"2. Type a misspelling of a CONTACT PERSON name - a person who is a contact on a customer, not
+> the customer own name - for example Oknokwo for Marlene Okonkwo, who is the contact on the
+> customer ZZAUTOTEST Bridgeport Hauling."*
+
+The preconditions got the same treatment — they now say *what you need* and then *for example this
+record*, rather than naming only the record:
+
+> *"3. You need a customer that has a contact person whose name is NOT similar to the customer's own
+> name, so that a misspelling of the person can only match through the contact - for example the
+> customer ZZAUTOTEST Bridgeport Hauling, whose contact is Marlene Okonkwo."*
+
+C96845 also gained a final step making the contrast explicit — look at the rows in the same list
+matched on an address or on the Vendor's own name, which *do* carry the mark. That is the single
+strongest piece of evidence in the case and it should be something the tester is told to look at,
+not something they have to notice.
+
+### Checks after the edit
+
+- **`custom_expected` byte-identical on both**, titles unchanged (Rule 114).
+- `check_case_render.py` clean; served page shows every field in `markdown fr-view`.
+- **Rule 41 — re-verified whole, not just the edited part.** Both re-run through the screen against
+  the rewritten steps: followable exactly as written, both still Failed, outcome 1. Results posted
+  into run 415 recording the re-verification and answering the fifth step's two checks one at a time.

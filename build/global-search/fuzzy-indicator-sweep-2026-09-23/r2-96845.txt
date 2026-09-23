@@ -1,0 +1,13 @@
+Failed - re-run on 23 September 2026, build v26.36.8-fa74ea8, QA branch sv9160, after the steps were rewritten so each one states the general action and carries its example together. Re-verified whole, not only the edited part (Rule 41).
+
+Followed the rewritten steps: typed a misspelling of a contact person's name - Petersn for Sandra Peterson, the contact on Schwartz's Diesel Repair - and opened the Vendors tab. Six Vendors came back, and that one is among them, so the steps are followable exactly as written.
+
+Then the two checks the fifth step asks for, one at a time:
+  - is the contact name that matched shown on the row and picked out? NO - the row reads "Contact match" and the name appears nowhere.
+  - is there a close-match mark saying the spelling was only close? NO.
+
+The sixth step's contrast holds, and it is the strongest part of this evidence: in the very same list, a Vendor matched on its ADDRESS shows "close match: 39097 Peterson Hills" and another matched on its OWN NAME carries the mark too. So the mark renders perfectly well; it is absent on contact rows specifically. Three further Vendor rows in that list behave the same way.
+
+This is outcome 1 of the three this case describes: exactly the known problem, so nothing new is raised. Reported as SV-10385 - https://shopview.atlassian.net/browse/SV-10385
+
+What needs to be done: nothing further from us. Re-run this once the fix lands, and check the customer version too - they are the same fault in two places.
