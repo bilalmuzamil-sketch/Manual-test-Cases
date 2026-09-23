@@ -4443,3 +4443,83 @@ and if the result lands near the frame width it is already right.
 5. Does each picture's **banner say what the reader is looking at**?
 
 Any "no" means the ticket is not finished. Full operator recipe: `build/skills/06-DEFECT-PREP.md` §9.
+
+---
+
+## RULE 117 — A CASE THAT RELIES ON DATA ALREADY SEEDED ON THE BRANCH CARRIES THE GENERAL INSTRUCTION AND THE EXAMPLE TOGETHER, IN THE SAME STEP
+
+**Added 2026-09-23 on the QA lead's explicit instruction**, after he read the tightened C44848 and
+the two cases written that day:
+
+> *"here in steps of reproduction it is saying something like this 'Type a misspelling of a record
+> OWN NAME - for example Petersn for Peterson, or Willoughbee for Willoughby. Read the matched row.'
+> Which means it is also giving the exact steps at the same time giving the example too. The two
+> tests which you have created should also be like this."*
+
+and then:
+
+> *"ALso make it your rule that IF you create the test cases for a scenario where the data already
+> is seeded in the branch to test it then you must include both 'general instruction and the example
+> together in the same step'."*
+
+### 117.1 · THE RULE
+
+**Whenever a case is written against data that already exists on the branch — seeded by our own
+script, or simply already there — every step states the GENERAL ACTION and carries the CONCRETE
+EXAMPLE in the same sentence.** Not one or the other, and not the example in a separate note
+underneath.
+
+The shape:
+
+> *"2. Type a misspelling of a **CONTACT PERSON name** — a person who is a contact on a customer,
+> not the customer's own name — **for example** Oknokwo for Marlene Okonkwo, who is the contact on
+> the customer ZZAUTOTEST Bridgeport Hauling."*
+
+⛔ **NOT** `2. Type: Oknokwo` — the example alone.
+⛔ **NOT** `2. Type a misspelling of a contact's name` — the instruction alone.
+
+**Preconditions follow the same shape**, and this half is not optional either — say what the tester
+NEEDS, then name an example that satisfies it:
+
+> *"3. You need a customer that has a contact person whose name is NOT similar to the customer's own
+> name, so that a misspelling of the person can only match through the contact — for example the
+> customer ZZAUTOTEST Bridgeport Hauling, whose contact is Marlene Okonkwo."*
+
+### 117.2 · WHY — EACH HALF FAILS ON ITS OWN
+
+- **The example alone does not survive the data.** Branches are reseeded and records are deleted.
+  A tester handed `Type: Oknokwo` and no explanation cannot substitute anything when that customer
+  is gone: they do not know what property of it mattered. The case silently becomes unrunnable, and
+  Rule 69 ("not available on build") gets used for what is really a badly written step.
+- **The instruction alone is not runnable by a layman (7 / 9 / skill 18).** *"Type a misspelling of
+  a contact's name"* requires the tester to first go and find a customer with a suitable contact —
+  which is research, not a test step, and two testers will pick different records and get different
+  answers.
+- **Together they are self-repairing.** The tester runs the example on a good day, and on a bad day
+  reads the instruction and picks another record that fits.
+
+### 117.3 · WHERE IT APPLIES, AND WHERE IT DOES NOT
+
+- **Applies** to every case whose steps or preconditions name a specific record, value, query,
+  number or person that must already exist on the branch.
+- **Prefer seeded `ZZAUTOTEST` data for the example** where one exists, precisely because it comes
+  back after a reseed — but the general instruction is still required, because seeding scripts
+  change too.
+- **Where the example is a record we cannot guarantee**, add the fallback in the same step:
+  *"If that Vendor is no longer on the branch, use any row in the Vendors tab whose second line
+  begins with the words Contact match; they all behave the same way."*
+- **Does not apply** where the case creates its own data as part of the test — there the step is the
+  creation, and there is nothing to be an example of.
+
+### 117.4 · IT DOES NOT REACH THE EXPECTED RESULT
+
+Steps and preconditions only. **`custom_expected` is never edited (Rule 114)** — not to add an
+example, not to add anything. Where the Expected needs the example to make sense, the example goes
+in the step.
+
+### 117.5 · WORKED EXAMPLES
+
+`C44848` (the shape he pointed at), and `C96844` / `C96845`, which were written the example-only way
+and rewritten the same day. Both rewrites kept `custom_expected` byte-identical and were re-verified
+whole afterwards (Rule 41). Full record:
+`build/global-search/fuzzy-indicator-sweep-2026-09-23/COVERAGE-OF-BOTH-TICKETS.md`.

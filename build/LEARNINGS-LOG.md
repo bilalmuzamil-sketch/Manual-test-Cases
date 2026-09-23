@@ -3931,3 +3931,14 @@ so the browser DOWNsamples; upscaling a 1× capture is exactly the blur he is de
 measured: `annotate_v2.py --scale 1` on a 2× capture leaves the captions tiny next to the screenshot —
 `--scale` must match the capture. Applied to SV-10025 and, on the same pass, to SV-10340, whose two
 pictures had the same unsized media nodes. Full recipe: `build/skills/06-DEFECT-PREP.md` §9.
+
+## L0192 — 2026-09-23 — A step that gives only the example dies with the data; one that gives only the instruction is research, not a step
+Two cases written that morning said `2. Type: Oknokwo`. The QA lead compared them to the tightened
+C44848 — *"Type a misspelling of a record OWN NAME - for example Petersn for Peterson"* — and asked
+for the same shape, then made it a standing rule (**117**). The reasoning is worth keeping: the
+**example alone** leaves a tester stranded when the branch is reseeded, because nothing told them
+what property of that record mattered, and the case quietly becomes unrunnable while still looking
+fine; the **instruction alone** makes the tester go hunting for a suitable record, which is research,
+and two testers will choose differently and disagree. Together they are self-repairing. Same shape
+for preconditions: what you NEED, then an example that satisfies it. Both rewrites kept
+`custom_expected` byte-identical (114) and were re-verified whole (41).

@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **116 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **117 numbered Standing Rules** (108 and 109 are cited across the repo but have no text yet — see rule 110’s recorded gap).
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -536,6 +536,7 @@ rule. Generated from the split files' own headers.
 | **114** | THE EXPECTED BEHAVIOUR IS THE SOURCE'S **EXACT QUOTE**, AND IS NEVER CHANGED — verbatim sentence + document + version + section, never our restatement; you test AGAINST it. Cannot run it ⇒ Blocked; looks wrong ⇒ report and leave it. Supersedes Rule 106's correct-the-Expected clause |
 | **115** | **EVERY TEST CASE SHIPS WITH ITS OWN `spec.ts`** — a case is finished when it has a Playwright spec beside it, named **C-id first**, carrying the source it asserts, the traps that would make the measurement lie, and a positive control for any negative claim. **No spec for a case that cannot be fairly automated** — say so in the README with the reason. Lives in `build/<project>/e2e/` |
 | **116** | **AN INLINE PICTURE IS COMPOSED LANDSCAPE, SIZED FULL-WIDTH, AND CAPTURED AT TWICE THE WIDTH IT IS SHOWN AT** — three separate causes and all three must be fixed: a portrait picture is shrunk to a thumbnail (compose side by side) · a wiki-markup write leaves the media node with no size, so `size_pics.py <KEY> <imgs…>` runs AFTER every description write and is read back to confirm `full-width` + true sizes · the frame is ~1000px, so the source is ~2000px of 2×-captured content and is DOWNsampled, never upscaled. `annotate_v2.py --scale` must match the capture. ⛔ Supersedes the bare `\|width=760!` |
+| **117** | **A CASE THAT RELIES ON DATA ALREADY SEEDED ON THE BRANCH CARRIES THE GENERAL INSTRUCTION AND THE EXAMPLE TOGETHER, IN THE SAME STEP** — never `Type: Oknokwo` (the example alone, which dies when the record does) and never `Type a misspelling of a contact's name` (the instruction alone, which makes the tester go hunting). Preconditions the same: what you NEED, then an example that satisfies it. Prefer seeded `ZZAUTOTEST` data for the example, and add the fallback in the same step where the record is not guaranteed. Steps and preconditions only — `custom_expected` is still never edited (114) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`

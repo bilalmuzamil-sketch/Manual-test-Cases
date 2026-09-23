@@ -234,3 +234,30 @@ in it: a label goes in only from a probe with committed evidence.
 *"121 of 122 are runnable; the preconditions of the 118 that were walked on the build are build-verified;
 the labels in all of them are now confirmed against the observed-label file."* **Never let a
 runnability score stand in for a label check.**
+
+---
+
+## STANDING RULE 117 — THE GENERAL INSTRUCTION AND THE EXAMPLE GO IN THE SAME STEP
+
+**QA lead, 2026-09-23:** *"IF you create the test cases for a scenario where the data already is
+seeded in the branch to test it then you must include both general instruction and the example
+together in the same step."*
+
+Whenever a case is written against data that **already exists on the branch** — seeded by our script
+or simply already there — every step states the **general action** and carries the **concrete
+example** in the same sentence:
+
+> *"2. Type a misspelling of a **CONTACT PERSON name** — a person who is a contact on a customer, not
+> the customer's own name — **for example** Oknokwo for Marlene Okonkwo, who is the contact on the
+> customer ZZAUTOTEST Bridgeport Hauling."*
+
+⛔ **NOT** `Type: Oknokwo` (the example alone — it dies the moment that record does, and the tester
+cannot substitute anything because they were never told what mattered about it).
+⛔ **NOT** `Type a misspelling of a contact's name` (the instruction alone — that is research, not a
+step, and two testers will pick different records and get different answers).
+
+**Preconditions take the same shape:** say what the tester NEEDS, then name an example that
+satisfies it. Prefer seeded `ZZAUTOTEST` data for the example; where the record is not guaranteed,
+put the fallback in the same step. **Steps and preconditions only — `custom_expected` is never
+edited (Rule 114).** Full text and the worked rewrites: `build/rules/RULES-61-ONWARD.md` rule 117.
+
