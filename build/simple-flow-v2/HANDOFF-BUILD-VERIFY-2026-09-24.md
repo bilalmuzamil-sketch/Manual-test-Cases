@@ -91,22 +91,29 @@ captured build evidence for that check (Rule 12/110).** Treat the existing `READ
 
 Arithmetic gate after the pass: **READY + EXPECT-FAIL = total − HOLD**, read back from the live cases.
 
+**🔑 QA-LEAD DECISION (2026-09-24): THIS SESSION corrects the markers if they are wrong — during the live
+pass, from observation.** Do **not** pre-flip them source-only, and do not leave a wrong marker standing:
+once you observe a case, set its marker/provenance to the truth (§3 rules). A marker that is already
+right is left alone. The unproven `v26.35.9` build line is replaced by the real marker you capture at
+sv8683, or removed if a case cannot be observed this pass.
+
 ---
 
-## 4. TWO CARRIED CONFLICTS — the build does NOT resolve these (Rule 57/58); verify against the SPEC and flag
+## 4. TWO CARRIED CASES — BOTH PO-CONFIRMED CORRECT (2026-09-24); verify against the case as written
 
-1. **C44567 — Decline a line that holds received/picked parts.** Spec 771391574: Decline is **disabled**
-   with reason *"Return this line's received parts before declining it."* Design v3 `Work Order PRD.md`
-   §2 says Decline is **always allowed with undo** (and is internally inconsistent — its own bulk example
-   still reports "parts must be returned first"). **This is an OPEN PO question for Milos.** Verify the
-   case against the **spec** expectation; whatever the build does, record it, but do not let the build (or
-   the design) rewrite the case. If the build allows decline-with-parts, that is a **DEVIATION** *and* a
-   live design-vs-spec question — say both.
-2. **C44604 — reorder Undo (Automated, HANDS-OFF).** The case Expected says the reorder Undo was
-   "removed on user request 2026-09-04"; the **spec and the v3 design both say a drop can be undone.**
-   Unsourced case-vs-spec conflict → **held, PO question for Milos.** Do not change it (Rule 71); report.
+Both were open conflicts in the source-verify; **the PO (Milos) confirmed both cases are correct on
+2026-09-24** — record: `source-verify-2026-09-24/PO-ANSWERS-2026-09-24.md`. Verify each against its own
+(confirmed-correct) Expected; do **not** reopen the conflict or let the build/design rewrite the case.
 
-Both are already written up in `source-verify-2026-09-24/DESIGN-RECONCILE-v3-2026-09-24.md`.
+1. **C44567 — Decline a line that holds received/picked parts.** **PO-confirmed: the case is correct** —
+   Decline stays **disabled** while the line holds received/picked parts (*"Return this line's received
+   parts before declining it"*). The design v3 `Work Order PRD.md` §2 ("always allowed") is the wrong
+   side and is superseded. If the build lets you decline such a line, that is a **DEVIATION** against the
+   confirmed expectation — record it with evidence.
+2. **C44604 — reorder Undo (Automated, HANDS-OFF).** **PO-confirmed: the case is correct** — the reorder
+   Undo **was removed** (2026-09-04), so the confirmation toast is informational only. The Confluence
+   spec and the v3 design are stale on this point (Milos to fix the spec sentence). Verify against the
+   case as written; **do not edit it** (Rule 71) — if a change is ever needed, tell Vlad (Rule 65).
 
 ---
 
@@ -315,7 +322,8 @@ Canonical copy: `build/skills/TOKEN-DISCIPLINE-CHARTER.md`. Full rule text: `bui
 ## OUTSTANDING — what the build-verify session must get from the QA lead before/at start
 1. **`sv_sso_session` for `sv8683.qa.shopview.com`** (current login is 401) — the one hard prerequisite.
 2. **Go-ahead to write** result verdicts into R416 and to correct the 64 markers/provenance (Rule 6).
-3. **Milos answers** the two carried PO questions (C44567 decline-with-parts; C44604 reorder Undo) — the
-   build does not settle these.
+   **Already decided by the QA lead 2026-09-24: THIS session corrects any wrong markers during the live
+   pass (§3).**
+3. **~~Milos answers on C44567 / C44604~~ — RESOLVED 2026-09-24: both PO-confirmed correct** (§4).
 4. **Confirm the build actually carries the feature** (epic is Done + env named, but capture the marker
    and confirm on arrival — Rule 89: 401 could be dead cookie OR a deploy).
