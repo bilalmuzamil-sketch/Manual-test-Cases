@@ -39,3 +39,20 @@ PARTS
 # Confirms runnable on build: 6669 bulk bar route + primary/More/close structure.
 # TO EXPAND later: open "More" to capture order/pick/etc.; the "N selected" banner + "Deselect all"/"Select all".
 # Evidence: bulk-bar-*.png / .txt
+
+## Roles & Permissions  (Settings sidebar → "Roles & Permissions")
+# Roles list: Admin ("Full system access"), Technician ("Assigned work orders and time tracking (Tech View)"),
+#   Sales Representative, etc. Each row: edit (pencil) + more_vert. Editing a role opens the permission editor.
+# Permission editor atoms observed (Work Orders group): **Order parts** · **Pick parts** · **See Financial Data** ·
+#   Work Orders · Work order lines.
+# 🔴 "Received later" atom (C44606, the ONE new permission) NOT located in this capture — NOT declared absent
+#   (Rule 104): the editor has collapsible permission groups I did not expand, and only one role was opened.
+#   RE-CHECK: expand the Work Orders / Parts permission group and/or use the editor's search for "Received later"
+#   before any verdict. Central to C44592, C44593, C44606, C44607.
+# Evidence: roles-*.png, role-editor-*.png/.txt
+
+## Purchase Orders page  (route: /parts/orders)
+# Columns: **Work Order · Purchase Order Number · Vendor · Order Status · Created On · Ordered By · Total Cost · Note**.
+# **warning "Vendor"** marker on a vendor-missing PO (C44589 "missing vendors first"). **New PO** button. **Search**.
+# Left rail (Parts area): Part Sales · Inventory · Catalog · Returns · Purchase Orders · Vendor Invoices · Vendors.
+# Confirms 6671 route + columns runnable. Evidence: po-page-text-*.txt
