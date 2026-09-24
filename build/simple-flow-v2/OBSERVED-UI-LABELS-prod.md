@@ -45,6 +45,9 @@ PARTS
 #   Sales Representative, etc. Each row: edit (pencil) + more_vert. Editing a role opens the permission editor.
 # Permission editor atoms observed (Work Orders group): **Order parts** · **Pick parts** · **See Financial Data** ·
 #   Work Orders · Work order lines.
+# Work Orders group also carries a **"View mode"** control with two choices, **"Full View"** and **"Tech view"**
+#   (Full View = "Complete interface with all fields visible and editable"). Central to C44608. Evidence:
+#   role-editor-full-*.txt lines 81-86.
 # ✅ NEW PERMISSION ATOM CONFIRMED on the build, labelled **"Receive later"** (the cases write it "Received later"
 #   — a one-word build-glossary difference, Rule 102: align the precondition/step LABEL to "Receive later"; the
 #   Expected substance stays the source's verbatim words, Rule 114). Instrument PROVEN: same full-list capture

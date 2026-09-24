@@ -98,3 +98,11 @@
 | C44596 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
 | C44597 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
 | C44598 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
+
+## 2026-09-24 — C44608 / C44609 precondition-label fix (silent → anchored)
+| Op | C-id | HTTP | Result |
+|---|---|---|---|
+| update_case (preconds+steps only) | C44608 | 200 | quoted build labels "See Financial Data" / "View mode" / "Full View" / "Tech view"; Expected byte-unchanged; render fr-view; precond-label gate CLEAR; runnable |
+| update_case (preconds+steps only) | C44609 | 200 | quoted build labels "Order parts" / "Pick parts"; Expected byte-unchanged; render fr-view; precond-label gate CLEAR; runnable |
+- Observed-label file gained the "View mode" / "Full View" / "Tech view" atoms (role-editor-full-*.txt lines 81-86).
+- 6672 (receive-later split) + 6673 (completion wizard) markers kept READY: entry point "Create Invoice", the Settings->Work Orders toggles (Require Ordering Parts, Require Receiving Parts Before Completion), and the "Receive later" role permission all confirmed present on v26.39.0-07c719b.
