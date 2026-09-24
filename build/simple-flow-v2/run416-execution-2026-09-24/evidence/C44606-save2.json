@@ -1,0 +1,32 @@
+{
+ "fields": [
+  {
+   "label": "Search",
+   "value": "",
+   "type": "search"
+  },
+  {
+   "label": "Role Name*",
+   "value": "Admin",
+   "type": "text"
+  },
+  {
+   "label": "search",
+   "value": "",
+   "type": "text"
+  }
+ ],
+ "saveBtns": [
+  {
+   "t": "Save",
+   "disabled": false
+  }
+ ],
+ "calls": [
+  {
+   "s": 200,
+   "u": "/api/check-existing-roles",
+   "body": "{\"data\":{\"existing_role_id\":\"2a43e6cb-34ab-4475-bd02-242361a725f5\",\"existing_role_name\":\"Admin\"}}"
+  }
+ ]
+}
