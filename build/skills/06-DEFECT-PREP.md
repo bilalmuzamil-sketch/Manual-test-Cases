@@ -28,6 +28,16 @@
 > **reproduce it on the build as it stands that day** — if it no longer reproduces, **CLOSE** the
 > candidate and say so; if it does, **ASK per candidate**. See **§A10-b** below, and Rule 62.
 
+---
+
+## §0 · SCREENSHOT-EVIDENCE STANDARD — three rules, non-negotiable (QA lead, 2026-09-24; L0044)
+
+Every ticket/comment screenshot obeys all three. They are how the evidence proves the claim instead of merely illustrating it.
+
+1. **GO INSIDE TO PROVE.** A claim of *absence* or *presence* ("there is no such contact", "no contact's name contains the term", "the field is empty") is proven by **navigating INTO the record and showing the truth on its own page** — open the entity's own tab (e.g. the vendor/customer **Contacts** tab) and show the empty list, or the rows that do *not* match. The search result / list row is the **symptom**; the record's own page is the **proof**. Never infer absence from the search row or an API response alone (skills 19/20). *QA-branch note:* a hard nav to a detail route can bounce to `/login` under a synthetic token — reach the page the way a user does: open the record **from the search modal (client-side Select/Enter)**, then click the tab.
+2. **NEVER TRUNCATE THE ANNOTATION.** Caption/annotation text baked into an image must **wrap to the image width** — never run off the right edge. Measure text against the frame and wrap; if it still overflows, widen the frame or move the detail into the ticket body. A cut-off caption is a defective deliverable.
+3. **SIZE THE IMAGE TO RENDER LARGE INLINE.** Jira renders an attached image referenced with *no* width as a tiny (~300px) click-to-open thumbnail, and a full-page ~1680px screenshot at `|width=1000` as a small unreadable ~600px block. Readable recipe: **CROP** to the meaningful region (modal / panel / message — drop the left nav and empty space), size the file to **~950–1000px wide** (native == display), and reference it **WITH an explicit width** (`!name|width=980!` in a comment, `|width=1100` in a description) so it fills the column. Prefer a **stacked composite** (the symptom on top, the "went inside" proof below), each panel with its own wrapped caption.
+
 > **🔴 READ [`00-COMMON-CORE.md`](00-COMMON-CORE.md) FIRST** — especially **§11.1, the active creation
 > hold**.
 >
