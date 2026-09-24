@@ -63,3 +63,16 @@ PARTS
 - Primary admin: `bilal.muzamil@shopview.com` / analyst1 (full access).
 - **Reduced-role tester:** `bilal.muzamil+serviceadvisorlimitedview@shopview.com` / analyst1 — apply any role to
   this user to confirm a permission-gated action is hidden (C44608, C44609, negative permission checks).
+
+## Finish Action (WO header) — group 6674
+# On a ready_for_review WO (S2-811), the header offers exactly ONE finish action: **"Create invoice"**
+#   (C44599 "the header offers only the one finish action that is genuinely next"; C44600 "Create invoice ...").
+# Confirms 6674 route+label runnable on the build. Evidence: finish-action-811-*.png/.txt
+
+## STILL TO OBSERVE (need a part in the Ordered/unreceived state)
+- **Receive modal (6670)** — C44583 "Receive opens a modal"; fields Vendor / Invoice number / Invoice date / Cost / Tax
+  (C44584); Assign-vendor card (C44585). Reach via a part's Receive action, the bulk Receive, or the PO page Receive.
+- **Receive-later split button (6672)** — C44592 "Receive becomes a split button offering [Received/Receive] later"
+  (needs the Receive-later permission + the setting on).
+- **Completion Wizard (6673)** — opens on completing a WO with outstanding steps (C44594 entry points).
+# These three need a seeded/located Ordered-part state; the read-only screens above are done.
