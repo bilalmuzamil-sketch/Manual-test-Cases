@@ -124,3 +124,8 @@ Part rows/menus + reordering (19-20) · Permissions (21). Story 10 (bulk delete)
 - **Design mostly CONFIRMS the spec/cases.** One 🔴 CONFLICT: decline-with-parts — spec/C44567 blocks Decline while a line holds received/picked parts; design v3 Work Order PRD.md §2 says Decline is always allowed with undo (and is internally inconsistent). → PO question for Milos. C44604 (reorder Undo) corroborated by design (both sources say undo exists) — still held.
 - **Epic SV-8683 is DONE (updated 2026-09-24) and names QA env `sv8683.qa.shopview.com`** — contradicts the "no build yet" note; build-verification is likely now possible. The READY markers may be justified but we hold no captured build evidence → QA-lead decision on a build-verify pass.
 - **No TestRail writes.** Provenance re-stamp still gated on the build decision.
+
+## Status — 2026-09-24 (PO answers — both conflicts closed)
+- **C44567 decline-with-parts: CASE CORRECT (PO confirmed).** Spec/case win (Decline disabled while line holds received/picked parts); design v3 PRD.md is the one that's wrong. Divergence closed. No edit.
+- **C44604 reorder Undo: CASE CORRECT (PO confirmed).** Undo was removed 2026-09-04; case Expected is right; spec + v3 design are stale on this point. No longer held. (Automated case — provenance note is a Rule-71/65 item; Milos to fix the spec sentence.)
+- Record: `source-verify-2026-09-24/PO-ANSWERS-2026-09-24.md`. Both PO questions from the design reconciliation are now resolved; no case content changes required.
