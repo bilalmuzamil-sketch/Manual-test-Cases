@@ -3942,3 +3942,27 @@ fine; the **instruction alone** makes the tester go hunting for a suitable recor
 and two testers will choose differently and disagree. Together they are self-repairing. Same shape
 for preconditions: what you NEED, then an example that satisfies it. Both rewrites kept
 `custom_expected` byte-identical (114) and were re-verified whole (41).
+
+## L0193 — A system role saves nothing, and the control that proves it costs one minute (2026-09-24)
+Granting the new *Receive later* permission on the Admin role appeared to do nothing. Before calling
+that a product fault I flipped an UNRELATED permission (*Move labor*) on the same role: it did not
+persist either. So the fault is that the role is locked, not that the new permission is broken — a
+finding I would have filed wrongly. **The control for "this change does not save" is another change of
+the same kind on the same record.** Cost of not doing it: a false defect against a shipped feature.
+
+## L0194 — "No record is changed by this switch" is the product answering the question (2026-09-24)
+The Simple Flow V2 settings sweep does not happen, and the product says so in its own confirmation
+text. I still measured 66 parts across 45 work orders before and after, because **a product's wording
+is a claim, not evidence** — but the wording told me exactly which measurement would settle it. Read
+the dialogs before designing the probe.
+
+## L0195 — Judge an absence only with every menu open and the row hovered (2026-09-24)
+Four line actions were reported missing. The reading only stands because each line row was hovered,
+every three-dot menu on it was opened, and the whole page text was searched for the four words. A
+first pass without the hover would have missed the tick boxes entirely and read as a different fault.
+
+## L0196 — A dialog backdrop reads exactly like a dead button (2026-09-24)
+Clicking *Save Settings* timed out with "q-dialog__backdrop intercepts pointer events". The button was
+fine; a confirmation was already open, because on this page clicking the TOGGLE opens it, not Save.
+When a click times out on an element Playwright says is visible and enabled, read the interception
+line before blaming the control.

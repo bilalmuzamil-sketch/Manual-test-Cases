@@ -5337,3 +5337,44 @@ exactly like an expired Atlassian session. Strip it first: `| sed 's/__HTTP:.*//
   the CATALOGUE part, so `POST /api/parts-catalogue/change-catalogue-part {id, name, part_number, tags}` → 200 is
   what changes what the tester sees. Category ids: `GET /api/inventory/categories` → `{value,label}`; a bin id:
   `GET /api/inventory/parts?pagination[rowsPerPage]=1` → `binLocations[0].binLocationId`.
+
+## Simple Flow V2 on PRODUCTION — routes and traps found 2026-09-24
+
+- **Work Orders settings page:** `/administration/settings` → the tab strip at the top reads
+  `Organization | Invoice | Work Orders`. **`/settings` 404s** ("The page went to get parts and never
+  came back"). The three page tabs are the LAST entries among `[role=tab], .q-tab`, after the whole
+  sidebar — match on the exact text `Work Orders` walking the list BACKWARDS, or you hit the top-nav
+  Work Orders button instead.
+- **Work order detail:** `/workorders/{id}` redirects to `/workorders/{id}/lines`. Clicking a row on
+  `/workorders` does NOT navigate — go to the id directly. The list feed is
+  `GET /api/work-orders?pagination[rowsPerPage]=N&pagination[page]=1&search=&showMyWorkOrders=0` and the
+  rows are at **`data.work_orders[]`** (not `data[]`).
+- **Lines and parts:** `GET /api/work-orders/lines/{id}` → `data.collection[].parts[]`, each part with
+  `status`, `status_val`, `part_source_type` (`vendor|inventory|found`), `vendor_id`, `core_charge`.
+- **Purchase orders page:** `/parts/orders` (the *Purchase Orders* tab on the Parts page).
+- **Org settings:** read `GET /api/organizations/settings`, write `POST /api/organizations/settings/change`.
+  **Two settings are stored INVERTED:** `autoPickInventoryParts` is the opposite of "Require Picking
+  Inventory Parts", and `autoApproveLines` is the opposite of "Require Approval for New Lines".
+- **The settings save flow, learnt from the screen:** clicking the TOGGLE opens the confirmation
+  immediately; pressing *Turn On* / *Turn Off* does NOT persist; you must then press **Save Settings**.
+  A dialog backdrop covers the Save button while the confirmation is open, so a Playwright click on it
+  times out — that is the backdrop, not a broken button.
+- **Quasar traps:** every tab panel keeps its own `.q-toggle` elements in the DOM, so `page.locator('.q-toggle').nth(i)`
+  picks a hidden toggle in another panel — scope to the panel whose text contains `Save Settings`.
+  Line tick boxes (`[data-test-id="line_checkbox_<lineId>"]`) are **invisible until the row is hovered**.
+  Line rows are `tr.line-row-<lineId>.first-line-row`.
+- **Roles:** `/administration/roles-permissions`, editor `/administration/roles-permissions/{id}/edit`.
+  **The system roles (Admin and the rest with a lock) SAVE NOTHING** — flipping any permission, including
+  an unrelated one like *Move labor*, reads back unchanged after a reload. Saving also raises a
+  *"Similar role already exists"* dialog that must be answered with **Edit Anyway**.
+  **A custom role is created from `Create custom role` → pick the template CARD → `Apply` → the primary
+  button on the form is `Create`, not `Save`.** A copy of the Admin template came back with 57
+  permissions where Admin has 58, so verify what a copied role actually carries before testing with it.
+- **Staff:** `/administration/staff` **remembers a role filter** and redirects to it, so your own row may
+  not be listed — pass `?roles=<Role Name>` explicitly. The row opens through its **`edit_note` pencil**
+  (clicking the row does nothing), giving an *Edit Staff Member* dialog with a *Role* picker and
+  *Save & Close*. `GET /api/auth/me/fe-permissions` reads back what you actually hold; it can read `0`
+  for a few seconds straight after a role change, so re-read before concluding anything.
+- **Sharp pictures on production:** `bootProdLogin(route, { viewport:{width:1680,height:1000}, deviceScaleFactor: 2 })`
+  now captures at 2×, which is what Standing Rule 116 needs. At a 1000px viewport the work order's lines
+  table does not render its rows at all — use 1680 for anything involving lines.
