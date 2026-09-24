@@ -45,10 +45,12 @@ PARTS
 #   Sales Representative, etc. Each row: edit (pencil) + more_vert. Editing a role opens the permission editor.
 # Permission editor atoms observed (Work Orders group): **Order parts** · **Pick parts** · **See Financial Data** ·
 #   Work Orders · Work order lines.
-# 🔴 "Received later" atom (C44606, the ONE new permission) NOT located in this capture — NOT declared absent
-#   (Rule 104): the editor has collapsible permission groups I did not expand, and only one role was opened.
-#   RE-CHECK: expand the Work Orders / Parts permission group and/or use the editor's search for "Received later"
-#   before any verdict. Central to C44592, C44593, C44606, C44607.
+# ✅ NEW PERMISSION ATOM CONFIRMED on the build, labelled **"Receive later"** (the cases write it "Received later"
+#   — a one-word build-glossary difference, Rule 102: align the precondition/step LABEL to "Receive later"; the
+#   Expected substance stays the source's verbatim words, Rule 114). Instrument PROVEN: same full-list capture
+#   contains the known control atoms Order parts / Pick parts / See Financial Data. The role editor's "Search
+#   permission" box does NOT filter via scripted input (positive control failed) — capture the full list, do not
+#   trust the search. Central to C44592, C44593, C44606, C44607. Evidence: role-editor-full-*.txt
 # Evidence: roles-*.png, role-editor-*.png/.txt
 
 ## Purchase Orders page  (route: /parts/orders)
@@ -56,3 +58,8 @@ PARTS
 # **warning "Vendor"** marker on a vendor-missing PO (C44589 "missing vendors first"). **New PO** button. **Search**.
 # Left rail (Parts area): Part Sales · Inventory · Catalog · Returns · Purchase Orders · Vendor Invoices · Vendors.
 # Confirms 6671 route + columns runnable. Evidence: po-page-text-*.txt
+
+## Test accounts (QA lead, 2026-09-24) — prod dummy test org
+- Primary admin: `bilal.muzamil@shopview.com` / analyst1 (full access).
+- **Reduced-role tester:** `bilal.muzamil+serviceadvisorlimitedview@shopview.com` / analyst1 — apply any role to
+  this user to confirm a permission-gated action is hidden (C44608, C44609, negative permission checks).
