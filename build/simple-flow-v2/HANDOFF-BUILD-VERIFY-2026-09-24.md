@@ -327,3 +327,12 @@ Canonical copy: `build/skills/TOKEN-DISCIPLINE-CHARTER.md`. Full rule text: `bui
 3. **~~Milos answers on C44567 / C44604~~ — RESOLVED 2026-09-24: both PO-confirmed correct** (§4).
 4. **Confirm the build actually carries the feature** (epic is Done + env named, but capture the marker
    and confirm on arrival — Rule 89: 401 could be dead cookie OR a deploy).
+
+## 11. ACCURACY WATCH — enumerations to confirm against the live UI (added 2026-09-24)
+A case's Expected can list fewer UI elements than the build actually shows (a real miss: **C44549** said
+the settings page has "four toggles"; the build has **eight** in three groups — now fixed, marked HOLD
+for you to re-verify). **For every case that enumerates a set (menu items, columns, settings, actions),
+confirm the live UI does not show MORE than the case lists** — if it does, that is a case DEVIATION to
+fix, not a pass. Source-checked enumerations that still need a live confirm: C44584, C44586, C44589,
+C44590, C44591, C44595, C44599, C44602, C44603, C44607, C53486, C53488, C53489. Full record:
+`case-corrections-2026-09-24/CASE-CORRECTIONS-2026-09-24.md`.
