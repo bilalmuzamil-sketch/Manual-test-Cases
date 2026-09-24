@@ -90,3 +90,11 @@
 | C44607 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
 | C44608 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
 | C44609 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
+| C44592 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
+| C44593 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
+| C53489 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
+| C44594 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
+| C44595 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
+| C44596 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
+| C44597 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
+| C44598 | update preconds/steps/expected(stamp+br) | HTTP 200 | words-match=True stamp=True br_gone=True |
