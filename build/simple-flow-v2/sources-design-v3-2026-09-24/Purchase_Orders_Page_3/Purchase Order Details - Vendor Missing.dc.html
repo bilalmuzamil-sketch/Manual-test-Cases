@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/design-md/colors_and_type.css">
+  <script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; }
+    a { color: var(--sv-primary-500); text-decoration: none; }
+    a:hover { color: var(--sv-primary-700); }
+    .sv-field { position: relative; height: 40px; }
+    .sv-field input { width: 100%; height: 40px; box-sizing: border-box; border: 1px solid var(--sv-grey-300); border-radius: 8px; padding: 0 12px; font-size: 14px; font-family: inherit; color: var(--sv-grey-800); background: #fff; outline: none; transition: border-color 120ms ease, box-shadow 120ms ease; }
+    .sv-field input:hover:not(:disabled):not(:focus) { border-color: var(--sv-grey-400); }
+    .sv-field input:focus { border-color: var(--sv-primary-500); box-shadow: 0 0 0 4px rgba(37,124,255,0.24); }
+    .sv-field label { white-space: nowrap; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); padding: 0 4px; font-size: 14px; color: var(--sv-grey-500); background: #fff; pointer-events: none; line-height: 1; transition: top 160ms cubic-bezier(.2,.8,.2,1), font-size 160ms cubic-bezier(.2,.8,.2,1), color 120ms ease; }
+    .sv-field input:focus + label, .sv-field input:not(:placeholder-shown) + label { top: 0; font-size: 12px; }
+    .sv-field input:focus + label { color: var(--sv-primary-600); }
+    .sv-field.err input { border-color: var(--sv-error-500); }
+    .sv-field.err input:focus { border-color: var(--sv-error-500); box-shadow: 0 0 0 4px rgba(240,68,56,0.24); }
+    .sv-field.err input:not(:placeholder-shown) + label, .sv-field.err input:focus + label { color: var(--sv-error-700); }
+    .sv-num { height: 36px; }
+    .sv-num input { height: 36px; text-align: right; padding: 0 10px; font-variant-numeric: tabular-nums; }
+    .sv-num.pre input { padding-left: 24px; }
+    .sv-ta textarea { width: 100%; box-sizing: border-box; min-height: 104px; resize: vertical; border: 1px solid var(--sv-grey-300); border-radius: 8px; padding: 12px; font-size: 14px; line-height: 20px; font-family: inherit; color: var(--sv-grey-800); background: #fff; outline: none; transition: border-color 120ms ease, box-shadow 120ms ease; }
+    .sv-ta textarea:hover:not(:focus) { border-color: var(--sv-grey-400); }
+    .sv-ta textarea:focus { border-color: var(--sv-primary-500); box-shadow: 0 0 0 4px rgba(37,124,255,0.24); }
+    button, .sv-nowrap { white-space: nowrap; }
+    @media (max-width: 1120px) { .sv-search { display: none !important; } }
+  </style>
+</helmet>
+<div style="width:100%;height:100vh;min-width:0;position:relative;background:var(--sv-grey-50);font-family:Inter,system-ui,sans-serif;color:var(--sv-grey-700);overflow:hidden;">
+
+  <header style="height:64px;flex:none;background:#fff;border-bottom:1px solid #E3E8EF;display:flex;align-items:center;padding:12px 24px;gap:24px;position:absolute;top:0;left:0;right:0;z-index:10;">
+    <div style="display:flex;align-items:center;gap:24px;flex:none;">
+      <span style="width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;color:#257CFF;">
+        <svg viewBox="0 0 100 100" width="30" height="30" fill="currentColor" aria-hidden="true">
+          <path d="M73.0787 60.9336L63.6353 51.4902C66.7831 54.7748 69.9309 57.9226 73.0787 60.9336Z"></path>
+          <path d="M84.5575 12.489H31.729C20.6432 12.489 16.1268 17.2792 13.937 27.6806L3.94616 74.8978C3.53557 77.2244 3.125 79.1405 3.125 80.9197C3.125 82.562 3.39871 84.0675 3.94616 85.1624C12.5684 77.635 20.2327 68.8759 28.9918 61.4854C32.687 64.2226 35.698 67.6441 38.1615 71.4763C31.4553 77.635 24.4754 83.6569 18.0429 90.2262H68.1341C79.3568 90.2262 83.7363 85.4361 86.063 75.0347L96.0538 27.8175C96.4644 25.4909 96.875 23.5748 96.875 21.7956C96.7381 15.3631 93.4535 12.489 84.5575 12.489ZM51.8476 82.2883C50.8896 83.1095 50.0684 84.0675 49.1104 84.8886C46.6469 81.8777 43.0885 79.4142 42.6779 75.3084C41.4462 66.5492 34.4662 58.7481 25.844 57.1058C21.6013 56.5584 19.0009 53 16.1268 50.1259L38.9826 27.27L39.2564 26.9963L39.3932 27.1332L63.7545 51.4945C66.9024 54.6423 69.9133 57.7901 73.198 60.9379L51.8476 82.2883ZM74.9772 59.1587L41.0356 25.2171L44.3203 21.9324L78.2618 55.8741L74.9772 59.1587ZM80.041 54.0948L46.0994 20.1533L49.3841 16.8686L83.3257 50.8102L80.041 54.0948Z"></path>
+          <path d="M46.0917 59.9816C48.8884 59.9816 51.1556 57.7144 51.1556 54.9177C51.1556 52.121 48.8884 49.8538 46.0917 49.8538C43.295 49.8538 41.0278 52.121 41.0278 54.9177C41.0278 57.7144 43.295 59.9816 46.0917 59.9816Z"></path>
+        </svg>
+      </span>
+      <nav style="display:flex;align-items:center;gap:2px;flex:none;">
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;">Work Orders</a>
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;">Schedule</a>
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;">Customers</a>
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;background:#EEF2F6;">Parts</a>
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;">Reports</a>
+      </nav>
+    </div>
+    <div style="flex:1;"></div>
+    <div class="sv-search" style="flex:none;width:320px;">
+      <x-import component-from-global-scope="Input" icon="search" placeholder="Search" hint-size="320px,40px"></x-import>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex:none;">
+      <button type="button" style="background:none;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;line-height:20px;color:#202939;padding:0;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="2" x2="14" y2="2"></line><line x1="12" y1="14" x2="15" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg>
+        Clock In
+      </button>
+      <button type="button" style="background:none;border:0;cursor:pointer;color:#697586;padding:0;display:inline-flex;align-items:center;" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg>
+      </button>
+      <button type="button" style="display:inline-flex;align-items:center;gap:12px;height:40px;padding:4px 4px 4px 14px;border:1px solid #E3E8EF;border-radius:8px;background:#F8FAFC;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;color:#202939;white-space:nowrap;flex:none;">
+        Staging Heavy Duty - 9919
+        <span style="width:32px;height:32px;border-radius:50%;background:#E5EDFF;display:inline-flex;align-items:center;justify-content:center;color:#0868A7;font-weight:600;font-size:12px;">AS</span>
+      </button>
+    </div>
+  </header>
+
+  <div style="position:absolute;top:64px;left:0;right:0;bottom:0;overflow-y:auto;padding:24px 24px 40px;">
+
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="Purchase Orders.dc.html" aria-label="Back to purchase orders" title="Back to purchase orders" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;border-radius:8px;color:var(--sv-grey-700);" style-hover="background:var(--sv-grey-100);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      </a>
+      <h3 style="margin:0;white-space:nowrap;font-size:20px;line-height:28px;font-weight:700;color:var(--sv-grey-900);">Purchase order PO S9-25247</h3>
+      <sc-if value="{{ isOrdered }}" hint-placeholder-val="{{ false }}">
+        <span style="display:inline-flex;align-items:center;height:22px;padding:2px 8px;border-radius:9999px;border:1px solid var(--sv-info-border);background:var(--sv-info-fill);color:var(--sv-info-text);font-size:11px;font-weight:500;line-height:11px;white-space:nowrap;">Ordered</span>
+      </sc-if>
+      <sc-if value="{{ isPartial }}" hint-placeholder-val="{{ true }}">
+        <span style="display:inline-flex;align-items:center;height:22px;padding:2px 8px;border-radius:9999px;border:1px solid var(--sv-danger-border);background:var(--sv-danger-fill);color:var(--sv-danger-text);font-size:11px;font-weight:500;line-height:11px;white-space:nowrap;">Partial Delivery</span>
+      </sc-if>
+      <sc-if value="{{ isReceived }}" hint-placeholder-val="{{ false }}">
+        <span style="display:inline-flex;align-items:center;height:22px;padding:2px 8px;border-radius:9999px;border:1px solid var(--sv-success-border);background:var(--sv-success-fill);color:var(--sv-success-text);font-size:11px;font-weight:500;line-height:11px;white-space:nowrap;">Received</span>
+      </sc-if>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:20px;margin-top:16px;">
+
+      <!-- SUMMARY -->
+      <div style="width:300px;flex:none;background:#fff;border:1px solid var(--sv-grey-100);border-radius:8px;box-shadow:0 1px 2px rgba(16,24,40,0.05);overflow:hidden;">
+        <div style="display:flex;align-items:center;height:48px;box-sizing:border-box;padding:0 20px;border-bottom:1px solid var(--sv-grey-100);">
+          <span style="font-size:16px;line-height:24px;font-weight:600;color:var(--sv-grey-900);">Purchase order details</span>
+        </div>
+        <div style="padding:20px;display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Work order number</span>
+            <a href="#" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;line-height:20px;font-weight:600;">
+              S9-25247
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Date ordered</span>
+            <span style="font-size:14px;line-height:20px;font-weight:500;color:var(--sv-grey-700);">Jul 20, 2026</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Vendor</span>
+            <sc-if value="{{ vendorMissing }}" hint-placeholder-val="{{ true }}">
+              <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:var(--sv-space-1);font-size:14px;line-height:20px;font-weight:600;white-space:nowrap;color:var(--sv-warning-text);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Vendor missing</span>
+            </sc-if>
+            <sc-if value="{{ hasVendor }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:14px;line-height:20px;font-weight:500;color:var(--sv-grey-700);">{{ vendor }}</span>
+            </sc-if>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Ordered by</span>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="width:24px;height:24px;flex:none;border-radius:50%;background:#E5EDFF;display:inline-flex;align-items:center;justify-content:center;color:#0868A7;font-weight:600;font-size:10px;letter-spacing:0.015em;">AS</span>
+              <span style="font-size:14px;line-height:20px;font-weight:500;color:var(--sv-grey-700);">Admin ShopView</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <span style="font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Note</span>
+            <span style="font-size:14px;line-height:20px;font-weight:400;color:var(--sv-grey-500);">Vendor to be confirmed with parts desk.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECEIVING -->
+      <div style="flex:1;min-width:0;background:#fff;border:1px solid var(--sv-grey-100);border-radius:8px;box-shadow:0 1px 2px rgba(16,24,40,0.05);overflow:hidden;">
+
+        <div onMouseEnter="{{ onVendorEnter }}" onMouseLeave="{{ onVendorLeave }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;height:48px;box-sizing:border-box;padding:0 24px;border-bottom:1px solid var(--sv-grey-100);">
+          <sc-if value="{{ vendorMissing }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="display:inline-flex;align-items:center;gap:var(--sv-space-1);font-size:16px;line-height:24px;font-weight:600;white-space:nowrap;color:var(--sv-warning-text);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Vendor missing</span>
+              <button onClick="{{ onOpenVendor }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:14px;line-height:20px;font-weight:600;color:var(--sv-primary-600);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Assign Vendor
+              </button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ hasVendor }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ onOpenVendor }}" style="display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:16px;line-height:24px;font-weight:600;color:var(--sv-grey-700);">
+            {{ vendor }}
+            <span style="display:inline-flex;color:var(--sv-grey-700);opacity:{{ vendorEditOpacity }};transition:opacity 120ms ease;">
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8.30592L11.6667 4.97258M2.08331 17.8892L4.90362 17.5759C5.24819 17.5376 5.42048 17.5185 5.58152 17.4663C5.72439 17.4201 5.86035 17.3547 5.98572 17.2721C6.12702 17.1789 6.2496 17.0563 6.49475 16.8111L17.5 5.80592C18.4205 4.88544 18.4205 3.39306 17.5 2.47258C16.5795 1.55211 15.0871 1.55211 14.1667 2.47258L3.16142 13.4778C2.91627 13.723 2.79369 13.8455 2.70051 13.9868C2.61784 14.1122 2.55249 14.2482 2.50624 14.391C2.45411 14.5521 2.43497 14.7244 2.39668 15.0689L2.08331 17.8892Z"></path></svg>
+            </span>
+          </button>
+          </sc-if>
+          <span style="font-size:12px;line-height:16px;font-weight:500;letter-spacing:0.01em;color:var(--sv-grey-500);white-space:nowrap;">{{ receivingMeta }}</span>
+        </div>
+
+        <div style="padding:20px 24px 24px;display:flex;flex-direction:column;gap:24px;">
+
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div class="{{ invoiceFieldClass }}" style="width:200px;flex:none;">
+              <input type="text" placeholder=" " value="{{ invoiceNo }}" onInput="{{ onInvoiceNo }}">
+              <label>Vendor invoice # *</label>
+            </div>
+            <div class="sv-field" style="width:200px;flex:none;">
+              <input type="text" placeholder=" " value="{{ invoiceDate }}" onInput="{{ onInvoiceDate }}" style="padding-left:38px;">
+              <label style="left:36px;">Invoice date *</label>
+              <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--sv-grey-500);pointer-events:none;display:flex;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+              </span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <span style="font-size:16px;line-height:24px;font-weight:600;color:var(--sv-grey-900);">Receive parts</span>
+
+            <div style="border:1px solid var(--sv-grey-100);border-radius:8px;overflow-x:auto;overflow-y:hidden;">
+              <div style="display:flex;align-items:center;gap:16px;min-width:760px;background:var(--sv-grey-50);border-bottom:1px solid var(--sv-grey-100);height:44px;box-sizing:border-box;padding:0 20px;">
+                <x-import component-from-global-scope="Checkbox" checked="{{ allChecked }}" onChange="{{ onToggleAll }}" style="display:inline-flex;width:18px;height:18px;flex:none;" hint-size="18px,18px"></x-import>
+                <span style="flex:1;min-width:200px;white-space:nowrap;font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Part number &amp; description</span>
+                <span style="width:104px;flex:none;text-align:right;font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Cost</span>
+                <span style="width:104px;flex:none;text-align:right;font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Sell</span>
+                <span style="width:88px;flex:none;text-align:right;font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Qty Ordered</span>
+                <span style="width:96px;flex:none;text-align:right;font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Qty Received</span>
+                <span style="width:104px;flex:none;text-align:right;font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-grey-500);">Total</span>
+              </div>
+
+              <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+                <div style-hover="background:var(--sv-grey-25);" style="display:flex;align-items:center;gap:16px;min-width:760px;min-height:56px;box-sizing:border-box;padding:8px 20px;border-bottom:1px solid var(--sv-grey-100);background:{{ r.rowBg }};transition:background 120ms ease;">
+                  <x-import component-from-global-scope="Checkbox" checked="{{ r.checked }}" onChange="{{ r.onCheck }}" style="display:inline-flex;width:18px;height:18px;" hint-size="18px,18px"></x-import>
+                  <div onMouseEnter="{{ r.onEnter }}" onMouseLeave="{{ r.onLeave }}" style="flex:1;min-width:200px;display:flex;align-items:center;gap:8px;">
+                    <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+                      <span style="font-size:14px;line-height:20px;font-weight:600;color:var(--sv-grey-700);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.num }}</span>
+                      <span style="font-size:12px;line-height:16px;font-weight:500;letter-spacing:0.01em;color:var(--sv-grey-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.desc }}</span>
+                    </div>
+                    <button onClick="{{ r.onEdit }}" aria-label="Edit part" title="Edit part" style="flex:none;display:inline-flex;background:none;border:0;padding:0;cursor:pointer;color:var(--sv-grey-700);opacity:{{ r.editOpacity }};transition:opacity 120ms ease;">
+                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8.30592L11.6667 4.97258M2.08331 17.8892L4.90362 17.5759C5.24819 17.5376 5.42048 17.5185 5.58152 17.4663C5.72439 17.4201 5.86035 17.3547 5.98572 17.2721C6.12702 17.1789 6.2496 17.0563 6.49475 16.8111L17.5 5.80592C18.4205 4.88544 18.4205 3.39306 17.5 2.47258C16.5795 1.55211 15.0871 1.55211 14.1667 2.47258L3.16142 13.4778C2.91627 13.723 2.79369 13.8455 2.70051 13.9868C2.61784 14.1122 2.55249 14.2482 2.50624 14.391C2.45411 14.5521 2.43497 14.7244 2.39668 15.0689L2.08331 17.8892Z"></path></svg>
+                    </button>
+                  </div>
+                  <span style="width:104px;flex:none;text-align:right;font-size:14px;line-height:20px;font-weight:500;color:var(--sv-grey-700);font-variant-numeric:tabular-nums;">{{ r.cost }}</span>
+                  <div style="width:104px;flex:none;">
+                    <div class="sv-field sv-num pre">
+                      <input type="text" placeholder=" " value="{{ r.sell }}" onInput="{{ r.onSell }}">
+                      <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--sv-grey-500);pointer-events:none;">$</span>
+                    </div>
+                  </div>
+                  <span style="width:88px;flex:none;text-align:right;font-size:14px;line-height:20px;font-weight:400;color:var(--sv-grey-600);font-variant-numeric:tabular-nums;">{{ r.ordered }}</span>
+                  <div style="width:96px;flex:none;">
+                    <div class="{{ r.qtyClass }}">
+                      <input type="text" placeholder=" " value="{{ r.received }}" onInput="{{ r.onReceived }}">
+                    </div>
+                  </div>
+                  <span style="width:104px;flex:none;text-align:right;font-size:14px;line-height:20px;font-weight:600;color:{{ r.totalColor }};font-variant-numeric:tabular-nums;">{{ r.total }}</span>
+                </div>
+              </sc-for>
+
+              <div style="display:flex;flex-direction:column;gap:0;min-width:760px;box-sizing:border-box;padding:4px 20px 12px;background:#fff;">
+                <div style="display:flex;align-items:center;justify-content:flex-end;gap:16px;height:44px;">
+                  <span style="font-size:14px;line-height:20px;font-weight:500;color:var(--sv-grey-600);">Subtotal</span>
+                  <span style="width:104px;text-align:right;font-size:14px;line-height:20px;font-weight:600;color:var(--sv-grey-800);font-variant-numeric:tabular-nums;">{{ subtotal }}</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:flex-end;gap:16px;height:52px;border-top:1px solid var(--sv-grey-100);">
+                  <span style="font-size:14px;line-height:20px;font-weight:500;color:var(--sv-grey-600);">Tax</span>
+                  <div class="sv-field sv-num pre" style="width:104px;">
+                    <input type="text" placeholder=" " value="{{ tax }}" onInput="{{ onTax }}">
+                    <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--sv-grey-500);pointer-events:none;">$</span>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:flex-end;gap:16px;height:52px;border-top:1px solid var(--sv-grey-100);">
+                  <span style="font-size:14px;line-height:20px;font-weight:600;color:var(--sv-grey-700);">Total</span>
+                  <span style="width:104px;text-align:right;font-size:20px;line-height:28px;font-weight:700;color:var(--sv-grey-900);font-family:'Inter Display',Inter,sans-serif;font-variant-numeric:tabular-nums;">{{ total }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <span style="font-size:14px;line-height:20px;font-weight:600;color:var(--sv-grey-700);">Delivery note</span>
+            <div class="sv-ta">
+              <textarea placeholder="Packing slip details, damage, short shipments…" value="{{ deliveryNote }}" onChange="{{ onDeliveryNote }}"></textarea>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding-top:4px;">
+            <span title="{{ receiveTitle }}" style="cursor:{{ receiveCursor }};flex:none;white-space:nowrap;opacity:{{ receiveOpacity }};pointer-events:{{ receiveEvents }};">
+              <x-import component-from-global-scope="Button" variant="primary" size="md" disabled="{{ receiveDisabled }}" style="opacity:{{ receiveOpacity }};pointer-events:{{ receiveEvents }};white-space:nowrap;flex:none;" hint-size="200px,40px">{{ receiveLabel }}</x-import>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VENDOR PICKER -->
+  <sc-if value="{{ vendorModalOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;background:rgba(15,17,26,0.5);display:flex;align-items:center;justify-content:center;z-index:50;" onClick="{{ onCloseVendor }}">
+      <div style="width:480px;max-width:calc(100% - 48px);max-height:calc(100% - 96px);background:#fff;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10), 0 4px 8px rgba(11,23,51,0.05);display:flex;flex-direction:column;overflow:hidden;" onClick="{{ stop }}">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 24px 16px;">
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <h2 style="margin:0;font-size:20px;line-height:28px;font-weight:700;color:var(--sv-grey-900);">Select Vendor</h2>
+            <p style="margin:0;font-size:14px;line-height:20px;font-weight:400;color:var(--sv-grey-500);">Parts received on this purchase order are billed to this vendor.</p>
+          </div>
+          <button onClick="{{ onCloseVendor }}" aria-label="Close" style="flex:none;width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:8px;background:transparent;color:var(--sv-grey-500);cursor:pointer;" style-hover="background:var(--sv-grey-100);color:var(--sv-grey-700);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div style="padding:0 24px 16px;">
+          <div class="sv-field" style="width:100%;">
+            <input type="text" placeholder="Search vendors" value="{{ vendorSearch }}" onInput="{{ onVendorSearch }}" style="padding-left:38px;">
+            <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--sv-grey-500);pointer-events:none;display:flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="20" y1="20" x2="16.65" y2="16.65"></line></svg></span>
+          </div>
+        </div>
+        <div style="flex:1;overflow-y:auto;border-top:1px solid var(--sv-grey-100);">
+          <sc-for list="{{ vendorRows }}" as="v" hint-placeholder-count="5">
+            <button onClick="{{ v.onPick }}" style="width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:12px 24px;border:0;border-bottom:1px solid var(--sv-grey-100);background:{{ v.rowBg }};cursor:pointer;font-family:inherit;font-size:14px;line-height:20px;font-weight:{{ v.rowWeight }};color:{{ v.rowColor }};" style-hover="background:var(--sv-grey-25);">
+              <span>{{ v.name }}</span>
+              <sc-if value="{{ v.selected }}" hint-placeholder-val="{{ false }}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sv-primary-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </sc-if>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:12px;padding:16px 24px 24px;border-top:1px solid var(--sv-grey-200);">
+          <x-import component-from-global-scope="Button" variant="secondary" size="md" onClick="{{ onCloseVendor }}" style="white-space:nowrap;flex:none;" hint-size="90px,40px">Cancel</x-import>
+          <x-import component-from-global-scope="Button" variant="primary" size="md" onClick="{{ onPickVendor }}" style="white-space:nowrap;flex:none;" hint-size="140px,40px">{{ vendorButtonLabel }}</x-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1512,&quot;height&quot;:982}}">
+class Component extends DCLogic {
+  state = {
+    vendor: '',
+    status: 'Ordered',
+    invoiceNo: '',
+    invoiceDate: '07/28/2026',
+    deliveryNote: '',
+    tax: '10.00',
+    hoverRow: null,
+    vendorModalOpen: false,
+    modalPick: null,
+    vendorSearch: '',
+    parts: [
+      { num: 'TRK-9120', desc: 'Track roller assembly', cost: 250, sell: '375.00', ordered: 2, received: '2', checked: true },
+      { num: 'PIN-4410', desc: 'Pin & bushing kit', cost: 130, sell: '195.00', ordered: 3, received: '3', checked: true },
+      { num: 'CUT-2208', desc: 'Cutting edge bolt set', cost: 100, sell: '150.00', ordered: 2, received: '2', checked: true },
+    ],
+  };
+
+  VENDORS = ['123 Cannabis Forestlawn', 'A 1 Vendor', 'Aabridge Mining', 'Aahaven Ventures', 'Aaside Excavating'];
+
+  num(v) { return parseFloat(String(v).replace(/[^0-9.]/g, '')) || 0; }
+  money(v) { return '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+  setPart(i, patch) {
+    this.setState(s => ({ parts: s.parts.map((p, j) => (j === i ? { ...p, ...patch } : p)) }));
+  }
+
+  renderVals() {
+    const parts = this.state.parts;
+    const rows = parts.map((p, i) => {
+      const rec = this.num(p.received);
+      const line = rec * p.cost;
+      const over = rec > p.ordered;
+      return {
+        num: p.num, desc: p.desc, ordered: p.ordered.toFixed(2),
+        cost: '$' + p.cost.toFixed(5),
+        sell: p.sell, received: p.received,
+        checked: p.checked,
+        rowBg: '#fff',
+        qtyClass: over ? 'sv-field sv-num err' : 'sv-field sv-num',
+        total: this.money(line),
+        totalColor: p.checked ? 'var(--sv-grey-800)' : 'var(--sv-grey-400)',
+        editOpacity: this.state.hoverRow === i ? '1' : '0',
+        onEnter: () => this.setState({ hoverRow: i }),
+        onLeave: () => this.setState(s => (s.hoverRow === i ? { hoverRow: null } : {})),
+        onEdit: () => {},
+        onCheck: () => this.setPart(i, { checked: !p.checked }),
+        onSell: (e) => this.setPart(i, { sell: e.target.value }),
+        onReceived: (e) => this.setPart(i, { received: e.target.value, checked: true }),
+      };
+    });
+
+    const sub = parts.reduce((n, p) => n + (p.checked ? this.num(p.received) * p.cost : 0), 0);
+    const taxV = this.num(this.state.tax);
+    const selected = parts.filter(p => p.checked).length;
+    const hasInvoice = !!this.state.invoiceNo.trim();
+    const hasVendor = !!this.state.vendor;
+    const blocked = selected === 0 || !hasVendor;
+    const recTotal = parts.reduce((n, p) => n + (p.checked ? this.num(p.received) : 0), 0);
+    const ordTotal = parts.reduce((n, p) => n + p.ordered, 0);
+
+    return {
+      vendor: this.state.vendor,
+      hasVendor,
+      vendorMissing: !hasVendor,
+      vendorEditOpacity: this.state.hoverVendor ? '1' : '0',
+      onVendorEnter: () => this.setState({ hoverVendor: true }),
+      onVendorLeave: () => this.setState({ hoverVendor: false }),
+      isOrdered: this.state.status === 'Ordered',
+      isPartial: this.state.status === 'Partial Delivery',
+      isReceived: this.state.status === 'Received',
+      partCountLabel: parts.length + (parts.length === 1 ? ' part' : ' parts'),
+      receivingMeta: parts.length + (parts.length === 1 ? ' part' : ' parts'),
+      invoiceNo: this.state.invoiceNo,
+      invoiceFieldClass: this.state.invoiceNo.trim() ? 'sv-field' : 'sv-field',
+      onInvoiceNo: (e) => this.setState({ invoiceNo: e.target.value }),
+      invoiceDate: this.state.invoiceDate,
+      onInvoiceDate: (e) => this.setState({ invoiceDate: e.target.value }),
+      deliveryNote: this.state.deliveryNote,
+      onDeliveryNote: (e) => this.setState({ deliveryNote: e.target.value }),
+      rows,
+      allChecked: selected === parts.length,
+      onToggleAll: () => this.setState(s => {
+        const all = s.parts.every(p => p.checked);
+        return { parts: s.parts.map(p => ({ ...p, checked: !all })) };
+      }),
+      subtotal: this.money(sub),
+      tax: this.state.tax,
+      onTax: (e) => this.setState({ tax: e.target.value }),
+      total: this.money(sub + taxV),
+      selectedCount: String(selected),
+      receiveLabel: 'Receive parts (' + selected + ')',
+      receiveDisabled: blocked,
+      receiveOpacity: blocked ? '0.5' : '1',
+      receiveEvents: blocked ? 'none' : 'auto',
+      receiveCursor: blocked ? 'not-allowed' : 'pointer',
+      receiveTitle: !hasVendor ? 'Assign a vendor first' : (selected === 0 ? 'Select at least one part' : 'Receive ' + selected + (selected === 1 ? ' part' : ' parts')),
+      vendorModalOpen: this.state.vendorModalOpen,
+      vendorSearch: this.state.vendorSearch,
+      onVendorSearch: (e) => this.setState({ vendorSearch: e.target.value }),
+      onOpenVendor: () => this.setState({ vendorModalOpen: true, modalPick: this.state.vendor, vendorSearch: '' }),
+      onCloseVendor: (e) => { if (e) e.preventDefault(); this.setState({ vendorModalOpen: false }); },
+      onPickVendor: () => this.setState(s => ({ vendor: s.modalPick || s.vendor, vendorModalOpen: false })),
+      vendorButtonLabel: hasVendor ? 'Update' : 'Assign Vendor',
+      vendorRows: this.VENDORS.filter(v => v.toLowerCase().includes((this.state.vendorSearch || '').toLowerCase())).map(v => ({
+        name: v,
+        selected: v === this.state.modalPick,
+        rowBg: v === this.state.modalPick ? 'var(--sv-primary-50)' : 'transparent',
+        rowColor: v === this.state.modalPick ? 'var(--sv-primary-700)' : 'var(--sv-grey-800)',
+        rowWeight: v === this.state.modalPick ? '600' : '500',
+        onPick: () => this.setState({ modalPick: v }),
+      })),
+      stop: (e) => e.stopPropagation(),
+    };
+  }
+}
+</script>
+</body>
+</html>

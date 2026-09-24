@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #EEF2F6; }
+  a { color: #257CFF; text-decoration: none; }
+  a:hover { color: #175CD3; }
+</style>
+</helmet>
+
+<div style="font-family: 'Inter', system-ui, sans-serif; color: #364152; background: #EEF2F6; padding: 36px 20px 56px;">
+
+  <div id="email-visual" style="width: 600px; max-width: 100%; margin: 0 auto; background: #F4F7FB; border: 1px solid #E3E8EF; border-radius: 14px; padding: 26px 26px 24px;">
+
+    <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 16px;">
+      <span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; color: #257CFF;">BULK ACTIONS</span>
+      <div style="flex: 1 1 auto; height: 1px; background: #E3E8EF;"></div>
+      <span style="font-size: 10.5px; font-weight: 600; color: #9AA4B2;">Work Order S3-26363</span>
+    </div>
+
+    <div style="border-radius: 11px; overflow: hidden; box-shadow: 0 10px 20px rgba(11,23,51,0.10), 0 2px 4px rgba(11,23,51,0.06);">
+      <div style="display: flex; align-items: center; gap: 8px; background: #0F111A; padding: 11px 13px;">
+        <span style="min-width: 21px; height: 21px; padding: 0 6px; border-radius: 9999px; background: #364152; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #FFFFFF;">2</span>
+        <span style="font-size: 11.5px; color: #CDD5DF; white-space: nowrap;">selected</span>
+        <div style="height: 31px; display: flex; align-items: center; padding: 0 13px; border-radius: 7px; background: #257CFF; font-size: 11.5px; font-weight: 600; color: #FFFFFF; white-space: nowrap;">Create Invoice</div>
+        <div style="height: 31px; display: flex; align-items: center; padding: 0 12px; border-radius: 7px; background: #202939; border: 1px solid #4B5565; font-size: 11.5px; font-weight: 600; color: #E3E8EF; white-space: nowrap;">Complete All</div>
+        <div style="width: 1px; height: 20px; background: #4B5565;"></div>
+        <div style="height: 31px; display: flex; align-items: center; gap: 7px; padding: 0 12px; border-radius: 7px; background: #202939; border: 1px solid #4B5565; font-size: 11.5px; font-weight: 600; color: #E3E8EF; white-space: nowrap;">
+          <span>Receive (6)</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="width: 11px; height: 11px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+        <div style="width: 1px; height: 20px; background: #4B5565;"></div>
+        <div style="height: 31px; display: flex; align-items: center; gap: 7px; padding: 0 12px; border-radius: 7px; background: #202939; border: 1px solid #4B5565; font-size: 11.5px; font-weight: 600; color: #E3E8EF; white-space: nowrap;">
+          <span>More</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="width: 11px; height: 11px;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+
+      <table style="width: 100%; border-collapse: collapse; background: #FFFFFF;">
+        <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+          <tr style="{{ l.rowStyle }}">
+            <td style="width: 36px; padding: 11px 4px 11px 13px; vertical-align: middle;"><div style="width: 15px; height: 15px; border-radius: 4px; background: #257CFF; display: flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" style="width: 9px; height: 9px;"><polyline points="20 6 9 17 4 12"></polyline></svg></div></td>
+            <td style="width: 30px; padding: 11px 4px; vertical-align: middle;"><div style="width: 20px; height: 20px; border-radius: 5px; background: #E5EDFF; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; color: #257CFF;">{{ l.num }}</div></td>
+            <td style="padding: 11px 6px; vertical-align: middle; font-size: 12.5px; font-weight: 600; color: #121926;">{{ l.name }}</td>
+            <td style="width: 84px; padding: 11px 6px; vertical-align: middle; text-align: center;"><span style="display: inline-block; font-size: 10px; font-weight: 600; color: #087443; background: #EDFCF2; border: 1px solid #AAF0C4; border-radius: 9999px; padding: 2px 9px; white-space: nowrap;">Approved</span></td>
+            <td style="width: 86px; padding: 11px 13px 11px 6px; vertical-align: middle; text-align: center;"><span style="display: inline-block; font-size: 10px; font-weight: 600; color: #FFFFFF; background: #16B364; border-radius: 5px; padding: 4px 13px; white-space: nowrap;">Complete</span></td>
+          </tr>
+          <tr style="{{ l.subStyle }}">
+            <td colspan="2" style="padding: 7px 4px 7px 13px; font-size: 10.5px; color: #9AA4B2;">Parts</td>
+            <td style="padding: 7px 6px; font-size: 11px; color: #4B5565;">{{ l.part }}</td>
+            <td style="padding: 7px 6px; text-align: center;"><span style="display: inline-block; font-size: 10px; font-weight: 600; color: #B47A00; background: #FFFAEB; border: 1px solid #FEDF89; border-radius: 9999px; padding: 2px 9px; white-space: nowrap;">Awaiting</span></td>
+            <td style="padding: 7px 13px 7px 6px; text-align: center;"><span style="display: inline-block; font-size: 10px; font-weight: 600; color: #FFFFFF; background: #257CFF; border-radius: 5px; padding: 4px 13px; white-space: nowrap;">Receive</span></td>
+          </tr>
+        </sc-for>
+      </table>
+    </div>
+
+    <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 18px;">
+      <span style="font-size: 12px; font-weight: 700; color: #121926; white-space: nowrap;">You can bulk</span>
+      <span style="font-size: 12px; line-height: 19px; color: #4B5565;">{{ actionList }}</span>
+    </div>
+
+    <div style="display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap;">
+      <div style="flex: 1 1 190px; min-width: 170px; background: #FFFFFF; border: 1px solid #E3E8EF; border-radius: 10px; padding: 11px 13px;">
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16B364" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; flex: 0 0 14px;"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12.5 11 15.5 16 9.5"></polyline></svg>
+          <span style="font-size: 11.5px; font-weight: 700; color: #121926;">One click, every line</span>
+        </div>
+        <div style="font-size: 11px; line-height: 16px; color: #697586; margin-top: 5px;">No opening each line to do the same thing over.</div>
+      </div>
+      <div style="flex: 1 1 190px; min-width: 170px; background: #FFFFFF; border: 1px solid #E3E8EF; border-radius: 10px; padding: 11px 13px;">
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F79009" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; flex: 0 0 14px;"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          <span style="font-size: 11.5px; font-weight: 700; color: #121926;">Five seconds to undo</span>
+        </div>
+        <div style="font-size: 11px; line-height: 16px; color: #697586; margin-top: 5px;">Reverse any bulk action from the toast.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="width: 600px; max-width: 100%; margin: 14px auto 0; font-size: 11.5px; line-height: 17px; color: #9AA4B2; text-align: center;">600px wide, ready to snapshot and drop into the existing email.</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      lines: [
+        { num: '1', name: 'Replace - Brake pot', part: '(-) Brake pot', rowStyle: 'background: #F4F9FF;', subStyle: 'background: #FAFCFF;' },
+        { num: '2', name: 'Replace - Drive axle brakes (Drum)', part: '(-) Brake drum, Brake shoes', rowStyle: 'background: #F4F9FF; border-top: 5px solid #EEF2F6;', subStyle: 'background: #FAFCFF;' }
+      ],
+      actionList: 'approve, complete, pick, order or receive.'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/design-md/colors_and_type.css">
+  <script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; }
+    a { color: #257CFF; text-decoration: none; }
+    a:hover { color: #1752C0; }
+    @media (max-width: 1120px) { .sv-search { display: none !important; } }
+  </style>
+</helmet>
+<div style="width:100%;height:100vh;min-width:0;display:flex;flex-direction:column;background:#fff;font-family:Inter,system-ui,sans-serif;color:#364152;overflow:hidden;position:relative;">
+  <header style="height:64px;flex:none;background:#fff;border-bottom:1px solid #E3E8EF;display:flex;align-items:center;padding:12px 24px;gap:24px;font-family:Inter,system-ui,sans-serif;">
+    <div style="display:flex;align-items:center;gap:24px;flex:none;">
+      <span style="width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;color:#257CFF;">
+        <svg viewBox="0 0 100 100" width="30" height="30" fill="currentColor" aria-hidden="true">
+          <path d="M73.0787 60.9336L63.6353 51.4902C66.7831 54.7748 69.9309 57.9226 73.0787 60.9336Z"></path>
+          <path d="M84.5575 12.489H31.729C20.6432 12.489 16.1268 17.2792 13.937 27.6806L3.94616 74.8978C3.53557 77.2244 3.125 79.1405 3.125 80.9197C3.125 82.562 3.39871 84.0675 3.94616 85.1624C12.5684 77.635 20.2327 68.8759 28.9918 61.4854C32.687 64.2226 35.698 67.6441 38.1615 71.4763C31.4553 77.635 24.4754 83.6569 18.0429 90.2262H68.1341C79.3568 90.2262 83.7363 85.4361 86.063 75.0347L96.0538 27.8175C96.4644 25.4909 96.875 23.5748 96.875 21.7956C96.7381 15.3631 93.4535 12.489 84.5575 12.489ZM51.8476 82.2883C50.8896 83.1095 50.0684 84.0675 49.1104 84.8886C46.6469 81.8777 43.0885 79.4142 42.6779 75.3084C41.4462 66.5492 34.4662 58.7481 25.844 57.1058C21.6013 56.5584 19.0009 53 16.1268 50.1259L38.9826 27.27L39.2564 26.9963L39.3932 27.1332L63.7545 51.4945C66.9024 54.6423 69.9133 57.7901 73.198 60.9379L51.8476 82.2883ZM74.9772 59.1587L41.0356 25.2171L44.3203 21.9324L78.2618 55.8741L74.9772 59.1587ZM80.041 54.0948L46.0994 20.1533L49.3841 16.8686L83.3257 50.8102L80.041 54.0948Z"></path>
+          <path d="M46.0917 59.9816C48.8884 59.9816 51.1556 57.7144 51.1556 54.9177C51.1556 52.121 48.8884 49.8538 46.0917 49.8538C43.295 49.8538 41.0278 52.121 41.0278 54.9177C41.0278 57.7144 43.295 59.9816 46.0917 59.9816Z"></path>
+        </svg>
+      </span>
+      <nav style="display:flex;align-items:center;gap:2px;flex:none;">
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;">Work Orders</a>
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;">Schedule</a>
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;">Customers</a>
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;background:#EEF2F6;">Parts</a>
+        <a href="#" style="display:inline-flex;align-items:center;height:34px;padding:8px 10px;border-radius:8px;font-weight:500;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;">Reports</a>
+      </nav>
+    </div>
+    <div style="flex:1;"></div>
+    <div class="sv-search" style="flex:none;width:320px;">
+      <x-import component-from-global-scope="Input" icon="search" placeholder="Search" hint-size="320px,40px"></x-import>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex:none;">
+      <button type="button" style="background:none;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;line-height:20px;color:#202939;white-space:nowrap;padding:0;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="2" x2="14" y2="2"></line><line x1="12" y1="14" x2="15" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg>
+        Clock In
+      </button>
+      <button type="button" style="background:none;border:0;cursor:pointer;color:#697586;padding:0;display:inline-flex;align-items:center;" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg>
+      </button>
+      <button type="button" style="display:inline-flex;align-items:center;gap:12px;height:40px;padding:4px 4px 4px 14px;border:1px solid #E3E8EF;border-radius:8px;background:#F8FAFC;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;color:#202939;white-space:nowrap;flex:none;">
+        Staging Heavy Duty - 9919
+        <span style="width:32px;height:32px;border-radius:50%;background:#E5EDFF;display:inline-flex;align-items:center;justify-content:center;color:#0868A7;font-weight:600;font-size:12px;">AS</span>
+      </button>
+    </div>
+  </header>
+
+  <div style="flex:1;min-height:0;display:flex;">
+    <aside style="width:248px;flex:none;border-right:1px solid #E3E8EF;background:#fff;padding:24px 16px;display:flex;flex-direction:column;gap:20px;overflow-y:auto;">
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:11px;font-weight:700;color:#697586;letter-spacing:0.05em;text-transform:uppercase;padding:0 8px 4px;">Sales &amp; Service</div>
+        <div style="display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;font-size:14px;font-weight:500;color:#364152;cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          Part Sales
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:11px;font-weight:700;color:#697586;letter-spacing:0.05em;text-transform:uppercase;padding:0 8px 4px;">Parts</div>
+        <div style="display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;font-size:14px;font-weight:500;color:#364152;cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9 5-9-5 9-5z"></path><path d="M3 8v8l9 5 9-5V8"></path></svg>
+          Inventory
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;font-size:14px;font-weight:500;color:#364152;cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          Catalog
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:11px;font-weight:700;color:#697586;letter-spacing:0.05em;text-transform:uppercase;padding:0 8px 4px;">Supply Chain</div>
+        <div style="display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;font-size:14px;font-weight:500;color:#364152;cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"></polyline><path d="M20 4v7a4 4 0 0 1-4 4H4"></path></svg>
+          Returns
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;font-size:14px;font-weight:600;color:#257CFF;background:var(--sv-primary-50);cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          Purchase Orders
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;font-size:14px;font-weight:500;color:#364152;cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"></rect><path d="M16 8h4l3 4v4h-7"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          Vendor Invoices
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;font-size:14px;font-weight:500;color:#364152;cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"></path><path d="M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"></path></svg>
+          Vendors
+        </div>
+      </div>
+    </aside>
+
+    <main style="flex:1;min-width:0;overflow:auto;background:#fff;padding:24px 0 40px 0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-left:32px;padding-right:32px;">
+        <h1 style="margin:0;font-size:24px;line-height:32px;font-weight:600;color:#202939;font-family:'Inter Display',Inter,sans-serif;letter-spacing:-0.01em;">Purchase Orders</h1>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button style="width:40px;height:40px;border:1px solid var(--sv-border-strong);border-radius:8px;background:var(--sv-surface);color:var(--sv-text-primary);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--sv-elev-1-shadow);" style-hover="background:var(--sv-surface-hover);" title="Columns">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="9" y1="4" x2="9" y2="20"></line><line x1="15" y1="4" x2="15" y2="20"></line></svg>
+          </button>
+          <x-import component-from-global-scope="Button" variant="primary" size="md" hint-size="90px,40px">New PO</x-import>
+        </div>
+      </div>
+
+      <div style="width:100%;overflow-x:auto;">
+      <table style="width:100%;min-width:1260px;table-layout:fixed;border-collapse:collapse;">
+        <thead>
+          <tr style="border-bottom:1px solid #E3E8EF;">
+            <th style="text-align:center;padding:0 0 14px 32px;vertical-align:middle;width:56px;">
+              <x-import component-from-global-scope="Checkbox" checked="{{ allChecked }}" on-change="{{ onToggleAll }}" style="display:inline-flex;width:18px;height:18px;" hint-size="18px,18px"></x-import>
+            </th>
+            <th style="text-align:left;padding:0 12px 14px 20px;font-size:12px;font-weight:600;letter-spacing:0.01em;color:#202939;width:100px;">Work Order</th>
+            <th style="text-align:left;padding:0 12px 14px 0;font-size:12px;font-weight:600;letter-spacing:0.01em;color:#202939;width:130px;">Purchase Order Number</th>
+            <th style="text-align:left;padding:0 12px 14px 0;font-size:12px;font-weight:600;letter-spacing:0.01em;color:#202939;width:296px;">Vendor</th>
+            <th style="text-align:left;padding:0 12px 14px 0;font-size:12px;font-weight:600;letter-spacing:0.01em;color:#202939;width:122px;">Order Status</th>
+            <th style="text-align:left;padding:0 12px 14px 0;font-size:12px;font-weight:600;letter-spacing:0.01em;color:#202939;width:100px;">Created On</th>
+            <th style="text-align:left;padding:0 12px 14px 0;font-size:12px;font-weight:600;letter-spacing:0.01em;color:#202939;width:116px;">Ordered By</th>
+            <th style="text-align:left;padding:0 12px 14px 0;font-size:12px;font-weight:600;letter-spacing:0.01em;color:#202939;width:100px;">Note</th>
+            <th style="text-align:right;padding:0 12px 14px 0;font-size:12px;font-weight:600;letter-spacing:0.01em;color:#202939;width:100px;">Total Price</th>
+            <th style="padding:0 0 14px 0;width:140px;position:sticky;right:0;z-index:2;background:var(--sv-surface);"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ rows }}" as="row" hint-placeholder-count="12">
+            <tr onMouseEnter="{{ row.onEnter }}" onMouseLeave="{{ row.onLeave }}" onFocus="{{ row.onFocus }}" onBlur="{{ row.onBlurRow }}" style="border-bottom:1px solid #E3E8EF;background:{{ row.rowBg }}">
+              <td style="padding:{{ rowPad }} 0 {{ rowPad }} 32px;text-align:center;vertical-align:middle;">
+                <x-import component-from-global-scope="Checkbox" checked="{{ row.checked }}" on-change="{{ row.onToggle }}" style="display:inline-flex;width:18px;height:18px;" hint-size="18px,18px"></x-import>
+              </td>
+              <td style="padding:{{ rowPad }} 12px {{ rowPad }} 20px;font-size:14px;color:#202939;white-space:nowrap;">{{ row.workOrder }}</td>
+              <td style="padding:{{ rowPad }} 12px {{ rowPad }} 0;font-size:14px;color:#202939;white-space:nowrap;"><a href="{{ row.href }}" style="font-weight:500;">{{ row.poNumber }}</a></td>
+              <td style="padding:{{ rowPad }} 12px {{ rowPad }} 0;font-size:14px;line-height:20px;color:var(--sv-text-primary);position:relative;">
+                <div style="display:flex;align-items:center;gap:var(--sv-space-1);min-width:0;">
+                  <sc-if value="{{ row.hasAssigned }}" hint-placeholder-val="{{ true }}">
+                    <span style="flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ row.firstVendor }}</span>
+                  </sc-if>
+                  <sc-if value="{{ row.hasOverflow }}" hint-placeholder-val="{{ false }}">
+                    <button type="button" onClick="{{ row.onToggleOverflow }}" aria-label="{{ row.overflowAria }}" aria-expanded="{{ row.overflowOpen }}" style="flex:none;border:0;background:transparent;padding:0;cursor:pointer;font-family:inherit;font-size:14px;line-height:20px;font-weight:600;color:var(--sv-primary-500);font-variant-numeric:tabular-nums;" style-hover="color:var(--sv-primary-700);text-decoration:underline;">{{ row.overflowText }}</button>
+                  </sc-if>
+                  <sc-if value="{{ row.showDivider }}" hint-placeholder-val="{{ false }}">
+                    <span aria-hidden="true" style="flex:none;width:1px;height:var(--sv-space-4);background:var(--sv-border-default);margin:0 var(--sv-space-1);"></span>
+                  </sc-if>
+                  <sc-if value="{{ row.hasUnassigned }}" hint-placeholder-val="{{ false }}">
+                    <span style="flex:none;position:relative;display:inline-flex;">
+                      <span tabindex="0" onMouseEnter="{{ row.onTokenEnter }}" onMouseLeave="{{ row.onTokenLeave }}" onFocus="{{ row.onTokenEnter }}" onBlur="{{ row.onTokenLeave }}" aria-label="{{ row.tokenAria }}" style="flex:none;display:inline-flex;align-items:center;gap:var(--sv-space-1);font-size:14px;line-height:20px;font-weight:600;white-space:nowrap;color:var(--sv-warning-text);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        <span style="font-variant-numeric:tabular-nums;">{{ row.tokenText }}</span>
+                      </span>
+                      <sc-if value="{{ row.showTooltip }}" hint-placeholder-val="{{ false }}">
+                        <span role="tooltip" style="position:absolute;bottom:calc(100% + var(--sv-space-2));left:50%;transform:translateX(-50%);z-index:40;padding:var(--sv-space-1) var(--sv-space-2);border-radius:8px;background:var(--sv-grey-800);color:var(--sv-grey-25);font-size:12px;line-height:16px;font-weight:500;letter-spacing:0.01em;white-space:nowrap;box-shadow:var(--sv-shadow-lg);pointer-events:none;">{{ row.tooltipText }}</span>
+                      </sc-if>
+                    </span>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ row.overflowOpen }}" hint-placeholder-val="{{ false }}">
+                  <span>
+                    <span onClick="{{ row.onCloseOverflow }}" style="position:fixed;inset:0;z-index:30;"></span>
+                    <div style="position:absolute;top:calc(100% - var(--sv-space-1));left:0;z-index:31;min-width:280px;padding:var(--sv-space-2);background:var(--sv-elev-2-bg);border:1px solid var(--sv-elev-2-border);border-radius:8px;box-shadow:var(--sv-elev-2-shadow);">
+                      <div style="padding:var(--sv-space-1) var(--sv-space-2) var(--sv-space-2);font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.01em;color:var(--sv-text-secondary);">{{ row.overflowHeading }}</div>
+                      <sc-for list="{{ row.slots }}" as="slot" hint-placeholder-count="3">
+                        <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--sv-space-3);padding:var(--sv-space-2);border-radius:8px;">
+                          <span style="display:flex;align-items:center;gap:var(--sv-space-2);min-width:0;font-size:14px;line-height:20px;color:{{ slot.labelColor }};">
+                            <sc-if value="{{ slot.unassigned }}" hint-placeholder-val="{{ false }}">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            </sc-if>
+                            <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ slot.label }}</span>
+                          </span>
+                          <sc-if value="{{ slot.unassigned }}" hint-placeholder-val="{{ false }}">
+                            <button type="button" onClick="{{ slot.onAssign }}" aria-label="{{ slot.assignAria }}" style="flex:none;border:0;background:transparent;padding:0;cursor:pointer;font-family:inherit;font-size:14px;line-height:20px;font-weight:600;color:var(--sv-primary-500);" style-hover="color:var(--sv-primary-700);text-decoration:underline;">Assign</button>
+                          </sc-if>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </span>
+                </sc-if>
+              </td>
+              <td style="padding:{{ rowPad }} 12px {{ rowPad }} 0;">
+                <sc-if value="{{ row.isOrdered }}" hint-placeholder-val="{{ true }}">
+                  <span style="display:inline-flex;align-items:center;height:22px;padding:2px 8px;border-radius:9999px;border:1px solid var(--sv-info-border);background:var(--sv-info-fill);color:var(--sv-info-text);font-size:11px;font-weight:500;line-height:11px;white-space:nowrap;">{{ row.status }}</span>
+                </sc-if>
+                <sc-if value="{{ row.isPartial }}" hint-placeholder-val="{{ false }}">
+                  <span style="display:inline-flex;align-items:center;height:22px;padding:2px 8px;border-radius:9999px;border:1px solid var(--sv-warning-border);background:var(--sv-warning-fill);color:var(--sv-warning-text);font-size:11px;font-weight:500;line-height:11px;white-space:nowrap;">{{ row.status }}</span>
+                </sc-if>
+              </td>
+              <td style="padding:{{ rowPad }} 12px {{ rowPad }} 0;font-size:14px;color:#364152;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ row.createdOn }}</td>
+              <td style="padding:{{ rowPad }} 12px {{ rowPad }} 0;font-size:14px;color:#364152;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ row.orderedBy }}</td>
+              <td style="padding:{{ rowPad }} 12px {{ rowPad }} 0;font-size:14px;color:#697586;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ row.note }}</td>
+              <td style="padding:{{ rowPad }} 12px {{ rowPad }} 0;font-size:14px;color:#202939;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;">{{ row.totalPrice }}</td>
+              <td style="padding:{{ rowPad }} 32px {{ rowPad }} 0;text-align:right;position:sticky;right:0;z-index:1;background:{{ row.stickyBg }};">
+                <a href="{{ row.href }}" style="display:block;opacity:{{ row.actionOpacity }};pointer-events:{{ row.actionEvents }};transition:opacity 120ms ease;">
+                  <x-import component-from-global-scope="Button" variant="primary" size="sm" style="width:100%;justify-content:center;" hint-size="120px,32px">Receive</x-import>
+                </a>
+              </td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      </div>
+    </main>
+  </div>
+
+  <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;top:76px;left:280px;z-index:20;display:flex;align-items:center;gap:14px;padding:10px 10px 10px 18px;background:#fff;border:1px solid var(--sv-grey-100);border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10), 0 4px 8px rgba(11,23,51,0.05);">
+      <span style="font-size:14px;font-weight:600;color:var(--sv-text-primary);white-space:nowrap;">{{ selectionLabel }}</span>
+      <span style="width:1px;height:24px;background:var(--sv-border-default);flex:none;"></span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <x-import component-from-global-scope="Button" variant="primary" size="md" onClick="{{ onReceiveSelected }}" hint-size="170px,40px">Receive selected</x-import>
+      </div>
+      <button onClick="{{ onClearSelection }}" aria-label="Clear selection" style="width:36px;height:36px;flex:none;display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:8px;background:transparent;color:var(--sv-text-secondary);cursor:pointer;" style-hover="background:var(--sv-surface-hover);color:var(--sv-text-primary);">
+        <x-import component-from-global-scope="Icon" name="x" size="18" hint-size="18px,18px"></x-import>
+      </button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1512,&quot;height&quot;:982},&quot;rowDensity&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;comfortable&quot;,&quot;compact&quot;],&quot;default&quot;:&quot;compact&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Table&quot;},&quot;stripedRows&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Table&quot;},&quot;onlyMissingVendors&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Filters&quot;}}">
+class Component extends DCLogic {
+  state = { selected: {}, hoverRow: null, focusRow: null, tokenTip: null, overflowRow: null };
+
+  V(name) { return { id: name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), name }; }
+
+  // A slot is `null` when no vendor is assigned to it. The data model cannot
+  // distinguish "never assigned" from "vendor removed" — copy treats both as unassigned.
+  // Vendor names are clipped to 40 characters; CSS ellipsis still handles narrow columns.
+  clip(name, max = 40) { return name.length > max ? name.slice(0, max).trimEnd() + '…' : name; }
+
+  slotsOf(row) { return row.vendors || []; }
+  unassignedCount(row) { return this.slotsOf(row).filter(v => !v).length; }
+  // Filter predicate: at least one unassigned slot — NOT "has no vendors".
+  hasMissingVendor(row) { return this.unassignedCount(row) > 0; }
+
+  DATA = [
+    { id: 'r0',  workOrder: 'S9-11993', poNumber: 'S9-11993', vendors: [this.V('123 Cannabis Forestlawn')], status: 'Ordered', createdOn: 'Jul 27, 2026', orderedBy: 'Admin ShopView', totalPrice: '$199.60', note: 'Rush order', href: 'Purchase Order Details.dc.html' },
+    { id: 'r1',  workOrder: 'S9-25992', poNumber: 'S9-25992', vendors: [this.V('FleetPride Heavy Duty Parts'), this.V('Cummins Sales and Service'), this.V('Wajax Industrial')], status: 'Ordered', createdOn: 'Yesterday', orderedBy: 'Admin ShopView', totalPrice: '$1,261.00', note: '-' },
+    { id: 'r2',  workOrder: '-',        poNumber: 'I9-1230',  vendors: [this.V('Aabridge Mining')], status: 'Ordered', createdOn: '2 days ago', orderedBy: 'Admin ShopView', totalPrice: '$5.00', note: '-' },
+    { id: 'r3',  workOrder: 'S9-25592', poNumber: 'S9-25592', vendors: [this.V('Aaside Excavating')], status: 'Partial Delivery', createdOn: 'Jul 21, 2026', orderedBy: 'Admin ShopView', totalPrice: '$1,022.41', note: '-' },
+    { id: 'r4',  workOrder: 'S9-25247', poNumber: 'S9-25247', vendors: [null], status: 'Ordered', createdOn: 'Jul 20, 2026', orderedBy: 'Admin ShopView', totalPrice: '$1,100.00', note: '-' },
+    { id: 'r5',  workOrder: 'S9-25635', poNumber: 'S9-25635', vendors: [this.V('Aahaven Ventures'), null, null], status: 'Partial Delivery', createdOn: 'Jul 17, 2026', orderedBy: 'Admin ShopView', totalPrice: '$269.00', note: '-' },
+    { id: 'r6',  workOrder: '-',        poNumber: 'I9-1224',  vendors: [this.V('4Refuel')], status: 'Ordered', createdOn: 'Jul 16, 2026', orderedBy: 'Admin ShopView', totalPrice: '$3.58', note: '-' },
+    { id: 'r7',  workOrder: 'S9-24934', poNumber: 'S9-24934', vendors: [null, null, null], status: 'Partial Delivery', createdOn: 'Jul 3, 2026', orderedBy: 'Admin ShopView', totalPrice: '$68.00', note: '-' },
+    { id: 'r8',  workOrder: 'S9-13556', poNumber: 'S9-13556', vendors: [this.V('Rocky Mountain Heavy Duty Truck & Trailer Repair Ltd.'), null], status: 'Ordered', createdOn: 'Jul 3, 2026', orderedBy: 'Tech ShopView', totalPrice: '$0.50', note: '-' },
+    { id: 'r9',  workOrder: 'P9-1042',  poNumber: 'P9-1042',  vendors: [this.V('Aburg Towing'), this.V('Kenworth Parts Depot'), null], status: 'Partial Delivery', createdOn: 'Jul 2, 2026', orderedBy: 'Bilal Muzamil', totalPrice: '$2,113.84', note: '-' },
+    { id: 'r10', workOrder: 'S9-15597', poNumber: 'S9-15597', vendors: [this.V('Aburg Towing')], status: 'Ordered', createdOn: 'Jun 18, 2026', orderedBy: 'Admin ShopView', totalPrice: '$419.26', note: '-' },
+    { id: 'r11', workOrder: '-',        poNumber: 'I9-1205',  vendors: [this.V('4Refuel')], status: 'Ordered', createdOn: 'Jun 16, 2026', orderedBy: 'Vladimir Tomovic', totalPrice: '$181.65', note: '-' },
+    { id: 'r12', workOrder: '-',        poNumber: 'I9-1202',  vendors: [this.V('4Refuel'), null, null, null], status: 'Ordered', createdOn: 'Jun 15, 2026', orderedBy: 'Vladimir Tomovic', totalPrice: '$245.00', note: '-' },
+  ];
+  toneFor(status) {
+    return { 'Ordered': 'info', 'Partial Delivery': 'error' }[status] || 'neutral';
+  }
+
+  toggle(id) {
+    this.setState(s => ({ selected: { ...s.selected, [id]: !s.selected[id] } }));
+  }
+
+  toggleAll() {
+    const all = this.DATA.every(r => this.state.selected[r.id]);
+    const next = {};
+    if (!all) this.DATA.forEach(r => { next[r.id] = true; });
+    this.setState({ selected: next });
+  }
+
+  renderVals() {
+    const density = this.props.rowDensity ?? 'comfortable';
+    const striped = this.props.stripedRows ?? false;
+    const rowPad = density === 'compact' ? '10px' : '16px';
+    const sel = this.state.selected;
+
+    const missingOnly = this.props.onlyMissingVendors ?? false;
+    const visible = missingOnly ? this.DATA.filter(r => this.hasMissingVendor(r)) : this.DATA;
+
+    const rows = visible.map((r, i) => {
+      const slots = this.slotsOf(r);
+      const assigned = slots.filter(Boolean);
+      const missing = slots.length - assigned.length;
+      const hidden = Math.max(0, assigned.length - 1);   // hidden ASSIGNED vendors only
+      const revealed = this.state.hoverRow === r.id || this.state.focusRow === r.id;
+      const solo = assigned.length === 0;
+      const plural = missing > 1;
+      const assignHref = 'Purchase Order Details - Vendor Missing.dc.html';
+      const goAssign = () => { window.location.href = assignHref; };
+      return {
+        ...r,
+        checked: !!sel[r.id],
+        onToggle: () => this.toggle(r.id),
+        href: missing > 0 ? assignHref : (r.href || '#'),
+        onEnter: () => this.setState({ hoverRow: r.id }),
+        onLeave: () => this.setState(s => (s.hoverRow === r.id ? { hoverRow: null, tokenTip: null } : {})),
+        onFocus: () => this.setState({ focusRow: r.id }),
+        onBlurRow: () => this.setState(s => (s.focusRow === r.id ? { focusRow: null } : {})),
+        actionOpacity: revealed ? '1' : '0',
+        actionEvents: revealed ? 'auto' : 'none',
+        statusTone: this.toneFor(r.status),
+        isOrdered: r.status === 'Ordered',
+        isPartial: r.status === 'Partial Delivery',
+        note: r.note ?? '-',
+        stickyBg: sel[r.id] ? 'var(--sv-primary-50)' : (this.state.hoverRow === r.id ? 'var(--sv-grey-25)' : 'var(--sv-surface)'),
+        rowBg: sel[r.id] ? 'var(--sv-primary-50)' : (this.state.hoverRow === r.id ? 'var(--sv-grey-25)' : (striped && i % 2 === 1 ? 'var(--sv-grey-25)' : 'transparent')),
+
+        hasAssigned: assigned.length > 0,
+        firstVendor: assigned.length ? this.clip(assigned[0].name) : '',
+        hasOverflow: hidden > 0,
+        overflowText: '+' + hidden,
+        overflowAria: 'Show all ' + slots.length + ' vendor slots on this purchase order',
+        overflowHeading: assigned.length + ' of ' + slots.length + ' slots assigned',
+        overflowOpen: this.state.overflowRow === r.id,
+        onToggleOverflow: () => this.setState(s => ({ overflowRow: s.overflowRow === r.id ? null : r.id })),
+        onCloseOverflow: () => this.setState({ overflowRow: null }),
+        slots: slots.map((v, n) => ({
+          label: v ? this.clip(v.name) : 'Vendor slot ' + (n + 1),
+          labelColor: v ? 'var(--sv-text-primary)' : 'var(--sv-warning-text)',
+          unassigned: !v,
+          assignAria: 'Assign a vendor to slot ' + (n + 1),
+          onAssign: goAssign,
+        })),
+
+        showDivider: assigned.length > 0 && missing > 0,
+        hasUnassigned: missing > 0,
+        tokenText: solo ? (plural ? missing + ' vendors unassigned' : 'No vendor assigned') : String(missing),
+        tokenAria: plural ? missing + ' vendors unassigned' : 'No vendor assigned',
+        tooltipText: plural ? missing + ' vendors unassigned' : 'No vendor assigned',
+        showTooltip: this.state.tokenTip === r.id,
+        onTokenEnter: () => this.setState({ tokenTip: r.id }),
+        onTokenLeave: () => this.setState(s => (s.tokenTip === r.id ? { tokenTip: null } : {})),
+      };
+    });
+
+    const count = this.DATA.filter(r => sel[r.id]).length;
+
+    return {
+      rows,
+      rowPad,
+      allChecked: this.DATA.length > 0 && this.DATA.every(r => sel[r.id]),
+      onToggleAll: () => this.toggleAll(),
+      hasSelection: count > 0,
+      selectionLabel: count + ' selected',
+      onClearSelection: () => this.setState({ selected: {} }),
+      onReceiveSelected: () => { window.location.href = 'Receive Vendor Parts.dc.html'; },
+    };
+  }
+}
+</script>
+</body>
+</html>

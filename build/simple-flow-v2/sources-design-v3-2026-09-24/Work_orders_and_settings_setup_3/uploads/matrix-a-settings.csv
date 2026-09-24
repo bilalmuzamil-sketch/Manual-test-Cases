@@ -1,0 +1,17 @@
+Case,Require Ordering,Require Receiving,Require Picking,Require Review,Purchased part row - buttons,Purchased part row - statuses used,Inventory part row - buttons,Inventory part row - statuses used,Bulk actions available,Wizard steps (in order),Final CTA label,Receive later split button,Complete WO button
+1,OFF,OFF,OFF,OFF,"Receive (in ... menu, optional)",(empty) = ready,none,(empty) = ready,Approve / Decline / Complete / Split / Delete,Missing details -> done,Complete work order,No,OPEN - current: visible once a line is approved / proposed: only when all lines complete
+2,OFF,OFF,OFF,ON,"Receive (in ... menu, optional)",(empty),none,(empty),Approve / Decline / Complete / Split / Delete,Missing details -> done,Ready for review,No,same as case 1
+3,OFF,OFF,ON,OFF,"Receive (in ... menu, optional)",(empty),Pick,Needs picking -> (empty),+ Pick parts,Missing details -> Pick parts,Complete work order,No,same
+4,OFF,OFF,ON,ON,"Receive (in ... menu, optional)",(empty),Pick,Needs picking -> (empty),+ Pick parts,Missing details -> Pick parts,Ready for review,No,same
+5,OFF,ON,OFF,OFF,Receive,Awaiting -> (empty),none,(empty),+ Receive parts,Missing details -> Receive parts,Complete work order,Yes (with permission),same
+6,OFF,ON,OFF,ON,Receive,Awaiting -> (empty),none,(empty),+ Receive parts,Missing details -> Receive parts,Ready for review,Yes (with permission),same
+7,OFF,ON,ON,OFF,Receive,Awaiting -> (empty),Pick,Needs picking -> (empty),+ Pick parts / Receive parts,Missing details -> Pick parts -> Receive parts,Complete work order,Yes (with permission),same
+8,OFF,ON,ON,ON,Receive,Awaiting -> (empty),Pick,Needs picking -> (empty),+ Pick parts / Receive parts,Missing details -> Pick parts -> Receive parts,Ready for review,Yes (with permission),same
+9,ON,OFF,OFF,OFF,"Order, then Receive in ... menu (optional)",Needs ordering -> (empty),none,(empty),+ Order parts,Missing details -> Order parts,Complete work order,No,same
+10,ON,OFF,OFF,ON,"Order, then Receive in ... menu (optional)",Needs ordering -> (empty),none,(empty),+ Order parts,Missing details -> Order parts,Ready for review,No,same
+11,ON,OFF,ON,OFF,"Order, then Receive in ... menu (optional)",Needs ordering -> (empty),Pick,Needs picking -> (empty),+ Order parts / Pick parts,Missing details -> Pick parts -> Order parts,Complete work order,No,same
+12,ON,OFF,ON,ON,"Order, then Receive in ... menu (optional)",Needs ordering -> (empty),Pick,Needs picking -> (empty),+ Order parts / Pick parts,Missing details -> Pick parts -> Order parts,Ready for review,No,same
+13,ON,ON,OFF,OFF,Order -> Receive,Needs ordering -> Awaiting -> (empty),none,(empty),+ Order parts / Receive parts,Missing details -> Order parts -> Receive parts,Complete work order,Yes (with permission),same
+14,ON,ON,OFF,ON,Order -> Receive,Needs ordering -> Awaiting -> (empty),none,(empty),+ Order parts / Receive parts,Missing details -> Order parts -> Receive parts,Ready for review,Yes (with permission),same
+15,ON,ON,ON,OFF,Order -> Receive,Needs ordering -> Awaiting -> (empty),Pick,Needs picking -> (empty),+ Order parts / Pick parts / Receive parts,Missing details -> Pick parts -> Order parts -> Receive parts,Complete work order,Yes (with permission),same
+16,ON,ON,ON,ON,Order -> Receive,Needs ordering -> Awaiting -> (empty),Pick,Needs picking -> (empty),+ Order parts / Pick parts / Receive parts,Missing details -> Pick parts -> Order parts -> Receive parts,Ready for review,Yes (with permission),same
