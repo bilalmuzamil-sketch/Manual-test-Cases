@@ -60,3 +60,10 @@
 Access + scope + bodies + seed map established. Next: find the settings/WO route from the project's own
 records or a UI walk (Rule 27/97), seed the base states, then drive subfolder 6666 onward. TestRail write
 go-ahead (R416 verdicts + 64 marker corrections) still to be confirmed by the QA lead before the write phase.
+
+## SCOPE UPDATE (QA lead, 2026-09-24)
+- The **7 Automated cases are Bilal's (created_by=3), and the QA lead has authorised build-verifying them**
+  into manually-runnable shape alongside the other 57 (Rule 71 gate lifted for these 7). After changing
+  them, **give the QA lead their C-id links so he can alert Vlad (Rule 65).** The 7: C44557, C44561,
+  C44575, C44583, C44587, C44604, C44605.
+- **All 64 ours are now in build-verify scope.** The 15 foreign (created_by=1) stay untouched (Rule 38).
