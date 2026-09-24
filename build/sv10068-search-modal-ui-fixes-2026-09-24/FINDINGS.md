@@ -96,3 +96,70 @@ indicator only, and he should say whether he wants that gone too.**
 | Every figure traced to a live measurement | yes — computed styles and geometry read this pass |
 | Human voice / no AI fingerprint | scanned before posting |
 | No technical-details section | per Rule 84, asked per ticket |
+
+---
+
+# §6 — DESIGN RECEIVED: conformance check (24 Sep, supersedes the "cannot verify" notes above)
+
+The QA lead supplied the **ShopView Design System** as four zips (`_18`, `_19`, `_20`, `_21`).
+**All four are byte-identical** — same 314 files, `diff -rq` clean between every pair — so there is
+one design, exported four times. The search modal's spec is
+`ds21/global-search.jsx` with token values in `ds21/colors_and_type.css`.
+
+Every design value below is quoted from those two files; every build value is the live measurement
+from §1.
+
+| Element | Design | Build | |
+|---|---|---|---|
+| Modal width | `640` | 640 px | match |
+| Modal border | `5px solid var(--sv-border-subtle)` = **#EEF2F6** | `5px solid rgb(238,242,246)` | **exact** |
+| Backdrop | the overlay div has **no background at all** | `rgba(0, 0, 0, 0)` | match |
+| Open animation | none declared | none, `transition-duration: 0s` | match |
+| Placeholder | `"Search work orders, customers, parts and more"` | identical | **exact** |
+| Clear button | `{hasQuery && <button …>}` — rendered **only** when there is a query; `onClick` sets the query to "" and refocuses, it does not close | identical behaviour | **exact** |
+| Tab strip | `overflowX: auto`, `scrollbarWidth: thin`, no `borderBottom` | same | match |
+| Row **hover** | `var(--sv-surface-hover)` = `--sv-grey-50` = **#F8FAFC** | `rgb(248,250,252)` | **exact** |
+| Row **selected** | **`var(--sv-surface-hover)` — the same grey** (`const on = isHov \|\| selected`) | `rgb(233,245,255)` = **#E9F5FF** | **✗ MISMATCH** |
+| Left stripe | none anywhere in the component | none | match |
+| Result title | 14px / 600 / `--sv-text-primary` = #364152 | 14px / 600 / #121926 | size + weight exact; colour darker |
+| Result subtitle | 12px / 500 / `--sv-text-secondary` = #697586 | 12px / 500 / rgb(105,117,134) | **exact** |
+| "Recent searches" | 12px / **600** / #697586 | **13.12px** / **700** / #697586 | colour exact; larger and bolder |
+| "Clear all" | 12px / 600 / `--sv-accent-text` = #175CD3, `textDecoration: hov ? "underline" : "none"` | 13.12px / 600 / rgb(23,92,211), underline on hover | colour, weight and hover exact; larger. **Label reads "Clear All"**, design says **"Clear all"** |
+| Day label | 10px / 600 / uppercase / `--sv-text-muted` = **#828A98** | 11px / 700 / uppercase / **#697586** | darker, bolder and larger than the token |
+| Empty state | **"Type to start searching for work orders, parts, customers and more"**, 14px, text-secondary, centred | identical | **exact** |
+| No results | 14px, text-secondary, centred | 14px, rgb(105,117,134), centred, 0 px offset | match |
+
+## §6.1 — The blue row is a real miss, and the design says so
+
+This settles the question I was going to put to Branko.
+
+- The Global Search component spec renders a row's background as
+  **`on ? "var(--sv-surface-hover)" : "transparent"`** where **`const on = isHov || selected`** —
+  so in the design a **selected row and a hovered row are the same grey, #F8FAFC**. There is no
+  blue row in this component at all.
+- The design system *does* define **`--sv-surface-selected: var(--sv-primary-50)` = #E9F5FF**,
+  commented *"selected row / active nav"* — and **that is exactly the colour the build renders**.
+  But **`global-search.jsx` never uses that token** (`grep -c surface-selected` → **0**).
+
+So the build reached for the design system's general selected-row colour where the component's own
+spec says to use the hover grey. The component spec governs the component, and **Branko asked for
+the blue to go** — both point the same way. **Item 3 is not complete.**
+
+## §6.2 — Three places the build is *stronger* than the design token
+
+On the three "use stronger…" items the build overshoots the design values — in the direction Branko
+asked for:
+
+- **Day labels**: #697586 where the token is #828A98, and 11px/700 where the design is 10px/600.
+- **"Recent searches"**: 13.12px/700 where the design is 12px/600.
+- **Result title**: #121926 where the token is #364152.
+
+These satisfy his request and exceed the token. Not called failures — but he should say whether he
+wants them pulled back to the token values or left as they are.
+
+## §6.3 — Resolved by the design, no longer open
+
+- The empty-state wording is **not** a deviation. *"Type to start searching for work orders, parts,
+  customers and more"* **is the design's own string** — Branko's "Search for something" is the text
+  the design already replaced. §3's note is withdrawn.
+- The clear-button behaviour matches the design exactly, including the conditional render.
