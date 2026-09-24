@@ -4,69 +4,261 @@
  "environment": "production, Trucks Hill 2 (dummy test org)",
  "date": "2026-09-24",
  "verdicts": {
-  "44549": {"v": "Passed", "why": "The Work Orders settings page shows all four settings this release owns, each in the Require... form, under the Workflow, Line requirements and Parts groups, with the shop's other work-order settings still there. Eight settings in three groups."},
-  "44550": {"v": "Passed", "why": "The setting reads Require Picking Inventory Parts and the old Automatically pick label is gone. What the shop stores is the opposite value, so the shop keeps exactly the behaviour it had."},
-  "44551": {"v": "Blocked", "why": "Could not be judged. No part on this shop is in a state where an Order action would be offered, and whether the setting starts on for a new shop cannot be read on a shop that already has a value for it."},
-  "44552": {"v": "Passed", "why": "With picking required a Pick button appears on the part row; with it off there is none. With receiving required a Receive button sits on the row; with it off Receive moves into the part's three-dot menu rather than disappearing."},
-  "44553": {"v": "Passed", "why": "Turning the ordering and picking requirements on later changed nothing that already existed: all 66 parts across 45 work orders kept the state they were in."},
-  "44554": {"v": "Failed", "why": "Turning the ordering requirement off changed no record at all. The product's own confirmation says so: No record is changed by this switch. The check requires every part still waiting to be ordered to be placed on a purchase order and moved to Awaiting."},
-  "44555": {"v": "Failed", "why": "No audit entry naming the cause of a settings change exists, because the change touches no record. The newest entries on the work order are from 16 September."},
-  "44556": {"v": "Passed", "why": "Invoiced and paid work orders and declined lines were untouched by every settings change. Nothing at all is swept, so nothing reached them."},
-  "44557": {"v": "Failed", "why": "All four switches ask to confirm. The check requires a confirmation on the ordering and picking requirements only, and none on approval or receiving. Turning picking off also does not warn about stock: it says none of them is picked retroactively."},
-  "44558": {"v": "Passed", "why": "Cancelling each of the four confirmations left the shop's settings exactly as they were, read back afterwards and identical."},
-  "44559": {"v": "Failed", "why": "No progress indicator appears while a settings change is applied; the page returns at once. Nothing is applied, so there is nothing to wait for."},
-  "44561": {"v": "Blocked", "why": "Could not be judged. No part on this shop is in a received or picked state, so a line carrying all three part states could not be assembled."},
-  "44562": {"v": "Passed", "why": "With a tech story required, a line would not complete until it was given one, and an unresolved core was asked for as well."},
-  "44563": {"v": "Blocked", "why": "Partly seen: a line awaiting approval offers no Complete, and Create invoice is refused while any line awaits approval. The bulk bar route and the clock-out route could not be exercised."},
-  "44564": {"v": "Blocked", "why": "Could not be judged. The clock-out window needs a technician clocked in on this work order, which this account cannot do for someone else."},
-  "44565": {"v": "Failed", "why": "Complete is never disabled for a parts reason, which is right. But a completed line cannot be reopened at all: there is no Uncomplete action anywhere on the work order, on the line or in any menu."},
-  "44566": {"v": "Failed", "why": "The actions a line offers do not match. A line awaiting approval offers only Approve and Decline; an approved line offers only Complete. Request part, Delete line, Authorization required and Uncomplete appear nowhere on the page, and Decline is not offered on an approved line."},
-  "44567": {"v": "Failed", "why": "Decline cannot be shown disabled with its reason because Decline is not offered on an approved line at all."},
-  "44568": {"v": "Blocked", "why": "Could not be judged. Only two of the part states exist on this shop's data (Authorized and Awaiting); the rest could not be produced."},
-  "44569": {"v": "Passed", "why": "With receiving required, Receive sits on the part row; with it off, Receive moves into the part's three-dot menu and is never removed outright."},
-  "44570": {"v": "Blocked", "why": "Could not be judged. Declining a line is not offered on an approved line, and no part on this shop is in the states the check needs."},
-  "44571": {"v": "Failed", "why": "The bar does not replace the column headers: it sits above them and every header stays visible. It reads 1 selected, Approve (1), More and a close cross - there is no Deselect all and no dividers."},
-  "44572": {"v": "Failed", "why": "The bar has no parts group at all, and More opens empty. Decline is a button on the line row rather than an item in More."},
-  "44573": {"v": "Blocked", "why": "Could not be judged. Only Approve is offered in the bar on this data, so the confirm-and-undo behaviour of the other actions could not be exercised."},
-  "44574": {"v": "Failed", "why": "More is rendered although it holds nothing. The check requires that an empty More is not rendered at all."},
-  "44575": {"v": "Blocked", "why": "Could not be judged. A selection mixing approved and declined lines could not be assembled with the actions the bar offers."},
-  "44576": {"v": "Blocked", "why": "Could not be judged, same reason."},
-  "44577": {"v": "Blocked", "why": "Could not be judged. No Complete lines action appears in the bar on this data."},
-  "44578": {"v": "Passed", "why": "The bar carries no delete action and More lists none."},
-  "44579": {"v": "Blocked", "why": "Could not be judged. No Order action appears in the bar."},
-  "44580": {"v": "Blocked", "why": "Could not be judged, same reason."},
-  "44581": {"v": "Blocked", "why": "Could not be judged. No Pick action appears in the bar."},
-  "44582": {"v": "Blocked", "why": "Could not be judged. It needs a second person without the picking permission, and this shop's own role cannot be changed (see the note on the role editor)."},
-  "53486": {"v": "Failed", "why": "There is no Deselect all in the bar at all. The close cross does clear the selection and dismiss the bar."},
-  "44583": {"v": "Passed", "why": "Receive opens a window over the work order without leaving the page, and its contents match the part it was opened from."},
-  "44584": {"v": "Passed", "why": "The window carries vendor, vendor invoice number, invoice date (pre-filled with today) and delivery note, and its Receive Parts button stays disabled while nothing is ticked."},
-  "44585": {"v": "Passed", "why": "A part with no vendor shows a Vendor missing card with Assign Vendor as its first field."},
-  "44586": {"v": "Blocked", "why": "Could not be judged. This shop has no vendor whose parts sit on two purchase orders at once."},
-  "44587": {"v": "Blocked", "why": "Could not be judged. It needs a second person without financial access, and this shop's own role cannot be changed."},
-  "44588": {"v": "Blocked", "why": "Could not be judged. The invalid states the check needs could not be produced on this shop's data."},
-  "53487": {"v": "Blocked", "why": "Could not be judged. No purchase order on this shop has a part already received alongside one not yet received."},
-  "44589": {"v": "Failed", "why": "The purchase orders page is a flat list sorted by date, not grouped by vendor. There are no vendor groups, no rollup counts, no Expand all, and nothing is collapsed. A missing vendor shows as a warning on the row instead."},
-  "44590": {"v": "Failed", "why": "Nothing expands per purchase order. Each row carries a Receive button that opens the same window as the work order instead."},
-  "44591": {"v": "Blocked", "why": "Could not be judged. There is no purchase order page panel to compare against the window, and the money-hiding half needs a second person."},
-  "53488": {"v": "Failed", "why": "Selecting a purchase order raises a bar reading 1 selected with nothing in it but a close cross - no Receive selected, no Deselect all, no More."},
-  "44592": {"v": "PENDING", "why": ""},
-  "44593": {"v": "Passed", "why": "Without the permission, Receive is a plain button with no caret anywhere, and with receiving not required there is no split button at all."},
-  "53489": {"v": "PENDING", "why": ""},
-  "44594": {"v": "Passed", "why": "Create invoice opened the wizard on a work order with a part still to receive, and the wizard named exactly what was outstanding."},
-  "44595": {"v": "Passed", "why": "With three things outstanding the wizard showed Tech stories (1), Resolve cores (1) and Receive parts (1) as pills across the top, in that order, and nothing that was already done."},
-  "44596": {"v": "Blocked", "why": "Could not be judged. The tech story step showed no save action of its own in the reading taken, and a full pass through every step was not completed."},
-  "44597": {"v": "Blocked", "why": "Could not be judged. A wizard run was never carried to its end, because doing so would have created a real invoice."},
-  "44598": {"v": "Blocked", "why": "Could not be judged. It needs a second person finishing work mid-run and a server error, neither of which could be produced."},
-  "44599": {"v": "Failed", "why": "There is no Send action on the work order header in any state. Create invoice is correctly shown disabled while a line awaits approval, with the reason All lines must be approved before invoicing, and is promoted to a button once every line is complete."},
-  "44600": {"v": "Blocked", "why": "Could not be judged. Carrying it out would have created a real invoice on this shop."},
-  "44601": {"v": "Blocked", "why": "Partly seen: a work order whose only line is declined offers no finish action, and once an invoice exists both finish actions are gone from the header and the menu. The rest needs a second person and a real invoice."},
-  "44602": {"v": "Failed", "why": "The part's menu is right - Move, Return, the fee or discount item, and Receive part appearing only when receiving is not required. The line's menu is not: it holds only Add Labor Fee / Discount, and none of Request part, Uncomplete line, Add line note, Save as canned line, Edit labour, Receive parts or Authorization required."},
-  "44603": {"v": "Failed", "why": "Uncomplete line never appears, on a completed line or anywhere else."},
-  "44604": {"v": "Passed", "why": "Move up moved the part above the one before it within its line, its core followed it, and the new order was still there after the page was reloaded."},
-  "44605": {"v": "Blocked", "why": "Could not be judged. The negatives need a cross-line move and an invoiced work order, which could not be arranged without changing records this run should not change."},
-  "44606": {"v": "Passed", "why": "Receive later is in the Work orders section of a role as a single yes-or-no switch, not a create-and-edit row, and it is off in all eight roles that were read. It is the only new permission in the list."},
-  "44607": {"v": "Blocked", "why": "Could not be judged. It needs people in several different roles."},
-  "44608": {"v": "Blocked", "why": "Could not be judged. It needs a person without financial access."},
-  "44609": {"v": "Blocked", "why": "Could not be judged, same reason."}
+  "44549": {
+   "v": "Passed",
+   "why": "The Work Orders settings page shows all four settings this release owns, each in the Require... form, under the Workflow, Line requirements and Parts groups, with the shop's other work-order settings still there. Eight settings in three groups."
+  },
+  "44550": {
+   "v": "Passed",
+   "why": "The setting reads Require Picking Inventory Parts and the old Automatically pick label is gone. What the shop stores is the opposite value, so the shop keeps exactly the behaviour it had."
+  },
+  "44551": {
+   "v": "Blocked",
+   "why": "Could not be judged. No part on this shop is in a state where an Order action would be offered, and whether the setting starts on for a new shop cannot be read on a shop that already has a value for it."
+  },
+  "44552": {
+   "v": "Passed",
+   "why": "With picking required a Pick button appears on the part row; with it off there is none. With receiving required a Receive button sits on the row; with it off Receive moves into the part's three-dot menu rather than disappearing."
+  },
+  "44553": {
+   "v": "Passed",
+   "why": "Turning the ordering and picking requirements on later changed nothing that already existed: all 66 parts across 45 work orders kept the state they were in."
+  },
+  "44554": {
+   "v": "Failed",
+   "why": "Turning the ordering requirement off changed no record at all. The product's own confirmation says so: No record is changed by this switch. The check requires every part still waiting to be ordered to be placed on a purchase order and moved to Awaiting."
+  },
+  "44555": {
+   "v": "Failed",
+   "why": "No audit entry naming the cause of a settings change exists, because the change touches no record. The newest entries on the work order are from 16 September."
+  },
+  "44556": {
+   "v": "Passed",
+   "why": "Invoiced and paid work orders and declined lines were untouched by every settings change. Nothing at all is swept, so nothing reached them."
+  },
+  "44557": {
+   "v": "Failed",
+   "why": "All four switches ask to confirm. The check requires a confirmation on the ordering and picking requirements only, and none on approval or receiving. Turning picking off also does not warn about stock: it says none of them is picked retroactively."
+  },
+  "44558": {
+   "v": "Passed",
+   "why": "Cancelling each of the four confirmations left the shop's settings exactly as they were, read back afterwards and identical."
+  },
+  "44559": {
+   "v": "Failed",
+   "why": "No progress indicator appears while a settings change is applied; the page returns at once. Nothing is applied, so there is nothing to wait for."
+  },
+  "44561": {
+   "v": "Blocked",
+   "why": "Could not be judged. No part on this shop is in a received or picked state, so a line carrying all three part states could not be assembled."
+  },
+  "44562": {
+   "v": "Passed",
+   "why": "With a tech story required, a line would not complete until it was given one, and an unresolved core was asked for as well."
+  },
+  "44563": {
+   "v": "Blocked",
+   "why": "Partly seen: a line awaiting approval offers no Complete, and Create invoice is refused while any line awaits approval. The bulk bar route and the clock-out route could not be exercised."
+  },
+  "44564": {
+   "v": "Blocked",
+   "why": "Could not be judged. The clock-out window needs a technician clocked in on this work order, which this account cannot do for someone else."
+  },
+  "44565": {
+   "v": "Failed",
+   "why": "Complete is never disabled for a parts reason, which is right. But a completed line cannot be reopened at all: there is no Uncomplete action anywhere on the work order, on the line or in any menu."
+  },
+  "44566": {
+   "v": "Failed",
+   "why": "The actions a line offers do not match. A line awaiting approval offers only Approve and Decline; an approved line offers only Complete. Request part, Delete line, Authorization required and Uncomplete appear nowhere on the page, and Decline is not offered on an approved line."
+  },
+  "44567": {
+   "v": "Failed",
+   "why": "Decline cannot be shown disabled with its reason because Decline is not offered on an approved line at all."
+  },
+  "44568": {
+   "v": "Blocked",
+   "why": "Could not be judged. Only two of the part states exist on this shop's data (Authorized and Awaiting); the rest could not be produced."
+  },
+  "44569": {
+   "v": "Passed",
+   "why": "With receiving required, Receive sits on the part row; with it off, Receive moves into the part's three-dot menu and is never removed outright."
+  },
+  "44570": {
+   "v": "Blocked",
+   "why": "Could not be judged. Declining a line is not offered on an approved line, and no part on this shop is in the states the check needs."
+  },
+  "44571": {
+   "v": "Failed",
+   "why": "The bar does not replace the column headers: it sits above them and every header stays visible. It reads 1 selected, Approve (1), More and a close cross - there is no Deselect all and no dividers."
+  },
+  "44572": {
+   "v": "Failed",
+   "why": "The bar has no parts group at all, and More opens empty. Decline is a button on the line row rather than an item in More."
+  },
+  "44573": {
+   "v": "Blocked",
+   "why": "Could not be judged. Only Approve is offered in the bar on this data, so the confirm-and-undo behaviour of the other actions could not be exercised."
+  },
+  "44574": {
+   "v": "Failed",
+   "why": "More is rendered although it holds nothing. The check requires that an empty More is not rendered at all."
+  },
+  "44575": {
+   "v": "Blocked",
+   "why": "Could not be judged. A selection mixing approved and declined lines could not be assembled with the actions the bar offers."
+  },
+  "44576": {
+   "v": "Blocked",
+   "why": "Could not be judged, same reason."
+  },
+  "44577": {
+   "v": "Blocked",
+   "why": "Could not be judged. No Complete lines action appears in the bar on this data."
+  },
+  "44578": {
+   "v": "Passed",
+   "why": "The bar carries no delete action and More lists none."
+  },
+  "44579": {
+   "v": "Blocked",
+   "why": "Could not be judged. No Order action appears in the bar."
+  },
+  "44580": {
+   "v": "Blocked",
+   "why": "Could not be judged, same reason."
+  },
+  "44581": {
+   "v": "Blocked",
+   "why": "Could not be judged. No Pick action appears in the bar."
+  },
+  "44582": {
+   "v": "Blocked",
+   "why": "Could not be judged. It needs a second person without the picking permission, and this shop's own role cannot be changed (see the note on the role editor)."
+  },
+  "53486": {
+   "v": "Failed",
+   "why": "There is no Deselect all in the bar at all. The close cross does clear the selection and dismiss the bar."
+  },
+  "44583": {
+   "v": "Passed",
+   "why": "Receive opens a window over the work order without leaving the page, and its contents match the part it was opened from."
+  },
+  "44584": {
+   "v": "Passed",
+   "why": "The window carries vendor, vendor invoice number, invoice date (pre-filled with today) and delivery note, and its Receive Parts button stays disabled while nothing is ticked."
+  },
+  "44585": {
+   "v": "Passed",
+   "why": "A part with no vendor shows a Vendor missing card with Assign Vendor as its first field."
+  },
+  "44586": {
+   "v": "Blocked",
+   "why": "Could not be judged. This shop has no vendor whose parts sit on two purchase orders at once."
+  },
+  "44587": {
+   "v": "Blocked",
+   "why": "Could not be judged. It needs a second person without financial access, and this shop's own role cannot be changed."
+  },
+  "44588": {
+   "v": "Blocked",
+   "why": "Could not be judged. The invalid states the check needs could not be produced on this shop's data."
+  },
+  "53487": {
+   "v": "Blocked",
+   "why": "Could not be judged. No purchase order on this shop has a part already received alongside one not yet received."
+  },
+  "44589": {
+   "v": "Failed",
+   "why": "The purchase orders page is a flat list sorted by date, not grouped by vendor. There are no vendor groups, no rollup counts, no Expand all, and nothing is collapsed. A missing vendor shows as a warning on the row instead."
+  },
+  "44590": {
+   "v": "Failed",
+   "why": "Nothing expands per purchase order. Each row carries a Receive button that opens the same window as the work order instead."
+  },
+  "44591": {
+   "v": "Blocked",
+   "why": "Could not be judged. There is no purchase order page panel to compare against the window, and the money-hiding half needs a second person."
+  },
+  "53488": {
+   "v": "Failed",
+   "why": "Selecting a purchase order raises a bar reading 1 selected with nothing in it but a close cross - no Receive selected, no Deselect all, no More."
+  },
+  "44592": {
+   "v": "Blocked",
+   "why": "Could not be judged. Granting the Receive later permission could not be proved to have taken effect: the shop's own Admin role is locked and saves nothing, and a copy of it made for this run came back with fewer permissions than Admin, not more. With that copy in force the Receive control was still a plain button with no caret, but because the permission itself could not be shown to be live, that reading proves nothing."
+  },
+  "44593": {
+   "v": "Passed",
+   "why": "Without the permission, Receive is a plain button with no caret anywhere, and with receiving not required there is no split button at all."
+  },
+  "53489": {
+   "v": "Blocked",
+   "why": "Could not be judged, for the same reason as the split button check: the Receive later permission could not be proved to be in force, so a deferred part with a core could not be produced."
+  },
+  "44594": {
+   "v": "Passed",
+   "why": "Create invoice opened the wizard on a work order with a part still to receive, and the wizard named exactly what was outstanding."
+  },
+  "44595": {
+   "v": "Passed",
+   "why": "With three things outstanding the wizard showed Tech stories (1), Resolve cores (1) and Receive parts (1) as pills across the top, in that order, and nothing that was already done."
+  },
+  "44596": {
+   "v": "Blocked",
+   "why": "Could not be judged. The tech story step showed no save action of its own in the reading taken, and a full pass through every step was not completed."
+  },
+  "44597": {
+   "v": "Blocked",
+   "why": "Could not be judged. A wizard run was never carried to its end, because doing so would have created a real invoice."
+  },
+  "44598": {
+   "v": "Blocked",
+   "why": "Could not be judged. It needs a second person finishing work mid-run and a server error, neither of which could be produced."
+  },
+  "44599": {
+   "v": "Failed",
+   "why": "There is no Send action on the work order header in any state. Create invoice is correctly shown disabled while a line awaits approval, with the reason All lines must be approved before invoicing, and is promoted to a button once every line is complete."
+  },
+  "44600": {
+   "v": "Blocked",
+   "why": "Could not be judged. Carrying it out would have created a real invoice on this shop."
+  },
+  "44601": {
+   "v": "Blocked",
+   "why": "Partly seen: a work order whose only line is declined offers no finish action, and once an invoice exists both finish actions are gone from the header and the menu. The rest needs a second person and a real invoice."
+  },
+  "44602": {
+   "v": "Failed",
+   "why": "The part's menu is right - Move, Return, the fee or discount item, and Receive part appearing only when receiving is not required. The line's menu is not: it holds only Add Labor Fee / Discount, and none of Request part, Uncomplete line, Add line note, Save as canned line, Edit labour, Receive parts or Authorization required."
+  },
+  "44603": {
+   "v": "Failed",
+   "why": "Uncomplete line never appears, on a completed line or anywhere else."
+  },
+  "44604": {
+   "v": "Passed",
+   "why": "Move up moved the part above the one before it within its line, its core followed it, and the new order was still there after the page was reloaded."
+  },
+  "44605": {
+   "v": "Blocked",
+   "why": "Could not be judged. The negatives need a cross-line move and an invoiced work order, which could not be arranged without changing records this run should not change."
+  },
+  "44606": {
+   "v": "Passed",
+   "why": "Receive later is in the Work orders section of a role as a single yes-or-no switch, not a create-and-edit row, and it is off in all eight roles that were read. It is the only new permission in the list."
+  },
+  "44607": {
+   "v": "Blocked",
+   "why": "Could not be judged. It needs people in several different roles."
+  },
+  "44608": {
+   "v": "Blocked",
+   "why": "Could not be judged. It needs a person without financial access."
+  },
+  "44609": {
+   "v": "Blocked",
+   "why": "Could not be judged, same reason."
+  }
  }
 }

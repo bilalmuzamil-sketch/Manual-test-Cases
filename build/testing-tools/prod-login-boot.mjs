@@ -32,7 +32,10 @@ export async function bootProdLogin(route='/', opts={}) {
   const browser = await chromium.launch({ args:['--no-sandbox'],
     executablePath: process.env.CHROME_BIN || '/opt/pw-browsers/chromium',
     proxy: { server: `http://127.0.0.1:${port}` } });
-  const ctx = await browser.newContext({ ignoreHTTPSErrors:true, viewport: opts.viewport || {width:1680,height:1050} });
+  const ctx = await browser.newContext({ ignoreHTTPSErrors:true, viewport: opts.viewport || {width:1680,height:1050},
+    // deviceScaleFactor 2 captures at twice the width the picture is shown at, so an annotated
+    // screenshot is DOWNsampled and reads sharp rather than blown up (Standing Rule 116).
+    deviceScaleFactor: opts.deviceScaleFactor || 1 });
   const log = (...a) => console.log(new Date().toISOString().slice(11,19), ...a);
 
   // 1) LOGIN ONCE via the browser's request context (shares the cookie jar, honours the bridge)
