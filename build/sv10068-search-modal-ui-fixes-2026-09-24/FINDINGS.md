@@ -172,3 +172,34 @@ wants them pulled back to the token values or left as they are.
 question. Failure written in the Rule-83 order: description, steps to reproduce, current vs
 expected, screenshot, environment — then what passed. Five exhibits attached (61405–61409).
 Re-read from Jira and verified.
+
+## §8 — Self-review of the comment, and the check it surfaced
+
+The QA lead asked whether the comment needed editing. Re-reading it as a reader would, **three
+faults, all mine**:
+
+1. **The table contradicted the verdict.** The panel said "ten of the eleven points are done; one is
+   not" and the table then listed **eleven rows, every one PASSED**. The failure existed only in the
+   prose above it.
+2. **"Point 3" meant two opposite things in the same comment** — the failure was headed *"Point 3 —
+   the blue is still there"* while table row 3 read *"Blue hover removed … PASSED"*.
+3. **The numbering was mine, not Branko's.** His description is a bullet list; I invented 1–11 and
+   split his single *"blue hover … as well as the stripe"* bullet across two rows, so "Point 3"
+   pointed at nothing he could locate.
+
+Rebuilt so the table **mirrors his eleven bullets in his own order**, with bullet 3 carried as a
+**FAILED** row. The arithmetic now closes: 10 passed + 1 failed = 11.
+
+**The re-read also caught an unrun check** — exactly the Rule-85 trap of an "honest limit" that has
+quietly stopped being one. His bullet 8 has two halves, and the second is *"Also use the one from the
+design."* I had marked the icon's identity unverifiable **before** the design arrived and never went
+back once it did. Checked now:
+
+| | Design | Build |
+|---|---|---|
+| icon | lucide **`circle-x`** (`ICO.xCircle`) | `lucide-icon` svg, paths `M12 22a10 10 0 1 0 0-20…` + two crossing strokes = **`circle-x`** |
+| colour | `grey400` = **#9AA4B2** | `rgb(154,164,178)` = **#9AA4B2** |
+| size | 18 px | **20 px** |
+
+Right icon, exact colour, 2 px larger — so bullet 8 passes, and the size joins the list of places the
+build overshoots the design.
