@@ -1,0 +1,53 @@
+{
+ "on": {
+  "dialog": "Turn on Require Picking Inventory Parts?\nclose\n\nYou will click Pick on each inventory and found part to record that it has been pulled.\n\n57 parts at this location are affected by this requirement today. No record is changed by this switch.\n\nParts already on a work order keep the state they are in. None of them is un-picked.\n\nCancel\nTurn On",
+  "stored": {
+   "id": "a365b9a7-7e7c-11f0-8584-06fe7fd94eb4",
+   "organizationId": "72b2cc90-6964-4429-a207-76e55f946936",
+   "requireMileage": false,
+   "requireHours": false,
+   "requireTechStories": false,
+   "requireVehicleIdentifier": true,
+   "vehicleIdentifier": "vin",
+   "autoPickInventoryParts": false,
+   "autoApproveLines": true,
+   "requireVendorInvoiceNumber": true,
+   "requireReview": false,
+   "requireOrderingParts": false
+  }
+ },
+ "pickingOnScreen": {
+  "exact": [
+   "Pick"
+  ],
+  "badges": [
+   "4",
+   "Approved",
+   "Over Limit",
+   "AI",
+   "1\nmore_vert",
+   "Needs Approval",
+   "2\nmore_vert",
+   "0%",
+   "In Stock",
+   "3\nmore_vert"
+  ]
+ },
+ "off": {
+  "dialog": "Turn off Require Picking Inventory Parts?\nclose\n\nInventory and found parts will be ready as soon as their line is approved.\n\n57 parts at this location are affected by this requirement today. No record is changed by this switch.\n\nParts already on a work order keep the state they are in. None of them is picked retroactively.\n\nCancel\nTurn Off",
+  "stored": {
+   "id": "a365b9a7-7e7c-11f0-8584-06fe7fd94eb4",
+   "organizationId": "72b2cc90-6964-4429-a207-76e55f946936",
+   "requireMileage": false,
+   "requireHours": false,
+   "requireTechStories": false,
+   "requireVehicleIdentifier": true,
+   "vehicleIdentifier": "vin",
+   "autoPickInventoryParts": true,
+   "autoApproveLines": true,
+   "requireVendorInvoiceNumber": true,
+   "requireReview": false,
+   "requireOrderingParts": false
+  }
+ }
+}
