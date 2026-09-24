@@ -68,3 +68,31 @@ indicator only, and he should say whether he wants that gone too.**
   searching for work orders, parts, customers and more"**. Centred, so item 11 is satisfied either
   way, but the phrase in his bullet no longer exists in the build.
 - The field placeholder now reads **"Search work orders, customers, parts and more"**.
+
+## §4 — Honest notes on method
+
+- **I destroyed the recent-searches list mid-pass.** To reach the empty state for item 11 I clicked
+  **Clear All**, which wiped the recents, and my attempts to rebuild the list by searching and
+  picking results did not repopulate it. All the recents-dependent measurements (items 4, 5, 6 and
+  the row weights) had **already been taken** before that, from the live DOM, and the exhibit
+  screenshots come from those same earlier captures. Nothing is inferred — but the branch is now
+  left with an empty recents list for whoever looks next. Per-ticket QA branch, so no cleanup is
+  owed, but it is worth knowing.
+- **One measurement was my own checker's fault** (Rule 79c). My first attempt to measure the
+  "No results" centring matched a **1-pixel-wide screen-reader element** reading "No results found"
+  and reported it as 303 px off centre. The visible message is a different node and measures 0 px.
+  Caught by requiring the element to be wider than 20 px.
+- **Font weights are measured, not compared.** For items 2 and 5 I can state what the build renders
+  (600 / 500 / 700) but not that those match the Figma, because I do not have it.
+- Colour changes **are** comparable: I sampled the text pixels out of Branko's own screenshots, so
+  the day-label figure (`rgb(156,164,177)` → `rgb(105,117,134)`) is a real before-and-after.
+
+## §5 — Pre-post gate (Rule 72)
+
+| Check | Result |
+|---|---|
+| Branch build marker re-read at post time | `v26.36.9-a90a3f0`, last-mod Wed 23 Sep 19:32:36 GMT, etag `52864fd0…` — unchanged all pass |
+| Ticket state re-read | SV-10068, **Ready for QA**, priority Medium, 1 comment (Branko's own) — unchanged |
+| Every figure traced to a live measurement | yes — computed styles and geometry read this pass |
+| Human voice / no AI fingerprint | scanned before posting |
+| No technical-details section | per Rule 84, asked per ticket |
