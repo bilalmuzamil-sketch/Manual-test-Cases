@@ -163,3 +163,12 @@ wants them pulled back to the token values or left as they are.
   customers and more"* **is the design's own string** — Branko's "Search for something" is the text
   the design already replaced. §3's note is withdrawn.
 - The clear-button behaviour matches the design exactly, including the conditional render.
+
+## §7 — Comment updated in place
+
+**Comment [77233](https://shopview.atlassian.net/browse/SV-10068?focusedCommentId=77233)** was
+**edited, not replaced** — one comment on the ticket, no chain. Verdict changed from PASSED to
+**FAILED** once the design showed the selected-row blue is a genuine miss rather than an open
+question. Failure written in the Rule-83 order: description, steps to reproduce, current vs
+expected, screenshot, environment — then what passed. Five exhibits attached (61405–61409).
+Re-read from Jira and verified.
