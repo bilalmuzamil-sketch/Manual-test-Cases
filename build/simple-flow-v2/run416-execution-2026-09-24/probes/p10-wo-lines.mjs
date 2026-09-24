@@ -1,0 +1,20 @@
+// Read a work order's Lines tab: the line rows, the part rows, their badges, and the actions offered.
+import { bootProdLogin } from '/home/user/Manual-test-Cases/build/testing-tools/prod-login-boot.mjs';
+import { openWo, actions, bodyText } from './lib3.mjs';
+import fs from 'fs';
+const EV='/home/user/Manual-test-Cases/build/simple-flow-v2/run416-execution-2026-09-24/evidence';
+const ID = process.argv[2], TAG = process.argv[3] || 'wo';
+const { browser, page } = await bootProdLogin('/workorders', { settle: 9000 });
+page.setDefaultTimeout(20000);
+await openWo(page, ID);
+const t = await bodyText(page);
+fs.writeFileSync(`${EV}/${TAG}-lines.txt`, t);
+await page.screenshot({ path: `${EV}/${TAG}-lines.png`, fullPage: true });
+console.log('URL', page.url());
+console.log('=== PAGE (from the work order header) ===');
+const i = t.indexOf('Invoices'); console.log(t.slice(i > 0 ? i + 9 : 0).slice(0, 2600));
+console.log('=== ACTIONS ON SCREEN ===');
+const a = await actions(page);
+fs.writeFileSync(`${EV}/${TAG}-actions.json`, JSON.stringify(a, null, 1));
+for (const x of a) console.log((x.disabled ? '[disabled] ' : '          ') + x.t.slice(0, 70));
+await browser.close();

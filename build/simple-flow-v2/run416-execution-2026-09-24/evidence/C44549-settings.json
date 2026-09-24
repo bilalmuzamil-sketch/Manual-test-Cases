@@ -1,0 +1,59 @@
+{
+ "build": "v26.39.0-07c719b",
+ "groups": [
+  "WORKFLOW",
+  "LINE REQUIREMENTS",
+  "PARTS"
+ ],
+ "settings": [
+  {
+   "group": "WORKFLOW",
+   "label": "Require Approval for New Lines",
+   "desc": "When on, new work order lines require approval. When off, they are auto-approved.",
+   "on": false
+  },
+  {
+   "group": "WORKFLOW",
+   "label": "Require Review Before Completion",
+   "desc": "Work orders must be reviewed and signed off before they can be completed",
+   "on": false
+  },
+  {
+   "group": "LINE REQUIREMENTS",
+   "label": "Require Tech Story",
+   "desc": "Tech story will be a required field before a line can be completed on a work order",
+   "on": false
+  },
+  {
+   "group": "LINE REQUIREMENTS",
+   "label": "Require Mileage",
+   "desc": "Mileage will be a required field before a line can be completed on a work order",
+   "on": false
+  },
+  {
+   "group": "LINE REQUIREMENTS",
+   "label": "Require Engine Hours",
+   "desc": "Engine hours will be a required field before a line can be completed on a work order",
+   "on": false
+  },
+  {
+   "group": "PARTS",
+   "label": "Require Ordering Parts",
+   "desc": "When on, you click Order on each part to record that you've ordered it. When off, parts are marked as ordered automatically.",
+   "on": false
+  },
+  {
+   "group": "PARTS",
+   "label": "Require Receiving Parts Before Completion",
+   "desc": "When on, each part must be recorded as received before the work order can be completed, reviewed or invoiced. When off, you can finish the work order and receive later.",
+   "on": true
+  },
+  {
+   "group": "PARTS",
+   "label": "Require Picking Inventory Parts",
+   "desc": "When on, you click Pick on each inventory and found part to record that it's been pulled. When off, these parts are ready as soon as the line is approved.",
+   "on": false
+  }
+ ],
+ "toggleCount": 8
+}

@@ -1,0 +1,76 @@
+{
+ "before": {
+  "id": "a365b9a7-7e7c-11f0-8584-06fe7fd94eb4",
+  "organizationId": "72b2cc90-6964-4429-a207-76e55f946936",
+  "requireMileage": false,
+  "requireHours": false,
+  "requireTechStories": false,
+  "requireVehicleIdentifier": true,
+  "vehicleIdentifier": "vin",
+  "autoPickInventoryParts": true,
+  "autoApproveLines": true,
+  "requireVendorInvoiceNumber": true,
+  "requireReview": false,
+  "requireOrderingParts": false
+ },
+ "order": [
+  {
+   "label": "Require Ordering Parts",
+   "dialog": {
+    "text": "Turn on Require Ordering Parts?\nclose\n\nYou will click Order on each part to record that you have ordered it.\n\n123 parts at this location are affected by this requirement today. No record is changed by this switch.\n\nParts already on a work order keep the state they are in.\n\nCancel\nTurn On",
+    "buttons": [
+     "close",
+     "Cancel",
+     "Turn On"
+    ]
+   }
+  },
+  {
+   "label": "Require Picking Inventory Parts",
+   "dialog": {
+    "text": "Turn on Require Picking Inventory Parts?\nclose\n\nYou will click Pick on each inventory and found part to record that it has been pulled.\n\n57 parts at this location are affected by this requirement today. No record is changed by this switch.\n\nParts already on a work order keep the state they are in. None of them is un-picked.\n\nCancel\nTurn On",
+    "buttons": [
+     "close",
+     "Cancel",
+     "Turn On"
+    ]
+   }
+  },
+  {
+   "label": "Require Approval for New Lines",
+   "dialog": {
+    "text": "Turn on Require Approval for New Lines?\nclose\n\nNew work order lines will need approval before work starts on them.\n\n50 lines at this location are affected by this requirement today. No record is changed by this switch.\n\nLines already on a work order keep the status they have. None of them is sent back for approval.\n\nCancel\nTurn On",
+    "buttons": [
+     "close",
+     "Cancel",
+     "Turn On"
+    ]
+   }
+  },
+  {
+   "label": "Require Receiving Parts Before Completion",
+   "dialog": {
+    "text": "Turn off Require Receiving Parts Before Completion?\nclose\n\nOrdered parts will no longer need to be received before a work order can be completed.\n\n82 work orders waiting on parts can now be invoiced. No record is changed by this switch.\n\nParts already on a work order keep the state they are in.\n\nCancel\nTurn Off",
+    "buttons": [
+     "close",
+     "Cancel",
+     "Turn Off"
+    ]
+   }
+  }
+ ],
+ "after": {
+  "id": "a365b9a7-7e7c-11f0-8584-06fe7fd94eb4",
+  "organizationId": "72b2cc90-6964-4429-a207-76e55f946936",
+  "requireMileage": false,
+  "requireHours": false,
+  "requireTechStories": false,
+  "requireVehicleIdentifier": true,
+  "vehicleIdentifier": "vin",
+  "autoPickInventoryParts": true,
+  "autoApproveLines": true,
+  "requireVendorInvoiceNumber": true,
+  "requireReview": false,
+  "requireOrderingParts": false
+ }
+}

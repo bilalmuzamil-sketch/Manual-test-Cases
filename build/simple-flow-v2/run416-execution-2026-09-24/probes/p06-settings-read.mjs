@@ -1,0 +1,16 @@
+import { bootProdLogin } from '/home/user/Manual-test-Cases/build/testing-tools/prod-login-boot.mjs';
+import { openWoSettings, readWoSettings } from './lib2.mjs';
+import fs from 'fs';
+const EV='/home/user/Manual-test-Cases/build/simple-flow-v2/run416-execution-2026-09-24/evidence';
+const { browser, page, ctx, APIH, version } = await bootProdLogin('/administration/settings', { settle: 15000 });
+await openWoSettings(page);
+const r = await readWoSettings(page);
+console.log('build', version);
+console.log('groups:', JSON.stringify(r.groups), '| toggles:', r.toggleCount);
+for (const s of r.settings) console.log((s.on ? 'ON  ' : 'off ') + '| [' + s.group + '] ' + s.label);
+await page.screenshot({ path: `${EV}/C44549-settings-work-orders.png` });
+fs.writeFileSync(`${EV}/C44549-settings.json`, JSON.stringify({ build: version, ...r }, null, 1));
+const api = await ctx.request.get(`https://${APIH}/api/organizations/settings`, { headers:{Accept:'application/json'}, ignoreHTTPSErrors:true });
+const j = await api.json(); fs.writeFileSync(`${EV}/org-settings-api.json`, JSON.stringify(j, null, 1));
+console.log('stored:', JSON.stringify(j.data));
+await browser.close();
