@@ -81,6 +81,26 @@ pass. Stated so nobody rotates half of it.
 | **What it returns** | **HTTP 200** + `Set-Cookie: PHPSESSID`. The session is **PHPSESSID-only** — no SSO cookie, and `cf_clearance` is not needed via the agent proxy. |
 | **Authority** | Password recovered from git history (`git show ee7b7e9` — the archived Jira comment on SV-8165; `[REDACTED]` at HEAD). Account, route and behaviour: `build/APP-ACTIONS-PLAYBOOK.md` §K and §A *"PRODUCTION access"*, proven live 2026-07-29 on SV-8721. Committed here under the 2026-09-03 ruling in §0.1. |
 
+### 🔴 CORRECTED 2026-09-24 — the recorded account no longer authenticates; two others do
+
+`POST /api/login` for **`bilal.muzamil+mainadmin@shopview.com`** with the password above answers
+**401 `{"error":"Invalid credentials."}`**, and the login form says *"Invalid credentials."* in so many
+words. Proved by positive control: the same form, same password, same run, signs the accounts below in.
+**Do not spend time on `+mainadmin`.**
+
+**These three were tried on 2026-09-24 with the password above:**
+
+| Account | Result | What it is |
+|---|---|---|
+| `bilal.muzamil@shopview.com` | **200** | the QA lead's own everyday production account — **58 permissions, Admin**. Trap 3 below applies: using it evicts him from his own browser |
+| `bilal.muzamil+serviceadvisornoreports@shopview.com` | **200** | despite the name it is in the **Admin** role (`2a43e6cb-…`), i.e. a second full-access person. **Use this one instead of the QA lead's own** for anything that needs an administrator |
+| `bilal.muzamil+serviceadvisorlimitedview@shopview.com` | **200** | **the lower-permission login** — role `31e70dbe-…`, **9 permissions**: `customersView, scheduleView, settingsFinance, settingsService, timesheetsView, woPickParts, workOrderLinesCreateAndEdit, workOrdersView, woTechViewMode`. No financial access, no ordering, **Tech view not Full view**. This is the account to use for every permission-gated check — **do not build a role from scratch** (QA lead, 2026-09-24: *"The second person with fewer permission need not to be added as new from scratch. You can rather use the other login which I have already shared with you for such lower permission tasks"*) |
+
+The password for all three is the one recorded above; nothing new is committed here.
+**Trap:** the limited account was enrolled only in **Truck Hill 1**. It was added to **Trucks Hill 2** on
+2026-09-24 (Staff → the person's pencil → *Location*). A session still has to be moved with
+`POST /api/iam/change-location {workplace_id}` — a fresh login alone leaves it in the old shop.
+
 **This is a dummy account** — QA lead, 2026-09-03: *"Prod is a test account no problem sharing its
 password in public repo."* The long-standing *"rotate the prod credential"* recommendation is **CLOSED
 by that ruling and must not be re-raised** (`build/PROD-VS-STAGING-COMPARE-METHOD.md` §1).

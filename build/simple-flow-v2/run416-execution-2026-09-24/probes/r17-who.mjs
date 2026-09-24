@@ -1,0 +1,15 @@
+import { bootProdLogin } from '/home/user/Manual-test-Cases/build/testing-tools/prod-login-boot.mjs';
+import fs from 'fs';
+const EV='/home/user/Manual-test-Cases/build/simple-flow-v2/run416-execution-2026-09-24/evidence';
+const TAG=process.argv[2]||'acct';
+const { browser, page, ctx, APIH } = await bootProdLogin('/workorders', { settle: 12000, viewport:{width:1680,height:1000} });
+page.setDefaultTimeout(25000);
+const perms = ((await (await ctx.request.get(`https://${APIH}/api/auth/me/fe-permissions`,{headers:{Accept:'application/json'},ignoreHTTPSErrors:true})).json())?.data?.fe_permissions||[]);
+console.log('permissions:', perms.length);
+for (const k of ['woPickParts','woOrderParts','seeFinancialData','workOrderLinesCreateAndEdit','workOrdersCreateAndEdit','woFullViewMode','woReviewWorkOrders','settingsApp']) console.log('  ', k, ':', perms.includes(k));
+fs.writeFileSync(`${EV}/${TAG}-perms.json`, JSON.stringify(perms,null,1));
+const t = await page.evaluate(()=>document.body.innerText);
+console.log('shop:', (t.match(/Trucks Hill 2|Truck Hill 1/g)||[])[0] || '(not shown)');
+console.log('sidebar has Settings:', t.includes('Settings'));
+await page.screenshot({ path: `${EV}/${TAG}.png` });
+await browser.close();

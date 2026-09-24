@@ -3966,3 +3966,16 @@ Clicking *Save Settings* timed out with "q-dialog__backdrop intercepts pointer e
 fine; a confirmation was already open, because on this page clicking the TOGGLE opens it, not Save.
 When a click times out on an element Playwright says is visible and enabled, read the interception
 line before blaming the control.
+
+## L0197 — Look for the login that already exists before building a person (2026-09-24)
+I built a custom role and moved my own account into it to test permission-gated behaviour. The QA lead
+then pointed out a lower-permission login had already been shared. It was in the repo the whole time —
+`bilal.muzamil+serviceadvisorlimitedview@shopview.com`, 9 permissions, recorded in a July run under
+`build/custom-roles-run/`. **Grep the repo for account addresses before creating an identity**, and add
+any working one to `ENVIRONMENT-CREDENTIALS.md` so the next pass does not repeat the build. Cost of the
+miss: an hour of role-building, plus the risk of leaving my own account in a reduced role.
+
+## L0198 — A recorded credential is a claim about the past, not the present (2026-09-24)
+`ENVIRONMENT-CREDENTIALS.md` named `+mainadmin` as THE production account. It answers 401 today. The
+two accounts that do work were not in that file at all. **Try the recorded login early and write back
+what actually happened** — the file is only worth what its last verification was.
