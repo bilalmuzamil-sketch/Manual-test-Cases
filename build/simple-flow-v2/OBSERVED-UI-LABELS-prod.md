@@ -76,3 +76,19 @@ PARTS
   (needs the Receive-later permission + the setting on).
 - **Completion Wizard (6673)** — opens on completing a WO with outstanding steps (C44594 entry points).
 # These three need a seeded/located Ordered-part state; the read-only screens above are done.
+
+## Receive screen/modal — group 6670  (route: /order/{orderId}?receive=1&returnTo=WorkOrder&returnId={woId} — playbook §K)
+# Observed on S2-781's order, v26.39.0-07c719b.
+- Header: **Date Ordered · Vendor(s) · Ordered By · Note**.
+- Required fields (asterisked): **Vendor** (dropdown) · **Vendor Invoice # *** · **Invoice Date *** (date picker).
+  (C44584 "Receive requires vendor, invoice number and invoice date".)
+- Receive grid columns: **Part number & description · Cost · Sell · Qty ordered · Qty received · Total**.
+- **Subtotal · Tax ($ field) · Total · Delivery note**. Submit: **Receive Parts (n)**.
+# Confirms 6670 route+fields runnable on the build. Evidence: receive-screen-*.png/.txt
+
+## BUILD-VERIFY COVERAGE (screens/labels confirmed on prod v26.39.0-07c719b)
+# 6666 settings ✓ · 6667 complete-line ✓ · 6668 line/part actions ✓ · 6669 bulk bar ✓ · 6670 receive screen ✓
+# 6671 PO page ✓ · 6672 Receive-later atom ✓ (split-button option TBD) · 6673 wizard TBD · 6674 finish action ✓
+# 6675 part menus ✓ · 6676 reordering ✓ · 6677 permissions/atoms ✓
+# REMAINING: (a) Receive-later split-button option (needs the Receive-later setting+permission ON);
+#            (b) Completion Wizard (opens on Complete with outstanding steps).
