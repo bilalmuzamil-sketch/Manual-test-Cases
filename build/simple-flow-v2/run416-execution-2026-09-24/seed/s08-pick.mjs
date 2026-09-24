@@ -1,0 +1,22 @@
+import { bootProdLogin } from '/home/user/Manual-test-Cases/build/testing-tools/prod-login-boot.mjs';
+import { openPartsTab, readParts, actOnPart } from './lib-parts.mjs';
+import fs from 'fs';
+const EV='/home/user/Manual-test-Cases/build/simple-flow-v2/run416-execution-2026-09-24/seed';
+const WO='068f9856-9d28-4500-a3dd-dd6d7aafb15a';
+const { browser, page } = await bootProdLogin('/workorders', { settle: 10000 });
+page.setDefaultTimeout(25000);
+await openPartsTab(page, WO);
+console.log('BEFORE:'); for (const p of await readParts(page)) console.log(' ', p.name, '|', JSON.stringify(p.badges), '|', JSON.stringify(p.actions));
+console.log('\n' + await actOnPart(page, 'A158', 'Pick'));
+await page.waitForTimeout(4000);
+const dlg = await page.evaluate(()=>{ const d=[...document.querySelectorAll('.q-dialog')].filter(x=>x.getBoundingClientRect().width)[0];
+  return d? { text:(d.innerText||'').replace(/\s+/g,' ').slice(0,400), buttons:[...d.querySelectorAll('button,.q-btn')].map(b=>(b.innerText||'').trim()).filter(Boolean) } : null; });
+console.log('dialog:', JSON.stringify(dlg));
+await page.screenshot({ path: `${EV}/pick-dialog.png` });
+if (dlg) { await page.evaluate(()=>{ const d=[...document.querySelectorAll('.q-dialog')].filter(x=>x.getBoundingClientRect().width)[0];
+  const b=[...d.querySelectorAll('button,.q-btn')].find(x=>/^(Yes|Confirm|Pick|OK|Continue|Save)$/i.test((x.innerText||'').trim())); if(b){b.click(); return 'confirmed';} return 'no confirm button'; });
+  await page.waitForTimeout(6000); }
+await openPartsTab(page, WO);
+console.log('\nAFTER:'); for (const p of await readParts(page)) console.log(' ', p.name, '|', JSON.stringify(p.badges), '|', JSON.stringify(p.actions));
+await page.screenshot({ path: `${EV}/after-pick.png`, fullPage: true });
+await browser.close();

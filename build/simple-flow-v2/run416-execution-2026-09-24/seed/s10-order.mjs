@@ -1,0 +1,18 @@
+import { bootProdLogin } from '/home/user/Manual-test-Cases/build/testing-tools/prod-login-boot.mjs';
+import { openPartsTab, readParts, actOnFirst, confirmDialog } from './lib-parts.mjs';
+const EV='/home/user/Manual-test-Cases/build/simple-flow-v2/run416-execution-2026-09-24/seed';
+const WO='068f9856-9d28-4500-a3dd-dd6d7aafb15a';
+const { browser, page } = await bootProdLogin('/workorders', { settle: 10000 });
+page.setDefaultTimeout(25000);
+await openPartsTab(page, WO);
+console.log('BEFORE:'); for (const p of await readParts(page)) console.log(' ', JSON.stringify(p.badges), JSON.stringify(p.actions));
+console.log('\n' + await actOnFirst(page, 'Order'));
+await page.waitForTimeout(4500);
+const c = await confirmDialog(page);
+console.log('order dialog:', JSON.stringify(c.dialog), '| pressed:', c.pressed);
+await page.screenshot({ path: `${EV}/order-dialog.png` });
+await page.waitForTimeout(8000);
+await openPartsTab(page, WO);
+console.log('\nAFTER ORDERING:'); for (const p of await readParts(page)) console.log(' ', JSON.stringify(p.badges), JSON.stringify(p.actions));
+await page.screenshot({ path: `${EV}/after-order.png`, fullPage: true });
+await browser.close();

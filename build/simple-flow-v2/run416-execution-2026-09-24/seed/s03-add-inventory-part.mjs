@@ -1,0 +1,23 @@
+import { bootProdLogin } from '/home/user/Manual-test-Cases/build/testing-tools/prod-login-boot.mjs';
+import { openWo } from '../probes/lib3.mjs';
+import { setSetting, addPart } from './lib-seed.mjs';
+import fs from 'fs';
+const EV='/home/user/Manual-test-Cases/build/simple-flow-v2/run416-execution-2026-09-24/seed';
+const WO='068f9856-9d28-4500-a3dd-dd6d7aafb15a';
+const { browser, page, ctx, APIH } = await bootProdLogin('/workorders', { settle: 10000 });
+page.setDefaultTimeout(25000);
+console.log(await setSetting(page, 'Require Ordering Parts', true));
+console.log(await setSetting(page, 'Require Picking Inventory Parts', true));
+const st = (await (await ctx.request.get(`https://${APIH}/api/organizations/settings`,{headers:{Accept:'application/json'},ignoreHTTPSErrors:true})).json()).data;
+console.log('settings now:', JSON.stringify({ordering:st.requireOrderingParts, requirePicking: !st.autoPickInventoryParts, receiving:st.requireVendorInvoiceNumber}));
+
+await openWo(page, WO); await page.waitForTimeout(4000);
+const ids = await page.evaluate(()=>[...document.querySelectorAll('tr[class*="line-row-"]')].map(tr=>({id:(tr.className.match(/line-row-([0-9a-f-]+)/)||[])[1], badges:[...tr.querySelectorAll('.q-badge')].map(b=>(b.innerText||'').trim())})));
+console.log('lines:', JSON.stringify(ids));
+const approved = ids.find(l=>l.badges.includes('Approved'));
+console.log('using approved line', approved?.id);
+console.log(await addPart(page, approved.id, { number: '1237944' }));
+await page.screenshot({ path: `${EV}/addpart-typed.png`, fullPage: true });
+const suggestions = await page.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item, .q-menu div')].map(e=>(e.innerText||'').replace(/\s+/g,' ').trim()).filter(Boolean).slice(0,12));
+console.log('suggestions offered:', JSON.stringify(suggestions));
+await browser.close();
