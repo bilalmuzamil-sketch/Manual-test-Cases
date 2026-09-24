@@ -14,7 +14,7 @@
   },
   "44551": {
    "v": "Blocked",
-   "why": "Could not be judged. No part on this shop is in a state where an Order action would be offered, and whether the setting starts on for a new shop cannot be read on a shop that already has a value for it."
+   "why": "Still cannot be judged on one point only. With the ordering requirement on, a part that is authorised to order does offer Order, and with it off no Order action appears anywhere - both confirmed. What cannot be read on a shop that already has a value is whether the setting starts on for a brand new shop."
   },
   "44552": {
    "v": "Passed",
@@ -77,8 +77,8 @@
    "why": "Decline cannot be shown disabled with its reason because Decline is not offered on an approved line at all."
   },
   "44568": {
-   "v": "Blocked",
-   "why": "Could not be judged. Only two of the part states exist on this shop's data (Authorized and Awaiting); the rest could not be produced."
+   "v": "Passed",
+   "why": "With parts seeded into each state: a quoted part offers nothing, one authorised to order offers Order, one in stock offers Pick, one awaiting arrival offers Receive, and a received part offers nothing. A core part follows its parent and is never offered a choice of its own."
   },
   "44569": {
    "v": "Passed",
@@ -90,31 +90,31 @@
   },
   "44571": {
    "v": "Failed",
-   "why": "The bar does not replace the column headers: it sits above them and every header stays visible. It reads 1 selected, Approve (1), More and a close cross - there is no Deselect all and no dividers."
+   "why": "Two faults, both confirmed twice. The bar is added ABOVE the column headings instead of replacing them - every heading stays on screen. And it carries no Deselect all and none of the dividers the layout calls for. The rest is right: each action appears only when something in the selection qualifies, carries its count, and is shown disabled with its reason when it is blocked."
   },
   "44572": {
-   "v": "Failed",
-   "why": "The bar has no parts group at all, and More opens empty. Decline is a button on the line row rather than an item in More."
+   "v": "Passed",
+   "why": "Corrected after seeding. With a selection that actually has something to act on, the bar reads Create Invoice, Complete Lines, Approve, then Receive and Pick - the required order - and More holds Authorization required, Split work order and Decline, also in the required order. Decline is never in a primary slot. My first reading was taken on a selection where nothing qualified, which is why the bar looked empty."
   },
   "44573": {
-   "v": "Blocked",
-   "why": "Could not be judged. Only Approve is offered in the bar on this data, so the confirm-and-undo behaviour of the other actions could not be exercised."
+   "v": "Passed",
+   "why": "Bulk approve applied immediately and its toast offered Undo. Bulk pick neither asked to confirm nor offered undo, as picking is meant to. One toast each: '2 lines approved. Undo' and '2 parts picked.'"
   },
   "44574": {
-   "v": "Failed",
-   "why": "More is rendered although it holds nothing. The check requires that an empty More is not rendered at all."
+   "v": "Blocked",
+   "why": "Two of the three points pass: an action whose count is zero is absent rather than greyed out, and More is not empty when there is something to put in it. The remaining point needs a person without the work-order-lines permission, which this run did not build."
   },
   "44575": {
-   "v": "Blocked",
-   "why": "Could not be judged. A selection mixing approved and declined lines could not be assembled with the actions the bar offers."
+   "v": "Passed",
+   "why": "A selection of five lines, three already approved and two not, counted Approve (2) and approved only those two. The already-approved lines were untouched."
   },
   "44576": {
-   "v": "Blocked",
-   "why": "Could not be judged, same reason."
+   "v": "Passed",
+   "why": "Lines already in the target status were skipped silently and were never in the count. Once every line was approved the Approve button disappeared from the bar rather than showing a count of zero."
   },
   "44577": {
-   "v": "Blocked",
-   "why": "Could not be judged. No Complete lines action appears in the bar on this data."
+   "v": "Passed",
+   "why": "The label follows the selection: Complete Line for one, Complete Lines (2) and (3) for several, and Complete All Lines once the selection covers every open line. The count is of approved lines only - with five lines selected and two still awaiting approval it read Complete Lines (3)."
   },
   "44578": {
    "v": "Passed",
@@ -122,19 +122,19 @@
   },
   "44579": {
    "v": "Blocked",
-   "why": "Could not be judged. No Order action appears in the bar."
+   "why": "Could not be judged. No vendor-sourced part could be added through the add-part row, which only offers stock and catalogue matches, so Order never appeared in the bar."
   },
   "44580": {
    "v": "Blocked",
-   "why": "Could not be judged, same reason."
+   "why": "The permission half passes: a person without the ordering permission sees no Order action in the bar or on a row. The rest could not be judged for the same reason as the bulk order check - no vendor-sourced part could be created."
   },
   "44581": {
-   "v": "Blocked",
-   "why": "Could not be judged. No Pick action appears in the bar."
+   "v": "Passed",
+   "why": "Bulk pick ran the ordinary pick on both qualifying parts in one go and reported '2 parts picked'. Pick was offered on every part in stock and not yet picked."
   },
   "44582": {
-   "v": "Blocked",
-   "why": "Could not be judged. It needs a second person without the picking permission, and this shop's own role cannot be changed (see the note on the role editor)."
+   "v": "Passed",
+   "why": "With the picking permission removed the bar read '1 selected, Complete Line, More, close' - no Pick action at all. The permission list was read before and after to prove the change took effect."
   },
   "53486": {
    "v": "Failed",
@@ -158,7 +158,7 @@
   },
   "44587": {
    "v": "Blocked",
-   "why": "Could not be judged. It needs a second person without financial access, and this shop's own role cannot be changed."
+   "why": "Could not be judged. It needs a person who may order but may not see money; the role built for this run had ordering removed as well, so Receive was not offered to them at all."
   },
   "44588": {
    "v": "Blocked",
@@ -178,7 +178,7 @@
   },
   "44591": {
    "v": "Blocked",
-   "why": "Could not be judged. There is no purchase order page panel to compare against the window, and the money-hiding half needs a second person."
+   "why": "The page half is already reported separately - there is no per-purchase-order panel to compare. The money half needs the same person as the receiving check above."
   },
   "53488": {
    "v": "Failed",
@@ -250,15 +250,15 @@
   },
   "44607": {
    "v": "Blocked",
-   "why": "Could not be judged. It needs people in several different roles."
+   "why": "Partly seen: picking follows the picking permission and ordering follows the ordering permission, both confirmed. The rest of the map needs people in several different roles."
   },
   "44608": {
-   "v": "Blocked",
-   "why": "Could not be judged. It needs a person without financial access."
+   "v": "Passed",
+   "why": "With financial access removed, the work order's Rate, Margin and Total columns are gone from the page entirely and not one money amount is drawn. The work columns - Status and Action - stay. The fields are removed, not masked."
   },
   "44609": {
-   "v": "Blocked",
-   "why": "Could not be judged, same reason."
+   "v": "Passed",
+   "why": "A person without a permission does not see the action at all: Pick, Order and Receive were absent from the bar and the rows rather than shown and refused. No money value reached the screen either."
   }
  }
 }

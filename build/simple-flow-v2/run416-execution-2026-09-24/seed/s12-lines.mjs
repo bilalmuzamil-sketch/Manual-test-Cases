@@ -19,10 +19,13 @@ for (let i = 1; i <= 3; i++) {
     return d? {fields:[...d.querySelectorAll('.q-field')].map(f=>(f.innerText||'').split('\n')[0]), buttons:[...d.querySelectorAll('button,.q-btn')].map(b=>(b.innerText||'').trim()).filter(Boolean)} : null; });
   if (dlg) {
     console.log('  new-line dialog:', JSON.stringify(dlg));
-    await page.locator('.q-dialog input, .q-dialog textarea').first().fill(`ZZAUTOTEST line ${i}`).catch(()=>{});
-    await page.waitForTimeout(1200);
+    await page.locator('.q-dialog .q-field:has-text("What Are You Doing") input, .q-dialog .q-field:has-text("What Are You Doing") textarea').first().fill(`ZZAUTOTEST line ${i}`).catch(async()=>{
+      await page.locator('.q-dialog input, .q-dialog textarea').first().fill(`ZZAUTOTEST line ${i}`).catch(()=>{}); });
+    await page.waitForTimeout(1500);
     const saved = await page.evaluate(()=>{ const d=[...document.querySelectorAll('.q-dialog')].filter(x=>x.getBoundingClientRect().width)[0];
-      const b=[...d.querySelectorAll('button,.q-btn')].find(x=>/^(Save|Add|Create|Add Line)$/i.test((x.innerText||'').trim())); if(!b) return 'no save'; b.click(); return 'saved'; });
+      const b=[...d.querySelectorAll('button,.q-btn')].find(x=>/^Save & Close$/i.test((x.innerText||'').replace(/\s+/g,' ').trim()));
+      if(!b) return 'no Save & Close, buttons are: ' + [...d.querySelectorAll('button,.q-btn')].map(x=>(x.innerText||'').replace(/\s+/g,' ').trim()).join('|');
+      b.click(); return 'pressed Save & Close'; });
     console.log('  ', saved);
   } else {
     // an inline row instead of a dialog
