@@ -29,3 +29,13 @@ PARTS
 #   6675 (⋮ line/part menus), 6676 (drag_indicator reorder). Evidence: wo-556-detail-*.png / .txt
 # STILL TO OBSERVE: bulk action bar (select lines), receive modal, PO pages, completion wizard,
 #   finish action (Create invoice), permissions/roles screen, Receive-later split button.
+
+## Bulk Action Bar  (appears when line checkboxes are selected on the WO detail; replaces column headers — C44571)
+# Observed on S2-556, 4 lines selected, v26.39.0-07c719b.
+- Line checkboxes present (10 found); selecting reveals the bar.
+- Primary action slots observed: **Approve** · **Decline** · **Complete line**
+- **More** (expand_more) overflow — holds the rest (C44572).
+- **close** control dismisses the bar (C53486).
+# Confirms runnable on build: 6669 bulk bar route + primary/More/close structure.
+# TO EXPAND later: open "More" to capture order/pick/etc.; the "N selected" banner + "Deselect all"/"Select all".
+# Evidence: bulk-bar-*.png / .txt
