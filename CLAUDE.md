@@ -4852,6 +4852,49 @@ deliver the 7-tab management report.
     (verify what the reader/user receives, not a proxy for it) and 88 (surfaces — this rule says which
     one the verdict comes from).
 
+90. **A FAILED TICKET LEADS WITH THE FAILURE AND ITS ANNOTATED SCREENSHOT — the passes come after a
+    line break (all projects).**
+    USER DIRECTIVE (2026-09-24, verbatim): *"OK then just mention with the screenshot references what
+    failed the ticket FIRST. The screenshots should be annotated. ---- Then after the line break give
+    the verdict about what has been verified and is passed with annotated tickets. Nothing else has
+    been changed. Make it a rule for the failed tickets."*
+    **THE ORDER, fixed, for every comment whose verdict is FAILED:**
+    **(1) The status panel** — `OVERALL QA STATUS: FAILED`, one line, and nothing between it and the
+    failure. **No "what I tested on" preamble, no scope-setting paragraph** — those belong in the
+    passed half. A reader must meet the failure immediately.
+    **(2) WHAT FAILED, with its ANNOTATED screenshot right there** — the exhibit sits *with* the
+    failure, not collected at the bottom. Then the Rule-83 body: concise description of what and
+    where · numbered steps to reproduce · current vs expected · environment.
+    **(3) A LINE BREAK** — a literal horizontal rule (`----`) separating the two halves.
+    **(4) WHAT WAS VERIFIED AND PASSED** — the scope sentence (branch, build, date, what it was
+    checked against), then the full checks table, then **the annotated exhibits for the passes**.
+    **(5) Anything else** — questions to the PO, notes — after that.
+    **"ANNOTATED" MEANS DRAWN ON THE IMAGE (Rule 64), NOT A LABELLED PANEL AROUND IT.** Boxes, arrows
+    and captions rendered **onto the screenshot at the element's real coordinates** — taken from
+    `getBoundingClientRect()` for a live capture, or detected from the pixels for someone else's
+    screenshot — pointing at the actual value being evidenced. **A coloured header strip above a
+    crop, or a caption underneath, is NOT annotation** and does not satisfy this; it was the gap
+    that produced this rule.
+    **THE TABLE MIRRORS THE REPORTER'S OWN ITEMS, IN THEIR ORDER, AND CARRIES THE FAILURE AS A ROW.**
+    Never renumber, never split one of their bullets across two rows, never leave the failing item
+    out of the table. **The arithmetic must close in public**: if the panel says "one of eleven", the
+    table shows eleven rows of which exactly one reads FAILED.
+    **RATIONALE, 2026-09-24 (SV-10068, and every fault was mine).** The comment said *"ten of the
+    eleven points are done; one is not"* and then listed **eleven rows, every one PASSED** — the
+    failure existed only in prose above the table. *"Point 3"* meant the failure in one place and a
+    PASSED row in another. The numbering was **mine**, not Branko's: his description is a bullet
+    list, and I had split his single *"blue hover … as well as the stripe"* bullet across two rows,
+    so "Point 3" pointed at nothing he could find in his own ticket. And the exhibits were coloured
+    panels with captions rather than boxes and arrows on the pixels. The QA lead asked *"do you think
+    if you need to edit your comment?"* — the honest answer was yes, on all four counts. Ties to
+    Standing Rules 7 (plain wording), 25 (quote the source), 64 (annotated before/after screenshots
+    — **this rule says where they go and insists they are really annotated**), 65 (human voice), 72
+    (the pre-post gate now also checks the order and the arithmetic), 76, 77 step 9 (**this rule
+    supersedes its ordering for a FAILED verdict**), 81 (verify the artefact as the reader receives
+    it — re-read your own comment as a reader before and after posting) and 83 (the failure's
+    internal format, which this rule places first).
+
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related

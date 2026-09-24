@@ -203,3 +203,22 @@ back once it did. Checked now:
 
 Right icon, exact colour, 2 px larger — so bullet 8 passes, and the size joins the list of places the
 build overshoots the design.
+
+## §9 — Comment restructured, and the rule that came out of it
+
+The QA lead's instruction, verbatim: *"just mention with the screenshot references what failed the
+ticket FIRST. The screenshots should be annotated. Then after the line break give the verdict about
+what has been verified and is passed with annotated tickets. Nothing else has been changed. Make it
+a rule for the failed tickets."*
+
+Comment **77233** rebuilt in place to that order: status panel → **what failed with its annotated
+exhibit, steps, current vs expected, environment** → `----` → **what was verified and passed**, with
+the eleven-row table and the annotated pass exhibits → the questions for Branko.
+
+**All four exhibits re-made with real annotation** — boxes, arrows and captions drawn **onto the
+screenshots at the elements' actual coordinates**, taken from `getBoundingClientRect()` for the live
+captures and detected from the pixels for Branko's (the clear button at `(1212,81)-(1231,94)` and the
+scroll bar at `x 35–1158, y 150–165` in his own screenshots). The previous versions were coloured
+header panels with captions underneath, which is not annotation.
+
+Recorded as **Standing Rule 90** in `CLAUDE.md` and as a row in `build/LESSONS-INDEX.md`.
