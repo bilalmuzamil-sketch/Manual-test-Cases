@@ -4009,3 +4009,46 @@ titles for three cases I had changed an hour earlier — I nearly reported that 
 landed. The file was pulled the previous day. **Read the case from TestRail when the question is what
 the case says now** (Rule 100). The cached pull is for bulk scanning, never for a fact about the
 present state.
+
+## L0203 — Reset a role to its default and SAVE before you assign it to anyone (QA lead, 2026-09-25)
+**What happened.** I ran a permission check against the lower-permission account without first proving
+the role it carries still holds its default permissions. Several sessions share this estate and any of
+them may have edited that role, so a permission result measured on it is a claim about *whatever that
+role happens to contain today*, not about the product.
+**The rule, in his words:** *"When you are assigning a role to technician or when you assign any
+preexisting role to anyone, make sure that you first reset that role and hit save and then assign to
+the staff. This ensures that no other session has edited the role and changed it from the default
+values."* And: **re-run the test after resetting.**
+**So the order is:** open the role → **Reset to the template/default** → **Save** → assign it to the
+staff member → *then* run the check. A role that was already assigned still needs the reset-and-save
+first, and the check re-run afterwards.
+**Why it bites harder than it looks.** The failure is silent and it points the wrong way: a permission
+another session switched on makes the product look permissive, a permission it switched off makes the
+product look broken, and either way the finding survives review because the screenshot is real.
+This is Standing Rule 26 with the missing half spelled out — the reset must be SAVED, and the
+assignment must come after it.
+
+## L0204 — A row can carry several three-dot menus, and `.first()` picks the wrong one
+**What happened.** Four "missing feature" findings across five checks, all false, all from one
+selector. A work-order line row contains more than one `more_vert`; the first in DOM order belongs to
+the **labor sub-row** and opens a one-item menu. `.first()` therefore read that menu on every line, on
+every work order, and the whole feature set looked absent — consistently, which is what made it
+convincing. **A repeatable wrong reading feels like evidence.**
+**The fix that generalises:** never take `.first()` of a control that a row may have several of.
+Enumerate every match **with its position**, click each, and record which one produced which menu.
+Geometry disambiguates where DOM order does not — here the item's own menu is the leftmost.
+**And the companion fault:** `.q-menu .q-item` with no visibility filter returns a *stale* menu.
+Filter by bounding box and take the last. Two faults in the same probe pointed the same way, so they
+reinforced each other instead of cancelling out.
+**The tell I ignored:** the same menu on lines of four different statuses. A menu that never varies
+with state, in a feature whose whole point is that actions vary with state, is a probe fault.
+
+## L0205 — Hunting for a control I expected, instead of reading what is there
+**What happened.** I looked for a **pencil** on the row to open a line editor, found none, and reported
+"there is no line editor, so there is no delete". The editor opens by **clicking the row itself** and
+carries both a status dropdown and Delete. I had invented the interaction and then tested my invention.
+**The rule:** when a control is not where I expect, the finding is *"I could not find it by the route I
+tried"* — never *"it does not exist"*. Rule 104 already demands the positive control; this is the same
+failure wearing different clothes, because a pencil that was never there cannot fail to be found.
+**Cheap guard:** before claiming an editor or action is absent, try the obvious direct interaction
+(click the thing itself), not only the affordance I assumed.

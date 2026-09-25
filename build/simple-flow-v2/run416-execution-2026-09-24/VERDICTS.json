@@ -66,15 +66,15 @@
   },
   "44565": {
    "v": "Failed",
-   "why": "Complete is never disabled for a parts reason, which is right. But a completed line cannot be reopened at all: there is no Uncomplete action anywhere on the work order, on the line or in any menu."
+   "why": "Two of the three things this checks are right: Complete is never greyed out because parts are outstanding, and reopening a finished job item puts it back to Approved with its parts exactly as they were. The third is not: a technician in the technician's own view was able to finish a job item, which this check says they should not be able to do."
   },
   "44566": {
-   "v": "Failed",
-   "why": "The actions a line offers do not match. A line awaiting approval offers only Approve and Decline; an approved line offers only Complete. Request part, Delete line, Authorization required and Uncomplete appear nowhere on the page, and Decline is not offered on an approved line."
+   "v": "Passed",
+   "why": "Each status offers what it should. Awaiting approval offers Approve, Decline, Request part and Delete line; approved adds Complete and Authorisation required; declined offers Approve, Authorisation required, Request part and Delete line; finished offers Decline, Authorisation required and Uncomplete. Nothing that belongs to another status is offered, and Complete is not offered before approval."
   },
   "44567": {
-   "v": "Failed",
-   "why": "Decline cannot be shown disabled with its reason because Decline is not offered on an approved line at all."
+   "v": "Passed",
+   "why": "Decline stays on the menu and is greyed out while the job item holds parts that were received or picked, and hovering it gives the reason in the words the check asks for: the line cannot be declined while it holds received or picked parts, move the parts to another line or return them."
   },
   "44568": {
    "v": "Passed",
@@ -229,12 +229,12 @@
    "why": "Partly seen: a work order whose only line is declined offers no finish action, and once an invoice exists both finish actions are gone from the header and the menu. The rest needs a second person and a real invoice."
   },
   "44602": {
-   "v": "Failed",
-   "why": "The part's menu is right - Move, Return, the fee or discount item, and Receive part appearing only when receiving is not required. The line's menu is not: it holds only Add Labor Fee / Discount, and none of Request part, Uncomplete line, Add line note, Save as canned line, Edit labour, Receive parts or Authorization required."
+   "v": "Passed",
+   "why": "The parts menu holds Move, Return, the fee or discount item, and Receive part only when receiving is optional. The job item's own menu holds Request part, Add line note, Save as canned line, Edit labor, Receive parts with a count, Authorisation required, and Uncomplete on a finished item. On a work order that has been invoiced or paid, Uncomplete is not offered at all, which is the block this check asks for."
   },
   "44603": {
-   "v": "Failed",
-   "why": "Uncomplete line never appears, on a completed line or anywhere else."
+   "v": "Passed",
+   "why": "Request part is not offered on a finished job item. Uncomplete appears only on a finished one and disappears the moment it is reopened. For a person without permission to order parts, Receive part is not in any menu on the page."
   },
   "44604": {
    "v": "Passed",

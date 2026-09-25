@@ -4558,3 +4558,64 @@ in the step.
 and rewritten the same day. Both rewrites kept `custom_expected` byte-identical and were re-verified
 whole afterwards (Rule 41). Full record:
 `build/global-search/fuzzy-indicator-sweep-2026-09-23/COVERAGE-OF-BOTH-TICKETS.md`.
+
+---
+
+## RULE 118 — A ROLE IS PROVED DEFAULT BY **RESET TO TEMPLATE**, AND THE **SAVE BUTTON IS THE TELL**
+
+**Recorded 2026-09-25 on the QA lead's explicit instruction — *"Set this in your rules forever."***
+
+### 118.1 The instruction, in his words
+
+> *"When you are assigning a role to technician or when you assign any preexisting role to anyone,
+> make sure that you first reset that role and hit save and then assign to the staff. This ensures
+> that no other session has edited the role and changed it from the default values. Make sure that you
+> run the test again after resetting the role."*
+
+> *"If clicking Reset to template makes the save button enabled it means that role was changed and it
+> was not in its default shape. And if clicking reset to template does not activate the save button it
+> means that the role is already in its default settings. You can edit the role if the test requires
+> you to place/remove check marks for some permissions and toggle on/off something BUT when you want
+> the role to have the default permissions then you must ensure by resetting it that it is really in
+> default settings."*
+
+### 118.2 The mechanism — the Save button answers the question
+
+The role editor (`/administration/roles-permissions/<id>/edit`) carries **`restart_alt Reset To
+Template`** next to **`Cancel`** and **`Save`**. Press **Reset To Template** and then read **Save**:
+
+| After pressing Reset To Template | What it means | What you do |
+|---|---|---|
+| **Save becomes ENABLED** | The role **had been changed** and was **not** in its default shape — another session edited it | Press **Save**. Record that the role had drifted, and **re-run any check already taken on it** — those results are void |
+| **Save stays DISABLED** | The role **is already** in its default shape | Nothing to save. Proceed |
+
+This is a **read of the product's own state**, not an inference, and it satisfies Rule 12: the enabled
+state of Save is the observation. It is also the *only* cheap way to tell drift from default — the
+permission list alone cannot, because a drifted role looks exactly like a deliberately-configured one.
+
+### 118.3 When it applies
+
+- **Before assigning any pre-existing role to anyone**, and **before any permission or role check** —
+  including a role the person **already** carries, which still needs the reset-and-save first.
+- **The test is re-run after the reset.** A result measured on an un-reset role is a claim about
+  whatever that role happened to contain that day, not about the product.
+
+### 118.4 What it does NOT forbid
+
+**Editing a role for a test is still permitted and expected** (Rule 107): tick and untick permissions,
+toggle things on and off, build the state the check needs. The rule bites only when the check requires
+the role to hold its **default** permissions — then the default must be **proved** by the reset, never
+assumed.
+
+### 118.5 Why it matters more than it looks
+
+The failure is **silent and it points the wrong way.** A permission another session switched **on**
+makes the product look permissive; one switched **off** makes the product look broken. Either way the
+finding survives review, because the screenshot is real — it is the premise that is false. This is
+Standing Rule 26 with its missing half spelled out: **the reset must be SAVED, the assignment comes
+after it, and the test is re-run.**
+
+**Caveat carried from L0193:** a **system** role saves nothing at all, so on a system role a failed
+write is not a product defect — verify with a control change of the same kind before saying anything.
+
+**Learning:** L0203. **Playbook:** `build/APP-ACTIONS-PLAYBOOK.md`, role-checks entry 2026-09-25.

@@ -5378,3 +5378,51 @@ exactly like an expired Atlassian session. Strip it first: `| sed 's/__HTTP:.*//
 - **Sharp pictures on production:** `bootProdLogin(route, { viewport:{width:1680,height:1000}, deviceScaleFactor: 2 })`
   now captures at 2×, which is what Standing Rule 116 needs. At a 1000px viewport the work order's lines
   table does not render its rows at all — use 1680 for anything involving lines.
+
+### Work order LINES — the three-dot trap, the line editor, and the real menus (prod, 2026-09-25)
+
+**THE TRAP THAT PRODUCED FOUR FALSE "MISSING FEATURE" FINDINGS.** A line row contains **more than one
+`more_vert`**, and the FIRST one in DOM order is the **labor sub-row's**, whose menu holds a single
+item, `Add Labor Fee / Discount`. `tr.line-row-<id> .q-btn:has-text("more_vert")` + `.first()`
+therefore opens the wrong menu on every line and makes the whole feature set look absent.
+**Enumerate every `more_vert` on the page with its position and click each one**; the line's own menu
+is the LEFTMOST (~x=402 at 1680px wide), the labor one is to its right (~x=515), the part rows' are
+further right again (~x=549-715).
+
+**AND READ ONLY A VISIBLE `.q-menu`.** Quasar leaves closed menus in the DOM, so
+`document.querySelectorAll('.q-menu .q-item')` returns a STALE menu's items. Filter by bounding box
+(`r.width > 20 && r.height > 20`) and take the LAST match — this is the same class of mistake as the
+settings toggles in §A.
+
+**THE LINE EDITOR OPENS BY CLICKING THE LINE — THERE IS NO PENCIL.** Clicking a line's name cell
+opens an **`Edit Line`** dialog: fields `What Are You Doing?`, `Why Are You Doing It?`, **`Status`**
+(dropdown: `Authorization required` · `Declined` · `Authorized` · `Complete`), `Add Technician`,
+`Labor Rate`, `Estimated Time`, `Tech Time`; buttons **`Delete`** and **`Save & Close`**. Hunting a
+pencil and concluding "there is no line editor, so there is no delete" is a probe fault, not a finding.
+
+**THE MENUS AS THEY ACTUALLY READ** (`evidence/p3c-all-dots.json`):
+- **Approved line:** Request part · Add line note · Save as canned line · Story history · Audit log ·
+  Add inspection · Edit labor · Move labor · `Receive parts (n)` · Authorization required · Decline ·
+  Delete line. **Decline and Delete line are DISABLED while the line holds parts**, enabled without.
+- **Complete line:** **Uncomplete** · Add line note · Save as canned line · Story history · Audit log ·
+  Edit labor · Move labor · Authorization required · Decline. **No Request part, no Delete line.**
+- **Part row:** Move · Return (disabled unless received) · Move up · Move down · Add Part Fee / Discount.
+- **A part with a core** has its own small menu: `Core OK`.
+- **Work order header three-dot** (~x=1484): Audit Log · Timesheets (n) · Add Work Order Fee / Discount ·
+  Print Work Order · Create invoice · Delete Work Order.
+
+**DELETING A LINE — the QA lead's route, 2026-09-25.** A **Complete** line cannot be deleted directly:
+move it to **Authorization required** (its three-dot) or **Decline** it first, then delete. A line is
+deletable while **Declined / Authorization required (= Needs Approval) / Authorized**. It is still
+refused **while it holds staged parts** — move the parts to another line, cancel the order, or return
+the part first. And **nothing can be reopened or deleted once the work order is invoiced or paid**, so
+"finished line" must be stated as either *status Complete* or *work order invoiced/paid* — they behave
+differently and are not the same thing.
+
+**ROLE CHECKS — RESET THE ROLE AND SAVE IT BEFORE ASSIGNING (QA lead, 2026-09-25).** The estate is
+shared, so a pre-existing role may have been edited by another session. Before any permission check:
+open the role in `/administration/roles-permissions/<id>/edit` → **Reset to the template/default** →
+**Save** → then assign it to the staff member → then run the check. A role already assigned to the
+person still needs the reset-and-save, and **the test is re-run afterwards** — an earlier result taken
+on the un-reset role is void. See Standing Rule 26 and learning L0203. Note that **system roles save
+nothing** (L0193), so this applies to custom roles; a system role is verified by a control change.
