@@ -101,8 +101,21 @@ Two of those three were also read **off the screen**, not only out of the endpoi
 | work order marked Completed | S2-810, line `0644ec67` | `You cannot delete a line when a work order is marked AS Completed. Please uncomplete the work order first` |
 
 The third — *line is completed* — is covered in the endpoint diff above (40 occurrences before and after, same
-example line). Hovering it on screen took two attempts: the first candidate work order, S2-194, is **invoiced**, and
-on an invoiced work order the menu does not offer a **Delete line** item at all, so there is nothing to hover.
+example line) but **cannot be hovered anywhere, because the product never shows it**. On a completed line the action
+menu offers **Uncomplete** in place of **Delete line**, so there is no control to hover:
+
+```
+S2-244 line 3852c0a9 menu: menu-item_uncomplete, menu-item_add_line_note, menu-item_save_canned_line_…,
+                           menu-item_story_history, menu-item_audit_log_…, menu-item_edit_labor,
+                           menu-item_authorization_required, menu-item_decline        <- no delete item
+S2-743 line 3977da6d menu: (identical set)                                            <- no delete item
+```
+
+Three work orders were tried — S2-194 (invoiced), S2-244 and S2-743 (both approved) — and all three behave the same
+way, so it is the **line** being completed that removes the item, not the work order being invoiced. That makes
+`You cannot delete a line that is completed. Please uncomplete the line first` a string the endpoint returns and the
+screen never renders. It is unchanged either way, which is all this ticket needs; but it is worth knowing that one of
+the four reasons is not reachable by a tester.
 
 The payload shape is unchanged too: a line object carries **47 keys** on the branch and **47** on production, with no
 key added or removed on either side, and `deletable` is still `false` on a staged-parts line — the gate did not move,

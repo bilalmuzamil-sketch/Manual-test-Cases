@@ -5339,8 +5339,12 @@ touches nothing that Rules 12/50/64/73 require.
   `menu-item_save_canned_line_<lineId>`, `menu-item_story_history`, `menu-item_audit_log_<lineId>`,
   `menu-item_add_inspection_<lineId>`, `menu-item_edit_labor`, `menu-item_authorization_required`,
   `menu-item_decline`, `menu-item_delete_line_<lineId>`. Tooltips render as `.q-tooltip`.
-- **On an INVOICED work order the menu has no "Delete line" item at all** — so a completed-line
-  delete reason cannot be hovered there; pick a completed line on an *approved* work order.
+- **A COMPLETED line has no "Delete line" item at all** — its menu offers `menu-item_uncomplete`
+  instead (verified on S2-194 invoiced, S2-244 and S2-743 both approved: same menu every time, so it
+  is the *line* being completed, not the work order being invoiced). Consequence:
+  `You cannot delete a line that is completed…` is a `deletable_reason` the endpoint returns that the
+  UI can never display, so it is **not hoverable anywhere** — do not burn time hunting for a work
+  order where it shows.
 - **`GET /api/auth/me` returns `'resource' was not found`** on production; use
   `GET /api/auth/me/fe-permissions` → `data.fe_permissions[]` for the signed-in user's atoms.
 - Production login is **credentials, not cookies** (`input_email` / `input_password`), and a
