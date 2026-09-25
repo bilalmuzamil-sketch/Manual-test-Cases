@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-25T145407Z",
+ "when_utc": "2026-09-25T151350Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
@@ -25,6 +25,7 @@
   "rank_f_contact": "6fc9e13a-add1-456d-bd70-ae3f9b09b79f",
   "fz_short": "7de12ccf-7ba6-43a8-a55d-38011f1bf36c",
   "fz_long": "2cc1a571-1fc6-40f7-ab31-f79764bb9a7e",
+  "rank_i_instock_inv": "d1674b8e-915b-4936-b7fc-98aa6fa430b0",
   "rank_i_outstock_inv": "51cf5dde-b946-4433-b40d-abcaeba843d8",
   "rank_p_active_inv": "714b5afa-46fe-49a4-84ac-96f8daa56f0a",
   "rank_p_quiet_inv": "88bcf652-4fa0-4eb4-9266-5b639e2e67c5",
@@ -59,6 +60,7 @@
   "phon2_customer": "73331425-4bbf-461c-80bb-ed0c7a871397",
   "pin_rival": "33a4ae68-5033-48e9-ad4b-2fe922087a57",
   "broad_01": "b19d105a-44c6-44b8-addb-6a729b5cc658",
+  "broad_02": "9b8d7999-dd8f-4c38-89f9-76944acaa1c4",
   "broad_03": "0dc97dfc-aa97-46b5-8137-e98ea63933f9",
   "broad_04": "1e247c20-da42-43f8-becf-5ee1c63ff435",
   "broad_05": "dc75df92-74af-40c4-819a-ab475a387273",
@@ -80,6 +82,7 @@
   "broad_21": "6846447a-884c-4608-aae6-07c4de467ffc",
   "broad_target": "de9e799f-3171-4d19-b41c-85515d852906",
   "broad_01_inv": "8a22949e-4dad-4243-8dbf-c0a1e08cd6c6",
+  "broad_02_inv": "5e09a522-a051-4684-a5ee-256ac0c9f1e5",
   "broad_03_inv": "fe4537ce-b1f4-4b65-8933-7712cceb9300",
   "broad_04_inv": "38ffc030-52b1-40fa-a429-578768c53334",
   "broad_05_inv": "74c9aeaf-8416-4aaa-b281-87d896df9274",
@@ -98,6 +101,7 @@
   "broad_18_inv": "a3f746e6-5d67-494f-b374-0ffcaa0eaa87",
   "broad_19_inv": "e99113f0-8a55-4fe9-9767-3acfbaf011ba",
   "broad_20_inv": "e23fc45d-c153-46d8-bd10-8725202ff40f",
+  "broad_21_inv": "a563d759-f4c2-41d0-a834-a606cc4c705d",
   "broad_target_inv": "89f7a800-19c9-431c-adc9-7bf6abd1eb94"
  },
  "records": [
@@ -536,9 +540,13 @@
   },
   {
    "key": "rank_i_instock_inv",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"catalog_part_id\":\"Missing required parameter\"},{\"category_id\":\"Missing required parameter\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "d1674b8e-915b-4936-b7fc-98aa6fa430b0"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     44852
    ]
@@ -1062,8 +1070,16 @@
   },
   {
    "key": "broad_02",
-   "state": "UNVERIFIED",
-   "reason": "probe ERR",
+   "state": "PRESENT",
+   "ids": [
+    "9b8d7999-dd8f-4c38-89f9-76944acaa1c4"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
@@ -1403,9 +1419,13 @@
   },
   {
    "key": "broad_02_inv",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"catalog_part_id\":\"Missing required parameter\"},{\"category_id\":\"Missing required parameter\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "5e09a522-a051-4684-a5ee-256ac0c9f1e5"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
@@ -1646,9 +1666,13 @@
   },
   {
    "key": "broad_21_inv",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"bins\":\"Missing required parameter\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "a563d759-f4c2-41d0-a834-a606cc4c705d"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]

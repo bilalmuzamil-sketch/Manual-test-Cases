@@ -20,8 +20,15 @@ import json, os, sys, urllib.error, urllib.parse, urllib.request, uuid
 CONFIRM = '--confirm' in sys.argv
 R_, X_ = '\033[31m', '\033[0m'
 HERE = os.path.dirname(os.path.abspath(__file__))
-C = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
+COOKIES = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
+C = json.load(open(COOKIES))
 CK = '; '.join(f"{k}={C[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
+# 🔴 THE IDS FILE IS PER ENVIRONMENT, DERIVED THE SAME WAY THE ENGINE DERIVES IT. It used to be
+# hardcoded to seed-ids-ranking-qa.json, so running this against any other environment read the
+# QA BRANCH's work-order ids and tried to act on them - ids that do not exist there. That is the
+# cross-environment contamination this kit keys every other state file to avoid, left in one
+# script. Found on staging, 2026-09-25.
+ENV_LABEL = 'qa' if COOKIES == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(COOKIES))
 
 def call(path, method='GET', body=None):
     req = urllib.request.Request(f"https://{C['api']}{path}", method=method,
@@ -59,7 +66,7 @@ def signal_open_work_orders():
 
     None of this was visible to the seeder OR to the first verifier - both checked that the records
     existed. Only the ORDER shows it, which is why verify_ranking.py now asserts order."""
-    ids_path = os.path.join(HERE, 'seed-ids-ranking-qa.json')
+    ids_path = os.path.join(HERE, f'seed-ids-ranking-{ENV_LABEL}.json')
     if not os.path.exists(ids_path):
         return '🔴 no ranking ids file — run seed.py --confirm first'
     ids = json.load(open(ids_path))

@@ -22,9 +22,14 @@ WHAT THIS ASSERTS, per case:
 second signed-in user; this proves the DATA the tester will flip against. Saying so matters: a
 green run here means "the records are there", not "the case passes".
 """
-import json, sys, urllib.error, urllib.parse, urllib.request
+import json, os, sys, urllib.error, urllib.parse, urllib.request
 
-C = json.load(open('/tmp/qa/cookies.json'))
+# 🔴 HONOUR SEED_PROFILE LIKE EVERY OTHER SCRIPT IN THIS KIT. This was hardcoded to the QA
+# branch, so pointing the kit at another environment seeded THERE and then tried to verify HERE -
+# and on a container where /tmp/qa/cookies.json does not exist it simply crashed. A verifier that
+# can only ever check one environment is worse than none: run against staging it would have
+# reported the QA branch's health as staging's. Measured on staging, 2026-09-25.
+C = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
 CK = '; '.join(f"{k}={C[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
 G, R, Y, X = '\033[32m', '\033[31m', '\033[33m', '\033[0m'
 
