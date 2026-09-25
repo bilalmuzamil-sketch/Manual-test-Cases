@@ -1,16 +1,50 @@
 {
- "when_utc": "2026-09-25T134809Z",
+ "when_utc": "2026-09-25T141055Z",
  "environment": {
   "app": "sv9160.qa.shopview.com",
   "api": "sv9160api.qa.shopview.com",
   "workplace_name_hint": "Heavy Duty",
   "tag": "ZZAUTOTEST"
  },
- "live_ids": {},
+ "live_ids": {
+  "customer": "3d760beb-ee5e-4cfe-8fe5-9250ca5c4dc7",
+  "contact": "d6aa8a81-4def-4f4c-a302-426ee0fe83e0",
+  "asset": "0c805958-5fc1-4c7f-9ecf-728571b9a7d5",
+  "work_orders": [
+   "b3edf19a-9719-45b6-8ae1-a981e5f94f98",
+   "a00eb53c-7939-4cf3-a80d-d2e09e20f875",
+   "a023ba5a-5e9c-4c1c-a5ca-700ff6e34c0f",
+   "75045b18-ea88-4f51-af49-5fdd26f0c1f0"
+  ],
+  "vendor": "ea2cd8ae-be09-43f6-a5c7-441e24eebceb",
+  "part_catalogue_only": "4e45ecdd-6df9-4ea3-8b2f-df6048be62ce",
+  "part_catalogue_stocked_source": "f3641650-a092-4adc-b38a-f6621d598fb2",
+  "part_stocked": "f1c801dd-f3a1-4a57-9999-ffd2659a9cbf",
+  "customer_fuzzy_target": "e7ba8145-d3bc-4393-b871-4cfae6cad388",
+  "customer_fuzzy_nearmiss": "6f33ceb5-d1d9-4652-b26a-5f42a7af2389",
+  "part_sale": "6447a0bc-46b9-4cd3-bcae-c76f7ce35108"
+ },
  "records": [
   {
    "key": "customer",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "3d760beb-ee5e-4cfe-8fe5-9250ca5c4dc7"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code",
+    "website",
+    "address_2",
+    "telephone"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     53578,
     53581,
@@ -33,8 +67,19 @@
   },
   {
    "key": "contact",
-   "state": "UNVERIFIED",
-   "reason": "parent 'customer' not available yet - check the record order",
+   "state": "PRESENT",
+   "ids": [
+    "d6aa8a81-4def-4f4c-a302-426ee0fe83e0"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     53603,
     55670,
@@ -50,7 +95,20 @@
   },
   {
    "key": "asset",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "0c805958-5fc1-4c7f-9ecf-728571b9a7d5"
+   ],
+   "fields_ok": [
+    "maker_name",
+    "model_name",
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     53516,
     53580,
@@ -65,9 +123,16 @@
   },
   {
    "key": "work_orders",
-   "state": "SHORT",
-   "have": 0,
-   "want": 4,
+   "state": "PRESENT",
+   "ids": [
+    "b3edf19a-9719-45b6-8ae1-a981e5f94f98",
+    "a00eb53c-7939-4cf3-a80d-d2e09e20f875",
+    "a023ba5a-5e9c-4c1c-a5ca-700ff6e34c0f",
+    "75045b18-ea88-4f51-af49-5fdd26f0c1f0"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     45153,
     53578,
@@ -83,7 +148,23 @@
   },
   {
    "key": "vendor",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "ea2cd8ae-be09-43f6-a5c7-441e24eebceb"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "address_2",
+    "website"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     53584,
     53585,
@@ -98,7 +179,16 @@
   },
   {
    "key": "part_catalogue_only",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "4e45ecdd-6df9-4ea3-8b2f-df6048be62ce"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     53601,
     45153
@@ -106,7 +196,16 @@
   },
   {
    "key": "part_catalogue_stocked_source",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "f3641650-a092-4adc-b38a-f6621d598fb2"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     45153,
     53607,
@@ -119,7 +218,15 @@
   },
   {
    "key": "part_stocked",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "f1c801dd-f3a1-4a57-9999-ffd2659a9cbf"
+   ],
+   "fields_ok": [
+    "quantity"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     45153,
     53607,
@@ -132,7 +239,21 @@
   },
   {
    "key": "customer_fuzzy_target",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "e7ba8145-d3bc-4393-b871-4cfae6cad388"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55685,
     55686
@@ -140,7 +261,21 @@
   },
   {
    "key": "customer_fuzzy_nearmiss",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "6f33ceb5-d1d9-4652-b26a-5f42a7af2389"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55685,
     55686
@@ -148,8 +283,13 @@
   },
   {
    "key": "part_sale",
-   "state": "UNVERIFIED",
-   "reason": "probe ERR",
+   "state": "PRESENT",
+   "ids": [
+    "6447a0bc-46b9-4cd3-bcae-c76f7ce35108"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55665,
     45153,
