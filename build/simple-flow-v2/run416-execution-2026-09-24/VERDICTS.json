@@ -25,12 +25,12 @@
    "why": "Turning the ordering and picking requirements on later changed nothing that already existed: all 66 parts across 45 work orders kept the state they were in."
   },
   "44554": {
-   "v": "Failed",
-   "why": "Turning the ordering requirement off changed no record at all. The product's own confirmation says so: No record is changed by this switch. The check requires every part still waiting to be ordered to be placed on a purchase order and moved to Awaiting."
+   "v": "Passed",
+   "why": "QA lead ruling, 25 September 2026: the confirmation's own words are the expected behaviour - \"No record is changed by this switch. Parts already on a work order keep the state they are in.\" The product does exactly that: switching Require Ordering Parts off left all 66 parts across 45 work orders in the state they were in, and said so before it saved. Re-judged from Failed on that ruling."
   },
   "44555": {
-   "v": "Failed",
-   "why": "No audit entry naming the cause of a settings change exists, because the change touches no record. The newest entries on the work order are from 16 September."
+   "v": "Passed",
+   "why": "QA lead ruling, 25 September 2026: the confirmation's own words are the expected behaviour - \"No record is changed by this switch. Parts already on a work order keep the state they are in.\" No record is changed, so there is nothing for a work order's history to record, and nothing is recorded. Re-judged from Failed on that ruling."
   },
   "44556": {
    "v": "Passed",
@@ -45,8 +45,8 @@
    "why": "Cancelling each of the four confirmations left the shop's settings exactly as they were, read back afterwards and identical."
   },
   "44559": {
-   "v": "Failed",
-   "why": "No progress indicator appears while a settings change is applied; the page returns at once. Nothing is applied, so there is nothing to wait for."
+   "v": "Passed",
+   "why": "QA lead ruling, 25 September 2026: the confirmation's own words are the expected behaviour - \"No record is changed by this switch. Parts already on a work order keep the state they are in.\" No record is changed, so there is nothing to apply and nothing to wait for; the page saves and returns at once, and everyone else keeps working. Re-judged from Failed on that ruling."
   },
   "44561": {
    "v": "Blocked",

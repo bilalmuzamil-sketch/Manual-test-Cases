@@ -1,3 +1,14 @@
+🛑 WITHDRAWN — NEVER FILE THIS. QA lead ruling, 25 September 2026.
+
+He ruled that the confirmation's own words ARE the expected behaviour:
+    "No record is changed by this switch. Parts already on a work order keep the state they are in."
+
+So the product is right and our checks were wrong. The three results were re-judged to Passed in the
+run on that ruling. This draft is kept only as the record of what was examined and why it was dropped.
+Nothing here is to be raised.
+
+--------------------------------------------------------------------------------
+
 TITLE: Turning Require Ordering Parts Off Does Not Reach the Work Orders That Already Exist
 ISSUE TYPE: Story Defect
 PARENT / OWNING STORY: SV-9248 — Settings apply to every work order

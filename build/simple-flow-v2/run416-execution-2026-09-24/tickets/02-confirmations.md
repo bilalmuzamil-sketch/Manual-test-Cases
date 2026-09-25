@@ -50,3 +50,16 @@ h2. Sources
 
 Simple Flow V2 specification, Confluence page *771391574*, Story 3 — "Confirmation before a settings change".
 _[TO BE PASTED: the verbatim sentence from the live page — one gated read of the source is needed.]_
+
+---
+
+**NARROWED by the QA lead's ruling of 25 September 2026** — he ruled that "No record is changed by this
+switch. Parts already on a work order keep the state they are in." is the expected behaviour.
+
+That removes the second half of this report. If nothing is picked retroactively, there is no stock
+deduction to warn about, so *"None of them is picked retroactively"* is the correct thing to say, not a
+fault. **Delete the third bullet and the third step before this is raised.**
+
+What still stands, and is the whole of this report now: *Require Approval for New Lines* and *Require
+Receiving Parts Before Completion* both stop the user with a confirmation, and the check says only the
+ordering and picking settings should.
