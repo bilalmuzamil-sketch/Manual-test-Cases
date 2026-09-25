@@ -131,6 +131,25 @@ def template_codes(role_name):
     return [p.get('code') or p.get('name')
             for p in ((rp['json'] or {}).get('data', {}).get('fe_permissions') or [])]
 
+def template_permissions(role_name):
+    """The template's permission OBJECTS, which carry {id, name, code} - not just the codes.
+
+    🔴 THE TEMPLATE IS A COMPLETE SOURCE, NOT JUST A YARDSTICK. The original code measured the
+    live role against the template but still built FROM the live role, because fePermissions
+    wants permission IDS and the codes alone cannot supply them. That quietly assumed a populated
+    live role existed. On staging it did not: 563 roles are named 'Office User' and the best of
+    them carries ZERO permissions, so the fallback path ran for the first time and crashed on
+    None. The template endpoint returns ids as well as codes, so it can BE the source - which is
+    also what the code always said it wanted: 'The TEMPLATE is the authority'."""
+    r = call('/api/role-templates')
+    if r['status'] != 200: return None
+    tpls = (r['json'] or {}).get('data', {}).get('role_templates') or []
+    t = next((x for x in tpls if (x.get('name') or '').lower() == role_name.lower()), None)
+    if not t: return None
+    rp = call(f"/api/role-templates/{t['id']}/fe-permissions")
+    if rp['status'] != 200: return None
+    return (rp['json'] or {}).get('data', {}).get('fe_permissions') or []
+
 def org_id():
     """🔴 /api/staff rows do NOT carry organization_id (measured: the field is absent, so reading it
     yields None and the create then fails on a missing entity rather than on anything informative).
@@ -181,9 +200,17 @@ def main():
         if only_t: print(f'      missing from the live role : {only_t}')
         if only_l: print(f'      added to the live role     : {only_l}')
         src_codes = list(tpl_codes)
-        # keep the live role's ids for the permissions the template keeps, since fePermissions wants ids
-        src = dict(src, fe_permissions=[p for p in (src.get('fe_permissions') or [])
-                                        if (p.get('code') or p.get('name')) in set(tpl_codes)])
+    # 🔴 BUILD FROM THE TEMPLATE WHENEVER ONE EXISTS, whether or not the live role drifted. It
+    # carries the ids fePermissions needs, so there is no reason to depend on finding a populated
+    # live role - and depending on one is exactly what crashed here on staging.
+    tpl_perms = template_permissions(SOURCE_ROLE_NAME) if tpl_codes is not None else None
+    if tpl_perms:
+        src = dict(src or {}, fe_permissions=tpl_perms)
+        src_codes = [p.get('code') or p.get('name') for p in tpl_perms]
+        print(f'  building from the TEMPLATE ({len(tpl_perms)} permissions, ids included)')
+    elif src is None:
+        sys.exit('no template for that role name AND no live role with permissions - '
+                 'pick a different SOURCE_ROLE_NAME')
     if not src_codes:
         sys.exit('every role with that name is empty - pick a different SOURCE_ROLE_NAME')
     by_name = {r['label']: r['id'] for r in roles}
