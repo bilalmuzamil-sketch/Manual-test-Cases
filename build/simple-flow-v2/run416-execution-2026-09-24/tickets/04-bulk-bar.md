@@ -1,66 +1,81 @@
-TITLE: The Bulk Action Bar Sits Above the Column Headers Instead of Replacing Them, and Holds Almost Nothing
-ISSUE TYPE: Story Defect
-PARENT / OWNING STORY: SV-9253 — The bulk action bar
-PRIORITY: Medium
-ALSO LINK: relates to SV-9253
-PICTURE: pictures/bulk-bar.png  (banner: "The bulk action bar with one line selected")
-COVERS THE CHECKS: C44571, C53486  (C44572 and C44574 were withdrawn on re-run - see below)
+# PREPARED — not filed. Awaiting the QA lead's go-ahead, per ticket (Rules 62 / 113).
 
---- WIKI MARKUP BODY BELOW THIS LINE ---
-
-h2. Description
-
-The bar that appears when lines are selected is meant to take the place of the column headers and to
-lay its actions out in a fixed order, so the page does not grow and the actions always sit where the
-user expects them.
-
-On the build the bar is added above the headers rather than replacing them, and it holds only one
-action.
-
-For example, with lines selected:
-* the column headers are still on screen underneath the bar;
-* there is no *Deselect all* anywhere in it;
-* none of the dividers the layout calls for is present — after the count, after the line group and
-  after the parts group.
-
-Everything else about the bar is right, and was confirmed on a work order with parts in each state:
-the actions appear in the required order (*Create Invoice*, *Complete Lines*, *Approve*, then
-*Receive* and *Pick*), *More* holds *Authorization required*, *Split work order* and *Decline* in that
-order, each action carries its own count, and an action with a count of zero is absent rather than
-greyed out.
-
-h2. Steps to Reproduce
-
-# Sign in as an Owner or Admin.
-# Open *Work Orders* → the *Work Orders* tab → a work order with several lines.
-# Hover a line row so its tick box appears, and tick it.
-#* A dark bar appears at the top of the list.
-#* The column headers — *Name/Description*, *Actual/Estimate*, *Progress*, *Status*, *Action*, *Rate*, *Margin*, *Total* — are all still visible below it.
-# Read the bar from left to right.
-#* *n selected*, then the actions, then *More*, then a cross. There is no *Deselect all* and no divider anywhere in it.
-# Press the cross.
-#* The selection clears and the bar goes.
-
-*Actual Result* — the bar is added above the headers rather than replacing them, and carries neither a
-*Deselect all* nor any of the dividers.
-
-*Expected Result* — the bar replaces the column headers while a selection is active and reads
-"n selected", *Deselect all*, the line actions, the parts actions, *More*, then a close control, with a
-divider after the count and after each group. An empty More is not rendered.
-
-h2. Environment
-
-Production, [https://app.shopview.com], build {{v26.39.0-07c719b}}, shop *Trucks Hill 2*, 24 September 2026.
-The work order in the picture: [https://app.shopview.com/workorders/068f9856-9d28-4500-a3dd-dd6d7aafb15a/lines]
-
-h2. Sources
-
-Simple Flow V2 specification, Confluence page *771391574*, Story 7 — "The bulk action bar".
-_[TO BE PASTED: the verbatim sentences from the live page — one gated read of the source is needed.]_
+**Rewritten 25 September 2026.** The 24 September draft claimed the bar carried none of the required
+dividers. That was wrong — all three are present and behave correctly. The draft below carries only
+what survived re-measurement.
 
 ---
 
-**Withdrawn on re-run, 2026-09-24:** two claims in the first draft of this report were mine, not the
-product's. The bar looked empty because the line I had selected had nothing in it to act on. With a
-work order carrying parts in each state, the parts group, the counts and the contents of *More* are all
-correct. Only the two points above stand.
+**Issue type:** Story Defect · **Parent:** the owning story (read its status live before filing —
+must be *Ready for QA* or *Testing QA*, Rule 112) · **Priority:** Medium
+
+**Title:** Bulk Action Bar Replaces the Work Order Tabs Instead of the Column Headings
+
+---
+
+## Description
+
+The bulk action bar is specified to take the place of the **column headings** while lines are
+selected, and to **never cover the work order's own tabs**. It does the opposite: the tabs disappear
+and the headings stay. Two further pieces of the bar are missing.
+
+For example, on a work order's Lines tab:
+
+* Tick any line. *Notes*, *Stats* and *Finance* vanish from the tab strip and the bar appears in their
+  place. Dismiss the bar and they come back.
+* The column headings — *Name/Description*, *Actual/Estimate*, *Progress*, *Status*, *Action* — stay on
+  screen the whole time.
+* Nothing on the ticked line changes. Not the line, not its story, not its labour, not its parts. The
+  only sign anything is selected is the count in the bar.
+* The bar has no **Deselect all**. A user who over-selects can only press the cross, which throws the
+  bar away as well as the selection — which is exactly what *Deselect all* exists to avoid.
+
+## Steps to Reproduce
+
+1. Open **Work Orders**, open any work order with several lines, and stay on its **Lines** tab.
+2. Note the tab strip and the column headings.
+3. Hover a line and tick its box.
+   #* The tab strip's *Notes*, *Stats* and *Finance* are gone.
+   #* The column headings are still there.
+   #* The line looks exactly as it did before it was ticked.
+   #* The bar reads `2 selected · Complete Lines (2) · Receive (1) · Pick (1) · More · ×` — no *Deselect all*.
+4. Press the cross.
+   #* The selection clears, the bar goes, the tabs come back.
+
+**Actual Result:** the bar takes the tab strip's place, leaves the column headings on screen, gives no
+visual sign of which lines are selected, and offers no way to clear a selection without dismissing itself.
+
+**Expected Result:** the bar takes the place of the column headings, never covers the tabs, highlights
+each selected line together with its story, labour and parts, and carries *Deselect all* between the
+count and the line actions.
+
+## Screenshots
+
+`pictures/bulk-bar-takes-the-tabs-place.png` — one composed landscape picture, 2780px of 2×-captured
+content, both states banner-labelled with the call-outs marked. Size with `size_pics.py` after the
+description is written and read it back (Rule 116).
+
+## Environment
+
+Production, `app.shopview.com`, build **v26.39.1-3ef6ade**, 25 September 2026.
+Work order used: **S2-908**.
+
+## Sources
+
+Simple Flow V2, Confluence page 771391574, **version 26**, *SV-9253 Story 7, The bulk action bar*:
+
+> The bar sits at the top of the list and replaces the column headers while a selection is active. Nothing on the page shifts when it appears
+> Selecting a row highlights the whole line, including its story, labour and parts
+> Layout is n selected, then Deselect all, then the line actions, then the parts actions, then More, then a close control, with a divider between each group
+> Deselect all clears the selection and leaves the bar in place. The close control clears the selection and dismisses the bar. Both exist because a user who over-selected wants to start again, not to lose the bar and the column headers with it
+> The bar never covers the work order's own tabs. It belongs to the line list and appears inside it
+
+---
+
+### What is NOT in this ticket, and why
+
+- **Dividers.** All three are present, at the three places the requirement names, and they correctly
+  collapse when a group holds nothing. My earlier draft said otherwise and was wrong.
+- **Action order, counts and the greyed-out rule.** All correct, including *Create Invoice* shown
+  greyed with its reason.
+- **The More menu.** Correct under a selection that covers every open line.

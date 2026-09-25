@@ -65,8 +65,8 @@
    "why": "Could not be judged. The clock-out window needs a technician clocked in on this work order, which this account cannot do for someone else."
   },
   "44565": {
-   "v": "Failed",
-   "why": "Two of the three things this checks are right: Complete is never greyed out because parts are outstanding, and reopening a finished job item puts it back to Approved with its parts exactly as they were. The third is not: a technician in the technician's own view was able to finish a job item, which this check says they should not be able to do."
+   "v": "Passed",
+   "why": "Complete is never greyed out because parts are outstanding, and reopening a finished job item puts it back to Approved with its parts exactly as they were. On the third point the QA lead ruled on 25 September 2026 that the product's behaviour is expected for now, to be revisited: a technician cannot approve, so they never see Complete on a job item themselves; it appears only once an admin has approved the item, and from there the technician may finish it. The wording of this check still reads that a technician cannot finish one, so the check's text and the ruling differ - reported, and the text left exactly as it is."
   },
   "44566": {
    "v": "Passed",
@@ -90,7 +90,7 @@
   },
   "44571": {
    "v": "Failed",
-   "why": "Two faults, both confirmed twice. The bar is added ABOVE the column headings instead of replacing them - every heading stays on screen. And it carries no Deselect all and none of the dividers the layout calls for. The rest is right: each action appears only when something in the selection qualifies, carries its count, and is shown disabled with its reason when it is blocked."
+   "why": "Three faults, all seen again on 25 September after the first reading was re-done properly. (1) The bar is meant to take the place of the column headings while a selection is active. It does not: the headings stay on screen and the bar takes the place of the work order's own tabs instead - Notes, Stats and Finance disappear while lines are ticked and come back when the bar is dismissed. The written requirement says in as many words that the bar must never cover those tabs. (2) Ticking a line changes nothing on the line itself - not the line, not its story, not its labour, not its parts. The only sign anything is selected is the count in the bar. (3) There is no Deselect all anywhere in the bar. Two things I reported as broken on 24 September are NOT broken and are withdrawn: the dividers are all present, in the three places the requirement names, and they correctly disappear when a group is empty; and the actions, their order and their counts are right, including an action shown greyed out with its reason."
   },
   "44572": {
    "v": "Passed",
@@ -138,7 +138,7 @@
   },
   "53486": {
    "v": "Failed",
-   "why": "There is no Deselect all in the bar at all. The close cross does clear the selection and dismiss the bar."
+   "why": "One fault, narrower than first reported. There is no Deselect all in the bar, so a user who has over-selected cannot start again without losing the bar. The close control does exactly what it should - it clears the selection and dismisses the bar. And a group holding nothing correctly renders no divider: with a single line selected and no parts action available, the bar shows two dividers rather than three."
   },
   "44583": {
    "v": "Passed",
