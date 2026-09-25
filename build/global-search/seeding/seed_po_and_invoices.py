@@ -96,6 +96,37 @@ PLAN_TOGGLE = [
 if os.environ.get('SEED_PO_PLAN') == 'toggle':
     PLAN = PLAN_TOGGLE
 
+def invoice_number(pn):
+    """The invoice number for a plan row - UNIQUE ACROSS THE BRANCH AND SHORT ENOUGH TO SURVIVE.
+
+    🔴 THE FIELD IS CAPPED AT 21 CHARACTERS AND THE SERVER TRUNCATES SILENTLY. That cap has now
+    caused the same class of failure twice:
+
+      · the original scheme keyed on the LAST CHARACTER of the part number, so ZZT-FIB-1001 and
+        ZZTOGVEN-9001 both produced 'ZZT-INV-1' and the second receive answered 400 "There is
+        already invoice with number";
+      · the fix for that - 'ZZT-INV-{SLUG}-{part number}' - was LONGER than the cap, so the three
+        Fibridge rows ZZT-FIB-1001/1002/1003 all truncated to the identical
+        'ZZT-INV-GSV2-ZZT-FIB-'. On the QA branch this was invisible because those invoices were
+        created before the change; it surfaced the first time the universe was built on a CLEAN
+        estate (staging, 2026-09-25), where two of the three receives failed.
+
+    So the number is built to FIT rather than trimmed to fit: a short prefix, the universe slug,
+    and the part number's distinctive tail. 'ZZTINV-GSV2-1001' and 'ZZTINV-TOGGLE-9001' are both
+    well inside the cap and cannot collide across universes or within one.
+    """
+    tail = ''.join(ch for ch in pn if ch.isalnum())[-4:]
+    n = f"ZZTINV-{PO_SLUG.upper()}-{tail}"
+    assert len(n) <= 21, f"invoice number {n!r} is {len(n)} chars - the field truncates at 21"
+    return n
+
+def legacy_invoice_numbers(pn):
+    """The numbers earlier schemes would have produced, so an invoice ALREADY on the branch is
+    adopted instead of re-created. Without this, changing the scheme orphans every invoice seeded
+    under the old one - and its purchase order is already fulfilled, so the receive cannot be
+    repeated and the row can never complete again."""
+    return [f"ZZT-INV-{PO_SLUG.upper()}-{pn}"[:21], f"ZZT-INV-{pn[-1]}"]
+
 def load():
     try: return json.load(open(STATE_PATH))
     except Exception: return {}
@@ -287,7 +318,7 @@ def finish(st, tag, rec, row, order, vid):
         # 400 {"error":"There is already invoice with number: ZZT-INV-1"} - a collision that
         # reads like a broken endpoint. Keying it by universe slug AND the full part number
         # keeps every universe's invoices distinct.
-        invno = f"ZZT-INV-{PO_SLUG.upper()}-{row['pn']}"
+        invno = invoice_number(row['pn'])
         r, _ = receive(order, vid, invno)
         ok = r['status'] in (200, 201)
         print(f"       receive -> {r['status']}" + ('' if ok else f"  {str(r.get('raw') or r.get('error'))[:220]}"))
@@ -350,8 +381,10 @@ def main():
         # case unreadable. The invoice number is deterministic, so if the one this row WOULD use is
         # already on this vendor, that row is this row: adopt it instead of building another.
         if row['receive'] and not rec.get('invoice_number'):
-            expected_inv = f"ZZT-INV-{PO_SLUG.upper()}-{row['pn']}"[:21]
-            if expected_inv in live_invoices:
+            # Check the CURRENT scheme first, then every earlier one - see legacy_invoice_numbers.
+            expected_inv = next((n for n in [invoice_number(row['pn'])] +
+                                 legacy_invoice_numbers(row['pn']) if n in live_invoices), None)
+            if expected_inv:
                 match = next((d for d in deliveries_by_vendor(vid)
                               if str(d.get('invoice_number')) == expected_inv), None)
                 rec = dict(rec, invoice_number=expected_inv,
