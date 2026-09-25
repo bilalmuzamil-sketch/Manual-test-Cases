@@ -44,7 +44,7 @@ THE CHAIN, and the trap at every step (playbook §O6):
 Run:  python3 seed_po_and_invoices.py [--confirm]
       SEED_PROFILE=/tmp/prod/cookies.json SEED_WORKPLACE="Trucks Hill 2" python3 … --confirm
 """
-import json, os, sys, runpy, datetime, uuid
+import json, os, sys, runpy, datetime, uuid, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.environ.setdefault('SEED_MANIFEST', 'seed-manifest-gs-v2.json')
@@ -175,7 +175,15 @@ def work_order_ids():
     four DIFFERENT work orders."""
     ids = json.load(open(f'{HERE}/{IDS_FILE}'))
     lst = ids.get(WO_KEY) or []
-    if not lst: sys.exit('no seeded work orders - run seed.py --confirm first')
+    if not lst:
+        # 🔴 NAME THE FILE AND THE KEY. "no seeded work orders" sent me looking for a seeding
+        # failure when the real cause was a MISSING SEED_MANIFEST - the ids file is derived from
+        # the manifest, so without it this read the WRONG universe's file, which of course had no
+        # such key. The records were all present. An error that does not say where it looked
+        # costs more than the bug it reports.
+        sys.exit(f"no work orders under key {WO_KEY!r} in {IDS_FILE} "
+                 f"(keys present: {sorted(ids)}). Either seed.py has not run for this universe, "
+                 f"or SEED_MANIFEST is not set and this is reading another universe's ids file.")
     return lst
 
 def zero_part_canned_line():
@@ -473,14 +481,43 @@ def main():
     # A false negative in the proof step is worse than no proof step: the next session reads it
     # as a failed seed and re-runs, or worse, starts debugging a chain that worked.
     probe = os.environ.get('SEED_PO_READBACK') or VENDOR_NAME.split()[0]
-    s = call('/api/search?q=' + probe)
-    for g in ((s['json'] or {}).get('data') or {}).get('groups') or []:
-        if g['type'] in ('purchase_orders', 'vendor_invoices'):
-            ours = [i for i in g['items'] if VENDOR_NAME in str(i.get('secondary'))]
-            print(f"  {g['type']:18} total={g['total']:3}  ours={len(ours)}")
-            for i in ours:
-                f = i.get('fields') or {}
-                print(f"      {str(i.get('primary')):18} {f.get('status') or f.get('paymentStatus')}")
+
+    # 🔴 THE INDEX LAGS THE WRITE BY SECONDS, SO A SINGLE READ CAN REPORT ZERO OVER A RECORD THAT
+    # EXISTS. On staging 2026-09-25 this printed 'vendor_invoices total=0 ours=0' moments after a
+    # successful receive; the same query a minute later returned ZZTINV-TOGGLE-9001 sitting there
+    # unpaid. A false negative in the PROOF step is the expensive kind - it reads as a failed seed,
+    # and the next session re-runs a chain that worked or starts debugging nothing. So: expect what
+    # we just created, and re-read until it appears or the budget runs out. What is still missing
+    # after the last attempt is reported as MISSING with the number of attempts, never as a bare 0.
+    def read_groups():
+        s = call('/api/search?q=' + probe)
+        out = {}
+        for g in ((s['json'] or {}).get('data') or {}).get('groups') or []:
+            if g['type'] in ('purchase_orders', 'vendor_invoices'):
+                out[g['type']] = (g['total'],
+                                  [i for i in g['items'] if VENDOR_NAME in str(i.get('secondary'))])
+        return out
+
+    expect = {'purchase_orders': len({r['tag'] for r in PLAN}),
+              'vendor_invoices': len([r for r in PLAN if r.get('receive')])}
+    attempts, got = 0, {}
+    while attempts < 6:
+        attempts += 1
+        got = read_groups()
+        if all(len(got.get(t, (0, []))[1]) >= n for t, n in expect.items()):
+            break
+        if attempts < 6:
+            print(f"  … index still catching up (attempt {attempts}) — re-reading in 10s")
+            time.sleep(10)
+
+    for t in ('purchase_orders', 'vendor_invoices'):
+        total, ours = got.get(t, (0, []))
+        short = '' if len(ours) >= expect.get(t, 0) else \
+            f"   🔴 MISSING — expected {expect.get(t)} after {attempts} read(s) over {(attempts-1)*10}s"
+        print(f"  {t:18} total={total:3}  ours={len(ours)}{short}")
+        for i in ours:
+            f = i.get('fields') or {}
+            print(f"      {str(i.get('primary')):18} {f.get('status') or f.get('paymentStatus')}")
     if CONFIRM: print(f'\nstate: {STATE_PATH}')
 
 main()

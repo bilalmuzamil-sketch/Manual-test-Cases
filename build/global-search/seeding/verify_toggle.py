@@ -29,7 +29,11 @@ import json, os, sys, urllib.error, urllib.parse, urllib.request
 # and on a container where /tmp/qa/cookies.json does not exist it simply crashed. A verifier that
 # can only ever check one environment is worse than none: run against staging it would have
 # reported the QA branch's health as staging's. Measured on staging, 2026-09-25.
-C = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
+COOKIES = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
+# 🔴 NAME THE ENVIRONMENT IN THE VERDICT (Rule 110 provenance). The pass line read "on qa"
+# whatever profile ran, so a staging result could be filed as a QA one.
+ENV_LABEL = 'qa' if COOKIES == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(COOKIES))
+C = json.load(open(COOKIES))
 CK = '; '.join(f"{k}={C[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
 G, R, Y, X = '\033[32m', '\033[31m', '\033[33m', '\033[0m'
 
@@ -63,12 +67,17 @@ CHECKS = [
     (55731, 'ZZTOGPART',  'parts',      'ZZTOGPART Brake Kit', 3,
      'ZZSTOCKPART brake parts + their PO match by near-spelling. HARMLESS: removing Parts access '
      'hides every part, so the negative half still reads correctly.'),
-    (55732, 'ZZTOGWO',    'work_orders', 'S9160-',             3,
+    # 🔴 NEVER IDENTIFY A RECORD BY A BRANCH-ASSIGNED NUMBER (Rule 111). These two read
+    # 'S9160-' and 'P9160-' - the QA branch's own prefixes - so on staging, where the same
+    # records are numbered S2-34232 and P2-2259, the verifier reported both as MISSING over
+    # rows that were sitting in the index. The identity that survives any branch, any
+    # redeploy and any reseed is the NAME WE SEEDED, which is on the row's secondary.
+    (55732, 'ZZTOGWO',    'work_orders', 'ZZTOGWO Haulage',   3,
      "'Stock Diesel Services Inc' and its vehicle match by near-spelling. HARMLESS: they are "
      'Customers/Assets rows, not Work Orders - but they STAY on screen after the flip, so a '
      'tester reading the screen rather than the row may call a pass a fail.'),
     (55733, 'ZZTOGCUST',  'customers',  'ZZTOGCUST Freight',   0, 'clean keyword'),
-    (55734, 'ZZTOGPS',    'part_sales', 'P9160-',              3, 'near-spelling noise, harmless'),
+    (55734, 'ZZTOGPS',    'part_sales', 'ZZTOGPS Motors',      3, 'near-spelling noise, harmless'),
     # Load 0, not 1: the line-item part is NAMED 'ZZTOGVEN Supply Brake Shoe Kit', so it counts
     # as ours rather than foreign. The tester note still stands - it is the row's VISIBILITY after
     # the flip that matters to the case, not whether my arithmetic calls it foreign.
@@ -146,7 +155,7 @@ def main():
     if warns:
         print(f"  {Y}⚠ passed with {len(warns)} warning(s):{X} " + '; '.join(warns))
     print(f"  {G}✅ all {len(CHECKS)} per-case records + C55735's three-record set are present "
-          f"on qa{X}")
+          f"on {ENV_LABEL}{X}")
 
 if __name__ == '__main__':
     main()

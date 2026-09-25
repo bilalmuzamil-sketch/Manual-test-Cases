@@ -229,16 +229,24 @@ R += [
    'The COMPANY NAME deliberately contains neither ZZCONTACTONLY nor the contact phone. The only route '
    'to this record is its contact - which is exactly what the case measures.',
    phone='(264) 400-0002'),
+ # 🔴 THE CONTACT MUST ACTUALLY CARRY THE TOKEN THE VERIFIER SEARCHES. This record's _why said it
+ # carried ZZCONTACTONLY and its payload said 'Zzrankf' - the comment and the code disagreed, and
+ # the code was wrong. Nothing in this manifest ever created a record carrying ZZCONTACTONLY, so
+ # the check passed on the QA branch ONLY because an earlier hand-seeded record happened to be
+ # there. Built on a clean estate (staging, 2026-09-25) the search returned NOTHING and the gap
+ # showed. A verifier asserting a token no manifest creates is not a check, it is a coincidence.
  {'key': 'rank_f_contact', 'type': 'Contact (a PERSON at a customer company)', 'serves': [45139],
   'find': {'mode': 'child', 'parent': 'rank_f_company', 'view': '/api/customers/view/{id}',
-           'path': 'company.contacts', 'field': 'first_name', 'value': 'Zzrankf'},
+           'path': 'company.contacts', 'field': 'first_name', 'value': 'Zzcontactonly'},
   'create': {'endpoint': '/api/contacts/create',
-             'payload': {'first_name': 'Zzrankf', 'last_name': 'Oyelaran', 'title': 'Fleet Manager',
-                         'telephone': '(264) 400-0199', 'email': 'zzrankf@northgate-cartage.test'},
+             'payload': {'first_name': 'Zzcontactonly', 'last_name': 'Oyelaran',
+                         'title': 'Fleet Manager', 'telephone': '(264) 400-0199',
+                         'email': 'zzcontactonly@northgate-cartage.test'},
              'inject': {'company_id': 'rank_f_company'}},
   'verify': ['first_name', 'telephone'],
   '_why': 'Carries the ZZCONTACTONLY token and a distinctive phone. Searching either must return the '
-          'COMPANY, flagged as a contact match.'},
+          'COMPANY, flagged as a contact match - and the company name carries neither, so the '
+          'contact is the only route to it.'},
 ]
 
 # ── C55713 [ZZFUZZLEN] a very short query must not produce noisy fuzzy matches ──────────────────────
