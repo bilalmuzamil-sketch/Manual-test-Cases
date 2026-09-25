@@ -3994,3 +3994,18 @@ do on my own was fence the precedent, and he had to: *"This exception is FOR onl
 that."* **An exception he grants is a fact about the thing he named, not a new default.** Write the
 limit into the rule at the moment the exception is taken, in the same pass, or the next session reads
 the precedent as permission. Now Rule **114(c)**.
+
+## L0201 — A title is read by a person, so write it the way the neighbours are written (2026-09-25)
+I retitled three cases and produced "SFV2 Switching a Work Orders setting saves at once and holds
+nobody". The QA lead: *"The titles should be human understandable."* Two faults: a jargon prefix the
+sibling cases do not carry, and phrasing built from the requirement rather than from how a person
+speaks. **Before writing a title, read the titles either side of it** — the section already has a voice,
+and matching it is most of the job. Rules 7/9 cover the wording; this is the same rule applied to the
+one line everybody sees first.
+
+## L0202 — A cached body file is not the live case (2026-09-25)
+Checking the suite's title style, my script fell back to `/tmp/sfv2/bodies.json` and printed the OLD
+titles for three cases I had changed an hour earlier — I nearly reported that my own writes had not
+landed. The file was pulled the previous day. **Read the case from TestRail when the question is what
+the case says now** (Rule 100). The cached pull is for bulk scanning, never for a fact about the
+present state.

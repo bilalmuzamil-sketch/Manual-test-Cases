@@ -29,9 +29,15 @@ text diverges, and leave the field alone.
 
 | Case | Title before | Title now |
 |---|---|---|
-| C44554 | A settings change applies to every open work order, not just new ones | SFV2 Switching a Work Orders setting changes no record that already exists |
-| C44555 | Each settings-change record is written to the audit log with its cause | SFV2 Switching a Work Orders setting writes no history entry, because nothing changes |
-| C44559 | Applying a settings change blocks only the acting admin, never the organization | SFV2 Switching a Work Orders setting saves at once and holds nobody |
+| C44554 | A settings change applies to every open work order, not just new ones | Turning a Work Orders setting on or off leaves existing work orders alone |
+| C44555 | Each settings-change record is written to the audit log with its cause | No history entry is added when a Work Orders setting is turned on or off |
+| C44559 | Applying a settings change blocks only the acting admin, never the organization | Turning a Work Orders setting on or off saves straight away and blocks no one |
+
+**Titles reworded again, 25 September 2026, QA lead: _"The titles should be human understandable."_**
+My first attempt read like rule statements and carried an `SFV2` prefix the sibling cases do not use -
+one of them, "saves at once and holds nobody", barely parses. They now read as plain sentences in the
+same voice as the rest of the section, and none is longer than 77 characters so nothing truncates on
+the case page. The Expected of each was verified untouched by the rename.
 
 **Titles were changed too** because each one asserted the opposite of its own new Expected, which would
 have left the case contradicting itself. Titles are fixable under Rule 114; the Expected is what needed
