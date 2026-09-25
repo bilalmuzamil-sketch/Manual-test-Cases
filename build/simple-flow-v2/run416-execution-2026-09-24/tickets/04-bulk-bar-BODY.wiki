@@ -1,0 +1,48 @@
+h2. Description
+
+The tick-lines bar on a work order is specified to take the place of the *column headings* while lines are selected, and to *never cover the work order's own tabs*. It does the opposite: the tabs disappear and the headings stay. Two further pieces of the bar are missing.
+
+For example, on a work order's {{Lines}} tab:
+
+* Tick any line and *Notes*, *Stats* and *Finance* vanish from the tab strip; the bar appears in their place. Dismiss the bar and they come back.
+* The column headings — {{Name/Description}}, {{Actual/Estimate}}, {{Progress}}, {{Status}}, {{Action}} — stay on screen throughout.
+* Nothing on the ticked line changes: not the line, not its story, not its labour, not its parts. The only sign anything is selected is the count in the bar.
+* The bar has no *Deselect all*. The only way out is the cross, which throws the bar away along with the selection — which is precisely what {{Deselect all}} exists to avoid.
+
+h2. Steps to Reproduce
+
+# Open *Work Orders* and open any work order that has several lines.
+# Stay on its *Lines* tab and note the tab strip and the column headings.
+# Hover a line and tick its box.
+#* The tab strip's *Notes*, *Stats* and *Finance* are gone.
+#* The column headings are still on screen.
+#* The line looks exactly as it did before it was ticked.
+#* The bar reads {{2 selected · Complete Lines (2) · Receive (1) · Pick (1) · More · ×}} — there is no *Deselect all*.
+# Press the cross.
+#* The selection clears, the bar is dismissed and the tabs come back.
+
+*Actual Result:* the bar takes the tab strip's place, leaves the column headings on screen, gives no visual sign of which lines are selected, and offers no way to clear a selection without dismissing itself.
+
+*Expected Result:* the bar takes the place of the column headings, never covers the tabs, highlights each selected line together with its story, labour and parts, and carries *Deselect all* between the count and the line actions.
+
+h2. Screenshots
+
+!bulk-bar-takes-the-tabs-place.png|width=1000!
+
+h2. Environment
+
+Production — [https://app.shopview.com] — build {{v26.39.1-3ef6ade}}, observed 25 September 2026.
+Work order used: [S2-908|https://app.shopview.com/workorders/068f9856-9d28-4500-a3dd-dd6d7aafb15a/lines]
+
+h2. Sources
+
+All four points are quoted verbatim from [Simple Flow V2|https://shopview.atlassian.net/wiki/spaces/SV/pages/771391574], Confluence page {{771391574}}, *version 26* (last changed 11 September 2026), section *The bulk action bar* (SV-9253, Story 7), read on 25 September 2026.
+
+|| What the requirement says, word for word || What the product does ||
+| "The bar sits at the top of the list and replaces the column headers while a selection is active. Nothing on the page shifts when it appears" | The headings stay on screen. Nothing shifts, so only the first half fails |
+| "The bar never covers the work order's own tabs. It belongs to the line list and appears inside it" | The bar takes the tab strip's place; Notes, Stats and Finance disappear while a selection is active |
+| "Selecting a row highlights the whole line, including its story, labour and parts" | Nothing is highlighted — not the line, its story, its labour or its parts |
+| "Layout is n selected, then Deselect all, then the line actions, then the parts actions, then More, then a close control, with a divider between each group" | The order is right and every divider is present, but there is no Deselect all anywhere |
+| "Deselect all clears the selection and leaves the bar in place. The close control clears the selection and dismisses the bar. Both exist because a user who over-selected wants to start again, not to lose the bar and the column headers with it" | Only the close control exists, so a user who over-selects cannot start again without losing the bar |
+
+The rest of the same section is met and is *not* part of this report: the dividers sit in the three places named and correctly collapse when a group holds nothing; the action order and counts are right; an action that qualifies but is blocked is shown greyed with its reason.
