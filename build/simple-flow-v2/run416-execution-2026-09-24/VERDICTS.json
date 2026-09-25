@@ -89,8 +89,8 @@
    "why": "Could not be judged. Declining a line is not offered on an approved line, and no part on this shop is in the states the check needs."
   },
   "44571": {
-   "v": "Failed",
-   "why": "Three faults, all seen again on 25 September after the first reading was re-done properly. (1) The bar is meant to take the place of the column headings while a selection is active. It does not: the headings stay on screen and the bar takes the place of the work order's own tabs instead - Notes, Stats and Finance disappear while lines are ticked and come back when the bar is dismissed. The written requirement says in as many words that the bar must never cover those tabs. (2) Ticking a line changes nothing on the line itself - not the line, not its story, not its labour, not its parts. The only sign anything is selected is the count in the bar. (3) There is no Deselect all anywhere in the bar. Two things I reported as broken on 24 September are NOT broken and are withdrawn: the dividers are all present, in the three places the requirement names, and they correctly disappear when a group is empty; and the actions, their order and their counts are right, including an action shown greyed out with its reason."
+   "v": "Passed",
+   "why": "Marked Passed by the QA lead on 25 September 2026 on the Product Owner's own ruling in SV-10475: \"this is expected behaviour\". The Product Owner added that several areas changed during development and testing and that the written requirement will be brought up to date; the ticket is now closed as obsolete. My observations stand as observations - the bar does take the tabs' place, the ticked lines are not highlighted and there is no Deselect all - but the behaviour is intended, so the check passes. This entry records his decision; it is not mine and has not been altered."
   },
   "44572": {
    "v": "Passed",
@@ -170,11 +170,11 @@
   },
   "44589": {
    "v": "Failed",
-   "why": "The purchase orders page is a flat list sorted by date, not grouped by vendor. There are no vendor groups, no rollup counts, no Expand all, and nothing is collapsed. A missing vendor shows as a warning on the row instead."
+   "why": "Re-checked on the current build rather than taken from the note in the case. The purchase orders page is still one flat sortable table - Work Order, Purchase Order Number, Vendor, Order Status, Created On, Ordered By, Total Cost, Note - with thirty rows and no grouping of any kind. No vendor groups, no rollup counts, no Expand all, nothing collapsed. One change since the note was written: the money column now reads Total Cost, where the note recorded Total Price."
   },
   "44590": {
    "v": "Failed",
-   "why": "Nothing expands per purchase order. Each row carries a Receive button that opens the same window as the work order instead."
+   "why": "Still failing, but my earlier description of it was wrong and is withdrawn. Clicking a purchase order does NOT do nothing - it leaves the list and opens a separate Purchase Order Details page. That page shows the parts with Part Number, Description, Quantity, Cost and Total Cost, and offers Receive, download, email and print. What it does not carry is any of what this check asks for: no vendor invoice number, no invoice date, no delivery note, no per-part tick boxes, no Deselect all, no subtotal with an editable tax and total, no Receive parts with a count, and no sell price. So the capability is genuinely absent - but the right way to describe it is that a separate page opens instead of a panel expanding in place."
   },
   "44591": {
    "v": "Blocked",
@@ -182,7 +182,7 @@
   },
   "53488": {
    "v": "Failed",
-   "why": "Selecting a purchase order raises a bar reading 1 selected with nothing in it but a close cross - no Receive selected, no Deselect all, no More."
+   "why": "Re-checked with the method that corrected my other bar readings, and it stands. Selecting purchase orders raises a bar built only for this page, not the one the work order uses - the work order's bar is not on this page at all. It reads one selected and a cross, and holds nothing else: no Deselect all, no Receive selected, no More, and none of the dividers."
   },
   "44592": {
    "v": "Blocked",
@@ -218,7 +218,7 @@
   },
   "44599": {
    "v": "Failed",
-   "why": "There is no Send action on the work order header in any state. Create invoice is correctly shown disabled while a line awaits approval, with the reason All lines must be approved before invoicing, and is promoted to a button once every line is complete."
+   "why": "Re-checked across all seven states a work order can be in, with the header read properly this time. Everything about the finish action is right: Create invoice sits in the three-dot menu while a line is still open, is promoted to a button beside New Line once every line is complete, and is shown greyed out on an estimate. The one fault is that Send is offered nowhere - not in any of the seven states, not in the three-dot menu, and the word does not appear anywhere on the page. The requirement names Send in three separate places."
   },
   "44600": {
    "v": "Blocked",

@@ -4069,3 +4069,48 @@ Never derive a box from a remembered position, another run, or a different viewp
 composer now detects a taken gutter slot and draws that badge on its own box instead.
 **Check before sending:** open the composed picture and LOOK at it. I had shipped it once without
 doing that; he caught it in seconds.
+
+## L0207 — A build note inside a test case is a claim about the past, never evidence about today (QA lead, 2026-09-25)
+**What he said:** *"Dont trust such notes, you should still check."*
+**What happened.** Two cases carried notes of the form *"on the current build (v26.35.9, checked 9/9)
+this renders as a flat table, so this is expected to FAIL today"*. I described them to him as
+"not built yet" on the strength of the note. I did re-test them anyway, but the sentence I wrote had
+already treated the note as settling the question - and that is the habit that goes wrong.
+**Why it is dangerous.** A build note ages exactly like the build does. It names a build marker and a
+date, both of which are stale the moment either moves - and the branch moved twice during this single
+session (v26.39.0 → v26.39.1). Worse, a note written by a past pass carries that pass's mistakes
+forward: if its reading was taken with a faulty method, the note launders the error into every later
+run, and nobody re-checks because the note says not to expect anything.
+**The rule.** Every case is executed against the build as it stands TODAY, whatever any note says.
+A note may tell you what to LOOK at and how to recognise each outcome - that is its proper job, and
+these two notes did carry the three outcomes correctly. It may never stand in for the observation.
+The same applies to a handoff's findings (Rule 111) and to my own earlier verdicts (Rule 100).
+**Say it accurately too:** "the note says it had not shipped, and I confirmed that today" - never
+"it has not shipped" from the note alone.
+
+## L0208 — Reconcile my own verdict file against the live run before quoting any count (2026-09-25)
+**What happened.** My file said 36 passed / 6 failed; the run said 37 / 5. One case had been changed
+**by a person** minutes after I wrote my result - the QA lead marked C44571 Passed on the Product
+Owner's ruling in the ticket I had just filed. Had I quoted my own file, I would have reported a
+failure the QA lead had already resolved, and contradicted him using his own system of record.
+**Why it happens.** The verdict file is a working note; TestRail is the system of record, and other
+people and other sessions write to it. The file goes stale the moment anyone else acts - and they act
+fastest exactly when something matters.
+**The rule.** Before quoting any tally, diff the local file against `get_tests` for the run and report
+the differences. Where they disagree, **the run wins**, and a verdict a person changed is never
+restored (Rule 53) - it is recorded, with who changed it and why.
+**And check the ticket before doing more work in the same area.** SV-10475 was answered by the Product
+Owner within four minutes of being filed and closed as obsolete. Work done on that area after the
+answer would have been wasted.
+
+## L0209 — "The spec will be updated" turns every open finding in that area into a question, not a defect
+**What the Product Owner said (SV-10475, 2026-09-25):** *"there is couple of areas i need to update the
+spec for, most of this were change during the development and testing. i will update the spec by Monday
+as i though testing is done."*
+**What it means for a run in flight.** My reconciliation checked all 64 cases against the written
+requirement and found no case contradicting it - a clean result that is now only as good as the
+document. The Product Owner has said the document lags the product in several places, so any remaining
+failure may be the same story: behaviour deliberately changed, requirement not yet caught up.
+**Therefore:** do not spend effort writing tickets for the remaining failures until they have been put
+to the Product Owner as questions, and re-run the reconciliation once the document is updated. A defect
+raised against a stale requirement wastes the developer's time and the reviewer's trust.
