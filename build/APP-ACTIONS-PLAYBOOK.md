@@ -5435,3 +5435,22 @@ only arithmetic involved. A box derived from a remembered page position, an earl
 different viewport lands over empty space — which makes a true finding look careless (L0206).
 Badges at the same height are moved onto their own box automatically. **Always open the finished
 picture and look at it before it goes near a ticket.**
+
+**FILING A `Bug` RATHER THAN A `Story Defect` (QA lead, 2026-09-25, SV-10475).** He may ask for the
+type explicitly; his instruction governs. The two types differ in the fields they take, so do not
+carry the Story Defect recipe across:
+- **`Bug` REQUIRES `customfield_10153` Product Area** — the very field the Story Defect convention
+  records as *absent on this type*. Allowed values include `10120 Work Orders` · `10121 Parts` ·
+  `10123 Schedule` · `10125 Customers` · `10268 Administration` · `10130 Customer Portal` ·
+  `10566 Reports & Dashboards`. Read them live from
+  `/rest/api/2/issue/createmeta?projectKeys=SV&issuetypeNames=Bug&expand=projects.issuetypes.fields`
+  rather than guessing a value.
+- **`Bug` takes no owning-story parent.** Link the story with `POST /rest/api/2/issueLink`,
+  `{"type":{"name":"Relates"}}` — proven, HTTP 201.
+- Priority values are `Highest · High · Medium · Low`; **Medium** stays the house choice.
+- **Sequence that works, end to end:** create with a placeholder description (`POST /rest/api/2/issue`,
+  201) → attach the picture by multipart `curl -F file=@…` to `/rest/api/2/issue/<KEY>/attachments`
+  with `X-Atlassian-Token: no-check` plus Origin and Referer (jira.sh cannot do multipart) → write the
+  real description in **wiki markup** via `PUT /rest/api/2/issue/<KEY>` (the only route that embeds an
+  image) → run `size_pics.py <KEY> <img>` → **read it back** and require `mediaSingle layout=full-width`
+  with the picture's true pixel dimensions (Rule 116).
