@@ -5426,3 +5426,12 @@ open the role in `/administration/roles-permissions/<id>/edit` → **Reset to th
 person still needs the reset-and-save, and **the test is re-run afterwards** — an earlier result taken
 on the un-reset role is void. See Standing Rule 26 and learning L0203. Note that **system roles save
 nothing** (L0193), so this applies to custom roles; a system role is verified by a control change.
+
+**ANNOTATED TICKET PICTURES — MEASURE THE BOXES, NEVER COMPUTE THEM (2026-09-25).** Capture the
+screenshot and the element boxes in the SAME probe run: `getBoundingClientRect()` for every element
+you intend to outline, written beside the image together with the `clip` and `deviceScaleFactor`
+used. Then compose with `build/testing-tools/compose_boxed_compare.py`, whose `mapbox()` does the
+only arithmetic involved. A box derived from a remembered page position, an earlier run or a
+different viewport lands over empty space — which makes a true finding look careless (L0206).
+Badges at the same height are moved onto their own box automatically. **Always open the finished
+picture and look at it before it goes near a ticket.**

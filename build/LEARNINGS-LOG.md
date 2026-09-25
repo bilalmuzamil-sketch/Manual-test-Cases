@@ -4052,3 +4052,20 @@ tried"* — never *"it does not exist"*. Rule 104 already demands the positive c
 failure wearing different clothes, because a pencil that was never there cannot fail to be found.
 **Cheap guard:** before claiming an editor or action is absent, try the obvious direct interaction
 (click the thing itself), not only the affordance I assumed.
+
+## L0206 — Never hand-compute annotation coordinates; have the browser measure them (2026-09-25)
+**What happened.** The QA lead looked at an annotated ticket picture and saw outlines around empty
+space. I had worked the box positions out by hand, from page coordinates I remembered from an earlier
+probe, and mapped them through the screenshot's clip by arithmetic. They landed ~20px high and too
+short, so the box meant to mark the tab strip sat above it.
+**Why it matters more than a cosmetic slip.** An annotated picture is the part of a ticket a reader
+trusts without checking. One outline over blank space and the reader stops believing the words too —
+it makes a TRUE finding look careless, which is the expensive direction to fail in.
+**The fix, now enforced in tooling.** The probe asks the browser for `getBoundingClientRect()` of
+every element it intends to mark, **in the same run as the screenshot**, and writes the boxes beside
+the capture with the clip and scale used. `build/testing-tools/compose_boxed_compare.py` maps them.
+Never derive a box from a remembered position, another run, or a different viewport.
+**Second bug the same pass:** two badges at the same height overwrote each other, hiding one. The
+composer now detects a taken gutter slot and draws that badge on its own box instead.
+**Check before sending:** open the composed picture and LOOK at it. I had shipped it once without
+doing that; he caught it in seconds.
