@@ -1,0 +1,73 @@
+{
+ "ZZAUTOTEST No Work Orders View": {
+  "id": "88ac993f-8a76-4218-926a-6a632ef75b08",
+  "drops": [
+   "workOrdersView",
+   "woFullViewMode"
+  ],
+  "serves": "C44879, C44882",
+  "removal_verified": true
+ },
+ "ZZAUTOTEST No Customers View": {
+  "id": "1d0a8904-bf99-46a9-a807-587fbf04ffc1",
+  "drops": [
+   "customersView",
+   "customersCreateAndEdit",
+   "customersDelete"
+  ],
+  "serves": "C44882",
+  "removal_verified": true
+ },
+ "ZZAUTOTEST No Parts View": {
+  "id": "e5b2c2e6-079f-4f55-beb0-61fd49f62e75",
+  "drops": [
+   "catalogInventoryView",
+   "catalogInventoryCreateAndEdit",
+   "catalogInventoryDelete",
+   "woPickParts",
+   "woOrderParts"
+  ],
+  "serves": "C44878, C44882",
+  "removal_verified": true
+ },
+ "ZZAUTOTEST No Part Sales View": {
+  "id": "1cfa7700-adb3-4a70-b4ed-5e181c691b2f",
+  "drops": [
+   "partSalesView",
+   "partSalesCreateAndEdit",
+   "partSalesDelete"
+  ],
+  "serves": "C44882",
+  "removal_verified": true
+ },
+ "ZZAUTOTEST No Vendor Order View": {
+  "id": "712b0dd0-7c9d-478b-80ec-541caabf71a9",
+  "drops": [
+   "vendorOrderManagementView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementDelete"
+  ],
+  "serves": "C44882, C55705 inverse",
+  "removal_verified": true
+ },
+ "ZZAUTOTEST No Financial Data": {
+  "id": "7f09dc60-49d9-4dcd-97f0-248253411b75",
+  "drops": [
+   "seeFinancialData"
+  ],
+  "serves": "C44882, C55706 inverse",
+  "removal_verified": true
+ },
+ "ZZAUTOTEST No Work Orders Or Vendors": {
+  "id": "fb8dec42-c309-4277-8835-a5ac079b42c3",
+  "drops": [
+   "workOrdersView",
+   "woFullViewMode",
+   "vendorOrderManagementView",
+   "vendorOrderManagementCreateAndEdit",
+   "vendorOrderManagementDelete"
+  ],
+  "serves": "C55720",
+  "removal_verified": true
+ }
+}
