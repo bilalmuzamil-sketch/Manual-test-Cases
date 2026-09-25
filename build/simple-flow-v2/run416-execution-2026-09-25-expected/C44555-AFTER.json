@@ -1,0 +1,5 @@
+{
+ "id": 44555,
+ "title": "SFV2 Switching a Work Orders setting writes no history entry, because nothing changes",
+ "expected": "<p>1. Switching a setting on the Work Orders settings page on or off changes no record that already exists: \"No record is changed by this switch. Parts already on a work order keep the state they are in.\"</p>\n<p>2. Because no record is changed, no entry is written to a work order's Audit Log for the switch itself - there is nothing to attribute and no cause to name.</p>\n<p>3. The Audit Log still records everything a person does on the work order, exactly as before.</p><hr />\n<p>Source:</p>\n<ul>\n<li>QA lead ruling, 25 September 2026 - the confirmation the product itself shows when a Work Orders setting is switched is the expected behaviour: \"No record is changed by this switch. Parts already on a work order keep the state they are in.\"</li>\n<li>Epic SV-8683, story SV-9248 (Story 2, Settings apply to every work order), Simple Flow V2 specification (Confluence page 771391574).</li>\n</ul>\n<p>Last checked against build v26.39.0-07c719b on 9/25/2026.</p>\n<p>AUTOMATION: READY</p>"
+}

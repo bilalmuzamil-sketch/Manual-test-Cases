@@ -1,0 +1,10 @@
+{
+ "id": 44555,
+ "title": "Each settings-change record is written to the audit log with its cause",
+ "created_by": 3,
+ "atmstatus": 1,
+ "automation_type": 1,
+ "preconds": "<p>1. Sign in as an Owner or Admin.</p><p>2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).</p><p>3. Have at least one open work order that a settings change will touch: \"Work Orders\" -&gt; \"Work Orders\" tab -&gt; open a work order; its audit trail is the \"History\" tab on the work order.</p>",
+ "steps": "<p>1. Apply a settings change (for example turn Require approval for new lines off).</p><p>2. Open the audit log on an affected work order and on a changed line/part.</p>",
+ "expected": "<p>1. Every record changed is written to the audit log - on the work order and on each line or part changed.</p><p>2. Each entry is attributed to the admin who made the change (there is no \"system\" actor) and names the cause, for example \"Part ordered because Require ordering parts was turned off\".</p><hr><p>This is the expected behaviour as per epic SV-8683 and story SV-9248 (Story 2, Settings apply to every work order) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.</p><p>Last checked against build v26.39.0-07c719b on 9/24/2026.</p><p>AUTOMATION: READY</p>"
+}

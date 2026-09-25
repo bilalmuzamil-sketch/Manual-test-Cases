@@ -1,0 +1,10 @@
+{
+ "id": 44559,
+ "title": "Applying a settings change blocks only the acting admin, never the organization",
+ "created_by": 3,
+ "atmstatus": 1,
+ "automation_type": 2,
+ "preconds": "<p>1. Sign in as an Owner or Admin.</p><p>2. Open the work-order settings page: in the left sidebar under SETTINGS click \"Settings\", then click the \"Work Orders\" tab at the top of the page (the page with the WORKFLOW, LINE REQUIREMENTS and PARTS toggle groups and a \"Save Settings\" button).</p><p>3. Have a settings change queued that affects many existing records: toggle \"Require Ordering Parts\" or \"Require Picking Inventory Parts\" while several open work orders carry outstanding parts.</p>",
+ "steps": "<p>1. Confirm a settings change that affects existing records.</p><p>2. Observe the app while the change is applied.</p>",
+ "expected": "<p>1. While the change is being applied, the admin who made it is blocked: the settings page shows a progress indicator and does not return until every affected record has been changed.</p><p>2. Every other user in the organization keeps working normally; the organization is never locked and technicians are never stopped.</p><p>3. Another user viewing an affected work order during the run may see out-of-date values until they refresh; this is expected, because every record is committed on its own and the run can be re-run.</p><hr><p>This is the expected behaviour as per epic SV-8683 and story SV-9250 (Story 4, Applying a settings change at scale) and the Simple Flow V2 specification (Confluence page 771391574, revised 8 September 2026), read on 8 September 2026.</p><p>Last checked against build v26.39.0-07c719b on 9/24/2026.</p><p>AUTOMATION: READY</p>"
+}
