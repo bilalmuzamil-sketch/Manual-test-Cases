@@ -124,8 +124,23 @@ def legacy_invoice_numbers(pn):
     """The numbers earlier schemes would have produced, so an invoice ALREADY on the branch is
     adopted instead of re-created. Without this, changing the scheme orphans every invoice seeded
     under the old one - and its purchase order is already fulfilled, so the receive cannot be
-    repeated and the row can never complete again."""
-    return [f"ZZT-INV-{PO_SLUG.upper()}-{pn}"[:21], f"ZZT-INV-{pn[-1]}"]
+    repeated and the row can never complete again.
+
+    🔴 AN AMBIGUOUS LEGACY NAME IS DROPPED, NOT USED. The very truncation this rewrite fixes means
+    the old schemes could produce the SAME name for several rows - all three Fibridge rows map to
+    'ZZT-INV-GSV2-ZZT-FIB-'. Adopting on a shared name is worse than not adopting at all: on
+    staging it made inv_partial and inv_paid claim inv_unpaid's invoice and then PAY against it,
+    so one invoice went unpaid -> partially paid -> paid while their own purchase orders sat
+    untouched and the estate held one invoice where the cases need three. A name is usable for
+    adoption only when exactly ONE row in the plan could have produced it."""
+    cands = [f"ZZT-INV-{PO_SLUG.upper()}-{pn}"[:21], f"ZZT-INV-{pn[-1]}"]
+    out = []
+    for c in cands:
+        produced_by = sum(1 for r in PLAN
+                          if c in (f"ZZT-INV-{PO_SLUG.upper()}-{r['pn']}"[:21], f"ZZT-INV-{r['pn'][-1]}"))
+        if produced_by == 1:
+            out.append(c)
+    return out
 
 def load():
     try: return json.load(open(STATE_PATH))
@@ -387,8 +402,11 @@ def main():
             if expected_inv:
                 match = next((d for d in deliveries_by_vendor(vid)
                               if str(d.get('invoice_number')) == expected_inv), None)
+                # 🔴 KEEP THIS ROW'S OWN PURCHASE ORDER. Overwriting order_number with the
+                # adopted invoice's order rewrote all three staging rows to I-1511 and lost the
+                # POs they actually owned. Only fill it in when the row has none.
                 rec = dict(rec, invoice_number=expected_inv,
-                           order_number=(match or {}).get('order_number') or rec.get('order_number'))
+                           order_number=rec.get('order_number') or (match or {}).get('order_number'))
                 st[tag] = rec; save(st)
                 print(f"  {tag:14} adopted existing invoice {expected_inv} — not creating a duplicate")
 
