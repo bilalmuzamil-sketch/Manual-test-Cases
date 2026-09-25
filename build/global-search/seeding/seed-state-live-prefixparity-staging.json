@@ -1,13 +1,40 @@
 {
- "when_utc": "2026-09-25T140604Z",
+ "when_utc": "2026-09-25T153935Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
- "live_ids": {},
+ "live_ids": {
+  "pfx_cust_a": "b63e24cf-e775-4850-a0b0-9b4e80546f91",
+  "pfx_cust_b": "d1aadc64-3e8d-484e-87db-3ed99093870f",
+  "pfx_vend_a": "87f37452-ce6e-43dc-b1be-e96b53a851bf",
+  "pfx_vend_b": "6e5861fe-3654-407b-95b5-3c1cd014d1e9",
+  "pfx_asset_owner": "2f6b4290-7cff-4161-803c-273f9a0229b8",
+  "pfx_asset_contact": "42da7c2c-6236-48f0-8330-6c9c4c723c77",
+  "pfx_asset_a": "45ba5d3b-37c2-456e-bece-debca30a26f6",
+  "pfx_asset_b": "ae32d4f2-865d-46f2-9bbe-f2741ca789af",
+  "pfx_part_a_cat": "c29739d8-9846-48e0-9387-f2b2a92130f3",
+  "pfx_part_a_inv": "957c2bfe-2e43-4afb-aad1-65043bd02280",
+  "pfx_part_b_cat": "dfc499ab-0844-48b0-8b23-5b5fdd6b3e7e",
+  "pfx_part_b_inv": "fd8f7688-b1cb-4840-8168-47773518a44c"
+ },
  "records": [
   {
    "key": "pfx_cust_a",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "b63e24cf-e775-4850-a0b0-9b4e80546f91"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707,
     55724
@@ -15,7 +42,21 @@
   },
   {
    "key": "pfx_cust_b",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "d1aadc64-3e8d-484e-87db-3ed99093870f"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707,
     55724
@@ -23,21 +64,67 @@
   },
   {
    "key": "pfx_vend_a",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "87f37452-ce6e-43dc-b1be-e96b53a851bf"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
   },
   {
    "key": "pfx_vend_b",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "6e5861fe-3654-407b-95b5-3c1cd014d1e9"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
   },
   {
    "key": "pfx_asset_owner",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "2f6b4290-7cff-4161-803c-273f9a0229b8"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707,
     55724
@@ -45,50 +132,121 @@
   },
   {
    "key": "pfx_asset_contact",
-   "state": "UNVERIFIED",
-   "reason": "parent 'pfx_asset_owner' not available yet - check the record order",
+   "state": "PRESENT",
+   "ids": [
+    "42da7c2c-6236-48f0-8330-6c9c4c723c77"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
   },
   {
    "key": "pfx_asset_a",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "45ba5d3b-37c2-456e-bece-debca30a26f6"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
   },
   {
    "key": "pfx_asset_b",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "ae32d4f2-865d-46f2-9bbe-f2741ca789af"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
   },
   {
    "key": "pfx_part_a_cat",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "c29739d8-9846-48e0-9387-f2b2a92130f3"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
   },
   {
    "key": "pfx_part_a_inv",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "957c2bfe-2e43-4afb-aad1-65043bd02280"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
   },
   {
    "key": "pfx_part_b_cat",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "dfc499ab-0844-48b0-8b23-5b5fdd6b3e7e"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
   },
   {
    "key": "pfx_part_b_inv",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "fd8f7688-b1cb-4840-8168-47773518a44c"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]

@@ -101,7 +101,13 @@ UNIVERSES = [
      ('ZZPARTBUSY',    'parts',     'ZZPARTBUSY-2001'),
      ('ZZCONTACTONLY', 'customers', 'Northgate Cartage'),
      ('ZZFUZZLEN',     'customers', 'Abcde Logistics'),
-     ('I9160-1398',    'purchase_orders', 'I9160-1398'),
+     # 🔴 NEVER PIN A SPINE PROBE TO A BRANCH-ASSIGNED NUMBER (Rule 111). Work-order, part-sale
+     # and purchase-order numbers are issued by the BRANCH: the same records that read
+     # S9160-/P9160-/I9160- on the QA branch read S2-34232/P2-2259/I2-1520 on staging, so this
+     # board reported four healthy universes as PARTIAL and told the reader to reseed data that
+     # was sitting in the index. The identity that survives a branch, a redeploy and a reseed is
+     # the NAME WE SEEDED, which every one of these rows carries on its secondary.
+     ('ZZVENDORPO',    'purchase_orders', 'ZZVENDORPO Supply Open'),
      ('ZZOPENCOUNT',   'customers', 'Freight Busy'),
      ('ZZNAMEBONUS',   'customers', 'ZZNAMEBONUS Cartage'),
      ('ZZACC',         'customers', 'Mart'),          # C55726 accents
@@ -119,12 +125,12 @@ UNIVERSES = [
      # C55731-C55736. Each probe names OUR record, because these cases turn on identity: the
      # assertion is "the SAME record disappeared", which a row count cannot carry.
      ('ZZTOGPART',  'parts',           'ZZTOGPART Brake Kit'),   # C55731 Catalog & Inventory
-     ('ZZTOGWO',    'work_orders',     'S9160-'),                # C55732 Work Orders
+     ('ZZTOGWO',    'work_orders',     'ZZTOGWO Haulage'),       # C55732 Work Orders
      ('ZZTOGCUST',  'customers',       'ZZTOGCUST Freight'),     # C55733 Customers (+ its asset)
-     ('ZZTOGPS',    'part_sales',      'P9160-'),                # C55734 Part Sales
+     ('ZZTOGPS',    'part_sales',      'ZZTOGPS Motors'),        # C55734 Part Sales
      ('ZZTOGVEN',   'vendors',         'ZZTOGVEN Supply'),       # C55735 vendor …
-     ('ZZTOGVEN',   'purchase_orders', 'I9160-'),                # … its PO …
-     ('ZZTOGVEN',   'vendor_invoices', 'ZZT-INV-TOGGLE'),        # … and its invoice: ALL THREE,
+     ('ZZTOGVEN',   'purchase_orders', 'ZZTOGVEN Supply'),       # … its PO …
+     ('ZZTOGVEN',   'vendor_invoices', 'ZZTINV-TOGGLE'),         # … and its invoice: ALL THREE,
      #   because C55735 asserts one permission hides them together - two of three is a half-pass
      #   that reads as green.
      ('ZZTOGPRICE', 'parts',           'ZZTOGPRICE Filter'),     # C55736 price masking
@@ -226,7 +232,10 @@ def main():
         print(f"    Spine records only — for the full assertion set run:  python3 status.py --full")
     else:
         print(f" {R}🔴 {len(broken)} UNIVERSE(S) NEED RESEEDING.{X}  One command rebuilds all of them:")
-        print(f"\n      ./reseed_everything.sh qa\n")
+        # Name the environment we actually measured - telling a staging reader to run the
+        # QA rebuild is how one estate's data ends up overwriting another's.
+        target = "qa" if "sv9160" in C["host"] else ("live" if C["host"] == "app.shopview.com" else "staging")
+        print(f"\n      ./reseed_everything.sh {target}\n")
         print("    It is safe to run even for the parts that are fine — every step measures first")
         print("    and creates only the difference.")
     print('='*78)

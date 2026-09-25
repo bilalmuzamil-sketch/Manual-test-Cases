@@ -1,151 +1,391 @@
 {
- "when_utc": "2026-09-25T140429Z",
+ "when_utc": "2026-09-25T153502Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
- "live_ids": {},
+ "live_ids": {
+  "tog_part_cat": "5bc81173-cf36-403f-941a-da6a10b339b1",
+  "tog_part_inv": "8b3211c7-4aad-4950-b9e3-013af234c2c5",
+  "tog_price_cat": "f78904ca-7df1-4acb-bec3-0a2c88f6ba32",
+  "tog_price_inv": "fb69a484-77b9-4556-bb49-1390e7d2c104",
+  "tog_cust": "258dd6fb-ca70-407b-94d3-bf8f99b02359",
+  "tog_cust_contact": "cc23f36b-9a2a-4843-8a2c-4b3893a039bc",
+  "tog_cust_vehicle": "8762432b-c77f-4d29-ab9a-d380f4d6d901",
+  "tog_wo_cust": "ebd8cc38-30f7-4d37-9efa-53543bd7c1cd",
+  "tog_wo_contact": "d187cdc9-4671-4e07-bf3c-6315954c10bd",
+  "tog_wo_vehicle": "f5b05b9b-945a-4998-ba93-a92db9d5072b",
+  "tog_work_order": "b8e0c2a7-729a-4d4c-806f-9879b0407a4b",
+  "tog_ps_cust": "faab822e-f883-45c8-8c3a-72a9f8cf9898",
+  "tog_ps_contact": "2ef6e5d4-729a-42b7-aacc-8e1d0d6815d8",
+  "tog_ps_vehicle": "7a316fbf-5eb5-459a-8593-d43e13eca16c",
+  "tog_part_sale": "edde93e4-56f5-4f64-ad00-9f34eecdd67f",
+  "tog_vendor": "00bc3b84-6941-4ab0-a4ca-557bfe1b941b",
+  "tog_ven_part_cat": "6dc72a91-6bb2-456c-92d6-4adbe9c996bb",
+  "tog_ven_part_inv": "e2458509-cfdb-413a-b518-9690215789ab",
+  "count_visible_1": "9639a2e7-766a-4b78-ba41-66e7cdfb9bc1",
+  "count_visible_2": "1b4c8126-e3a4-4a2d-9e84-f099dbce8eab"
+ },
  "records": [
   {
    "key": "tog_part_cat",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "5bc81173-cf36-403f-941a-da6a10b339b1"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55731
    ]
   },
   {
    "key": "tog_part_inv",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "8b3211c7-4aad-4950-b9e3-013af234c2c5"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55731
    ]
   },
   {
    "key": "tog_price_cat",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "f78904ca-7df1-4acb-bec3-0a2c88f6ba32"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55736
    ]
   },
   {
    "key": "tog_price_inv",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "fb69a484-77b9-4556-bb49-1390e7d2c104"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55736
    ]
   },
   {
    "key": "tog_cust",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "258dd6fb-ca70-407b-94d3-bf8f99b02359"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55733
    ]
   },
   {
    "key": "tog_cust_contact",
-   "state": "UNVERIFIED",
-   "reason": "parent 'tog_cust' not available yet - check the record order",
+   "state": "PRESENT",
+   "ids": [
+    "cc23f36b-9a2a-4843-8a2c-4b3893a039bc"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55733
    ]
   },
   {
    "key": "tog_cust_vehicle",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "8762432b-c77f-4d29-ab9a-d380f4d6d901"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55733
    ]
   },
   {
    "key": "tog_wo_cust",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "ebd8cc38-30f7-4d37-9efa-53543bd7c1cd"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55732
    ]
   },
   {
    "key": "tog_wo_contact",
-   "state": "UNVERIFIED",
-   "reason": "parent 'tog_wo_cust' not available yet - check the record order",
+   "state": "PRESENT",
+   "ids": [
+    "d187cdc9-4671-4e07-bf3c-6315954c10bd"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55732
    ]
   },
   {
    "key": "tog_wo_vehicle",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "f5b05b9b-945a-4998-ba93-a92db9d5072b"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55732
    ]
   },
   {
    "key": "tog_work_order",
-   "state": "SHORT",
-   "have": 0,
-   "want": 1,
+   "state": "PRESENT",
+   "ids": [
+    "b8e0c2a7-729a-4d4c-806f-9879b0407a4b"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55732
    ]
   },
   {
    "key": "tog_ps_cust",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "faab822e-f883-45c8-8c3a-72a9f8cf9898"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55734
    ]
   },
   {
    "key": "tog_ps_contact",
-   "state": "UNVERIFIED",
-   "reason": "parent 'tog_ps_cust' not available yet - check the record order",
+   "state": "PRESENT",
+   "ids": [
+    "2ef6e5d4-729a-42b7-aacc-8e1d0d6815d8"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55734
    ]
   },
   {
    "key": "tog_ps_vehicle",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "7a316fbf-5eb5-459a-8593-d43e13eca16c"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55734
    ]
   },
   {
    "key": "tog_part_sale",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "edde93e4-56f5-4f64-ad00-9f34eecdd67f"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55734
    ]
   },
   {
    "key": "tog_vendor",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "00bc3b84-6941-4ab0-a4ca-557bfe1b941b"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55735
    ]
   },
   {
    "key": "tog_ven_part_cat",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "6dc72a91-6bb2-456c-92d6-4adbe9c996bb"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55735
    ]
   },
   {
    "key": "tog_ven_part_inv",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "e2458509-cfdb-413a-b518-9690215789ab"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55735
    ]
   },
   {
    "key": "count_visible_1",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "9639a2e7-766a-4b78-ba41-66e7cdfb9bc1"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55737
    ]
   },
   {
    "key": "count_visible_2",
-   "state": "MISSING",
+   "state": "PRESENT",
+   "ids": [
+    "1b4c8126-e3a4-4a2d-9e84-f099dbce8eab"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55737
    ]

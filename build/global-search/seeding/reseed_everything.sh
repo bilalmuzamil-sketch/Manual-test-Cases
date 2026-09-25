@@ -171,8 +171,13 @@ step() { local label="$1"; shift; echo; echo "---- $label"
 # ── universe 1 · V1-REGRESSION (11 records, sections 6769 / 8056) ──────────────────────────────
 export SEED_MANIFEST=seed-manifest.json
 step "1  V1-regression records"            python3 seed.py --confirm || exit 1
+# 🔴 PICK THE VERIFIER BY WHICH SEARCH THE ENVIRONMENT RUNS, NOT BY WHICH HOST IT IS.
+# verify_gsv2_v1.py reads /api/global-search/fetch - the V1 endpoint - which answers 404 wherever
+# V2 is deployed. The V2 arm used to run it anyway and swallow the 404 with `|| true`, so on the QA
+# branch and on staging these 11 records had NO search proof at all: seed.py's presence check was
+# being read as findability, and "the record exists" is not "the search returns it".
 if [ "$V2" = "1" ]; then
-  step "1b V1-regression PROOF (V2 search)"  python3 verify_gsv2_v1.py || true
+  step "1b V1-regression PROOF (V2 search, by identity)" python3 verify_by_search.py || exit 1
 else
   step "1b V1-regression PROOF (V1 search)"  python3 verify_gsv2_v1.py || exit 1
 fi
@@ -220,11 +225,13 @@ if [ "$V2" = "1" ]; then
   # not on the fourth in ONE response.
   export SEED_MANIFEST=seed-manifest-prefix-parity.json
   step "15 SV-10279 prefix-parity records"  python3 seed.py --confirm            || exit 1
+  step "15b prefix-parity PROOF (by identity)" python3 verify_by_search.py       || exit 1
 
   # ── universe 6 · PER-TAB PREFIX (14 records, C72120/72121/72122) ─────────────────────────────
   # Three cases, three private keywords, three records each: begins-with / contains / typo.
   export SEED_MANIFEST=seed-manifest-per-tab-prefix.json
   step "16 per-tab prefix records"          python3 seed.py --confirm            || exit 1
+  step "16b per-tab prefix PROOF (by identity)" python3 verify_by_search.py      || exit 1
 
   # 🔴 BOTH OF THESE ARE PROVED BY status.py, NOT BY A DEDICATED VERIFIER. Their assertion is a
   # RANKING one - which match label each row carries - and on Parts the expected answer is
