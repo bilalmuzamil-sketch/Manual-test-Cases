@@ -94,7 +94,20 @@ def signal_open_work_orders():
         open_now = []
         for w in live:
             st, d = call(f'/api/work-orders/view/{w}')
-            cur = str(((d or {}).get('data') or {}).get('work_order', {}).get('status') or '').lower()
+            # 🔴 READ THE SHAPE DEFENSIVELY - AN ERROR RESPONSE IS NOT THE SHAPE YOU ASKED FOR.
+            # This chained .get() straight through data -> work_order -> status and crashed with
+            # "'str' object has no attribute 'get'" the first time the endpoint answered something
+            # else (staging, 2026-09-25), taking the whole signals step down with it. A work order
+            # that cannot be READ is not a work order that is TERMINAL: it is unknown, and the
+            # honest response is to count it as stuck and carry on rather than abort the run and
+            # leave the other keys unprocessed.
+            body = (d or {}).get('data') if isinstance(d, dict) else None
+            wo = body.get('work_order') if isinstance(body, dict) else None
+            if not isinstance(wo, dict):
+                print(f"     ⚠️  work order {str(w)[:8]}… did not read back "
+                      f"(HTTP {st}) — counting as stuck, not terminal")
+                stuck += 1; continue
+            cur = str(wo.get('status') or '').lower()
             if cur in TERMINAL:
                 stuck += 1; continue
             if cur.replace(' ', '_') == 'in_progress':
