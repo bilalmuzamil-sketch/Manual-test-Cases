@@ -18,11 +18,23 @@
 set -uo pipefail
 cd "$(dirname "$0")"
 
+# 🔴 WHICH UNIVERSES AN ENVIRONMENT GETS IS DECIDED BY WHAT IS DEPLOYED THERE, NOT BY ITS NAME.
+# qa and staging both run Global Search V2, so both take the FULL set. Production runs V1, whose
+# search endpoint is a different program entirely, so it takes the V1-regression universe alone.
 case "${1:-}" in
-  qa)   HOST="https://sv9160.qa.shopview.com"; export SEED_PROFILE=/tmp/qa/cookies.json ;;
-  live) HOST="https://app.shopview.com";       export SEED_PROFILE=/tmp/prod/creds.json
-        export SEED_WORKPLACE="Trucks Hill 2" ;;
-  *) echo "usage: $0 qa|live"; exit 2 ;;
+  qa)      HOST="https://sv9160.qa.shopview.com"; export SEED_PROFILE=/tmp/qa/cookies.json
+           V2=1 ;;
+  staging) HOST="https://app.staging.shopview.com"; export SEED_PROFILE=/tmp/staging/cookies.json
+           export SEED_WORKPLACE="Staging Heavy Duty - 9919"
+           # 🔴 NO quick-login ON STAGING. It rotates the shared session and evicts whoever else is
+           # signed in (Rule 83). On the QA branch that is an accepted cost; on a shared staging
+           # environment it is not. seed.py enforces this itself - quick-login is hard-restricted
+           # to the QA profile - so a lapsed session here STOPS and asks for a fresh cookie.
+           V2=1 ;;
+  live)    HOST="https://app.shopview.com";       export SEED_PROFILE=/tmp/prod/creds.json
+           export SEED_WORKPLACE="Trucks Hill 2"
+           V2=0 ;;
+  *) echo "usage: $0 qa|staging|live"; exit 2 ;;
 esac
 
 echo "=============================================================="
@@ -113,6 +125,30 @@ print('; '.join(f'{k}={c[k]}' for k in ('sv_sso_session','PHPSESSID','cf_clearan
   rm -f /tmp/reseed-sess.$$
 fi
 
+# Staging has no sleep/wake and no self-service login, so it gets the liveness half only. Proving
+# the session BEFORE a 185-record run beats discovering it at record 40 with a half-built estate.
+if [ "${1}" = "staging" ]; then
+  SAPI="https://api.staging.shopview.com"
+  SCK=$(python3 -c "
+import json
+c=json.load(open('/tmp/staging/cookies.json'))
+print('; '.join(f'{k}={c[k]}' for k in ('sv_sso_session','PHPSESSID','cf_clearance') if c.get(k)))
+")
+  SL=$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 -H "Cookie: $SCK" \
+       -H 'Accept: application/json' "$SAPI/api/staff/my-workplaces")
+  # A path that CANNOT exist: 404 proves the real API answered rather than a front end or a
+  # parking page, both of which happily return 200 for anything.
+  SC=$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 -H "Cookie: $SCK" \
+       -H 'Accept: application/json' "$SAPI/api/definitely-not-real-zz")
+  echo "---- staging session: $SL   control path: $SC (404 = the real API answered)"
+  if [ "$SL" != "200" ]; then
+    echo "🔴 STAGING SESSION IS NOT LIVE (HTTP $SL). Nothing seeded, nothing changed."
+    echo "   quick-login is deliberately NOT used here - it would evict other people signed in"
+    echo "   to staging (Rule 83). ASK FOR: a fresh sv_sso_session, PHPSESSID and cf_clearance."
+    exit 1
+  fi
+fi
+
 echo " build marker before: $(curl -s --max-time 20 "$HOST/" | grep -o 'content="v[^"]*"' | head -1)"
 echo "=============================================================="
 
@@ -123,15 +159,15 @@ step() { local label="$1"; shift; echo; echo "---- $label"
 # ── universe 1 · V1-REGRESSION (11 records, sections 6769 / 8056) ──────────────────────────────
 export SEED_MANIFEST=seed-manifest.json
 step "1  V1-regression records"            python3 seed.py --confirm || exit 1
-if [ "$1" = "qa" ]; then
+if [ "$V2" = "1" ]; then
   step "1b V1-regression PROOF (V2 search)"  python3 verify_gsv2_v1.py || true
 else
   step "1b V1-regression PROOF (V1 search)"  python3 verify_gsv2_v1.py || exit 1
 fi
 
 # ── universe 2 · GLOBAL SEARCH V2 "Fibridge" (39 records, sections 6721-6740) ──────────────────
-# QA only: production runs V1, whose search endpoint is a different program entirely.
-if [ "$1" = "qa" ]; then
+# Everywhere Global Search V2 is deployed (qa and staging); production runs V1.
+if [ "$V2" = "1" ]; then
   export SEED_MANIFEST=seed-manifest-gs-v2.json
   step "2  Fibridge records"                python3 seed.py --confirm            || exit 1
   step "3  work-order status spread"        python3 set_wo_statuses.py --confirm || exit 1
