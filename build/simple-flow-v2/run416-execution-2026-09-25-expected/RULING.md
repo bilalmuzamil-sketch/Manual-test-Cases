@@ -58,3 +58,55 @@ the write, the HTTP status and the read-back verification for each.
 The written requirement itself — Confluence 771391574, story SV-9248 — has not been read this pass, and
 it may still describe the sweep. If it does, the specification and the product now disagree, and that is
 a question for the product owner rather than something a test case can decide. Flagged, not resolved.
+
+---
+
+# Second ruling, same day — C44557, the confirmations
+
+## His words
+
+> Either: "confirming on all four is expected" — I pass the check and we're down to four problems.
+> And also change the title and expected behavior in the test case and maybe anything else too if
+> needed in that test cases, yes even its automated do correct that too- yes its an exception for
+> correcting the expected behavior, do not change your rules
+
+## What that authorised, and what it did not
+
+He **named the case**, ruled the behaviour, and lifted **two** standing holds for it explicitly:
+**Rule 114** (the Expected is never changed) and **Rule 71** (a case TestRail flags as Automated is
+never changed without him). *"do not change your rules"* — so nothing was amended in the rule files
+this time; 114(c) already describes exactly this shape, and this is an instance of it, not a new rule.
+
+**It does not reach any other case.** 114(c) is the standing position: the bar lifts only when he names
+cases, in that conversation.
+
+## What was changed on C44557
+
+| | Before | After |
+|---|---|---|
+| Title | Only ordering and picking ask to confirm; picking-off warns of stock deduction | All four Work Orders settings ask you to confirm before they save |
+| Expected | only ordering and picking confirm; approval and receiving save directly; picking-off warns of stock deduction | all four confirm; each names the setting and direction, carries a live count, and states that no record is changed by the switch |
+| Steps | step 5 asked for a zero-affected state | all four settings switched and their confirmations read |
+| Preconditions | required a shop with no matching open records | dropped - the zero-affected state is no longer part of the case |
+
+The Automated flag was **left as it is**. He authorised correcting the text of an automated case, not
+un-flagging it.
+
+**🛑 RULE 65 — VLAD MUST BE TOLD.** A case TestRail flags as Automated has been changed. That is an
+action for the QA lead to pass on; it is recorded here so it is not lost.
+
+## Two requirements dropped, and they are a question not a decision
+
+The old Expected carried two things neither ruled on nor ever observed:
+
+- *"When the number of affected records is zero, no confirmation shows and the setting saves directly."*
+- *"Where a large number of records is affected, the confirmation also advises making the change outside
+  working hours; where the number cannot be established it states the consequence without a figure."*
+
+Neither was exercised in this run, and his ruling does not speak to either. They are **out of the case**
+rather than silently kept, and raised with him. If he wants them back they return as their own case.
+
+## Recoverability
+
+`C44557-BEFORE.json` holds the entire case as it was; `C44557-AFTER.json` what is live now;
+`C44557-audit.json` the write, its status and the field-by-field read-back.

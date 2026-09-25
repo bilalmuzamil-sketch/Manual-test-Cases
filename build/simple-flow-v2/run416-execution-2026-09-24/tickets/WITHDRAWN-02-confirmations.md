@@ -1,3 +1,12 @@
+🛑 WITHDRAWN — NEVER FILE THIS. QA lead ruling, 25 September 2026.
+
+He ruled that asking to confirm on all four Work Orders settings is the expected behaviour, and
+instructed that the case be corrected instead. C44557 was re-judged to Passed and its title,
+preconditions, steps and Expected were rewritten the same day on his explicit per-case instruction.
+Kept only as the record of what was examined. Nothing here is to be raised.
+
+--------------------------------------------------------------------------------
+
 TITLE: Every Work Order Switch Asks to Confirm, and the Picking Warning Says the Opposite of What It Should
 ISSUE TYPE: Story Defect
 PARENT / OWNING STORY: SV-9249 — Confirmation before a settings change
