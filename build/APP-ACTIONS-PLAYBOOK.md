@@ -5454,3 +5454,37 @@ carry the Story Defect recipe across:
   real description in **wiki markup** via `PUT /rest/api/2/issue/<KEY>` (the only route that embeds an
   image) → run `size_pics.py <KEY> <img>` → **read it back** and require `mediaSingle layout=full-width`
   with the picture's true pixel dimensions (Rule 116).
+
+### The grouped-by-VENDOR receive window — and the route to it (QA lead, 2026-09-25)
+
+**THE PRODUCT'S WORD IS *VENDOR*. Never "supplier"** — not in a case, a ticket, a report or a message
+(Rule 110: four things are company-wide, and the product's own word is one of them).
+
+**I judged two checks on the wrong screen.** `/parts/orders` (Parts → Purchase Orders) is a flat
+sortable list and always was; the grouping the requirement describes is **not there and is not meant
+to be**. It lives in the receive window reached from the work order:
+
+1. Open a work order → **Lines** tab.
+2. Press **Complete** on a line that has parts waiting.
+3. The completion wizard opens, usually at **Resolve cores** — press **Continue Without Resolving**
+   (clicking the *Receive parts (n)* step label does NOT advance it; the step must be cleared).
+4. The next step is a prompt: *"n parts waiting to receive"* with **Cancel · Receive Parts ·
+   Finish Work Order**. Press **Receive Parts**.
+5. **That** window is grouped by vendor: a **Vendor missing** group first, with an amber warning icon
+   and an **Assign Vendor** box, then named vendors. Each group carries **Vendor Invoice Number ·
+   Invoice Date · Delivery Note**, then its parts with a tick box each and columns **Part number &
+   description · Select All · Cost · Qty Ordered · Qty Received · Total**, then **Subtotal · Tax
+   (editable) · Total**, and **Receive Parts (n)** as the primary action, greyed while nothing is ticked.
+
+**Clicking a purchase order on `/parts/orders` navigates to `/order/<id>` "Purchase Order Details" —
+and the QA lead confirms that separate page is intended**, not an in-place panel.
+
+**Differences from the written requirement, recorded but not raised** (the Product Owner has said this
+area changed during development and the requirement will be updated): the control is **Select All**
+where the requirement says *Deselect all*; groups open **expanded** rather than collapsed; there is no
+*Expand all* and no rollup such as *"3 POs, 6 parts"*; no **sell price** is shown.
+
+**The lesson worth carrying:** a precondition that names a route is part of what is being tested. Two
+checks pointed at `/parts/orders` and I judged the product against them without asking whether the
+route itself was right. When a whole feature appears to be missing, suspect the route before the
+product — and ask.

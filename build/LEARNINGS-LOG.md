@@ -4114,3 +4114,25 @@ failure may be the same story: behaviour deliberately changed, requirement not y
 **Therefore:** do not spend effort writing tickets for the remaining failures until they have been put
 to the Product Owner as questions, and re-run the reconciliation once the document is updated. A defect
 raised against a stale requirement wastes the developer's time and the reviewer's trust.
+
+## L0210 — Use the product's own word: Vendor, never "supplier" (QA lead, 2026-09-25)
+*"Purchase orders are grouped by the Vendors (never call them suppliers)"*. I had translated the
+product's term into a synonym I thought read more naturally in a plain-English report. That is the same
+mistake as inventing "rule change" for a setting (L0199): it makes the reader translate, and it makes a
+report unsearchable against the product. The product's own word is company-wide in both scopes
+(Rule 110) and applies to cases, tickets, reports and chat alike.
+
+## L0211 — When a whole feature looks missing, suspect the ROUTE before the product (2026-09-25)
+**What happened.** Two checks said purchase orders should be grouped by vendor with a panel per
+purchase order. I opened the route their preconditions named — Parts → Purchase Orders — found a flat
+table, and failed them both twice, including once on a deliberate re-check. The QA lead then showed me
+the real route: work order → Complete → clear the cores step → **Receive Parts**. Everything the checks
+describe is there.
+**Why the re-check did not save me.** I re-tested carefully but on the same wrong screen, so the second
+reading confirmed the first. **Repetition is not corroboration when the route is the error.**
+**The tell I had and ignored:** the requirement's own design note named *"Purchase Order Details"*, and
+the product had a page by exactly that name — evidence the feature existed somewhere, which should have
+sent me looking instead of writing a ticket.
+**The rule.** A precondition's route is part of what is under test. Before failing a whole capability,
+ask: where else could this live, and has anyone ever seen it work? One question to the QA lead would
+have saved two false failures and a wasted ticket draft.

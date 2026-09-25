@@ -137,8 +137,8 @@
    "why": "With the picking permission removed the bar read '1 selected, Complete Line, More, close' - no Pick action at all. The permission list was read before and after to prove the change took effect."
   },
   "53486": {
-   "v": "Failed",
-   "why": "One fault, narrower than first reported. There is no Deselect all in the bar, so a user who has over-selected cannot start again without losing the bar. The close control does exactly what it should - it clears the selection and dismisses the bar. And a group holding nothing correctly renders no divider: with a single line selected and no parts action available, the bar shows two dividers rather than three."
+   "v": "Passed",
+   "why": "Marked Passed on the Product Owner's ruling. The missing Deselect all was one of the points raised in SV-10475, and he answered that the behaviour is expected and the written requirement will be brought up to date; the ticket is closed as obsolete. What was observed still stands as an observation - the bar has no Deselect all, the close control clears the selection and dismisses the bar, and a group holding nothing correctly shows no divider - but the behaviour is intended, so this passes. Product Owner Milos Vasic on SV-10475, 25 September 2026: \"this is expected behaviour\", and \"there is couple of areas i need to update the spec for, most of this were change during the development and testing. i will update the spec by Monday\". https://shopview.atlassian.net/browse/SV-10475?focusedCommentId=77289"
   },
   "44583": {
    "v": "Passed",
@@ -169,20 +169,20 @@
    "why": "Could not be judged. No purchase order on this shop has a part already received alongside one not yet received."
   },
   "44589": {
-   "v": "Failed",
-   "why": "Re-checked on the current build rather than taken from the note in the case. The purchase orders page is still one flat sortable table - Work Order, Purchase Order Number, Vendor, Order Status, Created On, Ordered By, Total Cost, Note - with thirty rows and no grouping of any kind. No vendor groups, no rollup counts, no Expand all, nothing collapsed. One change since the note was written: the money column now reads Total Cost, where the note recorded Total Price."
+   "v": "Passed",
+   "why": "Marked Passed after the QA lead showed me the right screen. I had judged this on the purchase orders list under Parts, which is not where the grouping lives. The route is: open a work order, press Complete on a line, clear the cores step, then press Receive Parts. The window that opens IS grouped by vendor, with the vendor-missing group first carrying an amber warning and an Assign Vendor box, then the named vendor. Three things still differ from the written requirement and are reported rather than raised: the groups open expanded rather than collapsed, there is no Expand all and no count such as three purchase orders, six parts, and the page header carries no vendor count. The Product Owner has said this area changed during development and the requirement will be updated. Product Owner Milos Vasic on SV-10475, 25 September 2026: \"this is expected behaviour\", and \"there is couple of areas i need to update the spec for, most of this were change during the development and testing. i will update the spec by Monday\". https://shopview.atlassian.net/browse/SV-10475?focusedCommentId=77289"
   },
   "44590": {
-   "v": "Failed",
-   "why": "Still failing, but my earlier description of it was wrong and is withdrawn. Clicking a purchase order does NOT do nothing - it leaves the list and opens a separate Purchase Order Details page. That page shows the parts with Part Number, Description, Quantity, Cost and Total Cost, and offers Receive, download, email and print. What it does not carry is any of what this check asks for: no vendor invoice number, no invoice date, no delivery note, no per-part tick boxes, no Deselect all, no subtotal with an editable tax and total, no Receive parts with a count, and no sell price. So the capability is genuinely absent - but the right way to describe it is that a separate page opens instead of a panel expanding in place."
+   "v": "Passed",
+   "why": "Marked Passed after the QA lead showed me the right screen, and after he confirmed the separate details page is intended when Receive parts is pressed. The window reached by pressing Complete then Receive Parts carries everything this check asks for: a panel per vendor group with its own Vendor, Vendor Invoice Number, Invoice Date and Delivery Note, the parts beneath with a tick box each, and Cost, Qty Ordered, Qty Received and Total, then Subtotal, an editable Tax and Total, and Receive Parts with a count as the primary action, greyed out while nothing is ticked. Two differences are reported rather than raised: the control is called Select All where the requirement says Deselect all, and no sell price is shown. Product Owner Milos Vasic on SV-10475, 25 September 2026: \"this is expected behaviour\", and \"there is couple of areas i need to update the spec for, most of this were change during the development and testing. i will update the spec by Monday\". https://shopview.atlassian.net/browse/SV-10475?focusedCommentId=77289"
   },
   "44591": {
    "v": "Blocked",
    "why": "The page half is already reported separately - there is no per-purchase-order panel to compare. The money half needs the same person as the receiving check above."
   },
   "53488": {
-   "v": "Failed",
-   "why": "Re-checked with the method that corrected my other bar readings, and it stands. Selecting purchase orders raises a bar built only for this page, not the one the work order uses - the work order's bar is not on this page at all. It reads one selected and a cross, and holds nothing else: no Deselect all, no Receive selected, no More, and none of the dividers."
+   "v": "Passed",
+   "why": "Marked Passed on the QA lead's ruling of 25 September 2026: the tick bar on the purchase orders page is not meant to be the work order's bar. The page raises a bar of its own, reading the number selected and a cross. The written requirement still says it should be the same bar as the work order, so the case text and the ruling differ - that is reported and the case text is left exactly as it is."
   },
   "44592": {
    "v": "Blocked",
