@@ -3986,3 +3986,11 @@ page** — "Require Ordering Parts", saved with **Save Settings**. The QA lead s
 and 110 already require the build's own labels; the slip was inventing a synonym because it read more
 naturally to me. **If the screen has a word for it, that is the word**, in reports, pictures and
 anything he reads. Check the captured page text for the label before naming a thing.
+
+## L0200 — An authorised exception is authorised once, for what was named (2026-09-25)
+The QA lead told me to make the product's own confirmation wording the Expected of three cases. I
+surfaced the Rule 114 bar first, he instructed it again, and I changed them — correctly. What I did not
+do on my own was fence the precedent, and he had to: *"This exception is FOR only when I ask you to do
+that."* **An exception he grants is a fact about the thing he named, not a new default.** Write the
+limit into the rule at the moment the exception is taken, in the same pass, or the next session reads
+the precedent as permission. Now Rule **114(c)**.

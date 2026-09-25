@@ -18,6 +18,13 @@ then instructed it directly, a second time. Under Rule 63 a conflict is surfaced
 stands, so the three cases were changed. **This is a recorded exception to Rule 114 for these three
 cases on this date — it is not a general licence, and the next pass must not read it as one.**
 
+**🛑 HE SET THE LIMIT HIMSELF, 25 September 2026, verbatim:** *"This exception is FOR only when I ask
+you to do that if I do not explicitly ask you to do that you are supposed to follow your standing rules
+as is."* That is now written into the rule as **114(c)**. The bar is the default in every case except
+one: he tells you, in that conversation, to change the Expected of cases he names. **A ruling about how
+the product should behave is NOT that instruction** — record it as the run result, report that the case
+text diverges, and leave the field alone.
+
 ## What was changed
 
 | Case | Title before | Title now |

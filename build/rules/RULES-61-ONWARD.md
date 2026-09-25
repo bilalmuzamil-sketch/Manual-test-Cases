@@ -4206,6 +4206,41 @@ specification version 1.5 …, section N (restatement)"* — seen in every one o
 on 20–21 September. Under 114(a) they are non-compliant. **They are NOT to be rewritten**, because
 114(b) forbids editing them. The conflict is the QA lead's to resolve; it is reported, not fixed.
 
+### 114 (c) — AMENDED 2026-09-25: THE BAR LIFTS ONLY ON HIS EXPLICIT, PER-CASE INSTRUCTION, AND NEVER BY INFERENCE
+
+**QA lead, verbatim, 2026-09-25:** *"This exception is FOR only when I ask you to do that if I do not
+explicitly ask you to do that you are supposed to follow your standing rules as is."*
+
+He said it after I changed the Expected of C44554, C44555 and C44559 on his instruction. The change
+itself was correct — I surfaced the conflict first (Rule 63), he instructed it a second time, and I
+acted. What he is fixing here is the **precedent**, so that no later pass reads one authorised change
+as a standing licence.
+
+**THE STANDING POSITION IS UNCHANGED: `custom_expected` IS NEVER EDITED.** 114(b) is the default and it
+is the answer in every case except one.
+
+**The single exception:** he tells me, in that conversation, to change the Expected of cases he names.
+Then I change those cases and only those.
+
+**It NEVER lifts by inference. All of these are still a NO:**
+- he rules on how the product is *expected to behave* but does not say to change any case — **record the
+  ruling as the run result, report that the case text now diverges, and leave `custom_expected` alone**;
+- an earlier authorised change to other cases, however similar the situation;
+- a source that plainly contradicts the Expected (114(b) already covers this — report and leave);
+- my own judgement that the case is obviously wrong, however obviously;
+- a handoff, a skill, or another session's precedent (Rule 111).
+
+**The operational test, before touching the field:** *did he, in this conversation, tell me to change
+the Expected of this case?* Anything short of yes — including a ruling about behaviour — means the field
+is not touched. Where the answer is no but the case genuinely disagrees with what he has ruled, the
+right output is a run result carrying his ruling plus a note that the case text diverges, which is
+exactly what 114(b) has always required.
+
+**When it IS authorised:** snapshot the whole case first (title, preconditions, steps, Expected) so the
+previous text is recoverable byte for byte; write block HTML only; read the write back and verify it;
+record his verbatim words, the cases touched and the audit in a dated folder. Worked example:
+`build/simple-flow-v2/run416-execution-2026-09-25-expected/RULING.md`.
+
 **🛑 EXTENDED AGAIN 2026-09-22 — THE AUTHORISATION IS TOTAL, AND A SELF-IMPOSED BLOCKER IS NOW A RULE
 BREACH (QA lead, verbatim):** *"Save it as a permanent rule for yourself that you are 100% authorized
 to unblock yourself and give it whatever it takes to unblock you and you are always authorized to CRUD
