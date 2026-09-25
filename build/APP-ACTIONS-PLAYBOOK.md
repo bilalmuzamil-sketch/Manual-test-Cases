@@ -5276,3 +5276,79 @@ null}`. A dialog leaving a field blank and an API call omitting it are not the s
    **It took TWO clicks to come up** in the observed case, which is why this is a loop and not a
    single `if`. Allow a generous script timeout on the first run after a quiet spell (900 s was
    comfortable; the default 120 s is not).
+
+---
+
+## §U.2 — TESTING SPEED: one session per environment, not one script per question
+*(added 2026-09-25 after the QA lead: "You have to work on your speed of testing, you do the
+testing extremely slow… but I do not want to compromise on testing quality/authenticity/detail.")*
+
+**The diagnosis, measured on the SV-10442 pass (a ONE-WORD string change that took ~45 minutes):**
+
+| Waste | What it cost |
+|---|---|
+| A fresh login per probe — 12 scripts × `waitForTimeout(12000+16000+13000)` | **~8 minutes of pure sleeping** |
+| Re-deriving response shapes already seen the same day (`data.collection`, notes payload) | 5 extra round trips |
+| Rebuilding the exhibit three times (caption overflow → arrow across the text → box nudge) | 3 render cycles |
+| `pkill -f` killing my own shell — a trap already written in §U.0b | one dead shell + 2 bridge restarts |
+| Running independent environments in sequence (prod BEFORE, then branch AFTER) | ~2× the wall clock |
+
+**None of it was verification. All of it was waiting and rediscovery.** The fix removes those and
+touches nothing that Rules 12/50/64/73 require.
+
+### The harness — use it, do not hand-roll a boot script again
+- **`build/testing-tools/qa-session.mjs`** — ONE login per environment, held open for the whole pass.
+  `open({env:'prod', user, dir})` or `open({env:'branch', ticket:'10442', cookies})`. Gives you
+  `go(path)` · `api(path)` (in-page fetch, cookies + origin correct) · `waitFor(tid)` · `box(tid)` ·
+  `hoverTip(tid)` (returns the tooltip text **and** its real geometry, ready to annotate) ·
+  `shot(name)` · `marker()` (app-version + last-modified + etag) · `writes[]` (every non-GET the
+  page made — the proof of what a pass did or did not write). `parallel([...])` runs independent
+  environments concurrently.
+- **`build/testing-tools/qa_exhibits.py`** — `panel` / `strip` / `stack` / `words` / `arrow` / `tag`.
+  `words(img, tooltip_box)` finds word boundaries **from the pixels** (all-background columns), so a
+  box lands on the real glyphs rather than an estimate. `panel` drops the word callout from a blank
+  band **above** the shot, so the arrow never crosses the text being evidenced — that mistake cost
+  two rebuilds.
+
+### The rules that follow from it
+1. **Boot once per environment per pass.** If you are writing a second `boot()` call, you are doing
+   it wrong — add a step to the open session instead.
+2. **Never `waitForTimeout` where an event exists.** `waitForSelector`, `waitForResponse`,
+   `waitForURL`. Fixed sleeps only for animation settle (~1s).
+3. **Independent environments run in parallel.** The production BEFORE and the branch AFTER never
+   depend on each other.
+4. **Dump an unknown response ONCE and walk it** (`walk(json)` printing keys per level). Never guess
+   a shape twice. Then write the shape into §W in the same turn.
+5. **Two minutes of reading beats twenty of probing.** Read the ticket + handoff fully first, list
+   every check, then drive them in one scripted pass instead of discovering the plan as you go.
+
+### Response shapes learned 2026-09-25 (do not re-derive)
+- `GET /api/work-orders/lines/{workOrderId}` → `data.collection[]`; a line carries **47 keys**
+  including `deletable`, `deletable_reason`, `can_decline`, `parts[]`, `part_requests[]`,
+  `total_labour_cost`, `fixed_line_total`, `status`.
+- `GET /api/work-orders?pagination[rowsPerPage]=&pagination[page]=&pagination[sortBy]=&pagination[descending]=&search=&showMyWorkOrders=0`
+  → `data.work_orders[]` (**not** `data.collection`), plus `data.pagination`. Useful sort keys:
+  `linesCount`, `statusInStock`.
+- `GET /api/notes?search=&reference_ids[n]=…&filters[0][field]=status&filters[0][operator]=neq&filters[0][value]=deleted&pagination[sortBy]=created_at&pagination[descending]=true`
+  → `data.notes[]` + `data.pagination`; a note has `attachments[]` whose entries carry
+  `id · fileName · fileSize · mimeType · noteId · original · thumbnails · uploadedBy · uploadedAt ·
+  forCustomer`. The **"For Customer"** checkbox under a note image is `forCustomer`.
+  Note test-ids: `link_notes_tab`, `button_new_note`, `button_attach_files`, `note_card_<noteId>`.
+- Work-order **line action menu**: the trigger is the line-number box `line_number_<lineId>`; the
+  menu items are `menu-item_request_part_<lineId>`, `menu-item_add_line_note`,
+  `menu-item_save_canned_line_<lineId>`, `menu-item_story_history`, `menu-item_audit_log_<lineId>`,
+  `menu-item_add_inspection_<lineId>`, `menu-item_edit_labor`, `menu-item_authorization_required`,
+  `menu-item_decline`, `menu-item_delete_line_<lineId>`. Tooltips render as `.q-tooltip`.
+- **On an INVOICED work order the menu has no "Delete line" item at all** — so a completed-line
+  delete reason cannot be hovered there; pick a completed line on an *approved* work order.
+- **`GET /api/auth/me` returns `'resource' was not found`** on production; use
+  `GET /api/auth/me/fe-permissions` → `data.fe_permissions[]` for the signed-in user's atoms.
+- Production login is **credentials, not cookies** (`input_email` / `input_password`), and a
+  per-ticket QA branch is **cookies + `button_quick_login_admin`**, with a "Wake Up" button to click
+  when the environment has parked itself.
+
+### One more trap, paid for twice
+**A per-ticket QA branch can vanish mid-pass.** `sv10442.qa.shopview.com` stopped resolving entirely
+— no DNS A record — about twenty minutes in. Check another branch host to tell a teardown from a
+network fault. **So take the evidence that only that branch can give you FIRST**, before the
+regressions and the nice-to-haves.
