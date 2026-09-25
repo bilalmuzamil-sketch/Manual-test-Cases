@@ -53,33 +53,82 @@ Same line, same menu, hovering the greyed-out **Decline** item:
 Byte-identical, and it correctly still says *declined*. Evidence: `ev/tip-prod-decline-staged.png`,
 `ev/tip-branch-decline-staged.png`.
 
-## §4 The other blocked-delete reasons — scope note
+## §4 Two things moved underneath the pass — found by re-reading the sources (Rule 59)
 
-The handoff names two other reasons (labor on the line, completed line). Production actually emits **four** distinct
-blocked-delete reasons, so the honest scope for "unchanged" is three, not two:
+Both were found by re-reading rather than by assuming, and both change how this pass should be read.
 
-| # | Reason text on production | Occurrences seen | Example |
-|---|---|---|---|
-| 1 | Line can not be **declined** with staged parts… *(the one being fixed)* | 19 | S2-556 line `fa079e47` |
-| 2 | You cannot delete a line that has labor on it. Please move the labor first | 2 | S2-562 line `c48eba6b` "Change engine" |
-| 3 | You cannot delete a line that is completed. Please uncomplete the line first | 40 | S2-194 line `57687677` |
-| 4 | You cannot delete a line when a work order is marked AS Completed. Please uncomplete the work order first | 1 | S2-810 line `0644ec67` |
+### 4a. The QA branch was torn down mid-pass
 
-Rows 2–4 must render identically on the branch. **Status: not yet observed on the branch** — see §6.
+`sv10442.qa.shopview.com` stopped resolving at about **09:20 UTC** — no DNS A record at all, not merely asleep
+(another branch, `sv9160.qa.shopview.com`, resolved normally at the same moment, so this was not a local network
+problem). The §2 and §3 captures were already taken, at 09:07–09:08 UTC, so the evidence for the fix itself is intact.
 
-## §5 Honest method notes
+### 4b. Production picked up the fix while I was testing
 
-- The `pkill -f staging-bridge.mjs` trap fired again and killed my own shell (playbook §U.0b). Restarted with `setsid`
-  and no `pkill`.
-- I could not read PR #3274: this session's GitHub access is scoped to the test-case repo only. It is not a source of
-  truth for the verdict in any case — the screen is (Rule 89).
+At **09:14–09:20 UTC** production returned the old wording on **19** lines and the tooltip rendered
+`…can not be **declined** with staged parts…` (that is the §1 capture). At **09:31 UTC** the same line on the same
+work order returned `…can not be **deleted** with staged parts…`, and eight consecutive no-cache reads all returned
+the new wording, so it is not a rolling-deploy flicker.
 
-## §6 What is still outstanding
+Production's **frontend** marker did not move (`v26.39.0-07c719b`, etag `103d8c34…`, identical before and after) —
+this is a backend-only change, so the SPA marker would not move. The ticket carries fix version **v26.39.1**.
 
-**The QA branch went away mid-pass.** `sv10442.qa.shopview.com` stopped resolving at about **09:20 UTC** (no DNS A
-record at all, not merely asleep), after the §2 and §3 captures were taken. Production is unaffected and was reachable
-throughout. Still owed once it returns:
+**What this means for the §1 exhibit:** it is a genuine capture of production at 09:17 UTC, but anyone opening that
+same work order now will see the fixed wording. The exhibit is labelled with its capture time for exactly that reason.
 
-1. The three unchanged reasons from §4 rendered on the branch.
-2. The regression the handoff calls out: a line with nothing blocking it still deletes.
+## §5 The whole-output diff — exactly one of four strings changed (Rule 74)
 
+Because production changed under me, the same scan could be run on the same environment, over the same data, twenty
+minutes apart. That is a cleaner diff than a cross-environment comparison, and it covers the handoff's
+"other reasons unchanged" question directly. Same 35 work orders scanned each time:
+
+| Blocked-delete reason | Count before (09:20) | Count after (09:39) | Example line | Verdict |
+|---|---|---|---|---|
+| Line can not be **declined** with staged parts, please move parts to another line or return them | 19 | 0 | — | replaced |
+| Line can not be **deleted** with staged parts, please move parts to another line or return them | 0 | 19 | S2-908 `cbd4cdde` | **the fix** |
+| You cannot delete a line that has labor on it. Please move the labor first | 2 | 2 | S2-562 `c48eba6b` | unchanged |
+| You cannot delete a line that is completed. Please uncomplete the line first | 40 | 40 | S2-194 `57687677` | unchanged |
+| You cannot delete a line when a work order is marked AS Completed. Please uncomplete the work order first | 1 | 1 | S2-810 `0644ec67` | unchanged |
+
+The counts are identical and the example line for each unchanged reason is the same line, so the three other
+messages are untouched. Note the handoff names **two** other reasons; the product actually emits **three**.
+
+Two of those three were also read **off the screen**, not only out of the endpoint:
+
+| Reason | Where it was hovered | Tooltip text read on screen |
+|---|---|---|
+| labor on the line | S2-562, line `c48eba6b` | `You cannot delete a line that has labor on it. Please move the labor first` |
+| work order marked Completed | S2-810, line `0644ec67` | `You cannot delete a line when a work order is marked AS Completed. Please uncomplete the work order first` |
+
+The third — *line is completed* — is covered in the endpoint diff above (40 occurrences before and after, same
+example line). Hovering it on screen took two attempts: the first candidate work order, S2-194, is **invoiced**, and
+on an invoiced work order the menu does not offer a **Delete line** item at all, so there is nothing to hover.
+
+The payload shape is unchanged too: a line object carries **47 keys** on the branch and **47** on production, with no
+key added or removed on either side, and `deletable` is still `false` on a staged-parts line — the gate did not move,
+only the sentence.
+
+## §6 Honest method notes
+
+- The `pkill -f staging-bridge.mjs` trap fired again and killed my own shell (playbook §U.0b). Restarted with `setsid`.
+- I could not read PR #3274 — this session's GitHub access is scoped to the test-case repo. It is not a source of
+  truth for the verdict in any case; the screen is (Rule 89).
+- The changed word was located in the screenshots by pixel analysis of the tooltip (finding the all-background
+  columns between words) rather than by estimating, so the annotation boxes sit on the real glyphs.
+
+## §7 Ticket state — it was already passed and released
+
+Read live at 09:41 UTC: status **Ready for Production**, fix version **v26.39.1**, and comment **77276**, posted
+under the shared Bilal Muzamil account at **09:08:50 UTC**, already records *"QA Status: Passed"* with a screen
+capture attached. Stefan Mitrovic's Ready-for-QA comment is 77274 at 08:55:58 UTC.
+
+So this pass ran concurrently with, and independently agrees with, a pass that had already been recorded. That also
+explains 4a and 4b: the branch was torn down and the fix went out to production while I was still driving it.
+
+## §8 What was not observed
+
+The three unchanged reasons were verified on **production**, before and after its deploy, on the screen and in the
+endpoint — not on the QA branch, which had gone by the time I got to them. The one string this ticket changes was
+verified on the branch, on the screen and in the endpoint. The handoff's "a line with nothing blocking it still
+deletes" regression was **not run** on either environment: I will not delete a line on production, and the branch
+was gone. Nothing here was inferred.
