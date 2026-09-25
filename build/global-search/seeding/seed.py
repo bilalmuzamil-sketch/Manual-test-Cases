@@ -155,9 +155,13 @@ def ensure_session():
         # quick-login 500s on production (playbook section K) and it evicts other workers on a QA
         # branch (Rule 83). Only reach for it on the default QA profile, and never invent a session
         # on an environment where it cannot work.
-        if COOKIES != '/tmp/qa/cookies.json':
-            sys.exit("session is not live on this profile, and quick-login is a QA-branch-only "
-                     "recovery - log in again and rewrite the profile")
+        # QA branch and STAGING may both self-heal (QA lead, 2026-09-25: "You can use Quick
+        # log-in its fine"). PRODUCTION may not: quick-login 500s there (playbook section K), and
+        # inventing a session on an environment where it cannot work turns a clear auth failure
+        # into a confusing one.
+        if COOKIES not in ('/tmp/qa/cookies.json', '/tmp/staging/cookies.json'):
+            sys.exit("session is not live on this profile, and quick-login works only on the QA "
+                     "branch and staging - log in again and rewrite the profile")
         r = call('/api/quick-login', 'POST', {'key': 'admin'})
         print(f"  quick-login -> {r['status']}  (evicts other workers on this branch - Rule 83)")
         if r['status'] != 200: sys.exit("cannot authenticate")

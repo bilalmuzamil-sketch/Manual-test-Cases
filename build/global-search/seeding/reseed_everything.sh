@@ -26,10 +26,11 @@ case "${1:-}" in
            V2=1 ;;
   staging) HOST="https://app.staging.shopview.com"; export SEED_PROFILE=/tmp/staging/cookies.json
            export SEED_WORKPLACE="Staging Heavy Duty - 9919"
-           # 🔴 NO quick-login ON STAGING. It rotates the shared session and evicts whoever else is
-           # signed in (Rule 83). On the QA branch that is an accepted cost; on a shared staging
-           # environment it is not. seed.py enforces this itself - quick-login is hard-restricted
-           # to the QA profile - so a lapsed session here STOPS and asks for a fresh cookie.
+           # quick-login IS allowed here (QA lead, 2026-09-25: "You can use Quick log-in its
+           # fine"), so a lapsed session self-heals rather than stalling an unattended run. It
+           # still rotates the shared session and evicts anyone else signed in to staging
+           # (Rule 83) - that is now an accepted cost, not an accident. PRODUCTION remains
+           # excluded: quick-login 500s there (playbook section K).
            V2=1 ;;
   live)    HOST="https://app.shopview.com";       export SEED_PROFILE=/tmp/prod/creds.json
            export SEED_WORKPLACE="Trucks Hill 2"
@@ -142,10 +143,21 @@ print('; '.join(f'{k}={c[k]}' for k in ('sv_sso_session','PHPSESSID','cf_clearan
        -H 'Accept: application/json' "$SAPI/api/definitely-not-real-zz")
   echo "---- staging session: $SL   control path: $SC (404 = the real API answered)"
   if [ "$SL" != "200" ]; then
-    echo "🔴 STAGING SESSION IS NOT LIVE (HTTP $SL). Nothing seeded, nothing changed."
-    echo "   quick-login is deliberately NOT used here - it would evict other people signed in"
-    echo "   to staging (Rule 83). ASK FOR: a fresh sv_sso_session, PHPSESSID and cf_clearance."
-    exit 1
+    echo "---- staging session not live (HTTP $SL) — recovering via ensure_session()"
+    echo "     (quick-login is permitted here; Rule 83: it evicts others signed in to staging)"
+    python3 - <<'PYEOF' || true
+import os, runpy
+os.environ.setdefault('SEED_MANIFEST', 'seed-manifest.json')
+runpy.run_path('seed.py', run_name='not_main')['ensure_session']()
+PYEOF
+    SL=$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 -H "Cookie: $SCK" \
+         -H 'Accept: application/json' "$SAPI/api/staff/my-workplaces")
+    if [ "$SL" != "200" ]; then
+      echo "🔴 STILL NOT LIVE after recovery (HTTP $SL). Nothing seeded, nothing changed."
+      echo "   ASK FOR: a fresh sv_sso_session, PHPSESSID and cf_clearance."
+      exit 1
+    fi
+    echo "---- staging session recovered (200)"
   fi
 fi
 
