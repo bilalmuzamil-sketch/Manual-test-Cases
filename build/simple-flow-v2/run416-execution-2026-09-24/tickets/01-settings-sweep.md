@@ -1,20 +1,20 @@
-TITLE: A Require Setting Changed on the Settings Page Does Not Reach the Work Orders That Already Exist
+TITLE: Turning Require Ordering Parts Off Does Not Reach the Work Orders That Already Exist
 ISSUE TYPE: Story Defect
 PARENT / OWNING STORY: SV-9248 — Settings apply to every work order
 PRIORITY: Medium
 ALSO LINK: relates to SV-9248
-PICTURE: pictures/sweep.png  (banner: "What the product says when a Require setting is switched")
+PICTURE: pictures/sweep.png  (banner: "What the product says when a Work Orders setting is switched")
 COVERS THE CHECKS: C44554 (the sweep), C44555 (the audit entries), C44559 (the progress indicator)
 
 --- WIKI MARKUP BODY BELOW THIS LINE ---
 
 h2. Description
 
-A work order setting is a shop-wide rule, not a rule for work created after it. Changing one is meant
-to bring every open work order into line with the new rule straight away — and to say so in each
-record's history, naming the change as the cause.
+A setting on the *Work Orders* settings page applies to the whole shop, not only to work created after
+it is changed. Turning one on or off is meant to bring every open work order into line straight away —
+and to say so in each record's history, naming the setting as the cause.
 
-On the build it changes nothing at all. The switch saves, and every work order, line and part is left
+On the build it changes nothing at all. The setting saves, and every work order, line and part is left
 exactly as it was.
 
 For example, with *Require Ordering Parts* turned off:
@@ -22,7 +22,8 @@ For example, with *Require Ordering Parts* turned off:
   by the same route a person pressing *Order* would take, so a real purchase order exists for each;
 * the *Order* action should then disappear from those parts;
 * each record changed should gain a history entry naming the admin and the cause;
-* while that is being applied, the settings page should hold the admin with a progress indicator.
+* while that is being applied, the *Work Orders* settings page should hold the admin with a progress
+  indicator.
 
 None of that happens. The product's own confirmation states it outright: {{No record is changed by this
 switch.}}
@@ -46,7 +47,7 @@ h2. Steps to Reproduce
 recorded before and after the change and not one of them changed. No purchase order was created, no
 history entry was written, and no progress indicator appeared.
 
-*Expected Result* — every open work order is brought into line with the new rule, each changed record
+*Expected Result* — every open work order is brought into line with the setting, each changed record
 carries a history entry naming the admin and the cause, and the settings page holds the admin with a
 progress indicator until the run is finished.
 

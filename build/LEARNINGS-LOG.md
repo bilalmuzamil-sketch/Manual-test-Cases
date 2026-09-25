@@ -3979,3 +3979,10 @@ miss: an hour of role-building, plus the risk of leaving my own account in a red
 `ENVIRONMENT-CREDENTIALS.md` named `+mainadmin` as THE production account. It answers 401 today. The
 two accounts that do work were not in that file at all. **Try the recorded login early and write back
 what actually happened** — the file is only worth what its last verification was.
+
+## L0199 — Use the product's own word, not a word I coined for it (2026-09-25)
+I wrote "a rule you change" for what the product calls a **setting** on the **Work Orders settings
+page** — "Require Ordering Parts", saved with **Save Settings**. The QA lead stopped on it. Rules 7/9
+and 110 already require the build's own labels; the slip was inventing a synonym because it read more
+naturally to me. **If the screen has a word for it, that is the word**, in reports, pictures and
+anything he reads. Check the captured page text for the label before naming a thing.
