@@ -65,3 +65,80 @@ the branch's does not. Both point the same way: on production this field was bei
 without knowing which record it belonged to, and on the branch it is bound properly. This
 is supporting evidence that the fix genuinely touched this control — it is not a verdict on
 its own.
+## §5 What was run, and what it showed
+
+Three different attempts at the fault, because the report says it is intermittent.
+
+**a. The reported flow, unhurried.** Open A, look at its Contacts tab, move to B inside the
+app, New Work Order → Add asset → open Contact.
+
+**b. The reported flow with the dialog used on A first.** The customer had been *working* in
+the previous customer before it went wrong, so this opens the New Asset window on A, reads
+its Contact list, closes it, moves to B and opens the same window again. If the window keeps
+anything from its first use, this is where it shows.
+
+**c. A race.** The same flow but opening the window ~0.8 s after landing on B, so B's own
+details may still be loading. A stale-cache fault is most likely to surface here.
+
+### QA branch — v26.39.1-5dc1cea
+
+| # | Attempt | Contact list shown on B | Verdict |
+|---|---|---|---|
+| 1 | (a) unhurried | Elijah Wright, Rachel Valentine | correct |
+| 2 | (b) dialog reused, round 1 | on A: all 6 Abode names · on B: Elijah Wright, Rachel Valentine | correct |
+| 3 | (b) dialog reused, round 2 | same as round 1 | correct |
+| 4 | (c) race, round 1 | Elijah Wright, Rachel Valentine | correct |
+| 5 | (c) race, round 2 | Elijah Wright, Rachel Valentine | correct |
+
+**Five attempts, no cross-over.** Not once did an Abode name appear while on Accokeek.
+
+### Production — v26.39.1-3ef6ade
+
+| # | Attempt | Contact list shown on B | Verdict |
+|---|---|---|---|
+| 1 | (a) unhurried | Test Contact 2, Test Contact, James Charles | correct |
+| 2 | (c) race, round 1 | same | correct |
+| 3 | (c) race, round 2 | same | correct |
+
+**The fault could not be triggered on production in three attempts.** That is consistent with
+the customer's own description — *"sometimes"*, *"the last few days"* — and it means this pass
+has **no captured before-picture of the fault itself**. Said plainly: the branch behaves
+correctly, and I cannot show a side-by-side of it behaving incorrectly first.
+
+## §6 Regression — the window still does its job
+
+On the branch, with Accokeek open: chose **Rachel Valentine** in Contact, chose a Make, set
+Unit to `ZZAUTOTEST-9659`, pressed Save.
+
+| Check | Result |
+|---|---|
+| Asset saved | yes — the New Work Order window then showed Asset = `ZZAUTOTEST-9659` |
+| Customer's Assets tab | went from **Assets (1)** to **Assets (2)** |
+
+So the fix has not broken the window it changed.
+
+## §7 Build markers, start and end
+
+| Environment | Start | End |
+|---|---|---|
+| `sv9659.qa.shopview.com` | v26.39.1-5dc1cea, last-modified Mon 28 Sep 2026 16:47:38 GMT | **identical** |
+| `app.shopview.com` | v26.39.1-3ef6ade | **identical** |
+
+## §8 Honest limits
+
+- **No before-picture of the fault.** Three production attempts all behaved correctly, so
+  nothing was captured showing the wrong contacts. The evidence here is that the reported
+  flow is correct on the branch across five varied attempts, plus the code-level change in §4.
+- **Intermittent by nature.** Five clean attempts reduce the risk but cannot prove a
+  once-in-a-while fault is gone. If the QA lead wants more confidence, the cheapest next step
+  is more repetitions of attempt (b), which is the closest to what the customer described.
+- **Pinned notes were not tested** — split to SV-10477 by the developer.
+- Test data left on the branch: one asset `ZZAUTOTEST-9659` on Accokeek Heavy Truck Repair
+  Inc. Per-ticket QA branches need no cleanup.
+
+## §9 Verdict
+
+**PASS, with the limit in §8 stated.** The Contact dropdown in the New Asset window showed
+only the current customer's contacts in every one of five attempts on the branch, including
+the two that most closely reproduce what the customer described, and the window still saves
+an asset correctly.
