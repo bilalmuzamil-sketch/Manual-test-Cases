@@ -5558,3 +5558,39 @@ body `{"parts":[{"part_request_id":"…","part_order":1}, …]}`.
 `line_id`, `line_name`, `status_display`, `work_order_status`, `editable`, `deletable`, and the parts
 in **`parts[]`** (`part_requests[]` is a different thing and is often empty on a line that visibly
 carries parts).
+
+### Staging sign-in for Global Search (from 2026-09-28) — the QA branch is GONE
+
+**QA branch `sv9160` was merged into staging and DELETED** (QA lead, 2026-09-28). `sv9160.qa.shopview.com`
+no longer resolves — a 502 with `fetch failed`, which is NOT the sleeping-branch trap (that serves
+`sleep.qa.shopview.com` with a Wake Up button, and staging has no such trap). All Global Search work
+is now on **https://app.staging.shopview.com**, api host `api.staging.shopview.com`.
+
+**🛑 STAGING IS THE OPPOSITE OF A QA BRANCH ON COOKIES.** On a QA branch you carry ONLY
+`sv_sso_session` and must NOT carry `PHPSESSID`. On staging you must carry **all three** —
+`sv_sso_session`, `PHPSESSID` and `cf_clearance` — **host-only, on BOTH the app host and the api
+host**. Measured the same day:
+
+| Cookies carried | What happens |
+|---|---|
+| all three | ShopView's own sign-in card **with the DEV MODE — QUICK LOGIN panel**; `/api/auth/me/fe-permissions` answers **200, 59 permissions** |
+| `sv_sso_session` + `cf_clearance`, no PHPSESSID | staging bounces to a **GOOGLE sign-in page** ("Enter your email", "Forgot email?") and `/api/api/sso/check` answers **401** |
+
+**A Google sign-in screen on staging means a cookie is missing or expired** — it does not mean the
+environment is down, and there is no Wake Up button to look for.
+
+**The method is unchanged from the QA branches: let the app log itself in.** The card's DEV MODE panel
+carries real `<button>` elements whose text is the icon ligature plus the word —
+`admin_panel_settings Admin` and `schedule Tech` — so `button:has-text("Admin")` matches. Clicking it
+makes the SPA call quick-login and write its own `localStorage.user` / `fe_permissions_wrapper`.
+Poll for the button (the panel is filled by an API call) and retry the click up to three times.
+
+Ready-made: **`build/testing-tools/staging-cookie-boot.mjs`**, same shape as `qa-branch-boot.mjs`
+(`boot(route, opts)` → `{ browser, ctx, page, APP, APIH, templateSlug, nFePerms }`). Cookies live in
+`/tmp/shopview/gs-staging.env`, chmod 600, never committed (Rule 82); they come from the QA lead and
+expire, so a Google card means ask him for fresh ones. Run it through `run_probe.sh` — chromium cannot
+reach staging without the local bridge.
+
+**Observed 2026-09-28:** build `v26.39.1-02c6b6c` (api reports `02c6b6c…-develop`), workplace
+**Staging Heavy Duty - 9919**, `template_slug=administrator`, 59 permissions. Judge the session by
+`template_slug` and the permission count, never by `role.name`.
