@@ -49,8 +49,8 @@
    "why": "QA lead ruling, 25 September 2026: the confirmation's own words are the expected behaviour - \"No record is changed by this switch. Parts already on a work order keep the state they are in.\" No record is changed, so there is nothing to apply and nothing to wait for; the page saves and returns at once, and everyone else keeps working. Re-judged from Failed on that ruling."
   },
   "44561": {
-   "v": "Blocked",
-   "why": "Could not be judged. No part on this shop is in a received or picked state, so a line carrying all three part states could not be assembled."
+   "v": "Passed",
+   "why": "Built the state and ran it. One line was given parts in every state at once: one ordered from a vendor and still awaiting delivery, one taken from stock with its core showing, and three more still to be picked. Pressing Complete on that line opened the wizard at Pick parts, then Resolve cores, with Receive parts as a further step. After picking and leaving the cores undecided, the line completed anyway - and the ordered part is still sitting at Awaiting Receive, with the cores still showing Ok and Not Ok. So the line completed whatever the state of its parts, which is exactly what this check asks: parts do not block a line from being closed, and nothing about them was changed by completing it."
   },
   "44562": {
    "v": "Passed",
@@ -121,12 +121,12 @@
    "why": "The bar carries no delete action and More lists none."
   },
   "44579": {
-   "v": "Blocked",
-   "why": "Could not be judged. No vendor-sourced part could be added through the add-part row, which only offers stock and catalogue matches, so Order never appeared in the bar."
+   "v": "Failed",
+   "why": "The purchase orders themselves are right, but the product does not ask before ordering. What works: ordering three parts at once from the bar placed them all, and they appear on a purchase order against the work order. Parts with no vendor assigned are placed on a purchase order marked Vendor missing, which is what the requirement says should happen to them. What does not: the requirement says ordering parts asks for confirmation first and cannot be undone. Nothing is asked. The parts are ordered the moment the button is pressed, both from the bar and from a single part's own Order. This was checked by waiting a full fifteen seconds for a window, and proved not to be a fault in how I was looking: on the same screen, with the same waiting, pressing Complete on a line does open its window. Not covered: a purchase order per vendor where the parts come from DIFFERENT vendors. Every part built here had no vendor, so they all landed on the one Vendor missing purchase order - correct, but not the same test."
   },
   "44580": {
-   "v": "Blocked",
-   "why": "The permission half passes: a person without the ordering permission sees no Order action in the bar or on a row. The rest could not be judged for the same reason as the bulk order check - no vendor-sourced part could be created."
+   "v": "Passed",
+   "why": "Built the mixed selection the check describes and ran it. On one work order: three parts waiting to be ordered, one already ordered and awaiting delivery, and five taken from stock. Selecting every line, the bar offered Order with a count of three - exactly the three that could be ordered. It did not count the one already on order, and it did not count the parts that came from stock. Ordering then moved precisely those three to awaiting delivery and left the rest alone. The permission half was already settled: somebody without the ordering permission is offered no Order at all, on a row or in the bar."
   },
   "44581": {
    "v": "Passed",
@@ -165,8 +165,8 @@
    "why": "Narrowed. The after-invoicing half is settled: once the work order is invoiced there is no Receive offered anywhere on it, so the modal cannot be reached at all. Observed on S2-908 after it was invoiced on 28 September 2026: the header offers no finish action at all (only the three-dot, which now holds just Audit Log, Timesheets and Print Work Order), no New Line, no Add Part, no Receive anywhere, no drag handles on any part, and a line's own menu drops Uncomplete, Decline and Delete line. All six lines went to Complete when the invoice was created. Still to do: a part with no part number, a quantity of zero or less, and parts that are unordered or unapproved - states this shop's data does not contain and which have to be built first."
   },
   "53487": {
-   "v": "Blocked",
-   "why": "Could not be judged. No purchase order on this shop has a part already received alongside one not yet received."
+   "v": "Failed",
+   "why": "Built the exact state the check needs and the vendor does not become fixed. On a purchase order carrying five parts with no vendor: the vendor was chosen from the drop-down, an invoice number typed, and four of the five parts received. The purchase order now reads Delete Test and Partial Delivery, and one part is still awaiting delivery - so this purchase order has both received and unreceived parts on it, which is precisely the situation the check describes. Re-opening it, the Vendor is still a drop-down and still changeable. The requirement says the vendor stays changeable only while nothing on the purchase order has been received, and once anything is received the name is shown as plain text with no way to edit it. The first half is right - the vendor could be assigned and corrected freely beforehand."
   },
   "44589": {
    "v": "Passed",
@@ -210,7 +210,7 @@
   },
   "44597": {
    "v": "Blocked",
-   "why": "Two of the three runs are now settled. A run opened by Create invoice ends on the payment screen, with the work order invoiced and its open approved lines completed. A run started from a line that has nothing outstanding does not open a window at all - the line simply completes and you stay on the work order, which is the right behaviour but is not a wizard run. What is left needs a line that DOES have outstanding work - parts to pick or receive - so a real run can be watched to its end, and the same again for a run started from Complete all lines with review required. Being straight about why that is awkward now: my own earlier runs completed nearly every open line on this shop, so the states have to be rebuilt before this can be finished."
+   "why": "Two of the three runs are now settled, each ending somewhere different, which is the point of the check. A run opened by Create invoice ends on the payment screen, with the work order invoiced and its open approved lines completed. A run opened by Complete on a line - a real run this time, with parts to pick and cores to resolve - ends back on the work order's own Lines tab, with no payment screen and nothing else opened. Left: a run opened by Complete all lines with review required, which needs the review setting on and every line still open."
   },
   "44598": {
    "v": "Blocked",
