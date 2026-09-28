@@ -46,3 +46,30 @@ Header three-dot ("more_vert") menu on a changeable WO, in order:
 # - "Decline" line action, bulk action bar ("N selected", "Approve"/"Decline"/"Complete line"/"More"/"close").
 # - Receive modal fields + "Receive later" split-button caret; completion-wizard step pills
 #   ("Tech stories"/"Pick parts"/"Missing details"); "Clock out and complete"; "Move up" reorder; Purchase Order pages.
+
+## ADDENDUM 2026-09-28 — exact role-editor group/permission labels (Evidence: roles-editor-expanded.txt)
+Group "Work orders": "View" · "Create & Edit" · "Delete" · "View mode" (choices "Full View" / "Tech view") ·
+  "Review work orders" · "Pick parts" · "Order parts" · "Receive later" · "Move labor"
+Group "Work order lines": "View" · "Create & Edit" · "Delete"
+Group "Vendor and order management" ("Manage vendors, purchase orders, deliveries and part returns."): "Create & Edit"
+Group "Invoicing & payments": "View" · "Create & Edit" · "Delete / Reverse"
+Group "Part sales" (under "Parts Department"): "View" · "Create & Edit" · "Delete"
+Accounting: "See Financial Data"
+# The cases' compact role wording was aligned to these on 2026-09-28: "Work Orders: Create & Edit" ->
+#   the "Work orders" group's "Create & Edit"; "WO Lines: ..." -> "Work order lines" group; "Vendor & Order
+#   Mgmt: ..." -> "Vendor and order management" group.
+
+## WO detail line/part actions (Evidence: wo-detail-lines.txt)
+Line row: "Approve" · "Complete" · "Start" · per-line "more_vert" (three-dot) menu · "New Line"
+Each line's Parts section: "Add Part"; part rows show "edit" (on hover), "more_vert", "drag_indicator" (reorder handle)
+Header three-dot menu (changeable WO): "Audit Log" · "Timesheets (N)" · "Add Work Order Fee / Discount" ·
+  "Print Work Order" · "Create invoice" · "Delete Work Order"
+
+## STILL NOT RAISED VIA AUTOMATION ON STAGING (state-dependent; confirm at execution)
+# The bulk action bar ("N selected" / "Complete line(s)" / "Receive selected" / "Deselect all" / "More"),
+#   the "Decline" line action, the Receive modal ("Receive vendor parts", fields), the completion-wizard step
+#   pills ("Tech stories" / "Pick parts" / "Missing details"), "Clock out and complete", "Move up" reorder,
+#   and part-availability badges ("In stock" / "Awaiting") could NOT be raised through scripted clicks on
+#   staging in this pass (the line-row checkboxes / ordered-part states did not trigger via automation).
+#   These are confirmed present on the prod build v26.39.0 (one patch below) from the 2026-09-24 pass; the
+#   RUN session lands on exactly these screens when executing and confirms them live.
