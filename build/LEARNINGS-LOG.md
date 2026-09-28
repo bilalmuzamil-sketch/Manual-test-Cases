@@ -4237,3 +4237,39 @@ a line that visibly carries five parts.
 The harness reminder can change the working directory between turns. `run_probe.sh <name>.mjs` then
 looks for the probe next to wherever you now are and dies with MODULE_NOT_FOUND. Always run it from
 `.../probes`, or pass an absolute path.
+
+## L0221 — 2026-09-28 — "Receive Later" is a PERMISSION, and its absence looks like a missing feature
+The receive window shows a **Receive Later** button only to somebody whose role carries the
+**Receive later** permission. Without it the window looks complete and simply has no such button —
+which reads as "the feature is not built" and is not. Admin does NOT carry it by default here; the
+custom role `ZZAUTOTEST Receive Later` (built from Admin, so App Settings is kept and you can switch
+yourself back) does. Case preconditions that say "an Admin **with the Received later permission**"
+mean it literally.
+
+## L0222 — 2026-09-28 — Cores belong to STOCK parts; ordered parts cannot carry one
+In this build:
+- a **core charge** is a field on the **inventory** (stocked) part record only — the **catalog** part
+  has no such field anywhere, and the catalog list has no core column;
+- an **inventory** part put on a line is always offered as **Pick**, never as something to order —
+  **even at zero stock** (this shop allows negative stock, so "In Stock" is shown regardless), and its
+  three-dot menu offers no ordering action either;
+- a **catalog** part put on a line is offered as **Auth To Order / Order** and carries no core, before
+  or after it is received.
+⇒ **A part that carries a core and a part that gets ordered are disjoint sets here**, so "a deferred
+part that carries a core" cannot be built at all. Proved four ways, with a working positive control
+(ordering, deferring and receiving an ordinary part all succeeded the same day). Raised as a Product
+Owner question, never as a defect (Rule 58). C53489.
+
+## L0223 — 2026-09-28 — Deferring and then receiving a part: the route
+Defer: part row → **Receive** → assign the vendor → tick the part → **Receive Later**. The row then
+reads `Receive Later`, with no caret and no row action of its own.
+Receive it afterwards: the deferred row's **three-dot menu → "Receive part"** (there is no Receive
+button on the row any more). The window will not finish until a **vendor** is assigned AND the part is
+**ticked** — the invoice number alone does not enable it, and `Receive Parts (0)` staying dead means
+nothing is ticked, not that the part cannot be received. Success says "Parts received."
+
+## L0224 — 2026-09-28 — Creating an inventory part: two required fields the form does not mark
+`Parts → Inventory → New Inventory Part` refuses to save without **Catalog Part** (it is built FROM a
+catalog entry — there is no free-text part number or description field) and **Cost** (the field is
+labelled `$ Cost`, not "Average Cost" — the list column says Average Cost, the form does not).
+Both refusals arrive one at a time as a toast, so fill both before pressing Save.

@@ -44,7 +44,8 @@ export async function addPart(page, lineId, { number, description, qty = 1, cost
   const picked = await page.evaluate((want) => {
     const items = [...document.querySelectorAll('.q-menu .q-item')];
     const inv = items.find(e => /Inventory Qty/i.test(e.innerText || ''));
-    const cat = items.find(e => new RegExp(want).test(e.innerText || ''));
+    // the suggestion reads "Catalog" with a capital C - match without case or this silently finds nothing
+    const cat = items.find(e => new RegExp(want, 'i').test(e.innerText || ''));
     const target = want === 'catalog' ? cat : inv;
     if (!target) return 'no suggestion: ' + items.map(e => (e.innerText||'').replace(/\s+/g,' ').slice(0,50)).join(' || ');
     target.click(); return 'picked ' + (target.innerText||'').replace(/\s+/g,' ').slice(0,60);
