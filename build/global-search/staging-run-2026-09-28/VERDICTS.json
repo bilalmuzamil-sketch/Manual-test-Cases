@@ -566,6 +566,56 @@
    "v": "Passed",
    "why": "Re-run on staging, where the suite now lives. Arrowing down moved the highlight from one result to the next, across three different sections, and the section headings were never highlighted - they are stepped straight over. Arrowing back up retraced the same rows in reverse.",
    "build": "v26.39.1-02c6b6c"
+  },
+  "44897": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The old search is gone. The address the old version used answers \"not found\", while the new one answers normally, and clicking the search box opens the full search screen with grouped results - not the old small drop-down that showed three per category. There is no switch to turn the old one back on.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44898": {
+   "v": "Failed",
+   "why": "Re-run on staging, where the suite now lives. Three of the four things this checks are right on a phone, and one is wrong.\n\nRIGHT: search fills the whole screen rather than sitting as a small box, and the page never scrolls sideways. The row of section chips appears only once something is typed, lists only the kinds of record that actually matched with their counts, and there is no Contacts chip. Rows carry no hover buttons, and tapping a row opens the record.\n\nWRONG: On a phone the results are CAPPED at five per section with a \"Show All\" link on almost every section - exactly what the desktop does. This check requires the opposite: on a phone you should scroll the whole list, with no \"Show All\" anywhere. Counted on a search returning 106 results across eight sections: five rows shown per section, and \"Show All\" present twenty-one times.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44899": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Supplier orders are a section of their own, with a heading, a real count and their own chip. Each row has its own icon - all eight kinds of record have different ones - and shows the order number, the supplier, a coloured status, the total and the date.\n\nOne wording note: the check calls the second status \"Received\"; the screen says \"Fulfilled\". The behaviour is what the check asks for; only the word differs.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44900": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Supplier bills are a section of their own with a heading, a count and their own chip. Each row has its own icon and shows the bill number, the supplier, the total and the date. All three payment states appear, each in its own colour - Unpaid in red, Partially Paid in orange, Paid in green. No invoice \"type\" is shown anywhere on the row, and the rows carry no buttons.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45132": {
+   "v": "Failed",
+   "why": "Re-run on staging, where the suite now lives. Three of the four things are right and one is wrong.\n\nRIGHT: on a phone the search fills the whole screen rather than floating over the page, there is a \"Cancel\" beside the box, and the keyboard-shortcut strip along the bottom is correctly absent.\n\nWRONG: the greyed-out words inside the box read \"Search work orders, parts...\". This check requires \"Search everything\".",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45133": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Before anything is typed there is no row of section chips at all. As soon as something is typed the row appears, and it lists ONLY the kinds of record that actually matched, each with its count - a search matching two kinds showed two chips, not the full set. The row scrolls sideways so it stays one line.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45134": {
+   "v": "Failed",
+   "why": "Re-run on staging, where the suite now lives. The section headings do stick to the top as you scroll, and tapping a row opens the record. But the list itself is wrong: On a phone the results are CAPPED at five per section with a \"Show All\" link on almost every section - exactly what the desktop does. This check requires the opposite: on a phone you should scroll the whole list, with no \"Show All\" anywhere. Counted on a search returning 106 results across eight sections: five rows shown per section, and \"Show All\" present twenty-one times.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45135": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Before anything is typed the phone shows the same thing the desktop does - recently opened records under \"Recent searches\", with a \"Clear All\". There are no quick-create buttons. Tapping \"Clear All\" emptied the history and returned the screen to the plain starting message. A search matching nothing says \"No results found\" with the words typed underneath, same as the desktop.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45136": {
+   "v": "Failed",
+   "why": "Re-run on staging, where the suite now lives. Keyboard stepping is correctly absent on a phone - there is no keyboard to step with. But the first half is wrong: On a phone the results are CAPPED at five per section with a \"Show All\" link on almost every section - exactly what the desktop does. This check requires the opposite: on a phone you should scroll the whole list, with no \"Show All\" anywhere. Counted on a search returning 106 results across eight sections: five rows shown per section, and \"Show All\" present twenty-one times.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55684": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Searching a customer's name at Heavy Duty returned five of its jobs. Switching the location to Lethbridge through the menu and searching the same name returned NO jobs at all - and the results were watched from the first keystroke, sampled twelve times while they loaded, with none of the Heavy Duty jobs appearing even for an instant. The customer itself still appeared, which is right: customers belong to the whole company while their jobs belong to a location. The location was put back afterwards.",
+   "build": "v26.39.1-02c6b6c"
   }
  }
 }
