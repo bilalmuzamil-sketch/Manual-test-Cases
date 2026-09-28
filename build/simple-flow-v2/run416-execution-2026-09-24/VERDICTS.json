@@ -210,7 +210,7 @@
   },
   "44597": {
    "v": "Blocked",
-   "why": "Narrowed. One of the three runs is now settled: a run opened by Create invoice ends on the payment screen, with the work order invoiced and its open approved lines completed. Still to do: a run opened by Complete on a line, and one opened by Complete all lines with review required - both need a work order that still has outstanding work, and the one used here is now invoiced."
+   "why": "Two of the three runs are now settled. A run opened by Create invoice ends on the payment screen, with the work order invoiced and its open approved lines completed. A run started from a line that has nothing outstanding does not open a window at all - the line simply completes and you stay on the work order, which is the right behaviour but is not a wizard run. What is left needs a line that DOES have outstanding work - parts to pick or receive - so a real run can be watched to its end, and the same again for a run started from Complete all lines with review required. Being straight about why that is awkward now: my own earlier runs completed nearly every open line on this shop, so the states have to be rebuilt before this can be finished."
   },
   "44598": {
    "v": "Blocked",
@@ -242,7 +242,7 @@
   },
   "44605": {
    "v": "Blocked",
-   "why": "Narrowed. The invoiced half is now settled: on an invoiced work order no part carries a drag handle at all, so reordering cannot be attempted - which is the refusal this check asks for. Observed on S2-908 after it was invoiced on 28 September 2026: the header offers no finish action at all (only the three-dot, which now holds just Audit Log, Timesheets and Print Work Order), no New Line, no Add Part, no Receive anywhere, no drag handles on any part, and a line's own menu drops Uncomplete, Decline and Delete line. All six lines went to Complete when the invoice was created. Still to do: moving a part to a different line, and two people reordering the same line at once, which needs a second person working at the same moment."
+   "why": "The invoiced half is settled and passes: on an invoiced work order no part carries a drag handle, so reordering cannot be attempted at all. Left: moving a part to a different line, which needs a work order carrying both parts and a second line to move them to; and two people reordering the same line at the same moment, which needs a second person working alongside."
   },
   "44606": {
    "v": "Passed",

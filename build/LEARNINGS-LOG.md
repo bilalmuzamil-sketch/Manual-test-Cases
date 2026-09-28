@@ -4189,3 +4189,13 @@ restricted user, and the finding would have looked like "the product ignores per
 part it managed. And every artefact a seeder creates gets **read back and checked against what was
 asked for** before anything is measured on it — the same discipline as reading a restore back.
 I deleted the role rather than leave it; a misleading artefact outlives the session that made it.
+
+## L0216 — Seeding order matters: running a flow consumes the states later checks need (2026-09-28)
+Driving the completion wizard repeatedly to reach its receive step completed nearly every open line on
+the shop. Three checks that need *a line with outstanding work* then had nothing to run against — and
+the cause was my own earlier passes, not the product or the data.
+**The rule.** Before running anything that consumes a state, ask which later checks need that state and
+in what quantity. Seed a surplus first, or keep one work order untouched as a reserve. Destructive and
+observational work should be ordered deliberately: **observe first, consume last.**
+**And say so plainly when it bites:** the record for those checks now names my own runs as the reason
+the state is gone, rather than reporting it as a shortage of data.
