@@ -12,10 +12,6 @@
    "v": "Passed",
    "why": "The setting reads Require Picking Inventory Parts and the old Automatically pick label is gone. What the shop stores is the opposite value, so the shop keeps exactly the behaviour it had."
   },
-  "44551": {
-   "v": "Blocked",
-   "why": "Still cannot be judged on one point only. With the ordering requirement on, a part that is authorised to order does offer Order, and with it off no Order action appears anywhere - both confirmed. What cannot be read on a shop that already has a value is whether the setting starts on for a brand new shop."
-  },
   "44552": {
    "v": "Passed",
    "why": "With picking required a Pick button appears on the part row; with it off there is none. With receiving required a Receive button sits on the row; with it off Receive moves into the part's three-dot menu rather than disappearing."
@@ -60,10 +56,6 @@
    "v": "Passed",
    "why": "All four routes to Complete are now accounted for. A line's own Complete button completes it, and did so with parts outstanding. The bulk bar's Complete lines completes the selection. Create invoice completes every open approved line as it invoices - seen when a work order went to Invoiced with all six lines closed. And the clock-out window can complete the line, through its Line Completed switch. One caveat worth carrying: that fourth route works through the OLD switch, because the two buttons the design calls for are missing from that window - reported separately against the clock-out check. The route exists; it is not the control the requirement describes."
   },
-  "44564": {
-   "v": "Failed",
-   "why": "Clocked onto a line, then pressed Stop, which opens the window this check is about. Both halves fail. The old switch is still there: the window carries a control labelled \"Line Completed?\", which the requirement says should be hidden because two new buttons take over its job. And those two buttons are not there. The window offers a story box, a ShopCoach suggestion, a list of departments to tick, and a single Clock Out button. Nothing on it says complete except the old switch. So rather than one way to finish a line from this window, there is still only the old one - which is the opposite of what the change intended, since the reason for hiding the switch was to stop a user ticking it and then pressing the wrong button."
-  },
   "44565": {
    "v": "Passed",
    "why": "Complete is never greyed out because parts are outstanding, and reopening a finished job item puts it back to Approved with its parts exactly as they were. On the third point the QA lead ruled on 25 September 2026 that the product's behaviour is expected for now, to be revisited: a technician cannot approve, so they never see Complete on a job item themselves; it appears only once an admin has approved the item, and from there the technician may finish it. The wording of this check still reads that a technician cannot finish one, so the check's text and the ruling differ - reported, and the text left exactly as it is."
@@ -100,10 +92,6 @@
    "v": "Passed",
    "why": "Bulk approve applied immediately and its toast offered Undo. Bulk pick neither asked to confirm nor offered undo, as picking is meant to. One toast each: '2 lines approved. Undo' and '2 parts picked.'"
   },
-  "44574": {
-   "v": "Failed",
-   "why": "Built a role with work order line editing switched off and put the second person into it. The permission is genuinely off - New Line and Add Part both disappear for them, so the role is doing its job. But the tick boxes are still there. Hovering a line reveals its tick box exactly as it does for anyone else, and ticking it raises a bar reading one selected, Create Invoice, and a close cross. The requirement says a user without that permission sees no tick boxes and no bar at all. The bar is smaller than a permitted user's - it offers only Create Invoice rather than the line and part actions - so the permission is partly respected inside the bar. The fault is that the selection and the bar are offered to them in the first place. The instrument is not in question: the same reading, on the same screen, correctly found New Line and Add Part absent for this person and present for an administrator."
-  },
   "44575": {
    "v": "Passed",
    "why": "A selection of five lines, three already approved and two not, counted Approve (2) and approved only those two. The already-approved lines were untouched."
@@ -119,10 +107,6 @@
   "44578": {
    "v": "Passed",
    "why": "The bar carries no delete action and More lists none."
-  },
-  "44579": {
-   "v": "Failed",
-   "why": "The purchase orders themselves are right, but the product does not ask before ordering. What works: ordering three parts at once from the bar placed them all, and they appear on a purchase order against the work order. Parts with no vendor assigned are placed on a purchase order marked Vendor missing, which is what the requirement says should happen to them. What does not: the requirement says ordering parts asks for confirmation first and cannot be undone. Nothing is asked. The parts are ordered the moment the button is pressed, both from the bar and from a single part's own Order. This was checked by waiting a full fifteen seconds for a window, and proved not to be a fault in how I was looking: on the same screen, with the same waiting, pressing Complete on a line does open its window. Not covered: a purchase order per vendor where the parts come from DIFFERENT vendors. Every part built here had no vendor, so they all landed on the one Vendor missing purchase order - correct, but not the same test."
   },
   "44580": {
    "v": "Passed",
@@ -152,21 +136,9 @@
    "v": "Passed",
    "why": "A part with no vendor shows a Vendor missing card with Assign Vendor as its first field."
   },
-  "44586": {
-   "v": "Blocked",
-   "why": "Could not be judged. This shop has no vendor whose parts sit on two purchase orders at once."
-  },
   "44587": {
    "v": "Passed",
    "why": "Run as a person built for this: a custom role from the Admin template with See Financial Data switched off. The product couples that permission, so turning it off also removed Part Sales, Invoicing & Payments, Order Parts and AP/AR - it warns about this and the warning has to be accepted before the change takes. The person kept vendor and order management, which is what receiving runs on. What they see: on a work order the Rate, Margin and Total columns are gone; on the purchase orders page the Total Cost column is gone; on the receive page the columns are only Part number and description, Qty ordered and Qty received. Not a single money figure appears anywhere on any of those screens - the fields are absent, not blanked or masked, which is what this check asks for. And receiving still works for them: the page offers Receive Parts with its count on every purchase order."
-  },
-  "44588": {
-   "v": "Blocked",
-   "why": "Narrowed. The after-invoicing half is settled: once the work order is invoiced there is no Receive offered anywhere on it, so the modal cannot be reached at all. Observed on S2-908 after it was invoiced on 28 September 2026: the header offers no finish action at all (only the three-dot, which now holds just Audit Log, Timesheets and Print Work Order), no New Line, no Add Part, no Receive anywhere, no drag handles on any part, and a line's own menu drops Uncomplete, Decline and Delete line. All six lines went to Complete when the invoice was created. Still to do: a part with no part number, a quantity of zero or less, and parts that are unordered or unapproved - states this shop's data does not contain and which have to be built first."
-  },
-  "53487": {
-   "v": "Failed",
-   "why": "Built the exact state the check needs and the vendor does not become fixed. On a purchase order carrying five parts with no vendor: the vendor was chosen from the drop-down, an invoice number typed, and four of the five parts received. The purchase order now reads Delete Test and Partial Delivery, and one part is still awaiting delivery - so this purchase order has both received and unreceived parts on it, which is precisely the situation the check describes. Re-opening it, the Vendor is still a drop-down and still changeable. The requirement says the vendor stays changeable only while nothing on the purchase order has been received, and once anything is received the name is shown as plain text with no way to edit it. The first half is right - the vendor could be assigned and corrected freely beforehand."
   },
   "44589": {
    "v": "Passed",
@@ -193,11 +165,6 @@
    "v": "Passed",
    "why": "Without the permission, Receive is a plain button with no caret anywhere, and with receiving not required there is no split button at all."
   },
-  "53489": {
-   "v": "Blocked",
-   "build": "v26.39.1-3ef6ade",
-   "why": "Everything about putting a part off until later now works and was watched end to end, but the one thing this check is actually about - what happens to the part's core - cannot be set up on this shop at all.\n\nWhat was seen to work: a part bought in from a supplier was put on a job, ordered, and then put off until later. Its row then reads \"Receive Later\", it offers no little arrow of its own and no action of its own, and no separate core line is created for it. Receiving it afterwards is done from the part's own three-dot menu, where a \"Receive part\" choice appears; the receiving window needs a supplier and an invoice number filled in before it will let you finish, and then it confirms \"Parts received.\"\n\nOne thing worth knowing: the \"Receive Later\" choice only appears for somebody whose role allows putting parts off until later. Without it the window simply has no such button, which looks like the feature is missing when it is only the permission.\n\nWhy it cannot be finished: a core charge can only be set on a part the shop stocks. A part the shop stocks is always offered as \"Pick\" on a job - never as something to order, not even when there is none left on the shelf, and nothing in its menu offers to order it. A part bought in from a supplier, which is the kind that gets ordered, has nowhere to carry a core charge at all. So a part that carries a core and a part that gets ordered are two different kinds of part here, and the pairing this check is about cannot be made.\n\nThis was not accepted on one try: a part was created that carries a core charge and has none in stock, put on a job, and still came up as \"Pick\"; the supplier-bought copy of a part whose stocked twin does carry a core showed no core either before or after it was received; and the supplier catalogue was checked and has no core charge field anywhere. The same steps done on an ordinary part worked every time, so this is the shop's behaviour and not a fault in the testing.\n\nWhat needs to be done: this is a question for the Product Owner rather than a fault - either parts bought in from a supplier are meant to be able to carry a core, in which case the shop is missing that, or the written expectation describes something this product does not do and the check needs rewriting. Nothing was invented to fill the gap."
-  },
   "44594": {
    "v": "Passed",
    "why": "Create invoice opened the wizard on a work order with a part still to receive, and the wizard named exactly what was outstanding."
@@ -214,10 +181,6 @@
    "v": "Passed",
    "build": "v26.39.1-3ef6ade",
    "why": "All three runs now done, and each one ends somewhere different - which is the whole point of this check.\n\nStarted from a line: the questions are asked, the line closes, and you are put back on the job's own list of lines. No bill, nothing else opened.\n\nStarted from \"Complete All Lines\": with two lines still open and every one of them selected, the bar names itself \"Complete All Lines\" rather than the single-line wording. The run asked about the four old units that could be settled, then about the one part still waiting to arrive, and finished with \"Complete Lines (2)\". Both open lines closed, the old units now read as returned, and the job stayed exactly where it was - no bill, no payment screen. The sign-off action then appeared in the header, where before there had been nothing at all. It is offered but not yet usable, because one part on the job is still waiting to be received and the shop is set to require that before work is signed off - which is a separate rule doing its job, not this one failing.\n\nStarted from raising the bill: it ends on the payment screen with the job billed and its open lines closed.\n\nSet-up note for whoever runs this by hand: this needs a job with two or more lines still open. A line that is already finished can be put back by opening its three-dot menu and choosing \"Uncomplete\", which returns it to the approved state ready to be completed again."
-  },
-  "44598": {
-   "v": "Blocked",
-   "why": "Could not be judged. It needs a second person finishing work mid-run and a server error, neither of which could be produced."
   },
   "44599": {
    "v": "Passed",
@@ -266,5 +229,19 @@
    "v": "Passed",
    "why": "A person without a permission does not see the action at all: Pick, Order and Receive were absent from the bar and the rows rather than shown and refused. No money value reached the screen either."
   }
+ },
+ "deleted_by_qa_lead_2026_09_28": {
+  "cases": [
+   "44564",
+   "53487",
+   "44551",
+   "44586",
+   "44588",
+   "53489",
+   "44598",
+   "44574",
+   "44579"
+  ],
+  "note": "Deleted from TestRail on 28 September 2026 on the QA lead's instruction, after the concern was raised with him and he confirmed. C44574 and C44579 he deleted himself; the other seven were deleted by this session. Full bodies are snapshotted in build/simple-flow-v2/deleted-2026-09-28/SNAPSHOT.json - the TestRail records and their run results are unrecoverable, the content is not."
  }
 }
