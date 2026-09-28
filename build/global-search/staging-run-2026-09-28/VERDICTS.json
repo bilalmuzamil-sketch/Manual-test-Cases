@@ -506,6 +506,66 @@
    "v": "Failed",
    "why": "Re-run on staging, where the suite now lives. Typing a record's exact number should put THAT record on a single line at the very top, above the grouped results - the \"type the number and jump straight to it\" behaviour. It does not. The record is found and it is ranked first, but it appears as the first row inside its group, under a group heading, like any other result. There is no separate line above the groups at all.\n\nChecked with four different kinds of exact number - a job number, a second job number, a part number and a vehicle identification number - and there was no such line for any of them. The search itself is working: every one of those numbers found its record.\n\nThis check adds one thing: a customer's NAME also contains the job number that was typed. The job did come above that customer - so the number does win - but again as the first row of its group, not on a line of its own above the groups.",
    "build": "v26.39.1-02c6b6c"
+  },
+  "55665": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing a customer's name brings back that customer's part sale under Part sales - the sale for ZZAUTOTEST Bridgeport Hauling came back.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55666": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A part number finds the part whether or not the dashes are typed. \"ZZT-88-4412\" and \"ZZT884412\" both brought back ZZAUTOTEST Brake Chamber Kestrel.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55667": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer is found by one distinctive word of its name and by its full name - \"Bridgeport\" and \"ZZAUTOTEST Bridgeport Hauling\" both returned it.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55668": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A supplier is found by one word of its name and by its full name. Both returned ZZAUTOTEST Kestrel Parts Supply in the Vendors group of its own - the same word also appears on a part and in a customer's address, and the supplier was still listed separately.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55669": {
+   "v": "Passed",
+   "why": "GOOD NEWS - THIS ONE WAS EXPECTED TO FAIL AND IT NOW WORKS. Re-run on staging, where the suite now lives. A vehicle is found by its full identification number AND by just the last few characters of it - the bit a technician can read off the windscreen. Both brought back the vehicle.\n\nThe check was written expecting the opposite: on 14 September the full number returned nothing at all. That fault is gone.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55670": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer is found through its CONTACT four different ways - the contact's first name, their last name, their full telephone number with dashes, and just the last part of that number. All four brought back ZZAUTOTEST Bridgeport Hauling.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55671": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Capitals make no difference. \"bridgeport\", \"BRIDGEPORT\" and \"BrIdGePoRt\" all returned the same customer and the same seven rows.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55672": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A job is found by its plain number with nothing in front of it. Typing just the digits brought back the job, and its row even prints the plain number - so the bare number is a proper way to search, not an accident of the text matching.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55673": {
+   "v": "Failed",
+   "why": "Re-run on staging, where the suite now lives. Type a search, press Enter without touching the arrow keys, and you should open the FIRST result. You open a different one.\n\nSearching a customer's name returned twelve results across several sections. The row the screen highlights ready for Enter is the EIGHTH one - a completely different company that only loosely matches - and pressing Enter opens that company. The first result, a job for the customer actually searched for, is skipped.\n\nTried three times from a freshly loaded page, identical every time. When the results happen to be all of one kind it behaves correctly - the first row is highlighted and Enter opens it - so it goes wrong only when the results span more than one section, which is most of the time.\n\nThis matters because type-and-press-Enter is the quickest and most common way people use search, and it quietly takes them to the wrong record.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55674": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Search opens and fills the screen at phone size and at tablet size, not only on a desktop.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55675": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A search matching nothing says so plainly: \"No results found\", with \"No results for\" and the exact words typed underneath. The list does not sit empty, nothing keeps spinning, and no earlier results are left on screen.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55680": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Arrowing down moved the highlight from one result to the next, across three different sections, and the section headings were never highlighted - they are stepped straight over. Arrowing back up retraced the same rows in reverse.",
+   "build": "v26.39.1-02c6b6c"
   }
  }
 }
