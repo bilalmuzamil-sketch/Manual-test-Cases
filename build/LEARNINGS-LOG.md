@@ -4273,3 +4273,44 @@ nothing is ticked, not that the part cannot be received. Success says "Parts rec
 catalog entry — there is no free-text part number or description field) and **Cost** (the field is
 labelled `$ Cost`, not "Average Cost" — the list column says Average Cost, the form does not).
 Both refusals arrive one at a time as a toast, so fill both before pressing Save.
+
+## L0225 — 2026-09-28 — The role editor: matrix rows, switches, and the order clicks must go in
+Two different kinds of control, and a trap in each:
+- **Matrix rows** carry three checkboxes — View / Create & Edit / Delete. **Delete implies Create &
+  Edit implies View**, so switching Create & Edit OFF while Delete is still ON is silently refused:
+  the click lands and nothing changes. **Turn them off right-to-left (delete, edit, view) and on
+  left-to-right**, and read the row back after each click. Exact row names, as the editor writes
+  them: `Work orders` · `Invoicing & payments` · `Timesheets` · `Part sales` · `Catalog and
+  Inventory` · `Vendor and order management` · `Sales` · `Purchases` · `Fixed assets` · `Setup`.
+- **Switches** (`.q-toggle`) are a different set and are NOT in the matrix: `Review work orders` ·
+  `Pick parts` · `Order parts` · `Receive later` · `Move labor`, plus a `Settings` group whose
+  sub-switches are `App Settings` · `Service` · `Parts` · `Finance` · `Integrations` · `Data Import`
+  · `View/Manage Wages`. **App Settings is a switch, not a matrix row** — looking for it among the
+  rows finds nothing and the guard reports "would not change".
+Saving an edited role raises a **Confirm** dialog that must be pressed or the edit is lost.
+Helper with all of this encoded: `build/simple-flow-v2/run416-execution-2026-09-24/seed/lib-role2.mjs`
+(`buildRole` · `editRole` · `setMatrix` · `setToggle` · `verifyRole`).
+
+## L0226 — 2026-09-28 — Never call a button "offered" without reading its disabled state
+`r114` listed a header's buttons and reported that a person WITHOUT the review permission was
+"offered Mark Reviewed". They were not: the button was **greyed out**. The button-listing evaluate
+did not read `disabled`, so a gated control looked like a permission hole. **Every button scan
+records `dis: /disabled/.test(className)||el.disabled`**, and any claim that an action is offered to
+somebody is checked against the same action, on the same record, for somebody who does hold the
+permission. Cost: nearly a false defect against a permission gate that works correctly.
+
+## L0227 — 2026-09-28 — The permission names in `fe-permissions` are not the names in the editor
+The API calls them `vendorOrderManagementView` (not `vendorAndOrderManagement…`),
+`woReviewWorkOrders`, `invoicingPaymentsCreateAndEdit`, `catalogInventoryView`, `settingsParts`,
+`settingsAppSettings`, `workOrderLinesCreateAndEdit`, `seeFinancialData`. Guessing a name and finding
+it absent reads exactly like the person not holding the permission. **Dump the list and match against
+it** rather than testing a guessed key.
+
+## L0228 — 2026-09-28 — Reusing one supplier invoice number across two of a supplier's orders is refused
+The source says (page 771391574, read 2026-09-25): *"The same invoice number may be reused across
+several of a vendor's purchase orders. It is typed per purchase order and is not shared from the
+group header"*. The build answers **"Invoice '<number>' is already in use"** and receives nothing.
+Reproduced on two different pairs of orders for vendor Delete Test, each with a fresh unused number.
+The invoice field is labelled **`Vendor Invoice # *`** (not "Vendor Invoice Number"), sits **per
+vendor group**, and on the purchase order page the receive UI is **inline, not a dialog** — a
+`.q-dialog` selector finds nothing there. C44591.
