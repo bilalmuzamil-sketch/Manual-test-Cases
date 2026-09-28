@@ -5414,3 +5414,65 @@ step from a previous run's screenshot.
 
 **Nothing is written until Confirm.** An abandoned run leaves the issue byte-identical (verified:
 type, status, parent and `updated` all unchanged after an aborted attempt).
+
+---
+
+## §V.12 — "Attach these tickets as the story defects of the related stories in <epic>"
+*(the whole task, proven 2026-09-28 on SV-10544…SV-10557 → epic SV-9160 Global Search v2.
+§V.11 is the Jira mechanics; this is everything around them.)*
+
+### 1. Establish the epic's own convention before touching anything
+Read the epic's children and open two or three stories. **Do not assume the shape** — in SV-9160
+every defect is a `Story Defect` subtask **parented to the STORY**, and a `Bug` parented to the epic
+(SV-10031) also exists but is the minority. Confirm the child list **two ways** (`parent = <epic>`
+and `"Epic Link" = <epic>`, Rule 37) and check they agree.
+
+### 2. Pick the owning story from EVIDENCE, never from the ticket's wording alone
+In order of strength:
+1. **An existing sibling Story Defect of the same shape** — the single best signal. SV-10548
+   ("shows a *Part Name* match but no part is named 98") went to SV-9170 because SV-10439
+   ("vendor with no contact shows *Contact match*") is the identical shape and already lives there.
+2. **The spec section the story cites.** SV-9170 cites *§4 Entities, §5.3 Result row anatomy*, and
+   that section contains *"Navigation. Clicking a row opens the record it represents"* — which is
+   what put the click-does-nothing defects on SV-9170 rather than on the Integration story.
+3. **The story description's own scope.**
+**Read the screenshot.** Several of these were only separable by looking: SV-10547's first result
+sits *above* the group header (grouping → SV-9174), while SV-10545's row simply lacks a field label
+(row anatomy → SV-9170). The summaries alone would not have split them.
+**When a ticket makes two complaints that point at different stories, say so out loud** and pick by
+the first-stated/primary one — SV-10550 and SV-10551 each also lacked the fuzzy sign (SV-9164's
+family via SV-10346/SV-10385) but led with a row-display fault, so they went to SV-9170. A ticket
+that is *only* about the fuzzy sign (SV-10555) goes to SV-9164.
+
+### 3. ⚠️ SWEEP — never work only from the list you were handed
+```
+project = SV AND created >= "<date>" AND parent IS EMPTY AND issuetype != Epic ORDER BY key ASC
+```
+Run it **before starting and again at the end**. On this pass it found **SV-10552 and SV-10554,
+which the QA lead had not sent**, and each later run surfaced newly-filed tickets. Re-running it is
+the only thing that makes "do not miss any" checkable.
+**SCOPE GUARD:** a sweep hit is *not* automatically in scope. The final sweep also returned
+SV-10578…SV-10582 (Work Orders List, backfill, an assign-technician permission check) — those belong
+to other epics and **must be reported, not attached**, when the instruction names one epic.
+
+### 4. ⚠️ VERIFY FROM THE API, NEVER FROM "I LAUNCHED IT"
+**Three conversions silently never ran on this pass** — SV-10550, SV-10551 and SV-10553 — because a
+backgrounded `nohup`/`while pgrep` wrapper was **killed together with the shell that launched it**,
+leaving no log at all. Each was reported as queued and was not. **Launch each move on its own with
+`setsid nohup node move.mjs <id> <STORY> > log 2>&1 < /dev/null &`, never behind a wait-loop wrapper,
+and confirm from Jira.** Per ticket assert: `issuetype.id == 10007`, `subtask == true`,
+`hierarchyLevel == -1`, the expected `parent.key`, and status / priority / attachment count
+unchanged.
+
+### 5. Prove the epic constraint, don't assert it
+For **every distinct parent story**, fetch it and assert `parent.key == <the epic you were given>`.
+Then check the **other direction** too: the story's own `subtasks` list contains your keys (Rule 50,
+set equality both ways). SV-9170 went 8 → 15 subtasks and SV-9174 4 → 6; that arithmetic is the check.
+
+### 6. Report what you did NOT decide
+Flag likely duplicates rather than resolving them (SV-10556 and SV-10547 both report a missing first
+group header, on different queries), and flag every ticket whose second complaint would justify a
+different story, so the QA lead can re-point it in a minute.
+
+**Expect statuses to move under you.** Mid-pass, SV-10547 went to Code Review and SV-10550/10555/10556
+to OBSOLETE — other people triaging, not anomalies. **Never "restore" them** (Standing Rule 53).
