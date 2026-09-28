@@ -197,3 +197,28 @@ No redeploy under the pass, so every result above belongs to one build.
 
 Per the per-ticket-branch rule, a QA pass on this branch is treated as final: no re-check
 queue is opened.
+
+## §13 QA comment posted — comment 77446
+
+Posted 2026-09-28 10:23 UTC on SV-10179, with no "Technical details for developers"
+section (QA lead's decision for this ticket).
+
+**Pre-post gate (Rule 72):**
+
+| Check | Result |
+|---|---|
+| Branch build marker re-read live | v26.39.1-29d9aae, last-modified 12:53:08 GMT — identical to the start |
+| Production build marker re-read live | v26.39.1-3ef6ade — identical to the start |
+| Ticket re-read | still `Code Review`, priority Medium, 5 comments, none new since the pass started |
+| Evidence images | uploaded as **real Jira attachments** (61495, 61496), not external links |
+| Figures | every number traced to a live reading taken this pass |
+| Named test data | the links quoted in the comment were all driven live |
+| Voice scan | clean — no AI self-reference in any reader-facing text |
+| Format | verdict on the first line, 11-row checks table, captioned exhibits, no technical section |
+
+**Read-back after posting** (`GET /rest/api/3/issue/SV-10179/comment/77446`):
+first text node = `OVERALL QA STATUS: PASSED`; two media nodes, both
+`"type":"file"` with attachment uuids; 12 table rows (header + 11 checks);
+`Technical details` absent; fingerprint scan clean.
+
+Exhibits: `ev/01-banner-before-after.png`, `ev/02-saved-filters-untouched.png`.
