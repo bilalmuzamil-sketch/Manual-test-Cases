@@ -616,6 +616,186 @@
    "v": "Passed",
    "why": "Re-run on staging, where the suite now lives. Searching a customer's name at Heavy Duty returned five of its jobs. Switching the location to Lethbridge through the menu and searching the same name returned NO jobs at all - and the results were watched from the first keystroke, sampled twelve times while they loaded, with none of the Heavy Duty jobs appearing even for an instant. The customer itself still appeared, which is right: customers belong to the whole company while their jobs belong to a location. The location was put back afterwards.",
    "build": "v26.39.1-02c6b6c"
+  },
+  "45153": {
+   "v": "Failed",
+   "why": "Re-run on staging, where the suite now lives. Most record types open correctly - a job opens the job, a customer opens that customer's jobs page, a vehicle opens that vehicle's jobs for the right owner, a supplier opens the supplier, a part sale opens the sale, a supplier order opens the order, a supplier bill opens the bill, and a stocked part opens that part.\n\nBut the point of this check is a part that is in the CATALOGUE but has never been stocked. That part exists - it is there in the catalogue under its own number - and search returns NOTHING for it, by number or by a distinctive word from its description. There is no row to click. In the old version every catalogue part could be reached from search whether or not the shop had ever stocked it, so this is something the old search could do and this one cannot.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45154": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. With a customer's page already open, searching for that same customer and selecting it does nothing - the page does not reload, and the recently-opened list is exactly as it was. (Checked against a control first: reading that list three times in a row without touching anything gives an identical list, so a change would have meant something.)",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45155": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The group of vehicles is headed \"Assets\" - the internal word \"Vehicles\" is never shown.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45156": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Pressing Ctrl+K opens search with the box ready to type in.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45157": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A word that matches a record in more than one way still lists that record once. Searching a word that appears in a supplier's name, a part's description and a customer's address produced no repeated row anywhere.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45158": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Search is simply there for anyone allowed to use it - nothing has to be switched on, and there is no setting anywhere gating it.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45161": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. One character does not search - the screen keeps showing recently opened records. The second character starts it: results appeared immediately.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53516": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing a vehicle's full licence plate finds that vehicle, under Assets.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53578": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing a customer's name lists that customer's jobs, without needing to know any job number.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53579": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. All five ways of writing a job number find the same job: with the branch number, without it, with and without the dash, and the bare digits on their own. None of them returned nothing.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53580": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing a vehicle's unit number finds that vehicle - the search itself matches on it.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53581": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing the name of the customer who owns a vehicle finds that vehicle under Assets.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53582": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer is found by its street, its town, its state and its postcode - all four return it.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53583": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer is found by its website address.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53584": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A supplier is found by its email address.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53585": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A supplier is found by its street, its town and its postcode.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53586": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A brand-new customer was created and was findable about six seconds later, without reloading anything.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53587": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A brand-new job was created and was findable about five seconds later, without reloading anything.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53588": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The newest jobs for a customer come first and the oldest sits at the bottom.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53589": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing quickly loses nothing. The whole of a two-word search was in the box the instant it was typed and still exactly right once the results had arrived.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53602": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer is found when its name is typed with the spaces left out, as well as typed normally.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53603": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer is found by its contact's job title.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53604": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Both halves work: a customer is found by the second line of its address, and so is a supplier.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53605": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing a vehicle's year and make together finds it - every vehicle listed was a 2019 Freightliner.\n\nWorth knowing: a previously reported problem, where two words held in different parts of the same record would not combine and returned nothing, does not happen here.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53606": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A supplier is found by its state.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "53607": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A part is found by a distinctive word from its description, and by two words from it.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55659": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Only part of a number still finds the record - the last digits of a job number found the job, and part of a part number found the part.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55661": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A search matching many records still shows every kind that matched - all eight sections appeared with their counts, and opening each section in turn showed that section's own records and nothing else.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55662": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer is found by the company's own main telephone number, both in full and by its last part.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55663": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A supplier is found by its telephone number, typed with brackets and dashes or as plain digits.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55664": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A vehicle is found by its model name.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55682": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Every row carries an icon and each kind of record has its OWN icon - all eight kinds were compared and no two are the same, so you can tell at a glance what each row is.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55683": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The keyboard shortcut is printed in the search box in the header, so people can discover it without being told.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55686": {
+   "v": "Failed",
+   "why": "Re-run on staging, where the suite now lives. Half of this is right and half is wrong.\n\nRIGHT: the customer that genuinely contains what was typed is listed FIRST, above the similarly-spelled ones.\n\nWRONG: this check also requires that pressing Enter opens that customer. It does not - it opened a PART instead, from a different section further down. The row the screen has ready for Enter is not the first one. Same underlying problem as the separate check on pressing Enter.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55688": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A vehicle is found by its make typed on its own, and every vehicle listed was that make.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55689": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A vehicle is found by its year typed on its own, and every vehicle listed was that year.",
+   "build": "v26.39.1-02c6b6c"
   }
  }
 }
