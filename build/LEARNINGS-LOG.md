@@ -4199,3 +4199,41 @@ in what quantity. Seed a surplus first, or keep one work order untouched as a re
 observational work should be ordered deliberately: **observe first, consume last.**
 **And say so plainly when it bites:** the record for those checks now names my own runs as the reason
 the state is gone, rather than reporting it as a shortage of data.
+
+## L0217 — 2026-09-28 — A confirming button RE-LABELS ITSELF; one click is half a press
+`Move To Line` in the part's Move dialog does nothing on the first click. The button changes its own
+text to **"Please Confirm"** and only acts on the SECOND click. Three probe runs (r86, r87) were spent
+reporting "the move is silently refused" when the product was waiting for the confirm it had asked for.
+**Any probe that presses a dialog's action button must read the button again afterwards and press it
+again if its text changed.** The dialog staying open is the tell — a committed dialog closes.
+Cost: three runs and a false fault against the product. Same shape as L0204 (wrong menu) — the
+instrument was wrong, not the build (Rule 104).
+
+## L0218 — 2026-09-28 — The reorder call, and which ids it wants
+Reordering parts on a line is `PUT /api/work-orders/lines/{line_id}/part-order` with
+`{"parts":[{"part_request_id":"…","part_order":1}, …]}`. Two traps:
+- The ids are **`parts[].part_request_id`**, NOT `parts[].id`. Both exist on every element and `id` is
+  the wrong one. Sending `id` gets a 409 *"The parts submitted for reordering no longer match this
+  line. Please refresh and try again."* — which reads like a concurrency guard and is actually a
+  bad payload. I lost four runs to this.
+- The submitted set must match the line's reorderable set exactly; core rows are not reorderable and
+  are not distinguished by `parent_wo_part_id` (it is null on all of them). **Do not reconstruct this
+  payload by hand — press Move up in the UI, capture the request the product itself sends, and
+  replay that.** That is the only reliable source of the id set.
+Parts live in the line's **`parts`** array; `part_requests` holds something else and is often empty on
+a line that visibly carries five parts.
+
+## L0219 — 2026-09-28 — Reordering on an invoiced work order, and the two-person race
+- **Invoiced work order:** part rows carry no drag handle and no part menu at all, and the call is
+  refused `409 {"error":"Parts can no longer be reordered on this work order (status: Invoiced)."}`
+  Positive control: the identical reorder through the screen on an open work order returns 200 and the
+  rows visibly swap (r94).
+- **Two people at once:** the later save is **accepted and overwrites the earlier one silently** —
+  no warning to either person. The 409 "no longer match this line" only fires when parts were added or
+  removed in the meantime, not when both people merely reorder. No source sentence covers this, so it
+  is a Product Owner question (Rule 58), not a defect.
+
+## L0220 — 2026-09-28 — `run_probe.sh` resolves the probe against the CURRENT directory
+The harness reminder can change the working directory between turns. `run_probe.sh <name>.mjs` then
+looks for the probe next to wherever you now are and dies with MODULE_NOT_FOUND. Always run it from
+`.../probes`, or pass an absolute path.

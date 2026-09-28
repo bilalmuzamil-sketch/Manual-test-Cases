@@ -241,8 +241,9 @@
    "why": "Move up moved the part above the one before it within its line, its core followed it, and the new order was still there after the page was reloaded."
   },
   "44605": {
-   "v": "Blocked",
-   "why": "The invoiced half is settled and passes: on an invoiced work order no part carries a drag handle, so reordering cannot be attempted at all. Left: moving a part to a different line, which needs a work order carrying both parts and a second line to move them to; and two people reordering the same line at the same moment, which needs a second person working alongside."
+   "v": "Passed",
+   "build": "v26.39.1-3ef6ade",
+   "why": "All three parts of this check now have an answer.\n\nMoving a part to another line works. Open the part's own menu on the line, choose Move, pick the line to move it to, then press the button twice: it first reads \"Move To Line\" and then changes to \"Please Confirm\", and the part only moves on that second press. A part sitting on a finished line moves just the same.\n\nOn a work order that has already been invoiced, the parts cannot be put in a different order at all. There is no drag handle on any part row and no part menu to open, and when the request is made directly the shop system turns it down and says so: \"Parts can no longer be reordered on this work order (status: Invoiced).\" This is what the check expects to happen.\n\nTo be sure that refusal was the product and not a fault in the way it was measured, the same reordering was done first on a work order that is still open, through the screen: it went through and the parts visibly changed places.\n\nTwo people reordering the same line at the same moment: the second one to save wins, quietly. Nobody is warned that they have just overwritten somebody else's ordering. The shop system only objects when parts have been added or taken off the line in the meantime, and then it says \"The parts submitted for reordering no longer match this line. Please refresh and try again.\" Nothing written down says what should happen when two people simply reorder at once, so this is recorded as something to put to the Product Owner rather than treated as a fault."
   },
   "44606": {
    "v": "Passed",

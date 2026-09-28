@@ -1,0 +1,28 @@
+{
+ "openWorkOrder": {
+  "linesRead": 200,
+  "pick": {
+   "id": "e1988527-1828-4703-9358-5f2a3fa5dad1",
+   "name": "ZZAUTOTEST parts line",
+   "status": "Authorized",
+   "woStatus": "in_progress",
+   "editable": true,
+   "parts": 5
+  },
+  "status": 409,
+  "answer": "{\"errors\":[{\"error\":\"The parts submitted for reordering no longer match this line. Please refresh and try again.\"}]}"
+ },
+ "invoicedWorkOrder": {
+  "linesRead": 200,
+  "pick": {
+   "id": "cbd4cdde-5df3-4caa-8108-62e408804016",
+   "name": " EMpty LIne",
+   "status": "Complete",
+   "woStatus": "invoiced",
+   "editable": false,
+   "parts": 4
+  },
+  "status": 409,
+  "answer": "{\"errors\":[{\"error\":\"Parts can no longer be reordered on this work order (status: Invoiced).\"}]}"
+ }
+}

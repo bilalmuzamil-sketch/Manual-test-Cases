@@ -5530,3 +5530,31 @@ its intended change rather than leaving it named for something it is not.
 assigned to somebody cannot be removed, so move the person first.
 **Existing test roles on prod:** `ZZAUTOTEST Receive Later`, `ZZAUTOTEST No Parts Perms`,
 `ZZAUTOTEST Order No Money` — all built from the Admin template.
+
+### Reordering parts on a line, and moving a part to another line (production, v26.39.1)
+
+**Move a part to a different line.** Part row → its own `more_vert` → **Move** → the dialog reads
+"Move part to line:" with *Work Order* (pre-filled) and *Target Line* → pick the line → press the
+button **twice**: it reads **"Move To Line"**, then re-labels itself **"Please Confirm"** and only acts
+on the second press. The dialog closes when it has committed. Works even when the part's current line
+is Complete. (L0217)
+
+**Reorder parts within a line.** Part menu → **Move up** / **Move down**, or the drag handle.
+The call is `PUT /api/work-orders/lines/{line_id}/part-order`
+body `{"parts":[{"part_request_id":"…","part_order":1}, …]}`.
+- ids come from `parts[].part_request_id` — **not** `parts[].id` (both exist; `id` gets a 409 that
+  looks like a concurrency error)
+- the set must match exactly; core rows are excluded and are NOT flagged by `parent_wo_part_id`
+- **capture the payload from a real Move up rather than building it** (L0218)
+
+**Refusals seen:**
+| Situation | What the shop system answers |
+|---|---|
+| Work order invoiced | `409` "Parts can no longer be reordered on this work order (status: Invoiced)." — and the screen offers no drag handle and no part menu at all |
+| Parts added/removed since you loaded | `409` "The parts submitted for reordering no longer match this line. Please refresh and try again." |
+| Two people both reorder | **Accepted, last save wins, nobody is told** |
+
+**The lines endpoint:** `GET /api/work-orders/lines/{work_order_id}` → `data.collection[]`, each with
+`line_id`, `line_name`, `status_display`, `work_order_status`, `editable`, `deletable`, and the parts
+in **`parts[]`** (`part_requests[]` is a different thing and is often empty on a line that visibly
+carries parts).
