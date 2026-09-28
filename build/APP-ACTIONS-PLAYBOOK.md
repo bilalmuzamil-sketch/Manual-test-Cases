@@ -5594,3 +5594,49 @@ reach staging without the local bridge.
 **Observed 2026-09-28:** build `v26.39.1-02c6b6c` (api reports `02c6b6c…-develop`), workplace
 **Staging Heavy Duty - 9919**, `template_slug=administrator`, 59 permissions. Judge the session by
 `template_slug` and the permission count, never by `role.name`.
+
+### Staging routes and traps learned while running Global Search (2026-09-28)
+
+**API routes on staging** — several differ from what a QA branch served, and guessing costs runs:
+
+| What | Route |
+|---|---|
+| Vendors list | `GET /api/parts-catalogue/vendors` — **NOT** `/api/vendors`, which 404s |
+| Catalogue parts | `GET /api/parts-catalogue/catalogue-parts?pagination[rowsPerPage]=30&search=…` |
+| Categories / units | `GET /api/parts-catalogue/categories-list` · `/api/parts-catalogue/units-of-measurement` |
+| Create a customer | **`POST /api/customers/create`** — `POST /api/customers` answers **405 Method Not Allowed (Allow: GET)**. Body: `{name, address_1, city, state_or_province, country_code:'US', require_po:false, …}` |
+| Change a customer | `POST /api/customers/change` with `{customer_id, …the full record…}` |
+| Work order lines | `GET /api/work-orders/lines/{work_order_id}` → `data.collection[]` |
+
+**Duplicate customer names are refused** — `"Company with provided name already exists."` So a check
+needing "two otherwise identical records" cannot use two identical names; use two names that match
+the query token identically instead (e.g. `ZZTIEBREAK Alpha Hauling` / `ZZTIEBREAK Beta Hauling`).
+
+#### Driving the global search modal
+
+`build/global-search/run415-execution/gs_probe.mjs` carries the whole toolkit and now exports
+**`openStaging(route, key)`** alongside the original `open(branch, …)`. Selectors in `SEL`.
+
+**🛑 Four traps, each of which produced a false reading on 2026-09-28:**
+1. **A synthetic `mouseover` cannot trigger a CSS `:hover` state.** Dispatching the event found no
+   hover actions on any entity, which reads as "the feature is gone". Move the real pointer:
+   `page.mouse.move(x-250, y)` then `page.mouse.move(x, y, {steps:10})`.
+2. **The modal shows RECENT rows before anything is typed**, with
+   `data-test-id="search_result_row_recent_today_0"`. They carry no actions by design. Genuine
+   results are `search_result_row_<entity>_<n>` — filter out anything matching `/recent/`.
+3. **After a search the tab labels carry counts** — `Work orders (20)`, not `Work orders`. An
+   exact-match tab selector silently finds nothing and every per-entity reading is then taken from
+   whatever tab happened to be open. Match on `startsWith`.
+4. **The close-match marker is injected MID-WORD**, so a row reads
+   `ZZAUTOTEST Br≈ close match: idgeport Hauling`. A plain `includes('Bridgeport Hauling')` test
+   fails on a row that did come back. Strip `≈ close match: ` before matching text.
+
+**Positive control for hover in this modal:** hovering a row that is not already selected changes its
+class `search-row` → `search-row search-row--selected` and its background
+`rgba(0,0,0,0)` → `rgb(248,250,252)`. If that does not happen, the pointer is not reaching the modal
+and no hover-based finding is admissible.
+
+**Checking whether the app may legitimately hide hover actions:** the requirement gates them on
+"desktop only — pointer present". Read it from the page:
+`matchMedia('(hover: hover)')`, `('(pointer: fine)')`, `navigator.maxTouchPoints`. Headless chromium
+here reports hover:hover, pointer:fine, maxTouchPoints 0 — so there is no pointer-based excuse.

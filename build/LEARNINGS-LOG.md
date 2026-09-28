@@ -4334,3 +4334,25 @@ therefore also wrong as written — it needs the same correction, not deletion.
 - The scanner's hard-coded `/opt/pw-browsers/chromium-1194/chrome-linux/chrome` is stale; use
   `process.env.CHROME_BIN || '/opt/pw-browsers/chromium'`, and run it through `run_probe.sh` so the
   bridge is up — chromium cannot reach TestRail without it (`ERR_PROXY_CONNECTION_FAILED`).
+
+## L0231 — 2026-09-28 — Global Search moved to staging; four false readings before one true one
+The QA branch sv9160 was merged into staging and deleted. Staging needs ALL THREE cookies
+(`sv_sso_session`, `PHPSESSID`, `cf_clearance`) on both hosts — the opposite of a QA branch, where
+PHPSESSID must be left out. Without it staging serves a **Google sign-in page**, which reads as a
+dead environment. Boot: `build/testing-tools/staging-cookie-boot.mjs`.
+
+Measuring the hover quick actions produced **four** wrong readings before a right one: a synthetic
+`mouseover` (cannot trigger `:hover`), the modal's *recent* rows instead of results, an exact-match
+tab selector that silently matched nothing once the labels gained counts, and a text match that
+failed because the `≈ close match:` marker is injected mid-word. Every one of them looked like a
+product fault. The finding only became admissible once a positive control showed an unselected row
+reacting to the pointer, and the `(pointer: fine)` media query was read back. Full detail and the
+routes: playbook, "Staging routes and traps learned while running Global Search".
+
+## L0232 — 2026-09-28 — Five Global Search checks now fail against tickets the team closed OBSOLETE
+C53476 · C53601 · C55660 · C55685 · C45160 all fail on staging, and the report behind each
+(SV-10320 · SV-10001 · SV-10060 · SV-10025 · SV-9167) is **OBSOLETE** — the team has ruled each
+behaviour intended. So in every case the CHECK is now wrong, not the product, and Rule 114 bars me
+from editing `custom_expected`. Each was recorded as Failed with the evidence and a plain statement
+that no new ticket is being raised and the check itself needs retiring or rewording — the QA lead's
+decision (his standing item D1, now five items rather than four).
