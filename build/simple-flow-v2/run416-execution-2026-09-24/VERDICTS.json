@@ -57,12 +57,12 @@
    "why": "With a tech story required, a line would not complete until it was given one, and an unresolved core was asked for as well."
   },
   "44563": {
-   "v": "Blocked",
-   "why": "Narrowed to one path. Three of the four are now seen: a line's own Complete, the bulk bar's Complete lines, and Create invoice, which completed every open approved line when the invoice was made. The remaining path is the clock-out window, which needs somebody clocked in on the work order."
+   "v": "Passed",
+   "why": "All four routes to Complete are now accounted for. A line's own Complete button completes it, and did so with parts outstanding. The bulk bar's Complete lines completes the selection. Create invoice completes every open approved line as it invoices - seen when a work order went to Invoiced with all six lines closed. And the clock-out window can complete the line, through its Line Completed switch. One caveat worth carrying: that fourth route works through the OLD switch, because the two buttons the design calls for are missing from that window - reported separately against the clock-out check. The route exists; it is not the control the requirement describes."
   },
   "44564": {
-   "v": "Blocked",
-   "why": "Could not be judged. The clock-out window needs a technician clocked in on this work order, which this account cannot do for someone else."
+   "v": "Failed",
+   "why": "Clocked onto a line, then pressed Stop, which opens the window this check is about. Both halves fail. The old switch is still there: the window carries a control labelled \"Line Completed?\", which the requirement says should be hidden because two new buttons take over its job. And those two buttons are not there. The window offers a story box, a ShopCoach suggestion, a list of departments to tick, and a single Clock Out button. Nothing on it says complete except the old switch. So rather than one way to finish a line from this window, there is still only the old one - which is the opposite of what the change intended, since the reason for hiding the switch was to stop a user ticking it and then pressing the wrong button."
   },
   "44565": {
    "v": "Passed",
