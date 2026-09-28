@@ -28,34 +28,45 @@ carried over: every check was performed again by hand against the site as it sta
 
 ## 2 · The 16 that did not work, sorted by what you would actually do about them
 
-### (a) ONE new problem worth fixing — and it is in the most common thing people do
+### (a) NO new problems. I thought I had one, and I was wrong — here is why that matters
 
-**Type a search, press Enter, and you can open the wrong record.**
+For most of this run I believed I had found something new: **type a search, press Enter, and you open
+the wrong record** — an unrelated company eight rows below the thing being searched for.
 
-You should open the first result. Sometimes you open one from much further down the list — in the
-run we saw, an unrelated company eight rows below the thing being searched for.
+I nearly asked you for permission to report it. Before doing that I pinned down when it happens, and
+the answer changed the conclusion completely: **the row sitting under the mouse pointer becomes the one
+Enter will open.** Clicking the search box leaves the pointer exactly where the panel then opens over
+it, so a row lands under the pointer and quietly takes over. Proved four ways on the same search:
 
-It is intermittent, and the pattern is the part that matters: out of twenty-odd attempts it went
-wrong on the **first search after freshly opening ShopView**, and behaved correctly on every repeat
-in the same sitting. So the person most likely to hit it is someone who opens the app and goes
-straight to search, which is the normal way in, not a rare corner.
+| What I did | What Enter was aimed at |
+|---|---|
+| Clicked the search box and left the mouse alone | the EIGHTH row |
+| Clicked the box, then moved the mouse away | the FIRST row, correctly |
+| Opened with the keyboard, mouse in a corner | the FIRST row, correctly |
+| Opened with the keyboard, mouse held over the middle of the list | the row under it |
 
-A similar-sounding problem was reported before and closed as no-longer-relevant — but that one was
-about moving the MOUSE across the list. This happens with the mouse untouched.
+**That is the behaviour that was already reported and closed by the product team as no longer
+relevant.** So it is not new, and asking you to raise it would have produced a duplicate of something
+already decided. Two of our checks still describe the older behaviour, which puts them in group (c)
+below rather than in front of a developer.
 
-**This is the one I would like your permission to raise.**
+I am flagging this at the top rather than burying it, because my first two write-ups of it were wrong
+— the first said it happened every single time, the second said it happened only on the first search
+after opening the app. Neither was true. Both were corrected on the checks themselves before anything
+reached you.
 
 ### (b) Three that are already reported and still open — nothing needed from you
 
 A part that is already on the job you are looking at is not pushed down the list. It behaves exactly
 as it did before, the report for it is still open, and I have linked the result to it.
 
-### (c) Five where the CHECK is out of date, not the product
+### (c) Seven where the CHECK is out of date, not the product
 
 Each of these was reported before and the product team closed it as intended behaviour. The product
 is doing what was decided; our check still describes the older search. They are: the twenty-result
 count, a part in the catalogue that was never stocked, finding a record by a fragment from the
-middle of a word, one name bringing back differently spelled ones, and the usage-tracking event.
+middle of a word, one name bringing back differently spelled ones, the usage-tracking event, and
+the two about pressing Enter described above.
 
 **What I need from you eventually:** whether each is retired or reworded. I cannot change what a
 check expects.
@@ -106,9 +117,10 @@ than the product. I mention it because each one would have been a false report:
 - Three readings said records from another location were still showing after switching. They were
   not: switching behind the screen never moves the screen, which keeps its location in the browser.
   Done through the menu the way a person does it, it is correct.
-- And the one above about pressing Enter: my first write-up said it happened every time. It does
-  not — it is intermittent, and I corrected the record rather than leave a developer chasing
-  something that reproduces on demand.
+- And the one above about pressing Enter, twice over: I first wrote that it happened every time,
+  then that it happened only on the first search after opening the app. Neither was true. Running it
+  down properly showed the mouse pointer was the cause, which makes it something already decided
+  rather than a new fault. Both write-ups were corrected on the checks before you saw them.
 
 ---
 
@@ -116,11 +128,10 @@ than the product. I mention it because each one would have been a false report:
 
 | # | What it is | The question | Your options | If you say nothing |
 |---|---|---|---|---|
-| 1 | Pressing Enter can open the wrong record on the first search after opening the app | May I raise this one report? | **(a)** yes, raise it — I have the write-up and pictures ready · **(b)** no, leave it recorded on the check only | It stays recorded against the check and no developer sees it |
-| 2 | Five checks the product team has already closed as intended | Retire them, or reword them to match what was decided? | **(a)** retire · **(b)** reword and I will do it · **(c)** leave them failing as a standing flag | They keep showing as failures every run and make the totals look worse than they are |
-| 3 | Typing an exact number no longer gets a line of its own at the top | Was that changed on purpose? | **(a)** yes — then the two checks need rewording · **(b)** no — then it is a real fault and I will write it up | Two checks keep failing and we do not know which side is wrong |
-| 4 | Phones: capped list with "Show All", where our checks require the full scrolling list | Which way is right? | **(a)** phones should match the computer, so reword three checks · **(b)** phones should scroll the whole list, so it is a fault and the other request is wrong | Three checks keep failing and the two requests stay in conflict |
-| 5 | The words inside the phone search box | "Search everything", or what it says now? | **(a)** change the product · **(b)** change the check | One check keeps failing |
+| 1 | **Seven** checks the product team has already closed as intended — the five below plus the two about pressing Enter | Retire them, or reword them to match what was decided? | **(a)** retire · **(b)** reword and I will do it · **(c)** leave them failing as a standing flag | They keep showing as failures every run and make the totals look worse than they are |
+| 2 | Typing an exact number no longer gets a line of its own at the top | Was that changed on purpose? | **(a)** yes — then the two checks need rewording · **(b)** no — then it is a real fault and I will write it up | Two checks keep failing and we do not know which side is wrong |
+| 3 | Phones: capped list with "Show All", where our checks require the full scrolling list | Which way is right? | **(a)** phones should match the computer, so reword three checks · **(b)** phones should scroll the whole list, so it is a fault and the other request is wrong | Three checks keep failing and the two requests stay in conflict |
+| 4 | The words inside the phone search box | "Search everything", or what it says now? | **(a)** change the product · **(b)** change the check | One check keeps failing |
 
 **Nothing else is waiting on you, and nothing is blocked.** Every check has been run and answered.
 
@@ -134,7 +145,7 @@ Newly failing this pass: C44850 · C44854 · C44898 · C45132 · C45134 · C4513
 Already failing before this pass: C45160 · C53476 · C53601 · C55660 · C55685 · C55716
 Now passing, previously expected to fail: C55669 (VIN) · C55707 / C72120 (prefix ranking) · C53605 (two-field words)
 
-Tickets referenced: SV-10188 (open, C44854 reproduces it) · SV-10061, SV-10001, SV-10320, SV-10025,
+Tickets referenced: SV-10188 (open, C44854 reproduces it) · SV-10061 — the pointer behaviour, OBSOLETE, which C55673 and C55686 reproduce · SV-10001, SV-10320, SV-10025,
 SV-9167, SV-10340 (all OBSOLETE) · SV-10547 (Done) and SV-10556 (OBSOLETE) — the two behind item 3 ·
 SV-10345 (open) — the "Show All on mobile" request behind item 4.
 
