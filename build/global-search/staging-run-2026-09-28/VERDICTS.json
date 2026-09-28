@@ -150,6 +150,91 @@
    "v": "Passed",
    "why": "Re-run on staging, where the suite now lives. There is no Contacts tab and no Contacts group anywhere. Searching a contact person's name (\"Oknokwo\", the contact Marlene Okonkwo) and opening the Customers tab returns the company she belongs to - ZZAUTOTEST Bridgeport Hauling - and the row's second line says \"Contact match\" and names her, so you can see why it came back.",
    "build": "v26.39.1-02c6b6c"
+  },
+  "44823": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Every group heading gives the kind of record and how many matched, in brackets. Searching \"Fib\" gave this, which shows the rule working across eight groups at once: work orders 20 matches showing 5, customers 3 showing 3, assets 6 showing 5, parts 5 showing 5, vendors 1 showing 1, part sales 1 showing 1, purchase orders 9 showing 5, supplier bills 5 showing 5. No count read higher than twenty.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44824": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. No group ever showed more than five rows. Searching \"Fib\" gave this, which shows the rule working across eight groups at once: work orders 20 matches showing 5, customers 3 showing 3, assets 6 showing 5, parts 5 showing 5, vendors 1 showing 1, part sales 1 showing 1, purchase orders 9 showing 5, supplier bills 5 showing 5. Where a group had more than five matches it showed exactly five; where it had five or fewer it showed them all.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44825": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A \"Show all\" link appears on a group's heading exactly when that group has more than five matches, and not otherwise. Searching \"Fib\" gave this, which shows the rule working across eight groups at once: work orders 20 matches showing 5, customers 3 showing 3, assets 6 showing 5, parts 5 showing 5, vendors 1 showing 1, part sales 1 showing 1, purchase orders 9 showing 5, supplier bills 5 showing 5. The three groups with more than five (20, 6 and 9) each carried the link; the five groups with five or fewer (5, 3, 1, 1, 5) carried none.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44827": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The groups run top to bottom in this order: work orders, customers, assets, parts, vendors, part sales, purchase orders, supplier bills - the exact order the check asks for. There is no Contacts group. The order was the same on every search tried today.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44830": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The group order on the All tab is work orders, customers, assets, parts, vendors, part sales, purchase orders, supplier bills, with no Contacts group - matching the eight-kind sequence this check requires. Within each group the closest matches come first: an exact match on the typed word sits above rows that only matched loosely.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44828": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing \"Fib\" and looking at a matching row, the letters \"Fib\" are picked out on their own inside the text - they sit in their own piece of markup and are drawn bolder than the words around them. Only those three letters are picked out, not the whole row.\n\nOne small difference from the check's wording: the check mentions the screenshots showing yellow highlighting. The product marks the letters by making them bolder rather than putting a yellow background behind them. The requirement itself - that the matched part is picked out and only the matched part - is met.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44831": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A work order row reads \"S2-34140 ZZAUTOTEST Fibridge Commercial\" in bold as its main line - the number and the customer - with a coloured status badge reading \"In Progress\", a second line of \"TRK 412 · 2019 Freightliner Cascadia\" (the unit number and the vehicle), and an icon on the left.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44832": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer row reads \"ZZAUTOTEST Fibridge Commercial\" as its main line, carries a chip reading \"13 open\" for its open work orders, shows \"4120 Fibridge Commerce Way, Fernvale, Ohio\" as its second line, and has an icon on the left.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44833": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. An asset row reads \"2021 KEN WORTH T680\" as its main line - year, make and model - with the owning customer \"ZZAUTOTEST Fibridge Logistics\" as smaller text beneath, and a vehicle icon on the left.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44834": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A part row reads \"ZZAUTOTEST Fibridge Wheel Seal\" as its main line, carries a quantity chip reading \"2 Available\", shows the part number \"ZZT-FIB-1002\" as its second line, and has an icon on the left.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44835": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A supplier row reads \"ZZAUTOTEST Fibridge Mining\" as its main line, with \"(264) 555-0160 · 600 Fibridge Quarry Road, Marnston, Ohio\" - telephone and address - as its second line, and an icon on the left.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44826": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Clicking \"Show all\" on a group heading keeps you inside the search window and switches it to that kind of record. Starting on All, clicking the work orders \"Show all\" left the window open, made \"Work orders (20)\" the selected tab, and showed twenty rows every one of which was a work order. The page behind did not change and no separate results page opened.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44829": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. There is a hidden announcement for screen readers that updates with the results: it reads \"50 results found across 8 categories\", which is the wording the check describes. Keyboard focus is also clearly visible - pressing Tab put a solid two-pixel blue outline around the tab it landed on.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44836": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A part sale row reads, for example, \"P2-2250 A & J Truck & Trailer Repair\" as its main line - the sale number and the customer - with a status badge reading \"Complete\", then \"$68.25 · Admin ShopView · Sep 25, 2026\": the total, who raised it and the date. There is an icon on the left.\n\nWorth knowing for whoever runs this by hand: rows for sales still at estimate stage show no money amount, because there is no total on them yet. Pick a completed or paid sale to see the price.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44837": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer matched through one of its contacts still comes back, and the row tells you why.\n\nSearching the contact's e-mail address returned ZZAUTOTEST Bridgeport Hauling with a second line reading \"Contact match: marlene.okonkwo@bridgeporthauling-zzt.com\". Searching her telephone number returned the same company reading \"Contact match: (419) 555-0177\", and it works however the number is typed - with brackets and spaces, with dashes, or as plain digits. So the company is found, and it is clear the match came from a contact rather than the company's own details.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44838": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Colours in the search are the same ones used elsewhere, checked by comparing the SAME record in both places rather than two different records.\n\nA part: ZZVORTAC Brake Kit reads \"0 available\" on the parts page in red on white, and exactly the same red and white in the search. A work order status: \"Invoiced\" is the same green in the work orders list and in the search, down to the same shade.\n\nThe search is not keeping a palette of its own.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44895": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Contacts are not a thing you can search for in their own right, and that is correct.\n\nThere is no Contacts tab in the row of tabs and no Contacts group in the results, on any search tried. When a contact's name, telephone or e-mail matches, what comes back is the company they belong to - the customer or the supplier row - with its second line reading \"Contact match\" and showing the detail that matched.",
+   "build": "v26.39.1-02c6b6c"
   }
  }
 }
