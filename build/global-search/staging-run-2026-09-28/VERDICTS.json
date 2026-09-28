@@ -549,8 +549,8 @@
   },
   "55673": {
    "v": "Failed",
-   "why": "Re-run on staging, where the suite now lives. Type a search, press Enter without touching the arrow keys, and you should open the FIRST result. You open a different one.\n\nSearching a customer's name returned twelve results across several sections. The row the screen highlights ready for Enter is the EIGHTH one - a completely different company that only loosely matches - and pressing Enter opens that company. The first result, a job for the customer actually searched for, is skipped.\n\nTried three times from a freshly loaded page, identical every time. When the results happen to be all of one kind it behaves correctly - the first row is highlighted and Enter opens it - so it goes wrong only when the results span more than one section, which is most of the time.\n\nThis matters because type-and-press-Enter is the quickest and most common way people use search, and it quietly takes them to the wrong record.",
-   "build": "v26.39.1-02c6b6c"
+   "build": "v26.39.1-02c6b6c",
+   "why": "Re-run on staging, where the suite now lives. Type a search, press Enter without touching the arrow keys, and you should open the FIRST result. Sometimes you open a different one.\n\nSearching a customer's name returned twelve results across several sections. On the occasions it goes wrong, the row the screen has ready for Enter is the EIGHTH - a different company that only loosely matches - and Enter opens that company instead of the job for the customer actually searched for.\n\nHOW OFTEN: it is intermittent, and the pattern matters. Run twenty-odd times, it went wrong on the FIRST search after freshly opening the app, with the search opened by clicking the box rather than by the keyboard shortcut. Every repeat after that in the same sitting was correct. So the person most likely to hit it is someone who has just opened ShopView and goes straight to search - which is the common case, not a rare one.\n\nNot the same as the mouse problem reported before and closed: this happens with the mouse left alone, and it is the very first search rather than one after moving across the list."
   },
   "55674": {
    "v": "Passed",
@@ -784,8 +784,8 @@
   },
   "55686": {
    "v": "Failed",
-   "why": "Re-run on staging, where the suite now lives. Half of this is right and half is wrong.\n\nRIGHT: the customer that genuinely contains what was typed is listed FIRST, above the similarly-spelled ones.\n\nWRONG: this check also requires that pressing Enter opens that customer. It does not - it opened a PART instead, from a different section further down. The row the screen has ready for Enter is not the first one. Same underlying problem as the separate check on pressing Enter.",
-   "build": "v26.39.1-02c6b6c"
+   "build": "v26.39.1-02c6b6c",
+   "why": "Re-run on staging, where the suite now lives. Half of this is right and half is wrong.\n\nRIGHT: the customer that genuinely contains what was typed is listed FIRST, above the similarly-spelled ones. That part is solid.\n\nWRONG: this check also requires that pressing Enter opens that customer. On the occasion it was run it opened a PART from a section further down instead, because the row the screen had ready for Enter was not the first one.\n\nThis is the same underlying problem as the separate check on pressing Enter, and it is intermittent in the same way - it goes wrong on the first search after freshly opening the app and behaves correctly on repeats. The ordering half of this check passes either way."
   },
   "55688": {
    "v": "Passed",
