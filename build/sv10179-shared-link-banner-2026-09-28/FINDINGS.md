@@ -106,3 +106,94 @@ same way: navigate to Inventory, come back to Work Orders, read the chips.
 The E and F cases are built so a wrong result would be visible: the link carries
 `status=paid` and **no** `vehicleHere`, so if search or sort had wrongly saved, the
 "Asset on Site: Yes" would have been dropped from the saved view. It survived both.
+## §5 Branch — the link's filters really filter the list (not just the chip label)
+
+Read from the Status column of the rows themselves, `sv10179.qa.shopview.com`:
+
+| Link | Chip | Rows read | Status values |
+|---|---|---|---|
+| `?status=declined` | `Status: Declined` | 19 (18 + totals row) | Declined ×18 |
+| `?status=estimate` | `Status: Estimate` | 31 (30 + totals) | Estimate ×30 |
+| `?status=estimate&status=declined` | `Status: Estimate, +1` | 31 (30 + totals) | Estimate ×27, Declined ×3 |
+| `?status=declined&vehicleHere=1` | `Status: Declined` | 7 (6 + totals) | Declined ×6 — both filters applied, list narrows from 19 to 7 |
+| **`?status=declined` then F5** | `Status: Declined` | 19 (18 + totals) | Declined ×18 — **refresh keeps the link's filters (req. 4)** |
+
+No banner on any of them.
+
+## §6 Branch — no banner anywhere else either
+
+Visited live on the branch, each checked for the banner element and for either visible
+string:
+
+| Page | Filter chips present | Banner |
+|---|---|---|
+| Parts → Inventory | Bin Location, Category, Supply | none |
+| Customers | (no filter chips) | none |
+| Reports → Punch Clock Activities | Date range, Staff | none |
+| Administration → Staff | Roles, Workplaces, Departments | none |
+| Schedule | (no filter chips) | none |
+| Work Orders | Status, Assigned to me, Asset on Site | none |
+## §7 A second page, to prove it is not only Work Orders — Parts → Part Sales
+
+| Step | Result |
+|---|---|
+| Open Part Sales | lands on its own default view `?status=estimate&status=approved`, chip `Status: Estimate, +1`, 11 rows, no banner |
+| Add "Invoiced" to the Status filter | chip `Status: Estimate, +2`, 30 rows |
+| Leave to Work Orders, come back | still `Status: Estimate, +2` — saving works here too |
+
+## §8 Whole-output comparison against the pre-fix build (Rule 74)
+
+- **Chunk inventory**: production and the branch both ship **182** JavaScript chunks, and the
+  **set of names is identical** — nothing added, nothing removed, so no route or page
+  appeared or disappeared with this change.
+- Every chunk's content hash differs, which is expected and not informative: this is a
+  different build of the whole application and content hashes cascade through the import
+  graph. The meaningful comparison is the one in §1 — the nine chunks that referenced
+  `SharedLinkBanner` no longer do, and no other page-level behaviour module changed shape.
+- **On screen**, the same link on both builds produces the same header, the same tab row,
+  the same filter chips and the same table columns. The only difference is the missing blue
+  bar — and, as a consequence, the tab row starting about 30 px higher.
+## §9 The link must not quietly become your saved view — three pages, including a bad value
+
+| Page | What I did | Saved view afterwards |
+|---|---|---|
+| Work Orders | saved view was `status=paid` + Work Orders tab. Opened `?status=declined&customer=00000000-…` (an id that does not exist). The link applied Declined (19 rows) and showed an unlabelled customer chip. Left without touching anything. | **unchanged** — back to `status=paid&tab=work_orders`, 31 rows |
+| Parts → Part Sales | saved view was `Status: Estimate, +2` (30 rows). Opened `?status=declined` — 3 rows, no banner. Left without touching anything. | **unchanged** — `Status: Estimate, +2`, 30 rows |
+| Parts → Inventory | saved view was the plain default. Opened `?category=00000000-…` — 0 rows, no banner. Left without touching anything. | **unchanged** — All bin locations / All categories, 30 rows |
+
+## §10 Build markers, start and end
+
+| Environment | At the start | At the end |
+|---|---|---|
+| Branch `sv10179.qa.shopview.com` | v26.39.1-29d9aae, last-modified Mon 28 Sep 2026 12:53:08 GMT | **identical** |
+| Production `app.shopview.com` | v26.39.1-3ef6ade, last-modified Fri 25 Sep 2026 09:32:14 GMT | **identical** |
+
+No redeploy under the pass, so every result above belongs to one build.
+
+## §11 Honest notes
+
+- **The ticket is in `Code Review`, not `TESTING QA`**, even though Dipesh posted "Ready for
+  QA testing" and created the environment. Worth a status move.
+- The branch session expired part-way through (`401 session_expired`). It was self-recovered
+  with `quick-login` — no new cookies were needed, and the build marker was identical before
+  and after, so nothing had to be re-run.
+- The production BEFORE required creating a saved filter first (the banner only ever showed
+  when you had one). That filter was removed afterwards and the empty state re-read.
+- `Administration → Settings` was the one route not visited on screen; it has no filter bar,
+  and its page chunk (`Administration`) was checked at code level and carries no banner.
+
+## §12 Verdict
+
+**PASS** — all four requirements met.
+
+1. No banner and no "Back to my view" anywhere — nine of nine page chunks no longer
+   reference the component, and eleven pages were checked on screen.
+2. A link with filters opens showing those filters — proven from the rows, not just the chip,
+   for single and multiple values.
+3. Opening a link does not change your saved filters, on three different pages, including
+   when the link carries a value that does not exist; and a filter change you make afterwards
+   is saved normally, while search-only and sort-only are not.
+4. Refreshing keeps the filters from the link.
+
+Per the per-ticket-branch rule, a QA pass on this branch is treated as final: no re-check
+queue is opened.

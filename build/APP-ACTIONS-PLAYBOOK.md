@@ -3402,6 +3402,24 @@ down is the failure this section exists to prevent.
 
 ---
 
+
+### §U.0b addendum — `pgrep -f` in an `until` loop matches its OWN shell (2026-09-28)
+
+`until ! pgrep -f "node verify2.mjs" >/dev/null; do sleep 6; done` **never exits**: the
+wrapper shell's own command line contains the string `node verify2.mjs`, so `pgrep -f`
+finds itself. Two wrapper shells sat in that loop for ten minutes on SV-10179 and the
+script they were gating never started.
+
+Same family as the `pkill -f` trap above — a `-f` pattern is matched against every
+process's full command line, including the one doing the matching.
+
+**Fix: break the literal with a bracket class** so the pattern cannot match itself:
+
+    until ! pgrep -f "node veri[f]y2.mjs" >/dev/null; do sleep 8; done
+
+To clear one that is already stuck: `pgrep -af <pattern>` to read the PIDs, then
+`kill <pid>` **by number**. Never `pkill -f`.
+
 ## §V — EVIDENCE THAT CANNOT BE CHALLENGED: building annotated exhibits for a Jira comment
 
 The bar the QA lead set: *"i dont want any front end or backend developers to challenge me or bite me
