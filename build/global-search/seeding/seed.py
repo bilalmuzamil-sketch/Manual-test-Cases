@@ -60,7 +60,10 @@ ENV_LABEL = 'qa' if COOKIES == '/tmp/qa/cookies.json' else os.path.basename(os.p
 #   seed-manifest-gs-v2.json    the "Fibridge" universe for the 90 V2 cases (6721-6740)
 # Ids and state are keyed by manifest AND environment, so one never overwrites the other.
 MANIFEST = os.environ.get('SEED_MANIFEST', 'seed-manifest.json')
-MSLUG = 'gsv2' if 'gs-v2' in MANIFEST else 'v1reg'
+# Slug is derived from the manifest FILENAME so every universe keys its own ids/state files.
+# It used to be a two-way 'gsv2 or v1reg' test, which made the ranking and toggle manifests
+# both write the v1reg files and silently overwrite each other's ids.
+MSLUG = (re.sub(r'^seed-manifest-?|\.json$', '', MANIFEST).replace('-', '') or 'v1reg')
 IDS_FILE = ('seed-ids-%s.json' % ENV_LABEL if MANIFEST == 'seed-manifest.json'
             else f'seed-ids-{MSLUG}-{ENV_LABEL}.json')
 STATE_FILE = ('seed-state-live.json' if (ENV_LABEL == 'qa' and MANIFEST == 'seed-manifest.json')

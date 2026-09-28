@@ -16,9 +16,17 @@ WHAT IT ASSERTS, per case: the keyword is PRIVATE (only its own records answer),
 the case needs, and the records come back in the right GROUP. It checks identity and counts, never
 "were there results".
 """
-import json, sys, time, urllib.error, urllib.parse, urllib.request
+import json, os, ssl, sys, time, urllib.error, urllib.parse, urllib.request
 
-C = json.load(open('/tmp/qa/cookies.json'))
+# 🔴 TWO FAULTS FIXED 2026-09-28, both of which made a WORKING environment read as a dead one:
+#   1. the profile was hard-coded to the QA branch, so SEED_PROFILE was ignored and a staging run
+#      searched with the wrong (or a missing) session;
+#   2. the request was made with no CA bundle, so every call failed TLS verification behind the
+#      agent proxy and was reported as 'transport error after 3 attempts' - which reads as "the
+#      search is down" and is really "this script cannot make an HTTPS call".
+# The real reason is now printed instead of being swallowed (Rule 104: prove the instrument).
+C = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
+CTX = ssl.create_default_context(cafile='/root/.ccr/ca-bundle.crt')
 CK = '; '.join(f"{k}={C[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
 
 def search(q):
@@ -28,15 +36,17 @@ def search(q):
     req = urllib.request.Request(u, headers={
         'Cookie': CK, 'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0', 'Referer': f"https://{C['host']}/"})
+    last = ''
     for attempt in range(3):
         try:
-            with urllib.request.urlopen(req, timeout=45) as r:
+            with urllib.request.urlopen(req, timeout=45, context=CTX) as r:
                 return (json.loads(r.read().decode()).get('data') or {}), None
         except urllib.error.HTTPError as e:
             return None, f"HTTP {e.code}"
-        except Exception:
+        except Exception as e:
+            last = f'{type(e).__name__}: {e}'
             if attempt < 2: time.sleep(2 * (attempt + 1))
-    return None, 'transport error after 3 attempts'
+    return None, f'transport error after 3 attempts ({last})'
 
 def groups(d):
     return {g['type']: (g.get('items') or []) for g in (d.get('groups') or []) if g.get('items')}
@@ -52,7 +62,9 @@ def groups(d):
 # So each check declares which companion groups its own signal legitimately produces; anything
 # outside that set is still a real failure.
 CHECKS = [
-    ('ZZPREFIX',      'customers', 3, '55707', 'prefix / whole-word / typo, one keyword', set()),
+    # 4, not 3: 'ZZPREFIY Cartage' was added later as a SECOND typo row so C55724 and C72120-22
+    # have a spare near-miss that is not C55707's own. Counted 2026-09-28 on staging.
+    ('ZZPREFIX',      'customers', 4, '55707', 'prefix / whole-word / typo, one keyword', set()),
     # 🔴 assets is unavoidable here, not sloppiness: an asset is indexed under its OWNER'S company
     # name, so every asset belonging to a ZZCUSTOPEN customer answers the keyword however the asset
     # itself is named. Renaming its VIN and unit (which I did, and which landed) changes nothing.
@@ -63,7 +75,10 @@ CHECKS = [
     ('ZZASSETLIFT',   'assets',    2, '55709', 'asset on an open work order vs a newer idle one',
      {'work_orders'}),
     ('ZZVENDORPO',    'vendors',   2, '55710', 'vendor with open POs vs none', {'purchase_orders'}),
-    ('ZZTIEBREAK',    'customers', 2, '55716', 'identical matches, one updated later', set()),
+    # 5, not 2: 'ZZTIEBREAK Alpha/Beta Hauling' and 'ZZTIEBREAK Hauling' were added on 2026-09-28
+    # to settle the tie-break by address length. The pair C55716 reads is still Transport One/Two,
+    # and the ORDER assertion below is what actually proves it.
+    ('ZZTIEBREAK',    'customers', 5, '55716', 'identical matches, one updated later', set()),
     ('ZZSTOCKPART',   'parts',     2, '44852', 'in stock vs out of stock (out MUST still appear)',
      {'purchase_orders'}),
     ('ZZPARTBUSY',    'parts',     2, '55712', 'recent activity vs quiet, identical stock', set()),
@@ -169,7 +184,7 @@ def main():
         print(f"  ❌ {len(fails)} check(s) FAILED: {', '.join(fails)}")
         print("     Do NOT treat the data as seeded. Re-run ./reseed_everything.sh qa and read the log.")
         sys.exit(1)
-    print(f"  ✅ all {len(CHECKS) + len(ORDER) + 1} ranking/fuzzy checks passed on qa "
+    print(f"  ✅ all {len(CHECKS) + len(ORDER) + 1} ranking/fuzzy checks passed on {C['host']} "
           f"({len(CHECKS)} presence + {len(ORDER)} ORDER + 1 fuzzy-reachability)")
 
 if __name__ == '__main__':

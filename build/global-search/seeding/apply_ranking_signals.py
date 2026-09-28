@@ -20,7 +20,13 @@ import json, os, sys, urllib.error, urllib.parse, urllib.request, uuid
 CONFIRM = '--confirm' in sys.argv
 R_, X_ = '\033[31m', '\033[0m'
 HERE = os.path.dirname(os.path.abspath(__file__))
-C = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
+PROFILE = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
+C = json.load(open(PROFILE))
+# 🔴 IDS ARE PER ENVIRONMENT. This used to read 'seed-ids-ranking-qa.json' whatever profile it
+# was given, so a staging run looked up the QA BRANCH's work-order ids, found none of them
+# there, and reported 8 FAILED - which reads as a broken product and is a broken script.
+# Same rule, same derivation, as seed.py.
+ENV_LABEL = 'qa' if PROFILE == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(PROFILE))
 CK = '; '.join(f"{k}={C[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
 
 def call(path, method='GET', body=None):
@@ -59,7 +65,7 @@ def signal_open_work_orders():
 
     None of this was visible to the seeder OR to the first verifier - both checked that the records
     existed. Only the ORDER shows it, which is why verify_ranking.py now asserts order."""
-    ids_path = os.path.join(HERE, 'seed-ids-ranking-qa.json')
+    ids_path = os.path.join(HERE, f'seed-ids-ranking-{ENV_LABEL}.json')
     if not os.path.exists(ids_path):
         return '🔴 no ranking ids file — run seed.py --confirm first'
     ids = json.load(open(ids_path))
