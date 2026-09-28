@@ -33,7 +33,21 @@ export async function createRole(page, name, changes) {
       return `${L}: ${isOn ? 'on' : 'off'} -> ${w ? 'on' : 'off'}`;
     }, [label, want]);
     flips.push(r);
-    await page.waitForTimeout(700);
+    await page.waitForTimeout(1200);
+    // Some permissions cascade and raise their own confirmation before the flip is even accepted -
+    // "Disable See Financial Data?" warns that Part Sales, Invoicing & Payments, Order Parts and
+    // AP/AR go with it. Until that is confirmed the toggle does not take, and the role is never
+    // created. Confirm it here rather than at Save time.
+    const casc = await page.evaluate(() => {
+      const d = [...document.querySelectorAll('.q-dialog')].filter(x => x.getBoundingClientRect().width > 150).pop();
+      if (!d) return null;
+      const txt = (d.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 180);
+      const b = [...d.querySelectorAll('button,.q-btn')].filter(e => e.getBoundingClientRect().width)
+        .find(e => /^(Disable|Enable|Confirm|Yes|Continue|OK)$/i.test((e.innerText || '').trim()));
+      if (!b) return 'dialog with no obvious confirm: ' + txt;
+      b.click(); return 'confirmed "' + (b.innerText || '').trim() + '" on: ' + txt;
+    });
+    if (casc) { flips.push('  cascade -> ' + casc); await page.waitForTimeout(2500); }
   }
   const created = await page.evaluate(() => {
     const b = [...document.querySelectorAll('button,.q-btn')].filter(x => x.getBoundingClientRect().width)
@@ -41,9 +55,14 @@ export async function createRole(page, name, changes) {
     if (!b) return 'no Create button'; b.scrollIntoView({ block: 'center' }); b.click(); return 'pressed ' + (b.innerText||'').trim();
   });
   await page.waitForTimeout(6000);
-  const anyway = await page.evaluate(() => { const d = document.querySelector('.q-dialog'); if (!d) return null;
-    const b = [...d.querySelectorAll('button,.q-btn')].find(x => /Anyway/i.test((x.innerText||'').trim())); if (b) { b.click(); return 'pressed Edit Anyway'; }
-    return 'dialog: ' + (d.innerText||'').replace(/\s+/g,' ').slice(0,160); });
+  const anyway = await page.evaluate(() => {
+    const d = [...document.querySelectorAll('.q-dialog')].filter(x => x.getBoundingClientRect().width > 150).pop();
+    if (!d) return null;
+    const txt = (d.innerText||'').replace(/\s+/g,' ').slice(0,160);
+    const b = [...d.querySelectorAll('button,.q-btn')].filter(e => e.getBoundingClientRect().width)
+      .find(x => /Anyway|^(Disable|Confirm|Yes|Continue|Save|Create)$/i.test((x.innerText||'').trim()));
+    if (b) { b.click(); return 'pressed "' + (b.innerText||'').trim() + '" on: ' + txt; }
+    return 'dialog with no obvious confirm: ' + txt; });
   await page.waitForTimeout(10000);
   return { picked, applied, flips, created, anyway, url: page.url() };
 }

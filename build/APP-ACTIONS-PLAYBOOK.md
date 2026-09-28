@@ -5504,3 +5504,15 @@ To switch, use the screen: profile chip (top right) → **"Change Location: <cur
 `POST /api/iam/change-location` succeeded once and then 500'd on every subsequent call, stranding the
 session. Workplaces on prod: Inventory 1 · Inventory 2 · Truck Hill 1 · Trucks Hill 2 · Import Test ·
 QA New · QA Testing · For Ryan · SANKAN. **Restore the workplace you started in and read it back.**
+
+**PERMISSION ATOMS CASCADE — AND THE CASCADE MUST BE CONFIRMED BEFORE THE TOGGLE TAKES (2026-09-28).**
+Turning **See Financial Data** off raises *"Disable See Financial Data? Disabling See Financial Data
+will also disable **Part Sales** and **Invoicing & Payments** and **Order Parts** and **View and Manage
+AP/AR Data**. Continue?"* — press **Disable**. Until that is confirmed the toggle does not take and the
+role is created without the change, silently: the role appears in the list looking normal and the
+permission is still on. `build/.../seed/lib-role.mjs` now confirms a cascade dialog straight after each
+flip, not at save time.
+**Consequence for test design:** a person who may **order parts** but may **not see money** cannot exist
+in this product — the two are coupled. A check that asks for that state is asking for something the
+product refuses to build, and should be read as being about **receiving** (a different atom) rather than
+ordering. Relevant to the "gated by its mapped atom" checks: the mapping is not one-to-one.

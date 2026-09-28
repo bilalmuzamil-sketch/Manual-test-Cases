@@ -4164,3 +4164,17 @@ the column-headings row (`Name/Description`) is the reliable tell.
 call, leaving the session stranded on the wrong workplace. The screen is reliable: the profile chip
 (top right) → **"Change Location: <current>"** → pick from the list. Restore the original workplace
 when finished, and read it back.
+
+## L0214 — A setting that cascades does not take effect until its warning is confirmed (2026-09-28)
+Flipping **See Financial Data** off in the role editor raises a confirmation naming four other
+permissions that go with it. My role-builder flipped the toggle, never answered the dialog, pressed
+Create, and produced **a role with the permission still on** — which would have made every permission
+check taken on it wrong, in the direction of "the product ignores permissions". The role even appears
+in the list looking perfectly normal.
+**The rule.** After flipping any permission, look for a confirmation **before** moving on, and read the
+role back afterwards. This is the same family as the settings page, where pressing Turn On/Off does not
+persist until Save Settings is pressed (playbook §A): **in this product a confirmation is part of the
+change, not an acknowledgement of it.**
+**Bonus fact worth more than the fix:** the product couples See Financial Data with Part Sales,
+Invoicing & Payments, Order Parts and AP/AR — so "may order but may not see money" is a state the
+product will not build, and a test asking for it needs re-reading.
