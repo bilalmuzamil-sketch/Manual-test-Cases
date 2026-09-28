@@ -40,6 +40,116 @@
   "55716": {
    "v": "Failed",
    "why": "Re-checked from scratch on staging, with records built for the purpose. The most recently touched record does not come first, and touching a record does not move it at all.\n\nFive customers were set up whose names all begin with the same made-up word, so the search has nothing but recency to separate them. Ordered by when they were last touched, newest first, they are: Alpha Hauling (5:32:43pm), Beta Hauling (5:32:25pm), Hauling (5:30:04pm), then two older ones from this afternoon.\n\nThe search returns them in this order: Hauling, Beta Hauling, Alpha Hauling, Transport Two, Transport One. The most recently touched of them all, Alpha Hauling, comes third.\n\nAlpha was then edited, which made it the newest by a clear margin, and the search was run again after several minutes to allow for any delay in the search catching up. The order did not change by a single place.\n\nA report for this was already raised and the product team closed it OBSOLETE, and you said to leave it and not re-open it. So nothing is being raised. This result simply replaces the old one, which was measured on the test branch that has since been deleted, with a fresh measurement on staging.\n\nThe records used are all named beginning ZZTIEBREAK and have been left in place so this can be re-run without setting it up again."
+  },
+  "44804": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Pressing Ctrl and K together opens the search window straight away. It is a box in the middle of the screen, 640 across and sitting 96 down from the top - not hanging off the header field. The page behind it is dimmed, the cursor is already in the box so you can type immediately, and it reads \"Search work orders, customers, parts and more\".",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44805": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Clicking the search field in the top bar opens the same window, in the same place, dimmed and ready to type.\n\nNote for whoever runs this by hand: the Customers page has a SECOND, smaller search box of its own further along the same row, which only filters that page's list. Click the wide one in the very top bar, not that one.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44806": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Pressing Escape closes the window and removes the dimming, leaving you on the page you were on.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44807": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. With the window open, pressing Ctrl and K again closes it and removes the dimming.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44808": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Clicking anywhere on the dimmed page behind the window closes it and removes the dimming.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44809": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Each press of the down arrow moves the highlight to the next result, and each press of the up arrow moves it back. Watched across nine presses running from work orders into customers: the highlight landed only on results and never once on a group heading.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44810": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Pressing Enter on the highlighted result opens that record in the same tab and closes the search window. Highlighting a customer and pressing Enter went from the customers list straight to that customer's own page.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44811": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Pressing Ctrl and Enter opens the highlighted record in a NEW tab: a second tab appeared at that record's address, and the tab you were on stayed exactly where it was.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44812": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Pressing Tab moves the keyboard onto the row of tabs. The right arrow moves to the next tab along (All to Work orders) and the left arrow moves back. The keyboard never leaves the search window.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44813": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The reminder line along the bottom is there in every state - before anything is typed and while results are showing. It reads \"Navigate\", \"Select\" and \"Close esc\" and does not disappear.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44814": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The row of tabs reads, left to right: All, Work orders, Customers, Assets, Parts, Vendors, Part sales, Purchase orders, Vendor invoices - exactly that order. There is no Contacts tab. All is the one selected when the window opens, and once something is typed every tab carries its own number.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44815": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Under All, every kind of record that matched appears, each under its own heading, and the headings come in the fixed order the check requires: work orders, customers, assets, parts, vendors, part sales, purchase orders, vendor invoices. There is no Contacts group - a contact match shows up under its company instead.\n\nOne wording point for you, not a fault: the check gives \"a true count\" as its example, but every heading shows 20 because the product now caps every count at 20 on purpose. Another check in this same suite requires exactly that capping, so our own two checks contradict each other. The product follows the newer written requirement. Worth tidying the wording of this one.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44816": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Choosing the Work orders tab narrows the results to work orders and nothing else. Twenty rows came back and every single one was a work order record - no other kind of record appeared. The Work orders tab showed as the selected one while that was true.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44817": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Choosing the Customers tab narrows the results to customers and nothing else. Twenty rows came back and every single one was a customer record - no other kind of record appeared. The Customers tab showed as the selected one while that was true.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44818": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Choosing the Assets tab narrows the results to assets and nothing else. Twenty rows came back and every single one was a asset record - no other kind of record appeared. The Assets tab showed as the selected one while that was true.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44819": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Choosing the Parts tab narrows the results to parts and nothing else. Twenty rows came back and every single one was a part record - no other kind of record appeared. The Parts tab showed as the selected one while that was true.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44820": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Choosing the Vendors tab narrows the results to vendors and nothing else. Twenty rows came back and every single one was a vendor record - no other kind of record appeared. The Vendors tab showed as the selected one while that was true.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44821": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Choosing the Part sales tab narrows the results to part sales and nothing else. Twenty rows came back and every single one was a part sale record - no other kind of record appeared. The Part sales tab showed as the selected one while that was true.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45130": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Choosing the Purchase orders tab narrows the results to purchase orders and nothing else. Twenty rows came back and every single one was a purchase order record - no other kind of record appeared. The Purchase orders tab showed as the selected one while that was true.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45131": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Choosing the Vendor invoices tab narrows the results to vendor invoices and nothing else. Twenty rows came back and every single one was a vendor invoice record - no other kind of record appeared. The Vendor invoices tab showed as the selected one while that was true.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44822": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. All four parts hold, checked on every one of the eight entity tabs.\n\nChoosing a tab narrows the results to that kind of record only. Each tab showed twenty rows, scrolled inside the window, with no paging and no further loading. No \"Show all\" link appears inside a scoped tab - it only exists on the group headings under All. No tab's number ever read higher than twenty. And you stay inside the search window throughout - no separate results page opens.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45129": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. There is no Contacts tab and no Contacts group anywhere. Searching a contact person's name (\"Oknokwo\", the contact Marlene Okonkwo) and opening the Customers tab returns the company she belongs to - ZZAUTOTEST Bridgeport Hauling - and the row's second line says \"Contact match\" and names her, so you can see why it came back.",
+   "build": "v26.39.1-02c6b6c"
   }
  }
 }
