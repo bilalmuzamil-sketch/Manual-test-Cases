@@ -24,6 +24,20 @@ carried over: every check was performed again by hand against the site as it sta
 - A search made of two words held in different parts of one record now works. That used to return
   nothing.
 
+
+**And I checked that "all of them" really means all of them.** Counting live from the system rather
+than from any note of mine, the Global Search area holds 208 checks. 195 are in the run and all 195
+have been run. The other 13 are all correctly outside it:
+
+| How many | What they are |
+|---|---|
+| 8 | the hover buttons — a cancelled feature (see section 5) |
+| 3 | already marked by us as obsoleted or retired |
+| 2 | written by Vladimir Tomovic, which we never touch |
+
+Two further groups sit outside the area and were never in our scope: eight older search checks in a
+separate folder, also Vladimir's, and five about removing page filtering, written by Ahtasham Amjad.
+
 ---
 
 ## 2 · The 16 that did not work, sorted by what you would actually do about them
