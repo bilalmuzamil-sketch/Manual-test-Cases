@@ -101,8 +101,8 @@
    "why": "Bulk approve applied immediately and its toast offered Undo. Bulk pick neither asked to confirm nor offered undo, as picking is meant to. One toast each: '2 lines approved. Undo' and '2 parts picked.'"
   },
   "44574": {
-   "v": "Blocked",
-   "why": "Two of the three points pass: an action whose count is zero is absent rather than greyed out, and More is not empty when there is something to put in it. The remaining point needs a person without the work-order-lines permission, which this run did not build."
+   "v": "Failed",
+   "why": "Built a role with work order line editing switched off and put the second person into it. The permission is genuinely off - New Line and Add Part both disappear for them, so the role is doing its job. But the tick boxes are still there. Hovering a line reveals its tick box exactly as it does for anyone else, and ticking it raises a bar reading one selected, Create Invoice, and a close cross. The requirement says a user without that permission sees no tick boxes and no bar at all. The bar is smaller than a permitted user's - it offers only Create Invoice rather than the line and part actions - so the permission is partly respected inside the bar. The fault is that the selection and the bar are offered to them in the first place. The instrument is not in question: the same reading, on the same screen, correctly found New Line and Add Part absent for this person and present for an administrator."
   },
   "44575": {
    "v": "Passed",
