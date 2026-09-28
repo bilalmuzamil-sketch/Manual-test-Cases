@@ -310,6 +310,91 @@
    "v": "Passed",
    "why": "Re-run on staging, where the suite now lives. Emptying that same box brings the whole list straight back - thirty rows again. There is nothing to dismiss: clearing the box is what restores the list, and no banner appears at any point.",
    "build": "v26.39.1-02c6b6c"
+  },
+  "44839": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing \"Petersn\", with the o missing, still brings back Peterson records - contacts named Peterson and Peters came back, each marked as a close match with the matching part picked out.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44840": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing \"Abrige\" brings back ZZAUTOTEST Aabridge Freight, despite two letters being wrong.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44841": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing \"frieghtliner\", with the letters swapped, brings back Freightliner vehicles - several work orders on 2021 Freightliner trucks came back.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44842": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing \"Filbridge\", which only sounds like the real name, brings back the ZZAUTOTEST Fibridge records. It is matched by sound, and sits below closer spellings in the list.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44843": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A work order number is found however it is typed. S2-33692 was found by \"S2-33692\", by \"S233692\" with no dash, and by \"S2 33692\" with a space - the same work order each time. The dash and the space are ignored.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44844": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A vehicle identification number has to be exactly right. Typing the full number found the vehicle and its work orders. Changing the last character returned NOTHING AT ALL - no near match was offered, which is what this check requires. Vehicle numbers are treated as identifiers, not as words to guess at.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44845": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A telephone number matches on its digits, however it is typed. \"4195550177\" and \"(419) 555-0177\" both brought back the same customer, ZZAUTOTEST Bridgeport Hauling, and the row said \"Contact match\" and showed the number, so it is clear the match came from a contact.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44846": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A part number has to be exactly right. \"ZZT-FIB-1003\" found the part; changing the last digit to \"ZZT-FIB-1009\" returned nothing at all. No near match is offered on a part number.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44847": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A work order number one digit off does not drag back the real one. Typing \"S2-33602\" returned the genuine S2-33602 and its related records - and did NOT return S2-33692, the number it is one digit away from. Identifiers are matched exactly, so a near miss finds a different real record or nothing, never a guess.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44849": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A part sale number has to be exactly right. \"P2-2249\" found that sale. \"P2-2243\" returned the genuine P2-2243 and not P2-2249 - no near match on the number.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55713": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Short searches do not throw up loose guesses. Typing \"Abo\" brings back Abode Trucking & Repair. Typing \"Aba\", one letter off and still only three letters, does NOT bring Abode back - what comes back are genuine exact matches on \"ABA\" elsewhere. Typing the longer \"Abodee\", also one letter off, does bring Abode back. So a short search needs to be closer before it counts, which is exactly the point.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55714": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Both kinds of number have to be exactly right.\n\nPurchase order: \"I2-1519\" found it; \"I2-1518\" returned the genuine I2-1518 and not I2-1519.\n\nSupplier bill: \"ZZTINV-TOGGLE-9001\" found it; changing the last character to \"ZZTINV-TOGGLE-9004\" returned nothing at all.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55715": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A misspelt word in a part's description still finds the part. Typing \"Altenator\", with an r missing, brought back several parts whose descriptions contain Alternator, with the matching word picked out. So forgiving spelling applies to what a part is called, not only to people's and companies' names.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55725": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A search that is nothing like anything returns nothing. \"Zqwxpol\" brought back no rows at all - the search does not reach for something vaguely similar when the typing is simply unrelated.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55726": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Accents are ignored. The customer \"ZZAUTOTEST Bäcker & Sons\" comes back whether you type \"Backer\" plainly or \"Bäcker\" with the accent - the same record, from both spellings.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55727": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. An apostrophe is optional. \"Kolosov's Diesel Repair\" comes back whether you type \"Kolosovs\" without it or \"Kolosov's\" with it - the same single customer, both ways.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55728": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Matching by sound is used for names only, never for parts. Shown three ways on the same word:\n\nTyping \"Awltirnaytor\", which only sounds like alternator, on the Parts tab returned NOTHING - no part was dragged back by sound.\n\nTyping the genuine misspelling \"Altenator\" on the same tab returned seven parts, so ordinary forgiving spelling does still work on part descriptions.\n\nTyping the same sound-alike on the Customers tab returned \"ZZPHON Alternator Co\" - so matching by sound is alive and well, just kept to names.",
+   "build": "v26.39.1-02c6b6c"
   }
  }
 }

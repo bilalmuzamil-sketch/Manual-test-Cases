@@ -1,0 +1,154 @@
+{
+ "ids": {
+  "vinum": "I2-2"
+ },
+ "searches": {
+  "find a P-number": {
+   "term": "P2-",
+   "rows": [
+    "S2-33360 Abilene Mechanical Services Approved 2005 Toyota 4-runner · VIN: P2",
+    "S2-17415 Clinton Truck & Trailer Repair Approved Clark S20D · VIN: P2",
+    "S2-33463 A & J Truck & Trailer Repair Paid 2017 Ford Transit · Part number: P-2",
+    "S2-15822 Fort Mohave Diesel Repair Paid 7503 · 1995 Advance Engineered Products Quad · Part name: P2",
+    "S2-15990 Continental Fleet Services Paid 2004 INTERNATIONAL 7400 · Line item: P2-",
+    "P2 · Asset Unit: P2"
+   ],
+   "expect": null,
+   "found": null
+  },
+  "find a PO number": {
+   "term": "S2-33692",
+   "rows": [
+    "S2-33692 4 Star Truck Repair Approved 665 · 2011 Hyundai Santa Fe",
+    "S2-33692 4Refuel Ordered $60.00 · Sep 23, 2026"
+   ],
+   "expect": null,
+   "found": null
+  },
+  "find a supplier bill": {
+   "term": "I2-",
+   "rows": [
+    "I2-2 Willoughby Mechanical Services Fulfilled $229.66 · Dec 30, 2024 · Number: I-2",
+    "I2-1519 ZZVENDORPO Supply Open Ordered $58.50 · Sep 25, 2026",
+    "I2-1513 ZZAUTOTEST Fibridge Mining Ordered $90.00 · Sep 25, 2026",
+    "I2-1512 ZZAUTOTEST Fibridge Mining Ordered $100.00 · Sep 25, 2026",
+    "I2-1509 4Refuel Ordered $245.00 · Sep 25, 2026",
+    "ZZQA10301-2 ZZQA10301-B Unpaid $5.92 · Today · PO number: I2-"
+   ],
+   "expect": null,
+   "found": null
+  },
+  "C55714 exact supplier bill": {
+   "term": "I2-2",
+   "rows": [
+    "I2-2 Willoughby Mechanical Services Fulfilled $229.66 · Dec 30, 2024",
+    "I2-22 Mobile Truck & Trailer Repair Hampton Fulfilled $376.74 · Jan 8, 2025 · Number: I-22",
+    "I2-234 East Shoreham Truck & Equipment Repair Fulfilled $42.96 · Mar 26, 2025",
+    "I2-214 Darby Diesel Repair Fulfilled $68.10 · Mar 19, 2025",
+    "I2-259 Vero Beach Heavy Duty Truck & Equipment Repair Fulfilled $4.05 · Apr 3, 2025",
+    "069-601679 Stillwater Diesel Repair Unpaid $62.10 · Apr 29, 2025 · PO number: I2-2"
+   ],
+   "expect": "I2-2",
+   "found": true
+  },
+  "C55714 supplier bill one off": {
+   "term": "I2-5",
+   "rows": [
+    "AIR FILTER (6I-2503, AF25129M, 46607, P532503, RS3506) 1 Available 6I2503",
+    "INVERTOR 0 Available PSO-CPI2500W",
+    "I2-25 Fate Roadside Truck Repair Fulfilled $226.06 · Jan 10, 2025 · Number: I-25",
+    "I2-5 Butautas' Truck & Trailer Repair LLC Fulfilled $67.32 · Jan 2, 2025",
+    "I2-259 Vero Beach Heavy Duty Truck & Equipment Repair Fulfilled $4.05 · Apr 3, 2025",
+    "I2-550 Mobile Truck & Trailer Repair Hampton Fulfilled $474.68 · Aug 1, 2025"
+   ],
+   "expect": "I2-2",
+   "found": true
+  },
+  "C55727 without the apostrophe": {
+   "term": "Schwartzs",
+   "rows": [
+    "Orchard City Truck & Trailer Repair 4 open Contact match: Brett Schwartz · 965 Smith Course, Port Peterchester, Yukon Te",
+    "Vista West Truck Repair 207 Schwartz Track Apt. 188, North Michelleberg, Quebec",
+    "Schwartz Mechanical Services 085 Cynthia Forks, Lake Williamton, Nova Scotia",
+    "Oak Hill Mobile Truck Repair Contact match: Cody Schwartz · 5654 Chelsea Course, North Anthony, Ontario",
+    "Glendale Diesel & Fleet Repair Contact match: Ariana Schwartz · 9453 Joseph Throughway, Wilsonberg, Manitoba",
+    "2013 Ford F-350 Schwartz Mechanical Services"
+   ],
+   "expect": "Schwartz",
+   "found": true
+  },
+  "C55727 with the apostrophe": {
+   "term": "Schwartz's",
+   "rows": [
+    "Swartz's Fleet Service 88354 Adriana Canyon Apt. 244, Lake Briana, Newfoundland and Labrador",
+    "2012 Infiniti G37 Swartz's Fleet Service",
+    "2012 Swartz's Fleet Service",
+    "Schwartz's Diesel Repair 071-068-7018 · 325 Roberts Courts Suite 705, Patelchester, Ontario"
+   ],
+   "expect": "Schwartz",
+   "found": true
+  },
+  "C55713 short exact": {
+   "term": "Abo",
+   "rows": [
+    "S2-33354 Abode Trucking & Repair Approved 14040 · 2015 Gmc Sierra",
+    "S2-33107 Abode Trucking & Repair Paid 14674 · 2015 Trailtech Trailers Trailtech Trailers",
+    "S2-4219 Abode Trucking & Repair Paid 14674 · 2015 Trailtech Trailers Trailtech Trailers",
+    "S2-16932 Monroe Truck Service & Repair Approved E07036 · 2007 Freightliner · Line item: abo",
+    "S2-16887 Monroe Truck Service & Repair Approved E10024 · 2010 Peterbilt 367 · Line item: abo",
+    "Abode Trucking & Repair 1 open 94154 Dominguez Gateway, North Jenniferland, Ontario"
+   ],
+   "expect": "Abode",
+   "found": true
+  },
+  "C55713 short one letter off": {
+   "term": "Aba",
+   "rows": [
+    "S2-17407 Leland Diesel & Fleet Repair Invoiced N/A · 2019 Freightliner M2 · Part number: ABA",
+    "S2-14309 Kolosov's Diesel Repair Paid shop heavy · Line item: Aba",
+    "S2-13838 Colesville Diesel Repair Paid 744 · 2020 Hino Conventional Type Truck · Part number: ABA",
+    "S2-11576 Joseph Truck & Trailer Repair Paid TRUCK NORRIS · 2025 Freightliner M2 · Part number: ABA",
+    "S2-11611 Colesville Diesel Repair Paid 737 · 2016 Hino Conventional Type Truck · Part number: ABA",
+    "2021 Lincoln Nautilus Waipahu Truck Shop · VIN: ABA"
+   ],
+   "expect": "Abode",
+   "found": false
+  },
+  "C55713 longer one letter off": {
+   "term": "Abodee",
+   "rows": [
+    "S2-33354 Abode Trucking & Repair Approved 14040 · 2015 Gmc Sierra",
+    "S2-33107 Abode Trucking & Repair Paid 14674 · 2015 Trailtech Trailers Trailtech Trailers",
+    "S2-4219 Abode Trucking & Repair Paid 14674 · 2015 Trailtech Trailers Trailtech Trailers",
+    "Abode Trucking & Repair 1 open 94154 Dominguez Gateway, North Jenniferland, Ontario",
+    "14040 · 2015 Gmc Sierra Abode Trucking & Repair",
+    "17766 · 2020 International Hx620 Abode Trucking & Repair"
+   ],
+   "expect": "Abode",
+   "found": true
+  },
+  "C55728 sound-alike on a description": {
+   "term": "Awltirnaytor",
+   "rows": [
+    "ZZPHON Alternator Co 1 Ranking Way, Fernvale, Ohio",
+    "S2-14070 JJD Diesel Services Inc Fulfilled $2,316.20 · Apr 27, 2026 · Part name: Alternator",
+    "S2-14158 Revere Truck and Trailer Repair Fulfilled $12,855.45 · Apr 2, 2026 · Part name: Alternator"
+   ],
+   "expect": "Alternator",
+   "found": true
+  },
+  "C55728 a real typo on a description": {
+   "term": "Altenator",
+   "rows": [
+    "ZZPHON Alternator Co 1 Ranking Way, Fernvale, Ohio",
+    "Serpentine drive belt (105a alternator) 1 Available K060923",
+    "ZZPHON Alternator Assembly 8 Available ZZPHON-3001",
+    "ZZPARTBUSY Alternator Active 25 Available ZZPARTBUSY-2001",
+    "ZZPARTBUSY Alternator Quiet 25 Available ZZPARTBUSY-2002",
+    "BWD IGN CYL + KEY 1 Available CS21L · Category: HD-Starters & Alternators"
+   ],
+   "expect": "Alternator",
+   "found": true
+  }
+ }
+}

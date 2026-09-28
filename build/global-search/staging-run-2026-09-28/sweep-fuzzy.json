@@ -1,0 +1,193 @@
+{
+ "ids": {
+  "wo": "S2-33692",
+  "partNumber": "ZZT-FIB-1003",
+  "partDesc": null,
+  "vin": "PV1T2SK1DNUUK7YDE",
+  "sample": "location_on Approved 2 Parts Waiting S2-33692 4 Star Truck Repair Hyundai Santa Fe 665 PV1",
+  "WO": "S2-33692",
+  "near": "S2-33602"
+ },
+ "searches": {
+  "C44839 misspelt name": {
+   "term": "Petersn",
+   "rows": [
+    "Spaulding Truck Center 1 open Contact match: Theodore Peters · 670 Brett",
+    "Halfmoon Truck Repair Contact match: Peter Jones · 3451 Michael Pike, Ea",
+    "Andreasen Truck & Equipment Repair 1 open Contact match: Peter Soto · 31",
+    "Eagar Truck Service & Repair Contact match: Allen Peterson · 87187 Amand",
+    "Dunmore Mobile Truck Repair Contact match: Paul Peterson · 1893 Katelyn ",
+    "90 · 2024 GMC SIERRA Peterman's Diesel Repair"
+   ],
+   "expect": "Peterson",
+   "found": true
+  },
+  "C44840 misspelt name": {
+   "term": "Abrige",
+   "rows": [
+    "ZZAUTOTEST Aabridge Freight 14 Aabridge Loop, Fernvale, Ohio"
+   ],
+   "expect": "Aabridge",
+   "found": true
+  },
+  "C44841 letters swapped": {
+   "term": "frieghtliner",
+   "rows": [
+    "S2-34163 ZZOPENCOUNT Freight Quiet In Progress CNTQ-01 · 2021 Freightlin",
+    "S2-34162 ZZOPENCOUNT Freight Busy In Progress CNTB-01 · 2021 Freightline",
+    "S2-34161 ZZOPENCOUNT Freight Busy In Progress CNTB-01 · 2021 Freightline",
+    "S2-34160 ZZOPENCOUNT Freight Busy In Progress CNTB-01 · 2021 Freightline",
+    "S2-34158 ZZOPENCOUNT Freight Busy In Progress CNTB-01 · 2021 Freightline",
+    "9942 · 2017 Frieghtliner Cascadia Viola Truck Service & Repair"
+   ],
+   "expect": "Freightliner",
+   "found": false
+  },
+  "C44842 sounds alike": {
+   "term": "Filbridge",
+   "rows": [
+    "S2-34151 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+    "S2-34150 ZZAUTOTEST Fibridge Logistics Approved 2021 KEN WORTH T680",
+    "S2-34144 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 ",
+    "S2-34143 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 ",
+    "S2-34142 ZZAUTOTEST Fibridge Commercial Ready For Review TRK 412 · 2019 ",
+    "ZZAUTOTEST Fibridge Commercial 13 open 4120 Fibridge Commerce Way, Fernv"
+   ],
+   "expect": "Fibridge",
+   "found": true
+  },
+  "C44843 wo with dash": {
+   "term": "S2-33692",
+   "rows": [
+    "S2-33692 4 Star Truck Repair Approved 665 · 2011 Hyundai Santa Fe",
+    "S2-33692 4Refuel Ordered $60.00 · Sep 23, 2026"
+   ],
+   "expect": "S2-33692",
+   "found": true
+  },
+  "C44843 wo no dash": {
+   "term": "S233692",
+   "rows": [
+    "S2-33692 4 Star Truck Repair Approved 665 · 2011 Hyundai Santa Fe",
+    "S2-33692 4Refuel Ordered $60.00 · Sep 23, 2026"
+   ],
+   "expect": "S2-33692",
+   "found": true
+  },
+  "C44843 wo with space": {
+   "term": "S2 33692",
+   "rows": [
+    "S2-33692 4 Star Truck Repair Approved 665 · 2011 Hyundai Santa Fe",
+    "S2-33692 4Refuel Ordered $60.00 · Sep 23, 2026"
+   ],
+   "expect": "S2-33692",
+   "found": true
+  },
+  "C44847 wo one digit off": {
+   "term": "S2-33602",
+   "rows": [
+    "S2-33602 A & J Truck & Trailer Repair Complete 2017 Ford Transit",
+    "S2-33602 4Refuel Fulfilled Sep 23, 2026",
+    "665 4Refuel Unpaid Sep 23, 2026 · PO number: S2-33602"
+   ],
+   "expect": "S2-33692",
+   "found": false
+  },
+  "C44844 exact vin": {
+   "term": "PV1T2SK1DNUUK7YDE",
+   "rows": [
+    "S2-34271 4 Star Truck Repair Approved 665 · 2011 Hyundai Santa Fe · VIN:",
+    "S2-34270 4 Star Truck Repair Approved 665 · 2011 Hyundai Santa Fe · VIN:",
+    "S2-33931 4 Star Truck Repair Approved 665 · 2011 Hyundai Santa Fe · VIN:",
+    "S2-33698 4 Star Truck Repair Ready For Review 665 · 2011 Hyundai Santa F",
+    "S2-33695 4 Star Truck Repair Ready For Review 665 · 2011 Hyundai Santa F",
+    "665 · 2011 Hyundai Santa Fe 4 Star Truck Repair · VIN: PV1T2SK1DNUUK7YDE"
+   ],
+   "expect": "UK7YDE",
+   "found": true
+  },
+  "C44844 vin one char wrong": {
+   "term": "PV1T2SK1DNUUK7YD1",
+   "rows": [],
+   "expect": "UK7YDE",
+   "found": false
+  },
+  "C44845 phone digits": {
+   "term": "4195550177",
+   "rows": [
+    "ZZAUTOTEST Bridgeport Hauling Contact match: (419) 555-0177 · 1450 Kestr"
+   ],
+   "expect": "Bridgeport",
+   "found": true
+  },
+  "C44845 phone formatted": {
+   "term": "(419) 555-0177",
+   "rows": [
+    "ZZAUTOTEST Bridgeport Hauling Contact match: (419) 555-0177 · 1450 Kestr"
+   ],
+   "expect": "Bridgeport",
+   "found": true
+  },
+  "C44846 exact part number": {
+   "term": "ZZT-FIB-1003",
+   "rows": [
+    "ZZAUTOTEST Fibridge Air Dryer Cartridge 0 Available ZZT-FIB-1003",
+    "I2-1513 ZZAUTOTEST Fibridge Mining Ordered $90.00 · Sep 25, 2026 · Part ",
+    "I2-1515 ZZAUTOTEST Fibridge Mining Fulfilled $90.00 · Sep 25, 2026 · Par"
+   ],
+   "expect": "ZZT-FIB-1003",
+   "found": true
+  },
+  "C44846 part number one off": {
+   "term": "ZZT-FIB-1009",
+   "rows": [],
+   "expect": "ZZT-FIB-1003",
+   "found": false
+  },
+  "C55725 unrelated": {
+   "term": "Zqwxpol",
+   "rows": [],
+   "expect": null,
+   "found": null
+  },
+  "C55726 accented plain": {
+   "term": "Backer",
+   "rows": [
+    "S2-32223 ZZAUTOTEST Bäcker & Sons \"Trucks\" <Ltd> — Café Ñ Invoiced Ü-99 ",
+    "ZZAUTOTEST Bäcker & Sons \"Trucks\" <Ltd> — Café Ñ 12 Rue de l'Épée & Co.,",
+    "Desert Edge Truck Service & Repair 9 open Contact match: Jasmine Baker ·",
+    "Galax Diesel Repair Contact match: Pamela Barker · 06762 Claire Underpas",
+    "Derrick's Mobile Truck Repair Contact match: Tammy Baker · 423 Sydney Fe",
+    "Crankshaft Truck & Trailer Repair Inc Contact match: Lucas Baker · 6436 "
+   ],
+   "expect": "Bäcker|Backer",
+   "found": true
+  },
+  "C55726 accented typed": {
+   "term": "Bäcker",
+   "rows": [
+    "S2-32223 ZZAUTOTEST Bäcker & Sons \"Trucks\" <Ltd> — Café Ñ Invoiced Ü-99 ",
+    "ZZAUTOTEST Bäcker & Sons \"Trucks\" <Ltd> — Café Ñ 12 Rue de l'Épée & Co.,",
+    "Desert Edge Truck Service & Repair 9 open Contact match: Jasmine Baker ·",
+    "Galax Diesel Repair Contact match: Pamela Barker · 06762 Claire Underpas",
+    "Derrick's Mobile Truck Repair Contact match: Tammy Baker · 423 Sydney Fe",
+    "Crankshaft Truck & Trailer Repair Inc Contact match: Lucas Baker · 6436 "
+   ],
+   "expect": "Bäcker|Backer",
+   "found": true
+  },
+  "C55715 part description typo": {
+   "term": "Altenator",
+   "rows": [
+    "ZZPHON Alternator Co 1 Ranking Way, Fernvale, Ohio",
+    "Serpentine drive belt (105a alternator) 1 Available K060923",
+    "ZZPHON Alternator Assembly 8 Available ZZPHON-3001",
+    "ZZPARTBUSY Alternator Active 25 Available ZZPARTBUSY-2001",
+    "ZZPARTBUSY Alternator Quiet 25 Available ZZPARTBUSY-2002",
+    "BWD IGN CYL + KEY 1 Available CS21L · Category: HD-Starters & Alternator"
+   ],
+   "expect": "Alternator",
+   "found": true
+  }
+ }
+}

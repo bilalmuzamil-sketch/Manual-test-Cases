@@ -1,0 +1,113 @@
+{
+ "searches": {
+  "find a part sale": {
+   "term": "2249",
+   "onTab": "Part sales (1)",
+   "rows": [
+    "P2-2249 ZZAUTOTEST Fibridge Commercial Estimate Admin ShopView · Sep 25, 2026"
+   ],
+   "expect": null,
+   "found": null
+  },
+  "C44849 exact P-number": {
+   "term": "P2-2249",
+   "onTab": "Part sales (1)",
+   "rows": [
+    "P2-2249 ZZAUTOTEST Fibridge Commercial Estimate Admin ShopView · Sep 25, 2026"
+   ],
+   "expect": "P2-2249",
+   "found": true
+  },
+  "C44849 P-number one off": {
+   "term": "P2-2243",
+   "onTab": "Part sales (1)",
+   "rows": [
+    "P2-2243 E2E Credits Customer Approved $152.25 · Vladimir Tomovic · Sep 25, 2026"
+   ],
+   "expect": "P2-2249",
+   "found": false
+  },
+  "C55714 exact supplier bill": {
+   "term": "I2-1513",
+   "onTab": "Vendor invoices (0)",
+   "rows": [],
+   "expect": "I2-1513",
+   "found": false
+  },
+  "C55714 supplier bill one char off": {
+   "term": "I2-1514",
+   "onTab": "Vendor invoices (1)",
+   "rows": [
+    "ZZTINV-GSV2-1002 ZZAUTOTEST Fibridge Mining Partially Paid $100.00 · Sep 25, 2026 · PO number: I2-1514"
+   ],
+   "expect": "I2-1513",
+   "found": false
+  },
+  "C55714 exact purchase order": {
+   "term": "I2-1519",
+   "onTab": "Purchase orders (1)",
+   "rows": [
+    "I2-1519 ZZVENDORPO Supply Open Ordered $58.50 · Sep 25, 2026"
+   ],
+   "expect": "I2-1519",
+   "found": true
+  },
+  "C55714 purchase order one char off": {
+   "term": "I2-1518",
+   "onTab": "Purchase orders (1)",
+   "rows": [
+    "I2-1518 4Refuel Fulfilled $50.00 · Sep 25, 2026"
+   ],
+   "expect": "I2-1519",
+   "found": false
+  },
+  "C55727 without the apostrophe": {
+   "term": "Kolosovs",
+   "onTab": "Customers (1)",
+   "rows": [
+    "Kolosov's Diesel Repair 706 Christopher Skyway, Port David, Newfoundland and Labrador"
+   ],
+   "expect": "Kolosov",
+   "found": true
+  },
+  "C55727 with the apostrophe": {
+   "term": "Kolosov's",
+   "onTab": "Customers (1)",
+   "rows": [
+    "Kolosov's Diesel Repair 706 Christopher Skyway, Port David, Newfoundland and Labrador"
+   ],
+   "expect": "Kolosov",
+   "found": true
+  },
+  "C55728 sound-alike, Parts tab only": {
+   "term": "Awltirnaytor",
+   "onTab": "Parts (0)",
+   "rows": [],
+   "expect": "Alternator",
+   "found": false
+  },
+  "C55728 a real typo, Parts tab only": {
+   "term": "Altenator",
+   "onTab": "Parts (7)",
+   "rows": [
+    "Serpentine drive belt (105a alternator) 1 Available K060923",
+    "ZZPHON Alternator Assembly 8 Available ZZPHON-3001",
+    "ZZPARTBUSY Alternator Active 25 Available ZZPARTBUSY-2001",
+    "ZZPARTBUSY Alternator Quiet 25 Available ZZPARTBUSY-2002",
+    "BWD IGN CYL + KEY 1 Available CS21L · Category: HD-Starters & Alternators",
+    "Starter Assembly, Ford 6.0L Diesel 1 Available 91-02-5903 · Category: HD-Starters & Alternators"
+   ],
+   "expect": "Alternator",
+   "found": true
+  },
+  "C55728 the sound-alike on names": {
+   "term": "Awltirnaytor",
+   "onTab": "Customers (1)",
+   "rows": [
+    "ZZPHON Alternator Co 1 Ranking Way, Fernvale, Ohio"
+   ],
+   "expect": "Alternator",
+   "found": true
+  }
+ }
+}
