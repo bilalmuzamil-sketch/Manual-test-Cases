@@ -966,6 +966,11 @@
    "v": "Passed",
    "why": "Re-run on staging, where the suite now lives. Counts never include what a person cannot see. Removing Parts access dropped the overall count by exactly the number of parts and removed the Parts heading and tab entirely; the other counts did not move.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
    "build": "v26.39.1-02c6b6c"
+  },
+  "137996": {
+   "v": "Passed",
+   "build": "v26.39.1-02c6b6c",
+   "why": "Run on staging, where the suite now lives. All four things this asks for are right.\n\nWith nothing typed, there is NO little x inside the search box. (\"Clear all\", which sits beside the Recent searches heading, was there - that is the separate control for your history, and the two were checked apart so they could not be confused.)\n\nType something and the little x appears inside the box.\n\nClick it and the box empties - and the search panel STAYS OPEN rather than closing.\n\nThe cursor stays in the box: a new word was typed straight afterwards without clicking back in, and it went into the box normally."
   }
  }
 }

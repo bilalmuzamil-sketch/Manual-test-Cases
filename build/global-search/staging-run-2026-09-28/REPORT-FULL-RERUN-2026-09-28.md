@@ -1,6 +1,6 @@
 # Global Search — every check re-run on the shared test site
 
-**28 September 2026.** All **194** checks were run again from scratch on the shared test site, because
+**28 September 2026.** All **195** checks were run again from scratch on the shared test site, because
 the separate branch this feature was being tested on has been merged away and deleted. Nothing was
 carried over: every check was performed again by hand against the site as it stands today.
 
@@ -10,8 +10,8 @@ carried over: every check was performed again by hand against the site as it sta
 
 | | How many | What it means |
 |---|---|---|
-| Checks run | **194** | the whole set, none skipped |
-| Worked correctly | **178** | |
+| Checks run | **195** | the whole set, none skipped |
+| Worked correctly | **179** | |
 | Did not work | **16** | see below — most are not new problems |
 | Could not be run | **0** | everything that was missing was created |
 
@@ -124,7 +124,28 @@ than the product. I mention it because each one would have been a false report:
 
 ---
 
-## 5 · OUTSTANDING — what I need from you
+## 5 · Two loose ends, both now closed
+
+**The missing hover buttons are not a fault.** Earlier today I reported that the little buttons which
+should appear when you hover over a result are absent everywhere, and called it the one thing with no
+decision behind it. That was wrong. **The work to build them was cancelled** — closed as no longer
+relevant on 17 September. The measurement stands; the conclusion does not. There is nothing to raise,
+and the eight checks covering it correctly sit outside the run.
+
+**The eight checks that vanished from the run this afternoon belong outside it.** I had flagged that
+as something only you could safely put back. They cover that same cancelled feature, so their removal
+was right rather than an accident, and nothing needs restoring.
+
+**One check genuinely was missing and is now done.** A new check on the small clear button inside the
+search box had never been added to the run. I added it — taking a full copy of the run first, sending
+the complete list rather than a partial one, and confirming afterwards that all 1,264 existing results
+were still there — and then ran it. It passes on all four points: the button is hidden until you type,
+it appears once you do, clicking it empties the box, and it leaves the panel open with the cursor
+still in the box.
+
+---
+
+## 6 · OUTSTANDING — what I need from you
 
 | # | What it is | The question | Your options | If you say nothing |
 |---|---|---|---|---|
@@ -137,8 +158,10 @@ than the product. I mention it because each one would have been a false report:
 
 ---REFERENCE---
 
-Run 415 — https://shopview.testrail.io/index.php?/runs/view/415 — 194 tests · 178 passed · 16 failed ·
-0 blocked · 0 untested. Environment: `app.staging.shopview.com`, build **v26.39.1-02c6b6c**, workplace
+Run 415 — https://shopview.testrail.io/index.php?/runs/view/415 — 195 tests · 179 passed · 16 failed ·
+0 blocked · 0 untested. Run 416 (Simple Flow) — 55 tests · 55 passed · 0 untested.
+C137996 added to run 415 (union-only, snapshot `run415-snapshot-before-add.json`, 1,264 results intact).
+Quick actions on hover: SV-9173 OBSOLETE (resolution Done, 17 September) — C44866-C44873 correctly out of run. Environment: `app.staging.shopview.com`, build **v26.39.1-02c6b6c**, workplace
 Staging Heavy Duty - 9919.
 
 Newly failing this pass: C44850 · C44854 · C44898 · C45132 · C45134 · C45136 · C45153 · C55673 · C55686 · C55729

@@ -1,4 +1,23 @@
-# Quick actions on hover are absent from the search results — staging, 28 September 2026
+# ~~Quick actions on hover are absent from the search results~~ — CLOSED, NOT A DEFECT
+
+> **CLOSED 28 September 2026, the same day it was written.** The feature was **dropped**, so the
+> buttons are absent because nobody built them, not because they broke.
+>
+> **SV-9173 "FE — Contextual quick actions on result rows" is OBSOLETE**, resolution *Done*, closed
+> 17 September 2026 — read live from Jira on 28 September, before anything was put to the QA lead.
+> The eight checks that cover it (C44866-C44873) are correctly OUTSIDE run 415, and the requirement
+> quoted below comes from a specification section the product no longer implements.
+>
+> **Nothing is to be raised.** What the QA lead may still want is a decision on whether those eight
+> checks are retired or reworded — the same question as the other out-of-date checks in
+> `REPORT-FULL-RERUN-2026-09-28.md` §5 item 1.
+>
+> **The measurements below stand** — the buttons really are absent, proved through the screen with a
+> real pointer and a positive control. Only the CONCLUSION changed, from "a fault worth reporting"
+> to "a feature that was cancelled". That distinction is why this file is corrected in place rather
+> than deleted.
+
+---
 
 **Environment** app.staging.shopview.com · build **v26.39.1-02c6b6c** · workplace Staging Heavy Duty - 9919
 · signed in as administrator (59 permissions). The QA branch sv9160 was merged here and deleted.
