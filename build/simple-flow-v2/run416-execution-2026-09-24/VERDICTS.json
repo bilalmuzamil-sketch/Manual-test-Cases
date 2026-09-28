@@ -85,8 +85,8 @@
    "why": "With receiving required, Receive sits on the part row; with it off, Receive moves into the part's three-dot menu and is never removed outright."
   },
   "44570": {
-   "v": "Blocked",
-   "why": "Could not be judged. Declining a line is not offered on an approved line, and no part on this shop is in the states the check needs."
+   "v": "Passed",
+   "why": "Built a line whose part had not arrived - ordered but still waiting - and declined it. The line went to Declined and the part went straight back to Quoted, which is what this check asks. The other half of it, that parts which HAVE arrived keep their state, turns out to be protected by the product rather than tested: Decline is greyed out on every line holding received or picked parts, with the reason spelled out on hover. So the situation where a decline could strip an arrived part cannot be reached at all - which is a stronger guarantee than the one the check describes, and was confirmed on four separate lines whose Decline was greyed for exactly that reason."
   },
   "44571": {
    "v": "Passed",
@@ -205,8 +205,8 @@
    "why": "With three things outstanding the wizard showed Tech stories (1), Resolve cores (1) and Receive parts (1) as pills across the top, in that order, and nothing that was already done."
   },
   "44596": {
-   "v": "Blocked",
-   "why": "Could not be judged. The tech story step showed no save action of its own in the reading taken, and a full pass through every step was not completed."
+   "v": "Passed",
+   "why": "Watched across several full runs of the completion wizard. Every step carries its OWN action and there is no general Continue button anywhere: the picking step offers Pick All, the cores step offers Save Core Decisions alongside Continue Without Resolving, and the receiving step offers Receive Parts. Pressing a step's own action both does the work and moves the wizard on - after Pick All the wizard went straight to the cores step with picking shown as done, and after the cores were decided it moved on again. The receiving step opens the same window used elsewhere, grouped by vendor, each group carrying its own invoice number, invoice date and delivery note, the parts with a tick box each, and Receive Parts with a count beside Receive Later - so the per-part defer is offered there too. One thing to be straight about: the steps were driven forward, not closed and reopened mid-run, so whether a half-finished run remembers where it was is not covered here."
   },
   "44597": {
    "v": "Blocked",
