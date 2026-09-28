@@ -5356,3 +5356,61 @@ touches nothing that Rules 12/50/64/73 require.
 — no DNS A record — about twenty minutes in. Check another branch host to tell a teardown from a
 network fault. **So take the evidence that only that branch can give you FIRST**, before the
 regressions and the nice-to-haves.
+
+---
+
+## §V.11 — Convert an existing Bug into a `Story Defect` under its story (Jira)
+*(proven 2026-09-28 on SV-10544…SV-10548 → the Global Search v2 epic SV-9160)*
+
+**The shape this project actually uses.** Every defect under an epic's stories is issue type
+**`Story Defect` (id 10007, `subtask: true`, `hierarchyLevel: -1`) whose PARENT is the STORY** —
+verified on SV-10439 (parent SV-9170) and on 24+ siblings across SV-9164/9168/9170/9174. A `Bug`
+parented to the epic (e.g. SV-10031) also exists, but it is the minority shape.
+
+**What does NOT work — stop trying these:**
+- `PUT /rest/api/2/issue/{key}` with `issuetype: 10007` → the issue's **`editmeta` lists `issuetype`
+  allowed values as `['Bug']` only**, so the API will not convert it.
+- `PUT` with `parent: {key: "SV-9170"}` on a Bug → **HTTP 400
+  `{"pid":"Issues with this Issue Type must be created in the same project as the parent."}`** — a
+  misleading message: the real cause is that a level-0 Bug may only have a level-1 Epic as parent.
+- `/secure/ConvertIssueToSubTask!default.jspa` → **404, the servlet is gone.**
+- The issue view's **"Change work type"** control offers only `Bug · Task · Story ·
+  Story Defect - Archive` — the live `Story Defect` is absent, because same-level types only.
+
+**What works: the legacy Move wizard, driven in a browser.**
+Entry point (skips the meatball menu):
+`/secure/views/bulkedit/BulkMigrateDetails.jspa?singleIssueId=<numericIssueId>&reset=true`
+(get the numeric id from `GET /rest/api/2/issue/<KEY>` → `.id`).
+
+1. **The two visible dropdowns are NOT `<select>` elements.** They are AUI comboboxes rendered by
+   JS — `input[id="10001_10008_project-field"]` and `input[id="10001_10008_issuetype-field"]`
+   (`<origProjectId>_<origIssueTypeId>_…`). A raw HTML fetch shows only a hidden
+   `select[name="10001_10008_parentIssueKey"]`, which is a template, not the control. Wait ~9 s for
+   hydration; `getByRole('combobox')` finds them.
+2. **⚠️ The id starts with a digit, so `#10001_10008_issuetype-field` is an invalid CSS selector** —
+   use `[id="…"]`.
+3. **⚠️ Clicking the dropdown item by its id silently selects the WRONG one.** Clicking
+   `#story-defect-3` left the wizard on **Task** (the first entry) and it advanced into a status-map
+   step for another project's workflow. **Type instead**: `fill('')` then `type('Story Defect')`,
+   then click the `li` whose text is *exactly* `story defect` (there is also
+   `Story Defect - Archive`), then **assert `inputValue(...) === 'Story Defect'` before clicking
+   Next** — the item ids are re-numbered on each render (`story-defect-3` one run,
+   `story-defect-34` the next), so never hard-code them.
+4. **Next** → the parent step appears: `input[id="issuepicker_for_10001_10008_project-field"]`
+   with the validation *"Parent issue key not specified."* Type the story key, wait ~3.5 s, then
+   click the option whose text starts with the key **and a title** — a second option reading
+   `SV-9170 (linkissue.enter.issue.key)` is the raw-key fallback, not the issue.
+5. **Next** → *"Update fields…"* reports **"All field values will be retained."**
+6. **Next** → *"Step 2 of 2: Confirm changes"* lists Target Project / Target Issue Type / **Target
+   Parent Issue**. **Read this page before submitting** — it is the last point where a wrong
+   selection is visible. The submit button's value changes from `Next` to **`Confirm`**.
+7. Confirm → `/secure/views/bulkedit/BulkOperationProgress.jspa?taskId=N`. **Verify with the API**:
+   `issuetype.id == 10007`, `issuetype.subtask == true`, `hierarchyLevel == -1`, `parent.key` right,
+   and status / priority / attachment count unchanged.
+
+**The wizard is STATEFUL per session.** A half-driven run leaves the session mid-wizard and the next
+visit resumes there instead of at step 1 — always pass `&reset=true`, and never infer the current
+step from a previous run's screenshot.
+
+**Nothing is written until Confirm.** An abandoned run leaves the issue byte-identical (verified:
+type, status, parent and `updated` all unchanged after an aborted attempt).
