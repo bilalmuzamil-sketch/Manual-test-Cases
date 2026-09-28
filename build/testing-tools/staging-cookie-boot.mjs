@@ -60,7 +60,12 @@ export async function boot(route = '/', opts = {}) {
     deviceScaleFactor: opts.deviceScaleFactor || 1,
   });
   const host = new URL(APP).hostname;
-  const mk = (n, v, d) => ({ name: n, value: v, domain: d, path: '/', secure: true });
+  // 🔴 A FAILED SIGN-IN THROWS; IT MUST NEVER CALL process.exit.
+// It used to exit(2), which kills the CALLER outright - so a driver could not retry, and its
+// cleanup never ran. That stranded the Tech account on a test role twice on 2026-09-28, in the
+// middle of a permission run. A thrown error lets the caller retry and, more importantly, lets its
+// finally block put the role back.
+const mk = (n, v, d) => ({ name: n, value: v, domain: d, path: '/', secure: true });
   const jar = [];
   for (const d of [host, APIH]) {
     jar.push(mk('sv_sso_session', c.SV_SSO_SESSION, d));
@@ -82,7 +87,8 @@ export async function boot(route = '/', opts = {}) {
   if (!(await btn.count())) {
     console.log(`no DEV MODE "${btnLabel}" button on staging after 30s — STOP`);
     console.log('api calls:'); [...new Set(api)].forEach(x => console.log('   ' + x));
-    await browser.close(); process.exit(2);
+    await browser.close();
+    throw new Error(`staging sign-in: no DEV MODE "${btnLabel}" button after 30s`);
   }
 
   let signedIn = false, onLogin = true;
@@ -102,10 +108,12 @@ export async function boot(route = '/', opts = {}) {
     for (let w = 0; w < 20 && !(await btn.count()); w++) await page.waitForTimeout(1500);
   }
   if (!signedIn || onLogin) {
-    console.log('NOT SIGNED IN after 3 quick-login attempts. url=' + page.url() + ' user-in-localStorage=' + signedIn);
+    const urlAtFailure = page.url();
+    console.log('NOT SIGNED IN after 3 quick-login attempts. url=' + urlAtFailure + ' user-in-localStorage=' + signedIn);
     console.log('api calls:'); [...new Set(api)].forEach(x => console.log('   ' + x));
     console.log('a 409 on fe-permissions after a 200 quick-login = a duplicate PHPSESSID.');
-    await browser.close(); process.exit(2);
+    await browser.close();
+    throw new Error('staging sign-in: not signed in after 3 quick-login attempts (url=' + urlAtFailure + ')');
   }
 
   if (route !== '/' && !page.url().includes(route)) {

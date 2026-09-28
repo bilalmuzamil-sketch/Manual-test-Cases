@@ -796,6 +796,176 @@
    "v": "Passed",
    "why": "Re-run on staging, where the suite now lives. A vehicle is found by its year typed on its own, and every vehicle listed was that year.",
    "build": "v26.39.1-02c6b6c"
+  },
+  "44877": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Someone allowed to see Parts gets a Parts section with matching parts in it, and a Parts tab with its count.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44878": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A technician, who is not allowed to see Parts, gets NO Parts section, no Parts tab and no count - and typing a part number exactly returns nothing at all. The jobs, customers and vehicles they ARE allowed to see come back normally.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44879": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Someone not allowed to see Jobs gets no Jobs section, no Jobs tab and no count. Everything else they can see is unchanged.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44880": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Every record the search returned was checked one by one against the company it belongs to, and all of them belong to this company. Nothing from anywhere else appeared.\n\nWorth saying plainly: a sign-in for a SECOND company was not available on this branch, so this is \"every record returned was confirmed to be ours\" rather than \"a known outsider's record was shown to be kept out\".\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44881": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. When a kind of record has no matches, no section for it appears in the list at all - and its tab shows a count of zero rather than a stale number. Typing a part number returned one part and every other tab read zero.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44882": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Each area of access was removed in turn and each time the whole of it vanished together - the section, its count AND its tab. Removing the money permission is different and correct: every section stays, and only the amounts disappear from the rows.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45142": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Jobs appear for someone allowed to see them and do not appear at all for someone who is not.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45143": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A person allowed to see Part Sales but not Parts or Suppliers gets exactly that: a Part Sales section, and NO Parts and NO Suppliers - searching a part number or a supplier name returned nothing.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45144": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Parts appear only for someone allowed to see the catalogue and inventory. Opening a part from the results takes you to the stocked part with its quantity, not to the catalogue entry.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45145": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Suppliers appear only for someone allowed to see supplier and ordering information.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45146": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Customers and their vehicles are gated by the SAME permission: remove it and both disappear together; restore it and both come back.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45147": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A Time Clock person gets nothing at all from search - no sections, no rows, whatever is typed.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45148": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Nothing is shown unless it is explicitly allowed. Across every role tried, only the kinds of record that role is permitted ever appeared; no unexpected kind was ever shown.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45149": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A part was opened while the person could see Parts, so it sat at the top of their recently-opened list. Parts access was then removed and the part was GONE from that list, while their other recent items stayed exactly as they were.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45150": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Every record the search returned was checked one by one against the company it belongs to, and all of them belong to this company. Nothing from anywhere else appeared.\n\nWorth saying plainly: a sign-in for a SECOND company was not available on this branch, so this is \"every record returned was confirmed to be ours\" rather than \"a known outsider's record was shown to be kept out\".\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45151": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Jobs are limited to the branch you are on: on the other branch, searching a customer returned none of the first branch's jobs. The customer itself still appears at both, which is right - customers belong to the whole company.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45152": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Switching branch changes what comes back straight away: the same search returned five jobs at one branch and none at the other.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55702": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Someone allowed to see Jobs gets a Jobs section and a Jobs tab with its count.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55703": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Someone allowed to see Customers gets BOTH a Customers section and a Vehicles section, each with its own tab and count.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55704": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Someone allowed to see Part Sales gets a Part Sales section with its tab and count.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55705": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Someone allowed to see supplier and ordering information gets all three - Suppliers, Supplier Orders and Supplier Bills - each with its own tab and count.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55706": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Someone allowed to see money sees the amounts on the rows: prices on parts and totals on sales, orders and bills.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55717": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A part was opened while the person could see Parts, so it sat at the top of their recently-opened list. Parts access was then removed and the part was GONE from that list, while their other recent items stayed exactly as they were.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55718": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Typing the exact number of a job you are not allowed to see returns nothing at all - it is not put at the top and it is not in any section. Being exact does not get round the rules.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55719": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A customer that would normally be found through one of its contacts is hidden from someone who cannot see customers: neither the contact's telephone number nor their surname returned anything. The contact does not leak the company.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55720": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A role missing two areas at once loses both together - no Jobs and no Suppliers, Supplier Orders or Supplier Bills, and none of their tabs or counts - while everything else it can see stays exactly as it was.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55721": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A misspelling does not get round the rules either. Someone who cannot see Parts typed a misspelt part name and got NO parts. The same misspelling still matched a customer with that word in its name, and a different misspelling still worked normally - so the forgiving matching is alive, it just does not leak.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55731": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The same part appeared in the Parts section with access and was completely gone without it - no section, no row, no count. Only that one permission changed.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55732": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The same job appeared in the Jobs section with access and was completely gone without it.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55733": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. With access, both the customer AND its vehicle appeared. Without it, BOTH were gone - one permission controls the pair.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55734": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The same part sale appeared with access and was completely gone without it.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55735": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. With access, the supplier, its order and its bill all appeared. Without it, all THREE were gone - one permission controls all three.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55736": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The same four supplier bills were listed both ways. With money access each row read bill number, supplier, status, amount and date. Without it, each row still read bill number, supplier, status and date - only the amount is gone. The row is not hidden, just the money.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "55737": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Counts never include what a person cannot see. Removing Parts access dropped the overall count by exactly the number of parts and removed the Parts heading and tab entirely; the other counts did not move.\n\nHow this was checked: the same person was given one purpose-built job role after another and signed in fresh each time, searching the same words. Every role is identical to the others apart from the ONE area of access being tested, so nothing else can explain a difference.",
+   "build": "v26.39.1-02c6b6c"
   }
  }
 }
