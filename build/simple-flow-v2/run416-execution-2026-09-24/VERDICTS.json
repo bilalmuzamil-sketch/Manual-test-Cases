@@ -58,7 +58,7 @@
   },
   "44563": {
    "v": "Blocked",
-   "why": "Partly seen: a line awaiting approval offers no Complete, and Create invoice is refused while any line awaits approval. The bulk bar route and the clock-out route could not be exercised."
+   "why": "Narrowed to one path. Three of the four are now seen: a line's own Complete, the bulk bar's Complete lines, and Create invoice, which completed every open approved line when the invoice was made. The remaining path is the clock-out window, which needs somebody clocked in on the work order."
   },
   "44564": {
    "v": "Blocked",
@@ -162,7 +162,7 @@
   },
   "44588": {
    "v": "Blocked",
-   "why": "Could not be judged. The invalid states the check needs could not be produced on this shop's data."
+   "why": "Narrowed. The after-invoicing half is settled: once the work order is invoiced there is no Receive offered anywhere on it, so the modal cannot be reached at all. Observed on S2-908 after it was invoiced on 28 September 2026: the header offers no finish action at all (only the three-dot, which now holds just Audit Log, Timesheets and Print Work Order), no New Line, no Add Part, no Receive anywhere, no drag handles on any part, and a line's own menu drops Uncomplete, Decline and Delete line. All six lines went to Complete when the invoice was created. Still to do: a part with no part number, a quantity of zero or less, and parts that are unordered or unapproved - states this shop's data does not contain and which have to be built first."
   },
   "53487": {
    "v": "Blocked",
@@ -210,7 +210,7 @@
   },
   "44597": {
    "v": "Blocked",
-   "why": "Could not be judged. A wizard run was never carried to its end, because doing so would have created a real invoice."
+   "why": "Narrowed. One of the three runs is now settled: a run opened by Create invoice ends on the payment screen, with the work order invoiced and its open approved lines completed. Still to do: a run opened by Complete on a line, and one opened by Complete all lines with review required - both need a work order that still has outstanding work, and the one used here is now invoiced."
   },
   "44598": {
    "v": "Blocked",
@@ -221,8 +221,8 @@
    "why": "My earlier failure is withdrawn. The QA lead pointed out that what the requirement calls Send is the product's Send to Portal, and I have now seen it myself: on a work order marked Estimate with a line awaiting approval, the header carries New Line, the three-dot menu, and an icon button whose label and tooltip both read Send to Portal, enabled. On an invoiced work order the same button is present and greyed out, which matches what he described - it becomes active only while a line is awaiting approval. I missed it because I read buttons by their text, and an icon button has no text: it reported itself as how_to_reg, the icon's own name, which I had actually captured and logged without recognising it. Everything else this check asks for was already right: Create invoice sits in the three-dot menu while a line is still open, is promoted to a button beside New Line once every line is complete, and is shown greyed out with its reason where a line still awaits approval. One observation worth recording rather than raising: Send to Portal is not rendered on every work order - it was absent from several I sampled - so which states show it greyed versus not at all is not yet mapped."
   },
   "44600": {
-   "v": "Blocked",
-   "why": "Could not be judged. Carrying it out would have created a real invoice on this shop."
+   "v": "Passed",
+   "why": "Carried out end to end rather than avoided. Pressing Create invoice on a work order with outstanding work opened the wizard at its cores step; once each core was decided, Create Invoice became pressable, the invoice was created, every open approved line went to Complete, the work order now reads Invoiced, and the New Customer Payment screen opened - which is what this check asks for. I had recorded this as impossible because it would create a real invoice; on a branch whose data the QA lead has said is not real, that was a restriction I placed on myself. Not covered: the case also asks for the case where a deposit already covers the whole amount and the payment screen is skipped. No work order here carries such a deposit, so that one point is untested and is named here rather than glossed over."
   },
   "44601": {
    "v": "Blocked",
@@ -242,7 +242,7 @@
   },
   "44605": {
    "v": "Blocked",
-   "why": "Could not be judged. The negatives need a cross-line move and an invoiced work order, which could not be arranged without changing records this run should not change."
+   "why": "Narrowed. The invoiced half is now settled: on an invoiced work order no part carries a drag handle at all, so reordering cannot be attempted - which is the refusal this check asks for. Observed on S2-908 after it was invoiced on 28 September 2026: the header offers no finish action at all (only the three-dot, which now holds just Audit Log, Timesheets and Print Work Order), no New Line, no Add Part, no Receive anywhere, no drag handles on any part, and a line's own menu drops Uncomplete, Decline and Delete line. All six lines went to Complete when the invoice was created. Still to do: moving a part to a different line, and two people reordering the same line at once, which needs a second person working at the same moment."
   },
   "44606": {
    "v": "Passed",
