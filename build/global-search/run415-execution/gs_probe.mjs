@@ -31,6 +31,16 @@ export async function open(branch = 'sv9160', route = '/customers', key = 'admin
   return b;
 }
 
+// 2026-09-28: QA branch sv9160 was merged into staging and DELETED, so the whole suite runs on
+// staging now. Same toolkit, different front door — everything below (SEL, openPalette, type, read,
+// groups) is unchanged, because the app is the same app.
+export async function openStaging(route = '/customers', key = 'admin') {
+  const { boot: sboot } = await import('/home/user/Manual-test-Cases/build/testing-tools/staging-cookie-boot.mjs');
+  const b = await sboot(route, { key, settle: 11000 });
+  await b.page.waitForTimeout(2000);
+  return b;
+}
+
 /** Open the palette with the keyboard shortcut. Returns nothing; assert separately. */
 export async function openPalette(page, how = 'key') {
   if (how === 'key') {
