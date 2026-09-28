@@ -5476,3 +5476,13 @@ different story, so the QA lead can re-point it in a minute.
 
 **Expect statuses to move under you.** Mid-pass, SV-10547 went to Code Review and SV-10550/10555/10556
 to OBSOLETE — other people triaging, not anomalies. **Never "restore" them** (Standing Rule 53).
+
+**§U.2 addendum — the pre-post gate must re-read the TICKET, not just the build (2026-09-28, SV-10027).**
+Standing Rule 72's gate already re-reads build markers and sources. Add the ticket's own comment thread
+to it: compare the comment count against what you read at pass start and read anything new. On SV-10027
+the thread gained comment **77403** mid-pass, which explained the first column's deliberate 52px→38px
+trim — the exact item I had written up as an unexplained anomaly to flag for a dev. The same gate check
+also found the QA branch's **DNS record gone** (the host was serving production's build, so the branch
+marker I tested on no longer existed) and a **PASSED verdict already posted by another QA**, with the
+ticket moved to Ready for Production — which made the planned comment a duplicate. Three catches from
+one cheap re-read, none of them visible from the build marker alone.
