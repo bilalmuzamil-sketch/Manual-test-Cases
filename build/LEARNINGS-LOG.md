@@ -4356,3 +4356,82 @@ behaviour intended. So in every case the CHECK is now wrong, not the product, an
 from editing `custom_expected`. Each was recorded as Failed with the evidence and a plain statement
 that no new ticket is being raised and the check itself needs retiring or rewording — the QA lead's
 decision (his standing item D1, now five items rather than four).
+
+---
+
+### L0233 — the pointer is part of the fixture, and forgetting it nearly produced a duplicate ticket
+
+**2026-09-28, Global Search staging re-run.** Two checks failed: typing a search and pressing Enter
+opened a record eight rows below the one searched for. It looked new, it was reproducible, and it was
+about to be put to the QA lead for a ticket.
+
+Three successive characterisations of it were WRONG before the right one:
+
+1. *"It happens every time."* Ran it eight times — it happened once.
+2. *"It happens on the first search after freshly opening the app."* Ran it in fresh browsers — it
+   happened six times out of six, and on second searches too.
+3. The truth: **the row under the MOUSE POINTER becomes the one Enter opens.** Clicking the search
+   box leaves the pointer exactly where the panel opens over it.
+
+The experiment that settled it in one run — four conditions, same query:
+
+| condition | row Enter was aimed at |
+|---|---|
+| click the box, leave the mouse | the 8th |
+| click the box, then move the mouse away | the 1st ✅ |
+| keyboard open, mouse in a corner | the 1st ✅ |
+| keyboard open, mouse held over the list | the row under it |
+
+**That behaviour is SV-10061, closed OBSOLETE.** So the finding was not new, the check is what is out
+of date, and a ticket would have duplicated a decision already taken.
+
+**The rule for next time: where a probe CLICKS to open something, the pointer stays there and becomes
+part of the state being measured.** Park it deliberately (`page.mouse.move`) before reading anything
+that a hover could change — selection, highlight, tooltips, row actions. And when a finding's
+frequency keeps changing between runs, that is not flakiness to average out; it is an
+uncontrolled variable, and it must be found before the finding is written up.
+
+### L0234 — the front end keeps the location in browser storage, so switching it behind the screen proves nothing
+
+**2026-09-28, staging.** `POST /api/iam/change-location` returns 200 and genuinely moves the session
+— the search endpoint immediately stops returning the other location's work orders. But the SCREEN
+does not move: the app holds `location` in `localStorage` and keeps sending it. After a back-end
+switch and a full page reload the header still read the OLD location and the palette still listed its
+jobs.
+
+Three readings were discarded on the way to noticing, and the intermediate one looked like a serious
+product fault ("records from another location are still shown after switching"). It was not.
+
+- **Switch the location through the user menu** (avatar → "Change Location: <dropdown>"), not the API.
+- **Read the header back** before measuring anything — `Staging Heavy Duty - 9919` / `Staging
+  Lethbridge - 4310`.
+- A switch call sent with the WRONG timezone answers **400**, and a 400 is easy to miss when the
+  script prints only the measurement. Take each workplace's own `timezone` from
+  `/api/staff/my-workplaces`.
+
+### L0235 — a tool that calls process.exit steals the caller's cleanup
+
+**2026-09-28.** `staging-cookie-boot.mjs` called `process.exit(2)` when a sign-in failed. That killed
+the whole driver: the retry loop never ran, and — far worse — the `finally` block that puts the Tech
+account back on its normal role never ran either. The account was left holding a test role twice,
+mid-run, on a branch other people use.
+
+**A library helper must THROW, never exit.** Exiting is a decision only the top-level script is
+entitled to make. Fixed the same day, with the reason recorded in the file so it is not undone.
+
+### L0236 — ids and state belong to an environment, and a hard-coded one lies quietly
+
+**2026-09-28.** Three separate seeding bugs, all the same shape, all found in one pass:
+
+- `apply_ranking_signals.py` read `seed-ids-ranking-qa.json` whatever profile it was given, so a
+  staging run looked up the QA branch's work orders, found none, and reported **8 FAILED** — which
+  reads as a broken product and is a broken script.
+- `seed.py` derived its slug from a two-way test (`gs-v2` or not), so the ranking and toggle
+  manifests both wrote the *v1reg* ids and state files, overwriting each other.
+- `verify_ranking.py` hard-coded the QA cookie path AND made its request with no CA bundle, so every
+  call failed TLS behind the proxy and was reported as `transport error after 3 attempts` — 20 of 20
+  checks "failing" on an environment that was entirely healthy.
+
+All three now derive from the profile/manifest they are given. **Any file a script reads or writes
+that describes an ESTATE must be keyed by that estate**, and a script that reports a negative must
+say WHY, not just that something failed.
