@@ -142,3 +142,28 @@ So the fix has not broken the window it changed.
 only the current customer's contacts in every one of five attempts on the branch, including
 the two that most closely reproduce what the customer described, and the window still saves
 an asset correctly.
+
+## §10 QA comment posted — comment 77462
+
+Posted 2026-09-28 13:32 UTC on SV-9659, with no "Technical details for developers" section
+(QA lead's decision for this ticket).
+
+**Pre-post gate (Rule 72):**
+
+| Check | Result |
+|---|---|
+| Branch marker re-read live | v26.39.1-5dc1cea — identical to the start of the pass |
+| Production marker re-read live | v26.39.1-3ef6ade — identical |
+| Ticket re-read | still `TESTING QA`, priority Medium, 4 comments, none new since the pass began |
+| Evidence image | uploaded as a **real Jira attachment** (61502), not an external link |
+| Figures | every contact name and count traced to a live reading taken this pass |
+| Named test data | both customers and the saved `ZZAUTOTEST-9659` asset are live on the branch |
+| Voice scan | clean |
+| Format | verdict first line, 7-row checks table, captioned exhibit, no technical section |
+
+**Read-back** (`GET /rest/api/3/issue/SV-9659/comment/77462`): first text node
+`OVERALL QA STATUS: PASSED`; one media node, `"type":"file"` with an attachment uuid;
+8 table rows (header + 7 checks); `Technical details` absent; fingerprint scan clean.
+
+The comment states the honest limit in its own section — that the fault could not be
+triggered on production, so this is not a before-and-after comparison.
