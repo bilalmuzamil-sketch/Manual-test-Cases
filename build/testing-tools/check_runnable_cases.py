@@ -111,7 +111,14 @@ def main():
     ap.add_argument('--json-out'); ap.add_argument('--quiet', action='store_true')
     a = ap.parse_args()
     cr = json.load(open(a.creds))
-    auth = base64.b64encode(f"{cr['user']}:{cr['password']}".encode()).decode()
+    # creds.json is written with 'email' and either 'password' or 'key' (same shape testrail-api.mjs
+    # reads). This used to insist on a 'user' key that the file has never carried, so the gate died
+    # on a KeyError before checking anything - a gate that cannot start is a gate nobody runs.
+    user = cr.get('email') or cr.get('user')
+    secret = cr.get('password') or cr.get('key')
+    if not user or not secret:
+        raise SystemExit(f"{a.creds} needs 'email' plus 'password' or 'key'; it has: {sorted(cr)}")
+    auth = base64.b64encode(f"{user}:{secret}".encode()).decode()
     def get(p, tries=5):
         # RETRY. The agent proxy resets connections mid-run; on 2026-09-02 a 119-case sweep died on
         # "[Errno 104] Connection reset by peer" after doing most of the work. A gate that cannot

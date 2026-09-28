@@ -4314,3 +4314,23 @@ Reproduced on two different pairs of orders for vendor Delete Test, each with a 
 The invoice field is labelled **`Vendor Invoice # *`** (not "Vendor Invoice Number"), sits **per
 vendor group**, and on the purchase order page the receive UI is **inline, not a dialog** — a
 `.q-dialog` selector finds nothing there. C44591.
+
+## L0229 — 2026-09-28 — The QA lead ruled the supplier invoice number is UNIQUE; the spec is wrong
+He ruled (28 September 2026): *"Invoice number is not reusable it is unique"* — reversing Confluence
+page 771391574 line 456 (*"The same invoice number may be reused across several of a vendor's
+purchase orders"*). C44591 was rewritten end to end under Rule 114(c) (he named the case and
+authorised the change in that conversation) and its result went **Failed → Passed**: the build was
+right all along. **The spec sentence still needs correcting**, and the case says so openly (Rule 56).
+**C44586 rests on the same overturned sentence** ("two POs make two bills, same number") and is
+therefore also wrong as written — it needs the same correction, not deletion.
+
+## L0230 — 2026-09-28 — Two tooling repairs made while doing that
+- `check_runnable_cases.py` died on `KeyError: 'user'` before checking anything: `creds.json` carries
+  **`email`** plus `password` or `key`, never `user`. Now reads either and says what the file has.
+- **`/tmp/testrail/creds-ui.json` does not survive a new container.** The UI login (needed for the
+  served-page `fr-view` scan and any UI repair) can be rebuilt from `creds.json`, which carries a real
+  password — the same string opens TestRail and Atlassian (ENVIRONMENT-CREDENTIALS §4/§5). Write it to
+  `/tmp`, `chmod 600`, never commit it (Rule 82).
+- The scanner's hard-coded `/opt/pw-browsers/chromium-1194/chrome-linux/chrome` is stale; use
+  `process.env.CHROME_BIN || '/opt/pw-browsers/chromium'`, and run it through `run_probe.sh` so the
+  bridge is up — chromium cannot reach TestRail without it (`ERR_PROXY_CONNECTION_FAILED`).
