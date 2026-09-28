@@ -157,8 +157,8 @@
    "why": "Could not be judged. This shop has no vendor whose parts sit on two purchase orders at once."
   },
   "44587": {
-   "v": "Blocked",
-   "why": "Could not be judged. It needs a person who may order but may not see money; the role built for this run had ordering removed as well, so Receive was not offered to them at all."
+   "v": "Passed",
+   "why": "Run as a person built for this: a custom role from the Admin template with See Financial Data switched off. The product couples that permission, so turning it off also removed Part Sales, Invoicing & Payments, Order Parts and AP/AR - it warns about this and the warning has to be accepted before the change takes. The person kept vendor and order management, which is what receiving runs on. What they see: on a work order the Rate, Margin and Total columns are gone; on the purchase orders page the Total Cost column is gone; on the receive page the columns are only Part number and description, Qty ordered and Qty received. Not a single money figure appears anywhere on any of those screens - the fields are absent, not blanked or masked, which is what this check asks for. And receiving still works for them: the page offers Receive Parts with its count on every purchase order."
   },
   "44588": {
    "v": "Blocked",
@@ -178,7 +178,7 @@
   },
   "44591": {
    "v": "Blocked",
-   "why": "The page half is already reported separately - there is no per-purchase-order panel to compare. The money half needs the same person as the receiving check above."
+   "why": "The money half is now settled and passes: for a person without See Financial Data the cost and total columns are absent from the purchase orders page and from the receive page, no money figure appears, and Receive Parts with its count is still offered - so receiving is unaffected. What is left is the view-only half: somebody with vendor and order management set to View only, who should be able to open the page but not receive. The person used here holds create-and-edit, so that still needs its own role."
   },
   "53488": {
    "v": "Passed",
@@ -226,7 +226,7 @@
   },
   "44601": {
    "v": "Blocked",
-   "why": "Partly seen: a work order whose only line is declined offers no finish action, and once an invoice exists both finish actions are gone from the header and the menu. The rest needs a second person and a real invoice."
+   "why": "Narrowed to two of its five points. Settled so far: a work order whose only line is declined offers no finish action; once an invoice exists neither finish action is offered at all and the header keeps only its three-dot; and a person without See Financial Data is offered no Create invoice - their header carries only New Line and the three-dot. Left to do: a review-only person and a complete-only person, each of which needs a role of its own."
   },
   "44602": {
    "v": "Passed",
@@ -250,7 +250,7 @@
   },
   "44607": {
    "v": "Blocked",
-   "why": "Partly seen: picking follows the picking permission and ordering follows the ordering permission, both confirmed. The rest of the map needs people in several different roles."
+   "why": "Narrowed, and one finding worth recording. Settled: picking follows the pick-parts permission, ordering follows the order-parts permission, and money follows See Financial Data - with that off, every money column disappears from the work order, the purchase orders page and the receive page. The finding: the permissions are NOT one to one. Switching See Financial Data off also switches off Part Sales, Invoicing & Payments, Order Parts and AP/AR - the product says so in a warning and will not let them be separated. So a person who may order parts but may not see money cannot be built at all, and any check assuming that pairing is asking for a state the product refuses to create. Left to do: the remaining actions, each needing a role carrying its permission and one without."
   },
   "44608": {
    "v": "Passed",

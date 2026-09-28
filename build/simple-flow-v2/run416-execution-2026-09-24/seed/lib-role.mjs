@@ -66,12 +66,15 @@ export async function createRole(page, name, changes) {
   await page.waitForTimeout(10000);
   return { picked, applied, flips, created, anyway, url: page.url() };
 }
-// Put my own account into a role, through the Edit Staff Member dialog.
-export async function setMyRole(page, filterRole, toRole) {
+// Put ANY staff member into a role, through the Edit Staff Member dialog.
+// (Was hard-wired to my own account; the permission checks need the second person moved instead.)
+// The staff list REMEMBERS a role filter between visits, so pass the role the person is in now or
+// their row will not be listed - that is a filter, not a missing person.
+export async function setRoleFor(page, email, filterRole, toRole) {
   await page.goto(`${APP}/administration/staff?roles=${encodeURIComponent(filterRole)}`, { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(10000);
-  const row = page.locator('tr', { hasText: 'bilal.muzamil@shopview.com' }).first();
-  if (!(await row.count())) return 'my row is not listed under ' + filterRole;
+  const row = page.locator('tr', { hasText: email }).first();
+  if (!(await row.count())) return email + ' is not listed under ' + filterRole;
   await row.hover(); await page.waitForTimeout(1200);
   await row.locator('.q-btn:has-text("edit")').first().click();
   await page.waitForTimeout(7000);

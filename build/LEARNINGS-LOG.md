@@ -4178,3 +4178,14 @@ change, not an acknowledgement of it.**
 **Bonus fact worth more than the fix:** the product couples See Financial Data with Part Sales,
 Invoicing & Payments, Order Parts and AP/AR — so "may order but may not see money" is a state the
 product will not build, and a test asking for it needs re-reading.
+
+## L0215 — A tool that silently builds the WRONG thing is worse than one that fails (2026-09-28)
+My role builder matched permission labels against `.q-toggle`. The permission I wanted is a checkbox,
+so the match found nothing — and the builder carried on and created the role anyway. The result was a
+full Admin clone named "No Line Edit": a role whose name is a lie, sitting in the list looking
+perfectly ordinary. Any check run on it would have measured an administrator and reported it as a
+restricted user, and the finding would have looked like "the product ignores permissions".
+**Two rules from it.** A step that cannot do what it was asked must **stop**, not continue with the
+part it managed. And every artefact a seeder creates gets **read back and checked against what was
+asked for** before anything is measured on it — the same discipline as reading a restore back.
+I deleted the role rather than leave it; a misleading artefact outlives the session that made it.

@@ -5516,3 +5516,17 @@ flip, not at save time.
 in this product — the two are coupled. A check that asks for that state is asking for something the
 product refuses to build, and should be read as being about **receiving** (a different atom) rather than
 ordering. Relevant to the "gated by its mapped atom" checks: the mapping is not one-to-one.
+
+**THE ROLE EDITOR HAS TWO KINDS OF CONTROL, AND ONLY ONE IS A `.q-toggle` (2026-09-28).** Scanning
+`.q-toggle` finds the **cross-toggles** only — *Review work orders · Pick parts · Order parts ·
+**Receive later** · Move labor* — plus the section cards. The main permission matrix (Work Orders,
+Work Order Lines, Vendor & Order Mgmt … each with View / Create & Edit / Delete) is **checkboxes** and
+does not appear in that scan at all. A role built by matching `.q-toggle` labels for something in the
+matrix silently creates **a clone of the template with nothing changed** — and it looks entirely
+normal in the roles list, so a later check measures the template and believes it measured a
+restricted user. **Always read the role back after building it**, and delete a role that did not get
+its intended change rather than leaving it named for something it is not.
+**Deleting a role:** open it (`edit` on its row) → **`delete Delete Role`** → confirm. A role that is
+assigned to somebody cannot be removed, so move the person first.
+**Existing test roles on prod:** `ZZAUTOTEST Receive Later`, `ZZAUTOTEST No Parts Perms`,
+`ZZAUTOTEST Order No Money` — all built from the Admin template.
