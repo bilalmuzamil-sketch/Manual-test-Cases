@@ -1,7 +1,60 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0a-REGRESSION-EXECUTION-2026-09-15 (LATEST) — the V1 regression set is executed, 63 of 65 judged
+## §0-FULL-RERUN-ON-STAGING-2026-09-28 (LATEST) — all 194 checks re-run on staging; 178 pass, 16 fail, 0 blocked
+
+**The QA branch `sv9160` has been merged into staging and DELETED — the host no longer resolves.** The
+whole suite was therefore re-run from scratch on **`app.staging.shopview.com`**, build
+**`v26.39.1-02c6b6c`**, workplace **Staging Heavy Duty - 9919**. Nothing was carried over from the
+branch: every one of the **194** tests in run 415 was executed again and every result carries the
+staging build marker.
+
+| | Cases |
+|---|---|
+| Passed | **178** |
+| Failed | **16** |
+| Blocked / untested | **0** |
+
+**No new tickets are asked for.** Every failure is either already reported and open (C44854 →
+SV-10188, reproduces exactly) or a check that has fallen behind a decision the product team already
+took. Four decisions are outstanding with the QA lead — see
+`staging-run-2026-09-28/REPORT-FULL-RERUN-2026-09-28.md` §5.
+
+**Three checks that used to fail now PASS**, and that is the headline for the build: a vehicle is
+findable by its full VIN again (C55669, which carried an EXPECT-FAIL marker); prefix ranking beats
+whole-word (C55707, C72120); and two words held in different fields of one record now combine
+(C53605, the SV-10238 symptom).
+
+**The sixteen failures, grouped by what to do about them**
+* **Already reported, still open, reproduces:** C44854 (a part already on the work order is not
+  pushed down) → **SV-10188**, QA Complete, no resolution.
+* **The check is behind a decision already taken (7):** C53476 · C53601 · C55660 · C55685 · C45160 ·
+  **C55673 · C55686**. The last two are the mouse-pointer behaviour of **SV-10061 (OBSOLETE)** — the
+  row under the pointer becomes the one Enter opens, and clicking the search box leaves the pointer
+  over the panel. That was nearly filed as a new defect; see learning **L0233**.
+* **The requirement looks to have moved and the QA lead must say (9):** C44850 · C55729 (an exact
+  identifier is no longer pinned above the groups — cf. SV-10547 *Done* and SV-10556 *OBSOLETE*) ·
+  C44898 · C45134 · C45136 (a phone shows the capped list with "Show All", while **SV-10345** asks
+  for "Show All" to be ADDED on phones — our checks and that request point opposite ways) · C45132
+  (phone placeholder wording) · C45153 (catalogue-only part, same fault as C53601).
+
+**The 34 permission checks all pass**, driven as a matrix: the Tech account was given one
+purpose-built role after another and signed in fresh each time, each role differing from the next by
+exactly ONE area of access. Every area removed took its group, count and tab together; removing the
+money permission kept every row and removed only the amounts. Recipe and role ids:
+`build/APP-ACTIONS-PLAYBOOK.md` → *STAGING — permissions, roles and location switching*.
+
+**Data:** the ranking (39 records), V1-regression (11) and per-tab (12) fixtures are all present and
+verified on staging; `seed-manifest-pertab.json` is new. Seeding tooling was fixed in three places
+where state was keyed to the wrong environment (**L0236**), and `staging-cookie-boot.mjs` now throws
+instead of exiting so a driver's cleanup always runs (**L0235**).
+
+**Evidence:** `build/global-search/staging-run-2026-09-28/` — every probe, every measurement, and the
+seven readings that were discarded as void because the method, not the product, was wrong.
+
+---
+
+## §0a-REGRESSION-EXECUTION-2026-09-15 — the V1 regression set is executed, 63 of 65 judged
 
 **Run 415, QA branch sv9160, build `v26.36.4-7869ff2`.** The set that asks "can a person still do on V2
 what they could do on V1" is **65 cases, not the 62 reported all week** — the count had come from
