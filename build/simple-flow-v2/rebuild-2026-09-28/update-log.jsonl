@@ -30,3 +30,33 @@
 {"op": "update_case", "cid": 44581, "http": "200", "title": "Bulk pick runs the existing pick atomically for in-stock unpicked parts"}
 {"op": "update_case", "cid": 44582, "http": "200", "title": "Bulk pick action is hidden without the Pick Parts permission"}
 {"op": "update_case", "cid": 53486, "http": "200", "title": "Deselect all keeps the bar; close dismisses it; an empty group shows no divider"}
+{"op": "update_case", "cid": 44583, "http": "200", "title": "Receive opens a modal (no navigation); its contents depend on the entry point"}
+{"op": "update_case", "cid": 44584, "http": "200", "title": "Receiving requires vendor, invoice number and date; cost and tax prefilled, may be zero"}
+{"op": "update_case", "cid": 44585, "http": "200", "title": "Vendor-missing card requires Assign vendor first; it applies to ticked parts only"}
+{"op": "update_case", "cid": 44586, "http": "400", "error": "{\"error\":\"Field :case_id is not a valid test case.\"}"}
+{"op": "update_case", "cid": 44587, "http": "200", "title": "A user without See Financial Data can still receive; money fields are removed, not masked"}
+{"op": "update_case", "cid": 44588, "http": "400", "error": "{\"error\":\"Field :case_id is not a valid test case.\"}"}
+{"op": "update_case", "cid": 53487, "http": "400", "error": "{\"error\":\"Field :case_id is not a valid test case.\"}"}
+{"op": "update_case", "cid": 44589, "http": "200", "title": "Purchase-order page groups by vendor, missing vendors first, all collapsed"}
+{"op": "update_case", "cid": 44590, "http": "200", "title": "A panel expands per purchase order with per-PO vendor-side fields and read-only sell"}
+{"op": "update_case", "cid": 44591, "http": "200", "title": "Receive page validity matches the modal; money hidden without permission; sell not shown from Parts"}
+{"op": "update_case", "cid": 53488, "http": "200", "title": "PO list-page selection raises the shared bulk bar; Select all covers one page only"}
+{"op": "update_case", "cid": 44592, "http": "200", "title": "Receive becomes a split button offering Received later, chosen per part"}
+{"op": "update_case", "cid": 44593, "http": "200", "title": "Without the permission or the setting, no Received later option appears"}
+{"op": "update_case", "cid": 53489, "http": "400", "error": "{\"error\":\"Field :case_id is not a valid test case.\"}"}
+{"op": "update_case", "cid": 44594, "http": "200", "title": "The completion wizard opens only from the defined actions, only when something is collectable"}
+{"op": "update_case", "cid": 44595, "http": "200", "title": "The wizard shows only the outstanding steps, in a fixed order, with Missing details last"}
+{"op": "update_case", "cid": 44596, "http": "200", "title": "Each wizard step's own action saves and advances; there is no Continue; receive reuses the modal"}
+{"op": "update_case", "cid": 44597, "http": "200", "title": "Where a wizard run ends depends on what opened it"}
+{"op": "update_case", "cid": 44598, "http": "400", "error": "{\"error\":\"Field :case_id is not a valid test case.\"}"}
+{"op": "update_case", "cid": 44599, "http": "200", "title": "The header shows only the one finish action that is genuinely next"}
+{"op": "update_case", "cid": 44600, "http": "200", "title": "Create invoice runs the wizard if needed, then invoices, completes Approved lines and opens payment"}
+{"op": "update_case", "cid": 44601, "http": "200", "title": "Finish-action negatives: needs-approval block, declined-only, invoice lock, payment-close"}
+{"op": "update_case", "cid": 44602, "http": "200", "title": "The part and line ... menus hold exactly the actions that belong to them"}
+{"op": "update_case", "cid": 44603, "http": "200", "title": "Menu negatives: Request part, Uncomplete and Receive part visibility"}
+{"op": "update_case", "cid": 44604, "http": "200", "title": "Dragging a part reorders it within its line; the line order is the invoice order"}
+{"op": "update_case", "cid": 44605, "http": "200", "title": "Reordering negatives: no cross-line moves, refused on an invoiced WO, last write wins"}
+{"op": "update_case", "cid": 44606, "http": "200", "title": "'Received later' is the one new permission \u2014 a per-role toggle, off by default"}
+{"op": "update_case", "cid": 44607, "http": "200", "title": "Every Simple Flow action is gated by its mapped existing atom; bulk uses the same atom as single"}
+{"op": "update_case", "cid": 44608, "http": "200", "title": "Money follows See Financial Data; work follows View mode; nothing is hidden-and-required"}
+{"op": "update_case", "cid": 44609, "http": "200", "title": "A user without an atom never sees the action; hidden values are not sent to the screen"}
