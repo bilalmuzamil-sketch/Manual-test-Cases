@@ -5640,3 +5640,96 @@ and no hover-based finding is admissible.
 "desktop only — pointer present". Read it from the page:
 `matchMedia('(hover: hover)')`, `('(pointer: fine)')`, `navigator.maxTouchPoints`. Headless chromium
 here reports hover:hover, pointer:fine, maxTouchPoints 0 — so there is no pointer-based excuse.
+
+---
+
+## STAGING — permissions, roles and location switching (proven live 2026-09-28, build v26.39.1-02c6b6c)
+
+Everything below was measured on `app.staging.shopview.com`, organisation
+`d55bc308-e61a-438d-b5f1-c7a73c89d49f` ("Foothill…"), workplace **Staging Heavy Duty - 9919**
+(`b3c8c820-f815-4cf1-8938-10956c5ee71a`). Lethbridge is `f8a8b802-7780-4b16-bf10-343caeb616b2`.
+Both are `America/Edmonton`.
+
+### Driving a permission matrix without a second human login
+
+Quick-login offers exactly two keys on staging: **`admin`** and **`tech`**. To test any other access
+level, **give the Tech account a purpose-built role and sign in fresh as Tech**:
+
+```
+POST /api/staff/{staff_id}/change
+     {first_name:'Tech', last_name:'ShopView', email:'tech@shopview.com',
+      workplace_id:<WP>, role_id:<ROLE>}          -> 201
+```
+
+- **Tech's `staff_id` is `d2cb20a6-90a8-4884-ac50-022ff2fb9313`** and its user id is
+  `ba74948b-…`. 🔴 **Tech is NOT one of the 28 rows in `GET /api/staff`** — you cannot confirm the
+  change from that list, and looking for it there returns "not found" on a change that worked. Read
+  it back with `POST /api/quick-login {key:'tech'}`, whose `data.role` carries the role's **name and
+  its full `fePermissions` list**. That same response is where the `staff_id`, `user_id` and email
+  come from in the first place (`data.details`).
+- **NEVER swap the role of a session that is already open** — sign in fresh afterwards. The stock
+  Technician role to restore to is **`af8d02b5-ecd1-4205-a82f-32a4d5bb1015`** (6 permissions:
+  `workOrdersView`, `customersView`, `scheduleView`, `woPickParts`, `woTechViewMode`,
+  `workOrderLinesCreateAndEdit`).
+- **`GET /api/iam/list-roles` returns roles for EVERY organisation** — 6,853 rows of
+  `{id, code, label}` on this estate. Matching by label alone will hand you another company's role.
+  The `ZZAUTOTEST …` fixtures are unique by name and therefore safe; `Office User` and `Technician`
+  are **not** (618 candidates each). Take the Technician id off the staff rows or off quick-login.
+- Role **creation** works as `seed_roles.py` documents (`fePermissions` must be a list of bare uuid
+  strings). Two fixtures were added on 2026-09-28: **`ZZAUTOTEST Full Access`** (the union of the
+  seven minus-one roles, so each of those differs from it by exactly ONE bundle) and **`ZZAUTOTEST
+  Part Sales Only`**. Manifest: `build/global-search/seeding/seed-manifest-pertab.json` for the
+  per-tab data; the roles are listed in `/tmp/staging/role-ids.json` at run time.
+
+### The permission → search-group mapping, confirmed end to end
+
+Removing one bundle removes its **group, its count AND its scope tab** together:
+
+| bundle removed | what disappears |
+|---|---|
+| `workOrdersView` | Work orders |
+| `customersView` | Customers **and** Assets (one permission, two groups) |
+| `catalogInventoryView` | Parts |
+| `partSalesView` | Part sales |
+| `vendorOrderManagementView` | Vendors, Purchase orders **and** Vendor invoices |
+| `seeFinancialData` | **nothing disappears** — every group and row stays, only the amounts go |
+
+The Time Clock role (3 permissions) returns **nothing at all**, whatever is typed.
+
+### 🔴 The location lives in the BROWSER, not only in the session
+
+`POST /api/iam/change-location {workplace_id, workplace_timezone}` moves the session — the search
+endpoint immediately stops returning the other location's work orders — **but the screen does not
+follow, even across a full page reload.** The app keeps `location` (and `current_shop_id`) in
+`localStorage` and keeps sending it. A back-end switch therefore proves nothing about what a user
+sees, and produces a very convincing false finding ("the old location's records are still listed").
+
+- **Switch through the UI:** click the workplace name in the header → the user menu → **"Change
+  Location: `<dropdown>`"** → pick the workplace. The dropdown is a `.q-field` inside `.q-menu`; the
+  options are `.q-item`s in a second `.q-menu`.
+- **Read the header back** (`/Staging [A-Za-z ]+ - \d+/`) before measuring anything.
+- **Wrong timezone ⇒ HTTP 400**, silently, if your script only prints the measurement.
+
+### 🔴 The mouse pointer selects the row that Enter will open
+
+Whatever row sits under the pointer becomes the palette's selected row. **Clicking the header search
+box leaves the pointer exactly where the panel then opens over it**, so a row lands under it and
+Enter opens the wrong record. Park the pointer (`page.mouse.move(5, 5)`) before reading
+`selectedIndex`, or open the palette with **Ctrl+K**. This is SV-10061 (closed OBSOLETE) and it cost
+three wrong characterisations before it was found — see learning **L0233**.
+
+### Smaller staging facts worth not re-discovering
+
+- The palette's **All tab shows only the first FIVE rows of each group**; a record ranked sixth or
+  lower reads as missing unless you open that group's tab. Two "not found" results on 2026-09-28
+  were this, not the product.
+- A work order's **Parts tab is `/workorders/{id}/part-requests`**, not `/parts`, and its label reads
+  **"Parts (3)"** once it holds parts — an exact-match tab selector finds nothing.
+- Editing a work order's URL to reach a sub-route answers **page-not-found**; the SPA needs the work
+  order loaded, so click the tab.
+- `POST /api/work-orders/create` needs **`{is_vehicle_here:false, company_id, vehicle_id}`** — sending
+  `workplace_id` instead of the vehicle answers **500**.
+- `POST /api/work-orders/change-status` accepts `complete` and `paid`; **`invoiced` is refused**
+  ("cannot be changed manually") and `closed` is not a status name. A **part sale is a work order**,
+  so the same call marks one Paid.
+- A new customer, work order or part sale is findable in global search in **about 5 seconds**.
