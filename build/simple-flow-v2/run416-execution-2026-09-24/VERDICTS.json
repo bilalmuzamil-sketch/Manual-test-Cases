@@ -185,8 +185,8 @@
    "why": "Marked Passed on the QA lead's ruling of 25 September 2026: the tick bar on the purchase orders page is not meant to be the work order's bar. The page raises a bar of its own, reading the number selected and a cross. The written requirement still says it should be the same bar as the work order, so the case text and the ruling differ - that is reported and the case text is left exactly as it is."
   },
   "44592": {
-   "v": "Blocked",
-   "why": "Could not be judged. Granting the Receive later permission could not be proved to have taken effect: the shop's own Admin role is locked and saves nothing, and a copy of it made for this run came back with fewer permissions than Admin, not more. With that copy in force the Receive control was still a plain button with no caret, but because the permission itself could not be shown to be live, that reading proves nothing."
+   "v": "Passed",
+   "why": "Run as a person carrying the receive-later permission, which had to be granted first - and the granting is itself the finding. The administrator account does NOT carry it, and for that account Receive is a plain button with no caret at all. Grant the permission and the same control grows a caret: the part row then reads Awaiting, Receive and a drop-down arrow. So the split button is genuinely gated by the permission, which is what this check is really asking. Used end to end: in the receive window each vendor group carries its own Receive Later button beside Receive Parts with its count, both greyed until something is ticked. Ticking a single part made Receive Later pressable on its own, and pressing it moved only that part - its row now reads Receive Later while the other three still read Awaiting Receive with their drop-down. So the choice is made per part, not for the whole work order. Worth noting for whoever reads this next: a role named ZZAUTOTEST Receive Later already existed, and its receive-later switch was OFF. The name was not evidence. It was switched on, saved and read back before anything was measured."
   },
   "44593": {
    "v": "Passed",
@@ -194,7 +194,7 @@
   },
   "53489": {
    "v": "Blocked",
-   "why": "Could not be judged, for the same reason as the split button check: the Receive later permission could not be proved to be in force, so a deferred part with a core could not be produced."
+   "why": "Narrowed to one missing ingredient. Everything about deferring a part now works and was seen: the permission gates the drop-down, the receive window offers Receive Later per vendor group, and choosing it moves only the ticked part. What this check needs on top is a deferred part that HAS a core, so the core can be watched to see whether it follows its parent or is asked about separately. The work order used has no cores on it, and the one that did have cores has since been invoiced, which removes receiving entirely. To finish: put a part that carries a core onto a work order that is still open, order it, then defer it."
   },
   "44594": {
    "v": "Passed",
