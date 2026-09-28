@@ -235,6 +235,81 @@
    "v": "Passed",
    "why": "Re-run on staging, where the suite now lives. Contacts are not a thing you can search for in their own right, and that is correct.\n\nThere is no Contacts tab in the row of tabs and no Contacts group in the results, on any search tried. When a contact's name, telephone or e-mail matches, what comes back is the company they belong to - the customer or the supplier row - with its second line reading \"Contact match\" and showing the detail that matched.",
    "build": "v26.39.1-02c6b6c"
+  },
+  "44857": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. With nothing typed, the window shows your recent activity rather than helper text, and the rows sit under time headings - \"Recent searches\" at the top, then \"Today\" and \"Past week\". Headings for periods with nothing in them are simply not shown, which is right.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44858": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The recent list mixes different kinds of record together - work orders and customers were both there among the forty items - and every one is drawn with the same row layout as an ordinary result: icon on the left, a bold main line, a quieter second line.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44859": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Clicking a recent item closes the window and opens that record. Clicking the first one moved from the customers page to that work order's own page.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44860": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Looking at a record puts it in the recent list, and the list does not repeat itself: forty items were listed and not one appeared twice, including records opened more than once during this pass. The list is the signed-in person's own.\n\nTwo parts of this check cannot be seen from the screen: that the list is kept for thirty days, and that it hides records the person is not allowed to see. Neither could be proved in a single sitting, and neither is claimed here.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44861": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Closing the window keeps what you typed. After searching \"Fibridge\" and pressing Escape, the search field in the top bar reads \"Fibridge\" as plain text.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44862": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Reopening the window brings back the last search exactly as it was: the box still held \"Fibridge\", the same tab was still selected, and the thirty-five results were shown again straight away.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44863": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Pressing the clear cross empties the box, the results disappear, the window stays open, and it goes back to showing your recent activity with the usual \"Search work orders, customers, parts and more\" prompt.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44864": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. A search matching nothing shows a single message in the middle: \"No results found\" and beneath it \"No results for “zzqqxxnothingmatchesthis”\" - with exactly what you typed, in quotes. Nothing else is offered: no create buttons, no suggestions, no rows. Every tab reads (0).",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44865": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. With a particular tab chosen, the same message names the tab: \"No results for “zzqqxxnothingmatchesthis” in Customers\". Nothing else is shown.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44876": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. When the search cannot reach the server, the window says so plainly instead of breaking. With the search calls deliberately blocked, it showed a cloud-off icon with \"Search unavailable\" and a \"Retry\" button. The window stayed open and usable - no blank panel, no crash, tabs and the keyboard reminder still in place.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44855": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Checked on a genuinely empty history, by clearing the recent list first - otherwise you see your recent activity instead of this state.\n\nThe box reads \"Search work orders, customers, parts and more\" and beneath it there is a single line: \"Type to start searching for work orders, parts, customers and more\". Nothing about asking questions and nothing suggesting anything clever - just the one line.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44856": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Neither state offers any create buttons. In the first-time state, with the history cleared, there is nothing at all to press. In the no-results state the only things pressable are the tabs themselves - no \"New work order\", no \"New customer\", no \"New inventory part\".",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "45128": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. \"Clear all\" sits on the Recent searches heading. Pressing it emptied the whole history at once - ninety-six items went to none - and the window fell straight back to the first-time state reading \"Type to start searching for work orders, parts, customers and more\". There is no separate \"you have no history\" message, which is right.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44874": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. The Work Orders list has its own small search, separate from the main one. Typing \"Bravo\" into it cut the list from thirty rows to one, and that row does contain Bravo. What you typed stays in the box. There is no \"Showing N matching\" banner anywhere - the filtered list is simply the list. The columns are exactly as they were.",
+   "build": "v26.39.1-02c6b6c"
+  },
+  "44875": {
+   "v": "Passed",
+   "why": "Re-run on staging, where the suite now lives. Emptying that same box brings the whole list straight back - thirty rows again. There is nothing to dismiss: clearing the box is what restores the list, and no banner appears at any point.",
+   "build": "v26.39.1-02c6b6c"
   }
  }
 }
