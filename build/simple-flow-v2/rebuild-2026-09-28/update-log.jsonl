@@ -9,3 +9,13 @@
 {"op": "update_case", "cid": 44557, "http": "200", "title": "Only ordering and picking ask to confirm; turning picking OFF warns about stock"}
 {"op": "update_case", "cid": 44558, "http": "200", "title": "Cancelling a settings-change confirmation changes nothing; a zero count saves directly"}
 {"op": "update_case", "cid": 44559, "http": "200", "title": "Applying a large settings change blocks only the acting admin, never the whole shop"}
+{"op": "update_case", "cid": 44561, "http": "200", "title": "An Approved line completes whatever the state of its parts"}
+{"op": "update_case", "cid": 44562, "http": "200", "title": "The other line requirements still apply on completion when their setting is on"}
+{"op": "update_case", "cid": 44563, "http": "200", "title": "A line reaches Complete only through the defined paths"}
+{"op": "update_case", "cid": 44564, "http": "400", "error": "{\"error\":\"Field :case_id is not a valid test case.\"}"}
+{"op": "update_case", "cid": 44565, "http": "200", "title": "Complete is never disabled for a parts reason; reopening returns the line to Approved"}
+{"op": "update_case", "cid": 44566, "http": "200", "title": "Line actions offered match the line's status"}
+{"op": "update_case", "cid": 44567, "http": "200", "title": "Decline is disabled while a line holds received or picked parts"}
+{"op": "update_case", "cid": 44568, "http": "200", "title": "Part row action matches the part's state \u2014 all seven states"}
+{"op": "update_case", "cid": 44569, "http": "200", "title": "Ordering precedes receiving; Receive placement follows the setting"}
+{"op": "update_case", "cid": 44570, "http": "200", "title": "Declining or sending back a line returns only the not-yet-arrived parts to Quoted"}
