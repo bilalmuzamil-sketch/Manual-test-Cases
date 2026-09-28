@@ -4136,3 +4136,31 @@ sent me looking instead of writing a ticket.
 **The rule.** A precondition's route is part of what is under test. Before failing a whole capability,
 ask: where else could this live, and has anyone ever seen it work? One question to the QA lead would
 have saved two false failures and a wasted ticket draft.
+
+## L0212 — An icon button's label is in its aria-label and tooltip, NEVER in its text (2026-09-28)
+**What happened.** I reported that a work order offers no **Send** anywhere, in any of seven states, and
+took that to the QA lead as the one remaining fault. It was wrong. The product's control is an ICON
+button: no text, `aria-label="Send to Portal"`, tooltip "Send to Portal", icon ligature `how_to_reg`.
+My header scan read `innerText`, so the control reported itself as the string **"how_to_reg"** — and I
+had captured and printed exactly that on an invoiced work order, logged it as `how_to_reg [disabled]`,
+and did not recognise my own evidence.
+**Why the seven-state sweep did not save me.** Breadth does not fix a blind instrument. Sampling more
+states with the same reader just produced the same blindness seven times, and the repetition made me
+more confident, not less.
+**The rule.** Read every control four ways: `innerText`, `aria-label`, `title`, and the rendered
+tooltip (hover it — Quasar builds `.q-tooltip` lazily). A value that looks like a Material ligature
+(`how_to_reg`, `more_vert`, `content_copy`, `width_normal`) is a sign you are reading the icon, not the
+label, and must go and find the label.
+**Third of a kind.** L0204 (`.first()` took the wrong element), L0205 (hunted an affordance I expected),
+and now this. All three are the same failure: **I asked the page the wrong question and reported the
+answer as a fact about the product.**
+
+## L0213 — A work order lives in a WORKPLACE, and the wrong one silently redirects to the list (2026-09-28)
+Opening a work order id that belongs to another workplace does not error — it **redirects to
+`/workorders`**, and a scan then reads the LIST's toolbar (Create Work Order, Search, Column Selection)
+as though it were the work order's header. Always assert you are on a work order before reading it:
+the column-headings row (`Name/Description`) is the reliable tell.
+**Switching:** `POST /api/iam/change-location` worked once and then returned **500** for every further
+call, leaving the session stranded on the wrong workplace. The screen is reliable: the profile chip
+(top right) → **"Change Location: <current>"** → pick from the list. Restore the original workplace
+when finished, and read it back.

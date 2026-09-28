@@ -217,8 +217,8 @@
    "why": "Could not be judged. It needs a second person finishing work mid-run and a server error, neither of which could be produced."
   },
   "44599": {
-   "v": "Failed",
-   "why": "Re-checked across all seven states a work order can be in, with the header read properly this time. Everything about the finish action is right: Create invoice sits in the three-dot menu while a line is still open, is promoted to a button beside New Line once every line is complete, and is shown greyed out on an estimate. The one fault is that Send is offered nowhere - not in any of the seven states, not in the three-dot menu, and the word does not appear anywhere on the page. The requirement names Send in three separate places."
+   "v": "Passed",
+   "why": "My earlier failure is withdrawn. The QA lead pointed out that what the requirement calls Send is the product's Send to Portal, and I have now seen it myself: on a work order marked Estimate with a line awaiting approval, the header carries New Line, the three-dot menu, and an icon button whose label and tooltip both read Send to Portal, enabled. On an invoiced work order the same button is present and greyed out, which matches what he described - it becomes active only while a line is awaiting approval. I missed it because I read buttons by their text, and an icon button has no text: it reported itself as how_to_reg, the icon's own name, which I had actually captured and logged without recognising it. Everything else this check asks for was already right: Create invoice sits in the three-dot menu while a line is still open, is promoted to a button beside New Line once every line is complete, and is shown greyed out with its reason where a line still awaits approval. One observation worth recording rather than raising: Send to Portal is not rendered on every work order - it was absent from several I sampled - so which states show it greyed versus not at all is not yet mapped."
   },
   "44600": {
    "v": "Blocked",

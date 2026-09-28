@@ -5488,3 +5488,19 @@ where the requirement says *Deselect all*; groups open **expanded** rather than 
 checks pointed at `/parts/orders` and I judged the product against them without asking whether the
 route itself was right. When a whole feature appears to be missing, suspect the route before the
 product — and ask.
+
+**READING CONTROLS — FOUR WAYS, ALWAYS (2026-09-28).** `innerText` alone is not how you read a control.
+Capture `innerText`, `aria-label`, `title`, and the **rendered tooltip** (hover first; Quasar creates
+`.q-tooltip` lazily). Anything that comes back looking like a Material ligature — `how_to_reg`,
+`more_vert`, `content_copy`, `width_normal`, `expand_less` — means you are reading the ICON and have
+not yet found the label. Worked example: the work order header's **Send to Portal** is an icon button
+whose ligature is `how_to_reg`; reading text alone made it invisible across seven work-order states
+(L0212).
+
+**WORKPLACES (2026-09-28).** Work orders are scoped to a workplace. Opening one that belongs to another
+**silently redirects to `/workorders`** — no error — so a header scan then reads the LIST toolbar.
+**Assert you are on a work order first**: the presence of the `Name/Description` column-headings row.
+To switch, use the screen: profile chip (top right) → **"Change Location: <current>"** → pick.
+`POST /api/iam/change-location` succeeded once and then 500'd on every subsequent call, stranding the
+session. Workplaces on prod: Inventory 1 · Inventory 2 · Truck Hill 1 · Trucks Hill 2 · Import Test ·
+QA New · QA Testing · For Ryan · SANKAN. **Restore the workplace you started in and read it back.**
