@@ -149,3 +149,28 @@ is intact.
 Both halves of exhibit 1 carry the New Line dialog's dimming, which is simply what a
 brand-new empty work order looks like when you open it; the state is identical on both
 sides, so the comparison is like for like.
+
+---
+
+## 10. Pre-post gate and the posted comment (Rule 72)
+
+Run immediately before posting, 2026-09-29 ~05:0x UTC:
+
+| Check | Result |
+|---|---|
+| Branch build marker re-read live | `v26.39.1-830ae4c`, `Mon, 28 Sep 2026 22:46:03 GMT`, etag `410d58546f0f9b292d54a4155c62bfeb` — **unchanged** since pass start |
+| Production build marker re-read live | `v26.39.1-3ef6ade`, `Fri, 25 Sep 2026 09:32:14 GMT`, etag `8b98909c3354f09d9a191839e6189b27` — **unchanged** |
+| Ticket thread re-read | still **9** comments, latest 77479 (Milos Vasic, 28 Sep); status **TESTING QA**, priority **Medium**; no other QA verdict already posted |
+| Every figure traced to a live measurement this pass | yes |
+| Human-voice / AI-fingerprint scan of the body text | clean, 0 hits |
+| No "Technical details for developers" section (Rule 84 — the QA lead said no for this ticket) | confirmed absent |
+| Production left as found | all 11 locations at their original Shop IDs (`For Ryan=55`, `Import Test=2500`), created records deleted, workplace back on Trucks Hill 2 |
+
+**Posted: comment `77485`** on SV-7208. Read back in ADF and verified:
+**3 media nodes, every one `"type":"file"` with a real attachment uuid** (72dc497f… ·
+84bbae52… · d2853719…) at 900×589, 900×304, 900×304 — the right images in the right
+order, not external links · first text node is `OVERALL QA STATUS: PASSED` · the table
+holds **9 rows** (header + 8 checks) and `PASSED` appears **9** times · no technical
+section.
+
+Attachments on the issue: `61524`, `61525`, `61526`.
