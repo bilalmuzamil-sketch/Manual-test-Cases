@@ -110,10 +110,21 @@ def term_for(ekey, field):
     f = FOUND.get(ref)
     return (f['term'], f"proven to match on {f['field']} ({f['kind']})") if f else (None, None)
 
-HDR = ['ID', 'What you are checking', 'Why it matters to a real user', 'Before you start',
-       'TYPE THIS', 'What to do', 'What you should see', 'Where that comes from',
-       'The exact wording of the requirement', 'Result', 'What you actually saw', 'Ticket']
-W = [11, 40, 42, 40, 30, 46, 46, 26, 60, 12, 34, 12]
+HDR = ['ID', 'TestRail', 'What you are checking', 'Why it matters to a real user',
+       'Before you start', 'TYPE THIS', 'What to do', 'What you should see',
+       'Where that comes from', 'The exact wording of the requirement', 'Result',
+       'What you actually saw', 'Ticket']
+W = [11, 12, 40, 42, 40, 30, 46, 46, 26, 60, 12, 34, 12]
+
+# Rule 8: never a bare local id — every deliverable pairs it with its C-id and a link.
+TR_MAP = {}
+_map = os.path.join(HERE, 'testrail-id-map.csv')
+if os.path.exists(_map):
+    import csv as _csv
+    with open(_map) as f:
+        for row in _csv.DictReader(f):
+            if row.get('case_id'): TR_MAP[row['local_id']] = row['case_id']
+TR_RUN = 415
 
 H_FILL = PatternFill('solid', fgColor='1F3864')
 HELD_FILL = PatternFill('solid', fgColor='FFF2CC')
@@ -129,28 +140,33 @@ def style_sheet(ws, nrows):
         cell.alignment = Alignment(vertical='center', wrap_text=True)
         ws.column_dimensions[get_column_letter(c)].width = w
     ws.row_dimensions[1].height = 34
-    ws.freeze_panes = 'C2'
+    ws.freeze_panes = 'D2'
     dv = DataValidation(type='list', formula1='"Pass,Fail,Blocked,Not run,HELD - do not run"',
                         allow_blank=True)
     ws.add_data_validation(dv)
-    dv.add(f'J2:J{max(nrows + 1, 2)}')
-    ws.auto_filter.ref = f'A1:L{max(nrows + 1, 2)}'
+    dv.add(f'K2:K{max(nrows + 1, 2)}')
+    ws.auto_filter.ref = f'A1:M{max(nrows + 1, 2)}'
 
 def write_rows(ws, rows):
     for r, row in enumerate(rows, 2):
+        cid = TR_MAP.get(str(row.get('ID')))
+        row['TestRail'] = f'C{cid}' if cid else ''
         held = row.pop('_held', False)
         nodata = row.pop('_nodata', False)
         for c, key in enumerate(HDR, 1):
             cell = ws.cell(r, c, row.get(key, ''))
-            cell.font = Font(name=FONT, size=10, bold=(c == 5))
+            cell.font = Font(name=FONT, size=10, bold=(c == 6))
             cell.alignment = Alignment(vertical='top', wrap_text=True)
             cell.border = THIN
-            if c == 5 and row.get('TYPE THIS'):
+            if c == 2 and cid:
+                cell.hyperlink = f'https://shopview.testrail.io/index.php?/cases/view/{cid}'
+                cell.font = Font(name=FONT, size=10, color='0563C1', underline='single')
+            if c == 6 and row.get('TYPE THIS'):
                 cell.fill = NODATA_FILL if nodata else TYPE_FILL
             elif held:
                 cell.fill = HELD_FILL
         if held:
-            ws.cell(r, 10).value = 'HELD - do not run'
+            ws.cell(r, 11).value = 'HELD - do not run'
     style_sheet(ws, len(rows))
 
 def steps(*ss):
@@ -175,6 +191,15 @@ def build():
       'without opening it, and tell two similar records apart.', 10, False),
      ('It came out of SV-10619 and SV-10551. Both are the same problem: you type 123786 and a row '
       'shows you only 786 — which is also what a row for 185786 would show.', 10, False),
+     ('', 10, False),
+     ('Where these live in TestRail', 13, True),
+     ('All 110 cases are in TestRail under  Global Search > Global Search - Enhancement (Aug 2026) '
+      '> Search Results Integrity — result row display (SV-10619 / SV-10551),  in nine folders, '
+      'one per tab.', 10, False),
+     ('They are all in test run 415, "Global Search V2 — Full Suite":  '
+      'https://shopview.testrail.io/index.php?/runs/view/415', 10, False),
+     ('The TestRail column in each sheet links straight to that case. Record your result in '
+      'TestRail; this sheet is for working through them.', 10, False),
      ('', 10, False),
      ('How to read a row', 13, True),
      ('TYPE THIS (green)   — copy this exactly into the search box. It has been checked on this '
@@ -652,11 +677,42 @@ PO_Q = [
   'Is there a minimum, and what is it?', 'All tab G4'),
 ]
 
+# 🔴 EVERY QUESTION CARRIES SOMETHING THE PO CAN TYPE AND SEE FOR HIMSELF. A question about search
+# behaviour that he cannot reproduce in thirty seconds is a question he has to take on trust, and
+# he should not have to. Each term below was checked on staging on 2026-09-29; the "what you will
+# see" column is what it actually returned, not what we expect it to return.
+PO_DEMO = {
+ 'Q1': ("609-461-6502", "A customer comes back — and the row shows a NAME and an ADDRESS. The "
+        "phone number you just typed is nowhere on it. Now try I-1522: a purchase order comes "
+        "back reading I2-1522. The number you typed appears nowhere on that row either."),
+ 'Q2': ("609-461-6502", "The right customer comes back. There is no telephone on the row, and "
+        "none on hover. Compare it with a vendor row, which does show one."),
+ 'Q3': ("965", "Look down the Customers and Vendors rows. Some show a full phone number like "
+        "857-496-5067. Others show just 965 — the three characters you typed. Same kind of "
+        "record, same kind of match, two different behaviours."),
+ 'Q4': ("ZZLONGROW", "On the Assets tab the unit number leads the row in bold. The specification "
+        "does not list it as something the Assets row displays."),
+ 'Q5': ("KVQ-2870", "A vehicle comes back. Its licence plate — what you typed — is nowhere on "
+        "the row, and licence plate is not in the specification's searchable list."),
+ 'Q6': ("H8A3X9", "A customer comes back, matched on its postal code. The postal code is not on "
+        "the row, and not in the specification's searchable list."),
+ 'Q7': ("I-1522", "A purchase order comes back. The row reads I2-1522 — not what you typed. "
+        "Then type I2-1522: the same order, matched a different way."),
+ 'Q8': ("Fibridge", "On the Vendor Invoices tab, compare the date on each row with the invoice "
+        "date on the record itself. The row shows the date the goods were RECEIVED."),
+ 'Q9': ("ZZNOUNIT", "A work order comes back for a truck with no unit number — the year, make "
+        "and model stand alone, which is what the specification asks for. We have no equivalent "
+        "sentence for an Assets row whose vehicle has no year, make or model either."),
+ 'Q10': ("9", "Type a single 9 and wait. Then add a second character. Note whether anything "
+         "searched, and whether the previous results stayed on screen."),
+}
+
 def build_questions(wb):
     ws = wb.create_sheet('Questions for the PO')
     hdr = ['#', 'The question', 'What is happening now', 'Why it matters',
-           'What the specification says today', 'What we need decided', 'Tests waiting on it']
-    widths = [7, 46, 60, 55, 46, 60, 26]
+           'What the specification says today', 'What we need decided',
+           'TRY IT YOURSELF — type this', 'What you will see', 'Tests waiting on it']
+    widths = [7, 46, 56, 50, 44, 56, 26, 62, 24]
     for c, (h, w) in enumerate(zip(hdr, widths), 1):
         cell = ws.cell(1, c, h)
         cell.font = Font(name=FONT, bold=True, color='FFFFFF', size=11)
@@ -667,17 +723,25 @@ def build_questions(wb):
     ws.freeze_panes = 'B2'
     note = ws.cell(2, 1, 'THESE ARE NOT TESTS. They cannot be run in the application — they are '
                    'decisions we need before 32 of the tests can say pass or fail. The test rows '
-                   'they block are named in the last column.')
+                   'they block are named in the last column. EVERY ROW CARRIES SOMETHING YOU CAN '
+                   'TYPE INTO THE SEARCH YOURSELF (green cell) AND WHAT IT ACTUALLY RETURNED WHEN '
+                   'WE CHECKED IT ON STAGING ON 2026-09-29.')
     note.font = Font(name=FONT, size=10, italic=True, color='7030A0')
     note.alignment = Alignment(wrap_text=True, vertical='top')
-    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=7)
     for r, row in enumerate(PO_Q, 3):
+        demo = PO_DEMO.get(row[0], ('', ''))
+        row = row[:6] + (demo[0], demo[1]) + row[6:]
         for c, val in enumerate(row, 1):
             cell = ws.cell(r, c, val)
             cell.font = Font(name=FONT, size=10, bold=(c == 1))
             cell.alignment = Alignment(vertical='top', wrap_text=True)
             cell.border = THIN
-            if r == 3: cell.fill = PatternFill('solid', fgColor='FFF2CC')
+            if c == 7 and val:
+                cell.fill = TYPE_FILL
+                cell.font = Font(name=FONT, size=11, bold=True)
+            elif r == 3:
+                cell.fill = PatternFill('solid', fgColor='FFF2CC')
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=9)
     return len(PO_Q)
 
 def build_summary(wb, tabs):
@@ -696,7 +760,7 @@ def build_summary(wb, tabs):
     for c in range(2, 9): ws.column_dimensions[get_column_letter(c)].width = 12
     r = 6
     for name, n in tabs:
-        q = f"'{name}'!$J$2:$J${n + 1}"
+        q = f"'{name}'!$K$2:$K${n + 1}"
         ws.cell(r, 1, name).font = Font(name=FONT, size=10)
         ws.cell(r, 2, n).font = Font(name=FONT, size=10)
         for c, status in enumerate(['Pass', 'Fail', 'Blocked', 'Not run', 'HELD - do not run'], 3):
