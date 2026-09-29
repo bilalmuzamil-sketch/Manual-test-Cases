@@ -747,6 +747,109 @@ def build_questions(wb):
     ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=9)
     return len(PO_Q)
 
+# Everything the session filing this ticket needs, so nothing has to be re-derived. Shape is
+# Rule 52/53: Story Defect, parented to the OWNING STORY, priority Medium, never High, no Product
+# Area on this type, and the owning story also linked "relates to".
+TICKET = [
+ ('Summary (the ticket title)',
+  'Global Search: a result row shows only the characters typed, not the full value that matched'),
+ ('Issue type', 'Story Defect   (NOT "Story Defect - Archive")'),
+ ('Parent', 'SV-9170 — FE — Entity result rows: shared base row, nine variants, badges and match '
+  'highlighting.  The parent must be the OWNING STORY; an Epic parent is rejected with HTTP 400.'),
+ ('Priority', 'Medium.  High is barred by our standing rules — do not raise it.'),
+ ('Links', 'Also link SV-9170 as "relates to".  Link SV-10619 and SV-10551 as "relates to" — this '
+  'ticket is the root cause of both.'),
+ ('Product Area', 'Leave empty. This issue type does not carry the field.'),
+ ('Environment', 'Reproduced on staging, app.staging.shopview.com, workplace '
+  '"Staging Heavy Duty - 9919", build v26.39.1-97cad2c, on 2026-09-29.'),
+ ('What happens',
+  'When a search matches part of a longer value, the result row displays ONLY the characters that '
+  'were typed instead of the whole value they came from.\n\n'
+  'Type 965 and a customer row reads "Contact match: 965". The telephone number it actually '
+  'matched — 857-496-5067 — is never shown.\n\n'
+  'Type 3286 and a customer row reads "Contact match: (264) 328-6723" — the WHOLE number. Same '
+  'field, same kind of match, two different behaviours.'),
+ ('Steps to reproduce',
+  '1. Open global search on staging (Ctrl+K).\n'
+  '2. Type 965.\n'
+  '3. Open the Customers tab and read the second line of each row.\n'
+  '4. Some rows read "Contact match: 965" — only what you typed.\n'
+  '5. Now type 3286 and read the second lines again.\n'
+  '6. Rows now read "Contact match: (264) 328-6723" — the full number.\n\n'
+  'The difference: in step 2 the typed string appears literally inside the stored value; in step 5 '
+  'it does not, because of the brackets and dash.'),
+ ('Expected',
+  'The row shows the COMPLETE value that matched, with the part that was typed highlighted inside '
+  'it — e.g. "Contact match: 857-496-5067" with 965 marked.\n\n'
+  'Quoted from Global Search - Product Requirements v1.5 (2026-09-08), section 5.3:\n'
+  '"The matched substring of the query is highlighted in the primary and secondary text — '
+  'searching `Fib` highlights \"Fib\" in \"S1-644 Fibridge Commercial\"."\n\n'
+  'The example in the specification is decisive: the query was three characters and what the row '
+  'shows is the whole of "S1-644 Fibridge Commercial".'),
+ ('Actual', 'The row shows only the typed characters, so two different records can draw '
+  'identically and cannot be told apart.'),
+ ('Why it matters',
+  'This is the whole purpose of a result row. Story SV-9170: "Each result row carries enough '
+  'context to pick the right record without opening it ... which is what tells two of the same '
+  'customer\'s work orders apart."\n\n'
+  'Concretely: search 123786 and 185786 both draw as "786". The user cannot tell which record is '
+  'which without opening both, and cannot even tell that they are different records.'),
+ ('Root cause (verified in the code)',
+  'api/src/Search/Application/Assembler/MatchDescriptorFactory.php, method fragmentOf(), line 513.'
+  '\n\n'
+  'It walks the query, its normalised form and its tokens, and returns mb_substr(value, position, '
+  'length-of-needle) — the typed slice — as soon as one of them is found literally inside the '
+  'stored value. It only returns the WHOLE value as a fallback, when none of them is found.\n\n'
+  'So whether the user sees the full value or just their own query depends on whether what they '
+  'typed happens to appear literally in the stored text. Punctuation is what usually decides it.'),
+ ('Suggested fix',
+  'Return the WHOLE field value as the match fragment, and let the screen highlight the typed part '
+  'inside it.\n\n'
+  'The front end is ALREADY built for this and needs no change: splitHighlight() in '
+  'app/src/components/ts/navigation/search/searchRowVariants.ts marks a substring inside a longer '
+  'string, and labelled() in SearchResultRow.vue marks the fragment inside the text it is given. '
+  'Both already do the right thing wherever they are handed the full text.\n\n'
+  'If the descriptor needs to keep the typed portion as well, add it as a separate field rather '
+  'than narrowing the value.'),
+ ('Evidence',
+  'Measured on staging 2026-09-29. Same query (965), same field (contact_phones), same match kind '
+  '(word), two rows — one returning the full 696-541-0475 and one returning just 965.\n\n'
+  'Full analysis, with the measurement table and the code trace: '
+  'build/search-results-integrity/WHY-SEARCH-RESULTS-DISAPPOINT-Root-Cause-Analysis.md, '
+  'sections 3 and 8.'),
+ ('Test cases covering it',
+  '56 cases in TestRail under Global Search > Global Search - Enhancement (Aug 2026) > Search '
+  'Results Integrity — result row display, all in run 415.\n\n'
+  'The 24 "A" cases (show the whole matched value) and the 32 "C" cases (a match on a hidden field '
+  'shows the full value) all fail on this. Start with C146197 (SRI-WO-A1) and C146214 '
+  '(SRI-CUST-C1).'),
+ ('Already-raised tickets this explains',
+  'SV-10619 — "Some search results show \"....\" for the match instead of the full match."\n'
+  'SV-10551 — "Not providing the complete Unit number it is matching with."\n\n'
+  'Both are symptoms of this one cause. Consider closing them against this ticket rather than '
+  'fixing them separately.'),
+]
+
+def build_ticket(wb):
+    ws = wb.create_sheet('Ticket to create')
+    ws['A1'] = 'Ticket to be created for the one real defect'
+    ws['A1'].font = Font(name=FONT, size=15, bold=True, color='C00000')
+    ws['A2'] = ('Everything below is ready to paste. Nothing needs to be worked out again. '
+                'Raise it as written — the shape follows our standing rules for a defect ticket.')
+    ws['A2'].font = Font(name=FONT, size=10, italic=True)
+    ws.merge_cells('A2:B2')
+    ws.column_dimensions['A'].width = 30
+    ws.column_dimensions['B'].width = 120
+    for r, (k, v) in enumerate(TICKET, 4):
+        a = ws.cell(r, 1, k); b = ws.cell(r, 2, v)
+        a.font = Font(name=FONT, size=10, bold=True)
+        b.font = Font(name=FONT, size=10)
+        for c in (a, b):
+            c.alignment = Alignment(vertical='top', wrap_text=True); c.border = THIN
+        if k in ('Summary (the ticket title)', 'Priority', 'Parent'):
+            b.fill = PatternFill('solid', fgColor='FFF2CC')
+    return len(TICKET)
+
 def build_summary(wb, tabs):
     ws = wb.create_sheet('Summary', 1)
     ws['A1'] = 'Search Results Integrity — progress'
@@ -791,6 +894,7 @@ if __name__ == '__main__':
     n_cross = build_cross(wb)
     counts.append(('All tab and cross-tab', n_cross))
     n_q = build_questions(wb)
+    build_ticket(wb)
     build_summary(wb, counts)
     wb._sheets.insert(1, wb._sheets.pop(wb._sheets.index(wb['Summary'])))
     out = os.path.join(HERE, 'ShopView-Global-Search-Result-Row-Tests-for-Manual-QA.xlsx')

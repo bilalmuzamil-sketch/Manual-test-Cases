@@ -270,10 +270,16 @@ R += [
    f'{HIDDEN}VIN0000001', None, 'Rowcheck Motors', 'Quietline', ['PS-C2','ASSET-C1'],
    'Carries the keyword ONLY in its VIN, and no unit number at all, so a hit can be attributed to '
    'the VIN and to nothing else. The Assets row does not display a VIN - that is the point.'),
- vehicle('ri_asset_nounit', 'ri_cust_hidden_owner', 'ri_contact_hidden', 'ZZRINOUNITVIN0001',
+ # 🔴 A TESTER CAN EDIT SEEDED DATA, AND ONE DID. The first no-unit vehicle
+ # (ZZRINOUNITVIN0001) had unit "BILALUNIT" typed into it during testing, which destroyed the one
+ # thing the record existed for. /api/vehicles/change rejects every shape tried to clear it (400,
+ # no body), so the repair is what Rule 114 says it is: seed a clean replacement. The polluted one
+ # is left alone and is now a useful CONTROL - same make, WITH a unit - while the work order that
+ # pointed at it is deleted so the Work Orders tab shows exactly one row for this keyword.
+ vehicle('ri_asset_nounit', 'ri_cust_hidden_owner', 'ri_contact_hidden', 'ZZRINOUNITVIN0002',
    None, f'{NOUNIT} Trucks', 'Plainline', ['ALL-G1'],
    'NO unit number, so the work order row must fall back to year/make/model standing alone - the '
-   'one fallback PRD section 4 actually states.'),
+   'one fallback PRD section 4 actually states. Second VIN: the first was edited by a tester.'),
  vendor('ri_vend_hidden', 'Rowcheck Quiet Fields Supply', ['VEND-C1','VEND-C2','VEND-C4','VEND-C5'],
    'ONE vendor carrying four values that each live in a field the vendor row does not display: its '
    'own email, its address line 2, and its contact\'s name and email. Its NAME is neutral so every '
@@ -311,8 +317,10 @@ R += [
    'so many words: "what tells two of the same customer\'s work orders apart".'),
  work_order('ri_wo_twin_2', 'ri_cust_twin_a', 'ri_contact_twin_a', 'ri_asset_twin_b',
    ['WO-B1','WO-B2'], 'The second of the pair, on the twin vehicle.'),
- work_order('ri_wo_nounit', 'ri_cust_hidden_owner', 'ri_contact_hidden', 'ri_asset_nounit',
-   ['ALL-G1'], 'The work order whose vehicle has no unit number.'),
+ work_order('ri_wo_nounit2', 'ri_cust_hidden_owner', 'ri_contact_hidden', 'ri_asset_nounit',
+   ['ALL-G1'], 'The work order whose vehicle has no unit number. Key bumped with the vehicle: the '
+   'previous one is bound to the vehicle a tester put a unit number on, and a work order cannot be '
+   're-pointed at another vehicle.'),
  work_order('ri_wo_soft', 'ri_cust_soft_near', 'ri_contact_soft', 'ri_asset_soft',
    ['WO-I1'], 'The work order that must come back as a soft match.'),
  part_sale('ri_ps_twin_1', 'ri_cust_twin_a', 'ri_asset_twin_a', TWIN_A_CUST,

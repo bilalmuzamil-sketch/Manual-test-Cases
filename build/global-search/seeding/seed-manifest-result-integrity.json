@@ -804,7 +804,7 @@
     "list": "/api/vehicles",
     "coll": "collection",
     "field": "vin",
-    "value": "ZZRINOUNITVIN0001",
+    "value": "ZZRINOUNITVIN0002",
     "control": null
    },
    "create": {
@@ -813,7 +813,7 @@
      "maker_name": "ZZNOUNIT Trucks",
      "model_name": "Plainline",
      "year": 2021,
-     "vin": "ZZRINOUNITVIN0001"
+     "vin": "ZZRINOUNITVIN0002"
     },
     "inject": {
      "customer_id": "ri_contact_hidden",
@@ -832,7 +832,7 @@
     "endpoint": "/api/vehicles/change",
     "whole_record": true
    },
-   "_why": "NO unit number, so the work order row must fall back to year/make/model standing alone - the one fallback PRD section 4 actually states."
+   "_why": "NO unit number, so the work order row must fall back to year/make/model standing alone - the one fallback PRD section 4 actually states. Second VIN: the first was edited by a tester."
   },
   {
    "key": "ri_vend_hidden",
@@ -1263,7 +1263,7 @@
    "_why": "The second of the pair, on the twin vehicle."
   },
   {
-   "key": "ri_wo_nounit",
+   "key": "ri_wo_nounit2",
    "type": "WorkOrder",
    "count": 1,
    "depends_on": "ri_cust_hidden_owner",
@@ -1297,7 +1297,7 @@
     "vehicle_id",
     "customer_id"
    ],
-   "_why": "The work order whose vehicle has no unit number."
+   "_why": "The work order whose vehicle has no unit number. Key bumped with the vehicle: the previous one is bound to the vehicle a tester put a unit number on, and a work order cannot be re-pointed at another vehicle."
   },
   {
    "key": "ri_wo_soft",
