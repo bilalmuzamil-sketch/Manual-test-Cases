@@ -39,8 +39,10 @@ let rows: RowShape[];
 const measurements: Record<string, unknown> = { term: TERM, viewport: VIEWPORT };
 
 /** Visible text of a line — what a person can actually read, clipped parts removed. */
-const visibleText = (l: { segs: { text: string; visible: boolean }[] }) =>
-  l.segs.filter((x) => x.visible).map((x) => x.text).join('').replace(/\s+/g, ' ').trim();
+/** What a person can read on this line — partially clipped segments counted character by
+ *  character, not thrown away whole. See Seg.visibleText for why that distinction matters. */
+const visibleText = (l: { segs: { visibleText: string }[] }) =>
+  l.segs.map((x) => x.visibleText).join('').replace(/\s+/g, ' ').trim();
 
 const visibleRow = (r: RowShape) =>
   [visibleText(r.title), r.badge ?? '', visibleText(r.meta)].join(' | ').replace(/\s+/g, ' ').trim();

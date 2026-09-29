@@ -27,7 +27,26 @@ import { SEL, typeQuery, closePanel } from './search.js';
  * keyboard would open, so nothing here asserts on it. The pointer is parked at 0,0 before reading.
  */
 
-export type Seg = { text: string; marked: boolean; italic: boolean; visible: boolean };
+export type Seg = {
+  text: string;
+  marked: boolean;
+  italic: boolean;
+  /** True only when the WHOLE segment lies inside the painted box. */
+  visible: boolean;
+  /**
+   * The part of the segment a person can actually READ — measured character by character.
+   *
+   * 🔴 WHY THIS IS NOT JUST `visible`. A clipped line is usually ONE long text span with a few
+   * characters past the edge. Treating the span as all-or-nothing throws the whole span away, so
+   * two rows that differ only inside it collapse to the same visible string and the reader reports
+   * "these rows are indistinguishable" — which is a fact about the reader. That is exactly what
+   * happened on C146212 (29 Sep): two customers whose names differ at "…Fernvale 123786" against
+   * "…Fernvale 185786", with 19px of 553px clipped. Three characters are hidden; the digits that
+   * separate them are plainly on screen. The finer measurement is the difference between a false
+   * defect and the truth.
+   */
+  visibleText: string;
+};
 
 export type Line = {
   text: string;
@@ -116,17 +135,40 @@ export async function groupRows(page: Page, term: string, tab: string): Promise<
       const box = el.getBoundingClientRect();
       const clientW = el.clientWidth, scrollW = el.scrollWidth;
       // Leaf spans only: a parent span would be counted twice and its rect would span the whole line.
+      // How much of one text node is painted inside `box`: the longest prefix whose last character
+      // still ends left of the container's right edge, found by binary search over a Range.
+      const readableLength = (node: Text): number => {
+        const full = node.data;
+        if (!full.length) return 0;
+        const rng = document.createRange();
+        const endsInside = (n: number) => {
+          rng.setStart(node, 0); rng.setEnd(node, n);
+          const rects = rng.getClientRects();
+          const last = rects[rects.length - 1];
+          return !last || last.right <= box.right + VIS_SLACK;
+        };
+        if (endsInside(full.length)) return full.length;
+        let lo = 0, hi = full.length;
+        while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (endsInside(mid)) lo = mid; else hi = mid - 1; }
+        return lo;
+      };
+
       const leaves = [...el.querySelectorAll('span')].filter((sp) => !sp.querySelector('span'));
       const segs = leaves.map((sp) => {
         const r = sp.getBoundingClientRect();
         const cs = getComputedStyle(sp);
         const mk = sp.closest('mark');
+        const text = sp.textContent || '';
+        const tn = sp.firstChild && sp.firstChild.nodeType === 3 ? (sp.firstChild as Text) : null;
+        const whole = r.width === 0 ? true : (r.left >= box.left - VIS_SLACK && r.right <= box.right + VIS_SLACK);
         return {
-          text: (sp.textContent || ''),
+          text,
           marked: !!mk,
           italic: cs.fontStyle === 'italic' || (mk ? getComputedStyle(mk).fontStyle === 'italic' : false),
           // A segment is visible when its box lies inside the container's painted box.
-          visible: r.width === 0 ? true : (r.left >= box.left - VIS_SLACK && r.right <= box.right + VIS_SLACK),
+          visible: whole,
+          // …and this is how much of it a person can read, which is not the same question.
+          visibleText: whole ? text : (tn ? text.slice(0, readableLength(tn)) : ''),
         };
       }).filter((x) => x.text !== '');
       const marked = segs.filter((x) => x.marked);
@@ -136,7 +178,8 @@ export async function groupRows(page: Page, term: string, tab: string): Promise<
         clipped: scrollW > clientW + VIS_SLACK,
         scrollW, clientW,
         markVisible: marked.length ? marked.every((x) => x.visible) : null,
-        hiddenSegs: segs.filter((x) => !x.visible).map((x) => x.text),
+        // The characters actually hidden, not the whole segment they live in.
+        hiddenSegs: segs.filter((x) => !x.visible).map((x) => x.text.slice(x.visibleText.length)).filter(Boolean),
       };
     };
 
@@ -163,3 +206,39 @@ export async function groupRows(page: Page, term: string, tab: string): Promise<
 }
 
 export async function shut(page: Page) { await closePanel(page); }
+
+/**
+ * Hover a row and report what APPEARS that was not there before.
+ *
+ * PRD v1.5 §4 puts the customer telephone "on hover", and the quick-action buttons live in the same
+ * hover cluster. A read that never hovers therefore reports both as missing, which is a statement
+ * about the reader.
+ *
+ * 🔴 AND HOVERING IS NOT FREE: the pointer that hovers a row also SELECTS it (SV-10061). So this
+ * returns the pointer to the origin afterwards and re-verifies, and no caller may read selection
+ * state from a panel this has touched.
+ */
+export async function hoverRow(page: Page, index: number):
+  Promise<{ before: string; after: string; gained: string[]; reached: boolean }> {
+  const read = () => page.evaluate(([s, i]) => {
+    const r = document.querySelectorAll(s.row)[i as number] as HTMLElement | undefined;
+    return r ? r.innerText.replace(/\s+/g, ' ').trim() : '';
+  }, [SEL, index] as const);
+
+  const before = await read();
+  const box = await page.locator(SEL.row).nth(index).boundingBox();
+  if (!box) return { before, after: before, gained: [], reached: false };
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.waitForTimeout(900);
+  // 🔴 READ `reached` WHILE THE POINTER IS STILL THERE. The first version of this checked
+  // `.search-row:hover` in the CALLER, after parkPointer had already moved the mouse back to the
+  // origin - so it always answered false and declared every hover measurement unproven. A control
+  // that cannot pass is not a control. Measured and fixed 29 Sep 2026.
+  const reached = await page.evaluate((s) => !!document.querySelector(`${s.row}:hover`), SEL);
+  const after = await read();
+  await parkPointer(page);
+  // Word-level difference: what hovering ADDED, in the row's own words.
+  const b = new Set(before.split(/\s+/));
+  const gained = after.split(/\s+/).filter((w) => w && !b.has(w));
+  return { before, after, gained, reached };
+}

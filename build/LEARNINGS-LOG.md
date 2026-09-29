@@ -4501,3 +4501,102 @@ guard that already exists. This repo has `blocker_gate.py`, `probe_guard.mjs`, `
 failure. **Adding a seventh is easier than running the six, and worth far less.** Before building
 any new check, grep `build/testing-tools/` for the one that is already there and ask why it did not
 run.
+
+---
+
+## L0240 — A CSS ELLIPSIS IS INVISIBLE TO `innerText`, SO A CUT-OFF ROW READS BACK AS WHOLE
+*(29 September 2026, Search Results Integrity on staging)*
+
+`text-overflow: ellipsis` paints the "…" and clips the overflow at RENDER time. The text node is
+untouched. So a row a tester sees as *"S2-34379 ZZLONGROW Heavy Haulage And Trailer Repair
+Services …"* comes back through `innerText` as the complete string — and a script looking for a
+literal `"..."`, which is exactly what case SRI-WO-A2 tells a **human** to do, finds nothing and
+reports the row as whole.
+
+That is a **false PASS on the one case whose entire subject is truncation** — the worst kind,
+because a false defect is argued with by a developer the same day and a false pass is believed for
+ever. Eleven cases in this folder turn on it.
+
+**Truncation is read from GEOMETRY, never from characters:** `scrollWidth > clientWidth` for the
+clip, and the `<mark>`'s bounding box against the container's box for "was the MATCH cut off".
+`fixtures/rowshape.ts` does both. The same applies to anything else CSS hides — `visibility`,
+`opacity: 0`, a zero-height container: **if the question is "can the person see it", `innerText`
+is not the instrument.**
+
+## L0241 — THE SEARCH PANEL IS A FIXED 640px, SO A TRUNCATION FINDING IS NOT A WINDOW-SIZE ARTEFACT
+*(29 September 2026)*
+
+Measured at 1280, 1440, 1920 and 2560: the modal stays **640px** and the primary-line box stays
+**459px** on a work-order row. The first objection to any truncation report — *"your window was
+narrow"* — is therefore answerable with one measurement, and "maximise the window" is not a
+workaround for the user either. **Measure the container at several widths BEFORE reporting a clip**,
+and put the numbers in the ticket; it closes the argument in advance.
+
+## L0242 — A CASE'S OWN SEARCH TERM CAN MAKE IT IMPOSSIBLE TO FAIL
+*(29 September 2026, C146198 / C146210)*
+
+SRI-WO-A2's precondition asks for *"the matched characters near the END of the value"*. The term it
+tells the tester to type, `ZZLONGROW`, matches at the **very start** of the name — where a
+right-hand clip can never reach it. Run exactly as written the case passes **no matter how badly
+the row truncates**. Typing `Fernvale`, which sits in the tail of the same records, returns rows
+where the matched word is gone from the row completely.
+
+**So: read a case's precondition as a SPECIFICATION OF THE STATE, and check the supplied example
+actually reaches it.** An example that contradicts its own precondition is a guaranteed false pass,
+and it is invisible in the result — the case just goes green. This is Rule 117's failure mode seen
+from the other side: the instruction and the example were both present, and they disagreed.
+Preconditions and steps are fixable (Rule 114 freezes only `custom_expected`), so the fix is to
+correct the example and say so — never to quietly test something else.
+
+## L0243 — A SHARED SHELL TOOL MUST RESOLVE ITS PATHS FROM ITSELF, NOT FROM THE CALLER
+*(29 September 2026)*
+
+`ensure_bridge.sh` held `BRIDGE=build/atlassian-login/bridge.mjs` — relative to wherever the caller
+happened to be standing. Called from `build/global-search/e2e`, node died `MODULE_NOT_FOUND` on a
+path with the subdirectory glued into the middle of it, which reads exactly like the bridge being
+broken. It is now resolved from `${BASH_SOURCE[0]}`. **Any script in `build/testing-tools/` that
+names a repo path must derive the repo root from its own location** — the working directory changes
+without warning, and the failure it produces points at the wrong thing.
+
+## L0244 — "VISIBLE" IS A CHARACTER-LEVEL QUESTION; PER-ELEMENT VISIBILITY INVENTS DEFECTS
+*(29 September 2026, C146212 — caught before it was recorded, by one minute)*
+
+The first version of `rowshape.ts` marked a text span visible only if the WHOLE span sat inside the
+painted box. A clipped line is typically **one long span with two or three characters past the
+edge**, so the all-or-nothing test threw the entire span away. Two customers whose names differ at
+*"…Fernvale **123786**"* against *"…Fernvale **185786**"* — 19px clipped out of 553px — both
+collapsed to the bare highlighted word, and the check reported **"these two rows read identically
+to a person"**. They do not: the digits that separate them are plainly on screen.
+
+That would have been a filed defect about the product, caused entirely by the reader. It was caught
+only because the verdict was **read and questioned** rather than transcribed: three characters
+hidden cannot make two rows identical, so the arithmetic of the claim did not hold.
+
+**Two lessons, and the second is the bigger one.**
+1. Visible text is measured with a `Range` over the text node, binary-searching the longest prefix
+   that still ends inside the container. Element-level `visible` answers a different question
+   ("is all of it there") and must not be used for "what can be read".
+2. **A red result is a hypothesis, not a finding.** Before it becomes a verdict, ask what the
+   measurement would have to be true for — here, "19px hides everything that distinguishes these
+   rows", which is obviously false. `finding_gate.py`'s sixth question — *what would make this my
+   fault* — is asking exactly this, and it is worth answering the moment a test goes red rather
+   than when the evidence file is written.
+
+## L0245 — `pkill -f "<pattern>"` MATCHES THE SHELL THAT RUNS IT (exit 144), AND KNOWING THAT WAS NOT ENOUGH
+*(29 September 2026)*
+
+`pkill -f "playwright test"` inside a compound command killed its own shell — the pattern matches
+that shell's command line, which contains the words. Exit 144, and it took the run it was meant to
+make room for with it.
+
+**This trap is already written down in this repo**, in `ensure_bridge.sh`'s header, with the date
+it was learned (31 August) and the fix: match on the node binary and exclude this shell and its
+parent by PID. I hit it anyway, because a warning written inside one file does not travel to the
+next command line typed somewhere else.
+
+**So the rule, not the trick:** never `pkill -f` on a pattern that appears in your own command.
+Use `pgrep -fa` first and kill by PID, or scope the pattern to the binary (`-f "node.*playwright"`)
+and exclude `$$`/`$PPID`. And the wider point, which is the same one as L0239: **a lesson recorded
+in a tool's comments only protects that tool.** A trap that can bite from any shell belongs in
+`LEARNINGS-LOG.md` or the playbook, where it is grepped for, not only beside the one caller that
+met it first.
