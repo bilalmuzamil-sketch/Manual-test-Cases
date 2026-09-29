@@ -1,0 +1,16 @@
+{
+ "case": "C146291",
+ "run": 415,
+ "verdict": "Failed",
+ "claim": "Typing a record's number in full does not pin it above the groups. PRD v1.5 section 6.2 requires an ID match to be 'pinned as a separate single row at the very top, above the groups, labeled by its entity icon'. The record comes back inside its Work orders group instead, with nothing above the first group heading.",
+ "instrument": {
+  "pointer_parked_and_verified": true,
+  "selectors_not_pre_chosen": true,
+  "positive_control": "Two on the same screen. (1) The record IS returned — one row, inside the 'Work orders (1)' group — so search is working and the reader can see the row; the claim is only about WHERE it sits. (2) The reader's 'above the groups' test is a document-position comparison against the first group element, and it correctly reports rows above the groups on other queries.",
+  "independent_repeat": "Varied the identifier rather than repeating one: S-34379 (the number the row itself labels 'Number:'), S2-34379 (the identifier the row DISPLAYS) and ZZLONGROW-123786 (a unit number matching ten records). None produces a pinned row. The first two each return exactly one row, which is as close to an unambiguous ID match as this data allows.",
+  "state_recorded": "Admin on app.staging.shopview.com, build v26.39.2-51a35e1, 29 September 2026, viewport 1440x900. Pointer moved to 0,0 and read back with document.elementFromPoint before each read and again after the tab switch. Each query typed fresh into an emptied box; the record type's own tab opened deliberately, because the All tab lists only five rows per group.",
+  "what_would_make_this_my_fault": "Chiefly: judging it on a term that is not actually an ID match. The case says to type S-34379 while the row displays S2-34379, so the typed value might simply have scored below the 0.95 threshold the requirement names. Ruled out by trying BOTH forms — neither pins anything, and both return a single unambiguous result. Also ruled out: reading a scoped tab instead of All, which is a real bug this reader HAD and which is fixed — the panel is put back on the All tab before every read, because the tab is sticky between searches."
+ },
+ "existing_ticket": [],
+ "note": "NEW and unrelated to SV-10634 — that is about what a row DISPLAYS; this is about a row that is never drawn at all. Ticket prepared, not filed: no per-ticket permission has been given for it."
+}
