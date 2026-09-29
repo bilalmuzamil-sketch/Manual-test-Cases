@@ -5504,3 +5504,65 @@ also found the QA branch's **DNS record gone** (the host was serving production'
 marker I tested on no longer existed) and a **PASSED verdict already posted by another QA**, with the
 ticket moved to Ready for Production — which made the planned comment a duplicate. Three catches from
 one cheap re-read, none of them visible from the build marker alone.
+
+
+---
+
+
+### §U.0c — Two traps that cost a production mis-write and four wasted runs (2026-09-29, SV-7208)
+
+**1. Row index ≠ button index on a Quasar table. Scope the click to the row.**
+
+`Administration → Locations` renders an **empty virtual-scroll spacer row at index 0**, so
+the *n*th `tbody tr` and the *n*th `[data-test-id=button_edit_workplace]` are **different
+rows**. On production this opened **"For Ryan" (Shop ID 55)** when the target was
+**"Import Test"**, and the value typed next was saved to the wrong location. It had to be
+found afterwards by re-reading the whole location list and restored.
+
+Never do this:
+
+    const i = rows.findIndex(r => /Import Test/.test(r.innerText));
+    (await page.$$('[data-test-id=button_edit_workplace]'))[i].click();   // WRONG ROW
+
+Do this — find the row, then click the button **inside it**:
+
+    page.evaluate(() => {
+      const tr = [...document.querySelectorAll('tbody tr')].find(r => /Import Test/.test(r.innerText||''));
+      tr.querySelector('[data-test-id=button_edit_workplace]').click();
+    });
+
+And **read the dialog's identifying field back before typing into it** — here
+`input_name` would have said `For Ryan` and cost nothing:
+
+    {n: d.querySelector('[data-test-id=input_name]')?.value,
+     s: d.querySelector('[data-test-id=input_shop_id]')?.value}
+
+The same spacer-row family as the report-grid note in §J and the virtual-scroll table note
+above. This is Rule 68 in one line: **prove you are on the right row before you write.**
+
+**2. On production the SPA re-asserts its own stored location on load.**
+
+`POST /api/iam/change-location` changes the server session, but the freshly-hydrating SPA
+writes its own stored workplace back over it. Switch **before** the app has loaded and the
+switch is lost — and a work order belonging to the other location then silently
+**redirects to the work-order list** instead of opening (the give-away is
+`title === "Work Orders | ShopView"` and rows from the wrong shop).
+
+Order that works: **load the app first → `change-location` → then navigate to the record.**
+Four production runs were burned rediscovering this.
+
+**Locations dialog reference (proven 2026-09-29):** `button_add_workplace` ·
+`button_edit_workplace` (one per row) · fields `input_name`, `input_shop_id`,
+`input_address_1/2`, `input_city`, `input_postal_code`, `input_telephone`,
+`select_state_or_province`, `select_country_code`, `select_timezone`, `select_remit_to`,
+`select_tax`, `input_default_color`, `select_business_hours_{from,to}_{day}_0` ·
+save button is **`button_save_workplace`, labelled "Save & Close"** (a `/^save$/i` text
+match does not find it). Read the list with `GET /api/workplaces`
+(`data.collection`); `GET /api/workplaces/{id}` is **404 — there is no single-workplace
+route**.
+
+**Part sales (proven 2026-09-29):** list `/parts/part-sales` → `GET /api/part-sales`;
+create with `button_new_part_sale` → `select_customer` → `button_save_part_sale`, which
+lands on `/parts/part-sale/{id}/part-requests`; delete from
+`button_part_sale_nav_bar_menu` → `menu_item_onDelete` → confirm **Delete** (there is no
+`/api/part-sales/delete` endpoint — both guesses 404).
