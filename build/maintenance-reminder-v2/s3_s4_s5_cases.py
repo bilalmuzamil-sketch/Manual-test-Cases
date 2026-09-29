@@ -4,7 +4,7 @@ L=importlib.util.module_from_spec(spec); spec.loader.exec_module(L)
 
 ADMIN='You are signed in as an Owner/Admin, or any user with "Settings Service" enabled; the maintenance_reminders feature is on.'
 SCHED='Open a schedule in the editor (Settings > Maintenance > open or create a schedule) and press "Add service" to open the service form.'
-def SRC(j,s,name): return f'Epic SV-3780; story {j} ({s}); Chunk 1 MR spec (Confluence 886931488), {s.split(",")[0]}; read 29 Sep 2026.'
+def SRC(j,s): return f'Epic SV-3780; story {j} ({s}); Chunk 1 MR spec (Confluence 886931488), {s.split(",")[0]}; read 29 Sep 2026.'
 S3=SRC("SV-10560","S3, Add a compliance inspection service"); S4=SRC("SV-10561","S4, Attach canned lines to a service"); S5=SRC("SV-10562","S5, Reminder timing")
 
 S3CASES=[
