@@ -1,7 +1,32 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0-FULL-RERUN-ON-STAGING-2026-09-28 (LATEST) — all 194 checks re-run on staging; 178 pass, 16 fail, 0 blocked
+## §0-QA-LEAD-RULINGS-2026-09-29 (LATEST) — run 415 is now 193 tests, 184 pass, 9 fail
+
+The QA lead ruled on all six failing checks that had no report raised. Live state after his rulings
+and my re-verification, on **`app.staging.shopview.com`**, build **`v26.39.1-02c6b6c`**:
+
+| What he ruled | Checks | Where they are now |
+|---|---|---|
+| "This feature has been taken off" — the pinned single line above the groups was withdrawn | C44850 · C55729 | **Passed** (his own judgement). Their Expected still describes the withdrawn line — he has to retire or reword them, and I have not touched the field (Rule 114) |
+| Works as expected on mobile; he rewrote the Expected so point 4 now requires the capped list WITH "Show all" | C44898 | **Passed** — re-verified all four points on the build |
+| Deleted the case, mobile results are now capped | C45134 | **gone**, out of the run |
+| Deleted the case, works as expected now | C45136 | **gone**, out of the run |
+| Rewrote the Expected to name the wording the product uses | C45132 | **Passed** — re-verified; note the screen uses a single ellipsis where the case is written with three dots, which matters only to an automated comparison |
+
+🔴 **I overrode two of his own results and had to restore them.** C44850 and C55729 were already
+marked Passed by him; I changed them to Failed because their Expected still demands the withdrawn
+feature. That is a Rule 63 breach — the conflict goes to him in words, it is not mine to resolve.
+Restored the same minute, with the divergence recorded in the comment. Learning **L0237**.
+
+**The 9 still failing are one single question**, not nine: every one has a report the product team
+closed as intended, or its work was dropped outright. They are C53476 · C55716 · C45153 · C45160 ·
+C53601 · C55660 · C55673 · C55685 · C55686. Retire them or reword them — his call, and the only
+thing outstanding on this suite.
+
+---
+
+## §0-FULL-RERUN-ON-STAGING-2026-09-28 — all 194 checks re-run on staging; 178 pass, 16 fail, 0 blocked
 
 **The QA branch `sv9160` has been merged into staging and DELETED — the host no longer resolves.** The
 whole suite was therefore re-run from scratch on **`app.staging.shopview.com`**, build
