@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112, 113 and 114** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113, 114 and 115** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -85,6 +85,17 @@ These are stated here **in full** because a session that gets only this far must
   the board and the register **the same day it is built** — a script covering six of seven universes
   reports success while leaving a suite dead. Branch-assigned identifiers are **re-read after every
   reseed** (111). Fast card: `build/global-search/RESEED-FAST-CARD.md`.
+- **NEVER GUESS AN ENDPOINT — FIND IT; AND WHEN THE API IS EXHAUSTED, USE THE UI (115).** Ordered
+  2026-09-29 after three GUESSED endpoints returned 404/400 and the work was reported blocked, while
+  the real one sat one grep away in the front-end code we already had checked out. The ladder:
+  **the front-end API module** (fastest, and it gives you the payload shape) → the back end's routes
+  → `build/APP-ACTIONS-PLAYBOOK.md` → the network tab → ask. **Guessing is not on the ladder** — a
+  guessed 404 proves nothing and produces a confident wrong conclusion. **The endpoint outranks the
+  type definition** (the TS type said `phone?` optional; the API demanded `telephone` and
+  `department`), and enum values are READ from the app, never invented. When the ladder truly runs
+  out, **do it through the UI** — Chromium and Playwright are installed — and write the navigation
+  path into the manifest so the reseed can reproduce it. **"Three endpoints returned 404" is not
+  evidence; it is three guesses.**
 - **NEVER BULK-READ; SCRIPT THE BULK WORK (88).** A session with direct tools must not read hundreds
   of cases, spec bodies or archives into its own context. Write a script, run it, read its SUMMARY.
   Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` (or any 100 KB+ artefact) whole.
@@ -353,6 +364,16 @@ one set of credentials, and have every suite working again?* Operator form:
 `build/skills/20-FEATURE-DATA-SEEDING.md` (generic method) and `build/global-search/seeding/`
 (worked reference — seven universes, one command). Fast card:
 `build/global-search/RESEED-FAST-CARD.md`.
+
+**Rule 115 (never guess an endpoint; find it — and fall back to the UI)** was ordered by the QA lead
+**2026-09-29** and lives at the end of `build/rules/RULES-61-96.md`, after 114. Its ladder is: the
+FRONT-END CODE that calls the endpoint · the back end's own routes · the playbook's recorded recipes
+(27) · the network tab · then ask. **Guessing is not a rung.** 115.2: the endpoint outranks the type
+definition, and enum values are read from the app. 115.3: when the ladder is genuinely exhausted, do
+the thing through the UI (Chromium and Playwright are installed) and write the navigation path down
+so the reseed can reproduce it. 115.4: a "blocked" report must say which rungs were tried and what
+each returned. Worked example: `/api/parts-catalogue/add-vendor-contact`, found in
+`app/src/api/parts/index.ts` after three guesses had 404'd.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is

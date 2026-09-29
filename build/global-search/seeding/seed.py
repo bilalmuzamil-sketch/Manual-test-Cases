@@ -263,9 +263,22 @@ def find(spec, _key=None):
         # cost of believing a flaky miss is not a wrong number on screen - it is a CREATE, and
         # therefore a DUPLICATE of a record that already exists, in an estate where duplicates are
         # exactly what the count targets cannot survive. So: retry, and only then believe it.
+        # 🔴 SOME LISTS ARE SCOPED TO A PARENT AND TAKE IT AS A QUERY PARAMETER.
+        # `parts-catalogue/list-vendor-contacts` returns nothing without `vendor_id`, so a finder
+        # for a vendor's contact has to carry it. `extra_params` maps a parameter name to either a
+        # literal, or the KEY of another record in this manifest — whose live id is substituted.
+        extra = ''
+        for pname, pval in (spec.get('extra_params') or {}).items():
+            # STATE holds the live id of every record processed so far, keyed by its manifest key
+            # — the same map `inject` uses. A parent therefore has to appear BEFORE its child in
+            # the manifest, which is already how dependencies work here.
+            resolved = STATE.get(pval) if isinstance(pval, str) else None
+            resolved = resolved or ((_ids_load().get(pval) or [None])[0]
+                                    if isinstance(pval, str) else None) or pval
+            extra += f"&{pname}={urllib.parse.quote(str(resolved))}"
         last = None
         for attempt in range(3):
-            r = call(f"{spec['list']}?search={urllib.parse.quote(spec['value'])}&limit=100")
+            r = call(f"{spec['list']}?search={urllib.parse.quote(spec['value'])}&limit=100{extra}")
             if r['status'] == 200:
                 hit = [x for x in rows(r) if str(x.get(spec['field']) or '') == spec['value']]
                 if hit: return hit, 'ok'

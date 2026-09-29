@@ -885,6 +885,45 @@
    "_why": "ONE vendor carrying four values that each live in a field the vendor row does not display: its own email, its address line 2, and its contact's name and email. Its NAME is neutral so every hit is attributable."
   },
   {
+   "key": "ri_vend_contact",
+   "type": "VendorContact",
+   "depends_on": "ri_vend_hidden",
+   "serves": [
+    "VEND-C4",
+    "VEND-C5"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/list-vendor-contacts",
+    "coll": "collection",
+    "field": "first_name",
+    "value": "ZZHIDDENCONTACT",
+    "extra_params": {
+     "vendor_id": "ri_vend_hidden"
+    },
+    "_why": "The list is per vendor and takes vendor_id as a query parameter."
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor-contact",
+    "payload": {
+     "first_name": "ZZHIDDENCONTACT",
+     "last_name": "RowCheck",
+     "email": "zzhidden.contact@staging.shopview.local",
+     "telephone": "(264) 400-0900",
+     "title": "Parts Rep",
+     "department": "preferred"
+    },
+    "inject": {
+     "vendor_id": "ri_vend_hidden"
+    }
+   },
+   "verify": [
+    "first_name",
+    "email"
+   ],
+   "_why": "The vendor contact VEND-C4 and VEND-C5 need. Its name and email each carry the keyword and appear in no other field, so a hit on either is attributable to the contact and not to the vendor it hangs off - whose own name is deliberately neutral."
+  },
+  {
    "key": "ri_cust_province",
    "type": "Customer",
    "serves": [

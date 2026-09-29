@@ -2528,3 +2528,62 @@ every reseed, path-scoped, through the secret scanner (Rule 82).
 > reconstructing anything from memory?
 
 If no, the kit is not finished, whatever else has been delivered.
+
+---
+
+## RULE 115 — NEVER GUESS AN ENDPOINT. FIND IT. AND WHEN THE API IS GENUINELY EXHAUSTED, USE THE UI
+
+**Ordered by the QA lead, 2026-09-29, in two parts.** First: *"Make it a rule when you exhaust all
+your resources to unblock yourself using API you can fall back to the UI to do the same."* Then,
+sharper: *"ALWAYS find the API call in the front-end code OR every other way to find the right API
+calls first rather than guessing endpoints."*
+
+**What provoked it.** A vendor contact was needed for two test cases. Three endpoints were GUESSED —
+`/api/parts-catalogue/vendors/add-contact`, `/api/vendor-contacts/create`, `/api/contacts/create`
+with a vendor id — and all three answered 404 or 400. The session then reported the work blocked and
+moved on. The real endpoint, `/api/parts-catalogue/add-vendor-contact`, was **one grep away in the
+front-end code we already had checked out**, sitting in the same `parts-catalogue/` family as
+`add-vendor`, which the same manifest was already calling. **A blocked report was filed over a
+question that had a definitive answer in the repository.**
+
+### 115.1 · The ladder — work down it, and never skip to guessing
+
+1. **The front-end code.** The screen that does the thing calls the endpoint. Find the button, find
+   its API module, read the path and the request type. `app/src/api/**` names every call the app
+   makes. This is the fastest and most certain source, and it also hands you the payload shape.
+2. **The back end's own routes.** `debug:router`, the controller directory, the OpenAPI document —
+   whatever the project publishes.
+3. **A recorded recipe.** `build/APP-ACTIONS-PLAYBOOK.md` exists precisely so a proven call is never
+   re-derived (Rule 27).
+4. **The network tab.** Do the action once in the browser and read what it sent.
+5. **Only then, ask.**
+
+**🔴 GUESSING IS NOT ON THE LADDER.** A guessed endpoint that 404s proves nothing — not that the
+route is absent, not that the feature lacks an API, not that the work is blocked. It produces a
+confident wrong conclusion, which is worse than no conclusion.
+
+### 115.2 · The type is not the authority; the endpoint is
+
+Even with the right path, read the error and believe it over the type definition. The TypeScript
+`CreateVendorContactRequest` declares `phone?`, `title?` and `department?` as optional; the API
+requires **`telephone`** and **`department`** and rejects `phone` outright. The valid department
+values were then read from `/api/contacts/departments` — the same list the dialog's own dropdown
+loads — rather than invented. **Every value written into a seed should come from the system that
+will validate it.**
+
+### 115.3 · When the API is genuinely exhausted, DO IT THROUGH THE UI
+
+If the ladder runs out — no route exists, or the one that exists cannot be driven headlessly — then
+**do the thing through the interface**: Chromium and Playwright are installed in this environment.
+A record created through the UI is as real as one created through the API, and a case unblocked
+beats a case reported blocked.
+
+**Say so when you do.** A UI-created record is not reproducible by the reseed script unless the step
+is written down, so it goes in the manifest's notes with the exact navigation path — and finding the
+endpoint later turns it back into a seeded record.
+
+### 115.4 · What "blocked" now requires
+
+A blocked report on a missing API must state which rungs of the ladder were tried and what each
+returned. **"Three endpoints returned 404" is not evidence of anything** — it is three guesses. If
+the front-end code was not read, the work is not blocked; it is not finished.

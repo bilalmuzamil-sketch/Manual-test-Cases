@@ -56,6 +56,8 @@ TERMS = {
  ('customers', 'state / province'): 'customers.state',
  ('part_sales', 'the asset on the sale'): 'part_sales.asset',
  ('part_sales', 'VIN / serial number'): 'part_sales.vin',
+ ('vendors', "a contact's name"): 'vendors.contact_names',
+ ('vendors', "a contact's email address"): 'vendors.contact_emails',
  ('purchase_orders', 'created-by user'): 'purchase_orders.created_by',
  ('purchase_orders', 'spliced number variants (`number_variants`)'): 'purchase_orders.number_variants',
 }

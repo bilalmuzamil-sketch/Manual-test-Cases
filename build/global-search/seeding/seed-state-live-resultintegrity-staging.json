@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-29T113436Z",
+ "when_utc": "2026-09-29T130410Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty - 9919",
   "_why": "Overridden by SEED_WORKPLACE; this is the hint for staging."
@@ -24,6 +24,7 @@
   "ri_asset_hidden_vin": "2956cdaa-6c9a-4d95-aac6-b3355567f8e0",
   "ri_asset_nounit": "bbd64034-9bec-4879-83bf-d1cf728f40cf",
   "ri_vend_hidden": "11834fe4-136d-44ff-bfba-b91d748a8a6f",
+  "ri_vend_contact": "459ef647-9a9f-4bd5-bdc7-aac9d2881ed7",
   "ri_cust_province": "19dfcd5e-95a8-45cc-b12b-1d395535a3a1",
   "ri_cust_soft_hit": "fa121285-4b35-4680-aeaa-2d5da64103e4",
   "ri_cust_soft_near": "484279dd-0efe-4f18-bbe8-392256194626",
@@ -35,8 +36,6 @@
   "ri_wo_twin_2": "719f975c-eae1-48e4-8b8c-0d70f0a44f8c",
   "ri_wo_nounit2": "db69fd67-d7dc-4fa3-bad6-dd9873d3e706",
   "ri_wo_soft": "53bcede0-1102-4db3-84ed-184d34947c00",
-  "ri_ps_twin_1": "a16ccdee-450e-4c02-b764-d96c831fa535",
-  "ri_ps_twin_2": "73c7b44f-8af3-4e4a-bfa0-7c6602f19e0f",
   "ri_ps_hidden": "9e40e4ba-1c13-4ceb-93db-6ffe19dc465f",
   "ri_ps_soft": "9378661c-4268-4fbc-83cc-2e8426a6c060"
  },
@@ -472,6 +471,27 @@
    ]
   },
   {
+   "key": "ri_vend_contact",
+   "state": "PRESENT",
+   "ids": [
+    "459ef647-9a9f-4bd5-bdc7-aac9d2881ed7"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "email",
+    "telephone",
+    "title",
+    "department"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "VEND-C4",
+    "VEND-C5"
+   ]
+  },
+  {
    "key": "ri_cust_province",
    "state": "PRESENT",
    "ids": [
@@ -689,13 +709,8 @@
   },
   {
    "key": "ri_ps_twin_1",
-   "state": "PRESENT",
-   "ids": [
-    "a16ccdee-450e-4c02-b764-d96c831fa535"
-   ],
-   "fields_ok": [],
-   "gaps": [],
-   "not_compared": [],
+   "state": "UNVERIFIED",
+   "reason": "PROBE BROKEN - ?search= returned nothing even for a value read from this same endpoint a moment ago",
    "serves": [
     "PS-A1",
     "PS-A2",
@@ -707,13 +722,8 @@
   },
   {
    "key": "ri_ps_twin_2",
-   "state": "PRESENT",
-   "ids": [
-    "73c7b44f-8af3-4e4a-bfa0-7c6602f19e0f"
-   ],
-   "fields_ok": [],
-   "gaps": [],
-   "not_compared": [],
+   "state": "UNVERIFIED",
+   "reason": "PROBE BROKEN - ?search= returned nothing even for a value read from this same endpoint a moment ago",
    "serves": [
     "PS-B1",
     "PS-B2"

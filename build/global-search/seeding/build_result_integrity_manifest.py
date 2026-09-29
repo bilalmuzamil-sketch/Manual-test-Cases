@@ -124,6 +124,40 @@ def vendor(key, name, serves, why, email=None, address_2=None, address_1=None, f
             'write': {'endpoint': '/api/parts-catalogue/vendors/change', 'whole_record': True},
             **({'search_proof_na': na} if na else {}), '_why': why}
 
+def vendor_contact(key, vendor_key, first, last, email, serves, why):
+    """A contact ON A VENDOR, which is a different animal from a customer contact.
+
+    🔴 THE ENDPOINT IS `parts-catalogue/add-vendor-contact`, NOT `/api/contacts/create`. Three
+    guesses were burned looking for it (`/api/parts-catalogue/vendors/add-contact`,
+    `/api/vendor-contacts/create`, `/api/contacts/create` with a vendor company_id) — all 404 or
+    400. The QA lead pointed at the screen instead: Parts > Vendors > the vendor > Add Contact,
+    and the button's own API module named it. It sits in the SAME `parts-catalogue/` family as
+    `add-vendor`, which is where it should have been looked for first.
+
+    Payload shape from CreateVendorContactRequest in app/src/api/parts/PartsModel.ts:
+        vendor_id, first_name, last_name, email?, phone?, mobile?, title?, department?, isPrimary?
+    The list endpoint is `parts-catalogue/list-vendor-contacts?vendor_id=…`, whose rows carry
+    `telephone` rather than the `phone` the create takes.
+    """
+    return {'key': key, 'type': 'VendorContact', 'depends_on': vendor_key, 'serves': serves,
+            'find': {'mode': 'search', 'list': '/api/parts-catalogue/list-vendor-contacts',
+                     'coll': 'collection', 'field': 'first_name', 'value': first,
+                     'extra_params': {'vendor_id': vendor_key},
+                     '_why': 'The list is per vendor and takes vendor_id as a query parameter.'},
+            'create': {'endpoint': '/api/parts-catalogue/add-vendor-contact',
+                       # 🔴 `telephone` AND `department` ARE REQUIRED, and the API takes
+                       # `telephone` where the TypeScript type says `phone?` — the type and the
+                       # endpoint disagree, so the type is not the authority here. The valid
+                       # department values were READ from /api/contacts/departments (preferred /
+                       # billing / accounting), which is the list the dialog's own dropdown loads,
+                       # rather than guessed.
+                       'payload': {'first_name': first, 'last_name': last, 'email': email,
+                                   'telephone': FLAT['phone'], 'title': 'Parts Rep',
+                                   'department': 'preferred'},
+                       'inject': {'vendor_id': vendor_key}},
+            'verify': ['first_name', 'email'],
+            '_why': why}
+
 def vehicle(key, owner, contact_key, vin, unit, maker, model, serves, why, year=2021):
     pay = {'maker_name': maker, 'model_name': model, 'year': year, 'vin': vin}
     if unit is not None:
@@ -286,6 +320,11 @@ R += [
    'hit is attributable.',
    email=f'{HIDDEN.lower()}.vendor@staging.shopview.local',
    address_2=f'{HIDDEN}SUITE 12'),
+ vendor_contact('ri_vend_contact', 'ri_vend_hidden', f'{HIDDEN}CONTACT', 'RowCheck',
+   f'{HIDDEN.lower()}.contact@staging.shopview.local', ['VEND-C4', 'VEND-C5'],
+   'The vendor contact VEND-C4 and VEND-C5 need. Its name and email each carry the keyword and '
+   'appear in no other field, so a hit on either is attributable to the contact and not to the '
+   'vendor it hangs off - whose own name is deliberately neutral.'),
  customer('ri_cust_province', 'Rowcheck Provincial Cartage', ['CUST-C7'],
    'The PROVINCE carries the keyword and the name does not, so a hit is attributable to the '
    'province. Province is matchable per PRD section 4 and is not displayed on the row.',
