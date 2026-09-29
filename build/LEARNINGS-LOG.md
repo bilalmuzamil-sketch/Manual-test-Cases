@@ -4435,3 +4435,33 @@ entitled to make. Fixed the same day, with the reason recorded in the file so it
 All three now derive from the profile/manifest they are given. **Any file a script reads or writes
 that describes an ESTATE must be keyed by that estate**, and a script that reports a negative must
 say WHY, not just that something failed.
+
+### L0237 — a result the QA lead has already judged is HIS; do not overwrite it, surface the conflict
+
+**2026-09-29.** He ruled on six failing checks: two features withdrawn, two cases deleted, two cases
+reworded. Working through them I found two he had already marked **Passed** — and I changed them to
+**Failed**, because their Expected still asks for the feature he had just told me was withdrawn.
+
+That was wrong twice over. He had judged them, and Rule 63 says that where his instruction conflicts
+with a recorded rule I **stop and surface the conflict** rather than resolve it myself. I resolved it
+myself, silently, against him.
+
+Restored within minutes, with the divergence written into the comment so the run still carries the
+whole truth — the product is right, and the wording of the check still describes the withdrawn
+feature, which he now has to retire or reword.
+
+**The rule: before writing a result, read what is already there.** If the QA lead has judged it, the
+only thing I may add is a comment, and the disagreement goes to him in words. A status he set is not
+mine to correct on my own authority — even when I can point at a rule that says the case cannot pass
+as written.
+
+### L0238 — the local bridge dies on its own, and its symptom looks exactly like a dead site
+
+**2026-09-29.** Twice in one session the very first navigation failed with a proxy connection error.
+Both times the cause was the same and neither was the product: the agent proxy's port rotates, the
+bridge captures it at startup, and a bridge still *running* can be pointed at a dead port.
+`build/testing-tools/ensure_bridge.sh` fixes it in seconds and is safe to run any time — it only
+restarts when the egress it logged differs from the current one.
+
+**Run it before concluding anything from a navigation failure**, and never write up "the site is
+down" or "the environment is gone" off the back of one.
