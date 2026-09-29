@@ -125,10 +125,12 @@ const ENTITIES: Entity[] = [
 
 // The held rows are data, not logic, so they are read from the file generated off the live cases.
 const CFG = JSON.parse(fs.readFileSync('../staging-run-2026-09-29/entity-config.json', 'utf8'));
+const FOUND = JSON.parse(fs.readFileSync('../staging-run-2026-09-29/held-terms-found.json', 'utf8'));
 for (const e of ENTITIES) {
   const c = CFG[e.section];
   e.cases = Object.fromEntries(Object.entries(c.cases).map(([k, v]: [string, any]) => [k, { cid: v.cid, term: v.term }]));
-  e.held = c.held.map((h: any) => ({ cid: h.cid, term: h.term, field: h.field }));
+  // Terms found or seeded for held cases that shipped without one — see the file's own note.
+  e.held = c.held.map((h: any) => ({ cid: h.cid, term: h.term ?? FOUND[String(h.cid)]?.term ?? null, field: h.field }));
   // A judged code and a held case can never be the same id; if they ever are, the config is wrong.
   const judged = new Set(Object.values(e.cases).map((x: any) => x.cid));
   for (const h of e.held) if (judged.has(h.cid)) throw new Error(`${e.section}: C${h.cid} is both judged and held`);
@@ -323,6 +325,19 @@ for (const E of ENTITIES) {
 
   for (const h of E.held) {
     test(`C${h.cid} — ${E.section} [HELD: the source is silent] does a match on ${h.field} explain itself?`, async () => {
+      // 🔴 A HELD CASE MUST NOT BE ABLE TO GO RED. Its only assertion is that the observation was
+      // recorded; a red line here would read, to anyone scanning the run, as a verdict on a case
+      // that must not be judged. Two of them DID go red (C146253, C146254) because those cases
+      // ship with no search term at all — nothing on the environment matched the field when they
+      // were written — and the code called .replace on null. A missing term is a fact to record,
+      // not a crash. Measured 29 Sep 2026.
+      if (!h.term) {
+        store(`held.C${h.cid}`, { term: null, field: h.field,
+          note: 'the case supplies no search term: nothing matched this field when it was written, '
+              + 'and no replacement has been found on this environment yet' });
+        console.log(`   C${h.cid} HELD — no term supplied for "${h.field}"; nothing run`);
+        return;
+      }
       const rows = await groupRows(s.page, h.term, E.tab);
       const obs = rows.map((x) => ({ row: x.index, text: x.text, marks: x.marks,
         termOnRow: new RegExp(h.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(x.text) }));
