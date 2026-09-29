@@ -1,0 +1,130 @@
+[
+ {
+  "case_id": 53476,
+  "test_id": 2868064,
+  "title": "No count in the search modal reads higher than 20",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nAlmost right, with one number still showing the true total.\n\nWhat is right: every individual tab caps at twenty - Work orders (20), Customers (20), Assets (20), Parts (20), Vendors (20), Part sales (20), Purchase orders (20), Vendor invoices (20) - for a search matching far more than that. And the \"Show all\" link now carries no number at all, so it cannot overstate anything.\n\nWhat is not: the All tab reads \"All (160)\". The check says no count anywhere in the window may read higher than twenty, and a hundred and sixty does. It is the eight capped counts added together, so it is not a true total either - it is a number that means nothing to the person reading it.\n\nA report for this was already raised and the product team closed it OBSOLETE, so no new report is being written and nothing is waiting on your go-ahead for a ticket. What IS waiting on you is the check itself: if the behaviour is intended, this check is now wrong and should be retired or its wording changed. I cannot change what a check expects on my own.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 44850,
+  "test_id": 2723920,
+  "title": "An exact identifier match is pinned as a single row at the very top",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. Typing a record's exact number should put THAT record on a single line at the very top, above the grouped results - the \"type the number and jump straight to it\" behaviour. It does not. The record is found and it is ranked first, but it appears as the first row inside its group, under a group heading, like any other result. There is no separate line above the groups at all.\n\nChecked with four different kinds of exact number - a job number, a second job number, a part number and a vehicle identification number - and there was no such line for any of them. The search itself is working: every one of those numbers found its record.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 44854,
+  "test_id": 2723924,
+  "title": "On a Work Order page, parts already on that work order are pushed down",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. A part that is ALREADY on the job you are looking at should be pushed down the list, because you are unlikely to want to add it twice. It is not.\n\nA part was put onto a job, and the job's own Parts tab shows it there. Searching for those parts from that job's page returns them in EXACTLY the same order as searching from an unrelated page - the part already on the job keeps its place. Nothing about standing on the job makes any difference.\n\nThis is a known problem, already reported, and the report is still open. It behaved the same way on the old test branch, so it has not been fixed and it has not got worse.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 55716,
+  "test_id": 3051908,
+  "title": "When two results are otherwise equal, the most recently updated one ranks first",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-checked from scratch on staging, with records built for the purpose. The most recently touched record does not come first, and touching a record does not move it at all.\n\nFive customers were set up whose names all begin with the same made-up word, so the search has nothing but recency to separate them. Ordered by when they were last touched, newest first, they are: Alpha Hauling (5:32:43pm), Beta Hauling (5:32:25pm), Hauling (5:30:04pm), then two older ones from this afternoon.\n\nThe search returns them in this order: Hauling, Beta Hauling, Alpha Hauling, Transport Two, Transport One. The most recently touched of them all, Alpha Hauling, comes third.\n\nAlpha was then edited, which made it the newest by a clear margin, and the search was run again after several minutes to allow for any delay in the search catching up. The order did not change by a single place.\n\nA report for this was already raised and the product team closed it OBSOLETE, and you said to leave it and not re-open it. So nothing is being raised. This result simply replaces the old one, which was measured on the test branch that has since been deleted, with a fresh measurement on staging.\n\nThe records used are all named beginning ZZTIEBREAK and have been left in place so this can be re-run without setting it up again.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 55729,
+  "test_id": 3075528,
+  "title": "An exact identifier match is pinned at the very top even when a strong name match exists",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. Typing a record's exact number should put THAT record on a single line at the very top, above the grouped results - the \"type the number and jump straight to it\" behaviour. It does not. The record is found and it is ranked first, but it appears as the first row inside its group, under a group heading, like any other result. There is no separate line above the groups at all.\n\nChecked with four different kinds of exact number - a job number, a second job number, a part number and a vehicle identification number - and there was no such line for any of them. The search itself is working: every one of those numbers found its record.\n\nThis check adds one thing: a customer's NAME also contains the job number that was typed. The job did come above that customer - so the number does win - but again as the first row of its group, not on a line of its own above the groups.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 44898,
+  "test_id": 2723968,
+  "title": "Global search works on mobile/tablet viewports per the mobile design",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. Three of the four things this checks are right on a phone, and one is wrong.\n\nRIGHT: search fills the whole screen rather than sitting as a small box, and the page never scrolls sideways. The row of section chips appears only once something is typed, lists only the kinds of record that actually matched with their counts, and there is no Contacts chip. Rows carry no hover buttons, and tapping a row opens the record.\n\nWRONG: On a phone the results are CAPPED at five per section with a \"Show All\" link on almost every section - exactly what the desktop does. This check requires the opposite: on a phone you should scroll the whole list, with no \"Show All\" anywhere. Counted on a search returning 106 results across eight sections: five rows shown per section, and \"Show All\" present twenty-one times.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 45132,
+  "test_id": 2728110,
+  "title": "On mobile the search is a full-screen surface with a Cancel action",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. Three of the four things are right and one is wrong.\n\nRIGHT: on a phone the search fills the whole screen rather than floating over the page, there is a \"Cancel\" beside the box, and the keyboard-shortcut strip along the bottom is correctly absent.\n\nWRONG: the greyed-out words inside the box read \"Search work orders, parts...\". This check requires \"Search everything\".\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 45134,
+  "test_id": 2728112,
+  "title": "On mobile, results are uncapped and scroll with sticky group headers",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. The section headings do stick to the top as you scroll, and tapping a row opens the record. But the list itself is wrong: On a phone the results are CAPPED at five per section with a \"Show All\" link on almost every section - exactly what the desktop does. This check requires the opposite: on a phone you should scroll the whole list, with no \"Show All\" anywhere. Counted on a search returning 106 results across eight sections: five rows shown per section, and \"Show All\" present twenty-one times.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 45136,
+  "test_id": 2728114,
+  "title": "On mobile there is no 'Show all' overflow and no keyboard navigation",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. Keyboard stepping is correctly absent on a phone - there is no keyboard to step with. But the first half is wrong: On a phone the results are CAPPED at five per section with a \"Show All\" link on almost every section - exactly what the desktop does. This check requires the opposite: on a phone you should scroll the whole list, with no \"Show All\" anywhere. Counted on a search returning 106 results across eight sections: five rows shown per section, and \"Show All\" present twenty-one times.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 45153,
+  "test_id": 2738734,
+  "title": "Selecting each result type opens the right record",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. Most record types open correctly - a job opens the job, a customer opens that customer's jobs page, a vehicle opens that vehicle's jobs for the right owner, a supplier opens the supplier, a part sale opens the sale, a supplier order opens the order, a supplier bill opens the bill, and a stocked part opens that part.\n\nBut the point of this check is a part that is in the CATALOGUE but has never been stocked. That part exists - it is there in the catalogue under its own number - and search returns NOTHING for it, by number or by a distinctive word from its description. There is no row to click. In the old version every catalogue part could be reached from search whether or not the shop had ever stocked it, so this is something the old search could do and this one cannot.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 45160,
+  "test_id": 2738741,
+  "title": "Selecting a result records a usage analytics event",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nNothing is recorded when somebody picks a search result.\n\nA search was run, a result was clicked, and every request the page made was watched. The only thing that looks like a record is a Google Analytics message - and it carries the event name \"page_view\" and does not mention search anywhere. The same message fires when you simply walk to the Parts page without searching at all, so it is an ordinary page view, not a record of the search selection. Nothing is sent to ShopView's own system about the choice that was made.\n\nSo there is no way to learn what people search for, what they pick, or whether the search is helping them.\n\nWorth knowing: the written requirements for this version say under Non-Goals that there will be no logging of what people see or click in this release, and the story that would have built it was closed OBSOLETE. So this is almost certainly intended, and this check - which was written against the OLD search - is the thing that is now out of date rather than the product. Retiring it or rewording it is your call; I cannot change what a check expects on my own.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 53601,
+  "test_id": 2959367,
+  "title": "A catalogue part that is not in inventory can still be found",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nA part that the shop lists in its supplier catalogue but has never stocked cannot be found by searching.\n\nThe part is definitely there: the catalogue holds \"ZZAUTOTEST Airline Coupler Vernway\", part number ZZT-77-3300, and the catalogue's own list finds it by either the word or the number. This was checked directly before judging, so the result is not a missing-record problem.\n\nSearching for \"Vernway\" in the search window brings back one row, and it is a different company (Vernal Diesel & Fleet Repair) offered as a close spelling. Searching the exact part number ZZT-77-3300 brings back nothing at all.\n\nThis is the change the check calls the highest-risk difference between the old search and the new one. The old search covered every part in the catalogue whether or not it had ever been on the shelf. The new one only looks at parts the shop stocks. A parts clerk searching for a part they have never bought before will be told it does not exist.\n\nA report for this was already raised and the product team closed it OBSOLETE, so no new report is being written and nothing is waiting on your go-ahead for a ticket. What IS waiting on you is the check itself: if the behaviour is intended, this check is now wrong and should be retired or its wording changed. I cannot change what a check expects on my own.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 55660,
+  "test_id": 2977472,
+  "title": "Finding a record by a fragment from the middle of a word still works",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nTwo of the three searches work, one does not.\n\nTyping a piece from the middle of the company name (\"idgepor\" for Bridgeport) brings back ZZAUTOTEST Bridgeport Hauling, marked as a close match. Typing a piece from the middle of the address (\"estrelw\" for Kestrelway) brings it back too.\n\nTyping a piece from the middle of the town name (\"ernva\" for Fernvale) brings back NOTHING AT ALL - the Customers tab reads zero. Two different customers live in Fernvale on this shop, and neither is found.\n\nThis is the difference the check was written to catch: the old search matched the letters you typed anywhere inside the record, so a piece from the middle of any word found it. The new one scores how similar the whole thing is, and a short piece from the middle of a short word scores too low to come back.\n\nA report for this was already raised and the product team closed it OBSOLETE, so no new report is being written and nothing is waiting on your go-ahead for a ticket. What IS waiting on you is the check itself: if the behaviour is intended, this check is now wrong and should be retired or its wording changed. I cannot change what a check expects on my own.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 55673,
+  "test_id": 2980695,
+  "title": "Pressing Enter opens the top result without arrowing to it",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. Type a search, press Enter without touching the arrow keys, and you can open the wrong record - an unrelated company eight rows below the thing you searched for.\n\nWHAT IS ACTUALLY HAPPENING - and it is not what I first wrote. The row sitting UNDER THE MOUSE POINTER becomes the one Enter will open. Clicking the search box leaves the pointer exactly where the panel then opens over it, so a row lands under the pointer and quietly takes over. Proved four ways on the same search:\n\n  click the box and leave the mouse alone  -> the EIGHTH row is ready for Enter\n  click the box, then move the mouse away  -> the FIRST row, correctly\n  open with the keyboard, mouse in a corner -> the FIRST row, correctly\n  open with the keyboard, mouse held over the middle of the list -> the row under it\n\nThis is the behaviour already reported and closed by the product team as no longer relevant. So the product is doing what was decided, and this check still describes the older behaviour.\n\nI am recording it as Failed because the check, followed exactly as written, does not pass - but it needs YOUR decision on whether to retire or reword it, not a developer.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 55685,
+  "test_id": 2984234,
+  "title": "Typing a name does not bring back other differently spelled names",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nTyping one person's name brings back a crowd of other names.\n\nTyping \"Marlene\" and reading the Customers tab gives eleven customers. Only two of them have anything to do with Marlene: ZZAUTOTEST Marlene Freight Lines, and ZZAUTOTEST Bridgeport Hauling whose contact is Marlene. The other nine do not contain the word at all - among them Martens' Diesel Repair, contacts called Darlene and Charlene, and an address on Charlene Station.\n\nThe check names one case specifically: ZZAUTOTEST Darlene Cartage must NOT come back, because you did not type Darlene. It comes back.\n\nBeyond the customers, the whole list also offers marine battery terminals, because they contain \"MARINE\". Somebody looking up a customer by name has to read past eight or nine records that have nothing to do with what they typed.\n\nA report for this was already raised and the product team closed it OBSOLETE, so no new report is being written and nothing is waiting on your go-ahead for a ticket. What IS waiting on you is the check itself: if the behaviour is intended, this check is now wrong and should be retired or its wording changed. I cannot change what a check expects on my own.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ },
+ {
+  "case_id": 55686,
+  "test_id": 2984235,
+  "title": "The record that actually matches what you typed is listed first",
+  "version": "v26.39.1-02c6b6c",
+  "ticketsInComment": [],
+  "comment": "Failed on staging (app.staging.shopview.com), workplace Staging Heavy Duty - 9919, build v26.39.1-02c6b6c, 28 September 2026.\n\nRe-run on staging, where the suite now lives. Half of this is right and half is wrong.\n\nRIGHT: the customer that genuinely contains what was typed is listed FIRST, above the similarly-spelled ones. That part is solid.\n\nWRONG: this check also requires that pressing Enter opens that customer, and it opened a part from a section further down.\n\nWHAT IS ACTUALLY HAPPENING - and it is not what I first wrote. The row sitting UNDER THE MOUSE POINTER becomes the one Enter will open. Clicking the search box leaves the pointer exactly where the panel then opens over it, so a row lands under the pointer and quietly takes over. Proved four ways on the same search:\n\n  click the box and leave the mouse alone  -> the EIGHTH row is ready for Enter\n  click the box, then move the mouse away  -> the FIRST row, correctly\n  open with the keyboard, mouse in a corner -> the FIRST row, correctly\n  open with the keyboard, mouse held over the middle of the list -> the row under it\n\nThis is the behaviour already reported and closed by the product team as no longer relevant. So the product is doing what was decided, and this check still describes the older behaviour.\n\nI am recording it as Failed because the check, followed exactly as written, does not pass - but it needs YOUR decision on whether to retire or reword it, not a developer.\n\nA report has been written up for this and is waiting on the QA lead's go-ahead before it is raised. [ticket_held]"
+ }
+]
