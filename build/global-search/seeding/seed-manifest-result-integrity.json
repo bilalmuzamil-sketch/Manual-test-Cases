@@ -924,6 +924,262 @@
    "_why": "The vendor contact VEND-C4 and VEND-C5 need. Its name and email each carry the keyword and appear in no other field, so a hit on either is attributable to the contact and not to the vendor it hangs off - whose own name is deliberately neutral."
   },
   {
+   "key": "ri_cust_samerep_a",
+   "type": "Customer",
+   "serves": [
+    "CUST-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Samerep Freight",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Samerep Freight",
+     "address": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "Holds a contact whose name is shared with a contact at a DIFFERENT customer. Its own name is neutral, so the only reason it answers the keyword is the contact."
+  },
+  {
+   "key": "ri_contact_samerep_a",
+   "type": "Contact",
+   "depends_on": "ri_cust_samerep_a",
+   "serves": [
+    "CUST-B2"
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "ri_cust_samerep_a",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "ZZSAMEREP"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "ZZSAMEREP",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "samerep.a@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "ri_cust_samerep_a"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
+   "_why": "Half one of the pair. Searching this name returns TWO customer rows, both reading \"Contact match: ZZSAMEREP\" \u2014 identical explanatory lines on different records."
+  },
+  {
+   "key": "ri_cust_samerep_b",
+   "type": "Customer",
+   "serves": [
+    "CUST-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Samerep Haulage",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Samerep Haulage",
+     "address": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "The second customer holding the same contact name."
+  },
+  {
+   "key": "ri_contact_samerep_b",
+   "type": "Contact",
+   "depends_on": "ri_cust_samerep_b",
+   "serves": [
+    "CUST-B2"
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "ri_cust_samerep_b",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "ZZSAMEREP"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "ZZSAMEREP",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "samerep.b@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "ri_cust_samerep_b"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
+   "_why": "Half two. Same first name as its opposite number at the other customer."
+  },
+  {
+   "key": "ri_cust_dualrep",
+   "type": "Customer",
+   "serves": [
+    "CUST-C9"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Dualrep Transport",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Dualrep Transport",
+     "address": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "ONE customer holding TWO contacts with the same first name. Searching it returns a SINGLE customer row \u2014 contacts are not a result group of their own \u2014 so the row cannot say WHICH of the two people matched. Neutral company name, so the hit is attributable to the contacts."
+  },
+  {
+   "key": "ri_contact_dualrep_1",
+   "type": "Contact",
+   "depends_on": "ri_cust_dualrep",
+   "serves": [
+    "CUST-C9"
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "ri_cust_dualrep",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "ZZDUALREP"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "ZZDUALREP",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "dualrep.one@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "ri_cust_dualrep"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
+   "_why": "First of two same-named contacts at this one customer."
+  },
+  {
+   "key": "ri_contact_dualrep_2",
+   "type": "Contact",
+   "depends_on": "ri_cust_dualrep",
+   "serves": [
+    "CUST-C9"
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "ri_cust_dualrep",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "email",
+    "value": "dualrep.two@zzresultintegrity.test"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "ZZDUALREP",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "dualrep.two@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "ri_cust_dualrep"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "search_proof_na": "two contacts share a first name on one customer, so a finder keyed on first_name cannot distinguish them. That ambiguity IS the case (CUST-C9): the row shows one customer and cannot say which person matched. Proved by opening the customer, not by searching.",
+   "_why": "\ud83d\udd34 SECOND of two, and the finder cannot tell it from the first \u2014 both are found by first_name on the same parent. It is declared NOT PROVABLE BY SEARCH for that reason: the pair is proved by the CASE, which reads the customer detail page and counts two people."
+  },
+  {
    "key": "ri_cust_province",
    "type": "Customer",
    "serves": [

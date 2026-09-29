@@ -358,6 +358,16 @@
    "highlight": "zzhidden.contact@staging.shopview.local",
    "primary": "Rowcheck Quiet Fields Supply",
    "secondary": "21 Result Row Way, Fernvale, Ohio"
+  },
+  "customers.dual_contact": {
+   "term": "ZZDUALREP",
+   "group": "customers",
+   "field": "contact_names",
+   "kind": "word",
+   "highlight": "ZZDUALREP",
+   "primary": "Rowcheck Dualrep Transport",
+   "secondary": null,
+   "_note": "ONE customer row comes back for TWO people with this name."
   }
  },
  "missing": [
@@ -1058,6 +1068,24 @@
      "primary": "ZZLONGROW Identical Name Supply",
      "secondary": "21 Result Row Way, Fernvale, Ohio",
      "highlight": "ZZLONGROW Identical Name Supply"
+    }
+   ]
+  },
+  "same.customers": {
+   "term": "ZZSAMEREP",
+   "group": "customers",
+   "field": "contact_names",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "Rowcheck Samerep Haulage",
+     "secondary": null,
+     "highlight": "ZZSAMEREP"
+    },
+    {
+     "primary": "Rowcheck Samerep Freight",
+     "secondary": null,
+     "highlight": "ZZSAMEREP"
     }
    ]
   }

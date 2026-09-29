@@ -84,7 +84,7 @@ These are stated here **in full** because a session that gets only this far must
   *"the record exists" is not "the feature can find it"*. A new universe is wired into the rebuild,
   the board and the register **the same day it is built** — a script covering six of seven universes
   reports success while leaving a suite dead. Branch-assigned identifiers are **re-read after every
-  reseed** (111). Fast card: `build/global-search/RESEED-FAST-CARD.md`.
+  reseed** (111). 🔴 **114.6, ordered 2026-09-29: *"Please do never ask before seeding."* If a case needs data the environment does not hold, SEED IT — no question, no blocked report, no "shall I seed X?" in an outstanding list. This overrides Rule 80's ask-before-re-running for seeding only; Rules 6 and 62 (TestRail, Jira) are untouched. Say what you seeded afterwards, with the proof.** Fast card: `build/global-search/RESEED-FAST-CARD.md`.
 - **NEVER GUESS AN ENDPOINT — FIND IT; AND WHEN THE API IS EXHAUSTED, USE THE UI (115).** Ordered
   2026-09-29 after three GUESSED endpoints returned 404/400 and the work was reported blocked, while
   the real one sat one grep away in the front-end code we already had checked out. The ladder:

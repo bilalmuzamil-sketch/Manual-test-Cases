@@ -38,6 +38,15 @@ SOFT_A = 'ZZSOFTHIT'       # typed by the tester
 SOFT_B = 'ZZSOFTHIY'       # the record that must come back as a SOFT match
 NOUNIT = 'ZZNOUNIT'        # a vehicle carrying no unit number
 PROV   = 'ZZQUEBEXA'       # a province value distinctive enough to be attributable
+# 🔴 THE QA LEAD'S CORRECTION, 2026-09-29. The product forbids two CUSTOMERS with the same name, so
+# "two rows with an identical bold line" looked impossible on the Customers tab. It is not — he
+# pointed out that CONTACTS have no such rule, and a contact match returns the COMPANY row. Two
+# different customers can therefore each hold a contact with the SAME name, and searching it returns
+# two customer rows whose matched note reads identically ("Contact match: ZZSAMEREP"). That is a
+# sharper version of the case than the original, because the thing that is identical is the very
+# line the row added to explain itself.
+SAMEREP = 'ZZSAMEREP'      # one name, a contact at TWO different customers  -> CUST-B2
+DUALREP = 'ZZDUALREP'      # TWO contacts with one name at ONE customer      -> CUST-C9
 TAG    = 'ZZAUTOTEST'
 CONTROL = 'Gibson'         # exists on staging; see the header note
 
@@ -82,20 +91,26 @@ SAME_NAME_NA = ("this record exists only to give its identically-named sibling s
                 "vendor. The pair is proved instead by the Vendors B2 test, which types the shared "
                 "NAME and expects two rows.")
 
-def contact(key, parent, first, serves, why, email=None):
+def contact(key, parent, first, serves, why, email=None, na=None, find_by_email=False):
+    # 🔴 TWO CONTACTS WITH THE SAME FIRST NAME ON ONE CUSTOMER CANNOT BOTH BE FOUND BY first_name —
+    # the second matches the first, reports itself present and is never created. That is the third
+    # time this trap has bitten in this manifest (identical-name customers, then two part sales for
+    # one customer, now this). `find_by_email` keys the finder on the address, which differs.
     # 🔴 EVERY CONTACT GETS ITS OWN EMAIL. All three originally shared one default address, and the
     # search then answered a query for the twin's contact with the HIDDEN owner's company - three
     # records, one value, no way to attribute a hit to any of them. That is the very failure this
     # suite tests for, reproduced in its own fixtures; the verifier caught it on the first run.
     return {'key': key, 'type': 'Contact', 'depends_on': parent, 'serves': serves,
             'find': {'mode': 'child', 'parent': parent, 'view': '/api/customers/view/{id}',
-                     'path': 'company.contacts', 'field': 'first_name', 'value': first},
+                     'path': 'company.contacts',
+                     'field': 'email' if find_by_email else 'first_name',
+                     'value': (email if find_by_email else first)},
             'create': {'endpoint': '/api/contacts/create',
                        'payload': {'first_name': first, 'last_name': 'RowCheck', 'title': 'Owner',
                                    'telephone': FLAT['phone'],
                                    'email': email or f'{first.lower()}@zzresultintegrity.test'},
                        'inject': {'company_id': parent}},
-            'verify': ['first_name'], 'search_proof_na': CONTACT_NA, '_why': why}
+            'verify': ['first_name'], 'search_proof_na': na or CONTACT_NA, '_why': why}
 
 def vendor(key, name, serves, why, email=None, address_2=None, address_1=None, find_by=None,
            na=None):
@@ -325,6 +340,36 @@ R += [
    'The vendor contact VEND-C4 and VEND-C5 need. Its name and email each carry the keyword and '
    'appear in no other field, so a hit on either is attributable to the contact and not to the '
    'vendor it hangs off - whose own name is deliberately neutral.'),
+ # ── the same-name contact pair: one name, two different customers (CUST-B2) ─────────────────
+ customer('ri_cust_samerep_a', 'Rowcheck Samerep Freight', ['CUST-B2'],
+   'Holds a contact whose name is shared with a contact at a DIFFERENT customer. Its own name is '
+   'neutral, so the only reason it answers the keyword is the contact.'),
+ contact('ri_contact_samerep_a', 'ri_cust_samerep_a', SAMEREP, ['CUST-B2'],
+   'Half one of the pair. Searching this name returns TWO customer rows, both reading '
+   '"Contact match: ZZSAMEREP" — identical explanatory lines on different records.',
+   email='samerep.a@zzresultintegrity.test'),
+ customer('ri_cust_samerep_b', 'Rowcheck Samerep Haulage', ['CUST-B2'],
+   'The second customer holding the same contact name.'),
+ contact('ri_contact_samerep_b', 'ri_cust_samerep_b', SAMEREP, ['CUST-B2'],
+   'Half two. Same first name as its opposite number at the other customer.',
+   email='samerep.b@zzresultintegrity.test'),
+
+ # ── two contacts with the SAME name at ONE customer (CUST-C9) ────────────────────────────────
+ customer('ri_cust_dualrep', 'Rowcheck Dualrep Transport', ['CUST-C9'],
+   'ONE customer holding TWO contacts with the same first name. Searching it returns a SINGLE '
+   'customer row — contacts are not a result group of their own — so the row cannot say WHICH of '
+   'the two people matched. Neutral company name, so the hit is attributable to the contacts.'),
+ contact('ri_contact_dualrep_1', 'ri_cust_dualrep', DUALREP, ['CUST-C9'],
+   'First of two same-named contacts at this one customer.',
+   email='dualrep.one@zzresultintegrity.test'),
+ contact('ri_contact_dualrep_2', 'ri_cust_dualrep', DUALREP, ['CUST-C9'],
+   '🔴 SECOND of two, and the finder cannot tell it from the first — both are found by first_name '
+   'on the same parent. It is declared NOT PROVABLE BY SEARCH for that reason: the pair is proved '
+   'by the CASE, which reads the customer detail page and counts two people.',
+   email='dualrep.two@zzresultintegrity.test', find_by_email=True,
+   na='two contacts share a first name on one customer, so a finder keyed on first_name cannot '
+      'distinguish them. That ambiguity IS the case (CUST-C9): the row shows one customer and '
+      'cannot say which person matched. Proved by opening the customer, not by searching.'),
  customer('ri_cust_province', 'Rowcheck Provincial Cartage', ['CUST-C7'],
    'The PROVINCE carries the keyword and the name does not, so a hit is attributable to the '
    'province. Province is matchable per PRD section 4 and is not displayed on the row.',

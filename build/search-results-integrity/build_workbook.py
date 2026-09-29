@@ -92,16 +92,20 @@ PAIR_FOR_TAB = {
 # already exists."), so that case cannot exist there and the row says so instead of asking a tester
 # to find data that cannot be made.
 SAME_FOR_TAB = {
+ # Customers earns an entry again: the same-name CONTACT pair (ZZSAMEREP) gives this tab a real
+ # identical-line case, which the product's ban on duplicate customer NAMES had seemed to rule out.
+ 'customers': 'same.customers',
  'vendors': 'same.vendors', 'parts': 'same.parts', 'assets': 'same.assets',
  'part_sales': 'twin.part_sales', 'purchase_orders': 'same.purchase_orders',
  'vendor_invoices': 'same.vendor_invoices', 'work_orders': 'twin.work_orders',
 }
-CUST_B2_NA = ("NOT APPLICABLE on Customers. The product refuses to create a second customer with "
-              "the same name - /api/customers/create answers 400 \"Company with provided name "
-              "already exists.\" (measured on staging 2026-09-29). Two customer rows therefore "
-              "cannot carry an identical bold line. The realistic version of this risk is covered "
-              "by SRI-CUST-B1, whose two names differ only past the point the row runs out of "
-              "width. Mark this row Not run and move on.")
+# 🔴 CORRECTED 2026-09-29 by the QA lead. The product refuses a second CUSTOMER with the same name,
+# so this looked impossible on the Customers tab — but CONTACTS have no such rule, and a contact
+# match returns the COMPANY row. Two different customers can each hold a contact with the SAME name,
+# and the two rows then carry an IDENTICAL explanatory line: "Contact match: ZZSAMEREP". A sharper
+# case than the original, because what is identical is the very line the row added to explain
+# itself. Seeded and proved on staging.
+CUST_B2_NA = None
 
 def term_for(ekey, field):
     ref = TERMS.get((ekey, field))
@@ -304,11 +308,15 @@ def build():
           bc.Q_STORY, 'Story SV-9170', term=pterm, note=pnote)
 
         same = PAIRS.get(SAME_FOR_TAB.get(ekey) or '')
-        na = (ekey == 'customers')
+        na = False
         A_common('B2', 'Two records with the same bold line differ somewhere you can see',
           'Real shops have two trucks of the same year/make/model and two vendors with the same '
           'name. If the rows are identical the list is useless.',
-          (CUST_B2_NA if na else
+          (f'Two DIFFERENT customers, each holding a contact with the SAME name. Searching that '
+           f'name returns both customer rows, and both carry the identical line '
+           f'"Contact match: ZZSAMEREP". The product will not allow two customers with the same '
+           f'name, so this is the real shape of the risk on this tab.'
+           if ekey == 'customers' else
            f'Two {tab.lower()} whose bold first line is identical but which are different records. '
            f'These were seeded for this suite.'),
           steps('Open search and type the term.', f'Open the {tab} tab.',
@@ -356,6 +364,27 @@ def build():
               f'identically.',
               bc.Q_HIGHLIGHT, 'PRD v1.5, section 5.3',
               held=False, term=t, note=note)
+
+        if ekey == 'customers':
+            A_common('C9', 'Two people with the same name at one customer — which one matched?',
+              'A shop rings and asks for "Chris". If two people called Chris work at that customer, '
+              'the row that comes back names the company and nothing else — I still do not know '
+              'which of them the system found.',
+              'ONE customer holding TWO contacts with the same first name. Seeded for this suite: '
+              'Rowcheck Dualrep Transport holds two people named ZZDUALREP.',
+              steps('Open search and type the term.', 'Open the Customers tab.',
+                    'Note how many rows come back and what the second line says.',
+                    'Now open that customer and look at its Contacts tab.',
+                    'Write down how many people carry that name.'),
+              'ONE customer row comes back, reading "Contact match: ZZDUALREP" — but the customer '
+              'holds TWO people with that name. Record whether anything on the row tells you which '
+              'person matched.\n\n'
+              'One row is correct: the specification says contacts are not a result group of their '
+              'own. The open question is whether the row can identify the PERSON. Record what you '
+              'see; do not judge it.',
+              bc.Q_STORY, 'Story SV-9170',
+              term=(FOUND.get('customers.dual_contact') or {}).get('term'),
+              note='this customer holds TWO people with this name — verified on staging')
 
         A_common('D1', f'The {tab} row shows everything the specification promised',
           'Each field is there because somebody decided you need it to choose. A missing one is a '

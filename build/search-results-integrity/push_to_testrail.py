@@ -36,7 +36,9 @@ WB = os.path.join(HERE, 'ShopView-Global-Search-Result-Row-Tests-for-Manual-QA.x
 PROJECT, SUITE, PARENT_SECTION, RUN = 1, 1, 6720, 415
 PARENT_NAME = 'Search Results Integrity — result row display (SV-10619 / SV-10551)'
 REFS = 'SV-10619, SV-10551, SV-9170'
-SKIP = ('How to run this', 'Summary', 'Questions for the PO')
+# Non-case sheets. 'Ticket to create' was added later and has no ID column, which crashed the
+# reader — a new sheet must be added here or it is treated as a sheet full of test cases.
+SKIP = ('How to run this', 'Summary', 'Questions for the PO', 'Ticket to create')
 
 def p(text):
     """Plain text -> the HTML shape every existing case in this suite uses."""

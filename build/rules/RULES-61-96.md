@@ -2511,6 +2511,25 @@ completely untouched, and believing it would have produced two false findings.
 Git is the only durable store; the container is not. Ids, state and manifests are committed with
 every reseed, path-scoped, through the secret scanner (Rule 82).
 
+### 114.6 · SEEDING IS NEVER GATED ON A QUESTION — ORDERED 2026-09-29
+
+**The QA lead, verbatim: *"Please do never ask before seeding."*** Standing authority, every
+environment this kit is authorised on, every universe, no expiry.
+
+**So: if a case needs data the environment does not hold, SEED IT.** Do not ask, do not report the
+case blocked for want of records, and do not put "shall I seed X?" in an OUTSTANDING section. The
+environments are disposable test accounts; the seeder measures before it creates and is safe to
+re-run; and a question costs the QA lead a round trip to authorise something he has already
+authorised.
+
+**This overrides Rule 80's ask-before-re-running for seeding specifically.** Rule 80 still governs
+verifications, VIUs and ordered tasks — it was written to stop quota being spent re-doing work, and
+seeding is not that. **Say what you seeded after the fact**, with the proof; never ask first.
+
+Unchanged by this: **Rule 6** (no TestRail write without permission) and **Rule 62** (no Jira
+creation) — those are systems of record, not test data. And seeding still measures first: creating
+duplicates is not obedience.
+
 ### Operator form
 
 - The generic method for standing a kit up for any feature: **`build/skills/20-FEATURE-DATA-SEEDING.md`**
