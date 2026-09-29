@@ -1,0 +1,688 @@
+#!/usr/bin/env python3
+"""Builds the manual-QA workbook from the SAME table the case files come from, plus the verified
+search terms discovered on the live environment.
+
+One source of truth: `build_cases.py` holds the entity/field data and the quoted sentences, and
+`discovered-terms.json` holds terms that were PROVEN to match the intended field. Nothing is typed
+twice, so the workbook and the markdown cases cannot drift apart.
+
+Written for a manual tester who has never read the spec: every row says what to type, what to do,
+and what should happen, in plain words. The quoted requirement is there too, in its own column, so
+a tester who wants to check the wording never has to leave the sheet.
+"""
+import json, os, importlib.util
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.worksheet.datavalidation import DataValidation
+from openpyxl.utils import get_column_letter
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+spec = importlib.util.spec_from_file_location('bc', os.path.join(HERE, 'build_cases.py'))
+bc = importlib.util.module_from_spec(spec); spec.loader.exec_module(bc)
+D = json.load(open(os.path.join(HERE, 'discovered-terms.json')))
+FOUND, PAIRS = D['found'], D['pairs']
+
+ENV = "https://app.staging.shopview.com   ·   workplace: Staging Heavy Duty - 9919"
+FONT = 'Arial'
+
+# Which discovered term proves each Class C field. Keyed (entity key, the field label used in
+# build_cases.ENTITIES). A None means nothing on this environment matched that field - the row
+# then says so plainly rather than inventing a term.
+TERMS = {
+ ('work_orders', 'VIN / serial number'): 'assets.vin',
+ ('work_orders', 'line item descriptions (parts and labor on the WO)'): ('pair', 'work_orders.item_part_names'),
+ ('work_orders', "part numbers on the work order's lines (`item_part_numbers`)"): ('pair', 'work_orders.item_part_numbers'),
+ ('customers', "the customer's own telephone"): 'customers.phone',
+ ('customers', "a contact's telephone"): 'customers.contact_phones',
+ ('customers', "a contact's email address"): 'customers.contact_emails',
+ ('customers', "a contact's name"): 'customers.contact_names',
+ ('customers', 'address line 2'): 'customers.address_line_2',
+ ('customers', 'city'): 'customers.city',
+ ('customers', 'postal code'): 'customers.postal_code',
+ ('assets', 'VIN / serial number'): 'assets.vin',
+ ('assets', 'licence plate'): 'assets.licence_plate',
+ ('parts', 'bin location'): 'parts.bin_location',
+ ('parts', 'manufacturer'): 'parts.manufacturer',
+ ('parts', 'category'): 'parts.category',
+ ('parts', 'tags'): ('pair', 'parts.tags'),
+ ('vendors', "a contact's telephone"): ('pair', 'vendors.contact_phones'),
+ ('purchase_orders', 'part numbers on the PO'): ('pair', 'purchase_orders.item_part_numbers'),
+ ('purchase_orders', 'part descriptions on the PO'): ('pair', 'purchase_orders.item_part_names'),
+ ('parts', 'vendor name'): 'parts.vendor_name',
+ ('vendor_invoices', 'the PO number the invoice belongs to'): 'vendor_invoices.po_number',
+}
+# A near-miss spelling PROVEN to come back drawn as a soft match, for each tab's Class I row.
+# The four identifier-led tabs are deliberately left blank: their only fuzzy-able fields are the
+# customer's or vendor's name, and no run has PROVEN a soft-matched row appears in those groups.
+# Writing an unproven term in would be guessing, which is what this pass exists to stop.
+FUZZY_FOR_TAB = {'parts': 'fuzzy.parts', 'vendors': 'fuzzy.vendors',
+                 'assets': 'fuzzy.assets', 'customers': 'fuzzy.customers'}
+
+# The shared-fragment example for each tab's Class A and Class B cases.
+PAIR_FOR_TAB = {
+ 'work_orders': 'work_orders.number', 'customers': 'customers.contact_phones',
+ 'assets': 'assets.licence_plate', 'parts': 'parts.part_number',
+ 'vendors': 'vendors.phone', 'purchase_orders': 'purchase_orders.number',
+ 'vendor_invoices': 'vendor_invoices.invoice_number', 'part_sales': None,
+}
+
+def term_for(ekey, field):
+    ref = TERMS.get((ekey, field))
+    if ref is None: return None, None
+    if isinstance(ref, tuple):
+        p = PAIRS.get(ref[1])
+        return (p['term'], f"{p['count']} rows come back sharing this") if p else (None, None)
+    f = FOUND.get(ref)
+    return (f['term'], f"proven to match on {f['field']} ({f['kind']})") if f else (None, None)
+
+HDR = ['ID', 'What you are checking', 'Why it matters to a real user', 'Before you start',
+       'TYPE THIS', 'What to do', 'What you should see', 'Where that comes from',
+       'The exact wording of the requirement', 'Result', 'What you actually saw', 'Ticket']
+W = [11, 40, 42, 40, 30, 46, 46, 26, 60, 12, 34, 12]
+
+H_FILL = PatternFill('solid', fgColor='1F3864')
+HELD_FILL = PatternFill('solid', fgColor='FFF2CC')
+TYPE_FILL = PatternFill('solid', fgColor='E2EFDA')
+NODATA_FILL = PatternFill('solid', fgColor='FCE4D6')
+THIN = Border(*[Side(style='thin', color='BFBFBF')] * 4)
+
+def style_sheet(ws, nrows):
+    for c, (h, w) in enumerate(zip(HDR, W), 1):
+        cell = ws.cell(1, c, h)
+        cell.font = Font(name=FONT, bold=True, color='FFFFFF', size=11)
+        cell.fill = H_FILL
+        cell.alignment = Alignment(vertical='center', wrap_text=True)
+        ws.column_dimensions[get_column_letter(c)].width = w
+    ws.row_dimensions[1].height = 34
+    ws.freeze_panes = 'C2'
+    dv = DataValidation(type='list', formula1='"Pass,Fail,Blocked,Not run,HELD - do not run"',
+                        allow_blank=True)
+    ws.add_data_validation(dv)
+    dv.add(f'J2:J{max(nrows + 1, 2)}')
+    ws.auto_filter.ref = f'A1:L{max(nrows + 1, 2)}'
+
+def write_rows(ws, rows):
+    for r, row in enumerate(rows, 2):
+        held = row.pop('_held', False)
+        nodata = row.pop('_nodata', False)
+        for c, key in enumerate(HDR, 1):
+            cell = ws.cell(r, c, row.get(key, ''))
+            cell.font = Font(name=FONT, size=10, bold=(c == 5))
+            cell.alignment = Alignment(vertical='top', wrap_text=True)
+            cell.border = THIN
+            if c == 5 and row.get('TYPE THIS'):
+                cell.fill = NODATA_FILL if nodata else TYPE_FILL
+            elif held:
+                cell.fill = HELD_FILL
+        if held:
+            ws.cell(r, 10).value = 'HELD - do not run'
+    style_sheet(ws, len(rows))
+
+def steps(*ss):
+    return "\n".join(f"{i}. {s}" for i, s in enumerate(ss, 1))
+
+def build():
+    wb = Workbook(); wb.remove(wb.active)
+
+    # ── How to run ────────────────────────────────────────────────────────────────────────────
+    ws = wb.create_sheet('How to run this')
+    intro = [
+     ('Search Results Integrity — manual test pack', 16, True),
+     ('', 10, False),
+     (f'Where to run it:  {ENV}', 11, True),
+     ('Sign in with any account that can see all of: Work Orders, Customers, Assets, Parts, '
+      'Vendors, Part Sales, Purchase Orders and Vendor Invoices.', 10, False),
+     ('Open search with the magnifying glass in the header, or press Ctrl+K (Cmd+K on a Mac).', 10, False),
+     ('', 10, False),
+     ('What this pack is for', 13, True),
+     ('These tests do NOT check whether search finds the right record. They check whether the row '
+      'you are looking at TELLS YOU WHAT YOU NEED TO KNOW — so you can pick the right record '
+      'without opening it, and tell two similar records apart.', 10, False),
+     ('It came out of SV-10619 and SV-10551. Both are the same problem: you type 123786 and a row '
+      'shows you only 786 — which is also what a row for 185786 would show.', 10, False),
+     ('', 10, False),
+     ('How to read a row', 13, True),
+     ('TYPE THIS (green)   — copy this exactly into the search box. It has been checked on this '
+      'environment and it does match the field the test is about.', 10, False),
+     ('TYPE THIS (orange)  — no record on this environment matched that field, so you need to find '
+      'or create the data first. The cell tells you what to look for.', 10, False),
+     ('Yellow row          — HELD. The specification does not yet say what should happen. Do not '
+      'pass or fail it. Write down what you saw in "What you actually saw" and move on.', 10, False),
+     ('Result              — pick from the dropdown: Pass, Fail, Blocked, Not run, HELD.', 10, False),
+     ('', 10, False),
+     ('Three rules that stop a wrong verdict', 13, True),
+     ('1. Never judge from the number of results. "Something came back" is not a pass — check that '
+      'YOUR record is in the list, by name.', 10, False),
+     ('2. If a test says a value should NOT be found, search something else on the same record '
+      'first. If that comes back, the search is alive and the absence is real.', 10, False),
+     ('3. Before you explain any odd behaviour, check the build has not changed underneath you. '
+      'The version is in the page source as "app-version".', 10, False),
+     ('', 10, False),
+     ('If something fails', 13, True),
+     ('Write exactly what you typed and exactly what the row showed, and take a screenshot of the '
+      'whole row. "It was wrong" cannot be fixed by a developer; "I typed 965 and the row showed '
+      '9..." can.', 10, False),
+    ]
+    for r, (text, size, bold) in enumerate(intro, 1):
+        c = ws.cell(r, 1, text)
+        c.font = Font(name=FONT, size=size, bold=bold,
+                      color='1F3864' if bold and size >= 13 else '000000')
+        c.alignment = Alignment(wrap_text=True, vertical='top')
+    ws.column_dimensions['A'].width = 130
+
+    counts = []
+    # ── one tab per entity ────────────────────────────────────────────────────────────────────
+    for e in bc.ENTITIES:
+        ekey, tab, s = e['key'], e['tab'], e['slug']
+        one = tab.rstrip('s').lower()
+        rows = []
+        pair = PAIRS.get(PAIR_FOR_TAB.get(ekey) or '')
+        pterm = pair['term'] if pair else None
+        pnote = (f"{pair['count']} rows come back sharing this fragment — perfect for this test"
+                 if pair else None)
+
+        def A_common(idx, title, why, before, todo, expect, quote, srcname, held=False, term=None,
+                     note=None):
+            rows.append({
+             'ID': f'SRI-{s}-{idx}', 'What you are checking': title,
+             'Why it matters to a real user': why, 'Before you start': before,
+             'TYPE THIS': term or 'FIND THE DATA FIRST — see "Before you start"',
+             'What to do': todo, 'What you should see': expect,
+             'Where that comes from': srcname, 'The exact wording of the requirement': quote,
+             'Result': '', 'What you actually saw': '', 'Ticket': '',
+             '_held': held, '_nodata': term is None})
+            if note: rows[-1]['Before you start'] += f"\n\nNOTE: {note}"
+
+        A_common('A1', 'The whole matched value is shown, not just what you typed',
+          'If the row shows only the characters I typed, I am reading my own query back. It tells '
+          'me nothing about which record this is.',
+          f'A {one} exists whose {e["shared_fragment_field"]} contains this fragment somewhere '
+          f'other than the very start.' if pterm else
+          f'You need a {one} whose {e["shared_fragment_field"]} contains a distinctive run of '
+          f'characters part-way through it.',
+          steps('Open search and type the term in the green cell.', f'Open the {tab} tab.',
+                'Look at each row WITHOUT opening it.',
+                f'Write down the {e["shared_fragment_field"]} exactly as the row shows it.'),
+          f'Each row shows the COMPLETE {e["shared_fragment_field"]}, with the bit you typed '
+          f'highlighted inside it. Seeing only what you typed, or a value cut short with "...", '
+          f'is a FAIL — that is SV-10619 and SV-10551.',
+          bc.Q_HIGHLIGHT, 'PRD v1.5, section 5.3', term=pterm, note=pnote)
+
+        A_common('A2', 'A long value is not cut off through the part that matched',
+          'A row that cuts off at "9..." has hidden the one thing I was looking for.',
+          f'A {one} whose text is long enough to overflow the search box (the box is a fixed '
+          f'width), with the matched characters near the END of the value.',
+          steps('Open search and type the term.', f'Open the {tab} tab.',
+                'Look for any text ending in "...".',
+                'If you see one, write down what is hidden and what you typed.'),
+          'You can still identify the record. If the "..." has eaten the characters you typed, or '
+          'eaten the part that tells this record from its neighbours, that is a FAIL.',
+          bc.Q_STORY, 'Story SV-9170', term=pterm)
+
+        A_common('A3', 'The highlight marks the match inside the text, not instead of it',
+          'A highlight is meant to point at something. If it replaces the text, it points at nothing.',
+          f'Any {one} you can find by typing part of what the row displays.',
+          steps('Open search and type the term.', f'Open the {tab} tab.',
+                'Look at how the match is drawn on the row.'),
+          'The full text is on the row and the matched part is highlighted within it — exactly like '
+          'the example in the requirement, where typing "Fib" shows the whole of '
+          '"S1-644 Fibridge Commercial" with "Fib" marked.',
+          bc.Q_HIGHLIGHT, 'PRD v1.5, section 5.3', term=pterm)
+
+        A_common('B1', 'Two records sharing what you typed can be told apart',
+          'This is the whole point. Type 123786 and if two rows both draw as "786", you cannot '
+          'tell 123786 from 185786 without opening both.',
+          f'Two {tab.lower()} exist whose {e["shared_fragment_field"]} are DIFFERENT but share a '
+          f'run of characters.',
+          steps('Open search and type the term.', f'Open the {tab} tab.',
+                'WITHOUT opening anything, write down which row is which.',
+                'If you cannot tell them apart, that is the failure — say so.'),
+          'You can say which row is which from the rows alone. Two rows that read the same is a '
+          'FAIL — and note that the right number of rows does not rescue it.',
+          bc.Q_STORY, 'Story SV-9170', term=pterm, note=pnote)
+
+        A_common('B2', 'Two records with the same bold line differ somewhere you can see',
+          'Real shops have two trucks of the same year/make/model and two customers with the same '
+          'name. If the rows are identical the list is useless.',
+          f'Two {tab.lower()} whose bold first line is identical but which are different records.',
+          steps('Open search and type something that returns both.', f'Open the {tab} tab.',
+                'Compare the two rows line by line.'),
+          'Something visible differs — the second line, a badge, a number. Two identical rows is a '
+          'FAIL; write down both records and what actually differs between them in the data.',
+          bc.Q_STORY, 'Story SV-9170', term=None)
+
+        for n, (field, why, how) in enumerate(e['invisible'], 1):
+            t, note = term_for(ekey, field)
+            A_common(f'C{n}', f'A match on {field} explains itself on the row', why,
+              f'A {one} carrying a distinctive value in {field} — a value that appears in NO other '
+              f'field of that record.' + ('' if t else
+              f'\n\nNothing on this environment matched that field when we looked, so you need to '
+              f'find or create one. To do it: {how}.'),
+              steps('Open search and type the term.', f'Open the {tab} tab.',
+                    'Find the record. Without opening it, answer this question:',
+                    'Does ANYTHING on this row tell you why it came back?'),
+              f'You can tell from the row that the match came from {field}, and you can see that '
+              f'value. If the row shows no trace of what you typed, write that down — the row came '
+              f'back and cannot say why.\n\n'
+              f'THIS ROW IS HELD: the specification does not say what should happen here. Do not '
+              f'pass or fail it. Record what you saw.',
+              bc.Q_STORY, 'Story SV-9170 (the spec is silent — see question Q1)',
+              held=True, term=t, note=note)
+
+        A_common('D1', f'The {tab} row shows everything the specification promised',
+          'Each field is there because somebody decided you need it to choose. A missing one is a '
+          'choice you now have to make by opening records.',
+          f'Any {one} that search returns, which has a value in each field named in the '
+          f'requirement column.',
+          steps('Open search and type something that returns the record.', f'Open the {tab} tab.',
+                'Check the row against the requirement column, field by field.',
+                'Tick off each one. Write down any that is missing.'),
+          'Every field named in the requirement is on the row. Do not judge whether a missing one '
+          'matters — just record it.',
+          e['prd_displayed'], 'PRD v1.5, section 4', term=pterm)
+
+        A_common('I1', 'A corrected typo says that it corrected something',
+          'If the system quietly fixes my typo without saying so, I will think I found an exact '
+          'match and act on the wrong record.',
+          f'A {one} whose name or description can be found by spelling it slightly wrong (one or '
+          f'two letters out). Do NOT use a number or a code — those are excluded on purpose.',
+          steps('Open search and type the near-miss spelling.', f'Open the {tab} tab.',
+                'Look closely at the matched word.'),
+          'The matched word is highlighted AND carries the "≈" mark or italics that says it is a '
+          'close match. A corrected typo that looks exactly like an exact match is a FAIL.',
+          bc.Q_FUZZY, 'PRD v1.5, section 7',
+          term=(FOUND.get(FUZZY_FOR_TAB[ekey]) or {}).get('term')
+               if ekey in FUZZY_FOR_TAB else None,
+          note=(f"checked on this environment: typing this brings back "
+                f"{(FOUND.get(FUZZY_FOR_TAB[ekey]) or {}).get('primary')!r}, whose name is a "
+                f"near-miss of what you typed, and it should be drawn as a SOFT match. That soft "
+                f"row is the one this test is about — not the exact matches above it.")
+               if ekey in FUZZY_FOR_TAB else None)
+
+        ws = wb.create_sheet(tab[:31])
+        write_rows(ws, rows)
+        counts.append((tab, len(rows)))
+
+    return wb, counts
+
+# ── the cross-tab cases (All tab, counts, typing, awkward data, no results, access) ───────────
+Q_COUNTS20 = ("**Counts are capped at 20.** No count in the modal reads higher than `20` — not a "
+ "tab, not a group header, not the `Show all N` link. A query matching 34 work orders shows "
+ "`Work Orders (20)` and `Show all 20`. Twenty is both what search returns per entity type and "
+ "what it reports.")
+Q_GROUP5 = ("Each group shows up to **5** results (raised from today's 3). When a group has more, a "
+ "`Show all N` link appears to the right of the group header.")
+Q_SCOPED = ("The scoped tab shows **up to 20 rows**, scrolled within the modal — there is no "
+ "pagination and no further loading, and no `Show all` link inside the tab.")
+Q_SHOWALL = ("Clicking it switches the modal to that entity's scope tab. The user never leaves the "
+ "modal: there is no separate search results page and no handoff of the query to the entity's "
+ "list page.")
+Q_TABS = ("A horizontal tab strip immediately under the input: `All · Work Orders · Customers · "
+ "Assets · Parts · Vendors · Part Sales · Purchase Orders · Vendor Invoices`. Each tab carries "
+ "its result count, e.g. `All (12)`, `Work Orders (8)`.")
+Q_ORDER = ("Group display order in \"All\" is: Work Orders → Customers → Assets → Parts → Vendors → "
+ "Part Sales → Purchase Orders → Vendor Invoices.")
+Q_PIN = ("When the top result across all groups has a score > 0.95 (effectively an ID match), it is "
+ "pinned as a separate single row at the very top, above the groups, labeled by its entity icon "
+ "— the \"if you typed `S2-15276`, jump straight to that WO\" experience.")
+Q_NOTFUZZY = ("Exact identifier fields — VIN, WO number, P-number, part number, PO number, invoice "
+ "number — bypass fuzzy logic and require exact match after normalization. A typo in a VIN is "
+ "almost always a wrong VIN, not a typo, and fuzzy matching here would surface confusing results.")
+Q_STATUS = ("Some fields — notably **status** — are stored on the search document for ranking (§6.1) "
+ "and for the row badge, but are deliberately **not matchable**: typing a status name does not "
+ "return records carrying that status.")
+Q_NORES = ("\"No results for '<query>'\" — plus \" in <Tab>\" when a scope tab other than All is "
+ "active. Nothing else.")
+Q_UNIT_ALONE = "When the asset has no unit number, the year/make/model stands alone."
+Q_RANKREACH = ("Because search returns at most 20 records per entity type (§5.2), ranking quality is "
+ "what decides whether the record the user wanted is reachable at all.")
+Q_EMPTYTYPE = ("Search must work for a single-tenant dataset where any entity type is empty (e.g. a "
+ "shop with no part sales yet).")
+Q_ACCESS = ("All result fields must respect existing tenant-isolation and role-based-access checks — "
+ "a technician without Parts access does not see Parts results, and the same applies to Purchase "
+ "Orders and Vendor Invoices, which are finance-adjacent and more likely to be restricted.")
+Q_INDEXED = "The indexed fields are what a typed query is matched against…"
+Q_DEBOUNCE = "…debounce input at 150ms…"
+
+CROSS = [
+ ('E1', 'A tab\'s count equals the number of rows inside it',
+  'If the tab says 8 and shows 5, I stop looking and miss the record.',
+  'A search that returns more than 5 but fewer than 20 of one kind.', '965',
+  ('Type the term.', 'Read the number on each tab.', 'Open a tab and count the rows.',
+   'Compare the two.'),
+  'The number on the tab and the number of rows inside it agree, up to a maximum of 20.',
+  'PRD v1.5, section 5.2', Q_SCOPED, False),
+ ('E2', 'No count anywhere reads higher than 20',
+  'A count I cannot reach is a promise the product does not keep.',
+  'A search matching more than 20 of one kind. ZZBROAD matches 22 parts.', 'ZZBROAD',
+  ('Type the term.', 'Read the Parts tab count.', 'Read the group heading count on the All tab.',
+   'Read the "Show all N" link.'),
+  'All three read 20 — never the true total.', 'PRD v1.5, section 5.2', Q_COUNTS20, False),
+ ('E3', 'A group on the All tab shows 5 and offers the rest',
+  'Five is a sample. I need to know a sample is what I am looking at.',
+  'A search returning more than 5 of one kind.', 'ZZBROAD',
+  ('Type the term.', 'Stay on the All tab.', 'Count the rows under the Parts heading.',
+   'Look to the right of that heading.'),
+  'Exactly 5 rows, and a "Show all N" link beside the heading.',
+  'PRD v1.5, section 5.2', Q_GROUP5, False),
+ ('E4', '"Show all" opens that tab and keeps you in the search box',
+  'Losing the search box loses my query and my place.',
+  'A search returning more than 5 of one kind.', 'ZZBROAD',
+  ('Type the term.', 'Click "Show all N" beside a group heading.',
+   'Check where you have landed and whether your text is still in the box.'),
+  'You land on that entity\'s tab, still inside the search box, with your text intact. Being sent '
+  'to a separate page is a FAIL.', 'PRD v1.5, section 5.2', Q_SHOWALL, False),
+ ('E5', 'All nine tabs are there, named and counted',
+  'A missing tab is a kind of record I will never think to look for.',
+  'Anything that returns at least one result.', '965',
+  ('Type the term.', 'Read the tab strip left to right, scrolling it sideways.',
+   'Check each tab carries a count.'),
+  'All nine, in this order: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales, '
+  'Purchase Orders, Vendor Invoices.', 'PRD v1.5, section 5.2', Q_TABS, False),
+ ('E6', 'Groups on the All tab are always in the same order',
+  'A stable order is what lets me scan without reading.',
+  'A search returning results in four or more kinds.', '965',
+  ('Type the term.', 'Stay on the All tab.', 'Read the group headings top to bottom.'),
+  'Work Orders, then Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor '
+  'Invoices. Kinds with no results are simply skipped.',
+  'PRD v1.5, section 6.2', Q_ORDER, False),
+ ('E7', 'Typing a full record number puts that record at the very top',
+  'If I typed a work order number I want that work order, not a list.',
+  'A record whose number you can type in full. Take one from any list page.', None,
+  ('Type the number in full.', 'Look ABOVE the first group heading.'),
+  'That one record sits alone at the top, above all the groups, with its icon.',
+  'PRD v1.5, section 6.2', Q_PIN, False),
+ ('F1', 'A number is found with and without its dashes',
+  'I type what is printed on the paper in front of me, dashes and all.',
+  'Any work order number, e.g. from the Work Orders list.', None,
+  ('Type the number exactly as printed, dashes and all.', 'Note what comes back.',
+   'Type it again with every dash and space removed.', 'Compare the two lists.'),
+  'Both find the same record.', 'PRD v1.5, section 7', bc.Q_NORMALIZE, False),
+ ('F2', 'A phone number is found however it is punctuated',
+  'The number on my screen has brackets. The number in my head does not.',
+  'A customer with a punctuated phone number.', '609-461-6502',
+  ('Type the number with its dashes.', 'Type the same digits with nothing between them.',
+   'Compare the two lists.', 'Now type only the last four digits and see what comes back.'),
+  'The first two find the same customer. The last-four search is a different test — write down '
+  'whether you can tell the results apart (that is test B1 on the Customers tab).',
+  'PRD v1.5, section 7', bc.Q_NORMALIZE, False),
+ ('F3', 'An accented name is found typed either way',
+  'Nobody types the accent.',
+  'A customer whose name has an accent. The seeded ZZACC records have one.', 'ZZACC',
+  ('Type the name with its accents.', 'Type it without.', 'Compare.'),
+  'Both spellings return the same single customer.',
+  'PRD v1.5, section 7', bc.Q_NORMALIZE, False),
+ ('F4', 'An apostrophe or hyphen in a name is optional',
+  '"O\'Brien" and "OBrien" are the same person to everyone but a computer.',
+  'The seeded ZZPUNC records — one has an apostrophe, one a hyphen.', 'ZZPUNC',
+  ('Type each name with its punctuation.', 'Type each name without it.', 'Compare.'),
+  'Both spellings find the record.', 'PRD v1.5, section 7', bc.Q_NORMALIZE, False),
+ ('F5', 'A typo in a NUMBER is not silently corrected',
+  'A wrong VIN is a wrong truck. I would rather see nothing than the wrong vehicle presented as a '
+  'match. This is the most dangerous result search can give.',
+  'A real VIN. This one exists on staging.', 'SVEWU82M5ETEJFWFA',
+  ('Type the VIN exactly — confirm the vehicle comes back.',
+   'Now change ONE character and search again.', 'Read the result list carefully.'),
+  'The near-miss VIN does NOT return the vehicle. If it does, that is a FAIL — record it '
+  'immediately, this one matters more than the rest.',
+  'PRD v1.5, section 7', Q_NOTFUZZY, False),
+ ('F6', 'Typing a status word returns nothing because of status',
+  'Status words are ordinary English. If they match, searching a part called "Complete Kit" drags '
+  'in every complete work order.',
+  'Records in several different statuses.', 'Approved',
+  ('Type a status word: Approved, then Invoiced, then Unpaid, then Ordered.',
+   'For each hit, check WHY it came back.',
+   'Separate the ones whose name really contains the word from the ones that only have that status.'),
+  'Nothing comes back BECAUSE of its status. Records whose name genuinely contains the word are '
+  'fine — say which is which.', 'PRD v1.5, section 4', Q_STATUS, False),
+ ('G1', 'A work order whose truck has no unit number still reads properly',
+  'Real data has holes. A row that collapses when a field is blank hides a real record.',
+  'A work order whose vehicle has no unit number.', None,
+  ('Find such a work order and search for it.', 'Read the row.',
+   'Look for blank gaps, stray dashes or the word "undefined".'),
+  'The year/make/model stands on its own, with no blank gap and no leftover separator.',
+  'PRD v1.5, section 4', Q_UNIT_ALONE, False),
+ ('G2', 'A very long value does not push the rest of the row out of sight',
+  'One customer with a 90-character name must not make every other row unreadable.',
+  'A record with an unusually long name or description.', None,
+  ('Search for it.', 'Read the whole row — badge, status, second line.',
+   'Write down anything that is pushed off the row.'),
+  'The badge and the second line are still readable.', 'Story SV-9170', bc.Q_STORY, False),
+ ('G3', 'A very common word still gives a usable list',
+  'Parts are called "Kit", "Filter", "Seal". If a common word gives 20 near-identical rows the tab '
+  'is dead weight.',
+  'A word that appears in many part descriptions.', 'Filter',
+  ('Type the word.', 'Open the Parts tab.',
+   'Pick one specific part you know exists and try to find it in the list.'),
+  'The part you wanted is inside the 20, and the rows differ enough to choose from. If you cannot '
+  'reach it, say which part and what you typed.', 'PRD v1.5, section 6.1', Q_RANKREACH, False),
+ ('G4', 'One or two characters behaves sensibly',
+  'Everybody types one character on the way to typing six.',
+  'Nothing.', '9',
+  ('Type a single character and wait.', 'Add a second character and wait.',
+   'Write down what happened at each step.'),
+  'THIS ROW IS HELD — the specification sets a typing delay but no minimum length, so we cannot '
+  'say what one character should do. Do not pass or fail it. It must not error, must not hang, and '
+  'must not leave the previous keystroke\'s results on screen.',
+  'PRD v1.5, section 8 (the spec is silent — see question Q10)', Q_DEBOUNCE, True),
+ ('G5', 'A kind of record that does not exist yet does not break search',
+  'A new shop has no part sales. Search must still work.',
+  'A workplace where at least one kind has no records at all.', '965',
+  ('Search something that returns results in other kinds.', 'Read the tab strip.',
+   'Read the group list.'),
+  'Search works normally and the empty kind simply does not appear.',
+  'PRD v1.5, section 9', Q_EMPTYTYPE, False),
+ ('H1', 'No results shows your query back, and nothing else',
+  'Seeing my own typo is how I realise it was a typo.',
+  'Nothing.', 'Zqwxpol',
+  ('Type the term.', 'Read the message.'),
+  'It reads: No results for \'Zqwxpol\' — and nothing else. No suggestions, no buttons, no tips.',
+  'PRD v1.5, section 5.2', Q_NORES, False),
+ ('H2', 'No results inside a tab names the tab',
+  '"No results" when there ARE results on another tab would send me away for nothing.',
+  'A search returning results in one kind only.', 'ZZVORTAC',
+  ('Type the term.', 'Open a tab that has no results for it.', 'Read the message.'),
+  'The message names the tab you are on, so you know the search is narrowed and not empty '
+  'everywhere.', 'PRD v1.5, section 5.2', Q_NORES, False),
+ ('H3', 'A record you can open from its own list is never "not found"',
+  'The worst possible outcome — the record exists, I can open it from its list page, and search '
+  'says it does not exist.',
+  'Pick any record from its own list page and note one of its values.', None,
+  ('Search that value.', 'If nothing comes back, confirm the record still opens from its list page.',
+   'Then search a DIFFERENT value from the SAME record as a control.',
+   'Record both outcomes together — the control is what makes this trustworthy.'),
+  'The value finds its record. The control in step 3 is NOT optional: without it you cannot tell '
+  '"this field is not searchable" from "the search is down".',
+  'PRD v1.5, section 4', Q_INDEXED, False),
+ ('K1', 'Someone without access sees no rows AND no count',
+  'A technician seeing finance rows is a data leak, not a search bug.',
+  'A role without Parts access, and one without Purchase Order / Vendor Invoice access. The seven '
+  'seeded "ZZAUTOTEST No ..." roles cover this.', '965',
+  ('Sign in as a user with full access, search, and note the rows and the counts.',
+   'Sign in as the restricted role and run the IDENTICAL search.',
+   'Compare rows AND counts.'),
+  'The restricted user sees none of those rows, no tab for them, and no count. Check the COUNT as '
+  'well — a count still showing the full total leaks how much exists.',
+  'PRD v1.5, section 9', Q_ACCESS, False),
+]
+
+def build_cross(wb):
+    rows = []
+    for cid, title, why, before, term, todo, expect, src, quote, held in CROSS:
+        rows.append({
+         'ID': f'SRI-ALL-{cid}', 'What you are checking': title,
+         'Why it matters to a real user': why,
+         'Before you start': before if term else
+             before + '\n\nYou need to find this record yourself — see the steps.',
+         'TYPE THIS': term or 'FIND THE DATA FIRST — see "Before you start"',
+         'What to do': steps(*todo), 'What you should see': expect,
+         'Where that comes from': src, 'The exact wording of the requirement': quote,
+         'Result': '', 'What you actually saw': '', 'Ticket': '',
+         '_held': held, '_nodata': term is None})
+    ws = wb.create_sheet('All tab and cross-tab')
+    write_rows(ws, rows)
+    return len(rows)
+
+PO_Q = [
+ ('Q1', 'THE BIG ONE — when a result matches on something the row does not show, what should the '
+  'row do?',
+  'The search looks inside far more information than the row displays. A vendor can be found by '
+  'typing their contact\'s phone number; a work order by typing a part that is on it; a vehicle by '
+  'its VIN. In every one of those cases the row comes back and shows no sign of what you typed.',
+  'This is the single biggest cause of the complaints from UAT and support. The row looks random, '
+  'because from the user\'s side it IS random — they typed something and got back a row that does '
+  'not contain it.',
+  'Section 5.3 says the matched text is highlighted "in the primary and secondary text". It does '
+  'not say what happens when the matched value is in neither.',
+  'A) Show the matched value on the row, e.g. a line reading "Contact phone: 857-496-5067"   |   '
+  'B) Label it without the value, e.g. "Matched on contact phone"   |   '
+  'C) Leave it as it is (today)   |   D) Something else — please describe',
+  '32 — every "C" row on every tab'),
+ ('Q2', 'Should a customer found by their phone number show that phone number?',
+  'Section 4 says a Customer row shows "telephone on hover". The build does not show a customer\'s '
+  'telephone anywhere — not on hover, not on the row. Vendor rows DO show a telephone.',
+  'Typing a phone number is the most common way a service advisor finds the person on the phone '
+  'right now. Today the number is not on the row to confirm it is the right one — and when two '
+  'customers share the last four digits there is no way to tell which is which.',
+  'Section 4 asks for it on hover; the build does neither.',
+  'Show the telephone on the customer row — always visible, or only on hover? Note that a hover '
+  'cannot be seen while scanning a list, and cannot be used on a phone at all.',
+  'Customers C1 — and it is the direct cause of SV-10619'),
+ ('Q3', 'When the system reports "what matched", should that be the matched part or the whole '
+  'value?',
+  'Today it sometimes reports just the characters you typed and sometimes the whole field value — '
+  'the same field, the same kind of match, both behaviours. Measured on staging on 2026-09-29.',
+  'This inconsistency is the mechanism behind SV-10619. Whatever the screen is meant to show, it '
+  'cannot show it reliably while the same thing means two different things.',
+  'Not covered by the specification at all.',
+  'Always the matched part, always the whole value, or does the screen not depend on it? THIS ONE '
+  'MAY NEED ENGINEERING IN THE ROOM.',
+  'Every "A" row — 24 of them'),
+ ('Q4', 'Should the Assets row show the unit number?',
+  'Section 4 says an Asset row shows "year + make + model, then customer name". The build ALSO '
+  'shows the unit number, in bold, leading the row.',
+  'We think the build is more useful — the unit number is what a shop calls the truck by, and '
+  'SV-10551 is a complaint that it is not shown COMPLETELY. But the spec does not say so, so no '
+  'test can assert it.',
+  'Section 4 does not list the unit number for Assets.',
+  'Add the unit number to the specification for Assets, or remove it from the row?',
+  'Assets D1'),
+ ('Q5', 'Is licence plate meant to be searchable?',
+  'Typing a licence plate returns vehicles. Licence plate is not in section 4\'s list of searchable '
+  'fields for Assets. It is also not displayed, so a vehicle found this way shows nothing about why.',
+  'A field that is searchable but undocumented is a field nobody wrote a test for. That is how '
+  'these reach customers.',
+  'Not in section 4.',
+  'Add it to the specification, or remove it from the search?', 'Assets C2'),
+ ('Q6', 'Is postal code meant to be searchable for customers?',
+  'The same shape as Q5. Typing a postal code returns customers; postal code is not in section 4\'s '
+  'list for Customers.',
+  'The code has a deliberate note about Canadian postal codes, so this looks intentional but '
+  'undocumented.',
+  'Not in section 4.',
+  'Add it to the specification, or remove it?', 'Customers C8'),
+ ('Q7', 'Are "number variants" meant to be searchable for purchase orders?',
+  'A purchase order can be found by a number form that appears nowhere on its row.',
+  'If it stays, Q1\'s answer matters doubly here — the number that matched is by definition not the '
+  'number on screen.',
+  'Not in section 4.',
+  'Add it to the specification, or remove it?', 'Purchase Orders C4'),
+ ('Q8', 'Which date should a Vendor Invoice row show?',
+  'Section 4 says "total + invoice date". The build shows the RECEIVED date. These are usually '
+  'different days.',
+  'A tester cannot pass or fail the row while the two disagree.',
+  'Section 4 says invoice date; the build shows received date.',
+  'Which date belongs on the row?', 'Vendor Invoices D1'),
+ ('Q9', 'What should an asset row show when it has no year, make or model?',
+  'Section 4 covers the work-order version of this ("when the asset has no unit number, the '
+  'year/make/model stands alone") but not the asset row\'s own version.',
+  'Real data has vehicles with none of the three.',
+  'Not covered.',
+  'What identifies the row then — the unit number, the customer, or something else?',
+  'All tab G1'),
+ ('Q10', 'Is there a minimum number of characters before search runs?',
+  'The old search ignored queries under two characters. The specification sets a typing delay '
+  '(150ms) but no minimum length.',
+  'We cannot say whether typing a single character should search, wait, or do nothing.',
+  'Not covered.',
+  'Is there a minimum, and what is it?', 'All tab G4'),
+]
+
+def build_questions(wb):
+    ws = wb.create_sheet('Questions for the PO')
+    hdr = ['#', 'The question', 'What is happening now', 'Why it matters',
+           'What the specification says today', 'What we need decided', 'Tests waiting on it']
+    widths = [7, 46, 60, 55, 46, 60, 26]
+    for c, (h, w) in enumerate(zip(hdr, widths), 1):
+        cell = ws.cell(1, c, h)
+        cell.font = Font(name=FONT, bold=True, color='FFFFFF', size=11)
+        cell.fill = PatternFill('solid', fgColor='7030A0')
+        cell.alignment = Alignment(vertical='center', wrap_text=True)
+        ws.column_dimensions[get_column_letter(c)].width = w
+    ws.row_dimensions[1].height = 34
+    ws.freeze_panes = 'B2'
+    note = ws.cell(2, 1, 'THESE ARE NOT TESTS. They cannot be run in the application — they are '
+                   'decisions we need before 32 of the tests can say pass or fail. The test rows '
+                   'they block are named in the last column.')
+    note.font = Font(name=FONT, size=10, italic=True, color='7030A0')
+    note.alignment = Alignment(wrap_text=True, vertical='top')
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=7)
+    for r, row in enumerate(PO_Q, 3):
+        for c, val in enumerate(row, 1):
+            cell = ws.cell(r, c, val)
+            cell.font = Font(name=FONT, size=10, bold=(c == 1))
+            cell.alignment = Alignment(vertical='top', wrap_text=True)
+            cell.border = THIN
+            if r == 3: cell.fill = PatternFill('solid', fgColor='FFF2CC')
+    return len(PO_Q)
+
+def build_summary(wb, tabs):
+    ws = wb.create_sheet('Summary', 1)
+    ws['A1'] = 'Search Results Integrity — progress'
+    ws['A1'].font = Font(name=FONT, size=15, bold=True, color='1F3864')
+    ws['A3'] = f'Environment: {ENV}'
+    ws['A3'].font = Font(name=FONT, size=10, italic=True)
+    hdr = ['Tab', 'Tests', 'Pass', 'Fail', 'Blocked', 'Not run', 'Held', 'Recorded']
+    for c, h in enumerate(hdr, 1):
+        cell = ws.cell(5, c, h)
+        cell.font = Font(name=FONT, bold=True, color='FFFFFF', size=11)
+        cell.fill = H_FILL
+        cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+    ws.column_dimensions['A'].width = 26
+    for c in range(2, 9): ws.column_dimensions[get_column_letter(c)].width = 12
+    r = 6
+    for name, n in tabs:
+        q = f"'{name}'!$J$2:$J${n + 1}"
+        ws.cell(r, 1, name).font = Font(name=FONT, size=10)
+        ws.cell(r, 2, n).font = Font(name=FONT, size=10)
+        for c, status in enumerate(['Pass', 'Fail', 'Blocked', 'Not run', 'HELD - do not run'], 3):
+            ws.cell(r, c, f'=COUNTIF({q},"{status}")').font = Font(name=FONT, size=10)
+        ws.cell(r, 8, f'=SUM(C{r}:G{r})').font = Font(name=FONT, size=10)
+        for c in range(1, 9): ws.cell(r, c).border = THIN
+        r += 1
+    last = r - 1
+    ws.cell(r, 1, 'TOTAL').font = Font(name=FONT, size=11, bold=True)
+    for c in range(2, 9):
+        ws.cell(r, c, f'=SUM({get_column_letter(c)}6:{get_column_letter(c)}{last})')
+        ws.cell(r, c).font = Font(name=FONT, size=11, bold=True)
+    for c in range(1, 9):
+        ws.cell(r, c).fill = PatternFill('solid', fgColor='D9E1F2'); ws.cell(r, c).border = THIN
+    ws.cell(r + 2, 1, 'The "Held" column counts tests the specification cannot yet answer. They are '
+            'question Q1 on the "Questions for the PO" tab — they are not failures and must not be '
+            'reported as any result until that question is answered.')
+    ws.cell(r + 2, 1).font = Font(name=FONT, size=10, italic=True, color='BF8F00')
+    ws.merge_cells(start_row=r + 2, start_column=1, end_row=r + 2, end_column=8)
+    ws.cell(r + 2, 1).alignment = Alignment(wrap_text=True, vertical='top')
+    ws.row_dimensions[r + 2].height = 42
+
+if __name__ == '__main__':
+    wb, counts = build()
+    n_cross = build_cross(wb)
+    counts.append(('All tab and cross-tab', n_cross))
+    n_q = build_questions(wb)
+    build_summary(wb, counts)
+    wb._sheets.insert(1, wb._sheets.pop(wb._sheets.index(wb['Summary'])))
+    out = os.path.join(HERE, 'ShopView-Global-Search-Result-Row-Tests-for-Manual-QA.xlsx')
+    wb.save(out)
+    print(f"{sum(n for _, n in counts)} test rows + {n_q} PO questions -> {os.path.basename(out)}")
+    for t, n in counts: print(f"  {t:26} {n}")
