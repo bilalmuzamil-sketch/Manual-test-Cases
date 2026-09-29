@@ -161,6 +161,27 @@ UNIVERSES = [
      ('ZZOBSIDIAN', 'assets',    'ZZOBSIDIAN Trucks Hauler'),   # C72122
      ('ZZOBSIDIAN', 'assets',    'ZZOBSIDIAM Trucks Hauler'),
   ], 'seed-manifest-per-tab-prefix.json', None),
+ ('Search results integrity  (SV-10619/SV-10551, 34 records)', [
+     # The suite at build/search-results-integrity/. Probes name OUR records, never a count: these
+     # cases turn on whether two rows can be TOLD APART, and a count of 2 says nothing about that.
+     # 🔴 NO BRANCH-ASSIGNED NUMBERS HERE (Rule 111) - work order, part sale and PO numbers differ
+     # per branch, and pinning a probe to one is what made this board report healthy universes as
+     # PARTIAL on staging.
+     ('ZZLONGROW', 'customers', '123786'),        # the twin pair, first half
+     ('ZZLONGROW', 'customers', '185786'),        # ... and the second
+     ('ZZLONGROW', 'vendors',   '123786'),
+     ('ZZLONGROW', 'parts',     'Air Brake Chamber Kit'),
+     ('ZZLONGROW', 'assets',    'Rowcheck Trucks'),
+     ('ZZLONGROW', 'work_orders', 'ZZLONGROW'),
+     ('ZZLONGROW', 'part_sales', 'ZZLONGROW'),
+     ('ZZHIDDEN',  'vendors',   'Rowcheck Quiet Fields Supply'),   # matches on a hidden field only
+     ('ZZQUEBEXA', 'customers', 'Rowcheck Provincial Cartage'),    # matches on province only
+     ('ZZNOUNIT',  'assets',    'ZZNOUNIT Trucks'),                # the no-unit vehicle
+     ('ZZSOFTHIT', 'customers', 'ZZSOFTHIY Cartage'),              # the soft-match pair
+     ('ZZSOFTHIT', 'vendors',   'ZZSOFTHIY Supply'),
+     ('ZZSOFTHIT', 'purchase_orders', 'ZZSOFTHIY Supply'),
+     ('ZZSOFTHIT', 'vendor_invoices', 'ZZSOFTHIY Supply'),
+  ], 'seed-manifest-result-integrity.json', 'verify_by_search.py'),
 ]
 
 ROLES = ['ZZAUTOTEST No Work Orders View', 'ZZAUTOTEST No Customers View',

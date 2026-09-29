@@ -50,7 +50,8 @@ FLAT = dict(city='Fernvale', addr='21 Result Row Way', postal='44872-9001',
             phone='(264) 400-0900')
 R = []
 
-def customer(key, name, serves, why, state='Ohio', address=None, phone=None, find_by=None):
+def customer(key, name, serves, why, state='Ohio', address=None, phone=None, find_by=None,
+             na=None):
     # 🔴 THE FINDER MUST KEY ON SOMETHING UNIQUE, AND FOR THE B2 PAIR THE NAME IS DELIBERATELY NOT.
     # Both halves of the identical-name pair searched on `name`, so the second one FOUND THE FIRST,
     # reported itself present, and was never created - leaving one record where the case needs two,
@@ -67,7 +68,19 @@ def customer(key, name, serves, why, state='Ohio', address=None, phone=None, fin
                                    'country_code': 'US'}},
             'verify': ['name', 'city'],
             'read_as': {'phone': 'telephone', 'address': 'address_1'},
-            'write': {'endpoint': '/api/customers/change', 'whole_record': True}, '_why': why}
+            'write': {'endpoint': '/api/customers/change', 'whole_record': True},
+            **({'search_proof_na': na} if na else {}), '_why': why}
+
+CONTACT_NA = ("a contact is reached through its COMPANY, and these three still hold one shared "
+              "email address on the live records - /api/contacts/change rejects every payload shape "
+              "tried, so they correct only on a fresh reseed into a clean estate. A search for the "
+              "shared address answers with whichever company it finds first, which proves nothing "
+              "about this one. The manifest already gives each its own address for the next rebuild.")
+SAME_NAME_NA = ("this record exists only to give its identically-named sibling something to be "
+                "confused with. Its finder is an ADDRESS, chosen because the NAME deliberately "
+                "cannot tell the pair apart - and an address is not what a tester types to reach a "
+                "vendor. The pair is proved instead by the Vendors B2 test, which types the shared "
+                "NAME and expects two rows.")
 
 def contact(key, parent, first, serves, why, email=None):
     # 🔴 EVERY CONTACT GETS ITS OWN EMAIL. All three originally shared one default address, and the
@@ -82,9 +95,10 @@ def contact(key, parent, first, serves, why, email=None):
                                    'telephone': FLAT['phone'],
                                    'email': email or f'{first.lower()}@zzresultintegrity.test'},
                        'inject': {'company_id': parent}},
-            'verify': ['first_name'], '_why': why}
+            'verify': ['first_name'], 'search_proof_na': CONTACT_NA, '_why': why}
 
-def vendor(key, name, serves, why, email=None, address_2=None, address_1=None, find_by=None):
+def vendor(key, name, serves, why, email=None, address_2=None, address_1=None, find_by=None,
+           na=None):
     # Same trap as customers above: the identical-name pair cannot be found by name.
     p = {'name': name, 'address_1': address_1 or FLAT['addr'], 'city': FLAT['city'],
          'state_or_province': 'Ohio', 'postal_code': FLAT['postal'],
@@ -108,7 +122,7 @@ def vendor(key, name, serves, why, email=None, address_2=None, address_1=None, f
                            'take': 'tax_id', 'take_as': 'tax_id'}}},
             'verify': ['name'],
             'write': {'endpoint': '/api/parts-catalogue/vendors/change', 'whole_record': True},
-            '_why': why}
+            **({'search_proof_na': na} if na else {}), '_why': why}
 
 def vehicle(key, owner, contact_key, vin, unit, maker, model, serves, why, year=2021):
     pay = {'maker_name': maker, 'model_name': model, 'year': year, 'vin': vin}
@@ -205,12 +219,15 @@ R += [
  customer('ri_cust_same_b', f'{TWIN} Identical Name Cartage', ['CUST-B2'],
    'Kept as a single record. Its sibling cannot be created - see the note above - so this one '
    'serves only as a normal customer; CUST-B2 is marked not-applicable rather than unseeded.',
-   address='88 Different Street', find_by=('address_1', '88 Different Street')),
+   address='88 Different Street', find_by=('address_1', '88 Different Street'),
+   na='its finder is an ADDRESS, chosen because the product forbids a second customer with this '
+      'name so the pair can never exist here (see the note above). An address is not what a tester '
+      'types to reach a customer, so a search for it proves nothing about this record.'),
  vendor('ri_vend_twin_a', TWIN_A_VEND, ['VEND-A1','VEND-A2','VEND-A3','VEND-B1'], 'TWIN A, vendors.'),
  vendor('ri_vend_twin_b', TWIN_B_VEND, ['VEND-A1','VEND-A2','VEND-A3','VEND-B1'], 'TWIN B, vendors.'),
  vendor('ri_vend_same_a', f'{TWIN} Identical Name Supply', ['VEND-B2'],
    'B2 pair, vendors: same name, different address. Found by ADDRESS for the same reason.',
-   address_1='4 Sameface Road', find_by=('address_1', '4 Sameface Road')),
+   address_1='4 Sameface Road', find_by=('address_1', '4 Sameface Road'), na=SAME_NAME_NA),
  vendor('ri_vend_same_b', f'{TWIN} Identical Name Supply', ['VEND-B2'],
    'B2 pair, vendors: the second one.',
    address_1='88 Different Street', find_by=('address_1', '88 Different Street')),

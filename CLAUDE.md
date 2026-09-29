@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112 and 113** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113 and 114** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -75,6 +75,16 @@ These are stated here **in full** because a session that gets only this far must
   silence is escalated as a PO question rather than assumed. **Documents establish intent; code
   establishes fact** — and a code-vs-document conflict is a **PO DECISION ITEM, never a silent
   invariant.** Skill: `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`.
+- **SEEDED DATA IS NEVER A ONE-OFF — EVERY PROJECT KEEPS A ONE-COMMAND REBUILD, READY (114).**
+  Ordered 2026-09-29 after redeployments repeatedly cleared Global Search's data. Five things or the
+  kit is not done: **one command** per environment · **one keyword** the QA lead says, naming the
+  only thing he must supply · a **read-only status board** (a redeploy does not always take
+  everything — one took 32 of 33, another took none, so rebuilding blind wastes the time the rule
+  saves) · **resumability** · and **every step proved through the feature's own interface**, because
+  *"the record exists" is not "the feature can find it"*. A new universe is wired into the rebuild,
+  the board and the register **the same day it is built** — a script covering six of seven universes
+  reports success while leaving a suite dead. Branch-assigned identifiers are **re-read after every
+  reseed** (111). Fast card: `build/global-search/RESEED-FAST-CARD.md`.
 - **NEVER BULK-READ; SCRIPT THE BULK WORK (88).** A session with direct tools must not read hundreds
   of cases, spec bodies or archives into its own context. Write a script, run it, read its SUMMARY.
   Never read `CLAUDE-FULL-ARCHIVE-2026-08-21.md` (or any 100 KB+ artefact) whole.
@@ -330,6 +340,20 @@ exists** ⇒ hold the case and raise a PO question (58/64); never invent one and
 from the build. Worked example: the line that moved SV-10279 was the PRD's own
 *"Prefix match on primary name field → +0.70"* set against the product's own match label.
 
+**Rule 114 (every project that needs seeded data keeps a one-command rebuild, ready at all times)**
+was ordered by the QA lead **2026-09-29** and lives at the end of `build/rules/RULES-61-96.md`, after
+113. **It binds every project, not just Global Search.** The moment a project needs data the
+environment does not hold, the reseed kit is part of the deliverable. Five requirements — one
+command, one keyword, a read-only status board, resumability, and proof through the feature's own
+interface rather than a create call's status code. **A rebuild script that covers six of seven
+universes is worse than none, because it reports success while leaving a suite dead**, so a new
+universe is wired into the rebuild, the board and the register the same day it is built. Its test:
+*if the environment were wiped in the next ten minutes, could the QA lead say one thing, hand over
+one set of credentials, and have every suite working again?* Operator form:
+`build/skills/20-FEATURE-DATA-SEEDING.md` (generic method) and `build/global-search/seeding/`
+(worked reference — seven universes, one command). Fast card:
+`build/global-search/RESEED-FAST-CARD.md`.
+
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
@@ -461,6 +485,13 @@ DIFFERENT script per environment**: `verify_gsv2.py` on the QA branch (V2, `/api
 production reports a dead environment that is perfectly healthy. A run is finished when the verifier
 passes, never when the seeder prints 33/33: *"the record exists"* is not *"the search returns it"*.
 Record inventory with real ids: `build/global-search/seeding/SEED-MANIFEST-GS-V2-{qa,prod}.md`.
+
+🔴 **THE FAST PATH IS ONE KEYWORD: `RESEED GLOBAL SEARCH STAGING` / `QA` / `LIVE`** — it rebuilds
+**all seven universes** (~215 records) and proves each by search, resumable with a step number
+(`./reseed_everything.sh staging 12`). The only thing the QA lead must supply is
+`sv_sso_session` + `PHPSESSID` + `cf_clearance`; everything else self-heals. One page, no decisions:
+**`build/global-search/RESEED-FAST-CARD.md`**. Run `status.py` FIRST — it is read-only and says what
+actually survived. The per-universe keywords below remain for when only ONE universe is wanted.
 
 The QA lead says **`RESEED QA`** (branch `sv9160`) or **`RESEED LIVE`** (the production test account
 `app.shopview.com`, workplace **Trucks Hill 2**) and the session does the rest: `seed.py --check`,

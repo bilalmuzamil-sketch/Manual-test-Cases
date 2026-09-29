@@ -1,5 +1,14 @@
 # RESEED — the reseed keywords
 
+> # 🚀 IN A HURRY? SAY **`RESEED GLOBAL SEARCH STAGING`** (or `QA`, or `LIVE`).
+> That one keyword rebuilds **all seven universes** and proves them by search. Paste me
+> `sv_sso_session`, `PHPSESSID` and `cf_clearance` and I do the rest — **one page, no decisions:
+> [`../RESEED-FAST-CARD.md`](../RESEED-FAST-CARD.md)**.
+>
+> The per-universe keywords below still work and are the right tool when you want ONE universe
+> back. They are the fine-grained option, not the default.
+
+
 > **📖 EVERY trap, count target, permission map and non-seedable item is in
 > [`RESEED-KNOWLEDGE.md`](RESEED-KNOWLEDGE.md) — one page, written so a reseed is a command rather
 > than an investigation. Read it before debugging anything here.**
@@ -37,6 +46,7 @@ read as MISSING while sitting right there).
 |---|---|---|---|
 | **`RESEED QA`** | the QA branch | the **V1-regression** universe (11 records, sections 6769 / 8056) | `sv9160.qa.shopview.com` |
 | **`RESEED LIVE`** | production | the **V1-regression** universe | `app.shopview.com`, workplace **Trucks Hill 2** |
+| **`RESEED GLOBAL SEARCH STAGING`** / **`QA`** / **`LIVE`** | that whole environment | **EVERYTHING — all seven universes**, created and proved by search | one command, `./reseed_everything.sh <env>` |
 | **`RESEED GSV2 QA`** | the QA branch | the **Global Search V2 "Fibridge"** universe (33 records + statuses + purchase orders + vendor invoices, sections 6721–6740) | `sv9160.qa.shopview.com` |
 | **`RESEED GSV2 LIVE`** | production | the **Fibridge** universe | `app.shopview.com`, workplace **Trucks Hill 2** |
 

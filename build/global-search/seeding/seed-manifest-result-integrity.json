@@ -135,6 +135,7 @@
    "verify": [
     "first_name"
    ],
+   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
    "_why": "Required by /api/vehicles/create - customer_id there is the CONTACT, not the company."
   },
   {
@@ -175,6 +176,7 @@
     "endpoint": "/api/customers/change",
     "whole_record": true
    },
+   "search_proof_na": "its finder is an ADDRESS, chosen because the product forbids a second customer with this name so the pair can never exist here (see the note above). An address is not what a tester types to reach a customer, so a search for it proves nothing about this record.",
    "_why": "Kept as a single record. Its sibling cannot be created - see the note above - so this one serves only as a normal customer; CUST-B2 is marked not-applicable rather than unseeded."
   },
   {
@@ -319,6 +321,7 @@
     "endpoint": "/api/parts-catalogue/vendors/change",
     "whole_record": true
    },
+   "search_proof_na": "this record exists only to give its identically-named sibling something to be confused with. Its finder is an ADDRESS, chosen because the NAME deliberately cannot tell the pair apart - and an address is not what a tester types to reach a vendor. The pair is proved instead by the Vendors B2 test, which types the shared NAME and expects two rows.",
    "_why": "B2 pair, vendors: same name, different address. Found by ADDRESS for the same reason."
   },
   {
@@ -743,6 +746,7 @@
    "verify": [
     "first_name"
    ],
+   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
    "_why": "Required by /api/vehicles/create."
   },
   {
@@ -1034,6 +1038,7 @@
    "verify": [
     "first_name"
    ],
+   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
    "_why": "Required by /api/vehicles/create."
   },
   {

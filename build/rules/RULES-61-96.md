@@ -2452,3 +2452,79 @@ source should not exist (Rule 64).
 > character-for-character that sentence?
 
 If no: either find the sentence, or the case is not ready.
+
+---
+
+## RULE 114 — SEEDED DATA IS NOT A ONE-OFF: EVERY PROJECT THAT NEEDS IT KEEPS A ONE-COMMAND REBUILD, READY AT ALL TIMES
+
+**Ordered by the QA lead, 2026-09-29, verbatim:** *"we will probably have to reseed the whole data
+for this all Global search again and again as they clear the data when they do the redeployment. So
+Always remember that you have to keep the data to be reseeded with you for any project you seed the
+data for … there should be the shortest and fastest way for us to reseed the data … make sure that
+we are ready to reseed quickly whenever needed."*
+
+**The rule applies to EVERY project, not only Global Search.** The moment a project needs data that
+the environment does not already hold, the reseed kit is part of the deliverable — not a follow-up,
+not a nice-to-have. A suite whose data cannot be rebuilt is a suite that stops working at the next
+deployment, and the failure arrives at the worst possible moment: when a tester is already sitting
+in front of it.
+
+### 114.1 · What "ready" means — five things, all of them present or the kit is not done
+
+1. **ONE command rebuilds everything for that project**, across every environment it runs on. Not
+   three scripts in the right order. Not a checklist. One command, one argument: the environment.
+2. **ONE keyword the QA lead can say**, registered in the project's reseed file, with the exact list
+   of what he must supply — and nothing else. Anything the session can obtain for itself, it
+   obtains for itself.
+3. **A READ-ONLY status board** that answers *what survived?* in seconds, names the missing records,
+   and prints the command that fixes them. A redeploy does not always take everything — one took 32
+   of 33 records, another took none — so **rebuilding blind wastes the time the rule exists to save.**
+4. **RESUMABILITY.** The rebuild can start part-way through, because when only one universe is short
+   the other six should not be re-measured.
+5. **EVERY STEP PROVED BY THE FEATURE'S OWN INTERFACE, never by the create call's status code.**
+   *"The record exists"* is not *"the feature can find it"*. A catalogue part with no stock row sits
+   happily in the database and is invisible to search; that has produced a false pass here already.
+
+### 114.2 · The kit is kept CURRENT, and a new universe is wired in the same day it is built
+
+A rebuild script that covers six of seven universes is worse than none, because it reports success
+while leaving a suite dead. **When a project gains new seeded data, the same change adds it to the
+rebuild script, to the status board and to the keyword register.** Not later.
+
+### 114.3 · Identifiers assigned by the environment are re-read after every reseed, never carried
+forward
+
+Work-order, part-sale, purchase-order and invoice numbers are **branch-assigned**: they change on
+every reseed and every redeploy. Any deliverable quoting one — a test case, a handoff, a workbook —
+must re-read it from the seed state rather than trust the old value. This is Rule 111's reachability
+clause, and a reseed is the event that triggers it.
+
+### 114.4 · The build marker is read before and after, and a change invalidates the run
+
+If the environment redeploys mid-rebuild, records created before it are gone. The rebuild reports
+the marker at both ends and says so. And **a zero reading immediately after a redeploy is a
+question, not an answer** — on 2026-09-29 a probe reported 0 rows for two record sets that were
+completely untouched, and believing it would have produced two false findings.
+
+### 114.5 · State files are committed
+
+Git is the only durable store; the container is not. Ids, state and manifests are committed with
+every reseed, path-scoped, through the secret scanner (Rule 82).
+
+### Operator form
+
+- The generic method for standing a kit up for any feature: **`build/skills/20-FEATURE-DATA-SEEDING.md`**
+  — the engine is generic and only the manifest is per-feature, so the second feature costs a
+  fraction of the first. Scaffold with
+  `python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature>"`.
+- Worked reference, and the shape to copy: **`build/global-search/seeding/`** — seven universes,
+  one command (`reseed_everything.sh <env>`), one status board (`status.py`), one keyword card
+  (`build/global-search/RESEED-FAST-CARD.md`).
+
+### The test of this rule
+
+> If the environment were wiped in the next ten minutes, could the QA lead say one thing, hand over
+> one set of credentials, and have every suite for this project working again — without me
+> reconstructing anything from memory?
+
+If no, the kit is not finished, whatever else has been delivered.

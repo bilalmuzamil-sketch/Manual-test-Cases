@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
 # REBUILD EVERY UNIVERSE THIS BRANCH HAS EVER BEEN SEEDED WITH — one command, after a redeploy.
 #
-#   ./reseed_everything.sh qa     (keyword: RESEED EVERYTHING QA)
-#   ./reseed_everything.sh live   (keyword: RESEED EVERYTHING LIVE - V1-regression universe only;
-#                                  the V2 and ranking universes are QA-branch features)
+#   ./reseed_everything.sh qa          (keyword: RESEED EVERYTHING QA)
+#   ./reseed_everything.sh staging     (keyword: RESEED EVERYTHING STAGING)
+#   ./reseed_everything.sh live        (keyword: RESEED EVERYTHING LIVE - V1-regression universe
+#                                       only; the V2 and ranking universes are QA/staging features)
+#   ./reseed_everything.sh staging 12  resume at step 12, skipping what is already intact
+#
+# SEVEN UNIVERSES, in step order:
+#   1-1b   V1-regression (11)          ·  9-11   ranking + fuzzy (93) + its signals
+#   2-5    Fibridge V2 (39) + statuses ·  12-14  permission toggle (20) + PO/invoice
+#   6      role fixtures (7 roles)     ·  15-16  SV-10279 prefix parity (12) + per-tab (14)
+#   7-8    PO/invoice chain + proof    ·  17     SEARCH RESULTS INTEGRITY (34)
 #
 # WHY THIS EXISTS: a redeploy of sv9160 wipes seeded records. It has happened twice, once mid-
 # handoff, taking 32 of 33 records with it. Three universes now live side by side and each has its
@@ -165,8 +173,20 @@ echo " build marker before: $(curl -s --max-time 20 "$HOST/" | grep -o 'content=
 echo "=============================================================="
 
 FAILED=0
-step() { local label="$1"; shift; echo; echo "---- $label"
-         if ! "$@"; then echo; echo "🔴 STOPPED at: $label"; FAILED=1; return 1; fi; }
+RUN_T0=$SECONDS
+# 🔴 RESUMABLE, BECAUSE A REDEPLOY DOES NOT ALWAYS TAKE EVERYTHING. `./reseed_everything.sh staging 12`
+# picks up at step 12 and skips what came before. Every step is idempotent, so a full run is always
+# SAFE - this only saves the minutes spent re-measuring universes you already know are intact. Run
+# `python3 status.py` first: it names which universes are short, and the step numbers are printed
+# beside each universe heading below.
+START_AT="${2:-0}"
+step() { local label="$1"; shift
+         local tok="${label%% *}"; local num="${tok%%[!0-9]*}"
+         if [ "$START_AT" != "0" ] && [ -n "$num" ] && [ "$num" -lt "$START_AT" ] 2>/dev/null; then
+           echo "---- $label   ·  skipped (resuming from step $START_AT)"; return 0; fi
+         local t0=$SECONDS; echo; echo "---- $label"
+         if ! "$@"; then echo; echo "🔴 STOPPED at: $label"; FAILED=1; return 1; fi
+         echo "     ✓ done in $((SECONDS-t0))s"; }
 
 # ── universe 1 · V1-REGRESSION (11 records, sections 6769 / 8056) ──────────────────────────────
 export SEED_MANIFEST=seed-manifest.json
@@ -233,6 +253,23 @@ if [ "$V2" = "1" ]; then
   step "16 per-tab prefix records"          python3 seed.py --confirm            || exit 1
   step "16b per-tab prefix PROOF (by identity)" python3 verify_by_search.py      || exit 1
 
+  # ── universe 7 · SEARCH RESULTS INTEGRITY (34 records) ──────────────────────────────────────
+  # The suite at build/search-results-integrity/ - 110 cases across all nine tabs, behind SV-10619
+  # and SV-10551. Its central shape is two records per entity carrying a LONG name whose only
+  # difference is the trailing six digits, so a row that truncates cannot tell them apart.
+  # 🔴 WITHOUT THIS UNIVERSE 105 OF THOSE 110 CASES HAVE NOTHING TO TYPE. It is not optional.
+  export SEED_MANIFEST=seed-manifest-result-integrity.json
+  step "17 result-integrity records"        python3 seed.py --confirm            || exit 1
+  # C55735's shape again: the soft-match vendor needs a purchase order AND a vendor invoice, which
+  # a declarative manifest cannot express. Exported then unset, never prefixed onto `step` - a
+  # bare VAR=x before a function call leaks past it in bash and would point a later universe's
+  # chain at this vendor.
+  export SEED_PO_SLUG=risoft SEED_PO_VENDOR='ZZSOFTHIY Supply'
+  export SEED_PO_WO_KEY=ri_wo_soft SEED_PO_PLAN=toggle
+  step "17b result-integrity PO + invoice"  python3 seed_po_and_invoices.py --confirm || exit 1
+  unset SEED_PO_SLUG SEED_PO_VENDOR SEED_PO_WO_KEY SEED_PO_PLAN
+  step "17c result-integrity PROOF (by identity)" python3 verify_by_search.py    || exit 1
+
   # 🔴 BOTH OF THESE ARE PROVED BY status.py, NOT BY A DEDICATED VERIFIER. Their assertion is a
   # RANKING one - which match label each row carries - and on Parts the expected answer is
   # currently the WRONG one, because SV-10279 is open. A verifier that failed on that would be
@@ -254,6 +291,7 @@ if [ "$FAILED" = "0" ]; then
 else
   echo " 🔴 FINISHED WITH FAILURES — read the log above. The data is NOT proven."
 fi
+echo " total: $(( (SECONDS-RUN_T0)/60 ))m $(( (SECONDS-RUN_T0)%60 ))s"
 echo " build marker after:  $(curl -s --max-time 20 "$HOST/" | grep -o 'content="v[^"]*"' | head -1)"
 echo
 echo " 🔴 IF THE MARKER CHANGED DURING THIS RUN the branch redeployed mid-reseed and records"

@@ -112,6 +112,12 @@ def search(q):
 
 def main():
     m = json.load(open(f'{HERE}/{MANIFEST}'))
+    # A record may declare itself NOT PROVABLE BY SEARCH, with its reason, in the manifest. That is
+    # the right home for the knowledge: the verifier should not carry a list of special cases, and a
+    # run must not go red over a record that was never meant to be reachable by typing its finder.
+    # 🔴 THE REASON IS MANDATORY. Without it this becomes a way to silence an inconvenient failure,
+    # which is the opposite of what the check is for.
+    declared = {r['key']: r.get('search_proof_na') for r in m['records'] if r.get('search_proof_na')}
     marker = ''
     try:
         h = call('/')
@@ -149,7 +155,7 @@ def main():
                 absent += 1; fails.append(key)
                 continue
             rows = attributed
-        why = EXPECTED_ABSENT.get(key) or EXPECTED_ABSENT.get(typ and '')
+        why = declared.get(key) or EXPECTED_ABSENT.get(key) or EXPECTED_ABSENT.get(typ and '')
         if rows:
             found += 1
             flag = ''
