@@ -228,34 +228,15 @@ test('C146208 — a soft match is drawn as a soft match', async () => {
   }
 });
 
-/* ───────────────────────────── HELD — recorded, never judged ───────────────────────────────── */
-
-for (const held of [
-  { cid: 'C146202', field: 'VIN / serial number', term: 'SVEWU82M5ETEJFWFA' },
-  { cid: 'C146205', field: 'line item descriptions (parts and labor)', term: '786' },
-  { cid: 'C146206', field: 'part numbers on the work order lines', term: '786' },
-  // Found live on staging 2026-09-29: the case shipped with no term because nothing matched these
-  // two fields when it was written. Brandi Smith is a lead technician on 15 work orders and Jason
-  // Garrison is the service advisor on S2-9379, so both fields can now be exercised.
-  { cid: 'C146203', field: 'lead technician name', term: 'Brandi Smith' },
-  { cid: 'C146204', field: 'service advisor name', term: 'Garrison' },
-]) {
-  test(`${held.cid} — [HELD: the source is silent] does a match on ${held.field} explain itself?`, async () => {
-    const r = await groupRows(s.page, held.term, TAB);
-    const obs = r.map((x) => ({
-      row: x.index, text: x.text, marks: x.marks,
-      termVisibleOnRow: new RegExp(held.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(x.text),
-      // Recorded because it changes what the reader can actually see: on several rows the matched
-      // value is present in the DOM but clipped mid-word ("Technician: Brandi Smi").
-      metaClipped: x.meta.clipped, metaHidden: x.meta.hiddenSegs,
-      titleClipped: x.title.clipped, markVisible: x.meta.markVisible ?? x.title.markVisible,
-    }));
-    (measurements as any)[`held_${held.cid}`] = { term: held.term, field: held.field, rows: obs };
-    console.log(`${held.cid} HELD — "${held.term}" → ${r.length} rows`);
-    for (const o of obs) console.log(`   row ${o.row}: termOnRow=${o.termVisibleOnRow} ` +
-      `markVisible=${o.markVisible} metaClipped=${o.metaClipped} "${o.text.slice(0, 95)}"`);
-    // The ONLY assertion a held case may carry is that the measurement happened. Anything else
-    // would be this file deciding a question the specification leaves open (PO question Q1).
-    expect(Array.isArray(obs), 'the observation was recorded').toBe(true);
-  });
-}
+/* ────────────────────────────────────────────────────────────────────────────────────────────
+ * THE HELD TESTS THAT USED TO LIVE HERE WERE REMOVED ON 29 SEPTEMBER 2026.
+ *
+ * Those cases were un-held that day and rewritten to assert that the labelled note shows the
+ * WHOLE matched value. They are now covered, with real assertions, by
+ *     tests/C146202-C146282-sri-retest-full-value.spec.ts
+ *
+ * Leaving the old measurement-only versions in place meant the same case was measured TWICE in
+ * one run — once judged, once "recorded only". A held test asserts nothing about the product, so
+ * whichever the reporter printed last won, and genuine Failed verdicts were being overwritten
+ * with Blocked. Nineteen cases were affected before it was caught. One case, one test.
+ * ──────────────────────────────────────────────────────────────────────────────────────────── */

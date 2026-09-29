@@ -294,18 +294,23 @@ export async function panelShape(page: Page, term: string): Promise<PanelShape> 
   for (let i = 0; i < 8; i++) {
     await page.waitForTimeout(1_500);
     shape = await page.evaluate((s) => {
-      const num = (t: string) => { const m = t.match(/\((\d+)\)\s*$/); return m ? Number(m[1]) : null; };
+      // 🔴 THE COUNT IS NOT ALWAYS AT THE END. A tab reads "Parts (20)", but a GROUP heading
+      // reads "Parts (20) Show All" — anchoring to the end returned null for every group, so a
+      // check filtering on "groups with more than five results" matched nothing and reported that
+      // the case had nothing to test. Find the parenthesised number wherever it sits.
+      const num = (t: string) => { const m = t.match(/\((\d+)\)/); return m ? Number(m[1]) : null; };
+      const clean = (t: string) => t.replace(/\(\d+\)/g, '').replace(/show all.*/i, '').trim();
       const tabs = [...document.querySelectorAll(s.tab)].map((e) => {
         const t = (e as HTMLElement).innerText.replace(/\s+/g, ' ').trim();
-        return { label: t.replace(/\s*\(\d+\)\s*$/, '').trim(), count: num(t) };
+        return { label: clean(t), count: num(t) };
       });
       const groups = [...document.querySelectorAll(s.group)].map((g) => {
         const head = (g.querySelector(s.groupHeader) as HTMLElement)?.innerText.replace(/\s+/g, ' ').trim() ?? '';
         const link = [...g.querySelectorAll('a,button')]
           .map((e) => (e as HTMLElement).innerText.replace(/\s+/g, ' ').trim())
           .find((t) => /show all/i.test(t)) ?? null;
-        return { head: head.replace(/\s*\(\d+\)\s*$/, '').replace(/show all.*/i, '').trim(),
-                 count: num(head), rows: g.querySelectorAll(s.row).length, showAll: link };
+        return { head: clean(head), count: num(head),
+                 rows: g.querySelectorAll(s.row).length, showAll: link };
       });
       // Rows before the first group element in document order.
       const firstGroup = document.querySelector(s.group);

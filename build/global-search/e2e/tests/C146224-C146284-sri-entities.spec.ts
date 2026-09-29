@@ -323,28 +323,19 @@ for (const E of ENTITIES) {
     }
   });
 
-  for (const h of E.held) {
-    test(`C${h.cid} — ${E.section} [HELD: the source is silent] does a match on ${h.field} explain itself?`, async () => {
-      // 🔴 A HELD CASE MUST NOT BE ABLE TO GO RED. Its only assertion is that the observation was
-      // recorded; a red line here would read, to anyone scanning the run, as a verdict on a case
-      // that must not be judged. Two of them DID go red (C146253, C146254) because those cases
-      // ship with no search term at all — nothing on the environment matched the field when they
-      // were written — and the code called .replace on null. A missing term is a fact to record,
-      // not a crash. Measured 29 Sep 2026.
-      if (!h.term) {
-        store(`held.C${h.cid}`, { term: null, field: h.field,
-          note: 'the case supplies no search term: nothing matched this field when it was written, '
-              + 'and no replacement has been found on this environment yet' });
-        console.log(`   C${h.cid} HELD — no term supplied for "${h.field}"; nothing run`);
-        return;
-      }
-      const rows = await groupRows(s.page, h.term, E.tab);
-      const obs = rows.map((x) => ({ row: x.index, text: x.text, marks: x.marks,
-        termOnRow: new RegExp(h.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(x.text) }));
-      store(`held.C${h.cid}`, { term: h.term, field: h.field, rows: obs });
-      console.log(`   C${h.cid} HELD "${h.term}" → ${rows.length} rows`);
-      for (const o of obs.slice(0, 6)) console.log(`      termOnRow=${o.termOnRow} "${o.text.slice(0, 95)}"`);
-      expect(Array.isArray(obs)).toBe(true);   // the only thing a held case may assert
-    });
-  }
+  // Held tests removed — see the note at the foot of this file.
+
 }
+
+/* ────────────────────────────────────────────────────────────────────────────────────────────
+ * THE HELD TESTS THAT USED TO LIVE HERE WERE REMOVED ON 29 SEPTEMBER 2026.
+ *
+ * Those cases were un-held that day and rewritten to assert that the labelled note shows the
+ * WHOLE matched value. They are now covered, with real assertions, by
+ *     tests/C146202-C146282-sri-retest-full-value.spec.ts
+ *
+ * Leaving the old measurement-only versions in place meant the same case was measured TWICE in
+ * one run — once judged, once "recorded only". A held test asserts nothing about the product, so
+ * whichever the reporter printed last won, and genuine Failed verdicts were being overwritten
+ * with Blocked. Nineteen cases were affected before it was caught. One case, one test.
+ * ──────────────────────────────────────────────────────────────────────────────────────────── */

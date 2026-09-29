@@ -185,28 +185,15 @@ test('C146223 — a soft match is drawn as a soft match', async () => {
   }
 });
 
-/* ───────────────────────────── HELD — recorded, never judged ───────────────────────────────── */
-
-for (const held of [
-  { cid: 'C146214', field: "the customer's own telephone", term: '609-461-6502' },
-  { cid: 'C146215', field: "a contact's telephone", term: '555-222-3333' },
-  { cid: 'C146216', field: "a contact's email address", term: 'zzautotest.nophone@staging.shopview.local' },
-  { cid: 'C146217', field: "a contact's name", term: 'Savannah' },
-  { cid: 'C146218', field: 'address line 2', term: 'Apt. 199' },
-  { cid: 'C146219', field: 'city', term: 'Priscillabury' },
-  { cid: 'C146220', field: 'state / province', term: 'ZZQUEBEXA' },
-  { cid: 'C146221', field: 'postal code', term: 'H8A3X9' },
-]) {
-  test(`${held.cid} — [HELD: the source is silent] does a match on ${held.field} explain itself?`, async () => {
-    const r = await groupRows(s.page, held.term, TAB);
-    const obs = r.map((x) => ({
-      row: x.index, text: x.text, marks: x.marks,
-      termVisibleOnRow: new RegExp(held.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(x.text),
-      titleClipped: x.title.clipped, metaClipped: x.meta.clipped,
-    }));
-    (m as any)[`held_${held.cid}`] = { term: held.term, field: held.field, rows: obs };
-    console.log(`${held.cid} HELD — "${held.term}" → ${r.length} rows`);
-    for (const o of obs) console.log(`   row ${o.row}: termOnRow=${o.termVisibleOnRow} "${o.text.slice(0, 95)}"`);
-    expect(Array.isArray(obs)).toBe(true);
-  });
-}
+/* ────────────────────────────────────────────────────────────────────────────────────────────
+ * THE HELD TESTS THAT USED TO LIVE HERE WERE REMOVED ON 29 SEPTEMBER 2026.
+ *
+ * Those cases were un-held that day and rewritten to assert that the labelled note shows the
+ * WHOLE matched value. They are now covered, with real assertions, by
+ *     tests/C146202-C146282-sri-retest-full-value.spec.ts
+ *
+ * Leaving the old measurement-only versions in place meant the same case was measured TWICE in
+ * one run — once judged, once "recorded only". A held test asserts nothing about the product, so
+ * whichever the reporter printed last won, and genuine Failed verdicts were being overwritten
+ * with Blocked. Nineteen cases were affected before it was caught. One case, one test.
+ * ──────────────────────────────────────────────────────────────────────────────────────────── */
