@@ -153,13 +153,24 @@ export async function groupRows(page: Page, term: string, tab: string): Promise<
         return lo;
       };
 
-      const leaves = [...el.querySelectorAll('span')].filter((sp) => !sp.querySelector('span'));
-      const segs = leaves.map((sp) => {
-        const r = sp.getBoundingClientRect();
-        const cs = getComputedStyle(sp);
-        const mk = sp.closest('mark');
-        const text = sp.textContent || '';
-        const tn = sp.firstChild && sp.firstChild.nodeType === 3 ? (sp.firstChild as Text) : null;
+      // 🔴 EVERY TEXT NODE, NOT EVERY <span>. Reading leaf spans only drops any text the markup
+      // does not wrap — the " · " separator between an asset's unit number and its vehicle sits
+      // directly in the line, in no span at all. The segments then failed to reconstruct the line
+      // and C146226 went red claiming "the pieces do not add up", which is a fact about the
+      // reader: nothing was missing from the ROW, only from my list of it. Walking text nodes
+      // makes the reconstruction faithful for every row variant. Measured 29 Sep 2026.
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      const nodes: Text[] = [];
+      for (let n = walker.nextNode(); n; n = walker.nextNode()) nodes.push(n as Text);
+
+      const segs = nodes.map((tn) => {
+        const parent = tn.parentElement!;
+        const rng = document.createRange();
+        rng.selectNodeContents(tn);
+        const r = rng.getBoundingClientRect();
+        const cs = getComputedStyle(parent);
+        const mk = parent.closest('mark');
+        const text = tn.data;
         const whole = r.width === 0 ? true : (r.left >= box.left - VIS_SLACK && r.right <= box.right + VIS_SLACK);
         return {
           text,
@@ -168,7 +179,7 @@ export async function groupRows(page: Page, term: string, tab: string): Promise<
           // A segment is visible when its box lies inside the container's painted box.
           visible: whole,
           // …and this is how much of it a person can read, which is not the same question.
-          visibleText: whole ? text : (tn ? text.slice(0, readableLength(tn)) : ''),
+          visibleText: whole ? text : text.slice(0, readableLength(tn)),
         };
       }).filter((x) => x.text !== '');
       const marked = segs.filter((x) => x.marked);
