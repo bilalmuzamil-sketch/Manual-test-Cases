@@ -1,7 +1,8 @@
 # Q3 — "the row shows only what you typed": what I measured on staging
 
-Staging `app.staging.shopview.com`, workplace **Staging Heavy Duty - 9919**, build
-**v26.39.1-97cad2c**, **29 September 2026**. Pointer parked at the origin and verified with
+Staging `app.staging.shopview.com`, workplace **Staging Heavy Duty - 9919**, build **v26.39.1-97cad2c**, **29 September 2026**, and **re-confirmed the same day on
+v26.39.2-51a35e1** after staging was redeployed mid-session — typing `SVEWU82M` still
+returns twenty work-order rows all reading `VIN: SVEWU82M`. Pointer parked at the origin and verified with
 `document.elementFromPoint` before every read. Raw measurements: `q3-scenarios.json`.
 
 ## The rule that decides each row

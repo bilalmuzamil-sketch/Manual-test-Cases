@@ -64,7 +64,8 @@ inside it: `{{Contact match: 857-496-5067}}` with `965` marked.
 ## Environment
 
 Staging — [https://app.staging.shopview.com] · workplace *Staging Heavy Duty - 9919* ·
-build `{{v26.39.1-97cad2c}}` · 29 September 2026
+builds `{{v26.39.1-97cad2c}}` and `{{v26.39.2-51a35e1}}` · 29 September 2026
+Staging was redeployed during testing; the behaviour is unchanged on both.
 
 ## Sources
 

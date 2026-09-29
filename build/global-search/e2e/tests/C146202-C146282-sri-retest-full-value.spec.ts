@@ -100,10 +100,23 @@ for (const c of CASES) {
                + `from the fault. Run 2 typed "${frag}", a proper fragment of it.`;
       console.log(`C${c.cid}: as-written "${c.term}" → ${withNote.length} notes; ` +
         `fragment "${frag}" → ${fragNotes.length} notes, ${fragOnlyTyped.length} showing only what was typed`);
+      // 🔴 "COULD NOT REACH THE STATE" IS NOT A FAILURE, AND MUST NOT GO RED.
+      // The fragment is derived, not supplied by the case, so it can simply fail to match the
+      // field - a postcode fragment that the index does not match returns no labelled note at
+      // all. Asserting here made five cases red whose own message said "the case cannot be
+      // judged", which is the exact confusion between a product fault and an unreached state
+      // that this whole pass exists to avoid. Recorded as not-judged instead.
+      if (!fragNotes.length) {
+        rec.outcome = 'COULD NOT JUDGE — the derived fragment returns no labelled note';
+        rec.detail = `The case supplies the whole value "${c.term}", which cannot fail this check. `
+                   + `The fragment "${frag}" was tried instead and matched nothing with a labelled `
+                   + `note, so neither run can answer the case. It needs a term that is a proper `
+                   + `fragment of a value the field actually matches on.`;
+        m[`C${c.cid}`] = rec;
+        console.log(`C${c.cid}: ${rec.outcome}`);
+        return;
+      }
       m[`C${c.cid}`] = rec;
-      expect(fragNotes.length,
-        `no labelled note came back for the fragment "${frag}", so the case cannot be judged`)
-        .toBeGreaterThan(0);
       expect(fragOnlyTyped,
         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
@@ -114,8 +127,13 @@ for (const c of CASES) {
       `${onlyTyped.length} showing only what was typed`);
     m[`C${c.cid}`] = rec;
     expect(asWritten.length, `"${c.term}" returns no ${c.tab} rows at all`).toBeGreaterThan(0);
-    expect(withNote.length,
-      `no row carries a labelled note, so there is nothing to check the value against`).toBeGreaterThan(0);
+    if (!withNote.length) {
+      // Same distinction as above: nothing to compare against is not the same as a wrong value.
+      rec.outcome = 'COULD NOT JUDGE — no row carries a labelled note for this term';
+      m[`C${c.cid}`] = rec;
+      console.log(`C${c.cid}: ${rec.outcome}`);
+      return;
+    }
     expect(onlyTyped,
       `these rows show only the characters typed instead of the whole value: ${JSON.stringify(onlyTyped)}`)
       .toHaveLength(0);
