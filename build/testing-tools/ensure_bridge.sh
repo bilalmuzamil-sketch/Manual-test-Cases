@@ -29,7 +29,14 @@ LOG=$DIR/bridge.log
 PORTFILE=$DIR/bridge-port.txt
 KEY=$DIR/mitm.key
 CRT=$DIR/mitm.crt
-BRIDGE=build/atlassian-login/bridge.mjs
+# 🔴 RESOLVED FROM THIS SCRIPT'S OWN LOCATION, NEVER FROM THE CALLER'S CWD.
+# It used to read `BRIDGE=build/atlassian-login/bridge.mjs`, a path relative to wherever the
+# caller happened to be standing. Run from any subdirectory - build/global-search/e2e, say - and
+# node dies MODULE_NOT_FOUND on a path with the subdirectory glued into the middle of it, which
+# reads exactly like the bridge being broken and is not. Measured 2026-09-29.
+_ENSURE_BRIDGE_SELF="${BASH_SOURCE[0]:-$0}"
+_REPO_ROOT="$(cd "$(dirname "$_ENSURE_BRIDGE_SELF")/../.." && pwd)"
+BRIDGE="$_REPO_ROOT/build/atlassian-login/bridge.mjs"
 
 # `source`d or executed? `exit` from a sourced file kills the CALLER's shell, and the documented
 # invocation is `source`, so bail out with the right verb for the context.

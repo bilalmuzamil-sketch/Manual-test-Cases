@@ -1,0 +1,63 @@
+{
+ "environment": "Staging (app.staging.shopview.com)",
+ "build": "v26.39.1-97cad2c",
+ "date": "29 September 2026",
+ "verdicts": {
+  "146197": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed ZZLONGROW into search and opened the Work orders tab.\nWhat I saw: both rows cut the bold first line short with a “…”. The row reads “S2-34379 ZZLONGROW Heavy Haulage And Trailer Repair Services …” and hides “Of Greater Fernvale 123786”. The work order number and the word I typed are both still readable on the row.\nWhy that is a fail: this case says a value cut short with “...” is a fail.\nHow I know it is not my screen: I measured at four screen widths from 1280 up to 2560 and the search panel is a fixed 640px every time, so the cut is identical on every screen. A picture of the row shows the “…” painted on screen, which agrees with the measurement."
+  },
+  "146198": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: the word this case tells you to type, ZZLONGROW, sits at the START of the name, where a cut from the right can never reach it — so typing it makes this case pass no matter how badly the row is cut. This case’s own BEFORE YOU START asks for a match near the END of the value, so I typed Fernvale, which sits in the part of these same records that gets cut off. The Expected Results were not changed.\nWhat I saw: work orders S2-34379 and S2-34376 come back, and the word Fernvale is nowhere on either row. The cut removes it completely. The row comes back and cannot say why.\nHow I know the search panel can show it: two other rows in the very same list, S2-34360 and S2-34157, do show Fernvale highlighted. So these two rows are genuinely hiding it.\nAlso worth fixing in this case itself: the word it tells the tester to type cannot show the problem it is looking for. A change to BEFORE YOU START is proposed separately."
+  },
+  "146199": {
+   "v": "Passed",
+   "why": "Typed ZZLONGROW, opened the Work orders tab. The whole line is there and the typed word is marked inside it — the marking sits on top of the text, it does not replace it. Taking the marked and unmarked pieces together gives back the complete line with no character lost."
+  },
+  "146200": {
+   "v": "Passed",
+   "why": "Typed ZZLONGROW, opened the Work orders tab. Two rows come back and they can be told apart without opening either: the work order numbers read S2-34379 and S2-34376, and the unit numbers read ZZLONGROW-123786 and ZZLONGROW-185786. Both of those are inside the part of the row you can actually see, not in the part that is cut off."
+  },
+  "146201": {
+   "v": "Passed",
+   "why": "Typed ZZLONGROW, opened the Work orders tab, and compared the two rows line by line. The bold first lines are not identical — they start with different work order numbers — and the second lines differ too (ZZLONGROW-123786 against ZZLONGROW-185786). Something visible separates them."
+  },
+  "146207": {
+   "v": "Passed",
+   "why": "Typed ZZLONGROW, opened the Work orders tab, and checked the row against the list in the requirement, field by field. All present: the work order number (S2-34379), the customer name, the status badge (Estimate), the unit number (ZZLONGROW-123786) and the year/make/model (2021 Rowcheck Trucks Longhauler)."
+  },
+  "146208": {
+   "v": "Passed",
+   "why": "Typed ZZSOFTHIT, opened the Work orders tab. One row comes back that is a near miss rather than an exact match — S2-34378, whose name is ZZSOFTHIY Cartage — and it is clearly drawn as one: the row carries a “≈” and the words “close match:” in front of the highlighted name. It cannot be mistaken for an exact match."
+  },
+  "146202": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “SVEWU82M5ETEJFWFA” into search and opened the Work orders tab.\nWhat I saw: Typed the VIN. 20 work orders come back, and every row says why: the second line ends with “VIN: SVEWU82M5ETEJFWFA” and the typed value is highlighted there. So on this build the row does explain itself for this field.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146203": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “Brandi Smith” into search and opened the Work orders tab.\nWhat I saw: This case shipped with no search term because nothing on the environment matched the field when it was written. I found one: Brandi Smith is the lead technician on 15 work orders. Typing “Brandi Smith” brings all 15 back and every row says why: the second line ends with “Technician: Brandi Smith”, highlighted. So on this build the row does explain itself.\nOne thing to note: on several of those rows the name itself is cut short mid-word (“Technician: Brandi Smi”, “Technician: B”). That is the same cutting-off problem already reported as SV-10619, not a separate thing.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146204": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “Garrison” into search and opened the Work orders tab.\nWhat I saw: This case also shipped with no search term. I found one: Jason Garrison is the service advisor on work order S2-9379 and many others. Typing “Garrison” brings back 20 work orders and every row says why: the second line ends with “Advisor: Garrison”, highlighted. So on this build the row does explain itself.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146205": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “786” into search and opened the Work orders tab.\nWhat I saw: Typed 786. Eight work orders come back and most of them say why: the second line ends with “Part name: 786” or “Part number: 786”, highlighted. One row (S2-7861) shows no such label — that one came back because 786 is inside its own work order number, which is visible on the row anyway. So on this build the row does explain itself for this field.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146206": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “786” into search and opened the Work orders tab.\nWhat I saw: Typed 786, the same term as the case above. Eight work orders come back; two of them (S2-16865 and S2-14703) end their second line with “Part number: 786”, highlighted. So on this build the row does explain itself for this field.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  }
+ }
+}

@@ -1,0 +1,20 @@
+{
+ "case": "C146198",
+ "test": 3298107,
+ "run": 415,
+ "verdict": "Failed",
+ "claim": "Typing 'Fernvale' returns work orders S2-34379 and S2-34376 on which the word Fernvale is not visible anywhere: the highlight sits at 513-567px inside a box that paints 459px, so the clip removes the matched word entirely. The row comes back and cannot say why.",
+ "instrument": {
+  "pointer_parked_and_verified": true,
+  "selectors_not_pre_chosen": true,
+  "positive_control": "In the SAME read, rows 0 and 1 (S2-34360 / S2-34157 Fernvale Asset Holdings) report markVisible=true. The reader therefore can see a Fernvale highlight when one is on screen, so markVisible=false on rows 2 and 3 is about those rows, not about the reader. The test asserts this control and fails itself if no row shows a visible match.",
+  "independent_repeat": "Varied the query rather than repeating it: 'Fernvale' and 'Greater Fernvale' were run separately and both put the mark outside the painted box (513-567px and 461-568px against a 459px box). A screenshot of the row confirms the word is absent on screen.",
+  "state_recorded": "Admin on app.staging.shopview.com, build v26.39.1-97cad2c, 29 Sep 2026. Viewport 1440x900; the search modal is a FIXED 640px panel and the primary-line box is 459px wide at every viewport tried. Pointer moved to 0,0 and read back with document.elementFromPoint before each read, and again after the tab switch re-laid the panel. Each query typed fresh into an emptied box; the Work orders tab opened deliberately because the All tab lists only five rows per group.",
+  "what_would_make_this_my_fault": "That the clip is my headless window being narrower than a real user's screen. Ruled out by measuring at 1280, 1440, 1920 and 2560: the modal stays 640px and the title box stays 459px of a 622px value at all four, because the panel is fixed-width. Also ruled out by a second, independent instrument - a screenshot of the rendered row shows the ellipsis painted on screen, which agrees with the geometry read. Computed style on the element is overflow:hidden, text-overflow:ellipsis, white-space:nowrap. Additionally: that I judged the case on a term that cannot show the fault. The case's own term, ZZLONGROW, matches at the START of the value where a left-anchored clip can never reach it, and the case passes on that term. Its precondition asks for a match near the END of the value, so a tail term was used to reach the state the case specifies. The Expected Results were not altered."
+ },
+ "existing_ticket": [
+  "SV-10619",
+  "SV-10551"
+ ],
+ "note": "Also a defect in the case itself: the term it tells the tester to type cannot satisfy its own precondition. Proposed fix to PRECONDITIONS only (Rule 114 leaves Expected untouched)."
+}
