@@ -1,6 +1,6 @@
 {
  "environment": "Staging (app.staging.shopview.com)",
- "build": "v26.39.1-97cad2c",
+ "build": "v26.39.2-51a35e1",
  "date": "29 September 2026",
  "verdicts": {
   "146197": {
@@ -40,24 +40,36 @@
    "why": "Typed ZZSOFTHIT, opened the Work orders tab. One row comes back that is a near miss rather than an exact match — S2-34378, whose name is ZZSOFTHIY Cartage — and it is clearly drawn as one: the row carries a “≈” and the words “close match:” in front of the highlighted name. It cannot be mistaken for an exact match."
   },
   "146202": {
-   "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “SVEWU82M5ETEJFWFA” into search and opened the Work orders tab.\nWhat I saw: Typed the VIN. 20 work orders come back, and every row says why: the second line ends with “VIN: SVEWU82M5ETEJFWFA” and the typed value is highlighted there. So on this build the row does explain itself for this field.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"SVEWU82M5ETEJFWFA\" → 20 notes; fragment \"SVEWU82M\" → 20 notes, 20 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
   },
   "146203": {
    "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “Brandi Smith” into search and opened the Work orders tab.\nWhat I saw: This case shipped with no search term because nothing on the environment matched the field when it was written. I found one: Brandi Smith is the lead technician on 15 work orders. Typing “Brandi Smith” brings all 15 back and every row says why: the second line ends with “Technician: Brandi Smith”, highlighted. So on this build the row does explain itself.\nOne thing to note: on several of those rows the name itself is cut short mid-word (“Technician: Brandi Smi”, “Technician: B”). That is the same cutting-off problem already reported as SV-10619, not a separate thing.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "why": "This case cannot be run as it stands, and the reason is the case, not the product.\nIt tells the tester to type the word “None”. That is not a search term — an empty value was written into the case text when it was produced.\nWhat is needed: a real example of lead technician name that exists on this environment, and it must be PART of a longer value rather than the whole of it, or the case cannot show the problem it is looking for."
   },
   "146204": {
    "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “Garrison” into search and opened the Work orders tab.\nWhat I saw: This case also shipped with no search term. I found one: Jason Garrison is the service advisor on work order S2-9379 and many others. Typing “Garrison” brings back 20 work orders and every row says why: the second line ends with “Advisor: Garrison”, highlighted. So on this build the row does explain itself.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "why": "This case cannot be run as it stands, and the reason is the case, not the product.\nIt tells the tester to type the word “None”. That is not a search term — an empty value was written into the case text when it was produced.\nWhat is needed: a real example of service advisor name that exists on this environment, and it must be PART of a longer value rather than the whole of it, or the case cannot show the problem it is looking for."
   },
   "146205": {
-   "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “786” into search and opened the Work orders tab.\nWhat I saw: Typed 786. Eight work orders come back and most of them say why: the second line ends with “Part name: 786” or “Part number: 786”, highlighted. One row (S2-7861) shows no such label — that one came back because 786 is inside its own work order number, which is visible on the row anyway. So on this build the row does explain itself for this field.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: \"786\" → 8 rows, 7 labelled notes, 7 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
   },
   "146206": {
-   "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “786” into search and opened the Work orders tab.\nWhat I saw: Typed 786, the same term as the case above. Eight work orders come back; two of them (S2-16865 and S2-14703) end their second line with “Part number: 786”, highlighted. So on this build the row does explain itself for this field.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: \"786\" → 8 rows, 7 labelled notes, 7 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
   },
   "146209": {
    "v": "Blocked",
@@ -88,36 +100,188 @@
    "why": "Typed ZZPREFIY, opened the Customers tab. Four customers come back. One is an exact match; the other three are near misses (Bolton ZZPREFIX Services, ZZPREFIX Freight Ltd, ZZPREFOX Cartage) and every one of them is clearly drawn as one — each carries a “≈” and the words “close match:” in front of the highlighted name. None of them could be mistaken for an exact match."
   },
   "146214": {
-   "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “609-461-6502” into search and opened the Customers tab.\nWhat I saw: One customer comes back, 7 Star Truck Repair, and the row says why: it reads “Contact match: 609-461-6502” with the number highlighted. Worth noting for whoever answers the question: the row calls it a CONTACT match, although this number is also on the customer’s own record.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"609-461-6502\" → 1 notes; fragment \"6502\" → 9 notes, 2 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
   },
   "146215": {
-   "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “555-222-3333” into search and opened the Customers tab.\nWhat I saw: One customer comes back, 4 Star Truck Repair, and the row says why: “Contact match: 555-222-3333”, highlighted.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"555-222-3333\" → 1 notes; fragment \"3333\" → 6 notes, 3 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
   },
   "146216": {
-   "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “zzautotest.nophone@staging.shopview.local” into search and opened the Customers tab.\nWhat I saw: One customer comes back, 4 Star Truck Repair, and the row says why: “Contact match:” followed by the whole email address, highlighted.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "v": "Passed",
+   "why": "Typed part of a contact's email address and opened the Customers tab. The row's second line shows the whole address, not just the part I typed. This is the one detail in this group that behaves correctly."
   },
   "146217": {
-   "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “Savannah” into search and opened the Customers tab.\nWhat I saw: Eight customers come back and they are not all the same. Some say “Contact match: Savannah”, which explains itself. Others came back because Savannah is part of their ADDRESS (“3222 Savannah Place”, “East Savannah”) and those rows show the word in the address, which also explains itself.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"Savannah\" → 5 notes; fragment \"Sava\" → 9 notes, 9 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
   },
   "146218": {
-   "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “Apt. 199” into search and opened the Customers tab.\nWhat I saw: Three customers come back. One shows the words in its address. One says “Address: Apt. 199” as a separate label. The third is a near miss and is drawn as one: “≈ close match: Apt. 413”.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"Apt. 199\" → 1 notes; fragment \"Apt.\" → 6 notes, 6 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
   },
   "146219": {
    "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “Priscillabury” into search and opened the Customers tab.\nWhat I saw: One customer comes back, 7 Star Truck Repair, and the city is visible in the address on the row: “305 Harris Cape, Priscillabury, Nunavut”.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "why": "This case cannot be judged as it stands.\nWhat I did: typed the word the case gives and opened the right tab.\nWhat I saw: the record does come back, but the row carries no labelled note at all — there is nothing on it saying which detail matched, so there is no value to check for completeness.\nWhat is needed: either a decision that a match on city should say so on the row, or a different example where it does."
   },
   "146220": {
    "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “ZZQUEBEXA” into search and opened the Customers tab.\nWhat I saw: One customer comes back, Rowcheck Provincial Cartage, and the province is visible in the address on the row: “21 Result Row Way, Fernvale, ZZQUEBEXA”.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "why": "This case cannot be judged as it stands.\nWhat I did: typed the word the case gives and opened the right tab.\nWhat I saw: the record does come back, but the row carries no labelled note at all — there is nothing on it saying which detail matched, so there is no value to check for completeness.\nWhat is needed: either a decision that a match on state / province should say so on the row, or a different example where it does."
   },
   "146221": {
    "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “H8A3X9” into search and opened the Customers tab.\nWhat I saw: One customer comes back. The postal code is on the customer’s record but the row shows the street, town and province only, so on this build the row does NOT show the postal code you typed.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+   "why": "This case cannot be judged as it stands, and the reason is the word it gives you to type.\nIt supplies the WHOLE value. Typing a value in full always gives a note identical to what you typed, whether the screen is right or wrong, so the case cannot fail. I tried part of the value instead, and that shorter word brings back nothing with a labelled note, so neither attempt answers the case.\nWhat is needed: an example of postal code where PART of it still finds the record. Until then this case cannot tell a correct screen from a broken one."
+  },
+  "146229": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"SVEWU82M5ETEJFWFA\" → 1 notes; fragment \"SVEWU82M\" → 1 notes, 1 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146230": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"KVQ-2870\" → 1 notes; fragment \"KVQ-\" → 3 notes, 3 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146238": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: \"H3B\" → 20 rows, 20 labelled notes, 20 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146239": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"Klondike\" → 1 notes; fragment \"Klon\" → 1 notes, 1 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146240": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"Gibson's Mobile Diesel Repair\" → 1 notes; fragment \"Gibson's Mobil\" → 1 notes, 1 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146242": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: \"496\" → 17 rows, 2 labelled notes, 2 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146251": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"ZZHIDDENSUITE\" → 1 notes; fragment \"ZZHIDD\" → 1 notes, 1 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146252": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: \"965\" → 15 rows, 13 labelled notes, 7 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146262": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"Quietline\" → 1 notes; fragment \"Quiet\" → 1 notes, 1 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146263": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"ZZHIDDENVIN0000001\" → 1 notes; fragment \"ZZHIDDENV\" → 1 notes, 1 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146271": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: \"0123\" → 4 rows, 4 labelled notes, 1 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146272": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: \"786\" → 6 rows, 4 labelled notes, 4 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146273": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"Admin ShopView\" → 20 notes; fragment \"Admin S\" → 7 notes, 7 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146274": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"I-1522\" → 1 notes; fragment \"I-15\" → 20 notes, 20 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146282": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"I2-965\" → 2 notes; fragment \"I2-9\" → 20 notes, 20 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
+  },
+  "146253": {
+   "v": "Blocked",
+   "why": "This case cannot be run as it stands, and the reason is the case, not the product.\nIt tells the tester to type the word “None”. That is not a search term — an empty value was written into the case text when it was produced.\nWhat is needed: a real example of a contact's name that exists on this environment, and it must be PART of a longer value rather than the whole of it, or the case cannot show the problem it is looking for."
+  },
+  "146254": {
+   "v": "Blocked",
+   "why": "This case cannot be run as it stands, and the reason is the case, not the product.\nIt tells the tester to type the word “None”. That is not a search term — an empty value was written into the case text when it was produced.\nWhat is needed: a real example of a contact's email address that exists on this environment, and it must be PART of a longer value rather than the whole of it, or the case cannot show the problem it is looking for."
+  },
+  "146241": {
+   "v": "Blocked",
+   "why": "This case cannot be judged as it stands, and the reason is the word it gives you to type.\nIt supplies the WHOLE value. Typing a value in full always gives a note identical to what you typed, whether the screen is right or wrong, so the case cannot fail. I tried part of the value instead, and that shorter word brings back nothing with a labelled note, so neither attempt answers the case.\nWhat is needed: an example of category where PART of it still finds the record. Until then this case cannot tell a correct screen from a broken one."
+  },
+  "146250": {
+   "v": "Blocked",
+   "why": "This case cannot be judged as it stands, and the reason is the word it gives you to type.\nIt supplies the WHOLE value. Typing a value in full always gives a note identical to what you typed, whether the screen is right or wrong, so the case cannot fail. I tried part of the value instead, and that shorter word brings back nothing with a labelled note, so neither attempt answers the case.\nWhat is needed: an example of email address where PART of it still finds the record. Until then this case cannot tell a correct screen from a broken one."
   }
  }
 }

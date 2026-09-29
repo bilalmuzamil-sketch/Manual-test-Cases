@@ -1,0 +1,19 @@
+{
+ "case": "C146218",
+ "run": 415,
+ "verdict": "Failed",
+ "claim": "The labelled note on the result row shows only the characters typed instead of the whole value that matched. Measured: as-written \"Apt. 199\" → 1 notes; fragment \"Apt.\" → 6 notes, 6 showing only what was typed",
+ "instrument": {
+  "pointer_parked_and_verified": true,
+  "selectors_not_pre_chosen": true,
+  "positive_control": "Two, in the same run and on the same row type. (1) C146216 PASSES: typing part of a contact's email returns a note carrying the WHOLE address, so the reader reports 'full value' when a full value is drawn. (2) On the Customers tab, typing 3286 returns six rows all showing whole telephone numbers such as '(264) 328-6723'. A reader that finds those and still reports 'only what was typed' elsewhere is working.",
+  "independent_repeat": "Varied the input rather than replaying it: every case is searched twice, once with the term the case supplies and once with a different, shorter fragment of the same value. The fault also reproduced across two DIFFERENT BUILDS - v26.39.1-97cad2c and v26.39.2-51a35e1, staging having been redeployed mid-session.",
+  "state_recorded": "Admin on app.staging.shopview.com, build v26.39.2-51a35e1, 29 September 2026, viewport 1440x900. Pointer moved to 0,0 and read back with document.elementFromPoint before each read and again after the tab switch. Each query typed fresh into an emptied box; the record type's own tab opened deliberately, because the All tab lists only five rows per group.",
+  "what_would_make_this_my_fault": "Three ways, all ruled out and two of which I actually hit. (1) TYPING THE WHOLE VALUE. A note identical to the query is correct output when the query IS the value, and is indistinguishable from the fault - my first classifier counted those as failures. No verdict here rests on a whole-value query; where the case supplies one, a proper fragment was searched instead. (2) AN UNREACHED STATE. Where the fragment matches nothing, no labelled note comes back, which says nothing about the product; those cases are recorded as not judged, not failed. (3) READING THE WRONG ELEMENT. The note is located by its shape ('Label: value') across every meta part on the row, not by a class name chosen in advance - a selector picked from one row type and reused produced a false finding earlier today on the customer badge."
+ },
+ "existing_ticket": [
+  "SV-10619",
+  "SV-10551"
+ ],
+ "note": "Same cause as the Q3 ticket prepared in build/global-search/q3-evidence-2026-09-29. Not a new ticket per case."
+}
