@@ -1,0 +1,560 @@
+{
+ "Failed": [
+  {
+   "cid": 146197,
+   "sec": "Work Orders",
+   "title": "SRI-WO-A1 — The whole matched value is shown, not just what you typed"
+  },
+  {
+   "cid": 146198,
+   "sec": "Work Orders",
+   "title": "SRI-WO-A2 — A long value is not cut off through the part that matched"
+  },
+  {
+   "cid": 146202,
+   "sec": "Work Orders",
+   "title": "SRI-WO-C1 — A match on VIN / serial number explains itself on the row"
+  },
+  {
+   "cid": 146205,
+   "sec": "Work Orders",
+   "title": "SRI-WO-C4 — A match on line item descriptions (parts and labor on the WO) explains itself on the row"
+  },
+  {
+   "cid": 146206,
+   "sec": "Work Orders",
+   "title": "SRI-WO-C5 — A match on part numbers on the work order's lines (`item_part_numbers`) explains itself on the row"
+  },
+  {
+   "cid": 146210,
+   "sec": "Customers",
+   "title": "SRI-CUST-A2 — A long value is not cut off through the part that matched"
+  },
+  {
+   "cid": 146214,
+   "sec": "Customers",
+   "title": "SRI-CUST-C1 — A match on the customer's own telephone explains itself on the row"
+  },
+  {
+   "cid": 146215,
+   "sec": "Customers",
+   "title": "SRI-CUST-C2 — A match on a contact's telephone explains itself on the row"
+  },
+  {
+   "cid": 146217,
+   "sec": "Customers",
+   "title": "SRI-CUST-C4 — A match on a contact's name explains itself on the row"
+  },
+  {
+   "cid": 146218,
+   "sec": "Customers",
+   "title": "SRI-CUST-C5 — A match on address line 2 explains itself on the row"
+  },
+  {
+   "cid": 146222,
+   "sec": "Customers",
+   "title": "SRI-CUST-D1 — The Customers row shows everything the specification promised"
+  },
+  {
+   "cid": 146229,
+   "sec": "Assets",
+   "title": "SRI-ASSET-C1 — A match on VIN / serial number explains itself on the row"
+  },
+  {
+   "cid": 146230,
+   "sec": "Assets",
+   "title": "SRI-ASSET-C2 — A match on licence plate explains itself on the row"
+  },
+  {
+   "cid": 146238,
+   "sec": "Parts",
+   "title": "SRI-PART-C1 — A match on bin location explains itself on the row"
+  },
+  {
+   "cid": 146239,
+   "sec": "Parts",
+   "title": "SRI-PART-C2 — A match on manufacturer explains itself on the row"
+  },
+  {
+   "cid": 146240,
+   "sec": "Parts",
+   "title": "SRI-PART-C3 — A match on vendor name explains itself on the row"
+  },
+  {
+   "cid": 146242,
+   "sec": "Parts",
+   "title": "SRI-PART-C5 — A match on tags explains itself on the row"
+  },
+  {
+   "cid": 146251,
+   "sec": "Vendors",
+   "title": "SRI-VEND-C2 — A match on address line 2 explains itself on the row"
+  },
+  {
+   "cid": 146252,
+   "sec": "Vendors",
+   "title": "SRI-VEND-C3 — A match on a contact's telephone explains itself on the row"
+  },
+  {
+   "cid": 146262,
+   "sec": "Part Sales",
+   "title": "SRI-PS-C1 — A match on the asset on the sale explains itself on the row"
+  },
+  {
+   "cid": 146263,
+   "sec": "Part Sales",
+   "title": "SRI-PS-C2 — A match on VIN / serial number explains itself on the row"
+  },
+  {
+   "cid": 146271,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-C1 — A match on part numbers on the PO explains itself on the row"
+  },
+  {
+   "cid": 146272,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-C2 — A match on part descriptions on the PO explains itself on the row"
+  },
+  {
+   "cid": 146273,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-C3 — A match on created-by user explains itself on the row"
+  },
+  {
+   "cid": 146274,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-C4 — A match on spliced number variants (`number_variants`) explains itself on the row"
+  },
+  {
+   "cid": 146282,
+   "sec": "Vendor Invoices",
+   "title": "SRI-VINV-C1 — A match on the PO number the invoice belongs to explains itself on the row"
+  }
+ ],
+ "Passed": [
+  {
+   "cid": 146199,
+   "sec": "Work Orders",
+   "title": "SRI-WO-A3 — The highlight marks the match inside the text, not instead of it"
+  },
+  {
+   "cid": 146200,
+   "sec": "Work Orders",
+   "title": "SRI-WO-B1 — Two records sharing what you typed can be told apart"
+  },
+  {
+   "cid": 146201,
+   "sec": "Work Orders",
+   "title": "SRI-WO-B2 — Two records with the same bold line differ somewhere you can see"
+  },
+  {
+   "cid": 146207,
+   "sec": "Work Orders",
+   "title": "SRI-WO-D1 — The Work Orders row shows everything the specification promised"
+  },
+  {
+   "cid": 146208,
+   "sec": "Work Orders",
+   "title": "SRI-WO-I1 — A corrected typo says that it corrected something"
+  },
+  {
+   "cid": 146211,
+   "sec": "Customers",
+   "title": "SRI-CUST-A3 — The highlight marks the match inside the text, not instead of it"
+  },
+  {
+   "cid": 146212,
+   "sec": "Customers",
+   "title": "SRI-CUST-B1 — Two records sharing what you typed can be told apart"
+  },
+  {
+   "cid": 146216,
+   "sec": "Customers",
+   "title": "SRI-CUST-C3 — A match on a contact's email address explains itself on the row"
+  },
+  {
+   "cid": 146223,
+   "sec": "Customers",
+   "title": "SRI-CUST-I1 — A corrected typo says that it corrected something"
+  }
+ ],
+ "Blocked": [
+  {
+   "cid": 146203,
+   "sec": "Work Orders",
+   "title": "SRI-WO-C2 — A match on lead technician name explains itself on the row"
+  },
+  {
+   "cid": 146204,
+   "sec": "Work Orders",
+   "title": "SRI-WO-C3 — A match on service advisor name explains itself on the row"
+  },
+  {
+   "cid": 146209,
+   "sec": "Customers",
+   "title": "SRI-CUST-A1 — The whole matched value is shown, not just what you typed"
+  },
+  {
+   "cid": 146219,
+   "sec": "Customers",
+   "title": "SRI-CUST-C6 — A match on city explains itself on the row"
+  },
+  {
+   "cid": 146220,
+   "sec": "Customers",
+   "title": "SRI-CUST-C7 — A match on state / province explains itself on the row"
+  },
+  {
+   "cid": 146221,
+   "sec": "Customers",
+   "title": "SRI-CUST-C8 — A match on postal code explains itself on the row"
+  },
+  {
+   "cid": 146241,
+   "sec": "Parts",
+   "title": "SRI-PART-C4 — A match on category explains itself on the row"
+  },
+  {
+   "cid": 146250,
+   "sec": "Vendors",
+   "title": "SRI-VEND-C1 — A match on email address explains itself on the row"
+  },
+  {
+   "cid": 146253,
+   "sec": "Vendors",
+   "title": "SRI-VEND-C4 — A match on a contact's name explains itself on the row"
+  },
+  {
+   "cid": 146254,
+   "sec": "Vendors",
+   "title": "SRI-VEND-C5 — A match on a contact's email address explains itself on the row"
+  }
+ ],
+ "Untested": [
+  {
+   "cid": 146213,
+   "sec": "Customers",
+   "title": "SRI-CUST-B2 — Two records with the same bold line differ somewhere you can see"
+  },
+  {
+   "cid": 146224,
+   "sec": "Assets",
+   "title": "SRI-ASSET-A1 — The whole matched value is shown, not just what you typed"
+  },
+  {
+   "cid": 146225,
+   "sec": "Assets",
+   "title": "SRI-ASSET-A2 — A long value is not cut off through the part that matched"
+  },
+  {
+   "cid": 146226,
+   "sec": "Assets",
+   "title": "SRI-ASSET-A3 — The highlight marks the match inside the text, not instead of it"
+  },
+  {
+   "cid": 146227,
+   "sec": "Assets",
+   "title": "SRI-ASSET-B1 — Two records sharing what you typed can be told apart"
+  },
+  {
+   "cid": 146228,
+   "sec": "Assets",
+   "title": "SRI-ASSET-B2 — Two records with the same bold line differ somewhere you can see"
+  },
+  {
+   "cid": 146231,
+   "sec": "Assets",
+   "title": "SRI-ASSET-D1 — The Assets row shows everything the specification promised"
+  },
+  {
+   "cid": 146232,
+   "sec": "Assets",
+   "title": "SRI-ASSET-I1 — A corrected typo says that it corrected something"
+  },
+  {
+   "cid": 146233,
+   "sec": "Parts",
+   "title": "SRI-PART-A1 — The whole matched value is shown, not just what you typed"
+  },
+  {
+   "cid": 146234,
+   "sec": "Parts",
+   "title": "SRI-PART-A2 — A long value is not cut off through the part that matched"
+  },
+  {
+   "cid": 146235,
+   "sec": "Parts",
+   "title": "SRI-PART-A3 — The highlight marks the match inside the text, not instead of it"
+  },
+  {
+   "cid": 146236,
+   "sec": "Parts",
+   "title": "SRI-PART-B1 — Two records sharing what you typed can be told apart"
+  },
+  {
+   "cid": 146237,
+   "sec": "Parts",
+   "title": "SRI-PART-B2 — Two records with the same bold line differ somewhere you can see"
+  },
+  {
+   "cid": 146243,
+   "sec": "Parts",
+   "title": "SRI-PART-D1 — The Parts row shows everything the specification promised"
+  },
+  {
+   "cid": 146244,
+   "sec": "Parts",
+   "title": "SRI-PART-I1 — A corrected typo says that it corrected something"
+  },
+  {
+   "cid": 146245,
+   "sec": "Vendors",
+   "title": "SRI-VEND-A1 — The whole matched value is shown, not just what you typed"
+  },
+  {
+   "cid": 146246,
+   "sec": "Vendors",
+   "title": "SRI-VEND-A2 — A long value is not cut off through the part that matched"
+  },
+  {
+   "cid": 146247,
+   "sec": "Vendors",
+   "title": "SRI-VEND-A3 — The highlight marks the match inside the text, not instead of it"
+  },
+  {
+   "cid": 146248,
+   "sec": "Vendors",
+   "title": "SRI-VEND-B1 — Two records sharing what you typed can be told apart"
+  },
+  {
+   "cid": 146249,
+   "sec": "Vendors",
+   "title": "SRI-VEND-B2 — Two records with the same bold line differ somewhere you can see"
+  },
+  {
+   "cid": 146255,
+   "sec": "Vendors",
+   "title": "SRI-VEND-D1 — The Vendors row shows everything the specification promised"
+  },
+  {
+   "cid": 146256,
+   "sec": "Vendors",
+   "title": "SRI-VEND-I1 — A corrected typo says that it corrected something"
+  },
+  {
+   "cid": 146257,
+   "sec": "Part Sales",
+   "title": "SRI-PS-A1 — The whole matched value is shown, not just what you typed"
+  },
+  {
+   "cid": 146258,
+   "sec": "Part Sales",
+   "title": "SRI-PS-A2 — A long value is not cut off through the part that matched"
+  },
+  {
+   "cid": 146259,
+   "sec": "Part Sales",
+   "title": "SRI-PS-A3 — The highlight marks the match inside the text, not instead of it"
+  },
+  {
+   "cid": 146260,
+   "sec": "Part Sales",
+   "title": "SRI-PS-B1 — Two records sharing what you typed can be told apart"
+  },
+  {
+   "cid": 146261,
+   "sec": "Part Sales",
+   "title": "SRI-PS-B2 — Two records with the same bold line differ somewhere you can see"
+  },
+  {
+   "cid": 146264,
+   "sec": "Part Sales",
+   "title": "SRI-PS-D1 — The Part Sales row shows everything the specification promised"
+  },
+  {
+   "cid": 146265,
+   "sec": "Part Sales",
+   "title": "SRI-PS-I1 — A corrected typo says that it corrected something"
+  },
+  {
+   "cid": 146266,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-A1 — The whole matched value is shown, not just what you typed"
+  },
+  {
+   "cid": 146267,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-A2 — A long value is not cut off through the part that matched"
+  },
+  {
+   "cid": 146268,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-A3 — The highlight marks the match inside the text, not instead of it"
+  },
+  {
+   "cid": 146269,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-B1 — Two records sharing what you typed can be told apart"
+  },
+  {
+   "cid": 146270,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-B2 — Two records with the same bold line differ somewhere you can see"
+  },
+  {
+   "cid": 146275,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-D1 — The Purchase Orders row shows everything the specification promised"
+  },
+  {
+   "cid": 146276,
+   "sec": "Purchase Orders",
+   "title": "SRI-PO-I1 — A corrected typo says that it corrected something"
+  },
+  {
+   "cid": 146277,
+   "sec": "Vendor Invoices",
+   "title": "SRI-VINV-A1 — The whole matched value is shown, not just what you typed"
+  },
+  {
+   "cid": 146278,
+   "sec": "Vendor Invoices",
+   "title": "SRI-VINV-A2 — A long value is not cut off through the part that matched"
+  },
+  {
+   "cid": 146279,
+   "sec": "Vendor Invoices",
+   "title": "SRI-VINV-A3 — The highlight marks the match inside the text, not instead of it"
+  },
+  {
+   "cid": 146280,
+   "sec": "Vendor Invoices",
+   "title": "SRI-VINV-B1 — Two records sharing what you typed can be told apart"
+  },
+  {
+   "cid": 146281,
+   "sec": "Vendor Invoices",
+   "title": "SRI-VINV-B2 — Two records with the same bold line differ somewhere you can see"
+  },
+  {
+   "cid": 146283,
+   "sec": "Vendor Invoices",
+   "title": "SRI-VINV-D1 — The Vendor Invoices row shows everything the specification promised"
+  },
+  {
+   "cid": 146284,
+   "sec": "Vendor Invoices",
+   "title": "SRI-VINV-I1 — A corrected typo says that it corrected something"
+  },
+  {
+   "cid": 146285,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-E1 — A tab's count equals the number of rows inside it"
+  },
+  {
+   "cid": 146286,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-E2 — No count anywhere reads higher than 20"
+  },
+  {
+   "cid": 146287,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-E3 — A group on the All tab shows 5 and offers the rest"
+  },
+  {
+   "cid": 146288,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-E4 — \"Show all\" opens that tab and keeps you in the search box"
+  },
+  {
+   "cid": 146289,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-E5 — All nine tabs are there, named and counted"
+  },
+  {
+   "cid": 146290,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-E6 — Groups on the All tab are always in the same order"
+  },
+  {
+   "cid": 146291,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-E7 — Typing a full record number puts that record at the very top"
+  },
+  {
+   "cid": 146292,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-F1 — A number is found with and without its dashes"
+  },
+  {
+   "cid": 146293,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-F2 — A phone number is found however it is punctuated"
+  },
+  {
+   "cid": 146294,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-F3 — An accented name is found typed either way"
+  },
+  {
+   "cid": 146295,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-F4 — An apostrophe or hyphen in a name is optional"
+  },
+  {
+   "cid": 146296,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-F5 — A typo in a NUMBER is not silently corrected"
+  },
+  {
+   "cid": 146297,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-F6 — Typing a status word returns nothing because of status"
+  },
+  {
+   "cid": 146298,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-G1 — A work order whose truck has no unit number still reads properly"
+  },
+  {
+   "cid": 146299,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-G2 — A very long value does not push the rest of the row out of sight"
+  },
+  {
+   "cid": 146300,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-G3 — A very common word still gives a usable list"
+  },
+  {
+   "cid": 146301,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-G4 — One or two characters behaves sensibly"
+  },
+  {
+   "cid": 146302,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-G5 — A kind of record that does not exist yet does not break search"
+  },
+  {
+   "cid": 146303,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-H1 — No results shows your query back, and nothing else"
+  },
+  {
+   "cid": 146304,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-H2 — No results inside a tab names the tab"
+  },
+  {
+   "cid": 146305,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-H3 — A record you can open from its own list is never \"not found\""
+  },
+  {
+   "cid": 146306,
+   "sec": "All tab and cross-tab",
+   "title": "SRI-ALL-K1 — Someone without access sees no rows AND no count"
+  }
+ ]
+}
