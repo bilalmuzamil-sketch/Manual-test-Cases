@@ -261,3 +261,65 @@ export async function hoverRow(page: Page, index: number):
   const gained = after.split(/\s+/).filter((w) => w && !b.has(w));
   return { before, after, gained, reached };
 }
+
+/**
+ * THE WHOLE PANEL, not one group — tabs, group order, per-group counts, "Show all" links and the
+ * empty-state message. The All-tab sheet asks about the shape of the panel rather than the content
+ * of a row, so it needs a different reader.
+ *
+ * 🔴 Counts settle late. A query can read All (0) at two seconds and be right at four, so this
+ * requires two identical reads before it returns — a half-loaded panel recorded as the answer is
+ * how a working feature gets reported as broken.
+ */
+export type PanelShape = {
+  tabs: { label: string; count: number | null }[];
+  groups: { head: string; count: number | null; rows: number; showAll: string | null }[];
+  /** Rows sitting ABOVE the first group heading — the "best match" slot. */
+  topRows: string[];
+  body: string;
+  empty: string | null;
+};
+
+export async function panelShape(page: Page, term: string): Promise<PanelShape> {
+  await parkPointer(page);
+  await typeQuery(page, term);
+  let last = '', shape: PanelShape | null = null;
+  for (let i = 0; i < 8; i++) {
+    await page.waitForTimeout(1_500);
+    shape = await page.evaluate((s) => {
+      const num = (t: string) => { const m = t.match(/\((\d+)\)\s*$/); return m ? Number(m[1]) : null; };
+      const tabs = [...document.querySelectorAll(s.tab)].map((e) => {
+        const t = (e as HTMLElement).innerText.replace(/\s+/g, ' ').trim();
+        return { label: t.replace(/\s*\(\d+\)\s*$/, '').trim(), count: num(t) };
+      });
+      const groups = [...document.querySelectorAll(s.group)].map((g) => {
+        const head = (g.querySelector(s.groupHeader) as HTMLElement)?.innerText.replace(/\s+/g, ' ').trim() ?? '';
+        const link = [...g.querySelectorAll('a,button')]
+          .map((e) => (e as HTMLElement).innerText.replace(/\s+/g, ' ').trim())
+          .find((t) => /show all/i.test(t)) ?? null;
+        return { head: head.replace(/\s*\(\d+\)\s*$/, '').replace(/show all.*/i, '').trim(),
+                 count: num(head), rows: g.querySelectorAll(s.row).length, showAll: link };
+      });
+      // Rows before the first group element in document order.
+      const firstGroup = document.querySelector(s.group);
+      const topRows = [...document.querySelectorAll(s.row)]
+        .filter((r) => !firstGroup || (firstGroup.compareDocumentPosition(r) & Node.DOCUMENT_POSITION_PRECEDING))
+        .map((r) => (r as HTMLElement).innerText.replace(/\s+/g, ' ').trim());
+      const body = (document.querySelector(s.body) as HTMLElement)?.innerText.replace(/\s+/g, ' ').trim() ?? '';
+      const empty = /no results/i.test(body) ? body.slice(0, 200) : null;
+      return { tabs, groups, topRows, body: body.slice(0, 400), empty };
+    }, SEL);
+    const key = JSON.stringify(shape);
+    if (key === last) break;
+    last = key;
+  }
+  return shape!;
+}
+
+/** Click a tab and report the rows it then shows. */
+export async function openTab(page: Page, label: string) {
+  const ok = await clickTab(page, label);
+  await page.waitForTimeout(2_200);
+  return { opened: ok, rows: await page.evaluate((s) =>
+    [...document.querySelectorAll(s.row)].map((r) => (r as HTMLElement).innerText.replace(/\s+/g, ' ').trim()), SEL) };
+}
