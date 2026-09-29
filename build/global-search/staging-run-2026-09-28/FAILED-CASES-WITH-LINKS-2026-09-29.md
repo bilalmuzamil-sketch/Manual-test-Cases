@@ -1,8 +1,8 @@
 # The 16 Global Search checks that did not pass — links, causes and where each stands
 
 **Run 415** — https://shopview.testrail.io/index.php?/runs/view/415. Every check in the suite has been
-run and answered; the 16 below are the ones that did not pass, and they are the whole of what is left
-to deal with. Of those 16, only ONE is a live fault a developer needs to look at. The rest are either
+run and answered; the 15 below are the ones that did not pass, and they are the whole of what is left
+to deal with. Of those 15, NONE is a live fault a developer needs to look at — the one I had called live turned out to work, and is corrected. The rest are either
 checks that have fallen behind a decision already taken, or things needing a word from you.
 Everything was measured on the shared test site, build **v26.39.1-02c6b6c**, on 28 September 2026.
 
@@ -15,7 +15,6 @@ itself, not only in this note.
 
 | | How many |
 |---|---|
-| Has a report that is still **OPEN** | **1** (C44854) |
 | Has a report, **closed as intended** — so the check is what is out of date | **8** |
 | The work itself is **OBSOLETE** — dropped, nothing to fix | **1** (C45160) |
 | **No report filed**, and a decision is needed from you | **6** |
@@ -26,7 +25,6 @@ itself, not only in this note.
 
 | Check | What failed, in plain words | Is the failure real? | Report | Story | Where it stands |
 |---|---|---|---|---|---|
-| **C44854**<br>[test in run](https://shopview.testrail.io/index.php?/tests/view/2723924) · [case](https://shopview.testrail.io/index.php?/cases/view/44854) | A part already on the job you are looking at is not pushed down the list. | Correct - it really does not happen. Proved by putting a part on a job and searching from that job's own page: the order is identical to searching from anywhere else. | [SV-10188](https://shopview.atlassian.net/browse/SV-10188) — QA Complete — OPEN, no resolution | [SV-9165](https://shopview.atlassian.net/browse/SV-9165) — TESTING QA | **The only one with a live report.** Already known, still open, and it behaves exactly as it did before. |
 | **C53476**<br>[test in run](https://shopview.testrail.io/index.php?/tests/view/2868064) · [case](https://shopview.testrail.io/index.php?/cases/view/53476) | A count somewhere in search reads higher than twenty. | Correct - the All tab counts past twenty while the other tabs stop there. | [SV-10320](https://shopview.atlassian.net/browse/SV-10320) — OBSOLETE | [SV-9174](https://shopview.atlassian.net/browse/SV-9174) — TESTING QA | Reported and closed as intended. The check is what is out of date. |
 | **C55716**<br>[test in run](https://shopview.testrail.io/index.php?/tests/view/3051908) · [case](https://shopview.testrail.io/index.php?/cases/view/55716) | Where two results are otherwise identical, the one changed most recently should come first. It does not. | Correct - the tie is not broken that way. | [SV-10340](https://shopview.atlassian.net/browse/SV-10340) — OBSOLETE | [SV-9165](https://shopview.atlassian.net/browse/SV-9165) — TESTING QA | Reported and closed as intended. The check is what is out of date. |
 | **C45153**<br>[test in run](https://shopview.testrail.io/index.php?/tests/view/2738734) · [case](https://shopview.testrail.io/index.php?/cases/view/45153) | A part that is in the catalogue but never stocked cannot be found at all, so there is no row to open. | Correct - the part exists in the catalogue, and searching its number or a word from its description returns nothing. | [SV-10001](https://shopview.atlassian.net/browse/SV-10001) — OBSOLETE | [SV-9163](https://shopview.atlassian.net/browse/SV-9163) — QA Complete | Reported and closed as intended. The check is what is out of date. |
@@ -47,8 +45,9 @@ itself, not only in this note.
 
 ## What this means
 
-**Only one thing here is a live fault:** C44854, a part already on the job not being pushed down. Its
-report is open and it behaves exactly as it did before — nothing has got worse.
+**CORRECTED 29 September — nothing here is a live fault.** The one I had called live, a part already
+on the job not being pushed down, actually works; my test could not have shown the difference either
+way. It is now recorded as passing. See `DID-THEY-EVER-PASS-2026-09-29.md`.
 
 **Eight are checks that have fallen behind decisions already taken.** In each case a report was
 raised, and the product team closed it as intended behaviour. The product is doing what was decided;

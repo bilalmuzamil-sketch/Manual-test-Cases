@@ -467,10 +467,9 @@
    "build": "v26.39.1-02c6b6c"
   },
   "44854": {
-   "v": "Failed",
-   "why": "Re-run on staging, where the suite now lives. A part that is ALREADY on the job you are looking at should be pushed down the list, because you are unlikely to want to add it twice. It is not.\n\nA part was put onto a job, and the job's own Parts tab shows it there. Searching for those parts from that job's page returns them in EXACTLY the same order as searching from an unrelated page - the part already on the job keeps its place. Nothing about standing on the job makes any difference.\n\nThis is a known problem, already reported, and the report is still open. It behaved the same way on the old test branch, so it has not been fixed and it has not got worse.",
-   "ticket": "SV-10188",
-   "build": "v26.39.1-02c6b6c"
+   "v": "Passed",
+   "build": "v26.39.1-02c6b6c",
+   "why": "CORRECTED 29 September — I recorded this as Failed yesterday and that was WRONG. It works.\n\nA part already on the job you are looking at IS pushed down. Proved with a part that leads the list from an unrelated page: standing anywhere else it is 1st, and searching from the job it sits on it drops to 2nd, below a part that is not on that job. Two passes, alternating between the two screens, identical both times.\n\nWHY I GOT IT WRONG FIRST TIME: I put a part on the job that was already SECOND in the list from a neutral page - which is exactly where a demotion would have put it. So both readings looked the same and I called it broken, when in truth my test could not have shown the difference either way. Swapping to a part that starts FIRST gives the demotion somewhere to show, and it shows.\n\nThe report raised about this, SV-10188, does not reproduce. A session on 21 September reached the same conclusion on the previous build and recorded that the developer was right."
   },
   "45137": {
    "v": "Passed",
