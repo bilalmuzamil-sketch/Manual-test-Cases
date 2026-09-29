@@ -94,7 +94,7 @@ been closed as intended behaviour.
 ## 5 · What this means for you
 
 **Nothing here is a newly broken product.** Six failures are our checks lagging behind two changes
-that were asked for and made on purpose; five are long-settled; four never worked and were accepted;
+that were asked for and made on purpose; five were checked and written up long ago; four never worked and were accepted;
 and the one I called a live fault turns out to work.
 
 **What is worth knowing:** two of those deliberate changes went in during the past week, and both
