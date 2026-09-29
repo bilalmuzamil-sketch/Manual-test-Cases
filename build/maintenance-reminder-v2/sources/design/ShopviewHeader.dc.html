@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/components.css">
+</helmet>
+<header class="sv-header">
+  <img src="assets/symbol-primary.svg" alt="ShopView" class="sv-header__logo">
+  <nav class="sv-header__nav" aria-label="Primary">
+    <sc-if value="{{ woSelected }}" hint-placeholder-val="{{ false }}"><button type="button" aria-current="page">Work Orders</button></sc-if>
+    <sc-if value="{{ woIdle }}" hint-placeholder-val="{{ true }}"><button type="button">Work Orders</button></sc-if>
+    <sc-if value="{{ schedSelected }}" hint-placeholder-val="{{ false }}"><button type="button" aria-current="page">Schedule</button></sc-if>
+    <sc-if value="{{ schedIdle }}" hint-placeholder-val="{{ true }}"><button type="button">Schedule</button></sc-if>
+    <sc-if value="{{ custSelected }}" hint-placeholder-val="{{ true }}"><a href="#s1" aria-current="page">Customers</a></sc-if>
+    <sc-if value="{{ custIdle }}" hint-placeholder-val="{{ false }}"><a href="#s1">Customers</a></sc-if>
+    <button type="button">Parts</button>
+    <button type="button">Reports</button>
+  </nav>
+  <span class="sv-header__spacer"></span>
+  <button type="button" class="sv-header__search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span style="flex:1;text-align:left">Search</span><span class="sv-kbd"><span>⌘</span><span>K</span></span></button>
+  <span class="sv-header__right">
+    <button type="button" class="sv-btn sv-btn--tertiary sv-btn--sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>Clock In</button>
+    <span class="sv-avatar">AS</span>
+  </span>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;nav&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;customers&quot;,&quot;workOrders&quot;,&quot;schedule&quot;,&quot;none&quot;],&quot;default&quot;:&quot;customers&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const n = this.props.nav ?? "customers";
+    return {
+      woSelected: n === "workOrders", woIdle: n !== "workOrders",
+      custSelected: n === "customers", custIdle: n !== "customers",
+      schedSelected: n === "schedule", schedIdle: n !== "schedule",
+    };
+  }
+}
+</script>
+</body>
+</html>
