@@ -73,8 +73,11 @@
    ]
   },
   "146209": {
-   "v": "Passed",
-   "why": "What I did: searched the case's word and looked at how the match is drawn.\nWhat I saw: the typed word appears on a line of the row WITHOUT being marked there, even though it is marked elsewhere on the same row."
+   "v": "Failed",
+   "tickets": [
+    "SV-10634"
+   ],
+   "why": "Run against the rewritten case, following its STEPS (“type 0900”).\nWhat I saw: nineteen customers come back. Eleven of them read “Contact match: 0900” — only the digits I typed. A few do show a whole number (“467-860-9009”, “880-090-0296”), which is how I know the screen can show one when it has it.\nWhy that is a fail: the case asks for the COMPLETE telephone with the typed part marked inside it.\nOne thing to tidy in the case text: the “TYPE THIS INTO THE SEARCH BOX” line still says ZZLONGROW, left over from the old version. The steps say 0900 and that is what makes the case work."
   },
   "146210": {
    "v": "Failed",
@@ -121,8 +124,11 @@
    ]
   },
   "146216": {
-   "v": "Passed",
-   "why": "What I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"zzautotest.nophone@staging.shopview.local\" → 1 notes; fragment \"zzautotest.nophone@\" → 1 notes, 0 showing only what was typed"
+   "v": "Failed",
+   "tickets": [
+    "SV-10634"
+   ],
+   "why": "What I did: typed part of a contact’s email address and opened the Customers tab.\nWhat I saw: the note reads “Contact match: ZZAUTOTEST” — the contact’s first name. Typing “nophone” gives “Contact match: NoPhone”, the surname. Neither is the email address that actually matched.\nWhy that is a fail: the case asks that a match on an email shows the full email on the row. The row shows a different detail of the contact instead, so the reader is told the record matched on something it did not.\nNote on my own earlier result: I recorded this as Passed twice today. Both times my check only asked whether the note DIFFERED from what I typed. It does differ — and it is still wrong. The test now requires the note to be the whole value, so this cannot silently flip back."
   },
   "146217": {
    "v": "Failed",

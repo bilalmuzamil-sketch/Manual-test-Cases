@@ -4600,3 +4600,40 @@ and exclude `$$`/`$PPID`. And the wider point, which is the same one as L0239: *
 in a tool's comments only protects that tool.** A trap that can bite from any shell belongs in
 `LEARNINGS-LOG.md` or the playbook, where it is grepped for, not only beside the one caller that
 met it first.
+
+## L0246 — A CORRECTION THAT LIVES ONLY IN THE RESULT IS TEMPORARY; IT MUST GO INTO THE TEST
+*(29–30 September 2026, C146209 and C146216)*
+
+Both were corrected to Failed by hand during the day. Both came back **Passed** from the next full
+sweep, because the correction lived in the recorded result and the SPEC still held the old logic —
+C146209's "cannot be judged as written" version, which passes trivially, and C146216's check that
+asked only whether the note DIFFERED from the query.
+
+Nobody would have noticed. The run simply showed two more passes.
+
+**So: when a result is corrected by hand, fix the check in the same pass, or the next run undoes
+it.** The rule generalises past tests — any manual correction to a generated artefact (a case
+body, a report, a ticket field) is undone by the next generation unless the generator changes too.
+
+## L0247 — "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE"
+*(29 September 2026, C146216, recorded Passed twice before it was caught)*
+
+The check for "the row shows the full value it matched" was implemented as *the note text is not
+equal to the query*. Typing part of a contact's email returns `Contact match: ZZAUTOTEST` — the
+contact's FIRST NAME. It differs from the query, so it passed. It is not the email address, and
+the reader is told the record matched on something it did not.
+
+**A negation is not an assertion.** "Not the wrong answer" admits every other wrong answer too.
+Where the expected value is known — and here the case supplies it — assert the value, not its
+inequality with something else.
+
+## L0248 — A PARSER THAT SILENTLY DROPS ROWS IS WORSE THAN ONE THAT CRASHES
+*(29–30 September 2026)*
+
+The results parser matched `C1462\d\d`. The suite runs C146197 to C146306, so **C146197–C146199
+and C146300–C146306 never appeared in its output at all** — ten cases, no error, no warning, just
+absent. The totals looked plausible, which is precisely why it survived two runs.
+
+**Any parser that maps a known set must assert it found the whole set.** It knows how many cases
+were asked for; it should refuse to hand back fewer without saying so. A wrong value gets argued
+with; a missing row gets believed.
