@@ -1,0 +1,482 @@
+{
+ "146200": {
+  "v": "Passed",
+  "title": "two records sharing the typed text can be told apart from the rows alone (4ms)",
+  "notes": []
+ },
+ "146201": {
+  "v": "Passed",
+  "title": "rows with the same bold line still differ somewhere you can see (1ms)",
+  "notes": []
+ },
+ "146207": {
+  "v": "Passed",
+  "title": "the row shows every field the requirement names (2ms)",
+  "notes": []
+ },
+ "146208": {
+  "v": "Passed",
+  "title": "a soft match is drawn as a soft match (9.7s)",
+  "notes": []
+ },
+ "146202": {
+  "v": "Failed",
+  "title": "SRI-WO-C1 — A match on VIN / serial number shows the FULL value on the row (19.9s)",
+  "notes": [
+   "as-written \"SVEWU82M5ETEJFWFA\" → 20 notes; fragment \"SVEWU82M\" → 20 notes, 20 showing only what was typed"
+  ]
+ },
+ "146205": {
+  "v": "Failed",
+  "title": "SRI-WO-C4 — A match on line item descriptions (parts and labor on the WO) show (9.6s)",
+  "notes": [
+   "\"786\" → 8 rows, 7 labelled notes, 7 showing only what was typed"
+  ]
+ },
+ "146206": {
+  "v": "Failed",
+  "title": "SRI-WO-C5 — A match on part numbers on the work order's lines (`item_part_numb (9.6s)",
+  "notes": [
+   "\"786\" → 8 rows, 7 labelled notes, 7 showing only what was typed"
+  ]
+ },
+ "146203": {
+  "v": "Blocked",
+  "title": "[HELD: the source is silent] does a match on lead technician name explain itself? (9.9s)",
+  "notes": []
+ },
+ "146204": {
+  "v": "Blocked",
+  "title": "SRI-WO-C3 — A match on service advisor name shows the FULL value on the row (3ms)",
+  "notes": [
+   "CANNOT RUN — the case supplies no search term — No \"TYPE THIS INTO THE SEARCH BOX\" line is present."
+  ]
+ },
+ "146214": {
+  "v": "Failed",
+  "title": "SRI-CUST-C1 — A match on the customer's own telephone shows the FULL value on  (19.5s)",
+  "notes": [
+   "as-written \"609-461-6502\" → 1 notes; fragment \"6502\" → 9 notes, 2 showing only what was typed"
+  ]
+ },
+ "146215": {
+  "v": "Failed",
+  "title": "SRI-CUST-C2 — A match on a contact's telephone shows the FULL value on the row (19.4s)",
+  "notes": [
+   "as-written \"555-222-3333\" → 1 notes; fragment \"3333\" → 6 notes, 3 showing only what was typed"
+  ]
+ },
+ "146216": {
+  "v": "Passed",
+  "title": "SRI-CUST-C3 — A match on a contact's email address shows the FULL value on the (21.6s)",
+  "notes": [
+   "as-written \"zzautotest.nophone@staging.shopview.local\" → 1 notes; fragment \"zzautotest.nophone@\" → 1 notes, 0 showing only what was typed"
+  ]
+ },
+ "146217": {
+  "v": "Failed",
+  "title": "SRI-CUST-C4 — A match on a contact's name shows the FULL value on the row (19.4s)",
+  "notes": [
+   "as-written \"Savannah\" → 5 notes; fragment \"Sava\" → 9 notes, 9 showing only what was typed"
+  ]
+ },
+ "146218": {
+  "v": "Failed",
+  "title": "SRI-CUST-C5 — A match on address line 2 shows the FULL value on the row (19.2s)",
+  "notes": [
+   "as-written \"Apt. 199\" → 1 notes; fragment \"Apt.\" → 6 notes, 6 showing only what was typed"
+  ]
+ },
+ "146220": {
+  "v": "Blocked",
+  "title": "[HELD: the source is silent] does a match on state / province explain itself? (9.7s)",
+  "notes": [
+   "\"ZZQUEBEXA\" → 1 rows, 0 labelled notes, 0 showing only what was typed",
+   "COULD NOT JUDGE — no row carries a labelled note for this term"
+  ]
+ },
+ "146221": {
+  "v": "Blocked",
+  "title": "[HELD: the source is silent] does a match on postal code explain itself? (9.5s)",
+  "notes": [
+   "as-written \"H8A3X9\" → 1 notes; fragment \"H8A3\" → 0 notes, 0 showing only what was typed",
+   "COULD NOT JUDGE — the derived fragment returns no labelled note"
+  ]
+ },
+ "146229": {
+  "v": "Failed",
+  "title": "SRI-ASSET-C1 — A match on VIN / serial number shows the FULL value on the row (19.8s)",
+  "notes": [
+   "as-written \"SVEWU82M5ETEJFWFA\" → 1 notes; fragment \"SVEWU82M\" → 1 notes, 1 showing only what was typed"
+  ]
+ },
+ "146230": {
+  "v": "Failed",
+  "title": "SRI-ASSET-C2 — A match on licence plate shows the FULL value on the row (19.2s)",
+  "notes": [
+   "as-written \"KVQ-2870\" → 1 notes; fragment \"KVQ-\" → 3 notes, 3 showing only what was typed"
+  ]
+ },
+ "146238": {
+  "v": "Failed",
+  "title": "SRI-PART-C1 — A match on bin location shows the FULL value on the row (9.6s)",
+  "notes": [
+   "\"H3B\" → 20 rows, 20 labelled notes, 20 showing only what was typed"
+  ]
+ },
+ "146239": {
+  "v": "Failed",
+  "title": "SRI-PART-C2 — A match on manufacturer shows the FULL value on the row (19.1s)",
+  "notes": [
+   "as-written \"Klondike\" → 1 notes; fragment \"Klon\" → 1 notes, 1 showing only what was typed"
+  ]
+ },
+ "146240": {
+  "v": "Failed",
+  "title": "SRI-PART-C3 — A match on vendor name shows the FULL value on the row (20.6s)",
+  "notes": [
+   "as-written \"Gibson's Mobile Diesel Repair\" → 1 notes; fragment \"Gibson's Mobil\" → 1 notes, 1 showing only what was typed"
+  ]
+ },
+ "146241": {
+  "v": "Blocked",
+  "title": "Parts [HELD: the source is silent] does a match on category explain itself? (9.8s)",
+  "notes": [
+   "as-written \".Brake Parts\" → 18 notes; fragment \".Brake\" → 0 notes, 0 showing only what was typed",
+   "COULD NOT JUDGE — the derived fragment returns no labelled note"
+  ]
+ },
+ "146242": {
+  "v": "Failed",
+  "title": "SRI-PART-C5 — A match on tags shows the FULL value on the row (9.5s)",
+  "notes": [
+   "\"496\" → 17 rows, 2 labelled notes, 2 showing only what was typed"
+  ]
+ },
+ "146250": {
+  "v": "Blocked",
+  "title": "Vendors [HELD: the source is silent] does a match on email address explain itself? (11.0s)",
+  "notes": [
+   "as-written \"zzhidden.vendor@staging.shopview.local\" → 1 notes; fragment \"zzhidden.vendor@st\" → 0 notes, 0 showing only what was typed",
+   "COULD NOT JUDGE — the derived fragment returns no labelled note"
+  ]
+ },
+ "146251": {
+  "v": "Failed",
+  "title": "SRI-VEND-C2 — A match on address line 2 shows the FULL value on the row (19.6s)",
+  "notes": [
+   "as-written \"ZZHIDDENSUITE\" → 1 notes; fragment \"ZZHIDD\" → 1 notes, 1 showing only what was typed"
+  ]
+ },
+ "146252": {
+  "v": "Failed",
+  "title": "SRI-VEND-C3 — A match on a contact's telephone shows the FULL value on the row (9.5s)",
+  "notes": [
+   "\"965\" → 15 rows, 13 labelled notes, 7 showing only what was typed"
+  ]
+ },
+ "146262": {
+  "v": "Failed",
+  "title": "SRI-PS-C1 — A match on the asset on the sale shows the FULL value on the row (19.2s)",
+  "notes": [
+   "as-written \"Quietline\" → 1 notes; fragment \"Quiet\" → 1 notes, 1 showing only what was typed"
+  ]
+ },
+ "146263": {
+  "v": "Failed",
+  "title": "SRI-PS-C2 — A match on VIN / serial number shows the FULL value on the row (19.8s)",
+  "notes": [
+   "as-written \"ZZHIDDENVIN0000001\" → 1 notes; fragment \"ZZHIDDENV\" → 1 notes, 1 showing only what was typed"
+  ]
+ },
+ "146271": {
+  "v": "Failed",
+  "title": "SRI-PO-C1 — A match on part numbers on the PO shows the FULL value on the row (9.5s)",
+  "notes": [
+   "\"0123\" → 4 rows, 4 labelled notes, 1 showing only what was typed"
+  ]
+ },
+ "146272": {
+  "v": "Failed",
+  "title": "SRI-PO-C2 — A match on part descriptions on the PO shows the FULL value on the (9.5s)",
+  "notes": [
+   "\"786\" → 6 rows, 4 labelled notes, 4 showing only what was typed"
+  ]
+ },
+ "146273": {
+  "v": "Failed",
+  "title": "SRI-PO-C3 — A match on created-by user shows the FULL value on the row (19.7s)",
+  "notes": [
+   "as-written \"Admin ShopView\" → 20 notes; fragment \"Admin S\" → 7 notes, 7 showing only what was typed"
+  ]
+ },
+ "146274": {
+  "v": "Failed",
+  "title": "SRI-PO-C4 — A match on spliced number variants (`number_variants`) shows the F (19.1s)",
+  "notes": [
+   "as-written \"I-1522\" → 1 notes; fragment \"I-15\" → 20 notes, 20 showing only what was typed"
+  ]
+ },
+ "146282": {
+  "v": "Failed",
+  "title": "SRI-VINV-C1 — A match on the PO number the invoice belongs to shows the FULL v (19.0s)",
+  "notes": [
+   "as-written \"I2-965\" → 2 notes; fragment \"I2-9\" → 20 notes, 20 showing only what was typed"
+  ]
+ },
+ "146209": {
+  "v": "Passed",
+  "title": "[cannot be judged as written] record the telephone and the highlight (1.0s)",
+  "notes": []
+ },
+ "146210": {
+  "v": "Failed",
+  "title": "nothing cut off has eaten the match or what tells the rows apart (9.7s)",
+  "notes": []
+ },
+ "146211": {
+  "v": "Passed",
+  "title": "the highlight marks the match inside the text, not instead of it (12ms)",
+  "notes": []
+ },
+ "146212": {
+  "v": "Passed",
+  "title": "two customers sharing the typed text can be told apart from the rows alone (5ms)",
+  "notes": []
+ },
+ "146222": {
+  "v": "Failed",
+  "title": "the customer row shows every field the requirement names (11.3s)",
+  "notes": []
+ },
+ "146223": {
+  "v": "Passed",
+  "title": "a soft match is drawn as a soft match (9.6s)",
+  "notes": []
+ },
+ "146219": {
+  "v": "Blocked",
+  "title": "[HELD: the source is silent] does a match on city explain itself? (9.8s)",
+  "notes": []
+ },
+ "146224": {
+  "v": "Failed",
+  "title": "Assets: the whole unit number is shown, with the typed part marked inside it (9.9s)",
+  "notes": []
+ },
+ "146225": {
+  "v": "Passed",
+  "title": "Assets: nothing cut off has eaten the match or what separates the rows (9.8s)",
+  "notes": []
+ },
+ "146226": {
+  "v": "Failed",
+  "title": "Assets: the highlight marks the match inside the text, not instead of it (9.7s)",
+  "notes": []
+ },
+ "146227": {
+  "v": "Passed",
+  "title": "Assets: two records sharing the typed text can be told apart (9.7s)",
+  "notes": []
+ },
+ "146228": {
+  "v": "Passed",
+  "title": "Assets: records with the same bold line differ somewhere you can see (9.6s)",
+  "notes": []
+ },
+ "146231": {
+  "v": "Passed",
+  "title": "Assets: the row shows every field the requirement names (9.6s)",
+  "notes": []
+ },
+ "146232": {
+  "v": "Passed",
+  "title": "Assets: a soft match is drawn as a soft match (9.7s)",
+  "notes": []
+ },
+ "146233": {
+  "v": "Failed",
+  "title": "Parts: the whole part number is shown, with the typed part marked inside it (9.7s)",
+  "notes": []
+ },
+ "146234": {
+  "v": "Failed",
+  "title": "Parts: nothing cut off has eaten the match or what separates the rows (19.7s)",
+  "notes": []
+ },
+ "146235": {
+  "v": "Passed",
+  "title": "Parts: the highlight marks the match inside the text, not instead of it (9.7s)",
+  "notes": []
+ },
+ "146236": {
+  "v": "Passed",
+  "title": "Parts: two records sharing the typed text can be told apart (9.7s)",
+  "notes": []
+ },
+ "146237": {
+  "v": "Passed",
+  "title": "Parts: records with the same bold line differ somewhere you can see (10.7s)",
+  "notes": []
+ },
+ "146243": {
+  "v": "Passed",
+  "title": "Parts: the row shows every field the requirement names (9.6s)",
+  "notes": []
+ },
+ "146244": {
+  "v": "Passed",
+  "title": "Parts: a soft match is drawn as a soft match (9.7s)",
+  "notes": []
+ },
+ "146245": {
+  "v": "Failed",
+  "title": "Vendors: the whole telephone is shown, with the typed part marked inside it (9.9s)",
+  "notes": []
+ },
+ "146246": {
+  "v": "Failed",
+  "title": "Vendors: nothing cut off has eaten the match or what separates the rows (19.4s)",
+  "notes": []
+ },
+ "146247": {
+  "v": "Passed",
+  "title": "Vendors: the highlight marks the match inside the text, not instead of it (9.8s)",
+  "notes": []
+ },
+ "146248": {
+  "v": "Passed",
+  "title": "Vendors: two records sharing the typed text can be told apart (9.6s)",
+  "notes": []
+ },
+ "146249": {
+  "v": "Passed",
+  "title": "Vendors: records with the same bold line differ somewhere you can see (10.7s)",
+  "notes": []
+ },
+ "146255": {
+  "v": "Passed",
+  "title": "Vendors: the row shows every field the requirement names (9.8s)",
+  "notes": []
+ },
+ "146256": {
+  "v": "Passed",
+  "title": "Vendors: a soft match is drawn as a soft match (9.7s)",
+  "notes": []
+ },
+ "146253": {
+  "v": "Blocked",
+  "title": "Vendors [HELD: the source is silent] does a match on a contact's name explain itself? (9.9s)",
+  "notes": []
+ },
+ "146254": {
+  "v": "Blocked",
+  "title": "Vendors [HELD: the source is silent] does a match on a contact's email address explain itself? (11.7s)",
+  "notes": []
+ },
+ "146257": {
+  "v": "Failed",
+  "title": "Part Sales: the whole P-number is shown, with the typed part marked inside it (9.8s)",
+  "notes": []
+ },
+ "146258": {
+  "v": "Failed",
+  "title": "Part Sales: nothing cut off has eaten the match or what separates the rows (19.3s)",
+  "notes": []
+ },
+ "146259": {
+  "v": "Passed",
+  "title": "Part Sales: the highlight marks the match inside the text, not instead of it (9.8s)",
+  "notes": []
+ },
+ "146260": {
+  "v": "Passed",
+  "title": "Part Sales: two records sharing the typed text can be told apart (9.6s)",
+  "notes": []
+ },
+ "146261": {
+  "v": "Passed",
+  "title": "Part Sales: records with the same bold line differ somewhere you can see (9.6s)",
+  "notes": []
+ },
+ "146264": {
+  "v": "Failed",
+  "title": "Part Sales: the row shows every field the requirement names (9.7s)",
+  "notes": []
+ },
+ "146265": {
+  "v": "Passed",
+  "title": "Part Sales: a soft match is drawn as a soft match (9.8s)",
+  "notes": []
+ },
+ "146266": {
+  "v": "Passed",
+  "title": "Purchase Orders: the whole PO number is shown, with the typed part marked inside it (9.6s)",
+  "notes": []
+ },
+ "146267": {
+  "v": "Passed",
+  "title": "Purchase Orders: nothing cut off has eaten the match or what separates the rows (9.8s)",
+  "notes": []
+ },
+ "146268": {
+  "v": "Passed",
+  "title": "Purchase Orders: the highlight marks the match inside the text, not instead of it (9.7s)",
+  "notes": []
+ },
+ "146269": {
+  "v": "Passed",
+  "title": "Purchase Orders: two records sharing the typed text can be told apart (9.6s)",
+  "notes": []
+ },
+ "146270": {
+  "v": "Passed",
+  "title": "Purchase Orders: records with the same bold line differ somewhere you can see (9.7s)",
+  "notes": []
+ },
+ "146275": {
+  "v": "Passed",
+  "title": "Purchase Orders: the row shows every field the requirement names (9.6s)",
+  "notes": []
+ },
+ "146276": {
+  "v": "Passed",
+  "title": "Purchase Orders: a soft match is drawn as a soft match (9.6s)",
+  "notes": []
+ },
+ "146277": {
+  "v": "Passed",
+  "title": "Vendor Invoices: the whole invoice number is shown, with the typed part marked inside it (9.6s)",
+  "notes": []
+ },
+ "146278": {
+  "v": "Passed",
+  "title": "Vendor Invoices: nothing cut off has eaten the match or what separates the rows (9.7s)",
+  "notes": []
+ },
+ "146279": {
+  "v": "Passed",
+  "title": "Vendor Invoices: the highlight marks the match inside the text, not instead of it (9.7s)",
+  "notes": []
+ },
+ "146280": {
+  "v": "Passed",
+  "title": "Vendor Invoices: two records sharing the typed text can be told apart (9.6s)",
+  "notes": []
+ },
+ "146281": {
+  "v": "Passed",
+  "title": "Vendor Invoices: records with the same bold line differ somewhere you can see (9.7s)",
+  "notes": []
+ },
+ "146283": {
+  "v": "Passed",
+  "title": "Vendor Invoices: the row shows every field the requirement names (9.6s)",
+  "notes": []
+ },
+ "146284": {
+  "v": "Passed",
+  "title": "Vendor Invoices: a soft match is drawn as a soft match (9.6s)",
+  "notes": []
+ }
+}

@@ -23,10 +23,17 @@ for l in lines:
     held = 'HELD' in title
     n = notes.get(cid, [])
     unjudged = any(x.startswith(('CANNOT RUN', 'COULD NOT JUDGE')) for x in n)
-    if held or unjudged:
-        verdict[cid] = ('Blocked', title, n)
-    else:
-        verdict[cid] = ('Passed' if tick == '✓' else 'Failed', title, n)
+    # 🔴 A REAL ASSERTION BEATS A LEFTOVER "MEASURED ONLY" TEST FOR THE SAME CASE.
+    # The 32 cases un-held on 29 September still have their old measurement-only tests in the
+    # Work Orders, Customers and entity specs, AND a real assertion in the retest spec. Whichever
+    # the reporter happened to print last was winning, so genuine Failed verdicts were being
+    # overwritten with Blocked. The judged result wins; a held entry only stands if nothing judged
+    # that case.
+    new = ('Blocked', title, n) if (held or unjudged) else ('Passed' if tick == '✓' else 'Failed', title, n)
+    prev = verdict.get(cid)
+    if prev and prev[0] != 'Blocked' and new[0] == 'Blocked':
+        continue                      # keep the judged verdict already recorded
+    verdict[cid] = new
 
 out = {c: {'v': v, 'title': t, 'notes': n} for c, (v, t, n) in verdict.items()}
 json.dump(out, open(sys.argv[2], 'w'), indent=1, ensure_ascii=False)
