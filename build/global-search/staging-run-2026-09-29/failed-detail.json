@@ -1,0 +1,372 @@
+[
+ {
+  "cid": 146197,
+  "test_id": 3298106,
+  "section": "Work Orders",
+  "title": "SRI-WO-A1 — The whole matched value is shown, not just what you typed",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term given in PRECONDITIONS.",
+  "expected": "Each row shows the COMPLETE WO number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.",
+  "comment": "Failed on Staging, build v26.39.2-51a35e1, 29 September 2026.\n\nAlready reported. The cutting-off of long text is covered by:\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552  (currently Blocked — the developer's note says the highlight is hidden because the row's label is too long, and calls it a data problem)\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n\nWorth adding when this is next discussed: the search panel is a fixed 640 pixels wide at every screen size from 1280 to 2560, so widening the window does not help the user."
+ },
+ {
+  "cid": 146198,
+  "test_id": 3298107,
+  "section": "Work Orders",
+  "title": "SRI-WO-A2 — A long value is not cut off through the part that matched",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term.",
+  "expected": "You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.",
+  "comment": "Failed on Staging, build v26.39.2-51a35e1, 29 September 2026.\n\nAlready reported. The cutting-off of long text is covered by:\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552  (currently Blocked — the developer's note says the highlight is hidden because the row's label is too long, and calls it a data problem)\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n\nWorth adding when this is next discussed: the search panel is a fixed 640 pixels wide at every screen size from 1280 to 2560, so widening the window does not help the user."
+ },
+ {
+  "cid": 146202,
+  "test_id": 3298111,
+  "section": "Work Orders",
+  "title": "SRI-WO-C1 — A match on VIN / serial number shows the FULL value on the row",
+  "term": "SVEWU82M5ETEJFWFA",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE VIN / serial number value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"SVEWU82M5ETEJFWFA\" → 20 notes; fragment \"SVEWU82M\" → 20 notes, 20 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146205,
+  "test_id": 3298114,
+  "section": "Work Orders",
+  "title": "SRI-WO-C4 — A match on line item descriptions (parts and labor on the WO) shows the FULL value on the row",
+  "term": "786",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE line item descriptions (parts and labor on the WO) value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I saw is recorded in the measurement below.\n\nMeasured: \"786\" → 8 rows, 7 labelled notes, 7 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146206,
+  "test_id": 3298115,
+  "section": "Work Orders",
+  "title": "SRI-WO-C5 — A match on part numbers on the work order's lines (`item_part_numbers`) shows the FULL value on the row",
+  "term": "786",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE part numbers on the work order&#x27;s lines (`item_part_numbers`) value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I saw is recorded in the measurement below.\n\nMeasured: \"786\" → 8 rows, 7 labelled notes, 7 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146209,
+  "test_id": 3298118,
+  "section": "Customers",
+  "title": "SRI-CUST-A1 — The whole matched value is shown, not just what you typed",
+  "term": "ZZLONGROW",
+  "stepTerm": "0900",
+  "expected": "Each row shows the COMPLETE telephone, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nRun against the rewritten case, following its STEPS (“type 0900”).\nWhat I saw: nineteen customers come back. Eleven of them read “Contact match: 0900” — only the digits I typed. A few do show a whole number (“467-860-9009”, “880-090-0296”), which is how I know the screen can show one when it has it.\nWhy that is a fail: the case asks for the COMPLETE telephone with the typed part marked inside it.\nOne thing to tidy in the case text: the “TYPE THIS INTO THE SEARCH BOX” line still says ZZLONGROW, left over from the old version. The steps say 0900 and that is what makes the case work.\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146210,
+  "test_id": 3298119,
+  "section": "Customers",
+  "title": "SRI-CUST-A2 — A long value is not cut off through the part that matched",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term.",
+  "expected": "You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the case's word, then also a word from the part of the text that gets cut off, because the case's own word sits at the start where a cut can never reach it.\nWhat I saw: the record comes back with the searched word not visible on the row.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146214,
+  "test_id": 3298123,
+  "section": "Customers",
+  "title": "SRI-CUST-C1 — A match on the customer's own telephone shows the FULL value on the row",
+  "term": "609-461-6502",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE the customer&#x27;s own telephone value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"609-461-6502\" → 1 notes; fragment \"6502\" → 9 notes, 2 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146215,
+  "test_id": 3298124,
+  "section": "Customers",
+  "title": "SRI-CUST-C2 — A match on a contact's telephone shows the FULL value on the row",
+  "term": "555-222-3333",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE a contact&#x27;s telephone value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"555-222-3333\" → 1 notes; fragment \"3333\" → 6 notes, 3 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146216,
+  "test_id": 3298125,
+  "section": "Customers",
+  "title": "SRI-CUST-C3 — A match on a contact's email address shows the FULL value on the row",
+  "term": "zzautotest.nophone@staging.shopview.local",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE a contact&#x27;s email address value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: typed part of a contact’s email address and opened the Customers tab.\nWhat I saw: the note reads “Contact match: ZZAUTOTEST” — the contact’s first name. Typing “nophone” gives “Contact match: NoPhone”, the surname. Neither is the email address that actually matched.\nWhy that is a fail: the case asks that a match on an email shows the full email on the row. The row shows a different detail of the contact instead, so the reader is told the record matched on something it did not.\nNote on my own earlier result: I recorded this as Passed twice today. Both times my check only asked whether the note DIFFERED from what I typed. It does differ — and it is still wrong. The test now requires the note to be the whole value, so this cannot silently flip back.\n\nAlready reported — no new ticket raised:"
+ },
+ {
+  "cid": 146217,
+  "test_id": 3298126,
+  "section": "Customers",
+  "title": "SRI-CUST-C4 — A match on a contact's name shows the FULL value on the row",
+  "term": "Savannah",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE a contact&#x27;s name value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"Savannah\" → 5 notes; fragment \"Sava\" → 9 notes, 9 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146218,
+  "test_id": 3298127,
+  "section": "Customers",
+  "title": "SRI-CUST-C5 — A match on address line 2 shows the FULL value on the row",
+  "term": "Apt. 199",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE address line 2 value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"Apt. 199\" → 1 notes; fragment \"Apt.\" → 6 notes, 6 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146222,
+  "test_id": 3298131,
+  "section": "Customers",
+  "title": "SRI-CUST-D1 — The Customers row shows everything the specification promised",
+  "term": "ZZLONGROW",
+  "stepTerm": "something that returns the record.",
+  "expected": "Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: checked the row against the list of things the written requirement says it shows.\nWhat I saw: at least one of them is missing.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146224,
+  "test_id": 3298133,
+  "section": "Assets",
+  "title": "SRI-ASSET-A1 — The whole matched value is shown, not just what you typed",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term given in PRECONDITIONS.",
+  "expected": "Each row shows the COMPLETE unit number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the word the case gives and opened the record type's own tab.\nWhat I saw: the row does not show the complete value — either it is cut short on screen, or the typed word is not marked inside the full text.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146226,
+  "test_id": 3298135,
+  "section": "Assets",
+  "title": "SRI-ASSET-A3 — The highlight marks the match inside the text, not instead of it",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term.",
+  "expected": "The full text is on the row and the matched part is highlighted within it — exactly like the example in the requirement, where typing \"Fib\" shows the whole of \"S1-644 Fibridge Commercial\" with \"Fib\" marked.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the case's word and looked at how the match is drawn.\nWhat I saw: the typed word appears on a line of the row WITHOUT being marked there, even though it is marked elsewhere on the same row.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146229,
+  "test_id": 3298138,
+  "section": "Assets",
+  "title": "SRI-ASSET-C1 — A match on VIN / serial number shows the FULL value on the row",
+  "term": "SVEWU82M5ETEJFWFA",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE VIN / serial number value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"SVEWU82M5ETEJFWFA\" → 1 notes; fragment \"SVEWU82M\" → 1 notes, 1 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146230,
+  "test_id": 3298139,
+  "section": "Assets",
+  "title": "SRI-ASSET-C2 — A match on licence plate shows the FULL value on the row",
+  "term": "KVQ-2870",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE licence plate value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"KVQ-2870\" → 1 notes; fragment \"KVQ-\" → 3 notes, 3 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146233,
+  "test_id": 3298142,
+  "section": "Parts",
+  "title": "SRI-PART-A1 — The whole matched value is shown, not just what you typed",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term given in PRECONDITIONS.",
+  "expected": "Each row shows the COMPLETE part number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the word the case gives and opened the record type's own tab.\nWhat I saw: the row does not show the complete value — either it is cut short on screen, or the typed word is not marked inside the full text.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146234,
+  "test_id": 3298143,
+  "section": "Parts",
+  "title": "SRI-PART-A2 — A long value is not cut off through the part that matched",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term.",
+  "expected": "You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the case's word, then also a word from the part of the text that gets cut off, because the case's own word sits at the start where a cut can never reach it.\nWhat I saw: the record comes back with the searched word not visible on the row.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146238,
+  "test_id": 3298147,
+  "section": "Parts",
+  "title": "SRI-PART-C1 — A match on bin location shows the FULL value on the row",
+  "term": "H3B",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE bin location value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: \"H3B\" → 20 rows, 20 labelled notes, 20 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146239,
+  "test_id": 3298148,
+  "section": "Parts",
+  "title": "SRI-PART-C2 — A match on manufacturer shows the FULL value on the row",
+  "term": "Klondike",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE manufacturer value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"Klondike\" → 1 notes; fragment \"Klon\" → 1 notes, 1 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146240,
+  "test_id": 3298149,
+  "section": "Parts",
+  "title": "SRI-PART-C3 — A match on vendor name shows the FULL value on the row",
+  "term": "Gibson&#x27;s Mobile Diesel Repair",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE vendor name value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"Gibson's Mobile Diesel Repair\" → 1 notes; fragment \"Gibson's Mobil\" → 1 notes, 1 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146242,
+  "test_id": 3298151,
+  "section": "Parts",
+  "title": "SRI-PART-C5 — A match on tags shows the FULL value on the row",
+  "term": "496",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE tags value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: \"496\" → 17 rows, 2 labelled notes, 2 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146245,
+  "test_id": 3298154,
+  "section": "Vendors",
+  "title": "SRI-VEND-A1 — The whole matched value is shown, not just what you typed",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term given in PRECONDITIONS.",
+  "expected": "Each row shows the COMPLETE telephone, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the word the case gives and opened the record type's own tab.\nWhat I saw: the row does not show the complete value — either it is cut short on screen, or the typed word is not marked inside the full text.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146246,
+  "test_id": 3298155,
+  "section": "Vendors",
+  "title": "SRI-VEND-A2 — A long value is not cut off through the part that matched",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term.",
+  "expected": "You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the case's word, then also a word from the part of the text that gets cut off, because the case's own word sits at the start where a cut can never reach it.\nWhat I saw: the record comes back with the searched word not visible on the row.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146251,
+  "test_id": 3298160,
+  "section": "Vendors",
+  "title": "SRI-VEND-C2 — A match on address line 2 shows the FULL value on the row",
+  "term": "ZZHIDDENSUITE",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE address line 2 value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"ZZHIDDENSUITE\" → 1 notes; fragment \"ZZHIDD\" → 1 notes, 1 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146252,
+  "test_id": 3298161,
+  "section": "Vendors",
+  "title": "SRI-VEND-C3 — A match on a contact's telephone shows the FULL value on the row",
+  "term": "965",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE a contact&#x27;s telephone value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: \"965\" → 15 rows, 13 labelled notes, 7 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146257,
+  "test_id": 3298166,
+  "section": "Part Sales",
+  "title": "SRI-PS-A1 — The whole matched value is shown, not just what you typed",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term given in PRECONDITIONS.",
+  "expected": "Each row shows the COMPLETE P-number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the word the case gives and opened the record type's own tab.\nWhat I saw: the row does not show the complete value — either it is cut short on screen, or the typed word is not marked inside the full text.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146258,
+  "test_id": 3298167,
+  "section": "Part Sales",
+  "title": "SRI-PS-A2 — A long value is not cut off through the part that matched",
+  "term": "ZZLONGROW",
+  "stepTerm": "the term.",
+  "expected": "You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the case's word, then also a word from the part of the text that gets cut off, because the case's own word sits at the start where a cut can never reach it.\nWhat I saw: the record comes back with the searched word not visible on the row.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146262,
+  "test_id": 3298171,
+  "section": "Part Sales",
+  "title": "SRI-PS-C1 — A match on the asset on the sale shows the FULL value on the row",
+  "term": "Quietline",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE the asset on the sale value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"Quietline\" → 1 notes; fragment \"Quiet\" → 1 notes, 1 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146263,
+  "test_id": 3298172,
+  "section": "Part Sales",
+  "title": "SRI-PS-C2 — A match on VIN / serial number shows the FULL value on the row",
+  "term": "ZZHIDDENVIN0000001",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE VIN / serial number value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"ZZHIDDENVIN0000001\" → 1 notes; fragment \"ZZHIDDENV\" → 1 notes, 1 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146264,
+  "test_id": 3298173,
+  "section": "Part Sales",
+  "title": "SRI-PS-D1 — The Part Sales row shows everything the specification promised",
+  "term": "ZZLONGROW",
+  "stepTerm": "something that returns the record.",
+  "expected": "Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: checked the row against the list of things the written requirement says it shows.\nWhat I saw: at least one of them is missing.\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146271,
+  "test_id": 3298180,
+  "section": "Purchase Orders",
+  "title": "SRI-PO-C1 — A match on part numbers on the PO shows the FULL value on the row",
+  "term": "0123",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE part numbers on the PO value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: \"0123\" → 4 rows, 4 labelled notes, 1 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146272,
+  "test_id": 3298181,
+  "section": "Purchase Orders",
+  "title": "SRI-PO-C2 — A match on part descriptions on the PO shows the FULL value on the row",
+  "term": "786",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE part descriptions on the PO value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: \"786\" → 6 rows, 4 labelled notes, 4 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146273,
+  "test_id": 3298182,
+  "section": "Purchase Orders",
+  "title": "SRI-PO-C3 — A match on created-by user shows the FULL value on the row",
+  "term": "Admin ShopView",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE created-by user value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: as-written \"Admin ShopView\" → 20 notes; fragment \"Admin S\" → 7 notes, 7 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10634 — https://shopview.atlassian.net/browse/SV-10634"
+ },
+ {
+  "cid": 146274,
+  "test_id": 3298183,
+  "section": "Purchase Orders",
+  "title": "SRI-PO-C4 — A match on spliced number variants (`number_variants`) shows the FULL value on the row",
+  "term": "I-1522",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE spliced number variants (`number_variants`) value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I saw is recorded in the measurement below.\n\nMeasured: as-written \"I-1522\" → 1 notes; fragment \"I-15\" → 20 notes, 20 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ },
+ {
+  "cid": 146282,
+  "test_id": 3298191,
+  "section": "Vendor Invoices",
+  "title": "SRI-VINV-C1 — A match on the PO number the invoice belongs to shows the FULL value on the row",
+  "term": "I2-965",
+  "stepTerm": "the term.",
+  "expected": "The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.\n\nTHE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE the PO number the invoice belongs to value, not just the characters you typed. Open the record and compare. If you typed part of a longer value and the note shows only that part, this is a FAIL — it is SV-10619 and SV-10551, and it means two different records can draw identically.",
+  "comment": "Failed on Staging (app.staging.shopview.com), build v26.39.2-51a35e1, 29 September 2026.\n\nWhat I saw is recorded in the measurement below.\n\nMeasured: as-written \"I2-965\" → 2 notes; fragment \"I2-9\" → 20 notes, 20 showing only what was typed\n\nAlready reported — no new ticket raised:\n  SV-10619 — https://shopview.atlassian.net/browse/SV-10619\n  SV-10551 — https://shopview.atlassian.net/browse/SV-10551\n  SV-10552 — https://shopview.atlassian.net/browse/SV-10552"
+ }
+]
