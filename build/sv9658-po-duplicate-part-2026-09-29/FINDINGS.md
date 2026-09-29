@@ -138,3 +138,27 @@ No purchase order was saved — the New Purchase Order dialog was opened and aba
 * `ev/02-create-new-part.png` — production, 24 matches and no way to create a new part; beside the
   branch, the same situation with "Add new special order part" under the matches.
 * `ev/03-customer-case.png` — `BUYPH20` locked to "20 TON PINTLE HOOK" on the branch.
+
+---
+
+## 10. Pre-post gate and the posted comment (Rule 72)
+
+Run immediately before posting, 2026-09-29:
+
+| Check | Result |
+|---|---|
+| Branch build marker re-read live | `v26.39.1-2e57b93`, `Tue, 29 Sep 2026 08:26:02 GMT`, etag `afcdb32ae3d0e16032e30adcdaf3239c` — **unchanged** since pass start |
+| Production build marker re-read live | `v26.39.2-1aeb22d`, `Tue, 29 Sep 2026 09:36:08 GMT`, etag `631482bb64cdcb1ec1f15b23ba76f192` — **unchanged** since the before-capture |
+| Ticket thread re-read | still **7** comments, latest 77492 (Stefan Vukovic, 29 Sep 02:52); status **TESTING QA**, priority **Medium**; no other QA verdict already posted |
+| Every figure traced to a live measurement this pass | yes |
+| Human-voice / AI-fingerprint scan of the body text | clean, 0 hits |
+| No "Technical details for developers" section (Rule 84 — the QA lead said no for this ticket) | confirmed absent |
+| Production left as found | newest purchase order on production is `S-917` from **28 Sep** — nothing created today; the one work order created was deleted (`201`) |
+
+**Posted: comment `77520`** on SV-9658. Read back in ADF and verified: **3 media nodes, every one
+`"type":"file"` with a real attachment uuid** (1714c082… · 75c4572a… · 33007a4e…) at 900×882,
+900×1144 and 900×488 — the right images in the right order, not external links · first text node is
+`OVERALL QA STATUS: PASSED` · the table holds **10 rows** (header + 9 checks) and `PASSED` appears
+**10** times · no technical section.
+
+Attachments on the issue: `61541`, `61542`, `61543`.
