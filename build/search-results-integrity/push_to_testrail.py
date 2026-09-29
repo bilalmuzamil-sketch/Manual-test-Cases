@@ -48,12 +48,22 @@ def rows():
     for sheet in wb.sheetnames:
         if sheet in SKIP: continue
         w = wb[sheet]
+        COL = {w.cell(1, c).value: c for c in range(1, w.max_column + 1)}
         for r in range(2, w.max_row + 1):
             g = lambda c: w.cell(r, c).value
             if not g(1): continue
-            yield sheet, {'id': g(1), 'title': g(2), 'why': g(3), 'before': g(4), 'type': g(5),
-                          'todo': g(6), 'expect': g(7), 'source': g(8), 'quote': g(9),
-                          'held': g(10) == 'HELD - do not run'}
+            # 🔴 COLUMNS BY HEADER NAME, NEVER BY FIXED INDEX. Adding the TestRail column at
+            # position 2 shifted every later column right by one, and this reader — which used
+            # fixed indices — then pulled the C-id as the title and the search term as the steps.
+            # Run with --confirm it would have written that garbage into all 110 live cases. The
+            # dry run caught it; the fix is to stop counting columns.
+            yield sheet, {'id': g(COL['ID']), 'title': g(COL['What you are checking']),
+                          'why': g(COL['Why it matters to a real user']),
+                          'before': g(COL['Before you start']), 'type': g(COL['TYPE THIS']),
+                          'todo': g(COL['What to do']), 'expect': g(COL['What you should see']),
+                          'source': g(COL['Where that comes from']),
+                          'quote': g(COL['The exact wording of the requirement']),
+                          'held': g(COL['Result']) == 'HELD - do not run'}
 
 def case_body(d):
     # The workbook says "the term in the green cell" - meaningless once the text is in TestRail,

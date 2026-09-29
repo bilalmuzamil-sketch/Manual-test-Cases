@@ -320,23 +320,40 @@ def build():
           note=None if na or not same else
                f"{same['count']} rows come back; at least two carry the same bold line")
 
+        # 🔴 CORRECTED 2026-09-29 AFTER THE QA LEAD TESTED THESE ON STAGING.
+        # These cases were HELD on the belief that a row matching on a field it does not display
+        # cannot say why it came back. That was WRONG, and the screenshots proved it: the product
+        # appends a labelled note to the second line — "Contact match: 609-461-6502",
+        # "Matched: KVQ-2870", "Number: I-1522" — so the row DOES explain itself.
+        # SearchResultRow.vue: if the hit is a contact field it prepends "Contact match: <fragment>";
+        # otherwise, when the fragment appears nowhere else on the row, it appends
+        # "<Field label>: <fragment>" using the map in searchRowVariants.ts.
+        # The error was mine: I read the API payload and the row VARIANTS, concluded the UI could
+        # not render what the payload did not carry, and never opened the UI to look.
+        # So the question is no longer "does the row explain itself" — it does. It is "does it show
+        # the WHOLE value", which is the one real defect (SV-10619 / SV-10551). These are now
+        # assertions, not held cases.
         for n, (field, why, how) in enumerate(e['invisible'], 1):
             t, note = term_for(ekey, field)
-            A_common(f'C{n}', f'A match on {field} explains itself on the row', why,
+            A_common(f'C{n}', f'A match on {field} shows the FULL value on the row', why,
               f'A {one} carrying a distinctive value in {field} — a value that appears in NO other '
               f'field of that record.' + ('' if t else
               f'\n\nNothing on this environment matched that field when we looked, so you need to '
               f'find or create one. To do it: {how}.'),
               steps('Open search and type the term.', f'Open the {tab} tab.',
-                    'Find the record. Without opening it, answer this question:',
-                    'Does ANYTHING on this row tell you why it came back?'),
-              f'You can tell from the row that the match came from {field}, and you can see that '
-              f'value. If the row shows no trace of what you typed, write that down — the row came '
-              f'back and cannot say why.\n\n'
-              f'THIS ROW IS HELD: the specification does not say what should happen here. Do not '
-              f'pass or fail it. Record what you saw.',
-              bc.Q_STORY, 'Story SV-9170 (the spec is silent — see question Q1)',
-              held=True, term=t, note=note)
+                    'Find the record. Without opening it, read the SECOND line of the row.',
+                    'It should carry a labelled note naming the field that matched.',
+                    'Now check the value in that note against the record itself.'),
+              f'The second line carries a labelled note — such as "Contact match: ...", '
+              f'"Matched: ...", "Unit: ...", "VIN: ..." — naming what matched, with the part you '
+              f'typed highlighted inside it.\n\n'
+              f'THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the WHOLE '
+              f'{field} value, not just the characters you typed. Open the record and compare. If '
+              f'you typed part of a longer value and the note shows only that part, this is a FAIL '
+              f'— it is SV-10619 and SV-10551, and it means two different records can draw '
+              f'identically.',
+              bc.Q_HIGHLIGHT, 'PRD v1.5, section 5.3',
+              held=False, term=t, note=note)
 
         A_common('D1', f'The {tab} row shows everything the specification promised',
           'Each field is there because somebody decided you need it to choose. A missing one is a '
@@ -593,118 +610,104 @@ def build_cross(wb):
     return len(rows)
 
 PO_Q = [
- ('Q1', 'THE BIG ONE — when a result matches on something the row does not show, what should the '
-  'row do?',
-  'The search looks inside far more information than the row displays. A vendor can be found by '
-  'typing their contact\'s phone number; a work order by typing a part that is on it; a vehicle by '
-  'its VIN. In every one of those cases the row comes back and shows no sign of what you typed.',
-  'This is the single biggest cause of the complaints from UAT and support. The row looks random, '
-  'because from the user\'s side it IS random — they typed something and got back a row that does '
-  'not contain it.',
-  'Section 5.3 says the matched text is highlighted "in the primary and secondary text". It does '
-  'not say what happens when the matched value is in neither.',
-  'A) Show the matched value on the row, e.g. a line reading "Contact phone: 857-496-5067"   |   '
-  'B) Label it without the value, e.g. "Matched on contact phone"   |   '
-  'C) Leave it as it is (today)   |   D) Something else — please describe',
-  '32 — every "C" row on every tab'),
- ('Q2', 'Should a customer found by their phone number show that phone number?',
-  'Section 4 says a Customer row shows "telephone on hover". The build does not show a customer\'s '
-  'telephone anywhere — not on hover, not on the row. Vendor rows DO show a telephone.',
-  'Typing a phone number is the most common way a service advisor finds the person on the phone '
-  'right now. Today the number is not on the row to confirm it is the right one — and when two '
-  'customers share the last four digits there is no way to tell which is which.',
-  'Section 4 asks for it on hover; the build does neither.',
-  'Show the telephone on the customer row — always visible, or only on hover? Note that a hover '
-  'cannot be seen while scanning a list, and cannot be used on a phone at all.',
-  'Customers C1 — and it is the direct cause of SV-10619'),
- ('Q3', 'When the system reports "what matched", should that be the matched part or the whole '
-  'value?',
-  'Today it sometimes reports just the characters you typed and sometimes the whole field value — '
-  'the same field, the same kind of match, both behaviours. Measured on staging on 2026-09-29.',
-  'This inconsistency is the mechanism behind SV-10619. Whatever the screen is meant to show, it '
-  'cannot show it reliably while the same thing means two different things.',
-  'Not covered by the specification at all.',
-  'Always the matched part, always the whole value, or does the screen not depend on it? THIS ONE '
-  'MAY NEED ENGINEERING IN THE ROOM.',
-  'Every "A" row — 24 of them'),
- ('Q4', 'Should the Assets row show the unit number?',
-  'Section 4 says an Asset row shows "year + make + model, then customer name". The build ALSO '
-  'shows the unit number, in bold, leading the row.',
-  'We think the build is more useful — the unit number is what a shop calls the truck by, and '
-  'SV-10551 is a complaint that it is not shown COMPLETELY. But the spec does not say so, so no '
-  'test can assert it.',
+ ('Q1', '🟢 ANSWERED ON THE BUILD 2026-09-29 — WITHDRAWN. The row DOES say why it came back.',
+  'We asked what a row should do when it matches on a field it does not display. The QA lead tested '
+  'it and the answer was already in the product: the row appends a labelled note to its second line '
+  '— "Contact match: 609-461-6502", "Matched: KVQ-2870", "Number: I-1522", "Unit: ...", "VIN: ...".',
+  'Nothing is blocked by this any more. The 32 test cases that were held on it are now ordinary '
+  'assertions and have been rewritten; they check that the note shows the FULL value.',
+  'Section 5.3 does not describe this labelled note, so the specification is behind the build. That '
+  'is a documentation gap, not a behaviour decision.',
+  'Only this: should section 5.3 be updated to describe the labelled match note, so the spec and the '
+  'product agree? No product change is being proposed.',
+  'None — all 32 released'),
+ ('Q2', '🟢 ANSWERED — WITHDRAWN. A customer found by phone DOES show the phone.',
+  'We reported that a customer matched on a telephone number showed no telephone. That was wrong: '
+  'the row shows "Contact match: <the number>" on its second line.',
+  'The claim came from reading the API payload and the row variants rather than opening the screen. '
+  'It is withdrawn.',
+  'Section 4 says "telephone on hover" for Customers, which is a different thing again and is not '
+  'what the build does.',
+  'Nothing. Folded into Q1 as a documentation point.',
+  'None'),
+ ('Q3', '🔴 THE ONE REAL DEFECT — show the whole value, highlight the part that matched.',
+  'When you type part of a longer value, the row shows only the part you typed. Type 965 and a row '
+  'reads "Contact match: 965" — the phone number it came from, 857-496-5067, is never shown. But '
+  'type 3286 against (264) 328-6723 and the row shows the whole number. Same field, same kind of '
+  'match, two behaviours.',
+  'THIS IS THE BUG BEHIND SV-10619 AND SV-10551. Two records whose numbers both contain 965 draw '
+  'identically, so the user cannot tell them apart — 123786 and 185786 both showing as 786. The QA '
+  'lead: "we need to show the full word/number and highlight the matching part."',
+  'Section 5.3: "The matched substring of the query is highlighted in the primary and secondary '
+  'text" — highlighting a substring requires the whole text to be there.',
+  'Confirm the fix: the API should send the WHOLE field value, and the screen should highlight the '
+  'typed part inside it. The front end already does exactly that wherever it has the full text — '
+  'the change is in MatchDescriptorFactory::fragmentOf() on the API side. NEEDS A DEVELOPER.',
+  'Every "A" and "C" case — 56'),
+ ('Q4', '🟢 ANSWERED — the Assets row shows the unit number, and that is wanted.',
+  'The build shows the unit number leading the Assets row; section 4 does not list it.',
+  'The QA lead confirmed this is fine and useful.',
   'Section 4 does not list the unit number for Assets.',
-  'Add the unit number to the specification for Assets, or remove it from the row?',
-  'Assets D1'),
- ('Q5', 'Is licence plate meant to be searchable?',
-  'Typing a licence plate returns vehicles. Licence plate is not in section 4\'s list of searchable '
-  'fields for Assets. It is also not displayed, so a vehicle found this way shows nothing about why.',
-  'A field that is searchable but undocumented is a field nobody wrote a test for. That is how '
-  'these reach customers.',
-  'Not in section 4.',
-  'Add it to the specification, or remove it from the search?', 'Assets C2'),
- ('Q6', 'Is postal code meant to be searchable for customers?',
-  'The same shape as Q5. Typing a postal code returns customers; postal code is not in section 4\'s '
-  'list for Customers.',
-  'The code has a deliberate note about Canadian postal codes, so this looks intentional but '
-  'undocumented.',
-  'Not in section 4.',
-  'Add it to the specification, or remove it?', 'Customers C8'),
- ('Q7', 'Are "number variants" meant to be searchable for purchase orders?',
-  'A purchase order can be found by a number form that appears nowhere on its row.',
-  'If it stays, Q1\'s answer matters doubly here — the number that matched is by definition not the '
-  'number on screen.',
-  'Not in section 4.',
-  'Add it to the specification, or remove it?', 'Purchase Orders C4'),
- ('Q8', 'Which date should a Vendor Invoice row show?',
-  'Section 4 says "total + invoice date". The build shows the RECEIVED date. These are usually '
-  'different days.',
-  'A tester cannot pass or fail the row while the two disagree.',
-  'Section 4 says invoice date; the build shows received date.',
-  'Which date belongs on the row?', 'Vendor Invoices D1'),
- ('Q9', 'What should an asset row show when it has no year, make or model?',
-  'Section 4 covers the work-order version of this ("when the asset has no unit number, the '
-  'year/make/model stands alone") but not the asset row\'s own version.',
-  'Real data has vehicles with none of the three.',
-  'Not covered.',
-  'What identifies the row then — the unit number, the customer, or something else?',
-  'All tab G1'),
- ('Q10', 'Is there a minimum number of characters before search runs?',
-  'The old search ignored queries under two characters. The specification sets a typing delay '
-  '(150ms) but no minimum length.',
-  'We cannot say whether typing a single character should search, wait, or do nothing.',
-  'Not covered.',
-  'Is there a minimum, and what is it?', 'All tab G4'),
+  'Add the unit number to section 4 for Assets so the spec matches the build. Documentation only.',
+  'None'),
+ ('Q5', '🟢 ANSWERED — licence plate appears on the second line.',
+  'Typing a licence plate returns the vehicle and the row reads "Matched: KVQ-2870".',
+  'Confirmed by the QA lead on staging.',
+  'Licence plate is not in section 4 searchable list.',
+  'Add licence plate to section 4 as a searchable field. Documentation only.', 'None'),
+ ('Q6', '🟢 ANSWERED — postal code appears on the second line.',
+  'Typing a postal code returns the customer and the row reads "Matched: H8A3X9".',
+  'Confirmed by the QA lead on staging.',
+  'Postal code is not in section 4 searchable list.',
+  'Add postal code to section 4 as a searchable field. Documentation only.', 'None'),
+ ('Q7', '🟢 ANSWERED — the number you typed appears on the second line.',
+  'A purchase order displaying I2-1522 is found by typing I-1522, and the row reads '
+  '"Number: I-1522" so you can see why it came back.',
+  'Confirmed by the QA lead on staging.',
+  'Number variants are not in section 4.',
+  'Add the alternate number form to section 4 as searchable. Documentation only.', 'None'),
+ ('Q8', '🟢 ANSWERED — the received date is the right date.',
+  'Section 4 says "invoice date"; the row shows the received date.',
+  'The QA lead confirmed the received date is correct for this row.',
+  'Section 4 says invoice date.',
+  'Correct section 4 to say received date. Documentation only.', 'None'),
+ ('Q9', '🟢 ANSWERED — the unit number shows when the vehicle has one.',
+  'A work order row shows the unit number first on the second line when the vehicle carries one, '
+  'and the year/make/model alone when it does not.',
+  'Confirmed by the QA lead on staging.',
+  'Section 4 covers the fallback and the build matches it.',
+  'Nothing.', 'None'),
+ ('Q10', '🟢 ANSWERED — a one-character search behaves sensibly.',
+  'Typing a single character searches and behaves as expected.',
+  'Confirmed by the QA lead on staging.',
+  'The specification sets a typing delay but no minimum length.',
+  'Optional: record in section 8 that there is no minimum query length, so the behaviour is '
+  'documented rather than incidental. Documentation only.', 'None'),
 ]
 
-# 🔴 EVERY QUESTION CARRIES SOMETHING THE PO CAN TYPE AND SEE FOR HIMSELF. A question about search
-# behaviour that he cannot reproduce in thirty seconds is a question he has to take on trust, and
-# he should not have to. Each term below was checked on staging on 2026-09-29; the "what you will
-# see" column is what it actually returned, not what we expect it to return.
+# Something the PO can type and see for himself. Every one of these was run on staging by the QA
+# lead on 2026-09-29, and the "what you will see" text is what the screen actually showed.
 PO_DEMO = {
- 'Q1': ("609-461-6502", "A customer comes back — and the row shows a NAME and an ADDRESS. The "
-        "phone number you just typed is nowhere on it. Now try I-1522: a purchase order comes "
-        "back reading I2-1522. The number you typed appears nowhere on that row either."),
- 'Q2': ("609-461-6502", "The right customer comes back. There is no telephone on the row, and "
-        "none on hover. Compare it with a vendor row, which does show one."),
- 'Q3': ("965", "Look down the Customers and Vendors rows. Some show a full phone number like "
-        "857-496-5067. Others show just 965 — the three characters you typed. Same kind of "
-        "record, same kind of match, two different behaviours."),
- 'Q4': ("ZZLONGROW", "On the Assets tab the unit number leads the row in bold. The specification "
-        "does not list it as something the Assets row displays."),
- 'Q5': ("KVQ-2870", "A vehicle comes back. Its licence plate — what you typed — is nowhere on "
-        "the row, and licence plate is not in the specification's searchable list."),
- 'Q6': ("H8A3X9", "A customer comes back, matched on its postal code. The postal code is not on "
-        "the row, and not in the specification's searchable list."),
- 'Q7': ("I-1522", "A purchase order comes back. The row reads I2-1522 — not what you typed. "
-        "Then type I2-1522: the same order, matched a different way."),
- 'Q8': ("Fibridge", "On the Vendor Invoices tab, compare the date on each row with the invoice "
-        "date on the record itself. The row shows the date the goods were RECEIVED."),
- 'Q9': ("ZZNOUNIT", "A work order comes back for a truck with no unit number — the year, make "
-        "and model stand alone, which is what the specification asks for. We have no equivalent "
-        "sentence for an Assets row whose vehicle has no year, make or model either."),
- 'Q10': ("9", "Type a single 9 and wait. Then add a second character. Note whether anything "
-         "searched, and whether the previous results stayed on screen."),
+ 'Q1': ("609-461-6502", "The customer comes back and the second line reads "
+        "\"Contact match: 609-461-6502\" with the number highlighted. The row says why it is here. "
+        "This is what we got wrong."),
+ 'Q2': ("609-461-6502", "Same search. The phone number IS on the row, as a Contact match note. "
+        "Our earlier claim that it was missing is withdrawn."),
+ 'Q3': ("965", "Look at the Contact match notes. Some read \"Contact match: 965\" — only the three "
+        "characters typed. The phone number they came from is never shown. Now search 3286 and you "
+        "get \"Contact match: (264) 328-6723\", the whole number. THIS is the bug: two records "
+        "whose numbers both contain 965 draw identically."),
+ 'Q4': ("ZZLONGROW", "On the Assets tab the unit number leads the row. Useful — the spec just does "
+        "not mention it."),
+ 'Q5': ("KVQ-2870", "The vehicle comes back and the second line reads \"Matched: KVQ-2870\"."),
+ 'Q6': ("H8A3X9", "The customer comes back and the second line reads \"Matched: H8A3X9\"."),
+ 'Q7': ("I-1522", "The purchase order comes back reading I2-1522, and the second line reads "
+        "\"Number: I-1522\" so you can see why."),
+ 'Q8': ("Fibridge", "On Vendor Invoices the date shown is the received date, which is the one you "
+        "want."),
+ 'Q9': ("ZZNOUNIT", "A work order comes back and the unit number leads the second line when the "
+        "vehicle has one."),
+ 'Q10': ("9", "Type a single 9. The search runs and behaves normally."),
 }
 
 def build_questions(wb):

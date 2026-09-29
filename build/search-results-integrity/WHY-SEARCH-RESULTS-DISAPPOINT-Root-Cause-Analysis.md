@@ -1,5 +1,26 @@
 # Why search results disappoint — the root cause, measured and traced to the line
 
+> # 🔴 CORRECTION — 2026-09-29, after the QA lead tested this on staging
+>
+> **Sections 4 and 5 below were WRONG and are struck through.** They claimed that a row matching on
+> a field it does not display "cannot explain itself". It can, and it does: the product appends a
+> labelled note to the row's second line — `Contact match: 609-461-6502`, `Matched: KVQ-2870`,
+> `Number: I-1522`, `Unit: …`, `VIN: …` — with the typed part highlighted inside it.
+>
+> **How I got it wrong:** I measured the API response, read the row VARIANTS in
+> `searchRowVariants.ts`, and concluded the UI could not render what the payload did not carry. I
+> never opened the UI. The note is added one level up, in `SearchResultRow.vue`, and I did not read
+> that file. Rule 57 says the build gives us labels and the pass/fail verdict — I took neither, and
+> reasoned to a UI conclusion from a payload.
+>
+> **What survives, and it is the ONE real defect:** the note shows `match.highlight`, and that is
+> sometimes the **whole field value** and sometimes only the **characters you typed** (§3, which
+> stands and is now the whole story). The QA lead put it exactly right: *"we need to show the full
+> word/number and highlight the matching part."*
+>
+> The corrected picture is in §8.
+
+
 **Date:** 2026-09-29 · **Environment measured:** `app.staging.shopview.com`, workplace
 **Staging Heavy Duty - 9919** · **Build:** read at measurement time, recorded per finding
 **Code read:** `shopview` monorepo — `api/src/Search/**`, `app/src/components/ts/navigation/search/**`
@@ -95,7 +116,13 @@ reported symptom.
 
 ---
 
-## 4 · Root cause B — the matched field is often not in the row at all
+## ~~4 · Root cause B — the matched field is often not in the row at all~~  🔴 WITHDRAWN
+
+**This section is wrong.** The row DOES show the matched field, through the labelled
+note described in the correction above. The measurements in the table below are
+accurate about the API PAYLOAD and say nothing about what the row renders — which is
+the mistake. Kept, struck through, because the reasoning error is worth seeing.
+
 
 This is the larger one, and it is **structural rather than a coding slip**: for most entities the set
 of fields the query is matched against is much bigger than the set of fields the row displays. When
@@ -122,7 +149,14 @@ on it says why.**
 
 ---
 
-## 5 · A code-confirmed gap: a customer matched by phone shows no phone
+## ~~5 · A code-confirmed gap: a customer matched by phone shows no phone~~  🔴 WITHDRAWN
+
+**This section is wrong, and it was the headline claim.** A customer found by a phone
+number shows `Contact match: <the number>` on its second line — the QA lead's first
+screenshot shows exactly that. What I checked was that `item.fields.phone` is rendered
+only by the vendors variant, which is true and irrelevant: the contact-match note is
+added by `SearchResultRow.vue`, not by the variant.
+
 
 PRD §4 lists, for Customers: *"Displayed: customer name (primary), address line, open WO count badge
 (e.g. `12`), **telephone on hover**."*
@@ -180,22 +214,53 @@ to customers.
 
 ---
 
-## 8 · What this means for catching the next one
+## 8 · The corrected picture — what is actually true
 
-The family is defined by a single question, and it is the question every case in this folder asks:
+**The row explains itself.** `SearchResultRow.vue` builds the second line like this:
 
-> **If this row came back because of field X, can the user see field X — in full — on the row?**
+```js
+if (contactInfoMatch)                          → prepend "Contact match: <fragment>"
+else if (fragment is nowhere else on the row)  → append  "<Field label>: <fragment>"
+```
 
-Three things have to be true, and each has its own failure mode:
+The labels come from a map in `searchRowVariants.ts`: `Unit`, `VIN`, `Phone`, `Contact phone`,
+`Contact email`, `Part number`, `PO number`, `Technician`, `Advisor`, `Created by`, `Ordered by`,
+`Make`, `Model`, and `Matched` for anything unmapped. Verified on staging by the QA lead across
+Customers, Assets, Purchase Orders and Work Orders.
 
-| # | Must be true | Fails as | Cases |
-|---|---|---|---|
-| 1 | the matched field is **in the row payload** | "why is this here?" | Class C |
-| 2 | the row **renders** that field | §5 customer-phone gap | Class C, D |
-| 3 | the rendering is **complete, not clipped** | SV-10619, SV-10551 | Class A |
+**So there is ONE defect, not a family.** The note shows `match.highlight`, and
+`MatchDescriptorFactory::fragmentOf()` returns:
 
-And one consequence, which is the user's own example and the story's own sentence:
+- the **typed slice** when what you typed appears literally in the stored value — so typing `965`
+  against `857-496-5067` yields `Contact match: 965`, and the number itself is never shown;
+- the **whole value** when it does not appear literally — so typing `3286` against `(264) 328-6723`
+  yields `Contact match: (264) 328-6723`, the full number.
 
-| 4 | two records sharing the typed fragment are **distinguishable** | `123786` vs `185786` | Class B |
+Two records whose phone numbers both contain `965` therefore draw identically, which is precisely
+SV-10619 and SV-10551, and precisely the QA lead's `123786` / `185786` example.
 
-The suite is built from that grid: every tab × every matchable field × these four questions.
+**The fix is on the API side, and the front end is already built for it.** `labelled()` marks the
+fragment inside the text it is given, and `splitHighlight()` marks a substring inside a longer
+string. If `fragmentOf()` returned the **whole field value** and the descriptor carried the typed
+part separately, the row would read `Contact match: 857-496-5067` with `965` highlighted — which is
+what the QA lead asked for, in his words: *"we need to show the full word/number and highlight the
+matching part."*
+
+**The test that catches the next one** is therefore a single question, asked of every tab and every
+matchable field:
+
+> When this row came back because of field X, does the row show **the whole of X**, with the part
+> I typed marked inside it?
+
+Every case in this folder asks that. What changed on 2026-09-29 is that they now ASSERT it, instead
+of being held open on a question the product had already answered.
+
+## 9 · The lesson, which is the same one this suite is about
+
+I had a live session and seeded data, and I still answered a question about what a user SEES by
+reading what the server SENDS. That is the identical error the suite tests for — judging a row by
+its payload rather than by what it puts in front of a person — and the correction came from five
+screenshots taken by someone who simply typed the terms in.
+
+**Open the screen.** Rule 57 allows exactly two things to be taken from the build: the labels and
+the verdict. Both of those live on the screen, and neither can be derived from an API response.
