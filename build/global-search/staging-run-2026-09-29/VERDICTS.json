@@ -72,8 +72,12 @@
    "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: \"786\" → 8 rows, 7 labelled notes, 7 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
   },
   "146209": {
-   "v": "Blocked",
-   "why": "This case cannot be passed or failed as written, and the reason is the case, not the product.\nIts expected result asks that “each row shows the COMPLETE telephone, with the bit you typed highlighted inside it”. But the word it tells you to type, ZZLONGROW, is part of a customer NAME and matches no telephone anywhere; and the written requirement this suite quotes puts the telephone on hover, not on the row. So neither half of the expected result can be reached with the data the case gives, and a pass or a fail would be invented.\nWhat I saw anyway: three customers come back, and on all three the typed word is highlighted inside the full name. No telephone appears on any of them, and hovering does not bring one up.\nWhat needs to happen: the expected result needs rewording by whoever owns it. I have not touched it."
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "Run against the updated case, following its STEPS (“type 0900”).\nWhat I saw: four of the five customer rows read “Contact match: 0900” — only what I typed. One row does show a whole number, “467-860-9009”, because the dashes stop the four digits appearing together inside it.\nWhy that is a fail: the case asks for the COMPLETE telephone with the typed part marked inside it.\nOne thing to fix in the case text: the “TYPE THIS INTO THE SEARCH BOX” line still says ZZLONGROW, left over from before. The steps say 0900 and that is what makes the case work — the old line should go, or a tester will type the wrong thing."
   },
   "146210": {
    "v": "Failed",
@@ -116,8 +120,12 @@
    "why": "What I did: typed the word the case gives, then — where that word is the WHOLE value — also typed part of it, because a whole word cannot show this problem either way.\nWhat I saw: the second line of the row gives a labelled note saying which detail matched, but the note repeats back only the letters I typed instead of the whole detail.\nMeasured: as-written \"555-222-3333\" → 1 notes; fragment \"3333\" → 6 notes, 3 showing only what was typed\nWhy that matters: two different records end up looking exactly the same on screen, so you cannot tell them apart, or even tell that they are different, without opening both.\nHow I know the reading is sound: in the same session another case shows a whole email address correctly, and typing 3286 shows whole telephone numbers on every row — so the screen does show full values when it has them."
   },
   "146216": {
-   "v": "Passed",
-   "why": "Typed part of a contact's email address and opened the Customers tab. The row's second line shows the whole address, not just the part I typed. This is the one detail in this group that behaves correctly."
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "CORRECTION to the result I recorded earlier today, which said Passed. That was wrong and the fault was in my check, not in the case: I only tested that the note was different from what I typed, which is not the same as the note showing the whole value.\nWhat I did: typed part of a contact's email address (zzautotest.nophone@) and opened the Customers tab.\nWhat I saw: the note reads “Contact match: ZZAUTOTEST” — the contact’s first name. Typing “nophone” instead gives “Contact match: NoPhone”, the surname. Neither is the email address that actually matched. Typing the WHOLE address does show the whole address, but a whole word cannot show this problem either way.\nWhy that is a fail: the case asks that a match on an email address shows the full email on the row. It does not — it shows a different detail of the contact instead, so the reader is told the record matched on something it did not."
   },
   "146217": {
    "v": "Failed",
