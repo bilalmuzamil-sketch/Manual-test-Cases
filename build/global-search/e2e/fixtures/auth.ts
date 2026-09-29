@@ -37,6 +37,26 @@ function proxy() {
 export type Session = { browser: Browser; ctx: BrowserContext; page: Page };
 
 export async function signIn(route = '/work-orders', device?: string): Promise<Session> {
+  // 🔴 STAGING SIGNS IN DIFFERENTLY, AND WE ALREADY HAVE THAT WORKING. On a QA branch the cookies
+  // WERE the session; on staging they only reach the sign-in screen and the app mints the session
+  // when the DEV MODE button is clicked. build/testing-tools/staging-cookie-boot.mjs does that,
+  // with the retries and the cookie scoping already proven, and is what every probe in the
+  // 28-29 September run used. Reuse it rather than keeping a second copy that drifts (Rule 97).
+  if (/staging\./.test(APP)) {
+    const mod: any = await import('../../../testing-tools/staging-cookie-boot.mjs');
+    // Sign in on a route staging definitely has, THEN go where the test asked. Handing the
+    // requested route straight to the sign-in page breaks the sign-in itself when that route does
+    // not exist here - this suite asks for /work-orders and staging spells it /workorders, and the
+    // symptom is "no DEV MODE button", which reads as a broken environment and is not.
+    const b = await mod.boot('/customers', { key: process.env.GS_LOGIN_AS || 'admin', settle: 11_000 });
+    b.page.setDefaultTimeout(60_000);
+    if (route && route !== '/customers') {
+      await b.page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+      await b.page.waitForTimeout(3_000);
+    }
+    return { browser: b.browser, ctx: b.ctx, page: b.page };
+  }
+
   const jar = readCookies();
   const browser = await chromium.launch({
     executablePath: process.env.CHROME_BIN || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
@@ -55,17 +75,46 @@ export async function signIn(route = '/work-orders', device?: string): Promise<S
   const mk = (name: string, value: string) =>
     [{ name, value, domain: APIH, path: '/', secure: true, sameSite: 'None' as const },
      { name, value, domain: appHost, path: '/', secure: true, sameSite: 'None' as const }];
-  await ctx.addCookies([...mk('sv_sso_session', jar.sv_sso_session!), ...mk('PHPSESSID', jar.PHPSESSID!)]);
+  const cookies = [...mk('sv_sso_session', jar.sv_sso_session!), ...mk('PHPSESSID', jar.PHPSESSID!)];
+  if (jar.cf_clearance) cookies.push(...mk('cf_clearance', jar.cf_clearance));
+  await ctx.addCookies(cookies);
 
   const page = await ctx.newPage();
   page.setDefaultTimeout(60_000);
   await page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(3_000);
 
-  const who = await api(page, 'GET', '/api/auth/me/fe-permissions');
+  let who = await api(page, 'GET', '/api/auth/me/fe-permissions');
+
+  // 🔴 STAGING NEEDS ONE MORE STEP THAN A QA BRANCH DID. There the cookies alone were a session;
+  // here they only get you as far as the sign-in screen, and the app mints the real session when
+  // the DEV MODE quick-login button is clicked. Without this the API answers 401 sso_required on
+  // the very first call, which reads as "the cookies have aged out" and is nothing of the kind.
+  // Measured 29 September 2026, and it is why this suite could not run on staging at all.
+  if (who.status !== 200) {
+    const key = process.env.GS_LOGIN_AS || 'admin';
+    const label = key === 'tech' ? 'Tech' : 'Admin';
+    for (let attempt = 1; attempt <= 3 && who.status !== 200; attempt++) {
+      // Sign in at /login on its own. Carrying the requested route into the redirect made the
+      // login itself fail whenever that route does not exist on this environment - staging spells
+      // the work-order list /workorders, and this suite asks for /work-orders.
+      await page.goto(`${APP}/login`, { waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(2_000);
+      const btn = page.locator(`button:has-text("${label}")`).first();
+      for (let w = 0; w < 20 && !(await btn.count()); w++) await page.waitForTimeout(1_500);
+      if (await btn.count()) { await btn.click().catch(() => {}); await page.waitForTimeout(9_000); }
+      who = await api(page, 'GET', '/api/auth/me/fe-permissions');
+    }
+    if (who.status === 200) {
+      await page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(3_000);
+    }
+  }
+
   if (who.status !== 200) {
     throw new Error(`Signed out: the API answered ${who.status} ${JSON.stringify(who.body).slice(0, 120)}. ` +
-                    `The cookies have aged out — paste a fresh pair.`);
+                    `Cookies are in ${process.env.GS_COOKIES || 'the default path'} — refresh them, and check ` +
+                    `the local relay is up (build/testing-tools/ensure_bridge.sh).`);
   }
   return { browser, ctx, page };
 }
