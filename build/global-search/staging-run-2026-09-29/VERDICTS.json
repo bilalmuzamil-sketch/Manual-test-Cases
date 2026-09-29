@@ -58,6 +58,66 @@
   "146206": {
    "v": "Blocked",
    "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, not as a pass or a fail, and what follows is only what was seen.\n\nWhat I did: typed “786” into search and opened the Work orders tab.\nWhat I saw: Typed 786, the same term as the case above. Eight work orders come back; two of them (S2-16865 and S2-14703) end their second line with “Part number: 786”, highlighted. So on this build the row does explain itself for this field.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146209": {
+   "v": "Blocked",
+   "why": "This case cannot be passed or failed as written, and the reason is the case, not the product.\nIts expected result asks that “each row shows the COMPLETE telephone, with the bit you typed highlighted inside it”. But the word it tells you to type, ZZLONGROW, is part of a customer NAME and matches no telephone anywhere; and the written requirement this suite quotes puts the telephone on hover, not on the row. So neither half of the expected result can be reached with the data the case gives, and a pass or a fail would be invented.\nWhat I saw anyway: three customers come back, and on all three the typed word is highlighted inside the full name. No telephone appears on any of them, and hovering does not bring one up.\nWhat needs to happen: the expected result needs rewording by whoever owns it. I have not touched it."
+  },
+  "146210": {
+   "v": "Failed",
+   "tickets": [
+    "SV-10619",
+    "SV-10551"
+   ],
+   "why": "What I did: the word this case supplies, ZZLONGROW, sits at the START of the customer name, where a cut from the right can never reach it. This case’s own BEFORE YOU START asks for a match near the END of the value, so I typed 123786, which is the tail of the same customer’s name. The expected result was not changed.\nWhat I saw: the customer comes back and the digits I typed are not on the row — the name is cut short with a “…” before it gets to them.\nHow I know it is not my screen: the search panel is a fixed 640 pixels wide at every screen size I tried, from 1280 up to 2560."
+  },
+  "146211": {
+   "v": "Passed",
+   "why": "Typed ZZLONGROW, opened the Customers tab. On all three rows the full name is there and the typed word is marked inside it — the marking sits on top of the text rather than replacing it. Putting the marked and unmarked pieces back together gives the complete name with nothing lost."
+  },
+  "146212": {
+   "v": "Passed",
+   "why": "Typed ZZLONGROW, opened the Customers tab. Three customers come back, two of them with almost the same long name. They can still be told apart on screen: one ends 123786 and the other 185786, and although the very end of each name is cut off, the digits that separate them are still visible.\nWorth recording: my first reading of this said the two rows were identical. That was my measuring tool, not the product — it was throwing away a whole piece of text whenever any part of it was cut off. Only about three characters are actually hidden. The tool was corrected and the check then passed."
+  },
+  "146222": {
+   "v": "Failed",
+   "why": "What I did: the written requirement says a customer row shows four things — the name, the address, a count of open work orders, and the telephone when you hover over the row. I checked them on a customer that has all four on file: 7 Star Truck Repair, whose record carries the phone number 609-461-6502.\nWhat I saw: three of the four are there — the name, “30 open”, and the address. The telephone never appears. Hovering over the row changes nothing at all.\nHow I know the hover worked: the row registers as hovered while the pointer is on it, and the same reading picks up the “30 open” marker beside it. So the row is being read correctly and the telephone is genuinely not shown.\nOne correction to my own first reading: I initially also reported the open-work-order count as missing. That was wrong — I was looking for it in the wrong place, and the customers I first tried simply had no open work orders to count. The count is present and correct."
+  },
+  "146223": {
+   "v": "Passed",
+   "why": "Typed ZZPREFIY, opened the Customers tab. Four customers come back. One is an exact match; the other three are near misses (Bolton ZZPREFIX Services, ZZPREFIX Freight Ltd, ZZPREFOX Cartage) and every one of them is clearly drawn as one — each carries a “≈” and the words “close match:” in front of the highlighted name. None of them could be mistaken for an exact match."
+  },
+  "146214": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “609-461-6502” into search and opened the Customers tab.\nWhat I saw: One customer comes back, 7 Star Truck Repair, and the row says why: it reads “Contact match: 609-461-6502” with the number highlighted. Worth noting for whoever answers the question: the row calls it a CONTACT match, although this number is also on the customer’s own record.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146215": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “555-222-3333” into search and opened the Customers tab.\nWhat I saw: One customer comes back, 4 Star Truck Repair, and the row says why: “Contact match: 555-222-3333”, highlighted.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146216": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “zzautotest.nophone@staging.shopview.local” into search and opened the Customers tab.\nWhat I saw: One customer comes back, 4 Star Truck Repair, and the row says why: “Contact match:” followed by the whole email address, highlighted.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146217": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “Savannah” into search and opened the Customers tab.\nWhat I saw: Eight customers come back and they are not all the same. Some say “Contact match: Savannah”, which explains itself. Others came back because Savannah is part of their ADDRESS (“3222 Savannah Place”, “East Savannah”) and those rows show the word in the address, which also explains itself.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146218": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “Apt. 199” into search and opened the Customers tab.\nWhat I saw: Three customers come back. One shows the words in its address. One says “Address: Apt. 199” as a separate label. The third is a near miss and is drawn as one: “≈ close match: Apt. 413”.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146219": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “Priscillabury” into search and opened the Customers tab.\nWhat I saw: One customer comes back, 7 Star Truck Repair, and the city is visible in the address on the row: “305 Harris Cape, Priscillabury, Nunavut”.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146220": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “ZZQUEBEXA” into search and opened the Customers tab.\nWhat I saw: One customer comes back, Rowcheck Provincial Cartage, and the province is visible in the address on the row: “21 Result Row Way, Fernvale, ZZQUEBEXA”.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
+  },
+  "146221": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results: “THIS CASE IS HELD: the specification does not say what should happen here. Do not pass or fail it. Record what you saw.” So it is recorded as Blocked, and what follows is only what was seen.\n\nWhat I did: typed “H8A3X9” into search and opened the Customers tab.\nWhat I saw: One customer comes back. The postal code is on the customer’s record but the row shows the street, town and province only, so on this build the row does NOT show the postal code you typed.\n\nWhat this is waiting on: a decision on whether a row must say which field the match came from. Until that is answered this case cannot be judged either way."
   }
  }
 }

@@ -1,0 +1,17 @@
+{
+ "case": "C146222",
+ "test": 3298131,
+ "run": 415,
+ "verdict": "Failed",
+ "claim": "The customer result row never shows the telephone, on hover or otherwise. PRD v1.5 section 4 lists it as one of the four things the row displays. Measured on “7 Star Truck Repair”, whose own record carries Phone 609-461-6502: the row shows the name, the open work-order count (“30 open”) and the address, and hovering it changes nothing at all. The other three fields are present.",
+ "instrument": {
+  "pointer_parked_and_verified": true,
+  "selectors_not_pre_chosen": true,
+  "positive_control": "Two, both on the SAME row type as the claim. (1) The reader finds the badge on these customer rows — “30 open” and “62 open” — so it can see a right-hand element when one is drawn. (2) The pointer's arrival is confirmed by .search-row:hover answering true while it is on the row, asserted in the test, so ‘hover adds nothing’ is not ‘the pointer never got there’.",
+  "independent_repeat": "Varied the record, not the input: hovered the seeded ZZLONGROW customers and the unrelated live customer 7 Star Truck Repair, in separate panel openings, with different queries. Neither reveals a telephone.",
+  "state_recorded": "Admin on app.staging.shopview.com, build v26.39.1-97cad2c, 29 Sep 2026. Viewport 1440x900; the search modal is a FIXED 640px panel at every width from 1280 to 2560. Pointer moved to 0,0 and read back with document.elementFromPoint before each read and again after the tab switch; where a hover was needed the pointer's arrival was confirmed with .search-row:hover WHILE it was there. Each query typed fresh into an emptied box; the Customers tab opened deliberately, because the All tab lists only five rows per group.",
+  "what_would_make_this_my_fault": "Three ways, all ruled out. (1) Reading the wrong badge selector — this REALLY HAPPENED and produced a false second finding: customer rows use .search-row__badge while work order rows use a test id, so the first reading said the count badge was missing when “30 open” was on screen. The selector now covers every variant and the count badge is recorded as PRESENT. (2) Judging a customer that has no telephone to show — ruled out by opening the customer record and reading Phone 609-461-6502 off it. (3) A row with nothing to display in a field being taken as a missing field — which is why the seeded ZZLONGROW customers, who have no open work orders, are not used here."
+ },
+ "existing_ticket": [],
+ "note": "NEW — not covered by SV-10619 or SV-10551, which are both about truncation. Owning story SV-9170 reads ‘QA Complete’, which is not one of the two statuses Rule 112 permits a defect to be filed against; that is raised with the QA lead rather than decided here. No ticket filed."
+}

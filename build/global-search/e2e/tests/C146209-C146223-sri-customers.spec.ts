@@ -117,15 +117,31 @@ test('C146212 — two customers sharing the typed text can be told apart from th
   expect(dupes, `these rows read identically to a person: ${JSON.stringify(dupes)}`).toHaveLength(0);
 });
 
+/**
+ * C146222 — judged on a customer that MEETS THE CASE'S PRECONDITION.
+ *
+ * 🔴 THE SEEDED ZZLONGROW CUSTOMERS CANNOT ANSWER THIS CASE. It asks for "any customer that search
+ * returns, WHICH HAS A VALUE IN EACH FIELD named in the requirement" — and those customers have no
+ * open work orders, so no count badge is drawn. Judging them produced "the customer row has no
+ * open WO count badge", which is false: a customer WITH open work orders shows "30 open" plainly.
+ * A row that legitimately has nothing to show in a field cannot be evidence that the field is
+ * missing. So this uses a customer that has both an open-WO count and a telephone on file.
+ */
+const BADGED_CUSTOMER = '7 Star Truck Repair';   // 30 open work orders, telephone 609-461-6502
+
 test('C146222 — the customer row shows every field the requirement names', async () => {
   // PRD v1.5 §4: "Displayed: customer name (primary), address line, open WO count badge (e.g. 12),
   // telephone on hover."
-  const r = rows[0];
+  const found = await groupRows(s.page, BADGED_CUSTOMER, TAB);
+  expect(found.length, `the fixture customer "${BADGED_CUSTOMER}" is gone from this environment`)
+    .toBeGreaterThan(0);
+  const r = found[0];
   const hov = await hoverRow(s.page, 0);
+  console.log(`C146222 row: "${r.text}" badge=${JSON.stringify(r.badge)}`);
 
-  // ── CONTROL 1: can this reader see a badge at all? A Work orders row draws one.
-  const woRows = await groupRows(s.page, TERM, 'Work orders');
-  const badgeControl = woRows.map((x) => x.badge).filter(Boolean);
+  // ── CONTROL 1: on THIS row type, can the reader see a badge? (A control on a different row
+  // type is not a control — that mistake is written up in fixtures/rowshape.ts.)
+  const badgeControl = found.map((x) => x.badge).filter(Boolean);
   // ── CONTROL 2: did the pointer actually reach the row? Answered by hoverRow WHILE hovering —
   // asking here would answer false every time, because the pointer has already been parked again.
   const hoverReached = hov.reached;
@@ -134,8 +150,9 @@ test('C146222 — the customer row shows every field the requirement names', asy
   console.log('C146222 hover gained:', JSON.stringify(hov.gained), '| pointer reached row:', hoverReached);
 
   expect(badgeControl.length,
-    'CONTROL FAILED: no badge found on a Work orders row either, so "the customer row has no badge" ' +
-    'is a statement about this reader. Fix the reader before reporting anything.').toBeGreaterThan(0);
+    'CONTROL FAILED: the reader found no badge on ANY customer row returned here, so anything it ' +
+    'says about a missing badge is about the reader. Fix the reader before reporting it.')
+    .toBeGreaterThan(0);
 
   expect(hoverReached,
     'CONTROL FAILED: the pointer never actually landed on the row, so "hovering shows no telephone" ' +

@@ -187,7 +187,15 @@ export async function groupRows(page: Page, term: string, tab: string): Promise<
       const row = r as HTMLElement;
       const title = row.querySelector('.search-row__title') as HTMLElement | null;
       const meta = row.querySelector('.search-row__meta') as HTMLElement | null;
-      const badgeEl = row.querySelector('[data-test-id="search_row_status_badge"]') as HTMLElement | null;
+      // 🔴 EVERY BADGE CLASS THE ROW VARIANTS USE, NOT THE FIRST ONE THAT WORKED.
+      // Work-order rows carry [data-test-id="search_row_status_badge"] ("Estimate"); CUSTOMER rows
+      // use `.search-row__badge` for the open-WO count ("30 open") and have no test id at all.
+      // Reading only the work-order selector reported badge=null on every customer row, and the
+      // "control" — finding a badge on a WORK ORDER row — passed while the selector was still
+      // wrong for the row being judged. It nearly became "the customer row has no count badge",
+      // which is false. A control belongs on the SAME row type as the claim. Measured 29 Sep 2026.
+      const badgeEl = row.querySelector(
+        '[data-test-id="search_row_status_badge"], .search-row__badge, .q-badge') as HTMLElement | null;
       const t = lineOf(title), m = lineOf(meta);
       return {
         index,

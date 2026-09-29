@@ -1,0 +1,20 @@
+{
+ "case": "C146210",
+ "test": 3298119,
+ "run": 415,
+ "verdict": "Failed",
+ "claim": "Typing 123786 returns the customer “ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786” with the matched digits clipped off the end of the line — the row comes back and the typed value is not on it.",
+ "instrument": {
+  "pointer_parked_and_verified": true,
+  "selectors_not_pre_chosen": true,
+  "positive_control": "In the same session the same reader reports the ZZLONGROW highlight as VISIBLE on all three customer rows, and reports clipped=false on the short row “ZZLONGROW Identical Name Cartage”. So both ‘visible’ and ‘clipped’ vary with the row rather than being constants the reader returns.",
+  "independent_repeat": "Varied the query rather than replaying it: the same truncation was reached from ZZLONGROW (match at the start, survives) and from 123786 (match in the tail, does not), and the equivalent pair Fernvale / Greater Fernvale behaves the same way on the work-order rows.",
+  "state_recorded": "Admin on app.staging.shopview.com, build v26.39.1-97cad2c, 29 Sep 2026. Viewport 1440x900; the search modal is a FIXED 640px panel at every width from 1280 to 2560. Pointer moved to 0,0 and read back with document.elementFromPoint before each read and again after the tab switch; where a hover was needed the pointer's arrival was confirmed with .search-row:hover WHILE it was there. Each query typed fresh into an emptied box; the Customers tab opened deliberately, because the All tab lists only five rows per group.",
+  "what_would_make_this_my_fault": "A narrow window. Ruled out by measuring the panel at 1280/1440/1920/2560 — it is a fixed 640px and the line box does not change. Also: counting a partly-clipped span as wholly invisible, which is a real bug this reader HAD and which is fixed — visible text is now measured character by character with a Range, and C146212 went from a false ‘these rows are identical’ to a correct pass once it was."
+ },
+ "existing_ticket": [
+  "SV-10619",
+  "SV-10551"
+ ],
+ "note": "No new ticket proposed: SV-10619 is open and is this defect."
+}
