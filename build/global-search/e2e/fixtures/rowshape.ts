@@ -283,6 +283,13 @@ export type PanelShape = {
 export async function panelShape(page: Page, term: string): Promise<PanelShape> {
   await parkPointer(page);
   await typeQuery(page, term);
+  // 🔴 LAND ON "All" DELIBERATELY — THE TAB IS STICKY ACROSS SEARCHES.
+  // Whatever tab the last search left open is still selected when the next query is typed, so a
+  // reader that does not reset reads a SCOPED tab and reports "no groups on the All tab". That is
+  // what made C146287 and C146291 go red: both were measuring the Parts tab a previous test had
+  // opened. fixtures/search.ts has always done this; this reader was written without it.
+  await clickTab(page, 'All');
+  await page.waitForTimeout(1_200);
   let last = '', shape: PanelShape | null = null;
   for (let i = 0; i < 8; i++) {
     await page.waitForTimeout(1_500);

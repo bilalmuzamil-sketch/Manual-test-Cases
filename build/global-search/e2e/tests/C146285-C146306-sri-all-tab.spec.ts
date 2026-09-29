@@ -193,12 +193,19 @@ test('C146297 — typing a status word returns nothing because of status', async
   for (const w of ['Approved', 'Invoiced', 'Unpaid', 'Ordered']) {
     const rows = await groupRows(s.page, w, 'Work orders');
     // A row is legitimate only if the word is in its TEXT other than the status badge.
-    found[w] = rows.map((r) => ({ text: r.text.slice(0, 90), badge: r.badge,
-      wordInName: new RegExp(w, 'i').test(r.title.text) }));
+    // 🔴 THE ROW'S OWN NOTE SAYS WHY IT CAME BACK, AND THE CASE ALLOWS THAT REASON.
+    // "Records whose name genuinely contains the word are fine" — and so is a line item whose
+    // TEXT contains it. Judging on the title and badge alone flagged twenty work orders whose
+    // note reads "Line item: approved": they matched a line item's wording, not their status.
+    const note = (r: any) => r.metaParts.find((p: string) => /^[A-Za-z][A-Za-z /]{2,30}:\s/.test(p)) ?? '';
+    found[w] = rows.map((r) => ({ text: r.text.slice(0, 90), badge: r.badge, note: note(r),
+      wordInName: new RegExp(w, 'i').test(r.title.text),
+      wordInMatchedField: new RegExp(w, 'i').test(note(r)) }));
   }
   rec('C146297', found);
   const byStatusOnly = Object.entries(found).flatMap(([w, rows]: any) =>
-    rows.filter((r: any) => !r.wordInName && new RegExp(w, 'i').test(r.badge ?? ''))
+    rows.filter((r: any) => !r.wordInName && !r.wordInMatchedField
+                            && new RegExp(w, 'i').test(r.badge ?? ''))
         .map((r: any) => `${w}: ${r.text}`));
   expect(byStatusOnly,
     `these came back only because of their status, not their name: ${JSON.stringify(byStatusOnly)}`)
