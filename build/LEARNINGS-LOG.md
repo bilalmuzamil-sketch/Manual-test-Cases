@@ -4465,3 +4465,39 @@ restarts when the egress it logged differs from the current one.
 
 **Run it before concluding anything from a navigation failure**, and never write up "the site is
 down" or "the environment is gone" off the back of one.
+
+### L0239 — the gate for this already existed and I never ran it; a gate nobody runs is not a gate
+
+**2026-09-29, after the QA lead said he wants no mistakes from the next project onward.**
+
+Looking for what would stop a repeat, I found `build/testing-tools/finding_gate.py` — written on
+**15 September**, for exactly these mistakes. Its own opening examples are, word for word:
+
+> "Enter opens a record further down the list" → my mouse pointer, left where it had clicked
+> "the highlight starts on the 8th row" → the same pointer
+> "checked twice, so not a one-off" → one observation and one replay, because the app remembers the query
+
+**I made all three again on 28–29 September.** The tooling was not missing. I never ran it — not once
+in a pass that produced sixteen Failed verdicts.
+
+Its six questions would have caught every error of the pass:
+
+| Question it asks | What it would have caught |
+|---|---|
+| `pointer_parked_and_verified` | the Enter / highlight finding, by name |
+| `positive_control` — what shows the instrument CAN see the thing when it IS there | **C44854**: a part put on the work order that already sat SECOND from a neutral page, so a demotion had nowhere to show. Identical orders proved nothing, and I called it broken |
+| `independent_repeat` — VARY the suspected cause, do not replay the same input | the three contradictory frequency claims |
+| `state_recorded` | the pointer, the prior queries, the page the comparison was run from |
+| `what_would_make_this_my_fault` | all of them |
+
+**THE FIX IS NOT ANOTHER TOOL.** It is that the gate is now impossible to skip: the result writer
+**refuses to record a Failed** unless `finding_gate.py --check` passes for that case, and the
+refusal is proved — writing an ungated failure is rejected, not warned about. Evidence goes beside
+the verdict as `evidence/C<case>.json` with its `instrument` block.
+
+**The general lesson, which is the one that matters:** when a pass goes wrong, look first for the
+guard that already exists. This repo has `blocker_gate.py`, `probe_guard.mjs`, `finding_gate.py`,
+`plain_check.py`, `verify_suite.py`, `check_runnable_cases.py` — every one written after a specific
+failure. **Adding a seventh is easier than running the six, and worth far less.** Before building
+any new check, grep `build/testing-tools/` for the one that is already there and ask why it did not
+run.
