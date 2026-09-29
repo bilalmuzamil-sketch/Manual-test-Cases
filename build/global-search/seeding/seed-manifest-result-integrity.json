@@ -1,0 +1,1466 @@
+{
+ "environment": {
+  "workplace_name_hint": "Staging Heavy Duty - 9919",
+  "_why": "Overridden by SEED_WORKPLACE; this is the hint for staging."
+ },
+ "keyword_register": {
+  "twin": "ZZLONGROW",
+  "hidden": "ZZHIDDEN",
+  "soft_typed": "ZZSOFTHIT",
+  "soft_near_miss": "ZZSOFTHIY",
+  "no_unit": "ZZNOUNIT",
+  "province": "ZZQUEBEXA",
+  "_measured": "each returned 0 rows on staging 2026-09-29, against a live control ('Gibson' -> 16 rows)"
+ },
+ "records": [
+  {
+   "key": "ri_cust_twin_a",
+   "type": "Customer",
+   "serves": [
+    "CUST-A1",
+    "CUST-A2",
+    "CUST-A3",
+    "CUST-B1",
+    "ALL-G2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "address": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "TWIN A. A long name whose ONLY difference from its sibling is the trailing digits. If the row truncates, the tester cannot tell it from TWIN B - which is the defect, demonstrating itself."
+  },
+  {
+   "key": "ri_cust_twin_b",
+   "type": "Customer",
+   "serves": [
+    "CUST-A1",
+    "CUST-A2",
+    "CUST-A3",
+    "CUST-B1",
+    "ALL-G2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 185786",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 185786",
+     "address": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "TWIN B. Identical to A up to the last six characters."
+  },
+  {
+   "key": "ri_contact_twin_a",
+   "type": "Contact",
+   "depends_on": "ri_cust_twin_a",
+   "serves": [
+    "WO-B1",
+    "WO-B2",
+    "PS-B1",
+    "PS-B2"
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "ri_cust_twin_a",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "RowTwin"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "RowTwin",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "rowtwin@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "ri_cust_twin_a"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "_why": "Required by /api/vehicles/create - customer_id there is the CONTACT, not the company."
+  },
+  {
+   "key": "ri_cust_same_b",
+   "type": "Customer",
+   "serves": [
+    "CUST-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "address_1",
+    "value": "88 Different Street",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZLONGROW Identical Name Cartage",
+     "address": "88 Different Street",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "Kept as a single record. Its sibling cannot be created - see the note above - so this one serves only as a normal customer; CUST-B2 is marked not-applicable rather than unseeded."
+  },
+  {
+   "key": "ri_vend_twin_a",
+   "type": "Vendor",
+   "serves": [
+    "VEND-A1",
+    "VEND-A2",
+    "VEND-A3",
+    "VEND-B1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 123786",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 123786",
+     "address_1": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "TWIN A, vendors."
+  },
+  {
+   "key": "ri_vend_twin_b",
+   "type": "Vendor",
+   "serves": [
+    "VEND-A1",
+    "VEND-A2",
+    "VEND-A3",
+    "VEND-B1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 185786",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 185786",
+     "address_1": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "TWIN B, vendors."
+  },
+  {
+   "key": "ri_vend_same_a",
+   "type": "Vendor",
+   "serves": [
+    "VEND-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "address_1",
+    "value": "4 Sameface Road",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "4 Sameface Road",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "B2 pair, vendors: same name, different address. Found by ADDRESS for the same reason."
+  },
+  {
+   "key": "ri_vend_same_b",
+   "type": "Vendor",
+   "serves": [
+    "VEND-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "address_1",
+    "value": "88 Different Street",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "88 Different Street",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "B2 pair, vendors: the second one."
+  },
+  {
+   "key": "ri_part_twin_a_cat",
+   "type": "CataloguePart",
+   "serves": [
+    "PART-A1",
+    "PART-A2",
+    "PART-A3",
+    "PART-B1",
+    "PART-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZLONGROW-123786",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "part_number": "ZZLONGROW-123786",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "The DESCRIPTION is identical to its sibling and the PART NUMBER is the only difference - so the bold line cannot tell them apart and the second line must."
+  },
+  {
+   "key": "ri_part_twin_a_inv",
+   "type": "InventoryPart",
+   "depends_on": "ri_part_twin_a_cat",
+   "serves": [
+    "PART-A1",
+    "PART-B1",
+    "PART-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZLONGROW-123786",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 4,
+     "cost": 50.0,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 100.0
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZLONGROW-123786",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 4
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "Stock row. A catalogue part with NO inventory row is invisible to search, which has produced a false PASS in this estate before."
+  },
+  {
+   "key": "ri_part_twin_b_cat",
+   "type": "CataloguePart",
+   "serves": [
+    "PART-A1",
+    "PART-A2",
+    "PART-A3",
+    "PART-B1",
+    "PART-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZLONGROW-185786",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "part_number": "ZZLONGROW-185786",
+     "tags": [
+      "ZZAUTOTEST"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "_why": "The DESCRIPTION is identical to its sibling and the PART NUMBER is the only difference - so the bold line cannot tell them apart and the second line must."
+  },
+  {
+   "key": "ri_part_twin_b_inv",
+   "type": "InventoryPart",
+   "depends_on": "ri_part_twin_b_cat",
+   "serves": [
+    "PART-A1",
+    "PART-B1",
+    "PART-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZLONGROW-185786",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 4,
+     "cost": 50.0,
+     "tags": [],
+     "min": 5,
+     "max": 200,
+     "sell_price": 100.0
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZLONGROW-185786",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 4
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "cost",
+    "sell_price"
+   ],
+   "_why": "Stock row. A catalogue part with NO inventory row is invisible to search, which has produced a false PASS in this estate before."
+  },
+  {
+   "key": "ri_asset_twin_a",
+   "type": "Vehicle",
+   "depends_on": "ri_cust_twin_a",
+   "serves": [
+    "ASSET-A1",
+    "ASSET-A2",
+    "ASSET-A3",
+    "ASSET-B1",
+    "ASSET-B2",
+    "WO-B1",
+    "WO-B2",
+    "PS-B1",
+    "PS-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZRIASSETVIN00001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Trucks",
+     "model_name": "Longhauler",
+     "year": 2021,
+     "vin": "ZZRIASSETVIN00001",
+     "unit": "ZZLONGROW-123786",
+     "licence_plate": "ZZLONGROW-123786"
+    },
+    "inject": {
+     "customer_id": "ri_contact_twin_a",
+     "company_id": "ri_cust_twin_a"
+    }
+   },
+   "verify": [
+    "vin"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name",
+    "licence_plate"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "Same year/make/model as its sibling, so the bold line is IDENTICAL and only the unit number separates them - the exact shape SV-10551 complains about."
+  },
+  {
+   "key": "ri_asset_twin_b",
+   "type": "Vehicle",
+   "depends_on": "ri_cust_twin_a",
+   "serves": [
+    "ASSET-B1",
+    "ASSET-B2",
+    "WO-B1",
+    "WO-B2",
+    "PS-B1",
+    "PS-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZRIASSETVIN00002",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Trucks",
+     "model_name": "Longhauler",
+     "year": 2021,
+     "vin": "ZZRIASSETVIN00002",
+     "unit": "ZZLONGROW-185786",
+     "licence_plate": "ZZLONGROW-185786"
+    },
+    "inject": {
+     "customer_id": "ri_contact_twin_a",
+     "company_id": "ri_cust_twin_a"
+    }
+   },
+   "verify": [
+    "vin"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name",
+    "licence_plate"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "The second twin. Two work orders and two part sales hang off this pair so the Work Orders and Part Sales tabs get the story SV-9170 actually tells: two jobs for ONE customer, told apart only by the vehicle."
+  },
+  {
+   "key": "ri_cust_hidden_owner",
+   "type": "Customer",
+   "serves": [
+    "PS-C1",
+    "PS-C2",
+    "ALL-G1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Hidden Fields Holdings",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Hidden Fields Holdings",
+     "address": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "A deliberately NEUTRAL name: it must not appear in the Customers group, or a tester cannot tell which record answered."
+  },
+  {
+   "key": "ri_contact_hidden",
+   "type": "Contact",
+   "depends_on": "ri_cust_hidden_owner",
+   "serves": [
+    "PS-C1",
+    "PS-C2",
+    "ALL-G1"
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "ri_cust_hidden_owner",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "RowHidden"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "RowHidden",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "rowhidden@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "ri_cust_hidden_owner"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "_why": "Required by /api/vehicles/create."
+  },
+  {
+   "key": "ri_asset_hidden_vin",
+   "type": "Vehicle",
+   "depends_on": "ri_cust_hidden_owner",
+   "serves": [
+    "PS-C2",
+    "ASSET-C1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZHIDDENVIN0000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Motors",
+     "model_name": "Quietline",
+     "year": 2021,
+     "vin": "ZZHIDDENVIN0000001"
+    },
+    "inject": {
+     "customer_id": "ri_contact_hidden",
+     "company_id": "ri_cust_hidden_owner"
+    }
+   },
+   "verify": [
+    "vin"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name",
+    "licence_plate"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "Carries the keyword ONLY in its VIN, and no unit number at all, so a hit can be attributed to the VIN and to nothing else. The Assets row does not display a VIN - that is the point."
+  },
+  {
+   "key": "ri_asset_nounit",
+   "type": "Vehicle",
+   "depends_on": "ri_cust_hidden_owner",
+   "serves": [
+    "ALL-G1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZRINOUNITVIN0001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "ZZNOUNIT Trucks",
+     "model_name": "Plainline",
+     "year": 2021,
+     "vin": "ZZRINOUNITVIN0001"
+    },
+    "inject": {
+     "customer_id": "ri_contact_hidden",
+     "company_id": "ri_cust_hidden_owner"
+    }
+   },
+   "verify": [
+    "vin"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name",
+    "licence_plate"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "NO unit number, so the work order row must fall back to year/make/model standing alone - the one fallback PRD section 4 actually states."
+  },
+  {
+   "key": "ri_vend_hidden",
+   "type": "Vendor",
+   "serves": [
+    "VEND-C1",
+    "VEND-C2",
+    "VEND-C4",
+    "VEND-C5"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Quiet Fields Supply",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "Rowcheck Quiet Fields Supply",
+     "address_1": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "zzhidden.vendor@staging.shopview.local",
+     "credit_term": "Net 30",
+     "credit_limit": 5000,
+     "address_2": "ZZHIDDENSUITE 12"
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "ONE vendor carrying four values that each live in a field the vendor row does not display: its own email, its address line 2, and its contact's name and email. Its NAME is neutral so every hit is attributable."
+  },
+  {
+   "key": "ri_cust_province",
+   "type": "Customer",
+   "serves": [
+    "CUST-C7"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Provincial Cartage",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Provincial Cartage",
+     "address": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "ZZQUEBEXA",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "The PROVINCE carries the keyword and the name does not, so a hit is attributable to the province. Province is matchable per PRD section 4 and is not displayed on the row."
+  },
+  {
+   "key": "ri_cust_soft_hit",
+   "type": "Customer",
+   "serves": [
+    "WO-I1",
+    "PS-I1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSOFTHIT Cartage",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSOFTHIT Cartage",
+     "address": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "The tester types THIS spelling. It exists so the query is a real word in the estate."
+  },
+  {
+   "key": "ri_cust_soft_near",
+   "type": "Customer",
+   "serves": [
+    "WO-I1",
+    "PS-I1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSOFTHIY Cartage",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSOFTHIY Cartage",
+     "address": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "phone": "(264) 400-0900",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "phone": "telephone",
+    "address": "address_1"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   },
+   "_why": "ONE character different, deliberately at the end. Its work order and part sale are what must come back drawn as a SOFT match when the tester types the other spelling."
+  },
+  {
+   "key": "ri_contact_soft",
+   "type": "Contact",
+   "depends_on": "ri_cust_soft_near",
+   "serves": [
+    "WO-I1",
+    "PS-I1"
+   ],
+   "find": {
+    "mode": "child",
+    "parent": "ri_cust_soft_near",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "RowSoft"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "RowSoft",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "rowsoft@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "ri_cust_soft_near"
+    }
+   },
+   "verify": [
+    "first_name"
+   ],
+   "_why": "Required by /api/vehicles/create."
+  },
+  {
+   "key": "ri_asset_soft",
+   "type": "Vehicle",
+   "depends_on": "ri_cust_soft_near",
+   "serves": [
+    "WO-I1",
+    "PS-I1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZRISOFTVIN000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Trucks",
+     "model_name": "Softline",
+     "year": 2021,
+     "vin": "ZZRISOFTVIN000001",
+     "unit": "ZZRI-SOFT-01",
+     "licence_plate": "ZZRI-SOFT-01"
+    },
+    "inject": {
+     "customer_id": "ri_contact_soft",
+     "company_id": "ri_cust_soft_near"
+    }
+   },
+   "verify": [
+    "vin"
+   ],
+   "skip_verify": [
+    "maker_name",
+    "model_name",
+    "licence_plate"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "_why": "The vehicle the soft-matched work order and part sale hang off."
+  },
+  {
+   "key": "ri_vend_soft_hit",
+   "type": "Vendor",
+   "serves": [
+    "PO-I1",
+    "VINV-I1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSOFTHIT Supply",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZSOFTHIT Supply",
+     "address_1": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "Typed by the tester."
+  },
+  {
+   "key": "ri_vend_soft_near",
+   "type": "Vendor",
+   "serves": [
+    "PO-I1",
+    "VINV-I1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSOFTHIY Supply",
+    "control": "Gibson"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZSOFTHIY Supply",
+     "address_1": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   },
+   "_why": "One character out. Its purchase order and vendor invoice are the soft-matched rows."
+  },
+  {
+   "key": "ri_wo_twin_1",
+   "type": "WorkOrder",
+   "count": 1,
+   "depends_on": "ri_cust_twin_a",
+   "serves": [
+    "WO-A1",
+    "WO-A2",
+    "WO-A3",
+    "WO-B1",
+    "WO-B2",
+    "ALL-E7",
+    "ALL-F1",
+    "ALL-H3"
+   ],
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders, so the ids the seeder records as it creates them are the only handle. Starts EMPTY on purpose."
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "ri_cust_twin_a",
+     "vehicle_id": "ri_asset_twin_a",
+     "customer_id": "ri_contact_twin_a"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ],
+   "_why": "TWO work orders for the SAME customer on DIFFERENT vehicles - the situation SV-9170 names in so many words: \"what tells two of the same customer's work orders apart\"."
+  },
+  {
+   "key": "ri_wo_twin_2",
+   "type": "WorkOrder",
+   "count": 1,
+   "depends_on": "ri_cust_twin_a",
+   "serves": [
+    "WO-B1",
+    "WO-B2"
+   ],
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders, so the ids the seeder records as it creates them are the only handle. Starts EMPTY on purpose."
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "ri_cust_twin_a",
+     "vehicle_id": "ri_asset_twin_b",
+     "customer_id": "ri_contact_twin_a"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ],
+   "_why": "The second of the pair, on the twin vehicle."
+  },
+  {
+   "key": "ri_wo_nounit",
+   "type": "WorkOrder",
+   "count": 1,
+   "depends_on": "ri_cust_hidden_owner",
+   "serves": [
+    "ALL-G1"
+   ],
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders, so the ids the seeder records as it creates them are the only handle. Starts EMPTY on purpose."
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "ri_cust_hidden_owner",
+     "vehicle_id": "ri_asset_nounit",
+     "customer_id": "ri_contact_hidden"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ],
+   "_why": "The work order whose vehicle has no unit number."
+  },
+  {
+   "key": "ri_wo_soft",
+   "type": "WorkOrder",
+   "count": 1,
+   "depends_on": "ri_cust_soft_near",
+   "serves": [
+    "WO-I1"
+   ],
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders, so the ids the seeder records as it creates them are the only handle. Starts EMPTY on purpose."
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "ri_cust_soft_near",
+     "vehicle_id": "ri_asset_soft",
+     "customer_id": "ri_contact_soft"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ],
+   "_why": "The work order that must come back as a soft match."
+  },
+  {
+   "key": "ri_ps_twin_1",
+   "type": "PartSale",
+   "depends_on": "ri_cust_twin_a",
+   "serves": [
+    "PS-A1",
+    "PS-A2",
+    "PS-A3",
+    "PS-B1",
+    "PS-B2",
+    "PS-D1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "unit",
+    "value": "ZZLONGROW-123786",
+    "control": "Gibson",
+    "_why": "\ud83d\udd34 THE LIST KEY IS 'partSales', NOT 'collection'."
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "ri_cust_twin_a",
+     "vehicle_id": "ri_asset_twin_a"
+    },
+    "id_from": "data.0.id"
+   },
+   "skip_verify": [
+    "company_id",
+    "vehicle_id"
+   ],
+   "_why": "The Part Sales tab had NO usable data at all on this environment - nine of its cases could not be run. This pair fixes that."
+  },
+  {
+   "key": "ri_ps_twin_2",
+   "type": "PartSale",
+   "depends_on": "ri_cust_twin_a",
+   "serves": [
+    "PS-B1",
+    "PS-B2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "unit",
+    "value": "ZZLONGROW-185786",
+    "control": "Gibson",
+    "_why": "\ud83d\udd34 THE LIST KEY IS 'partSales', NOT 'collection'."
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "ri_cust_twin_a",
+     "vehicle_id": "ri_asset_twin_b"
+    },
+    "id_from": "data.0.id"
+   },
+   "skip_verify": [
+    "company_id",
+    "vehicle_id"
+   ],
+   "_why": "The SECOND part sale for the SAME customer, on the twin vehicle - so the two rows carry an identical bold line and are separated only by the vehicle. Found by UNIT: companyName cannot tell one of a customer's part sales from another, and keying on it left this record uncreated while reporting itself present."
+  },
+  {
+   "key": "ri_ps_hidden",
+   "type": "PartSale",
+   "depends_on": "ri_cust_hidden_owner",
+   "serves": [
+    "PS-C1",
+    "PS-C2"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "companyName",
+    "value": "Rowcheck Hidden Fields Holdings",
+    "control": "Gibson",
+    "_why": "\ud83d\udd34 THE LIST KEY IS 'partSales', NOT 'collection'."
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "ri_cust_hidden_owner",
+     "vehicle_id": "ri_asset_hidden_vin"
+    },
+    "id_from": "data.0.id"
+   },
+   "skip_verify": [
+    "company_id",
+    "vehicle_id"
+   ],
+   "_why": "A part sale whose only distinctive value is the VIN of the vehicle it is for - neither the asset nor the VIN is displayed on a Part Sales row."
+  },
+  {
+   "key": "ri_ps_soft",
+   "type": "PartSale",
+   "depends_on": "ri_cust_soft_near",
+   "serves": [
+    "PS-I1"
+   ],
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "companyName",
+    "value": "ZZSOFTHIY Cartage",
+    "control": "Gibson",
+    "_why": "\ud83d\udd34 THE LIST KEY IS 'partSales', NOT 'collection'."
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "ri_cust_soft_near",
+     "vehicle_id": "ri_asset_soft"
+    },
+    "id_from": "data.0.id"
+   },
+   "skip_verify": [
+    "company_id",
+    "vehicle_id"
+   ],
+   "_why": "The part sale that must come back as a soft match."
+  }
+ ]
+}

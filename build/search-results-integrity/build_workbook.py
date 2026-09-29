@@ -50,21 +50,56 @@ TERMS = {
  ('purchase_orders', 'part descriptions on the PO'): ('pair', 'purchase_orders.item_part_names'),
  ('parts', 'vendor name'): 'parts.vendor_name',
  ('vendor_invoices', 'the PO number the invoice belongs to'): 'vendor_invoices.po_number',
+ # unlocked by the result-integrity seed universe, 2026-09-29
+ ('vendors', 'email address'): 'vendors.email',
+ ('vendors', 'address line 2'): 'vendors.address_line_2',
+ ('customers', 'state / province'): 'customers.state',
+ ('part_sales', 'the asset on the sale'): 'part_sales.asset',
+ ('part_sales', 'VIN / serial number'): 'part_sales.vin',
+ ('purchase_orders', 'created-by user'): 'purchase_orders.created_by',
+ ('purchase_orders', 'spliced number variants (`number_variants`)'): 'purchase_orders.number_variants',
 }
 # A near-miss spelling PROVEN to come back drawn as a soft match, for each tab's Class I row.
 # The four identifier-led tabs are deliberately left blank: their only fuzzy-able fields are the
 # customer's or vendor's name, and no run has PROVEN a soft-matched row appears in those groups.
 # Writing an unproven term in would be guessing, which is what this pass exists to stop.
 FUZZY_FOR_TAB = {'parts': 'fuzzy.parts', 'vendors': 'fuzzy.vendors',
-                 'assets': 'fuzzy.assets', 'customers': 'fuzzy.customers'}
+                 'assets': 'fuzzy.assets', 'customers': 'fuzzy.customers',
+                 # The four identifier-led tabs were blank because no soft-matched row had
+                 # been PROVEN to appear in their groups. The ZZSOFTHIT / ZZSOFTHIY pair
+                 # seeded on 2026-09-29 proves it: each of these groups returns a row with
+                 # kind=fuzzy, matched on the customer's or vendor's name.
+                 'work_orders': 'soft.work_orders', 'part_sales': 'soft.part_sales',
+                 'purchase_orders': 'soft.purchase_orders',
+                 'vendor_invoices': 'soft.vendor_invoices'}
 
 # The shared-fragment example for each tab's Class A and Class B cases.
+# 🔴 THE TWIN PAIR IS NOW THE EXAMPLE FOR EVERY TAB. It was seeded for this suite on 2026-09-29:
+# two records per entity carrying a LONG name whose only difference is the trailing six digits
+# (…123786 / …185786), which is the QA lead's own statement of the defect. If the row truncates,
+# the two are indistinguishable and the case proves itself. Part Sales had NO usable data at all
+# before this - nine of its rows could not be run.
 PAIR_FOR_TAB = {
- 'work_orders': 'work_orders.number', 'customers': 'customers.contact_phones',
- 'assets': 'assets.licence_plate', 'parts': 'parts.part_number',
- 'vendors': 'vendors.phone', 'purchase_orders': 'purchase_orders.number',
- 'vendor_invoices': 'vendor_invoices.invoice_number', 'part_sales': None,
+ 'work_orders': 'twin.work_orders', 'customers': 'twin.customers',
+ 'assets': 'twin.assets', 'parts': 'twin.parts',
+ 'vendors': 'twin.vendors', 'purchase_orders': 'same.purchase_orders',
+ 'vendor_invoices': 'same.vendor_invoices', 'part_sales': 'twin.part_sales',
 }
+# The "two rows with an IDENTICAL bold line" example, per tab. Customers is deliberately absent:
+# the product refuses to create two customers with the same name (400 "Company with provided name
+# already exists."), so that case cannot exist there and the row says so instead of asking a tester
+# to find data that cannot be made.
+SAME_FOR_TAB = {
+ 'vendors': 'same.vendors', 'parts': 'same.parts', 'assets': 'same.assets',
+ 'part_sales': 'twin.part_sales', 'purchase_orders': 'same.purchase_orders',
+ 'vendor_invoices': 'same.vendor_invoices', 'work_orders': 'twin.work_orders',
+}
+CUST_B2_NA = ("NOT APPLICABLE on Customers. The product refuses to create a second customer with "
+              "the same name - /api/customers/create answers 400 \"Company with provided name "
+              "already exists.\" (measured on staging 2026-09-29). Two customer rows therefore "
+              "cannot carry an identical bold line. The realistic version of this risk is covered "
+              "by SRI-CUST-B1, whose two names differ only past the point the row runs out of "
+              "width. Mark this row Not run and move on.")
 
 def term_for(ekey, field):
     ref = TERMS.get((ekey, field))
@@ -241,15 +276,24 @@ def build():
           'FAIL — and note that the right number of rows does not rescue it.',
           bc.Q_STORY, 'Story SV-9170', term=pterm, note=pnote)
 
+        same = PAIRS.get(SAME_FOR_TAB.get(ekey) or '')
+        na = (ekey == 'customers')
         A_common('B2', 'Two records with the same bold line differ somewhere you can see',
-          'Real shops have two trucks of the same year/make/model and two customers with the same '
+          'Real shops have two trucks of the same year/make/model and two vendors with the same '
           'name. If the rows are identical the list is useless.',
-          f'Two {tab.lower()} whose bold first line is identical but which are different records.',
-          steps('Open search and type something that returns both.', f'Open the {tab} tab.',
-                'Compare the two rows line by line.'),
-          'Something visible differs — the second line, a badge, a number. Two identical rows is a '
-          'FAIL; write down both records and what actually differs between them in the data.',
-          bc.Q_STORY, 'Story SV-9170', term=None)
+          (CUST_B2_NA if na else
+           f'Two {tab.lower()} whose bold first line is identical but which are different records. '
+           f'These were seeded for this suite.'),
+          steps('Open search and type the term.', f'Open the {tab} tab.',
+                'Compare the two rows line by line.',
+                'Write down what, if anything, separates them.'),
+          ('THIS ROW DOES NOT APPLY — see "Before you start". Mark it Not run.' if na else
+           'Something visible differs — the second line, a badge, a number. Two identical rows is a '
+           'FAIL; write down both records and what actually differs between them in the data.'),
+          bc.Q_STORY, 'Story SV-9170',
+          term=None if na else (same or {}).get('term'),
+          note=None if na or not same else
+               f"{same['count']} rows come back; at least two carry the same bold line")
 
         for n, (field, why, how) in enumerate(e['invisible'], 1):
             t, note = term_for(ekey, field)
@@ -388,13 +432,13 @@ CROSS = [
   'PRD v1.5, section 6.2', Q_ORDER, False),
  ('E7', 'Typing a full record number puts that record at the very top',
   'If I typed a work order number I want that work order, not a list.',
-  'A record whose number you can type in full. Take one from any list page.', None,
+  'A record whose number you can type in full. Take one from any list page.', 'S-34379',
   ('Type the number in full.', 'Look ABOVE the first group heading.'),
   'That one record sits alone at the top, above all the groups, with its icon.',
   'PRD v1.5, section 6.2', Q_PIN, False),
  ('F1', 'A number is found with and without its dashes',
   'I type what is printed on the paper in front of me, dashes and all.',
-  'Any work order number, e.g. from the Work Orders list.', None,
+  'Any work order number, e.g. from the Work Orders list.', 'S-34379',
   ('Type the number exactly as printed, dashes and all.', 'Note what comes back.',
    'Type it again with every dash and space removed.', 'Compare the two lists.'),
   'Both find the same record.', 'PRD v1.5, section 7', bc.Q_NORMALIZE, False),
@@ -437,14 +481,14 @@ CROSS = [
   'fine — say which is which.', 'PRD v1.5, section 4', Q_STATUS, False),
  ('G1', 'A work order whose truck has no unit number still reads properly',
   'Real data has holes. A row that collapses when a field is blank hides a real record.',
-  'A work order whose vehicle has no unit number.', None,
+  'A work order whose vehicle has no unit number.', 'ZZNOUNIT',
   ('Find such a work order and search for it.', 'Read the row.',
    'Look for blank gaps, stray dashes or the word "undefined".'),
   'The year/make/model stands on its own, with no blank gap and no leftover separator.',
   'PRD v1.5, section 4', Q_UNIT_ALONE, False),
  ('G2', 'A very long value does not push the rest of the row out of sight',
   'One customer with a 90-character name must not make every other row unreadable.',
-  'A record with an unusually long name or description.', None,
+  'A record with an unusually long name or description.', 'ZZLONGROW',
   ('Search for it.', 'Read the whole row — badge, status, second line.',
    'Write down anything that is pushed off the row.'),
   'The badge and the second line are still readable.', 'Story SV-9170', bc.Q_STORY, False),
@@ -487,7 +531,7 @@ CROSS = [
  ('H3', 'A record you can open from its own list is never "not found"',
   'The worst possible outcome — the record exists, I can open it from its list page, and search '
   'says it does not exist.',
-  'Pick any record from its own list page and note one of its values.', None,
+  'Pick any record from its own list page and note one of its values.', 'ZZLONGROW',
   ('Search that value.', 'If nothing comes back, confirm the record still opens from its list page.',
    'Then search a DIFFERENT value from the SAME record as a control.',
    'Record both outcomes together — the control is what makes this trustworthy.'),

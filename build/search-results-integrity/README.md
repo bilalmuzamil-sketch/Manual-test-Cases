@@ -33,6 +33,9 @@ never seen the spec.
 | `PO-QUESTIONS.md` | The 10 questions that must be answered before 32 of the cases can assert anything |
 | `cases/` | The 110 cases, one file per tab plus a cross-tab file |
 | `build_cases.py` | Regenerates the per-tab cases from one hand-authored table — rerun it when the PRD moves |
+| `SEEDED-DATA-AND-WHAT-IT-PROVED.md` | The data built for this suite on staging, and the four product facts seeding it uncovered |
+| `ShopView-Global-Search-Result-Row-Tests-for-Manual-QA.xlsx` | **The manual tester's copy.** 110 rows, 105 carrying a verified search term, plus the PO questions |
+| `build_workbook.py` · `discover_terms*.py` | Build the workbook, and find/verify the search terms against the live system |
 
 ## The 110 cases
 
@@ -82,9 +85,11 @@ and the **facts** in the root-cause analysis. Neither is a source of expectation
 
 ## Before a tester runs any of this
 
-1. **Seed the data.** Most cases need two records that deliberately share a fragment. The seeding kit
-   is at `build/global-search/seeding/` — but **no manifest yet builds the pairs these cases need**.
-   That is the next piece of work and it is on me; see `PROJECT-STATE.md`.
+1. **The data is seeded.** ✅ 34 records were built on staging on 2026-09-29 and verified by search
+   (`seed-manifest-result-integrity.json`). **105 of the 110 rows carry a term the tester can type
+   straight away.** The five that do not say plainly what to look for. Read
+   `SEEDED-DATA-AND-WHAT-IT-PROVED.md` — seeding it uncovered four product facts, including that the
+   product refuses to create two customers with the same name.
 2. **Read the root-cause analysis.** A tester who knows the four questions will find things these
    cases did not think to ask.
 3. **Record, do not judge.** Several cases end "record what you see and do not judge it" — those are

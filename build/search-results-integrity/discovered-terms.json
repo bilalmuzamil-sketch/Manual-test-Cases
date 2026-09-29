@@ -194,6 +194,152 @@
    "primary": "Spaulding Truck Center",
    "highlight": "Theodore Peters",
    "secondary": "670 Brett Radial Apt. 347, Lake Lisa, Northwest Territories"
+  },
+  "vendors.email": {
+   "field": "email",
+   "kind": "exact",
+   "highlight": "zzhidden.vendor@staging.shopview.local",
+   "primary": "Rowcheck Quiet Fields Supply",
+   "secondary": "21 Result Row Way, Fernvale, Ohio",
+   "term": "zzhidden.vendor@staging.shopview.local",
+   "group": "vendors"
+  },
+  "vendors.address_line_2": {
+   "field": "address_line_2",
+   "kind": "word",
+   "highlight": "ZZHIDDENSUITE",
+   "primary": "Rowcheck Quiet Fields Supply",
+   "secondary": "21 Result Row Way, Fernvale, Ohio",
+   "term": "ZZHIDDENSUITE",
+   "group": "vendors"
+  },
+  "customers.state": {
+   "field": "state",
+   "kind": "word",
+   "highlight": "ZZQUEBEXA",
+   "primary": "Rowcheck Provincial Cartage",
+   "secondary": "21 Result Row Way, Fernvale, ZZQUEBEXA",
+   "term": "ZZQUEBEXA",
+   "group": "customers"
+  },
+  "part_sales.vin": {
+   "field": "vin",
+   "kind": "exact",
+   "highlight": "ZZHIDDENVIN0000001",
+   "primary": "P2-2272",
+   "secondary": "Rowcheck Hidden Fields Holdings",
+   "term": "ZZHIDDENVIN0000001",
+   "group": "part_sales"
+  },
+  "part_sales.asset": {
+   "field": "asset_description",
+   "kind": "word",
+   "highlight": "Quietline",
+   "primary": "P2-2272",
+   "secondary": "Rowcheck Hidden Fields Holdings",
+   "term": "Quietline",
+   "group": "part_sales"
+  },
+  "assets.vin_hidden": {
+   "field": "vin",
+   "kind": "exact",
+   "highlight": "ZZHIDDENVIN0000001",
+   "primary": "2021 Rowcheck Motors Quietline",
+   "secondary": "Rowcheck Hidden Fields Holdings",
+   "term": "ZZHIDDENVIN0000001",
+   "group": "assets"
+  },
+  "workorders.nounit": {
+   "field": "asset_make",
+   "kind": "word",
+   "highlight": "ZZNOUNIT",
+   "primary": "S2-34377",
+   "secondary": "Rowcheck Hidden Fields Holdings",
+   "term": "ZZNOUNIT",
+   "group": "work_orders"
+  },
+  "soft.work_orders": {
+   "field": "customer_name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Cartage",
+   "primary": "S2-34378",
+   "secondary": "ZZSOFTHIY Cartage",
+   "term": "ZZSOFTHIT",
+   "group": "work_orders"
+  },
+  "soft.part_sales": {
+   "field": "customer_name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Cartage",
+   "primary": "P2-2273",
+   "secondary": "ZZSOFTHIY Cartage",
+   "term": "ZZSOFTHIT",
+   "group": "part_sales"
+  },
+  "soft.purchase_orders": {
+   "field": "vendor_name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Supply",
+   "primary": "I2-1522",
+   "secondary": "ZZSOFTHIY Supply",
+   "term": "ZZSOFTHIT",
+   "group": "purchase_orders"
+  },
+  "soft.vendor_invoices": {
+   "field": "vendor_name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Supply",
+   "primary": "ZZTINV-RISOFT-9001",
+   "secondary": "ZZSOFTHIY Supply",
+   "term": "ZZSOFTHIT",
+   "group": "vendor_invoices"
+  },
+  "soft.customers": {
+   "field": "name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Cartage",
+   "primary": "ZZSOFTHIY Cartage",
+   "secondary": "21 Result Row Way, Fernvale, Ohio",
+   "term": "ZZSOFTHIT",
+   "group": "customers"
+  },
+  "soft.vendors": {
+   "field": "name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Supply",
+   "primary": "ZZSOFTHIY Supply",
+   "secondary": "21 Result Row Way, Fernvale, Ohio",
+   "term": "ZZSOFTHIT",
+   "group": "vendors"
+  },
+  "workorders.number": {
+   "field": "number_variants",
+   "kind": "exact",
+   "highlight": "S-34379",
+   "primary": "S2-34379",
+   "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+   "term": "S-34379",
+   "group": "work_orders",
+   "_rule111": "This number is BRANCH-ASSIGNED and changes on a reseed or a redeploy. Re-read it from the seed state before a test run rather than trusting this cell."
+  },
+  "purchase_orders.number_variants": {
+   "term": "I-1522",
+   "group": "purchase_orders",
+   "field": "number_variants",
+   "kind": "exact",
+   "primary": "I2-1522",
+   "secondary": null,
+   "_note": "The row DISPLAYS I2-1522. The form that matched, I-1522, appears nowhere on it.",
+   "_rule111": "Branch-assigned; re-read from the seed state before a run."
+  },
+  "purchase_orders.created_by": {
+   "term": "Admin ShopView",
+   "group": "purchase_orders",
+   "field": "ordered_by_name",
+   "kind": "word",
+   "primary": "S2-34271",
+   "secondary": null,
+   "_note": "Matches many purchase orders - the question is whether the ROW says who ordered it."
   }
  },
  "missing": [
@@ -651,6 +797,249 @@
      "primary": "Cummins 12\" V-Band Clamp",
      "secondary": "CL1020",
      "highlight": "496"
+    }
+   ]
+  },
+  "twin.customers": {
+   "term": "ZZLONGROW",
+   "group": "customers",
+   "field": "name",
+   "count": 3,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Identical Name Cartage",
+     "secondary": "88 Different Street, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "secondary": "21 Result Row Way, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 185786",
+     "secondary": "21 Result Row Way, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "twin.vendors": {
+   "term": "ZZLONGROW",
+   "group": "vendors",
+   "field": "name",
+   "count": 5,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "88 Different Street, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "4 Sameface Road, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "21 Result Row Way, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 185786",
+     "secondary": "21 Result Row Way, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "twin.parts": {
+   "term": "ZZLONGROW",
+   "group": "parts",
+   "field": "part_number",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "secondary": "ZZLONGROW-123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "secondary": "ZZLONGROW-185786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "twin.assets": {
+   "term": "ZZLONGROW",
+   "group": "assets",
+   "field": "unit",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "2021 Rowcheck Trucks Longhauler",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "2021 Rowcheck Trucks Longhauler",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "twin.work_orders": {
+   "term": "ZZLONGROW",
+   "group": "work_orders",
+   "field": "unit",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "S2-34379",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "S2-34376",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "same.parts": {
+   "term": "ZZLONGROW Heavy Duty Air Brake",
+   "group": "parts",
+   "field": "description",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "secondary": "ZZLONGROW-123786",
+     "highlight": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications"
+    },
+    {
+     "primary": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "secondary": "ZZLONGROW-185786",
+     "highlight": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications"
+    }
+   ]
+  },
+  "same.assets": {
+   "term": "ZZLONGROW",
+   "group": "assets",
+   "field": "unit",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "2021 Rowcheck Trucks Longhauler",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "2021 Rowcheck Trucks Longhauler",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "same.purchase_orders": {
+   "term": "Fibridge",
+   "group": "purchase_orders",
+   "field": "vendor_name",
+   "count": 9,
+   "rows": [
+    {
+     "primary": "I2-1513",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "I2-1512",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "I2-1516",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "I2-1515",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    }
+   ]
+  },
+  "same.vendor_invoices": {
+   "term": "Fibridge",
+   "group": "vendor_invoices",
+   "field": "vendor_name",
+   "count": 5,
+   "rows": [
+    {
+     "primary": "55+5+6+5",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "ZZTINV-GSV2-1001",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "ZZTINV-GSV2-1003",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "ZZTINV-GSV2-1002",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    }
+   ]
+  },
+  "twin.part_sales": {
+   "term": "ZZLONGROW",
+   "group": "part_sales",
+   "field": "customer_name",
+   "count": 3,
+   "rows": [
+    {
+     "primary": "P2-2277",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "P2-2276",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "P2-2271",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "same.vendors": {
+   "term": "ZZLONGROW Identical Name Supply",
+   "group": "vendors",
+   "field": "name",
+   "count": 3,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "88 Different Street, Fernvale, Ohio",
+     "highlight": "ZZLONGROW Identical Name Supply"
+    },
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "4 Sameface Road, Fernvale, Ohio",
+     "highlight": "ZZLONGROW Identical Name Supply"
+    },
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "21 Result Row Way, Fernvale, Ohio",
+     "highlight": "ZZLONGROW Identical Name Supply"
     }
    ]
   }
