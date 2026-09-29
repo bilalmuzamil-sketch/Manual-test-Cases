@@ -48,7 +48,12 @@ type Entity = {
 
 const YEAR = /\b(19|20)\d{2}\b/;
 const MONEY = /[$]\s?[\d,]+\.?\d*/;
-const DATE = /\d{1,2}\/\d{1,2}\/\d{2,4}|\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*\s+\d{1,2}/i;
+// 🔴 A DATE IS OFTEN NOT A DATE. These rows write a recent date in words - "Today",
+// "Yesterday", "3 days ago" - so a pattern that only accepts 12/03/2026 or "Mar 12" reports the
+// created date as MISSING when it is plainly on the row. That produced a wrong half of C146264:
+// the Part Sales row reads "Admin ShopView · Today" and was recorded as having no created date.
+// Only the total price is genuinely absent there.
+const DATE = /\d{1,2}\/\d{1,2}\/\d{2,4}|\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*\s+\d{1,2}|\b(today|yesterday)\b|\b\d+\s+(minute|hour|day|week|month|year)s?\s+ago\b/i;
 const PHONE = /\d{3}[-.\s]\d{3}[-.\s]\d{4}|\(\d{3}\)\s?\d{3}[-.\s]\d{4}/;
 
 // `cases` and `held` below are left EMPTY on purpose — both are filled from entity-config.json,

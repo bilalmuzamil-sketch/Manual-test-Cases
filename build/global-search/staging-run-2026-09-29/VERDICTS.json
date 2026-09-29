@@ -427,12 +427,8 @@
   },
   "146264": {
    "v": "Failed",
-   "why": "What I did: checked the row against the list of things the written requirement says it shows.\nWhat I saw: at least one of them is missing.",
-   "tickets": [
-    "SV-10619",
-    "SV-10551",
-    "SV-10552"
-   ]
+   "tickets": [],
+   "why": "What I did: checked a part-sale row against the list of things the written requirement says it shows — the sale number and customer, a status marker, the total price and the date it was created.\nWhat I saw: the row reads “P2-2277 ZZLONGROW Heavy Haulage… Estimate · Admin ShopView · Today”. The sale number, the customer, the status marker and the date are all there. THE TOTAL PRICE IS NOT.\nCorrection to my own earlier result: I first reported the created date as missing too. That was my mistake — the row writes it as the word “Today” and my check only recognised dates written as numbers or month names. The same rows on purchase orders and supplier invoices show “Sep 25, 2026” and “Yesterday”, and both pass. Only the price is genuinely absent."
   },
   "146265": {
    "v": "Passed",
