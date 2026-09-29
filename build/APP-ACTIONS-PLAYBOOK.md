@@ -2163,6 +2163,34 @@ never go in the repo.
 - **Contacts have NO list endpoint** (`GET /api/contacts*` 404s; the SPA contacts tab makes no list
   call) — `contacts/create` returns `{data:{contact_id}}`: **SAVE that id at creation** or the company
   becomes undeletable ("Company with a customer cannot be deleted").
+- **🔴 EDITING a contact: `POST /api/contacts/change`, and the shape is READ, not guessed** (proven
+  on staging `v26.39.2-e31ce3b`, 2026-09-29, 200 × 3). This was recorded as *"rejects every payload
+  shape tried"* for nearly two weeks and written into a manifest as a permanent limitation — three
+  seeded contacts kept a shared email address because of it, and the verifier carried an annotation
+  excusing them. **Every shape tried had been GUESSED.** The truth is one grep away in
+  `app/src/api/companies/CompaniesModel.ts` (`UpdateCustomerContactRequest`), which also records that
+  the camelCase `id`/`firstName`/`phone`/`isPrimary` shape is *"stale fiction"* — i.e. the thing a
+  guess naturally reaches for. Rule 115, second worked example.
+  ```
+  POST /api/contacts/change
+    {company_id, contact_id, first_name, last_name?, title?, email?, telephone?,
+     mobile?, department?, is_authorizer?, has_portal_access?}      -> 200
+  ```
+  `company_id` is the CUSTOMER, `contact_id` the person. `first_name` is the only required one;
+  since SV-8764 a blank `last_name` is accepted on edit exactly as on create. The contact ids come
+  from `GET /api/customers/view/{id}` → `data.company.contacts[]`, because there is still no list
+  endpoint (line above).
+- **Assigning a work order's people** (read from `app/src/api/work-orders/index.ts`, both 201):
+  `POST /api/work-orders/change-lead-technician {work_order_id, tech_assigned_id}` ·
+  `POST /api/work-orders/change-service-advisor {work_order_id, service_advisor_id}`. The staff
+  lists are `GET /api/technicians` and `GET /api/service-advisors`. **There is no staff-CREATE
+  endpoint** — `staff/enrollment/create` only attaches an EXISTING person to a workplace — so a
+  ZZ-named technician cannot be seeded. Attribution is earned instead by picking someone whose
+  SURNAME currently returns nothing at all (`build/global-search/seeding/assign_wo_staff.py`).
+- **🔴 `get_tests/<run>&limit=500` RETURNS ZERO TESTS AND STATUS 200.** TestRail caps `limit` at 250
+  and answers an over-limit request with an empty list, not an error — which reads exactly like an
+  emptied run. Page it: `limit=250&offset=N`. Cost 2026-09-29: a moment's belief that run 415 had
+  been wiped.
 - **Part sales:** `POST /api/part-sales {company_id}` → 200 `{data:[{id}]}` (ARRAY). Story-11 check
   2026-07-10: the part-sale page still has NO Fees & Discounts column; `adjustments/add` against a
   part-sale id → 400 needs-target (no part-sale adjustment surface). Delete route: `DELETE

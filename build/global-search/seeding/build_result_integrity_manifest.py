@@ -80,11 +80,20 @@ def customer(key, name, serves, why, state='Ohio', address=None, phone=None, fin
             'write': {'endpoint': '/api/customers/change', 'whole_record': True},
             **({'search_proof_na': na} if na else {}), '_why': why}
 
-CONTACT_NA = ("a contact is reached through its COMPANY, and these three still hold one shared "
-              "email address on the live records - /api/contacts/change rejects every payload shape "
-              "tried, so they correct only on a fresh reseed into a clean estate. A search for the "
-              "shared address answers with whichever company it finds first, which proves nothing "
-              "about this one. The manifest already gives each its own address for the next rebuild.")
+# 🔴 WITHDRAWN 2026-09-29 ON STAGING v26.39.2-e31ce3b, BY MEASUREMENT (the rule for removing one).
+# CONTACT_NA used to sit on all three of these, reading: "these three still hold one shared email
+# address on the live records - /api/contacts/change rejects every payload shape tried, so they
+# correct only on a fresh reseed into a clean estate. A search for the shared address answers with
+# whichever company it finds first, which proves nothing about this one."
+# THAT IS NO LONGER TRUE. The rebuild that this generator's fix produced gave each contact its own
+# address, and the live records now carry them:
+#     samerep.a@zzresultintegrity.test -> Rowcheck Samerep Freight      (matched on contact_emails)
+#     dualrep.one@zzresultintegrity.test -> Rowcheck Dualrep Transport  (matched on contact_emails)
+# So each is now provable, by identity, and carrying the annotation would have gone on excusing a
+# check that can be made to pass. The verifier keeps the guarantee the annotation was protecting:
+# it types the contact's OWN email, requires a contact_* match field, and requires the row that
+# comes back to be THIS contact's parent - which is precisely the "whichever company it finds
+# first" failure the sentence above was worried about.
 SAME_NAME_NA = ("this record exists only to give its identically-named sibling something to be "
                 "confused with. Its finder is an ADDRESS, chosen because the NAME deliberately "
                 "cannot tell the pair apart - and an address is not what a tester types to reach a "
@@ -110,7 +119,7 @@ def contact(key, parent, first, serves, why, email=None, na=None, find_by_email=
                                    'telephone': FLAT['phone'],
                                    'email': email or f'{first.lower()}@zzresultintegrity.test'},
                        'inject': {'company_id': parent}},
-            'verify': ['first_name'], 'search_proof_na': na or CONTACT_NA, '_why': why}
+            'verify': ['first_name'], **({'search_proof_na': na} if na else {}), '_why': why}
 
 def vendor(key, name, serves, why, email=None, address_2=None, address_1=None, find_by=None,
            na=None):
@@ -269,9 +278,11 @@ R += [
    'Kept as a single record. Its sibling cannot be created - see the note above - so this one '
    'serves only as a normal customer; CUST-B2 is marked not-applicable rather than unseeded.',
    address='88 Different Street', find_by=('address_1', '88 Different Street'),
-   na='its finder is an ADDRESS, chosen because the product forbids a second customer with this '
-      'name so the pair can never exist here (see the note above). An address is not what a tester '
-      'types to reach a customer, so a search for it proves nothing about this record.'),
+   # The `na` here was withdrawn on the same day and for the same reason: it claimed a search for
+   # the address "proves nothing about this record", and the measurement says otherwise - the row
+   # that comes back IS this record, matched on address_line_1. The finder being an address is a
+   # fact about CUST-B2's shape, not a reason the record cannot be proved present.
+   ),
  vendor('ri_vend_twin_a', TWIN_A_VEND, ['VEND-A1','VEND-A2','VEND-A3','VEND-B1'], 'TWIN A, vendors.'),
  vendor('ri_vend_twin_b', TWIN_B_VEND, ['VEND-A1','VEND-A2','VEND-A3','VEND-B1'], 'TWIN B, vendors.'),
  vendor('ri_vend_same_a', f'{TWIN} Identical Name Supply', ['VEND-B2'],
@@ -363,13 +374,15 @@ R += [
    'First of two same-named contacts at this one customer.',
    email='dualrep.one@zzresultintegrity.test'),
  contact('ri_contact_dualrep_2', 'ri_cust_dualrep', DUALREP, ['CUST-C9'],
-   '🔴 SECOND of two, and the finder cannot tell it from the first — both are found by first_name '
-   'on the same parent. It is declared NOT PROVABLE BY SEARCH for that reason: the pair is proved '
-   'by the CASE, which reads the customer detail page and counts two people.',
-   email='dualrep.two@zzresultintegrity.test', find_by_email=True,
-   na='two contacts share a first name on one customer, so a finder keyed on first_name cannot '
-      'distinguish them. That ambiguity IS the case (CUST-C9): the row shows one customer and '
-      'cannot say which person matched. Proved by opening the customer, not by searching.'),
+   '🔴 SECOND of two same-named contacts at one customer. Its `na` was WITHDRAWN 2026-09-29: the '
+   'sentence said "a finder keyed on first_name cannot distinguish them", and this record has been '
+   'found by EMAIL since that was fixed (`find_by_email=True`, right there on the next line), so '
+   'the reason had outlived itself and was reporting a phantom behaviour change on every run. '
+   'What it was protecting is still true and still belongs to the CASE, not to the seeding: the '
+   'RESULT ROW shows one customer and cannot say WHICH of the two people matched. That is exactly '
+   'what CUST-C9 tests, and it is proved by opening the customer and counting two people — not by '
+   'the record being unreachable, because it is reachable, by its own address.',
+   email='dualrep.two@zzresultintegrity.test', find_by_email=True),
  customer('ri_cust_province', 'Rowcheck Provincial Cartage', ['CUST-C7'],
    'The PROVINCE carries the keyword and the name does not, so a hit is attributable to the '
    'province. Province is matchable per PRD section 4 and is not displayed on the row.',

@@ -140,3 +140,67 @@ returns it".
 🔴 **The work-order and purchase-order numbers in the workbook are branch-assigned** and change on a
 reseed or redeploy (Rule 111). Re-read them from `seed-state-live-resultintegrity-staging.json`
 before a test run rather than trusting the cell.
+
+---
+
+## 2026-09-29 (second pass) — the last two cases got their data, and four claims were withdrawn
+
+Build marker `v26.39.2-e31ce3b` (the branch redeployed a fourth time during this work; the data
+survived it).
+
+### SRI-WO-C2 and SRI-WO-C3 now have a term to type — the suite is 111 of 111
+
+These two needed a work order whose **lead technician** and **service advisor** carry a name found
+nowhere else on the record. There is no staff-create endpoint (`staff/enrollment/create` only
+attaches an existing person to a workplace), so a `ZZ`-named technician cannot be seeded at all.
+
+Attribution was earned a different way instead: pick a person whose **surname returns nothing at
+all** before the assignment. After it, the only row that surname can return is the one we assigned
+it to — which is stronger than a `ZZ` prefix, because it is measured rather than assumed.
+
+| Case | Type this | Comes back as | Matched on |
+|---|---|---|---|
+| SRI-WO-C2 | `Mughamis` | work order `S2-34379` | `lead_technician_name` (word) |
+| SRI-WO-C3 | `Veljkovic` | work order `S2-34379` | `service_advisor_name` (word) |
+
+Exactly one row each, in one group, and **the surname is in neither the primary nor the secondary
+text** — which is precisely the condition both cases exist to test. Reproduced by
+`seeding/assign_wo_staff.py`, wired into the one-command rebuild as **step 17d**, and idempotent:
+a second run reports *"same two people as last run"* rather than churning the term.
+
+### Four "this cannot be proved" annotations were withdrawn — by measurement, not by convenience
+
+The proof run had been reporting 33 found, 1 failure and 5 warnings. It now reports **37 found, 1
+expected absent, 0 failures.** Nothing about the product changed; four of the claims were simply
+no longer true, and one tool was blind.
+
+1. **`ri_vend_contact` read as NOT RETURNED while the search was answering it perfectly.** The
+   verifier decided "is this a contact?" with `type.startswith('contact')`, and the type is
+   `VendorContact`. So it never typed the contact's email and never accepted a `contact_emails`
+   match. A vendor's contact is reached through the **vendor** row exactly as a customer's contact
+   is reached through the **customer** row. Fixed to `'contact' in type`.
+2. **`CONTACT_NA`** said three contacts *"still hold one shared email address … `/api/contacts/change`
+   rejects every payload shape tried"*. Half true: the three named ones did still share an address,
+   but **the endpoint does not reject anything — every shape tried had been guessed.** The real one
+   is in `app/src/api/companies/CompaniesModel.ts` and took one grep (Rule 115). All three were
+   corrected live, `200` each, and each now answers with its own company. Recipe recorded in
+   `build/APP-ACTIONS-PLAYBOOK.md`.
+3. **`ri_cust_same_b`** claimed a search for its address *"proves nothing about this record"*. The
+   row that comes back **is** that record, matched on `address_line_1`. Its finder being an address
+   is a fact about CUST-B2's shape, not a reason the record cannot be proved present.
+4. **`ri_contact_dualrep_2`** claimed *"a finder keyed on first_name cannot distinguish them"* — and
+   it had been keyed on **email** since that was fixed, two lines below the claim. It was reporting
+   a phantom behaviour change on every run. What the sentence protected is still true and belongs to
+   the **case**: the result row shows one customer and cannot say which of the two people matched.
+
+The verifier also gained the leg it was missing. A child contact is now proved only when the row
+that comes back is **its own parent** — the "answers with whichever company it finds first" failure
+that annotation 2 was worried about is now caught by the tool instead of excused by a comment.
+
+### 🔴 Three of our 111 cases have been DELETED from TestRail by someone else
+
+Measured 15:44Z. `SRI-WO-C2` (C146203), `SRI-VEND-C4` (C146253) and `SRI-VEND-C5` (C146254) no
+longer exist, and their tests left run 415 with them (301 tests, not 304). Two of the three went
+between two reads **minutes apart**, so this is happening live, not historically. None of this
+suite's tooling can delete a case — there is no `delete_case` call anywhere in it. Reported to the
+QA lead; not restored, because creating a TestRail case needs his say-so (Rules 6 and 62).

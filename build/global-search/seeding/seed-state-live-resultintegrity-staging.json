@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-09-29T151210Z",
+ "when_utc": "2026-09-29T153833Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty - 9919",
   "_why": "Overridden by SEED_WORKPLACE; this is the hint for staging."
@@ -30,7 +30,10 @@
   "ri_cust_samerep_b": "84127a6c-59eb-4363-b154-8d30fe19c07b",
   "ri_contact_samerep_b": "33c94b61-889f-45e6-9504-9e1b309ec1ce",
   "ri_cust_dualrep": "4bfe4fcf-4561-492c-a13a-689b593586ee",
-  "ri_contact_dualrep_1": "17a1765d-3928-4e2a-9152-9c3532fb2042",
+  "ri_contact_dualrep_1": [
+   "6979be1b-7aa7-4870-8ae5-f863fc8bdc15",
+   "17a1765d-3928-4e2a-9152-9c3532fb2042"
+  ],
   "ri_contact_dualrep_2": "6979be1b-7aa7-4870-8ae5-f863fc8bdc15",
   "ri_cust_province": "19dfcd5e-95a8-45cc-b12b-1d395535a3a1",
   "ri_cust_soft_hit": "fa121285-4b35-4680-aeaa-2d5da64103e4",
@@ -107,15 +110,10 @@
     "first_name",
     "last_name",
     "title",
-    "telephone"
+    "telephone",
+    "email"
    ],
-   "gaps": [
-    {
-     "field": "email",
-     "wanted": "rowtwin@zzresultintegrity.test",
-     "holds": "rowcheck@zzresultintegrity.test"
-    }
-   ],
+   "gaps": [],
    "not_compared": [],
    "serves": [
     "WO-B1",
@@ -401,15 +399,10 @@
     "first_name",
     "last_name",
     "title",
-    "telephone"
+    "telephone",
+    "email"
    ],
-   "gaps": [
-    {
-     "field": "email",
-     "wanted": "rowhidden@zzresultintegrity.test",
-     "holds": "rowcheck@zzresultintegrity.test"
-    }
-   ],
+   "gaps": [],
    "not_compared": [],
    "serves": [
     "PS-C1",
@@ -603,16 +596,22 @@
    "key": "ri_contact_dualrep_1",
    "state": "PRESENT",
    "ids": [
+    "6979be1b-7aa7-4870-8ae5-f863fc8bdc15",
     "17a1765d-3928-4e2a-9152-9c3532fb2042"
    ],
    "fields_ok": [
     "first_name",
     "last_name",
     "title",
-    "telephone",
-    "email"
+    "telephone"
    ],
-   "gaps": [],
+   "gaps": [
+    {
+     "field": "email",
+     "wanted": "dualrep.one@zzresultintegrity.test",
+     "holds": "dualrep.two@zzresultintegrity.test"
+    }
+   ],
    "not_compared": [],
    "serves": [
     "CUST-C9"
@@ -712,15 +711,10 @@
     "first_name",
     "last_name",
     "title",
-    "telephone"
+    "telephone",
+    "email"
    ],
-   "gaps": [
-    {
-     "field": "email",
-     "wanted": "rowsoft@zzresultintegrity.test",
-     "holds": "rowcheck@zzresultintegrity.test"
-    }
-   ],
+   "gaps": [],
    "not_compared": [],
    "serves": [
     "WO-I1",

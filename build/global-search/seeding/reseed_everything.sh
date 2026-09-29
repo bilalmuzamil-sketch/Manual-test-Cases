@@ -269,6 +269,13 @@ if [ "$V2" = "1" ]; then
   step "17b result-integrity PO + invoice"  python3 seed_po_and_invoices.py --confirm || exit 1
   unset SEED_PO_SLUG SEED_PO_VENDOR SEED_PO_WO_KEY SEED_PO_PLAN
   step "17c result-integrity PROOF (by identity)" python3 verify_by_search.py    || exit 1
+  # SRI-WO-C2 (C146203) and SRI-WO-C3 (C146204) need a work order whose LEAD TECHNICIAN and
+  # SERVICE ADVISOR carry a name that matches nothing else. We cannot CREATE staff - there is no
+  # endpoint for it - so the script attaches two existing people whose surname returns nothing,
+  # which makes any later hit attributable to the assignment (Rule 110). It self-proves, and it
+  # SHOUTS if the environment no longer holds the same two people, because the term then moved
+  # and both cases carry a stale one (Rule 111).
+  step "17d result-integrity WO staff (2 cases)"  python3 assign_wo_staff.py     || exit 1
 
   # 🔴 BOTH OF THESE ARE PROVED BY status.py, NOT BY A DEDICATED VERIFIER. Their assertion is a
   # RANKING one - which match label each row carries - and on Parts the expected answer is

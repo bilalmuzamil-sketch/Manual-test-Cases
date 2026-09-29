@@ -94,7 +94,7 @@ def search_term(rec):
     that the row came back on a CONTACT field.
     """
     find = rec.get('find') or {}
-    if str(find.get('mode')) == 'child':
+    if str(find.get('mode')) == 'child' or 'contact' in str(rec.get('type') or '').lower():
         payload = (rec.get('create') or {}).get('payload') or {}
         for k in ('email', 'telephone'):
             if payload.get(k):
@@ -109,6 +109,15 @@ def match_field(i):
 def search(q):
     r = call('/api/search?q=' + q)
     return ((r['json'] or {}).get('data') or {}).get('groups') or []
+
+STATE_IDS = {}
+_slug = MANIFEST.replace('seed-manifest-', '').replace('.json', '').replace('-', '')
+_state = f'{HERE}/seed-state-live-{_slug}-{ENV}.json'
+if os.path.exists(_state):
+    for _r in (json.load(open(_state)).get('records') or []):
+        if _r.get('ids'):
+            STATE_IDS[_r['key']] = _r['ids'][0]
+
 
 def main():
     m = json.load(open(f'{HERE}/{MANIFEST}'))
@@ -137,7 +146,11 @@ def main():
             print(f"  {Y}—{X}  {key:28} no searchable find value in the manifest — skipped")
             continue
         grp = group_for(typ)
-        is_contact = str(typ or '').lower().startswith('contact')
+        # 🔴 `startswith` MISSED VendorContact and reported a record the search was returning
+        # perfectly as a loss (staging, 2026-09-29). A vendor's contact is reached through the
+        # VENDOR row exactly as a customer's is reached through the CUSTOMER row, so it needs
+        # the same email-and-contact-field treatment. `in`, not `startswith`.
+        is_contact = 'contact' in str(typ or '').lower()
         groups = search(value.split()[0] if len(value.split()[0]) >= 2 else value)
         rows = []
         for g in groups:
@@ -155,6 +168,17 @@ def main():
                 absent += 1; fails.append(key)
                 continue
             rows = attributed
+            parent_key = find.get('parent') or (rec.get('depends_on') if is_contact else None)
+            pid = STATE_IDS.get(parent_key)
+            if pid:
+                mine = [i for i in rows if i.get('id') == pid]
+                if not mine:
+                    print(f"  {R}❌{X} {key:28} {grp or '?':15} a contact row came back "
+                          f"({rows[0].get('primary')!r}) but it is NOT this record's parent — the "
+                          f"value is answering for somebody else, so this contact is NOT proved")
+                    absent += 1; fails.append(key)
+                    continue
+                rows = mine
         why = declared.get(key) or EXPECTED_ABSENT.get(key) or EXPECTED_ABSENT.get(typ and '')
         if rows:
             found += 1

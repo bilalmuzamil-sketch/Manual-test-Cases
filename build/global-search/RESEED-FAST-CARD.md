@@ -11,7 +11,7 @@ The redeployments clear the data. This card exists so putting it back is a comma
 
 | You say | What gets rebuilt | Where |
 |---|---|---|
-| **`RESEED GLOBAL SEARCH STAGING`** | **everything** — all 7 universes, ~215 records | `app.staging.shopview.com`, workplace **Staging Heavy Duty - 9919** |
+| **`RESEED GLOBAL SEARCH STAGING`** | **everything** — all 7 universes, ~223 records | `app.staging.shopview.com`, workplace **Staging Heavy Duty - 9919** |
 | **`RESEED GLOBAL SEARCH QA`** | **everything** — all 7 universes | `sv9160.qa.shopview.com` |
 | **`RESEED GLOBAL SEARCH LIVE`** | the V1-regression universe only (production runs V1) | `app.shopview.com`, workplace **Trucks Hill 2** |
 
@@ -86,7 +86,8 @@ as **PRESENT / PARTIAL / GONE** with the missing records named.
 | 9–11 | Ranking, fuzzy and the algorithm cases | 93 |
 | 12–14 | Same-record permission toggle + its PO/invoice | 20 |
 | 15–16 | SV-10279 prefix parity · per-tab prefix | 12 + 14 |
-| **17** | **Search results integrity** (SV-10619 / SV-10551) | **34** |
+| **17–17c** | **Search results integrity** (SV-10619 / SV-10551) | **42** |
+| **17d** | Lead technician + service advisor on a seeded work order (SRI-WO-C2 / C3) | 2 assignments |
 
 ---
 

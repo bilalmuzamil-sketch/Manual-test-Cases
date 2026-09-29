@@ -60,6 +60,11 @@ TERMS = {
  ('vendors', "a contact's email address"): 'vendors.contact_emails',
  ('purchase_orders', 'created-by user'): 'purchase_orders.created_by',
  ('purchase_orders', 'spliced number variants (`number_variants`)'): 'purchase_orders.number_variants',
+ # unlocked 2026-09-29 by assigning a staff member whose surname matched NOTHING beforehand,
+ # so any hit is attributable to the assignment (Rule 110). The surname is in neither the
+ # primary nor the secondary text, which is exactly the condition these two cases test.
+ ('work_orders', 'lead technician name'): 'work_orders.lead_technician_name',
+ ('work_orders', 'service advisor name'): 'work_orders.service_advisor_name',
 }
 # A near-miss spelling PROVEN to come back drawn as a soft match, for each tab's Class I row.
 # The four identifier-led tabs are deliberately left blank: their only fuzzy-able fields are the

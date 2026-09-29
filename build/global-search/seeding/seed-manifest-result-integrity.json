@@ -135,7 +135,6 @@
    "verify": [
     "first_name"
    ],
-   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
    "_why": "Required by /api/vehicles/create - customer_id there is the CONTACT, not the company."
   },
   {
@@ -176,7 +175,6 @@
     "endpoint": "/api/customers/change",
     "whole_record": true
    },
-   "search_proof_na": "its finder is an ADDRESS, chosen because the product forbids a second customer with this name so the pair can never exist here (see the note above). An address is not what a tester types to reach a customer, so a search for it proves nothing about this record.",
    "_why": "Kept as a single record. Its sibling cannot be created - see the note above - so this one serves only as a normal customer; CUST-B2 is marked not-applicable rather than unseeded."
   },
   {
@@ -746,7 +744,6 @@
    "verify": [
     "first_name"
    ],
-   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
    "_why": "Required by /api/vehicles/create."
   },
   {
@@ -994,7 +991,6 @@
    "verify": [
     "first_name"
    ],
-   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
    "_why": "Half one of the pair. Searching this name returns TWO customer rows, both reading \"Contact match: ZZSAMEREP\" \u2014 identical explanatory lines on different records."
   },
   {
@@ -1068,7 +1064,6 @@
    "verify": [
     "first_name"
    ],
-   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
    "_why": "Half two. Same first name as its opposite number at the other customer."
   },
   {
@@ -1142,7 +1137,6 @@
    "verify": [
     "first_name"
    ],
-   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
    "_why": "First of two same-named contacts at this one customer."
   },
   {
@@ -1176,8 +1170,7 @@
    "verify": [
     "first_name"
    ],
-   "search_proof_na": "two contacts share a first name on one customer, so a finder keyed on first_name cannot distinguish them. That ambiguity IS the case (CUST-C9): the row shows one customer and cannot say which person matched. Proved by opening the customer, not by searching.",
-   "_why": "\ud83d\udd34 SECOND of two, and the finder cannot tell it from the first \u2014 both are found by first_name on the same parent. It is declared NOT PROVABLE BY SEARCH for that reason: the pair is proved by the CASE, which reads the customer detail page and counts two people."
+   "_why": "\ud83d\udd34 SECOND of two same-named contacts at one customer. Its `na` was WITHDRAWN 2026-09-29: the sentence said \"a finder keyed on first_name cannot distinguish them\", and this record has been found by EMAIL since that was fixed (`find_by_email=True`, right there on the next line), so the reason had outlived itself and was reporting a phantom behaviour change on every run. What it was protecting is still true and still belongs to the CASE, not to the seeding: the RESULT ROW shows one customer and cannot say WHICH of the two people matched. That is exactly what CUST-C9 tests, and it is proved by opening the customer and counting two people \u2014 not by the record being unreachable, because it is reachable, by its own address."
   },
   {
    "key": "ri_cust_province",
@@ -1333,7 +1326,6 @@
    "verify": [
     "first_name"
    ],
-   "search_proof_na": "a contact is reached through its COMPANY, and these three still hold one shared email address on the live records - /api/contacts/change rejects every payload shape tried, so they correct only on a fresh reseed into a clean estate. A search for the shared address answers with whichever company it finds first, which proves nothing about this one. The manifest already gives each its own address for the next rebuild.",
    "_why": "Required by /api/vehicles/create."
   },
   {

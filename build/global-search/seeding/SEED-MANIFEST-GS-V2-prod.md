@@ -1,6 +1,6 @@
 # SEED MANIFEST — Global Search V2 "Fibridge" universe · staging
 
-**Read back off the environment, not typed.** Build marker: `v26.39.1-97cad2c`.
+**Read back off the environment, not typed.** Build marker: `v26.39.2-e31ce3b`.
 Regenerate with `python3 dump_seed_manifest.py > SEED-MANIFEST-GS-V2-<env>.md`.
 
 ### Customers
