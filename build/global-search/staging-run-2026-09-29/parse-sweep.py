@@ -12,12 +12,12 @@ lines = raw.split('\n')
 
 notes = collections.defaultdict(list)          # cid -> console lines mentioning it
 for l in lines:
-    m = re.match(r'^C(1462\d\d):\s*(.+)$', l.strip())
+    m = re.match(r'^C(146\d\d\d):\s*(.+)$', l.strip())
     if m: notes[m.group(1)].append(m.group(2).strip())
 
 verdict = {}
 for l in lines:
-    m = re.match(r'^\s*(✓|✘)\s+\d+\s+(.*?)›\s*C(1462\d\d)\s*—\s*(.*)$', l)
+    m = re.match(r'^\s*(✓|✘)\s+\d+\s+(.*?)›\s*C(146\d\d\d)\s*—\s*(.*)$', l)
     if not m: continue
     tick, _file, cid, title = m.group(1), m.group(2), m.group(3), m.group(4)
     held = 'HELD' in title

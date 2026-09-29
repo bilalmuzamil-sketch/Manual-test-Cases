@@ -58,25 +58,32 @@ test.afterAll(async () => {
 });
 
 /**
- * C146209 — NOT ASSERTED AGAINST THE PRODUCT, AND THE REASON IS THE CASE, NOT THE BUILD.
+ * C146209 — NOW RUNNABLE, AND IT FAILS.
  *
- * Its Expected reads "Each row shows the COMPLETE telephone, with the bit you typed highlighted
- * inside it", but the term it supplies, ZZLONGROW, is part of a customer NAME and matches no
- * telephone anywhere; and the requirement this suite quotes puts the telephone on hover, not on
- * the row. So neither half of the Expected can be reached with the data the case gives, and a
- * verdict either way would be invented. Rule 114 forbids editing an Expected to make it runnable,
- * and says a case that cannot be run is Blocked with the reason — so this records the measurement
- * and the blocking reason, and the case is written up for the QA lead.
+ * It used to be unjudgeable: its Expected asked for "the COMPLETE telephone" while the term it
+ * supplied matched a customer NAME. The QA lead rewrote it on 29 September and its STEPS now say
+ * "type 0900" — a proper fragment of a telephone — which can answer the Expected. This asserts
+ * that, and NOT the stale "cannot be judged" it carried before; leaving the old version in place
+ * silently overwrote a corrected Failed verdict with a pass during the single-build sweep.
+ *
+ * 🔴 Its preconditions still carry a leftover "TYPE THIS INTO THE SEARCH BOX: ZZLONGROW" line that
+ * contradicts the steps. The steps are what make the case work, so they are what is followed here.
  */
-test('C146209 — [cannot be judged as written] record the telephone and the highlight', async () => {
-  const hov = await hoverRow(s.page, 0);
-  m.c146209 = {
-    anyTelephoneOnRow: rows.map((r) => /\+?\d[\d\s().-]{6,}/.test(r.text)),
-    marks: rows.map((r) => r.marks),
-    hoverGained: hov.gained,
-  };
-  console.log('C146209 telephone on row:', JSON.stringify(m.c146209));
-  expect(rows.length, 'the term returns no customer rows at all').toBeGreaterThan(0);
+test('C146209 — each row shows the COMPLETE telephone, with the typed part inside it', async () => {
+  const rows = await groupRows(s.page, '0900', TAB);
+  const note = (r: any) => r.metaParts.find((p: string) => /^[A-Za-z][A-Za-z /]{2,30}:\s/.test(p)) ?? null;
+  const notes = rows.map(note).filter(Boolean) as string[];
+  const onlyTyped = notes.filter((n) => n.replace(/^[^:]+:\s*/, '').trim() === '0900');
+  m.c146209 = { term: '0900', rows: rows.length, notes, onlyTyped };
+  console.log('C146209 "0900":', JSON.stringify({ rows: rows.length, notes, onlyTyped }).slice(0, 300));
+  expect(notes.length, 'no row carries a labelled note, so there is nothing to check').toBeGreaterThan(0);
+  // CONTROL: at least one row must show a WHOLE number, or the reader cannot see one when it is there.
+  expect(notes.some((n) => n.replace(/^[^:]+:\s*/, '').trim() !== '0900'),
+    'CONTROL FAILED: no row shows a full telephone either, so "only what was typed" is unproven')
+    .toBe(true);
+  expect(onlyTyped,
+    `these rows show only the digits typed instead of the whole telephone: ${JSON.stringify(onlyTyped)}`)
+    .toHaveLength(0);
 });
 
 test('C146210 — nothing cut off has eaten the match or what tells the rows apart', async () => {

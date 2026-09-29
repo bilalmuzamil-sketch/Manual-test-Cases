@@ -487,6 +487,95 @@
   "146284": {
    "v": "Passed",
    "why": "What I did: searched a near-miss spelling.\nWhat I saw: the close match is not drawn as one."
+  },
+  "146285": {
+   "v": "Passed",
+   "why": "Typed a word, read the number on each tab, then opened each tab and counted the rows. They agree on every tab."
+  },
+  "146286": {
+   "v": "Passed",
+   "why": "No number anywhere in the panel reads above 20 — not a tab, not a group heading, not the “Show All” link."
+  },
+  "146287": {
+   "v": "Passed",
+   "why": "On the combined view a group shows five rows and offers a “Show All” link for the rest. Correct."
+  },
+  "146288": {
+   "v": "Passed",
+   "why": "Clicking “Show All” moves you onto that kind’s own tab, keeps the panel open and leaves your text in the box. You are not thrown onto a separate page."
+  },
+  "146289": {
+   "v": "Passed",
+   "why": "All nine tabs are present, in the expected order, and every one carries a count."
+  },
+  "146290": {
+   "v": "Passed",
+   "why": "The groups on the combined view always appear in the same order; kinds with no results are simply skipped."
+  },
+  "146291": {
+   "v": "Failed",
+   "why": "What I did: typed a record’s number in full.\nWhat I saw: the record comes back in the ordinary way, inside its group. Nothing sits on its own at the top.\nWhy that is a fail: the written requirement says an exact number should be pinned as a single row above all the groups — the “type the number, go straight there” behaviour.\nHow I know it is not the word I chose: I tried both the number the row labels and the number the row displays. Each brings back exactly one record, and neither is pinned.",
+   "tickets": []
+  },
+  "146292": {
+   "v": "Passed",
+   "why": "A record number is found whether you type the dashes or leave them out. Both give the same single record."
+  },
+  "146293": {
+   "v": "Passed",
+   "why": "A telephone number is found whether you type the dashes or not. Both give the same customer."
+  },
+  "146294": {
+   "v": "Passed",
+   "why": "A name with accents is found typed either way — with the accents or without."
+  },
+  "146295": {
+   "v": "Passed",
+   "why": "A name with an apostrophe or a hyphen is found typed either way."
+  },
+  "146296": {
+   "v": "Passed",
+   "why": "Typing the chassis number exactly finds the vehicle. Changing one character finds nothing — a typo in a number is NOT silently corrected, which is the behaviour we want."
+  },
+  "146297": {
+   "v": "Passed",
+   "why": "Typed each status word in turn. Nothing comes back because of its status. The work orders that do come back show why on the row — “Line item: approved” — meaning a line item’s own wording contains the word, which the case allows."
+  },
+  "146298": {
+   "v": "Passed",
+   "why": "A work order whose vehicle has no unit number reads cleanly — the year, make and model stand on their own with no blank gap, no stray separator and no stray word."
+  },
+  "146299": {
+   "v": "Passed",
+   "why": "A very long name does not push the rest of the row out of sight — the status marker and the second line are both still there."
+  },
+  "146300": {
+   "v": "Passed",
+   "why": "A very common word still gives a usable list: results come back and the rows are different enough from one another to choose between."
+  },
+  "146302": {
+   "v": "Passed",
+   "why": "A kind of record with no results simply does not appear as a group, and the rest of search works normally."
+  },
+  "146303": {
+   "v": "Passed",
+   "why": "When nothing matches, the panel shows the words “No results” with what you typed, and nothing else — no suggestions, no buttons, no tips."
+  },
+  "146304": {
+   "v": "Passed",
+   "why": "Opening a tab that has no results for your word gives a message that names that tab, so you can tell the search is narrowed rather than empty everywhere."
+  },
+  "146305": {
+   "v": "Passed",
+   "why": "The value finds its record. The control the case insists on was run too — a different value from the same record also finds it — so a miss would have meant a real gap rather than search being down."
+  },
+  "146306": {
+   "v": "Passed",
+   "why": "Signed in on the lower-permission account and ran the identical search. It sees a different, smaller panel than the full-access account, and no tab shows a count for records it cannot open."
+  },
+  "146301": {
+   "v": "Blocked",
+   "why": "This case is HELD by its own Expected Results — the specification sets a typing delay but no minimum length, so what one character should do cannot be judged. Recorded, not judged.\nWhat I saw: one character and two characters both return a normal panel. Nothing errors, nothing hangs, and the second keystroke replaces the first one’s results rather than leaving them on screen."
   }
  }
 }

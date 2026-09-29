@@ -120,6 +120,20 @@ for (const c of CASES) {
       expect(fragOnlyTyped,
         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+
+      // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      // recorded a PASS on C146216. Typing part of a contact's email returns
+      // "Contact match: ZZAUTOTEST" — the contact's FIRST NAME. It differs from the query and is
+      // still wrong: it is not the email that matched. Where the case supplies the whole value we
+      // KNOW what the note should say, so check it says that.
+      const shouldRead = c.term!.toLowerCase();
+      const wrongValue = fragNotes.filter((n) => {
+        const v = valueOf(n).toLowerCase();
+        return v !== shouldRead && !v.includes(frag.toLowerCase());
+      });
+      expect(wrongValue,
+        `the note shows neither the whole value "${c.term}" nor the text typed — it shows a ` +
+        `different detail of the record altogether: ${JSON.stringify(wrongValue)}`).toHaveLength(0);
       return;
     }
 
