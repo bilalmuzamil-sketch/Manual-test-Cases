@@ -144,6 +144,27 @@ const visibleText = (l: { segs: { visibleText: string }[] }) =>
 const visibleRow = (r: RowShape) =>
   [visibleText(r.title), r.badge ?? '', visibleText(r.meta)].join(' | ').replace(/\s+/g, ' ').trim();
 
+/**
+ * Every line that CONTAINS the typed text must highlight it IN THAT LINE.
+ *
+ * PRD v1.5 §5.3: "The matched substring of the query is highlighted in the primary and secondary
+ * text". A row-level check — "is there a mark anywhere?" — is too loose to test that, and it hid a
+ * real fault: an Assets row carries the unit number ZZLONGROW-123786 in its bold first line as
+ * PLAIN TEXT while highlighting the same characters in the customer name underneath, so a
+ * row-level check passes while the primary line shows the reader nothing. This returns the lines
+ * that contain the term and fail to mark it.
+ */
+const unmarkedLines = (r: RowShape, term: string) => {
+  const t = term.split(/\s+/)[0].toLowerCase();       // first word: multi-word terms match loosely
+  const bad: string[] = [];
+  for (const [name, line] of [['primary', r.title], ['secondary', r.meta]] as const) {
+    if (!line.text.toLowerCase().includes(t)) continue;          // the term is not on this line
+    const marked = line.segs.some((x) => x.marked && x.text.toLowerCase().includes(t));
+    if (!marked) bad.push(`${name} line "${line.text.slice(0, 70)}"`);
+  }
+  return bad;
+};
+
 /** The last long word of a title — by construction in the part a right-hand clip removes. */
 const tailWordOf = (title: string) => {
   const w = title.trim().split(/\s+/).filter((x) => x.replace(/[^\w-]/g, '').length >= 4);
@@ -176,7 +197,15 @@ for (const E of ENTITIES) {
     expect(rows.length, `"${C.A1.term}" returns no ${E.tab} rows — nothing below would be about the product`)
       .toBeGreaterThan(0);
     for (const r of rows) {
-      expect(r.marks.join(' '), `row ${r.index} carries no highlight`).toContain(C.A1.term.split(/\s+/)[0]);
+      // POSITIVE CONTROL first: the reader must find a highlight SOMEWHERE on this row, or its
+      // report that a particular line lacks one says nothing about the product.
+      expect(r.marks.length,
+        `CONTROL FAILED: no highlight found anywhere on row ${r.index}, so anything said below about ` +
+        `an unhighlighted line is about this reader`).toBeGreaterThan(0);
+      // …then the requirement itself: highlighted in the primary AND secondary text.
+      expect(unmarkedLines(r, C.A1.term),
+        `row ${r.index}: the typed text is shown on these lines without being highlighted there, ` +
+        `though it IS highlighted elsewhere on the row (marks: ${JSON.stringify(r.marks)})`).toEqual([]);
       const unmarked = r.title.segs.filter((x) => !x.marked).map((x) => x.text).join('').trim();
       expect(unmarked.length, `row ${r.index} shows only what was typed: "${r.title.text}"`).toBeGreaterThan(0);
       expect(r.title.clipped,
@@ -222,7 +251,9 @@ for (const E of ENTITIES) {
     const rows = await groupRows(s.page, C.A3.term, E.tab);
     expect(rows.length).toBeGreaterThan(0);
     for (const r of rows) {
-      expect(r.title.segs.some((x) => x.marked), `row ${r.index}: nothing marked`).toBe(true);
+      expect(r.marks.length, `CONTROL FAILED: no highlight anywhere on row ${r.index}`).toBeGreaterThan(0);
+      expect(unmarkedLines(r, C.A3.term),
+        `row ${r.index}: the typed text appears on these lines unhighlighted`).toEqual([]);
       expect(r.title.segs.some((x) => !x.marked), `row ${r.index}: the mark replaced the text`).toBe(true);
       const rebuilt = r.title.segs.map((x) => x.text).join('').replace(/\s+/g, ' ').trim();
       expect(rebuilt, `row ${r.index}: the pieces do not add up to the line`)
