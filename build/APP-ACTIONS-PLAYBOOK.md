@@ -5566,3 +5566,58 @@ create with `button_new_part_sale` → `select_customer` → `button_save_part_s
 lands on `/parts/part-sale/{id}/part-requests`; delete from
 `button_part_sale_nav_bar_menu` → `menu_item_onDelete` → confirm **Delete** (there is no
 `/api/part-sales/delete` endpoint — both guesses 404).
+
+
+---
+
+
+### §AC.12 — Purchase orders, part pickers and the parts catalogue (proven 2026-09-29, SV-9658)
+
+**New Purchase Order** — `/parts/orders` → **`button_new_po`**. Dialog fields:
+`select_order_vendor` · **`select_part`** (the part picker) · `input_order_item_description` ·
+`checkbox_order_item_package` · `input_order_item_quantity` · `input_order_item_cost` ·
+`input_order_item_core_charge` · `select_order_item_category` · `select_order_item_manufacturer` ·
+`input_order_note` · **`button_add_order_item`** (Add) · **`button_save_and_close_order`**
+(→ `POST /api/inventory/orders/create`) · table `order_items_table`.
+
+**An existing purchase order** opens at **`/order/{id}`** (NOT `/parts/orders/{id}`) — click the row's
+PO-number cell on the list. It carries **`button_add_order_item`** (the *Add Order Item* modal),
+**`button_edit_order_item_{itemId}`** and `button_remove_order_item_{itemId}`; adding posts
+`POST /api/inventory/orders/add-item {order_id, part_number, description, quantity_ordered, price,
+core, category, manufacturer_id}`. Read one back with `GET /api/inventory/orders/{id}` →
+`data.order.items[]`.
+
+⚠️ **The Add Order Item modal labels its money fields `$`, with `data-test-id="input_base"` (twice:
+cost, then core charge)** — a label match on "Cost" finds nothing, the value never reaches Vue, and
+the add posts `price: null` and is rejected. **Address those two by `.q-field` index (3 and 4), and
+type with the keyboard**; setting `.value` directly does not update the model either.
+
+**Parts catalogue** — `/parts/parts-catalogue` → **`button_new_catalog_part`** → fields
+`input_catalogue_part_name` (this is the *description*), `input_catalogue_part_number`,
+`input_catalogue_part_size`, `select_catalogue_part_category`, `select_catalogue_part_manufacturer`,
+`select_catalogue_part_tags`; save is **`button_confirm_dialog`** →
+`POST /api/parts-catalogue/add-catalogue-part {name, part_number, size, category, measurement,
+manufacturer_id, tags, category_id}`. **`GET /api/parts-catalogue` is 404 — there is no list route
+under that name.**
+
+**Work Order → Add Part** is reached from the **New Line** dialog (`button_new_line`) via
+**`button_save_add_part`**, which opens **New Part Request** (`select_part`,
+`input_workorder_part_description`, `input_workorder_part_quantity`, Source, `select_part_category`,
+`select_part_vendor`, `input_part_cost`, `input_workorder_part_core_charge`,
+`input_workorder_part_sell_price`, `input_workorder_part_margin`). Two traps: the
+**"What Are You Doing?" field is a select-with-input — free text only commits on `Enter`**
+(`Escape` discards it and the save buttons then do nothing, silently); and **picking a canned line
+REMOVES the "Save & Add Part" button**, leaving only "Save & Add Line" and "Save & Close".
+The WO **part-requests grid** (`/workorders/{id}/part-requests`) edits inline —
+`select_part_request_description_{id}` is the picker and `input_part_number_{id}` a plain text box —
+but **both are disabled once the request is Received**, so an old work order cannot demonstrate them.
+
+**Returns** — `/parts/returns` → **`button_create_return`** navigates to the **page**
+`/parts/create-return` (not a dialog), with `select_vendor`, `input_packaging_slip`,
+**`create_return_part_select`** and `add_part_for_return`.
+
+**Reading a part-picker dropdown:** the matches are `.q-menu .q-item`, but the
+**"Add new special order part: …" row is NOT a `.q-item`** — a `.q-item` query misses it entirely.
+Read `menu.innerText` for presence, and click it by walking the menu for the element whose text
+matches and which has fewer than three children. To prove a create row is **absent** from a long list,
+**set `menu.scrollTop = menu.scrollHeight` and re-read** rather than trusting what is on screen.
