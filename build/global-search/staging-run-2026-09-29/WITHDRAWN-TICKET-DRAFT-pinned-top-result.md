@@ -1,3 +1,16 @@
+# ⛔ WITHDRAWN — DO NOT FILE. The feature was cancelled, so this is not a defect.
+
+The QA lead ruled on 29 September 2026, on C44850 ("An exact identifier match is pinned as a
+single row at the very top") and C55729, which test this same behaviour: **"This feature has been
+taken off."** He marked both as passing himself. It is recorded in this repository at
+`build/global-search/PROJECT-STATE.md` §0-QA-LEAD-RULINGS-2026-09-29.
+
+I drafted the ticket below before checking that, which is a Rule 97 miss: search the repository
+before declaring something is broken. The measurement was correct; the conclusion was not.
+Kept, dated and marked, rather than deleted, so the next session does not re-derive it.
+
+---
+
 # PREPARED, NOT FILED — no per-ticket permission given for this one (Rule 62 / Rule 113)
 
 **Issue type** `Story Defect` · **Parent** SV-9170 · **Priority** Medium · `relates to` SV-9170

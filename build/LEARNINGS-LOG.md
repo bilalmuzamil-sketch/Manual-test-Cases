@@ -4637,3 +4637,25 @@ absent. The totals looked plausible, which is precisely why it survived two runs
 **Any parser that maps a known set must assert it found the whole set.** It knows how many cases
 were asked for; it should refuse to hand back fewer without saying so. A wrong value gets argued
 with; a missing row gets believed.
+
+## L0249 — SEARCH WHAT WE ALREADY KNOW BEFORE CALLING SOMETHING BROKEN, NOT JUST BEFORE CALLING IT BLOCKED
+*(30 September 2026, C146291 — a ticket drafted, then withdrawn before filing)*
+
+C146291 asks that typing a record number in full pins that record above the groups. It does not.
+The measurement was sound — both the labelled number and the displayed identifier were tried, each
+returns exactly one record, neither is pinned, and the reader was proved able to see a pinned row
+when one exists. Evidence written, gate passed, ticket drafted.
+
+**And it is not a defect.** The QA lead ruled the day before, on two older checks testing the same
+behaviour — "An exact identifier match is pinned as a single row at the very top" — **"This feature
+has been taken off."** He marked both as passing himself. It is written down in this repository, in
+`build/global-search/PROJECT-STATE.md`, in the section describing that day's rulings.
+
+Rule 97 says to search the repo before declaring something impossible or blocked. **The same
+applies to declaring something BROKEN.** A cancelled feature measures exactly like a missing one,
+and no amount of instrument rigour distinguishes them — only knowing the decision does. Every
+control I had ruled out "my reader is wrong"; none could rule out "this was deliberately dropped".
+
+**Before any defect: grep the project state and the rulings for the behaviour's own words.** Here
+`grep -i "pinned" build/global-search/PROJECT-STATE.md` would have answered it in one command,
+before the evidence file was ever written.

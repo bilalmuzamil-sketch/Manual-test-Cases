@@ -7,8 +7,8 @@ All 110 checks are run and recorded, on one build: staging **v26.39.2-51a35e1**,
 
 | Status | Count |
 |---|---:|
-| **Passed** | **61** |
-| **Failed** | **38** |
+| **Passed** | **62** |
+| **Failed** | **37** |
 | **Blocked** | **6** |
 | **In Retest** | **0** |
 | Removed (you deleted the cases) | 4 |
@@ -27,7 +27,7 @@ All 110 checks are run and recorded, on one build: staging **v26.39.2-51a35e1**,
 | Vendor Invoices | 7 | 1 | — | |
 | All tab and cross-tab | 20 | 1 | 1 | |
 
-## 38 failures, but only THREE problems
+## 37 failures, but only THREE problems
 
 **1. The row repeats your typing instead of showing what it found — 33 checks.**
 Type `SVEWU82` and twenty job rows all read *VIN: SVEWU82*; the chassis number is
@@ -45,10 +45,9 @@ tickets cover it, listed at the bottom; the main one is currently Blocked, with 
 saying the label is simply too long. Worth knowing when that is next discussed: the panel is a
 fixed width, so making the window bigger does not help anybody.
 
-**3. Two smaller ones, one each.**
+**3. One smaller one.**
 The customer row never shows the telephone the requirement puts on hover — **I have raised this**,
-second in the list at the bottom. And typing a record number in full does not jump you to that
-record — **not raised, see below**.
+second in the list at the bottom.
 
 ## The 6 blocked — all test wording, none of them the product
 
@@ -61,25 +60,33 @@ record — **not raised, see below**.
 C146220 and C146221 are worth a look on their own: a city and a province match, the record comes
 back, and the row says nothing at all about why. That may be the same family as problem 1.
 
-## What needs you — one thing
+## Nothing needs your approval
 
-**Typing a record number in full does not take you to that record.** The requirement (PRD v1.5
-§6.2) says an exact match is *"pinned as a separate single row at the very top, above the groups"* —
-the "type the number, go straight there" behaviour. It is not. The record comes back in the
-ordinary way inside its group.
+I very nearly put a third ticket in front of you, and it would have been wrong.
 
-I checked the obvious way for this to be my mistake: the case says to type `S-34379` while the row
-displays `S2-34379`, so I tried both. Each brings back exactly one record and neither is pinned.
+One check asks that typing a record number in full pins that record on its own above the groups.
+It does not. I measured it carefully, ruled out the obvious ways it could be my mistake, and
+drafted a ticket. Then I found your own ruling from yesterday, written down in this project's
+notes: on two older checks that test exactly the same behaviour you said **"This feature has been
+taken off"**, and you marked both as passing yourself.
 
-The ticket is written and ready at `TICKET-DRAFT-pinned-top-result.md`. **I have not filed it** —
-your go-ahead covered the two tickets you named, and filing is the one thing I will not do on my
-own. It is separate from the first ticket: that one is about what a row shows once it is drawn, this is
-a row that is never drawn at all. Fixing one would not fix the other.
+So the product is doing what was decided. The check is now recorded as passing, to match your
+ruling, and the draft is kept marked **WITHDRAWN — DO NOT FILE** rather than deleted, so nobody
+works it out again from scratch.
+
+The miss was mine and it has a name in our rules: search what we already know before declaring
+something broken. The measurement was right; the conclusion was not. Written up as a learning.
+
+Like the two older checks, this one's Expected still describes the withdrawn behaviour, so it
+needs retiring or rewording — that is yours, and I have not touched the field.
 
 ## Two other things you may want to action
 
 - **Five cases you listed as deleted still exist** in TestRail and are still Blocked: C146204,
   C146220, C146221, C146241, C146250. Four did delete (C146203, C146219, C146253, C146254).
+- **Three checks now need retiring or rewording** because they still describe the pinned-row
+  behaviour that was taken off — the one found last night, plus the two you already flagged
+  yesterday. Their ids are in the reference list at the bottom.
 - **C146209's wording still contradicts itself.** Its steps say to type `0900`, which is what makes
   it work, but a leftover line above still says to type `ZZLONGROW`. A tester will type the wrong
   thing.
@@ -105,4 +112,8 @@ automated recorded as such.
 Run 415 · https://shopview.testrail.io/index.php?/runs/view/415
 Case links · https://shopview.testrail.io/index.php?/cases/view/<id>
 Filed today: SV-10634, SV-10635. Open already: SV-10552, SV-10619, SV-10551.
-Drafted, not filed: build/global-search/staging-run-2026-09-29/TICKET-DRAFT-pinned-top-result.md
+Withdrawn draft (do NOT file): build/global-search/staging-run-2026-09-29/WITHDRAWN-TICKET-DRAFT-pinned-top-result.md
+Checks describing the withdrawn pinned row, to retire or reword: C146291 · C44850 · C55729
+Blocked: C146204 · C146220 · C146221 · C146241 · C146250 · C146301
+Deleted as intended: C146203 · C146219 · C146253 · C146254
+Still present though listed as deleted: C146204 · C146220 · C146221 · C146241 · C146250

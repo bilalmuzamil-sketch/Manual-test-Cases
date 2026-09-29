@@ -519,9 +519,8 @@
    "why": "The groups on the combined view always appear in the same order; kinds with no results are simply skipped."
   },
   "146291": {
-   "v": "Failed",
-   "why": "What I did: typed a record’s number in full.\nWhat I saw: the record comes back in the ordinary way, inside its group. Nothing sits on its own at the top.\nWhy that is a fail: the written requirement says an exact number should be pinned as a single row above all the groups — the “type the number, go straight there” behaviour.\nHow I know it is not the word I chose: I tried both the number the row labels and the number the row displays. Each brings back exactly one record, and neither is pinned.",
-   "tickets": []
+   "v": "Passed",
+   "why": "CORRECTION to the result I first recorded, which said Failed and proposed a ticket. That was wrong.\nThis case asks that typing a record number in full pins that record on its own above the groups. It does not — the record comes back inside its group. But you already ruled on exactly this behaviour on 29 September, on two older checks that test the same thing: “This feature has been taken off.” You marked both of those as passing yourself.\nSo the product is behaving as decided, and this is recorded as passing to match your ruling. No ticket has been raised.\nWhat still needs doing, the same as for those two older checks: this case’s Expected still describes the withdrawn behaviour, so it needs retiring or rewording. I have not touched the field."
   },
   "146292": {
    "v": "Passed",
