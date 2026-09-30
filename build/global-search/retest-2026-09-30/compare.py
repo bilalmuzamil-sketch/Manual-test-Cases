@@ -13,7 +13,7 @@ old = json.load(open('build/global-search/staging-run-2026-09-29/VERDICTS.json')
 new = json.load(open(sys.argv[1]))
 FAILED39 = {str(r['case_id']) for r in json.load(open('/tmp/failed39.json'))}
 
-DATA_SMELL = re.compile(r'rows for .*: 0\b|NO DATA|no record|0 rows|NOT FOUND|could not find', re.I)
+DATA_SMELL = re.compile(r'rows for .*: 0$|NO DATA|no record|\b0 rows|NOT FOUND|could not find', re.I)
 
 buckets = collections.defaultdict(list)
 for cid in sorted(FAILED39):

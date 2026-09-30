@@ -1,0 +1,206 @@
+{
+ "still fails": [
+  [
+   "146197",
+   "the whole WO number is shown, with what you typed marked inside it (73ms)",
+   ""
+  ],
+  [
+   "146202",
+   "SRI-WO-C1 \u2014 A match on VIN / serial number shows the FULL value on the row (20.1s)",
+   "as-written \"SVEWU82M5ETEJFWFA\" \u2192 20 notes; fragment \"SVEWU82M\" \u2192 20 notes, 20 showing only what was typed"
+  ],
+  [
+   "146205",
+   "SRI-WO-C4 \u2014 A match on line item descriptions (parts and labor on the WO) show (9.7s)",
+   "\"786\" \u2192 8 rows, 7 labelled notes, 7 showing only what was typed"
+  ],
+  [
+   "146206",
+   "SRI-WO-C5 \u2014 A match on part numbers on the work order's lines (`item_part_numb (9.6s)",
+   "\"786\" \u2192 8 rows, 7 labelled notes, 7 showing only what was typed"
+  ],
+  [
+   "146209",
+   "each row shows the COMPLETE telephone, with the typed part inside it (9.6s)",
+   ""
+  ],
+  [
+   "146214",
+   "SRI-CUST-C1 \u2014 A match on the customer's own telephone shows the FULL value on  (19.6s)",
+   "as-written \"609-461-6502\" \u2192 1 notes; fragment \"6502\" \u2192 9 notes, 2 showing only what was typed"
+  ],
+  [
+   "146215",
+   "SRI-CUST-C2 \u2014 A match on a contact's telephone shows the FULL value on the row (19.5s)",
+   "as-written \"555-222-3333\" \u2192 1 notes; fragment \"3333\" \u2192 6 notes, 3 showing only what was typed"
+  ],
+  [
+   "146216",
+   "SRI-CUST-C3 \u2014 A match on a contact's email address shows the FULL value on the (21.6s)",
+   "as-written \"zzautotest.nophone@staging.shopview.local\" \u2192 1 notes; fragment \"zzautotest.nophone@\" \u2192 1 notes, 0 showing only what was typed"
+  ],
+  [
+   "146217",
+   "SRI-CUST-C4 \u2014 A match on a contact's name shows the FULL value on the row (19.4s)",
+   "as-written \"Savannah\" \u2192 5 notes; fragment \"Sava\" \u2192 9 notes, 9 showing only what was typed"
+  ],
+  [
+   "146218",
+   "SRI-CUST-C5 \u2014 A match on address line 2 shows the FULL value on the row (19.4s)",
+   "as-written \"Apt. 199\" \u2192 1 notes; fragment \"Apt.\" \u2192 6 notes, 6 showing only what was typed"
+  ],
+  [
+   "146222",
+   "the customer row shows every field the requirement names (11.3s)",
+   ""
+  ],
+  [
+   "146226",
+   "Assets: the highlight marks the match inside the text, not instead of it (9.8s)",
+   ""
+  ],
+  [
+   "146229",
+   "SRI-ASSET-C1 \u2014 A match on VIN / serial number shows the FULL value on the row (20.0s)",
+   "as-written \"SVEWU82M5ETEJFWFA\" \u2192 1 notes; fragment \"SVEWU82M\" \u2192 1 notes, 1 showing only what was typed"
+  ],
+  [
+   "146230",
+   "SRI-ASSET-C2 \u2014 A match on licence plate shows the FULL value on the row (19.4s)",
+   "as-written \"KVQ-2870\" \u2192 1 notes; fragment \"KVQ-\" \u2192 3 notes, 3 showing only what was typed"
+  ],
+  [
+   "146239",
+   "SRI-PART-C2 \u2014 A match on manufacturer shows the FULL value on the row (19.3s)",
+   "as-written \"Klondike\" \u2192 8 notes; fragment \"Klon\" \u2192 8 notes, 8 showing only what was typed"
+  ],
+  [
+   "146240",
+   "SRI-PART-C3 \u2014 A match on vendor name shows the FULL value on the row (20.9s)",
+   "as-written \"Gibson's Mobile Diesel Repair\" \u2192 1 notes; fragment \"Gibson's Mobil\" \u2192 1 notes, 1 showing only what was typed"
+  ],
+  [
+   "146242",
+   "SRI-PART-C5 \u2014 A match on tags shows the FULL value on the row (9.7s)",
+   "\"496\" \u2192 17 rows, 2 labelled notes, 2 showing only what was typed"
+  ],
+  [
+   "146251",
+   "SRI-VEND-C2 \u2014 A match on address line 2 shows the FULL value on the row (19.6s)",
+   "as-written \"ZZHIDDENSUITE\" \u2192 1 notes; fragment \"ZZHIDD\" \u2192 1 notes, 1 showing only what was typed"
+  ],
+  [
+   "146252",
+   "SRI-VEND-C3 \u2014 A match on a contact's telephone shows the FULL value on the row (9.7s)",
+   "\"965\" \u2192 15 rows, 13 labelled notes, 7 showing only what was typed"
+  ],
+  [
+   "146262",
+   "SRI-PS-C1 \u2014 A match on the asset on the sale shows the FULL value on the row (19.3s)",
+   "as-written \"Quietline\" \u2192 1 notes; fragment \"Quiet\" \u2192 1 notes, 1 showing only what was typed"
+  ],
+  [
+   "146263",
+   "SRI-PS-C2 \u2014 A match on VIN / serial number shows the FULL value on the row (20.0s)",
+   "as-written \"ZZHIDDENVIN0000001\" \u2192 1 notes; fragment \"ZZHIDDENV\" \u2192 1 notes, 1 showing only what was typed"
+  ],
+  [
+   "146272",
+   "SRI-PO-C2 \u2014 A match on part descriptions on the PO shows the FULL value on the (9.7s)",
+   "\"786\" \u2192 6 rows, 4 labelled notes, 4 showing only what was typed"
+  ],
+  [
+   "146273",
+   "SRI-PO-C3 \u2014 A match on created-by user shows the FULL value on the row (20.0s)",
+   "as-written \"Admin ShopView\" \u2192 20 notes; fragment \"Admin S\" \u2192 7 notes, 7 showing only what was typed"
+  ],
+  [
+   "146274",
+   "SRI-PO-C4 \u2014 A match on spliced number variants (`number_variants`) shows the F (19.2s)",
+   "as-written \"I-1522\" \u2192 1 notes; fragment \"I-15\" \u2192 20 notes, 20 showing only what was typed"
+  ],
+  [
+   "146282",
+   "SRI-VINV-C1 \u2014 A match on the PO number the invoice belongs to shows the FULL v (19.1s)",
+   "as-written \"I2-965\" \u2192 2 notes; fragment \"I2-9\" \u2192 20 notes, 20 showing only what was typed"
+  ]
+ ],
+ "now passes": [
+  [
+   "146198",
+   "nothing cut off has eaten the match or what tells the rows apart (9.8s)",
+   ""
+  ],
+  [
+   "146210",
+   "nothing cut off has eaten the match or what tells the rows apart (9.6s)",
+   ""
+  ],
+  [
+   "146224",
+   "Assets: the whole unit number is shown, with the typed part marked inside it (9.8s)",
+   ""
+  ],
+  [
+   "146233",
+   "Parts: the whole part number is shown, with the typed part marked inside it (9.8s)",
+   ""
+  ],
+  [
+   "146234",
+   "Parts: nothing cut off has eaten the match or what separates the rows (9.7s)",
+   ""
+  ],
+  [
+   "146245",
+   "Vendors: the whole telephone is shown, with the typed part marked inside it (9.8s)",
+   ""
+  ],
+  [
+   "146246",
+   "Vendors: nothing cut off has eaten the match or what separates the rows (9.7s)",
+   ""
+  ],
+  [
+   "146257",
+   "Part Sales: the whole P-number is shown, with the typed part marked inside it (9.8s)",
+   ""
+  ],
+  [
+   "146258",
+   "Part Sales: nothing cut off has eaten the match or what separates the rows (9.7s)",
+   ""
+  ]
+ ],
+ "blocked": [
+  [
+   "146204",
+   "SRI-WO-C3 \u2014 A match on service advisor name shows the FULL value on the row (6ms)",
+   "CANNOT RUN \u2014 the case supplies no search term \u2014 No \"TYPE THIS INTO THE SEARCH BOX\" line is present."
+  ],
+  [
+   "146241",
+   "SRI-PART-C4 \u2014 A match on category shows the FULL value on the row (19.8s)",
+   "as-written \".Brake Parts\" \u2192 18 notes; fragment \".Brake\" \u2192 0 notes, 0 showing only what was typed | COULD NOT JUDGE \u2014 the derived fragment returns no labelled note"
+  ],
+  [
+   "146250",
+   "SRI-VEND-C1 \u2014 A match on email address shows the FULL value on the row (21.4s)",
+   "as-written \"zzhidden.vendor@staging.shopview.local\" \u2192 1 notes; fragment \"zzhidden.vendor@st\" \u2192 0 notes, 0 showing only what was typed | COULD NOT JUDGE \u2014 the derived fragment returns no labelled note"
+  ]
+ ],
+ "no data to judge": [
+  [
+   "146238",
+   "SRI-PART-C1 \u2014 A match on bin location shows the FULL value on the row (9.7s)",
+   "\"H3B\" \u2192 20 rows, 20 labelled notes, 20 showing only what was typed"
+  ],
+  [
+   "146271",
+   "SRI-PO-C1 \u2014 A match on part numbers on the PO shows the FULL value on the row (9.6s)",
+   "\"0123\" \u2192 0 rows, 0 labelled notes, 0 showing only what was typed"
+  ]
+ ],
+ "not re-run": []
+}

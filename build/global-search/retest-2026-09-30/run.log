@@ -1,0 +1,2018 @@
+
+Running 105 tests using 1 worker
+
+19:28:07 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d | viewport {"width":1440,"height":900}
+pointer parked: {"parked":true,"over":"div.q-dialog__backdrop fixed-full"}
+Work orders rows for "ZZLONGROW": 0
+  ✘    1 tests/C146197-C146208-sri-work-orders.spec.ts:76:1 › C146197 — the whole WO number is shown, with what you typed marked inside it (73ms)
+19:28:41 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d | viewport {"width":1440,"height":900}
+pointer parked: {"parked":true,"over":"div.q-dialog__backdrop fixed-full"}
+Work orders rows for "ZZLONGROW": 2
+  [0] title="S2-34376 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786" clipped=false (459/459) markVisible=true badge=Estimate meta=["ZZLONGROW\n-185786","2021 Rowcheck Trucks Longhauler"] metaClipped=false
+  [1] title="S2-34379 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786" clipped=false (459/459) markVisible=true badge=Estimate meta=["ZZLONGROW\n-123786","2021 Rowcheck Trucks Longhauler"] metaClipped=false
+tail term "Fernvale" → 4 Work orders rows
+  [0] markVisible=true clipped=false "S2-34360 Fernvale Asset Holdings"
+  [1] markVisible=true clipped=false "S2-34157 Fernvale Asset Holdings"
+  [2] markVisible=true clipped=false "S2-34376 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale"
+  [3] markVisible=true clipped=false "S2-34379 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale"
+  ✓    2 tests/C146197-C146208-sri-work-orders.spec.ts:109:1 › C146198 — nothing cut off has eaten the match or what tells the rows apart (9.8s)
+  ✓    3 tests/C146197-C146208-sri-work-orders.spec.ts:141:1 › C146199 — the highlight marks the match inside the text, not instead of it (7ms)
+  ✓    4 tests/C146197-C146208-sri-work-orders.spec.ts:154:1 › C146200 — two records sharing the typed text can be told apart from the rows alone (3ms)
+  ✓    5 tests/C146197-C146208-sri-work-orders.spec.ts:164:1 › C146201 — rows with the same bold line still differ somewhere you can see (2ms)
+  ✓    6 tests/C146197-C146208-sri-work-orders.spec.ts:180:1 › C146207 — the row shows every field the requirement names (4ms)
+"ZZSOFTHIT" Work orders rows: 1
+  [0] "≈ close match: S2-34378 ZZSOFTHIY Cartage Estimate ZZRI-SOFT-01 · 2021 Rowcheck Trucks Softline" marks=[] approx=true italicMarks=[]
+  ✘    7 tests/C146197-C146208-sri-work-orders.spec.ts:200:1 › C146208 — a soft match is drawn as a soft match (9.9s)
+19:29:35 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146202: as-written "SVEWU82M5ETEJFWFA" → 20 notes; fragment "SVEWU82M" → 20 notes, 20 showing only what was typed
+  ✘    8 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146202 — SRI-WO-C1 — A match on VIN / serial number shows the FULL value on the row (20.1s)
+19:30:20 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146204: CANNOT RUN — the case supplies no search term — No "TYPE THIS INTO THE SEARCH BOX" line is present.
+  ✓    9 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146204 — SRI-WO-C3 — A match on service advisor name shows the FULL value on the row (6ms)
+C146205: "786" → 8 rows, 7 labelled notes, 7 showing only what was typed
+  ✘   10 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146205 — SRI-WO-C4 — A match on line item descriptions (parts and labor on the WO) show (9.7s)
+19:30:54 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146206: "786" → 8 rows, 7 labelled notes, 7 showing only what was typed
+  ✘   11 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146206 — SRI-WO-C5 — A match on part numbers on the work order's lines (`item_part_numb (9.6s)
+19:31:28 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146214: as-written "609-461-6502" → 1 notes; fragment "6502" → 9 notes, 2 showing only what was typed
+  ✘   12 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146214 — SRI-CUST-C1 — A match on the customer's own telephone shows the FULL value on  (19.6s)
+19:32:13 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146215: as-written "555-222-3333" → 1 notes; fragment "3333" → 6 notes, 3 showing only what was typed
+  ✘   13 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146215 — SRI-CUST-C2 — A match on a contact's telephone shows the FULL value on the row (19.5s)
+19:32:57 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146216: as-written "zzautotest.nophone@staging.shopview.local" → 1 notes; fragment "zzautotest.nophone@" → 1 notes, 0 showing only what was typed
+  ✘   14 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146216 — SRI-CUST-C3 — A match on a contact's email address shows the FULL value on the (21.6s)
+19:33:43 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146217: as-written "Savannah" → 5 notes; fragment "Sava" → 9 notes, 9 showing only what was typed
+  ✘   15 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146217 — SRI-CUST-C4 — A match on a contact's name shows the FULL value on the row (19.4s)
+19:34:27 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146218: as-written "Apt. 199" → 1 notes; fragment "Apt." → 6 notes, 6 showing only what was typed
+  ✘   16 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146218 — SRI-CUST-C5 — A match on address line 2 shows the FULL value on the row (19.4s)
+19:35:11 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146220: "ZZQUEBEXA" → 1 rows, 0 labelled notes, 0 showing only what was typed
+C146220: COULD NOT JUDGE — no row carries a labelled note for this term
+  ✓   17 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146220 — SRI-CUST-C7 — A match on state / province shows the FULL value on the row (9.8s)
+C146221: as-written "H8A3X9" → 1 notes; fragment "H8A3" → 0 notes, 0 showing only what was typed
+C146221: COULD NOT JUDGE — the derived fragment returns no labelled note
+  ✓   18 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146221 — SRI-CUST-C8 — A match on postal code shows the FULL value on the row (19.1s)
+C146229: as-written "SVEWU82M5ETEJFWFA" → 1 notes; fragment "SVEWU82M" → 1 notes, 1 showing only what was typed
+  ✘   19 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146229 — SRI-ASSET-C1 — A match on VIN / serial number shows the FULL value on the row (20.0s)
+19:36:24 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146230: as-written "KVQ-2870" → 1 notes; fragment "KVQ-" → 3 notes, 3 showing only what was typed
+  ✘   20 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146230 — SRI-ASSET-C2 — A match on licence plate shows the FULL value on the row (19.4s)
+19:37:09 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146238: "H3B" → 20 rows, 20 labelled notes, 20 showing only what was typed
+  ✘   21 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146238 — SRI-PART-C1 — A match on bin location shows the FULL value on the row (9.7s)
+19:37:43 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146239: as-written "Klondike" → 8 notes; fragment "Klon" → 8 notes, 8 showing only what was typed
+  ✘   22 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146239 — SRI-PART-C2 — A match on manufacturer shows the FULL value on the row (19.3s)
+19:38:28 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146240: as-written "Gibson's Mobile Diesel Repair" → 1 notes; fragment "Gibson's Mobil" → 1 notes, 1 showing only what was typed
+  ✘   23 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146240 — SRI-PART-C3 — A match on vendor name shows the FULL value on the row (20.9s)
+19:39:16 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146241: as-written ".Brake Parts" → 18 notes; fragment ".Brake" → 0 notes, 0 showing only what was typed
+C146241: COULD NOT JUDGE — the derived fragment returns no labelled note
+  ✓   24 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146241 — SRI-PART-C4 — A match on category shows the FULL value on the row (19.8s)
+C146242: "496" → 17 rows, 2 labelled notes, 2 showing only what was typed
+  ✘   25 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146242 — SRI-PART-C5 — A match on tags shows the FULL value on the row (9.7s)
+19:40:10 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146250: as-written "zzhidden.vendor@staging.shopview.local" → 1 notes; fragment "zzhidden.vendor@st" → 0 notes, 0 showing only what was typed
+C146250: COULD NOT JUDGE — the derived fragment returns no labelled note
+  ✓   26 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146250 — SRI-VEND-C1 — A match on email address shows the FULL value on the row (21.4s)
+C146251: as-written "ZZHIDDENSUITE" → 1 notes; fragment "ZZHIDD" → 1 notes, 1 showing only what was typed
+  ✘   27 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146251 — SRI-VEND-C2 — A match on address line 2 shows the FULL value on the row (19.6s)
+19:41:15 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146252: "965" → 15 rows, 13 labelled notes, 7 showing only what was typed
+  ✘   28 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146252 — SRI-VEND-C3 — A match on a contact's telephone shows the FULL value on the row (9.7s)
+19:41:49 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146262: as-written "Quietline" → 1 notes; fragment "Quiet" → 1 notes, 1 showing only what was typed
+  ✘   29 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146262 — SRI-PS-C1 — A match on the asset on the sale shows the FULL value on the row (19.3s)
+19:42:33 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146263: as-written "ZZHIDDENVIN0000001" → 1 notes; fragment "ZZHIDDENV" → 1 notes, 1 showing only what was typed
+  ✘   30 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146263 — SRI-PS-C2 — A match on VIN / serial number shows the FULL value on the row (20.0s)
+19:43:18 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146271: "0123" → 0 rows, 0 labelled notes, 0 showing only what was typed
+  ✘   31 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146271 — SRI-PO-C1 — A match on part numbers on the PO shows the FULL value on the row (9.6s)
+19:43:52 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146272: "786" → 6 rows, 4 labelled notes, 4 showing only what was typed
+  ✘   32 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146272 — SRI-PO-C2 — A match on part descriptions on the PO shows the FULL value on the (9.7s)
+19:44:26 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146273: as-written "Admin ShopView" → 20 notes; fragment "Admin S" → 7 notes, 7 showing only what was typed
+  ✘   33 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146273 — SRI-PO-C3 — A match on created-by user shows the FULL value on the row (20.0s)
+19:45:10 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146274: as-written "I-1522" → 1 notes; fragment "I-15" → 20 notes, 20 showing only what was typed
+  ✘   34 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146274 — SRI-PO-C4 — A match on spliced number variants (`number_variants`) shows the F (19.2s)
+19:45:54 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146282: as-written "I2-965" → 2 notes; fragment "I2-9" → 20 notes, 20 showing only what was typed
+  ✘   35 tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146282 — SRI-VINV-C1 — A match on the PO number the invoice belongs to shows the FULL v (19.1s)
+19:46:39 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build: v26.39.2-538dd8d | pointer: {"parked":true,"over":"div.q-dialog__backdrop fixed-full"}
+  [0] "ZZLONGROW Identical Name Cartage" clipped=false (245/245) badge=null meta=["88 Different Street, Fernvale, Ohio"]
+  [1] "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786" clipped=false (534/534) badge=null meta=["21 Result Row Way, Fernvale, Ohio"]
+  [2] "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 185786" clipped=false (534/534) badge=null meta=["21 Result Row Way, Fernvale, Ohio"]
+C146209 "0900": {"rows":19,"notes":["Contact match: \n467-860-9009","Contact match: \n880-090-0296","Contact match: \n090-011-8264","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n090-053-6707","Contact
+  ✘   36 tests/C146209-C146223-sri-customers.spec.ts:72:1 › C146209 — each row shows the COMPLETE telephone, with the typed part inside it (9.6s)
+19:47:23 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build: v26.39.2-538dd8d | pointer: {"parked":true,"over":"div.q-dialog__backdrop fixed-full"}
+  [0] "ZZLONGROW Identical Name Cartage" clipped=false (245/245) badge=null meta=["88 Different Street, Fernvale, Ohio"]
+  [1] "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786" clipped=false (534/534) badge=null meta=["21 Result Row Way, Fernvale, Ohio"]
+  [2] "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 185786" clipped=false (534/534) badge=null meta=["21 Result Row Way, Fernvale, Ohio"]
+  tail [0] markVisible=true clipped=false "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786"
+  ✓   37 tests/C146209-C146223-sri-customers.spec.ts:89:1 › C146210 — nothing cut off has eaten the match or what tells the rows apart (9.6s)
+  ✓   38 tests/C146209-C146223-sri-customers.spec.ts:110:1 › C146211 — the highlight marks the match inside the text, not instead of it (9ms)
+  ✓   39 tests/C146209-C146223-sri-customers.spec.ts:120:1 › C146212 — two customers sharing the typed text can be told apart from the rows alone (3ms)
+C146222 row: "7 Star Truck Repair 31 open 305 Harris Cape, Priscillabury, Nunavut" badge="31 open"
+C146222 badge control (work order rows): ["31 open","63 open"]
+C146222 hover gained: [] | pointer reached row: [33mtrue[39m
+  ✘   40 tests/C146209-C146223-sri-customers.spec.ts:139:1 › C146222 — the customer row shows every field the requirement names (11.3s)
+19:48:18 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build: v26.39.2-538dd8d | pointer: {"parked":true,"over":"div.q-dialog__backdrop fixed-full"}
+  [0] "ZZLONGROW Identical Name Cartage" clipped=false (245/245) badge=null meta=["88 Different Street, Fernvale, Ohio"]
+  [1] "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786" clipped=false (534/534) badge=null meta=["21 Result Row Way, Fernvale, Ohio"]
+  [2] "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 185786" clipped=false (534/534) badge=null meta=["21 Result Row Way, Fernvale, Ohio"]
+  soft [0] approx=false italic=[] marks=["ZZPREFIY"] "ZZPREFIY Cartage 1 Ranking Way, Fernvale, Ohio"
+  soft [1] approx=true italic=[] marks=[] "≈ close match: Bolton ZZPREFIX Services 1 Ranking Way, Fernvale, Ohio"
+  soft [2] approx=true italic=[] marks=[] "≈ close match: ZZPREFIX Freight Ltd 1 Ranking Way, Fernvale, Ohio"
+  soft [3] approx=true italic=[] marks=[] "≈ close match: ZZPREFOX Cartage 1 Ranking Way, Fernvale, Ohio"
+  ✘   41 tests/C146209-C146223-sri-customers.spec.ts:178:1 › C146223 — a soft match is drawn as a soft match (9.8s)
+19:49:02 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+
+== Assets / "ZZLONGROW" → 2 rows
+   [0] clipped=false (382/382) badge=null "ZZLONGROW -123786 · 2021 Rowcheck Trucks Longhauler" meta=["ZZLONGROW\n Heavy Haulage And Trailer Repair Services Of Greater Fernvale 1237
+   [1] clipped=false (382/382) badge=null "ZZLONGROW -185786 · 2021 Rowcheck Trucks Longhauler" meta=["ZZLONGROW\n Heavy Haulage And Trailer Repair Services Of Greater Fernvale 1237
+  ✓   42 tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146224 — Assets: the whole unit number is shown, with the typed part marked inside it (9.8s)
+   Assets A2: nothing is clipped — the case's question does not arise here
+  ✓   43 tests/C146224-C146284-sri-entities.spec.ts:224:3 › C146225 — Assets: nothing cut off has eaten the match or what separates the rows (9.7s)
+  ✘   44 tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146226 — Assets: the highlight marks the match inside the text, not instead of it (9.8s)
+19:49:56 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+  ✓   45 tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146227 — Assets: two records sharing the typed text can be told apart (9.9s)
+   Assets B2 "ZZLONGROW": 2 rows, 0 shared bold line(s)
+  ✓   46 tests/C146224-C146284-sri-entities.spec.ts:280:3 › C146228 — Assets: records with the same bold line differ somewhere you can see (9.7s)
+   Assets D1 judged "ZZLONGROW -123786 · 2021 Rowcheck Trucks Longhauler ZZLONGROW Heavy Haulage And Trailer Re" badge=null missing=[]
+  ✓   47 tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146231 — Assets: the row shows every field the requirement names (9.8s)
+   Assets I1 "ZZOBSIDIAN" → 3 rows
+      [0] approx=false marks=["ZZOBSIDIAN"]
+      [1] approx=false marks=["ZZOBSIDIAN"]
+      [2] approx=true marks=[]
+  ✘   48 tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146232 — Assets: a soft match is drawn as a soft match (9.9s)
+19:50:58 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+
+== Parts / "ZZLONGROW" → 2 rows
+   [0] clipped=false (455/455) badge=4 available "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applica" meta=["ZZLONGROW\n-123786"]
+   [1] clipped=false (455/455) badge=4 available "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applica" meta=["ZZLONGROW\n-185786"]
+  ✓   49 tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146233 — Parts: the whole part number is shown, with the typed part marked inside it (9.8s)
+   Parts A2: nothing is clipped — the case's question does not arise here
+  ✓   50 tests/C146224-C146284-sri-entities.spec.ts:224:3 › C146234 — Parts: nothing cut off has eaten the match or what separates the rows (9.7s)
+  ✓   51 tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146235 — Parts: the highlight marks the match inside the text, not instead of it (9.7s)
+  ✓   52 tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146236 — Parts: two records sharing the typed text can be told apart (9.6s)
+   Parts B2 "ZZLONGROW Heavy Duty Air Brake": 2 rows, 1 shared bold line(s)
+  ✓   53 tests/C146224-C146284-sri-entities.spec.ts:280:3 › C146237 — Parts: records with the same bold line differ somewhere you can see (10.8s)
+   Parts D1 judged "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications 4 Available ZZ" badge=4 available missing=[]
+  ✓   54 tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146243 — Parts: the row shows every field the requirement names (9.7s)
+   Parts I1 "ZZKRYPTON" → 3 rows
+      [0] approx=false marks=["ZZKRYPTON Brake Kit"]
+      [1] approx=false marks=["ZZKRYPTON"]
+      [2] approx=true marks=[]
+  ✘   55 tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146244 — Parts: a soft match is drawn as a soft match (9.8s)
+19:52:32 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+
+== Vendors / "ZZLONGROW" → 5 rows
+   [0] clipped=false (239/239) badge=null "ZZLONGROW Identical Name Supply" meta=["(264) 400-0900","88 Different Street, Fernvale, Ohio"]
+   [1] clipped=false (239/239) badge=null "ZZLONGROW Identical Name Supply" meta=["(264) 400-0900","4 Sameface Road, Fernvale, Ohio"]
+   [2] clipped=false (239/239) badge=null "ZZLONGROW Identical Name Supply" meta=["(264) 400-0900","21 Result Row Way, Fernvale, Ohio"]
+   [3] clipped=false (534/534) badge=null "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fer" meta=["(264) 400-0900","21 Result Row Way, Fernvale, Ohio"]
+   [4] clipped=false (534/534) badge=null "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fer" meta=["(264) 400-0900","21 Result Row Way, Fernvale, Ohio"]
+  ✓   56 tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146245 — Vendors: the whole telephone is shown, with the typed part marked inside it (9.8s)
+   Vendors A2: nothing is clipped — the case's question does not arise here
+  ✓   57 tests/C146224-C146284-sri-entities.spec.ts:224:3 › C146246 — Vendors: nothing cut off has eaten the match or what separates the rows (9.7s)
+  ✓   58 tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146247 — Vendors: the highlight marks the match inside the text, not instead of it (9.7s)
+  ✓   59 tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146248 — Vendors: two records sharing the typed text can be told apart (9.7s)
+   Vendors B2 "ZZLONGROW Identical Name Supply": 3 rows, 1 shared bold line(s)
+  ✓   60 tests/C146224-C146284-sri-entities.spec.ts:280:3 › C146249 — Vendors: records with the same bold line differ somewhere you can see (10.8s)
+   Vendors D1 judged "ZZLONGROW Identical Name Supply (264) 400-0900 · 88 Different Street, Fernvale, Ohio" badge=null missing=[]
+  ✓   61 tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146255 — Vendors: the row shows every field the requirement names (9.7s)
+   Vendors I1 "ZZMAGENTA" → 3 rows
+      [0] approx=false marks=["ZZMAGENTA"]
+      [1] approx=false marks=["ZZMAGENTA"]
+      [2] approx=true marks=[]
+  ✘   62 tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146256 — Vendors: a soft match is drawn as a soft match (9.7s)
+19:54:05 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+
+== Part Sales / "ZZLONGROW" → 3 rows
+   [0] clipped=false (454/454) badge=Complete "P2-2277 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater" meta=["$34.90","Admin ShopView","Yesterday"]
+   [1] clipped=false (459/459) badge=Estimate "P2-2276 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater" meta=["Admin ShopView","Yesterday"]
+   [2] clipped=false (459/459) badge=Estimate "P2-2271 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater" meta=["Admin ShopView","Yesterday"]
+  ✓   63 tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146257 — Part Sales: the whole P-number is shown, with the typed part marked inside it (9.8s)
+   Part Sales A2: nothing is clipped — the case's question does not arise here
+  ✓   64 tests/C146224-C146284-sri-entities.spec.ts:224:3 › C146258 — Part Sales: nothing cut off has eaten the match or what separates the rows (9.7s)
+  ✓   65 tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146259 — Part Sales: the highlight marks the match inside the text, not instead of it (9.8s)
+  ✓   66 tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146260 — Part Sales: two records sharing the typed text can be told apart (9.7s)
+   Part Sales B2 "ZZLONGROW": 3 rows, 0 shared bold line(s)
+  ✓   67 tests/C146224-C146284-sri-entities.spec.ts:280:3 › C146261 — Part Sales: records with the same bold line differ somewhere you can see (9.8s)
+   Part Sales D1 judged "P2-2277 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786 Com" badge=Complete missing=[]
+  ✓   68 tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146264 — Part Sales: the row shows every field the requirement names (9.7s)
+   Part Sales I1 "ZZSOFTHIT" → 1 rows
+      [0] approx=true marks=[]
+  ✘   69 tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146265 — Part Sales: a soft match is drawn as a soft match (9.8s)
+19:55:38 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+
+== Purchase Orders / "Fibridge" → 9 rows
+   [0] clipped=false (247/247) badge=Ordered "I2-1513 ZZAUTOTEST Fibridge Mining" meta=["$90.00","Sep 25, 2026"]
+   [1] clipped=false (247/247) badge=Ordered "I2-1512 ZZAUTOTEST Fibridge Mining" meta=["$100.00","Sep 25, 2026"]
+   [2] clipped=false (247/247) badge=Fulfilled "I2-1516 ZZAUTOTEST Fibridge Mining" meta=["$90.00","Sep 25, 2026"]
+   [3] clipped=false (247/247) badge=Fulfilled "I2-1515 ZZAUTOTEST Fibridge Mining" meta=["$90.00","Sep 25, 2026"]
+   [4] clipped=false (247/247) badge=Fulfilled "I2-1514 ZZAUTOTEST Fibridge Mining" meta=["$100.00","Sep 25, 2026"]
+   [5] clipped=false (247/247) badge=Fulfilled "I2-1511 ZZAUTOTEST Fibridge Mining" meta=["$90.00","Sep 25, 2026"]
+   [6] clipped=false (65/65) badge=Fulfilled "S2-34132" meta=["$1,920.00","Sep 25, 2026","Part description: \nFibridge"]
+   [7] clipped=false (273/273) badge=Fulfilled "S2-4600 Grand Haven Diesel Services LLC" meta=["$49,323.31","Nov 28, 2025","Part description: Valve Bridge"]
+   [8] clipped=false (217/217) badge=Fulfilled "S2-4542 Yigo Diesel Performance" meta=["$4,661.71","Jan 22, 2025","Part description: valve bridge"]
+  ✘   70 tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146266 — Purchase Orders: the whole PO number is shown, with the typed part marked inside it (9.9s)
+19:56:12 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+   Purchase Orders A2: nothing is clipped — the case's question does not arise here
+  ✓   71 tests/C146224-C146284-sri-entities.spec.ts:224:3 › C146267 — Purchase Orders: nothing cut off has eaten the match or what separates the rows (9.7s)
+  ✘   72 tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146268 — Purchase Orders: the highlight marks the match inside the text, not instead of it (9.7s)
+19:56:56 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+  ✘   73 tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146269 — Purchase Orders: two records sharing the typed text can be told apart (9.8s)
+19:57:30 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+   Purchase Orders B2 "Fibridge": 0 rows, 0 shared bold line(s)
+  ✓   74 tests/C146224-C146284-sri-entities.spec.ts:280:3 › C146270 — Purchase Orders: records with the same bold line differ somewhere you can see (9.7s)
+  ✘   75 tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146275 — Purchase Orders: the row shows every field the requirement names (9.7s)
+19:58:14 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+   Purchase Orders I1 "ZZSOFTHIT" → 0 rows
+  ✘   76 tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146276 — Purchase Orders: a soft match is drawn as a soft match (9.8s)
+19:58:48 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+
+== Vendor Invoices / "Fibridge" → 0 rows
+  ✘   77 tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146277 — Vendor Invoices: the whole invoice number is shown, with the typed part marked inside it (9.8s)
+19:59:22 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+   Vendor Invoices A2: nothing is clipped — the case's question does not arise here
+  ✓   78 tests/C146224-C146284-sri-entities.spec.ts:224:3 › C146278 — Vendor Invoices: nothing cut off has eaten the match or what separates the rows (9.7s)
+  ✘   79 tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146279 — Vendor Invoices: the highlight marks the match inside the text, not instead of it (9.7s)
+20:00:06 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+  ✘   80 tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146280 — Vendor Invoices: two records sharing the typed text can be told apart (9.8s)
+20:00:40 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+   Vendor Invoices B2 "Fibridge": 0 rows, 0 shared bold line(s)
+  ✓   81 tests/C146224-C146284-sri-entities.spec.ts:280:3 › C146281 — Vendor Invoices: records with the same bold line differ somewhere you can see (9.7s)
+  ✘   82 tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146283 — Vendor Invoices: the row shows every field the requirement names (9.7s)
+20:01:24 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+   Vendor Invoices I1 "ZZSOFTHIT" → 1 rows
+      [0] approx=true marks=[]
+  ✘   83 tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146284 — Vendor Invoices: a soft match is drawn as a soft match (9.9s)
+20:01:58 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146285 {"pointer":{"parked":false,"over":"not yet read"},"checked":[{"tab":"Work orders","count":5,"rows":5},{"tab":"Customers","count":20,"rows":20},{"tab":"Assets","count":10,"rows":10},{"tab":"Parts","count":4,"rows":4},{"tab":"Vendors","count":15,"rows":15},{"tab":"Purchase orders","count":4,"rows":4},{"tab":"Vendor invoices","count":1,"rows":1}]}
+  ✓   84 tests/C146285-C146306-sri-all-tab.spec.ts:36:1 › C146285 — a tab's count equals the number of rows inside it (22.6s)
+C146286 {"tabs":[{"label":"All","count":0},{"label":"Work orders","count":0},{"label":"Customers","count":0},{"label":"Assets","count":0},{"label":"Parts","count":0},{"label":"Vendors","count":0},{"label":"Part sales","count":0},{"label":"Purchase orders","count":0},{"label":"Vendor invoices","count":0}],"groups":[],"over":[]}
+  ✓   85 tests/C146285-C146306-sri-all-tab.spec.ts:51:1 › C146286 — no count anywhere reads higher than 20 (6.9s)
+C146287 []
+  ✘   86 tests/C146285-C146306-sri-all-tab.spec.ts:61:1 › C146287 — a group on the All tab shows 5 and offers the rest (7.0s)
+20:02:58 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+  ✘   87 tests/C146285-C146306-sri-all-tab.spec.ts:73:1 › C146288 — "Show all" opens that tab and keeps you in the search box (6.9s)
+20:03:30 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146289 [{"label":"All","count":59},{"label":"Work orders","count":5},{"label":"Customers","count":20},{"label":"Assets","count":10},{"label":"Parts","count":4},{"label":"Vendors","count":15},{"label":"Part sales","count":0},{"label":"Purchase orders","count":4},{"label":"Vendor invoices","count":1}]
+  ✓   88 tests/C146285-C146306-sri-all-tab.spec.ts:98:1 › C146289 — all nine tabs are there, named and counted (6.7s)
+C146290 ["Work orders","Customers","Assets","Parts","Vendors","Purchase orders","Vendor invoices"]
+  ✓   89 tests/C146285-C146306-sri-all-tab.spec.ts:108:1 › C146290 — groups on the All tab are always in the same order (6.8s)
+C146291 {"topRows":[],"firstGroup":"Work orders","body":"3 results found across 3 categories Work orders (1) S3-4379 Yeagertown Truck & Trailer Repair Paid 2017 Ford F-450 Purchase orders (1) S3-4379 Stillwater Diesel"}
+  ✘   90 tests/C146285-C146306-sri-all-tab.spec.ts:119:1 › C146291 — typing a full record number puts that record at the very top (7.1s)
+20:04:14 staging https://app.staging.shopview.com/customers | template_slug=administrator | fe_permissions=59  (role.name="Admin" — unreliable label, do not assert on it)
+build under test: v26.39.2-538dd8d
+C146292 {"a":"S-34379","b":"S34379","ra":["S2-34379 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786 Estimate ZZLONGROW-123786 · 2021 Rowcheck Trucks Longhauler · Number: S-34379"],"rb":["S2-34379 ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786 Estimate ZZLONGROW-123786 · 2021 Rowcheck Trucks Longhauler · Number: S-34379"],"same":true}
+  ✓   91 tests/C146285-C146306-sri-all-tab.spec.ts:135:1 › C146292 — a number is found with and without its dashes (19.3s)
+C146293 {"a":"609-461-6502","b":"6094616502","ra":["7 Star Truck Repair 31 open Contact match: 609-461-6502 · 305 Harris Cape, Priscillabury, Nunavut"],"rb":["7 Star Truck Repair 31 open Contact match: 609-461-6502 · 305 Harris Cape, Priscillabury, Nunavut"],"same":true}
+  ✓   92 tests/C146285-C146306-sri-all-tab.spec.ts:142:1 › C146293 — a phone number is found however it is punctuated (19.6s)
+C146294.seed ["ZZACC José Martínez 1 Ranking Way, Fernvale, Ohio"]
+C146294 {"a":"ZZACC José Martínez","b":"ZZACC Jose Martinez","ra":["ZZACC José Martínez 1 Ranking Way, Fernvale, Ohio"],"rb":["ZZACC José Martínez 1 Ranking Way, Fernvale, Ohio"],"same":true}
+  ✓   93 tests/C146285-C146306-sri-all-tab.spec.ts:149:1 › C146294 — an accented name is found typed either way (29.8s)
+C146295.seed ["ZZPUNC Smith-Jones Motors 1 Ranking Way, Fernvale, Ohio","ZZPUNC O'Brien Haulage 1 Ranking Way, Fernvale, Ohio"]
+C146295 {"a":"ZZPUNC Smith-Jones Motors","b":"ZZPUNC SmithJones Motors","ra":["ZZPUNC Smith-Jones Motors 1 Ranking Way, Fernvale, Ohio"],"rb":["ZZPUNC Smith-Jones Motors 1 Ranking Way, Fernvale, Ohio"],"same":true}
+  ✓   94 tests/C146285-C146306-sri-all-tab.spec.ts:163:1 › C146295 — an apostrophe or hyphen in a name is optional (30.6s)
+C146296 {"exactRows":20,"typo":"SVEWU82M5ETEJFWFB","nearRows":0,"nearText":[]}
+  ✓   95 tests/C146285-C146306-sri-all-tab.spec.ts:175:1 › C146296 — a typo in a NUMBER is not silently corrected (20.4s)
+C146297 {"Approved":[{"text":"S2-34466 TestVT1 Approved 2022 KEN WORTH T880 · Line item: approved","badge":"Approved","note":"Line item: \napproved","wordInName":false,"wordInMatchedField":true},{"text":"S2-34398 TestVT1 Approved 2022 KEN WORTH T880 · Line item: approved","badge":"Approved","note":"Line item: \napproved","wordInName":false,"wordInMatchedField":true},{"text":"S2-34022 TestVT1 Approved 2022
+  ✓   96 tests/C146285-C146306-sri-all-tab.spec.ts:191:1 › C146297 — typing a status word returns nothing because of status (38.8s)
+C146298 [{"text":"S2-34384 Rowcheck Hidden Fields Holdings Estimate 2021 ZZNOUNIT Trucks Plainline","meta":["2021 \nZZNOUNIT\n Trucks Plainline"]}]
+  ✓   97 tests/C146285-C146306-sri-all-tab.spec.ts:215:1 › C146298 — a work order whose truck has no unit number still reads properly (9.8s)
+C146299 [{"badge":"Estimate","meta":["ZZLONGROW\n-185786","2021 Rowcheck Trucks Longhauler"],"titleClipped":false},{"badge":"Estimate","meta":["ZZLONGROW\n-123786","2021 Rowcheck Trucks Longhauler"],"titleClipped":false}]
+  ✓   98 tests/C146285-C146306-sri-all-tab.spec.ts:227:1 › C146299 — a very long value does not push the rest of the row out of sight (9.7s)
+C146300 {"rows":20,"sample":["FILTER ASSY. 2 Available CF19900","FILTER-AIR CAB EXTERIOR 2 Available CFR20370","FILTER 1 Available 9R9925","FILTER-DEF 1 Available A04-27207-000","Engine Oil Filter , ISB 4 Available LF3972"]}
+  ✓   99 tests/C146285-C146306-sri-all-tab.spec.ts:237:1 › C146300 — a very common word still gives a usable list (9.7s)
+C146302 {"zeroTabs":["Part sales"],"groupsShown":["Work orders","Customers","Assets","Parts","Vendors","Purchase orders","Vendor invoices"]}
+  ✓  100 tests/C146285-C146306-sri-all-tab.spec.ts:248:1 › C146302 — a kind of record that does not exist yet does not break search (6.8s)
+C146303 {"body":"No results found No results for “Zqwxpol”","empty":"No results found No results for “Zqwxpol”","rows":0}
+  ✓  101 tests/C146285-C146306-sri-all-tab.spec.ts:262:1 › C146303 — no results shows your query back, and nothing else (7.0s)
+C146304.tabs [{"label":"All","count":7},{"label":"Work orders","count":0},{"label":"Customers","count":2},{"label":"Assets","count":1},{"label":"Parts","count":2},{"label":"Vendors","count":2},{"label":"Part sales","count":0},{"label":"Purchase orders","count":0},{"label":"Vendor invoices","count":0}]
+C146304 {"tab":"Work orders","body":"7 results found across 4 categories No results for “ZZVORTAC” in Work orders"}
+  ✓  102 tests/C146285-C146306-sri-all-tab.spec.ts:270:1 › C146304 — no results inside a tab names the tab (9.1s)
+C146305 {"value":"ZZLONGROW","found":2,"controlTerm":"Rowcheck","controlFound":4}
+  ✓  103 tests/C146285-C146306-sri-all-tab.spec.ts:283:1 › C146305 — a record you can open from its own list is never "not found" (19.3s)
+20:08:34 staging https://app.staging.shopview.com/customers | template_slug=technician | fe_permissions=6  (role.name="Technician" — unreliable label, do not assert on it)
+C146306.accounts {"adminPerms":null,"restrictedPerms":null,"differentPanels":true}
+C146306 {"admin":["All=62","Work orders=2","Customers=20","Assets=10","Parts=9","Vendors=15","Part sales=0","Purchase orders=3","Vendor invoices=3"],"restricted":["All=32","Work orders=2","Customers=20","Assets=10"],"adminGroups":["Work orders","Customers","Assets","Parts","Vendors","Purchase orders","Vendor invoices"],"restrictedGroups":["Work orders","Customers","Assets"]}
+  ✓  104 tests/C146285-C146306-sri-all-tab.spec.ts:295:1 › C146306 — someone without access sees no rows AND no count (35.8s)
+C146301 {"held":"the specification sets a typing delay but no minimum length, so this is recorded, not judged","oneChar":{"body":"Recent searches Clear All TODAY ≈ close match: Bravo Mechanical Services 1 open ≈ close match: Mobile Truck & Trailer Repair Blackfoot 2 open 561 Harr","groups":[]},"twoChar":{"body":"138 results found across 8 categories Work orders (20) Show All S2-33677 ZZAUTOTEST SV- 96 47 
+  ✓  105 tests/C146285-C146306-sri-all-tab.spec.ts:333:1 › C146301 — [HELD: the source is silent] what one or two characters do (13.4s)
+
+
+  1) tests/C146197-C146208-sri-work-orders.spec.ts:76:1 › C146197 — the whole WO number is shown, with what you typed marked inside it 
+
+    Error: "ZZLONGROW" returned no Work orders rows — the fixture data is gone, so nothing below would be a statement about the product
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      76 | test('C146197 — the whole WO number is shown, with what you typed marked inside it', async () => {
+      77 |   expect(rows.length, `"${TERM}" returned no ${TAB} rows — the fixture data is gone, ` +
+    > 78 |     `so nothing below would be a statement about the product`).toBeGreaterThan(0);
+         |                                                                ^
+      79 |
+      80 |   for (const r of rows) {
+      81 |     // (b) the typed characters are highlighted…
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146197-C146208-sri-work-orders.spec.ts:78:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146197-C146208-sri-work-o-cd6bf--you-typed-marked-inside-it/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146197-C146208-sri-work-o-cd6bf--you-typed-marked-inside-it/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146197-C146208-sri-work-o-cd6bf--you-typed-marked-inside-it/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146197-C146208-sri-work-o-cd6bf--you-typed-marked-inside-it/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/C146197-C146208-sri-work-orders.spec.ts:200:1 › C146208 — a soft match is drawn as a soft match 
+
+    Error: POSITIVE CONTROL FAILED on row 0: no highlight found either, so "no ≈ or italics" is unproven. The reader is not seeing this row's markup.
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      221 |     expect(r.marks.length,
+      222 |       `POSITIVE CONTROL FAILED on row ${r.index}: no highlight found either, so "no ≈ or italics" ` +
+    > 223 |       `is unproven. The reader is not seeing this row's markup.`).toBeGreaterThan(0);
+          |                                                                   ^
+      224 |     expect(r.approx || r.italicMarks.length > 0,
+      225 |       `row ${r.index} "${r.text}" is a soft match drawn exactly like an exact one: no "≈" anywhere ` +
+      226 |       `on the row and no highlighted text in italics. Highlights present: ${JSON.stringify(r.marks)}.`)
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146197-C146208-sri-work-orders.spec.ts:223:67
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146197-C146208-sri-work-o-71e77-ch-is-drawn-as-a-soft-match/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146197-C146208-sri-work-o-71e77-ch-is-drawn-as-a-soft-match/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146197-C146208-sri-work-o-71e77-ch-is-drawn-as-a-soft-match/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146197-C146208-sri-work-o-71e77-ch-is-drawn-as-a-soft-match/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146202 — SRI-WO-C1 — A match on VIN / serial number shows the FULL value on the row 
+
+    Error: typing "SVEWU82M" — a fragment of "SVEWU82M5ETEJFWFA" — returns rows whose note reads only "SVEWU82M" instead of the whole value: ["VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M","VIN: \nSVEWU82M"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m20[39m
+    Received array:  [31m["VIN:·[39m
+    [31mSVEWU82M", "VIN:·[39m
+    [31mSVEWU82M", "VIN:·[39m
+    [31mSVEWU82M", "VIN:·[39m
+    [31mSVEWU82M", "VIN:·[39m
+    [31mSVEWU82M", "VIN:·[39m
+    [31mSVEWU82M", "VIN:·[39m
+    [31mSVEWU82M", "VIN:·[39m
+    [31mSVEWU82M", "VIN:·[39m
+    [31mSVEWU82M", "VIN:·[39m
+    [31mSVEWU82M", …][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-0658e-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-0658e-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-0658e-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-0658e-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146205 — SRI-WO-C4 — A match on line item descriptions (parts and labor on the WO) show 
+
+    Error: these rows show only the characters typed instead of the whole value: ["Part number: \n786","Part number: \n786","Part description: \n786","Part description: \n786","Part description: \n786","Part description: \n786","Part description: \n786"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m7[39m
+    Received array:  [31m["Part number:·[39m
+    [31m786", "Part number:·[39m
+    [31m786", "Part description:·[39m
+    [31m786", "Part description:·[39m
+    [31m786", "Part description:·[39m
+    [31m786", "Part description:·[39m
+    [31m786", "Part description:·[39m
+    [31m786"][39m
+
+      151 |     expect(onlyTyped,
+      152 |       `these rows show only the characters typed instead of the whole value: ${JSON.stringify(onlyTyped)}`)
+    > 153 |       .toHaveLength(0);
+          |        ^
+      154 |   });
+      155 | }
+      156 |
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:153:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-84c05-ts-and-labor-on-the-WO-show/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-84c05-ts-and-labor-on-the-WO-show/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-84c05-ts-and-labor-on-the-WO-show/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-84c05-ts-and-labor-on-the-WO-show/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146206 — SRI-WO-C5 — A match on part numbers on the work order's lines (`item_part_numb 
+
+    Error: these rows show only the characters typed instead of the whole value: ["Part number: \n786","Part number: \n786","Part description: \n786","Part description: \n786","Part description: \n786","Part description: \n786","Part description: \n786"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m7[39m
+    Received array:  [31m["Part number:·[39m
+    [31m786", "Part number:·[39m
+    [31m786", "Part description:·[39m
+    [31m786", "Part description:·[39m
+    [31m786", "Part description:·[39m
+    [31m786", "Part description:·[39m
+    [31m786", "Part description:·[39m
+    [31m786"][39m
+
+      151 |     expect(onlyTyped,
+      152 |       `these rows show only the characters typed instead of the whole value: ${JSON.stringify(onlyTyped)}`)
+    > 153 |       .toHaveLength(0);
+          |        ^
+      154 |   });
+      155 | }
+      156 |
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:153:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-e25f7-rder-s-lines-item-part-numb/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-e25f7-rder-s-lines-item-part-numb/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-e25f7-rder-s-lines-item-part-numb/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-e25f7-rder-s-lines-item-part-numb/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146214 — SRI-CUST-C1 — A match on the customer's own telephone shows the FULL value on  
+
+    Error: typing "6502" — a fragment of "609-461-6502" — returns rows whose note reads only "6502" instead of the whole value: ["Contact match: \n6502","Contact match: \n6502"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m2[39m
+    Received array:  [31m["Contact match:·[39m
+    [31m6502", "Contact match:·[39m
+    [31m6502"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-a3c70-ne-shows-the-FULL-value-on-/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-a3c70-ne-shows-the-FULL-value-on-/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-a3c70-ne-shows-the-FULL-value-on-/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-a3c70-ne-shows-the-FULL-value-on-/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146215 — SRI-CUST-C2 — A match on a contact's telephone shows the FULL value on the row 
+
+    Error: typing "3333" — a fragment of "555-222-3333" — returns rows whose note reads only "3333" instead of the whole value: ["Contact match: \n3333","Contact match: \n3333","Contact match: \n3333"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m3[39m
+    Received array:  [31m["Contact match:·[39m
+    [31m3333", "Contact match:·[39m
+    [31m3333", "Contact match:·[39m
+    [31m3333"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-f80df-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-f80df-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-f80df-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-f80df-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146216 — SRI-CUST-C3 — A match on a contact's email address shows the FULL value on the 
+
+    Error: the note shows neither the whole value "zzautotest.nophone@staging.shopview.local" nor the text typed — it shows a different detail of the record altogether: ["Contact match: ZZAUTOTEST"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m1[39m
+    Received array:  [31m["Contact match: ZZAUTOTEST"][39m
+
+      134 |       expect(wrongValue,
+      135 |         `the note shows neither the whole value "${c.term}" nor the text typed — it shows a ` +
+    > 136 |         `different detail of the record altogether: ${JSON.stringify(wrongValue)}`).toHaveLength(0);
+          |                                                                                     ^
+      137 |       return;
+      138 |     }
+      139 |
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:136:85
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-575ee-shows-the-FULL-value-on-the/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-575ee-shows-the-FULL-value-on-the/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-575ee-shows-the-FULL-value-on-the/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-575ee-shows-the-FULL-value-on-the/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146217 — SRI-CUST-C4 — A match on a contact's name shows the FULL value on the row 
+
+    Error: typing "Sava" — a fragment of "Savannah" — returns rows whose note reads only "Sava" instead of the whole value: ["Contact match: \nSava","Contact match: \nSava","Contact match: \nSava","Contact match: \nSava","Contact match: \nSava","Contact match: \nSava","Contact match: \nSava","Contact match: \nSava","Contact match: \nSava"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m9[39m
+    Received array:  [31m["Contact match:·[39m
+    [31mSava", "Contact match:·[39m
+    [31mSava", "Contact match:·[39m
+    [31mSava", "Contact match:·[39m
+    [31mSava", "Contact match:·[39m
+    [31mSava", "Contact match:·[39m
+    [31mSava", "Contact match:·[39m
+    [31mSava", "Contact match:·[39m
+    [31mSava", "Contact match:·[39m
+    [31mSava"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-65619-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-65619-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-65619-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-65619-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146218 — SRI-CUST-C5 — A match on address line 2 shows the FULL value on the row 
+
+    Error: typing "Apt." — a fragment of "Apt. 199" — returns rows whose note reads only "Apt." instead of the whole value: ["Address: \nApt.","Address: \nApt.","Address: \nApt.","Address: \nApt.","Address: \nApt.","Address: \nApt."]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m6[39m
+    Received array:  [31m["Address:·[39m
+    [31mApt.", "Address:·[39m
+    [31mApt.", "Address:·[39m
+    [31mApt.", "Address:·[39m
+    [31mApt.", "Address:·[39m
+    [31mApt.", "Address:·[39m
+    [31mApt."][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-9aaa0-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-9aaa0-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-9aaa0-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-9aaa0-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146229 — SRI-ASSET-C1 — A match on VIN / serial number shows the FULL value on the row 
+
+    Error: typing "SVEWU82M" — a fragment of "SVEWU82M5ETEJFWFA" — returns rows whose note reads only "SVEWU82M" instead of the whole value: ["VIN: \nSVEWU82M"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m1[39m
+    Received array:  [31m["VIN:·[39m
+    [31mSVEWU82M"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-06507-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-06507-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-06507-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-06507-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146230 — SRI-ASSET-C2 — A match on licence plate shows the FULL value on the row 
+
+    Error: typing "KVQ-" — a fragment of "KVQ-2870" — returns rows whose note reads only "KVQ-" instead of the whole value: ["Licence plate: \nKVQ-","Licence plate: \nKVQ-","Licence plate: \nKVQ-"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m3[39m
+    Received array:  [31m["Licence plate:·[39m
+    [31mKVQ-", "Licence plate:·[39m
+    [31mKVQ-", "Licence plate:·[39m
+    [31mKVQ-"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-ad15a-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-ad15a-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-ad15a-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-ad15a-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146238 — SRI-PART-C1 — A match on bin location shows the FULL value on the row 
+
+    Error: these rows show only the characters typed instead of the whole value: ["Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B","Bin: \nH3B"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m20[39m
+    Received array:  [31m["Bin:·[39m
+    [31mH3B", "Bin:·[39m
+    [31mH3B", "Bin:·[39m
+    [31mH3B", "Bin:·[39m
+    [31mH3B", "Bin:·[39m
+    [31mH3B", "Bin:·[39m
+    [31mH3B", "Bin:·[39m
+    [31mH3B", "Bin:·[39m
+    [31mH3B", "Bin:·[39m
+    [31mH3B", "Bin:·[39m
+    [31mH3B", …][39m
+
+      151 |     expect(onlyTyped,
+      152 |       `these rows show only the characters typed instead of the whole value: ${JSON.stringify(onlyTyped)}`)
+    > 153 |       .toHaveLength(0);
+          |        ^
+      154 |   });
+      155 | }
+      156 |
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:153:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-be7ab-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-be7ab-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-be7ab-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-be7ab-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146239 — SRI-PART-C2 — A match on manufacturer shows the FULL value on the row 
+
+    Error: typing "Klon" — a fragment of "Klondike" — returns rows whose note reads only "Klon" instead of the whole value: ["Manufacturer: \nKlon","Manufacturer: \nKlon","Manufacturer: \nKlon","Manufacturer: \nKlon","Manufacturer: \nKlon","Manufacturer: \nKlon","Manufacturer: \nKlon","Manufacturer: \nKlon"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m8[39m
+    Received array:  [31m["Manufacturer:·[39m
+    [31mKlon", "Manufacturer:·[39m
+    [31mKlon", "Manufacturer:·[39m
+    [31mKlon", "Manufacturer:·[39m
+    [31mKlon", "Manufacturer:·[39m
+    [31mKlon", "Manufacturer:·[39m
+    [31mKlon", "Manufacturer:·[39m
+    [31mKlon", "Manufacturer:·[39m
+    [31mKlon"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-d2adc-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-d2adc-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-d2adc-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-d2adc-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146240 — SRI-PART-C3 — A match on vendor name shows the FULL value on the row 
+
+    Error: typing "Gibson's Mobil" — a fragment of "Gibson's Mobile Diesel Repair" — returns rows whose note reads only "Gibson's Mobil" instead of the whole value: ["Vendor: \nGibson's Mobil"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m1[39m
+    Received array:  [31m["Vendor:·[39m
+    [31mGibson's Mobil"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-c38ec-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-c38ec-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-c38ec-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-c38ec-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146242 — SRI-PART-C5 — A match on tags shows the FULL value on the row 
+
+    Error: these rows show only the characters typed instead of the whole value: ["Tag: \n496","Tag: \n496"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m2[39m
+    Received array:  [31m["Tag:·[39m
+    [31m496", "Tag:·[39m
+    [31m496"][39m
+
+      151 |     expect(onlyTyped,
+      152 |       `these rows show only the characters typed instead of the whole value: ${JSON.stringify(onlyTyped)}`)
+    > 153 |       .toHaveLength(0);
+          |        ^
+      154 |   });
+      155 | }
+      156 |
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:153:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-e4a04-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-e4a04-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-e4a04-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-e4a04-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146251 — SRI-VEND-C2 — A match on address line 2 shows the FULL value on the row 
+
+    Error: typing "ZZHIDD" — a fragment of "ZZHIDDENSUITE" — returns rows whose note reads only "ZZHIDD" instead of the whole value: ["Contact match: \nZZHIDD"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m1[39m
+    Received array:  [31m["Contact match:·[39m
+    [31mZZHIDD"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-98e3b-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-98e3b-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-98e3b-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-98e3b-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146252 — SRI-VEND-C3 — A match on a contact's telephone shows the FULL value on the row 
+
+    Error: these rows show only the characters typed instead of the whole value: ["Address: \n965","Contact match: \n965","Contact match: \n965","Contact match: \n965","Contact match: \n965","Contact match: \n965","Contact match: \n965"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m7[39m
+    Received array:  [31m["Address:·[39m
+    [31m965", "Contact match:·[39m
+    [31m965", "Contact match:·[39m
+    [31m965", "Contact match:·[39m
+    [31m965", "Contact match:·[39m
+    [31m965", "Contact match:·[39m
+    [31m965", "Contact match:·[39m
+    [31m965"][39m
+
+      151 |     expect(onlyTyped,
+      152 |       `these rows show only the characters typed instead of the whole value: ${JSON.stringify(onlyTyped)}`)
+    > 153 |       .toHaveLength(0);
+          |        ^
+      154 |   });
+      155 | }
+      156 |
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:153:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-324b6-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-324b6-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-324b6-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-324b6-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146262 — SRI-PS-C1 — A match on the asset on the sale shows the FULL value on the row 
+
+    Error: typing "Quiet" — a fragment of "Quietline" — returns rows whose note reads only "Quiet" instead of the whole value: ["Asset description: \nQuiet"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m1[39m
+    Received array:  [31m["Asset description:·[39m
+    [31mQuiet"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-88fcd-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-88fcd-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-88fcd-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-88fcd-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146263 — SRI-PS-C2 — A match on VIN / serial number shows the FULL value on the row 
+
+    Error: typing "ZZHIDDENV" — a fragment of "ZZHIDDENVIN0000001" — returns rows whose note reads only "ZZHIDDENV" instead of the whole value: ["VIN: \nZZHIDDENV"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m1[39m
+    Received array:  [31m["VIN:·[39m
+    [31mZZHIDDENV"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-bc1cb-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-bc1cb-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-bc1cb-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-bc1cb-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146271 — SRI-PO-C1 — A match on part numbers on the PO shows the FULL value on the row 
+
+    Error: "0123" returns no Purchase orders rows at all
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      141 |       `${onlyTyped.length} showing only what was typed`);
+      142 |     m[`C${c.cid}`] = rec;
+    > 143 |     expect(asWritten.length, `"${c.term}" returns no ${c.tab} rows at all`).toBeGreaterThan(0);
+          |                                                                             ^
+      144 |     if (!withNote.length) {
+      145 |       // Same distinction as above: nothing to compare against is not the same as a wrong value.
+      146 |       rec.outcome = 'COULD NOT JUDGE — no row carries a labelled note for this term';
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:143:77
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-27aaa-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-27aaa-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-27aaa-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-27aaa-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146272 — SRI-PO-C2 — A match on part descriptions on the PO shows the FULL value on the 
+
+    Error: these rows show only the characters typed instead of the whole value: ["Part description: \n786","Part description: \n786","Part number: \n786","Part description: \n786"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m4[39m
+    Received array:  [31m["Part description:·[39m
+    [31m786", "Part description:·[39m
+    [31m786", "Part number:·[39m
+    [31m786", "Part description:·[39m
+    [31m786"][39m
+
+      151 |     expect(onlyTyped,
+      152 |       `these rows show only the characters typed instead of the whole value: ${JSON.stringify(onlyTyped)}`)
+    > 153 |       .toHaveLength(0);
+          |        ^
+      154 |   });
+      155 | }
+      156 |
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:153:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-8901d-shows-the-FULL-value-on-the/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-8901d-shows-the-FULL-value-on-the/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-8901d-shows-the-FULL-value-on-the/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-8901d-shows-the-FULL-value-on-the/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146273 — SRI-PO-C3 — A match on created-by user shows the FULL value on the row 
+
+    Error: typing "Admin S" — a fragment of "Admin ShopView" — returns rows whose note reads only "Admin S" instead of the whole value: ["Ordered by: \nAdmin S","Ordered by: \nAdmin S","Ordered by: \nAdmin S","Ordered by: \nAdmin S","Ordered by: \nAdmin S","Ordered by: \nAdmin S","Ordered by: \nAdmin S"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m7[39m
+    Received array:  [31m["Ordered by:·[39m
+    [31mAdmin S", "Ordered by:·[39m
+    [31mAdmin S", "Ordered by:·[39m
+    [31mAdmin S", "Ordered by:·[39m
+    [31mAdmin S", "Ordered by:·[39m
+    [31mAdmin S", "Ordered by:·[39m
+    [31mAdmin S", "Ordered by:·[39m
+    [31mAdmin S"][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-65ab6-s-the-FULL-value-on-the-row/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-65ab6-s-the-FULL-value-on-the-row/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-65ab6-s-the-FULL-value-on-the-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-65ab6-s-the-FULL-value-on-the-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146274 — SRI-PO-C4 — A match on spliced number variants (`number_variants`) shows the F 
+
+    Error: typing "I-15" — a fragment of "I-1522" — returns rows whose note reads only "I-15" instead of the whole value: ["Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15","Number: \nI-15"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m20[39m
+    Received array:  [31m["Number:·[39m
+    [31mI-15", "Number:·[39m
+    [31mI-15", "Number:·[39m
+    [31mI-15", "Number:·[39m
+    [31mI-15", "Number:·[39m
+    [31mI-15", "Number:·[39m
+    [31mI-15", "Number:·[39m
+    [31mI-15", "Number:·[39m
+    [31mI-15", "Number:·[39m
+    [31mI-15", "Number:·[39m
+    [31mI-15", …][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-7f74a-number-variants-shows-the-F/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-7f74a-number-variants-shows-the-F/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-7f74a-number-variants-shows-the-F/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-7f74a-number-variants-shows-the-F/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146282 — SRI-VINV-C1 — A match on the PO number the invoice belongs to shows the FULL v 
+
+    Error: typing "I2-9" — a fragment of "I2-965" — returns rows whose note reads only "I2-9" instead of the whole value: ["PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9","PO number: \nI2-9"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m20[39m
+    Received array:  [31m["PO number:·[39m
+    [31mI2-9", "PO number:·[39m
+    [31mI2-9", "PO number:·[39m
+    [31mI2-9", "PO number:·[39m
+    [31mI2-9", "PO number:·[39m
+    [31mI2-9", "PO number:·[39m
+    [31mI2-9", "PO number:·[39m
+    [31mI2-9", "PO number:·[39m
+    [31mI2-9", "PO number:·[39m
+    [31mI2-9", "PO number:·[39m
+    [31mI2-9", …][39m
+
+      120 |       expect(fragOnlyTyped,
+      121 |         `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+    > 122 |         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
+          |                                                                                   ^
+      123 |
+      124 |       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
+      125 |       // recorded a PASS on C146216. Typing part of a contact's email returns
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146202-C146282-sri-retest-full-value.spec.ts:122:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-2b500-belongs-to-shows-the-FULL-v/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146202-C146282-sri-retest-2b500-belongs-to-shows-the-FULL-v/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146202-C146282-sri-retest-2b500-belongs-to-shows-the-FULL-v/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146202-C146282-sri-retest-2b500-belongs-to-shows-the-FULL-v/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) tests/C146209-C146223-sri-customers.spec.ts:72:1 › C146209 — each row shows the COMPLETE telephone, with the typed part inside it 
+
+    Error: these rows show only the digits typed instead of the whole telephone: ["Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900","Contact match: \n0900"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m14[39m
+    Received array:  [31m["Contact match:·[39m
+    [31m0900", "Contact match:·[39m
+    [31m0900", "Contact match:·[39m
+    [31m0900", "Contact match:·[39m
+    [31m0900", "Contact match:·[39m
+    [31m0900", "Contact match:·[39m
+    [31m0900", "Contact match:·[39m
+    [31m0900", "Contact match:·[39m
+    [31m0900", "Contact match:·[39m
+    [31m0900", "Contact match:·[39m
+    [31m0900", …][39m
+
+      84 |   expect(onlyTyped,
+      85 |     `these rows show only the digits typed instead of the whole telephone: ${JSON.stringify(onlyTyped)}`)
+    > 86 |     .toHaveLength(0);
+         |      ^
+      87 | });
+      88 |
+      89 | test('C146210 — nothing cut off has eaten the match or what tells the rows apart', async () => {
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146209-C146223-sri-customers.spec.ts:86:6
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146209-C146223-sri-custom-d4014-th-the-typed-part-inside-it/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146209-C146223-sri-custom-d4014-th-the-typed-part-inside-it/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146209-C146223-sri-custom-d4014-th-the-typed-part-inside-it/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146209-C146223-sri-custom-d4014-th-the-typed-part-inside-it/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) tests/C146209-C146223-sri-customers.spec.ts:139:1 › C146222 — the customer row shows every field the requirement names 
+
+    Error: the customer row is missing ["telephone on hover"]. Row reads "7 Star Truck Repair 31 open 305 Harris Cape, Priscillabury, Nunavut". Hover added [] (pointer reached the row: true).
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoHaveLength[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected length: [32m0[39m
+    Received length: [31m1[39m
+    Received array:  [31m["telephone on hover"][39m
+
+      173 |   expect(missing, `the customer row is missing ${JSON.stringify(missing)}. Row reads "${r.text}". ` +
+      174 |     `Hover added ${JSON.stringify(hov.gained)} (pointer reached the row: ${hoverReached}).`)
+    > 175 |     .toHaveLength(0);
+          |      ^
+      176 | });
+      177 |
+      178 | test('C146223 — a soft match is drawn as a soft match', async () => {
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146209-C146223-sri-customers.spec.ts:175:6
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146209-C146223-sri-custom-5d00b-field-the-requirement-names/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146209-C146223-sri-custom-5d00b-field-the-requirement-names/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146209-C146223-sri-custom-5d00b-field-the-requirement-names/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146209-C146223-sri-custom-5d00b-field-the-requirement-names/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  28) tests/C146209-C146223-sri-customers.spec.ts:178:1 › C146223 — a soft match is drawn as a soft match 
+
+    Error: CONTROL FAILED on row 1: no highlight either
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      187 |   expect(near.length, `no near-miss row came back for "${SOFT}" — nothing to judge`).toBeGreaterThan(0);
+      188 |   for (const r of near) {
+    > 189 |     expect(r.marks.length, `CONTROL FAILED on row ${r.index}: no highlight either`).toBeGreaterThan(0);
+          |                                                                                     ^
+      190 |     expect(r.approx || r.italicMarks.length > 0,
+      191 |       `row ${r.index} "${r.text}" is a close match drawn exactly like an exact one`).toBe(true);
+      192 |   }
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146209-C146223-sri-customers.spec.ts:189:85
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146209-C146223-sri-custom-0edad-ch-is-drawn-as-a-soft-match/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146209-C146223-sri-custom-0edad-ch-is-drawn-as-a-soft-match/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146209-C146223-sri-custom-0edad-ch-is-drawn-as-a-soft-match/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146209-C146223-sri-custom-0edad-ch-is-drawn-as-a-soft-match/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  29) tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146226 — Assets: the highlight marks the match inside the text, not instead of it 
+
+    Error: row 0: the pieces do not add up to the line
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"ZZLONGROW[7m [27m-123786 · 2021 Rowcheck Trucks Longhauler"[39m
+    Received: [31m"ZZLONGROW-123786 · 2021 Rowcheck Trucks Longhauler"[39m
+
+      265 |       const rebuilt = r.title.segs.map((x) => x.text).join('').replace(/\s+/g, ' ').trim();
+      266 |       expect(rebuilt, `row ${r.index}: the pieces do not add up to the line`)
+    > 267 |         .toBe(r.title.text.replace(/\s+/g, ' ').trim());
+          |          ^
+      268 |     }
+      269 |   });
+      270 |
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:267:10
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-acd32--the-text-not-instead-of-it/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-acd32--the-text-not-instead-of-it/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-acd32--the-text-not-instead-of-it/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-acd32--the-text-not-instead-of-it/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30) tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146232 — Assets: a soft match is drawn as a soft match 
+
+    Error: CONTROL FAILED on row 2: no highlight either
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      351 |     }
+      352 |     for (const r of near) {
+    > 353 |       expect(r.marks.length, `CONTROL FAILED on row ${r.index}: no highlight either`).toBeGreaterThan(0);
+          |                                                                                       ^
+      354 |       expect(r.approx || r.italicMarks.length > 0,
+      355 |         `row ${r.index} "${r.text}" is a close match drawn exactly like an exact one`).toBe(true);
+      356 |     }
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:353:87
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-ee649-ch-is-drawn-as-a-soft-match/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-ee649-ch-is-drawn-as-a-soft-match/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-ee649-ch-is-drawn-as-a-soft-match/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-ee649-ch-is-drawn-as-a-soft-match/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  31) tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146244 — Parts: a soft match is drawn as a soft match 
+
+    Error: CONTROL FAILED on row 2: no highlight either
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      351 |     }
+      352 |     for (const r of near) {
+    > 353 |       expect(r.marks.length, `CONTROL FAILED on row ${r.index}: no highlight either`).toBeGreaterThan(0);
+          |                                                                                       ^
+      354 |       expect(r.approx || r.italicMarks.length > 0,
+      355 |         `row ${r.index} "${r.text}" is a close match drawn exactly like an exact one`).toBe(true);
+      356 |     }
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:353:87
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-f1de0-ch-is-drawn-as-a-soft-match/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-f1de0-ch-is-drawn-as-a-soft-match/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-f1de0-ch-is-drawn-as-a-soft-match/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-f1de0-ch-is-drawn-as-a-soft-match/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  32) tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146256 — Vendors: a soft match is drawn as a soft match 
+
+    Error: CONTROL FAILED on row 2: no highlight either
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      351 |     }
+      352 |     for (const r of near) {
+    > 353 |       expect(r.marks.length, `CONTROL FAILED on row ${r.index}: no highlight either`).toBeGreaterThan(0);
+          |                                                                                       ^
+      354 |       expect(r.approx || r.italicMarks.length > 0,
+      355 |         `row ${r.index} "${r.text}" is a close match drawn exactly like an exact one`).toBe(true);
+      356 |     }
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:353:87
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-c63f7-ch-is-drawn-as-a-soft-match/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-c63f7-ch-is-drawn-as-a-soft-match/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-c63f7-ch-is-drawn-as-a-soft-match/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-c63f7-ch-is-drawn-as-a-soft-match/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  33) tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146265 — Part Sales: a soft match is drawn as a soft match 
+
+    Error: CONTROL FAILED on row 0: no highlight either
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      351 |     }
+      352 |     for (const r of near) {
+    > 353 |       expect(r.marks.length, `CONTROL FAILED on row ${r.index}: no highlight either`).toBeGreaterThan(0);
+          |                                                                                       ^
+      354 |       expect(r.approx || r.italicMarks.length > 0,
+      355 |         `row ${r.index} "${r.text}" is a close match drawn exactly like an exact one`).toBe(true);
+      356 |     }
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:353:87
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-736fa-ch-is-drawn-as-a-soft-match/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-736fa-ch-is-drawn-as-a-soft-match/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-736fa-ch-is-drawn-as-a-soft-match/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-736fa-ch-is-drawn-as-a-soft-match/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  34) tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146266 — Purchase Orders: the whole PO number is shown, with the typed part marked inside it 
+
+    Error: CONTROL FAILED: no highlight found anywhere on row 7, so anything said below about an unhighlighted line is about this reader
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      209 |       expect(r.marks.length,
+      210 |         `CONTROL FAILED: no highlight found anywhere on row ${r.index}, so anything said below about ` +
+    > 211 |         `an unhighlighted line is about this reader`).toBeGreaterThan(0);
+          |                                                       ^
+      212 |       // …then the requirement itself: highlighted in the primary AND secondary text.
+      213 |       expect(unmarkedLines(r, C.A1.term),
+      214 |         `row ${r.index}: the typed text is shown on these lines without being highlighted there, ` +
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:211:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-ea884-typed-part-marked-inside-it/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-ea884-typed-part-marked-inside-it/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-ea884-typed-part-marked-inside-it/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-ea884-typed-part-marked-inside-it/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  35) tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146268 — Purchase Orders: the highlight marks the match inside the text, not instead of it 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      257 |   test(`C${C.A3.cid} — ${E.section}: the highlight marks the match inside the text, not instead of it`, async () => {
+      258 |     const rows = await groupRows(s.page, C.A3.term, E.tab);
+    > 259 |     expect(rows.length).toBeGreaterThan(0);
+          |                         ^
+      260 |     for (const r of rows) {
+      261 |       expect(r.marks.length, `CONTROL FAILED: no highlight anywhere on row ${r.index}`).toBeGreaterThan(0);
+      262 |       expect(unmarkedLines(r, C.A3.term),
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:259:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-65717--the-text-not-instead-of-it/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-65717--the-text-not-instead-of-it/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-65717--the-text-not-instead-of-it/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-65717--the-text-not-instead-of-it/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  36) tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146269 — Purchase Orders: two records sharing the typed text can be told apart 
+
+    Error: this case needs more than one row to be about anything
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m1[39m
+    Received:   [31m0[39m
+
+      272 |     const rows = await groupRows(s.page, C.B1.term, E.tab);
+      273 |     store('B1', rows.map(visibleRow));
+    > 274 |     expect(rows.length, 'this case needs more than one row to be about anything').toBeGreaterThan(1);
+          |                                                                                   ^
+      275 |     const seen = rows.map(visibleRow);
+      276 |     const dupes = seen.filter((v, i) => seen.indexOf(v) !== i);
+      277 |     expect(dupes, `these rows read identically to a person: ${JSON.stringify(dupes)}`).toHaveLength(0);
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:274:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-56a92-yped-text-can-be-told-apart/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-56a92-yped-text-can-be-told-apart/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-56a92-yped-text-can-be-told-apart/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-56a92-yped-text-can-be-told-apart/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  37) tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146275 — Purchase Orders: the row shows every field the requirement names 
+
+    Error: "Fibridge" returns no Purchase orders rows
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      295 |   test(`C${C.D1.cid} — ${E.section}: the row shows every field the requirement names`, async () => {
+      296 |     const rows = await groupRows(s.page, C.D1.term, E.tab);
+    > 297 |     expect(rows.length, `"${C.D1.term}" returns no ${E.tab} rows`).toBeGreaterThan(0);
+          |                                                                    ^
+      298 |     // Judge the row that BEST satisfies the case's precondition ("has a value in each field named"),
+      299 |     // because a record with nothing to show in a field is not evidence the field is missing — the
+      300 |     // mistake that produced a false "the customer row has no count badge" on C146222.
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:297:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-dd48b-field-the-requirement-names/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-dd48b-field-the-requirement-names/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-dd48b-field-the-requirement-names/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-dd48b-field-the-requirement-names/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  38) tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146276 — Purchase Orders: a soft match is drawn as a soft match 
+
+    Error: "ZZSOFTHIT" returns no Purchase orders rows
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      344 |     console.log(`   ${E.section} I1 "${C.I1.term}" → ${rows.length} rows`);
+      345 |     for (const r of rows) console.log(`      [${r.index}] approx=${r.approx} marks=${JSON.stringify(r.marks).slice(0, 70)}`);
+    > 346 |     expect(rows.length, `"${C.I1.term}" returns no ${E.tab} rows`).toBeGreaterThan(0);
+          |                                                                    ^
+      347 |     const near = rows.filter((r) => !new RegExp(C.I1.term, 'i').test(r.text));
+      348 |     if (!near.length) {
+      349 |       console.log(`   ${E.section} I1: every row contains the term literally — no soft match to judge`);
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:346:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-29987-ch-is-drawn-as-a-soft-match/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-29987-ch-is-drawn-as-a-soft-match/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-29987-ch-is-drawn-as-a-soft-match/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-29987-ch-is-drawn-as-a-soft-match/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  39) tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146277 — Vendor Invoices: the whole invoice number is shown, with the typed part marked inside it 
+
+    Error: "Fibridge" returns no Vendor invoices rows — nothing below would be about the product
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      203 |       `meta=${JSON.stringify(r.metaParts).slice(0, 80)}`);
+      204 |     expect(rows.length, `"${C.A1.term}" returns no ${E.tab} rows — nothing below would be about the product`)
+    > 205 |       .toBeGreaterThan(0);
+          |        ^
+      206 |     for (const r of rows) {
+      207 |       // POSITIVE CONTROL first: the reader must find a highlight SOMEWHERE on this row, or its
+      208 |       // report that a particular line lacks one says nothing about the product.
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:205:8
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-c8121-typed-part-marked-inside-it/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-c8121-typed-part-marked-inside-it/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-c8121-typed-part-marked-inside-it/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-c8121-typed-part-marked-inside-it/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  40) tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146279 — Vendor Invoices: the highlight marks the match inside the text, not instead of it 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      257 |   test(`C${C.A3.cid} — ${E.section}: the highlight marks the match inside the text, not instead of it`, async () => {
+      258 |     const rows = await groupRows(s.page, C.A3.term, E.tab);
+    > 259 |     expect(rows.length).toBeGreaterThan(0);
+          |                         ^
+      260 |     for (const r of rows) {
+      261 |       expect(r.marks.length, `CONTROL FAILED: no highlight anywhere on row ${r.index}`).toBeGreaterThan(0);
+      262 |       expect(unmarkedLines(r, C.A3.term),
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:259:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-a7f97--the-text-not-instead-of-it/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-a7f97--the-text-not-instead-of-it/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-a7f97--the-text-not-instead-of-it/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-a7f97--the-text-not-instead-of-it/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  41) tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146280 — Vendor Invoices: two records sharing the typed text can be told apart 
+
+    Error: this case needs more than one row to be about anything
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m1[39m
+    Received:   [31m0[39m
+
+      272 |     const rows = await groupRows(s.page, C.B1.term, E.tab);
+      273 |     store('B1', rows.map(visibleRow));
+    > 274 |     expect(rows.length, 'this case needs more than one row to be about anything').toBeGreaterThan(1);
+          |                                                                                   ^
+      275 |     const seen = rows.map(visibleRow);
+      276 |     const dupes = seen.filter((v, i) => seen.indexOf(v) !== i);
+      277 |     expect(dupes, `these rows read identically to a person: ${JSON.stringify(dupes)}`).toHaveLength(0);
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:274:83
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-78e7f-yped-text-can-be-told-apart/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-78e7f-yped-text-can-be-told-apart/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-78e7f-yped-text-can-be-told-apart/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-78e7f-yped-text-can-be-told-apart/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  42) tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146283 — Vendor Invoices: the row shows every field the requirement names 
+
+    Error: "Fibridge" returns no Vendor invoices rows
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      295 |   test(`C${C.D1.cid} — ${E.section}: the row shows every field the requirement names`, async () => {
+      296 |     const rows = await groupRows(s.page, C.D1.term, E.tab);
+    > 297 |     expect(rows.length, `"${C.D1.term}" returns no ${E.tab} rows`).toBeGreaterThan(0);
+          |                                                                    ^
+      298 |     // Judge the row that BEST satisfies the case's precondition ("has a value in each field named"),
+      299 |     // because a record with nothing to show in a field is not evidence the field is missing — the
+      300 |     // mistake that produced a false "the customer row has no count badge" on C146222.
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:297:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-2e64f-field-the-requirement-names/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-2e64f-field-the-requirement-names/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-2e64f-field-the-requirement-names/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-2e64f-field-the-requirement-names/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  43) tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146284 — Vendor Invoices: a soft match is drawn as a soft match 
+
+    Error: CONTROL FAILED on row 0: no highlight either
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      351 |     }
+      352 |     for (const r of near) {
+    > 353 |       expect(r.marks.length, `CONTROL FAILED on row ${r.index}: no highlight either`).toBeGreaterThan(0);
+          |                                                                                       ^
+      354 |       expect(r.approx || r.italicMarks.length > 0,
+      355 |         `row ${r.index} "${r.text}" is a close match drawn exactly like an exact one`).toBe(true);
+      356 |     }
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146224-C146284-sri-entities.spec.ts:353:87
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-9fe6a-ch-is-drawn-as-a-soft-match/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146224-C146284-sri-entiti-9fe6a-ch-is-drawn-as-a-soft-match/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146224-C146284-sri-entiti-9fe6a-ch-is-drawn-as-a-soft-match/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146224-C146284-sri-entiti-9fe6a-ch-is-drawn-as-a-soft-match/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  44) tests/C146285-C146306-sri-all-tab.spec.ts:61:1 › C146287 — a group on the All tab shows 5 and offers the rest 
+
+    Error: no group has more than five results, so this case has nothing to check
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      64 |   rec('C146287', p.groups.map((g) => ({ head: g.head, count: g.count, rows: g.rows, showAll: g.showAll })));
+      65 |   expect(big.length, 'no group has more than five results, so this case has nothing to check')
+    > 66 |     .toBeGreaterThan(0);
+         |      ^
+      67 |   for (const g of big) {
+      68 |     expect(g.rows, `the ${g.head} group holds ${g.count} but draws ${g.rows} rows on the All tab`).toBe(5);
+      69 |     expect(g.showAll, `the ${g.head} group offers no "Show all" link`).toBeTruthy();
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146285-C146306-sri-all-tab.spec.ts:66:6
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146285-C146306-sri-all-ta-baaeb-shows-5-and-offers-the-rest/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146285-C146306-sri-all-ta-baaeb-shows-5-and-offers-the-rest/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146285-C146306-sri-all-ta-baaeb-shows-5-and-offers-the-rest/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146285-C146306-sri-all-ta-baaeb-shows-5-and-offers-the-rest/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  45) tests/C146285-C146306-sri-all-tab.spec.ts:73:1 › C146288 — "Show all" opens that tab and keeps you in the search box 
+
+    Error: no group offers a "Show all" link, so this case cannot be run
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mundefined[39m
+
+      74 |   const p = await panelShape(s.page, 'ZZBROAD');
+      75 |   const g = p.groups.find((x) => x.showAll);
+    > 76 |   expect(g, 'no group offers a "Show all" link, so this case cannot be run').toBeTruthy();
+         |                                                                              ^
+      77 |   const before = s.page.url();
+      78 |   await s.page.evaluate(() => {
+      79 |     const el = [...document.querySelectorAll('.search-group a, .search-group button')]
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146285-C146306-sri-all-tab.spec.ts:76:78
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146285-C146306-sri-all-ta-b548a-keeps-you-in-the-search-box/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146285-C146306-sri-all-ta-b548a-keeps-you-in-the-search-box/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146285-C146306-sri-all-ta-b548a-keeps-you-in-the-search-box/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146285-C146306-sri-all-ta-b548a-keeps-you-in-the-search-box/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  46) tests/C146285-C146306-sri-all-tab.spec.ts:119:1 › C146291 — typing a full record number puts that record at the very top 
+
+    Error: nothing sits above the first group heading — the exact record is not promoted. Groups: ["Work orders","Purchase orders","Vendor invoices"]
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      122 |   expect(p.topRows.length,
+      123 |     `nothing sits above the first group heading — the exact record is not promoted. ` +
+    > 124 |     `Groups: ${JSON.stringify(p.groups.map((g) => g.head))}`).toBeGreaterThan(0);
+          |                                                               ^
+      125 |   expect(p.topRows.join(' '), 'the promoted row is not the record that was typed').toMatch(/34379/);
+      126 | });
+      127 |
+        at /home/user/Manual-test-Cases/build/global-search/e2e/tests/C146285-C146306-sri-all-tab.spec.ts:124:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/C146285-C146306-sri-all-ta-bda77-that-record-at-the-very-top/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/C146285-C146306-sri-all-ta-bda77-that-record-at-the-very-top/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/C146285-C146306-sri-all-ta-bda77-that-record-at-the-very-top/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/C146285-C146306-sri-all-ta-bda77-that-record-at-the-very-top/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  46 failed
+    tests/C146197-C146208-sri-work-orders.spec.ts:76:1 › C146197 — the whole WO number is shown, with what you typed marked inside it 
+    tests/C146197-C146208-sri-work-orders.spec.ts:200:1 › C146208 — a soft match is drawn as a soft match 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146202 — SRI-WO-C1 — A match on VIN / serial number shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146205 — SRI-WO-C4 — A match on line item descriptions (parts and labor on the WO) show 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146206 — SRI-WO-C5 — A match on part numbers on the work order's lines (`item_part_numb 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146214 — SRI-CUST-C1 — A match on the customer's own telephone shows the FULL value on  
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146215 — SRI-CUST-C2 — A match on a contact's telephone shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146216 — SRI-CUST-C3 — A match on a contact's email address shows the FULL value on the 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146217 — SRI-CUST-C4 — A match on a contact's name shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146218 — SRI-CUST-C5 — A match on address line 2 shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146229 — SRI-ASSET-C1 — A match on VIN / serial number shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146230 — SRI-ASSET-C2 — A match on licence plate shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146238 — SRI-PART-C1 — A match on bin location shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146239 — SRI-PART-C2 — A match on manufacturer shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146240 — SRI-PART-C3 — A match on vendor name shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146242 — SRI-PART-C5 — A match on tags shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146251 — SRI-VEND-C2 — A match on address line 2 shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146252 — SRI-VEND-C3 — A match on a contact's telephone shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146262 — SRI-PS-C1 — A match on the asset on the sale shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146263 — SRI-PS-C2 — A match on VIN / serial number shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146271 — SRI-PO-C1 — A match on part numbers on the PO shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146272 — SRI-PO-C2 — A match on part descriptions on the PO shows the FULL value on the 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146273 — SRI-PO-C3 — A match on created-by user shows the FULL value on the row 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146274 — SRI-PO-C4 — A match on spliced number variants (`number_variants`) shows the F 
+    tests/C146202-C146282-sri-retest-full-value.spec.ts:68:3 › C146282 — SRI-VINV-C1 — A match on the PO number the invoice belongs to shows the FULL v 
+    tests/C146209-C146223-sri-customers.spec.ts:72:1 › C146209 — each row shows the COMPLETE telephone, with the typed part inside it 
+    tests/C146209-C146223-sri-customers.spec.ts:139:1 › C146222 — the customer row shows every field the requirement names 
+    tests/C146209-C146223-sri-customers.spec.ts:178:1 › C146223 — a soft match is drawn as a soft match 
+    tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146226 — Assets: the highlight marks the match inside the text, not instead of it 
+    tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146232 — Assets: a soft match is drawn as a soft match 
+    tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146244 — Parts: a soft match is drawn as a soft match 
+    tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146256 — Vendors: a soft match is drawn as a soft match 
+    tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146265 — Part Sales: a soft match is drawn as a soft match 
+    tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146266 — Purchase Orders: the whole PO number is shown, with the typed part marked inside it 
+    tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146268 — Purchase Orders: the highlight marks the match inside the text, not instead of it 
+    tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146269 — Purchase Orders: two records sharing the typed text can be told apart 
+    tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146275 — Purchase Orders: the row shows every field the requirement names 
+    tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146276 — Purchase Orders: a soft match is drawn as a soft match 
+    tests/C146224-C146284-sri-entities.spec.ts:197:3 › C146277 — Vendor Invoices: the whole invoice number is shown, with the typed part marked inside it 
+    tests/C146224-C146284-sri-entities.spec.ts:257:3 › C146279 — Vendor Invoices: the highlight marks the match inside the text, not instead of it 
+    tests/C146224-C146284-sri-entities.spec.ts:271:3 › C146280 — Vendor Invoices: two records sharing the typed text can be told apart 
+    tests/C146224-C146284-sri-entities.spec.ts:295:3 › C146283 — Vendor Invoices: the row shows every field the requirement names 
+    tests/C146224-C146284-sri-entities.spec.ts:341:3 › C146284 — Vendor Invoices: a soft match is drawn as a soft match 
+    tests/C146285-C146306-sri-all-tab.spec.ts:61:1 › C146287 — a group on the All tab shows 5 and offers the rest 
+    tests/C146285-C146306-sri-all-tab.spec.ts:73:1 › C146288 — "Show all" opens that tab and keeps you in the search box 
+    tests/C146285-C146306-sri-all-tab.spec.ts:119:1 › C146291 — typing a full record number puts that record at the very top 
+  59 passed (41.2m)
