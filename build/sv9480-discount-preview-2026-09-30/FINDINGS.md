@@ -112,12 +112,52 @@ ticket:
 It also survived the feature-flag restore, so it was not caused by my own change either. The discount
 edit itself raised **no** failing call, and saving reported *"Discount updated"*.
 
+## 6a. Check 5, the part-line half — run afterwards, on the QA lead's instruction
+
+**This was a skip, not a limit, and it should never have been written up as one** — see Standing
+Rule 91, added 2026-09-30 in response to it. The handoff's check 5 says *"labor **or part** line"*;
+the first pass drove the labor line only.
+
+**Where the control lives** (it is not on the line row, which is why it was missed): the **part row's
+⋮ menu** → **"Add Part Fee / Discount"**, `menu_item_add_adjustment_part_{partId}`. The dialog is
+titled **New Part Fee / Discount**, *"Applying To: Line 1 Part — …"*, and its preview rows are
+**Part total · Part cost · Discount · New part total**. `scope` on the API is **`part_line`** with the
+part-request id as `targetId` — a third scope alongside `whole_wo` and `labor_line`.
+
+### Production — `v26.39.2-1aeb22d`, work order S2-917, part `ZZAUTOTEST-PLAIN` at **$20.00**
+
+| | Preview |
+|---|---|
+| **Add** a $5.00 flat discount | Part total **$20.00** · Discount **−$5.00** · New part total **$15.00** |
+| **Edit** that same discount | Part total **$20.00** · Discount **−$5.00** · New part total **$15.00** |
+
+**Correct in both.** The edit preview starts from the part's **pre-discount** $20.00, not from the
+$15.00 the part is now worth — so **the reported double-subtraction does NOT occur on part-line
+adjustments even on the build that carries the bug.** That pins the defect to whole-work-order
+adjustments and makes "line-level unchanged" a real baseline rather than an assumption.
+
+Production restored: the discount was removed (`204`) and the work order re-read — **0 adjustments on
+any line or part**, the part back at sell $20 / total $20.00.
+
+### Fix branch — **NOT YET RUN**
+
+The whole `*.qa.shopview.com` estate became unreachable from this container part-way through the pass
+(the egress gateway answers **502 to every CONNECT** for `qa.shopview.com`, `sv9480…`, `sv9480api…`
+and `sv7208…`, while `app.shopview.com` and `api.shopview.com` answer **200**). Tried: direct
+requests, the MITM bridge, a rebuilt bridge, and an automated retry loop. A retry loop remains armed
+and runs the whole branch check the moment the host answers — price the part, add the part discount,
+capture the add preview, save, reopen and capture the edit preview, change the amount and prove the
+saved figure matches the promise, then restore the QuickBooks feature flag.
+
+**This is an environment blocker, and it is recorded as one rather than converted into a limit.**
+
 ## 7. What I could not check
 
 * The customer's exact figures ($2,815.89 subtotal with a $1,300 discount) were not recreated; the
   same arithmetic was proven at $331.50/$100, $331.50/$500 and $271.50/$60.
-* Only the whole-work-order and labor-line cases were driven. A **part**-line fee or discount was not
-  exercised — the handoff's check 5 says "labor or part", and labor was used.
+* **The part-line half of check 5 on the FIX BRANCH** — blocked by the QA estate being unreachable
+  (§6a). The production side of the same check is done. **Not a judgement call: the branch cannot be
+  reached from here.**
 
 ## 8. Environment
 
