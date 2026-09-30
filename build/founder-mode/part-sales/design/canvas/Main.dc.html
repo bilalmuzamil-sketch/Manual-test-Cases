@@ -1,0 +1,113 @@
+<style>
+
+:root {
+  --ink: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --card: #ffffff;
+  --bg: #f4f6f8;
+  --before: #6b7280;
+  --after: #2563eb;
+  --wo: #b45309;
+  --new: #047857;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+}
+.board {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 18px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.chip {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #fff;
+  white-space: nowrap;
+}
+.chip--before { background: var(--before); }
+.chip--after { background: var(--after); }
+.chip--wo { background: var(--wo); }
+.chip--new { background: var(--new); }
+h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.sub { font-size: 12.5px; line-height: 1.5; color: var(--muted); margin: 0; }
+.shots { display: flex; flex-direction: column; gap: 10px; }
+.shot { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff; }
+.shot img { display: block; width: 100%; height: auto; margin: 0 auto; }
+.shot-label {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--line);
+  background: #fafafa;
+}
+.note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: #f9fafb;
+  border-left: 3px solid var(--after);
+  padding: 8px 10px;
+  border-radius: 0 6px 6px 0;
+  margin: 0;
+}
+.note--before { border-left-color: var(--before); }
+.note--wo { border-left-color: var(--wo); }
+
+.cover { padding: 34px 38px; }
+.cover h1 { font-size: 30px; margin: 0 0 6px; letter-spacing: -0.01em; }
+.cover .lede { font-size: 14px; color: var(--muted); margin: 0 0 20px; max-width: 760px; line-height: 1.6; }
+.meta { display: grid; grid-template-columns: 120px 1fr; gap: 6px 16px; font-size: 13px; margin-bottom: 22px; }
+.meta dt { color: var(--muted); }
+.meta dd { margin: 0; font-weight: 600; }
+.legend { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.scope { border-top: 1px solid var(--line); padding-top: 16px; }
+.scope h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin: 0 0 10px; }
+.scope ol { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.85; }
+.scope b { font-weight: 650; }
+</style>
+<div class="board cover">
+  <h1>Part Sales Update V1</h1>
+  <p class="lede">Every board below is a screenshot, not a drawing: <b>before</b> is Staging as it
+  ships today, <b>after</b> is the build, and a <b>work order</b> panel appears wherever the point of
+  the change is that the two objects should agree.</p>
+  <dl class="meta">
+    <dt>PRD</dt><dd>Part Sales Update V1</dd>
+    <dt>Branch</dt><dd>project/part-sales-update</dd>
+    <dt>Owner</dt><dd>Chris Ward</dd>
+    <dt>Status</dt><dd>Built, reworked after CEO review</dd>
+  </dl>
+  <div class="legend">
+    <span class="chip chip--before">Before &middot; staging</span>
+    <span class="chip chip--after">After &middot; this build</span>
+    <span class="chip chip--wo">Work order &middot; for comparison</span>
+    <span class="chip chip--new">New &middot; no before exists</span>
+  </div>
+  <div class="scope">
+    <h3>What this covers</h3>
+    <ol>
+      <li><b>Cores on a part sale</b> — the core is billed on receipt, and <b>Return Core</b> credits it in plain sight on the document</li>
+      <li><b>Deleting a part sale</b> — Complete means received here, so the old rule made every received sale undeletable</li>
+      <li><b>Tax</b> — the Financial Info card becomes editable on a part sale</li>
+      <li><b>Audit Log</b> — and the ⋮ menu reordered to match the work order's</li>
+      <li><b>Sales Representative</b> — the work order's field, on the part sale</li>
+      <li><b>Actions column</b> — one left rail for the action, one right rail for the icons</li>
+      <li><b>Split part sale</b> — the bulk menu stops calling it an order</li>
+      <li><b>Add Deposit</b> — the work order's deposit flow, minus the portal handoff</li>
+    </ol>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<style>
+:root {
+  --ink: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --card: #ffffff;
+  --bg: #f4f6f8;
+  --before: #6b7280;
+  --after: #2563eb;
+  --wo: #b45309;
+  --new: #047857;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+}
+.board {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 18px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.chip {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #fff;
+  white-space: nowrap;
+}
+.chip--before { background: var(--before); }
+.chip--after { background: var(--after); }
+.chip--wo { background: var(--wo); }
+.chip--new { background: var(--new); }
+h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.sub { font-size: 12.5px; line-height: 1.5; color: var(--muted); margin: 0; }
+.shots { display: flex; flex-direction: column; gap: 10px; }
+.shot { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff; }
+.shot img { display: block; width: 100%; height: auto; margin: 0 auto; }
+.shot-label {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--line);
+  background: #fafafa;
+}
+.note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: #f9fafb;
+  border-left: 3px solid var(--after);
+  padding: 8px 10px;
+  border-radius: 0 6px 6px 0;
+  margin: 0;
+}
+.note--before { border-left-color: var(--before); }
+.note--wo { border-left-color: var(--wo); }
+</style>
+<div class="board">
+  <div class="head">
+    <span class="chip chip--new">New</span>
+    <h2>4a. Part Sale Log</h2>
+  </div>
+  <p class="sub">The work order's dialog, titled for the object: searchable, Event / User / Line / Details / Date / Time. Here it is showing the core being received, ordered, and both return cancellations.</p>
+  <div class="shots">
+    <div class="shot">
+      <img src="s92.png" alt="4a. Part Sale Log" style="max-width:859px">
+    </div>
+  </div>
+  <p class="note ">It reads the same history the work order reads, through a part-sale route that refuses anything that is not a part sale.</p>
+</div>

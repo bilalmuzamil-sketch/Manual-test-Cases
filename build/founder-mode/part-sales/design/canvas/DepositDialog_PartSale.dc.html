@@ -1,0 +1,93 @@
+<style>
+:root {
+  --ink: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --card: #ffffff;
+  --bg: #f4f6f8;
+  --before: #6b7280;
+  --after: #2563eb;
+  --wo: #b45309;
+  --new: #047857;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+}
+.board {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 18px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.chip {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #fff;
+  white-space: nowrap;
+}
+.chip--before { background: var(--before); }
+.chip--after { background: var(--after); }
+.chip--wo { background: var(--wo); }
+.chip--new { background: var(--new); }
+h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.sub { font-size: 12.5px; line-height: 1.5; color: var(--muted); margin: 0; }
+.shots { display: flex; flex-direction: column; gap: 10px; }
+.shot { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff; }
+.shot img { display: block; width: 100%; height: auto; margin: 0 auto; }
+.shot-label {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--line);
+  background: #fafafa;
+}
+.note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: #f9fafb;
+  border-left: 3px solid var(--after);
+  padding: 8px 10px;
+  border-radius: 0 6px 6px 0;
+  margin: 0;
+}
+.note--before { border-left-color: var(--before); }
+.note--wo { border-left-color: var(--wo); }
+</style>
+<div class="board">
+  <div class="head">
+    <span class="chip chip--new">New</span>
+    <h2>8a. Create Deposit on a part sale</h2>
+  </div>
+  <p class="sub">The work order's dialog: deposit date, payment method, amount, reference number, memo. The memo pre-fills "Deposit for Part Sale P-196".</p>
+  <div class="shots">
+    <div class="shot">
+      <img src="s106.png" alt="8a. Create Deposit on a part sale" style="max-width:507px">
+    </div>
+  </div>
+  
+  <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8b95a3;">Button row as it ships</div>
+    <div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;">
+      <span style="display:inline-block;padding:7px 14px;border-radius:4px;background:#2276DA;color:#ffffff;font-size:13px;font-weight:600;">Record Deposit</span>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <span style="display:inline-block;padding:7px 14px;border-radius:4px;background:#eef1f4;color:#a7afba;font-size:13px;font-weight:600;border:1px solid #dde2e8;">Collect in Portal</span>
+        <span style="display:inline-block;max-width:300px;padding:6px 9px;border-radius:4px;background:#1d2129;color:#ffffff;font-size:12px;line-height:1.4;">On hover: the Customer Portal&#39;s own reason, shown verbatim</span>
+      </div>
+    </div>
+  </div>
+  <p class="note ">Two buttons, as on a work order. Record Deposit writes the deposit, and it auto-applies when the sale is invoiced, including the overflow-to-credit case. Collect in Portal is offered once the Customer Portal says it can collect for this sale. While the portal declines, the button stays visible and disabled and hovering it shows the portal's own reason, verbatim (S8-R8 to S8-R11). The screenshot above was taken before that change and shows Record Deposit alone; the button row beneath it is what ships.</p>
+</div>
