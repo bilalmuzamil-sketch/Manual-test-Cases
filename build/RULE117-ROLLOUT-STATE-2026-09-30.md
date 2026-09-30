@@ -46,7 +46,10 @@ TestRail root **Founder Mode = section 20434**. Feature sub-folders:
   design driven = CONFIRM; no QA build/tech plan → all HOLD). Sub-folders S1–S4 = 20461–20464.
   Scripts `build/founder-mode/what-why/{ww_lib,ww_cases}.py`.
   PROJECT-STATE: `build/founder-mode/what-why/PROJECT-STATE.md`. PO Chris Ward.
-- **Price/Category = 20438** — NOT STARTED (page 578781186, artifact UMNdojKWhYhRyJrjdgZa4P, SV-9667).
+- **Price/Category = 20438** — DONE (26 cases C154726–C154751, Rule 117; 63 PRD anchors covered 1:1;
+  design driven = CONFIRM; presentation-only feature; no QA build → all HOLD). Sub-folders S1–S3 =
+  20465–20467. Scripts `build/founder-mode/price-category/{pc_lib,pc_cases}.py`.
+  PROJECT-STATE: `build/founder-mode/price-category/PROJECT-STATE.md`. PO Chris Ward.
 - **Part Lifecycle = 20439** — NOT STARTED (page 829227015, artifact Vz6rprcWyP16tYxzM1kdeE, SV-10647).
 
 **Next:** create test cases for the remaining Founder Mode feature folders, one at a time, to the
