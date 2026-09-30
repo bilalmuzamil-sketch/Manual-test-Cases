@@ -2984,11 +2984,8 @@ that quote the PRD. Cases left on the PRD wording pending a QA-lead/PO ruling (R
 **All five Founder Mode features authored to Rule 117** (Part Sales, Notifications, What/Why,
 Price/Category, Part Lifecycle). Outstanding across the batch:
 
-1. 🔴 **Part Lifecycle: 27 duplicate TestRail cases C154801–C154827 pending deletion** (folder 20439,
-   sections S6–S10). Cause: accidental second `--apply`; `delete_case` was denied by the auto-mode
-   classifier (external-system write). They duplicate canonical C154774–C154800. Recorded in
-   `build/founder-mode/part-lifecycle/DUPLICATES-TO-DELETE.json`. **Need: authorise the delete, or
-   grant delete_case permission and I will remove them.**
+1. ✅ **RESOLVED — Part Lifecycle 27 duplicate cases C154801–C154827 deleted** (2026-09-30, on the
+   user's go-ahead). Verified gone; folder 20439 holds exactly the 62 canonical cases.
 2. **Part Lifecycle spec is IN REVIEW (Confluence 829227015, "In review 2026-09-09"), not locked** —
    its 62 cases are PROVISIONAL/HOLD; re-verify + re-open affected quotes if the PRD changes. Open PRD
    question: should Part Number stay mandatory (Story 7)? "Decide before build."

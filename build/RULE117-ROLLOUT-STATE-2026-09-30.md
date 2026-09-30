@@ -55,8 +55,7 @@ TestRail root **Founder Mode = section 20434**. Feature sub-folders:
   S1–S13 = 20468–20480. Canonical ids C154752–C154800 + C154828–C154840. Scripts
   `build/founder-mode/part-lifecycle/{pl_lib,pl_s1_s5,pl_s6_s10,pl_s11_s13}.py`.
   PROJECT-STATE: `build/founder-mode/part-lifecycle/PROJECT-STATE.md`.
-  🔴 **27 duplicate cases C154801–C154827 pending deletion** (delete_case denied by auto-mode
-  classifier; recorded in `part-lifecycle/DUPLICATES-TO-DELETE.json`).
+  (The 27 accidental duplicate cases C154801–C154827 were deleted 2026-09-30 on the user's go-ahead.)
 
 **Next:** create test cases for the remaining Founder Mode feature folders, one at a time, to the
 Rule-117 standard. Per-feature intake needed each time (Rule 1/2/30/15): the feature name, its

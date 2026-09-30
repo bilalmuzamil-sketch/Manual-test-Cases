@@ -32,11 +32,8 @@ Catalog→Part Library rename, editable part number.
 **Render:** 62/62 canonical cases rendered clean on TestRail (2026-09-30).
 
 ## 🔴 Outstanding — needs the QA lead / user
-1. **27 DUPLICATE cases to delete: C154801–C154827** (in sections S6–S10, folder 20439). Cause: an
-   accidental second `--apply` of `pl_s6_s10.py`; `delete_case` was denied by the auto-mode
-   classifier (external-system write), so I could not remove them. They duplicate canonical
-   C154774–C154800. Recorded in `DUPLICATES-TO-DELETE.json`. **Please authorise the delete (or delete
-   them), or grant the delete_case permission and I will.**
+1. ✅ **RESOLVED — 27 duplicate cases C154801–C154827 deleted** (2026-09-30, on the user's
+   go-ahead). Verified all 27 gone; the 13 sections now hold exactly the 62 canonical cases.
 2. **Spec is IN REVIEW, not locked for build** — all 62 cases are PROVISIONAL/HOLD; re-verify the
    source version and re-open affected quotes if the PRD changes before it locks.
 3. **Open question in the PRD:** should Part Number stay mandatory (Story 7)? "Decide before build."
