@@ -2966,16 +2966,23 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 
 </details>
 
-## WO Board & Tech View (13204) — tech-plan-vs-PRD conflicts to rule on (raised 2026-09-30)
+## WO Board & Tech View (13204) — ✅ ALL THREE DIVERGE items RESOLVED by PRD v33 (2026-09-30)
 
-Three clarifications in the Board View & Tech View tech plan post-date the PRD and conflict with cases
-that quote the PRD. Cases left on the PRD wording pending a QA-lead/PO ruling (Rules 56/58/113):
-1. **"N open" count statuses** — PRD/cases C96974, C97032 = 3 statuses (Approved, In Progress, Ready
-   for Review); tech-plan MF-3 (Product, 2026-09-24) = 4 (adds Complete), "PRD S4-R15 not yet updated". Which governs?
-2. **Reordering Invoiced/Paid work orders** — plan changed to "match the work order page" (reorder within
-   current lead/Unassigned, no cross-tech move; Complete moves freely; §3.23). Update S9 cases C97009/C97012?
-3. **"Assigned to me" on board displays** — Product direction (all groups visible but secondary; my-work
-   groups primary) conflicts with S2-R9/S3-N1/S1-E1 and cases C96937/C96951/C96922 (which hide Unassigned). Still with UX.
+The PRD moved from **draft v0.9 (2026-09-23) to v33 (2026-09-28)**; the three tech-plan clarifications
+are now folded into the PRD, so they are decisions in the source, not open conflicts. Cases updated to
+v33 (Rule 113: the quote changed because the SOURCE changed). Detail: `build/wo-board-tech-view/
+V33-RECHECK-2026-09-30.md`.
+1. ✅ **"N open" count = FOUR statuses** (adds Complete). v33 S4-R15. Cases C96974, C97032 updated.
+2. ✅ **Invoiced/Paid CAN reorder in place** (within current tech or within Unassigned; not moved to
+   another tech or to/from Unassigned; Declined & Complete move freely). v33 S4-N2. Cases C96963,
+   C96964 updated.
+3. ✅ **"Assigned to me" HIDES non-matching groups/columns** (incl. pinned; Unassigned shown only if it
+   holds a match) — the "secondary visibility" direction (DR-36) was overturned by DR-42. v33
+   S2-R9/S3-N1. Cases C96937, C96951 updated.
+
+**Still needs a go-ahead:** 7 cases to retire (delete_case is permission-gated) — C96922 (obsolete old
+S1-E1) and C97014–C97019 (Story 10 "reassign from List", removed entirely in v33). Recorded in the
+re-check doc.
 
 ---
 
@@ -2991,5 +2998,7 @@ Price/Category, Part Lifecycle). Outstanding across the batch:
    question: should Part Number stay mandatory (Story 7)? "Decide before build."
 3. **No QA build for any Founder Mode feature yet** — all cases AUTOMATION: HOLD, source-verified only.
    Build-verify when branches exist (user: "I will let you know once they are available").
-4. **3 WO Board & Tech View tech-plan-vs-PRD DIVERGE items** (above) — to discuss after the Founder
-   Mode authoring is complete (user, 2026-09-30).
+4. ✅ **RESOLVED — 3 WO Board & Tech View DIVERGE items** — the PRD moved to v33 (2026-09-28) and folded
+   all three in; suite updated to v33 (42 changed anchors, 7 new cases, 10 removed). See the WO Board
+   section above and `build/wo-board-tech-view/V33-RECHECK-2026-09-30.md`. One go-ahead pending:
+   7 obsolete cases to delete (C96922 + Story-10 C97014–C97019).
