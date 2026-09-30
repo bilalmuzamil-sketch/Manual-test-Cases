@@ -1,0 +1,301 @@
+import importlib.util
+spec=importlib.util.spec_from_file_location("ps_lib","build/founder-mode/part-sales/ps_lib.py")
+L=importlib.util.module_from_spec(spec); spec.loader.exec_module(L)
+
+ROLE='You are signed in as a user with the Part Sales -> Create & Edit permission, on the build under test.'
+CUST='A customer to sell to exists; if none does, create one first: Customers -> New Customer (e.g. "4 Star Truck Repair").'
+# seed a post-release part sale with a part carrying a core (part left Quoted)
+def seed_core(recv=False, extra=None):
+    s=['A part sale created on or after the release, carrying a part with a core charge. Seed it with these standard steps:',
+       '↳ Open Part Sales from the main menu and start a New Part Sale; select the customer (e.g. "4 Star Truck Repair").',
+       '↳ On the Parts tab, click Add Part; set the Description (e.g. "Water Pump") and the Sell Price to a test amount (e.g. $517.55).',
+       '↳ In the Core column of that row, enter a Core Charge greater than 0 (e.g. $79.99), then save the row.']
+    if recv:
+        s.append('↳ Order the part, then Receive it (special-order) or Pick it (inventory), so Return Core becomes available.')
+    else:
+        s.append('↳ Leave the part at status Quoted - do not Receive or Pick it.')
+    if extra: s+=extra
+    return s
+SRC='Epic SV-9667 (Founder Mode Batch #1); story SV-10262 (Story 1, Return a core on a part sale); Part Sales Update v1 PRD (Confluence 867434569), Story 1; design canvas boards Cores_*/Document_*; read 30 Sep 2026.'
+
+CASES=[
+{"anchors":["S1-R1","S1-R13","S1-R14","S1-N7","S1-N9"],"title":"Core charge shows on the estimate and counts toward the totals",
+ "pre":[ROLE,CUST]+seed_core(),
+ "steps":['Open the part sale you seeded and click the Finance tab.',
+   'Set the Estimate / Invoice toggle to Estimate (the part is unreceived, so only the estimate exists).',
+   'In the document\'s Parts section find the part row (with the example data: "Water Pump  1  $517.55  $517.55").',
+   'Look directly beneath the part row for its core row, and read its label, indentation and amounts.',
+   'In the Summary panel on the right, read the Parts, GST (5%) and Total figures.',
+   'Confirm that at no point were you prompted to answer the core (no Ok / Not Ok question appeared).',
+   'Click Create Invoice and note whether the sale can be invoiced while the part is still unreceived.'],
+ "results":[
+   'Beneath the part row a child row prints indented behind a ↳ arrow, labelled "Core charge", showing the core amount. With the example data it reads "↳ Core charge  1  $79.99  $79.99" directly under "Water Pump  1  $517.55  $517.55".',
+   'The core is counted in the totals: with the example data the Summary reads Parts $597.54, GST (5%) $29.88 and Total $627.42 (517.55 + 79.99 = 597.54; 597.54 x 5% = 29.88).',
+   'The "Core charge" child row is the same text size and weight as the part row above it, not the smaller greyer style of a fee or discount row.',
+   'No Ok / Not Ok prompt appears at any point - the core is charged automatically from the moment the part is quoted.',
+   'Create Invoice does not complete while the part is unreceived, so the pre-receipt core charge stays on the estimate and never reaches an invoice.'],
+ "source":SRC,
+ "quotes":[("S1-R1","A part sale charges its core to the customer from the moment the part is quoted. Nobody is asked anything. The estimate assumes the customer keeps the old unit until proven otherwise, so the charge is on the document before the part is received and stays on it after receipt"),
+           ("S1-R13","the core prints on the estimate as its own row directly beneath the part it belongs to, labeled Core charge, at the core charge amount, and it counts toward the parts total, the tax base and the sale total exactly as it does after receipt. A $517.55 part carrying a $79.99 core reads $517.55 then $79.99, and totals $597.54 of parts, $29.88 of GST at 5 percent and $627.42"),
+           ("S1-R14","The child rows keep a part row's size and weight rather than an adjustment row's ... a core charge is money in the total and reads like the part above it"),
+           ("S1-N7","A part sale offers no way to give that answer, so in practice every core on a part sale is charged until it is returned"),
+           ("S1-N9","A part sale can never reach an invoice while a part is still unreceived, so the pre-receipt core charge never leaves the estimate")]},
+
+{"anchors":["S1-R2","S1-R3","S1-R11"],"title":"Return Core credits the core and badges the row Returned",
+ "pre":[ROLE,CUST]+seed_core(recv=True),
+ "steps":['On the part sale Parts grid, find the core row and its Actions cell.',
+   'Click Return Core in the Actions cell.',
+   'Read the core row\'s Status badge afterwards.',
+   'Open the Finance tab, set the toggle to Estimate/Invoice, and read the part row, the Core charge child and the Core credit child, plus the Summary.',
+   'Open Parts -> Returns and check for a new return.'],
+ "results":[
+   'The core row shows a single action, Return Core, in the same Actions cell every other primary action uses; clicking it credits the core.',
+   'The core charge stays on the document and a second child row, "Core credit", is added crediting the same amount; the grid\'s core row now shows the Returned badge, and a return appears in Parts -> Returns.',
+   'On the document the credit prints indented behind ↳ as a negative amount (e.g. "↳ Core credit  1  -$79.99  -$79.99") directly beneath the "↳ Core charge" row; with the example data the Summary reads Parts $517.55, GST (5%) $25.88, Total $543.43.'],
+ "source":SRC,
+ "quotes":[("S1-R2","The core row offers one action, Return Core, in the same cell every other primary action on that row uses"),
+           ("S1-R3","Return Core means the customer brought the old unit back. The core charge stays on the sale and a second row, Core credit, credits the same amount against it. The row reads Returned and a return is created in the Returns list"),
+           ("S1-R11","the core row is labeled Core charge and its credit Core credit. Both print as children of the part they belong to ... The credit prints as a negative amount: a $79.99 core returned reads -$79.99 ... reads $517.55, then the $79.99, then the -$79.99, and totals $517.55 of parts, $25.88 of GST at 5 percent and $543.43")]},
+
+{"anchors":["S1-R6","S1-R7"],"title":"A returned core's credit equals the charge, and both are logged",
+ "pre":[ROLE,CUST]+seed_core(recv=True,extra=['Before returning, note the sale Total and the tax figure from the Finance tab document (e.g. Total $627.42, GST $29.88).']),
+ "steps":['On the Finance tab, record the current Total and GST figures.',
+   'Return the core (core row Actions -> Return Core) and re-read the Total and GST.',
+   'Open the part sale menu (top right ... ) -> Audit Log and find the entry for the return.',
+   'Return to the grid, open the core row menu and choose Cancel Return -> Put Back, then re-open the Audit Log.'],
+ "results":[
+   'The Core credit equals the Core charge exactly, including its tax, so after the return the sale Total and the tax base are back where they were before the core was added (with the example data GST falls from $29.88 to $25.88 and Total from $627.42 to $543.43 - exactly the without-core figures).',
+   'The Part Sale Log shows an entry for the return, naming who did it and when; after Cancel Return a further entry is written the same way.'],
+ "source":SRC,
+ "quotes":[("S1-R6","The credit equals the core charge exactly, including its tax, so returning a core leaves the sale total and the tax base where they started"),
+           ("S1-R7","Both the return and any later cancellation are recorded in the part sale log, with who did it and when")]},
+
+{"anchors":["S1-R5","S1-R5a"],"title":"Cancel Return restores the charge after a confirmation",
+ "pre":[ROLE,CUST]+seed_core(recv=True,extra=['Return the core once (core row Actions -> Return Core) so it reads Returned and carries a Core credit row.']),
+ "steps":['On the grid, open the returned core row\'s menu ( ... ) and choose Cancel Return.',
+   'Read the confirmation dialog title, message and buttons, then click Cancel and confirm nothing changed.',
+   'Re-open the menu, choose Cancel Return again and click Put Back.',
+   'Read the core row and the Finance-tab Total afterwards.'],
+ "results":[
+   'The core row menu offers Cancel Return; choosing it opens a confirmation reading "This will put that part back onto the part sale." with Cancel and Put Back buttons, and nothing changes until Put Back is clicked.',
+   'After Put Back, the Core credit row is removed and the core is charged again on exactly the Total the sale carried before the return; the core does not go back to an unanswered state (there is no Ok / Not Ok to return to).',
+   'Cancel Return is never refused and shows no error, even if the return was already partly worked: an unsettled return is deleted, and a partly-settled one is kept and reduced to the settled quantity.'],
+ "source":SRC,
+ "quotes":[("S1-R5","After a return, the row menu offers Cancel Return, which removes the credit row and leaves the core charged again, on exactly the total the sale carried before the return. It does not return the core to an unanswered state, because on a part sale there is no question to return to"),
+           ("S1-R5a","Cancel Return is never refused and shows no error or warning ... it first asks for confirmation: This will put that part back onto the part sale. with a Put Back button ... If none of the returned quantity has been credited by the vendor or returned to inventory, the return is deleted. If any of it has, the return is kept and its quantity is reduced to the quantity already settled")]},
+
+{"anchors":["S1-R4","S1-N1","S1-N3"],"title":"Return Core appears only after receipt and before invoicing",
+ "pre":[ROLE,CUST,
+   'Three part sales to compare. Seed them:',
+   '↳ Sale A: New Part Sale + Add Part with a Core Charge (e.g. $79.99), left at status Quoted (not received).',
+   '↳ Sale B: the same, but Order then Receive/Pick the part so the core is received and left un-returned.',
+   '↳ Sale C: a sale with a received core that you then Create Invoice on (invoiced/paid).'],
+ "steps":['On Sale A, open the core row and look for Return Core or any Actions-cell action.',
+   'On Sale B, leave the core un-returned and confirm nothing else happens on the sale.',
+   'On Sale C, open the core row and look for Return Core and Cancel Return.'],
+ "results":[
+   'On Sale A (core not yet received or picked) Return Core is not offered and the core row\'s Actions cell is empty, because there is nothing yet to bring back - though the Core charge is already on the estimate.',
+   'On Sale B, if the customer never returns the core nothing else happens: the Core charge stays, no credit row is added, and nothing waits for an answer.',
+   'On Sale C (invoiced or paid) neither Return Core nor Cancel Return is offered.'],
+ "source":SRC,
+ "quotes":[("S1-N1","Before the core is received or picked, Return Core is not offered and the core row carries no action, because there is nothing yet to bring back. The charge itself is already on the estimate"),
+           ("S1-R4","If the customer never returns the core, nothing else happens. The core charge stays on the sale, no credit row is added, and nothing is left waiting for an answer"),
+           ("S1-N3","Once the part sale is invoiced or paid, neither action is offered")]},
+
+{"anchors":["S1-N2","S1-N5"],"title":"Core actions are hidden without the shared core permission",
+ "pre":['Two test users on the build: User X holds Part Sales -> Create & Edit but NONE of Vendors -> Create & Edit, Work Order Parts -> Create, or Work Orders -> Create & Edit; User Y lacks See Financial Data. (Set these under Settings -> Staff / Roles.)',
+   CUST]+seed_core(recv=True),
+ "steps":['Sign in as User X, open the part sale, and on the received core row look for Return Core and Cancel Return.',
+   'Confirm User X can still see the core row and its charge.',
+   'Sign in as User Y and try to open the part sale\'s Parts grid.'],
+ "results":[
+   'User X sees the core row and its charge but is offered neither Return Core nor Cancel Return.',
+   'User Y (no See Financial Data) cannot reach the part sale parts grid at all and never sees a core row; this project does not open part sales to those users.'],
+ "source":SRC,
+ "quotes":[("S1-N2","A user who holds none of the permissions above sees the core row and its charge, but is offered neither Return Core nor Cancel Return"),
+           ("S1-N5","See Financial Data gates the whole part sale screen, so a user without it never reaches the parts grid and never sees a core row. This project does not open part sales to those users")]},
+
+{"anchors":["S1-R8","S1-R9","S1-N6"],"title":"Returning a core moves no stock and isn't a vendor credit",
+ "pre":[ROLE,CUST]+seed_core(recv=True,extra=['Before returning, note the on-hand inventory quantity of the core part (Inventory -> find the core part).']),
+ "steps":['Record the core part\'s on-hand quantity.',
+   'Return the core (core row Actions -> Return Core) and re-check the on-hand quantity.',
+   'Open Parts -> Returns and read the state of the new return.',
+   'Open the inventory part\'s own history, and the Part Sale Log, and see where the return is recorded.'],
+ "results":[
+   'The core part\'s on-hand quantity is unchanged by the return; stock only moves later, when the return is worked in Parts -> Returns.',
+   'The new return is not yet a vendor credit - a vendor credit exists only once the return is posted with its credit-memo number (the existing, unchanged Returns workflow); the Core credit row on the sale is the customer\'s and is separate.',
+   'The return writes nothing to the inventory part\'s own history; the record lives in the Part Sale Log.'],
+ "source":SRC,
+ "quotes":[("S1-R8","Returning a core changes no inventory quantity. It creates the return and the credit row; stock moves later, when that return is worked in the Returns list"),
+           ("S1-R9","The return is not itself a vendor credit. A vendor credit exists once the return is posted with its credit memo number ... The credit row on the sale is the CUSTOMER's, and is a separate thing"),
+           ("S1-N6","Returning a core writes nothing to the inventory part's own history. The record lives in the part sale log")]},
+
+{"anchors":["S1-R10"],"title":"A core return covers the whole quantity",
+ "pre":[ROLE,CUST,
+   'A part sale carrying a core for a quantity greater than one. Seed it:',
+   '↳ New Part Sale + Add Part; set the part Quantity to 3 (e.g.) and enter a Core Charge (e.g. $79.99).',
+   '↳ Order and Receive/Pick the part so the core can be returned.'],
+ "steps":['On the core row, click Return Core.',
+   'Look for any option to return part of the quantity (e.g. return 2 of 3).',
+   'Confirm the documented route for a genuine partial return.'],
+ "results":[
+   'The whole core quantity returns at once - a core for three units returns once for all three, with no way to return two and keep one.',
+   'The documented way to handle a genuine partial is to return the whole quantity and then split the sale.'],
+ "source":SRC,
+ "quotes":[("S1-R10","A return covers the whole quantity of a core. A core for three units returns once, for all three; there is no way to return two and keep one. The established way to handle a genuine partial is to return the whole quantity and then split")]},
+
+{"anchors":["S1-R21","S1-N4"],"title":"Only post-release sales charge the core from the quote",
+ "pre":[ROLE,CUST,
+   'A part sale started BEFORE the release with a core (if none exists on the build, use an existing pre-release sale that carries a core), and a NEW part sale seeded now with a core (Add Part + Core Charge, left Quoted).',
+   'Also have a sale you can split, and two part sales you can move a line between.'],
+ "steps":['On the pre-release sale, open the Finance tab estimate and check whether the core shows before the part is received.',
+   'On the newly-created sale, check the estimate shows the Core charge from the quote.',
+   'Split the new sale and check whether the resulting sale still charges the core from the quote.',
+   'Move the line to another part sale (bulk menu -> Move Part) and check the core treatment after the move.',
+   'Confirm no existing sale changed on release day.'],
+ "results":[
+   'The pre-release sale keeps the total it was quoted at - its core appears only when the part is received; the newly-created (post-release) sale shows the Core charge from the moment it is quoted.',
+   'A split follows the sale it was split from, and Move Part keeps the core treatment of the sale the line came from, whichever sale it lands on - a split or move never adds or removes a core charge.',
+   'No data was migrated and nothing an existing sale shows changed on release day; the new behaviour reaches only sales started from the release onward.'],
+ "source":SRC,
+ "quotes":[("S1-R21","Only sales started on or after the release charge a core from the quote ... What decides is when the sale was created ... A sale split from another sale follows the sale it was split from, not when it was itself created. A split never changes whether a line's core is charged from the quote. Move Part works the same way between part sales: a moved line keeps the core treatment of the part sale it came from"),
+           ("S1-N4","No data is migrated and no amount already billed is rewritten ... Nothing an existing sale shows changes on release day ... The new behavior reaches sales started from the release onwards")]},
+
+{"anchors":["S1-R25"],"title":"Moving a charged core to a work order makes it unanswered",
+ "pre":[ROLE,CUST]+seed_core(recv=True,extra=['A service work order exists to receive the moved line (Work Orders -> New Work Order for the same customer).']),
+ "steps":['On the part sale, select the part line and open the bulk menu -> Move Part.',
+   'Choose the service work order as the destination and complete the move.',
+   'Open the work order and read the state of the moved core and what the technician is asked.'],
+ "results":[
+   'On the work order the moved core arrives unanswered, so the technician is asked Ok / Not Ok exactly as on any other work order core.',
+   'This applies only to a move from a part sale onto a service work order, and is the same result a split already gives.'],
+ "source":SRC,
+ "quotes":[("S1-R25","When Move Part takes a part with a charged core from a part sale onto a service work order, the core arrives unanswered, so the technician is asked Ok / Not Ok exactly as on any other work order core. This applies only to a move from a part sale onto a service work order; it is the same result a split already gives")]},
+
+{"anchors":["S1-R17"],"title":"The Core credit syncs to QuickBooks as a negative line",
+ "pre":[ROLE,CUST,'QuickBooks is connected for this shop with the one-time bookkeeping consent given.']+seed_core(recv=True,extra=['Return the core (core row -> Return Core) so a Core credit row exists.']),
+ "steps":['Create Invoice on the sale and let it sync to QuickBooks.',
+   'Open the resulting invoice in QuickBooks and find the Core credit line.',
+   'Read its unit price, amount, product/service mapping, class and tax, and confirm it is a negative invoice line (not a credit memo).',
+   'Compare the QuickBooks amount to the document\'s -$79.99 Core credit row.'],
+ "results":[
+   'The Core credit appears in QuickBooks as an ordinary negative invoice line with a unit price and amount of -$79.99 on a $79.99 core, using the same product/service mapping, class and parts tax treatment as the part row above it.',
+   'It is a negative line, not a QuickBooks credit memo, so it reduces the same revenue the part row increases; the QuickBooks amount equals the document\'s -$79.99 to the cent. (Only fee/discount rows are held back from the sync; a core row is a part row and is not.)'],
+ "source":SRC,
+ "quotes":[("S1-R17","The Core credit row syncs as an ordinary negative invoice line: the same product and service mapping and the same class as the part row above it, a unit price and amount of -$79.99 on a $79.99 core, and the same parts tax treatment. It is a negative line on the invoice, not a QuickBooks credit memo ... Only fee and discount rows are held back from the sync; a core row is a part row and is not")]},
+
+{"anchors":["S1-R19"],"title":"Reversing the invoice keeps the core charge and credit rows",
+ "pre":[ROLE,CUST]+seed_core(recv=True,extra=['Return the core, then Create Invoice on the sale. Do NOT apply any payment.']),
+ "steps":['On the invoiced sale, reverse the invoice (the Reverse invoice action).',
+   'Confirm the invoice and its customer transaction are deleted and the sale returns to its rows.',
+   'Read whether the Core charge and Core credit rows are still present, and whether the Core credit blocked the reversal.'],
+ "results":[
+   'Reversing the invoice deletes the invoice and its customer transaction and the sale returns to the rows it was carrying: the Core charge stands and, if the return still stands, so does the Core credit.',
+   'The Core credit row does not block the reversal - reversal is refused only when a payment is applied; the Core credit is a row on the document, not a customer credit.'],
+ "source":SRC,
+ "quotes":[("S1-R19","Reversing a part sale invoice deletes the invoice and its customer transaction, and the sale returns to the rows it was carrying: the core charge stands and, if the return still stands, so does its credit. The Core credit row does not block the reversal, because reversal is refused only when a payment is applied")]},
+
+{"anchors":["S1-R20","S1-R22"],"title":"The core parent/child prints on every document, never on the grid",
+ "pre":[ROLE,CUST]+seed_core(recv=True,extra=['Return the core so both a Core charge and a Core credit row exist.']),
+ "steps":['On the Finance tab, view the estimate and invoice previews and confirm the parent/child rendering and the -$79.99 amount.',
+   'Download or email the PDF, run a batch print, and open the Customer Portal copy and a reprint; check each shows the same rendering.',
+   'Switch between the current and legacy document designs and re-check.',
+   'Open the Parts grid and see how the core and its credit appear there.'],
+ "results":[
+   'On every document surface - Finance-tab estimate/invoice previews, the emailed/downloaded PDF, the batch print, the Customer Portal copy and any reprint, in both current and legacy designs - the core prints as an indented child of its part with the negative Core credit amount; there is no surface where a core prints flat.',
+   'On the Parts grid the core keeps its own row alongside the part as before; the Core credit row is not drawn on the grid at all, and once returned the grid\'s core row simply carries the Returned badge.'],
+ "source":SRC,
+ "quotes":[("S1-R20","The parent and child rendering and the negative amount reach every surface the part sale document is produced on: the estimate and invoice previews on the Finance tab, the emailed or downloaded PDF, the batch print run, the Customer Portal copy, and any later reprint, in both the current and the legacy document designs. There is no surface where a core prints flat"),
+           ("S1-R22","On the parts grid the core stays its own row alongside the part, as it is today. The Core credit row is not drawn on the grid at all; once the core has been returned, the grid's core row carries the Returned badge and nothing else changes there")]},
+
+{"anchors":["S1-R16"],"title":"A part sale's reported figures include the charged core",
+ "pre":[ROLE,CUST]+seed_core(extra=['Leave the core on the sale un-received (Quoted), so it is a requested-parts core.']),
+ "steps":['On the Financial Info card, note the requested-parts value.',
+   'Open the Stats tab and read its parts figure; run the sales report; and note the financial snapshot taken at invoice.',
+   'Confirm no previously-reported historical figure changed.'],
+ "results":[
+   'The Stats tab, the sales report and the invoice financial snapshot all read the same requested-parts value the Financial Info card shows, so an open post-release sale holding an un-received core reports that core as well as showing it.',
+   'Nothing historical is recalculated and no figure already reported changes.'],
+ "source":SRC,
+ "quotes":[("S1-R16","The Stats tab, the sales report and the financial snapshot taken at invoice all read the same requested-parts value the Financial Info card does, so from release day an open part sale holding a core it has not received reports that core as well as showing it. Nothing historical is recalculated and no figure already reported changes")]},
+
+{"anchors":["S1-R23"],"title":"A fee or discount on a returned core nets to $0",
+ "pre":[ROLE,CUST]+seed_core(recv=True,extra=['Add a per-item fee or discount to the core row (Fees & Discounts on the core row) while it is charged, e.g. a flat $5 fee.']),
+ "steps":['With the core charged, confirm the fee/discount applies as normal on the document.',
+   'Return the core (core row -> Return Core) and read whether the fee/discount still adds to the total.',
+   'Cancel Return (row menu -> Cancel Return -> Put Back) and re-check the fee/discount.'],
+ "results":[
+   'While the core is charged the per-item fee or discount applies as today; once the core is returned it nets to $0, so a flat fee is not counted twice and a percentage one is not cancelled out by the Core credit row.',
+   'Cancel Return brings the fee or discount back. (This matches what a service work order does to a fee on a core answered Ok.)'],
+ "source":SRC,
+ "quotes":[("S1-R23","While the core is charged, a per-item fee or discount on it applies as it does today. Once the core is returned, that fee or discount nets to $0, so a flat fee is not counted twice and a percentage one is not canceled out by the Core credit row. Cancel Return brings it back")]},
+
+{"anchors":["S1-R24"],"title":"Receiving a part-sale core tags it Charged",
+ "pre":[ROLE,CUST,
+   'A part sale with a special-order part carrying a core, ordered and ready to receive. Seed it:',
+   '↳ New Part Sale + Add Part with a Core Charge (e.g. $79.99); set the part as special-order and Order it.',
+   'Also open a service work order carrying cores for comparison.'],
+ "steps":['On the part sale, open the Receive parts dialog for the special-order part.',
+   'Read the tag shown on its core and hover it to read the hover text.',
+   'Open the Receive parts dialog on the service work order and read its core tags.'],
+ "results":[
+   'On the part sale the Receive parts dialog tags the core "Charged", and hovering it reads "Charged to the customer until the core is returned."',
+   'The service work order keeps its own tags, "OK - returned" and "Not OK - charged", unchanged.'],
+ "source":SRC,
+ "quotes":[("S1-R24","When a special-order part from a part sale is received, the Receive parts dialog tags its core Charged, with the hover text “Charged to the customer until the core is returned.” A service work order keeps its tags, OK · returned and Not OK · charged, unchanged")]},
+
+{"anchors":["S1-R26","S1-R12"],"title":"Returns count ignores Core credit; the label is document-only",
+ "pre":[ROLE,CUST]+seed_core(recv=True,extra=['Return the core so a Core credit row and a return exist.']),
+ "steps":['On the Part Sales list, read the returns count for this sale and compare it to the grid.',
+   'On the grid and in Inventory, read the core part\'s stored Description.',
+   'Reprint an older version of the document and read the core row\'s label.'],
+ "results":[
+   'The Part Sales list returns count does not count the Core credit row, so it matches the grid, where the returned core keeps its full quantity with the Returned badge.',
+   'The "Core charge" wording is a document label only: the core part keeps its stored Description ("Core for <part>") on the grid, in Inventory and in QuickBooks, and because the label is applied at render time even a reprint of an older document reads "Core charge" - no amount changes.'],
+ "source":SRC,
+ "quotes":[("S1-R26","The returns count on the part sale list does not count Core credit rows, so it matches the grid, where a returned core keeps its full quantity with the Returned badge"),
+           ("S1-R12","The label is a document label only. The core part keeps its own stored description (Core for <part>), which the parts grid, inventory and QuickBooks continue to use. Because the label is applied when the document renders, a reprint of an older document also reads Core charge; no amount changes")]},
+
+{"anchors":["S1-N8","S1-N10"],"title":"A zero core is refused; a picked inventory core bills its price",
+ "pre":[ROLE,CUST,
+   'A part being added to a part sale, and an inventory core whose stored price differs from the quoted estimate figure. Seed:',
+   '↳ New Part Sale + Add Part; be ready to enter a Core Charge in the Core column.',
+   '↳ Have an inventory core part whose own price differs from the pricing-rule estimate (e.g. estimate $79.99, inventory price $85.00).'],
+ "steps":['Try to save a part with a Core Charge of $0.00 and read the server response.',
+   'Confirm a part with no Core Charge shows no core row at all.',
+   'Pick the inventory core whose price differs from the quote and watch the sale Total at the moment of picking.'],
+ "results":[
+   'A $0.00 core is refused with "Core Charge must be greater than 0", and a part with no Core Charge has no core row at all, so a $0.00 core can never print (removing a mistaken core means removing the part and adding it again).',
+   'The quoted core amount comes from the pricing rules, but picking an inventory core bills that core\'s own price; when the two differ the sale Total changes at the moment the core is picked (e.g. from $79.99 to $85.00) - the estimate figure is indicative and neither price is forced to win.'],
+ "source":SRC,
+ "quotes":[("S1-N8","A core charge of zero cannot be created or left behind. The server refuses one with “Core Charge must be greater than 0”, and a part carrying no core charge has no core row at all, so a $0.00 core can never print"),
+           ("S1-N10","The core amount quoted on the estimate comes from the pricing rules, while picking an inventory core bills that core's own price. When the two differ, the sale total changes at the moment the core is picked ... The estimate figure is indicative and the picked inventory core's price is what is billed")]},
+
+{"anchors":["S1-E1","S1-E2"],"title":"Simultaneous returns are refused; a vendorless core still returns",
+ "pre":[ROLE,CUST,
+   'The same received core open in two browser sessions (two tabs or two users); and a separate core whose part carries no vendor.',
+   '↳ Seed a received core (New Part Sale + Add Part + Core Charge, then Order + Receive) and open it in two sessions.',
+   '↳ Seed a second sale whose core part has the Vendor field left blank, received.'],
+ "steps":['In session 1 click Return Core; then in session 2 click Return Core on the same core.',
+   'Read the message session 2 receives.',
+   'On the vendorless core, click Return Core and open Parts -> Returns.'],
+ "results":[
+   'The second Return Core is refused with "Core has already been actioned. Please refresh and try again." and is not applied.',
+   'The vendorless core still returns: a return is created and lands in Parts -> Returns with no vendor assigned.'],
+ "source":SRC,
+ "quotes":[("S1-E1","If two people return the same core at once, the second is refused with “Core has already been actioned. Please refresh and try again.”"),
+           ("S1-E2","If the core carries no vendor, the return is still created and lands in the Returns list with no vendor assigned")]},
+
+{"anchors":["S1-E3","S1-E4"],"title":"A core return below a deposit becomes a credit at invoicing",
+ "pre":[ROLE,CUST]+seed_core(recv=True,extra=['Add a deposit that leaves the sale total above the deposit at first (Finance tab -> Add Deposit -> Record Deposit, e.g. $600 on a sale over $600).',
+   'Separately, a sale where a return can be partly settled by the vendor, then cancelled, then re-returned (via Parts -> Returns).']),
+ "steps":['Return the core so the sale Total drops below the deposit already taken, then Create Invoice and read the invoice outcome.',
+   'On the second sale: return the core, settle part of the return in Parts -> Returns, Cancel Return (keeping the settled quantity), then Return Core again and read the Returns list.'],
+ "results":[
+   'When returning the core drops the Total below the deposit, invoicing settles the invoice and the surplus becomes a customer credit - no money is lost and nothing is refused.',
+   'After the partial-settle / cancel / re-return sequence, Parts -> Returns shows two returns for the core: the kept, settled one and a new return for the full quantity (matching a service work order).'],
+ "source":SRC,
+ "quotes":[("S1-E3","If a deposit has already been taken and returning a core drops the sale total below the deposit, the surplus becomes a customer credit when the sale is invoiced. No money is lost and nothing is refused"),
+           ("S1-E4","the Returns list shows two returns for it: the kept, settled one and a new return for the full quantity. This matches a service work order")]},
+]
+L.update_by_anchors("S1",CASES)

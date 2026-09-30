@@ -44,3 +44,30 @@ def run(folder_code, CASES, logname="build/founder-mode/part-sales/created-log.j
         if os.path.exists(logname): allc=json.load(open(logname))
         allc.update(created); json.dump(allc,open(logname,"w"),indent=2)
         print(f"created {len(created)} in {folder_code}; total logged {len(allc)}")
+
+def _anchor_index(logname, section=None):
+    import json
+    d=json.load(open(logname))
+    idx={}
+    for cid,info in d.items():
+        if section is not None and info["section"]!=section: continue
+        idx[frozenset(info["anchors"])]=int(cid)
+    return idx
+def update_by_anchors(folder_code, CASES, logname="build/founder-mode/part-sales/created-log.json"):
+    """Rewrite existing cases in place, matched by anchor set WITHIN the folder's section (Rule 117 reformat)."""
+    import sys
+    dry = "--apply" not in sys.argv
+    sec=SMAP[folder_code]
+    idx=_anchor_index(logname, section=sec); done=0; miss=[]
+    for cs in CASES:
+        key=frozenset(cs["anchors"]); cid=idx.get(key)
+        if not cid:
+            miss.append(cs["anchors"]); print("[MISS] no case for anchors",cs["anchors"]); continue
+        payload={"title":cs["title"][:250],"custom_preconds":ol(cs["pre"]),"custom_steps":ol(cs["steps"]),
+                 "custom_expected":expected(cs["results"],cs["source"],cs["quotes"])}
+        if dry:
+            print(f"[DRY] C{cid}  {cs['title'][:70]}  ({len(cs['title'])} chars)"); continue
+        api(f"update_case/{cid}",payload); done+=1
+        print(f"[OK] C{cid}  {cs['title']}")
+    if not dry: print(f"updated {done}; missed {len(miss)}")
+    return miss
