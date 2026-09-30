@@ -4659,3 +4659,35 @@ control I had ruled out "my reader is wrong"; none could rule out "this was deli
 **Before any defect: grep the project state and the rulings for the behaviour's own words.** Here
 `grep -i "pinned" build/global-search/PROJECT-STATE.md` would have answered it in one command,
 before the evidence file was ever written.
+
+---
+
+## L0250
+
+**2026-09-30 · Global Search · a refreshed session that the boot never reads looks exactly like a
+dead environment.**
+
+Staging sign-in failed with `no DEV MODE "Admin" button after 30s`. The QA lead supplied fresh
+session values; I wrote them into `/tmp/qa-cookies/staging-full.json`, `/tmp/staging/cookies.json`
+and `/tmp/qa-cookies/staging-sso.txt` — and sign-in **still failed**, identically. A diagnostic
+launch showed the app redirecting to the Google sign-in page, which reads as "the values he gave me
+are already expired" and is wrong.
+
+**`build/testing-tools/staging-cookie-boot.mjs` reads the session from an env file —
+`/tmp/shopview/gs-staging.env` (`SV_SSO_SESSION` / `PHPSESSID` / `CF_CLEARANCE`), overridable with
+`SV_ENVF` — and never looks at the `*.json` caches at all.** Refreshing the JSON leaves the boot on
+the stale session. One `grep -n "readFileSync" staging-cookie-boot.mjs` answered it.
+
+**So: when a sign-in fails after a credential refresh, find out WHICH FILE the boot reads before
+concluding anything about the credentials.** Two separate false conclusions were one step away —
+"the environment is broken" and "the values he just gave me are expired" — and the second would have
+cost him a second round of copying values out of a browser for nothing.
+
+This is Rule 100 in a new place: a remembered belief about where a file's inputs come from is not
+evidence about that file. Measure it.
+
+**Also worth keeping:** the boot must be given a route staging definitely has (`/customers`) and then
+navigated to the deep link. Handing a deep URL straight to the sign-in page produces the *same*
+"no DEV MODE Admin button" message, so that one message has at least three distinct causes — wrong
+boot route, stale session, and a dead bridge. Check the env file's timestamp first: it is the
+cheapest of the three to rule out.
