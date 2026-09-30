@@ -135,3 +135,29 @@ typed into and then abandoned; the only write in the session was `POST /api/logi
   branch offering your own account.
 * `ev/02-notification.png` — the self-mention delivered to the Notifications panel.
 * `ev/03-other-users.png` — tagging another person, unchanged on both builds.
+
+---
+
+## 9. Pre-post gate and the posted comment (Rule 72)
+
+Run immediately before posting, 2026-09-30:
+
+| Check | Result |
+|---|---|
+| Branch build marker re-read live | `v26.39.1-068d31b`, `Tue, 29 Sep 2026 13:33:45 GMT`, etag `095f0929d648f1437730b36865620a65` — **unchanged** since pass start |
+| Production build marker re-read live | `v26.39.2-1aeb22d`, `Tue, 29 Sep 2026 09:36:08 GMT`, etag `631482bb64cdcb1ec1f15b23ba76f192` — **unchanged** since the before-capture |
+| Ticket re-read | still **TESTING QA**, priority **Medium**, **2** comments (Milos 75478, Stefan 77487); no other QA verdict posted |
+| Every figure traced to a live measurement this pass | yes |
+| Human-voice / AI-fingerprint scan | clean, 0 hits |
+| No "Technical details for developers" section (Rule 84 — the QA lead said no for this ticket) | confirmed absent |
+| **Arithmetic closes in public (Rule 90)** | verdict panel says 6, table holds header + **6** rows, 6 × `*PASSED*` |
+| **Skip list audited (Rule 91)** | two entries, each naming why: the **email** side is unreachable from the application (no mailbox and no mail log — `/api/notifications`, `/api/notification/list`, `/api/email-log`, `/api/mail-log`, `/api/notifications/list` all 404), and the **Playwright regression test** lives in the pull request, not the application. Everything the ticket's five acceptance criteria name was run. |
+| Production left as found | nothing created or changed; the only write in the session was `POST /api/login` |
+
+**Posted: comment `77641`** on SV-8745. Read back in ADF and verified: **3 media nodes, every one
+`"type":"file"` with a real attachment uuid** (150ad325… · 5101ca94… · 0bf136b1…) at 900×1270,
+900×407 and 900×674 — the right images in the right order, **0 external links** · first text node is
+`OVERALL QA STATUS: PASSED` · the table holds **7 rows** (header + 6 checks) · no technical section ·
+the "What I could not check" section is present.
+
+Attachments on the issue: `61570`, `61571`, `61572`.
