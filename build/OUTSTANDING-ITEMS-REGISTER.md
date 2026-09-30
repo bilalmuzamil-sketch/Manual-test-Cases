@@ -2980,9 +2980,8 @@ V33-RECHECK-2026-09-30.md`.
    holds a match) — the "secondary visibility" direction (DR-36) was overturned by DR-42. v33
    S2-R9/S3-N1. Cases C96937, C96951 updated.
 
-**Still needs a go-ahead:** 7 cases to retire (delete_case is permission-gated) — C96922 (obsolete old
-S1-E1) and C97014–C97019 (Story 10 "reassign from List", removed entirely in v33). Recorded in the
-re-check doc.
+✅ **Retired (deleted 2026-09-30):** C96922 (obsolete old S1-E1) and C97014–C97019 (Story 10 "reassign
+from List", removed entirely in v33). All 7 confirmed gone; suite is 127 PRD cases, fully v33-current.
 
 ---
 
