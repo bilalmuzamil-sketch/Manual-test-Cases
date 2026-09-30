@@ -4941,6 +4941,47 @@ deliver the 7-tab management report.
     (test what the source says), 68 (bite-proof), 72 (the gate now audits the skip list), 76, 77, 85
     (**the standard this rule enforces**) and 87 (build whatever state the check needs).
 
+92. **A QA BRANCH IS A PERISHABLE SOURCE — TAKE EVERYTHING IT CAN GIVE YOU WHILE YOU ARE ON IT, BECAUSE
+    THERE MAY BE NO SECOND VISIT (all projects).**
+    **ORIGIN (2026-09-30, SV-9480): the branch was DESTROYED BY THE DEVELOPER while a check was waiting
+    to be re-run on it. That check can now NEVER be run there.**
+    **THE RULE:** a per-ticket QA branch (`sv####.qa.shopview.com`) exists only for as long as the
+    developer needs it. It can be **torn down, redeployed or parked without notice, mid-pass, with no
+    warning and no way back** — the environment is theirs, not ours. So **every observation that
+    requires that branch is taken WHILE THE SESSION IS LIVE**, and a check is **never deferred to
+    "later, on the branch"**. There is no later that anyone guarantees.
+    **WHAT THIS MEANS IN PRACTICE:**
+    **(a) DO THE BRANCH-DEPENDENT WORK FIRST.** Anything that can only be seen on the fix build — every
+    acceptance criterion, every regression check, every label, every screenshot — comes **before** the
+    writing-up, the exhibit building, the tidying and the comment drafting. Those survive a teardown;
+    observations do not.
+    **(b) A NAMED CHECK LEFT UNRUN ON A LIVE BRANCH MAY BE LOST FOREVER.** This is the sharpest
+    practical reason for Standing Rule 91: the cost of a skip is not *"do it later"*, it is **possibly
+    never** — and then the ticket's record is permanently incomplete, through nobody's fault but ours.
+    **(c) OVER-CAPTURE WHILE YOU ARE THERE.** Screenshots, element geometry, API payloads, build
+    markers, the state of the data — capture **more than the current deliverable needs**. A capture is
+    cheap while the session is open and **unobtainable afterwards**. **Rule 63 does NOT license trimming
+    this**: its economy is about skipping redundant *reads*, never about evidence that cannot be retaken.
+    **(d) WHEN A BRANCH DIES BEFORE A CHECK IS RUN, SAY SO PLAINLY** — name the check, say the branch was
+    taken down and when, and say **where the evidence stands instead**. **Never let a teardown become an
+    unexplained gap**, and never re-label it afterwards as a deliberate decision (Rule 46).
+    **(e) THE PRODUCTION FALL-BACK IS USUALLY STILL THERE, AND USUALLY WORTH TAKING.** Production does
+    not disappear. Where the branch-side check is lost, the same check on production still answers
+    *"what does the current behaviour do?"* — it cannot verify the fix, but it establishes the baseline,
+    and a partial answer from a live source beats a blank.
+    **RATIONALE, 2026-09-30 — and the whole cost was self-inflicted.** The QA handoff's check 5 named a
+    fee or discount on a *"labor **or part**"* line. The part half was **not run**, and was written up as
+    a limit, **while the branch was live, unblocked, with the scratch work order and the part already
+    created on it**. When the QA lead required the check, the branch had already begun refusing
+    connections; about an hour of retries later he confirmed **the developer had destroyed it**. The
+    production half was run and is on the record; **the branch half is permanently unobtainable.** The
+    window was open, we were standing in it, and we chose to stop. Ties to Standing Rules 12 (observed,
+    never inferred — and an observation not taken cannot be taken later), 13, 17, 22 (ask for the
+    environment up front, and then *use* it), 29 (no work loss — the same instinct applied to evidence
+    rather than to git), 49/60 (the build is a moving, perishable source), 62 (a per-ticket branch is
+    final when we pass it — and gone soon after), 63, 68 (bite-proof), 85 and **91 (a check is not yours
+    to skip — this rule is why the cost of skipping one can be total)**.
+
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
