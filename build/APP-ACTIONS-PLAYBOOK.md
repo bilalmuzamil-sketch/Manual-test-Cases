@@ -5621,3 +5621,58 @@ but **both are disabled once the request is Received**, so an old work order can
 Read `menu.innerText` for presence, and click it by walking the menu for the element whose text
 matches and which has fewer than three children. To prove a create row is **absent** from a long list,
 **set `menu.scrollTop = menu.scrollHeight` and re-read** rather than trusting what is on screen.
+
+
+---
+
+
+### §AC.13 — Work-order fees & discounts: controls, endpoints, and the QuickBooks advanced-mode guard (proven 2026-09-30, SV-9480)
+
+**Add one:** the work order's **⋮ nav-bar menu** (`button_work_order_nav_bar_menu`) →
+**`menu_item_add_adjustment`** ("Add Work Order Fee / Discount"). It is **not** on the Finance tab.
+Dialog: `select_adjustment_template` · `input_adjustment_name` · `select_adjustment_type`
+(Fee / Discount) · `select_adjustment_calc_type` (Flat Amount · % of Labor Total · % of Parts Total ·
+% of Subtotal) · `input_adjustment_amount` · `select_adjustment_taxable` · **`adjustment_preview`**
+(the three-row impact card) · `button_add_adjustment` (its label follows the Type: "Add Fee" /
+"Add Discount").
+
+**The card and the existing ones:** `work_order_adjustments_card`, one row per adjustment with
+`item_label_adjustment_{id}` / `item_value_adjustment_{id}` and a ⋮ at
+**`button_adjustment_actions_{id}`** → **`menu_item_edit_adjustment_{id}`** /
+`menu_item_remove_adjustment_{id}`. The edit dialog is titled **Edit Fee / Discount** and carries the
+same `adjustment_preview`.
+
+**Templates:** `/administration/adjustment-templates` → `button_new_adjustment_template` →
+`select_adjustment_template_type` · `select_adjustment_template_calc_type` ·
+`input_adjustment_template_name` · `input_adjustment_template_amount` ·
+`select_adjustment_template_taxable` · **`checkbox_adjustment_template_auto_apply`** ·
+`button_save_adjustment_template`. Read the list with `GET /api/adjustment-templates`.
+
+**⚠️ Quasar select options are prefixed with the tick icon's text** — an option reads
+`"check Discount"`, so `^Discount$` never matches. Normalise with
+`(x.innerText||'').trim().replace(/^check\s*/i,'')` before comparing.
+
+**⚠️ THE BLOCKER TO CHECK FIRST ON ANY FEE/DISCOUNT TICKET — QuickBooks advanced mode.**
+`GET /api/bookkeeping/integration` → `data.toggles.advancedModeEnabled`. When it is **true**, every
+fee and discount must map to a QuickBooks item first, so:
+
+* the Add dialog renders `banner_adjustment_mapping_guard` / `text_adjustment_mapping_guard_message`
+  ("Map a Discount item in Settings → QuickBooks before adding a discount") and **disables** the add
+  button — on an org where it is false those elements do not exist at all;
+* `POST /api/work-orders/adjustments/add` returns **409** *"Connect a QuickBooks item for
+  discounts/fees before adding a …"* — **the back end enforces it too, so the API is not a way
+  round it**;
+* ticking **Auto-apply** on a template silently **disables** its Create button for the same reason;
+* `POST …/adjustments/add {kind:'processing_fee'}` is separately refused with **400** *"A processing
+  fee can only be added from a template"*, and the template dialog offers only Fee and Discount.
+
+The mapping UI only appears once a QuickBooks company is connected, and
+`PUT /api/bookkeeping/settings` takes `{"settings":{…}}` (an empty object returns 200) but **500s on
+every guessed field name** — the real shape cannot be captured because the screen that sends it is
+behind that connection. **So on an advanced-mode org with QuickBooks unconnected, no fee or discount
+can be created by any route**; ask for the toggle to be flipped or for data to be seeded.
+
+**Adjustments on the work-order payload:** `GET /api/work-orders/view/{id}` →
+`data.work_order.adjustments[]` plus `totalAdjustments`, `adjustmentsSummary` and `sub_total`. The
+**work-order LIST payload carries none of this** (only `totalPrice`), so scanning for work orders
+that have adjustments means fetching `view` per row.
