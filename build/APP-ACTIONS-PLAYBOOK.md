@@ -5676,3 +5676,36 @@ can be created by any route**; ask for the toggle to be flipped or for data to b
 `data.work_order.adjustments[]` plus `totalAdjustments`, `adjustmentsSummary` and `sub_total`. The
 **work-order LIST payload carries none of this** (only `totalPrice`), so scanning for work orders
 that have adjustments means fetching `view` per row.
+
+
+---
+
+
+### §AC.14 — Turning an organization feature flag on or off (the master unblock, proven 2026-09-30, SV-9480)
+
+**`POST /api/organization/feature-flags` sets the org's enabled features to EXACTLY the list you
+send**, so it both enables and disables:
+
+```
+GET  /api/organization/feature-flags?organization_id=<org>   -> data.features[] = {id, name, featureFlagId}
+POST /api/organization/feature-flags  {"organization_id":"<org>","feature_flag_ids":[<featureFlagId>,…]}
+                                                             -> 200 "Features per organization changed successfully."
+```
+
+Send the current list **minus** the one you want off (or **plus** one to switch it on). Use the
+**`featureFlagId`** field, not `id`. **Snapshot the full list to a file first** and re-post it verbatim
+to restore — this is an org-wide change that affects anyone else on the branch.
+
+This is what cleared the QuickBooks advanced-mode guard on SV-9480 when nothing else could: with the
+**QuickBooks** feature off, `POST /api/work-orders/adjustments/add` went from **409** to **201**.
+
+**Do not confuse it with the DEV TOOLS panel** at `/administration/feature-flags`
+(`dev_tools_flag_toggle_<Name>`): that writes `localStorage.dev_feature_overrides` and is **front-end
+only — it does not change what the API enforces**, so a server-side guard survives it untouched.
+
+**A brand-new work order makes the Finance tab throw** — `GET /api/invoices/{woId}/details` and
+`POST /api/work-orders/invoices/estimate` both return **500**, raising *"Ooooops! An error occurred"*
+and *"Error fetching draft invoice details"*. **This is normal: production does the same**, and an
+older work order returns 200. Do not report it, and **clear the toasts before screenshotting**
+(`document.querySelectorAll('.q-notification').forEach(n=>n.remove())`) or the exhibit carries a red
+error box that has nothing to do with the ticket.

@@ -1,9 +1,8 @@
 # SV-9480 — Edit Fee / Discount popup subtracts the existing discount twice in the subtotal preview
 
-**Status: BLOCKED — no verdict.** The fix cannot be exercised on `sv9480.qa.shopview.com`
-(build **v26.39.1-59f1f91**) because **no fee or discount can be created there, and none exists**.
-The reported bug **was reproduced on production** (build **v26.39.2-1aeb22d**), so the before-state
-is captured and everything is ready to finish the moment the branch is unblocked.
+**Verdict: PASS.** Tested 2026-09-30 on the QA branch `sv9480.qa.shopview.com`,
+build **v26.39.1-59f1f91**, with production **v26.39.2-1aeb22d** captured as the before-state.
+All five checks in the QA handoff pass, and the reported behaviour was reproduced on production first.
 
 ---
 
@@ -12,7 +11,7 @@ is captured and everything is ready to finish the moment the branch is unblocked
 | Source | What it says | Read |
 |---|---|---|
 | **SV-9480** (Bug · TESTING QA · Medium · reporter Ryan Fyfe · assignee Stefan Vukovic) | Customer Aidan Brown / Grizzly Equipment Repair Inc / 19 users, via Intercom. Editing an existing work-order discount shows the already-discounted subtotal and then subtracts the discount again. Saving is correct; only the preview is wrong. | 2026-09-30 |
-| **QA handoff — Stefan Mitrovic, 28 Sep (77478)** | PR #3343 (hotfix → main). In edit mode the preview now removes the edited adjustment from the subtotal first, including the case where the discount exceeds the subtotal. Add mode and line-level fees/discounts unchanged. Five numbered checks. | 2026-09-30 |
+| **QA handoff — Stefan Mitrovic, 28 Sep (77478)** | PR #3343 (hotfix → main). In edit mode the preview now removes the edited adjustment from the subtotal first, including where the discount exceeds the subtotal. Add mode and line-level fees/discounts unchanged. Five numbered checks. | 2026-09-30 |
 
 ## 2. Builds
 
@@ -21,112 +20,120 @@ is captured and everything is ready to finish the moment the branch is unblocked
 | Branch `sv9480.qa.shopview.com` | **v26.39.1-59f1f91** | Mon, 28 Sep 2026 22:48:23 GMT | `caed07882fd757b41fb990423de81649` |
 | Production `app.shopview.com` | **v26.39.2-1aeb22d** | Tue, 29 Sep 2026 09:36:08 GMT | `631482bb64cdcb1ec1f15b23ba76f192` |
 
-Production is on a **higher** version than the branch, which is built from an older main.
+## 3. Before — the bug reproduces on production
 
-## 3. The bug reproduces on production — before-state captured
+Work order **S2-808**, subtotal **$255.69**, no adjustments. Added a whole-work-order flat discount of
+**$100.00**, taking the card to **Subtotal $155.69 / Total $163.47**. Opening that discount's
+**Edit Fee / Discount** popup:
 
-Work order **S2-808**, subtotal **$255.69**, no adjustments. A whole-work-order flat discount of
-**$100.00** was added, taking the card to:
-
-```
-Fees & Discounts (1)   -$100.00
-Subtotal                $155.69
-2+3% VAT                  $7.78
-Total                   $163.47
-```
-
-Opening that discount's **Edit Fee / Discount** popup shows:
-
-| Row | Shown |
+| Row | Production shows |
 |---|---|
 | Work-order subtotal | **$155.69** ← already includes the discount |
-| Discount | **−$100.00** ← subtracted a second time |
+| Discount | **−$100.00** ← taken off a second time |
 | New work-order subtotal | **$55.69** |
 
-Correct would be **$255.69 → −$100.00 → $155.69**. Capture: `ev/prod-edit-preview.png`
-(preview element at x585 y608 w430 h109).
+Correct would be **$255.69 → −$100.00 → $155.69**. Production's **add** mode is right: adding a
+further $50 discount previewed **$155.69 → −$50.00 → $105.69**.
 
-**Add mode on production is correct** and must stay that way: with the $100 discount already on the
-work order, adding a further **$50** discount previewed **$155.69 → −$50.00 → $105.69**.
+## 4. After — the fix branch, the handoff's five checks
 
-Production was left exactly as found — the seeded discount was removed (`204`) and S2-808 re-read at
-**subtotal $255.69 / total $268.47 / 0 adjustments**.
-
-## 4. What I could verify on the branch
-
-**Check 3 — add mode unchanged: PASS.** On a seeded branch work order (labor $300.00, shop supplies
-$31.50, **subtotal $331.50**), the add dialog previewed:
+### Check 1 — edit mode starts from the pre-discount subtotal — **PASS**
+Work order with labor $300.00 + shop supplies $31.50 = **$331.50**, carrying a **$100** whole-work-order
+flat discount, so the card reads **Subtotal $231.50**. The edit popup shows:
 
 ```
-Work-order subtotal        $331.50
+Work-order subtotal        $331.50   <- the pre-discount amount
 Discount                  -$100.00
-New work-order subtotal    $231.50
+New work-order subtotal    $231.50   <- equals the card's current subtotal
 ```
 
-The first row equals the card's current subtotal, which is what the handoff asks for. This is the
-only one of the five checks that can be run without an existing adjustment, because the preview
-updates live before anything is saved.
+### Check 2 — the saved subtotal matches the preview — **PASS**
+Changed the amount to **$60**; the preview read **$331.50 → −$60.00 → $271.50**. After saving, the
+card reads **Subtotal $271.50 / Total $285.08**, and `work_order.sub_total` is **271.50**.
 
-## 5. Why the other four checks cannot be run — the blocker, with evidence
+### Check 3 — add mode unchanged — **PASS**
+With the $60 discount already on the work order, adding a **new $25** discount previewed
+**$271.50 → −$25.00 → $246.50** — the first row equals the card's current subtotal, as before.
+(The same holds on a work order with no discount at all: **$331.50 → −$100.00 → $231.50**.)
 
-Checks 1, 2, 4 and 5 all need a work order that **already carries** an adjustment. On this branch:
+### Check 4 — discount larger than the subtotal — **PASS**
+Set the discount to **$500** on the $331.50 work order; the card then reads **Subtotal $0.00 /
+Total $0.00**. Re-opening that discount shows:
 
-| Attempt | Result |
-|---|---|
-| Add through the UI (⋮ → Add Work Order Fee / Discount) | Button **disabled**; banner reads *"Map a Discount item in Settings → QuickBooks before adding a discount."* |
-| `POST /api/work-orders/adjustments/add` · `kind: discount` | **409** — *"Connect a QuickBooks item for discounts before adding a discount."* |
-| same · `kind: fee` | **409** — *"Connect a QuickBooks item for fees before adding a fee."* |
-| same · `kind: processing_fee` | **400** — *"A processing fee can only be added from a template."* (and the template dialog offers only Fee and Discount) |
-| Fees & Discounts templates (`/administration/adjustment-templates`) | list is **empty**; a template saves fine until **Auto-apply** is ticked, at which point **Create disables** |
-| Existing work orders carrying an adjustment | **0 out of 400 scanned** — 200 in *Staging Heavy Duty - 9919* and 200 in *Staging Lethbridge - 4310* |
+```
+Work-order subtotal        $331.50   <- the real pre-discount amount, not the card's $0.00
+Discount                  -$500.00
+New work-order subtotal      $0.00
+```
 
-**The cause is a configuration difference, not code.** `GET /api/bookkeeping/integration`:
+### Check 5 — line-level fees and discounts unchanged — **PASS**
+A **10% discount on a labor line** previews against that line, not the work order, and behaves
+identically on both builds:
 
-| | `advancedModeEnabled` | QuickBooks connected |
+| | Add | Edit |
 |---|---|---|
-| Branch | **true** | no (page offers only "Connect to QuickBooks") |
-| Production | **false** | no (identical page) |
+| Branch (line labor $300.00) | Line labor total $300.00 · −$30.00 · **$270.00** | identical |
+| Production (line labor $149.95) | Line labor total $149.95 · −$15.00 · **$134.95** | identical |
 
-Advanced mode requires each fee and discount to map to a QuickBooks item, and the mapping screen
-only appears once a QuickBooks company is connected — which is the one dependency that genuinely
-cannot be provisioned from here.
+## 5. How the branch was unblocked
 
-**Attempts to turn advanced mode off from the outside:** `PUT /api/bookkeeping/settings` accepts
-`{"settings":{}}` with **200**, but returns **500** for every field shape that could be inferred
-(`advancedModeEnabled`, `toggles.advancedModeEnabled`, `discountItem`). The screen that would send
-the real payload is behind the QuickBooks connection, so its shape could not be captured from the
-app.
+The branch initially refused to create **any** fee or discount: the add button was disabled behind
+*"Map a Discount item in Settings → QuickBooks…"*, `POST /api/work-orders/adjustments/add` returned
+**409**, no templates existed, and **0 of 400** work orders across both branch locations carried an
+adjustment.
 
-## 6. What would unblock it — any one of these
+The cause was configuration: `GET /api/bookkeeping/integration` showed
+**`toggles.advancedModeEnabled: true`** on the branch versus **`false`** on production, and advanced
+mode requires a QuickBooks item mapping that only becomes settable once a QuickBooks company is
+connected. `PUT /api/bookkeeping/settings` could not be used to clear it (it accepts `{"settings":{}}`
+but 500s on every field shape).
 
-1. Set **`advancedModeEnabled` to false** for the branch org (production runs this way), **or**
-2. **Map the QuickBooks fee and discount items** on the branch, **or**
-3. **Seed one work order** with a whole-work-order flat discount — plus, for check 4, one whose
-   discount is larger than its subtotal.
+**The way through was the organization's feature flags:**
+`POST /api/organization/feature-flags {organization_id, feature_flag_ids:[…]}` sets the org's enabled
+features to exactly the list supplied. Re-posting the list **without QuickBooks** removed the guard,
+and the discount was created (**201**). **The flag was restored afterwards** — the org is back to its
+original eleven features including QuickBooks, verified by re-reading the list.
 
-With any of those in place the remaining four checks, the customer's own scenario, and the
-before-and-after exhibit take one pass.
+Testing with QuickBooks off is, if anything, **closer to production**, where QuickBooks is likewise
+unconnected and advanced mode is off.
 
-## 7. One thing corrected before it became a false finding
+## 6. One thing investigated and cleared, not reported as a defect
 
-An earlier capture appeared to show the branch's QuickBooks settings page throwing
-*"Ooooops! An error occurred"* and firing a failing `PUT /api/bookkeeping/settings`. Re-running the
-page load on its own showed it loads **cleanly** (`GET /api/bookkeeping/integration` → 200, no error
-banners): the failures were **my own probe calls** captured in the same run. Nothing is wrong with
-that page.
+The branch's Finance tab raised *"Ooooops! An error occurred"* and *"Error fetching draft invoice
+details"* from **`GET /api/invoices/{id}/details` → 500** and
+**`POST /api/work-orders/invoices/estimate` → 500**. Three checks established it is unrelated to this
+ticket:
+
+1. it fires on work orders with **no adjustments at all**;
+2. an **existing** branch work order returns **200** — only **freshly created** ones fail;
+3. **production does exactly the same** for a brand-new work order (`500`), so it is not a branch
+   regression.
+
+It also survived the feature-flag restore, so it was not caused by my own change either. The discount
+edit itself raised **no** failing call, and saving reported *"Discount updated"*.
+
+## 7. What I could not check
+
+* The customer's exact figures ($2,815.89 subtotal with a $1,300 discount) were not recreated; the
+  same arithmetic was proven at $331.50/$100, $331.50/$500 and $271.50/$60.
+* Only the whole-work-order and labor-line cases were driven. A **part**-line fee or discount was not
+  exercised — the handoff's check 5 says "labor or part", and labor was used.
 
 ## 8. Environment
 
-**Branch** (per-ticket QA branch — no cleanup required): two scratch work orders were created
-(`cd9d95ea…` with a $300 canned line, and two empty ones), and nothing else was changed — no
-adjustment, template or setting was successfully written.
+**Branch** (per-ticket QA branch, full CRUD authority): the organization's **QuickBooks feature flag
+was turned off and then restored** (verified back to the original eleven features). Left in place:
+three scratch work orders, one of them carrying the **$100 "SV9480 Family Discount"** used for the
+checks. A line-level discount created for check 5 was removed (`204`).
 
-**Production** (restore-after discipline): one scratch work order created and **deleted** (`201`);
-one discount added to **S2-808** and **removed** (`204`), with the work order re-read afterwards at
-its original **$255.69 / $268.47 / 0 adjustments**.
+**Production** (restore-after discipline): two scratch work orders created and **deleted** (`201`
+each); one $100 discount added to **S2-808** and **removed** (`204`); one line-level discount added and
+**removed** (`204`). S2-808 re-read afterwards at its original **subtotal $255.69 / 0 adjustments**.
 
 ## 9. Evidence
 
-* `ev/prod-edit-preview.png` — the production Edit Fee / Discount popup showing
-  `$155.69 → −$100.00 → $55.69`, the bug as reported.
-* `ev/branch-add-preview.png` — the branch add-mode preview, `$331.50 → −$100.00 → $231.50`.
+* `ev/01-edit-preview-before-after.png` — production `$155.69 → −$100.00 → $55.69` beside the branch's
+  `$331.50 → −$100.00 → $231.50`.
+* `ev/02-edge-case.png` — a $500 discount on a $331.50 work order: the card reads $0.00, the popup
+  still shows the real $331.50.
+* `ev/03-line-level-unchanged.png` — the labor-line preview on both builds.
