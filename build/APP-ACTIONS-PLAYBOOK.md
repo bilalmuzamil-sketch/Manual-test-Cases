@@ -5740,3 +5740,39 @@ and *"Error fetching draft invoice details"*. **This is normal: production does 
 older work order returns 200. Do not report it, and **clear the toasts before screenshotting**
 (`document.querySelectorAll('.q-notification').forEach(n=>n.remove())`) or the exhibit carries a red
 error box that has nothing to do with the ticket.
+
+### §AC.14 — Sign into a SECOND ORGANIZATION on an SSO-only QA branch (proven 2026-09-30, SV-9690)
+
+Needed whenever a check is about tenant isolation. The branch's interactive login is Google SSO only
+(`hd=shopview.com`) and always resolves to the seeded first organization; `quick-login` accepts only
+`admin` and `tech`, both in that same organization; there is **no organization switcher** anywhere in
+the app; and `POST /api/register` **ignores any password you pass**, so the new admin has none.
+
+The route that works, end to end:
+
+1. `POST /api/register {admin_email, admin_first_name, admin_last_name, company_name,
+   work_order_start_number}` — those five are required (an empty POST lists them). Use a **plus-alias
+   of a real mailbox** (`someone+tag@shopview.com`) so you can read the mail it sends.
+2. `POST /api/forgot-password {email}` → 200, "Reset password email has been sent."
+3. Read the link from the mailbox. It points at the branch:
+   `https://sv<ticket>.qa.shopview.com/reset-password?username=<email>&token=<hex>`
+   (the branch also emails an *Accept Invitation* link — that one does **not** set a password, and
+   following it with an SSO session just lands you in the first organization).
+4. **`POST /api/reset-password` reads ALL FOUR VALUES FROM THE QUERY STRING** —
+   `?username=<email>&token=<hex>&new_password=<pw>&confirmed_password=<pw>` → **201**.
+   A JSON or form-encoded body is **silently ignored**, which makes the endpoint look broken: it keeps
+   answering `newPassword: "New password is required."` no matter what you send in the body. Note the
+   **casing trap** — the *errors* come back camelCase (`newPassword`, `confirmedPassword`) while the
+   *parameters* it actually reads are snake_case (`new_password`, `confirmed_password`).
+   Diagnostic that isolates it: send only `?username=&token=` and watch the token/user errors vanish,
+   leaving the two password errors — that proves the query is read and the body is not.
+5. `POST /api/login {username, password}` → **200**. Note the branch API *does* do password auth; the
+   `sso_required` 401 you get from a cold `curl` is the edge gate, and it disappears once a valid
+   `sv_sso_session` cookie is present.
+6. Drive the app in a context carrying `sv_sso_session` + `cf_clearance` **but no PHPSESSID**, then
+   call `/api/login` first — the session it mints is the second organization's.
+
+Gotchas worth keeping: the reset **page** cannot be reached headlessly (without a session the SPA
+bounces to Google; with one it redirects to `/workorders`), `GET /api/organizations` is a **global**
+list and is not "my organizations", and a session minted on staging never works against a branch —
+each branch has its own database.
