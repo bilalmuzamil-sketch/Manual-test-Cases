@@ -302,10 +302,38 @@ for (const E of ENTITIES) {
     const best = scored.sort((a, b) => b.n - a.n)[0].r;
     const vis = visibleRow(best);
     const missing = E.d1.filter((f) => !f.on(best, vis)).map((f) => f.name);
+
+    // 🔴 A FIELD THE RECORD HAS NOTHING TO PUT IN IS NOT A MISSING FIELD.
+    // Three part-sale rows showed no total price and this reported the price as missing. The
+    // records simply had no parts on them, so there was no price to show; as soon as one was
+    // added the price appeared. The same mistake was made earlier on the customer count badge.
+    // So: if ANY row in this result shows a field, the row drawing it proves the product renders
+    // it, and the judged row is just an unsuitable record - say so rather than blaming the screen.
+    const renderedSomewhere = missing.filter((name) =>
+      rows.some((r) => E.d1.find((f) => f.name === name)?.on(r, visibleRow(r))));
+    if (renderedSomewhere.length) {
+      store('D1.dataNote', { judged: best.text.slice(0, 80), renderedSomewhere,
+        note: 'other rows in this same result DO show these, so the judged record lacks the value' });
+      console.log(`   ${E.section} D1: ${JSON.stringify(renderedSomewhere)} are drawn on other rows — ` +
+        `re-judging on a row that has them`);
+      const better = rows.find((r) => renderedSomewhere.every((name) =>
+        E.d1.find((f) => f.name === name)?.on(r, visibleRow(r))));
+      if (better) {
+        const m2 = E.d1.filter((f) => !f.on(better, visibleRow(better))).map((f) => f.name);
+        store('D1', { quote: E.d1Quote, judged: better.text, missing: m2, reJudged: true });
+        expect(m2, `the ${E.section} row is missing ${JSON.stringify(m2)}.\nRequirement: "${E.d1Quote}"` +
+          `\nRow reads: "${visibleRow(better)}"`).toHaveLength(0);
+        return;
+      }
+    }
     store('D1', { quote: E.d1Quote, judged: best.text, badge: best.badge, meta: best.metaParts, missing,
                   allRows: rows.map(visibleRow) });
     console.log(`   ${E.section} D1 judged "${best.text.slice(0, 90)}" badge=${best.badge} missing=${JSON.stringify(missing)}`);
-    expect(missing, `the best-qualifying ${E.section} row is missing ${JSON.stringify(missing)}.\n` +
+    // Nothing in this result shows them, so this is EITHER the product never drawing the field OR
+    // no returned record having a value for it. The message says so; confirm on the record itself
+    // before reporting it as a fault.
+    expect(missing, `NO row returned here shows ${JSON.stringify(missing)} — open one of these ` +
+      `records and check whether it HAS a value for that field before treating this as a fault.\n` +
       `Requirement: "${E.d1Quote}"\nRow reads: "${vis}"\nBadge: ${best.badge}  Meta: ${JSON.stringify(best.metaParts)}`)
       .toHaveLength(0);
   });

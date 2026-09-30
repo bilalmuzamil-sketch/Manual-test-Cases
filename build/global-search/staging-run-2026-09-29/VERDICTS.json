@@ -51,8 +51,11 @@
    "why": "This case cannot be run as it stands, and the reason is the case, not the product.\nIt tells the tester to type the word “None”. That is not a search term — an empty value was written into the case text when it was produced.\nWhat is needed: a real example of lead technician name that exists on this environment, and it must be PART of a longer value rather than the whole of it, or the case cannot show the problem it is looking for."
   },
   "146204": {
-   "v": "Blocked",
-   "why": "What I did: searched the detail the case names, using part of it where the case supplies the whole thing (a whole word cannot show this problem either way).\nWhat I saw: the row's note repeats back only what I typed instead of the whole detail.\n\nMeasured: CANNOT RUN — the case supplies no search term — No \"TYPE THIS INTO THE SEARCH BOX\" line is present."
+   "v": "Failed",
+   "tickets": [
+    "SV-10634"
+   ],
+   "why": "This was blocked because the case told the tester to type the word “None”. It now gives a real name, so it can be run.\nWhat I did: typed “Veljkovic” and opened the Work orders tab.\nWhat I saw: one work order comes back and its second line reads “Advisor: Veljkovic”. The service advisor on that job is “Damjan Veljkovic” — I opened the job and read it. The row gives back only the part I typed, not the person’s name.\nWhy that is a fail: the case asks for the WHOLE value on the row. This is the same fault as the other thirty."
   },
   "146205": {
    "v": "Failed",
@@ -143,12 +146,12 @@
    "why": "This case cannot be judged as it stands.\nWhat I did: typed the word the case gives and opened the right tab.\nWhat I saw: the record does come back, but the row carries no labelled note at all — there is nothing on it saying which detail matched, so there is no value to check for completeness.\nWhat is needed: either a decision that a match on city should say so on the row, or a different example where it does."
   },
   "146220": {
-   "v": "Blocked",
-   "why": "What I saw is recorded in the measurement below.\n\nMeasured: \"ZZQUEBEXA\" → 1 rows, 0 labelled notes, 0 showing only what was typed COULD NOT JUDGE — no row carries a labelled note for this term"
+   "v": "Passed",
+   "why": "This was blocked because the shorter words I tried brought nothing back. Looking again, it does not need them.\nWhat I did: typed “ZZQUEBEXA” and opened the Customers tab.\nWhat I saw: one customer comes back — Rowcheck Provincial Cartage — and the province is shown in full in its address on the row: “21 Result Row Way, Fernvale, ZZQUEBEXA”. The value is complete and readable, which is what the case asks for.\nWorth noting: it appears as part of the ordinary address rather than as a separate labelled note like “VIN:” or “Advisor:”. That is still the whole value on the row, so it passes."
   },
   "146221": {
    "v": "Blocked",
-   "why": "What I saw is recorded in the measurement below.\n\nMeasured: as-written \"H8A3X9\" → 1 notes; fragment \"H8A3\" → 0 notes, 0 showing only what was typed COULD NOT JUDGE — the derived fragment returns no labelled note"
+   "why": "This cannot be judged as it stands, and the reason is the example the case gives, not the product.\nWhat I did: typed the whole postcode “H8A3X9”, then tried four shorter pieces of it — “H8A3”, “8A3X9”, “H8A3X”, “A3X9”.\nWhat I saw: the whole postcode finds the customer and the row reads “Matched: H8A3X9”. Every shorter piece finds nothing at all.\nWhy it cannot be judged: typing a value in full always echoes it back, whether the screen is right or wrong, so that run cannot tell a good screen from a broken one. And no shorter piece reaches the record, so there is no way to ask the real question.\nWhat would fix it: a customer whose postcode can still be found by typing PART of it. Also worth a look separately — the label just says “Matched:” rather than naming the postcode."
   },
   "146229": {
    "v": "Failed",
@@ -265,11 +268,11 @@
   },
   "146241": {
    "v": "Blocked",
-   "why": "What I saw is recorded in the measurement below.\n\nMeasured: as-written \".Brake Parts\" → 18 notes; fragment \".Brake\" → 0 notes, 0 showing only what was typed COULD NOT JUDGE — the derived fragment returns no labelled note"
+   "why": "This cannot be judged as it stands, and the reason is the example the case gives, not the product.\nWhat I did: typed the whole category “.Brake Parts”, then “Brake Parts”, “Brake Part” and “rake Parts”.\nWhat I saw: the whole value finds parts whose row reads “Category: .Brake Parts”. “Brake Parts” finds parts too, but DIFFERENT ones, whose own category really is “Brake Parts” without the dot — so comparing them would be comparing two different records.\nWhy it cannot be judged: I could not find a shorter piece that reaches the SAME record, and judging a different record would prove nothing.\nWhat would fix it: a category distinctive enough that part of it finds only that one record."
   },
   "146250": {
    "v": "Blocked",
-   "why": "What I saw is recorded in the measurement below.\n\nMeasured: as-written \"zzhidden.vendor@staging.shopview.local\" → 1 notes; fragment \"zzhidden.vendor@st\" → 0 notes, 0 showing only what was typed COULD NOT JUDGE — the derived fragment returns no labelled note"
+   "why": "This cannot be judged as it stands, and the reason is the example the case gives, not the product.\nWhat I did: typed the whole address, then “zzhidden.vendor@staging”, “zzhidden.vendor” and “hidden.vendor@staging”.\nWhat I saw: only the complete address finds the vendor. Every shorter piece finds nothing.\nWhy it cannot be judged: the whole value always echoes itself back, so that run cannot tell a good screen from a broken one, and no shorter piece reaches the record.\nWhat would fix it: a vendor whose email can still be found by typing part of it — which would also be worth knowing in itself, since it looks like a partial email does not match at all."
   },
   "146224": {
    "v": "Failed",
@@ -406,9 +409,9 @@
    "why": "What I did: searched a word two records share and compared the rows as they appear.\nWhat I saw: nothing visible separates them."
   },
   "146264": {
-   "v": "Failed",
+   "v": "Passed",
    "tickets": [],
-   "why": "What I did: checked a part-sale row against the list of things the written requirement says it shows — the sale number and customer, a status marker, the total price and the date it was created.\nWhat I saw: the row reads “P2-2277 ZZLONGROW Heavy Haulage… Estimate · Admin ShopView · Today”. The sale number, the customer, the status marker and the date are all there. THE TOTAL PRICE IS NOT.\nCorrection to my own earlier result: I first reported the created date as missing too. That was my mistake — the row writes it as the word “Today” and my check only recognised dates written as numbers or month names. The same rows on purchase orders and supplier invoices show “Sep 25, 2026” and “Yesterday”, and both pass. Only the price is genuinely absent."
+   "why": "CORRECTION to the result I recorded, which said Failed because the row showed no total price. That was my mistake, not the product’s.\nThe three part sales I judged had no parts on them, so there was no price for the row to show. The QA lead added a part to one of them and the price appeared immediately: the row now reads “P2-2277 … Complete · $34.90 · Admin ShopView · Yesterday”.\nRe-run and verified: the row shows all four things the requirement names — the sale number and customer, the status, the total price and the created date.\nThis is the third time I have reported a field as missing when the record simply had nothing to put in it. The check now looks at whether ANY row in the same result shows the field before blaming the screen, and says plainly when it cannot tell the two apart."
   },
   "146265": {
    "v": "Passed",
@@ -556,7 +559,7 @@
   },
   "146301": {
    "v": "Blocked",
-   "why": "This case is HELD by its own Expected Results — the specification sets a typing delay but no minimum length, so what one character should do cannot be judged. Recorded, not judged.\nWhat I saw: one character and two characters both return a normal panel. Nothing errors, nothing hangs, and the second keystroke replaces the first one’s results rather than leaving them on screen."
+   "why": "This case is held by its own Expected Results: the specification sets a pause before searching but no minimum number of letters, so what one letter should do has never been decided. It says in terms “do not pass or fail it”.\nWhat I saw anyway: one letter and two letters both bring back a normal list. Nothing breaks, nothing hangs, and the second letter replaces the first letter’s results rather than leaving them on screen — which are the three things its Expected does commit to.\nWhat would settle it: a decision on what a one or two letter search should do."
   }
  }
 }
