@@ -34,6 +34,8 @@ S99-15591" / "Part Sale: P99-4021"; "Customer Visible"; "Mark all read" / "Load 
 only"), Expected = runnable observations with the **verbatim source quote** kept under "Exact quotes
 … (for reproducibility)" (Rule 113/117).
 
+**Render:** 56/56 rendered clean on TestRail (fr-view repair pass, 2026-09-30).
+
 ## Coverage verdict (Rule 115 — every provided source)
 - **PRD (Confluence 817463297):** ✅ 100% — all 197 requirement anchors S1-R/N/E covered 1:1.
 - **Design (11 canvas boards, driven end-to-end):** ✅ CONFIRM — every board's UI (Inbox before/after,
