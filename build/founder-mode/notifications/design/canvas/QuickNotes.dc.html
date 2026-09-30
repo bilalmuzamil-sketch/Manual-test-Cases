@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', system-ui, sans-serif; background: #f6f8fa; }
+    .title { font-size: 16px; font-weight: 700; color: #1d2129; }
+    .tab { font-size: 12.5px; color: #3f4a5a; }
+    .tabOn { font-size: 12.5px; color: #2276DA; }
+    .th { font-size: 12px; font-weight: 700; color: #1d2129; padding: 10px 0; }
+    .td { font-size: 12.5px; color: #3f4a5a; padding: 11px 0; border-top: 1px solid #edf0f3; }
+    .cta { background: #2276DA; color: #ffffff; font-size: 12.5px; font-weight: 600; padding: 8px 16px; border-radius: 5px; }
+    .toolbtn { font-size: 12.5px; color: #3f4a5a; display: flex; align-items: center; gap: 5px; }
+    .grid { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,4fr) 70px; align-items: center; }
+
+    .badgebar { padding: 10px 22px 0; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 3px; color: #ffffff; }
+    .badge--before { background: #C10015; }
+    .badge--after { background: #21BA45; }
+  </style>
+</helmet>
+
+<div class="badgebar"><span class="badge badge--after">AFTER &middot; NEW TAB</span></div>
+
+<div style="padding: 8px 22px 18px;">
+
+  <div class="title" style="margin-bottom: 10px;">Notifications</div>
+
+  <div style="display: flex; align-items: center; gap: 26px; margin-bottom: 20px;">
+    <div class="tab">Inbox</div>
+    <div class="tab">Tag groups</div>
+    <div class="tabOn">Quick notes</div>
+    <div class="tab">Preferences</div>
+  </div>
+
+  <div style="display: flex; justify-content: flex-end; align-items: center; gap: 18px; margin-bottom: 14px;">
+    <div class="toolbtn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="20" y1="20" x2="16.2" y2="16.2"></line></svg>
+      Search
+    </div>
+    <div class="cta">New quick note</div>
+  </div>
+
+  <div class="grid">
+    <div class="th">Name</div>
+    <div class="th">Preview</div>
+    <div class="th"></div>
+
+    <div class="td">Road test before release</div>
+    <div class="td"><span style="color: #b07d3a;">@Service Team</span> please road test this as <span style="color: #2276DA;">high priority</span></div>
+    <div class="td" style="display: flex; gap: 12px; justify-content: flex-end;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2276DA" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="#C10015"><rect x="6" y="6" width="12" height="14" rx="1"></rect></svg>
+    </div>
+
+    <div class="td">Waiting on parts</div>
+    <div class="td">Job is on hold until the back-ordered parts land.</div>
+    <div class="td" style="display: flex; gap: 12px; justify-content: flex-end;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2276DA" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="#C10015"><rect x="6" y="6" width="12" height="14" rx="1"></rect></svg>
+    </div>
+
+    <div class="td">Customer approved estimate</div>
+    <div class="td"><span style="color: #b07d3a;">@Front Counter</span> customer approved, cleared to proceed.</div>
+    <div class="td" style="display: flex; gap: 12px; justify-content: flex-end;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2276DA" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="#C10015"><rect x="6" y="6" width="12" height="14" rx="1"></rect></svg>
+    </div>
+
+    <div class="td">Awaiting authorisation</div>
+    <div class="td">Customer has not authorised the extra work yet.</div>
+    <div class="td" style="display: flex; gap: 12px; justify-content: flex-end;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2276DA" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="#C10015"><rect x="6" y="6" width="12" height="14" rx="1"></rect></svg>
+    </div>
+
+    <div class="td">Ready for pickup</div>
+    <div class="td"><span style="color: #b07d3a;">@Front Counter</span> unit is ready, please call the customer.</div>
+    <div class="td" style="display: flex; gap: 12px; justify-content: flex-end;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2276DA" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M4 12h7M4 17h5"></path><path d="M15 17l5-5"></path></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="#C10015"><rect x="6" y="6" width="12" height="14" rx="1"></rect></svg>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px; background: #ffffff; border: 1px solid #e8eaed; border-radius: 6px; padding: 12px 14px; font-size: 12px; color: #5b6472; line-height: 1.55;">
+    A quick note is a message a service writer sends often enough to be worth saving. The preview column shows the body, with any tag it carries rendered the way it will appear on the note itself.
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

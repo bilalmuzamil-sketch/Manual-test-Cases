@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', system-ui, sans-serif; background: #f6f8fa; }
+    .title { font-size: 16px; font-weight: 700; color: #1d2129; }
+    .tab { font-size: 12.5px; color: #3f4a5a; }
+    .tabOn { font-size: 12.5px; color: #2276DA; }
+
+    .badgebar { padding: 10px 22px 0; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 3px; color: #ffffff; }
+    .badge--before { background: #C10015; }
+    .badge--after { background: #21BA45; }
+  </style>
+</helmet>
+
+<div class="badgebar"><span class="badge badge--after">AFTER &middot; NEW TAB</span></div>
+
+<div style="padding: 8px 22px 18px;">
+
+  <div class="title" style="margin-bottom: 10px;">Notifications</div>
+
+  <div style="display: flex; align-items: center; gap: 26px; margin-bottom: 20px;">
+    <div class="tab">Inbox</div>
+    <div class="tab">Tag groups</div>
+    <div class="tab">Quick notes</div>
+    <div class="tabOn">Preferences</div>
+  </div>
+
+  <div style="background: #ffffff; border: 1px solid #e8eaed; border-radius: 6px; padding: 18px 20px;">
+    <div style="font-size: 12.5px; color: #3f4a5a; margin-bottom: 16px;">Notification preferences</div>
+
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+      <div style="width: 30px; height: 17px; border-radius: 9px; background: #2276DA; position: relative;">
+        <div style="position: absolute; right: 2px; top: 2px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff;"></div>
+      </div>
+      <div style="font-size: 12.5px; color: #2276DA;">Email notifications</div>
+    </div>
+
+    <div style="font-size: 12px; color: #b07d3a; line-height: 1.5;">
+      By turning this off you won&#039;t receive an email when you&#039;re tagged on a work order or a part sale. You&#039;ll still see it in your notifications.
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+      <div style="background: #2276DA; color: #ffffff; font-size: 12.5px; font-weight: 600; padding: 8px 16px; border-radius: 5px;">Save preferences</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px; background: #ffffff; border: 1px solid #e8eaed; border-radius: 6px; padding: 12px 14px; font-size: 12px; color: #5b6472; line-height: 1.55;">
+    <strong style="color: #1d2129;">This is the tab that makes the case.</strong> It decides one thing, for one person: whether a tag reaches them by email as well as in the app. It affects nobody else at the shop, which is why it belongs beside the inbox the tag arrives in.
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

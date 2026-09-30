@@ -38,10 +38,13 @@ Branch: `claude/slack-session-setup-7v5itm` (all work below committed and pushed
 ## Founder Mode programme (epic SV-9667, "Founder Mode Batch #1")
 TestRail root **Founder Mode = section 20434**. Feature sub-folders:
 - **Part Sales = 20435** — DONE (57 cases, Rule 117). PROJECT-STATE: `build/founder-mode/part-sales/PROJECT-STATE.md`.
-- **Notifications = 20436** — NOT STARTED.
-- **What/Why = 20437** — NOT STARTED.
-- **Price/Category = 20438** — NOT STARTED.
-- **Part Lifecycle = 20439** — NOT STARTED.
+- **Notifications = 20436** — DONE (56 cases C154651–C154706, Rule 117; 197 PRD anchors covered 1:1;
+  design driven end-to-end = CONFIRM; no QA build/tech plan → all HOLD). Sub-folders S1–S10 =
+  20450–20459. Scripts `build/founder-mode/notifications/n_s1_s3.py · n_s4_s6.py · n_s7_s10.py`.
+  PROJECT-STATE: `build/founder-mode/notifications/PROJECT-STATE.md`.
+- **What/Why = 20437** — NOT STARTED (page 845348896, artifact Pz1Q6BfvreYFpQwVQZPTE6, SV-9667).
+- **Price/Category = 20438** — NOT STARTED (page 578781186, artifact UMNdojKWhYhRyJrjdgZa4P, SV-9667).
+- **Part Lifecycle = 20439** — NOT STARTED (page 829227015, artifact Vz6rprcWyP16tYxzM1kdeE, SV-10647).
 
 **Next:** create test cases for the remaining Founder Mode feature folders, one at a time, to the
 Rule-117 standard. Per-feature intake needed each time (Rule 1/2/30/15): the feature name, its

@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', system-ui, sans-serif; background: #f6f8fa; }
+    .badgebar { padding: 10px 24px 0; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 3px; color: #ffffff; }
+    .badge--before { background: #C10015; }
+    .badge--after { background: #21BA45; }
+    .modal { background: #ffffff; border-radius: 8px; box-shadow: 0 6px 24px rgba(15,17,26,0.14); padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+    .mhd { display: flex; align-items: center; justify-content: space-between; }
+    .mtitle { font-size: 15px; font-weight: 700; color: #1d2129; }
+    .field { border: 1px solid #d0d5dd; border-radius: 5px; padding: 9px 11px; font-size: 12.5px; color: #1d2129; background: #ffffff; position: relative; }
+    .flabel { position: absolute; top: -7px; left: 9px; background: #ffffff; padding: 0 4px; font-size: 10px; color: #2276DA; }
+    .btn { font-size: 12.5px; font-weight: 600; padding: 7px 18px; border-radius: 5px; }
+    .pill { background: #eef1f5; border-radius: 11px; padding: 3px 9px; font-size: 11px; color: #3f4a5a; display: inline-flex; align-items: center; gap: 5px; max-width: 210px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .lbl { font-size: 11.5px; color: #8b95a3; }
+    .cap { font-size: 12px; color: #5b6472; line-height: 1.6; }
+    .grp { display: flex; flex-direction: column; gap: 10px; }
+  </style>
+</helmet>
+
+<div class="badgebar"><span class="badge badge--before">BEFORE</span> &nbsp; <span class="badge badge--after">AFTER</span></div>
+
+<div style="padding: 10px 24px 26px; display: flex; flex-direction: column; gap: 18px;">
+
+  <div>
+    <div style="font-size: 16px; font-weight: 700; color: #1d2129;">New Note</div>
+    <div style="font-size: 12.5px; color: #5b6472; margin-top: 3px;">Where a tag group and a quick note are actually spent. A note is written on a work order, never from the inbox.</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start;">
+
+    <!-- ============================ BEFORE ============================ -->
+    <div class="grp">
+      <div><span class="badge badge--before">BEFORE</span></div>
+
+      <div class="modal">
+        <div class="mhd">
+          <div class="mtitle">New Note</div>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2276DA" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </div>
+
+        <div class="field" style="display: flex; justify-content: space-between; align-items: center;">
+          <span class="flabel">Create note for</span>
+          Work Order
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="2.2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+
+        <div>
+          <div class="field" style="height: 92px; color: #8b95a3;">
+            You can @tag and notify another team member
+          </div>
+          <div style="text-align: right; font-size: 11px; color: #8b95a3; margin-top: 4px;">2000 characters remaining</div>
+        </div>
+
+        <div class="field" style="display: flex; justify-content: space-between; align-items: center; color: #8b95a3;">
+          Reminder Date
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8b95a3" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 9px;">
+          <div style="width: 14px; height: 14px; border: 1px solid #8b95a3; border-radius: 3px;"></div>
+          <div style="font-size: 12.5px; color: #1d2129;">Customer Visible</div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 2px;">
+          <div class="btn" style="border: 1px solid #C10015; color: #C10015;">Cancel</div>
+          <div class="btn" style="background: #2276DA; color: #ffffff;">Save</div>
+        </div>
+      </div>
+
+      <div class="cap" style="color: #7a1020;">
+        The prompt reads <strong>&ldquo;You can @tag and notify another team member&rdquo;</strong>, one person at a time, because a tag group did not exist yet. There is nothing on screen to reuse: no saved set of recipients and no saved message, so the same instruction gets retyped and the same four people get tagged by hand every time. A <strong>Reminder Date</strong> field sits under the message.
+      </div>
+    </div>
+
+    <!-- ============================ AFTER ============================ -->
+    <div class="grp">
+      <div><span class="badge badge--after">AFTER</span></div>
+
+      <div class="modal">
+        <div class="mhd">
+          <div class="mtitle">New Note</div>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2276DA" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </div>
+
+        <div class="field" style="border-color: #2276DA; display: flex; justify-content: space-between; align-items: center;">
+          <span class="flabel">Create note for</span>
+          Work Order
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="2.2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+
+        <div>
+          <div class="field" style="height: 92px; color: #8b95a3;">
+            Use @ to tag team members or tag groups
+            <svg style="position: absolute; right: 6px; bottom: 6px;" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#c7ccd3" stroke-width="2"><path d="M22 22L12 22M22 22L22 12M22 22L14 14"></path></svg>
+          </div>
+          <div style="text-align: right; font-size: 11px; color: #8b95a3; margin-top: 4px;">2000 characters remaining</div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px;">
+          <span class="lbl" style="margin-right: 2px;">Tag groups:</span>
+          <span class="pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3 3-5 6-5s6 2 6 5"></path><circle cx="17" cy="9" r="2.4"></circle><path d="M16 15c3 0 5 2 5 5"></path></svg>Service Team</span>
+          <span class="pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3 3-5 6-5s6 2 6 5"></path><circle cx="17" cy="9" r="2.4"></circle><path d="M16 15c3 0 5 2 5 5"></path></svg>Front Counter</span>
+          <span class="pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3 3-5 6-5s6 2 6 5"></path><circle cx="17" cy="9" r="2.4"></circle><path d="M16 15c3 0 5 2 5 5"></path></svg>Parts Desk</span>
+          <span class="pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3 3-5 6-5s6 2 6 5"></path><circle cx="17" cy="9" r="2.4"></circle><path d="M16 15c3 0 5 2 5 5"></path></svg>Heavy Duty Techs</span>
+          <span class="pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="1.8"><circle cx="9" cy="8" r="3"></circle><path d="M3 20c0-3 3-5 6-5s6 2 6 5"></path><circle cx="17" cy="9" r="2.4"></circle><path d="M16 15c3 0 5 2 5 5"></path></svg>Night Shift</span>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px;">
+          <span class="lbl" style="margin-right: 2px;">Quick notes:</span>
+          <span class="pill">Road test before release</span>
+          <span class="pill">Waiting on parts</span>
+          <span class="pill">Customer approved estimate</span>
+          <span class="pill">Ready for pickup</span>
+        </div>
+
+        <div class="field" style="display: flex; justify-content: space-between; align-items: center; color: #8b95a3;">
+          Reminder Date
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8b95a3" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 9px;">
+          <div style="width: 14px; height: 14px; border: 1px solid #8b95a3; border-radius: 3px;"></div>
+          <div style="font-size: 12.5px; color: #1d2129;">Customer Visible</div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 2px;">
+          <div class="btn" style="border: 1px solid #C10015; color: #C10015;">Cancel</div>
+          <div class="btn" style="background: #2276DA; color: #ffffff;">Save</div>
+        </div>
+      </div>
+
+      <div class="cap">
+        The prompt now names both things a writer can reach for: <strong>&ldquo;Use @ to tag team members or tag groups&rdquo;</strong>. Two rows of pills arrive under the message. <strong>Tag groups</strong> inserts a whole saved set of recipients, and hovering one shows its member names. <strong>Quick notes</strong> drops a saved message body in, and hovering shows that body. <strong>Reminder Date</strong> stays exactly as it is today, under the pills: it still feeds the Reminders report, the dashboard's reminders panel and the urgent-reminder signal on the bell.
+      </div>
+    </div>
+
+  </div>
+
+  <div style="background: #ffffff; border: 1px solid #e8eaed; border-radius: 6px; padding: 14px 16px; font-size: 12.5px; color: #3d4654; line-height: 1.6;">
+    <strong style="color: #1d2129;">This is the screen that answers &ldquo;why does a technician need tag groups at all&rdquo;.</strong> Everything saved on the Tag Groups and Quick Notes tabs turns up here as a pill. That is why all of it sits on the Notifications page: the thing a user saves and the place they spend it are two clicks apart.
+  </div>
+
+
+</div>
+</x-dc>
+</body>
+</html>

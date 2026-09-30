@@ -1,0 +1,118 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1180,
+      "h": 760,
+      "title": "1 - What changed, in one table"
+    },
+    {
+      "file": "InboxBefore.dc.html",
+      "x": 0,
+      "y": 920,
+      "w": 1180,
+      "h": 560,
+      "title": "2 - Notifications page - today"
+    },
+    {
+      "file": "InboxAfter.dc.html",
+      "x": 1420,
+      "y": 920,
+      "w": 1180,
+      "h": 790,
+      "title": "3 - Notifications page - after"
+    },
+    {
+      "file": "TagGroups.dc.html",
+      "x": 0,
+      "y": 1870,
+      "w": 1180,
+      "h": 700,
+      "title": "4 - Tag groups - new tab"
+    },
+    {
+      "file": "QuickNotes.dc.html",
+      "x": 1420,
+      "y": 1870,
+      "w": 1180,
+      "h": 680,
+      "title": "5 - Quick notes - new tab"
+    },
+    {
+      "file": "Preferences.dc.html",
+      "x": 0,
+      "y": 2730,
+      "w": 1180,
+      "h": 540,
+      "title": "6 - Preferences - new tab"
+    },
+    {
+      "file": "NoteModal.dc.html",
+      "x": 1420,
+      "y": 2730,
+      "w": 1240,
+      "h": 1000,
+      "title": "7 - New Note - before and after"
+    },
+    {
+      "file": "Modal.dc.html",
+      "x": 0,
+      "y": 3830,
+      "w": 1100,
+      "h": 560,
+      "title": "8 - New tag group - new dialog"
+    },
+    {
+      "file": "QuickNoteModal.dc.html",
+      "x": 1420,
+      "y": 3830,
+      "w": 1000,
+      "h": 620,
+      "title": "9 - New quick note - new dialog"
+    },
+    {
+      "file": "PartSaleNotes.dc.html",
+      "x": 0,
+      "y": 4550,
+      "w": 1180,
+      "h": 660,
+      "title": "10 - Notes on a Part Sale - new tab"
+    },
+    {
+      "file": "DeleteNote.dc.html",
+      "x": 1420,
+      "y": 4550,
+      "w": 1280,
+      "h": 620,
+      "title": "11 - Editing and deleting - rule change"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "note-baseline",
+      "x": 0,
+      "y": -300,
+      "w": 1180,
+      "text": "READ THIS FIRST.\n\nEleven boards, one page, numbered in reading order.\n\nEvery \"before\" is drawn from staging. That is a caveat, not a claim: staging is what develop carries, and production can sit behind it. Nothing on these boards has been checked against production, because this canvas was drawn without production access.\n\nOn staging the Notifications page is an inbox with an Unread only toggle and a Sort By select, and that is all. Tag groups, quick notes and notification preferences do not exist anywhere in the product, so boards 4, 5, 6, 8 and 9 have no predecessor to set beside them: they are drawn as what ships.\n\nBoards 2, 3 and 7 are true before and after pairs, because the inbox and the New Note dialog both exist on staging today. Boards 10 and 11 are new surfaces and a rule change respectively.\n\nTag group and quick note names throughout are the ones a shop would actually use."
+    },
+    {
+      "id": "note-title",
+      "x": 1420,
+      "y": 700,
+      "w": 1180,
+      "text": "The page title moved above the tabs. On staging it sits inside the inbox toolbar row, so it names the inbox rather than the page. With three more tabs arriving, a title that stays in the toolbar leaves the other three reading as an unnamed screen."
+    },
+    {
+      "id": "note-rule-change",
+      "x": 1420,
+      "y": 4330,
+      "w": 1280,
+      "text": "Board 11 is the only board on this canvas that changes a rule rather than adding a surface. It is here because the change is invisible until someone opens a note they did not write, and because it overrides a decision already on record (SV-8003, 8 July 2026)."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
