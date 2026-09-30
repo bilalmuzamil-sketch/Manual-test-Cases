@@ -137,3 +137,28 @@ each); one $100 discount added to **S2-808** and **removed** (`204`); one line-l
 * `ev/02-edge-case.png` — a $500 discount on a $331.50 work order: the card reads $0.00, the popup
   still shows the real $331.50.
 * `ev/03-line-level-unchanged.png` — the labor-line preview on both builds.
+
+---
+
+## 10. Pre-post gate and the posted comment (Rule 72)
+
+Run immediately before posting, 2026-09-30:
+
+| Check | Result |
+|---|---|
+| Branch build marker re-read live | `v26.39.1-59f1f91`, `Mon, 28 Sep 2026 22:48:23 GMT`, etag `caed07882fd757b41fb990423de81649` — **unchanged** since pass start |
+| Production build marker re-read live | `v26.39.2-1aeb22d`, `Tue, 29 Sep 2026 09:36:08 GMT`, etag `631482bb64cdcb1ec1f15b23ba76f192` — **unchanged** since the before-capture |
+| Ticket thread re-read | still **1** comment (77478, the handoff); status **TESTING QA**, priority **Medium**; no other QA verdict already posted |
+| Every figure traced to a live measurement this pass | yes |
+| Human-voice / AI-fingerprint scan of the body text | clean, 0 hits |
+| No "Technical details for developers" section (Rule 84 — the QA lead said no for this ticket) | confirmed absent |
+| **Arithmetic closes in public (Rule 90)** | **the gate caught it**: the verdict panel read *"All 6 checks passed"* above a **7**-row table. Corrected to 7 before posting. |
+| Branch feature flag restored | org back to its original eleven features including QuickBooks |
+| Production left as found | S2-808 at subtotal $255.69 with 0 adjustments; both scratch work orders deleted |
+
+**Posted: comment `77623`** on SV-9480. Read back in ADF and verified: **3 media nodes, every one
+`"type":"file"` with a real attachment uuid** (ea57c69c… · edfbf8bd… · 3a5c800f…) at 900×741,
+900×390 and 900×719 — the right images in the right order, **0 external links** · first text node is
+`OVERALL QA STATUS: PASSED` · the table holds **8 rows** (header + 7 checks) · no technical section.
+
+Attachments on the issue: `61565`, `61566`, `61567`.
