@@ -5677,6 +5677,37 @@ can be created by any route**; ask for the toggle to be flipped or for data to b
 **work-order LIST payload carries none of this** (only `totalPrice`), so scanning for work orders
 that have adjustments means fetching `view` per row.
 
+**THE THREE SCOPES, AND WHERE EACH CONTROL LIVES — the part one is easy to miss (added 2026-09-30).**
+`scope` on `POST /api/work-orders/adjustments/add` takes **`whole_wo`**, **`labor_line`** and
+**`part_line`**, and each has a different entry point:
+
+| Scope | How you reach it | `targetId` |
+|---|---|---|
+| Whole work order | the WO ⋮ nav-bar menu → `menu_item_add_adjustment` | — |
+| A labor line | **`button_add_labor_adjustment_{lineId}`**, a button on the line row itself | line id |
+| **A part** | the **part row's ⋮**, `button_requested_part_context_menu_{partId}_line_{lineId}` → the menu entry **"Add Part Fee / Discount"** (`menu_item_add_adjustment_part_{partId}`) | part-request id |
+
+The part dialog is titled **New Part Fee / Discount** with *"Applying To: Line 1 Part — <name>"*, and
+its preview rows are **Part total · Part cost · Discount · New part total** (the whole-WO one says
+*Work-order subtotal*). Its default calculation type is **% Of Parts Total**. Once saved, the
+adjustment appears under the part as `line_adjustment_row_{adjId}` with the usual
+`button_adjustment_actions_{adjId}` → `menu_item_edit_adjustment_{adjId}`, and it shows on the part
+request itself as `part_request.adjustments[]` in `GET /api/work-orders/lines/{woId}`.
+
+**Adding a part to a line, and the money-field trap (again).** `button_add_part` opens an **inline
+row**, not a dialog: `select_inline_part_number` · `input_inline_part_description` ·
+`input_inline_part_quantity` · `select_inline_part_category` · `input_inline_part_cost` ·
+`input_inline_part_sell_price` · `button_save_inline_part`. **Editing** an existing part uses
+`button_edit_part_{partId}` and a *different* id set — **`input_part_cost`** ·
+**`input_workorder_part_sell_price`** · **`button_workorder_part_save`**. ⚠️ **Typing into the sell
+price on either surface does not reliably stick** — a vendor part saved through the UI came back
+`sell_price: 0` twice, and the edit field re-derived itself from cost×margin while typing. Set it
+with `POST /api/work-orders/part/change-request`, echoing the whole part object back with
+`sell_price` changed (a partial body is rejected), then re-read
+`GET /api/work-orders/lines/{woId}` → `part_requests[].sell_price` to prove it took. **A part at
+`sell_price: 0` makes every part-scope preview read `$0.00` and looks like a defect** — check the
+price before concluding anything.
+
 
 ---
 
