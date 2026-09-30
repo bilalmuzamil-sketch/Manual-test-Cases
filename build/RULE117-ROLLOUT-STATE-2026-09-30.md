@@ -42,7 +42,10 @@ TestRail root **Founder Mode = section 20434**. Feature sub-folders:
   design driven end-to-end = CONFIRM; no QA build/tech plan → all HOLD). Sub-folders S1–S10 =
   20450–20459. Scripts `build/founder-mode/notifications/n_s1_s3.py · n_s4_s6.py · n_s7_s10.py`.
   PROJECT-STATE: `build/founder-mode/notifications/PROJECT-STATE.md`.
-- **What/Why = 20437** — NOT STARTED (page 845348896, artifact Pz1Q6BfvreYFpQwVQZPTE6, SV-9667).
+- **What/Why = 20437** — DONE (19 cases C154707–C154725, Rule 117; 40 PRD anchors covered 1:1;
+  design driven = CONFIRM; no QA build/tech plan → all HOLD). Sub-folders S1–S4 = 20461–20464.
+  Scripts `build/founder-mode/what-why/{ww_lib,ww_cases}.py`.
+  PROJECT-STATE: `build/founder-mode/what-why/PROJECT-STATE.md`. PO Chris Ward.
 - **Price/Category = 20438** — NOT STARTED (page 578781186, artifact UMNdojKWhYhRyJrjdgZa4P, SV-9667).
 - **Part Lifecycle = 20439** — NOT STARTED (page 829227015, artifact Vz6rprcWyP16tYxzM1kdeE, SV-10647).
 
