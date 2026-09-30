@@ -2965,3 +2965,14 @@ were stale). Sources: `build/report-suite/build-verify-2026-08-18/{TU,WIP,IV}-SW
 - **CO-6 (both) — BUILD VERIFICATION BLOCKED (Rule 85):** neither suite has a QA build/environment yet, so build verification cannot start. Both are SOURCE-VERIFIED ONLY. Run skill 11 when a build lands.
 
 </details>
+
+## WO Board & Tech View (13204) — tech-plan-vs-PRD conflicts to rule on (raised 2026-09-30)
+
+Three clarifications in the Board View & Tech View tech plan post-date the PRD and conflict with cases
+that quote the PRD. Cases left on the PRD wording pending a QA-lead/PO ruling (Rules 56/58/113):
+1. **"N open" count statuses** — PRD/cases C96974, C97032 = 3 statuses (Approved, In Progress, Ready
+   for Review); tech-plan MF-3 (Product, 2026-09-24) = 4 (adds Complete), "PRD S4-R15 not yet updated". Which governs?
+2. **Reordering Invoiced/Paid work orders** — plan changed to "match the work order page" (reorder within
+   current lead/Unassigned, no cross-tech move; Complete moves freely; §3.23). Update S9 cases C97009/C97012?
+3. **"Assigned to me" on board displays** — Product direction (all groups visible but secondary; my-work
+   groups primary) conflicts with S2-R9/S3-N1/S1-E1 and cases C96937/C96951/C96922 (which hide Unassigned). Still with UX.
