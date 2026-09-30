@@ -29,6 +29,7 @@ Catalog→Part Library rename, editable part number.
 | **Total** | | **62** | (see above) |
 
 207 PRD requirement anchors (S1-R1 … S13-N3) covered 1:1 — no gap, no duplicate, no extra.
+**Render:** 62/62 canonical cases rendered clean on TestRail (2026-09-30).
 
 ## 🔴 Outstanding — needs the QA lead / user
 1. **27 DUPLICATE cases to delete: C154801–C154827** (in sections S6–S10, folder 20439). Cause: an
