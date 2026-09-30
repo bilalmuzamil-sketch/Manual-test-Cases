@@ -1,26 +1,24 @@
-"""Exhibit 04 — a fee/discount on a PART line: the preview on both builds."""
+"""Exhibit 04 — a discount on a PART line, production."""
 import sys, json
 sys.path.insert(0, '/home/user/Manual-test-Cases/build/testing-tools')
 from qa_exhibits import panel, stack, GRN
+from PIL import Image
 
-g = {k: json.load(open(f'/tmp/qa9480b/geo-{k}.json')) for k in ('prod', 'branch')}
-S = {'prod': '/tmp/qa9480b/prod-part-EDIT.png', 'branch': '/tmp/qa9480b/branch-part-EDIT.png'}
-TITLE = {'prod': 'PRODUCTION  app.shopview.com', 'branch': 'FIX BRANCH  sv9480.qa.shopview.com'}
-SUB = {'prod': 'build v26.39.2-1aeb22d  ·  30 September 2026',
-       'branch': 'build v26.39.1-59f1f91  ·  30 September 2026'}
+g = json.load(open('geo-prod.json'))
+b = g['editPreview']
+crop = (max(0, b['x'] - 40), max(0, b['y'] - 120), b['x'] + b['w'] + 40, b['y'] + b['h'] + 34)
 
-panels = []
-for k in ('prod', 'branch'):
-    b = g[k]['editPreview']
-    pad = 26
-    crop = (max(0, b['x']-pad), max(0, b['y']-90), b['x']+b['w']+pad, b['y']+b['h']+pad)
-    panels.append(panel(S[k], crop, TITLE[k], SUB[k],
-                        item=(b['x'], b['y'], b['w'], b['h']), c=GRN,
-                        item_note=g[k].get('note', 'the preview'), gutter=360))
+p = panel('raw-prod-part-edit.png', crop,
+          'PRODUCTION — editing a discount on a PART',
+          'app.shopview.com  ·  build v26.39.2-1aeb22d  ·  30 September 2026  ·  S2-917, part at $20.00',
+          item=(b['x'], b['y'], b['w'], b['h']), c=GRN,
+          item_note='starts from $20.00,\nnot from $15.00', gutter=360)
 
-stack(panels, g.get('footer') or
-      'Editing a discount that sits on a PART line. Both builds start from the part’s own '
-      'pre-discount total and reach the same answer — this half of the screen was not part of '
-      'the change and has not moved.').save(
-    '/home/user/Manual-test-Cases/build/sv9480-discount-preview-2026-09-30/ev/04-part-line-unchanged.png')
-print('written')
+out = stack([p],
+      'A $5.00 discount on a $20.00 part. The popup starts from the part’s pre-discount $20.00 '
+      'and reaches $15.00 — the same figures it showed when the discount was first added.')
+# give the footer room it actually needs
+pad = Image.new('RGB', (out.width, out.height + 26), (255, 255, 255))
+pad.paste(out, (0, 0))
+pad.save('04-part-line-production.png')
+print('written', pad.size)
