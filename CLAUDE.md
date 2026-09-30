@@ -4894,6 +4894,53 @@ deliver the 7-tab management report.
     it — re-read your own comment as a reader before and after posting) and 83 (the failure's
     internal format, which this rule places first).
 
+91. **I AM NOBODY TO SKIP ANYTHING — A CHECK IS NOT MINE TO DROP, AND "WHAT I COULD NOT CHECK" IS NOT
+    A PLACE TO PUT WORK I CHOSE NOT TO DO (all projects). THE PERMISSION RULE.**
+    USER DIRECTIVE (2026-09-30, verbatim): *"Why the part line fee or discount was not excercised you
+    must never skip anything like that, you are nobody to skip anything without the permission. Make
+    it the rule and save it forever and also exercise what you said you have not excercised."*
+    **THE RULE:** **the decision to leave a check unrun is the QA lead's, never mine.** Where a source
+    names a case — the handoff, the acceptance criteria, the ticket description, the PO's ruling, the
+    spec — **every branch of it is exercised.** If a requirement says *"a fee or discount on a labor
+    **or part** line"*, that is **TWO cases and both are run**. An "or" in a source is not permission
+    to pick one; a list is not a menu.
+    **THE THREE LEGITIMATE OUTCOMES FOR A NAMED CHECK, AND THERE IS NO FOURTH:** **(a) RUN IT** ·
+    **(b) the developer or PO has stated IN WRITING it cannot be tested here, quoted** · **(c) THE QA
+    LEAD HAS BEEN ASKED AND HAS SAID TO SKIP IT.** **(c) requires ASKING FIRST AND WAITING FOR THE
+    ANSWER** (Rule 61's one-sentence form: *"<Source> also names <X>; I have not run it — do you want
+    me to, or shall I ship without it?"*). **Assuming a skip is acceptable because it seems minor,
+    similar to something already proven, or expensive is EXACTLY the judgement I do not get to make.**
+    **THE "COULD NOT CHECK" SECTION HAS A HARD ENTRY TEST.** A line may appear there only if it names
+    **which of (b) or (c) applies and who said so**. **"Not exercised", "not driven", "only X was
+    used", "the same arithmetic was proven elsewhere" are NOT reasons — they are confessions**, and
+    writing one fluently does not convert it into a limit. **If the honest sentence is "I could have
+    done this and did not", the answer is to GO AND DO IT**, not to phrase it better.
+    **⚠️ SIMILARITY IS NOT COVERAGE, AND IT IS THE EXCUSE THAT WILL RECUR.** *"A part line will behave
+    like a labor line"* is a **prediction**, not an observation (Rule 12), and it is precisely the
+    prediction a regression test exists to falsify — parts and labor are different code paths with
+    different totals, different taxability and different adjustment scopes. **The cases a source
+    bothers to enumerate separately are the ones it expects to differ.**
+    **THIS IS RULE 85 STATED AS A PERMISSION BOUNDARY RATHER THAN AS A STANDARD, BECAUSE THE STANDARD
+    ALONE DID NOT HOLD.** Rule 85 said there is no such thing as an honest limit until it is proven
+    untestable; **I wrote one anyway, four weeks later, in a comment that had already passed the
+    pre-post gate.** So the operative question is no longer *"is this limit honest?"* — which I will
+    always answer yes — but **"whose decision was this, and did I ask?"**
+    **THE PRE-POST GATE (Rule 72) NOW CHECKS IT:** before any deliverable goes out, **walk the source's
+    named cases against what was actually run** and confirm every "could not check" line carries (b) or
+    (c). **A gate that passes a self-authorised skip has not run.**
+    **RATIONALE, 2026-09-30 (SV-9480, and the miss was entirely mine):** the QA handoff's check 5 reads
+    *"line-level fees/discounts on a **labor or part** line are unchanged"*. I exercised the labor line,
+    wrote *"a part-line fee or discount was not exercised — the handoff says 'labor or part', and labor
+    was used"* into both the findings document and the posted Jira comment, and **passed the ticket**.
+    The work order already carried a part line, the branch was already unblocked, and the check took
+    minutes once asked for. **Nothing made it untestable except my decision to stop.** Ties to Standing
+    Rules 1 (complete inputs), 12 (observed, never inferred — a prediction about a part line is not an
+    observation), 14 (seed the state, never block), 17 (complete data in, complete data out), 50
+    (exhaustive **and** exact — this rule is its permission half), 61 (say it in one sentence and ask,
+    **before** starting), 63 (be cheap — cheapness is skipping redundant READS, never a check), 66
+    (test what the source says), 68 (bite-proof), 72 (the gate now audits the skip list), 76, 77, 85
+    (**the standard this rule enforces**) and 87 (build whatever state the check needs).
+
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
