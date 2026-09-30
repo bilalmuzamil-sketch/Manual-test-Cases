@@ -2976,3 +2976,23 @@ that quote the PRD. Cases left on the PRD wording pending a QA-lead/PO ruling (R
    current lead/Unassigned, no cross-tech move; Complete moves freely; §3.23). Update S9 cases C97009/C97012?
 3. **"Assigned to me" on board displays** — Product direction (all groups visible but secondary; my-work
    groups primary) conflicts with S2-R9/S3-N1/S1-E1 and cases C96937/C96951/C96922 (which hide Unassigned). Still with UX.
+
+---
+
+## Founder Mode programme — remaining items (2026-09-30, session claude/slack-session-setup-7v5itm)
+
+**All five Founder Mode features authored to Rule 117** (Part Sales, Notifications, What/Why,
+Price/Category, Part Lifecycle). Outstanding across the batch:
+
+1. 🔴 **Part Lifecycle: 27 duplicate TestRail cases C154801–C154827 pending deletion** (folder 20439,
+   sections S6–S10). Cause: accidental second `--apply`; `delete_case` was denied by the auto-mode
+   classifier (external-system write). They duplicate canonical C154774–C154800. Recorded in
+   `build/founder-mode/part-lifecycle/DUPLICATES-TO-DELETE.json`. **Need: authorise the delete, or
+   grant delete_case permission and I will remove them.**
+2. **Part Lifecycle spec is IN REVIEW (Confluence 829227015, "In review 2026-09-09"), not locked** —
+   its 62 cases are PROVISIONAL/HOLD; re-verify + re-open affected quotes if the PRD changes. Open PRD
+   question: should Part Number stay mandatory (Story 7)? "Decide before build."
+3. **No QA build for any Founder Mode feature yet** — all cases AUTOMATION: HOLD, source-verified only.
+   Build-verify when branches exist (user: "I will let you know once they are available").
+4. **3 WO Board & Tech View tech-plan-vs-PRD DIVERGE items** (above) — to discuss after the Founder
+   Mode authoring is complete (user, 2026-09-30).

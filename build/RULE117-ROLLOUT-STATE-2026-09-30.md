@@ -50,7 +50,13 @@ TestRail root **Founder Mode = section 20434**. Feature sub-folders:
   design driven = CONFIRM; presentation-only feature; no QA build → all HOLD). Sub-folders S1–S3 =
   20465–20467. Scripts `build/founder-mode/price-category/{pc_lib,pc_cases}.py`.
   PROJECT-STATE: `build/founder-mode/price-category/PROJECT-STATE.md`. PO Chris Ward.
-- **Part Lifecycle = 20439** — NOT STARTED (page 829227015, artifact Vz6rprcWyP16tYxzM1kdeE, SV-10647).
+- **Part Lifecycle = 20439** — DONE (62 cases, Rule 117; 207 anchors covered 1:1; design driven =
+  CONFIRM; **spec IN REVIEW 2026-09-09 → PROVISIONAL/HOLD**; epic SV-10647; PO Chris Ward). Sub-folders
+  S1–S13 = 20468–20480. Canonical ids C154752–C154800 + C154828–C154840. Scripts
+  `build/founder-mode/part-lifecycle/{pl_lib,pl_s1_s5,pl_s6_s10,pl_s11_s13}.py`.
+  PROJECT-STATE: `build/founder-mode/part-lifecycle/PROJECT-STATE.md`.
+  🔴 **27 duplicate cases C154801–C154827 pending deletion** (delete_case denied by auto-mode
+  classifier; recorded in `part-lifecycle/DUPLICATES-TO-DELETE.json`).
 
 **Next:** create test cases for the remaining Founder Mode feature folders, one at a time, to the
 Rule-117 standard. Per-feature intake needed each time (Rule 1/2/30/15): the feature name, its
