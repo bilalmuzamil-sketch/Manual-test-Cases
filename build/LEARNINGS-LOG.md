@@ -4752,3 +4752,35 @@ would have buried a real fault; applying the purpose silently would have been me
 
 **Also recorded:** the fix is to NAME the status in the table, not to soften "anything else" into a
 judgement call. A gate that needs interpreting at 3am is a gate that will be interpreted wrongly.
+
+---
+
+## L0253
+
+**2026-10-01 · A sweep hung for four hours and I reported it as "running" twice, because I checked
+that the process existed instead of checking that it was moving.**
+
+The fuzzy matrix stalled at 04:25 after 18 of roughly 50 checks. At 08:18 the QA lead asked whether
+it was still going. `pgrep` said yes, so I said yes. **The log's last write was nearly four hours
+old and I had not looked at its timestamp.** A live process is not progress.
+
+**The cause:** the MITM bridge died mid-run. The browser's proxy went with it, and every Playwright
+call then waited on a protocol response that was never coming. The script set **no timeouts at
+all**, so there was nothing to make the wait end. A hang and a slow-but-working run look identical
+from outside: the process is up, the log is just quiet.
+
+**Three fixes, all now in the script:**
+1. **Deadlines on everything** — `setDefaultTimeout` plus a `Promise.race` cap per search, so a dead
+   proxy throws instead of waiting. An error is recoverable; a hang is not.
+2. **A heartbeat carrying a timestamp and elapsed seconds**, so PROGRESS can be told from LIVENESS
+   at a glance.
+3. **Resume from what is already saved** — a stall should cost the remaining checks, never the
+   finished ones.
+
+**And the reporting rule, which is the real lesson:** before saying a background job is running,
+**read the last-write time of its output and compare it to the clock.** "The process is alive" is
+not a status. Say what it has produced and when it last produced anything — `stat -c %y` on the log,
+every time. The same mistake would have been caught at the first asking by one `stat`.
+
+**Related:** `pkill -f <pattern>` self-matches its own command line and exits 144, twice in this
+session. Kill by PID off `ps -eo pid,cmd | grep -E "node .*<script>" | grep -v grep`.

@@ -32,7 +32,24 @@ function variants(w){
     const need=v.length>=4?0.70:0.80; return {kind,typed:v,sim:+sim.toFixed(3),need,must:sim>=need}; });
 }
 const { page, browser } = await boot('/customers', { key:'admin', settle:12000 });
+// 🔴 2026-10-01: this sweep HUNG FOR FOUR HOURS and looked alive the whole time. The MITM bridge
+// died mid-run; the browser's proxy went with it, and every Playwright call then waited on a
+// protocol response that was never coming. With no timeouts set, a hang is indistinguishable from
+// work - `pgrep` says RUNNING and the log simply stops. Two fixes, both required:
+//   (a) every operation gets a deadline, so a dead proxy throws instead of waiting;
+//   (b) the run prints a heartbeat with a timestamp, so PROGRESS can be told from LIVENESS.
+page.setDefaultTimeout(25_000);
+page.setDefaultNavigationTimeout(35_000);
+const t0=Date.now();
+const beat=(m)=>console.log(`[${new Date().toISOString().slice(11,19)} +${Math.round((Date.now()-t0)/1000)}s] ${m}`);
 async function search(term, tab){
+  // belt and braces: even a hang inside Playwright's own waiting is capped here
+  return await Promise.race([
+    _search(term, tab),
+    new Promise((_,rej)=>setTimeout(()=>rej(new Error('search deadline exceeded: '+term)), 70_000)),
+  ]);
+}
+async function _search(term, tab){
   await page.keyboard.press('Escape'); await page.waitForTimeout(300);
   await page.keyboard.press('Control+k'); await page.waitForTimeout(1000);
   await page.fill('.search-modal input',''); await page.waitForTimeout(220);
@@ -55,7 +72,11 @@ const SEEDS={'Work orders':['repair','diesel','truck'],'Customers':['truck','rep
  'Vendors':['supply','diesel','parts'],'Part sales':['truck','repair','trailer'],
  'Purchase orders':['diesel','repair','brake'],'Vendor invoices':['repair','diesel','trailer']};
 
-const results=[];
+// resume: a stall must cost the remaining checks, never the finished ones
+let results=[];
+try { results = JSON.parse(fs.readFileSync(OUT+'full-matrix.json','utf8')); } catch {}
+const already = new Set(results.map(r=>`${r.tab}|${r.field}|${r.kind}`));
+console.log(`resuming with ${results.length} checks already saved`);
 for (const [tab,seeds] of Object.entries(SEEDS)){
   // ---- discover (field,value) pairs from the rows' own labelled notes ----
   const pairs=new Map();
@@ -72,13 +93,14 @@ for (const [tab,seeds] of Object.entries(SEEDS)){
     }
     if(pairs.size>=5) break;
   }
-  console.log(`\n=== ${tab} === discovered fields: ${[...pairs.keys()].join(' | ')||'none'}`);
+  beat(`=== ${tab} === discovered fields: ${[...pairs.keys()].join(' | ')||'none'}`);
   for (const [field,{word}] of pairs){
     const base=await search(word,tab);
     if(!base.rows.length){ console.log(`  ${field}: "${word}" exact found nothing - skipping`); continue; }
     const baseIds=new Set(base.rows.map(idOf));
     for (const v of variants(word)){
       if(!v.must) continue;
+      if(already.has(`${tab}|${field}|${v.kind}`)) continue;
       const t=await search(v.typed,tab);
       const back=t.rows.filter(r=>baseIds.has(idOf(r)));
       const hit=back.length>0;
