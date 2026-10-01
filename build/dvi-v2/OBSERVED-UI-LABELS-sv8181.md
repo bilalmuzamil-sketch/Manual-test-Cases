@@ -53,3 +53,12 @@ columns "Title" / "Description" / "Labor" / "Parts" (checkbox per drafted line) 
 "Nothing is added until you press Add Lines." · confirm button **"Add Lines"**. (Lines draft asynchronously — AI.)
 # Alignment: build confirm action is "Add Lines"; cases' "Lines added" / "3 lines added" are post-confirm states.
 # NOTE (Rule 107): this created a throwaway Estimate WO (S8181-17..) on the disposable branch — harmless.
+
+## Asset record → Inspections tab  (route /customers/vehicle/<uuid>)  — Evidence: asset-inspections-tab.png
+Asset record tabs: "Work Orders" · "Invoices (N)" · "Notes" · "Inspections" (also a "Service"/"History" area).
+Inspections tab subtitle: "N of M have findings with no lines yet".
+Table columns: "Inspection" (name + version) · "Status" (e.g. "Completed") · "Completed" (date) · "Technician" ·
+  "Issues" (badge e.g. "5 Not OK") · "Work Order" (number + state) · "Report" ("PDF") · "Action".
+"SHOPCOACH ASSET HISTORY" panel: "Asset History" · a question box ("e.g. when did we work on the turbo?") · "View All History".
+# Alignment: cases say "View History Logs" / "Inspection results" / "runs" — build uses "Inspections" tab,
+#   the "Issues" column with "N Not OK", and "SHOPCOACH ASSET HISTORY → View All History".

@@ -26,6 +26,7 @@
 | Work order (new) | top menu "Work Orders" → "New" (pick customer/unit) | referenced by cases for seeding an inspection | (cases) |
 | Line Builder | Work Order → "Lines" → "Line Builder" | where findings become WO lines (to confirm) | (cases) |
 | Inspection results (a run) | **`/inspections/<uuid>`** — from a WO line's inspection row, click "Open ›" | the filled checklist + findings + "Build lines"; bare `/inspections` (no id) is empty | inspection-results.png |
+| Asset record + Inspections tab | `/customers/vehicle/<uuid>` (open a unit from a WO sidebar or Customers) | tabs Work Orders/Invoices/Notes/Inspections; Inspections = run history table + SHOPCOACH ASSET HISTORY | asset-inspections-tab.png |
 | ❌ `/inspections` (bare) | — | empty 232-char page — a run needs its <uuid> | inspections-route.txt |
 | ❌ `/inspection-templates` (bare) | — | the LIST is under Settings; the builder is `/inspection-templates/new` | templates-route.txt |
 
