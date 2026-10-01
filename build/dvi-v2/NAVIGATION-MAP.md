@@ -25,7 +25,8 @@
 | Template builder (edit) | `/inspection-templates/<id>` (Edit from the list) | same builder | — |
 | Work order (new) | top menu "Work Orders" → "New" (pick customer/unit) | referenced by cases for seeding an inspection | (cases) |
 | Line Builder | Work Order → "Lines" → "Line Builder" | where findings become WO lines (to confirm) | (cases) |
-| ❌ `/inspections` | — | DOES NOT EXIST on this build (empty 232-char page) — do not retry | inspections-route.txt |
+| Inspection results (a run) | **`/inspections/<uuid>`** — from a WO line's inspection row, click "Open ›" | the filled checklist + findings + "Build lines"; bare `/inspections` (no id) is empty | inspection-results.png |
+| ❌ `/inspections` (bare) | — | empty 232-char page — a run needs its <uuid> | inspections-route.txt |
 | ❌ `/inspection-templates` (bare) | — | the LIST is under Settings; the builder is `/inspection-templates/new` | templates-route.txt |
 
 ## API ENDPOINTS (host sv8181api.qa.shopview.com)
