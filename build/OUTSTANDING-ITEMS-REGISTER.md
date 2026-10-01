@@ -3034,6 +3034,12 @@ that's behind-the-scenes timing nobody can see in the app, so I did not write a 
 **What I need:** OK with (a) checked as "right file type" by hand plus automation for the exact copy,
 and (b) left to automation/engineering? **If you say nothing:** those two points have no manual case.
 (Reference: Digital Inspection V2 story SV-9882.)
+**✅ YOUR DECISION (2026-10-01): make the download check runnable by hand via a hand-back step.** DONE:
+case C195857 rewritten — the tester downloads both files, checks each opens as the original type, then
+hands the files back to the test author, who confirms each is identical to the original upload (same
+size / matching checksum). The whole check is now doable by hand, clearly explained. (Point (b), the
+behind-the-scenes "converted at upload vs at view" timing, is still not a manual case — it is backstage
+timing a person can't see in the app; it remains flagged for automation/engineering.)
 
 ### 3. Part Sales: is "sending each fee to its own QuickBooks account" ours to test?
 There's a planned feature about sending each kind of fee on a sale to its own income account in

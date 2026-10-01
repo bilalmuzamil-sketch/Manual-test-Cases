@@ -66,8 +66,8 @@ function problems(view) {
   else if (_am.length > 1) p.push('AUTOMATION marker not unique');
   else {
     const _after = _al.slice(_al.findIndex(l => l.startsWith('AUTOMATION:')) + 1);
-    const _ok = _after.every(l => /^[\s—–-]+$/.test(l) || /Note from the author/.test(l));
-    if (!_ok) p.push('AUTOMATION not last (trailing content is not the author note)');
+    const _ok = _after.every(l => /^[\s—–-]+$/.test(l) || /Note from the author/.test(l) || /Where this stands for testing/.test(l));
+    if (!_ok) p.push('AUTOMATION not last (trailing content is not the author note / testing-standing note)');
   }
   return p;
 }

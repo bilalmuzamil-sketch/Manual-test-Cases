@@ -95,3 +95,20 @@ word from the QA lead.
 
 **Totals after this round:** 27 reformatted + 17 deferred + 4 QuickBooks = **48 gap cases**
 (C195849–C195896), all note-last, all render-repaired, all committed.
+
+## Part 4 — round 3 (QA lead answers on the two open points, 2026-10-01)
+
+**(2a) Digital Inspections download check made RUNNABLE by hand.** Case C195857 rewritten: the tester
+downloads each converted reference file, checks it opens as the original type, then HANDS the files
+back to the test author, who confirms each is byte-for-byte identical to the original upload (same size
+/ matching checksum). No automation needed for the tester's part; the whole check is doable by hand and
+clearly explained. (Point (2b), the backstage "converted at upload vs at view" timing, stays flagged
+for automation/engineering — a person cannot see it in the app.)
+
+**Testing-standing note added to every not-yet-runnable case.** On the QA lead's instruction, all 48
+gap cases now carry a plain-language block just above the author note:
+"**Where this stands for testing:** … **What we are waiting on:** …". Tailored per group (Digital
+Inspections / Maintenance Reminders / Fixed Rules deferred / Auto-email deferred / QuickBooks) so a
+layman reading the case knows its testing status and the blocker. Order at the bottom of each case:
+AUTOMATION marker → testing-standing note → author note (note stays last). Validator
+(`hs_repair_one.mjs`) updated to accept the new trailing line; tool: `build/gap-fill/finalize_round3.py`.
