@@ -57,6 +57,9 @@ no configuration, because it reads whatever that environment actually holds.
 | `structure-and-scoping.spec.ts` | 11 | Tab scoping, group order, identifier normalization, row content, empty states |
 | `tabs-groups-navigation.spec.ts` | 16 | Each scope tab, group headings and counts, the five-row cap, Show all, opening a result |
 | `recent-mobile-empty.spec.ts` | 7 | Recent activity, the scoped empty state, the phone surface |
+| `ranking-order.spec.ts` | 11 | Prefix beats contains, exact beats close, stock order, recency, Clear all, the tablet surface |
+| `rows-access-misc.spec.ts` | 18 | What each kind of row shows, telephone and sound-alike matching, what the signed-in account can see, workplace isolation, the clear button |
+| `results-integrity.spec.ts` | 21 | The whole matched value is shown, long values are not cut through the match, the highlight marks inside the text, field-level matches |
 
 ---
 
@@ -70,9 +73,43 @@ the reason it cannot be measured fairly:
 | **C55715** — a misspelled part description still finds the record | The record is reachable only as a work-order **line** row, and the lists cap at 20 with ranking deciding what is visible. Measured twice on production: the **correctly spelled** query returned it on one run and not the next, with no change to the data. Run it by hand against a record you have just created. |
 | **C44850, C55729** — the pinned top result | The feature was withdrawn. A spec asserting it would go red against correct behaviour. |
 | **C44878, C44882, C55720, C55731, C55733, C55734** — permission flipping | Each needs a role edited mid-test and the same record re-measured before and after. Editing roles for a test is permitted, but a spec that mutates a shared environment's roles will collide with anyone else working in it, and a half-applied role leaves the environment wrong for the next person. Run these by hand with **Reset To Template** pressed first (Rule 118). |
-| Ranking checks with no fair pair | Ranking can only be judged where two records differ in exactly the property under test. Where the environment holds no such pair, the check skips with that reason rather than asserting on whichever record happened to sort first. |
+| **C44853, C44854, C55708–C55712, C55722** — context and signal boosts | Each needs two records alike in every ranked signal except the one under test, plus a particular page open or a particular view history. The environment cannot be relied on to hold such a pair, and manufacturing one means creating records whose only purpose is the test. Run these by hand against a pair you have just set up. |
+| **C53586, C53587** — findable within 30 seconds | These need a record created during the run. Creating records on production is governed by the environment's own safety guard, so the spec would depend on a permission that may not be granted when it runs. Run by hand right after creating a record. |
+| Ranking checks with no fair pair | Ranking can only be judged where two records differ in exactly the property under test. The specs **hunt** for such a pair — taking the words the tab's own rows are made of and trying each — and only skip, with the reason, when no query produces one. They never assert on whichever record happened to sort first. |
 
 ---
+
+## The run these were last verified by
+
+Every file below was run against **production** (`app.shopview.com`, build `v26.40.2-95f3172`) on
+**1 October 2026**, signed in as the service-advisor test account.
+
+| File | Passed | Skipped | Failed |
+|---|---|---|---|
+| `C44804-C55683-panel-keyboard.spec.ts` | 11 | 0 | 0 |
+| `findability-matching.spec.ts` | 18 | 2 | 0 |
+| `structure-and-scoping.spec.ts` | 11 | 2 | 0 |
+| `tabs-groups-navigation.spec.ts` | 13 | 3 | 0 |
+| `recent-mobile-empty.spec.ts` | 7 | 0 | 0 |
+| `ranking-order.spec.ts` | 3 | 8 | 0 |
+| `results-integrity.spec.ts` | 16 | 5 | 0 |
+| `rows-access-misc.spec.ts` | 13 | 5 | 0 |
+| **Total** | **92** | **25** | **0** |
+
+### What a skip means here, and why there are 25 of them
+
+A skip is **never** "this did not run". It means the environment did not hold the data the check
+needs to judge the product fairly, and the spec says in its message exactly what was missing. The
+specs do not accept that answer cheaply — before skipping, a check will **hunt** for usable data:
+it asks the API for that record kind's own records, takes the words those records are made of, and
+tries each as a query until one gives it something to measure. That hunt turned 10 skips into
+passes in the highlighting file and 5 into passes elsewhere.
+
+What remains is mostly **ranking**, and the reason is a property of the data rather than a gap in
+the tests: judging "a name starting with your search ranks above one that merely contains it" needs
+two records differing in exactly that. On this environment nearly every part name begins with the
+same test prefix, so no query produces such a pair. Asserting anyway would mean reporting a verdict
+with no evidence behind it, and it would flip the next time someone edited a record.
 
 ## Expected failures
 

@@ -127,3 +127,51 @@ export async function broadTerm(page: Page, extra: string[] = []): Promise<{ ter
   console.log('no broad term spans two record kinds on this environment');
   return null;
 }
+
+/**
+ * Candidate SEARCH TERMS for one kind of record, taken from that kind's own records.
+ *
+ * 🔴 WHY SEEDING FROM THE SCREEN IS NOT ENOUGH. The ranking and highlighting checks hunt for a
+ * query that gives them something to judge, and they used to take their candidate words from the
+ * rows already on screen. But when the broad term matches NOTHING in that tab, the tab is empty -
+ * so there are no words to take, the hunt tries nothing at all, and the check skips reporting
+ * "none found on this environment" when the environment is full of suitable records. Measured on
+ * production 1 Oct 2026: Parts and Vendors both skipped this way while holding 100 records each.
+ *
+ * So ask the API for that kind's records and take the words from THEM. Nothing is written.
+ */
+const ENTITY_SOURCES: Record<string, [string, string[]]> = {
+  'Parts':           ['/api/inventory/parts?limit=60',      ['name', 'description', 'part_number']],
+  'Vendors':         ['/api/vendors?limit=60',              ['name', 'company_name']],
+  'Assets':          ['/api/vehicles?limit=60',             ['vehicle_make', 'vehicle_model', 'unit']],
+  'Customers':       ['/api/customers?limit=60',            ['name']],
+  'Part sales':      ['/api/part-sales?limit=40',           ['number', 'customer_name']],
+  'Purchase orders': ['/api/inventory/orders?limit=40',     ['order_number', 'vendor_name']],
+  'Vendor invoices': ['/api/inventory/deliveries?limit=40', ['invoice_number', 'vendor_name']],
+  'Work orders':     ['/api/work-orders?limit=40',          ['number', 'customer_name']],
+};
+
+export async function entityTerms(page: Page, tab: string, max = 10): Promise<string[]> {
+  const src = ENTITY_SOURCES[tab];
+  if (!src) return [];
+  const [path, fields] = src;
+  let rows: any[] = [];
+  try {
+    const resp: any = await api(page, 'GET', path);
+    rows = coll(resp?.body);
+  } catch { return []; }
+  const words = new Set<string>();
+  for (const r of rows) {
+    for (const f of fields) {
+      for (const w of String(r?.[f] ?? '').split(/[^A-Za-z0-9]+/)) {
+        // long enough to be a real query, short enough to match more than one record
+        if (w.length >= 4 && w.length <= 14) words.add(w);
+      }
+    }
+  }
+  // the most common words first: a word several records share is the one likeliest to give a pair
+  const counted = new Map<string, number>();
+  for (const r of rows) for (const f of fields) for (const w of String(r?.[f] ?? '').split(/[^A-Za-z0-9]+/))
+    if (words.has(w)) counted.set(w, (counted.get(w) ?? 0) + 1);
+  return [...counted.entries()].sort((a, b) => b[1] - a[1]).map(([w]) => w).slice(0, max);
+}

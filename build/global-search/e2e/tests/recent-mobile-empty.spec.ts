@@ -34,7 +34,10 @@ test.afterAll(async () => { await s?.browser.close(); });
  */
 test.beforeEach(async () => {
   if (!/\/customers\b/.test(s.page.url())) {
-    await s.page.goto(`${process.env.GS_APP || ''}/customers`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+    // 🔴 ALWAYS GIVE THIS AN EXPLICIT TIMEOUT. Without one the navigation inherits a long default,
+    // and when it stalls the BEFORE-EACH times out instead of the test - so the report blames a
+    // tablet check that never ran. It happened to C55674 at 120s.
+    await s.page.goto(`${process.env.GS_APP || ''}/customers`, { waitUntil: 'domcontentloaded', timeout: 25_000 }).catch(() => {});
     await s.page.waitForTimeout(4_000);
   }
 });
@@ -87,7 +90,10 @@ async function seedRecent(): Promise<boolean> {
   await s.page.waitForTimeout(4_000);
   // come back to a page the panel is known to work from; recent activity is global, so this
   // changes nothing about what is being measured
-  await s.page.goto(`${process.env.GS_APP || ''}/customers`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+  // 🔴 ALWAYS GIVE THIS AN EXPLICIT TIMEOUT. Without one the navigation inherits a long default,
+    // and when it stalls the BEFORE-EACH times out instead of the test - so the report blames a
+    // tablet check that never ran. It happened to C55674 at 120s.
+    await s.page.goto(`${process.env.GS_APP || ''}/customers`, { waitUntil: 'domcontentloaded', timeout: 25_000 }).catch(() => {});
   await s.page.waitForTimeout(4_000);
   return true;
 }

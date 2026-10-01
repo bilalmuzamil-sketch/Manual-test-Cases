@@ -4970,3 +4970,39 @@ which also survives the process being killed. **And run long suites PER FILE**: 
 directory is ~160 checks across 14 files and cannot finish inside one background window.
 **Also:** never start a second production run while one is going - a fresh login expires the other
 session, and both then report a broken environment.
+
+### L0270 — a data hunt seeded from the SCREEN finds nothing when the screen is empty (2026-10-01)
+The ranking and highlighting checks look for a query that gives them something to judge, and took
+their candidate words from the rows already displayed. When the broad term matched nothing in that
+tab the tab was EMPTY, so there were no words to take, the hunt tried nothing, and the check
+skipped reporting "none found on this environment" - about tabs holding a hundred records each.
+**Fix:** `entityTerms()` asks the API for that kind's own records and takes the words from them,
+most common first (a word several records share is likeliest to give a comparable pair). Nothing is
+written. Highlighting checks went from 11 passed / 10 skipped to 15 passed / 5 skipped.
+**Reusable rule:** when a search for test data comes back empty, ask whether the search itself had
+anything to look at. An empty hunt is not evidence of an empty environment.
+
+### L0271 — "a prefix match" means the NAME begins with the query, not that any word does (2026-10-01)
+I defined a prefix match as the query appearing at any word boundary. Almost every real match falls
+on a word boundary, so "contains it but does not start with it" became nearly impossible to find,
+and the fair-pair hunt declared no pair existed anywhere. The definition was wrong, not the data:
+the requirement distinguishes a name that STARTS with what you typed from one that merely has it
+somewhere inside. Compare against the NAME too - the row also carries a record number, a customer
+and a status, none of which the person typed.
+**Reusable rule:** when a check can never find the case it is looking for, suspect the DEFINITION
+before the environment. A predicate that is almost always true cannot separate anything.
+
+### L0272 — count only the marks inside the element you are measuring (2026-10-01)
+`C146233` reported "the row shows only the typed text" about a row reading
+`ZZAUTOTEST Fibridge Wheel Seal`. The check summed every `<mark>` in the ROW and compared the total
+against ONE element's text - a row highlighted in three fields totals more characters than any
+single field holds, so the comparison was between two different things.
+**Reusable rule:** when comparing a part to a whole, make sure the part is drawn from that whole.
+
+### L0273 — never assume the shape of an API response inside `beforeAll` (2026-10-01)
+Reading the account's permissions as an array threw `map is not a function` **in `beforeAll`, which
+failed every test in the file** - including the twelve that never look at permissions. A whole
+spec file reported red because of one optimistic line.
+**Two rules:** walk an unknown response defensively and collect what you find, and keep anything
+that can throw OUT of `beforeAll` unless every test genuinely depends on it. A setup hook is the
+worst place to be wrong: it turns one bad assumption into a file-wide failure that hides real results.
