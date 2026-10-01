@@ -610,6 +610,14 @@ Compact form — **the rule named in brackets is the authority; read it before r
   HOLD** (devtools, DOM/network, PDF/CSV reading, seeded data, viewports are all automatable); only a
   genuinely unobtainable thing does. **NOT-BUILT cases are excluded from any ready-to-automate figure.**
   Arithmetic gate: READY + EXPECT-FAIL = total − HOLD, read back from the live cases. [61, 60]
+  - **🔴 AMENDMENT (QA lead, 2026-10-01): where a case carries an AUTHOR NOTE, the note is the
+    LAST block and the AUTOMATION marker sits immediately above it.** The author note ("Note from the
+    author (what the spec says about this): …", preceded by an em-dash separator) is the one thing
+    allowed to follow the marker. The marker stays the single machine-findable literal (unique, exactly
+    one per case) that the arithmetic counter greps for — the counter is position-independent, so this
+    does not disturb it. The render-repair validator (`build/invoice-design-selection/hs_repair_one.mjs`)
+    was updated to treat the marker as "last" when only the author-note block follows it. Cases with no
+    author note keep the marker strictly last, exactly as above.
 - **An `EXPECT FAIL` case carries the SYMPTOM and ALL THREE OUTCOMES**, before the provenance line:
   what you should see today; **(1)** exactly that ⇒ mark FAILED, raise nothing new; **(2)** fails
   DIFFERENTLY ⇒ a NEW problem, report it; **(3)** PASSES ⇒ the fix shipped, tell the QA lead. Where the

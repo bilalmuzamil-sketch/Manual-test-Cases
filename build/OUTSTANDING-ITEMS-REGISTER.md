@@ -3004,9 +3004,11 @@ Price/Category, Part Lifecycle). Outstanding across the batch:
 
 ---
 
-## 2026-10-01 — four decisions I need, from the gap-fill work (plain language)
+## 2026-10-01 — gap-fill decisions (plain language) — MOSTLY RESOLVED
 
 These are written to be answered on one read. Ticket codes are references at the end of each item only.
+**The QA lead answered items 1, 3, 4 and 5 on 2026-10-01 — each now carries a ✅ YOUR DECISION line and
+is done. Only item 2 is still a soft confirm (I'm proceeding on the sensible default).**
 
 ### 1. Maintenance Reminders: the rules I quoted come from a page the authors marked "not final yet"
 I wrote new test cases for the Maintenance Reminders feature — entering a meter reading, the
@@ -3019,6 +3021,8 @@ correct for today, but if that page is rewritten the quoted wording could change
 rewritten? **If you say nothing:** the cases stay as they are and may quote wording that later shifts.
 (Reference: Confluence page 897679389 "Chunk 2 MR"; stories SV-10567, SV-10572, SV-10573, SV-10574,
 SV-10577.)
+**✅ YOUR DECISION (2026-10-01): "Flag and re-check later."** The cases stay as they are now; I re-check
+them against the Chunk 2 page once it is finalised and update any wording that moved. No action for you.
 
 ### 2. Digital Inspections: two rules a human tester cannot fully check by hand
 Two of the new Digital Inspections rules can't be proven just by a person clicking in the app:
@@ -3037,6 +3041,13 @@ QuickBooks. It sits next to Part Sales, but it is really a QuickBooks settings f
 as outside the Part Sales work you gave me and wrote no cases for it.
 **What I need:** do you want it in our scope (I'll write cases) or left out? **If you say nothing:** it
 stays out and is untested by us. (Reference: story SV-10398.)
+**✅ YOUR DECISION (2026-10-01): "Add it to our scope, keep a separate folder, keep it runnable by a
+manual QA tester."** DONE: 4 cases authored (C195893–C195896) in folder "Founder Mode / QuickBooks
+per-fee income mapping (SV-10398)". Each is manual-QA runnable — the mapping step is in Settings >
+QuickBooks, and the "what posted" check is done by opening the connected QuickBooks test company and
+reading the invoice. Precondition for the tester: a ShopView org connected to a QuickBooks Online test
+company. Flagged provenance: SV-10398 is a client feature request with no PRD/acceptance criteria yet,
+so these are derived from the request and should be re-checked when a spec is written.
 
 ### 4. Two things aren't built yet — now written up in clearly-labelled "not in this release" folders
 Two behaviours are deliberately NOT in the current release. On your 2026-10-01 instruction I have now
@@ -3052,6 +3063,10 @@ today's behaviour (those parts are not listed); update it only when (b) ships.
 **What I need:** nothing now — just tell me when either ships so I can move these cases into the live
 suite and adjust C154744. **If you say nothing:** the cases sit in their deferred folders, clearly
 marked as not-yet-shipping. (Reference: SV-10575 auto-email; SV-10403 fixed rules without a category.)
+**✅ YOUR DECISION (2026-10-01): "Add them in the related separate folder and mention 'Not for this
+release'."** DONE and confirmed: both sets are in their own folders whose names carry the author's
+release words, and every case opens with the author's release statement. They stay parked there until
+the features ship.
 
 ### 5. A small format choice I made so the tester note and the automation marker don't clash
 You asked for an author's note at the bottom of each case. Our cases must also end with a one-line
@@ -3061,3 +3076,9 @@ of the readable text, with that one machine-marker line sitting just below it, s
 nothing was weakened. **What I need:** if you want the note to be the absolute last line instead (below
 the marker), say so and I'll change our standing format rule to match. **If you say nothing:** the note
 stays at the bottom of the readable content with the marker as the final technical line.
+**✅ YOUR DECISION (2026-10-01): "Make the note truly last."** DONE: all 44 gap cases reordered so the
+author note is the very last line and the AUTOMATION marker sits immediately above it. The standing
+format rule was amended (CLAUDE.md §5 and full Rule 61) to allow the trailing author note, and the
+render-repair tool was updated so it no longer flags a note after the marker. The marker is still the
+single machine literal the automation counter reads, and the counter is position-independent, so the
+count is unaffected.

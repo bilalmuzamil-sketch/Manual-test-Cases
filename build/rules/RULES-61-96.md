@@ -88,6 +88,15 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **PLACEMENT:** it sits **with the deviation note in Expected Results, BEFORE the Rule-54 provenance
     line**; the `AUTOMATION:` marker still goes **LAST**, with a **blank line before it and a line
     break after it**.
+    **⇒ AMENDMENT (QA lead, 2026-10-01) — THE AUTHOR NOTE, WHERE PRESENT, IS THE LAST BLOCK.** Some
+    cases now carry a tester-facing **"Note from the author (what the spec says about this)"** at the
+    very bottom, after a line-break separator. Where that note is present it is the **last thing in
+    Expected Results and the `AUTOMATION:` marker sits immediately ABOVE it** — the note is the one
+    thing allowed to follow the marker. The marker remains the **single machine-findable literal
+    (unique, exactly one per case)** the arithmetic counter greps for, and the counter is
+    position-independent, so this is safe. Cases with **no** author note keep the marker strictly last
+    exactly as above. The render-repair validator
+    (`build/invoice-design-selection/hs_repair_one.mjs`) was updated to accept the trailing note.
     **IT APPLIES EQUALLY TO A TICKET CLOSED AS ACCEPTED.** The qualifier already required — **"closed
     without a fix"** — sits **alongside** the symptom, so **nobody waits for a fix that is not
     coming**.

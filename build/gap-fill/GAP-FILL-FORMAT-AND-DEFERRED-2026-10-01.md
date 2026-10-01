@@ -68,3 +68,30 @@ discrete-list preconds with example values, build-glossary steps, runnable Expec
 - S19 is Phase P5 with **four open operational questions** (sender identity, mass-send feasibility,
   what queues the day's sends, global send time) — several S19 cases cannot be build-verified until
   those are answered and the feature is built.
+
+## Part 3 — follow-up round (QA lead answers, 2026-10-01 afternoon)
+
+**(1) Author note is now TRULY LAST.** On the QA lead's instruction the author note was moved to the
+very bottom of every gap case, with the `AUTOMATION:` marker immediately above it. All 44 cases
+(C195849–C195892) reordered. Standing rule amended: CLAUDE.md §5 and full Rule 61 now allow the
+trailing author-note block; the render-repair validator (`hs_repair_one.mjs`) updated to treat the
+marker as "last" when only the author note follows it. The marker stays the single machine literal the
+arithmetic counter greps for (counter is position-independent, so unaffected).
+
+**(3) QuickBooks per-fee mapping (SV-10398) added to scope.** 4 cases authored (C195893–C195896) in a
+new separate folder **section 25611** — "Founder Mode / QuickBooks per-fee income mapping (SV-10398)".
+Manual-QA runnable: the mapping step is in Settings > QuickBooks; the "what posted" check opens the
+connected QuickBooks test company and reads the invoice. Testing method: case 1 automatable (UI
+mapping), cases 2–4 manual-preferred (cross-system QBO verification). Provenance flag: SV-10398 is a
+client feature request (Double J Trailers) with no PRD/acceptance criteria yet — derived from the
+request, re-check when a spec exists.
+
+**(4) Deferred folders** confirmed kept as-is (separate, release-worded names, release statement at the
+top of each case).
+
+**(2) Digital Inspections two non-hand points** — left on the stated default (check what a tester can
+see; mark the exact-copy and upload-timing parts for automation/engineering), pending any different
+word from the QA lead.
+
+**Totals after this round:** 27 reformatted + 17 deferred + 4 QuickBooks = **48 gap cases**
+(C195849–C195896), all note-last, all render-repaired, all committed.

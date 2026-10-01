@@ -55,10 +55,10 @@ def reformat(cid):
     pre=re.sub(r'^<p><strong>&#9654; How to test this:.*?&mdash;</p>','',pre)
     exp=re.sub(r'<p>&mdash; &mdash; &mdash;</p><p><strong>Note from the author.*?</p>','',exp)
     newpre=top_banner(cid)+pre
-    # author note sits just ABOVE the AUTOMATION marker, which must stay the literal last line (CLAUDE.md §5)
+    # author note is the LAST block, after the AUTOMATION marker (QA lead 2026-10-01: note truly last).
+    # The marker stays the single machine literal the arithmetic counter greps for.
     note_block=f"<p>&mdash; &mdash; &mdash;</p><p><strong>Note from the author (what the spec says about this):</strong> &ldquo;{esc(note(cid))}&rdquo;</p>"
-    m=re.search(r'<p>AUTOMATION: HOLD - [^<]*</p>\s*$',exp)
-    newexp=(exp[:m.start()]+note_block+exp[m.start():]) if m else (exp+note_block)
+    newexp=exp+note_block
     if "--apply" in sys.argv:
         api(f"update_case/{cid}",{"custom_preconds":newpre,"custom_steps":live["custom_steps"],"custom_expected":newexp})
         print(f"[OK] C{cid} reformatted")

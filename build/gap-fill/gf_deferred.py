@@ -42,8 +42,10 @@ def add(section_id,title,release,release_cite,method,pre,steps,results,source,qu
         mtxt="Can be automated - the behaviour is deterministic UI / backend logic an automation harness can drive and check."
     else:
         mtxt="Manual testing preferred. Why: "+method[1]
-    banner=(f"<p><strong>&#9888; Release status - the author's words:</strong> &ldquo;{esc(release)}&rdquo; ({esc(release_cite)})</p>"
-            f"<p><strong>&#9654; How to test this:</strong> {esc(mtxt)}</p>"
+    rel=(f"<p><strong>&#9888; Release status - the author's words:</strong> &ldquo;{esc(release)}&rdquo; ({esc(release_cite)})</p>"
+         if release else "")
+    banner=(rel
+            +f"<p><strong>&#9654; How to test this:</strong> {esc(mtxt)}</p>"
             f"<p>&mdash; &mdash; &mdash;</p>")
     preconds=banner+ol(pre)
     exp=("<p><strong>Expected results</strong></p>"+ul(results)
@@ -51,10 +53,10 @@ def add(section_id,title,release,release_cite,method,pre,steps,results,source,qu
           "Source-verified 1 October 2026; not yet build-verified.</p>"
          +"<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
          +"<ul>"+"".join(f"<li><strong>{esc(a)}:</strong> &ldquo;{esc(q)}&rdquo;</li>" for a,q in quotes)+"</ul>"
-         # author note sits ABOVE the AUTOMATION marker, which must be the literal last line (CLAUDE.md §5)
+         # AUTOMATION marker, then the author note as the LAST block (QA lead 2026-10-01: note truly last)
+         +f"<p>AUTOMATION: HOLD - {esc(marker_reason)}</p>"
          +"<p>&mdash; &mdash; &mdash;</p>"
-         +f"<p><strong>Note from the author (what the spec says about this):</strong> &ldquo;{esc(author_note)}&rdquo;</p>"
-         +f"<p>AUTOMATION: HOLD - {esc(marker_reason)}</p>")
+         +f"<p><strong>Note from the author (what the spec says about this):</strong> &ldquo;{esc(author_note)}&rdquo;</p>")
     if DRY:
         print(f"[DRY] sec {section_id}  {title} ({len(title)})  method={method[0]}"); return
     r=api(f"add_case/{section_id}",{"title":title,"custom_preconds":preconds,"custom_steps":ol(steps),

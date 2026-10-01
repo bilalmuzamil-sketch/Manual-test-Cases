@@ -57,8 +57,18 @@ function problems(view) {
     if (/&(mdash|rsquo|amp|lt|gt|nbsp|rarr|#\d+);/.test(v.text)) p.push(`${f}: entity visible`);
   }
   const exp = view.custom_expected ? view.custom_expected.text.trim() : '';
-  if (!/AUTOMATION:/.test(exp)) p.push('AUTOMATION marker missing');
-  else if (!exp.split('\n').filter(Boolean).pop().startsWith('AUTOMATION:')) p.push('AUTOMATION not last');
+  // The AUTOMATION marker must be unique and effectively last. QA lead 2026-10-01: an optional
+  // trailing "Note from the author" block (with its em-dash separator) may follow it and still counts
+  // as last — the marker stays the single machine literal the arithmetic counter greps for.
+  const _al = exp.split('\n').filter(Boolean);
+  const _am = _al.filter(l => l.startsWith('AUTOMATION:'));
+  if (_am.length === 0) p.push('AUTOMATION marker missing');
+  else if (_am.length > 1) p.push('AUTOMATION marker not unique');
+  else {
+    const _after = _al.slice(_al.findIndex(l => l.startsWith('AUTOMATION:')) + 1);
+    const _ok = _after.every(l => /^[\s—–-]+$/.test(l) || /Note from the author/.test(l));
+    if (!_ok) p.push('AUTOMATION not last (trailing content is not the author note)');
+  }
   return p;
 }
 const titleBefore = live.title, atmBefore = live.custom_atmstatus;
