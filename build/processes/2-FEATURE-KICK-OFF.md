@@ -1,6 +1,6 @@
-# SET UP `<feature>` — collect the sources and access, and measure the environments
+# FEATURE KICK-OFF `<feature>` — collect the sources and access, and measure the environments
 
-> **Call it:** `SET UP Invoicing`
+> **Call it:** `FEATURE KICK-OFF for Invoicing`
 >
 > Run this first on any feature. It is cheap, it is mostly questions, and it stops the expensive
 > processes from starting without what they need.

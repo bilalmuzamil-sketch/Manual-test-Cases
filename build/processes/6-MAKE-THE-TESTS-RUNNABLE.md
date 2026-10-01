@@ -15,7 +15,7 @@
 |---|---|
 | **Which environment the tests will be run on** | A term proven on staging is not a term on production |
 | **A login for that environment** | The proving is done by querying it |
-| The suite (from `WRITE THE TESTS`) and its data (from `CREATE TEST DATA`) | |
+| The suite (from `WRITE THE TESTS`) and its data (from `Seed the Test Data`) | |
 
 ---
 

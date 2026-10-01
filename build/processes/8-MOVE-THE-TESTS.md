@@ -15,7 +15,7 @@
 | **Which environment the suite is moving to** | |
 | **A login for it** | Every check is a live query |
 | **Permission to write to TestRail** | The corrections are case edits (Rule 6) |
-| Confirmation the data is already seeded there | Otherwise run `CREATE TEST DATA` first — repointing to an empty environment proves nothing |
+| Confirmation the data is already seeded there | Otherwise run `Seed the Test Data` first — repointing to an empty environment proves nothing |
 
 ---
 

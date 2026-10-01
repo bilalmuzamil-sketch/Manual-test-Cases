@@ -17,13 +17,13 @@ quietly working around it.
 |---|---|---|---|
 | 1 | Feature name + type: **NEW / V2-UPGRADE / REVIVAL** | routing | yes |
 | 2 | **Repository access**, the **V1 commit**, the **V2 branch** | V1 vs V2 Capability Check | yes, on a V2 |
-| 3 | Spec / PRD link | Read the specs | yes |
-| 4 | Epic key | Read the specs | yes |
-| 5 | Designs (Figma / technical design) | Read the specs | no — recorded as a gap |
-| 6 | Engineering tech plan | Read the specs | no — I will remind you (Rule 30) |
+| 3 | Spec / PRD link | Lock the Requirements | yes |
+| 4 | Epic key | Lock the Requirements | yes |
+| 5 | Designs (Figma / technical design) | Lock the Requirements | no — recorded as a gap |
+| 6 | Engineering tech plan | Lock the Requirements | no — I will remind you (Rule 30) |
 | 7 | PO's name | PO questions | yes, before questions go out |
-| 8 | Environment URLs + which to use | Set up, Create test data | yes |
-| 9 | **A dedicated login per environment** | Create test data, Make runnable | yes |
+| 8 | Environment URLs + which to use | Kick-Off, Seed the data | yes |
+| 9 | **A dedicated login per environment** | Seed the data, Make runnable | yes |
 | 10 | TestRail write permission + target section and run | Put in TestRail | yes, at that step |
 | 11 | Jira ticket permission | findings | per ticket, never a blanket |
 
@@ -32,17 +32,17 @@ quietly working around it.
 ## THE ORDER, AND WHY IT IS THIS ORDER
 
 ```
-  SET UP ──► V1 vs V2 ────► READ THE ──► WRITE THE ──► CREATE ──► MAKE THEM ──► PUT IN
-             CAPABILITY        SPECS         TESTS        TEST DATA   RUNNABLE      TESTRAIL
+  KICK-OFF ─► V1 vs V2 ────► LOCK THE ──► WRITE THE ──► SEED THE ──► MAKE THEM ──► PUT IN
+             CAPABILITY        REQS          TESTS        TEST DATA   RUNNABLE      TESTRAIL
 ```
 
-- **Set up first** because everything else needs access, and because which version each environment
+- **Feature Kick-Off first** because everything else needs access, and because which version each environment
   runs must be **measured** before anything is pointed at it.
 - **The V1 vs V2 Capability Check second, and before the cases are written** — on a V2 it decides which cases need to
   exist at all. Written after, it becomes an audit of a suite that already has the wrong shape.
-- **Read the specs before writing the tests**, because an expected result is a quotation and you cannot quote a
+- **Lock the requirements before writing the tests**, because an expected result is a quotation and you cannot quote a
   document you have not pinned.
-- **Create the data before proving the terms**, because you cannot prove a term against data that is not there.
+- **Seed the data before proving the terms**, because you cannot prove a term against data that is not there.
 - **Prove the terms before putting them in TestRail**, because publishing a suite full of "find the data first" hands a
   tester a pile of dead ends.
 

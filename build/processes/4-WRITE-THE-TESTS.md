@@ -40,7 +40,7 @@
    becomes a PO question — it does not get a guessed expectation.
 3. **Say what each case is worth.** A "why an end user cares" line keeps the suite honest and makes
    the ruthless-usefulness audit possible.
-4. **Mark the cases that need data** so `CREATE TEST DATA` knows what to build. Be specific: not "a customer",
+4. **Mark the cases that need data** so `Seed the Test Data` knows what to build. Be specific: not "a customer",
    but "a customer whose CITY carries the keyword and whose NAME does not".
 5. **Run the usefulness audit** before anyone sees it (Rule 28), and ship the suite's
    **deliberate-decisions register** (Rule 46) so the choices are visible.

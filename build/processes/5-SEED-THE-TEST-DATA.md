@@ -1,4 +1,4 @@
-# CREATE TEST DATA `<feature> <env>` — build the data the cases need, and keep a one-command rebuild
+# SEED THE TEST DATA `<feature> <env>` — build the data the cases need, and keep a one-command rebuild
 
 > **Call it:** `CREATE TEST DATA Invoicing STAGING` (or `QA`, or `LIVE`)
 >

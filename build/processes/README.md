@@ -12,10 +12,10 @@
 
 ```
 V1 vs V2 CAPABILITY CHECK on Invoicing
-SET UP Invoicing
-READ THE SPECS for Invoicing
+FEATURE KICK-OFF for Invoicing
+LOCK THE REQUIREMENTS for Invoicing
 WRITE THE TESTS for Invoicing
-CREATE TEST DATA for Invoicing on staging
+SEED THE TEST DATA for Invoicing on staging
 MAKE THE TESTS RUNNABLE for Invoicing on production
 PUT THE TESTS IN TESTRAIL for Invoicing
 MOVE THE TESTS for Invoicing to production
@@ -43,12 +43,12 @@ as **kept**, **changed on purpose**, or 🔴 **lost**.
 
 **In short: it proves the new version is old + new, never old minus new.**
 
-### SET UP
+### FEATURE KICK-OFF
 Collects the links, logins and access, and checks which version is actually running on each
 environment — because the name of an environment tells you nothing. Production was running the old
 search one week and the new one the next.
 
-### READ THE SPECS
+### LOCK THE REQUIREMENTS
 Confirms we have the **latest** version of every document, and pulls out the exact sentences the
 tests will quote. We quote the spec word for word and never reword it — the moment we paraphrase, the
 test starts drifting towards describing whatever the app currently does, and then it can never fail.
@@ -57,7 +57,7 @@ test starts drifting towards describing whatever the app currently does, and the
 Turns those sentences into tests a manual tester can follow. Plain English, numbered steps, and
 every test says where its expectation came from.
 
-### CREATE TEST DATA
+### SEED THE TEST DATA
 Builds the records the tests need — customers, work orders, parts, whatever — and keeps a
 **one-command rebuild**, because redeployments wipe them. It also keeps a **status board** so you can
 check what survived before deciding to rebuild anything.
@@ -93,10 +93,10 @@ missing I'll say exactly what and what it costs.
 |---|---|---|
 | The feature name, and whether it's new or a version 2 | all | A version 2 needs the V1 vs V2 Capability Check |
 | **Access to the code**, and which version to compare against | V1 vs V2 Capability Check | There's no other way to know what the old version did |
-| The **spec / PRD link** and the **epic** | Read the specs, Write the tests | The tests quote these word for word |
+| The **spec / PRD link** and the **epic** | Lock the Requirements, Write the tests | The tests quote these word for word |
 | Designs, and the technical plan | Read the specs | They're meant to agree with the spec; where they don't, that's a finding |
 | Who the **PO** is | questions | Questions go to a named person |
-| **Which environment**, and a **login for it** | Create data, Make runnable, Move | |
+| **Which environment**, and a **login for it** | Seed the data, Make runnable, Move | |
 | **Permission to write to TestRail** | Put in TestRail | I never write there without you saying so |
 | **Permission for each Jira ticket** | any finding | Asked per ticket, never once for a batch |
 
@@ -130,10 +130,10 @@ there, or missing one that is.
 | Job | File | Old name |
 |---|---|---|
 | V1 vs V2 Capability Check | [1-V1-VS-V2-CAPABILITY-CHECK.md](1-V1-VS-V2-CAPABILITY-CHECK.md) | `PARITY` |
-| Set up | [2-SET-UP.md](2-SET-UP.md) | `ONBOARD` |
-| Read the specs | [3-READ-THE-SPECS.md](3-READ-THE-SPECS.md) | `INGEST` |
+| Feature Kick-Off | [2-FEATURE-KICK-OFF.md](2-FEATURE-KICK-OFF.md) | `ONBOARD` |
+| Lock the Requirements | [3-LOCK-THE-REQUIREMENTS.md](3-LOCK-THE-REQUIREMENTS.md) | `INGEST` |
 | Write the tests | [4-WRITE-THE-TESTS.md](4-WRITE-THE-TESTS.md) | `BUILD CASES` |
-| Create test data | [5-CREATE-TEST-DATA.md](5-CREATE-TEST-DATA.md) | `SEED` / `RESEED` |
+| Seed the Test Data | [5-SEED-THE-TEST-DATA.md](5-SEED-THE-TEST-DATA.md) | `SEED` / `RESEED` |
 | Make the tests runnable | [6-MAKE-THE-TESTS-RUNNABLE.md](6-MAKE-THE-TESTS-RUNNABLE.md) | `PROVE TERMS` |
 | Put the tests in TestRail | [7-PUT-THE-TESTS-IN-TESTRAIL.md](7-PUT-THE-TESTS-IN-TESTRAIL.md) | `PUBLISH` |
 | Move the tests | [8-MOVE-THE-TESTS.md](8-MOVE-THE-TESTS.md) | `REPOINT` |
