@@ -325,7 +325,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   *"Give me the Test run of the test case link ALWAYS anytime you have to share with me the test case
   number."*).** Never a bare `FLT-…`/`SCH-…` and never a bare `C#####`: give `C#####`, its
   `/cases/view/<id>` link, and the RUN it ran in — run number **and** `/runs/view/<run>`. Files AND
-  chat. Run ids, the `/tests/view/` form and why he re-asked: `build/rules/RULES-01-20.md` rule 8.
+  chat. **🛑 AND A TICKET NEVER TRAVELS WITHOUT ITS LINK EITHER — EVERY TIME, UNASKED (2026-10-01: *"Gve me the ticket links and ALWAYS give the ticket links."*): every Jira key carries its full clickable `https://shopview.atlassian.net/browse/<KEY>` link AND its status, read LIVE (100), wherever it is named — chat, report, status line, run comment, handoff. Never a bare `SV-10740`; a list of tickets is a list of LINKS, and a key with no status costs him the same as no link at all.** Run ids, the `/tests/view/` form and why he re-asked: `build/rules/RULES-01-20.md` rule 8.
 - **🛑 EVERY REPORT IS FIVE TABLES, NAMES ITS C-IDS, AND ENDS WITH "OUTSTANDING — what I need from you"
   (98 · 99 · 36; QA lead 2026-09-01).** The five tables: **DONE · LEFT · BLOCKED · HOW TO UNBLOCK ·
   HANDOFF-READY.** **Prose is not a report.** **Table 2 must say how to finish each item concretely enough

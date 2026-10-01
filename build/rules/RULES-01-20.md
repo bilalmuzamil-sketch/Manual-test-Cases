@@ -681,3 +681,27 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     picks it up, and MUST read here before acting. Ties to Standing Rules
     6/8/9/10/11/12/13/14/15 and build/SPEC-RECHECK-PROCESS.md +
     build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md.
+
+
+### RULE 8 — AMENDMENT, 2026-10-01: **A TICKET NEVER TRAVELS WITHOUT ITS LINK EITHER — EVERY TIME, UNASKED**
+
+**QA lead, 2026-10-01, verbatim:** *"Gve me the ticket links and ALWAYS give the ticket links."*
+
+Rule 8 already said a case number never travels alone. **The same now applies to every Jira key.**
+Whenever a ticket is named — in chat, in a report, in a status line, in a run comment, in a handoff —
+it carries **its full clickable link**, every single time, without being asked:
+
+> `SV-10740 — https://shopview.atlassian.net/browse/SV-10740`
+
+**Never a bare `SV-10740`.** He should never have to copy a key into a search box, and never have to
+ask for the link after the fact. A list of tickets is a list of **links**.
+
+**And the status comes with it.** A key with no status makes him open the ticket to learn whether it
+is still open — which is the same cost as not giving the link. Read the status **live** (Rule 100)
+and put it beside the link; never repeat a status from earlier in the conversation.
+
+This sits with Rule 103: the link and status carry the meaning, so they belong in what he reads, not
+after the `---REFERENCE---` line. The **key** is a reference; the **link and its status** are the
+answer to "where is it and is it still open?"
+
+**Learning:** L0254.

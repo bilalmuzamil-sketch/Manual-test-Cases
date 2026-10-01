@@ -4784,3 +4784,28 @@ every time. The same mistake would have been caught at the first asking by one `
 
 **Related:** `pkill -f <pattern>` self-matches its own command line and exits 144, twice in this
 session. Kill by PID off `ps -eo pid,cmd | grep -E "node .*<script>" | grep -v grep`.
+
+---
+
+## L0254
+
+**2026-10-01 · He had to ask for the ticket links, after I had just filed two tickets for him.**
+
+*"Gve me the ticket links and ALWAYS give the ticket links."*
+
+I had named SV-10738 and SV-10740 repeatedly through the session and given the full link only at the
+moment each was created. Every status line after that carried bare keys. So the one thing he
+actually wanted — to open the ticket and look at it — took a copy, a paste and a search, every time.
+
+**Rule 8 already covered this for test cases** (*a case number never travels alone*). I applied it to
+C-ids and not to Jira keys, because the rule's text names cases. **The principle was never about
+cases; it is about never handing him an identifier he has to resolve himself.**
+
+**Now recorded for tickets too**, with the part that is easy to miss: **the status travels with the
+link.** A key and a link with no status still makes him open the ticket to learn whether it is open —
+the same cost as giving him nothing. Read it live, never from earlier in the conversation.
+
+**The wider lesson:** when a rule exists for one kind of identifier and a second kind appears, ask
+whether the rule's *reason* covers it, not whether its *wording* does. I did the same thing with Rule
+107 the same day — its wording named permissions and roles, so a missing data row slipped past it.
+Two instances in one day of a rule failing because I read its letter instead of its purpose.
