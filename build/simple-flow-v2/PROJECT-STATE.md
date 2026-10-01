@@ -112,3 +112,47 @@ Part rows/menus + reordering (19-20) · Permissions (21). Story 10 (bulk delete)
   completion-wizard step pills (`Tech stories`/`Pick parts`/`Missing Details`). All in
   `build/OBSERVED-UI-LABELS-sv8683.md`. Learnings L0016–L0018 in `build/LEARNINGS-LOG.md`.
 - Routes confirmed on the build: WO Lines (Complete/New Line/Start/Pick/part context menu/badges), Settings→Work Orders tab (8 completion toggles), clock-out modal (Clock out / Clock out and complete, no line-completed tick box), bulk action bar (N selected / Complete Line / Pick(n) / More / close), Receive modal ("Receive parts": Assign vendor/Vendor invoice number/Invoice date/Delivery note/Select all/Receive later/Receive parts(n)), completion wizard (step pills, step-own action button, no Continue), WO header more_vert (Audit Log/Timesheets/Create invoice/Delete). Observed labels: `build/OBSERVED-UI-LABELS-sv8683.md`. Evidence + per-case audit: `build/simple-flow-v2/build-verify-2026-09-09/`.
+
+---
+
+## 🟢 STATUS — 2026-10-01 · STAGING BUILD-VERIFICATION COMPLETE (supersedes the 2026-08-21 source-verified-only status above)
+
+**The feature shipped; verification moved off the retired sv8683 QA branch.** Two environments were used in
+sequence: the suite was first build-verified on **production** (2026-09-24, build v26.39.0-07c719b, dummy org
+"Trucks Hill 2"), then a rewrite pass made the cases natural/non-robotic, and the suite was **re-verified on
+STAGING** (2026-09-28 → 10-01, build **v26.39.1-02c6b6c**, org "Staging Heavy Duty - 9919").
+
+### Scope correction (LIVE, Rule 100)
+- A **rewrite session consolidated the suite 64 → 55** cases (deleted 9 redundant: C44551, C44564, C44574,
+  C44579, C44586, C44588, C44598, C53487, C53489). **Current scope = 55 cases** (`created_by=3`), sections
+  **6666–6677** under group **6665**. 15 foreign cases (Vladimir, user 1) in those sections — hands-off (Rule 38).
+
+### What was done on staging (all verified live)
+- All 55 **runnable** (preconds/steps followable from the UI), **render fr-view** (served scan 55/55), **stamped**
+  "Last checked against build v26.39.1-02c6b6c on 9/28/2026."
+- **Org fix:** the production leftover `"Trucks Hill 2"` → `"your shop"` in all cases (was wrong on staging).
+- **Glossary aligned to the build** (preconds/steps AND the Expected's label tokens; Expected SUBSTANCE stays the
+  spec's words, Rule 114): role permissions read as the "Work orders"/"Work order lines"/"Vendor and order
+  management" groups' "Create & Edit"; settings toggles in the build's Title Case; "Receive later", "Order parts",
+  "Pick parts", "Tech view", "In stock".
+- **Markers:** rewrite session left all as placeholder HOLD; flipped **54 → READY**, **1 HOLD (C44549)**.
+- Observed labels: `build/simple-flow-v2/OBSERVED-UI-LABELS-staging.md`. Evidence: `build-verify-staging-2026-09-28/`.
+- **Run hand-off:** `build/simple-flow-v2/RUN-HANDOFF-SIMPLE-FLOW-V2-STAGING-2026-09-28.md` (no manual run exists;
+  run session creates one with QA-lead go-ahead). 7 automated cases (atm=3) flagged for Vlad: C44557, C44561,
+  C44575, C44583, C44587, C44604, C44605.
+
+### OPEN ITEMS (carried forward)
+1. **C44549 HOLD** — its Expected was substantively corrected 2026-09-28 (page shows all Work Orders settings, not
+   only four); staging matches the correction; **awaiting QA-lead confirmation** of the correction.
+2. **Nebojsa's comment** — the QA lead reported Nebojsa left a comment on a Simple Flow case "pointing out a
+   mistake". NOT located yet: it is **not in any of the 55 cases' TestRail change-history** (only Vladimir's Aug
+   automation edits show); TestRail per-case comments render only in the case UI and a 55-page UI sweep stalled.
+   **Waiting for the QA lead to name the case** (C-id / screenshot), then read + address it.
+3. Five state-dependent screens (bulk action bar, receive modal + part badges, completion wizard pills, reorder
+   "Move up", "Mark as reviewed") could not be raised via automation on staging — the run session confirms those
+   few labels live at execution (documented in the run hand-off).
+
+### Access notes (ephemeral — re-request per session)
+- Staging is cookie-gated behind Cloudflare: `sv_sso_session` + `PHPSESSID` + `cf_clearance` in
+  `/tmp/cln/cookies.json`; browser via `staging-boot2.mjs` (SV_KEY=admin), node fetch `NODE_USE_ENV_PROXY=1`,
+  Chrome-131 UA. TestRail API rate-limits rapid bursts (HTTP 400) — page reads in small paced batches.
