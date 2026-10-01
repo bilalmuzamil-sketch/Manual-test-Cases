@@ -4846,3 +4846,63 @@ production it was asking production about staging's data. That was the actual ca
 unjudged checks. `GS_ENTITY_CONFIG` now points the specs at terms harvested from whichever
 environment is under test — the fix that made every one of those checks runnable without creating
 anything at all.
+
+### L0256 — `typeQuery` ALREADY closes and reopens the panel, and does NOT wait for the search (2026-10-01)
+**Context:** four identifier checks in `findability-matching.spec.ts` failed on their FIRST assertion while a
+hand probe proved the product correct (`bj030275` → 4 rows all showing the number; `bj030276` → 0 rows).
+**Cause — two bugs stacked:** my `rows()` helper did `closePanel` + `openPanel` before calling `typeQuery`,
+and `typeQuery` does that itself. The second open re-entered the panel's Recent-searches state. On top of
+that `typeQuery` has **no wait after typing**, so the rows were read before the debounce and the request.
+**Fix:** type ONCE, then wait on a `settle()` that polls until the row count stops changing and no spinner
+is showing. A fixed sleep either wastes time or reads too early. Two of the four went green on this alone.
+**Reusable rule:** before wrapping a shared fixture helper, READ IT. A helper that already manages state
+will fight a caller that manages the same state, and the symptom is a product defect that does not exist.
+
+### L0257 — the app URL variable is `GS_APP`, not `APP` — a wrong name fails SILENTLY (2026-10-01)
+**Context:** two full production runs burned reporting a sign-in failure, with the page reading
+`bridge error: TypeError: fetch failed`. I read it as a dead bridge and restarted it twice.
+**Cause:** my runner exported `APP=https://app.shopview.com`. `fixtures/auth.ts` reads
+`process.env.GS_APP`, defaulting to `https://sv9160.qa.shopview.com` — a branch that no longer answers.
+So `signIn` skipped BOTH the production and the staging branch and took the generic cookie fallback,
+pointed at a dead host. The stack line sat in the fallback branch, which is what finally gave it away.
+**Fix:** `export GS_APP=…`, and the runner now comments why the name matters.
+**Reusable rule:** when a harness has a DEFAULT host, a mistyped env var does not error — it runs the
+whole suite against the wrong environment. Confirm the environment from the run's OWN output (the build
+marker and the signed-in account print on every boot) before believing any verdict it produces.
+
+### L0258 — a dead bridge reads as `bridge error: TypeError: fetch failed` IN THE PAGE (2026-10-01)
+**Context:** the same two runs. The failure is not an exception from Playwright; it is page CONTENT, so it
+looks like the app rendered an error and reads as a broken login or a dead environment.
+**Fix:** `runspec.sh` now gates — it runs `ensure_bridge.sh`, then polls the port until it answers, and
+REFUSES to start the run if it never does. A bare GET to the proxy answering **HTTP 400 is healthy**; only
+`000`/empty means down. Never spend a 4-minute run on an unverified bridge.
+
+### L0259 — a FROZEN anchor file cannot survive a shared environment; harvest anchors LIVE (2026-10-01)
+**Context:** three identifier checks went red on production. The anchors were read from
+`prod-2026-10-01/cfg/anchors.json`, harvested that same morning: part number `bj030275`, part sale
+`P1-71`, purchase order `S-818`. A hand probe found all three; an hour later the SAME probe found
+none of them, while the vehicle VIN in the same file still worked. The records had moved underneath
+the suite - it is a shared environment that other people use.
+**Wrong fixes considered and rejected:** (a) re-harvest the file - fixes today, same trap tomorrow;
+(b) seed my own records - also fixes only today, and leaves the next person the same surprise.
+**Fix:** `e2e/fixtures/anchors.ts` asks the environment AT RUN TIME for a record of each kind, then
+**confirms search can actually find it** before any assertion is anchored on it. A candidate the
+index has not picked up is SKIPPED with its reason, never asserted on - otherwise an indexing lag
+gets reported as a matching defect. Side benefit: the same spec now runs on staging, a QA branch or
+production with no configuration, because it reads whatever that environment holds.
+**Reusable rule:** any value a spec compares against must be read from the environment under test in
+the same run. A literal committed yesterday is a fact about yesterday.
+
+### L0260 — the identifier field is NOT named the same on every endpoint (2026-10-01)
+Purchase orders carry **`order_number`** (also `raw_number`), vendor invoices **`invoice_number`**,
+parts **`part_number`**, part sales **`number`**, vehicles **`vin`**. Guessing a single `number`
+harvested nothing from 134 perfectly good records and silently skipped two checks. The harvester now
+tries a LIST of known names per kind and takes the first populated one. When a harvest comes back
+empty, print the record's own keys before concluding the environment has no such data.
+
+### L0261 — `api()` PREPENDS the API host; pass a PATH, and set `GS_API` for production (2026-10-01)
+Passing a full `https://api.shopview.com/...` URL produced `sv9160api.qa.shopview.comhttps...` and
+`TypeError: Failed to fetch`, which reads like a network or auth failure and is neither. `APIH`
+defaults to the **QA branch** host, so a production run needs `GS_API=api.shopview.com` exported
+alongside `GS_APP` - the same class of mistake as L0257, and the same symptom: it does not error,
+it quietly talks to the wrong environment.

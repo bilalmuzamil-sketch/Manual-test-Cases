@@ -1,6 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
-import { openPanel, closePanel, typeQuery, SEL } from '../fixtures/search.js';
+import { openPanel, closePanel, typeQuery, SEL, typeAndWait } from '../fixtures/search.js';
 import fs from 'node:fs';
 
 /**
@@ -20,9 +20,9 @@ let s: Session;
 test.beforeAll(async () => { s = await signIn('/customers'); console.log('build under test:', await buildMarker(s.page)); });
 test.afterAll(async () => { await s?.browser.close(); });
 
+
 const openTabbed = async (q: string, tab?: string) => {
-  await closePanel(s.page); await openPanel(s.page);
-  await typeQuery(s.page, q);
+  await typeAndWait(s.page, q);
   if (tab) {
     const ok = await s.page.evaluate(l => {
       const t = [...document.querySelectorAll('.search-tabs__tab')]
@@ -42,8 +42,7 @@ const SCOPED: [string, string, string][] = [
 ];
 for (const [cid, tab] of SCOPED) {
   test(`${cid} — the ${tab} tab shows only ${tab.toLowerCase()}`, async () => {
-    await closePanel(s.page); await openPanel(s.page);
-    await typeQuery(s.page, 'a');
+    await typeAndWait(s.page, 'a');
     const count = await s.page.evaluate(l => {
       const t = [...document.querySelectorAll('.search-tabs__tab')]
         .find(e => e.textContent!.replace(/\s*\(\d+\)/, '').trim().toLowerCase() === l.toLowerCase());
@@ -64,8 +63,7 @@ const ORDER = ['work orders', 'customers', 'assets', 'parts', 'vendors',
                'part sales', 'purchase orders', 'vendor invoices'];
 for (const cid of ['C44827', 'C44830']) {
   test(`${cid} — groups appear in the order the requirement fixes`, async () => {
-    await closePanel(s.page); await openPanel(s.page);
-    await typeQuery(s.page, 'a');
+    await typeAndWait(s.page, 'a');
     const seen = await s.page.evaluate(() =>
       [...document.querySelectorAll('.search-group__title, .search-results__group-title')]
         .map(h => h.textContent!.replace(/\s*\(\d+\)/, '').trim().toLowerCase()));
@@ -124,8 +122,7 @@ test('C146275 — a purchase order row carries everything the requirement names'
 
 /* ───────────────────────────── THE EMPTY STATES (§5.2) ───────────────────────────── */
 test('C44855 — the first-time state shows one helper line and nothing else', async () => {
-  await closePanel(s.page); await openPanel(s.page);
-  await s.page.fill(SEL.input, ''); await s.page.waitForTimeout(1_200);
+    await s.page.fill(SEL.input, ''); await s.page.waitForTimeout(1_200);
   const text = (await s.page.locator(SEL.modal).innerText()).replace(/\s+/g, ' ');
   expect(await s.page.locator('.search-row').count(), 'rows are showing before anything is typed').toBe(0);
   // §5.2: "a single line of helper text ... Nothing else - no suggested actions."
@@ -134,8 +131,7 @@ test('C44855 — the first-time state shows one helper line and nothing else', a
 });
 
 test('C44856 — neither the first-time nor the no-results state offers quick-create', async () => {
-  await closePanel(s.page); await openPanel(s.page);
-  await typeQuery(s.page, 'zzqqxx' + Date.now());
+  await typeAndWait(s.page, 'zzqqxx' + Date.now());
   const text = (await s.page.locator(SEL.modal).innerText()).replace(/\s+/g, ' ');
   expect(text, 'the no-results state offers a quick-create button')
     .not.toMatch(/New work order|New customer|Create|Add new/i);

@@ -44,6 +44,41 @@ export async function typeQuery(page: Page, q: string) {
   await input.type(q, { delay: 45 });
 }
 
+/**
+ * Type a query and wait until THAT query's results are the ones on screen.
+ *
+ * 🔴 THE TRAP THIS EXISTS FOR, AND IT PRODUCED SEVEN FALSE FAILURES ON 1 OCTOBER 2026.
+ * The panel keeps the PREVIOUS query's rows on screen until the new response lands. So a helper
+ * that types and then waits for the row count to stop changing returns immediately - the count is
+ * perfectly stable, because it is still the old query's. The spec then measures the wrong search:
+ * a nonsense query "read" eight close-match rows, and a broad query "read" every tab count as zero.
+ * Waiting a fixed number of seconds has the same flaw in the other direction.
+ *
+ * So wait on the NETWORK instead: typing is debounced and fires several requests, so this waits
+ * until no further search response has arrived for 1.5s, then lets Vue paint. If the product fires
+ * no request at all (a query below the minimum length), it gives up after 6s rather than hanging -
+ * that is a legitimate state, and the caller asserts on it.
+ */
+export async function typeAndWait(page: Page, q: string) {
+  let lastAt = 0, seen = 0;
+  const onResp = (r: { url(): string }) => {
+    if (/search|global-search|autocomplete/i.test(r.url())) { lastAt = Date.now(); seen++; }
+  };
+  page.on('response', onResp);
+  try {
+    const startedAt = Date.now();
+    await typeQuery(page, q);
+    while (Date.now() - startedAt < 30_000) {
+      await page.waitForTimeout(250);
+      if (seen > 0 && Date.now() - lastAt > 1_500) break;      // the last debounced call has landed
+      if (seen === 0 && Date.now() - startedAt > 6_000) break;  // the product never searched
+    }
+    await page.waitForTimeout(700);                             // let the rows paint
+  } finally {
+    page.off('response', onResp);
+  }
+}
+
 export type Panel = {
   counts: Record<string, number | null>;
   groups: { head: string; rows: string[] }[];

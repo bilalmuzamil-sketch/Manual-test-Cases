@@ -1,6 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
-import { openPanel, closePanel, typeQuery, SEL } from '../fixtures/search.js';
+import { openPanel, closePanel, typeQuery, SEL, typeAndWait } from '../fixtures/search.js';
 
 /**
  * THE PANEL AND ITS KEYBOARD — opening, closing, arrows, the tab strip, the footer legend.
@@ -75,7 +75,7 @@ test('C44808 — clicking the dimmed page behind it closes it', async () => {
 
 test('C44809 — Down and Up move the highlight across result rows only', async () => {
   await fresh();
-  await typeQuery(s.page, 'a');
+  await typeAndWait(s.page, 'a');
   const rows = s.page.locator('.search-row');
   const n = await rows.count();
   expect(n, 'no rows came back, so there is nothing to move through').toBeGreaterThan(1);
@@ -92,7 +92,7 @@ test('C44809 — Down and Up move the highlight across result rows only', async 
 
 test('C44812 — Tab reaches the scope tab strip and the arrows cycle it', async () => {
   await fresh();
-  await typeQuery(s.page, 'a');
+  await typeAndWait(s.page, 'a');
   for (let i = 0; i < 6; i++) {
     await s.page.keyboard.press('Tab'); await s.page.waitForTimeout(250);
     const onStrip = await s.page.evaluate(() =>
@@ -122,7 +122,7 @@ test('C44813 — the footer legend stays visible in every state', async () => {
   // empty
   expect(await legend(), 'legend missing before typing').toMatch(/Navigate.*Select.*Close/i);
   // with results
-  await typeQuery(s.page, 'a');
+  await typeAndWait(s.page, 'a');
   expect(await legend(), 'legend missing once results are showing').toMatch(/Navigate.*Select.*Close/i);
   // cleared again
   await s.page.fill(SEL.input, ''); await s.page.waitForTimeout(1_200);
@@ -141,7 +141,7 @@ test('C137996 — the clear control appears only once something is typed', async
     [...document.querySelectorAll('.search-modal button')]
       .filter(b => !b.className.includes('search-tabs__tab') && !(b.textContent || '').trim()).length);
   const before = await clearInBox();
-  await typeQuery(s.page, 'ab');
+  await typeAndWait(s.page, 'ab');
   const after = await clearInBox();
   expect(after, `the clear control did not appear after typing (before=${before}, after=${after})`)
     .toBeGreaterThan(before);
@@ -149,7 +149,7 @@ test('C137996 — the clear control appears only once something is typed', async
 
 test('C44814 — the tab strip lists All and the eight entity tabs, in order', async () => {
   await fresh();
-  await typeQuery(s.page, 'a');
+  await typeAndWait(s.page, 'a');
   const tabs = await s.page.evaluate(() =>
     [...document.querySelectorAll('.search-tabs__tab')].map(e => e.textContent!.replace(/\s*\(\d+\)/, '').trim()));
   expect(tabs).toEqual(['All', 'Work orders', 'Customers', 'Assets', 'Parts', 'Vendors',
