@@ -37,3 +37,19 @@ Footer: "Tech: <name>" · "Advisor: <name>" · "Started: <datetime>" · "Inspect
 # asset record "Inspections" tab + history ("View History Logs", "Inspection results", runs) · customer-facing
 # report ("Require acknowledgement") · per-axle entry (Drum/Disc/Single/Dual, unit selector) · conditional
 # follow-up on a checkbox · phone filling · roles editor exact labels.
+
+## Build lines menu (ShopCoach findings → WO lines)  — Evidence: build-lines-flow.png
+Clicking "Build lines" opens a menu headed "BUILD THE LINES ON" with the target options:
+  - "A new work order" — subtitle "Seeded with this customer & unit"
+  - (when the inspection's own WO is still open/eligible, an "add to the open work order" / "This work order"
+    option also appears — this run's WO is Paid, so only "A new work order" showed.)
+# Alignment: cases say "create a new work order" / "add to the open work order" / "add lines to the open work
+#   order" — the build's menu is "BUILD THE LINES ON" → "A new work order". The build action button is "Build lines".
+
+## ShopCoach line-builder draft (after choosing a build target)  — Evidence: build-lines-draft.png
+Choosing "A new work order" creates a WO (seeded with the inspection's customer & unit) and opens the draft on
+its Lines tab: panel "SHOPCOACH LINE BUILDER" · "Drafting lines from N findings" + the inspection name & datetime ·
+columns "Title" / "Description" / "Labor" / "Parts" (checkbox per drafted line) · "Cancel" · footer
+"Nothing is added until you press Add Lines." · confirm button **"Add Lines"**. (Lines draft asynchronously — AI.)
+# Alignment: build confirm action is "Add Lines"; cases' "Lines added" / "3 lines added" are post-confirm states.
+# NOTE (Rule 107): this created a throwaway Estimate WO (S8181-17..) on the disposable branch — harmless.
