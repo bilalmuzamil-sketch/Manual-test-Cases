@@ -28,11 +28,22 @@
 | ❌ `/inspections` | — | DOES NOT EXIST on this build (empty 232-char page) — do not retry | inspections-route.txt |
 | ❌ `/inspection-templates` (bare) | — | the LIST is under Settings; the builder is `/inspection-templates/new` | templates-route.txt |
 
-## API ENDPOINTS (host sv8181api.qa.shopview.com, observed during boot)
-/api/auth/me/fe-permissions · /api/work-orders · /api/global-search/fetch · /api/notes ·
-/api/iam/view-profile/ · /api/technician-tasks/my-current-task · /api/users/me/preferences/work-orders-list ·
-/api/notifications/subscribe-token · /api/reporting/individual-punch-clock/today
-# (DVI-specific endpoints — inspections, templates — to be captured from the network tab as screens are driven.)
+## API ENDPOINTS (host sv8181api.qa.shopview.com)
+General: /api/auth/me/fe-permissions · /api/work-orders (list, ?limit=N) · /api/work-orders/<uuid> ·
+/api/global-search/fetch · /api/notes · /api/iam/view-profile/ · /api/technician-tasks/my-current-task.
+**DVI (confirmed):**
+- `GET /api/inspection-templates` → 200 `{data:{kpis, statusCounts, collection:[{id,name,status}...]}}`. Statuses
+  are "active"/"draft"/"archived" (NOT "published" — `?status=published` 400s "Unsupported status").
+- `GET /api/inspection-templates/<uuid>` → 200 `{inspectionTemplate:{...fields...}}` (full field definitions).
+- `GET /api/work-orders/<uuid>/inspections` → 200 `{inspections:[...]}` — **an inspection run attaches to a WO LINE**
+  (each run has `workOrderLineId`, `templateId`, `templateVersion`, `templateName`). Empty `[]` when none.
+- No `/api/inspections`, `/api/inspection-runs`, `/.../runs` (all 404) — runs are reached via the owning WO.
+# Current template ids on sv8181: LOF Inspection e1f79b42-d651-4c37-ac59-2844f00f6c4c · Air-Brake Inspection
+#   222b63ec-5ddc-4ddd-a122-ce1b34c59ec7 · Large template e4ba4f69-37b3-4b10-9604-fc6e58732c4f (3 active, 3 runs/30d).
+# Example RUN for observing results: WO **S2-16154** (3d78d797-ab9d-447e-a980-a4dbbd3f72bf) has a LOF Inspection
+#   run (99b3c4d4-e143-46ca-bdbf-3419e381fed7) on line e20aed8a-6c3a-4652-9653-5a57f3873e71.
+# ⚠️ The SPA code-splits: DVI feature label strings are in LAZY chunks, NOT in index.html's entry bundles —
+#   grepping the entry chunks misses them (only generic "N/A"/"Flag" hit). OBSERVE labels on the screen.
 
 ## BUILD GLOSSARY — Template builder (route /inspection-templates/new)  — Evidence: template-builder-new.txt, field-editor-checkbox.txt
 Header actions: "Preview" · "Save Draft" · "Publish" · "Unsaved changes" · back chevron "Admin · Inspection templates".
