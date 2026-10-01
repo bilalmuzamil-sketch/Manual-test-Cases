@@ -42,6 +42,35 @@ export async function signIn(route = '/work-orders', device?: string): Promise<S
   // when the DEV MODE button is clicked. build/testing-tools/staging-cookie-boot.mjs does that,
   // with the retries and the cookie scoping already proven, and is what every probe in the
   // 28-29 September run used. Reuse it rather than keeping a second copy that drifts (Rule 97).
+  // 🔴 PRODUCTION SIGNS IN DIFFERENTLY AGAIN, AND THAT IS ALSO ALREADY SOLVED. There is no SSO
+  // cookie on prod and quick-login 500s; the recorded route is POST /api/login, then hydrate the
+  // page from the LOGIN RESPONSE itself. build/testing-tools/prod-login-boot.mjs does exactly that
+  // and is proven (playbook section K). Reuse it rather than growing a third copy that drifts (97).
+  //
+  // 🛑 TWO TRAPS, BOTH PAID FOR ON 2026-10-01:
+  //   1. PROD_ENVF IS READ AT MODULE LOAD. Setting process.env AFTER the import is too late - the
+  //      module has already resolved its default. It must be in the environment before node starts,
+  //      which is why it is asserted here rather than assigned.
+  //   2. A FRESH LOGIN EXPIRES THE SAME USER'S PREVIOUS SESSION. Signing in as the wrong account
+  //      logged the QA lead out of production. Log in ONCE per run and reuse the one session.
+  if (/app\.shopview\.com/.test(APP)) {
+    if (!process.env.PROD_ENVF) {
+      throw new Error(
+        'PROD_ENVF is not set. prod-login-boot.mjs reads it at module load, so it must be exported ' +
+        'BEFORE node starts: PROD_ENVF=/tmp/shopview/prod-gs.env npx playwright test … ' +
+        'Without it the harness silently falls back to the default account - which on 2026-10-01 ' +
+        'signed in as the QA lead and expired his live production session.');
+    }
+    const mod: any = await import('../../../testing-tools/prod-login-boot.mjs');
+    const b = await mod.bootProdLogin('/customers', { settle: 12_000 });
+    b.page.setDefaultTimeout(60_000);
+    if (route && route !== '/customers') {
+      await b.page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+      await b.page.waitForTimeout(3_000);
+    }
+    return { browser: b.browser, ctx: b.ctx, page: b.page };
+  }
+
   if (/staging\./.test(APP)) {
     const mod: any = await import('../../../testing-tools/staging-cookie-boot.mjs');
     // Sign in on a route staging definitely has, THEN go where the test asked. Handing the
