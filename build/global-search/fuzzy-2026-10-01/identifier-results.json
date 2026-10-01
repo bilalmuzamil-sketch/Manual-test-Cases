@@ -1,0 +1,71 @@
+[
+ {
+  "tab": "Work orders",
+  "field": "WO number",
+  "identifier": "S2-34378",
+  "normalized": "S234378",
+  "typo": "S2-34379",
+  "exactRows": 0,
+  "normalizedCameBack": 0,
+  "typoCameBack": 0,
+  "verdict": "NO BASELINE - the exact identifier found nothing, so nothing is proved"
+ },
+ {
+  "tab": "Purchase orders",
+  "field": "PO number",
+  "identifier": "S3-6881",
+  "normalized": "S36881",
+  "typo": "S3-6882",
+  "exactRows": 1,
+  "normalizedCameBack": 1,
+  "typoCameBack": 0,
+  "verdict": "CORRECT PER SPEC - a damaged identifier does not match",
+  "sample": "S3-6881 Stillwater Diesel Repair Ordered $244.10 · May 5, 2025"
+ },
+ {
+  "tab": "Vendor invoices",
+  "field": "invoice number",
+  "identifier": "I3-721",
+  "normalized": "I3721",
+  "typo": "I3-722",
+  "exactRows": 1,
+  "normalizedCameBack": 1,
+  "typoCameBack": 0,
+  "verdict": "CORRECT PER SPEC - a damaged identifier does not match",
+  "sample": "055-550554 Stillwater Diesel Repair Unpaid $109.15 · Aug 27, 2026 · PO number: I"
+ },
+ {
+  "tab": "Assets",
+  "field": "VIN",
+  "identifier": "SVEWU82M5ETEJFWFA",
+  "normalized": "SVEWU82M5ETEJFWFA",
+  "typo": "SVEWU82M6ETEJFWFA",
+  "exactRows": 1,
+  "normalizedCameBack": 1,
+  "typoCameBack": 0,
+  "verdict": "CORRECT PER SPEC - a damaged identifier does not match",
+  "sample": "2020 Ford Transit Baltej's Mobile Truck Repair · VIN: SVEWU82M5ETEJFWFA"
+ },
+ {
+  "tab": "Parts",
+  "field": "part number",
+  "identifier": "KIT8000HD",
+  "normalized": "KIT8000HD",
+  "typo": "KIT8001HD",
+  "exactRows": 0,
+  "normalizedCameBack": 0,
+  "typoCameBack": 0,
+  "verdict": "NO BASELINE - the exact identifier found nothing, so nothing is proved"
+ },
+ {
+  "tab": "Part sales",
+  "field": "P-number",
+  "identifier": "P2-58",
+  "normalized": "P258",
+  "typo": "P2-59",
+  "exactRows": 0,
+  "normalizedCameBack": 0,
+  "typoCameBack": 0,
+  "verdict": "NO BASELINE - the exact identifier found nothing, so nothing is proved"
+ }
+]
