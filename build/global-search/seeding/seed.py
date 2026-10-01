@@ -111,6 +111,7 @@ def _save(c):
     open(COOKIES, 'w').write(json.dumps(c)); os.chmod(COOKIES, 0o600)
 
 CALLS = {'n': 0}
+_RELOGIN = {'busy': False, 'count': 0}   # see call(): recover once, never recurse
 if os.environ.get('SEED_COUNT_CALLS'):
     import atexit
     atexit.register(lambda: print(f"__API_CALLS__ {CALLS['n']}", file=sys.stderr))
@@ -144,7 +145,77 @@ def call(path, method='GET', body=None):
             c['PHPSESSID'] = m.group(1); _save(c)
     try: j = json.loads(raw or b'{}')
     except Exception: j = None
+    # 🔴 RECOVER FROM AN EXPIRED SESSION IN PLACE, ONCE. A long reseed is minutes of work; losing
+    # it because somebody else logged in halfway through is pure waste, and the resume flag only
+    # helps a human who is watching. `_relogging` stops this recursing: the retried call cannot
+    # itself trigger another re-login, so a genuinely bad credential fails fast instead of
+    # hammering the login endpoint.
+    if (status == 401 and path != '/api/login' and not _RELOGIN['busy']
+            and b'session_expired' in (raw or b'')):
+        _RELOGIN['busy'] = True
+        try:
+            if password_login():
+                _RELOGIN['count'] += 1
+                return call(path, method, body)
+        finally:
+            _RELOGIN['busy'] = False
     return {'status': status, 'json': j, 'raw': (raw or b'')[:250]}
+
+def password_login():
+    """Mint a fresh session from a username/password kept OUTSIDE the repo.
+
+    🔴 WHY THIS EXISTS. Production has no quick-login (it 500s) and no SSO cookie, and a login
+    anywhere expires that user's previous PHPSESSID - so while the QA lead was working in his
+    browser, a long reseed died with {"error":"session_expired"} three times, each time leaving
+    the data half-built. The instruction is explicit: if the session gets killed, log in again.
+
+    🔴 THE CREDENTIAL NEVER ENTERS THE REPOSITORY (Rule 82 - this repo is PUBLIC). It is read from
+    a file in /tmp, chmod 600, supplied per environment and gone when the container is. If the file
+    is absent this function simply does nothing and the caller reports the 401 as before - no
+    invented session, no silent half-authentication. Use a DEDICATED account, never a person's own:
+    logging in as them is what kills their browser.
+    """
+    path = os.environ.get('SEED_LOGIN', '/tmp/prod/login.json')
+    if not os.path.exists(path):
+        return False
+    try:
+        cred = json.load(open(path))
+        body = json.dumps({'username': cred['username'],
+                           'password': cred['password']}).encode()
+    except Exception as e:
+        print(f"  🔴 {path} unreadable ({e}) - cannot re-login")
+        return False
+    c = _c()
+    req = urllib.request.Request(f"https://{c['api']}/api/login", data=body,
+        headers={'Content-Type': 'application/json', 'Accept': 'application/json',
+                 'User-Agent': 'Mozilla/5.0', 'Origin': f"https://{c['host']}",
+                 'Referer': f"https://{c['host']}/"})
+    try:
+        r = urllib.request.urlopen(req, context=CTX, timeout=45)
+        status, hdrs = r.status, r.headers
+        r.read()
+    except urllib.error.HTTPError as e:
+        print(f"  🔴 re-login answered {e.code} - the credentials in {path} may be stale")
+        return False
+    except Exception as e:
+        print(f"  🔴 re-login transport error: {e}")
+        return False
+    sid = None
+    for sc in hdrs.get_all('Set-Cookie') or []:
+        m = re.search(r'PHPSESSID=([^;]+)', sc)
+        if m and m.group(1) not in ('deleted', ''):
+            sid = m.group(1)
+    if status != 200 or not sid:
+        print(f"  🔴 re-login returned {status} with no session cookie")
+        return False
+    c['PHPSESSID'] = sid
+    # the SSO cookie belongs to a different auth scheme; carrying a stale one alongside a fresh
+    # PHPSESSID is what made production answer 409 rather than a clean 401.
+    c['sv_sso_session'] = c.get('sv_sso_session') or ''
+    _save(c)
+    print(f"  ↻ session re-minted as {cred['username']}")
+    return True
+
 
 def ensure_session():
     """Self-unblock: mint a session and set the location (playbook §Q2, §Q3)."""

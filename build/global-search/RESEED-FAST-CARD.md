@@ -69,10 +69,19 @@ for this — it **measures** which search is deployed before choosing a verifier
 **There is no quick-login.** Production is `PHPSESSID` only, minted by `POST /api/login`; quick-login
 500s there. So the one thing I need is a **username and password**, not three cookies.
 
-**🔴 A fresh login kills the previous session — including yours.** One login per run. If you sign in
-to `app.shopview.com` while a reseed is running, every remaining step answers
-`{"error":"session_expired"}` and the run stops where it stood. It is resumable (`./reseed_everything.sh
-live <step>`), but the cheapest fix is to stay signed out for the ~20 minutes it takes.
+**🔴 A fresh login kills the previous session — so production uses a DEDICATED ACCOUNT.** Logging in
+as the QA lead killed the browser he was working in, three times, each time stopping a half-built
+reseed. The fix is an account nobody is sitting in:
+`bilal.muzamil+serviceadvisornoreports@shopview.com`. Its password lives in **`/tmp/prod/login.json`,
+`chmod 600`, never committed** (Rule 82 — this repo is public), and it is re-supplied per container.
+
+**With that file present the run now heals itself.** `seed.py` re-mints the session inside its own
+`call()` the moment a 401 says `session_expired`, and the reseed script re-mints and retries any
+step once — which covers `verify_ranking.py` and `status.py`, the two tools that carry their own
+request code. Both paths were proved by deliberately corrupting the session mid-run on
+2026-10-01. Without the credential file nothing is invented: the 401 is reported exactly as before.
+
+A full production run takes **~24 minutes** and needed **zero** re-logins once it had its own account.
 
 ---
 

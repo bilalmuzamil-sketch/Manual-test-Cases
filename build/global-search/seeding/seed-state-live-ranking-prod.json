@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-10-01T112110Z",
+ "when_utc": "2026-10-01T131907Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
@@ -56,7 +56,6 @@
   "phon_part_inv": "4318c779-fa47-46af-ad43-e780f7ff6cdb",
   "phon_customer": "5cdcb7ba-ffe0-40c1-9001-84869fe1b1c1",
   "phon2_part": "422e43be-f104-451b-b9a3-b6beee3d7aea",
-  "phon2_part_inv": "d2180bee-d2e1-4c0d-8ad9-cbf8aa170f9f",
   "phon2_customer": "dd20df8b-54ba-4b06-9d81-213771451ae7",
   "pin_rival": "89957b8d-d41f-4f4b-8790-9c2c36ac797a",
   "broad_01": "9c81a018-6c53-47a6-8bf7-b51621fe36c3",
@@ -77,6 +76,7 @@
   "broad_16": "3752f6c0-9438-4842-80b0-406491220f31",
   "broad_17": "87db574d-5c18-4e1c-836f-f74d85f00c75",
   "broad_18": "228f8010-3f8c-4f75-84c9-1e77fb3cba5e",
+  "broad_19": "13a05d29-e3d7-4910-97bb-589bd3002dea",
   "broad_20": "36082719-7233-423d-b806-7e86042b0f54",
   "broad_21": "e68b49a2-5d6f-4701-8e29-5dea526c9ad6",
   "broad_target": "e8cab8ed-4bb1-4c09-abc3-b75815eec09a",
@@ -92,8 +92,8 @@
   "broad_10_inv": "9f68b3a2-a4ff-47ca-83d5-cd5ea5485e4c",
   "broad_11_inv": "5cf9285d-4fe0-4ed2-9eca-5d6cb239dad7",
   "broad_12_inv": "fd86aed7-f93a-4e89-a211-2922f420b702",
+  "broad_13_inv": "2d990868-3255-480b-b751-55885aa6ff67",
   "broad_14_inv": "a2940804-a00e-44d6-bedd-03f33ba96b2e",
-  "broad_15_inv": "4a3d1de6-5623-4467-8378-4ffb82e542d8",
   "broad_16_inv": "7b711a64-4368-4e14-9f55-9d91adb0c511",
   "broad_17_inv": "9eb794f6-2f00-49a9-bf0d-b09b7591d170",
   "broad_18_inv": "967a6da4-afe9-4e32-9f28-0417f931e3c4",
@@ -997,13 +997,8 @@
   },
   {
    "key": "phon2_part_inv",
-   "state": "PRESENT",
-   "ids": [
-    "d2180bee-d2e1-4c0d-8ad9-cbf8aa170f9f"
-   ],
-   "fields_ok": [],
-   "gaps": [],
-   "not_compared": [],
+   "state": "UNVERIFIED",
+   "reason": "PROBE BROKEN - ?search= returned nothing even for a value read from this same endpoint a moment ago",
    "serves": [
     55728
    ]
@@ -1340,8 +1335,16 @@
   },
   {
    "key": "broad_19",
-   "state": "UNVERIFIED",
-   "reason": "PROBE BROKEN - ?search= returned nothing even for a value read from this same endpoint a moment ago",
+   "state": "PRESENT",
+   "ids": [
+    "13a05d29-e3d7-4910-97bb-589bd3002dea"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
@@ -1461,7 +1464,13 @@
   },
   {
    "key": "broad_06_inv",
-   "state": "CREATED_NOT_FOUND",
+   "state": "PRESENT",
+   "ids": [
+    "f7814c0b-f51e-432c-9beb-f0cfd3d6042a"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
@@ -1546,9 +1555,13 @@
   },
   {
    "key": "broad_13_inv",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"bins\":\"Missing required parameter\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "2d990868-3255-480b-b751-55885aa6ff67"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
@@ -1568,13 +1581,8 @@
   },
   {
    "key": "broad_15_inv",
-   "state": "PRESENT",
-   "ids": [
-    "4a3d1de6-5623-4467-8378-4ffb82e542d8"
-   ],
-   "fields_ok": [],
-   "gaps": [],
-   "not_compared": [],
+   "state": "UNVERIFIED",
+   "reason": "PROBE BROKEN - ?search= returned nothing even for a value read from this same endpoint a moment ago",
    "serves": [
     55730
    ]

@@ -245,7 +245,21 @@ step() { local label="$1"; shift
          if [ "$START_AT" != "0" ] && [ -n "$num" ] && [ "$num" -lt "$START_AT" ] 2>/dev/null; then
            echo "---- $label   ·  skipped (resuming from step $START_AT)"; return 0; fi
          local t0=$SECONDS; echo; echo "---- $label"
-         if ! "$@"; then echo; echo "🔴 STOPPED at: $label"; FAILED=1; return 1; fi
+         if ! "$@"; then
+           # 🔴 A KILLED SESSION MUST NOT END THE RUN. On production a login anywhere expires this
+           # user's previous one, so the QA lead opening the app mid-reseed used to stop it dead
+           # with {"error":"session_expired"} - three times, each leaving the data half-built.
+           # seed.py now recovers inside its own call(), but verify_ranking.py and status.py carry
+           # their own request code, so the recovery is done HERE too, once per step: re-mint the
+           # session and run the step again. A step that fails for any other reason simply fails
+           # twice and stops, which is the same outcome as before, one retry later.
+           if [ -f "${SEED_LOGIN:-/tmp/prod/login.json}" ]; then
+             echo "     ↻ step failed — re-minting the session and retrying ONCE"
+             python3 relogin.py || true
+             if "$@"; then echo "     ✓ done in $((SECONDS-t0))s (after one re-login)"; return 0; fi
+           fi
+           echo; echo "🔴 STOPPED at: $label"; FAILED=1; return 1
+         fi
          echo "     ✓ done in $((SECONDS-t0))s"; }
 
 # ── universe 1 · V1-REGRESSION (11 records, sections 6769 / 8056) ──────────────────────────────
