@@ -129,8 +129,14 @@ const ENTITIES: Entity[] = [
 ];
 
 // The held rows are data, not logic, so they are read from the file generated off the live cases.
-const CFG = JSON.parse(fs.readFileSync('../staging-run-2026-09-29/entity-config.json', 'utf8'));
-const FOUND = JSON.parse(fs.readFileSync('../staging-run-2026-09-29/held-terms-found.json', 'utf8'));
+// 🔴 THE TERMS ARE PER-ENVIRONMENT. These were harvested on staging, where the ZZ... records were
+// seeded. Production has none of them, so every one of these checks returns no rows there and the
+// spec's own guards correctly refuse to judge - 46 checks came back unjudgeable for exactly that
+// reason on 2026-10-01. Point GS_ENTITY_CONFIG at a config harvested from the environment under
+// test and the same checks become runnable anywhere, without seeding anything.
+const CFG_DIR = process.env.GS_ENTITY_CONFIG || '../staging-run-2026-09-29';
+const CFG = JSON.parse(fs.readFileSync(`${CFG_DIR}/entity-config.json`, 'utf8'));
+const FOUND = JSON.parse(fs.readFileSync(`${CFG_DIR}/held-terms-found.json`, 'utf8'));
 for (const e of ENTITIES) {
   const c = CFG[e.section];
   e.cases = Object.fromEntries(Object.entries(c.cases).map(([k, v]: [string, any]) => [k, { cid: v.cid, term: v.term }]));
