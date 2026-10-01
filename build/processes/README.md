@@ -1,97 +1,148 @@
-# THE FEATURE QA PROCESSES — call one by name, and it must not fail
+# THE TESTING PROCESSES — say the name, and it runs
 
-> **What this is.** Everything we did for Global Search, cut into **nine named processes** you can
-> call for any other feature. Each one says what it produces, **what to give me before it starts**,
-> the steps, the traps that cost us time, and how it proves it is done.
+> **Who this is for:** anyone. A PO, a manual QA, the QA lead. You do not need to know how any of it
+> works — you say the name of the thing you want and the feature it is for.
 >
-> **Why it exists.** Global Search took weeks and most of the cost was not the testing — it was
-> rediscovering the same twelve traps. None of them are specific to search. They will all happen
-> again on Scheduling, Invoicing, Inventory or anything else.
+> **What it is:** everything we did for Global Search, cut into nine named jobs that work for any
+> other feature — Scheduling, Invoicing, Inventory, anything.
 
 ---
 
-## How to call one
-
-Say the keyword and the feature. That is the whole interface.
+## Just say one of these
 
 ```
-PARITY Invoicing                     ← the most important one, start here on any V2
-ONBOARD Invoicing
-INGEST Invoicing
-BUILD CASES Invoicing
-SEED Invoicing STAGING               ← or QA / LIVE
-PROVE TERMS Invoicing LIVE
-PUBLISH Invoicing
-REPOINT Invoicing TO LIVE
-FEATURE QA Invoicing                 ← runs the whole pipeline in order
+CHECK NOTHING IS LOST for Invoicing
+SET UP Invoicing
+READ THE SPECS for Invoicing
+WRITE THE TESTS for Invoicing
+CREATE TEST DATA for Invoicing on staging
+MAKE THE TESTS RUNNABLE for Invoicing on production
+PUT THE TESTS IN TESTRAIL for Invoicing
+MOVE THE TESTS for Invoicing to production
+TEST THIS FEATURE: Invoicing          ← does all of it, in the right order
 ```
 
-**"You MUST not fail" is a design requirement, not a hope.** Every process therefore:
-
-1. **Gates before it starts.** It names exactly what it needs from you and stops there if something
-   is missing — it never begins and dies halfway. The gate is the first section of every file.
-2. **Is resumable.** Long work writes its state to a file and can restart at a step number, because
-   a branch redeploys and a session expires mid-run. It happened five times on Global Search.
-3. **Proves its own output.** "Created" is never "done". A record is done when the **feature's own
-   interface** returns it; a case is done when the term in it is proven on the target environment.
-4. **Separates a PRODUCT finding from a MY-WORK failure.** If the data is right and the build is
-   wrong, that is a result, not a reason to stop and redo the work.
+You do not have to get the wording exactly right. "Check we haven't lost anything in Scheduling"
+will do.
 
 ---
 
-## The nine processes
+## What each one is for, in plain words
 
-| Call | What it does | Full file |
+### 🔴 CHECK NOTHING IS LOST — *the most important one*
+**The worry it answers:** *"We built version 2. Did it quietly stop doing something version 1 did?"*
+
+This is the one that cannot be done by reading documents. A spec for a new version only describes
+what **changes** — it says nothing about everything the feature already did. So a feature can lose a
+capability and **every test still passes**, because nobody ever wrote a test for the thing nobody
+mentioned.
+
+So this job goes and **reads the actual code of the old version**, writes down everything it could
+do, and then checks the new version against that list, one behaviour at a time. Each one comes back
+as **kept**, **changed on purpose**, or 🔴 **lost**.
+
+**In short: it proves the new version is old + new, never old minus new.**
+
+### SET UP
+Collects the links, logins and access, and checks which version is actually running on each
+environment — because the name of an environment tells you nothing. Production was running the old
+search one week and the new one the next.
+
+### READ THE SPECS
+Confirms we have the **latest** version of every document, and pulls out the exact sentences the
+tests will quote. We quote the spec word for word and never reword it — the moment we paraphrase, the
+test starts drifting towards describing whatever the app currently does, and then it can never fail.
+
+### WRITE THE TESTS
+Turns those sentences into tests a manual tester can follow. Plain English, numbered steps, and
+every test says where its expectation came from.
+
+### CREATE TEST DATA
+Builds the records the tests need — customers, work orders, parts, whatever — and keeps a
+**one-command rebuild**, because redeployments wipe them. It also keeps a **status board** so you can
+check what survived before deciding to rebuild anything.
+
+*You never have to ask me to seed data. If a test needs data that isn't there, I create it and tell
+you afterwards.*
+
+### MAKE THE TESTS RUNNABLE
+Every test is given the **exact text to type**, proven to work on the environment you'll run on. This
+is what stops a tester typing something that doesn't exist, seeing nothing, and raising a bug against
+a feature that works perfectly.
+
+### PUT THE TESTS IN TESTRAIL
+Publishes the tests, adds them to the test run, and gives you a list of anything that changed so
+whoever is running them knows what to re-run.
+
+### MOVE THE TESTS
+Takes tests written for one environment and makes them work on another. Phone numbers, VINs, work
+order numbers and the like are all different between environments — this finds every one and fixes
+it.
+
+### TEST THIS FEATURE
+All of the above, in order, for a feature we haven't touched before.
+
+---
+
+## What I will ask you for
+
+I ask **before** starting, not halfway through — so a job never dies in the middle. If something is
+missing I'll say exactly what and what it costs.
+
+| I'll ask for | For which job | Why |
 |---|---|---|
-| **PARITY** `<feature>` | 🔴 **The most important one.** Read how the feature works TODAY in the product repository, then prove the new version still does all of it. Catches V1 − V2. | [P1-PARITY.md](P1-PARITY.md) |
-| **ONBOARD** `<feature>` | Collect the sources and access, and MEASURE which environment runs which version. | [P2-ONBOARD.md](P2-ONBOARD.md) |
-| **INGEST** `<feature>` | Prove we hold the current spec, and pull the exact sentences the cases will quote. | [P3-INGEST.md](P3-INGEST.md) |
-| **BUILD CASES** `<feature>` | Author the suite from those quoted sentences. | [P4-BUILD-CASES.md](P4-BUILD-CASES.md) |
-| **SEED** `<feature> <env>` | Build the data the cases need, with a one-command rebuild and a status board. | [P5-SEED.md](P5-SEED.md) |
-| **PROVE TERMS** `<feature> <env>` | Give every case a search term/value PROVEN to work on that environment. | [P6-PROVE-TERMS.md](P6-PROVE-TERMS.md) |
-| **PUBLISH** `<feature>` | Push to TestRail, sync the run, hand over the workbook and the retest list. | [P7-PUBLISH.md](P7-PUBLISH.md) |
-| **REPOINT** `<feature> TO <env>` | Move an existing suite to a different environment without breaking it. | [P8-REPOINT.md](P8-REPOINT.md) |
-| **FEATURE QA** `<feature>` | The umbrella: runs P2 → P1 → P3 → P4 → P5 → P6 → P7 in order. | [P9-FEATURE-QA.md](P9-FEATURE-QA.md) |
+| The feature name, and whether it's new or a version 2 | all | A version 2 needs "check nothing is lost" |
+| **Access to the code**, and which version to compare against | Check nothing is lost | There's no other way to know what the old version did |
+| The **spec / PRD link** and the **epic** | Read the specs, Write the tests | The tests quote these word for word |
+| Designs, and the technical plan | Read the specs | They're meant to agree with the spec; where they don't, that's a finding |
+| Who the **PO** is | questions | Questions go to a named person |
+| **Which environment**, and a **login for it** | Create data, Make runnable, Move | |
+| **Permission to write to TestRail** | Put in TestRail | I never write there without you saying so |
+| **Permission for each Jira ticket** | any finding | Asked per ticket, never once for a batch |
 
-**P0 is not callable — it is always on.** [P0-EVIDENCE-GATE.md](P0-EVIDENCE-GATE.md) is the standard
-every one of the nine reports against: a result is not evidence until it is **attributed, identified
-and dated**. It is the difference between "the search returned something" and "the search returned
-OUR record, matched on the field we are testing, on a build we have named".
+> 🔴 **Please give me a dedicated login, not your own.** Logging in anywhere kicks that account out
+> everywhere else — so when I used your account, your browser was signed out mid-run three times and
+> the job died each time.
+>
+> Logins are kept in a temporary folder, never saved into the repository, and they disappear when the
+> machine restarts — so I'll need them again next time.
 
 ---
 
-## What I will ask you for, at a glance
+## A job must not fail — here's how that's built in
 
-Each process asks only for what it actually needs. Nothing here is optional politeness — if it is
-missing, the process stops at the gate rather than guessing.
+| | |
+|---|---|
+| **It checks before it starts** | It asks for everything up front and stops there if something's missing, rather than failing halfway through |
+| **It can resume** | If it's interrupted at step 12 of 23, it restarts at 12. Branches redeploy and sessions expire — both happened repeatedly |
+| **It proves its own work** | "I created it" is never good enough. A record counts as done when **the feature itself can find it** |
+| **It tells a product bug from a mistake of mine** | If the data is right and the app is wrong, that's a **finding** — not a reason to redo correct work |
 
-| I need | Which processes | Why |
+**One rule sits under all of them:** a result isn't proof until we know **it came from the thing we
+were testing**, **it's our record and not somebody else's**, and **which build it was on**. That's
+[how we prove things](0-HOW-WE-PROVE-THINGS.md) — the thing that stops us reporting a bug that isn't
+there, or missing one that is.
+
+---
+
+## The files
+
+| Job | File | Old name |
 |---|---|---|
-| The **feature name** and whether it is NEW / V2-UPGRADE / REVIVAL | all | A V2 triggers PARITY; a new feature does not have one |
-| **Repository access** + the V1 commit or branch, and the V2 branch | PARITY | There is no other way to know what V1 actually did |
-| **Spec / PRD link**, the epic key, designs, tech plan | INGEST, BUILD CASES | The expected result is quoted from these, verbatim |
-| **Environment URLs** and which one to work on | ONBOARD, SEED, PROVE, REPOINT | |
-| **Login for each environment** — ideally a DEDICATED account | SEED, PROVE, REPOINT | A login expires the previous session; using yours kills your browser mid-run |
-| **Write permission for TestRail**, per batch | PUBLISH | Standing Rule 6 — I never write to TestRail without it |
-| **Permission to create Jira tickets**, per ticket | any, on a finding | Standing Rule 62 — per ask, never a blanket approval |
+| Check nothing is lost | [1-CHECK-NOTHING-IS-LOST.md](1-CHECK-NOTHING-IS-LOST.md) | `PARITY` |
+| Set up | [2-SET-UP.md](2-SET-UP.md) | `ONBOARD` |
+| Read the specs | [3-READ-THE-SPECS.md](3-READ-THE-SPECS.md) | `INGEST` |
+| Write the tests | [4-WRITE-THE-TESTS.md](4-WRITE-THE-TESTS.md) | `BUILD CASES` |
+| Create test data | [5-CREATE-TEST-DATA.md](5-CREATE-TEST-DATA.md) | `SEED` / `RESEED` |
+| Make the tests runnable | [6-MAKE-THE-TESTS-RUNNABLE.md](6-MAKE-THE-TESTS-RUNNABLE.md) | `PROVE TERMS` |
+| Put the tests in TestRail | [7-PUT-THE-TESTS-IN-TESTRAIL.md](7-PUT-THE-TESTS-IN-TESTRAIL.md) | `PUBLISH` |
+| Move the tests | [8-MOVE-THE-TESTS.md](8-MOVE-THE-TESTS.md) | `REPOINT` |
+| Test this feature (all of it) | [9-TEST-THIS-FEATURE.md](9-TEST-THIS-FEATURE.md) | `FEATURE QA` |
+| How we prove things (always on) | [0-HOW-WE-PROVE-THINGS.md](0-HOW-WE-PROVE-THINGS.md) | `EVIDENCE GATE` |
 
-Credentials live in `/tmp`, `chmod 600`, and are **never committed** — this repository is public
-(Standing Rule 82). They vanish with the container, so you re-supply them per session.
+The old names still work if anyone uses them. **`RESEED GLOBAL SEARCH STAGING`** and the other
+existing keywords are unchanged.
 
----
-
-## Where the detail lives
-
-These files are the **callable layer**. They do not re-state procedure that already has a home —
-duplicated procedure drifts, and this workspace has been bitten by that before. Each process points
-at its canonical skill and rules:
-
-- Deep procedure: `build/skills/` (00-COMMON-CORE first, then the numbered skill)
-- The rules themselves: `build/rules/RULES-*.md` — **read the rule in its file before applying it**
-- Proven API recipes and environment facts: `build/APP-ACTIONS-PLAYBOOK.md`
-- The worked example for every one of these: `build/global-search/` and
-  `build/search-results-integrity/`
-
-**Global Search is the reference implementation.** When a step here is unclear, go and look at what
-that project actually did — the scripts are real, they run, and the traps are written down beside
-the code that hit them.
+**Global Search is the worked example.** When something here is unclear, look at what that project
+actually did — in `build/global-search/` and `build/search-results-integrity/`. The scripts are real
+and they run.

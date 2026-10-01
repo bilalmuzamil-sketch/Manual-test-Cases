@@ -1,6 +1,6 @@
-# FEATURE QA `<feature>` — the umbrella: everything we did for Global Search, in order
+# TEST THIS FEATURE `<feature>` — the umbrella: everything we did for Global Search, in order
 
-> **Call it:** `FEATURE QA Invoicing`
+> **Call it:** `TEST THIS FEATURE Invoicing`
 >
 > Runs the whole pipeline. Use it when a feature is new to us. Call the individual processes when
 > you only want one part.
@@ -16,15 +16,15 @@ quietly working around it.
 | # | What I need | Which step needs it | Blocking? |
 |---|---|---|---|
 | 1 | Feature name + type: **NEW / V2-UPGRADE / REVIVAL** | routing | yes |
-| 2 | **Repository access**, the **V1 commit**, the **V2 branch** | PARITY | yes, on a V2 |
-| 3 | Spec / PRD link | INGEST | yes |
-| 4 | Epic key | INGEST | yes |
-| 5 | Designs (Figma / technical design) | INGEST | no — recorded as a gap |
-| 6 | Engineering tech plan | INGEST | no — I will remind you (Rule 30) |
+| 2 | **Repository access**, the **V1 commit**, the **V2 branch** | Check nothing is lost | yes, on a V2 |
+| 3 | Spec / PRD link | Read the specs | yes |
+| 4 | Epic key | Read the specs | yes |
+| 5 | Designs (Figma / technical design) | Read the specs | no — recorded as a gap |
+| 6 | Engineering tech plan | Read the specs | no — I will remind you (Rule 30) |
 | 7 | PO's name | PO questions | yes, before questions go out |
-| 8 | Environment URLs + which to use | ONBOARD, SEED | yes |
-| 9 | **A dedicated login per environment** | SEED, PROVE | yes |
-| 10 | TestRail write permission + target section and run | PUBLISH | yes, at that step |
+| 8 | Environment URLs + which to use | Set up, Create test data | yes |
+| 9 | **A dedicated login per environment** | Create test data, Make runnable | yes |
+| 10 | TestRail write permission + target section and run | Put in TestRail | yes, at that step |
 | 11 | Jira ticket permission | findings | per ticket, never a blanket |
 
 ---
@@ -32,18 +32,18 @@ quietly working around it.
 ## THE ORDER, AND WHY IT IS THIS ORDER
 
 ```
-ONBOARD ──► PARITY ──► INGEST ──► BUILD CASES ──► SEED ──► PROVE TERMS ──► PUBLISH
-  (P2)       (P1)       (P3)         (P4)         (P5)        (P6)           (P7)
+  SET UP ──► CHECK NOTHING ──► READ THE ──► WRITE THE ──► CREATE ──► MAKE THEM ──► PUT IN
+             IS LOST            SPECS         TESTS        TEST DATA   RUNNABLE      TESTRAIL
 ```
 
-- **ONBOARD first** because everything else needs access, and because which version each environment
+- **Set up first** because everything else needs access, and because which version each environment
   runs must be **measured** before anything is pointed at it.
-- **PARITY second, and before the cases are written** — on a V2 it decides which cases need to
+- **Check nothing is lost second, and before the cases are written** — on a V2 it decides which cases need to
   exist at all. Written after, it becomes an audit of a suite that already has the wrong shape.
-- **INGEST before BUILD CASES**, because an expected result is a quotation and you cannot quote a
+- **Read the specs before writing the tests**, because an expected result is a quotation and you cannot quote a
   document you have not pinned.
-- **SEED before PROVE TERMS**, because you cannot prove a term against data that is not there.
-- **PROVE TERMS before PUBLISH**, because publishing a suite full of "find the data first" hands a
+- **Create the data before proving the terms**, because you cannot prove a term against data that is not there.
+- **Prove the terms before putting them in TestRail**, because publishing a suite full of "find the data first" hands a
   tester a pile of dead ends.
 
 **Checkpoint after every step:** commit and push, path-scoped, with the real secret scan. Git is the

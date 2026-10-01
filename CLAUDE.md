@@ -141,33 +141,34 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 1A · 🔴 THE CALLABLE PROCESSES — say the name, and it runs
+## 1A · 🔴 THE NAMED PROCESSES — the QA lead says the name, you run it
 
-**`build/processes/README.md` is the index. READ IT WHEN THE QA LEAD SAYS ONE OF THESE NAMES.**
-Everything done for Global Search is cut into nine named processes that work for ANY feature. He
-calls one by keyword + feature name, and **a called process must not fail** — each one gates on its
-inputs before starting, is resumable, and proves its own output.
+**`build/processes/README.md` IS THE INDEX. READ IT THE MOMENT HE SAYS ONE OF THESE.** Everything
+done for Global Search, generalised to any feature. Names are deliberately PLAIN so a PO or a manual
+QA can call them; accept any reasonable wording of them, not just the exact string.
 
-| Call | What it does |
-|---|---|
-| **`PARITY <feature>`** | 🔴 **The most important one.** Read how the feature works TODAY in the PRODUCT REPOSITORY at a pinned commit, then prove the new version still does all of it. **V2 must be V1 + V2, never V1 − V2.** A V2 spec is silent about everything it does not change, so a capability can vanish with every case still passing. |
-| **`ONBOARD <feature>`** | Sources + access, and **MEASURE** which environment runs which version (never assume from its name). |
-| **`INGEST <feature>`** | Source-currency check, and pull the sentences the cases will QUOTE VERBATIM (113). |
-| **`BUILD CASES <feature>`** | Author the suite from those quotes. |
-| **`SEED <feature> <env>`** | The data kit: one command, one keyword, status board, resumable, proved through the feature's own interface. **Never ask first (114.6).** |
-| **`PROVE TERMS <feature> <env>`** | Every case gets a value PROVEN on that environment. |
-| **`PUBLISH <feature>`** | TestRail push + union-only run sync + the retest list. |
-| **`REPOINT <feature> TO <env>`** | Move a suite to another environment without breaking it. |
-| **`FEATURE QA <feature>`** | The umbrella — runs them in order. |
+| He says | What you run | The old keyword |
+|---|---|---|
+| **"CHECK NOTHING IS LOST for X"** | 🔴 **The most important one.** Read how X works TODAY in the **PRODUCT REPOSITORY** at a pinned commit, derive its behaviour with `file:line` citations, subtract the V2 delta, and prove **V2 = V1 + V2, never V1 − V2.** A V2 spec is silent about everything it does not change, so a capability can vanish with every case still passing. | `PARITY` |
+| **"SET UP X"** | Sources + access, and **MEASURE** which version each environment runs — never assume from its name. | `ONBOARD` |
+| **"READ THE SPECS for X"** | Source-currency check, and pull the sentences cases will QUOTE VERBATIM (113). | `INGEST` |
+| **"WRITE THE TESTS for X"** | Author the suite from those quotes. | `BUILD CASES` |
+| **"CREATE TEST DATA for X on <env>"** | One command, one keyword, status board, resumable, proved through the feature's own interface. **Never ask first (114.6).** | `SEED` / `RESEED` |
+| **"MAKE THE TESTS RUNNABLE for X on <env>"** | Every case gets a value PROVEN on that environment. | `PROVE TERMS` |
+| **"PUT THE TESTS IN TESTRAIL for X"** | Push + **union-only** run sync (34) + the retest list. | `PUBLISH` |
+| **"MOVE THE TESTS for X to <env>"** | Re-point a suite to another environment. 🔴 An identifier inside a **quoted source sentence** is NOT corrected — 113 beats 111 there. | `REPOINT` |
+| **"TEST THIS FEATURE: X"** | The umbrella — runs them in order. | `FEATURE QA` |
 
-**`build/processes/P0-EVIDENCE-GATE.md` is not callable and is ALWAYS ON:** a result is not evidence
-until it is **attributed, identified and dated** (Rule 110). Every process reports against it.
+**`build/processes/0-HOW-WE-PROVE-THINGS.md` is not callable and is ALWAYS ON:** a result is not
+evidence until it is **attributed, identified and dated** (Rule 110).
 
-**Each process file states WHAT TO ASK THE QA LEAD FOR before it starts** — repo access and the V1
-commit for PARITY, a **dedicated** environment login for SEED (a fresh login expires the previous
-one and kills his browser mid-run), TestRail write permission for PUBLISH, and so on. The gate is
-the first section of every file. **These files are the callable layer and hold no duplicated
-procedure** — each points at its canonical skill in `build/skills/` and the rules it applies.
+**EVERY PROCESS FILE OPENS WITH ITS GATE — what to ask him for before starting**, so a run never
+dies halfway: repo access + the V1 commit for "check nothing is lost"; a **DEDICATED** environment
+login for "create test data" (a fresh login expires his previous session and killed his browser
+mid-run three times); TestRail write permission (6); Jira permission per ticket (62). Each process is
+**resumable from a step number**, **proves its own output**, and **separates a PRODUCT finding from a
+failure of our own work**. These files are the CALLABLE LAYER and hold **no duplicated procedure** —
+each points at its canonical skill in `build/skills/` and the rules it applies.
 
 ---
 

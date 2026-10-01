@@ -1,8 +1,8 @@
-# BUILD CASES `<feature>` — author the suite from the quoted sentences
+# WRITE THE TESTS `<feature>` — author the suite from the quoted sentences
 
-> **Call it:** `BUILD CASES Invoicing`
+> **Call it:** `WRITE THE TESTS Invoicing`
 >
-> Turns the INGEST output into cases a manual tester can actually run.
+> Turns the "read the specs" output into cases a manual tester can actually run.
 
 ---
 
@@ -10,7 +10,7 @@
 
 | What I need | Why |
 |---|---|
-| The **INGEST output** (quoted sentences + citations) | A case with no source should not exist (Rule 64) |
+| The **"read the specs" output** (quoted sentences + citations) | A case with no source should not exist (Rule 64) |
 | Whether the cases go in a **new TestRail section**, and which | |
 | **Which run** they must join | Rule 34 — new cases must appear in the run |
 | Any **existing suite** for this feature | So I extend it rather than duplicating it, and so I can spot contradictions |
@@ -40,7 +40,7 @@
    becomes a PO question — it does not get a guessed expectation.
 3. **Say what each case is worth.** A "why an end user cares" line keeps the suite honest and makes
    the ruthless-usefulness audit possible.
-4. **Mark the cases that need data** so `SEED` knows what to build. Be specific: not "a customer",
+4. **Mark the cases that need data** so `CREATE TEST DATA` knows what to build. Be specific: not "a customer",
    but "a customer whose CITY carries the keyword and whose NAME does not".
 5. **Run the usefulness audit** before anyone sees it (Rule 28), and ship the suite's
    **deliberate-decisions register** (Rule 46) so the choices are visible.
@@ -51,8 +51,8 @@
 
 | Trap | Symptom | Fix |
 |---|---|---|
-| A case whose matched value also appears elsewhere on the record | It passes without testing anything | Design for attribution: the keyword lives in ONE field (P0 leg a) |
-| "For example, try X" | Somebody types X. If X does not exist, they file a bug against the product | Every named example is a promise. Prove it in `PROVE TERMS` |
+| A case whose matched value also appears elsewhere on the record | It passes without testing anything | Design for attribution: the keyword lives in ONE field (proof rules, leg a) |
+| "For example, try X" | Somebody types X. If X does not exist, they file a bug against the product | Every named example is a promise. Prove it in `MAKE THE TESTS RUNNABLE` |
 | Writing the expectation from the build | The case can never fail | Rule 113 — quote the source |
 | A case nobody can run without hunting for data first | It gets skipped, or run badly | Either seed the data or say plainly in the preconditions what to look for |
 

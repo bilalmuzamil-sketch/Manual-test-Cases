@@ -24,7 +24,11 @@ import os, shutil, sys, textwrap
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
 REF  = os.path.join(ROOT, 'build', 'global-search', 'seeding')
-ENGINE = ['seed.py', 'dump_seed_manifest.py']
+# 🔴 relogin.py IS PART OF THE ENGINE, NOT AN EXTRA. Without it a new feature's kit stops dead the
+# first time somebody else logs in to the environment — the exact failure that killed three
+# production runs on Global Search. It reads its credential from /tmp (chmod 600, never committed)
+# and is a no-op when that file is absent, so copying it is always safe.
+ENGINE = ['seed.py', 'dump_seed_manifest.py', 'relogin.py']
 
 
 def main():
@@ -142,12 +146,47 @@ def main():
 
         echo "build marker before: $(curl -s --max-time 20 "$HOST/" | grep -o 'content="v[^"]*"' | head -1)"
 
+        # 🔴 A KILLED SESSION MUST NOT END THE RUN, AND IT WILL HAPPEN. On production a login
+        # anywhere expires that user's previous one, so somebody opening the app mid-reseed stops
+        # the run dead with {{"error":"session_expired"}} — three times on Global Search, each
+        # leaving the data half-built. seed.py recovers inside its own call(); this covers every
+        # OTHER tool in the chain by re-minting once and retrying the step. With no credential file
+        # at /tmp/<env>/login.json it is a no-op and the step simply fails as before.
         step() {{ local label="$1"; shift; echo; echo "---- $label"
-                 if ! "$@"; then echo; echo "🔴 STOPPED at: $label"; exit 1; fi; }}
+                 if ! "$@"; then
+                   if [ -f "${{SEED_LOGIN:-/tmp/prod/login.json}}" ] && [ -f relogin.py ]; then
+                     echo "     ↻ step failed — re-minting the session and retrying ONCE"
+                     python3 relogin.py || true
+                     if "$@"; then return 0; fi
+                   fi
+                   echo; echo "🔴 STOPPED at: $label"; exit 1
+                 fi; }}
+
+        # 🔴 ONE PASS LEAVES GAPS, AND THE GAPS ARE SILENT. seed.py walks the manifest in order and
+        # injects a parent's id into its children, so any record whose creation is deferred — by a
+        # transport blip on its probe, by a dependency created later in the same pass, by a
+        # catalogue part whose stock row comes after it — takes every child down with it. Measured
+        # on production across THREE universes: 7 records and 4 cases at risk, a part invisible to
+        # search by design, 4 more records. Every one was a case with no data behind it, which is
+        # the single failure a seeding kit exists to prevent. seed.py is find-or-create, so a
+        # second pass costs minutes and can only ever help.
+        seed_pass() {{
+          local out; out="$(python3 seed.py --confirm 2>&1)"; local rc=$?
+          echo "$out"
+          local need; need="$(echo "$out" | sed -n 's/.*needing action *: *\\([0-9]*\\).*/\\1/p' | tail -1)"
+          if [ "$rc" = "0" ] && [ -n "$need" ] && [ "$need" != "0" ]; then
+            echo "     ↻ $need record(s) still needed action — running the SECOND PASS"
+            out="$(python3 seed.py --confirm 2>&1)"; rc=$?
+            echo "$out"
+            need="$(echo "$out" | sed -n 's/.*needing action *: *\\([0-9]*\\).*/\\1/p' | tail -1)"
+            [ -n "$need" ] && [ "$need" != "0" ] && echo "     ⚠️  $need record(s) STILL need action after two passes."
+          fi
+          return $rc
+        }}
 
         # 🔴 NO SEPARATE --check STEP. `--confirm` IS find-or-create: it measures every record
         # before it creates anything, so a --check first just measures everything twice.
-        step "1/2  create the records, verify fields"  python3 seed.py --confirm
+        step "1/2  create the records, verify fields"  seed_pass
         step "2/2  PROVE IT"                           python3 verify.py
 
         echo "build marker after:  $(curl -s --max-time 20 "$HOST/" | grep -o 'content="v[^"]*"' | head -1)"

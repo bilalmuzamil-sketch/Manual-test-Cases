@@ -1,6 +1,6 @@
-# ONBOARD `<feature>` — collect the sources and access, and measure the environments
+# SET UP `<feature>` — collect the sources and access, and measure the environments
 
-> **Call it:** `ONBOARD Invoicing`
+> **Call it:** `SET UP Invoicing`
 >
 > Run this first on any feature. It is cheap, it is mostly questions, and it stops the expensive
 > processes from starting without what they need.
@@ -11,7 +11,7 @@
 
 | What I need | Why | If you do not have it |
 |---|---|---|
-| **Feature name**, and the project type: **NEW** / **V2-UPGRADE** / **REVIVAL** | V2 triggers `PARITY`, which is the whole ballgame on an upgrade | Tell me and I will work it out from the epic |
+| **Feature name**, and the project type: **NEW** / **V2-UPGRADE** / **REVIVAL** | V2 triggers `CHECK NOTHING IS LOST`, which is the whole ballgame on an upgrade | Tell me and I will work it out from the epic |
 | **The spec / PRD** link | Expected results are quoted from it, verbatim | I will flag the suite as source-incomplete and we proceed at risk |
 | **The epic key** and its stories | Traceability, and often the only statement of intent | |
 | **Designs** (Figma / Claude design / technical design) | They are expected to AGREE with the PRD; where they do not, that is a finding | |
@@ -47,7 +47,7 @@ parking page" — a sleeping QA branch answers 403 to everything.
 ```bash
 curl -s https://<host>/ | grep -o 'app-version" content="[^"]*"'
 ```
-Every later finding is read against this. *(P0, leg c.)*
+Every later finding is read against this. *(proof rules, leg c.)*
 
 ### 4 — Establish access, and prove it
 Log in once per environment and confirm the account reaches the **workplace you will actually work

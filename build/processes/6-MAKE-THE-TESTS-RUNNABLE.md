@@ -1,6 +1,6 @@
-# PROVE TERMS `<feature> <env>` — every case gets a value proven to work on THAT environment
+# MAKE THE TESTS RUNNABLE `<feature> <env>` — every case gets a value proven to work on THAT environment
 
-> **Call it:** `PROVE TERMS Invoicing LIVE`
+> **Call it:** `MAKE THE TESTS RUNNABLE Invoicing LIVE`
 >
 > A case that says *"type a fragment of the part number"* is not runnable: the tester has to go and
 > find data first, and most will pick something that also appears in the name — which makes the case
@@ -15,14 +15,14 @@
 |---|---|
 | **Which environment the tests will be run on** | A term proven on staging is not a term on production |
 | **A login for that environment** | The proving is done by querying it |
-| The suite (from `BUILD CASES`) and its data (from `SEED`) | |
+| The suite (from `WRITE THE TESTS`) and its data (from `CREATE TEST DATA`) | |
 
 ---
 
 ## THE STEPS
 
 1. **Pull real records off the list endpoints**, and search a distinctive value from the target field.
-2. **Keep it only if the response says the match came from THAT field.** This is P0's attribution
+2. **Keep it only if the response says the match came from THAT field.** This is the proof rules' attribution
    leg, applied per term.
 3. **Write the terms to a file keyed by environment** — `discovered-terms-<env>.json`. A single
    shared file means whichever environment ran last silently decides what the suite tells testers to

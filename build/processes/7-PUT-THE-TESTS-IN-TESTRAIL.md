@@ -1,6 +1,6 @@
-# PUBLISH `<feature>` — push to TestRail, sync the run, hand over
+# PUT THE TESTS IN TESTRAIL `<feature>` — push to TestRail, sync the run, hand over
 
-> **Call it:** `PUBLISH Invoicing`
+> **Call it:** `PUT THE TESTS IN TESTRAIL Invoicing`
 
 ---
 

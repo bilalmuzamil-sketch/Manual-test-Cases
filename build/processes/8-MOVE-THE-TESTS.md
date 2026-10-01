@@ -1,6 +1,6 @@
-# REPOINT `<feature> TO <env>` — move an existing suite to a different environment
+# MOVE THE TESTS `<feature> TO <env>` — move an existing suite to a different environment
 
-> **Call it:** `REPOINT Invoicing TO LIVE`
+> **Call it:** `MOVE THE TESTS Invoicing TO LIVE`
 >
 > The suite was written against one environment and now has to be run on another. Everything
 > environment-specific inside it is now a **false failure waiting for a tester** — they type a value
@@ -15,7 +15,7 @@
 | **Which environment the suite is moving to** | |
 | **A login for it** | Every check is a live query |
 | **Permission to write to TestRail** | The corrections are case edits (Rule 6) |
-| Confirmation the data is already seeded there | Otherwise run `SEED` first — repointing to an empty environment proves nothing |
+| Confirmation the data is already seeded there | Otherwise run `CREATE TEST DATA` first — repointing to an empty environment proves nothing |
 
 ---
 
@@ -43,7 +43,7 @@ Not the wording, not the provenance line, not a helpful note (Rule 111). Each re
 **probed** to return nothing — never derived by arithmetic from the old value.
 
 ### 4 — Re-prove the whole suite
-Run `PROVE TERMS` against the new environment. Report: how many work, how many are declared
+Run `MAKE THE TESTS RUNNABLE` against the new environment. Report: how many work, how many are declared
 negatives, how many need the tester to find data.
 
 ### 5 — Produce the retest list and hand it over

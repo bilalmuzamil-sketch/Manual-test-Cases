@@ -1,6 +1,6 @@
-# PARITY `<feature>` — prove the new version still does everything the old one did
+# CHECK NOTHING IS LOST `<feature>` — prove the new version still does everything the old one did
 
-> **Call it:** `PARITY Invoicing`
+> **Call it:** `CHECK NOTHING IS LOST Invoicing`
 >
 > **The one-line reason this exists.** A V2 specification describes only what **changes**. It is
 > silent about everything the feature already did. So a V2 can quietly drop a capability and every
@@ -38,7 +38,7 @@ entirely (an older product), say that instead — the method is identical, the p
    commit. Not prose: a list of behaviours.
 2. **The INVARIANT REGISTER** — `INVARIANTS = V1 baseline − (changed ∪ removed ∪ replaced)`.
    Everything V2 is silent about, which therefore **must not change**.
-3. **The PARITY FINDINGS table** — per behaviour: `KEPT` / `CHANGED-BY-DESIGN` / 🔴 `LOST`.
+3. **The WHAT-CHANGED table** — per behaviour: `KEPT` / `CHANGED-BY-DESIGN` / 🔴 `LOST`.
 4. **A case for every invariant worth testing**, and a **PO question** for every silence that is
    dangerous enough that guessing is worse than asking.
 

@@ -1,6 +1,6 @@
-# INGEST `<feature>` — prove the sources are current, and pull the sentences we will quote
+# READ THE SPECS `<feature>` — prove the sources are current, and pull the sentences we will quote
 
-> **Call it:** `INGEST Invoicing`
+> **Call it:** `READ THE SPECS Invoicing`
 >
 > Two jobs: make sure we hold the **current** version of every source, and extract the **exact
 > sentences** the cases will quote. Both matter more than they sound.
