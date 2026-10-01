@@ -12,6 +12,9 @@
 > documents.** The PRD will not tell you that V1's vendor search also looked at the website column.
 > Only the code does. So this process **reads the product repository** — that is its whole premise.
 
+**RUNS AFTER:** `2 · Feature Kick-Off` — it provides repo access and the pinned V1 commit.
+**If it has not been done I STOP and ask**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — I ask you for this before I start, and I stop here if it is missing

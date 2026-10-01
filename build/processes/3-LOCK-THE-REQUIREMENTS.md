@@ -5,6 +5,9 @@
 > Two jobs: make sure we hold the **current** version of every source, and extract the **exact
 > sentences** the cases will quote. Both matter more than they sound.
 
+**RUNS AFTER:** `2 · Feature Kick-Off` — it provides the spec, epic and design links.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

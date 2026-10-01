@@ -6,6 +6,9 @@
 > does anyway, or what the old version could do and nobody wrote down. **This is the deliberate look
 > from outside, before anyone is told the suite is current.**
 
+**RUNS AFTER:** `4 · Write the Tests` — it provides a suite to audit.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

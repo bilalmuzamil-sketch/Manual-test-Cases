@@ -167,6 +167,15 @@ QA can call them; accept any reasonable wording of them, not just the exact stri
 | **"PREPARE THE DEFECT TICKETS for X"** | Unchallengeable candidates, then **STOP at the button** — permission is per ticket (62). | |
 | **"FIND WHAT WE MISSED in X"** | The deliberate look from outside before a suite is called current (45). | |
 
+🔴 **A CALLED PROCESS CHASES ITS OWN CHAIN.** Every process file carries a **RUNS AFTER** line
+naming what must exist first and what to do when it does not. On being called, CHECK those
+prerequisites and report where we stand BEFORE building anything — then run the missing ones
+yourself. Stop only for what genuinely needs him: repo access, a pinned commit, a login,
+TestRail write permission, Jira permission per ticket. The dependency map is in
+`build/processes/README.md`. **Build the Comparison Demonstrator is the end of a chain** —
+it needs the pinned commit, the V1 vs V2 Capability Check, the seeded records and measurements
+of V2, and it says so before it starts.
+
 🔴 **AT THE END OF EVERY FEATURE, AUDIT THE PROCESS SET ITSELF** (ordered 2026-10-01): list every
 deliverable the project produced, check each against the named processes, and report anything with
 no home. The comparison demonstrator — the most persuasive artefact Global Search produced — was

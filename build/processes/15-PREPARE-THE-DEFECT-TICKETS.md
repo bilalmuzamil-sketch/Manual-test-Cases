@@ -7,6 +7,9 @@
 > approval never covers a later one, and a finding being real and obviously worth filing is not
 > permission (Rule 62).
 
+**RUNS AFTER:** `12 · Run the Tests, or 1 · the Capability Check, or 14 · Find the Root Cause` — it provides the findings themselves.
+**If it has not been done I run whichever produced the finding**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

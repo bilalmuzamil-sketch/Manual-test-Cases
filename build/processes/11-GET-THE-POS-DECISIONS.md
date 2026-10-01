@@ -6,6 +6,9 @@
 > answered.** A question sheet that asks things we could have measured wastes the one person whose
 > time we cannot replace, and it teaches them that our questions are cheap.
 
+**RUNS AFTER:** `4 · Write the Tests` — it provides the HELD cases, which are what the questions are about.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

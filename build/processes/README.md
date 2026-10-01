@@ -142,6 +142,35 @@ there, or missing one that is.
 
 ---
 
+## 🔴 Calling one process pulls in whatever it needs
+
+**You never have to know the order.** Say the name of the thing you want, and the first thing I do
+is check what it depends on and tell you where we stand — before building anything.
+
+| If you call | It needs | What I do if that is missing |
+|---|---|---|
+| **Build the Comparison Demonstrator** | the pinned commit · the **V1 vs V2 Capability Check** · the seeded records · measurements of the new version | **Stop** for the commit and the capability check — those need you. Seed the records and take the measurements myself |
+| **V1 vs V2 Capability Check** | repo access and a pinned V1 commit | **Stop and ask.** There is no substitute |
+| **Lock the Requirements** | the spec, epic and design links | Run the Feature Kick-Off |
+| **Write the Tests** | the quoted sentences | Run Lock the Requirements |
+| **Seed the Test Data** | the cases, so I know what data they need | Run Write the Tests |
+| **Make the Tests Runnable** | the seeded records | Run Seed the Test Data |
+| **Publish to TestRail** | a suite whose terms are proven | Run Make the Tests Runnable |
+| **Run the Tests** | cases in a run | Run Publish to TestRail |
+| **Hand the Run Over** | a published suite | Run Publish to TestRail |
+| **Get the PO's Decisions** | the HELD cases | Run Write the Tests |
+| **Prepare the Defect Tickets** | the findings | Run whichever process produced them |
+| **Find What We Missed** | a suite to audit | Run Write the Tests |
+| **Switch the Tests to Another Environment** | data on the new environment | Seed it there first |
+| **Feature Kick-Off** · **Find the Root Cause** | nothing | They can be called cold |
+
+**The rule:** anything I can do myself, I do — and tell you after. The only things I stop for are
+the ones that genuinely need you: **repository access, a pinned commit, a login, TestRail write
+permission, and permission for each Jira ticket.** Each process file opens by listing exactly which
+of those it needs, so a run never dies halfway.
+
+---
+
 ## At the end of every feature, I audit myself
 
 Ordered by the QA lead after the comparison demonstrator — the most persuasive thing the Global

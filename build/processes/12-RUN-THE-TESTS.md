@@ -5,6 +5,9 @@
 > Writing a test and running it are different jobs. This one is about the discipline of the
 > **verdict** — because a result that is not honest is worse than no result.
 
+**RUNS AFTER:** `7 · Publish to TestRail` — it provides cases in a run, with proven terms.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

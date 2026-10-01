@@ -4,6 +4,9 @@
 >
 > Turns the locked requirements into cases a manual tester can actually run.
 
+**RUNS AFTER:** `3 · Lock the Requirements` — it provides the quoted sentences each case is built on.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

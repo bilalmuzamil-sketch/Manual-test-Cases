@@ -6,6 +6,8 @@
 > saying results were bad, and one ticket about a highlight showing `786` instead of `123786`.
 > A complaint is not a bug report. This turns it into one, or into a suite.
 
+**RUNS AFTER:** nothing — this one can be called cold.
+
 ---
 
 ## THE GATE — what I ask you for

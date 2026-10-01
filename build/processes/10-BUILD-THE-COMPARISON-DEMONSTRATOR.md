@@ -19,6 +19,35 @@
 
 ---
 
+## 🔴 WHAT MUST EXIST BEFORE THIS CAN RUN — I check each one, and I do not guess
+
+This page is the end of a chain. Called on its own, **the first thing I do is check these four and
+say where we stand** — I never start building and discover halfway that there is nothing truthful to
+put in it.
+
+| Must exist | Which process makes it | What this page takes from it | If it is missing |
+|---|---|---|---|
+| **The pinned V1 commit + repo access** | 2 · Feature Kick-Off | The commit printed on the page, and the right to read the old code | **STOP.** Ask you. There is no demonstrator without it |
+| **The V1 behaviour baseline and the findings** | 1 · V1 vs V2 Capability Check | Every claim the page makes: what V1 did, what V2 does, what was lost | **STOP and run process 1 first.** A demonstrator built on guesses is worse than none |
+| **The seeded example records** | 5 · Seed the Test Data | The records the page searches, shown as cards so nobody takes the data on trust | **Run process 5** — never invent example records for the page |
+| **Measurements of the NEW version** | 12 · Run the Tests, or measured by hand | The "what the new version does today" line under each example | **Measure it, or mark it "reported as"** with its source and date — never state it flat |
+
+**How I report that check back to you, before building anything:**
+
+```
+Comparison demonstrator for <feature> — prerequisites
+  ✅ pinned commit            55767168, repo access confirmed
+  ✅ V1 baseline + findings   build/<feature>/V1-BASELINE.md, 31 behaviours classified
+  ✅ seeded records           8 records, proved by search on staging
+  🔴 V2 measurements          11 of 42 examples unmeasured
+     -> I will measure those 11, or mark them "reported as" with the source
+```
+
+**I run the missing ones rather than stopping, EXCEPT where the gate above says STOP** — those two
+need you. Everything else I just go and do, and tell you afterwards.
+
+---
+
 ## THE GATE — what I ask you for
 
 | What I need | Why | If missing |

@@ -5,6 +5,9 @@
 > The reader has none of your context. They are a tester, another session, or you in three weeks.
 > **A handoff that assumes anything is a handoff that fails.**
 
+**RUNS AFTER:** `7 · Publish to TestRail` — it provides a published suite in a run to hand over.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

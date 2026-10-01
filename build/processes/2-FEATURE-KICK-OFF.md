@@ -5,6 +5,8 @@
 > Run this first on any feature. It is cheap, it is mostly questions, and it stops the expensive
 > processes from starting without what they need.
 
+**RUNS AFTER:** nothing — this one can be called cold.
+
 ---
 
 ## THE GATE — what I ask you for

@@ -7,6 +7,9 @@
 > it and tell you afterwards, with the proof (Rule 114.6, your instruction: *"Please do never ask
 > before seeding."*). The gate below is about ACCESS, not permission.
 
+**RUNS AFTER:** `4 · Write the Tests` — it provides the cases, so I know what data they need.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

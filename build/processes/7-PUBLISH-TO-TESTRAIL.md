@@ -2,6 +2,9 @@
 
 > **Call it:** `PUBLISH Invoicing TO TESTRAIL`
 
+**RUNS AFTER:** `6 · Make the Tests Runnable` — it provides a suite whose terms are proven, not a pile of dead ends.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

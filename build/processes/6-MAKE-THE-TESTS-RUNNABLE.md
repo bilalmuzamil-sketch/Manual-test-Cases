@@ -7,6 +7,9 @@
 > prove nothing. This process replaces every such instruction with a **real value, proven to match
 > the intended field, on the environment the tests will actually run on**.
 
+**RUNS AFTER:** `5 · Seed the Test Data` — it provides the records whose values become the terms.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for

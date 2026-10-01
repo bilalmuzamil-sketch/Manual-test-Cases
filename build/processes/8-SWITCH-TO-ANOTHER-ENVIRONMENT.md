@@ -6,6 +6,9 @@
 > environment-specific inside it is now a **false failure waiting for a tester** — they type a value
 > that cannot be found, see nothing, and file a bug against a product that is working fine.
 
+**RUNS AFTER:** `5 · Seed the Test Data on the NEW environment` — it provides data to re-point the tests AT.
+**If it has not been done I run it**, rather than starting and failing halfway.
+
 ---
 
 ## THE GATE — what I ask you for
