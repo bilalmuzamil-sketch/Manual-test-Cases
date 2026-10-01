@@ -85,3 +85,31 @@ sibling folder **"Part Sales — QA Additions (Mudassir)" = section 20481** (sub
 Deposit audit log SV-9867, 20483 S10 Portal deposit SV-10261, 20484 XC Cross-cutting) — C154841–C154883.
 These cover SV-9867 and SV-10261, which are DIFFERENT stories than our Part Sales Update v1 PRD
 (867434569 / SV-9667, stories S1–S8; S2 withdrawn). Assessing validity + the coverage-gap question.
+
+## Session update 2026-10-01 (continuation #2) — 4-point case format + deferred-release folders
+
+QA lead's 4-point instruction applied to the gap-fill output:
+1. **Author note at the bottom** of every gap case (what the spec author says about the item).
+2. **Testing-method banner at the top** (Can be automated / Manual testing preferred + WHY).
+3. Kept in **separate, clearly-labelled folders**.
+4. **Not-in-this-release items authored** in their own folders named with the author's release words.
+
+**27 existing gap cases reformatted (C195849–C195875)** via `build/gap-fill/apply_format.py`
+(top banner + bottom note). Manual-preferred: MR C195862; DI C195853/854/855/856/857. Rest automatable.
+
+**17 deferred cases authored (C195876–C195892)** via `build/gap-fill/author_deferred.py`:
+- **Section 25609** — "Founder Mode / Fixed Rules - list rules with no category - author: NOT IN THIS
+  RELEASE" — 4 cases C195876–C195879 (SV-10403; full reqs + 3 AC; all automatable).
+- **Section 25610** — "Maintenance Reminders / Automatic customer email S19 - author: SHIP THE REST
+  WITHOUT IT, Phase P5" — 13 cases C195880–C195892 (SV-10575 / S19; author note = four gating
+  operational questions + Chunk-2 placeholder caveat).
+
+🔴 **Format conflict found + resolved (not escalated — both honoured):** the fr-view render-repair tool
+(and CLAUDE.md §5) require the `AUTOMATION:` marker to be the **literal last line** of Expected for the
+automate-readiness arithmetic gate. The author note was initially placed after it. Resolved by putting
+the author note **just above** the marker (bottom of the readable content; marker stays last) — honours
+both the QA lead's "note at the bottom" instruction and the locked machine convention, so no rule was
+weakened. If the QA lead wants the note strictly dead-last, that is a Rule-72/117 convention change to
+authorise explicitly. Fixer: one-off swap over C195849–C195892 (44/44); scripts updated to match.
+
+All 44 cases render-repaired (fr-view, marker last). Docs: `build/gap-fill/GAP-FILL-FORMAT-AND-DEFERRED-2026-10-01.md`.

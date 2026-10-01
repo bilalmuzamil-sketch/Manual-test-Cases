@@ -3038,10 +3038,26 @@ as outside the Part Sales work you gave me and wrote no cases for it.
 **What I need:** do you want it in our scope (I'll write cases) or left out? **If you say nothing:** it
 stays out and is untested by us. (Reference: story SV-10398.)
 
-### 4. Two things aren't built yet — a heads-up for later, no action now
-Two behaviours are deliberately NOT in the current release, so there are correctly no cases yet:
-(a) Maintenance Reminders automatically emailing the customer their reminder — the spec says this
-release does not send it. (b) The parts "Fixed Rules" list showing parts that have no category — this
-was pushed to a later ticket; our current case correctly tests today's behaviour (those parts are not
-listed). **What I need:** nothing now — just tell me when either ships and I'll add/adjust cases.
-(Reference: SV-10575 auto-email; SV-10403 fixed rules without a category.)
+### 4. Two things aren't built yet — now written up in clearly-labelled "not in this release" folders
+Two behaviours are deliberately NOT in the current release. On your 2026-10-01 instruction I have now
+written cases for both, each in its own folder whose name states what the author said about the release,
+and each case opens with the author's release statement:
+(a) **Maintenance Reminders automatically emailing the customer** — the author says "Ship the rest of
+the feature without it" (it is Phase 5, and four operational questions about how mail is sent are still
+open). 13 cases, folder "…Automatic customer email S19 - author: SHIP THE REST WITHOUT IT, Phase P5".
+(b) **The parts "Fixed Rules" list showing parts that have no category** — the author says "Not in this
+release" (it is split off to a later ticket). 4 cases, folder "…Fixed Rules - list rules with no
+category - author: NOT IN THIS RELEASE". Note: our EXISTING live case C154744 still correctly tests
+today's behaviour (those parts are not listed); update it only when (b) ships.
+**What I need:** nothing now — just tell me when either ships so I can move these cases into the live
+suite and adjust C154744. **If you say nothing:** the cases sit in their deferred folders, clearly
+marked as not-yet-shipping. (Reference: SV-10575 auto-email; SV-10403 fixed rules without a category.)
+
+### 5. A small format choice I made so the tester note and the automation marker don't clash
+You asked for an author's note at the bottom of each case. Our cases must also end with a one-line
+machine marker (the "AUTOMATION:" line) that an internal tool reads to count which cases are ready to
+automate — that tool requires the marker to be the very last line. I put your author note at the bottom
+of the readable text, with that one machine-marker line sitting just below it, so both are satisfied and
+nothing was weakened. **What I need:** if you want the note to be the absolute last line instead (below
+the marker), say so and I'll change our standing format rule to match. **If you say nothing:** the note
+stays at the bottom of the readable content with the marker as the final technical line.
