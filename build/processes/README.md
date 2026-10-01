@@ -11,7 +11,7 @@
 ## Just say one of these
 
 ```
-CHECK NOTHING IS LOST for Invoicing
+V1 vs V2 CAPABILITY CHECK on Invoicing
 SET UP Invoicing
 READ THE SPECS for Invoicing
 WRITE THE TESTS for Invoicing
@@ -22,14 +22,14 @@ MOVE THE TESTS for Invoicing to production
 TEST THIS FEATURE: Invoicing          ← does all of it, in the right order
 ```
 
-You do not have to get the wording exactly right. "Check we haven't lost anything in Scheduling"
+You do not have to get the wording exactly right. "Does Scheduling V2 still do everything V1 did?"
 will do.
 
 ---
 
 ## What each one is for, in plain words
 
-### 🔴 CHECK NOTHING IS LOST — *the most important one*
+### 🔴 V1 vs V2 CAPABILITY CHECK — *the most important one*
 **The worry it answers:** *"We built version 2. Did it quietly stop doing something version 1 did?"*
 
 This is the one that cannot be done by reading documents. A spec for a new version only describes
@@ -91,8 +91,8 @@ missing I'll say exactly what and what it costs.
 
 | I'll ask for | For which job | Why |
 |---|---|---|
-| The feature name, and whether it's new or a version 2 | all | A version 2 needs "check nothing is lost" |
-| **Access to the code**, and which version to compare against | Check nothing is lost | There's no other way to know what the old version did |
+| The feature name, and whether it's new or a version 2 | all | A version 2 needs the V1 vs V2 Capability Check |
+| **Access to the code**, and which version to compare against | V1 vs V2 Capability Check | There's no other way to know what the old version did |
 | The **spec / PRD link** and the **epic** | Read the specs, Write the tests | The tests quote these word for word |
 | Designs, and the technical plan | Read the specs | They're meant to agree with the spec; where they don't, that's a finding |
 | Who the **PO** is | questions | Questions go to a named person |
@@ -129,7 +129,7 @@ there, or missing one that is.
 
 | Job | File | Old name |
 |---|---|---|
-| Check nothing is lost | [1-CHECK-NOTHING-IS-LOST.md](1-CHECK-NOTHING-IS-LOST.md) | `PARITY` |
+| V1 vs V2 Capability Check | [1-V1-VS-V2-CAPABILITY-CHECK.md](1-V1-VS-V2-CAPABILITY-CHECK.md) | `PARITY` |
 | Set up | [2-SET-UP.md](2-SET-UP.md) | `ONBOARD` |
 | Read the specs | [3-READ-THE-SPECS.md](3-READ-THE-SPECS.md) | `INGEST` |
 | Write the tests | [4-WRITE-THE-TESTS.md](4-WRITE-THE-TESTS.md) | `BUILD CASES` |

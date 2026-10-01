@@ -149,7 +149,7 @@ QA can call them; accept any reasonable wording of them, not just the exact stri
 
 | He says | What you run | The old keyword |
 |---|---|---|
-| **"CHECK NOTHING IS LOST for X"** | 🔴 **The most important one.** Read how X works TODAY in the **PRODUCT REPOSITORY** at a pinned commit, derive its behaviour with `file:line` citations, subtract the V2 delta, and prove **V2 = V1 + V2, never V1 − V2.** A V2 spec is silent about everything it does not change, so a capability can vanish with every case still passing. | `PARITY` |
+| **"V1 vs V2 CAPABILITY CHECK on X"** | 🔴 **The most important one.** Read how X works TODAY in the **PRODUCT REPOSITORY** at a pinned commit, derive its behaviour with `file:line` citations, subtract the V2 delta, and prove **V2 = V1 + V2, never V1 − V2.** A V2 spec is silent about everything it does not change, so a capability can vanish with every case still passing. | `PARITY` |
 | **"SET UP X"** | Sources + access, and **MEASURE** which version each environment runs — never assume from its name. | `ONBOARD` |
 | **"READ THE SPECS for X"** | Source-currency check, and pull the sentences cases will QUOTE VERBATIM (113). | `INGEST` |
 | **"WRITE THE TESTS for X"** | Author the suite from those quotes. | `BUILD CASES` |
@@ -163,7 +163,7 @@ QA can call them; accept any reasonable wording of them, not just the exact stri
 evidence until it is **attributed, identified and dated** (Rule 110).
 
 **EVERY PROCESS FILE OPENS WITH ITS GATE — what to ask him for before starting**, so a run never
-dies halfway: repo access + the V1 commit for "check nothing is lost"; a **DEDICATED** environment
+dies halfway: repo access + the V1 commit for the V1 vs V2 Capability Check; a **DEDICATED** environment
 login for "create test data" (a fresh login expires his previous session and killed his browser
 mid-run three times); TestRail write permission (6); Jira permission per ticket (62). Each process is
 **resumable from a step number**, **proves its own output**, and **separates a PRODUCT finding from a

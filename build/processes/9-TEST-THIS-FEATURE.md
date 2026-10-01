@@ -16,7 +16,7 @@ quietly working around it.
 | # | What I need | Which step needs it | Blocking? |
 |---|---|---|---|
 | 1 | Feature name + type: **NEW / V2-UPGRADE / REVIVAL** | routing | yes |
-| 2 | **Repository access**, the **V1 commit**, the **V2 branch** | Check nothing is lost | yes, on a V2 |
+| 2 | **Repository access**, the **V1 commit**, the **V2 branch** | V1 vs V2 Capability Check | yes, on a V2 |
 | 3 | Spec / PRD link | Read the specs | yes |
 | 4 | Epic key | Read the specs | yes |
 | 5 | Designs (Figma / technical design) | Read the specs | no — recorded as a gap |
@@ -32,13 +32,13 @@ quietly working around it.
 ## THE ORDER, AND WHY IT IS THIS ORDER
 
 ```
-  SET UP ──► CHECK NOTHING ──► READ THE ──► WRITE THE ──► CREATE ──► MAKE THEM ──► PUT IN
-             IS LOST            SPECS         TESTS        TEST DATA   RUNNABLE      TESTRAIL
+  SET UP ──► V1 vs V2 ────► READ THE ──► WRITE THE ──► CREATE ──► MAKE THEM ──► PUT IN
+             CAPABILITY        SPECS         TESTS        TEST DATA   RUNNABLE      TESTRAIL
 ```
 
 - **Set up first** because everything else needs access, and because which version each environment
   runs must be **measured** before anything is pointed at it.
-- **Check nothing is lost second, and before the cases are written** — on a V2 it decides which cases need to
+- **The V1 vs V2 Capability Check second, and before the cases are written** — on a V2 it decides which cases need to
   exist at all. Written after, it becomes an audit of a suite that already has the wrong shape.
 - **Read the specs before writing the tests**, because an expected result is a quotation and you cannot quote a
   document you have not pinned.

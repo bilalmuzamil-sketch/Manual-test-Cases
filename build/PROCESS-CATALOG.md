@@ -2,11 +2,11 @@
 
 > 🔴 **START AT `build/processes/README.md`.** The nine **named testing processes**, in plain words
 > anyone can call —
-> **"check nothing is lost"** · **"set up"** · **"read the specs"** · **"write the tests"** ·
+> **"V1 vs V2 capability check"** · **"set up"** · **"read the specs"** · **"write the tests"** ·
 > **"create test data"** · **"make the tests runnable"** · **"put the tests in TestRail"** ·
 > **"move the tests"** · **"test this feature"** — are the generalised form of everything done for Global Search, usable
 > on any feature. Each names what to ask the QA lead for before it starts, is resumable, and proves
-> its own output. **"Check nothing is lost" is the one that catches a V2 silently dropping what V1 could do.**
+> its own output. **"The V1 vs V2 Capability Check" is the one that catches a V2 silently dropping what V1 could do.**
 > The catalog below remains the index of the older per-task processes.
 
 > **What this is:** the single index of every reusable process/method/recipe in this workspace,

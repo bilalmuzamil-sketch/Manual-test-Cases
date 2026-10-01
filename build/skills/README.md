@@ -1,7 +1,7 @@
 # Skills — the eight jobs this workspace does, plus the support files and the lane routers
 
 > 🔴 **LOOKING FOR A NAMED PROCESS THE QA LEAD CALLED?** It is in `build/processes/README.md` —
-> `CHECK NOTHING IS LOST` / `SET UP` / `READ THE SPECS` / `WRITE THE TESTS` / `CREATE TEST DATA` / `MAKE THE TESTS RUNNABLE` / `PUT THE TESTS IN TESTRAIL` /
+> `V1 vs V2 Capability Check` / `SET UP` / `READ THE SPECS` / `WRITE THE TESTS` / `CREATE TEST DATA` / `MAKE THE TESTS RUNNABLE` / `PUT THE TESTS IN TESTRAIL` /
 > `MOVE THE TESTS` / `TEST THIS FEATURE`. Those are the callable layer; the skills below are the procedure they
 > point at. A process file holds no duplicated procedure — procedure found in one is a bug.
 

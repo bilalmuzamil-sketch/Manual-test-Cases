@@ -11,7 +11,7 @@
 
 | What I need | Why | If you do not have it |
 |---|---|---|
-| **Feature name**, and the project type: **NEW** / **V2-UPGRADE** / **REVIVAL** | V2 triggers `CHECK NOTHING IS LOST`, which is the whole ballgame on an upgrade | Tell me and I will work it out from the epic |
+| **Feature name**, and the project type: **NEW** / **V2-UPGRADE** / **REVIVAL** | V2 triggers `V1 vs V2 Capability Check`, which is the whole ballgame on an upgrade | Tell me and I will work it out from the epic |
 | **The spec / PRD** link | Expected results are quoted from it, verbatim | I will flag the suite as source-incomplete and we proceed at risk |
 | **The epic key** and its stories | Traceability, and often the only statement of intent | |
 | **Designs** (Figma / Claude design / technical design) | They are expected to AGREE with the PRD; where they do not, that is a finding | |

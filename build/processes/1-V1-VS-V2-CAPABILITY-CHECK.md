@@ -1,6 +1,7 @@
-# CHECK NOTHING IS LOST `<feature>` — prove the new version still does everything the old one did
+# V1 vs V2 CAPABILITY CHECK `<feature>` — prove V2 still does everything V1 could
 
-> **Call it:** `CHECK NOTHING IS LOST Invoicing`
+> **Call it:** `V1 vs V2 Capability Check on Invoicing`  —  or just *"does Invoicing V2 still do
+> everything V1 did?"*
 >
 > **The one-line reason this exists.** A V2 specification describes only what **changes**. It is
 > silent about everything the feature already did. So a V2 can quietly drop a capability and every
