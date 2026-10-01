@@ -1,0 +1,35 @@
+# PROJECT-STATE — DVI V2 (Digital Inspection V2)
+**Canonical cold-resume doc.** Status derived live (Rule 92 / skill 15).
+
+## Identity
+- **TestRail group:** 6658 "Digital Inspection V2 (Aug 2026)", suite 1, parent 3559. **91 cases, all created_by=3,
+  0 foreign, 0 automated.** 17 story-sections (S1–S19 + tech-plan). Link:
+  https://shopview.testrail.io/index.php?/suites/view/1&group_id=6658
+- **Build-verification env:** QA branch **sv8181.qa.shopview.com** · API sv8181api.qa.shopview.com · build **v26.36.8-2a64085**.
+- **Access:** 3 cookies (sv_sso_session + PHPSESSID + cf_clearance) → /tmp/cln/sv8181-cookies.json (ephemeral, never committed).
+  Boot: `qa-branch-boot.mjs sv8181 <route> admin`. Full routes/API/glossary: **build/dvi-v2/NAVIGATION-MAP.md**.
+
+## The job (QA lead, 2026-10-01)
+Build-verify all 91 on sv8181: glossary everywhere from the build, UI paths from the build, preconditions/steps
+runnable by a layman/manual QA, Expected layman-understandable using the build glossary (SUBSTANCE stays the
+spec's, Rule 114). After verifying, flip marker to **AUTOMATION: READY**. Build-verification lane only.
+
+## Status — 2026-10-01 (IN PROGRESS)
+- **Observed on the build (committed, with screenshots):** template builder (full: field TYPEs Checkbox/Text/
+  Measurement/Per axle/Photo, RESPONSE OPTIONS/SETTINGS, Include Monitor option, Note/Photo required, reference
+  file "Attach File", "Add follow-up to a response", "Require technician signature", Save Draft/Publish) ·
+  inspection results /inspections/<uuid> (OK/Monitor/Not OK/N/A badges, CHECKBOX, fields complete, locked/signed,
+  PDF) · Build lines menu + ShopCoach line builder draft ("Add Lines") · asset Inspections tab + SHOPCOACH ASSET
+  HISTORY (/customers/vehicle/<uuid>) · roles editor · per-axle builder config ("MEASUREMENT ROWS · EVERY AXLE").
+  Observed labels: build/dvi-v2/OBSERVED-UI-LABELS-sv8181.md.
+- **Alignment+stamp+flip transform:** role-perm casing → build ("Work orders"/"Work order lines"/"Customers"),
+  "labour"→"labor", stamp v26.36.8-2a64085 10/1/2026, HOLD→READY. Expected substance frozen (guard). Canary
+  C88513 served fr-view OK; full 91 write in progress.
+- **Run hand-off:** build/dvi-v2/RUN-HANDOFF-DVI-V2-2026-10-01.md.
+- **RESIDUAL (run session confirms live; entry points + config confirmed):** in-progress filling states
+  ("Marked OK"/"Needs action"/"Follow-up for this response"), per-axle FILLING controls (Drum/Disc/Single/Dual),
+  customer-report content + "Require acknowledgement", phone-width rendering.
+
+## NEXT (resume here)
+1. Confirm the 91 transform wrote (stamp 91/91, markers READY, glossary applied); gates: runnable, render, served fr-view.
+2. Report to QA lead + deliver the run hand-off.
