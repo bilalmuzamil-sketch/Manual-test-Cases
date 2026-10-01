@@ -1,4 +1,4 @@
-# P0 — THE EVIDENCE GATE (not callable; every process reports against it)
+# HOW WE PROVE THINGS (not callable — every process reports against it)
 
 > **A result is not evidence until it is ATTRIBUTED, IDENTIFIED and DATED.**
 >

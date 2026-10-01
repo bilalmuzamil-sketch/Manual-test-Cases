@@ -1,6 +1,6 @@
-# TEST THIS FEATURE `<feature>` — the umbrella: everything we did for Global Search, in order
+# FULL FEATURE QA `<feature>` — the umbrella: everything we did for Global Search, in order
 
-> **Call it:** `TEST THIS FEATURE Invoicing`
+> **Call it:** `FULL FEATURE QA on Invoicing`
 >
 > Runs the whole pipeline. Use it when a feature is new to us. Call the individual processes when
 > you only want one part.
@@ -24,7 +24,7 @@ quietly working around it.
 | 7 | PO's name | PO questions | yes, before questions go out |
 | 8 | Environment URLs + which to use | Kick-Off, Seed the data | yes |
 | 9 | **A dedicated login per environment** | Seed the data, Make runnable | yes |
-| 10 | TestRail write permission + target section and run | Put in TestRail | yes, at that step |
+| 10 | TestRail write permission + target section and run | Publish to TestRail | yes, at that step |
 | 11 | Jira ticket permission | findings | per ticket, never a blanket |
 
 ---
@@ -32,8 +32,8 @@ quietly working around it.
 ## THE ORDER, AND WHY IT IS THIS ORDER
 
 ```
-  KICK-OFF ─► V1 vs V2 ────► LOCK THE ──► WRITE THE ──► SEED THE ──► MAKE THEM ──► PUT IN
-             CAPABILITY        REQS          TESTS        TEST DATA   RUNNABLE      TESTRAIL
+  KICK-OFF ─► V1 vs V2 ────► LOCK THE ──► WRITE THE ──► SEED THE ──► MAKE THEM ──► PUBLISH
+             CAPABILITY        REQS          TESTS        TEST DATA   RUNNABLE      TO TESTRAIL
 ```
 
 - **Feature Kick-Off first** because everything else needs access, and because which version each environment
@@ -43,7 +43,7 @@ quietly working around it.
 - **Lock the requirements before writing the tests**, because an expected result is a quotation and you cannot quote a
   document you have not pinned.
 - **Seed the data before proving the terms**, because you cannot prove a term against data that is not there.
-- **Prove the terms before putting them in TestRail**, because publishing a suite full of "find the data first" hands a
+- **Prove the terms before publishing to TestRail**, because publishing a suite full of "find the data first" hands a
   tester a pile of dead ends.
 
 **Checkpoint after every step:** commit and push, path-scoped, with the real secret scan. Git is the

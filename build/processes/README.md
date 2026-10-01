@@ -11,15 +11,15 @@
 ## Just say one of these
 
 ```
-V1 vs V2 CAPABILITY CHECK on Invoicing
+V1 vs V2 CAPABILITY CHECK on Invoicing     ← the most important one
 FEATURE KICK-OFF for Invoicing
 LOCK THE REQUIREMENTS for Invoicing
 WRITE THE TESTS for Invoicing
 SEED THE TEST DATA for Invoicing on staging
 MAKE THE TESTS RUNNABLE for Invoicing on production
-PUT THE TESTS IN TESTRAIL for Invoicing
-MOVE THE TESTS for Invoicing to production
-TEST THIS FEATURE: Invoicing          ← does all of it, in the right order
+PUBLISH Invoicing TO TESTRAIL
+SWITCH THE Invoicing TESTS to production
+FULL FEATURE QA on Invoicing               ← does all of it, in the right order
 ```
 
 You do not have to get the wording exactly right. "Does Scheduling V2 still do everything V1 did?"
@@ -70,16 +70,16 @@ Every test is given the **exact text to type**, proven to work on the environmen
 is what stops a tester typing something that doesn't exist, seeing nothing, and raising a bug against
 a feature that works perfectly.
 
-### PUT THE TESTS IN TESTRAIL
+### PUBLISH TO TESTRAIL
 Publishes the tests, adds them to the test run, and gives you a list of anything that changed so
 whoever is running them knows what to re-run.
 
-### MOVE THE TESTS
+### SWITCH THE TESTS TO ANOTHER ENVIRONMENT
 Takes tests written for one environment and makes them work on another. Phone numbers, VINs, work
 order numbers and the like are all different between environments — this finds every one and fixes
 it.
 
-### TEST THIS FEATURE
+### FULL FEATURE QA
 All of the above, in order, for a feature we haven't touched before.
 
 ---
@@ -94,9 +94,9 @@ missing I'll say exactly what and what it costs.
 | The feature name, and whether it's new or a version 2 | all | A version 2 needs the V1 vs V2 Capability Check |
 | **Access to the code**, and which version to compare against | V1 vs V2 Capability Check | There's no other way to know what the old version did |
 | The **spec / PRD link** and the **epic** | Lock the Requirements, Write the tests | The tests quote these word for word |
-| Designs, and the technical plan | Read the specs | They're meant to agree with the spec; where they don't, that's a finding |
+| Designs, and the technical plan | Lock the Requirements | They're meant to agree with the spec; where they don't, that's a finding |
 | Who the **PO** is | questions | Questions go to a named person |
-| **Which environment**, and a **login for it** | Seed the data, Make runnable, Move | |
+| **Which environment**, and a **login for it** | Seed the data, Make runnable, Switch | |
 | **Permission to write to TestRail** | Put in TestRail | I never write there without you saying so |
 | **Permission for each Jira ticket** | any finding | Asked per ticket, never once for a batch |
 
@@ -127,21 +127,21 @@ there, or missing one that is.
 
 ## The files
 
-| Job | File | Old name |
-|---|---|---|
-| V1 vs V2 Capability Check | [1-V1-VS-V2-CAPABILITY-CHECK.md](1-V1-VS-V2-CAPABILITY-CHECK.md) | `PARITY` |
-| Feature Kick-Off | [2-FEATURE-KICK-OFF.md](2-FEATURE-KICK-OFF.md) | `ONBOARD` |
-| Lock the Requirements | [3-LOCK-THE-REQUIREMENTS.md](3-LOCK-THE-REQUIREMENTS.md) | `INGEST` |
-| Write the tests | [4-WRITE-THE-TESTS.md](4-WRITE-THE-TESTS.md) | `BUILD CASES` |
-| Seed the Test Data | [5-SEED-THE-TEST-DATA.md](5-SEED-THE-TEST-DATA.md) | `SEED` / `RESEED` |
-| Make the tests runnable | [6-MAKE-THE-TESTS-RUNNABLE.md](6-MAKE-THE-TESTS-RUNNABLE.md) | `PROVE TERMS` |
-| Put the tests in TestRail | [7-PUT-THE-TESTS-IN-TESTRAIL.md](7-PUT-THE-TESTS-IN-TESTRAIL.md) | `PUBLISH` |
-| Move the tests | [8-MOVE-THE-TESTS.md](8-MOVE-THE-TESTS.md) | `REPOINT` |
-| Test this feature (all of it) | [9-TEST-THIS-FEATURE.md](9-TEST-THIS-FEATURE.md) | `FEATURE QA` |
-| How we prove things (always on) | [0-HOW-WE-PROVE-THINGS.md](0-HOW-WE-PROVE-THINGS.md) | `EVIDENCE GATE` |
+| Job | File |
+|---|---|
+| V1 vs V2 Capability Check | [1-V1-VS-V2-CAPABILITY-CHECK.md](1-V1-VS-V2-CAPABILITY-CHECK.md) |
+| Feature Kick-Off | [2-FEATURE-KICK-OFF.md](2-FEATURE-KICK-OFF.md) |
+| Lock the Requirements | [3-LOCK-THE-REQUIREMENTS.md](3-LOCK-THE-REQUIREMENTS.md) |
+| Write the Tests | [4-WRITE-THE-TESTS.md](4-WRITE-THE-TESTS.md) |
+| Seed the Test Data | [5-SEED-THE-TEST-DATA.md](5-SEED-THE-TEST-DATA.md) |
+| Make the Tests Runnable | [6-MAKE-THE-TESTS-RUNNABLE.md](6-MAKE-THE-TESTS-RUNNABLE.md) |
+| Publish to TestRail | [7-PUBLISH-TO-TESTRAIL.md](7-PUBLISH-TO-TESTRAIL.md) |
+| Switch the Tests to Another Environment | [8-SWITCH-TO-ANOTHER-ENVIRONMENT.md](8-SWITCH-TO-ANOTHER-ENVIRONMENT.md) |
+| Full Feature QA (all of it) | [9-FULL-FEATURE-QA.md](9-FULL-FEATURE-QA.md) |
+| How We Prove Things (always on) | [0-HOW-WE-PROVE-THINGS.md](0-HOW-WE-PROVE-THINGS.md) |
 
-The old names still work if anyone uses them. **`RESEED GLOBAL SEARCH STAGING`** and the other
-existing keywords are unchanged.
+**`RESEED GLOBAL SEARCH STAGING`** and the other existing keywords are unchanged — "Seed the
+Test Data" is the name of the process, `RESEED` is still the keyword for a rebuild.
 
 **Global Search is the worked example.** When something here is unclear, look at what that project
 actually did — in `build/global-search/` and `build/search-results-integrity/`. The scripts are real

@@ -1,6 +1,6 @@
-# MOVE THE TESTS `<feature> TO <env>` — move an existing suite to a different environment
+# SWITCH THE TESTS TO ANOTHER ENVIRONMENT `<feature> TO <env>` — move an existing suite to a different environment
 
-> **Call it:** `MOVE THE TESTS Invoicing TO LIVE`
+> **Call it:** `SWITCH THE Invoicing TESTS TO LIVE`
 >
 > The suite was written against one environment and now has to be run on another. Everything
 > environment-specific inside it is now a **false failure waiting for a tester** — they type a value

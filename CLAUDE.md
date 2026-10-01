@@ -155,9 +155,9 @@ QA can call them; accept any reasonable wording of them, not just the exact stri
 | **"WRITE THE TESTS for X"** | Author the suite from those quotes. | `BUILD CASES` |
 | **"SEED THE TEST DATA for X on <env>"** | One command, one keyword, status board, resumable, proved through the feature's own interface. **Never ask first (114.6).** | `SEED` / `RESEED` |
 | **"MAKE THE TESTS RUNNABLE for X on <env>"** | Every case gets a value PROVEN on that environment. | `PROVE TERMS` |
-| **"PUT THE TESTS IN TESTRAIL for X"** | Push + **union-only** run sync (34) + the retest list. | `PUBLISH` |
-| **"MOVE THE TESTS for X to <env>"** | Re-point a suite to another environment. 🔴 An identifier inside a **quoted source sentence** is NOT corrected — 113 beats 111 there. | `REPOINT` |
-| **"TEST THIS FEATURE: X"** | The umbrella — runs them in order. | `FEATURE QA` |
+| **"PUBLISH X TO TESTRAIL"** | Push + **union-only** run sync (34) + the retest list. | `PUBLISH` |
+| **"SWITCH THE X TESTS to <env>"** | Re-point a suite to another environment. 🔴 An identifier inside a **quoted source sentence** is NOT corrected — 113 beats 111 there. | `REPOINT` |
+| **"FULL FEATURE QA on X"** | The umbrella — runs them in order. | `FEATURE QA` |
 
 **`build/processes/0-HOW-WE-PROVE-THINGS.md` is not callable and is ALWAYS ON:** a result is not
 evidence until it is **attributed, identified and dated** (Rule 110).

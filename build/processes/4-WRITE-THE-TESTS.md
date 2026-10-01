@@ -2,7 +2,7 @@
 
 > **Call it:** `WRITE THE TESTS Invoicing`
 >
-> Turns the "read the specs" output into cases a manual tester can actually run.
+> Turns the locked requirements into cases a manual tester can actually run.
 
 ---
 
@@ -10,7 +10,7 @@
 
 | What I need | Why |
 |---|---|
-| The **"read the specs" output** (quoted sentences + citations) | A case with no source should not exist (Rule 64) |
+| The **locked requirements** (quoted sentences + citations) | A case with no source should not exist (Rule 64) |
 | Whether the cases go in a **new TestRail section**, and which | |
 | **Which run** they must join | Rule 34 — new cases must appear in the run |
 | Any **existing suite** for this feature | So I extend it rather than duplicating it, and so I can spot contradictions |
