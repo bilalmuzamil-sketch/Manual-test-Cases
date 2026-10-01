@@ -1,0 +1,115 @@
+{
+ "Work orders": {
+  "identifiers_exempt": [
+   "WO number",
+   "VIN/serial #"
+  ],
+  "fuzzy_named_in_s7": [
+   "customer name",
+   "asset year/make/model",
+   "lead technician name",
+   "service advisor name"
+  ],
+  "indexed_but_s7_silent": [
+   "unit number",
+   "line item descriptions"
+  ]
+ },
+ "Customers": {
+  "identifiers_exempt": [
+   "telephone"
+  ],
+  "fuzzy_named_in_s7": [
+   "customer name",
+   "contact name"
+  ],
+  "indexed_but_s7_silent": [
+   "address 1/2",
+   "city",
+   "state/province",
+   "contact telephone",
+   "contact email"
+  ]
+ },
+ "Assets": {
+  "identifiers_exempt": [
+   "VIN/serial #"
+  ],
+  "fuzzy_named_in_s7": [
+   "make",
+   "model",
+   "owning customer name"
+  ],
+  "indexed_but_s7_silent": [
+   "year",
+   "unit number"
+  ]
+ },
+ "Parts": {
+  "identifiers_exempt": [
+   "part number"
+  ],
+  "fuzzy_named_in_s7": [
+   "description",
+   "tags",
+   "vendor name"
+  ],
+  "indexed_but_s7_silent": [
+   "category",
+   "manufacturer",
+   "bin location"
+  ]
+ },
+ "Vendors": {
+  "identifiers_exempt": [
+   "telephone"
+  ],
+  "fuzzy_named_in_s7": [
+   "vendor name",
+   "contact name"
+  ],
+  "indexed_but_s7_silent": [
+   "email",
+   "address",
+   "city",
+   "contact telephone",
+   "contact email"
+  ]
+ },
+ "Part sales": {
+  "identifiers_exempt": [
+   "P-number",
+   "VIN/serial #"
+  ],
+  "fuzzy_named_in_s7": [
+   "customer name",
+   "asset"
+  ],
+  "indexed_but_s7_silent": [
+   "created-by user"
+  ]
+ },
+ "Purchase orders": {
+  "identifiers_exempt": [
+   "PO number",
+   "part numbers"
+  ],
+  "fuzzy_named_in_s7": [
+   "vendor name",
+   "part descriptions"
+  ],
+  "indexed_but_s7_silent": [
+   "created-by user"
+  ]
+ },
+ "Vendor invoices": {
+  "identifiers_exempt": [
+   "invoice number",
+   "PO number"
+  ],
+  "fuzzy_named_in_s7": [
+   "vendor name"
+  ],
+  "indexed_but_s7_silent": []
+ }
+}

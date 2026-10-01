@@ -4726,3 +4726,29 @@ breaking this environment?* If no, go and do it.
 the `ZZLONGROW` records this suite was built on had gone, and their absence made several checks look
 like regressions in last night's run. **Harvest terms live off the environment, or re-seed as part of
 the run; never assume yesterday's fixture is still there.**
+
+---
+
+## L0252
+
+**2026-10-01 · A gate written as "only X and Y, nothing else" will meet a status its author never
+considered — and then its letter and its purpose point opposite ways.**
+
+Rule 112 admitted a story defect only against **Ready for QA** or **Testing QA**, with everything
+else barred. SV-9170 sits at **QA Complete**, which is literally "everything else", so the letter
+barred the ticket. But 112.3 states the rule's purpose in its own words — *"the developer has not
+finished building the thing"* — and QA Complete is the opposite of that: the work is done and a fault
+found afterwards is a miss in **our own** coverage.
+
+I surfaced the conflict rather than quietly picking a side, twice, and filed on his go-ahead. His
+ruling, the same day: *"If there is a story marked as QA completed and you still find a defect
+related to that you should create the story defect for that, make it as a rule."*
+
+**The general lesson is bigger than this row.** An enumerated allow-list ages badly: every status the
+author did not think of falls into the catch-all and gets treated as if it were the worst case. When
+the letter of a rule and its own stated reason disagree, that is a signal the rule has met a case it
+was not written for — **surface it (63), never silently apply either half.** Applying the letter here
+would have buried a real fault; applying the purpose silently would have been me rewriting his rule.
+
+**Also recorded:** the fix is to NAME the status in the table, not to soften "anything else" into a
+judgement call. A gate that needs interpreting at 3am is a gate that will be interpreted wrongly.

@@ -4012,6 +4012,57 @@ a real defect the day the story moves — with the observation already written d
 
 ---
 
+## RULE 112 — AMENDMENT, 2026-10-01: **QA COMPLETE ADMITS A STORY DEFECT.** A FAULT FOUND AFTER QA SIGNED OFF IS EXACTLY WHAT A STORY DEFECT IS FOR
+
+**QA lead, 2026-10-01, verbatim:**
+
+> *"If there is a story marked as QA completed and you still find a defect related to that you should
+> create the story defect for that, make it as a rule."*
+
+### 112.5 THE GATE, RESTATED
+
+| Owning story status | What happens |
+|---|---|
+| **Ready for QA** | Defect may be raised (subject to Rule 62 — **ask per ticket**) |
+| **Testing QA** | Defect may be raised (same) |
+| **QA Complete** | **Defect may be raised** (same) — **added 2026-10-01** |
+| **In Progress · To Do · In Development · In Review · Blocked · …** | **NO defect.** Mark the case **Blocked**, per 112.2 |
+
+### 112.6 WHY QA COMPLETE BELONGS WITH THE OTHER TWO, NOT WITH "In Progress"
+
+The original gate (2026-09-16) was written against **premature** filing — a defect raised against
+something the developer has not finished building. **112.3 says so in its own words: *"the developer
+has not finished building the thing."*** QA Complete is the **opposite** case: the work is finished,
+QA has signed off, and a fault found afterwards is a **miss in our own coverage**. Filing it is the
+whole purpose of a story defect.
+
+**A fault that is real does not become unreportable because the story moved past us.** Sitting on it
+means the build ships with a known fault and no record of it — the precise outcome the gate was
+written to avoid.
+
+### 112.7 THE READING ERROR THIS CORRECTS — MINE, 2026-09-30
+
+The table said *"anything else"*, and **QA Complete is literally "anything else"**, so on 2026-09-30
+I read the gate as barring a defect against SV-9170 and said so twice before filing SV-10738 on his
+go-ahead. **The letter of the rule and its stated purpose pointed in opposite directions, and I
+surfaced it rather than silently picking one — which is Rule 63 and was right.** The fix is that the
+rule now names the status instead of leaving it to *"anything else"*.
+
+**The general lesson, worth more than this row:** a gate written as *"only X and Y, nothing else"*
+will eventually meet a status its author never considered. **When the letter and the stated purpose
+disagree, surface it (63) — do not quietly apply either one.**
+
+### 112.8 UNCHANGED
+
+Everything else in 112 stands: the status is read **live** before the ask, never from a handoff or
+memory (100) · a story in an admitted status still needs **his per-ticket go-ahead** (62 · 113) · a
+story in a barred status still gets a **Blocked** result carrying the three things in 112.2 · the
+gate is on **filing**, never on **testing** (112.4).
+
+**Learning:** L0252.
+
+---
+
 ## RULE 113 — THE TEST-EXECUTION FILING LOOP: PASS AND BLOCK FREELY, STOP ONLY AT THE JIRA BUTTON, ONE TICKET AT A TIME
 
 **Added 2026-09-16, on the QA lead's instruction. Verbatim:**

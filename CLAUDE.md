@@ -102,8 +102,8 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   read** — one gated fetch per pass, never one per case; **a pass with no go-ahead reconciles against
   NOTHING and says so**, never against memory or an extract. Full text: `RULES-61-ONWARD.md` rule 106
   (2026-09-15 extension); carried by skills 03, 06, 09, 11, 12 and 16.
-  **🛑 (e) AND THE OWNING STORY MUST BE IN **Ready for QA** OR **Testing QA** — NOTHING ELSE (112; QA
-  lead 2026-09-16).** Read the story's status LIVE, before the Rule 62 ask, never from a handoff or
+  **🛑 (e) AND THE OWNING STORY MUST BE IN **Ready for QA**, **Testing QA** OR **QA Complete** (112; QA
+  lead 2026-09-16, **QA Complete added by him 2026-10-01**: *"If there is a story marked as QA completed and you still find a defect related to that you should create the story defect for that"* — a fault found after sign-off is a miss in OUR coverage and is exactly what a Story Defect is for; the gate was only ever against filing on work the developer has not finished).** Read the story's status LIVE, before the Rule 62 ask, never from a handoff or
   memory (100). Any other status (In Progress, To Do, In Review, …) ⇒ **NO defect**: mark the case
   **Blocked** with a comment naming the story + link, its status and the date read, the plain sentence
   *"the story is still in progress / not yet ready for QA, so this cannot be judged"*, and **what you
