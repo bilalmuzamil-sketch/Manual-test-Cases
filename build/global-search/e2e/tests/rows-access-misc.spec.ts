@@ -51,7 +51,10 @@ test.beforeAll(async () => {
 test.afterAll(async () => { await s?.browser.close(); });
 
 test.beforeEach(async () => {
-  if (!/\/customers\b/.test(s.page.url())) {
+  // 🔴 `/customers` ALSO MATCHES `/customers/<id>`. A record page therefore looked like the list
+  // page, the guard did not send the session home, and the next check opened its panel on a page
+  // where the shortcut does not take - reported as "the search panel is not there". Match the LIST.
+  if (!/\/customers\/?(\?|$)/.test(s.page.url())) {
     await s.page.goto(`${process.env.GS_APP || ''}/customers`, { waitUntil: 'domcontentloaded', timeout: 25_000 }).catch(() => {});
     await s.page.waitForTimeout(4_000);
   }

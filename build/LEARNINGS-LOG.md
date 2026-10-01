@@ -5006,3 +5006,18 @@ spec file reported red because of one optimistic line.
 **Two rules:** walk an unknown response defensively and collect what you find, and keep anything
 that can throw OUT of `beforeAll` unless every test genuinely depends on it. A setup hook is the
 worst place to be wrong: it turns one bad assumption into a file-wide failure that hides real results.
+
+### L0274 — `/customers` also matches `/customers/<id>`, so a record page looked like the list page (2026-10-01)
+A `beforeEach` sent the session home only when the URL did not match `/\/customers\b/`. A record
+page is `/customers/<id>`, which matches — so the guard never fired, the next check opened its
+panel on a record page where the keyboard shortcut does not reliably take, and the failure read
+"the search panel is not there". Anchor the pattern to the END of the path: `/\/customers\/?(\?|$)/`.
+**Reusable rule:** a path guard written as a prefix match will quietly accept every page beneath it.
+
+### L0275 — make the failure happen rather than waiting to observe one (2026-10-01)
+The "search unavailable, retry" banner had no spec because a real search failure cannot be waited
+for. Playwright's `page.route` aborts the request in the BROWSER - nothing on the server is touched,
+no other session is affected, and the route is removed immediately afterwards. The check then also
+proves the panel RECOVERS once the request works again, which is the half a manual tester usually
+forgets. **Reusable rule:** an error state is testable whenever the error can be injected on the
+client side; reach for that before marking a check un-automatable.

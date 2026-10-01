@@ -34,7 +34,10 @@ test.beforeAll(async () => {
 test.afterAll(async () => { await s?.browser.close(); });
 
 test.beforeEach(async () => {
-  if (!/\/customers\b/.test(s.page.url())) {
+  // 🔴 `/customers` ALSO MATCHES `/customers/<id>`. A record page therefore looked like the list
+  // page, the guard did not send the session home, and the next check opened its panel on a page
+  // where the shortcut does not take - reported as "the search panel is not there". Match the LIST.
+  if (!/\/customers\/?(\?|$)/.test(s.page.url())) {
     // 🔴 ALWAYS GIVE THIS AN EXPLICIT TIMEOUT. Without one the navigation inherits a long default,
     // and when it stalls the BEFORE-EACH times out instead of the test - so the report blames a
     // tablet check that never ran. It happened to C55674 at 120s.
