@@ -384,14 +384,114 @@
    "note": "probed on production 2026-10-01 against seeded data"
   },
   "purchase_orders.item_part_names": {
-   "term": "ZZAUTOTEST",
+   "term": "ZZFIELDPART",
    "group": "purchase_orders",
    "field": "item_part_names",
    "kind": "word",
-   "highlight": "ZZAUTOTEST",
-   "primary": "S2-840",
+   "highlight": "ZZFIELDPART",
+   "primary": "I2-37",
    "secondary": null,
-   "note": "probed on production 2026-10-01 against seeded data"
+   "note": "seeded by seed_field_coverage.py on production 2026-10-01 and proved by search"
+  },
+  "parts.manufacturer": {
+   "term": "ZZMAKERTON",
+   "group": "parts",
+   "field": "manufacturer",
+   "kind": "word",
+   "highlight": "ZZMAKERTON",
+   "primary": "ZZFIELDPART Alternator Housing",
+   "secondary": null,
+   "note": "seeded by seed_field_coverage.py on production 2026-10-01 and proved by search"
+  },
+  "parts.tags": {
+   "term": "ZZTAGWORD",
+   "group": "parts",
+   "field": "tags",
+   "kind": "word",
+   "highlight": "ZZTAGWORD",
+   "primary": "ZZFIELDPART Alternator Housing",
+   "secondary": null,
+   "note": "seeded by seed_field_coverage.py on production 2026-10-01 and proved by search"
+  },
+  "work_orders.item_part_names": {
+   "term": "ZZFIELDPART",
+   "group": "work_orders",
+   "field": "item_part_names",
+   "kind": "word",
+   "highlight": "ZZFIELDPART",
+   "primary": "S2-889",
+   "secondary": null,
+   "note": "seeded by seed_field_coverage.py on production 2026-10-01 and proved by search"
+  },
+  "work_orders.item_part_numbers": {
+   "term": "ZZFIELDPN-7781",
+   "group": "work_orders",
+   "field": "item_part_numbers",
+   "kind": "word",
+   "highlight": "ZZFIELDPN-7781",
+   "primary": "S2-889",
+   "secondary": null,
+   "note": "seeded by seed_field_coverage.py on production 2026-10-01 and proved by search"
+  },
+  "purchase_orders.item_part_numbers": {
+   "term": "ZZFIELDPN-7781",
+   "group": "purchase_orders",
+   "field": "item_part_numbers",
+   "kind": "word",
+   "highlight": "ZZFIELDPN-7781",
+   "primary": "I2-37",
+   "secondary": null,
+   "note": "seeded by seed_field_coverage.py on production 2026-10-01 and proved by search"
+  },
+  "vendors.contact_phones": {
+   "term": "(264) 777-0181",
+   "group": "vendors",
+   "field": "contact_phones",
+   "kind": "word",
+   "highlight": "(264) 777-0181",
+   "primary": "Rowcheck Quiet Fields Supply",
+   "secondary": null,
+   "note": "seeded by seed_field_coverage.py on production 2026-10-01 and proved by search"
+  },
+  "customers.contact_names_same": {
+   "term": "ZZSAMEREP",
+   "group": "customers",
+   "field": "contact_names",
+   "kind": "word",
+   "highlight": "ZZSAMEREP",
+   "primary": null,
+   "secondary": null,
+   "note": "already present on production; proved by search 2026-10-01"
+  },
+  "purchase_orders.created_by": {
+   "term": "No Reports",
+   "group": "purchase_orders",
+   "field": "ordered_by_name",
+   "kind": "word",
+   "highlight": "No Reports",
+   "primary": "I2-37",
+   "secondary": null,
+   "note": "the production seeding account's display name; the PO row matches on ordered_by_name"
+  },
+  "purchase_orders.number_variants": {
+   "term": "237",
+   "group": "purchase_orders",
+   "field": "number_variants",
+   "kind": "word",
+   "highlight": "237",
+   "primary": "I2-37",
+   "secondary": null,
+   "note": "typing the PO number without its separator matches number_variants (I2-37)"
+  },
+  "customers.dual_contact": {
+   "term": "ZZDUALREP",
+   "group": "customers",
+   "field": "contact_names",
+   "kind": "word",
+   "highlight": "ZZDUALREP",
+   "primary": "Rowcheck Dualrep Transport",
+   "secondary": null,
+   "note": "two contacts with the SAME name at ONE customer; proved on production 2026-10-01"
   }
  },
  "missing": [
@@ -704,6 +804,20 @@
      "primary": "ZZT-INV-2",
      "secondary": "ZZAUTOTEST Fibridge Mining",
      "highlight": "Fibridge"
+    }
+   ]
+  },
+  "same.customers": {
+   "term": "ZZSAMEREP",
+   "group": "customers",
+   "field": "contact_names",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "Rowcheck Samerep Freight"
+    },
+    {
+     "primary": "Rowcheck Samerep Haulage"
     }
    ]
   }

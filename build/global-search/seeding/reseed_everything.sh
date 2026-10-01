@@ -350,6 +350,11 @@ if [ "$V2" = "1" ]; then
   # SHOUTS if the environment no longer holds the same two people, because the term then moved
   # and both cases carry a stale one (Rule 111).
   step "17d result-integrity WO staff (2 cases)"  python3 assign_wo_staff.py     || exit 1
+  # ELEVEN rows of the suite said "find the data first" on production — not because records were
+  # missing but because NO record anywhere filled in the field the case tests: no part had a
+  # manufacturer, no work-order line a distinctive part, no vendor contact a findable phone. Seven
+  # fields, seeded deliberately and proved through the search.
+  step "17e field coverage (7 fields, 11 cases)" python3 seed_field_coverage.py --confirm || exit 1
 
   # 🔴 BOTH OF THESE ARE PROVED BY status.py, NOT BY A DEDICATED VERIFIER. Their assertion is a
   # RANKING one - which match label each row carries - and on Parts the expected answer is

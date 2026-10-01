@@ -130,7 +130,18 @@ def term_for(ekey, field):
     if ref is None: return None, None
     if isinstance(ref, tuple):
         p = PAIRS.get(ref[1])
-        return (p['term'], f"{p['count']} rows come back sharing this") if p else (None, None)
+        if p:
+            return p['term'], f"{p['count']} rows come back sharing this"
+        # 🔴 FALL BACK TO THE SINGLE PROVEN RECORD. A 'pair' entry says "several rows share this
+        # fragment", which is true on an estate that happens to hold several. On production nothing
+        # filled these fields at all until they were seeded deliberately, and what exists is ONE
+        # record per field. The case asks whether the row shows the FULL value — one record answers
+        # that perfectly. Without this fallback the row reverted to "find the data first" even
+        # though a proven term was sitting in the terms file.
+        f = (D.get('found') or {}).get(ref[1])
+        if f and f.get('term'):
+            return f['term'], f"proven to match on {f['field']} ({f['kind']})"
+        return None, None
     f = FOUND.get(ref)
     return (f['term'], f"proven to match on {f['field']} ({f['kind']})") if f else (None, None)
 
