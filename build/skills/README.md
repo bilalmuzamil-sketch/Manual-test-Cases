@@ -1,5 +1,11 @@
 # Skills — the eight jobs this workspace does, plus the support files and the lane routers
 
+> 🔴 **LOOKING FOR A NAMED PROCESS THE QA LEAD CALLED?** It is in `build/processes/README.md` —
+> `PARITY` / `ONBOARD` / `INGEST` / `BUILD CASES` / `SEED` / `PROVE TERMS` / `PUBLISH` /
+> `REPOINT` / `FEATURE QA`. Those are the callable layer; the skills below are the procedure they
+> point at. A process file holds no duplicated procedure — procedure found in one is a bug.
+
+
 > **Each file below is a complete specification for one job, written for a session with NO memory of
 > this workspace.** They exist because the QA lead asked for them in these words (2026-08-12):
 > *"In future we have to convert this whole session into multiple Skills, one skill per session, so I

@@ -1,5 +1,12 @@
 # Process Catalog — the reusable processes you can call (all projects)
 
+> 🔴 **START AT `build/processes/README.md`.** The nine **callable feature-QA processes** —
+> `PARITY` · `ONBOARD` · `INGEST` · `BUILD CASES` · `SEED` · `PROVE TERMS` · `PUBLISH` ·
+> `REPOINT` · `FEATURE QA` — are the generalised form of everything done for Global Search, usable
+> on any feature. Each names what to ask the QA lead for before it starts, is resumable, and proves
+> its own output. **`PARITY` is the one that catches a V2 silently dropping what V1 could do.**
+> The catalog below remains the index of the older per-task processes.
+
 > **What this is:** the single index of every reusable process/method/recipe in this workspace,
 > what each one does, and **how to call it** for any project. Point Claude at a process by name
 > or by its trigger phrase (plus the project name); per **Standing Rule 11**, when a new/updated

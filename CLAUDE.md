@@ -141,6 +141,36 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
+## 1A · 🔴 THE CALLABLE PROCESSES — say the name, and it runs
+
+**`build/processes/README.md` is the index. READ IT WHEN THE QA LEAD SAYS ONE OF THESE NAMES.**
+Everything done for Global Search is cut into nine named processes that work for ANY feature. He
+calls one by keyword + feature name, and **a called process must not fail** — each one gates on its
+inputs before starting, is resumable, and proves its own output.
+
+| Call | What it does |
+|---|---|
+| **`PARITY <feature>`** | 🔴 **The most important one.** Read how the feature works TODAY in the PRODUCT REPOSITORY at a pinned commit, then prove the new version still does all of it. **V2 must be V1 + V2, never V1 − V2.** A V2 spec is silent about everything it does not change, so a capability can vanish with every case still passing. |
+| **`ONBOARD <feature>`** | Sources + access, and **MEASURE** which environment runs which version (never assume from its name). |
+| **`INGEST <feature>`** | Source-currency check, and pull the sentences the cases will QUOTE VERBATIM (113). |
+| **`BUILD CASES <feature>`** | Author the suite from those quotes. |
+| **`SEED <feature> <env>`** | The data kit: one command, one keyword, status board, resumable, proved through the feature's own interface. **Never ask first (114.6).** |
+| **`PROVE TERMS <feature> <env>`** | Every case gets a value PROVEN on that environment. |
+| **`PUBLISH <feature>`** | TestRail push + union-only run sync + the retest list. |
+| **`REPOINT <feature> TO <env>`** | Move a suite to another environment without breaking it. |
+| **`FEATURE QA <feature>`** | The umbrella — runs them in order. |
+
+**`build/processes/P0-EVIDENCE-GATE.md` is not callable and is ALWAYS ON:** a result is not evidence
+until it is **attributed, identified and dated** (Rule 110). Every process reports against it.
+
+**Each process file states WHAT TO ASK THE QA LEAD FOR before it starts** — repo access and the V1
+commit for PARITY, a **dedicated** environment login for SEED (a fresh login expires the previous
+one and kills his browser mid-run), TestRail write permission for PUBLISH, and so on. The gate is
+the first section of every file. **These files are the callable layer and hold no duplicated
+procedure** — each points at its canonical skill in `build/skills/` and the rules it applies.
+
+---
+
 ## 2 · THE RULE INDEX — all 96 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
