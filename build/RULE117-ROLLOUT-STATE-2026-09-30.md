@@ -62,3 +62,26 @@ Rule-117 standard. Per-feature intake needed each time (Rule 1/2/30/15): the fea
 Confluence spec/PRD, the design (drive it end-to-end, Rule 115), the epic/stories, and the tech plan
 if one exists. Same pipeline as Part Sales: intake → drive design → create content sub-folders →
 author atomic Rule-117 cases citing verbatim quotes → render-repair → coverage verdict → commit/push.
+
+---
+
+## Session update 2026-10-01 (continuation)
+
+**WO Board & Tech View — PRD v33 re-check + precondition fix (done):**
+- PRD moved draft v0.9 → v33 (2026-09-28). 42 anchors updated, 7 new cases (C154884–C154890),
+  10 removed (C96922 + Story-10 C97014–C97019 retired; C96913 re-sourced). Full v33 coverage (204
+  anchors). Detail: `build/wo-board-tech-view/V33-RECHECK-2026-09-30.md`. 3 DIVERGE items resolved.
+- 🔴 **Precondition format fix:** the WO Board reformat had left 120/127 cases with PARAGRAPH
+  preconditions (prose), not discrete Rule-117 lines. Converted all 120 to discrete, numbered,
+  runnable, build-glossary lines (`build/wo-board-tech-view/fix_all_preconds.py`); 127/127 now
+  discrete lists, rendered clean.
+- **Live precondition-format audit of every suite this session + the Rule-117 reformat folders:**
+  Notifications 56, What/Why 19, Price/Category 26, Part Lifecycle 62, Part Sales 57, Maintenance
+  Reminder 81, Digital Inspection V2 91, Dashboard 59 (+3 foreign), WO Board 127 — **all 0 paragraphs,
+  100% discrete.** Only WO Board had been affected; fixed.
+
+**NEXT / in progress:** reviewing Mudassir's (user id 6) 43 Part Sales QA-addition cases in a NEW
+sibling folder **"Part Sales — QA Additions (Mudassir)" = section 20481** (sub-sections 20482 S9
+Deposit audit log SV-9867, 20483 S10 Portal deposit SV-10261, 20484 XC Cross-cutting) — C154841–C154883.
+These cover SV-9867 and SV-10261, which are DIFFERENT stories than our Part Sales Update v1 PRD
+(867434569 / SV-9667, stories S1–S8; S2 withdrawn). Assessing validity + the coverage-gap question.
