@@ -62,3 +62,13 @@ Table columns: "Inspection" (name + version) · "Status" (e.g. "Completed") · "
 "SHOPCOACH ASSET HISTORY" panel: "Asset History" · a question box ("e.g. when did we work on the turbo?") · "View All History".
 # Alignment: cases say "View History Logs" / "Inspection results" / "runs" — build uses "Inspections" tab,
 #   the "Issues" column with "N Not OK", and "SHOPCOACH ASSET HISTORY → View All History".
+
+## Roles & Permissions editor  (route /administration/roles-permissions → edit a role)  — Evidence: roles-editor.png
+Group "Work orders": "View" · "Create & Edit" · "Delete" (plus more rows).
+Group "Work order lines": "Create & Edit" · "Delete" · "View".
+Group "Customers": "View" · "Create & Edit" · "Delete".
+"See Financial Data" present. No standalone "Inspections" permission group observed (inspections ride on
+Work order lines / Work orders perms; "Inspection Templates" is a Settings area, not a role atom).
+# Alignment: cases write role perms as "Work Orders - Create & Edit" / "Work Order Lines - Create & Edit" /
+#   "Customers - View" (hyphen AND em-dash variants). Build = the "Work orders" / "Work order lines" / "Customers"
+#   GROUP + its "Create & Edit"/"View" toggle. Align case precond/step wording to the build group + toggle.

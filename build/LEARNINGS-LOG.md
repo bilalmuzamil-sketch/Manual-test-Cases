@@ -923,3 +923,9 @@ sv_sso_session + PHPSESSID + cf_clearance** (cf_clearance UA-bound → Chrome-13
 API host = sv8181api.qa.shopview.com (no dot before "api"). Full map + routes: build/dvi-v2/NAVIGATION-MAP.md.
 DVI lives under Settings → SERVICE → "Inspection Templates" (no top-nav Inspections link); /inspections and
 /inspection-templates are dead routes on this build.
+
+## 2026-10-01 — 🔴 STANDING RULE (QA lead, permanent): NEVER GO IDLE WAITING FOR A MESSAGE
+The QA lead directed: **stop ONLY when (a) you have a question for me, or (b) the given task is fully done.**
+Never pause to "check in" and wait. Keep working continuously across the whole task — observe, align, stamp,
+gate, report — committing as you go. The only legitimate stops are a genuine question put to him, or full
+completion of the task. Reinforces Rule 105 (never idle while work remains). Applies to every session.
