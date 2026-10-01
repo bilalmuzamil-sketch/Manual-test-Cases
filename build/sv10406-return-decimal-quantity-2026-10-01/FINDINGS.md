@@ -32,7 +32,7 @@ could not be exercised for a reason that turns out to be **pre-existing and not 
 | 2 | 0.5 accepted → saved 0.5, and the credit is not just the fee | **PASS** — stored `0.50`, line $17.77, credit **$12.77** against a $5.00 fee |
 | 3 | 1.25 accepted → 1.25 saved | **PASS** — stored `1.25`, credit **$44.41** = 1.25 × $35.53 |
 | 4 | A whole-unit return behaves exactly as today | **PASS** — stored `1.00`, credit **$139.54** |
-| 5 | A 1.5-unit return, full credit, no fees or tax — ShopView and AccountingHub agree | **ShopView half PASSES** (case 1 is exactly that shape). AccountingHub not reachable — §5 |
+| 5 | A 1.5-unit return, full credit, no fees or tax — ShopView and AccountingHub agree | **ShopView half PASSES** (case 1 is exactly that shape). The AccountingHub half cannot be checked in either environment — §5 |
 | 6 | The manual-return workflow still keeps decimals on create, cancel and credit | **create PASSES** (1.5 typed, stored 1.5) · **credit PASSES** (confirmed at 1.50, credit $15.00) · **cancel not exercisable** — §3 |
 | 7 | Automated tests cover 0.5, 1.25 and 1.5 on the confirm path and both API-only paths | Not checkable from the application — §5 |
 | — | The two API-only paths keep decimals | Not reachable — §5 |
@@ -89,15 +89,37 @@ No before was taken from staging — the standing rule is production or nothing.
 
 ## 5. What could not be checked, and why
 
-1. **The AccountingHub half of criterion 5.** AccountingHub is a separate system. Nothing in the
-   application surfaces these returns for comparison: the Unexported Items and Batch Transactions
-   reports do not list them, `/api/accounting/entries` answers **403 Access denied**, and the other
-   candidate endpoints answer 404. The **ShopView half is verified** — case A is exactly a 1.5-unit
-   return at full credit with no fee and no tax, crediting $22.04. Someone with AccountingHub access
-   needs to confirm the other side.
+1. **The AccountingHub half of criterion 5 — now properly chased, and the answer is environmental.**
+   My first pass reported this as "not reachable" after probing API endpoints blindly. That was my
+   mistake: AccountingHub is reached from the **module switcher** in the top-left of the app
+   (`module_selector_trigger`), which I had already seen in a test-id dump and never clicked. Opened
+   properly, the picture is:
+   - **On the QA branch, AccountingHub is not provisioned.** The switcher offers it, but choosing it
+     lands on `/explore-accounting`, a description of the module ending *"Contact us in the chat
+     button below to talk about adding the Accounting module."* There is **no feature flag for it**
+     either — the Feature Flag Overrides panel lists BillingPortal, CustomerPortal, DashboardAdministrator,
+     DashboardAll, DigitalInspections, FeesAndDiscounts, LateFeesMvp, PartSales, QuickBooks, ShopCoach
+     (×3) and ShopPay, and nothing for Accounting. So it is an organisation entitlement, not a toggle
+     I can switch on.
+   - **On production, AccountingHub is fully provisioned** — `/accounting` with Customers, Invoices,
+     Payments, Vendors, Bills, Banking, Fixed assets, Reports and the ledger — and its **chart of
+     accounts holds 68 accounts**, so the books are genuinely set up. But it contains **no transactions
+     at all**: Vendor credits 0, Bills 0, Vendors 0, Banking transactions 0 ("Nothing to review"),
+     Journal entries 0 (that section also answers *"Something went wrong loading this section"*), and
+     the whole **event log holds two entries — both "Location Upserted", from 29 September**. ShopView's
+     own Unexported Items report lists 2 rows, neither of them mine.
+
+   So nothing ShopView records — not my returns, not anything else — is posting into AccountingHub on
+   that organisation. **The ShopView half of criterion 5 is verified** (case A is exactly a 1.5-unit
+   return at full credit with no fee and no tax, crediting $22.04 = 1.5 × $14.69). The agreement half
+   **cannot be checked by me in either environment**, and that is an environment gap rather than a
+   limit of the testing: it needs an organisation where AccountingHub actually receives posted
+   activity. Evidence: `ev/03-accountinghub-not-on-branch.png`, `ev/04-accountinghub-production-empty.png`.
+
 2. **The two API-only paths** (`AddReturnItemCommand`, `ChangeReturnItemCommand`). The ticket says no
-   screen calls them, which is also why the route cannot be captured from the application. Six
-   candidate routes were probed and all answered 404. **If you want these exercised, send me the
+   screen calls them, which is also why the route cannot be captured from the application — the trick
+   that solved the AccountingHub question above (open the screen, watch the traffic) cannot work when
+   there is no screen. Six candidate routes were probed and all answered 404. **If you want these exercised, send me the
    route and payload and I will run 0.5, 1.25 and 1.5 through both.** Otherwise they are a unit-test
    matter, which is criterion 7.
 3. **Criterion 7, the automated tests.** That lives in the pull request, not the running application.
@@ -106,11 +128,16 @@ No before was taken from staging — the standing rule is production or nothing.
 
 ## 6. A test error of my own, recorded
 
-My first attempt at the manual-return decimal reported that the quantity field refused 1.5 and sent
+**(a)** My first attempt at the manual-return decimal reported that the quantity field refused 1.5 and sent
 `quantity: 1`. That was wrong — **the first row's quantity field has a different id**
 (`input_return_qty_0_0`, not `input_manual_return_part_quantity`), so I had typed into another row.
 The field is `type=number step="any"` and accepts 1.5, 2.25 and 0.5 perfectly well. Recorded because
 it would have been a false defect against the ticket's own premise that manual returns keep decimals.
+
+**(b)** I reported AccountingHub as unreachable after probing endpoints blindly, when the module is
+reached from the **module switcher** in the top-left — a control whose test-id I had already captured.
+The playbook's own rule covers this exactly: never call a route unreachable until you have opened the
+screen a real user would open. The QA lead pointed at the switcher; §5 is the result.
 
 ---
 
@@ -141,6 +168,8 @@ Both are named here so they are not mistaken for real data.
 
 - `ev/01-decimals-survive-the-save.png` — the 1.5 and 0.5 returns, reopened after confirming
 - `ev/02-quarter-unit-and-whole-unit.png` — 1.25, and a whole unit as a control
+- `ev/03-accountinghub-not-on-branch.png` — the branch offers the module but does not have it
+- `ev/04-accountinghub-production-empty.png` — production has the module; its event log holds two Location entries and nothing else
 - `ev/build_ex.py` — the exhibit builder
 - Probe scripts and raw run output: `/tmp/qa10406/` (branch) and `/tmp/qa10406p/` (production), not committed
 
