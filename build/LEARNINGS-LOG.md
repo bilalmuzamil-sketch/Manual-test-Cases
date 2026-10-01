@@ -915,3 +915,11 @@ Vladimir's cases, no committed secrets, production is not a test environment.
 **Why it happened (the Rule-104 failure, again).** I observed ONE condition — my test part landed as inventory-sourced / on a non-authorized line → "Awaiting" — and generalised to "the status is absent / the build shows Awaiting instead". That is the same shape as L0037 (icon-only "Change Customer" control I nearly called absent) and L0036 (five false blockers): a negative claim made without proving the instrument reached the state that PRODUCES the thing. A part status is CONDITION-DEPENDENT; before ever judging one absent, set the two conditions above and re-observe.
 
 **Carry forever, and it is encoded in `build/inline-add-edit-parts/probe_inline_surfaces.mjs` (header + a status note) and `build/inline-add-edit-parts/PROJECT-STATE.md`:** the WO-line part-status vocabulary on this build includes at least **Requested** (line Needs Approval), **Auth to order** (line Authorized + Source Vendor → action Order), **Awaiting** (ordered → action Receive), **Approved/Complete** (line-level). To build-verify any case that asserts a specific part status, first reach the exact line-status + part-source combination that produces it — never infer absence from a part observed in a different combination.
+
+## 2026-10-01 — L: QA branch sv8181 (DVI V2) is behind Cloudflare → needs THREE cookies, not one
+Unlike CloudFront+nginx QA branches (sv_sso_session only), **sv8181.qa.shopview.com requires
+sv_sso_session + PHPSESSID + cf_clearance** (cf_clearance UA-bound → Chrome-131 UA). Boot via
+`qa-branch-boot.mjs sv8181 <route> admin` (sso file) works once the bridge is up and NODE_USE_ENV_PROXY=1.
+API host = sv8181api.qa.shopview.com (no dot before "api"). Full map + routes: build/dvi-v2/NAVIGATION-MAP.md.
+DVI lives under Settings → SERVICE → "Inspection Templates" (no top-nav Inspections link); /inspections and
+/inspection-templates are dead routes on this build.
