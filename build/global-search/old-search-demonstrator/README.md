@@ -1,6 +1,7 @@
 # The old-search demonstrator — for showing people, not reading
 
 **Live page:** https://claude.ai/artifact/9mJMvNCNggwrDsDb4UYQ7E
+**The process that rebuilds this for another feature:** `build/processes/10-BUILD-THE-COMPARISON-DEMONSTRATOR.md`
 **Source:** `old-search.html` in this folder (the whole page, self-contained)
 **Built:** 15 September 2026 · private until shared from the page's share menu
 

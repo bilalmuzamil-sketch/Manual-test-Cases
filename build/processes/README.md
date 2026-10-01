@@ -21,6 +21,13 @@ PUBLISH Invoicing TO TESTRAIL
 SWITCH THE Invoicing TESTS to production
 BUILD THE COMPARISON DEMONSTRATOR for Invoicing
 FULL FEATURE QA on Invoicing               ← does all of it, in the right order
+
+ASK THE PO about Invoicing
+RUN THE TESTS for Invoicing on staging
+HAND THE RUN OVER for Invoicing
+FIND THE ROOT CAUSE of "results look wrong"
+PREPARE THE DEFECT TICKETS for Invoicing
+HUNT FOR COVERAGE GAPS in Invoicing
 ```
 
 You do not have to get the wording exactly right. "Does Scheduling V2 still do everything V1 did?"
@@ -135,6 +142,18 @@ there, or missing one that is.
 
 ---
 
+## At the end of every feature, I audit myself
+
+Ordered by the QA lead after the comparison demonstrator — the most persuasive thing the Global
+Search project produced — turned out to have no process name. **It was found by listing the folder,
+not by remembering.**
+
+So when a feature's work finishes: list every deliverable it produced, check each against the named
+processes, and report anything that has no home. A gap you name is manageable; a gap nobody notices
+costs the next feature. This is Rule 93's learning loop with a concrete step attached.
+
+---
+
 ## The files
 
 | Job | File |
@@ -149,6 +168,12 @@ there, or missing one that is.
 | Switch the Tests to Another Environment | [8-SWITCH-TO-ANOTHER-ENVIRONMENT.md](8-SWITCH-TO-ANOTHER-ENVIRONMENT.md) |
 | Build the Comparison Demonstrator | [10-BUILD-THE-COMPARISON-DEMONSTRATOR.md](10-BUILD-THE-COMPARISON-DEMONSTRATOR.md) |
 | Full Feature QA (all of it) | [9-FULL-FEATURE-QA.md](9-FULL-FEATURE-QA.md) |
+| Ask the PO | [11-ASK-THE-PO.md](11-ASK-THE-PO.md) |
+| Run the Tests | [12-RUN-THE-TESTS.md](12-RUN-THE-TESTS.md) |
+| Hand the Run Over | [13-HAND-THE-RUN-OVER.md](13-HAND-THE-RUN-OVER.md) |
+| Find the Root Cause | [14-FIND-THE-ROOT-CAUSE.md](14-FIND-THE-ROOT-CAUSE.md) |
+| Prepare the Defect Tickets | [15-PREPARE-THE-DEFECT-TICKETS.md](15-PREPARE-THE-DEFECT-TICKETS.md) |
+| Hunt for Coverage Gaps | [16-HUNT-FOR-COVERAGE-GAPS.md](16-HUNT-FOR-COVERAGE-GAPS.md) |
 | How We Prove Things (always on) | [0-HOW-WE-PROVE-THINGS.md](0-HOW-WE-PROVE-THINGS.md) |
 
 **`RESEED GLOBAL SEARCH STAGING`** and the other existing keywords are unchanged — "Seed the

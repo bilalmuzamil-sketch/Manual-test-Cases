@@ -160,6 +160,19 @@ QA can call them; accept any reasonable wording of them, not just the exact stri
 | **"BUILD THE COMPARISON DEMONSTRATOR for X"**  | A page that BEHAVES like V1 — anyone types into it and gets a truthful answer, because the old rules are ported from the pinned commit line for line; beside each answer, what V2 does today, measured and dated. Every expectation machine-checked before publish. The thing that wins the meeting. | *(new)* |
 | **"FULL FEATURE QA on X"** | The umbrella — runs them in order. | `FEATURE QA` |
 
+| **"ASK THE PO about X"** | One sheet, plain words, **a worked example to type on every row**, sent LAST (66). | |
+| **"RUN THE TESTS for X on <env>"** | Execute and record honest verdicts. Verified means OBSERVED (12). | |
+| **"HAND THE RUN OVER for X"** | A document someone with no context can start from. Re-check the facts — a handoff is a summary (112). | |
+| **"FIND THE ROOT CAUSE of <complaint>"** | Turn a vague complaint into a testable cause. 🔴 **If the claim is about what a user SEES, open the screen** — reasoning from the API payload to a UI conclusion wrongly held 32 cases. | |
+| **"PREPARE THE DEFECT TICKETS for X"** | Unchallengeable candidates, then **STOP at the button** — permission is per ticket (62). | |
+| **"HUNT FOR COVERAGE GAPS in X"** | The deliberate look from outside before a suite is called current (45). | |
+
+🔴 **AT THE END OF EVERY FEATURE, AUDIT THE PROCESS SET ITSELF** (ordered 2026-10-01): list every
+deliverable the project produced, check each against the named processes, and report anything with
+no home. The comparison demonstrator — the most persuasive artefact Global Search produced — was
+missing from the set, and it was found by LISTING THE FOLDER, not by remembering. Rule 93's loop
+with a concrete step.
+
 **`build/processes/0-HOW-WE-PROVE-THINGS.md` is not callable and is ALWAYS ON:** a result is not
 evidence until it is **attributed, identified and dated** (Rule 110).
 

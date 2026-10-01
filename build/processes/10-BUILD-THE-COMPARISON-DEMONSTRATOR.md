@@ -2,6 +2,12 @@
 
 > **Call it:** `BUILD THE COMPARISON DEMONSTRATOR for Invoicing`
 >
+> 🔴 **THE ONE WE BUILT FOR GLOBAL SEARCH IS THE REFERENCE — GO AND OPEN IT:**
+> **https://claude.ai/artifact/9mJMvNCNggwrDsDb4UYQ7E**
+> Source, presets and the checker: `build/global-search/old-search-demonstrator/`.
+> Do not design a new one from this description. Open that page, see what it does, and build
+> the same shape for the feature in hand.
+>
 > **What it is.** A page that **behaves like the old version**. Someone types into it and gets a
 > truthful answer, because the old version's rules have been ported into it line for line from the
 > code. Beside each answer it says **what the new version does today**, measured and dated.
