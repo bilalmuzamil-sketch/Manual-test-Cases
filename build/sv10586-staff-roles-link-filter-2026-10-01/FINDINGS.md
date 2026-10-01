@@ -1,10 +1,17 @@
 # SV-10586 — Opening Staff from Roles & Permissions mixes in and overwrites your saved Staff filters
 
 **Ticket:** [SV-10586](https://shopview.atlassian.net/browse/SV-10586) · status TESTING QA · priority Medium · reporter and assignee Dipesh Changawala · relates to SV-10179
-**QA branch:** https://sv10586.qa.shopview.com — build **`v26.39.2-ad6deec`**
+**QA branch:** https://sv10586.qa.shopview.com — build **`v26.39.2-f170641`**, last-modified Thu, 01 Oct 2026 07:04:50 GMT, etag `W/"11ad9e15e2e152756b40a609b3249f89"`
 **Production (the BEFORE half, Standing Rule 86):** https://app.shopview.com — build **`v26.40.0-515e092`**, last-modified Thu, 01 Oct 2026 09:19:31 GMT
 **Handoff followed:** the QA handoff generated from the diff (PR #3373), every box
 **Date:** 2026-10-01
+
+> **Correction, recorded rather than quietly fixed:** the first draft of this document carried the
+> build marker `v26.39.2-ad6deec`. That is the **SV-8552** branch's build, copied across by mistake.
+> The pre-post gate caught it before anything was posted. The sv10586 branch has been on
+> `v26.39.2-f170641` throughout: its `last-modified` is 07:04:50 GMT, the QA env was announced as
+> created at 07:08 GMT (comment 77697), and every reading in this document was taken after that —
+> the marker read identically at the end of the pass, so no redeploy happened under the testing.
 
 > Note on version numbers: production reads `v26.40.0` and the branch `v26.39.2`. The branch is cut
 > from an earlier base, so the higher production number does **not** mean production is ahead on this
@@ -62,7 +69,7 @@ Production carries the pre-fix behaviour, so the reported steps were run there f
 built as the ticket describes — **Technician + Trucks Hill 2 + Department1** — then the **Admin**
 Users count (8) clicked.
 
-| Step | Production `v26.40.0-515e092` | QA branch `v26.39.2-ad6deec` |
+| Step | Production `v26.40.0-515e092` | QA branch `v26.39.2-f170641` |
 |---|---|---|
 | 4 — Staff opens from the link | Permissions **2 permission groups** (Technician + Admin), Location **Trucks Hill 2** and Department **Department1** still applied; list shows **7** against a count of **8** | Permissions **Admin** only, **All locations**, **All departments** |
 | 5 — leave, come back from the menu, having changed nothing | still **2 permission groups** — the saved filter has been overwritten | **Technician + Lethbridge + Service** — exactly as left |

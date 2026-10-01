@@ -3,7 +3,7 @@ from qa_exhibits import panel, stack, RED, GRN, BLU
 
 B='/tmp/qa10586/'; P='/tmp/qa10586p/'
 PROD='production app.shopview.com - build v26.40.0-515e092 - 1 Oct 2026'
-BRCH='QA branch sv10586.qa.shopview.com - build v26.39.2-ad6deec - 1 Oct 2026'
+BRCH='QA branch sv10586.qa.shopview.com - build v26.39.2-f170641 - 1 Oct 2026'
 CROP=(240,60,1700,300)
 CH=(664,1468); CHY=(84,119)
 
