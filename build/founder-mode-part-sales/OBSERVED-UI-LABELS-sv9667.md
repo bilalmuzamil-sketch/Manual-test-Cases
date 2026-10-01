@@ -28,3 +28,18 @@ Status values: "Estimate" · "Approved" · "Complete".
 ## STILL TO OBSERVE
 # Add Deposit dialog (fields + pre-filled Memo, Finance tab) · Parts tab (Actions column layout, core return/charge
 # row, add/edit part) · tax rate change control · audit log & menu order · sales representative edit · labels & tab bar.
+
+## Part Sale Parts tab  — Evidence: part-sale-parts-tab.png
+Columns/row elements: "Description" · "Qty" · "Price" · "Core" · per-row "Order" / "Return" actions · "more_vert"
+(the Actions column, S6). (Full Actions-column layout + core return row = S1/S6 — confirm live.)
+
+## Roles editor (Parts Department group)  — Evidence: roles-editor.png
+Group **"Part sales"** ("Manage part sales, returns and related transactions.") → "View" · "Create & Edit".
+Group **"Invoicing & payments"** → "View" · "Create & Edit".
+# Cases write "Part Sales -> Create & Edit" / "Invoicing & Payments -> Create & Edit"; build groups are
+#   "Part sales" / "Invoicing & payments" (lowercase 2nd word) — aligned 2026-10-01.
+
+## RESIDUAL — not raised via automation on sv9667 (run session confirms live; entry points confirmed)
+# Add Deposit dialog fields + pre-filled Memo (S8) · tax-rate change control (S3) · audit log entries & menu
+# order (S4) · full Actions-column layout + core return row (S6/S1). The part sale document, Finance tab,
+# Financial Info/tax line, Sales Representative, Parts tab, list and roles ARE confirmed.
