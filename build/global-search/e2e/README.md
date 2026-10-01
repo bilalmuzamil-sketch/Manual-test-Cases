@@ -59,9 +59,13 @@ no configuration, because it reads whatever that environment actually holds.
 | `recent-mobile-empty.spec.ts` | 7 | Recent activity, the scoped empty state, the phone surface |
 | `ranking-order.spec.ts` | 11 | Prefix beats contains, exact beats close, stock order, recency, Clear all, the tablet surface |
 | `rows-access-misc.spec.ts` | 18 | What each kind of row shows, telephone and sound-alike matching, what the signed-in account can see, workplace isolation, the clear button |
+| `sri-distinguish-misc.spec.ts` | 25 | Telling two similar results apart, what each row promises, the search-failure banner and its recovery, no feature flag, re-selecting the record you are on, the count announced to a screen reader |
 | `results-integrity.spec.ts` | 21 | The whole matched value is shown, long values are not cut through the match, the highlight marks inside the text, field-level matches |
 
 ---
+
+**142 of the 183 passing checks from run 415 now have a spec.** The other 41 are listed with a
+reason each in [`MANUAL-ONLY.md`](./MANUAL-ONLY.md); the table below summarises why they are there.
 
 ## What is deliberately NOT automated, and why
 
@@ -91,10 +95,11 @@ Every file below was run against **production** (`app.shopview.com`, build `v26.
 | `structure-and-scoping.spec.ts` | 11 | 2 | 0 |
 | `tabs-groups-navigation.spec.ts` | 13 | 3 | 0 |
 | `recent-mobile-empty.spec.ts` | 7 | 0 | 0 |
-| `ranking-order.spec.ts` | 3 | 8 | 0 |
+| `ranking-order.spec.ts` | 4 | 7 | 0 |
 | `results-integrity.spec.ts` | 16 | 5 | 0 |
 | `rows-access-misc.spec.ts` | 13 | 5 | 0 |
-| **Total** | **92** | **25** | **0** |
+| `sri-distinguish-misc.spec.ts` | 14 | 11 | 0 |
+| **Total** | **107** | **35** | **0** |
 
 ### What a skip means here, and why there are 25 of them
 
