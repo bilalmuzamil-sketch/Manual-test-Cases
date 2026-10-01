@@ -4937,3 +4937,36 @@ renders NO counts at all - five checks skipped for that alone. `broadTerm()` now
 against the live index and takes the one spanning the MOST record kinds ("service", 5 kinds here).
 **Reusable rule:** when an assertion passes, ask what data would make it FAIL. If you cannot name
 any, it is not testing what its title claims.
+
+### L0266 — `GS_VW`/`GS_VH` DO NOT reach the production session (2026-10-01)
+All three mobile checks failed with the DESKTOP surface on screen - nine scope tabs, no Cancel -
+which reads as "the mobile design was never built". It was built; it was never asked for. Those
+variables are only read by the generic cookie branch of `auth.ts`; the production boot builds its
+own browser context with its own viewport, so exporting them before `signIn` changes nothing.
+**Fix:** size the page that actually exists and RELOAD it, because the app lays itself out at load:
+`await page.setViewportSize({width:390,height:844}); await page.reload();` - then PRINT the viewport
+back, so the run's own output proves which layout was measured. All three went green immediately.
+**Reusable rule:** when a harness has several sign-in paths, a setting honoured by one is not
+honoured by all. Prove the setting took effect before trusting any verdict that depends on it.
+
+### L0267 — the panel REMEMBERS its query, so reopening shows results, not recent activity (2026-10-01)
+`C44857` reported "the panel is not showing its recent activity list" while the panel was behaving
+exactly as designed: it had been reopened after a search and was still showing those results. The
+recent-activity list is the EMPTY state, so the field has to be cleared to reach it.
+
+### L0268 — a test that opens a record leaves the NEXT test on that record's page (2026-10-01)
+`C44859` clicks a recent item, which navigates. `C44865` then failed with "the search panel is not
+there" - a statement about where the previous test finished, not about the panel. The keyboard
+shortcut does not reliably take on a freshly navigated record page either, so `reopen()` falls back
+to clicking the header field (the route C44805 proves) and a `beforeEach` returns to a known page.
+**Reusable rule:** any test that navigates owes the next test a known starting point. Put it in
+`beforeEach`, not at the end of the navigating test, where it is forgotten the moment that test fails.
+
+### L0269 — never pipe a long run through `grep`: it buffers, and the output is lost if it is killed (2026-10-01)
+A full-suite run was piped to `grep` to keep the output short. grep buffers, so the file stayed at
+**0 bytes for 33 minutes** - no way to see progress, and when the background limit stopped the run
+at 30 minutes everything it had done was unreadable. **Fix:** `| tee -a "$LOG"` and read the log,
+which also survives the process being killed. **And run long suites PER FILE**: the whole `tests/`
+directory is ~160 checks across 14 files and cannot finish inside one background window.
+**Also:** never start a second production run while one is going - a fresh login expires the other
+session, and both then report a broken environment.
