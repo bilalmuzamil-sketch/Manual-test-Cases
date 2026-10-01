@@ -4809,3 +4809,40 @@ the same cost as giving him nothing. Read it live, never from earlier in the con
 whether the rule's *reason* covers it, not whether its *wording* does. I did the same thing with Rule
 107 the same day — its wording named permissions and roles, so a missing data row slipped past it.
 Two instances in one day of a rule failing because I read its letter instead of its purpose.
+
+---
+
+## L0255
+
+**2026-10-01 · I asked for write access to production to create data it already had.**
+
+Running the Global Search suite on production, 46 checks came back unjudgeable. I concluded the
+records they search for did not exist there, and set about seeding them. The seeding was refused by
+a safety guard in my own environment, which I reported to the QA lead as the thing standing between
+him and a complete result.
+
+**It was not.** Production held every kind of record the checks needed. Two probes settled it:
+
+    'P1-71'      -> Part sales (1)       P1-71 | aa | Complete | $56.40
+    '2323233'    -> Vendor invoices (1)  2323233 | regration. | Unpaid | $157.50
+
+**The fault was my probe terms.** I had searched *repair*, *service*, *truck* — words that match
+work orders and customers. Part sales and vendor invoices are named by **number and customer**, so
+those words were never going to hit one. I turned my own bad guess into "these do not exist here",
+recorded **14 checks Blocked** on it, and asked for production write access on the strength of it.
+
+**The rule that would have caught it is one I already follow elsewhere: take the identifier FROM
+the record and search THAT.** Rule 104 says prove the instrument before any negative claim, and
+"nothing exists here" is as negative as a claim gets. A list endpoint read would have shown the
+records in seconds — which is exactly what finally did.
+
+**The ordering lesson, which is the real one:** *look at what is there before deciding to create
+something.* Had the permission been granted, I would have created part sales and vendor invoices on
+production that it already had, and never found out my terms were wrong. The guard did not cost the
+task anything; the premature decision to seed did.
+
+**Also recorded:** the suite's search terms were hard-wired to staging's seeded records, so on
+production it was asking production about staging's data. That was the actual cause of all 46
+unjudged checks. `GS_ENTITY_CONFIG` now points the specs at terms harvested from whichever
+environment is under test — the fix that made every one of those checks runnable without creating
+anything at all.
