@@ -39,3 +39,14 @@ clear and nothing silently overwrites another author's work.
 2. Epic-to-coverage map (every epic child vs our cases) — show the gap list.
 3. Per-source coverage verdict (Rule 115): PRD ✓, design ✓, epic children ✓, tech plan ✓.
 Only after all three, with evidence shown, is it reported complete.
+
+## L4 — PLAIN LANGUAGE, ALWAYS. Spell out every abbreviation; give every question full context.
+Failures (QA lead, 2026-10-01): I wrote "MR" without ever expanding it to "Maintenance Reminders",
+and I posed outstanding questions as bare ticket codes (SV-10398, SV-10403, SV-10575…) with no plain
+explanation — unreadable to a layman or a manual QA tester who has to answer them.
+**The rule (Rule 7/9/70/103):** in everything the user or a tester reads — chat replies, outstanding
+items, reports — use plain English, expand every abbreviation and feature name the first time, and
+NEVER let a ticket key or status code carry the meaning. Every question states, in his words: what the
+situation is, why it matters, what I need decided, the options with what we'd then do, and the cost of
+saying nothing. A ticket key goes at the END as a reference only. If it can't be understood in one
+read without opening anything, it isn't written yet.

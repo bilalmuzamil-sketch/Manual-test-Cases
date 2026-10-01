@@ -3001,3 +3001,47 @@ Price/Category, Part Lifecycle). Outstanding across the batch:
    all three in; suite updated to v33 (42 changed anchors, 7 new cases, 10 removed). See the WO Board
    section above and `build/wo-board-tech-view/V33-RECHECK-2026-09-30.md`. One go-ahead pending:
    7 obsolete cases to delete (C96922 + Story-10 C97014–C97019).
+
+---
+
+## 2026-10-01 — four decisions I need, from the gap-fill work (plain language)
+
+These are written to be answered on one read. Ticket codes are references at the end of each item only.
+
+### 1. Maintenance Reminders: the rules I quoted come from a page the authors marked "not final yet"
+I wrote new test cases for the Maintenance Reminders feature — entering a meter reading, the
+maintenance panel on a work order, adding a service to a work order, completing a service, and showing
+which maintenance schedule a work order came from. The expected results quote the specification's own
+words. The catch: that wording lives on a spec page the authors themselves labelled a rough draft —
+"copied as they stand, not yet reviewed, will be rewritten before developers start." The cases are
+correct for today, but if that page is rewritten the quoted wording could change.
+**What I need:** is that draft OK to rely on, or should I re-check these cases after the page is
+rewritten? **If you say nothing:** the cases stay as they are and may quote wording that later shifts.
+(Reference: Confluence page 897679389 "Chunk 2 MR"; stories SV-10567, SV-10572, SV-10573, SV-10574,
+SV-10577.)
+
+### 2. Digital Inspections: two rules a human tester cannot fully check by hand
+Two of the new Digital Inspections rules can't be proven just by a person clicking in the app:
+(a) "When you download a converted reference file you get your exact original back" — a tester can see
+the file is the right TYPE (a spreadsheet opens in Excel, not as a PDF), but proving it's an identical
+copy needs a tool, not eyes. I wrote the case to check what a person can see and marked the identical-
+copy part for automation. (b) "The file is converted when it's uploaded, not each time it's viewed" —
+that's behind-the-scenes timing nobody can see in the app, so I did not write a manual case for it.
+**What I need:** OK with (a) checked as "right file type" by hand plus automation for the exact copy,
+and (b) left to automation/engineering? **If you say nothing:** those two points have no manual case.
+(Reference: Digital Inspection V2 story SV-9882.)
+
+### 3. Part Sales: is "sending each fee to its own QuickBooks account" ours to test?
+There's a planned feature about sending each kind of fee on a sale to its own income account in
+QuickBooks. It sits next to Part Sales, but it is really a QuickBooks settings feature, so I treated it
+as outside the Part Sales work you gave me and wrote no cases for it.
+**What I need:** do you want it in our scope (I'll write cases) or left out? **If you say nothing:** it
+stays out and is untested by us. (Reference: story SV-10398.)
+
+### 4. Two things aren't built yet — a heads-up for later, no action now
+Two behaviours are deliberately NOT in the current release, so there are correctly no cases yet:
+(a) Maintenance Reminders automatically emailing the customer their reminder — the spec says this
+release does not send it. (b) The parts "Fixed Rules" list showing parts that have no category — this
+was pushed to a later ticket; our current case correctly tests today's behaviour (those parts are not
+listed). **What I need:** nothing now — just tell me when either ships and I'll add/adjust cases.
+(Reference: SV-10575 auto-email; SV-10403 fixed rules without a category.)
