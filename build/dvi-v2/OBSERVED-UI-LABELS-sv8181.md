@@ -72,3 +72,10 @@ Work order lines / Work orders perms; "Inspection Templates" is a Settings area,
 # Alignment: cases write role perms as "Work Orders - Create & Edit" / "Work Order Lines - Create & Edit" /
 #   "Customers - View" (hyphen AND em-dash variants). Build = the "Work orders" / "Work order lines" / "Customers"
 #   GROUP + its "Create & Edit"/"View" toggle. Align case precond/step wording to the build group + toggle.
+
+## Field properties → RESPONSE SETTINGS (full)  — Evidence: field-response-settings.txt
+"Include Monitor option" · "Add follow-up to a response" · "Required to complete" · "Photo required" ·
+"Photo required if Not OK" · "Note required if Monitor / Not OK".
+"GENERAL REFERENCE FILE" section: "Attach File" (+ helper "Save the draft before attaching a file.").
+# These confirm the cases' exact labels: "Note required if Monitor / Not OK", "Photo required if Not OK",
+#   "Attach File", "General reference file", "Add follow-up to a response" — all present on the build as written.
