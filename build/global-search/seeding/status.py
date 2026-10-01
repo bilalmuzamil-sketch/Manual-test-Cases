@@ -25,18 +25,60 @@ C = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
 CK = '; '.join(f"{k}={C[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
 G, R, Y, X = '\033[32m', '\033[31m', '\033[33m', '\033[0m'
 
+_RELOGGED = {'done': False}
+
+
+def _relogin():
+    """🔴 THE READ-ONLY BOARD MUST NEVER REPORT A LAPSED SESSION AS MISSING DATA.
+
+    On production 2026-10-01 this file printed "7 UNIVERSE(S) NEED RESEEDING" and "GONE - 0/14
+    records" over an estate that was completely intact: the session had expired mid-run, every
+    probe answered 401, and 401 was rendered as COULD NOT ASK and then counted as a universe to
+    rebuild. A board that cries wolf is worse than no board - it would have sent someone off to
+    re-run a 24-minute reseed for nothing, and the next time it says GONE nobody will believe it.
+
+    So the board now re-mints the session once, exactly as the seeder does, and re-asks. The
+    credential stays outside the repo (relogin.py reads /tmp/prod/login.json, chmod 600, Rule 82);
+    with no credential file this is a no-op and the existing not-live gate still refuses to report.
+    """
+    if _RELOGGED['done']:
+        return False
+    _RELOGGED['done'] = True
+    try:
+        r = subprocess.run([sys.executable, os.path.join(HERE, 'relogin.py')],
+                           capture_output=True, text=True, timeout=60,
+                           env={**os.environ})
+        if r.returncode != 0:
+            return False
+        fresh = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
+        C.update(fresh)
+        globals()['CK'] = '; '.join(f"{k}={C[k]}" for k in
+                                    ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
+        print((r.stdout or '').strip())
+        return True
+    except Exception:
+        return False
+
+
 def api(path):
-    req = urllib.request.Request(f"https://{C['api']}{path}", headers={
-        'Cookie': CK, 'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0', 'Referer': f"https://{C['host']}/"})
-    for attempt in range(3):
-        try:
-            with urllib.request.urlopen(req, timeout=45) as r:
-                return r.status, json.loads(r.read().decode() or '{}')
-        except urllib.error.HTTPError as e:
-            return e.code, None
-        except Exception:
-            if attempt < 2: time.sleep(2 * (attempt + 1))
+    for outer in range(2):
+        req = urllib.request.Request(f"https://{C['api']}{path}", headers={
+            'Cookie': CK, 'Accept': 'application/json',
+            'User-Agent': 'Mozilla/5.0', 'Referer': f"https://{C['host']}/"})
+        code = None
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=45) as r:
+                    return r.status, json.loads(r.read().decode() or '{}')
+            except urllib.error.HTTPError as e:
+                code = e.code
+                break
+            except Exception:
+                if attempt < 2:
+                    time.sleep(2 * (attempt + 1))
+        if code in (401, 409) and outer == 0 and _relogin():
+            continue            # re-ask with the fresh session rather than calling the data gone
+        return (code if code is not None else 'ERR'), None
     return 'ERR', None
 
 def search(q):
