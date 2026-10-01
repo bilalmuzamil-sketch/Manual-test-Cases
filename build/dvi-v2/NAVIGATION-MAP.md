@@ -20,11 +20,13 @@
 | What | Route / how to reach | Notes | Evidence |
 |---|---|---|---|
 | Settings landing | `/administration/settings` | left sidebar; SERVICE section holds "Inspection Templates" | settings-landing.txt |
-| Inspection Templates (list) | Settings → sidebar "Inspection Templates" | list shows "New Template" · tabs/filters "Draft" / "Published" / "Archived" | inspection-templates-list.txt |
-| Template builder | Inspection Templates → "New Template" or "Edit" | field types + responses — see Glossary below | template-builder.txt |
+| Inspection Templates (list) | Settings → sidebar "Inspection Templates" | list shows "New Template" · states "Draft" / "Published" / "Archived" | inspection-templates-list.txt |
+| Template builder (new) | **`/inspection-templates/new`** (or Inspection Templates → "New Template") | the builder IS a top route with `/new`; bare `/inspection-templates` (list) is empty | template-builder-new.txt |
+| Template builder (edit) | `/inspection-templates/<id>` (Edit from the list) | same builder | — |
 | Work order (new) | top menu "Work Orders" → "New" (pick customer/unit) | referenced by cases for seeding an inspection | (cases) |
+| Line Builder | Work Order → "Lines" → "Line Builder" | where findings become WO lines (to confirm) | (cases) |
 | ❌ `/inspections` | — | DOES NOT EXIST on this build (empty 232-char page) — do not retry | inspections-route.txt |
-| ❌ `/inspection-templates` | — | DOES NOT EXIST as a top route (empty) — templates are under Settings | templates-route.txt |
+| ❌ `/inspection-templates` (bare) | — | the LIST is under Settings; the builder is `/inspection-templates/new` | templates-route.txt |
 
 ## API ENDPOINTS (host sv8181api.qa.shopview.com, observed during boot)
 /api/auth/me/fe-permissions · /api/work-orders · /api/global-search/fetch · /api/notes ·
@@ -32,11 +34,20 @@
 /api/notifications/subscribe-token · /api/reporting/individual-punch-clock/today
 # (DVI-specific endpoints — inspections, templates — to be captured from the network tab as screens are driven.)
 
-## BUILD GLOSSARY — Template builder (Settings → Inspection Templates)
-Templates list: "New Template" · states "Draft" / "Published" / "Archived".
-Builder field types: "Checkbox" · "Text" · "Number" · "Measurement" · "Per axle" · "Photo".
-Response options on a question: "OK" · "Monitor" · "Not OK". Field attribute: "Required".
-# Evidence: template-builder.txt, inspection-templates-list.txt
+## BUILD GLOSSARY — Template builder (route /inspection-templates/new)  — Evidence: template-builder-new.txt, field-editor-checkbox.txt
+Header actions: "Preview" · "Save Draft" · "Publish" · "Unsaved changes" · back chevron "Admin · Inspection templates".
+Left panel "OUTLINE": "Section 1" · "+ Add Section" · "TEMPLATE NAME" ("Untitled template") · "DESCRIPTION".
+Template-level setting: "Require technician signature".
+Start options: "Start from a template" (starters: "Class 8 Tractor PM Inspection", "DOT / Annual Federal Safety
+  Inspection", "Air-Brake Inspection", "Trailer Inspection", "Light-Duty PM Inspection", "Equipment starter")
+  · "Or build from scratch · Select a field type to begin".
+A field row: "+ Add Field" · "+ Add Section" · drag_indicator · content_copy (duplicate) · delete_outline · more_horiz.
+  A Checkbox field summarises as "Checkbox · OK / Monitor / Not OK / N/A".
+Field properties panel: "Field properties" · "LABEL" · "TYPE" (options: "Checkbox" · "Text" · "Measurement" ·
+  "Per axle" · "Photo") · "Instructions" · "RESPONSE OPTIONS" · "RESPONSE SETTINGS" · "Include Monitor option".
+Response values on a Checkbox question: "OK" · "Monitor" · "Not OK" · "N/A". Per-response add-ons: "Note" · "Photo".
+# NOTE: the cases carry both "-" and "—" dash variants in role labels (e.g. "Work Orders - View" vs "Work Orders — View").
+#   Normalise to the ROLE EDITOR's actual label when that screen is observed (to do).
 
 ## STILL TO OBSERVE (will be filled as discovered)
 # Inspection filling screen (responses, flag, note, photo per response) · findings → WO lines ("build action") ·
