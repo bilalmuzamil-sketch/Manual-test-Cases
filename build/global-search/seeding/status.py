@@ -218,8 +218,32 @@ def main():
         print("    PHPSESSID has lapsed; 401 = no usable SSO token.)")
         sys.exit(2)
 
+    # 🔴 THE WORK-ORDER NUMBER IN THE SPINE IS BRANCH-ASSIGNED (Rule 111), AND THIS IS THE THIRD
+    # TOOL IT HAS BEEN HARDCODED IN. 'S2-15430' exists on the QA branch and nowhere else, so the
+    # board reported the Fibridge universe PARTIAL on production and told the QA lead to reseed a
+    # universe that was completely intact. A read-only board that cries wolf is worse than no
+    # board: the next real PARTIAL gets ignored. So resolve it from the ids this environment
+    # actually recorded, and fall back to the constant only when there is nothing to read.
+    wo_sub = None
+    try:
+        _prof = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
+        _env = 'qa' if _prof == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(_prof))
+        _ids = json.load(open(f'{HERE}/seed-ids-gsv2-{_env}.json'))
+        _wid = (_ids.get('work_orders_fib_main') or [None])[0]
+        if _wid:
+            _st, _v = api(f'/api/work-orders/view/{_wid}')     # api() returns (status, json)
+            _num = (((_v or {}).get('data') or {}).get('work_order') or {}).get('number')
+            if _num:
+                import re as _re
+                wo_sub = _re.sub(r'^S-', 'S2-', _num)       # the view says S-889, the search shows S2-889
+    except Exception:
+        pass
+
     broken = []
     for label, probes, manifest, verifier in UNIVERSES:
+        if wo_sub and wo_sub != 'S2-15430':
+            probes = [(wo_sub, g, wo_sub.split('-', 1)[1]) if q == 'S2-15430' and g == 'work_orders'
+                      else (q, g, n) for q, g, n in probes]
         ok = miss = unknown = 0
         detail = []
         for q, gtype, needle in probes:

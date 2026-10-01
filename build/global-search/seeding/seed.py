@@ -356,7 +356,29 @@ def resolve_by_example(spec, want):
     rows = d.get(spec.get('coll', 'collection')) if isinstance(d, dict) else (d if isinstance(d, list) else [])
     hit = next((x for x in (rows or [])
                 if str(x.get(spec['match_field']) or '').strip().lower() == str(want).strip().lower()), None)
-    if not hit: return None, f"no existing record carries {spec['match_field']}={want!r}"
+    if not hit:
+        # 🔴 THE NAMED DONOR IS ITSELF ENVIRONMENT DATA, AND IT DOES NOT EXIST EVERYWHERE.
+        # 'Carolina Truck & Trailer Repair' carries a tax_id on staging and on the QA branch, and
+        # production has never heard of it - so seeding production died on two vendors with
+        # {"tax_id":"Missing required parameter"}, which reads like a payload bug and is not one.
+        # The docstring above already says the principle: when the lookup table is not exposed, the
+        # EXISTING DATA is the lookup table. Naming one row of it hardcodes the very thing the
+        # principle exists to avoid. So fall back to ANY record that actually carries the value.
+        r2 = call(f"{spec['list']}?limit=50")
+        if r2['status'] == 200:
+            d2 = (r2['json'] or {}).get('data', {}) or {}
+            rows2 = d2.get(spec.get('coll', 'collection')) if isinstance(d2, dict) else (
+                d2 if isinstance(d2, list) else [])
+            donor = next((x for x in (rows2 or []) if x.get(spec['take']) not in (None, '')), None)
+            if donor:
+                out = {spec['take_as']: donor.get(spec['take'])}
+                for dest, src in (spec.get('also_take') or {}).items():
+                    if donor.get(src) is not None: out[dest] = donor.get(src)
+                print(f"       ↩ {want!r} is not on this environment; borrowed "
+                      f"{spec['take']} from {donor.get(spec['match_field'])!r} instead")
+                return out, 'ok'
+        return None, (f"no existing record carries {spec['match_field']}={want!r}, and no record "
+                      f"in {spec['list']} carries a {spec['take']} to borrow either")
     out = {spec['take_as']: hit.get(spec['take'])}
     for dest, src in (spec.get('also_take') or {}).items():
         if hit.get(src) is not None: out[dest] = hit.get(src)

@@ -13,7 +13,7 @@ The redeployments clear the data. This card exists so putting it back is a comma
 |---|---|---|
 | **`RESEED GLOBAL SEARCH STAGING`** | **everything** — all 7 universes, ~223 records | `app.staging.shopview.com`, workplace **Staging Heavy Duty - 9919** |
 | **`RESEED GLOBAL SEARCH QA`** | **everything** — all 7 universes | `sv9160.qa.shopview.com` |
-| **`RESEED GLOBAL SEARCH LIVE`** | the V1-regression universe only (production runs V1) | `app.shopview.com`, workplace **Trucks Hill 2** |
+| **`RESEED GLOBAL SEARCH LIVE`** | **everything** — Global Search V2 shipped to production on 2026-10-01 (`v26.40.0`) | `app.shopview.com`, workplace **Trucks Hill 2** |
 
 ### 2 · Paste me three values
 
@@ -57,6 +57,22 @@ Every universe is created, then **searched for**. A run is finished when the sea
 records. *"The record exists"* is not *"the search returns it"* — a catalogue part with no stock row
 sits happily in the database and is invisible to search, and that has produced a false pass here
 before.
+
+---
+
+## 🔴 Production is different in three ways, and all three bite
+
+**It now runs V2.** Until 2026-10-01 production ran V1 and took one universe; it now answers
+`/api/search` and `/api/global-search/fetch` 404s there. The script no longer takes anyone's word
+for this — it **measures** which search is deployed before choosing a verifier, and says so.
+
+**There is no quick-login.** Production is `PHPSESSID` only, minted by `POST /api/login`; quick-login
+500s there. So the one thing I need is a **username and password**, not three cookies.
+
+**🔴 A fresh login kills the previous session — including yours.** One login per run. If you sign in
+to `app.shopview.com` while a reseed is running, every remaining step answers
+`{"error":"session_expired"}` and the run stops where it stood. It is resumable (`./reseed_everything.sh
+live <step>`), but the cheapest fix is to stay signed out for the ~20 minutes it takes.
 
 ---
 

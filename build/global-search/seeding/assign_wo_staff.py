@@ -37,6 +37,11 @@ SEEDSTATE = os.path.join(HERE, f'seed-state-live-resultintegrity-{ENVLABEL}.json
 WO_KEY = 'ri_wo_twin_1'
 
 
+def m_call_search(q):
+    r = m.call('/api/search?q=' + q)
+    return ((r['json'] or {}).get('data') or {}).get('groups') or []
+
+
 def zero_match(surname):
     """True when the surname returns NOTHING anywhere - the only way the later hit is attributable."""
     r = m.call('/api/search?q=' + surname)
@@ -47,18 +52,27 @@ def zero_match(surname):
 def only_our_row(surname, wo_id, field):
     """The proof: exactly one row, ours, matched on the field we set - and the surname absent
     from BOTH displayed texts, which is what makes the case meaningful."""
-    for attempt in range(5):
+    # 🔴 PRODUCTION INDEXES SLOWLY. 40 seconds was enough on the QA branch and nowhere near enough
+    # here - measured 2026-10-01, where a newly created inventory part took around twenty minutes to
+    # become searchable while its twin was instant. A short window turns a correct assignment into
+    # "NOT proven", which is a false alarm on good data.
+    for attempt in range(12):
         r = m.call('/api/search?q=' + surname)
         rows = [(g['type'], i)
                 for g in (((r['json'] or {}).get('data') or {}).get('groups') or [])
                 for i in (g.get('items') or [])]
-        if len(rows) == 1:
-            gt, i = rows[0]
-            mt = i.get('match') or {}
-            if gt == 'work_orders' and i.get('id') == wo_id and mt.get('field') == field:
-                shown = f"{i.get('primary') or ''} {i.get('secondary') or ''}".lower()
-                return True, i, (surname.lower() not in shown)
-        time.sleep(8)
+        # IDENTITY, not row count. A count is not a verdict (Rule 110): on a populated estate the
+        # surname legitimately returns other people's records, and insisting on exactly one row
+        # would fail a perfectly good assignment. What must be true is that OUR work order is in
+        # the list, matched on the field we just set.
+        ours = [i for gt, i in rows
+                if gt == 'work_orders' and i.get('id') == wo_id
+                and (i.get('match') or {}).get('field') == field]
+        if ours:
+            i = ours[0]
+            shown = f"{i.get('primary') or ''} {i.get('secondary') or ''}".lower()
+            return True, i, (surname.lower() not in shown)
+        time.sleep(15)
     return False, None, False
 
 
@@ -75,7 +89,11 @@ def clean_for(surname, wo_id):
 
 def pick(listing, remembered, wo_id):
     """Prefer last run's person (keeps the workbook term stable); else the first clean zero-match."""
-    r = m.call(listing)
+    # 🔴 ASK FOR THE WHOLE LIST. `/api/technicians` unqualified returns a short default page, and
+    # on production that page did not include the staff this script had just created - so the
+    # picker fell through to a surname shared by 60 work orders, which the 20-row group cap then
+    # hid our record behind. A default page is not the list.
+    r = m.call(listing + ('&' if '?' in listing else '?') + 'limit=200')
     people = (((r['json'] or {}).get('data') or {}).get('collection')
               or (r['json'] or {}).get('data') or [])
     byid = {}
@@ -93,6 +111,35 @@ def pick(listing, remembered, wo_id):
     for pid, (full, sur) in byid.items():
         if len(sur) >= 5 and zero_match(sur):
             return pid, full, sur, True           # CHANGED - the term moved
+    # 🔴 PRODUCTION HAS NO SURNAME THAT MATCHES NOTHING, and demanding one stranded both cases on
+    # the environment that matters most (2026-10-01). A zero-match surname was never the actual
+    # requirement - it was a convenient way to GET the requirement, which is that the hit after the
+    # assignment is ATTRIBUTABLE to the assignment (Rule 110). That holds just as well on a busy
+    # estate, provided no work order ALREADY answers this surname on the field we are about to
+    # set: then our row coming back on `lead_technician_name` can only be ours. Other rows in other
+    # groups are the estate's own data and change nothing about what the case asserts.
+    # 🔴 ZERO MATCHES IS A PREFERENCE, NOT A REQUIREMENT - AND INSISTING ON IT PICKED THE WORST
+    # CANDIDATE ON PRODUCTION. Nobody there matches nothing, so the strict rule fell through to the
+    # first name in the list, 'Muzammil', which 62 work orders already answer. The work_orders
+    # group caps at 20 rows, so our record was in the index and simply never shown - "NOT proven"
+    # over a correct assignment. Meanwhile the purpose-made 'Technicianov' matched 2 rows and was
+    # skipped for not matching zero.
+    # So rank by how CROWDED the surname is and take the quietest. Fewest competitors means our row
+    # survives the cap, which is the thing that actually has to be true for a tester to see it.
+    scored = []
+    for pid, (full, sur) in byid.items():
+        if len(sur) < 5:
+            continue
+        rows = [i for g in m_call_search(sur) for i in (g.get('items') or [])]
+        if any(i.get('id') == wo_id for i in rows):
+            continue                      # already answers for us - proves nothing afterwards
+        scored.append((len(rows), pid, full, sur))
+    if scored:
+        scored.sort()
+        n, pid, full, sur = scored[0]
+        print(f"     ℹ {sur!r} is the quietest surname on this estate ({n} existing row(s)), so our "
+              f"work order will not be hidden behind the 20-row group cap")
+        return pid, full, sur, True
     return None, None, None, None
 
 

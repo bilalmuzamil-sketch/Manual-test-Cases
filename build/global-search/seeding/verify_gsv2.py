@@ -136,10 +136,127 @@ def status_spread():
     return {i['fields']['status'] for i in (g['items'] if g else [])}, None
 
 
+
+# ── RULE 111 AS CODE: THE PINNED IDENTIFIERS ARE BRANCH-ASSIGNED, SO MEASURE THEM ──────────────
+# 🔴 The constants in CHECKS/NEGATIVES are what the TESTRAIL CASES SAY, and the cases were written
+# against the QA branch. A work-order number is assigned by the branch that creates it, so
+# `S2-15430` exists on exactly one environment and nowhere else. Running this file against
+# production reported seven failures, four of which were this: the DATA was fine and the
+# IDENTIFIER was foreign. The other two were the same mistake wearing a different hat - `P2-59`
+# was chosen as a near miss that returns nothing, and production genuinely holds a P2-59; and
+# `Rear Shock` is the name a catalogue part already had ON THE QA BRANCH (the manifest deliberately
+# does not rename it, see cpart_65547), so on an environment where our seed created that part it is
+# called something else entirely.
+#
+# So: measure this environment's own identifiers, prove each one, and use them for the checks. The
+# case text is still reported - as a DIVERGENCE, because a case naming an identifier this
+# environment does not hold is a false FAILED waiting for a tester (Rule 111).
+DIVERGENCES = []
+
+
+def _ids_for_env():
+    f = f'{HERE}/seed-ids-gsv2-{ENV}.json'
+    return json.load(open(f)) if os.path.exists(f) else {}
+
+
+def _wo_number(wid):
+    v = call_retry(f'/api/work-orders/view/{wid}')
+    wo = (((v.get('json') or {}).get('data') or {}).get('work_order') or {})
+    return wo.get('number')
+
+
+def _absent(q, group):
+    """A near miss is only a near miss if it genuinely returns nothing HERE. Never assumed."""
+    d, err = search(q)
+    if err:
+        return False
+    rows = [i for g in ((d or {}).get('groups') or []) if g['type'] == group
+            for i in (g.get('items') or [])]
+    return not rows
+
+
+def resolve_env_identifiers():
+    """Returns the substitutions this environment needs, each one measured."""
+    sub = {}
+    ids = _ids_for_env()
+    wid = (ids.get('work_orders_fib_main') or [None])[0]
+    if not wid:
+        return sub
+    raw = _wo_number(wid)
+    if not raw:
+        return sub
+    # The view API answers `S-889`; the SEARCH displays `S2-889`, and that is what a tester reads
+    # off the screen and types. Measured on production and staging alike.
+    disp = re.sub(r'^S-', 'S2-', raw)
+    if disp != 'S2-15430':
+        DIVERGENCES.append(f"the cases name work order S2-15430; this environment's seeded work "
+                           f"order is {disp} (branch-assigned, Rule 111)")
+        digits = disp.split('-', 1)[1]
+        sub['S2-15430'] = disp
+        sub['S215430'] = f'S2{digits}'
+        sub['S2 15430'] = f'S2 {digits}'
+        # two near misses that MUST return nothing — probed, not assumed
+        found = []
+        for delta in range(1, 40):
+            cand = f'S2-{int(digits) + delta}'
+            if _absent(cand, 'work_orders'):
+                found.append(cand)
+            if len(found) == 2:
+                break
+        if len(found) == 2:
+            sub['S2-15431'], sub['S2-15432'] = found
+        else:
+            DIVERGENCES.append('could not find two work-order numbers near the seeded one that '
+                               'return nothing — the negative checks were SKIPPED, not passed')
+            sub['S2-15431'] = sub['S2-15432'] = None
+    # the part-sale near miss: production holds a real P2-59, so the constant proves nothing there
+    if not _absent('P2-59', 'part_sales'):
+        cand = next((f'P2-{n}' for n in range(59, 140) if _absent(f'P2-{n}', 'part_sales')), None)
+        DIVERGENCES.append(f"the cases use P2-59 as a part sale that does not exist; this "
+                           f"environment HAS one, so the near miss used here is {cand or 'NONE FOUND'}")
+        sub['P2-59'] = cand
+    # the quick-actions part: 'Rear Shock' is the QA branch's own name for catalogue part 65547
+    d, _ = search('65547')
+    rows = [i for g in ((d or {}).get('groups') or []) if g['type'] == 'parts'
+            for i in (g.get('items') or [])]
+    if rows:
+        nm = rows[0].get('primary')
+        if nm and 'rear shock' not in nm.lower():
+            DIVERGENCES.append(f"the cases name the part 'Rear Shock'; on this environment "
+                               f"catalogue part 65547 is called {nm!r}")
+            sub['Rear Shock'] = nm
+    return sub
+
+
+def apply_subs(sub):
+    """Rewrite the three tables in place, dropping any check whose substitute could not be proved."""
+    global CHECKS, NEGATIVES
+    def fix(rows, qi, ei=None):
+        out = []
+        for r in rows:
+            r = list(r)
+            if r[qi] in sub:
+                if sub[r[qi]] is None:
+                    continue
+                r[qi] = sub[r[qi]]
+            if ei is not None and r[ei] in sub and sub[r[ei]] is not None:
+                r[ei] = sub[r[ei]]
+            out.append(tuple(r))
+        return out
+    CHECKS = fix(CHECKS, 1, 2)
+    NEGATIVES = fix(NEGATIVES, 1)
+
+
 def main():
     call_retry('/api/staff/my-workplaces')
     print(f'=== environment: {ENV} ===')
     bad = []
+    SUB = resolve_env_identifiers()
+    if SUB:
+        apply_subs(SUB)
+        print('\n=== THIS ENVIRONMENT USES ITS OWN IDENTIFIERS (Rule 111) ===')
+        for d_ in DIVERGENCES:
+            print(f'  • {d_}')
     print('\n=== IDENTITY CHECKS — is OUR record in the list? ===')
     for label, q, expect, gtype, cases in CHECKS:
         d, err = search(q)
@@ -159,14 +276,22 @@ def main():
         print(f'  {mark} {label:40} {gtype:17} = {n:3}  [C{cases.replace(" ", ", C")}]')
         if not ok(n): bad.append((label, q, f'total={n}'))
 
-    print('\n=== REACHABILITY — the pinned record must OPEN, not merely be indexed ===')
-    d, _ = search('S2-15430')
+    print('\n=== REACHABILITY — the record must OPEN, not merely be indexed ===')
+    # 🔴 PINNING IS NOT UNIVERSAL. The QA branch pins an exact work-order match; production returns
+    # the same record inside the work_orders GROUP and pins nothing. Reading "no pinned row" as a
+    # reachability failure therefore condemned a record that opens perfectly. What the rule actually
+    # requires is that the row the TESTER CAN SEE opens — pinned or in the group, either is seen.
+    wo_q = SUB.get('S2-15430', 'S2-15430')
+    d, _ = search(wo_q)
     p = (d or {}).get('pinned') or {}
-    v = call_retry(f"/api/work-orders/view/{p.get('id')}") if p.get('id') else {'status': 'NO PINNED ROW'}
+    rid = p.get('id') or next((i.get('id') for g in ((d or {}).get('groups') or [])
+                               if g['type'] == 'work_orders' for i in (g.get('items') or [])), None)
+    where = 'pinned' if p.get('id') else ('in the work_orders group' if rid else 'NOT RETURNED')
+    v = call_retry(f'/api/work-orders/view/{rid}') if rid else {'status': 'NOT RETURNED'}
     ok = v.get('status') == 200
-    print(f"  {'✅' if ok else '🔴'} S2-15430 opens at this workplace -> HTTP {v.get('status')}")
+    print(f"  {'✅' if ok else '🔴'} {wo_q} ({where}) opens at this workplace -> HTTP {v.get('status')}")
     if not ok:
-        bad.append(('reachability', 'S2-15430', f"view HTTP {v.get('status')} - the search index is "
+        bad.append(('reachability', wo_q, f"view HTTP {v.get('status')} - the search index is "
                     "organisation-scoped but the record is workplace-scoped"))
 
     print('\n=== STATUS BADGE COLOURS — all seven on one term (C44838) ===')

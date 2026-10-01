@@ -147,6 +147,47 @@ ORDER = [
      'a match on the NAME outranks a match on a secondary field only', False),
 ]
 
+
+def tiebreak_signal_ok(expected_first):
+    """C55716's signal is the only one that can be PROVEN from the data: of two identically-matching
+    customers, the expected winner must be the more recently UPDATED.
+
+    🔴 WHY THIS EXISTS. `known_deviation` is a hardcoded True/False, and a hardcoded flag is a claim
+    about one environment frozen at one moment - the same mistake as a hardcoded work-order number.
+    On production (2026-10-01, v26.40.0) ZZTIEBREAK ranked the wrong way round and the run stopped,
+    reporting "do NOT treat the data as seeded" over data that was perfect: Transport Two's
+    updated_at was 10:50:58 against One's 10:50:48, and both rows came back scoring 1 on an
+    identical name/prefix match. Halting a reseed there is worse than useless - no amount of
+    reseeding can move the product's ranking, so the run can never go green and the real signal
+    (the seven other universes) never gets checked.
+
+    So: MEASURE the signal. If the data is right and the order is still wrong, that is a PRODUCT
+    FINDING, reported loudly and not counted as a seeding failure."""
+    # this file talks to the API directly (it has no seed.py import), so build the request the
+    # same way `search()` above does, from the same profile.
+    u = f"https://{C['api']}/api/customers?search=ZZTIEBREAK&limit=20"
+    req = urllib.request.Request(u, headers={
+        'Cookie': CK, 'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0', 'Referer': f"https://{C['host']}/"})
+    try:
+        with urllib.request.urlopen(req, timeout=45) as resp:
+            payload = json.loads(resp.read().decode())
+    except Exception as e:
+        return None, f'could not read the pair ({e})'
+    rows = ((payload or {}).get('data') or {}).get('collection') or []
+    pair = {str(c.get('name') or ''): c.get('updated_at') for c in rows}
+    win = next((v for k, v in pair.items() if expected_first.lower() in k.lower()), None)
+    others = [v for k, v in pair.items() if expected_first.lower() not in k.lower() and v]
+    if not win or not others:
+        return None, f'expected pair not found (saw {sorted(pair)})'
+    newest_other = max(others)
+    if win > newest_other:
+        return True, f'{expected_first} updated {win} vs {newest_other} — it IS the newer record'
+    return False, f'{expected_first} updated {win} but another is {newest_other} — signal NOT applied'
+
+
+SIGNAL_PROOF = {'ZZTIEBREAK': tiebreak_signal_ok}
+
 def main():
     fails, warns = [], []
     print('=== EACH KEYWORD IS PRIVATE, AND RETURNS ITS OWN RECORDS ===')
@@ -179,6 +220,7 @@ def main():
         if not ok: fails.append(kw)
         elif strays: warns.append(f"{kw}: foreign rows {strays}")
 
+    product = []
     print('\n=== ORDER — the ranking rule itself, not just the records ===')
     for kw, gtype, first, case, why, known_deviation in ORDER:
         d, err = search(kw)
@@ -199,10 +241,23 @@ def main():
                   f"        The case is RUNNABLE and will FAIL on this build — that is a real result,"
                   f" not bad data.")
         elif not ok:
-            print(f"        {why}")
-            print(f"        🔴 The records may all be present and still rank wrong - check the "
-                  f"SIGNAL, not the records. Run: python3 apply_ranking_signals.py --confirm")
-            fails.append(f'{kw}/order')
+            # Before calling this a seeding failure, PROVE whether the signal underneath is right.
+            prover = SIGNAL_PROOF.get(kw)
+            signal_ok, detail = prover(first) if prover else (None, None)
+            if signal_ok:
+                print(f"     ⚠️  PRODUCT FINDING, NOT A DATA GAP — the signal is provably correct:"
+                      f"\n        {detail}."
+                      f"\n        Expected: {why}."
+                      f"\n        The case is RUNNABLE and will FAIL on this build - that is a real"
+                      f" result. Reseeding cannot change it, so the run is NOT failed on it.")
+                product.append(f'{kw}/order — {detail}')
+            else:
+                print(f"        {why}")
+                if detail:
+                    print(f"        signal check: {detail}")
+                print(f"        🔴 The records may all be present and still rank wrong - check the "
+                      f"SIGNAL, not the records. Run: python3 apply_ranking_signals.py --confirm")
+                fails.append(f'{kw}/order')
 
     print('\n=== NEGATIVES — each proved with a control, never on a bare "no results" ===')
     for q, absent, ctrl_q, ctrl_needle, case, why in NEGATIVES:
@@ -232,6 +287,13 @@ def main():
         if not ok: fails.append('ZZPREFIY')
 
     print('\n=== summary ===')
+    if product:
+        print(f"  ⚠️  {len(product)} PRODUCT FINDING(S) — the data is right, the build ranks it wrong:")
+        for pf in product:
+            print(f"       {pf}")
+        print("     These do not fail the run. Reseeding cannot fix a ranking rule; the cases that"
+              "\n     cover them are runnable and will FAIL, which is the result the suite exists"
+              "\n     to produce. Tell the QA lead rather than re-running this script.")
     if warns:
         print(f"  ⚠️  {len(warns)} check(s) passed with foreign rows in other groups: "
               f"{'; '.join(warns)}")

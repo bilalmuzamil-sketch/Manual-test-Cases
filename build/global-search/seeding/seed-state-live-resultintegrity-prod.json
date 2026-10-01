@@ -1,0 +1,913 @@
+{
+ "when_utc": "2026-10-01T122933Z",
+ "environment": {
+  "workplace_name_hint": "Staging Heavy Duty - 9919",
+  "_why": "Overridden by SEED_WORKPLACE; this is the hint for staging."
+ },
+ "live_ids": {
+  "ri_cust_twin_a": "107771c6-3e27-4023-b27b-b2e890c8adb7",
+  "ri_cust_twin_b": "203620b2-2500-4009-b88a-575e92e539e5",
+  "ri_contact_twin_a": "7b1d6be9-9030-44a7-b55f-a9ab12b193cb",
+  "ri_cust_same_b": "90782e42-c2e9-4c10-823d-90b460c097a1",
+  "ri_vend_twin_a": "be506118-39d6-43b2-b5d7-d00a06878d2a",
+  "ri_vend_twin_b": "5f3ed579-7c42-411c-95ee-dbfdb4655c9d",
+  "ri_vend_same_a": "f86b30cb-7c37-46bd-bffb-453fe5c9dba4",
+  "ri_vend_same_b": "4b812351-2b24-43fc-9a36-b066d5aa95fd",
+  "ri_part_twin_a_cat": "edf4abd3-e149-4281-b523-b37ecd136b82",
+  "ri_part_twin_a_inv": "e1ee7dd9-6c73-45c9-80e0-2723ab788306",
+  "ri_part_twin_b_cat": "d207c4c6-2a68-4861-87ec-1b785472982e",
+  "ri_part_twin_b_inv": "fcae39c6-c6fa-4f6e-9955-cbe8d4856385",
+  "ri_asset_twin_a": "e5ef36d6-48ff-4fee-bdbc-596b474030d5",
+  "ri_asset_twin_b": "6ffb7301-cc1e-4c39-9412-0f0c7e968f01",
+  "ri_cust_hidden_owner": "9d54aa15-9540-4fb5-bb28-60408bcc536a",
+  "ri_contact_hidden": "b16ab6ab-3c11-4014-84b3-97ff451da826",
+  "ri_asset_hidden_vin": "472fbe71-0ea3-41b9-9bfd-c152bdb8e96d",
+  "ri_asset_nounit": "5f35b294-df44-44bb-9897-83a535031a38",
+  "ri_vend_hidden": "1943d6e6-41ea-4a02-9d3a-df857d9d9479",
+  "ri_vend_contact": "bdbb7a7f-d9eb-452e-b04d-e122616325e5",
+  "ri_cust_samerep_a": "d72edc16-3030-4d34-abd6-32f51255d91d",
+  "ri_contact_samerep_a": "c5162ff0-2d0b-4f36-97f0-fb589f9c5f99",
+  "ri_cust_samerep_b": "9dab5e25-7230-434d-8a30-41de1e375f6a",
+  "ri_contact_samerep_b": "0176a6ad-48d6-4903-8311-996b78043bdd",
+  "ri_cust_dualrep": "8709dbf1-941d-4334-b98b-5431eba575fb",
+  "ri_contact_dualrep_1": [
+   "f0e2a4c2-ae0f-4dae-8b61-6f4a4b7cab4a",
+   "873d69d1-2f2f-474d-b7ad-a4988359c626"
+  ],
+  "ri_contact_dualrep_2": "f0e2a4c2-ae0f-4dae-8b61-6f4a4b7cab4a",
+  "ri_cust_province": "79111796-7f7f-42f7-aab0-cf3f5cf98aa4",
+  "ri_cust_soft_hit": "cd2223ea-ddfc-4cde-9f75-044105953283",
+  "ri_cust_soft_near": "40c29935-d04c-4a66-92cc-45b15a8fc1d3",
+  "ri_contact_soft": "8dc22193-608b-4976-8205-15c5769d1124",
+  "ri_asset_soft": "3c1b871e-9f13-40f1-acca-056f433b4453",
+  "ri_vend_soft_hit": "0604b8a3-f969-43bd-a913-8a97315f8c10",
+  "ri_vend_soft_near": "caf62ef5-1225-44b5-be48-4413ecd53a6a",
+  "ri_wo_twin_1": "15909054-a8a9-40b0-a1ba-c44ad70c6298",
+  "ri_wo_twin_2": "3f43c323-456f-45ab-9038-c753df4adad5",
+  "ri_wo_nounit2": "a122b5f2-bb36-46d5-bfd4-2436759fabe7",
+  "ri_wo_soft": "8d256bd7-195c-4cee-b662-7d974c1deed3",
+  "ri_ps_twin_1": "701a1ab2-38c5-4b54-b404-e7b80e9c7dd8",
+  "ri_ps_twin_2": "67b918b1-3eb5-4b85-8fb1-14236f8024c9",
+  "ri_ps_hidden": "9e3f90ec-8a7e-4f4f-b108-a4a30a5382bf",
+  "ri_ps_soft": "baf9eece-de90-4ab8-a6f4-9b409ce45956"
+ },
+ "records": [
+  {
+   "key": "ri_cust_twin_a",
+   "state": "PRESENT",
+   "ids": [
+    "107771c6-3e27-4023-b27b-b2e890c8adb7"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-A1",
+    "CUST-A2",
+    "CUST-A3",
+    "CUST-B1",
+    "ALL-G2"
+   ]
+  },
+  {
+   "key": "ri_cust_twin_b",
+   "state": "PRESENT",
+   "ids": [
+    "203620b2-2500-4009-b88a-575e92e539e5"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-A1",
+    "CUST-A2",
+    "CUST-A3",
+    "CUST-B1",
+    "ALL-G2"
+   ]
+  },
+  {
+   "key": "ri_contact_twin_a",
+   "state": "PRESENT",
+   "ids": [
+    "7b1d6be9-9030-44a7-b55f-a9ab12b193cb"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "WO-B1",
+    "WO-B2",
+    "PS-B1",
+    "PS-B2"
+   ]
+  },
+  {
+   "key": "ri_cust_same_b",
+   "state": "PRESENT",
+   "ids": [
+    "90782e42-c2e9-4c10-823d-90b460c097a1"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-B2"
+   ]
+  },
+  {
+   "key": "ri_vend_twin_a",
+   "state": "PRESENT",
+   "ids": [
+    "be506118-39d6-43b2-b5d7-d00a06878d2a"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "VEND-A1",
+    "VEND-A2",
+    "VEND-A3",
+    "VEND-B1"
+   ]
+  },
+  {
+   "key": "ri_vend_twin_b",
+   "state": "PRESENT",
+   "ids": [
+    "5f3ed579-7c42-411c-95ee-dbfdb4655c9d"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "VEND-A1",
+    "VEND-A2",
+    "VEND-A3",
+    "VEND-B1"
+   ]
+  },
+  {
+   "key": "ri_vend_same_a",
+   "state": "PRESENT",
+   "ids": [
+    "f86b30cb-7c37-46bd-bffb-453fe5c9dba4"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "VEND-B2"
+   ]
+  },
+  {
+   "key": "ri_vend_same_b",
+   "state": "PRESENT",
+   "ids": [
+    "4b812351-2b24-43fc-9a36-b066d5aa95fd"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "VEND-B2"
+   ]
+  },
+  {
+   "key": "ri_part_twin_a_cat",
+   "state": "PRESENT",
+   "ids": [
+    "edf4abd3-e149-4281-b523-b37ecd136b82"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PART-A1",
+    "PART-A2",
+    "PART-A3",
+    "PART-B1",
+    "PART-B2"
+   ]
+  },
+  {
+   "key": "ri_part_twin_a_inv",
+   "state": "PRESENT",
+   "ids": [
+    "e1ee7dd9-6c73-45c9-80e0-2723ab788306"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PART-A1",
+    "PART-B1",
+    "PART-B2"
+   ]
+  },
+  {
+   "key": "ri_part_twin_b_cat",
+   "state": "PRESENT",
+   "ids": [
+    "d207c4c6-2a68-4861-87ec-1b785472982e"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PART-A1",
+    "PART-A2",
+    "PART-A3",
+    "PART-B1",
+    "PART-B2"
+   ]
+  },
+  {
+   "key": "ri_part_twin_b_inv",
+   "state": "PRESENT",
+   "ids": [
+    "fcae39c6-c6fa-4f6e-9955-cbe8d4856385"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PART-A1",
+    "PART-B1",
+    "PART-B2"
+   ]
+  },
+  {
+   "key": "ri_asset_twin_a",
+   "state": "PRESENT",
+   "ids": [
+    "e5ef36d6-48ff-4fee-bdbc-596b474030d5"
+   ],
+   "fields_ok": [
+    "year",
+    "vin",
+    "unit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "ASSET-A1",
+    "ASSET-A2",
+    "ASSET-A3",
+    "ASSET-B1",
+    "ASSET-B2",
+    "WO-B1",
+    "WO-B2",
+    "PS-B1",
+    "PS-B2"
+   ]
+  },
+  {
+   "key": "ri_asset_twin_b",
+   "state": "PRESENT",
+   "ids": [
+    "6ffb7301-cc1e-4c39-9412-0f0c7e968f01"
+   ],
+   "fields_ok": [
+    "year",
+    "vin",
+    "unit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "ASSET-B1",
+    "ASSET-B2",
+    "WO-B1",
+    "WO-B2",
+    "PS-B1",
+    "PS-B2"
+   ]
+  },
+  {
+   "key": "ri_cust_hidden_owner",
+   "state": "PRESENT",
+   "ids": [
+    "9d54aa15-9540-4fb5-bb28-60408bcc536a"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PS-C1",
+    "PS-C2",
+    "ALL-G1"
+   ]
+  },
+  {
+   "key": "ri_contact_hidden",
+   "state": "PRESENT",
+   "ids": [
+    "b16ab6ab-3c11-4014-84b3-97ff451da826"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PS-C1",
+    "PS-C2",
+    "ALL-G1"
+   ]
+  },
+  {
+   "key": "ri_asset_hidden_vin",
+   "state": "PRESENT",
+   "ids": [
+    "472fbe71-0ea3-41b9-9bfd-c152bdb8e96d"
+   ],
+   "fields_ok": [
+    "year",
+    "vin"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PS-C2",
+    "ASSET-C1"
+   ]
+  },
+  {
+   "key": "ri_asset_nounit",
+   "state": "PRESENT",
+   "ids": [
+    "5f35b294-df44-44bb-9897-83a535031a38"
+   ],
+   "fields_ok": [
+    "year",
+    "vin"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "ALL-G1"
+   ]
+  },
+  {
+   "key": "ri_vend_hidden",
+   "state": "PRESENT",
+   "ids": [
+    "1943d6e6-41ea-4a02-9d3a-df857d9d9479"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit",
+    "address_2"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "VEND-C1",
+    "VEND-C2",
+    "VEND-C4",
+    "VEND-C5"
+   ]
+  },
+  {
+   "key": "ri_vend_contact",
+   "state": "PRESENT",
+   "ids": [
+    "bdbb7a7f-d9eb-452e-b04d-e122616325e5"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "email",
+    "telephone",
+    "title",
+    "department"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "VEND-C4",
+    "VEND-C5"
+   ]
+  },
+  {
+   "key": "ri_cust_samerep_a",
+   "state": "PRESENT",
+   "ids": [
+    "d72edc16-3030-4d34-abd6-32f51255d91d"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-B2"
+   ]
+  },
+  {
+   "key": "ri_contact_samerep_a",
+   "state": "PRESENT",
+   "ids": [
+    "c5162ff0-2d0b-4f36-97f0-fb589f9c5f99"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-B2"
+   ]
+  },
+  {
+   "key": "ri_cust_samerep_b",
+   "state": "PRESENT",
+   "ids": [
+    "9dab5e25-7230-434d-8a30-41de1e375f6a"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-B2"
+   ]
+  },
+  {
+   "key": "ri_contact_samerep_b",
+   "state": "PRESENT",
+   "ids": [
+    "0176a6ad-48d6-4903-8311-996b78043bdd"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-B2"
+   ]
+  },
+  {
+   "key": "ri_cust_dualrep",
+   "state": "PRESENT",
+   "ids": [
+    "8709dbf1-941d-4334-b98b-5431eba575fb"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-C9"
+   ]
+  },
+  {
+   "key": "ri_contact_dualrep_1",
+   "state": "PRESENT",
+   "ids": [
+    "f0e2a4c2-ae0f-4dae-8b61-6f4a4b7cab4a",
+    "873d69d1-2f2f-474d-b7ad-a4988359c626"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone"
+   ],
+   "gaps": [
+    {
+     "field": "email",
+     "wanted": "dualrep.one@zzresultintegrity.test",
+     "holds": "dualrep.two@zzresultintegrity.test"
+    }
+   ],
+   "not_compared": [],
+   "serves": [
+    "CUST-C9"
+   ]
+  },
+  {
+   "key": "ri_contact_dualrep_2",
+   "state": "PRESENT",
+   "ids": [
+    "f0e2a4c2-ae0f-4dae-8b61-6f4a4b7cab4a"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-C9"
+   ]
+  },
+  {
+   "key": "ri_cust_province",
+   "state": "PRESENT",
+   "ids": [
+    "79111796-7f7f-42f7-aab0-cf3f5cf98aa4"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "CUST-C7"
+   ]
+  },
+  {
+   "key": "ri_cust_soft_hit",
+   "state": "PRESENT",
+   "ids": [
+    "cd2223ea-ddfc-4cde-9f75-044105953283"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "WO-I1",
+    "PS-I1"
+   ]
+  },
+  {
+   "key": "ri_cust_soft_near",
+   "state": "PRESENT",
+   "ids": [
+    "40c29935-d04c-4a66-92cc-45b15a8fc1d3"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "WO-I1",
+    "PS-I1"
+   ]
+  },
+  {
+   "key": "ri_contact_soft",
+   "state": "PRESENT",
+   "ids": [
+    "8dc22193-608b-4976-8205-15c5769d1124"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "WO-I1",
+    "PS-I1"
+   ]
+  },
+  {
+   "key": "ri_asset_soft",
+   "state": "PRESENT",
+   "ids": [
+    "3c1b871e-9f13-40f1-acca-056f433b4453"
+   ],
+   "fields_ok": [
+    "year",
+    "vin",
+    "unit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "WO-I1",
+    "PS-I1"
+   ]
+  },
+  {
+   "key": "ri_vend_soft_hit",
+   "state": "PRESENT",
+   "ids": [
+    "0604b8a3-f969-43bd-a913-8a97315f8c10"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PO-I1",
+    "VINV-I1"
+   ]
+  },
+  {
+   "key": "ri_vend_soft_near",
+   "state": "PRESENT",
+   "ids": [
+    "caf62ef5-1225-44b5-be48-4413ecd53a6a"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PO-I1",
+    "VINV-I1"
+   ]
+  },
+  {
+   "key": "ri_wo_twin_1",
+   "state": "PRESENT",
+   "ids": [
+    "15909054-a8a9-40b0-a1ba-c44ad70c6298"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "WO-A1",
+    "WO-A2",
+    "WO-A3",
+    "WO-B1",
+    "WO-B2",
+    "ALL-E7",
+    "ALL-F1",
+    "ALL-H3"
+   ]
+  },
+  {
+   "key": "ri_wo_twin_2",
+   "state": "PRESENT",
+   "ids": [
+    "3f43c323-456f-45ab-9038-c753df4adad5"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "WO-B1",
+    "WO-B2"
+   ]
+  },
+  {
+   "key": "ri_wo_nounit2",
+   "state": "PRESENT",
+   "ids": [
+    "a122b5f2-bb36-46d5-bfd4-2436759fabe7"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "ALL-G1"
+   ]
+  },
+  {
+   "key": "ri_wo_soft",
+   "state": "PRESENT",
+   "ids": [
+    "8d256bd7-195c-4cee-b662-7d974c1deed3"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "WO-I1"
+   ]
+  },
+  {
+   "key": "ri_ps_twin_1",
+   "state": "PRESENT",
+   "ids": [
+    "701a1ab2-38c5-4b54-b404-e7b80e9c7dd8"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PS-A1",
+    "PS-A2",
+    "PS-A3",
+    "PS-B1",
+    "PS-B2",
+    "PS-D1"
+   ]
+  },
+  {
+   "key": "ri_ps_twin_2",
+   "state": "PRESENT",
+   "ids": [
+    "67b918b1-3eb5-4b85-8fb1-14236f8024c9"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PS-B1",
+    "PS-B2"
+   ]
+  },
+  {
+   "key": "ri_ps_hidden",
+   "state": "PRESENT",
+   "ids": [
+    "9e3f90ec-8a7e-4f4f-b108-a4a30a5382bf"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PS-C1",
+    "PS-C2"
+   ]
+  },
+  {
+   "key": "ri_ps_soft",
+   "state": "PRESENT",
+   "ids": [
+    "baf9eece-de90-4ab8-a6f4-9b409ce45956"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "PS-I1"
+   ]
+  }
+ ],
+ "_note": "Live ids re-derived this run. Never trust an older copy - a redeploy changes them."
+}

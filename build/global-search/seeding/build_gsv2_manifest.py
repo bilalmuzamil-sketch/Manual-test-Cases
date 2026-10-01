@@ -288,7 +288,7 @@ R.append(inv_part('part_65547', 'cpart_65547', '65547', 12, 2, 50, 18.25, 39.99,
 # S9160-xxxxx. The handoff's "S1-644" and "S2-15276" are NOT seedable - see _exact_identifier_note
 # at the foot of this manifest for the real, verified substitutes.
 R.append({
-    'key': 'work_orders_fib_main', 'type': 'WorkOrder', 'count': 18, 'depends_on': 'cust_fib_commercial',
+    'key': 'work_orders_fib_main', 'type': 'WorkOrder', 'count': 20, 'depends_on': 'cust_fib_commercial',
     'serves': [44823, 44824, 44825, 44822, 53476, 44838, 44851, 44816, 44815, 44830, 44826,
                44874, 44875, 44809, 44812, 44828, 44831, 44898],
     '_why': 'THE ">20 GROUP", which five separate cases depend on. A work order is indexed on its '

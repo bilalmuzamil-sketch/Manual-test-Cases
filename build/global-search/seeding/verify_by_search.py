@@ -27,7 +27,7 @@ one of them ever DOES come back, that is reported too - it is a behaviour change
 Run:  SEED_MANIFEST=seed-manifest.json SEED_PROFILE=/tmp/staging/cookies.json \
       SEED_WORKPLACE="Staging Heavy Duty - 9919" python3 verify_by_search.py
 """
-import json, os, runpy, sys
+import json, os, runpy, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.environ.setdefault('SEED_MANIFEST', 'seed-manifest.json')
@@ -192,6 +192,29 @@ def main():
             expected += 1
             print(f"  {Y}○{X}  {key:28} {grp or '?':15} EXPECTED ABSENT — {why}")
         else:
+            # 🔴 INDEXING ON PRODUCTION IS SLOW ENOUGH TO LOOK LIKE A LOSS. Measured 2026-10-01:
+            # two inventory parts created seconds apart, one searchable at once and the other not
+            # for roughly twenty minutes - with the first answering the whole time as a perfect
+            # control. The verdict "created but genuinely not returned" was therefore WRONG, and
+            # a run that stops there wastes the reseed. The control proves the SEARCH is alive; it
+            # says nothing about how long THIS record takes. So wait and re-ask before condemning.
+            waited = 0
+            for gap in (20, 40, 60):
+                time.sleep(gap); waited += gap
+                d2 = search(value.split()[0] if len(value.split()[0]) >= 2 else value)
+                again = []
+                for g in d2:
+                    if grp is None or g['type'] == grp:
+                        again += [i for i in (g.get('items') or []) if value.lower() in row_text(i)
+                                  or (is_contact and 'contact' in match_field(i).lower())]
+                if again:
+                    rows = again
+                    break
+            if rows:
+                found += 1
+                print(f"  {G}✅{X} {key:28} {grp or '?':15} {rows[0].get('primary')!r}"
+                      f"   {Y}(indexed {waited}s late — slow, not lost){X}")
+                continue
             # ATTRIBUTION + CONTROL: prove the search itself is answering before calling this a loss.
             ctl = find.get('control')
             ctl_ok = bool(search(str(ctl).split()[0])) if ctl else None

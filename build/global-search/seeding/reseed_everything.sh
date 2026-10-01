@@ -3,8 +3,8 @@
 #
 #   ./reseed_everything.sh qa          (keyword: RESEED EVERYTHING QA)
 #   ./reseed_everything.sh staging     (keyword: RESEED EVERYTHING STAGING)
-#   ./reseed_everything.sh live        (keyword: RESEED EVERYTHING LIVE - V1-regression universe
-#                                       only; the V2 and ranking universes are QA/staging features)
+#   ./reseed_everything.sh live        (keyword: RESEED EVERYTHING LIVE - ALL universes since
+#                                       Global Search V2 shipped to production, 2026-10-01)
 #   ./reseed_everything.sh staging 12  resume at step 12, skipping what is already intact
 #
 # SEVEN UNIVERSES, in step order:
@@ -27,8 +27,12 @@ set -uo pipefail
 cd "$(dirname "$0")"
 
 # 🔴 WHICH UNIVERSES AN ENVIRONMENT GETS IS DECIDED BY WHAT IS DEPLOYED THERE, NOT BY ITS NAME.
-# qa and staging both run Global Search V2, so both take the FULL set. Production runs V1, whose
-# search endpoint is a different program entirely, so it takes the V1-regression universe alone.
+# The V2 values below are only a STARTING GUESS; the probe further down MEASURES which search the
+# environment actually serves and overrules them. This file used to assert "production runs V1" as
+# a fact, and on 2026-10-01 that fact expired: Global Search V2 shipped to production (v26.40.0),
+# `/api/search` answers there and `/api/global-search/fetch` now 404s. A hardcoded V2=0 would have
+# seeded one universe of eight and then proved it with a verifier pointed at an endpoint that no
+# longer exists - reporting a dead environment that is perfectly healthy.
 case "${1:-}" in
   qa)      HOST="https://sv9160.qa.shopview.com"; export SEED_PROFILE=/tmp/qa/cookies.json
            V2=1 ;;
@@ -42,7 +46,10 @@ case "${1:-}" in
            V2=1 ;;
   live)    HOST="https://app.shopview.com";       export SEED_PROFILE=/tmp/prod/creds.json
            export SEED_WORKPLACE="Trucks Hill 2"
-           V2=0 ;;
+           # Production has NO quick-login (it 500s) and no SSO cookie - PHPSESSID only, minted by
+           # POST /api/login (playbook section K). ONE login per run: a fresh one expires this
+           # user's previous session, including the QA lead's own browser.
+           V2=1 ;;
   *) echo "usage: $0 qa|staging|live"; exit 2 ;;
 esac
 
@@ -169,6 +176,28 @@ PYEOF
   fi
 fi
 
+# ── WHICH SEARCH IS ACTUALLY DEPLOYED HERE? MEASURE IT ────────────────────────────────────────
+# Unauthenticated is enough and is the point: a route that EXISTS answers 401, a route that does
+# not answers 404. Both are read, because one alone cannot tell "V1 is deployed" from "the whole
+# host is behind a parking page" - a sleeping QA branch answers 403 to everything, and reading that
+# as "V2 is live" would pick the wrong verifier for every universe.
+API_HOST="$(echo "$HOST" | sed 's#https://##; s#^app#api#')"
+S_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://$API_HOST/api/search?q=x")
+F_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://$API_HOST/api/global-search/fetch?q=x")
+if   [ "$S_CODE" != "404" ] && [ "$F_CODE" = "404" ]; then MEASURED=1
+elif [ "$S_CODE" = "404" ] && [ "$F_CODE" != "404" ]; then MEASURED=0
+else MEASURED="$V2"
+     echo " ⚠️  cannot tell which search is deployed (/api/search $S_CODE, /api/global-search/fetch"
+     echo "     $F_CODE) — falling back to this environment's default, V2=$V2. If that is wrong,"
+     echo "     every verifier below is pointed at the wrong endpoint."
+fi
+if [ "$MEASURED" != "$V2" ]; then
+  echo " 🔴 THIS ENVIRONMENT CHANGED SEARCH VERSION: expected V2=$V2, measured V2=$MEASURED."
+  echo "    Going with the MEASUREMENT. Update this script's default, and re-read any finding that"
+  echo "    assumed the old one."
+fi
+V2="$MEASURED"
+echo " search deployed here: $([ "$V2" = 1 ] && echo 'V2  (/api/search)' || echo 'V1  (/api/global-search/fetch)')"
 echo " build marker before: $(curl -s --max-time 20 "$HOST/" | grep -o 'content="v[^"]*"' | head -1)"
 echo "=============================================================="
 
@@ -179,6 +208,37 @@ RUN_T0=$SECONDS
 # SAFE - this only saves the minutes spent re-measuring universes you already know are intact. Run
 # `python3 status.py` first: it names which universes are short, and the step numbers are printed
 # beside each universe heading below.
+# ── A SECOND PASS IS NOT OPTIONAL ─────────────────────────────────────────────────────────────
+# 🔴 ONE PASS LEAVES GAPS, AND THE GAPS ARE SILENT. Measured on production 2026-10-01 across THREE
+# universes. seed.py walks the manifest in order and injects a parent's id into its children, so
+# any record whose own creation is deferred - by a transport blip on its probe, by a dependency
+# created later in the same pass, by a catalogue part whose inventory row comes after it - takes
+# every child down with it:
+#     toggle        7 records needing action, 4 cases at risk  -> second pass: 20/20, 0 at risk
+#     per-tab       a catalogue part with NO inventory row, so invisible to search by design
+#                                                            -> second pass: 14/14, 0 at risk
+#     result-integ  4 records needing action, 2 cases at risk  -> second pass: 41/42, 1 at risk
+#                                                               (the last is the product refusing a
+#                                                                duplicate customer name - expected)
+# Every one of those was a case with no data behind it, which is the one failure mode a seeding kit
+# exists to prevent: the tester types the term, gets nothing, and files a bug against the product.
+# seed.py is idempotent (find-or-create), so a second pass costs minutes and can only ever help.
+seed_pass() {   # seed_pass "<label>" [extra args…]
+  local label="$1"; shift
+  local out; out="$(python3 seed.py --confirm "$@" 2>&1)"; local rc=$?
+  echo "$out"
+  local need; need="$(echo "$out" | sed -n 's/.*needing action *: *\([0-9]*\).*/\1/p' | tail -1)"
+  if [ "$rc" = "0" ] && [ -n "$need" ] && [ "$need" != "0" ]; then
+    echo "     ↻ $need record(s) still needed action — running the SECOND PASS (dependencies"
+    echo "       created in pass one are available now; this is expected, not a retry-on-failure)"
+    out="$(python3 seed.py --confirm "$@" 2>&1)"; rc=$?
+    echo "$out"
+    need="$(echo "$out" | sed -n 's/.*needing action *: *\([0-9]*\).*/\1/p' | tail -1)"
+    [ -n "$need" ] && [ "$need" != "0" ] && echo "     ⚠️  $need record(s) STILL need action after two passes — read the log above."
+  fi
+  return $rc
+}
+
 START_AT="${2:-0}"
 step() { local label="$1"; shift
          local tok="${label%% *}"; local num="${tok%%[!0-9]*}"
@@ -190,7 +250,7 @@ step() { local label="$1"; shift
 
 # ── universe 1 · V1-REGRESSION (11 records, sections 6769 / 8056) ──────────────────────────────
 export SEED_MANIFEST=seed-manifest.json
-step "1  V1-regression records"            python3 seed.py --confirm || exit 1
+step "1  V1-regression records"            seed_pass v1reg || exit 1
 # 🔴 PICK THE VERIFIER BY WHICH SEARCH THE ENVIRONMENT RUNS, NOT BY WHICH HOST IT IS.
 # verify_gsv2_v1.py reads /api/global-search/fetch - the V1 endpoint - which answers 404 wherever
 # V2 is deployed. The V2 arm used to run it anyway and swallow the 404 with `|| true`, so on the QA
@@ -206,7 +266,7 @@ fi
 # Everywhere Global Search V2 is deployed (qa and staging); production runs V1.
 if [ "$V2" = "1" ]; then
   export SEED_MANIFEST=seed-manifest-gs-v2.json
-  step "2  Fibridge records"                python3 seed.py --confirm            || exit 1
+  step "2  Fibridge records"                seed_pass fibridge            || exit 1
   step "3  work-order status spread"        python3 set_wo_statuses.py --confirm || exit 1
   step "4  purchase orders + invoices"      python3 seed_po_and_invoices.py --confirm || exit 1
   step "5  two WOs to Complete + Invoiced"  python3 complete_and_invoice.py --confirm || exit 1
@@ -216,7 +276,7 @@ if [ "$V2" = "1" ]; then
 
   # ── universe 3 · RANKING + fuzzy remainder (25 records, sections 6726 / 6725) ────────────────
   export SEED_MANIFEST=seed-manifest-ranking.json
-  step "9  ranking + fuzzy records"         python3 seed.py --confirm            || exit 1
+  step "9  ranking + fuzzy records"         seed_pass ranking            || exit 1
   # The records alone do not make a ranking case runnable - two rows that match identically cannot
   # pass or fail. This applies the one thing that must DIFFER between each pair.
   step "10 ranking signals (PO, activity, tie-break)" python3 apply_ranking_signals.py --confirm || exit 1
@@ -226,7 +286,7 @@ if [ "$V2" = "1" ]; then
   # C55731-C55737: flip ONE access and re-run the SAME query. The roles these cases pair against
   # already exist from step 6, so nothing here creates a role.
   export SEED_MANIFEST=seed-manifest-toggle.json
-  step "12 permission-toggle records"       python3 seed.py --confirm            || exit 1
+  step "12 permission-toggle records"       seed_pass toggle            || exit 1
   # C55735 needs a vendor carrying a purchase order AND a vendor invoice, which a declarative
   # manifest cannot express. Same chain script as Fibridge, pointed at this universe - the state
   # file is keyed by slug so one universe's ids can never land in the other's.
@@ -244,13 +304,13 @@ if [ "$V2" = "1" ]; then
   # customers, vendors, assets and parts, so a reviewer sees the rule applied on three types and
   # not on the fourth in ONE response.
   export SEED_MANIFEST=seed-manifest-prefix-parity.json
-  step "15 SV-10279 prefix-parity records"  python3 seed.py --confirm            || exit 1
+  step "15 SV-10279 prefix-parity records"  seed_pass prefixparity            || exit 1
   step "15b prefix-parity PROOF (by identity)" python3 verify_by_search.py       || exit 1
 
   # ── universe 6 · PER-TAB PREFIX (14 records, C72120/72121/72122) ─────────────────────────────
   # Three cases, three private keywords, three records each: begins-with / contains / typo.
   export SEED_MANIFEST=seed-manifest-per-tab-prefix.json
-  step "16 per-tab prefix records"          python3 seed.py --confirm            || exit 1
+  step "16 per-tab prefix records"          seed_pass pertabprefix            || exit 1
   step "16b per-tab prefix PROOF (by identity)" python3 verify_by_search.py      || exit 1
 
   # ── universe 7 · SEARCH RESULTS INTEGRITY (34 records) ──────────────────────────────────────
@@ -259,7 +319,7 @@ if [ "$V2" = "1" ]; then
   # difference is the trailing six digits, so a row that truncates cannot tell them apart.
   # 🔴 WITHOUT THIS UNIVERSE 105 OF THOSE 110 CASES HAVE NOTHING TO TYPE. It is not optional.
   export SEED_MANIFEST=seed-manifest-result-integrity.json
-  step "17 result-integrity records"        python3 seed.py --confirm            || exit 1
+  step "17 result-integrity records"        seed_pass resultintegrity            || exit 1
   # C55735's shape again: the soft-match vendor needs a purchase order AND a vendor invoice, which
   # a declarative manifest cannot express. Exported then unset, never prefixed onto `step` - a
   # bare VAR=x before a function call leaks past it in bash and would point a later universe's

@@ -29,8 +29,15 @@ FORCE = '--force' in sys.argv
 # The target spread. Deliberately NOT one work order per status: C44838 reads badge COLOURS off a
 # result list, so each status needs to be visibly present, while C44851 needs a believable bulk of
 # open-and-recent work to rank above the branch's old paid ones.
+# 🔴 FIVE ESTIMATES, NOT THREE, AND THE SURPLUS IS THE POINT (production, 2026-10-01).
+# `complete_and_invoice.py` CONSUMES estimate work orders - they are the only status that can still
+# walk anywhere - and it takes two. With three reserved, one bad walk is enough to leave the
+# customer with NO estimate at all, which is exactly what happened on production: C44838 reads the
+# badge colours off one result list and found six of seven. A status that cannot be restored
+# afterwards (approved -> estimate is refused: the walk is one-way) must be over-provisioned at the
+# start, because there is no repair move. Two spare is cheap; a dead case is not.
 PLAN = [('approved', 6), ('in_progress', 4), ('ready_for_review', 3), ('declined', 2),
-        ('estimate', 3)]          # 18 main
+        ('estimate', 5)]          # 20 main
 PLAN_NOUNIT = [('approved', 2), ('estimate', 2)]   # 4 no-unit
 
 def walk(wo_id, target):
