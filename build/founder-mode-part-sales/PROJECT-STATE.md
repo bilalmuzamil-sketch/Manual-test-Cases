@@ -17,3 +17,15 @@
 - Run hand-off: RUN-HANDOFF-FOUNDER-PART-SALES-2026-10-01.md.
 - RESIDUAL (run session confirms live): Add Deposit dialog fields (S8) · tax-rate change control (S3) · audit log
   entries & menu order (S4) · full Actions-column layout + core return row (S6/S1). Entry points confirmed.
+
+## Addendum — 2026-10-01 · Mudassir's QA Additions (group 20481) BUILD-VERIFICATION COMPLETE
+- Group **20481 "Part Sales — QA Additions (Mudassir)"** (under Founder Mode 20434): **43 cases, created_by=6
+  (Mudassir Qamar, in-scope per Rule 38)**, 0 automated. Sections: S9 deposit audit log(20482) · S10 portal
+  deposit(20483) · XC cross-cutting(20484).
+- Create Deposit dialog confirmed on build (Deposit Date/Payment Method/Deposit Amount/Reference Number/Memo;
+  Record Deposit/Collect In Portal/Cancel). "Collect in Portal"→"Collect In Portal" casing aligned.
+- All 43 stamped v26.39.2-210868d, render **fr-view 43/43 clean**. Markers: **38 READY · 5 portal-HOLD**
+  (C154849, C154862, C154864, C154869, C154870 — require the customer portal screen, staging-only).
+- Run hand-off: RUN-HANDOFF-MUDASSIR-PART-SALES-2026-10-01.md. Deposit glossary: OBSERVED-UI-LABELS-sv9667-DEPOSITS.md.
+- RESIDUAL (run session confirms live): QuickBooks settings (Automatically Apply Credits/Payments, Deposit sync
+  enabled) · Part Sale Log entries (Deposit received/applied, Delete Deposit) · "Access restricted" gate.
