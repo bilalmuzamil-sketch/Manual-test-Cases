@@ -15,3 +15,20 @@ Run 1 October 2026, immediately before preparing the Jira comment.
 | 9 | **Format** | verdict is the first line; no "Technical details for developers" section unless the QA lead approves one for this ticket (Standing Rule 84) |
 
 Outcome: clear. Nothing was found that changes the verdict.
+
+---
+
+## Post and read-back (Standing Rules 72 / 81)
+
+Comment **77741** posted to SV-9568 on 1 October 2026, then re-fetched from Jira in ADF and checked
+as the reader receives it — not as the source serves it:
+
+| Check | Result |
+|---|---|
+| First line | `OVERALL QA STATUS: PASSED` |
+| Media count and order | 4, in the intended order |
+| Media type | all four are `{"type":"file"}` — real Jira attachments (ids 61646–61649), not external links |
+| Media dimensions | 900×583, 900×852, 900×583, 900×529 — as sent, correct aspect |
+| Checks table | 18 rows = 1 header + **17** checks, matching the "all 17 checks passed" claim in the opening line |
+| Human voice | fingerprint scan over the reader-facing text nodes — clean |
+| Technical details section | **absent**, as the QA lead directed for this ticket (Standing Rule 84) |
