@@ -31,7 +31,15 @@ const coll = (o: any) => o?.data?.collection || o?.collection || o?.data?.partSa
 const firstOf = (rows: any[], fields: string[], n = 10): string[] => {
   for (const f of fields) {
     const vals = rows.map(r => String(r?.[f] ?? '').trim()).filter(v => v.length >= 4);
-    if (vals.length) return vals.slice(0, n);
+    // 🔴 PREFER A VALUE THAT CARRIES PUNCTUATION. The normalization checks exist to prove a dash
+    // is optional, so anchoring them on a plain numeric identifier makes them skip for want of a
+    // dash to strip - two checks skipped that way on 1 Oct 2026. Punctuated candidates first.
+    // 🔴 ONE RANKING CANNOT SERVE BOTH NEEDS. Preferring punctuation picked the VIN "LJM." and then
+    // "341.20" over real ones; preferring length leaves the normalization checks with no dash to
+    // strip. So rank by length here, and harvest a SEPARATE punctuated anchor below for the checks
+    // that specifically need one.
+    const usable = vals.filter(v => v.replace(/[^A-Za-z0-9]/g, '').length >= 4);
+    if (usable.length) return [...usable].sort((a, b) => b.length - a.length).slice(0, n);
   }
   return [];
 };
@@ -45,7 +53,11 @@ async function findable(page: Page, id: string): Promise<boolean> {
   return rows.some(t => norm(t).includes(norm(id)));
 }
 
-export type LiveAnchors = Partial<Record<'assetVin' | 'partNumber' | 'partSaleNo' | 'poNumber' | 'invoiceNo', string>>;
+export type AnchorKey = 'assetVin' | 'partNumber' | 'partSaleNo' | 'poNumber' | 'invoiceNo';
+export type LiveAnchors = Partial<Record<AnchorKey, string>> & {
+  /** the same kinds, but only values that CARRY punctuation - for the "a dash is optional" checks */
+  punct?: Partial<Record<AnchorKey, string>>;
+};
 
 export async function harvestAnchors(page: Page): Promise<LiveAnchors> {
   
@@ -56,7 +68,7 @@ export async function harvestAnchors(page: Page): Promise<LiveAnchors> {
     ['poNumber',   '/api/inventory/orders?limit=40',     ['order_number', 'raw_number', 'number']],
     ['invoiceNo',  '/api/inventory/deliveries?limit=40', ['invoice_number', 'order_number', 'number']],
   ];
-  const out: LiveAnchors = {};
+  const out: LiveAnchors = { punct: {} };
   for (const [key, path, fields] of sources) {
     let rows: any[] = [];
     try {
@@ -64,11 +76,54 @@ export async function harvestAnchors(page: Page): Promise<LiveAnchors> {
       rows = coll(resp?.body);
       if (!rows.length) console.log(`  ${key}: HTTP ${resp?.status} - no records on this environment`);
     } catch (e) { console.log(`  ${key}: threw ${e}`); rows = []; }
-    for (const cand of firstOf(rows, fields)) {
+    const cands = firstOf(rows, fields);
+    for (const cand of cands) {
       if (await findable(page, cand)) { out[key] = cand; break; }
     }
+    // a punctuated one, for the normalization checks only - skipped quietly if this kind has none
+    for (const cand of cands.filter(v => /[^A-Za-z0-9]/.test(v)).slice(0, 4)) {
+      if (cand === out[key]) { out.punct![key] = cand; break; }
+      if (await findable(page, cand)) { out.punct![key] = cand; break; }
+    }
     console.log(`anchor ${key}: ${out[key] ?? 'NONE FOUND — checks using it will skip, not fail'}`
-      + ` (from ${rows.length} record(s))`);
+      + `${out.punct![key] ? ` (punctuated: ${out.punct![key]})` : ''} (from ${rows.length} record(s))`);
   }
   return out;
+}
+
+/**
+ * A query broad enough to light up SEVERAL record kinds on whichever environment is under test.
+ *
+ * 🔴 TWO MISTAKES THIS REPLACES, BOTH MADE ON 1 OCTOBER 2026.
+ *  1. Using "a" as the broad query. A one-letter query renders the scope strip with NO COUNTS at
+ *     all ("All | Work orders | ..."), so every count-based check skipped or failed while the
+ *     product was fine. Five checks in the structure suite skipped for exactly this reason.
+ *  2. Counting the "All" tab as one of the kinds. All ALWAYS carries a count whenever any result
+ *     exists, so "more than one tab has a count" was true for a query matching a single customer -
+ *     the assertion passed without testing anything. Entity tabs only, All excluded.
+ *
+ * Candidates are tried against the live index and the first that actually spans two or more entity
+ * tabs wins. If none does, the caller SKIPS with that reason rather than asserting on thin data.
+ */
+export async function broadTerm(page: Page, extra: string[] = []): Promise<{ term: string; tabs: string[] } | null> {
+  const candidates = [...extra, 'transport', 'service', 'repair', 'truck', 'auto', 'oil', 'ford'];
+  // 🔴 TAKE THE WIDEST, NOT THE FIRST. Returning the first term that spans two kinds left the
+  // purchase-order checks skipping because that term happened to match none. Trying them all costs
+  // one pass in beforeAll and buys several checks that would otherwise never run.
+  let best: { term: string; tabs: string[]; n: number } | null = null;
+  for (const term of candidates) {
+    if (term.length < 2) continue;
+    await typeAndWait(page, term);
+    const tabs: string[] = await page.evaluate(() =>
+      [...document.querySelectorAll('.search-tabs__tab')].map(t => (t as HTMLElement).innerText.replace(/\s+/g, ' ').trim()));
+    const entityHits = tabs.filter(t => !/^All\b/.test(t) && /\((\d+)\)/.test(t) && !/\(0\)/.test(t));
+    if (!best || entityHits.length > best.n) best = { term, tabs, n: entityHits.length };
+    if (entityHits.length >= 7) break;                       // every entity tab lit - cannot do better
+  }
+  if (best && best.n >= 2) {
+    console.log(`broad term "${best.term}" spans ${best.n} kinds: ${best.tabs.filter(t => !/^All\b/.test(t) && !/\(0\)/.test(t)).join(' | ')}`);
+    return { term: best.term, tabs: best.tabs };
+  }
+  console.log('no broad term spans two record kinds on this environment');
+  return null;
 }

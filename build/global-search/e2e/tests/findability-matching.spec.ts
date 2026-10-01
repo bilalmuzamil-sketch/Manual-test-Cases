@@ -1,7 +1,7 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { openPanel, closePanel, typeQuery, SEL, typeAndWait } from '../fixtures/search.js';
-import { harvestAnchors, type LiveAnchors } from '../fixtures/anchors.js';
+import { harvestAnchors, broadTerm, type LiveAnchors } from '../fixtures/anchors.js';
 import fs from 'node:fs';
 
 /**
@@ -230,14 +230,16 @@ test('C55661 — a query matching several kinds shows every kind', async () => {
   // with no numbers, so a count-based assertion can never pass and reports "only one kind came
   // back" when nine kinds did. Measured on production 1 Oct 2026. Use a term broad enough to hit
   // several record kinds; the assertion below proves the counts are actually rendered first.
-  const broad = BROAD;
-  await typeAndWait(s.page, broad);
-  const tabs = await s.page.evaluate(() => [...document.querySelectorAll('.search-tabs__tab')]
-    .map(t => t.textContent!.trim()));
+  const found = await broadTerm(s.page, [BROAD]);
+  test.skip(!found, 'no query on this environment matches two different kinds of record, so there is nothing to judge');
+  const broad = found!.term;
+  const tabs = found!.tabs;
   const withCounts = tabs.filter(t => /\(\d+\)/.test(t));
   expect(withCounts.length, `no tab showed a count at all for "${broad}" - the search did not run: ${tabs.join(' | ')}`).toBeGreaterThan(0);
-  const nonZero = withCounts.filter(t => !/\(0\)/.test(t));
-  expect(nonZero.length, `only one kind of record came back for "${broad}": ${tabs.join(' | ')}`).toBeGreaterThan(1);
+  // 🔴 EXCLUDE "All": it carries a count whenever ANY result exists, so counting it made this
+  // assertion pass for a query that matched one single customer. Entity tabs only.
+  const kinds = withCounts.filter(t => !/^All\b/.test(t) && !/\(0\)/.test(t));
+  expect(kinds.length, `only one kind of record came back for "${broad}": ${tabs.join(' | ')}`).toBeGreaterThan(1);
 });
 
 /* ─────────────────────────── ROW PRESENTATION ─────────────────────────── */

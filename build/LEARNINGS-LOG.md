@@ -4906,3 +4906,34 @@ Passing a full `https://api.shopview.com/...` URL produced `sv9160api.qa.shopvie
 defaults to the **QA branch** host, so a production run needs `GS_API=api.shopview.com` exported
 alongside `GS_APP` - the same class of mistake as L0257, and the same symptom: it does not error,
 it quietly talks to the wrong environment.
+
+### L0262 — the scope tab is STICKY and scopes the NEXT test's search (2026-10-01)
+A purchase-order identifier that `harvestAnchors` had just PROVED findable "found nothing" seconds
+later in the test body. Cause: an earlier test had clicked a scope tab, the panel remembers it
+across close and reopen, and the next query ran scoped to that tab. The symptom is indistinguishable
+from the record having been deleted. **Fix: `typeAndWait` now forces the scope back to All before
+typing**, so every search starts unscoped and a caller that wants a scope clicks it afterwards.
+**Reusable rule:** any UI that remembers state between interactions will leak that state between
+tests. Reset it in the shared helper, not in each test, or it will be forgotten in exactly one.
+
+### L0263 — a recent record shows a RELATIVE date ("Today"), not a calendar one (2026-10-01)
+The purchase-order row renders `· Today ·`; an absolute-date pattern reported "the row carries no
+date" about a row displaying its date correctly. The requirement asks for the created date, not for
+a format. `DATE_SHOWN` now accepts Today/Yesterday/"N days ago" alongside calendar forms.
+**Reusable rule:** assert the INFORMATION the requirement names, not one rendering of it.
+
+### L0264 — one ranking cannot serve both anchor needs (2026-10-01)
+Preferring punctuated identifiers (so the "a dash is optional" checks have a dash to strip) picked
+the VIN `LJM.` and then `341.20` over real ones. Preferring length left those checks skipping.
+**Fix: harvest TWO anchors per kind** - the longest usable one for general checks, and a separate
+punctuated one for the normalization checks. **Reusable rule:** when two checks want opposite
+properties from the same fixture, give them two fixtures rather than a compromise that suits neither.
+
+### L0265 — "All" always carries a count, so counting it tests nothing (2026-10-01)
+`C55661 — a query matching several kinds shows every kind` passed while matching a SINGLE customer,
+because the assertion counted tabs carrying a non-zero count and `All (1)` is always one of them.
+Entity tabs only now, All excluded. Separately, the broad query was `'a'`, and a one-letter query
+renders NO counts at all - five checks skipped for that alone. `broadTerm()` now tries candidates
+against the live index and takes the one spanning the MOST record kinds ("service", 5 kinds here).
+**Reusable rule:** when an assertion passes, ask what data would make it FAIL. If you cannot name
+any, it is not testing what its title claims.

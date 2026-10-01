@@ -67,6 +67,19 @@ export async function typeAndWait(page: Page, q: string) {
   page.on('response', onResp);
   try {
     const startedAt = Date.now();
+    // 🔴 THE SCOPE TAB IS STICKY ACROSS CLOSE AND REOPEN, AND IT SCOPES THE NEXT SEARCH. A test
+    // that clicked "Purchase orders" leaves the NEXT test's query scoped to purchase orders, which
+    // returns nothing and reads exactly like the record having vanished. On 1 Oct 2026 an
+    // identifier that had just been PROVED findable seconds earlier "found nothing" for precisely
+    // this reason. Every search therefore starts from All; a caller that wants a scope clicks it
+    // after this returns.
+    await openPanel(page);
+    await page.evaluate(() => {
+      const all = [...document.querySelectorAll('.search-tabs__tab')]
+        .find(t => /^All\b/.test((t as HTMLElement).innerText.trim()));
+      if (all && !/--active/.test(all.className)) (all as HTMLElement).click();
+    });
+    await page.waitForTimeout(400);
     await typeQuery(page, q);
     while (Date.now() - startedAt < 30_000) {
       await page.waitForTimeout(250);
