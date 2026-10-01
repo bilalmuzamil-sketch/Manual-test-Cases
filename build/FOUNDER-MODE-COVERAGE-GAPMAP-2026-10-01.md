@@ -75,3 +75,45 @@ being verified against actual case content before any are called a true gap. OBS
 - **BUG**: 1 total · 0 cited · **0 NOT cited (candidates):**
 - QA/DEV verify-tasks (NOT our authoring scope): 0 (0 not cited) — tracked, not gaps
 - OBSOLETE (no cases needed): SV-9341, SV-9342, SV-9343, SV-9344, SV-9345, SV-9346, SV-9347, SV-9348, SV-9349, SV-9350, SV-9351, SV-9352, SV-9451, SV-9699
+
+---
+
+# VERIFIED verdicts (behaviour-checked against case content, 2026-10-01)
+
+Each candidate story's Jira behaviour was checked against our actual case bodies (not key-citation).
+
+## Dashboard (SV-490) — ✅ CLEAN. 0 gaps (14 obsolete excluded).
+## WO Board & Tech View (SV-10043) — ✅ CLEAN. All 11 live stories covered; only 1 unrelated WO-line bug (SV-9769) + 2 QA verify-tasks.
+## Part Lifecycle (SV-10647) — no Jira children (PRD-only). 62 cases.
+
+## Founder Mode (SV-9667) — no current in-scope gap
+- SV-10398 Per-fee QBO account mapping → **OUT OF SCOPE** (a QuickBooks settings feature; not a Batch-1 sub-feature).
+- SV-9729 Inspection Reports in Portal → **OUT OF SCOPE** (separate Customer-Portal/inspection feature).
+- SV-10403 Fixed Rules "list rules without a category" → **DEFERRED / FUTURE** (our C154744 correctly tests the current deferred behaviour; when SV-10403 ships, C154744 must be rewritten + cases added).
+- SV-9867 (deposit audit log), SV-10261 (portal deposit) → covered by Mudassir's QA-Additions folder (20481).
+
+## Maintenance Reminders (SV-3780) — REAL GAPS
+- COVERED: SV-10568 (estimate/confidence), SV-10569 (resolve due date).
+- PARTIAL (missing aspects): SV-10567 (reading **plausibility** rule untested), SV-10573 (add service to an **existing** WO untested), SV-10574 (**Mark-complete flow** / reset-from-work-done-date / completed-elsewhere untested).
+- 🔴 GAP: **SV-10572 Maintenance panel on a work order** (untested); **SV-10577 Work order origin reporting** on the WO + Work Orders list (untested).
+- DEFERRED: SV-10575 automatic customer reminder email — spec defers this release (correctly untested).
+
+## Digital Inspection V2 (SV-8181) — ONE real gap + one real sub-gap
+- COVERED: SV-9112 (ShopCoach brief), SV-9881 (seed 5 templates), SV-9884 (preview mode), SV-9886 (mobile design — requirements already asserted on phone).
+- PARTIAL: SV-9882 (**conversion**: render-in-place after server-side conversion / download-original / corrupt fallback untested — only the pre-conversion fallback is tested); SV-9885 & SV-9887 (copy/vocabulary consolidation — triggering conditions already covered; largely UX-writing, likely not standalone manual cases).
+- 🔴 GAP: **SV-8347 Delete/reopen an incomplete inspection** (permission-gated) — fully uncovered.
+
+# TRUE, in-scope, non-deferred gaps worth new cases
+1. MR SV-10572 — Maintenance panel on a work order (GAP)
+2. MR SV-10577 — Work order origin reporting on WO + Work Orders list (GAP)
+3. MR SV-10567 — reading plausibility ("questioned when implausible, never refused") (PARTIAL)
+4. MR SV-10573 — add a service to an existing work order (PARTIAL)
+5. MR SV-10574 — Mark-complete flow + reset-from-date-done + completed-elsewhere (PARTIAL)
+6. DI V2 SV-8347 — delete/reopen an incomplete inspection, permission-gated (GAP)
+7. DI V2 SV-9882 — reference-file conversion render-in-place / download-original / corrupt fallback (PARTIAL)
+
+# Not new cases (recorded, no action)
+- Deferred/future: MR SV-10575 (spec-deferred email); FM SV-10403 (ships later → then rewrite C154744).
+- Out-of-scope separate features: FM SV-10398 (QBO settings), FM SV-9729 (Inspection Reports in Portal).
+- Copy/UX-writing only: DI V2 SV-9885, SV-9887 (conditions already covered).
+- Bugs (defects, separate from story coverage): FM 8, DI V2 12, WO Board 1 — a defect-regression-case decision, not story coverage; list retained in the first-pass section above.
