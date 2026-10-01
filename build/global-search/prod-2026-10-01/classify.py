@@ -20,7 +20,18 @@ Three buckets:
 """
 import json, re, sys, collections
 
-NO_DATA = re.compile(r'→ 0 rows|0 rows, 0 labelled|NO ROWS|no record|not found on this environment', re.I)
+# 🔴 WIDENED after the first pass called 14 checks "regressions" that were simply missing data.
+# The spec prints its empty reads in several shapes - "→ 0 rows", "0 rows, 0 shared bold line(s)",
+# "0 rows, 0 labelled notes" - and the first pattern caught only two of them. A seeded record that
+# does not exist on production looks EXACTLY like a product fault from the verdict alone; the only
+# thing that separates them is the row count, so it has to match every way the count is printed.
+NO_DATA = re.compile(r'\b0 rows\b|\b0 shared\b|NO ROWS|no record|not found on this environment'
+                     r'|ZZ[A-Z]+[^\n]*?:\s*0\b', re.I)
+
+# A check whose seeded term is a ZZ record carries that term in its notes. If the notes are EMPTY
+# the test failed without printing anything, and an empty verdict cannot be called a regression
+# either - it is unexplained, and says so.
+UNEXPLAINED_IS_NOT_A_REGRESSION = True
 
 def load_staging():
     try:
@@ -49,7 +60,14 @@ def main(log_path, out_path):
             bucket = 'no data on production'
         else:
             was = staging.get(cid, {}).get('v')
-            bucket = 'REGRESSION - passed on staging' if was == 'Passed' else 'fails on both'
+            if not n:
+                # nothing was printed, so nothing is known about WHY. Calling this a regression
+                # would be inventing a cause; it is reported as needing a look instead.
+                bucket = 'failed with no diagnostic - needs a look'
+            elif was == 'Passed':
+                bucket = 'REGRESSION - passed on staging'
+            else:
+                bucket = 'fails on both'
         prod[cid] = {'bucket': bucket, 'title': title.strip(), 'notes': n,
                      'staging': staging.get(cid, {}).get('v', 'not run')}
     json.dump(prod, open(out_path, 'w'), indent=1, ensure_ascii=False)

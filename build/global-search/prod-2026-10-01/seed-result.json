@@ -1,0 +1,62 @@
+{
+ "customers": [
+  {
+   "path": "/api/customers/create",
+   "status": 201,
+   "id": null,
+   "err": null
+  },
+  {
+   "path": "/api/customers/create",
+   "status": 400,
+   "id": null,
+   "err": "{\"errors\":[{\"error\":\"Company with provided name already exists.\"}]}"
+  },
+  {
+   "path": "/api/customers/create",
+   "status": 400,
+   "id": null,
+   "err": "{\"errors\":[{\"error\":\"Company with provided name already exists.\"}]}"
+  },
+  {
+   "path": "/api/customers/create",
+   "status": 201,
+   "id": null,
+   "err": null
+  },
+  {
+   "path": "/api/customers/create",
+   "status": 201,
+   "id": null,
+   "err": null
+  },
+  {
+   "path": "/api/customers/create",
+   "status": 400,
+   "id": null,
+   "err": "{\"errors\":[{\"error\":\"Company with provided name already exists.\"}]}"
+  }
+ ],
+ "vendors": [
+  {
+   "path": "/api/vendors/create",
+   "status": 404,
+   "id": null,
+   "err": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+  },
+  {
+   "path": "/api/parts-catalogue/vendor/create",
+   "status": 405,
+   "id": null,
+   "err": "{\"errors\":[{\"error\":\"No route found for \\\"POST http://api.shopview.com/api/parts-catalogue/vendor/create\\\": Method Not Allowed (Allow: GET)\"}]}"
+  },
+  {
+   "path": "/api/vendor/create",
+   "status": 404,
+   "id": null,
+   "err": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+  }
+ ],
+ "parts": [],
+ "notes": []
+}
