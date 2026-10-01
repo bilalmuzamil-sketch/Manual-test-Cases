@@ -26,23 +26,27 @@ fix.
 **Good practice to credit:** C154883 flags two real spec discrepancies (duplicate id S1-R22; deposit
 minimum $1.00 in portal release notes vs $0.01 in SV-5674) to raise with Chris Ward — adversarial QA.
 
-## How did we ("I") miss them?
-Not a gap within our assigned scope, with one fair self-criticism:
-1. **SV-9867 (deposit audit log) was never in our assignment.** It is a standalone customer bug Task,
-   NOT under epic SV-9667 and NOT in the Part Sales Update v1 PRD (867434569) we were given. We were
-   pointed at that one PRD; SV-9867 is a different ticket.
-2. **SV-10261 (portal deposit) we DID cover — as the PRD framed it.** Our S8 cases C154628 and C154635
-   cover S8-R8..R11: "Collect in Portal is offered only when the portal says yes, disabled with the
-   portal's reason when it declines" and "Until the portal accepts part sales, the portal requirements
-   are unreachable but the rest of the story is live." At authoring time the PRD explicitly DEFERRED
-   the portal path (S8 open question: "written when the portal work itself is built, not before; owner
-   engineering, on SV-10261"). SV-10261 has since shipped (TESTING QA), making the portal checkout
-   testable in depth — which is what Mudassir added. That is NEW testable surface, not a hole in our
-   original work.
-3. **The fair self-criticism:** we scoped tightly to the single PRD and did not surface, in our
-   outstanding register, that (a) when SV-10261 ships the portal-deposit cases should be deepened and
-   (b) SV-9867 deposit-audit-log is adjacent and unowned. A more proactive handoff would have flagged
-   both (Rules 66/36). Recorded now.
+## How did we ("I") miss them? — CORRECTED 2026-10-01
+**They WERE part of a source provided to us. This is a real coverage gap, not an out-of-scope case.**
+(Correction: an earlier version of this doc wrongly said SV-9867 was "not under epic SV-9667." That was
+asserted without checking the parent field. Verified via JQL `parent = SV-9667` and getJiraIssue:
+**both SV-9867 and SV-10261 are children of epic SV-9667** — the epic we were given as a source.)
+
+1. **The epic SV-9667 was a provided source, and we did not traverse it.** We were handed the epic plus
+   one Confluence PRD per feature, and we authored strictly from the individual feature PRD pages.
+   SV-9667 has **55 children**; enumerating them (Rule 37 "read epics exhaustively"; Rule 115 "cover
+   every provided source") would have surfaced SV-9867 and SV-10261 as testable tickets. We never
+   enumerated the child list — that is the miss.
+2. **SV-9867 (deposit audit log)** — child of SV-9667, status TESTING QA. Not in the Part Sales PRD
+   text, but reachable from the epic. We did not author it at all. **Genuine gap.**
+3. **SV-10261 (portal deposit)** — child of SV-9667, status TESTING QA, and named once in our Part
+   Sales PRD (the S8 deferral note). We covered S8-R8..R11 only as the PRD framed them (portal gated/
+   declining; C154628, C154635) and did NOT pull SV-10261's own acceptance criteria for the shipped
+   behaviour. Partial gap.
+4. **There are likely MORE uncovered children** (e.g. SV-9226 Part Sale total-tax bug, SV-9729
+   Inspection Reports in Portal, SV-10398 per-fee QBO mapping, SV-10403 Fixed Rules Story 4, and
+   several bugs) — a full epic-to-coverage map is needed to find every gap, not just the two Mudassir
+   covered.
 
 ## Follow-on finding on OUR suite (needs attention)
 Now that SV-10261 is in TESTING QA (portal no longer blanket-refuses part-sale deposits), our S8
