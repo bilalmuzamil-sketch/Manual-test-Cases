@@ -10,6 +10,9 @@
 **RUNS AFTER:** `12 · Run the Tests, or 1 · the Capability Check, or 14 · Find the Root Cause` — it provides the findings themselves.
 **If it has not been done I run whichever produced the finding**, rather than starting and failing halfway.
 
+**SAFETY:** this process obeys [what must never happen](00-WHAT-MUST-NEVER-HAPPEN.md), and may not report success while any check there
+is unmet. Mechanical half: `python3 build/testing-tools/safety_check.py --staged`.
+
 ---
 
 ## THE GATE — what I ask you for

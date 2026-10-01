@@ -17,6 +17,9 @@
 > the page answers honestly, in front of the room. That is the difference between being believed
 > and being argued with.
 
+**SAFETY:** this process obeys [what must never happen](00-WHAT-MUST-NEVER-HAPPEN.md), and may not report success while any check there
+is unmet. Mechanical half: `python3 build/testing-tools/safety_check.py --staged`.
+
 ---
 
 ## 🔴 WHAT MUST EXIST BEFORE THIS CAN RUN — I check each one, and I do not guess

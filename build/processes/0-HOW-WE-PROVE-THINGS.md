@@ -5,6 +5,9 @@
 > Ratified after three failures in one week, all the same error: *a search returned something and
 > that was treated as proof.* This is the floor under every other process. Standing Rule 110.
 
+**SAFETY:** this process obeys [what must never happen](00-WHAT-MUST-NEVER-HAPPEN.md), and may not report success while any check there
+is unmet. Mechanical half: `python3 build/testing-tools/safety_check.py --staged`.
+
 ---
 
 ## The three legs — all three, or the claim is UNPROVEN

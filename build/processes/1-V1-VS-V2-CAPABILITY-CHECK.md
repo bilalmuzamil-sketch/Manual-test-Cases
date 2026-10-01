@@ -15,6 +15,9 @@
 **RUNS AFTER:** `2 · Feature Kick-Off` — it provides repo access and the pinned V1 commit.
 **If it has not been done I STOP and ask**, rather than starting and failing halfway.
 
+**SAFETY:** this process obeys [what must never happen](00-WHAT-MUST-NEVER-HAPPEN.md), and may not report success while any check there
+is unmet. Mechanical half: `python3 build/testing-tools/safety_check.py --staged`.
+
 ---
 
 ## THE GATE — I ask you for this before I start, and I stop here if it is missing

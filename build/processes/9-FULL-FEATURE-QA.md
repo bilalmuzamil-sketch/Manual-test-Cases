@@ -5,6 +5,9 @@
 > Runs the whole pipeline. Use it when a feature is new to us. Call the individual processes when
 > you only want one part.
 
+**SAFETY:** this process obeys [what must never happen](00-WHAT-MUST-NEVER-HAPPEN.md), and may not report success while any check there
+is unmet. Mechanical half: `python3 build/testing-tools/safety_check.py --staged`.
+
 ---
 
 ## THE GATE — the full input set, asked ONCE at the start

@@ -7,6 +7,9 @@
 
 **RUNS AFTER:** nothing — this one can be called cold.
 
+**SAFETY:** this process obeys [what must never happen](00-WHAT-MUST-NEVER-HAPPEN.md), and may not report success while any check there
+is unmet. Mechanical half: `python3 build/testing-tools/safety_check.py --staged`.
+
 ---
 
 ## THE GATE — what I ask you for

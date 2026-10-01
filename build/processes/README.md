@@ -142,6 +142,28 @@ there, or missing one that is.
 
 ---
 
+## 🔴 The things that must never happen
+
+**[What must never happen](00-WHAT-MUST-NEVER-HAPPEN.md)** lists the eight failures that would
+actually land you in trouble — telling you something is tested when it is not, destroying results in
+TestRail, filing a ticket nobody sanctioned, a false bug report to developers, a credential in a
+public repository, claiming a check that did not run, breaking live data, and handing testers data
+that does not exist. For each: what it would cost you, the guard, and **whether that guard is
+mechanical or rests on my judgement** — because you are entitled to know which is which.
+
+```bash
+python3 build/testing-tools/safety_check.py --staged --run 415
+```
+
+It caught a real leak on its first run: I had used the actual production password as an example
+inside the script's own docstring, and it would have been committed to this public repository.
+
+**It will not tell you everything is safe.** It checks the mechanical ones and then prints, by name,
+the four that still rest on judgement. A green run that claimed more than that would itself be a way
+to get bitten.
+
+---
+
 ## 🔴 Calling one process pulls in whatever it needs
 
 **You never have to know the order.** Say the name of the thing you want, and the first thing I do

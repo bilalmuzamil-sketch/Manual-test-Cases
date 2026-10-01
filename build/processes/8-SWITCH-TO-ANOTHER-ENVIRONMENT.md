@@ -9,6 +9,9 @@
 **RUNS AFTER:** `5 · Seed the Test Data on the NEW environment` — it provides data to re-point the tests AT.
 **If it has not been done I run it**, rather than starting and failing halfway.
 
+**SAFETY:** this process obeys [what must never happen](00-WHAT-MUST-NEVER-HAPPEN.md), and may not report success while any check there
+is unmet. Mechanical half: `python3 build/testing-tools/safety_check.py --staged`.
+
 ---
 
 ## THE GATE — what I ask you for

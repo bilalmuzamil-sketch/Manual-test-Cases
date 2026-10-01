@@ -167,6 +167,14 @@ QA can call them; accept any reasonable wording of them, not just the exact stri
 | **"PREPARE THE DEFECT TICKETS for X"** | Unchallengeable candidates, then **STOP at the button** — permission is per ticket (62). | |
 | **"FIND WHAT WE MISSED in X"** | The deliberate look from outside before a suite is called current (45). | |
 
+🔴 **`build/processes/00-WHAT-MUST-NEVER-HAPPEN.md` BINDS EVERY PROCESS.** Eight failures that
+would land the QA lead in trouble, each with its guard and an honest note on whether that guard is
+MECHANICAL or rests on judgement. **No process reports success while a check there is unmet.**
+Mechanical half: `python3 build/testing-tools/safety_check.py --staged --run <id>` — it enforces
+the literal-credential scan (it caught the production password in a docstring on its first run),
+union-only run sizing, and path-scoped staging, then NAMES the four it cannot check so a green
+run is never mistaken for "all safe".
+
 🔴 **A CALLED PROCESS CHASES ITS OWN CHAIN.** Every process file carries a **RUNS AFTER** line
 naming what must exist first and what to do when it does not. On being called, CHECK those
 prerequisites and report where we stand BEFORE building anything — then run the missing ones
