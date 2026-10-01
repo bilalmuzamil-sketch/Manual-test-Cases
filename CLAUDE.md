@@ -157,6 +157,7 @@ QA can call them; accept any reasonable wording of them, not just the exact stri
 | **"MAKE THE TESTS RUNNABLE for X on <env>"** | Every case gets a value PROVEN on that environment. | `PROVE TERMS` |
 | **"PUBLISH X TO TESTRAIL"** | Push + **union-only** run sync (34) + the retest list. | `PUBLISH` |
 | **"SWITCH THE X TESTS to <env>"** | Re-point a suite to another environment. 🔴 An identifier inside a **quoted source sentence** is NOT corrected — 113 beats 111 there. | `REPOINT` |
+| **"BUILD THE COMPARISON DEMONSTRATOR for X"**  | A page that BEHAVES like V1 — anyone types into it and gets a truthful answer, because the old rules are ported from the pinned commit line for line; beside each answer, what V2 does today, measured and dated. Every expectation machine-checked before publish. The thing that wins the meeting. | *(new)* |
 | **"FULL FEATURE QA on X"** | The umbrella — runs them in order. | `FEATURE QA` |
 
 **`build/processes/0-HOW-WE-PROVE-THINGS.md` is not callable and is ALWAYS ON:** a result is not

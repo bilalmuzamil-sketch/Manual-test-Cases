@@ -19,6 +19,7 @@ SEED THE TEST DATA for Invoicing on staging
 MAKE THE TESTS RUNNABLE for Invoicing on production
 PUBLISH Invoicing TO TESTRAIL
 SWITCH THE Invoicing TESTS to production
+BUILD THE COMPARISON DEMONSTRATOR for Invoicing
 FULL FEATURE QA on Invoicing               ← does all of it, in the right order
 ```
 
@@ -79,6 +80,15 @@ Takes tests written for one environment and makes them work on another. Phone nu
 order numbers and the like are all different between environments — this finds every one and fixes
 it.
 
+### BUILD THE COMPARISON DEMONSTRATOR
+**The worry it answers:** *"How do I show people what we lost, without arguing about it?"*
+
+A page that **behaves like the old version** — someone types into it and gets a truthful answer,
+because the old rules are ported from the code line for line. Beside each answer it says what the new
+version does today, measured and dated. A findings table gets read by two people; a page you can type
+into survives the question *"well, what about…?"* in a meeting, because somebody types their own
+example and the page answers honestly in front of the room.
+
 ### FULL FEATURE QA
 All of the above, in order, for a feature we haven't touched before.
 
@@ -137,6 +147,7 @@ there, or missing one that is.
 | Make the Tests Runnable | [6-MAKE-THE-TESTS-RUNNABLE.md](6-MAKE-THE-TESTS-RUNNABLE.md) |
 | Publish to TestRail | [7-PUBLISH-TO-TESTRAIL.md](7-PUBLISH-TO-TESTRAIL.md) |
 | Switch the Tests to Another Environment | [8-SWITCH-TO-ANOTHER-ENVIRONMENT.md](8-SWITCH-TO-ANOTHER-ENVIRONMENT.md) |
+| Build the Comparison Demonstrator | [10-BUILD-THE-COMPARISON-DEMONSTRATOR.md](10-BUILD-THE-COMPARISON-DEMONSTRATOR.md) |
 | Full Feature QA (all of it) | [9-FULL-FEATURE-QA.md](9-FULL-FEATURE-QA.md) |
 | How We Prove Things (always on) | [0-HOW-WE-PROVE-THINGS.md](0-HOW-WE-PROVE-THINGS.md) |
 
