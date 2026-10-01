@@ -16,10 +16,23 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.utils import get_column_letter
 
+# 🔴 ONE TERMS FILE PER ENVIRONMENT. A work-order number, a part-sale number and a staff name are
+# all BRANCH-ASSIGNED or environment data (Rule 111), so a term proven on staging is not a term on
+# production - P2-2276 there is P2-75 here. A single shared discovered-terms.json meant whichever
+# environment ran last silently decided what 111 cases tell a tester to type. Keyed by the profile,
+# exactly as the seeder keys its ids and state.
+def _terms_file(here):
+    import os
+    prof = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
+    env = 'qa' if prof == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(prof))
+    return os.path.join(here, f'discovered-terms-{env}.json')
+
+
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 spec = importlib.util.spec_from_file_location('bc', os.path.join(HERE, 'build_cases.py'))
 bc = importlib.util.module_from_spec(spec); spec.loader.exec_module(bc)
-D = json.load(open(os.path.join(HERE, 'discovered-terms.json')))
+D = json.load(open(_terms_file(HERE)))
 FOUND, PAIRS = D['found'], D['pairs']
 
 ENV = "https://app.staging.shopview.com   ·   workplace: Staging Heavy Duty - 9919"
@@ -120,6 +133,26 @@ def term_for(ekey, field):
         return (p['term'], f"{p['count']} rows come back sharing this") if p else (None, None)
     f = FOUND.get(ref)
     return (f['term'], f"proven to match on {f['field']} ({f['kind']})") if f else (None, None)
+
+FIND_FIRST = 'FIND THE DATA FIRST — see "Before you start"'
+
+# 🔴 THE CROSS-TAB ROWS USED TO CARRY STAGING LITERALS, one of which even said so in its own
+# "Before you start" text ("A real VIN. This one exists on staging."). A VIN, a phone number and a
+# work-order number are environment data (Rule 111), so on production those rows told the tester to
+# type things that return nothing - six dead rows out of the box. They are resolved from the same
+# proven terms file as everything else now, with the old literal kept only as the last resort so a
+# missing term degrades to "find the data first" rather than to a confident wrong value.
+def env_term(key, fallback):
+    f = (D.get('found') or {}).get(key)
+    return f['term'] if f and f.get('term') else fallback
+
+
+ENV_TERMS = {
+    'record_number': env_term('work_orders.number_typed', FIND_FIRST),
+    'phone':         env_term('customers.phone', FIND_FIRST),
+    'vin':           env_term('assets.vin_full', env_term('assets.vin_hidden', FIND_FIRST)),
+    'statuses':      env_term('status_spread', FIND_FIRST),
+}
 
 HDR = ['ID', 'TestRail', 'What you are checking', 'Why it matters to a real user',
        'Before you start', 'TYPE THIS', 'What to do', 'What you should see',
@@ -510,19 +543,19 @@ CROSS = [
   'PRD v1.5, section 6.2', Q_ORDER, False),
  ('E7', 'Typing a full record number puts that record at the very top',
   'If I typed a work order number I want that work order, not a list.',
-  'A record whose number you can type in full. Take one from any list page.', 'S-34379',
+  'A record whose number you can type in full. Take one from any list page.', ENV_TERMS['record_number'],
   ('Type the number in full.', 'Look ABOVE the first group heading.'),
   'That one record sits alone at the top, above all the groups, with its icon.',
   'PRD v1.5, section 6.2', Q_PIN, False),
  ('F1', 'A number is found with and without its dashes',
   'I type what is printed on the paper in front of me, dashes and all.',
-  'Any work order number, e.g. from the Work Orders list.', 'S-34379',
+  'Any work order number, e.g. from the Work Orders list.', ENV_TERMS['record_number'],
   ('Type the number exactly as printed, dashes and all.', 'Note what comes back.',
    'Type it again with every dash and space removed.', 'Compare the two lists.'),
   'Both find the same record.', 'PRD v1.5, section 7', bc.Q_NORMALIZE, False),
  ('F2', 'A phone number is found however it is punctuated',
   'The number on my screen has brackets. The number in my head does not.',
-  'A customer with a punctuated phone number.', '609-461-6502',
+  'A customer with a punctuated phone number.', ENV_TERMS['phone'],
   ('Type the number with its dashes.', 'Type the same digits with nothing between them.',
    'Compare the two lists.', 'Now type only the last four digits and see what comes back.'),
   'The first two find the same customer. The last-four search is a different test — write down '
@@ -542,7 +575,7 @@ CROSS = [
  ('F5', 'A typo in a NUMBER is not silently corrected',
   'A wrong VIN is a wrong truck. I would rather see nothing than the wrong vehicle presented as a '
   'match. This is the most dangerous result search can give.',
-  'A real VIN. This one exists on staging.', 'SVEWU82M5ETEJFWFA',
+  'A real VIN, proven on this environment.', ENV_TERMS['vin'],
   ('Type the VIN exactly — confirm the vehicle comes back.',
    'Now change ONE character and search again.', 'Read the result list carefully.'),
   'The near-miss VIN does NOT return the vehicle. If it does, that is a FAIL — record it '
@@ -551,7 +584,7 @@ CROSS = [
  ('F6', 'Typing a status word returns nothing because of status',
   'Status words are ordinary English. If they match, searching a part called "Complete Kit" drags '
   'in every complete work order.',
-  'Records in several different statuses.', 'Approved',
+  'Records in several different statuses.', ENV_TERMS['statuses'],
   ('Type a status word: Approved, then Invoiced, then Unpaid, then Ordered.',
    'For each hit, check WHY it came back.',
    'Separate the ones whose name really contains the word from the ones that only have that status.'),

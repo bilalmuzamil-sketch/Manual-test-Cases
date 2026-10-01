@@ -1,0 +1,711 @@
+{
+ "environment": "app.shopview.com",
+ "workplace": "Trucks Hill 2",
+ "found": {
+  "assets.licence_plate": {
+   "term": "ABC-1248",
+   "group": "assets",
+   "field": "licence_plate",
+   "kind": "exact",
+   "highlight": "ABC-1248",
+   "primary": "1970 Hyundai Accent",
+   "secondary": "First Customer Prod",
+   "note": ""
+  },
+  "assets.unit": {
+   "term": "824",
+   "group": "assets",
+   "field": "unit",
+   "kind": "exact",
+   "highlight": "824",
+   "primary": "1970 Hyundai Accent",
+   "secondary": "First Customer Prod",
+   "note": ""
+  },
+  "assets.vin": {
+   "term": "7789",
+   "group": "assets",
+   "field": "vin",
+   "kind": "exact",
+   "highlight": "7789",
+   "primary": "1970 Hyundai Accent",
+   "secondary": "First Customer Prod",
+   "note": ""
+  },
+  "customers.phone": {
+   "term": "(830) 928 - 7309",
+   "group": "customers",
+   "field": "phone",
+   "kind": "exact",
+   "highlight": "(830) 928 - 7309",
+   "primary": "Ahsan",
+   "secondary": "323233, Dubai",
+   "note": ""
+  },
+  "customers.address_line_2": {
+   "term": "54545454",
+   "group": "customers",
+   "field": "address_line_2",
+   "kind": "word",
+   "highlight": "54545454",
+   "primary": "Bilal Production",
+   "secondary": "545454, ABu Dhabi, Abu Dhabi",
+   "note": ""
+  },
+  "customers.city": {
+   "term": "Lahore",
+   "group": "customers",
+   "field": "city",
+   "kind": "word",
+   "highlight": "Lahore",
+   "primary": "Ahteshan",
+   "secondary": "Garden Town, Lahore, Punj\u0101b",
+   "note": ""
+  },
+  "customers.postal_code": {
+   "term": "54700",
+   "group": "customers",
+   "field": "postal_code",
+   "kind": "word",
+   "highlight": "54700",
+   "primary": "Ahtasham Amjad",
+   "secondary": "Plot 80R Model Town, Lahore, Lahore",
+   "note": ""
+  },
+  "customers.contact_names": {
+   "term": "ZZSAMEREP",
+   "group": "customers",
+   "field": "contact_names",
+   "kind": "word",
+   "highlight": "ZZSAMEREP",
+   "primary": "Rowcheck Samerep Haulage",
+   "secondary": null,
+   "note": "probed on production 2026-10-01 against seeded data"
+  },
+  "customers.contact_emails": {
+   "term": "ohio@bilal.com",
+   "group": "customers",
+   "field": "contact_emails",
+   "kind": "exact",
+   "highlight": "ohio@bilal.com",
+   "primary": "Ahsan",
+   "secondary": "323233, Dubai",
+   "note": ""
+  },
+  "customers.contact_phones": {
+   "term": "(971) 545 - 4545",
+   "group": "customers",
+   "field": "contact_phones",
+   "kind": "exact",
+   "highlight": "(971) 545 - 4545",
+   "primary": "aqeel transport 56",
+   "secondary": "hgijklm, Ajman, Dubai",
+   "note": ""
+  },
+  "parts.category": {
+   "term": "Lighting",
+   "group": "parts",
+   "field": "category",
+   "kind": "word",
+   "highlight": "Lighting",
+   "primary": "A158",
+   "secondary": "1237944",
+   "note": ""
+  },
+  "parts.bin_location": {
+   "term": "Location57",
+   "group": "parts",
+   "field": "bin_location",
+   "kind": "word",
+   "highlight": "Location57",
+   "primary": "A158",
+   "secondary": "1237944",
+   "note": ""
+  },
+  "vendor_invoices.po_number": {
+   "term": "I2-2",
+   "group": "vendor_invoices",
+   "field": "order_number",
+   "kind": "prefix",
+   "highlight": "I2-2",
+   "primary": "789uy",
+   "secondary": "Delete Test"
+  },
+  "fuzzy.parts": {
+   "term": "ZZKRYPTON",
+   "group": "parts",
+   "field": "description",
+   "kind": "fuzzy",
+   "primary": "ZZKRYPTOM Wheel Seal",
+   "highlight": "ZZKRYPTOM Wheel Seal",
+   "secondary": "PERTAB-7003"
+  },
+  "fuzzy.vendors": {
+   "term": "ZZMAGENTA",
+   "group": "vendors",
+   "field": "name",
+   "kind": "fuzzy",
+   "primary": "ZZMAGENTO Traders",
+   "highlight": "ZZMAGENTO Traders",
+   "secondary": "11 Per Tab Lane, Fernvale, Ohio"
+  },
+  "fuzzy.assets": {
+   "term": "ZZOBSIDIAN",
+   "group": "assets",
+   "field": "make",
+   "kind": "fuzzy",
+   "primary": "2019 ZZOBSIDIAM Trucks Hauler",
+   "highlight": "ZZOBSIDIAM Trucks",
+   "secondary": "Per Tab Asset Holdings"
+  },
+  "fuzzy.customers": {
+   "term": "ZZPREFIY",
+   "group": "customers",
+   "field": "name",
+   "kind": "fuzzy",
+   "primary": "Bolton ZZPREFIX Services",
+   "highlight": "Bolton ZZPREFIX Services",
+   "secondary": "1 Ranking Way, Fernvale, Ohio"
+  },
+  "fuzzy.customers2": {
+   "term": "Petersn",
+   "group": "customers",
+   "field": "name",
+   "kind": "fuzzy",
+   "primary": "ZZAUTOTEST Peterson Hauling",
+   "highlight": "ZZAUTOTEST Peterson Hauling",
+   "secondary": "210 Peterson Ridge, Fernvale, Ohio"
+  },
+  "vendors.email": {
+   "field": "email",
+   "kind": "exact",
+   "highlight": "zzhidden.vendor@staging.shopview.local",
+   "primary": "Rowcheck Quiet Fields Supply",
+   "secondary": "21 Result Row Way, Fernvale, Ohio",
+   "term": "zzhidden.vendor@staging.shopview.local",
+   "group": "vendors"
+  },
+  "vendors.address_line_2": {
+   "field": "address_line_2",
+   "kind": "word",
+   "highlight": "ZZHIDDENSUITE",
+   "primary": "Rowcheck Quiet Fields Supply",
+   "secondary": "21 Result Row Way, Fernvale, Ohio",
+   "term": "ZZHIDDENSUITE",
+   "group": "vendors"
+  },
+  "customers.state": {
+   "field": "state",
+   "kind": "word",
+   "highlight": "ZZQUEBEXA",
+   "primary": "Rowcheck Provincial Cartage",
+   "secondary": "21 Result Row Way, Fernvale, ZZQUEBEXA",
+   "term": "ZZQUEBEXA",
+   "group": "customers"
+  },
+  "part_sales.vin": {
+   "field": "vin",
+   "kind": "exact",
+   "highlight": "ZZHIDDENVIN0000001",
+   "primary": "P2-77",
+   "secondary": "Rowcheck Hidden Fields Holdings",
+   "term": "ZZHIDDENVIN0000001",
+   "group": "part_sales"
+  },
+  "part_sales.asset": {
+   "field": "asset_description",
+   "kind": "word",
+   "highlight": "Quietline",
+   "primary": "P2-77",
+   "secondary": "Rowcheck Hidden Fields Holdings",
+   "term": "Quietline",
+   "group": "part_sales"
+  },
+  "assets.vin_hidden": {
+   "field": "vin",
+   "kind": "exact",
+   "highlight": "ZZHIDDENVIN0000001",
+   "primary": "2021 Rowcheck Motors Quietline",
+   "secondary": "Rowcheck Hidden Fields Holdings",
+   "term": "ZZHIDDENVIN0000001",
+   "group": "assets"
+  },
+  "workorders.nounit": {
+   "field": "asset_make",
+   "kind": "word",
+   "highlight": "ZZNOUNIT",
+   "primary": "S2-954",
+   "secondary": "Rowcheck Hidden Fields Holdings",
+   "term": "ZZNOUNIT",
+   "group": "work_orders"
+  },
+  "soft.work_orders": {
+   "field": "customer_name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Cartage",
+   "primary": "S2-955",
+   "secondary": "ZZSOFTHIY Cartage",
+   "term": "ZZSOFTHIT",
+   "group": "work_orders"
+  },
+  "soft.part_sales": {
+   "field": "customer_name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Cartage",
+   "primary": "P2-78",
+   "secondary": "ZZSOFTHIY Cartage",
+   "term": "ZZSOFTHIT",
+   "group": "part_sales"
+  },
+  "soft.purchase_orders": {
+   "field": "vendor_name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Supply",
+   "primary": "I2-36",
+   "secondary": "ZZSOFTHIY Supply",
+   "term": "ZZSOFTHIT",
+   "group": "purchase_orders"
+  },
+  "soft.vendor_invoices": {
+   "field": "vendor_name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Supply",
+   "primary": "ZZTINV-RISOFT-9001",
+   "secondary": "ZZSOFTHIY Supply",
+   "term": "ZZSOFTHIT",
+   "group": "vendor_invoices"
+  },
+  "soft.customers": {
+   "field": "name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Cartage",
+   "primary": "ZZSOFTHIY Cartage",
+   "secondary": "21 Result Row Way, Fernvale, Ohio",
+   "term": "ZZSOFTHIT",
+   "group": "customers"
+  },
+  "soft.vendors": {
+   "field": "name",
+   "kind": "fuzzy",
+   "highlight": "ZZSOFTHIY Supply",
+   "primary": "ZZSOFTHIY Supply",
+   "secondary": "21 Result Row Way, Fernvale, Ohio",
+   "term": "ZZSOFTHIT",
+   "group": "vendors"
+  },
+  "work_orders.lead_technician_name": {
+   "term": "Technicianov",
+   "group": "work_orders",
+   "field": "lead_technician_name",
+   "kind": "word",
+   "highlight": "Technicianov",
+   "primary": null,
+   "secondary": null,
+   "note": "assigned by assign_wo_staff.py on production 2026-10-01; proved by identity (our work order returned, matched on this field)"
+  },
+  "work_orders.service_advisor_name": {
+   "term": "Videnovic",
+   "group": "work_orders",
+   "field": "service_advisor_name",
+   "kind": "word",
+   "highlight": "Videnovic",
+   "primary": null,
+   "secondary": null,
+   "note": "assigned by assign_wo_staff.py on production 2026-10-01; proved by identity (our work order returned, matched on this field)"
+  },
+  "work_orders.number_typed": {
+   "term": "S2-889",
+   "group": "work_orders",
+   "field": "number",
+   "kind": "exact",
+   "highlight": "S2-889",
+   "primary": null,
+   "secondary": null,
+   "note": "measured on production 2026-10-01 for the cross-tab rows"
+  },
+  "assets.vin_full": {
+   "term": "1FD8W3HT9EEA3422",
+   "group": "assets",
+   "field": "vin",
+   "kind": "exact",
+   "highlight": "1FD8W3HT9EEA3422",
+   "primary": null,
+   "secondary": null,
+   "note": "measured on production 2026-10-01 for the cross-tab rows"
+  },
+  "status_spread": {
+   "term": "Fib",
+   "group": "work_orders",
+   "field": "status",
+   "kind": "word",
+   "highlight": "Fib",
+   "primary": null,
+   "secondary": null,
+   "note": "measured on production 2026-10-01 for the cross-tab rows"
+  },
+  "vendors.contact_names": {
+   "term": "ZZHIDDENCONTACT",
+   "group": "vendors",
+   "field": "contact_names",
+   "kind": "word",
+   "highlight": "ZZHIDDENCONTACT",
+   "primary": "Rowcheck Quiet Fields Supply",
+   "secondary": null,
+   "note": "probed on production 2026-10-01 against seeded data"
+  },
+  "vendors.contact_emails": {
+   "term": "zzhidden.contact@staging.shopview.local",
+   "group": "vendors",
+   "field": "contact_emails",
+   "kind": "word",
+   "highlight": "zzhidden.contact@staging.shopview.local",
+   "primary": "Rowcheck Quiet Fields Supply",
+   "secondary": null,
+   "note": "probed on production 2026-10-01 against seeded data"
+  },
+  "customers.contact_names_dual": {
+   "term": "ZZDUALREP",
+   "group": "customers",
+   "field": "contact_names",
+   "kind": "word",
+   "highlight": "ZZDUALREP",
+   "primary": "Rowcheck Dualrep Transport",
+   "secondary": null,
+   "note": "probed on production 2026-10-01 against seeded data"
+  },
+  "parts.vendor_name": {
+   "term": "ZZSOFTHIT",
+   "group": "parts",
+   "field": "vendor_name",
+   "kind": "word",
+   "highlight": "ZZSOFTHIT",
+   "primary": "ZZTOGVEN Supply Brake Shoe Kit",
+   "secondary": null,
+   "note": "probed on production 2026-10-01 against seeded data"
+  },
+  "purchase_orders.item_part_names": {
+   "term": "ZZAUTOTEST",
+   "group": "purchase_orders",
+   "field": "item_part_names",
+   "kind": "word",
+   "highlight": "ZZAUTOTEST",
+   "primary": "S2-840",
+   "secondary": null,
+   "note": "probed on production 2026-10-01 against seeded data"
+  }
+ },
+ "missing": [
+  "parts.manufacturer",
+  "parts.manufacturer",
+  "parts.category"
+ ],
+ "pairs": {
+  "parts.part_number": {
+   "term": "965",
+   "group": "parts",
+   "field": "part_number",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "A179",
+     "secondary": "1237965",
+     "highlight": "965"
+    },
+    {
+     "primary": "Item-2415",
+     "secondary": "1754965",
+     "highlight": "965"
+    }
+   ]
+  },
+  "work_orders.asset_model": {
+   "term": "328",
+   "group": "work_orders",
+   "field": "asset_model",
+   "count": 14,
+   "rows": [
+    {
+     "primary": "S2-738",
+     "secondary": "Ayesha",
+     "highlight": "328"
+    },
+    {
+     "primary": "S2-725",
+     "secondary": "Ayesha",
+     "highlight": "328"
+    },
+    {
+     "primary": "S2-697",
+     "secondary": "Ayesha",
+     "highlight": "328"
+    },
+    {
+     "primary": "S2-695",
+     "secondary": "Ayesha",
+     "highlight": "328"
+    }
+   ]
+  },
+  "assets.model": {
+   "term": "328",
+   "group": "assets",
+   "field": "model",
+   "count": 4,
+   "rows": [
+    {
+     "primary": "2024 BMW 328I",
+     "secondary": "aqeel transport 56",
+     "highlight": "328"
+    },
+    {
+     "primary": "2024 BMW 328I",
+     "secondary": "Asher transport3",
+     "highlight": "328"
+    },
+    {
+     "primary": "2024 Bmw 328i",
+     "secondary": "Ayesha",
+     "highlight": "328"
+    },
+    {
+     "primary": "2024 BMW 328I",
+     "secondary": "Ayesha",
+     "highlight": "328"
+    }
+   ]
+  },
+  "twin.customers": {
+   "term": "ZZLONGROW",
+   "group": "customers",
+   "field": "name",
+   "count": 3,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "secondary": "21 Result Row Way, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 185786",
+     "secondary": "21 Result Row Way, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Identical Name Cartage",
+     "secondary": "88 Different Street, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "twin.vendors": {
+   "term": "ZZLONGROW",
+   "group": "vendors",
+   "field": "name",
+   "count": 4,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "88 Different Street, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "4 Sameface Road, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 185786",
+     "secondary": "21 Result Row Way, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 123786",
+     "secondary": "21 Result Row Way, Fernvale, Ohio",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "twin.parts": {
+   "term": "ZZLONGROW",
+   "group": "parts",
+   "field": "part_number",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "secondary": "ZZLONGROW-123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "secondary": "ZZLONGROW-185786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "twin.assets": {
+   "term": "ZZLONGROW",
+   "group": "assets",
+   "field": "unit",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "2021 Rowcheck Trucks Longhauler",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "2021 Rowcheck Trucks Longhauler",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "twin.part_sales": {
+   "term": "ZZLONGROW",
+   "group": "part_sales",
+   "field": "customer_name",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "P2-76",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "P2-75",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "twin.work_orders": {
+   "term": "ZZLONGROW",
+   "group": "work_orders",
+   "field": "unit",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "S2-953",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "S2-952",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "same.vendors": {
+   "term": "ZZLONGROW Identical Name Supply",
+   "group": "vendors",
+   "field": "name",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "88 Different Street, Fernvale, Ohio",
+     "highlight": "ZZLONGROW Identical Name Supply"
+    },
+    {
+     "primary": "ZZLONGROW Identical Name Supply",
+     "secondary": "4 Sameface Road, Fernvale, Ohio",
+     "highlight": "ZZLONGROW Identical Name Supply"
+    }
+   ]
+  },
+  "same.parts": {
+   "term": "ZZLONGROW Heavy Duty Air Brake",
+   "group": "parts",
+   "field": "description",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "secondary": "ZZLONGROW-123786",
+     "highlight": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications"
+    },
+    {
+     "primary": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications",
+     "secondary": "ZZLONGROW-185786",
+     "highlight": "ZZLONGROW Heavy Duty Air Brake Chamber Kit For Tractor Trailer Applications"
+    }
+   ]
+  },
+  "same.assets": {
+   "term": "ZZLONGROW",
+   "group": "assets",
+   "field": "unit",
+   "count": 2,
+   "rows": [
+    {
+     "primary": "2021 Rowcheck Trucks Longhauler",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    },
+    {
+     "primary": "2021 Rowcheck Trucks Longhauler",
+     "secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "highlight": "ZZLONGROW"
+    }
+   ]
+  },
+  "same.purchase_orders": {
+   "term": "Fibridge",
+   "group": "purchase_orders",
+   "field": "vendor_name",
+   "count": 4,
+   "rows": [
+    {
+     "primary": "S2-889",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "I2-33",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "I2-32",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "I2-31",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    }
+   ]
+  },
+  "same.vendor_invoices": {
+   "term": "Fibridge",
+   "group": "vendor_invoices",
+   "field": "vendor_name",
+   "count": 4,
+   "rows": [
+    {
+     "primary": "ZZT-INV-1",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "82132",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "ZZT-INV-3",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    },
+    {
+     "primary": "ZZT-INV-2",
+     "secondary": "ZZAUTOTEST Fibridge Mining",
+     "highlight": "Fibridge"
+    }
+   ]
+  }
+ }
+}

@@ -6,13 +6,26 @@ read with /api/vendors/view/{id}. Same verification rule as pass 1: a term is ke
 response says the match came from the field the test is about.
 """
 import sys, os, json, importlib.util
+
+# 🔴 ONE TERMS FILE PER ENVIRONMENT. A work-order number, a part-sale number and a staff name are
+# all BRANCH-ASSIGNED or environment data (Rule 111), so a term proven on staging is not a term on
+# production - P2-2276 there is P2-75 here. A single shared discovered-terms.json meant whichever
+# environment ran last silently decided what 111 cases tell a tester to type. Keyed by the profile,
+# exactly as the seeder keys its ids and state.
+def _terms_file(here):
+    import os
+    prof = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
+    env = 'qa' if prof == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(prof))
+    return os.path.join(here, f'discovered-terms-{env}.json')
+
+
 SEED = '/home/user/Manual-test-Cases/build/global-search/seeding'
 sys.argv = ['seed.py']
 spec = importlib.util.spec_from_file_location('seedmod', f'{SEED}/seed.py')
 m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 call = m.call
 HERE = os.path.dirname(os.path.abspath(__file__))
-D = json.load(open(f'{HERE}/discovered-terms.json'))
+D = json.load(open(_terms_file(HERE)))
 FOUND = D['found']
 
 def groups(q):
@@ -113,5 +126,5 @@ for key, group, term in (('fuzzy.parts', 'parts', 'ZZKRYPTON'),
         print(f"  ❌ {key:22} {term!r} returned no fuzzy row in {group}")
 
 D['found'] = FOUND
-json.dump(D, open(f'{HERE}/discovered-terms.json', 'w'), indent=1)
+json.dump(D, open(_terms_file(HERE), 'w'), indent=1)
 print(f"\n{len(FOUND)} verified terms in total")

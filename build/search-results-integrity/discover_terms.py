@@ -11,6 +11,19 @@ Output: discovered-terms.json, consumed by build_workbook.py.
 """
 import sys, os, json, importlib.util, collections
 
+# 🔴 ONE TERMS FILE PER ENVIRONMENT. A work-order number, a part-sale number and a staff name are
+# all BRANCH-ASSIGNED or environment data (Rule 111), so a term proven on staging is not a term on
+# production - P2-2276 there is P2-75 here. A single shared discovered-terms.json meant whichever
+# environment ran last silently decided what 111 cases tell a tester to type. Keyed by the profile,
+# exactly as the seeder keys its ids and state.
+def _terms_file(here):
+    import os
+    prof = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
+    env = 'qa' if prof == '/tmp/qa/cookies.json' else os.path.basename(os.path.dirname(prof))
+    return os.path.join(here, f'discovered-terms-{env}.json')
+
+
+
 SEED = '/home/user/Manual-test-Cases/build/global-search/seeding'
 sys.argv = ['seed.py']
 spec = importlib.util.spec_from_file_location('seedmod', f'{SEED}/seed.py')
@@ -148,8 +161,11 @@ for probe in ('965', '3286', '786', '0123', '4471', '5067', '328', '496'):
                           'count': len(items), 'rows': items[:4]}
             print(f"  ✅ {key:34} type {probe!r:8} -> {len(items)} rows share the fragment")
 
-out = {'environment': 'app.staging.shopview.com', 'workplace': 'Staging Heavy Duty - 9919',
+# the environment is READ from the profile, never hardcoded - the old literal said "staging"
+# whichever environment had actually been queried, which is the provenance failure Rule 110 forbids.
+_prof = os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')
+_c = json.load(open(_prof))
+out = {'environment': _c.get('host'), 'workplace': os.environ.get('SEED_WORKPLACE', ''),
        'found': FOUND, 'missing': MISSING, 'pairs': PAIRS}
-json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                 'discovered-terms.json'), 'w'), indent=1)
+json.dump(out, open(_terms_file(os.path.dirname(os.path.abspath(__file__))), 'w'), indent=1)
 print(f"\n{len(FOUND)} verified terms, {len(PAIRS)} fragment-sharing groups, {len(MISSING)} not found")
