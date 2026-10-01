@@ -1,6 +1,6 @@
-# HUNT FOR COVERAGE GAPS `<feature>` — look at the suite from outside before calling it finished
+# FIND WHAT WE MISSED `<feature>` — look at the suite from outside before calling it finished
 
-> **Call it:** `HUNT FOR COVERAGE GAPS in Invoicing`
+> **Call it:** `FIND WHAT WE MISSED in Invoicing`
 >
 > A suite built from a spec covers the spec. It does not cover what the spec forgot, what the user
 > does anyway, or what the old version could do and nobody wrote down. **This is the deliberate look

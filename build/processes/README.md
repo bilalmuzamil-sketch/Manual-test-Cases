@@ -22,12 +22,12 @@ SWITCH THE Invoicing TESTS to production
 BUILD THE COMPARISON DEMONSTRATOR for Invoicing
 FULL FEATURE QA on Invoicing               ← does all of it, in the right order
 
-ASK THE PO about Invoicing
+GET THE PO'S DECISIONS on Invoicing
 RUN THE TESTS for Invoicing on staging
 HAND THE RUN OVER for Invoicing
 FIND THE ROOT CAUSE of "results look wrong"
 PREPARE THE DEFECT TICKETS for Invoicing
-HUNT FOR COVERAGE GAPS in Invoicing
+FIND WHAT WE MISSED in Invoicing
 ```
 
 You do not have to get the wording exactly right. "Does Scheduling V2 still do everything V1 did?"
@@ -168,12 +168,12 @@ costs the next feature. This is Rule 93's learning loop with a concrete step att
 | Switch the Tests to Another Environment | [8-SWITCH-TO-ANOTHER-ENVIRONMENT.md](8-SWITCH-TO-ANOTHER-ENVIRONMENT.md) |
 | Build the Comparison Demonstrator | [10-BUILD-THE-COMPARISON-DEMONSTRATOR.md](10-BUILD-THE-COMPARISON-DEMONSTRATOR.md) |
 | Full Feature QA (all of it) | [9-FULL-FEATURE-QA.md](9-FULL-FEATURE-QA.md) |
-| Ask the PO | [11-ASK-THE-PO.md](11-ASK-THE-PO.md) |
+| Get the PO's Decisions | [11-GET-THE-POS-DECISIONS.md](11-GET-THE-POS-DECISIONS.md) |
 | Run the Tests | [12-RUN-THE-TESTS.md](12-RUN-THE-TESTS.md) |
 | Hand the Run Over | [13-HAND-THE-RUN-OVER.md](13-HAND-THE-RUN-OVER.md) |
 | Find the Root Cause | [14-FIND-THE-ROOT-CAUSE.md](14-FIND-THE-ROOT-CAUSE.md) |
 | Prepare the Defect Tickets | [15-PREPARE-THE-DEFECT-TICKETS.md](15-PREPARE-THE-DEFECT-TICKETS.md) |
-| Hunt for Coverage Gaps | [16-HUNT-FOR-COVERAGE-GAPS.md](16-HUNT-FOR-COVERAGE-GAPS.md) |
+| Find What We Missed | [16-FIND-WHAT-WE-MISSED.md](16-FIND-WHAT-WE-MISSED.md) |
 | How We Prove Things (always on) | [0-HOW-WE-PROVE-THINGS.md](0-HOW-WE-PROVE-THINGS.md) |
 
 **`RESEED GLOBAL SEARCH STAGING`** and the other existing keywords are unchanged — "Seed the

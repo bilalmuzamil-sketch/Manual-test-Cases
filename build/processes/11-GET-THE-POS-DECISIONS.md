@@ -1,6 +1,6 @@
-# ASK THE PO `<feature>` — one sheet of questions, in plain words, sent LAST
+# GET THE PO'S DECISIONS `<feature>` — one sheet, in plain words, sent LAST
 
-> **Call it:** `ASK THE PO about Invoicing`
+> **Call it:** `GET THE PO'S DECISIONS on Invoicing`
 >
 > **The rule that shapes it:** this goes out **only once everything we can answer ourselves has been
 > answered.** A question sheet that asks things we could have measured wastes the one person whose
