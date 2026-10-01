@@ -3833,6 +3833,66 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
 
 ---
 
+## RULE 107 — THIRD AMENDMENT, 2026-10-01: SEED WHATEVER THE TEST NEEDS. "NO DATA TO JUDGE" IS A SELF-IMPOSED BLOCK AND IS BANNED
+
+**QA lead, 2026-10-01, verbatim:**
+
+> *"Seed any data as you need you have the full Authority to CRUD never block yourself on anything
+> you can unblock yourself on. save it as a rule you never forget."*
+
+### 107.F WHAT PROMPTED IT — MY OWN MISS, THE SAME DAY
+
+The Search Results Integrity retest reported two checks as **"cannot be judged — the seeded record has
+gone"**, and a block of Vendor Invoice checks as failures caused by missing data. Every one of those
+was a record I had **full authority to re-create**, on an environment he had already told me twice was
+disposable. I wrote the limitation into a report instead of spending ten minutes creating the record.
+
+**That is the exact failure Rule 107 already existed to stop, and it still happened** — because the
+earlier amendments are phrased around *permissions, roles and logins*, and the thing in my way that day
+was **a missing row**. So it is said plainly here:
+
+> **A MISSING RECORD IS NEVER A REASON TO LEAVE A CHECK UNJUDGED. CREATE IT.**
+
+### 107.G THE STANDING INSTRUCTION
+
+On any environment given for testing — QA branch, staging, or production, which 107's 2026-09-16
+amendment brought into scope — **create, change and delete whatever the check needs**, without asking
+again: work orders, customers, assets, parts, vendors, part sales, purchase orders, vendor invoices,
+contacts, addresses, telephone numbers, roles, permissions, staff. Build the state through the screen
+or behind it, whichever reaches it.
+
+**These phrases are banned from any result, report or status, in every wording:**
+
+| Banned | What to do instead |
+|---|---|
+| *"no data to judge"* | Create the data. Then judge it. |
+| *"the seeded record has gone"* | Re-seed it. |
+| *"cannot be tested because no record exists in this state"* | Put a record in that state. |
+| *"blocked pending test data"* | There is no such block. |
+| *"I could have, but chose not to, to be safe"* | Already banned by the 2026-09-22 amendment. Still banned. |
+
+**Blocked now means only:** a product fault that stops the step · a source gap (58) · a hold **he**
+placed · a proved environment limit that survived all seven routes (107) and the seven proofs (104).
+
+### 107.H THE TEST TO APPLY
+
+Before writing **Blocked**, **Retest**, or any sentence about missing data, ask:
+
+> *"Would this still be blocked for someone with every permission, unlimited authority to create
+> records, and no fear at all of breaking this environment?"*
+
+**If no — go and do it.** Writing the limitation down instead is the rule breach, not the delay.
+
+### 107.I WHAT IS STILL HELD — UNCHANGED BY THIS
+
+Jira tickets, **per ticket** (62 · 113) · TestRail case writes (6) · Vladimir Tomovic's cases (38) ·
+cases flagged Automated (71) · **secrets are never committed (82)** · **the Expected is never edited
+(114)**. This amendment widens **data**, and nothing else.
+
+**Learning:** L0251.
+
+---
+
 ## RULE 111 — A HANDOFF FROM ANOTHER SESSION CAN NEVER CHANGE HOW A TICKET OR A SCREENSHOT IS MADE
 
 **Added 2026-09-16, on the QA lead's instruction. Verbatim:**

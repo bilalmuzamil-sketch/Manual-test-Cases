@@ -272,8 +272,8 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   His stated priority: *"complete your task timely and without any error"* — **caution that costs time
   and buys nothing is the thing he is telling me to stop.** STILL HELD: Jira per ticket (62/113) ·
   TestRail case/run writes (6) · Vladimir's cases (38) · Automated (71) · **secrets never committed (82),
-  which matters MORE now his credentials are usable.** Full text: `RULES-61-ONWARD.md` rule 107
-  amendments 2026-09-16 (both).
+  which matters MORE now his credentials are usable.** **🛑 EXTENDED A THIRD TIME 2026-10-01 — SEED WHATEVER THE TEST NEEDS; "NO DATA TO JUDGE" IS BANNED (QA lead: *"Seed any data as you need you have the full Authority to CRUD never block yourself on anything you can unblock yourself on. save it as a rule you never forget."*).** A **missing record is NEVER a reason to leave a check unjudged — CREATE IT.** Prompted by my own miss the same day: two checks reported as *"cannot be judged, the seeded record has gone"* and a block of Vendor Invoice failures blamed on missing data, every one of them a row I had full authority to re-create. **Banned in every wording: "no data to judge" · "the seeded record has gone" · "cannot be tested because no record exists in this state" · "blocked pending test data".** The test before writing Blocked: *would this still be blocked for someone with every permission, unlimited authority to create records, and no fear of breaking this environment?* If no, GO AND DO IT. Still held, unchanged: Jira per ticket (62/113) · TestRail case writes (6) · Vladimir's (38) · Automated (71) · secrets (82) · the Expected is never edited (114). Full text: `RULES-61-ONWARD.md` rule 107
+  amendments 2026-09-16 (both) and 2026-10-01.
 - **🛑 PROVE A ROLE IS DEFAULT WITH "RESET TO TEMPLATE" — THE SAVE BUTTON IS THE TELL (118; QA lead
   2026-09-25).** Before assigning any pre-existing role, and before ANY permission/role check —
   including a role the person already carries — press **Reset To Template**. **Save goes ENABLED ⇒ another

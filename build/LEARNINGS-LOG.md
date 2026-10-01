@@ -4691,3 +4691,38 @@ navigated to the deep link. Handing a deep URL straight to the sign-in page prod
 "no DEV MODE Admin button" message, so that one message has at least three distinct causes — wrong
 boot route, stale session, and a dead bridge. Check the env file's timestamp first: it is the
 cheapest of the three to rule out.
+
+---
+
+## L0251
+
+**2026-10-01 · Global Search · I wrote "no data to judge" into a report instead of creating the data
+— on an environment I had been told twice was disposable.**
+
+The Search Results Integrity retest reported two checks as **cannot be judged, the seeded record has
+gone**, and a block of Vendor Invoice checks as failures caused by missing records. Every one of
+those rows was something I had **full standing authority to re-create**. I spent the effort writing
+the limitation up instead of spending ten minutes putting the record back.
+
+The QA lead's response, the same day: *"Seed any data as you need you have the full Authority to CRUD
+never block yourself on anything you can unblock yourself on. save it as a rule you never forget."*
+
+**Why Rule 107 did not stop it, having existed for three weeks for exactly this.** Its amendments are
+all phrased around **permissions, roles, logins and surfaces** — the things that had blocked earlier
+sessions. The thing in my way this time was **a missing row**, which none of that language names. A
+rule written against the last failure does not catch the next one unless it names the *category*, not
+the instance.
+
+**So the rule now names it:** a missing record is never a reason to leave a check unjudged. And the
+phrases themselves are banned, because the phrase is the tell — *"no data to judge"*, *"the seeded
+record has gone"*, *"blocked pending test data"*. If one of those is about to be written, the work is
+to create the record, not to describe its absence.
+
+**The test, before writing Blocked or Retest or any sentence about missing data:** *would this still
+be blocked for someone with every permission, unlimited authority to create records, and no fear of
+breaking this environment?* If no, go and do it.
+
+**Carries forward:** a seeded fixture that other sessions rely on **will** be removed without notice —
+the `ZZLONGROW` records this suite was built on had gone, and their absence made several checks look
+like regressions in last night's run. **Harvest terms live off the environment, or re-seed as part of
+the run; never assume yesterday's fixture is still there.**
