@@ -22,7 +22,7 @@ Board data for the day, read from the API:
 | Check | Expected | Measured |
 |---|---|---|
 | Two events outside hours | 6 AM – 8 PM, then 10 PM once the late one ends 8:45 PM | **6 AM → 10 PM**, 16.11 h at 73 px/h (7:30 − 1 h → 6 AM; 8:45 PM + 1 h → 10 PM) |
-| Hide the department holding them, refresh | window unchanged | lanes 17 → 3, window **identical**: 6 AM → 10 PM, 73 px/h, same scroll |
+| Hide the department holding them, refresh | window unchanged | both events moved into **Service** first, then hidden: lanes **15 → 1**, events rendered **2 → 0**, window **byte-identical** (6 AM → 11 PM, 69 px/h, scrollLeft 415) |
 | Add an all-day event | window does not change | unchanged — the all-day event does not widen it |
 | A day whose event runs past midnight | window starts 12 AM | **Tue 6 Oct → 12 AM → 8 PM** (the "Jarod off" event runs Mon 6:00 AM → Tue 7:00 PM) |
 
@@ -78,3 +78,8 @@ Done on **Staging Lethbridge - 4310**, which genuinely has no hours saved (`rang
 | No saved hours | **52 px/h**, full 24 h grid, no business-hours window — the old layout |
 | Save 7:00 AM – 3:00 PM, reload | Friday opens **6 AM → 4 PM** at 117 px/h — exactly −1 h / +1 h |
 | Restore to no hours | read back identical to the original; view returns to 52 px/h |
+
+## Week and Month (quick check)
+Both render with no horizontal hour timeline at all — the measuring helper finds no scroll
+container — so the Day-view fit cannot apply to them. Week shows its seven day columns and
+Month its grid, unchanged. Switching back to Day returns to the window.
