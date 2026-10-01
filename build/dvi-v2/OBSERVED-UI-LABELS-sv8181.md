@@ -79,3 +79,19 @@ Work order lines / Work orders perms; "Inspection Templates" is a Settings area,
 "GENERAL REFERENCE FILE" section: "Attach File" (+ helper "Save the draft before attaching a file.").
 # These confirm the cases' exact labels: "Note required if Monitor / Not OK", "Photo required if Not OK",
 #   "Attach File", "General reference file", "Add follow-up to a response" — all present on the build as written.
+
+## Per axle field config (template builder)  — Evidence: field-per-axle.txt
+Summary: "Per axle · Tire pressure / Tread depth / Brake lining / Push-rod travel · Technician adds axles while filling".
+Config: "MEASUREMENT ROWS · EVERY AXLE" · row types (e.g. "Tread depth") · "Add Measurement Row" · "Axles" ·
+  "Select # of axles to start with". Help: "One field covers the whole unit. You define the measurement rows
+  here, and the technician adds each axle while filling... recorded per wheel position on every axle."
+# Confirms case label "Measurement rows · every axle". The Drum/Disc/Single/Dual + unit selector controls are
+#   FILLING-side (tech fills per-axle) — not raised via automation; run session confirms live.
+
+## RESIDUAL — screens not raised via automation on sv8181 (run session confirms live; entry points + config confirmed)
+# - In-progress FILLING per-response states: "Marked OK" / "Needs action" / "Follow-up for this response"
+#   (the completed/locked view shows the final "OK/Monitor/Not OK/N/A" badges; the live-fill states need an
+#   in-progress inspection, whose add-to-line entry did not surface via scripted clicks).
+# - Per-axle FILLING controls (Drum / Disc / Single / Dual brake+wheel selectors, unit selector) — S8 filling side.
+# - Customer-facing report content + "Require acknowledgement" (the asset row's "PDF" is the report export).
+# - Phone-width rendering (S14).
