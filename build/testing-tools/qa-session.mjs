@@ -13,18 +13,23 @@ import fs from 'fs';
 
 const CHROME='/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 const PROD={app:'https://app.shopview.com', api:'https://api.shopview.com'};
+const STAGING={app:'https://app.staging.shopview.com', api:'https://api.staging.shopview.com'};
 const branch=t=>({app:`https://sv${t}.qa.shopview.com`, api:`https://sv${t}api.qa.shopview.com`});
+// Cookies are scoped per environment: the QA branches live under .qa.shopview.com, while
+// production and staging both sit under .shopview.com. Sending a cookie on the wrong domain
+// silently authenticates nothing and the app just redirects to login.
+const cookieDomain = env => env==='branch' ? '.qa.shopview.com' : '.shopview.com';
 
 function port(dir){ return fs.readFileSync(dir+'/port.txt','utf8').trim(); }
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw='analyst1',
                             cookies=null, vp={width:1900,height:1100}, quiet=true}={}){
-  const H = env==='prod' ? PROD : branch(ticket);
+  const H = env==='prod' ? PROD : env==='staging' ? STAGING : branch(ticket);
   const b = await chromium.launch({executablePath:CHROME, args:[
     '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2']});
   const ctx = await b.newContext({viewport:vp, ignoreHTTPSErrors:true});
   if (cookies) await ctx.addCookies(Object.entries(cookies).map(([name,value])=>
-    ({name, value, domain:'.qa.shopview.com', path:'/'})));
+    ({name, value, domain:cookieDomain(env), path:'/'})));
   const p = await ctx.newPage();
   const writes=[];
   p.on('response', r=>{ try{ const u=new URL(r.url());
@@ -41,6 +46,12 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
     await p.fill('[data-test-id="input_password"]', pw).catch(async()=>{ await p.fill('input[type=password]',pw).catch(()=>{}); });
     const btn=p.locator('button').filter({hasText:/log ?in|sign ?in/i}).first();
     if(await btn.count()){ const bb=await btn.boundingBox(); await p.mouse.click(bb.x+bb.width/2, bb.y+bb.height/2); }
+    await p.waitForURL(u=>!/\/login/.test(u.toString()),{timeout:60000}).catch(()=>{});
+  } else if (env==='staging'){
+    // Cookies authenticate the API, but the SPA keeps its own auth state, so a cookie-only
+    // context still bounces to /login. Staging carries the same dev quick-login panel the
+    // per-ticket branches have — one click hydrates the app.
+    await p.click('[data-test-id="button_quick_login_admin"]').catch(()=>{});
     await p.waitForURL(u=>!/\/login/.test(u.toString()),{timeout:60000}).catch(()=>{});
   } else {
     // per-ticket branches park themselves: click Wake Up until the app renders
