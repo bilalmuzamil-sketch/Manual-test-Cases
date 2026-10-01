@@ -105,25 +105,39 @@ through the API for speed.
 
 ---
 
-## 6. What could not be done, and why
+## 6. The before-and-after, captured on production — and a correction to the ticket's premise
 
-**The production before-capture (Standing Rules 73/86) was not obtained.** Production
-(`v26.39.2-1aeb22d`) does not carry this fix, so it is where the data loss could be shown.
-Work-order creation there could not be driven:
+Production (`v26.39.2-1aeb22d`) does not carry this fix, so it is where the "before" was taken. The
+API route there is unusable (`work-orders/create` answers `company_id: Not found` for every existing
+customer), so the whole chain was seeded **through the screen**: Create Work Order → Add customer →
+Add contact → Add asset → Save, giving work order **S2-938** under customer *ZZAUTOTEST SV10190
+Before 48516*, asset *2020 Ford ZZAUTOTEST-10190*. A canned line, a vendor part, the order and the
+receive followed through the normal screens.
 
-- `POST /api/work-orders/create` returns `{"company_id":"Not found"}` for **every** customer tried —
-  80 customers at each of the nine workplaces.
-- A customer created through `POST /api/customers/create` (201) is then rejected by
-  `POST /api/vehicles/create` with `{"customer_id":"Not found"}`.
-- `/api/companies` ignores its `search` parameter, returning the same first 100 rows regardless, so
-  the customers visible on existing production work orders could not be located by name.
-- The Create Work Order dialog **does** open in the UI, and that route is not exhausted — its
-  customer and asset pickers are Quasar selects without test ids, so driving them is a longer job.
+**The two-tab race reproduces on production exactly as on staging** — `Delete line` renders enabled
+while the backend already reports `deletable: false`.
 
-**This is an ask, not a decision** (Standing Rule 91): say the word and I will drive the production
-dialog by hand and capture the before. Nothing in the verdict above depends on it.
+**But the delete does not destroy anything on production either.** Pressing Delete produces a generic
+*"Ooooops! An error occurred … Include your request ID"* and the line and its part survive. Read at
+the endpoint directly:
 
----
+```
+POST /api/work-orders/lines/delete   ->  500
+{"errors":[{"error":"An error occurred. We're sorry for this inconvenience, please try again a bit later later."},
+           {"requestId":"8e526a2f-5bba-4d90-9da0-d1c3bc01c5c7"}]}
+```
+
+So the comparison is **500-with-no-explanation** versus **400-with-a-clear-message**, not data loss
+versus no data loss.
+
+**This qualifies the ticket's premise and is stated plainly in the QA comment.** The report was
+written on 17 September against build **v26.36.7**; production is now on **v26.39.2**, three minor
+versions later. Something between those builds already stopped the deletion from completing — by
+failing, not by refusing. The data loss as described is **not currently reachable on production**,
+and the fix converts an unexplained error into an actionable message.
+
+**Not claimed:** that the original report was wrong. It was made against a build that no longer
+exists, and was corroborated there by a backend read and an automated case.
 
 ## 7. Test data left on staging
 
