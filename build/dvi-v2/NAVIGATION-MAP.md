@@ -66,3 +66,12 @@ Response values on a Checkbox question: "OK" · "Monitor" · "Not OK" · "N/A". 
 # Inspection filling screen (responses, flag, note, photo per response) · findings → WO lines ("build action") ·
 # asset record "Inspections" tab + history · customer-facing inspection report · per-axle entry (Drum/Disc/
 # Single/Dual, unit selector) · conditional follow-up on a checkbox · ShopCoach draft.
+
+## OBSERVATION STATUS — 2026-10-01
+CONFIRMED on sv8181 (evidence committed): template builder (full) · field RESPONSE SETTINGS + reference file ·
+inspection results /inspections/<uuid> · Build lines menu + ShopCoach line builder draft · asset Inspections
+tab /customers/vehicle/<uuid> + SHOPCOACH ASSET HISTORY · roles editor · per-axle builder config.
+RESIDUAL (run session confirms live; entry + config confirmed): in-progress filling states (Marked OK / Needs
+action / Follow-up for this response) · per-axle FILLING (Drum/Disc/Single/Dual) · customer-report content +
+Require acknowledgement · phone-width rendering. The add-inspection-to-a-line entry did not surface via scripted
+clicks (inspections attach to a WO line; an existing run opens via the line's "Open ›").
