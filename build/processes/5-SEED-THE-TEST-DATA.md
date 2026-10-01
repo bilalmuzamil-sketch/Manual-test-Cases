@@ -1,6 +1,7 @@
 # SEED THE TEST DATA `<feature> <env>` — build the data the cases need, and keep a one-command rebuild
 
-> **Call it:** `CREATE TEST DATA Invoicing STAGING` (or `QA`, or `LIVE`)
+> **Call it:** `SEED THE TEST DATA for Invoicing on STAGING` (or `QA`, or `LIVE`)
+> Day-to-day rebuild keyword is unchanged: `RESEED <FEATURE> <ENV>`
 >
 > 🔴 **I never ask before seeding.** If a case needs data the environment does not hold, I create
 > it and tell you afterwards, with the proof (Rule 114.6, your instruction: *"Please do never ask

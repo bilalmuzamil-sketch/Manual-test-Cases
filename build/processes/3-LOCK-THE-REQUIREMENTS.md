@@ -1,6 +1,6 @@
 # LOCK THE REQUIREMENTS `<feature>` — prove the sources are current, and pull the sentences we will quote
 
-> **Call it:** `READ THE SPECS Invoicing`
+> **Call it:** `LOCK THE REQUIREMENTS for Invoicing`
 >
 > Two jobs: make sure we hold the **current** version of every source, and extract the **exact
 > sentences** the cases will quote. Both matter more than they sound.
