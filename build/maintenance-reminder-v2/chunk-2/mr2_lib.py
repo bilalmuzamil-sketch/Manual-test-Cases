@@ -20,8 +20,21 @@ def ul(x): return "<ul>"+"".join(f"<li>{esc(i)}</li>" for i in x)+"</ul>"
 MARK="AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
 LOG={}
 DRY="--apply" not in sys.argv
+_EXISTING={}
+def _titles(section_id):
+    if section_id not in _EXISTING:
+        got=set();off=0
+        while True:
+            d=api(f"get_cases/1&suite_id=1&section_id={section_id}&limit=250&offset={off}")
+            for c in (d["cases"] if isinstance(d,dict) else d): got.add(c["title"])
+            if not (isinstance(d,dict) and d.get("_links",{}).get("next")): break
+            off+=250
+        _EXISTING[section_id]=got
+    return _EXISTING[section_id]
 def add(section_id,title,story_jira,story_label,part,pre,steps,results,quotes,marker=MARK):
     assert len(title)<=80,f"title {len(title)}: {title}"
+    if not DRY and title in _titles(section_id):
+        print(f"[SKIP exists] sec {section_id} {title}"); return
     src=(f"Epic SV-3780 (Maintenance Reminders); story {story_jira} ({story_label}); "
          f"Chunk 2 MR spec (Confluence 897679389), {part}; read 2 Oct 2026. "
          "Source-verified 2 October 2026; not yet build-verified.")
