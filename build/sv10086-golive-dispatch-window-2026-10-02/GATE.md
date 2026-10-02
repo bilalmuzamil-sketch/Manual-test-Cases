@@ -17,3 +17,24 @@ Run 2 October 2026, immediately before preparing the Jira comment.
 | 11 | **Environment restored** | fixtures removed; books reset and taken live again — final state recorded in FINDINGS.md |
 
 Outcome: clear, with the mid-pass redeploy disclosed rather than smoothed over.
+
+---
+
+## Post and read-back (Standing Rules 72 / 81)
+
+Comment **77777** posted to SV-10086 on 2 October 2026, then re-fetched from Jira in ADF and
+checked as the reader receives it:
+
+| Check | Result |
+|---|---|
+| First line | `OVERALL QA STATUS: PASSED` |
+| Media | 2, both `{"type":"file"}` — real Jira attachments, 900×430 and 900×286, correct order and aspect |
+| Measurement table | 5 rows = 1 header + **4 runs**, matching the four post-deploy runs claimed |
+| Kill-test table | 3 rows = 1 header + **2 runs**, matching "230 checks" (150 + 80) |
+| Build marker in the body | `v26.40.3-36ebbb0`, present 3× and matching the live read |
+| SV-10338 reference | rendered by Jira as **2 inline issue links** — note: a plain text-node scan does **not** see these, because Jira converts issue keys to link nodes. Confirmed by searching the raw ADF instead |
+| Human voice | fingerprint scan over the reader-facing text nodes — clean |
+| Technical details section | **absent**, as the QA lead directed for this ticket (Standing Rule 84) |
+
+Also recorded: the mid-pass redeploy is disclosed in the comment itself, and the one pre-deploy
+observation is stated as an observation with its `n = 1` limit, not as proof.
