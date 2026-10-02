@@ -21,8 +21,17 @@ import fs from 'node:fs';
  * below therefore damages a LONG word and checks the overlap first, so a red result means the
  * product missed something the requirement actually promised.
  */
+/**
+ * 🔴 OPTIONAL, NOT REQUIRED. This used to be read at module load, so a missing folder failed the
+ * whole suite at COLLECTION time — `--list` returned "0 tests in 0 files" and the real anchors are
+ * harvested live anyway (see fixtures/anchors.ts). Anyone cloning this repo without the staging
+ * run's folder would have seen the suite refuse to start for a file it does not actually need.
+ */
 const CFG = process.env.GS_ENTITY_CONFIG || '../staging-run-2026-09-29';
-const A = JSON.parse(fs.readFileSync(`${CFG}/anchors.json`, 'utf8'));
+const readJson = (p: string, fallback: unknown) => {
+  try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return fallback; }
+};
+const A = readJson(`${CFG}/anchors.json`, {});
 
 let s: Session;
 test.beforeAll(async () => { s = await signIn('/customers'); console.log('build under test:', await buildMarker(s.page)); });

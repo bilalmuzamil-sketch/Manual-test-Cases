@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
+import { resolveTerm } from '../fixtures/anchors.js';
 import { panelShape, openTab, groupRows, lastPointerCheck } from '../fixtures/rowshape.js';
 import * as fs from 'node:fs';
 
@@ -17,11 +18,18 @@ import * as fs from 'node:fs';
 const VIEWPORT = { width: 1440, height: 900 };
 const ORDER = ['Work orders', 'Customers', 'Assets', 'Parts', 'Vendors', 'Part sales',
                'Purchase orders', 'Vendor invoices'];
+/**
+ * 🔴 "ZZBROAD" RETURNS NOTHING ON PRODUCTION (measured 2 Oct 2026) — it is a staging fixture.
+ * These cases are about how the All tab behaves when a query matches several kinds, not about that
+ * particular word, so the term is resolved at run time and the fixture is used wherever it exists.
+ */
+let BROADQ = 'ZZBROAD';
 let s: Session;
 const m: Record<string, any> = { viewport: VIEWPORT };
 
 test.beforeAll(async () => {
   s = await signIn('/customers');
+  BROADQ = (await resolveTerm(s.page, 'ZZBROAD')) ?? 'ZZBROAD';
   await s.page.setViewportSize(VIEWPORT);
   m.build = await buildMarker(s.page);
   console.log('build under test:', m.build);
@@ -49,7 +57,7 @@ test('C146285 — a tab\'s count equals the number of rows inside it', async () 
 });
 
 test('C146286 — no count anywhere reads higher than 20', async () => {
-  const p = await panelShape(s.page, 'ZZBROAD');
+  const p = await panelShape(s.page, BROADQ);
   const over = [...p.tabs.filter((t) => (t.count ?? 0) > 20).map((t) => `tab ${t.label}=${t.count}`),
                 ...p.groups.filter((g) => (g.count ?? 0) > 20).map((g) => `group ${g.head}=${g.count}`),
                 ...p.groups.map((g) => g.showAll).filter((l): l is string =>
@@ -59,7 +67,7 @@ test('C146286 — no count anywhere reads higher than 20', async () => {
 });
 
 test('C146287 — a group on the All tab shows 5 and offers the rest', async () => {
-  const p = await panelShape(s.page, 'ZZBROAD');
+  const p = await panelShape(s.page, BROADQ);
   const big = p.groups.filter((g) => (g.count ?? 0) > 5);
   rec('C146287', p.groups.map((g) => ({ head: g.head, count: g.count, rows: g.rows, showAll: g.showAll })));
   expect(big.length, 'no group has more than five results, so this case has nothing to check')
@@ -71,7 +79,7 @@ test('C146287 — a group on the All tab shows 5 and offers the rest', async () 
 });
 
 test('C146288 — "Show all" opens that tab and keeps you in the search box', async () => {
-  const p = await panelShape(s.page, 'ZZBROAD');
+  const p = await panelShape(s.page, BROADQ);
   const g = p.groups.find((x) => x.showAll);
   expect(g, 'no group offers a "Show all" link, so this case cannot be run').toBeTruthy();
   const before = s.page.url();
@@ -90,7 +98,7 @@ test('C146288 — "Show all" opens that tab and keeps you in the search box', as
   rec('C146288', { clicked: g!.showAll, group: g!.head, before, after });
   expect(after.modalOpen, 'the panel closed — being sent to a separate page is a FAIL').toBe(true);
   expect(after.url, 'the browser navigated away from the page').toBe(before);
-  expect(after.inputValue, 'the search box no longer holds what was typed').toBe('ZZBROAD');
+  expect(after.inputValue, 'the search box no longer holds what was typed').toBe(BROADQ);
   expect(after.activeTab, `the active tab is "${after.activeTab}", not the group that was clicked`)
     .toMatch(new RegExp(g!.head.split(/\s+/)[0], 'i'));
 });

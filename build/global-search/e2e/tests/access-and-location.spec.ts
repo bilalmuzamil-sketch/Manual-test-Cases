@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
+import { resolveTerm } from '../fixtures/anchors.js';
 import { search, rowsOf, contains } from '../fixtures/search.js';
 
 /**
@@ -14,6 +15,12 @@ const TECH_ROLE = process.env.GS_TECH_ROLE || 'af8d02b5-ecd1-4205-a82f-32a4d5bb1
 const HEAVY_DUTY = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';
 const LETHBRIDGE = 'f8a8b802-7780-4b16-bf10-343caeb616b2';
 
+/**
+ * 🔴 THE SEEDED NAMES BELOW ARE STAGING'S. On production they exist only in part (measured
+ * 2 Oct 2026), so each is resolved against the environment under test before use and the staging
+ * word is kept wherever it still works — a staging run is therefore unchanged.
+ */
+let FIXTURE = 'ZZAUTOTEST';
 let s: Session;
 let baselinePerms: string[] = [];
 let baselineRole: any = null;
@@ -22,6 +29,7 @@ let adminStaffId = '';
 
 test.beforeAll(async () => {
   s = await signIn('/customers');
+  FIXTURE = (await resolveTerm(s.page, 'ZZAUTOTEST')) ?? FIXTURE;
   console.log('build under test:', await buildMarker(s.page));
   const role = await api(s.page, 'GET', `/api/roles/${TECH_ROLE}`);
   baselineRole = (role.body as any)?.data;
@@ -70,7 +78,7 @@ test('C45142 — no work-order access means no jobs in search', async () => {
                     'scheduleView', 'woFullViewMode', 'woOrderParts', 'woReviewWorkOrders', 'workOrdersCreateAndEdit'];
   const strip = new Set(idsOf(siblings));
   await asTechnicianWith(baselineRole.fe_permissions.map((p: any) => p.id).filter((id: string) => !strip.has(id)));
-  const p = await search(s.page, 'ZZAUTOTEST');
+  const p = await search(s.page, FIXTURE);
   expect(p.counts['Work orders'] ?? 0, 'jobs are still shown to someone with no work-order access').toBeFalsy();
 });
 
@@ -78,23 +86,23 @@ test('C45144 — parts appear only with Catalog & Inventory access', async () =>
   const all = baselineRole.fe_permissions.map((p: any) => p.id);
   const parts = idsOf(['catalogInventoryView'])[0];
   await asTechnicianWith(all.filter((id: string) => id !== parts));
-  expect((await search(s.page, 'ZZAUTOTEST')).counts['Parts'] ?? 0, 'parts shown without access').toBeFalsy();
+  expect((await search(s.page, FIXTURE)).counts['Parts'] ?? 0, 'parts shown without access').toBeFalsy();
   await asTechnicianWith([...new Set([...all, parts])]);
-  expect((await search(s.page, 'ZZAUTOTEST')).counts['Parts'] ?? 0, 'parts hidden with access granted').toBeGreaterThan(0);
+  expect((await search(s.page, FIXTURE)).counts['Parts'] ?? 0, 'parts hidden with access granted').toBeGreaterThan(0);
 });
 
 test('C45146 — removing customer access removes customers AND vehicles', async () => {
   const all = baselineRole.fe_permissions.map((p: any) => p.id);
   const cust = idsOf(['customersView'])[0];
   await asTechnicianWith(all.filter((id: string) => id !== cust));
-  const p = await search(s.page, 'ZZAUTOTEST');
+  const p = await search(s.page, FIXTURE);
   expect(p.counts['Customers'] ?? 0, 'customers still shown').toBeFalsy();
   expect(p.counts['Assets'] ?? 0, 'vehicles still shown — they depend on customer access too').toBeFalsy();
 });
 
 test('C45147 — a time-clock-only person gets nothing at all', async () => {
   await asTechnicianWith(idsOf(['timesheetsView']));
-  const p = await search(s.page, 'ZZAUTOTEST');
+  const p = await search(s.page, FIXTURE);
   for (const [tab, v] of Object.entries(p.counts)) expect(v ?? 0, `${tab} returned results`).toBeFalsy();
 });
 
@@ -117,7 +125,7 @@ test('C45143 — a part-sales role sees part sales but not parts or suppliers', 
   await s.page.waitForTimeout(1_000);
   await s.page.goto('/customers', { waitUntil: 'domcontentloaded' });
   await s.page.waitForTimeout(3_000);
-  const p = await search(s.page, 'ZZAUTOTEST');
+  const p = await search(s.page, FIXTURE);
   expect(p.counts['Part sales'] ?? 0, 'part sales hidden from a part-sales role').toBeGreaterThan(0);
   expect(p.counts['Parts'] ?? 0, 'parts shown to a part-sales-only role').toBeFalsy();
   expect(p.counts['Vendors'] ?? 0, 'suppliers shown to a part-sales-only role').toBeFalsy();

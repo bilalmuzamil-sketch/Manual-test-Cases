@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
+import { resolveTerm } from '../fixtures/anchors.js';
 import { search, rowsOf, contains } from '../fixtures/search.js';
 
 /**
@@ -12,13 +13,19 @@ import { search, rowsOf, contains } from '../fixtures/search.js';
  * Run `python3 seed.py --check` first — if a value has drifted, a search returning nothing proves
  * nothing at all, and that check must not be recorded as a failure.
  */
+/**
+ * 🔴 THE SEEDED NAMES BELOW ARE STAGING'S. On production they exist only in part (measured
+ * 2 Oct 2026), so each is resolved against the environment under test before use and the staging
+ * word is kept wherever it still works — a staging run is therefore unchanged.
+ */
+let FIXTURE = 'ZZAUTOTEST';
 let s: Session;
 test.beforeAll(async () => { s = await signIn('/work-orders'); console.log('build under test:', await buildMarker(s.page)); });
 test.afterAll(async () => { await s?.browser.close(); });
 
 /** Guard: if the seeded data is gone, every assertion below is meaningless. Fail loudly instead. */
 test('seed control — the regression dataset is present', async () => {
-  const p = await search(s.page, 'ZZAUTOTEST', 'Customers');
+  const p = await search(s.page, FIXTURE, 'Customers');
   expect(p.counts['All'], 'ZZAUTOTEST returns nothing — the branch was redeployed. Reseed before trusting anything else.').toBeGreaterThan(0);
 });
 

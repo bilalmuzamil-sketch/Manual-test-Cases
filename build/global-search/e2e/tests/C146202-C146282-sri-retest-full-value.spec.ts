@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
+import { resolveTerm } from '../fixtures/anchors.js';
 import { groupRows, lastPointerCheck } from '../fixtures/rowshape.js';
 import * as fs from 'node:fs';
 
@@ -27,7 +28,21 @@ import * as fs from 'node:fs';
  */
 
 type Retest = { cid: number; term: string | null; title: string; tab: string };
-const CASES: Retest[] = JSON.parse(fs.readFileSync('../staging-run-2026-09-29/retest-plan.json', 'utf8'));
+/**
+ * 🔴 THE PLAN NAMES STAGING'S RECORDS. Each entry carries the term that case was run with on
+ * staging; on production many of those return nothing, which made 23 of these red against a
+ * product that is fine. Each term is therefore resolved against the environment under test before
+ * it is used, keeping the staging word wherever it still works.
+ */
+let CASES: Retest[] = [];
+try {
+  CASES = JSON.parse(fs.readFileSync(
+    process.env.GS_RETEST_PLAN || '../staging-run-2026-09-29/retest-plan.json', 'utf8'));
+} catch {
+  // the plan is an input, not a requirement: without it this file simply has nothing to run, and
+  // saying so beats failing the whole suite at collection time
+  console.log('no retest plan found — set GS_RETEST_PLAN to run these');
+}
 
 const VIEWPORT = { width: 1440, height: 900 };
 let s: Session;
@@ -81,15 +96,22 @@ for (const c of CASES) {
     }
 
     // ── 1. as written ───────────────────────────────────────────────────────────────────────────
-    const asWritten = await groupRows(s.page, c.term, c.tab);
+    // 🔴 RESOLVE THE TERM AGAINST THIS ENVIRONMENT FIRST. The plan carries the word this case was
+    // run with on staging; on production many of those records do not exist, and 23 of these went
+    // red reporting a product fault that was really an absent fixture. The staging word is kept
+    // wherever it still works, so a staging run is unchanged.
+    const term = (await resolveTerm(s.page, c.term, c.tab)) ?? c.term;
+    rec.termUsed = term;
+    if (term !== c.term) rec.termNote = `"${c.term}" is not on this environment; used "${term}" instead`;
+    const asWritten = await groupRows(s.page, term, c.tab);
     rec.pointer = lastPointerCheck;
     const notes = asWritten.map(noteOf);
     rec.asWritten = { rows: asWritten.length, notes, rowText: asWritten.map((r) => r.text.slice(0, 110)) };
     const withNote = notes.filter(Boolean) as string[];
-    const onlyTyped = withNote.filter((n) => valueOf(n).toLowerCase() === c.term!.toLowerCase());
+    const onlyTyped = withNote.filter((n) => valueOf(n).toLowerCase() === term.toLowerCase());
 
     // ── 2. the fragment run, where the supplied term is a whole value ───────────────────────────
-    const frag = onlyTyped.length && fragmentOf(c.term) ? fragmentOf(c.term) : null;
+    const frag = onlyTyped.length && fragmentOf(term) ? fragmentOf(term) : null;
     if (frag) {
       const fragRows = await groupRows(s.page, frag, c.tab);
       const fragNotes = fragRows.map(noteOf).filter(Boolean) as string[];
@@ -98,7 +120,7 @@ for (const c of CASES) {
                           onlyTyped: fragOnlyTyped.length };
       rec.note = `The supplied term is the WHOLE value, so run 1 cannot distinguish correct output `
                + `from the fault. Run 2 typed "${frag}", a proper fragment of it.`;
-      console.log(`C${c.cid}: as-written "${c.term}" → ${withNote.length} notes; ` +
+      console.log(`C${c.cid}: as-written "${term}" → ${withNote.length} notes; ` +
         `fragment "${frag}" → ${fragNotes.length} notes, ${fragOnlyTyped.length} showing only what was typed`);
       // 🔴 "COULD NOT REACH THE STATE" IS NOT A FAILURE, AND MUST NOT GO RED.
       // The fragment is derived, not supplied by the case, so it can simply fail to match the
@@ -108,7 +130,7 @@ for (const c of CASES) {
       // that this whole pass exists to avoid. Recorded as not-judged instead.
       if (!fragNotes.length) {
         rec.outcome = 'COULD NOT JUDGE — the derived fragment returns no labelled note';
-        rec.detail = `The case supplies the whole value "${c.term}", which cannot fail this check. `
+        rec.detail = `The case supplies the whole value "${term}", which cannot fail this check. `
                    + `The fragment "${frag}" was tried instead and matched nothing with a labelled `
                    + `note, so neither run can answer the case. It needs a term that is a proper `
                    + `fragment of a value the field actually matches on.`;
@@ -118,7 +140,7 @@ for (const c of CASES) {
       }
       m[`C${c.cid}`] = rec;
       expect(fragOnlyTyped,
-        `typing "${frag}" — a fragment of "${c.term}" — returns rows whose note reads only ` +
+        `typing "${frag}" — a fragment of "${term}" — returns rows whose note reads only ` +
         `"${frag}" instead of the whole value: ${JSON.stringify(fragOnlyTyped)}`).toHaveLength(0);
 
       // 🔴 "DIFFERENT FROM WHAT I TYPED" IS NOT "THE WHOLE VALUE", and treating it as such
@@ -126,13 +148,13 @@ for (const c of CASES) {
       // "Contact match: ZZAUTOTEST" — the contact's FIRST NAME. It differs from the query and is
       // still wrong: it is not the email that matched. Where the case supplies the whole value we
       // KNOW what the note should say, so check it says that.
-      const shouldRead = c.term!.toLowerCase();
+      const shouldRead = term.toLowerCase();
       const wrongValue = fragNotes.filter((n) => {
         const v = valueOf(n).toLowerCase();
         return v !== shouldRead && !v.includes(frag.toLowerCase());
       });
       expect(wrongValue,
-        `the note shows neither the whole value "${c.term}" nor the text typed — it shows a ` +
+        `the note shows neither the whole value "${term}" nor the text typed — it shows a ` +
         `different detail of the record altogether: ${JSON.stringify(wrongValue)}`).toHaveLength(0);
       return;
     }

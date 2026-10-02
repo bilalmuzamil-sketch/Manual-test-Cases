@@ -1,11 +1,18 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
+import { resolveTerm } from '../fixtures/anchors.js';
 import { search, rowsOf, contains, openPanel, closePanel, typeQuery, SEL } from '../fixtures/search.js';
 
 /**
  * THE PANEL ITSELF — opening, typing, keyboard, states, icons, counts.
  * Measured 22 September 2026: 14 of 15 passed. Several of these encode a mistake I made first.
  */
+/**
+ * 🔴 THE SEEDED NAMES BELOW ARE STAGING'S. On production they exist only in part (measured
+ * 2 Oct 2026), so each is resolved against the environment under test before use and the staging
+ * word is kept wherever it still works — a staging run is therefore unchanged.
+ */
+let FIXTURE = 'ZZAUTOTEST';
 let s: Session;
 test.beforeAll(async () => { s = await signIn('/work-orders'); console.log('build under test:', await buildMarker(s.page)); });
 test.afterAll(async () => { await s?.browser.close(); });
@@ -65,7 +72,7 @@ test('C55673 — Enter opens the top result with no arrow key first', async () =
 });
 
 test('C55680 — arrowing moves through rows and never lands on a heading', async () => {
-  await typeQuery(s.page, 'ZZAUTOTEST');
+  await typeQuery(s.page, FIXTURE);
   await s.page.waitForTimeout(6_000);
   const seen: string[] = [];
   for (let i = 0; i < 12; i++) {
@@ -85,7 +92,7 @@ test('C55680 — arrowing moves through rows and never lands on a heading', asyn
  * "one icon for everything". The shape is in the drawing — read the path, and there are eight.
  */
 test('C55682 — every row carries an icon, one per record type', async () => {
-  await typeQuery(s.page, 'ZZAUTOTEST');
+  await typeQuery(s.page, FIXTURE);
   await s.page.waitForTimeout(6_500);
   const icons = await s.page.evaluate((sel) => {
     const out: { head: string; hasIcon: boolean; shape: string | null }[] = [];

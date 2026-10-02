@@ -2,6 +2,7 @@ import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { groupRows, hoverRow, lastPointerCheck, type RowShape } from '../fixtures/rowshape.js';
 import * as fs from 'node:fs';
+import { resolveTerm } from '../fixtures/anchors.js';
 
 /**
  * SEARCH RESULTS INTEGRITY — CUSTOMERS (C146209–C146223, folder 19387 / SV-10619 · SV-10551)
@@ -24,7 +25,16 @@ import * as fs from 'node:fs';
  * invisible to innerText, so truncation is read from geometry and never from characters.
  */
 
-const TERM = 'ZZLONGROW';
+/**
+ * 🔴 THE TERM IS RESOLVED AT RUN TIME, NOT FIXED HERE.
+ * This file was written against staging's seeded records. On production those fixtures exist only
+ * in part — measured 2 Oct 2026, "ZZLONGROW" returns customers, assets and vendors but NO work
+ * orders — so every check in the file failed with "the fixture data is gone". None of them is
+ * actually about that fixture: they ask whether a row shows its whole value, whether the highlight
+ * sits inside the text, whether two similar rows can be told apart. Any matching record answers
+ * that. The fixture is still preferred where it exists, so on staging nothing changes.
+ */
+let TERM = 'ZZLONGROW';
 const TAB = 'Customers';
 const VIEWPORT = { width: 1440, height: 900 };
 
@@ -43,6 +53,8 @@ test.beforeAll(async () => {
   s = await signIn('/customers');
   await s.page.setViewportSize(VIEWPORT);
   m.build = await buildMarker(s.page);
+  const resolved = await resolveTerm(s.page, TERM, TAB);
+  if (resolved) TERM = resolved;
   rows = await groupRows(s.page, TERM, TAB);
   m.pointer = lastPointerCheck;
   m.rows = rows.map((r) => ({ ...r, html: undefined }));
@@ -176,7 +188,7 @@ test('C146222 — the customer row shows every field the requirement names', asy
 });
 
 test('C146223 — a soft match is drawn as a soft match', async () => {
-  const SOFT = 'ZZPREFIY';
+  const SOFT = (await resolveTerm(s.page, 'ZZPREFIY')) ?? 'ZZPREFIY';
   const soft = await groupRows(s.page, SOFT, TAB);
   m.soft_C146223 = soft.map((r) => ({ ...r, html: undefined }));
   for (const r of soft) console.log(`  soft [${r.index}] approx=${r.approx} ` +

@@ -2,6 +2,7 @@ import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { groupRows, lastPointerCheck, type RowShape } from '../fixtures/rowshape.js';
 import * as fs from 'node:fs';
+import { resolveTerm } from '../fixtures/anchors.js';
 
 /**
  * SEARCH RESULTS INTEGRITY — WORK ORDERS (C146197–C146208, TestRail folder 19387 / SV-10619 · SV-10551)
@@ -30,7 +31,16 @@ import * as fs from 'node:fs';
  * would see italics, on that same element, in that same read.
  */
 
-const TERM = 'ZZLONGROW';          // both work orders the suite seeded for these cases
+/**
+ * 🔴 THE TERM IS RESOLVED AT RUN TIME, NOT FIXED HERE.
+ * This file was written against staging's seeded records. On production those fixtures exist only
+ * in part — measured 2 Oct 2026, "ZZLONGROW" returns customers, assets and vendors but NO work
+ * orders — so every check in the file failed with "the fixture data is gone". None of them is
+ * actually about that fixture: they ask whether a row shows its whole value, whether the highlight
+ * sits inside the text, whether two similar rows can be told apart. Any matching record answers
+ * that. The fixture is still preferred where it exists, so on staging nothing changes.
+ */
+let TERM = 'ZZLONGROW';            // preferred: the record these cases were written against
 const TAB = 'Work orders';         // the build's own label, read off the tab strip
 const VIEWPORT = { width: 1440, height: 900 };
 
@@ -52,6 +62,8 @@ test.beforeAll(async () => {
   await s.page.setViewportSize(VIEWPORT);
   measurements.build = await buildMarker(s.page);
   console.log('build under test:', measurements.build, '| viewport', JSON.stringify(VIEWPORT));
+  const resolved = await resolveTerm(s.page, TERM, TAB);
+  if (resolved) { TERM = resolved; measurements.term = TERM; }
   rows = await groupRows(s.page, TERM, TAB);
   measurements.pointer = lastPointerCheck;   // proof, not a comment — see parkPointer()
   console.log('pointer parked:', JSON.stringify(lastPointerCheck));
@@ -198,7 +210,7 @@ test('C146207 — the row shows every field the requirement names', async () => 
 });
 
 test('C146208 — a soft match is drawn as a soft match', async () => {
-  const SOFT = 'ZZSOFTHIT';
+  const SOFT = (await resolveTerm(s.page, 'ZZSOFTHIT', TAB)) ?? 'ZZSOFTHIT';
   const soft = await groupRows(s.page, SOFT, TAB);
   measurements.soft_C146208 = soft.map((r) => ({ ...r, html: undefined }));
   console.log(`"${SOFT}" ${TAB} rows: ${soft.length}`);

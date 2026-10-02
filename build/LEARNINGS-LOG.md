@@ -5066,3 +5066,29 @@ pair cannot demonstrate the thing asked about, the suite adapted instead of asse
 that no longer exists — which would have produced confident, meaningless passes.
 **Reusable rule:** a spec that depends on an account's shape must read that shape at run time. A
 documented permission list is a description of a past day.
+
+### L0281 — THE OLDER SPECS NAMED STAGING'S RECORDS, AND A WHOLE FILE WENT RED FOR IT (2026-10-02)
+Nine spec files written during the staging run name the records they were seeded with — `ZZLONGROW`,
+`ZZSOFTHIT`, `ZZBROAD`, `ZZAUTOTEST`. Run on production they failed in bulk: one file 4 of 7, another
+**23 of 28**. The messages were honest ("the fixture data is gone, so nothing below would be a
+statement about the product") and one check's positive control correctly refused to assert — the
+discipline worked — but the files were still red on an environment where the behaviour they test is
+perfectly observable on other records. Measured: `ZZLONGROW` has customers, assets and vendors on
+production but **no work orders**; `ZZBROAD` has nothing at all.
+**Fix:** `resolveTerm(page, preferred, tab?)` — use the fixture where it still exists (so a staging
+run is byte-for-byte unchanged), otherwise a term harvested from the environment, and LOG which was
+used so no result can be read against the wrong data. None of those checks is about the fixture:
+they ask whether a row shows its whole value, whether a highlight sits inside the text, whether two
+similar rows can be told apart. Any matching record answers that.
+**Reusable rule:** a spec that names a specific record has quietly declared an environment it will
+only ever run in. Name the PROPERTY the record must have, and go and find one.
+
+### L0282 — A CONFIG READ AT MODULE LOAD FAILS THE SUITE AT COLLECTION TIME (2026-10-02)
+`npx playwright test --list` returned **"0 tests in 0 files"**: two specs read a staging
+`anchors.json` at module scope, and a missing file threw before any test was collected. Anyone
+cloning the repo without that folder — the automation engineer this work is FOR — would have seen
+the suite refuse to start, for a file it no longer needs now anchors are harvested live.
+**Fix:** read it through a `readJson(path, fallback)` that tolerates absence; the retest plan the
+same. 338 tests now list with no configuration present at all.
+**Reusable rule:** nothing a spec needs only at RUN time may be read at IMPORT time. A missing
+optional input should cost one skipped check, never the whole suite.

@@ -175,3 +175,46 @@ export async function entityTerms(page: Page, tab: string, max = 10): Promise<st
     if (words.has(w)) counted.set(w, (counted.get(w) ?? 0) + 1);
   return [...counted.entries()].sort((a, b) => b[1] - a[1]).map(([w]) => w).slice(0, max);
 }
+
+/**
+ * The fixture term if this environment still has it, otherwise one that works here.
+ *
+ * 🔴 WHY THE OLDER SPECS NEEDED THIS. They were written against staging's seeded records and name
+ * them directly — `ZZLONGROW`, `ZZSOFTHIT`, `ZZBROAD`. On production those fixtures exist only in
+ * part: measured 2 October 2026, `ZZLONGROW` returns customers, assets and vendors but **no work
+ * orders**, and `ZZBROAD` returns nothing at all. The specs then failed with "the fixture data is
+ * gone" — an honest message, but it made a whole file red on an environment where the behaviour
+ * they test is perfectly observable on other records.
+ *
+ * None of those checks is actually ABOUT the fixture: they ask whether a row shows the whole
+ * matched value, whether a highlight sits inside the text, whether two similar rows can be told
+ * apart. Any record that matches will do. So prefer the fixture — it keeps the checks reading the
+ * way they were written, and on staging nothing changes at all — and fall back to a term harvested
+ * from the environment under test, saying in the log which one was used so a result can never be
+ * read against the wrong data.
+ */
+export async function resolveTerm(page: Page, preferred: string, tab?: string): Promise<string | null> {
+  const countsFor = async (q: string): Promise<number> => {
+    await typeAndWait(page, q);
+    if (!tab) return page.locator('.search-row').count();
+    return page.evaluate(l => {
+      const t = [...document.querySelectorAll('.search-tabs__tab')]
+        .find(e => (e as HTMLElement).innerText.replace(/\s*\(\d+\)/, '').trim().toLowerCase() === String(l).toLowerCase());
+      return t ? Number(((t as HTMLElement).innerText.match(/\((\d+)\)/) || [])[1] ?? 0) : 0;
+    }, tab);
+  };
+  if (preferred && await countsFor(preferred) > 0) {
+    console.log(`term for ${tab ?? 'any kind'}: "${preferred}" (the seeded fixture, still present)`);
+    return preferred;
+  }
+  const candidates = tab ? await entityTerms(page, tab, 10) : [];
+  const generic = ['service', 'transport', 'repair', 'truck', 'auto', 'ZZAUTOTEST'];
+  for (const q of [...candidates, ...generic]) {
+    if (q && await countsFor(q) > 0) {
+      console.log(`term for ${tab ?? 'any kind'}: "${q}" — the fixture "${preferred}" is not on this environment`);
+      return q;
+    }
+  }
+  console.log(`term for ${tab ?? 'any kind'}: NONE — neither "${preferred}" nor any harvested term returns a row`);
+  return null;
+}

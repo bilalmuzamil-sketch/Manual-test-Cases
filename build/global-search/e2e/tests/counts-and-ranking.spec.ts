@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
+import { resolveTerm } from '../fixtures/anchors.js';
 import { search, rowsOf, contains, positionOf, waitForIndex } from '../fixtures/search.js';
 
 /**
@@ -8,6 +9,12 @@ import { search, rowsOf, contains, positionOf, waitForIndex } from '../fixtures/
  * Two live reports are reproduced here: SV-10320 (counts above the limit) and SV-10340 (the
  * most-recently-updated tie-break). Both are expected red until fixed.
  */
+/**
+ * 🔴 THE SEEDED NAMES BELOW ARE STAGING'S. On production they exist only in part (measured
+ * 2 Oct 2026), so each is resolved against the environment under test before use and the staging
+ * word is kept wherever it still works — a staging run is therefore unchanged.
+ */
+let FIXTURE = 'ZZAUTOTEST';
 let s: Session;
 test.beforeAll(async () => { s = await signIn('/work-orders'); console.log('build under test:', await buildMarker(s.page)); });
 test.afterAll(async () => { await s?.browser.close(); });
