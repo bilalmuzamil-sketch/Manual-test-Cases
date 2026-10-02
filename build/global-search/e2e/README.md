@@ -126,7 +126,7 @@ two workers log each other out and both report a broken environment. `npm test` 
    failed and blocked cases alike. Nothing to remember and no separate step: the branch is
    refreshed and a refresh wipes the data, so the run seeds itself every time.
 2. **Verify** — asks search for each record the checks look for, from inside the shop the tests
-   sign into, and **stops the run before the first test** if any is missing, naming it.
+   sign into, and **names any that is missing** before the first test runs.
 
 ```bash
 npm test                     # seed, verify, then run — the normal way
@@ -140,6 +140,31 @@ GS_SEED=skip npx playwright test tests/panel.spec.ts   # re-run one spec on data
 lack of data, and a standing-down suite looks exactly like a suite that ran. On 2 October 2026 a full
 run spent 1.6 hours to report 116 checks standing down, most of them for records that were simply not
 there.
+
+### Nothing stalls the run — data that is already there is used, not fought
+
+Confirmed with the QA lead on 2 October 2026: if a record being seeded is **already on the branch**,
+the run moves ahead with it. Three things make sure of that:
+
+- **It looks before it creates.** Every record is searched for first; one that is there is checked
+  field by field and used. Only a missing record is created.
+- **A refused create is a second look, not a failure.** The shop can refuse a second record with the
+  same name. When it does, the engine prints the refusal, looks again (with short pauses, because
+  search catches up a few seconds behind a write) and then asks the global search by the same value.
+  If the record is there it is **adopted** and everything that hangs off it — its contacts, assets,
+  part sales — is still created. Before this, one refusal silently took that whole branch of data
+  with it.
+- **A failed step or a missing record is reported, never fatal.** The run prints a red block naming
+  what did not seed, then runs every test. The checks that needed the missing data stand down with
+  that reason; every other check still produces its result. One bad record no longer costs a night's
+  results.
+
+To stop at the first problem instead — useful when you are fixing the seeding itself:
+
+```bash
+GS_SEED_STRICT=1 npm test        # stop if any seeding step fails
+GS_PREFLIGHT=enforce npm test    # stop if any record the checks need is missing
+```
 
 ### What it seeds, and from where
 
@@ -182,8 +207,9 @@ before trusting a miss, an existing stocked part's storage bin for new stock, an
 tax number for new vendors. On a reset branch those are there, so the first run after a refresh
 simply creates every seeded record again; every later run finds them and creates nothing.
 
-If a branch were ever wiped **completely empty**, those recipes would stop with a message naming the
-baseline record they could not find — they would not guess.
+If a branch were ever wiped **completely empty**, those recipes would report the baseline record
+they could not find — they would not guess — and the run would go on with the checks that need it
+standing down.
 
 ### Needs
 
