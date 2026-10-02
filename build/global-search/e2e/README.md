@@ -173,6 +173,18 @@ an empty cache: it found the 19, 4 and 2 existing work orders and created none.
 It never writes into the repository: it runs from a temporary copy and keeps record ids between runs
 in `~/.cache/shopview-e2e/` (`GS_SEED_CACHE` to move it).
 
+### What "the branch is refreshed" means here — and why it is safe
+
+Confirmed by the QA lead on 2 October 2026: a refresh **resets the branch to a standard starting copy**.
+Our seeded records go; the shop's own baseline records stay. That matters, because a few recipes
+borrow baseline records rather than inventing them — an existing customer to prove a search works
+before trusting a miss, an existing stocked part's storage bin for new stock, an existing vendor's
+tax number for new vendors. On a reset branch those are there, so the first run after a refresh
+simply creates every seeded record again; every later run finds them and creates nothing.
+
+If a branch were ever wiped **completely empty**, those recipes would stop with a message naming the
+baseline record they could not find — they would not guess.
+
 ### Needs
 
 **Python 3.8 or newer** on `PATH` as `python3` (standard library only — nothing to install; `GS_PYTHON`
