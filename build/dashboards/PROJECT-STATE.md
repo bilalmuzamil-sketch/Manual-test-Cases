@@ -92,6 +92,17 @@ month-end as-of; workplace scoping; freshness/no-stale-window; internal consiste
 Suite now **59 cases**: 33 base (S1–S12) + 6 design/tech-plan (C88627–88632) + 20 data-accuracy (C88633–88652).
 Subfolders: 12167–12178 (S1–S12), 12179 (NF), 12180 (DATA). All AUTOMATION: HOLD (not build-verified).
 
+## CURRENCY RE-CHECK 2026-10-02 — PRD MOVED to 2026-09-30; 1 gap closed, edits pending approval
+Detail: `REINGEST-2026-10-02.md`. PRD 788430850 last modified **2026-09-30** (we built from 2026-09-16;
+last checked 2026-09-22). Inventory/format/epic all still current (59 ours + 3 foreign; 15 sections;
+Rule-117 clean; SV-9573..9584 Open). Deltas from the move:
+- **NEW S9-R8** (axis starts at 0 / negative extension, @chris 2026-09-24) → **authored C204097** (sec 12175).
+- **NEW S11-R2a** (chart toggle on the filter row, never its own row) → GAP, new case pending approval.
+- **Feature-flag drop (@chris 2026-09-24):** org-level DashboardAdministrator gate removed; access =
+  Reports permission only. → **C88595 + C88596 STALE** (still test the removed feature gate / S1-N3/N4);
+  rewrite pending approval. ~38 cases' precondition "Dashboard feature is on" reword pending approval.
+- Everything else unchanged/current. Suite count now 60 ours (added C204097).
+
 ## PARKED 2026-09-23 — QA lead switched to new project "WO Board and Tech View"
 Dashboards left COMPLETE as source-verified authoring: 59 cases (33 base + 6 design/tech-plan + 20 data-accuracy),
 subfolders 12167–12180, all AUTOMATION: HOLD. Design driven end-to-end (New Dashboard only). Per-source coverage
