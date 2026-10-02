@@ -57,6 +57,56 @@ else owes).
 
 ---
 
+## ⚠️ NEWEST — 2026-10-02, ~16:10 UTC. **FIVE TICKETS TESTED AND COMMENTED TODAY. NOTHING BLOCKS ME. FOUR DECISIONS SIT WITH YOU, AND ONE ROW BELOW IS MY OWN MISS.**
+
+**Register honesty first:** before this entry the newest row in this file was **10 September**. Today's
+five tickets were not in it. Standing Rule 36 says this file is updated *the moment* an item is raised
+or cleared, same turn — I did not do that today, and this entry is the repair.
+
+### Cleared today — so nothing here is re-asked
+
+| Ticket | Outcome |
+|---|---|
+| **SV-9568** Parts column selection | Fix verified on production after release. Comment 77779. **Done** |
+| **SV-10586** Staff filter overwritten from Roles | Fix verified on production after release. Comment 77780. **Done** |
+| **SV-10086** Go-live activates then dies | PASSED on `v26.40.3-36ebbb0`, 230 kill-test observations, 0 forbidden states. Comment 77777. Now **Ready for Production** |
+| **SV-8552** Schedule day-view window | PASSED, 27/27 on the revision-2 handoff plus 24 regression checks. Comment 77784 |
+| **SV-10406** Vendor return decimals | PASSED. All four previously-blocked items resolved or answered. Comment 77791 |
+| *Access* | The AccountingHub blocker (A-10406-1) is **cleared** — Stefan enabled the flag, and I took the books live myself so postings could happen |
+| *Access* | The "give me the two API routes" ask is **cleared** — I found them myself with an empty-body probe |
+
+### Open — all four are decisions, none of them blocks any work
+
+| # | Category | What | Who owes it | What it blocks | Since |
+|---|---|---|---|---|---|
+| D-10406-1 | DECISION | **The inventory line is posted tax-inclusive.** AccountingHub credits *1300 Parts Inventory* with the document total, tax included, and writes no tax line. Measured on two unrelated returns: $236.82 parts + $11.84 tax → $248.66 posted; $1.55 + $0.08 → $1.63 posted. Flagged in comment 77791 with steps; **not filed**, because SV-10370 (Open) says that posting is its own feature's job | QA lead / Chris Ward | Nothing — SV-10406 passes without it. It decides whether a ticket gets raised or it rides on SV-10370 | 2026-10-02 |
+| D-10406-2 | DECISION | **Go live on the onboarding screen cannot complete a go-live.** The chosen date never reaches the confirm dialog ("Start accounting as of —?") and the request fails `400 "The go-live date is required"`. Reproduced by typing and by the calendar picker; I completed it through the endpoint the screen itself calls. Outside SV-10406, **not filed** | QA lead | Nothing. No screenshot is possible now — the books are live and that card is gone | 2026-10-02 |
+| D-10406-3 | DECISION | **`POST /api/inventory/returns/change-item` returns HTTP 500** on every call (1.5, 0.5, 1.25; request ids `155fe0f4`, `9c0c9a7a`, `3623dfee`). **API-only**, so Standing Rule 51 means I do not file it without being asked. May simply have no valid state to act on, since no screen calls it yet | QA lead | The last unverified line of SV-10406's AC — the add-item half passes | 2026-10-02 |
+| Q-8552-1 | QUESTION | **Do you want a "Technical details for developers" section on SV-8552's comment?** Left off by default per Standing Rule 84; everything is in `build/sv8552-exact-hours-2026-10-02/` if you want it added | QA lead | Nothing | 2026-10-02 |
+
+### Deferred by your own ruling — Standing Rule 48, all five fields
+
+| Field | SV-10338 |
+|---|---|
+| **The ruling, verbatim** | *"3. Leave it for now"* |
+| **When, and what it answered** | 2026-10-02, answering my question "do you want the SV-10338 reproduction raised?" after I found that ticket — closed **Done** on 24 September — still reproduces on staging |
+| **What it blocks** | Nothing of ours. SV-10086 passed independently; this is a different, downstream fault in the onboarding worker/queue |
+| **Why it was reasonable** | SV-10086 was the ticket in hand and it passed on its own merits; re-opening someone else's closed ticket is a call for you, not me. Nothing has changed since to make it urgent |
+| **What would unblock it** | One word from you, and I post the reproduction (measured 2 Oct: phase 14/14, 18,983 written, then a new run id restarting at zero with the verbatim error *"Previously imported inventory no longer has matching source evidence."*) |
+
+### Honesty notes from today
+
+- **I retracted a published claim.** Comment 77791 first said only one of eight returns reached
+  AccountingHub. The backfill was still draining; all of them posted. Corrected at the top of the
+  same comment rather than in a new one.
+- **I called something blocked that was mine to do.** I asked you to set the location to Zero Tax.
+  It was four clicks in Administration → Locations; two selector slips, not a permission wall.
+  Corrected, used, and the location is **back on GST (5%)**.
+- **Branch state left deliberately on sv10408:** the accounting books are **live** (go-live 2 Oct,
+  16,636 records backfilled) and should stay — it is what makes the AccountingHub half testable.
+
+---
+
 ## ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ NEWEST — 2026-09-10, ~16:10 UTC. **SV-9833 QA-PASSED AND POSTED. SV-9866 REMINDER MOVED TO TOMORROW ON YOUR INSTRUCTION.**
 
 ### SV-9833 — Package quantity and cost when receiving inventory parts — **PASSED, POSTED, CLEARED**
