@@ -209,6 +209,15 @@ def _discover(dv, key):
     print(f"       🔴 could not discover {key}: search did not answer — refusing to assume none exist")
     sys.exit(f"discovery for {key} failed; creating now could duplicate records that already exist")
 
+# Which global-search result list holds each kind of record. Parts are deliberately absent - see
+# _adopt_after_refusal.
+SEARCH_GROUP_FOR = {
+    '/api/customers': 'customers',
+    '/api/vehicles': 'assets',
+    '/api/parts-catalogue/vendors': 'vendors',
+    '/api/part-sales': 'part_sales',
+}
+
 def _adopt_after_refusal(rec, key, resp):
     """A CREATE WAS REFUSED — before calling it a failure, find out whether the record is ALREADY THERE.
 
@@ -234,9 +243,17 @@ def _adopt_after_refusal(rec, key, resp):
             print(f"       ✅ it IS there (found on a second look) — using the existing record")
             return hits
     value = str((rec.get('find') or {}).get('value') or '').strip()
-    if value and (rec.get('find') or {}).get('mode') == 'search':
+    # 🔴 ONLY FROM THE RESULTS OF THE RECORD'S OWN KIND. The global search returns every kind at once,
+    # and a contact row can carry its customer's name, a part sale its part number - adopting THAT id
+    # as the customer or the part would plant a wrong id in STATE, and every record built on it would
+    # be attached to the wrong thing, which is worse than reporting a failure. Catalogue and stocked
+    # parts share one "parts" result list and their ids are not interchangeable, so a part is never
+    # adopted this way: it falls through to a reported failure rather than a guess.
+    group = SEARCH_GROUP_FOR.get((rec.get('find') or {}).get('list'))
+    if value and (rec.get('find') or {}).get('mode') == 'search' and group:
         r = call('/api/search?q=' + urllib.parse.quote(value))
         for g in (((r['json'] or {}).get('data') or {}).get('groups') or []):
+            if g.get('type') != group: continue
             for i in g.get('items') or []:
                 text = f"{i.get('primary') or ''} {i.get('secondary') or ''}".lower()
                 if value.lower() in text and i.get('id'):
