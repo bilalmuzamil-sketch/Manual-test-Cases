@@ -39,6 +39,23 @@ const SECTION_GROUP: Record<string, string> = {
 };
 
 /**
+ * Does any seeding manifest declare this term? Read from the manifests themselves, so the answer
+ * stays true as records are added — a hand-kept flag said "the seeder cannot make this" for
+ * records it had since been taught to make, and sent people to do by hand what `npm run seed` does.
+ */
+let MANIFEST_TEXT: string | null = null;
+function seededByManifest(term: string): boolean {
+  if (MANIFEST_TEXT === null) {
+    const dir = new URL('../seeding/', import.meta.url);
+    try {
+      MANIFEST_TEXT = fs.readdirSync(dir).filter((f) => /^seed-manifest.*\.json$/.test(f))
+        .map((f) => fs.readFileSync(new URL(f, dir), 'utf8')).join('\n').toLowerCase();
+    } catch { MANIFEST_TEXT = ''; }
+  }
+  return MANIFEST_TEXT.includes(term.toLowerCase());
+}
+
+/**
  * The entity checks' fixtures are read from the SAME config the specs read, so this cannot drift
  * out of step with them. If that file moves or its terms change, the preflight changes with it.
  */
@@ -53,13 +70,13 @@ function needsFromEntityConfig(): Need[] {
     if (!group) continue;
     const terms = new Set<string>();
     for (const c of Object.values<any>(v?.cases ?? {})) if (c?.term) terms.add(String(c.term));
-    for (const t of terms) out.push({ term: t, group, label: section, seeder: false });
+    for (const t of terms) out.push({ term: t, group, label: section, seeder: seededByManifest(t) });
   }
   return out;
 }
 
 const CUSTOMER_NEEDS: Need[] = [
-  { term: 'ZZSPEC', group: 'customers', label: 'Customers', seeder: true },
+  { term: 'ZZSPEC', group: 'customers', label: 'Customers', seeder: seededByManifest('ZZSPEC') },
 ];
 
 /**

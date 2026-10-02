@@ -1164,7 +1164,13 @@
     "coll": "work_order",
     "field": "number",
     "ids": [],
-    "_why": "?search= is broken on /api/work-orders, so these are verified by the ids the seeder captured at create time."
+    "_why": "?search= is broken on /api/work-orders, so these are verified by the ids the seeder captured at create time.",
+    "discover": {
+     "search": "ZZCUSTOPEN Haulage Open",
+     "group": "work_orders",
+     "match_secondary": "ZZCUSTOPEN Haulage Open",
+     "_why": "with no ids recorded on this machine, adopt the work orders already there instead of creating a second batch (seed.py _discover)"
+    }
    },
    "create": {
     "endpoint": "/api/work-orders/create",
@@ -1194,7 +1200,13 @@
     "view": "/api/work-orders/view/{id}",
     "coll": "work_order",
     "field": "number",
-    "ids": []
+    "ids": [],
+    "discover": {
+     "search": "Fernvale Asset Holdings",
+     "group": "work_orders",
+     "match_secondary": "Fernvale Asset Holdings",
+     "_why": "with no ids recorded on this machine, adopt the work orders already there instead of creating a second batch (seed.py _discover)"
+    }
    },
    "create": {
     "endpoint": "/api/work-orders/create",
@@ -1446,7 +1458,13 @@
     "view": "/api/work-orders/view/{id}",
     "coll": "work_order",
     "field": "number",
-    "ids": []
+    "ids": [],
+    "discover": {
+     "search": "ZZOPENCOUNT Freight Busy",
+     "group": "work_orders",
+     "match_secondary": "ZZOPENCOUNT Freight Busy",
+     "_why": "with no ids recorded on this machine, adopt the work orders already there instead of creating a second batch (seed.py _discover)"
+    }
    },
    "create": {
     "endpoint": "/api/work-orders/create",
@@ -1477,7 +1495,13 @@
     "view": "/api/work-orders/view/{id}",
     "coll": "work_order",
     "field": "number",
-    "ids": []
+    "ids": [],
+    "discover": {
+     "search": "ZZOPENCOUNT Freight Quiet",
+     "group": "work_orders",
+     "match_secondary": "ZZOPENCOUNT Freight Quiet",
+     "_why": "with no ids recorded on this machine, adopt the work orders already there instead of creating a second batch (seed.py _discover)"
+    }
    },
    "create": {
     "endpoint": "/api/work-orders/create",

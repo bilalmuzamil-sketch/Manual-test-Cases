@@ -94,7 +94,7 @@ async function proxy() {
  * Without this, a nightly run in Claude's cloud would never render anything. On a laptop with no
  * proxy configured it changes nothing at all. NO_PROXY becomes the browser's bypass list.
  */
-function standardProxy() {
+export function standardProxy() {
   const raw = process.env.HTTPS_PROXY || process.env.https_proxy
     || process.env.HTTP_PROXY || process.env.http_proxy || '';
   if (!raw) return undefined;

@@ -28,11 +28,12 @@ import { defineConfig } from 'playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
-  // 🔴 RUNS BEFORE THE FIRST TEST AND STOPS THE RUN IF THE DATA IS NOT THERE. Nothing used to
-  // check that seeding had happened, so an unseeded environment was discovered 1.6 hours later as
-  // a pile of stood-down checks. This reads the environment, names every record that is missing,
-  // and refuses to start. GS_PREFLIGHT=warn runs anyway; GS_PREFLIGHT=off skips it.
-  globalSetup: './preflight.ts',
+  // 🔴 SEEDS, THEN VERIFIES, BEFORE THE FIRST TEST — EVERY RUN. The branch is refreshed and a refresh
+  // wipes the seeded data; an unseeded run does not fail, its checks stand down, and that was
+  // discovered 1.6 hours later. global-setup.ts seeds every record the tests read, then the
+  // preflight proves search returns each one and stops the run if not. GS_SEED=skip|check,
+  // GS_PREFLIGHT=warn|off.
+  globalSetup: './global-setup.ts',
   // Index refresh dominates; these are not fast unit tests and pretending otherwise causes flakes.
   timeout: 180_000,
   expect: { timeout: 20_000 },

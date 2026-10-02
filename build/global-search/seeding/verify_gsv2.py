@@ -159,10 +159,15 @@ def main():
         print(f'  {mark} {label:40} {gtype:17} = {n:3}  [C{cases.replace(" ", ", C")}]')
         if not ok(n): bad.append((label, q, f'total={n}'))
 
-    print('\n=== REACHABILITY — the pinned record must OPEN, not merely be indexed ===')
+    print('\n=== REACHABILITY — the record search finds must OPEN, not merely be indexed ===')
+    # 🔴 THE PINNED TOP RESULT WAS WITHDRAWN by the QA lead on 2026-09-29, so 'pinned' is now always
+    # absent and this check reported "NO PINNED ROW" as a failure on every run. What it was there to
+    # prove still matters — the index is organisation-wide while a work order belongs to one shop, so
+    # a row can be found and still not open — so prove it on the work order search actually returns.
     d, _ = search('S2-15430')
-    p = (d or {}).get('pinned') or {}
-    v = call_retry(f"/api/work-orders/view/{p.get('id')}") if p.get('id') else {'status': 'NO PINNED ROW'}
+    wos = rows(d or {}, 'work_orders') if d else []
+    p = (d or {}).get('pinned') or next((i for i in wos if 'S2-15430' in str(i.get('primary'))), None) or {}
+    v = call_retry(f"/api/work-orders/view/{p.get('id')}") if p.get('id') else {'status': 'NOT IN THE RESULTS'}
     ok = v.get('status') == 200
     print(f"  {'✅' if ok else '🔴'} S2-15430 opens at this workplace -> HTTP {v.get('status')}")
     if not ok:

@@ -80,7 +80,12 @@ def _ids_load():
 def _ids_save(key, ids):
     d = _ids_load(); d[key] = ids
     json.dump(d, open(f'{HERE}/{IDS_FILE}', 'w'), indent=1)
-CTX = ssl.create_default_context(cafile='/root/.ccr/ca-bundle.crt')
+# 🔴 THE CLOUD CONTAINER'S CERTIFICATE ONLY WHERE IT EXISTS. This was a bare
+# cafile='/root/.ccr/ca-bundle.crt' — the egress CA of the container these scripts were written
+# in. On any other machine the file is absent, so the seeder died on import, before creating
+# anything; it only ever worked because it only ever ran there. Now: SEED_CA, SSL_CERT_FILE or the
+# cloud bundle if present, otherwise the machine's normal trust store (cafile=None).
+CTX = ssl.create_default_context(cafile=next((p for p in (os.environ.get('SEED_CA'), os.environ.get('SSL_CERT_FILE'), '/root/.ccr/ca-bundle.crt') if p and os.path.exists(p)), None))
 
 def _c(): return json.load(open(COOKIES))
 def _save(c):
@@ -160,6 +165,39 @@ def ensure_session():
 
 STATE = {}
 
+def _discover(dv, key):
+    """Find existing records of an ids-mode spec through GET /api/search, when no ids are recorded.
+
+    Why the GLOBAL search: it is the index the tests themselves read, so "exists" means what the
+    tests will see, and it answers the same way on every environment. (/api/work-orders?search= is
+    recorded as broken on the QA branch; on staging it works — but only from inside the right shop:
+    the lists are SHOP-SCOPED, and a session in another shop gets a clean, empty page that reads
+    exactly like "none exist". Measured 2026-10-02: 44 rows from Staging Heavy Duty, 0 from elsewhere.
+    ensure_session() selects the shop before this runs.) It caps each group at 20, which is enough:
+    every counted set here is 18 or fewer, and a spec whose count exceeds 20 must not declare
+    `discover` at all.
+
+    Matches on the row's secondary line (the customer), never on the query alone, because search is
+    fuzzy and a near-spelling customer's work orders come back too.
+    """
+    q, group, owner = dv['search'], dv.get('group', 'work_orders'), dv.get('match_secondary', dv['search'])
+    for attempt in range(3):
+        r = call('/api/search?q=' + urllib.parse.quote(q))
+        groups = ((r['json'] or {}).get('data') or {}).get('groups')
+        if r['status'] == 200 and isinstance(groups, list):
+            g = next((x for x in groups if x.get('type') == group), None) or {}
+            mine = [i for i in (g.get('items') or []) if owner.lower() in str(i.get('secondary') or '').lower()]
+            mine.sort(key=lambda i: str(i.get('primary') or ''))       # oldest number first, stable
+            ids = [i['id'] for i in mine if i.get('id')]
+            if ids:
+                _ids_save(key, ids)
+                print(f"       discovered {len(ids)} existing record(s) through search — none were "
+                      f"recorded on this machine, so they are adopted rather than created again")
+            return ids
+        time.sleep(2 * (attempt + 1))
+    print(f"       🔴 could not discover {key}: search did not answer — refusing to assume none exist")
+    sys.exit(f"discovery for {key} failed; creating now could duplicate records that already exist")
+
 def find(spec, _key=None):
     """FIND a record. Two modes, because ?search= works on some list endpoints and silently
     matches NOTHING on others (measured: broken on /api/work-orders). Where the spec gives a
@@ -196,8 +234,17 @@ def find(spec, _key=None):
         # route is to verify by the ids the seeder recorded when it created them.
         out = []
         # Ids captured for THIS environment win; the manifest's are the starting default.
-        # Ids captured for THIS environment win; the manifest's are the starting default.
-        for i in (_ids_load().get(_key) or spec.get('ids', [])):
+        recorded = _ids_load().get(_key) or spec.get('ids', [])
+        # 🔴 NO RECORDED IDS IS NOT "NONE EXIST". It means this machine has never seeded here — a
+        # fresh laptop, or the fresh container every nightly run starts in. Treating it as "none"
+        # created a SECOND batch of 18 Fibridge work orders on staging on 2026-10-02 next to the
+        # September batch; 36 then matched a search capped at 20, the status-badge proof lost four of
+        # its seven colours, and every later run would have grown the estate again. So with no ids,
+        # DISCOVER what is already there through the global search — the same index the tests read —
+        # and adopt it; the count logic below then creates only the real shortfall.
+        if not recorded and spec.get('discover'):
+            recorded = _discover(spec['discover'], _key)
+        for i in recorded:
             # Same retry as the search mode, for the same reason: a transient failure on ONE of
             # eighteen view calls reads as a shortfall, and a shortfall now creates a top-up.
             # Believing a flaky read here does not just miscount, it manufactures extra records.

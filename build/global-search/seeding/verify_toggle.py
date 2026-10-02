@@ -24,7 +24,13 @@ green run here means "the records are there", not "the case passes".
 """
 import json, sys, urllib.error, urllib.parse, urllib.request
 
-C = json.load(open('/tmp/qa/cookies.json'))
+# 🔴 READ THE SESSION IT WAS GIVEN, like every other script here. This used to open
+# /tmp/qa/cookies.json unconditionally. Run against staging on 2026-10-02 it found a stale file
+# from a QA branch deleted weeks earlier and died with `Tunnel connection failed: 502`; on any
+# other machine the file would not exist. Worse, had it pointed at a LIVE environment, this proof
+# would have checked the wrong one and reported green.
+import os
+C = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
 CK = '; '.join(f"{k}={C[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
 G, R, Y, X = '\033[32m', '\033[31m', '\033[33m', '\033[0m'
 
@@ -54,16 +60,20 @@ def ours(items, needle):
             if needle.lower() in (str(i.get('primary', '')) + str(i.get('secondary', ''))).lower()]
 
 # case, keyword, group, the NAME that must come back, expected foreign-row load, why the load
+# 🔴 A WORK ORDER OR PART SALE IS RECOGNISED BY ITS CUSTOMER, NEVER BY ITS NUMBER. These read
+# 'S9160-' / 'P9160-' — the numbering of a QA branch that was later deleted. Staging numbers them
+# S2- / P2- (and each shop differently), so on 2026-10-02 the proof reported both records absent
+# while search returned them. The customer's name is on the row on every environment.
 CHECKS = [
     (55731, 'ZZTOGPART',  'parts',      'ZZTOGPART Brake Kit', 3,
      'ZZSTOCKPART brake parts + their PO match by near-spelling. HARMLESS: removing Parts access '
      'hides every part, so the negative half still reads correctly.'),
-    (55732, 'ZZTOGWO',    'work_orders', 'S9160-',             3,
+    (55732, 'ZZTOGWO',    'work_orders', 'ZZTOGWO Haulage',    3,
      "'Stock Diesel Services Inc' and its vehicle match by near-spelling. HARMLESS: they are "
      'Customers/Assets rows, not Work Orders - but they STAY on screen after the flip, so a '
      'tester reading the screen rather than the row may call a pass a fail.'),
     (55733, 'ZZTOGCUST',  'customers',  'ZZTOGCUST Freight',   0, 'clean keyword'),
-    (55734, 'ZZTOGPS',    'part_sales', 'P9160-',              3, 'near-spelling noise, harmless'),
+    (55734, 'ZZTOGPS',    'part_sales', 'ZZTOGPS Motors',      3, 'near-spelling noise, harmless'),
     # Load 0, not 1: the line-item part is NAMED 'ZZTOGVEN Supply Brake Shoe Kit', so it counts
     # as ours rather than foreign. The tester note still stands - it is the row's VISIBILITY after
     # the flip that matters to the case, not whether my arithmetic calls it foreign.

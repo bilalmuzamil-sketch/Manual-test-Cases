@@ -447,7 +447,13 @@
     "coll": "work_order",
     "field": "number",
     "ids": [],
-    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The list starts EMPTY on purpose - a hardcoded id survives a redeploy pointing at nothing, which is how work orders kept reading as \"created but NOT FINDABLE\"."
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The list starts EMPTY on purpose - a hardcoded id survives a redeploy pointing at nothing, which is how work orders kept reading as \"created but NOT FINDABLE\".",
+    "discover": {
+     "search": "ZZTOGWO Haulage",
+     "group": "work_orders",
+     "match_secondary": "ZZTOGWO Haulage",
+     "_why": "with no ids recorded on this machine, adopt the work orders already there instead of creating a second batch (seed.py _discover)"
+    }
    },
    "create": {
     "endpoint": "/api/work-orders/create",

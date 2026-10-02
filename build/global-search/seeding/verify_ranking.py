@@ -26,7 +26,12 @@ import json, os, ssl, sys, time, urllib.error, urllib.parse, urllib.request
 #      search is down" and is really "this script cannot make an HTTPS call".
 # The real reason is now printed instead of being swallowed (Rule 104: prove the instrument).
 C = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
-CTX = ssl.create_default_context(cafile='/root/.ccr/ca-bundle.crt')
+# 🔴 THE CLOUD CONTAINER'S CERTIFICATE ONLY WHERE IT EXISTS. This was a bare
+# cafile='/root/.ccr/ca-bundle.crt' — the egress CA of the container these scripts were written
+# in. On any other machine the file is absent, so the seeder died on import, before creating
+# anything; it only ever worked because it only ever ran there. Now: SEED_CA, SSL_CERT_FILE or the
+# cloud bundle if present, otherwise the machine's normal trust store (cafile=None).
+CTX = ssl.create_default_context(cafile=next((p for p in (os.environ.get('SEED_CA'), os.environ.get('SSL_CERT_FILE'), '/root/.ccr/ca-bundle.crt') if p and os.path.exists(p)), None))
 CK = '; '.join(f"{k}={C[k]}" for k in ('sv_sso_session', 'PHPSESSID', 'cf_clearance') if C.get(k))
 
 def search(q):

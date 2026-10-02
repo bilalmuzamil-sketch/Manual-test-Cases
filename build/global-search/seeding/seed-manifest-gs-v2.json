@@ -153,7 +153,18 @@
     "email"
    ],
    "read_as": {},
-   "_why": "\ud83d\udd34 THE CONTACT-MATCH FIXTURE, and the one every contact case turns on. Its phone, email and first name appear NOWHERE in the company name - that separation IS the test (the row must come back as the COMPANY, flagged \"Contact match\", with no Contacts group). It doubles as the C45139 ranking pair: search \"Deshawn\" and this company matches on a CONTACT field while ZZAUTOTEST Deshawn Freight Lines matches on its OWN name."
+   "_why": "\ud83d\udd34 THE CONTACT-MATCH FIXTURE, and the one every contact case turns on. Its phone, email and first name appear NOWHERE in the company name - that separation IS the test (the row must come back as the COMPANY, flagged \"Contact match\", with no Contacts group). It doubles as the C45139 ranking pair: search \"Deshawn\" and this company matches on a CONTACT field while ZZAUTOTEST Deshawn Freight Lines matches on its OWN name.",
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@cust_fib_commercial"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
   },
   {
    "key": "cust_fib_logistics",
@@ -240,7 +251,18 @@
     "telephone",
     "email"
    ],
-   "read_as": {}
+   "read_as": {},
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@cust_fib_logistics"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
   },
   {
    "key": "cust_fib_retail",
@@ -326,7 +348,18 @@
     "telephone",
     "email"
    ],
-   "read_as": {}
+   "read_as": {},
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@cust_fib_retail"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
   },
   {
    "key": "cust_peterson",
@@ -619,7 +652,18 @@
     "telephone",
     "email"
    ],
-   "read_as": {}
+   "read_as": {},
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@cust_bryan_smith"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
   },
   {
    "key": "asset_trk412",
@@ -1620,7 +1664,13 @@
     "coll": "work_order",
     "field": "number",
     "ids": [],
-    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The id list starts EMPTY on purpose - a hardcoded list survives a redeploy as a list of ids that point at nothing, which is how four work orders were reported \"created but NOT FINDABLE\" on every single redeploy."
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The id list starts EMPTY on purpose - a hardcoded list survives a redeploy as a list of ids that point at nothing, which is how four work orders were reported \"created but NOT FINDABLE\" on every single redeploy.",
+    "discover": {
+     "search": "ZZAUTOTEST Fibridge Commercial",
+     "group": "work_orders",
+     "match_secondary": "ZZAUTOTEST Fibridge Commercial",
+     "_why": "with no ids recorded on this machine, adopt the work orders already there instead of creating a second batch (seed.py _discover)"
+    }
    },
    "create": {
     "endpoint": "/api/work-orders/create",
@@ -1660,7 +1710,13 @@
     "view": "/api/work-orders/view/{id}",
     "coll": "work_order",
     "field": "number",
-    "ids": []
+    "ids": [],
+    "discover": {
+     "search": "ZZAUTOTEST Fibridge Logistics",
+     "group": "work_orders",
+     "match_secondary": "ZZAUTOTEST Fibridge Logistics",
+     "_why": "with no ids recorded on this machine, adopt the work orders already there instead of creating a second batch (seed.py _discover)"
+    }
    },
    "create": {
     "endpoint": "/api/work-orders/create",
@@ -1854,7 +1910,18 @@
     "telephone",
     "email"
    ],
-   "read_as": {}
+   "read_as": {},
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@cust_fisquare"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
   },
   {
    "key": "asset_fisquare",
@@ -1923,7 +1990,13 @@
     "view": "/api/work-orders/view/{id}",
     "coll": "work_order",
     "field": "number",
-    "ids": []
+    "ids": [],
+    "discover": {
+     "search": "ZZAUTOTEST Fisquare Farms",
+     "group": "work_orders",
+     "match_secondary": "ZZAUTOTEST Fisquare Farms",
+     "_why": "with no ids recorded on this machine, adopt the work orders already there instead of creating a second batch (seed.py _discover)"
+    }
    },
    "create": {
     "endpoint": "/api/work-orders/create",

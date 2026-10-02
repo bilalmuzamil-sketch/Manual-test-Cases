@@ -226,7 +226,13 @@
           "84d86dff-1716-4302-8afe-401a6eb03073",
           "a6989c89-744b-4d7e-88ca-1843328bfb27"
         ],
-        "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so neither can find these. The seeder records the ids it creates and verifies each one directly - the only reliable route."
+        "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so neither can find these. The seeder records the ids it creates and verifies each one directly - the only reliable route.",
+        "discover": {
+          "search": "ZZAUTOTEST Bridgeport Hauling",
+          "group": "work_orders",
+          "match_secondary": "ZZAUTOTEST Bridgeport Hauling",
+          "_why": "with no ids recorded on this machine, adopt the work orders already there instead of creating a second batch (seed.py _discover)"
+        }
       },
       "create": {
         "endpoint": "/api/work-orders/create",

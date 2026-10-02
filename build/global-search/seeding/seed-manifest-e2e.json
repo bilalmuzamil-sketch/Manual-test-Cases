@@ -1,0 +1,1686 @@
+{
+ "_README": "THE E2E UNIVERSE — records the Playwright suite in build/global-search/e2e needs that no other manifest provides. Seeded by `npm run seed` (and automatically before every `npm test`) together with every other manifest in this directory. Same engine, same rules: find-or-create, then verify every declared field. TO ADD DATA FOR A NEW CHECK: add a record here; never edit seed.py.",
+ "environment": {
+  "workplace_name_hint": "Heavy Duty",
+  "tag": "ZZSPEC",
+  "_workplace": "The orchestrator sets SEED_WORKPLACE to the same shop the tests sign into, because parts search is scoped by shop (measured 2026-10-02)."
+ },
+ "records": [
+  {
+   "key": "e2e_cust_long",
+   "type": "Customer",
+   "serves": [],
+   "_why": "a value long enough that a cut-off tail can be measured",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSPEC Industrial Parts And Equipment Supply Company Of Greater Fernvale 123786",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSPEC Industrial Parts And Equipment Supply Company Of Greater Fernvale 123786",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "country_code": "US",
+     "address": "21 Result Row Way",
+     "phone": "(264) 400-0900"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_cust_twin_a",
+   "type": "Customer",
+   "serves": [],
+   "_why": "two records that share a first line must be told apart",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSPEC Identical Name Haulage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSPEC Identical Name Haulage",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "country_code": "US",
+     "address": "88 Different Street"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_cust_twin_b",
+   "type": "Customer",
+   "serves": [],
+   "_why": "the twin of the record above",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSPEC Identical Name Haulage 2",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSPEC Identical Name Haulage 2",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "country_code": "US",
+     "address": "4 Sameface Road"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_cust_rank_prefix",
+   "type": "Customer",
+   "serves": [],
+   "_why": "a name that STARTS with the query, for prefix-over-contains ranking",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSPECRANK Alpha Transport",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSPECRANK Alpha Transport",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_cust_rank_contains",
+   "type": "Customer",
+   "serves": [],
+   "_why": "a name that only CONTAINS the query",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Northern ZZSPECRANK Freight",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Northern ZZSPECRANK Freight",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_cust_phone",
+   "type": "Customer",
+   "serves": [],
+   "_why": "a telephone with punctuation, for the punctuation-is-optional checks",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSPEC Telephone Haulage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSPEC Telephone Haulage",
+     "city": "Marnston",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "country_code": "US",
+     "phone": "(614) 555-0188"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "phone"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_cust_dash",
+   "type": "Customer",
+   "serves": [],
+   "_why": "a name carrying a dash, for the punctuation-is-optional checks",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSPEC Dash-Carrier Logistics",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSPEC Dash-Carrier Logistics",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_lr_owner",
+   "type": "Customer",
+   "serves": [
+    146224,
+    146225,
+    146226,
+    146227,
+    146228,
+    146229,
+    146230,
+    146231,
+    146257,
+    146258,
+    146259,
+    146260,
+    146261,
+    146262,
+    146263,
+    146264,
+    146265
+   ],
+   "_why": "ZZLONGROW owner: long, so a clipped tail can be measured on asset and part-sale rows",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "address": "12 Longrow Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "phone": "(264) 410-0100",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_lr_owner_contact",
+   "type": "Contact",
+   "depends_on": "e2e_lr_owner",
+   "serves": [
+    146224,
+    146225,
+    146226,
+    146227,
+    146228,
+    146229,
+    146230,
+    146231,
+    146257,
+    146258,
+    146259,
+    146260,
+    146261,
+    146262,
+    146263,
+    146264,
+    146265
+   ],
+   "_why": "vehicles and part sales are owned by a CONTACT at the company (customer_id is the person, company_id the business)",
+   "find": {
+    "mode": "child",
+    "parent": "e2e_lr_owner",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Lorna"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Lorna",
+     "last_name": "Longrow",
+     "title": "Fleet Manager",
+     "telephone": "(264) 410-0199",
+     "email": "lorna@zze2e.test"
+    },
+    "inject": {
+     "company_id": "e2e_lr_owner"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@e2e_lr_owner"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "e2e_lr_cust2",
+   "type": "Customer",
+   "serves": [
+    146257,
+    146258,
+    146259,
+    146260,
+    146261,
+    146262,
+    146263,
+    146264,
+    146265
+   ],
+   "_why": "a second ZZLONGROW customer, so two part sales share the typed text (B1)",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZLONGROW Freight Lines",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZLONGROW Freight Lines",
+     "address": "12 Longrow Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "phone": "(264) 410-0100",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_lr_cust2_contact",
+   "type": "Contact",
+   "depends_on": "e2e_lr_cust2",
+   "serves": [
+    146257,
+    146258,
+    146259,
+    146260,
+    146261,
+    146262,
+    146263,
+    146264,
+    146265
+   ],
+   "_why": "vehicles and part sales are owned by a CONTACT at the company (customer_id is the person, company_id the business)",
+   "find": {
+    "mode": "child",
+    "parent": "e2e_lr_cust2",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Rowan"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Rowan",
+     "last_name": "Longrow",
+     "title": "Fleet Manager",
+     "telephone": "(264) 410-0199",
+     "email": "rowan@zze2e.test"
+    },
+    "inject": {
+     "company_id": "e2e_lr_cust2"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@e2e_lr_cust2"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "e2e_lr_asset_1",
+   "type": "Vehicle",
+   "serves": [
+    146224,
+    146225,
+    146226,
+    146227,
+    146228,
+    146229,
+    146230,
+    146231
+   ],
+   "_why": "Assets A1/A2/A3/D1: the whole unit number shown, typed part marked inside it, year + make + model + owner on the row",
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZLRAST0000000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Trucks",
+     "model_name": "Longhauler",
+     "year": 2021,
+     "unit": "ZZLONGROW-123786",
+     "vin": "ZZLRAST0000000001",
+     "licence_plate": "W-123786"
+    },
+    "inject": {
+     "customer_id": "e2e_lr_owner_contact",
+     "company_id": "e2e_lr_owner"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "e2e_lr_asset_2",
+   "type": "Vehicle",
+   "serves": [
+    146224,
+    146225,
+    146226,
+    146227,
+    146228,
+    146229,
+    146230,
+    146231
+   ],
+   "_why": "Assets B1/B2: a second asset sharing the typed text AND the same first line (year make model), told apart by the unit",
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZLRAST0000000002",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Trucks",
+     "model_name": "Longhauler",
+     "year": 2021,
+     "unit": "ZZLONGROW-123787",
+     "vin": "ZZLRAST0000000002",
+     "licence_plate": "W-123787"
+    },
+    "inject": {
+     "customer_id": "e2e_lr_owner_contact",
+     "company_id": "e2e_lr_owner"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "e2e_lr_cat_1",
+   "type": "CataloguePart",
+   "serves": [
+    146233,
+    146234,
+    146235,
+    146236,
+    146237,
+    146238,
+    146239,
+    146240,
+    146241,
+    146242,
+    146243
+   ],
+   "_why": "Parts A1-D1: a part named with the keyword",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZLR-7101",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZLONGROW Heavy Duty Air Brake",
+     "part_number": "ZZLR-7101",
+     "tags": [
+      "ZZSPEC"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "e2e_lr_inv_1",
+   "type": "InventoryPart",
+   "depends_on": "e2e_lr_cat_1",
+   "serves": [
+    146233,
+    146234,
+    146235,
+    146236,
+    146237,
+    146238,
+    146239,
+    146240,
+    146241,
+    146242,
+    146243
+   ],
+   "_why": "STOCKED in the seeding shop, so the row carries a quantity and a stock badge (parts search is scoped by shop)",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZLR-7101",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZLR-7101",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "e2e_lr_cat_2",
+   "type": "CataloguePart",
+   "serves": [
+    146233,
+    146234,
+    146235,
+    146236,
+    146237,
+    146238,
+    146239,
+    146240,
+    146241,
+    146242,
+    146243
+   ],
+   "_why": "Parts B2: the SAME name as the part above, told apart by number and stock",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZLR-7102",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZLONGROW Heavy Duty Air Brake",
+     "part_number": "ZZLR-7102",
+     "tags": [
+      "ZZSPEC"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "e2e_lr_inv_2",
+   "type": "InventoryPart",
+   "depends_on": "e2e_lr_cat_2",
+   "serves": [
+    146233,
+    146234,
+    146235,
+    146236,
+    146237,
+    146238,
+    146239,
+    146240,
+    146241,
+    146242,
+    146243
+   ],
+   "_why": "STOCKED in the seeding shop, so the row carries a quantity and a stock badge (parts search is scoped by shop)",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZLR-7102",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 3,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZLR-7102",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 3
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "e2e_lr_vendor_1",
+   "type": "Vendor",
+   "serves": [
+    146245,
+    146246,
+    146247,
+    146248,
+    146249,
+    146250,
+    146251,
+    146252,
+    146253,
+    146254,
+    146255
+   ],
+   "_why": "Vendors A1-D1: name + telephone + address line on the row",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZLONGROW Industrial Supply",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Industrial Supply",
+     "address_1": "40 Longrow Supply Park",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "telephone": "(264) 410-0300",
+     "email": "orders@zzlongrow-industrial.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "e2e_lr_vendor_2",
+   "type": "Vendor",
+   "serves": [
+    146245,
+    146246,
+    146247,
+    146248,
+    146249,
+    146250,
+    146251,
+    146252,
+    146253,
+    146254,
+    146255
+   ],
+   "_why": "Vendors B2: one of TWO vendors with the same name — found by email, because a name search cannot tell twins apart",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "east@zzlongrow-identical.test",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "40 Longrow Supply Park",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "telephone": "(264) 410-0301",
+     "email": "east@zzlongrow-identical.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "e2e_lr_vendor_3",
+   "type": "Vendor",
+   "serves": [
+    146245,
+    146246,
+    146247,
+    146248,
+    146249,
+    146250,
+    146251,
+    146252,
+    146253,
+    146254,
+    146255
+   ],
+   "_why": "Vendors B2: the twin",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "west@zzlongrow-identical.test",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "40 Longrow Supply Park",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "telephone": "(264) 410-0302",
+     "email": "west@zzlongrow-identical.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "e2e_lr_ps_1",
+   "type": "PartSale",
+   "depends_on": "e2e_lr_owner",
+   "serves": [
+    146257,
+    146258,
+    146259,
+    146260,
+    146261,
+    146262,
+    146263,
+    146264,
+    146265
+   ],
+   "_why": "Part Sales A1-D1: a part sale whose row carries the keyword through its customer",
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "companyName",
+    "value": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "e2e_lr_owner"
+    },
+    "id_from": "data.0.id"
+   }
+  },
+  {
+   "key": "e2e_lr_ps_2",
+   "type": "PartSale",
+   "depends_on": "e2e_lr_cust2",
+   "serves": [
+    146257,
+    146258,
+    146259,
+    146260,
+    146261,
+    146262,
+    146263,
+    146264,
+    146265
+   ],
+   "_why": "Part Sales B1: a second part sale sharing the typed text",
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "companyName",
+    "value": "ZZLONGROW Freight Lines",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "e2e_lr_cust2"
+    },
+    "id_from": "data.0.id"
+   }
+  },
+  {
+   "key": "e2e_sh_cust_begins",
+   "type": "Customer",
+   "serves": [
+    146265
+   ],
+   "_why": "ZZSOFTHIT near-miss family (begins) — Part Sales I1",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSOFTHIT Hauling",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSOFTHIT Hauling",
+     "address": "7 Softhit Court",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "phone": "(264) 410-0100",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_sh_contact_begins",
+   "type": "Contact",
+   "depends_on": "e2e_sh_cust_begins",
+   "serves": [
+    146265
+   ],
+   "_why": "vehicles and part sales are owned by a CONTACT at the company (customer_id is the person, company_id the business)",
+   "find": {
+    "mode": "child",
+    "parent": "e2e_sh_cust_begins",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Sofia"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Sofia",
+     "last_name": "Softhit",
+     "title": "Fleet Manager",
+     "telephone": "(264) 410-0199",
+     "email": "sofia@zze2e.test"
+    },
+    "inject": {
+     "company_id": "e2e_sh_cust_begins"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@e2e_sh_cust_begins"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "e2e_sh_ps_begins",
+   "type": "PartSale",
+   "depends_on": "e2e_sh_cust_begins",
+   "serves": [
+    146265
+   ],
+   "_why": "Part Sales I1 (begins)",
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "companyName",
+    "value": "ZZSOFTHIT Hauling",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "e2e_sh_cust_begins"
+    },
+    "id_from": "data.0.id"
+   }
+  },
+  {
+   "key": "e2e_sh_cust_contains",
+   "type": "Customer",
+   "serves": [
+    146265
+   ],
+   "_why": "ZZSOFTHIT near-miss family (contains) — Part Sales I1",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Northern ZZSOFTHIT Freight",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Northern ZZSOFTHIT Freight",
+     "address": "7 Softhit Court",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "phone": "(264) 410-0100",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_sh_contact_contains",
+   "type": "Contact",
+   "depends_on": "e2e_sh_cust_contains",
+   "serves": [
+    146265
+   ],
+   "_why": "vehicles and part sales are owned by a CONTACT at the company (customer_id is the person, company_id the business)",
+   "find": {
+    "mode": "child",
+    "parent": "e2e_sh_cust_contains",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Hector"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Hector",
+     "last_name": "Softhit",
+     "title": "Fleet Manager",
+     "telephone": "(264) 410-0199",
+     "email": "hector@zze2e.test"
+    },
+    "inject": {
+     "company_id": "e2e_sh_cust_contains"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@e2e_sh_cust_contains"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "e2e_sh_ps_contains",
+   "type": "PartSale",
+   "depends_on": "e2e_sh_cust_contains",
+   "serves": [
+    146265
+   ],
+   "_why": "Part Sales I1 (contains)",
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "companyName",
+    "value": "Northern ZZSOFTHIT Freight",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "e2e_sh_cust_contains"
+    },
+    "id_from": "data.0.id"
+   }
+  },
+  {
+   "key": "e2e_sh_cust_typo",
+   "type": "Customer",
+   "serves": [
+    146265
+   ],
+   "_why": "ZZSOFTHIT near-miss family (typo) — Part Sales I1",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSOFTHIP Logistics",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSOFTHIP Logistics",
+     "address": "7 Softhit Court",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "phone": "(264) 410-0100",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "e2e_sh_contact_typo",
+   "type": "Contact",
+   "depends_on": "e2e_sh_cust_typo",
+   "serves": [
+    146265
+   ],
+   "_why": "vehicles and part sales are owned by a CONTACT at the company (customer_id is the person, company_id the business)",
+   "find": {
+    "mode": "child",
+    "parent": "e2e_sh_cust_typo",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Tilda"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Tilda",
+     "last_name": "Softhit",
+     "title": "Fleet Manager",
+     "telephone": "(264) 410-0199",
+     "email": "tilda@zze2e.test"
+    },
+    "inject": {
+     "company_id": "e2e_sh_cust_typo"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@e2e_sh_cust_typo"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "e2e_sh_ps_typo",
+   "type": "PartSale",
+   "depends_on": "e2e_sh_cust_typo",
+   "serves": [
+    146265
+   ],
+   "_why": "Part Sales I1 (typo)",
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "companyName",
+    "value": "ZZSOFTHIP Logistics",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "e2e_sh_cust_typo"
+    },
+    "id_from": "data.0.id"
+   }
+  },
+  {
+   "key": "e2e_sh_vendor_begins",
+   "type": "Vendor",
+   "serves": [
+    146276,
+    146284
+   ],
+   "_why": "ZZSOFTHIT near-miss family (begins) — the vendor its purchase order and vendor invoice belong to",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSOFTHIT Supply Co",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZSOFTHIT Supply Co",
+     "address_1": "40 Longrow Supply Park",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "telephone": "(264) 410-0400",
+     "email": "begins@zzsofthit.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "e2e_sh_vendor_contains",
+   "type": "Vendor",
+   "serves": [
+    146276,
+    146284
+   ],
+   "_why": "ZZSOFTHIT near-miss family (contains) — the vendor its purchase order and vendor invoice belong to",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "Eastern ZZSOFTHIT Parts",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "Eastern ZZSOFTHIT Parts",
+     "address_1": "40 Longrow Supply Park",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "telephone": "(264) 410-0400",
+     "email": "contains@zzsofthit.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "e2e_sh_vendor_typo",
+   "type": "Vendor",
+   "serves": [
+    146276,
+    146284
+   ],
+   "_why": "ZZSOFTHIT near-miss family (typo) — the vendor its purchase order and vendor invoice belong to",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSOFTHIP Traders",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZSOFTHIP Traders",
+     "address_1": "40 Longrow Supply Park",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "telephone": "(264) 410-0400",
+     "email": "typo@zzsofthit.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "e2e_sh_cat_8101",
+   "type": "CataloguePart",
+   "serves": [
+    146276,
+    146284
+   ],
+   "_why": "the order line of a ZZSOFTHIT purchase order. NEUTRAL NAME ON PURPOSE: the near-miss check needs the TYPO vendor's order to contain the keyword nowhere, and a line called \"ZZSOFTHIT …\" would put it there",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZSH-8101",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "Order Line Gasket 8101",
+     "part_number": "ZZSH-8101",
+     "tags": [
+      "ZZSPEC"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "e2e_sh_cat_8102",
+   "type": "CataloguePart",
+   "serves": [
+    146276,
+    146284
+   ],
+   "_why": "the order line of a ZZSOFTHIT purchase order. NEUTRAL NAME ON PURPOSE: the near-miss check needs the TYPO vendor's order to contain the keyword nowhere, and a line called \"ZZSOFTHIT …\" would put it there",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZSH-8102",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "Order Line Gasket 8102",
+     "part_number": "ZZSH-8102",
+     "tags": [
+      "ZZSPEC"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "e2e_sh_cat_8103",
+   "type": "CataloguePart",
+   "serves": [
+    146276,
+    146284
+   ],
+   "_why": "the order line of a ZZSOFTHIT purchase order. NEUTRAL NAME ON PURPOSE: the near-miss check needs the TYPO vendor's order to contain the keyword nowhere, and a line called \"ZZSOFTHIT …\" would put it there",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZSH-8103",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "Order Line Gasket 8103",
+     "part_number": "ZZSH-8103",
+     "tags": [
+      "ZZSPEC"
+     ]
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  }
+ ],
+ "purchase_orders": {
+  "_README": "Standalone inventory purchase orders, received so each becomes a vendor invoice — the route playbook §O6 proved (a PO raised from a work order 500s on receive). Read by seed_po_from_manifest.py. One row = one PO.",
+  "rows": [
+   {
+    "key": "e2e_sh_po_begins",
+    "vendor": "e2e_sh_vendor_begins",
+    "part_number": "ZZSH-8101",
+    "quantity": 2,
+    "price": 18.5,
+    "receive": true,
+    "pay": null,
+    "serves": [
+     146276,
+     146284
+    ]
+   },
+   {
+    "key": "e2e_sh_po_contains",
+    "vendor": "e2e_sh_vendor_contains",
+    "part_number": "ZZSH-8102",
+    "quantity": 2,
+    "price": 18.5,
+    "receive": true,
+    "pay": "full",
+    "serves": [
+     146276,
+     146284
+    ]
+   },
+   {
+    "key": "e2e_sh_po_typo",
+    "vendor": "e2e_sh_vendor_typo",
+    "part_number": "ZZSH-8103",
+    "quantity": 2,
+    "price": 18.5,
+    "receive": true,
+    "pay": null,
+    "serves": [
+     146276,
+     146284
+    ]
+   }
+  ]
+ }
+}

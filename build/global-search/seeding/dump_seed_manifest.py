@@ -49,7 +49,12 @@ marker = ''
 try:
     import urllib.request, ssl, re
     c = json.load(open(os.environ.get('SEED_PROFILE', '/tmp/qa/cookies.json')))
-    ctx = ssl.create_default_context(cafile='/root/.ccr/ca-bundle.crt')
+    # 🔴 THE CLOUD CONTAINER'S CERTIFICATE ONLY WHERE IT EXISTS. This was a bare
+    # cafile='/root/.ccr/ca-bundle.crt' — the egress CA of the container these scripts were written
+    # in. On any other machine the file is absent, so the seeder died on import, before creating
+    # anything; it only ever worked because it only ever ran there. Now: SEED_CA, SSL_CERT_FILE or the
+    # cloud bundle if present, otherwise the machine's normal trust store (cafile=None).
+    ctx = ssl.create_default_context(cafile=next((p for p in (os.environ.get('SEED_CA'), os.environ.get('SSL_CERT_FILE'), '/root/.ccr/ca-bundle.crt') if p and os.path.exists(p)), None))
     html = ''
     for _a in range(3):
         try:

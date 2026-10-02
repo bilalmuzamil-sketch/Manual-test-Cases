@@ -269,6 +269,42 @@ def finish(st, tag, rec, row, order, vid):
     st[tag] = rec; save(st)
 
 
+def adopt(row, vid):
+    """WITH NO STATE FILE, RECOGNISE THE ROW'S WORK FROM THE ENVIRONMENT INSTEAD OF REDOING IT.
+
+    🔴 The rule at the top of main() — the environment decides, never the state file — held only
+    for rows the state file KNEW about. With no state file at all (a fresh laptop, or the fresh
+    container every nightly run starts in) `rec` was empty, nothing could be "live", and every row
+    was rebuilt. On staging on 2026-10-02 that raised a second purchase order and three more vendor
+    invoices next to September's, after this script had just printed "2 purchase order(s), 5 vendor
+    invoice(s) already on this vendor". It had the evidence on screen and no way to use it.
+
+    The invoice number is deterministic (finish() writes ZZT-INV-<last digit of the part number>),
+    so an existing invoice is recognised by it. Whether it was paid is read off the vendor's unpaid
+    list: absent = paid in full, balance < amount = partly paid, balance == amount = unpaid.
+    """
+    if row['receive']:
+        invno = f"ZZT-INV-{row['pn'][-1]}"
+        d = next((x for x in deliveries_by_vendor(vid) if str(x.get('invoice_number')) == invno), None)
+        if not d: return {}
+        rec = {'order_id': d.get('order_id'), 'order_number': d.get('order_number'),
+               'invoice_number': invno, 'route': row['route'], 'adopted_from_environment': True}
+        if row['pay']:
+            v = call(f'/api/parts-catalogue/vendor/{vid}')
+            acc = (((v['json'] or {}).get('data') or {}).get('vendor') or {}).get('vendor_account_id')
+            u = call(f'/api/parts-catalogue/vendor/transactions/list-unpaid-by-vendor-account'
+                     f'?accountId={acc}&pagination[page]=1&pagination[rowsPerPage]=100') if acc else {'json': None}
+            rows = (((u['json'] or {}).get('data') or {}).get('response') or {}).get('collection') or []
+            t = next((x for x in rows if x.get('invoice_number') == invno), None)
+            amount, bal = (float(t.get('amount') or 0), float(t.get('balance') or 0)) if t else (0, 0)
+            already = (t is None) if row['pay'] == 'full' else (t is not None and 0 < bal < amount)
+            if already: rec['pay_result'] = f"already {row['pay']} (read from the vendor's unpaid list)"
+        return rec
+    o = next((x for x in orders_by_vendor(vid) if x.get('status') == 'ordered' and x.get('workOrderId')), None)
+    return ({'order_id': o['id'], 'order_number': o.get('order_number'), 'status': 'ordered',
+             'route': 'work_order', 'adopted_from_environment': True} if o else {})
+
+
 def main():
     st = load()
     vid = vendor_id()
@@ -285,6 +321,9 @@ def main():
     for row in PLAN:
         tag = row['tag']
         rec = st.get(tag) or {}
+        if not rec:
+            rec = adopt(row, vid)
+            if rec: print(f"  {tag:14} found on the environment, not in a state file — adopted")
         # 🔴 THE STATE FILE NEVER DECIDES THAT A ROW IS DONE. THE ENVIRONMENT DOES.
         #
         # This block was written twice and wrong both times, and the second way was the dangerous
@@ -315,6 +354,16 @@ def main():
         if done:
             print(f"  {tag:14} complete -> PO {rec['order_number']} "
                   f"inv {rec.get('invoice_number')} pay={rec.get('pay_result')}")
+            continue
+        # The invoice is there and only the payment is missing: pay it, never raise a new order.
+        # Without this branch the row fell through to the create path below and a received,
+        # unpaid-as-planned invoice grew a second purchase order on every run.
+        if invoice_live and row['pay'] and not rec.get('pay_result'):
+            if CONFIRM:
+                print(f"  {tag:14} invoice {rec['invoice_number']} is there; paying ({row['pay']})")
+                finish(st, tag, rec, row, {}, vid)
+            else:
+                print(f"  {tag:14} invoice {rec['invoice_number']} is there; would pay ({row['pay']})")
             continue
         if rec.get('order_number') and not order_live and not invoice_live:
             print(f"  {tag:14} 🔶 recorded PO {rec.get('order_number')} is GONE from the "
@@ -373,4 +422,7 @@ def main():
                 print(f"      {str(i.get('primary')):18} {f.get('status') or f.get('paymentStatus')}")
     if CONFIRM: print(f'\nstate: {STATE_PATH}')
 
-main()
+# Guarded so seed_po_from_manifest.py can borrow receive() and pay() without importing this file
+# ALSO RUNNING the whole Fibridge chain. Run directly, it behaves exactly as before.
+if __name__ == '__main__':
+    main()
