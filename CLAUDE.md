@@ -4982,6 +4982,77 @@ deliver the 7-tab management report.
     final when we pass it — and gone soon after), 63, 68 (bite-proof), 85 and **91 (a check is not yours
     to skip — this rule is why the cost of skipping one can be total)**.
 
+93. **EVERY FINDING IS TICKET-GRADE BEFORE IT IS WRITTEN DOWN — SEARCH JIRA FIRST, MEASURE EVERY
+    FREQUENCY WORD, AND LET THE SCREEN DECIDE — INCLUDING FOR THINGS THAT ARE NOT THE TICKET (all
+    projects).**
+    USER DIRECTIVE (2026-10-02, verbatim): *"your such mistakes can get me bitten badly, you caught
+    your own mistake and now you stand corrected but you have to make a process to make sure that
+    such mistakes never happen… you should be doing your work ALWAYS in a way that you find these
+    mistakes in your first run without requiring to perform the second run."*
+    **THE FAILURE THIS CLOSES, NAMED EXACTLY: I held the TICKET'S VERDICT to ticket-grade rigour and
+    reported INCIDENTAL OBSERVATIONS as impressions.** On SV-10086 the verdict was measured four
+    times with the build marker read either side — and in the same report three "other things found"
+    went out unchecked. **All three were wrong**, and I only caught them because the QA lead asked
+    *"Are these the bugs?"*. **A second pass is not a safety net; it is luck.**
+    **THE RULE: an observation becomes a FINDING the moment it is written into a report, a Jira
+    comment, a chat update or a findings doc — and from that moment it carries the same burden of
+    proof as the ticket's own verdict.** There is no lower tier for "by the way, I also noticed".
+    **THE FIVE GATES, ALL OF THEM, BEFORE THE SENTENCE IS TYPED — not before posting:**
+    **(1) SEARCH JIRA FIRST, AND SEARCH ON THE ERROR STRING.** Before any observation is called a
+    finding, search the tracker for it: **the verbatim error text**, the symptom in plain words, the
+    endpoint, the screen, the feature. **Search ALL statuses — Done and Closed especially**, because
+    an existing ticket changes the finding completely and a *closed* one that still reproduces is a
+    far more valuable (and more urgent) report than a new bug. **The duplicate-search duty used to be
+    attached to FILING a ticket (Rules 51/52); it is hereby attached to REPORTING one.** That gap is
+    exactly what let three unchecked findings through: I was not filing, so nothing fired.
+    **(2) READ THE NEIGHBOURS — the parent, the siblings, and the PR review spillover.** The likeliest
+    home for a side observation is **a ticket raised from the review of the very ticket under test**.
+    On SV-10086 the wrong progress denominator was **SV-10578**, created from the review of
+    SV-10086's own PR and deliberately deferred — and reading it also handed me written confirmation
+    of the behaviour I was trying to prove. **Check the parent epic's children before calling anything
+    new.**
+    **(3) NO FREQUENCY WORD AND NO ABSOLUTE WITHOUT A COUNT.** *"intermittently"*, *"never"*,
+    *"always"*, *"often"*, *"sometimes"*, *"badly"*, *"consistently"* each require **n of m, measured
+    this pass**, or the word does not go in. I wrote *"intermittently returns an empty object"* having
+    measured nothing; it was **20 of 20** — not intermittent at all, and the opposite word.
+    **(4) THE SCREEN DECIDES, FOR SIDE OBSERVATIONS TOO (Standing Rule 89 applies here, not only to
+    the verdict).** An API-level oddity is **not a finding** until the user-facing surface has been
+    looked at. The empty payload broke nothing: the page rendered correctly on **4 of 4** loads
+    because it reads progress from a different endpoint. **An API observation reported as a defect
+    without opening the screen is the cheapest false FAIL there is.**
+    **(5) EVERY OBSERVATION LEAVES WITH AN EXPLICIT BUCKET.** Each one is labelled as exactly one of:
+    **(a) confirmed new defect** (searched, screen-checked, counted) · **(b) already tracked** (give
+    the key, the status and the resolution date) · **(c) explained and not a defect** (say what
+    explains it) · **(d) UNVERIFIED** (say so in those words, say what would settle it). **A bare
+    sentence with no bucket is non-compliant**, because the reader cannot tell which it is — and the
+    QA lead acting on an unbucketed line is how this bites him.
+    **COST IS NOT A DEFENCE, AND IT IS SMALL.** All three checks that would have prevented this took
+    **under five minutes in total**: four JQL searches, twenty API calls, four page loads. Rule 63's
+    economy is about skipping redundant *reads*, never about skipping the check that stops a false
+    report. **If there is genuinely no time, the observation ships as (d) UNVERIFIED — it never ships
+    as fact.**
+    **THE HONESTY HALF, AND IT IS THE POINT:** when a check overturns something I already said,
+    **say so plainly in the same breath, naming it as my own error** — as happened here with
+    *"intermittently"*. A correction that arrives quietly reads as a new fact and teaches the reader
+    nothing about how much to trust the rest.
+    **RATIONALE, 2026-10-02 (SV-10086, all three mine):** *(i)* **"The onboarding job never
+    completes… may need a ticket"** — it is **[SV-10338](https://shopview.atlassian.net/browse/SV-10338)**,
+    *"A go-live is redelivered every 5 minutes while it runs"*, **marked Done on 24 September**, whose
+    description documents the symptom from **this same workspace**, line for line, including the
+    verbatim error *"Previously imported inventory no longer has matching source evidence."* and the
+    new-run-id-restarting-from-zero behaviour. One JQL search on the error string found it. The real
+    report — *a ticket closed as Done still reproduces on staging* — is **more important than the new
+    bug I nearly proposed**, and I would have missed it. *(ii)* **"The progress estimate is badly
+    out"** — **SV-10578**, raised from SV-10086's own PR review and knowingly deferred; proposing it
+    would have looked like we had not read the ticket we were testing. *(iii)* **"intermittently
+    returns an empty object"** — not intermittent (20/20) and not user-facing (4/4 clean renders).
+    Ties to Standing Rules 12 (observed, never inferred — a characterisation is a claim), 25 (quote
+    the source), 44 (a contradicting signal is a bug report against our own conclusion), 50
+    (exhaustive and exact — now applied to side findings), 51/52 (whose duplicate-search duty this
+    moves earlier), 63 (cheap never means unchecked), 68 (bite-proof), 72 (the gate now audits the
+    buckets), 74/75 (account for every difference; configuration and existing tickets before
+    "defect"), 76, 83, 85, 89 (**the screen decides — extended here beyond the verdict**) and 91.
+
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
