@@ -103,22 +103,69 @@ A full-year backdate (01/01/2026) is refused by an unrelated inventory diagnosti
 
 ## Other things seen, not part of this ticket
 
-Reported, not filed, pending the QA lead's call:
+All three were chased down rather than left as impressions. **None of them is a new bug, and
+nothing was filed.** One of them matters a lot.
 
-1. **The onboarding job does not finish on this org.** Every run writes ~19,000 rows, reaches
-   phase 14/14 "Vendor credits", stalls for several minutes with no `finished_at`, then a fresh run
-   starts, skips everything already applied and fails. Observed failures:
-   *"Previously imported inventory no longer has matching source evidence."*,
-   *"A replay candidate changed after selection."* — and the run already on the org before this
-   pass began (22 Sep) had failed with *"A sealed replay manifest cannot gain new source
-   membership."* **This predates the pass** and is about the worker, not the request ordering.
-2. **The progress estimate is a long way out** — 8,497 expected against 18,983 written; 2,545
-   expected against 11,560+ written. The ticket itself calls this number *"only ever a hint"*, so
-   this is an observation rather than a defect.
-3. **`GET /api/accounting/settings/onboarding` intermittently returns an empty object** instead of
-   the workspace payload, recovering on a later call. Seen repeatedly throughout.
+### 1. The onboarding job never completes — this is SV-10338's exact symptom, on a ticket marked Done
 
----
+Every run on this org writes ~19,000 rows, reaches phase 14/14 "Vendor credits", stalls with no
+`finished_at`, and is then re-delivered: a **new run id**, starting from **zero written**, skipping
+everything already applied, ending in failure. Observed five times over the pass.
+
+[SV-10338](https://shopview.atlassian.net/browse/SV-10338) — *"A go-live is redelivered every 5
+minutes while it runs, so a successful run looks like it crashed"* — describes it line for line,
+from **this same workspace**:
+
+| SV-10338 says (from the 22/09 staging go-live) | what I measured on 02/10, build `v26.40.3-36ebbb0` |
+|---|---|
+| "first run reached Phase 14 of 14 with **18,170 written** · 0 skipped · 0 failed" | first run reached **phase 14/14** with **18,983 written** · 0 skipped · 0 failed |
+| "it then appeared to retry" | a new run started ~3.5 min later, five times over the pass |
+| retry showed "**0 written · 16,871 skipped** · 0 failed" | retries showed **0 written · 17,762 skipped** · 0 failed |
+| retry failed with "**Previously imported inventory no longer has matching source evidence.**" | failed with **the same string, verbatim** (also *"A replay candidate changed after selection."*) |
+| "a redelivery cannot recognise itself — it opens a new progress row and starts from zero" | every retry carried a **new `run_id`** and restarted at zero |
+
+**SV-10338 was moved to Done on 24 September 2026** by Dusan Bulovan. Its fix was to give the
+onboarding job *"its own transport and queue, with a visibility window sized for it"* — a
+`messenger.yaml` **and Terraform/SQS** change, not an application-bundle change.
+
+**I cannot tell from outside which of these it is**, and I am not guessing:
+- the infrastructure half may simply not be applied on staging, so staging still shares the
+  300-second queue;
+- or the fix regressed;
+- or the job now outlives even the new window.
+
+That needs a developer. It is **not a new ticket** — it is a question for SV-10338.
+
+**It does not change the SV-10086 verdict.** SV-10086 is about work on the *request* thread, and
+that is fixed. This is downstream, in the worker and its queue.
+
+### 2. The progress estimate being badly out — already ticketed, and deliberately deferred
+
+8,497 expected against 18,983 written. This is
+[SV-10578](https://shopview.atlassian.net/browse/SV-10578) (Board Backlog), raised **from the review
+of SV-10086's own PR #3155 and deliberately left out of it**. It even predicts the symptom:
+*"ends with a caption like '36,000 written · of about 19,000'"*.
+
+SV-10578 is also **independent documentary confirmation of what this pass measured live**:
+> *"SV-10086 moved the go-live forecast off the request thread and into
+> AccountingOnboardingJobHandler. The progress row is now written first and the forecast follows
+> via BackfillProgressRecorder::estimate()."*
+
+That is exactly the behaviour observed from outside — the run record appearing with
+`estimated_total: null`, the number arriving seconds later.
+
+### 3. The empty `settings/onboarding` response — my own earlier description was wrong
+
+I first wrote that `GET /api/accounting/settings/onboarding` *"intermittently"* returns an empty
+object. Checked properly, that is wrong on both counts:
+
+- it is **not intermittent** — with a run in progress it returned empty on **20 of 20** calls, all
+  HTTP 200; with no run active it returns the workspace normally;
+- it **does not break anything the user sees** — the screen was loaded four times in that state and
+  rendered correctly every time (5 cards, full content, the progress card reading "Bringing over
+  everything since 09/22/2026"), because the page takes the progress from the status endpoint.
+
+**Not a defect.** Recorded because the first description of it was mine and it was inaccurate.
 
 ## Environment left behind
 
