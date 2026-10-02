@@ -17,6 +17,7 @@
  *   GS_PREFLIGHT=off    skip it entirely
  */
 import { signIn, api, APP, type Session } from './fixtures/auth.js';
+import { IS_PROD } from './fixtures/boot.js';
 import * as fs from 'node:fs';
 
 // `seeder` is an explicit flag, NOT a string to match on. It was first written as a sentence and
@@ -148,6 +149,8 @@ export default async function preflight() {
       console.log(`\nfull-access login: ${n} permissions. A second login is configured — if it holds`);
       console.log(`the same ${n}, the permission comparisons cannot show a difference and will stand down.`);
     } catch { /* reported by the permission specs themselves */ }
+  } else if (!IS_PROD) {
+    console.log(`\nSecond person for the permission checks: quick-login key "${process.env.GS_LIMITED_KEY || 'tech'}".`);
   } else {
     console.log(`\nNo second login configured (GS_LIMITED_ENVF). The permission comparisons will stand down.`);
   }
