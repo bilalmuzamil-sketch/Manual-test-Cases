@@ -31,6 +31,14 @@ import { harvestAnchors, broadTerm, entityTerms, type LiveAnchors } from '../fix
  */
 const FULL_ENVF = process.env.PROD_ENVF || '/tmp/shopview/prod-gs.env';
 const LIMITED_ENVF = process.env.GS_LIMITED_ENVF || '/tmp/shopview/prod-login-limited.env';
+// 🔴 OFF PRODUCTION THE SECOND PERSON IS A QUICK-LOGIN KEY, NOT A PASSWORD. Measured on staging
+// 2 October 2026: `admin` holds 59 permissions and every area; `tech` is a Technician with 6 —
+// work orders and customers/assets, but NOT parts, part sales or vendors. That is a genuine
+// difference to compare, available unattended from the same Google session, and it needs no
+// shared role edited. (On production the lower-permission PASSWORD login had drifted to all 58
+// permissions because its role is shared with three other staff — see the README.)
+const LIMITED_KEY = process.env.GS_LIMITED_KEY || 'tech';
+const FULL_KEY = process.env.GS_LOGIN_AS || 'admin';
 
 type Who = { s: Session; perms: string[]; label: string };
 let full: Who, limited: Who;
@@ -45,7 +53,7 @@ async function permsOf(s: Session): Promise<string[]> {
 }
 
 test.beforeAll(async () => {
-  full = { s: await signIn('/customers', undefined, FULL_ENVF), perms: [], label: 'the full-access person' };
+  full = { s: await signIn('/customers', undefined, FULL_ENVF, FULL_KEY), perms: [], label: 'the full-access person' };
   full.perms = await permsOf(full.s);
   console.log('build under test:', await buildMarker(full.s.page));
   console.log(`full-access account: ${full.perms.length} permissions`);
@@ -56,7 +64,7 @@ test.beforeAll(async () => {
 test.beforeAll(async () => {
   // 🔴 SIGNING IN SECOND DOES NOT EVICT THE FIRST: they are different people, and the session is
   // per account. Signing in as the SAME person twice is what ends the earlier session.
-  limited = { s: await signIn('/customers', undefined, LIMITED_ENVF), perms: [], label: 'the lower-permission person' };
+  limited = { s: await signIn('/customers', undefined, LIMITED_ENVF, LIMITED_KEY), perms: [], label: 'the lower-permission person' };
   limited.perms = await permsOf(limited.s);
   console.log(`lower-permission account: ${limited.perms.length} permissions -> ${limited.perms.slice(0, 12).join(', ')}`);
 });

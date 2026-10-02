@@ -218,7 +218,7 @@ export async function signInWithPassword(
     }
     if (!ok) { await browser.close(); throw new Error(`sign-in did not leave /login (still ${page.url()})`); }
   } else {
-    log(`signed in as ${user}`);
+    log(`signed in as ${user} — shop: ${await selectWorkplace(ctx)}`);
     /**
      * 🔴 SET THE SESSION WITH addInitScript, BEFORE ANY PAGE LOADS, AND IN THE APP'S OWN SHAPE.
      * Writing localStorage with `page.evaluate` after navigating is too late — the app has already
@@ -263,6 +263,51 @@ export async function signInWithPassword(
  * site bounces to a Google sign-in page; a domain-scoped duplicate makes the server read the stale
  * one and answer 409. A Google sign-in screen here means a cookie is missing or has expired.
  */
+/**
+ * The shop the seeder fills, per environment. GS_WORKPLACE overrides. Matched by "contains", the
+ * way the seeder matches it, so "Staging Heavy Duty" finds "Staging Heavy Duty - 9919".
+ */
+export function workplaceHint(): string {
+  if (process.env.GS_WORKPLACE) return process.env.GS_WORKPLACE;
+  if (IS_PROD) return 'Trucks Hill 2';
+  if (IS_STAGING) return 'Staging Heavy Duty';
+  return 'Heavy Duty';
+}
+
+/**
+ * Sign the session into the shop the data was seeded into.
+ *
+ * 🔴 PARTS SEARCH IS SCOPED BY SHOP. Measured on staging 2 October 2026 with the same session,
+ * same records, nothing else changed:
+ *     in "Staging Lethbridge - 4310"   ZZKRYPTON -> nothing        PERTAB-7001 -> nothing
+ *     in "Staging Heavy Duty - 9919"   ZZKRYPTON -> 3 parts        PERTAB-7001 -> 1 part
+ * Customers, vendors and assets came back from either shop, so a run signed into the wrong one
+ * looks almost healthy and reports the seeded PARTS as missing — a false "no data" that the
+ * seeder's own check (which works inside the right shop) would never reproduce.
+ *
+ * Never falls back to "the first shop": on production the first one is a different shop from
+ * the one the data lives in, and seeding or testing the wrong shop is silent and wrong.
+ */
+export async function selectWorkplace(ctx: BrowserContext): Promise<string> {
+  const hint = workplaceHint();
+  const r = await ctx.request.get(`https://${APIH}/api/staff/my-workplaces`,
+    { headers: { Accept: 'application/json' }, ignoreHTTPSErrors: true });
+  if (r.status() !== 200) throw new Error(`could not list workplaces (HTTP ${r.status()})`);
+  const d = (await r.json())?.data;
+  const list: any[] = Array.isArray(d) ? d : (d?.workplaces || d?.collection || []);
+  const pick = list.find((w) => String(w?.name || '').toLowerCase().includes(hint.toLowerCase()));
+  if (!pick) {
+    throw new Error(`no workplace on ${APP} matches "${hint}". It has: `
+      + `${list.map((w) => w?.name).join(' · ')}. Set GS_WORKPLACE to one of these.`);
+  }
+  const c = await ctx.request.post(`https://${APIH}/api/iam/change-location`, {
+    data: { workplace_id: pick.id, workplace_timezone: pick.timezone || 'America/Edmonton' },
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, ignoreHTTPSErrors: true,
+  });
+  if (c.status() !== 200) throw new Error(`could not switch to "${pick.name}" (HTTP ${c.status()})`);
+  return String(pick.name);
+}
+
 /** The Google session cookie, from the environment or the staging env file. Never logged. */
 export function ssoCookie(): string {
   const f = readEnvFile(process.env.GS_STAGING_ENVF || '/tmp/shopview/gs-staging.env');
@@ -330,7 +375,7 @@ export async function signInWithSso(route = '/customers', opts: { key?: string; 
       : `quick-login answered HTTP ${r.status()}.`;
     throw new Error(`Could not sign in to ${APP}: ${why}`);
   }
-  log(`signed in through quick-login as "${key}"`);
+  log(`signed in through quick-login as "${key}" — shop: ${await selectWorkplace(ctx)}`);
 
   // The app's own signed-in state, in its own shape, before any page loads — the same three
   // writes the production sign-in makes (see signInWithPassword for why each one matters).
@@ -532,8 +577,11 @@ export async function boot(route = '/customers', opts: { envFile?: string; key?:
   //   2. anything else    the Google session cookie     (scriptable — one secret, GS_SSO)
   //   3. a saved session  from `npm run login`           (one person, once)
   //   4. pasted cookies + Local Storage                  (the old manual route, kept as a fallback)
-  if (IS_PROD || opts.envFile) return signInWithPassword(route, opts);
+  // A password file only means something where there are passwords. Off production the same
+  // request is answered by a quick-login KEY (admin, tech) behind the Google session.
+  if (IS_PROD) return signInWithPassword(route, opts);
   if (ssoCookie()) return signInWithSso(route, opts);
+  if (opts.envFile) return signInWithPassword(route, opts);
   if (fs.existsSync(authStatePath())) return signInWithSavedState(route);
   return IS_STAGING ? signInStaging(route, opts) : signInWithPassword(route, opts);
 }

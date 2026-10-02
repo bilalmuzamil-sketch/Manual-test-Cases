@@ -44,7 +44,7 @@ function proxy() {
 
 export type Session = { browser: Browser; ctx: BrowserContext; page: Page };
 
-export async function signIn(route = '/work-orders', device?: string, envFile?: string): Promise<Session> {
+export async function signIn(route = '/work-orders', device?: string, envFile?: string, key?: string): Promise<Session> {
   // Each environment signs in its own way — production by password, staging through its DEV MODE
   // panel — and `fixtures/boot.ts` holds both, with nothing required that an ordinary machine lacks.
   /**
@@ -58,7 +58,7 @@ export async function signIn(route = '/work-orders', device?: string, envFile?: 
    * 🛑 A FRESH LOGIN EXPIRES THE SAME USER'S PREVIOUS SESSION. Sign in ONCE per run and reuse it;
    * run with `--workers=1` or two workers log each other out and both report a broken environment.
    */
-  const b = await boot('/customers', { envFile, key: process.env.GS_LOGIN_AS });
+  const b = await boot('/customers', { envFile, key: key || process.env.GS_LOGIN_AS });
   b.page.setDefaultTimeout(Number(process.env.GS_TIMEOUT || 60_000));
   if (route && route !== '/customers') {
     // Sign in on a route the environment definitely has, THEN go where the test asked. Handing the
