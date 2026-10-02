@@ -171,13 +171,25 @@ without being asked.
 
 ---
 
-## 5. Criterion 6 — the manual-return legs, re-checked
+## 5. Criterion 6 — the manual-return legs: create, cancel AND credit all PASS
 
-Create and credit pass, as before. **Cancel Return is still inert on this build**: the row menu
-opens, the dialog appears (*"This will permanently delete the return…"*), **Yes** is enabled, clicking
-it closes the dialog and **no request is sent**; the return is still listed afterwards. Production
-behaves identically, so it is pre-existing and outside this ticket — the same conclusion as last
-time, now re-confirmed on the rebuilt branch.
+**🔴 RETRACTED — "Cancel Return is inert" was WRONG, and it was wrong on 1 October too.**
+**Cancel Return works. It is a TWO-STEP confirmation and I only ever clicked the first step.**
+
+| Click | What happens |
+|---|---|
+| ⋮ menu → **Cancel Return** | the dialog opens: *"This will permanently delete the return. You cannot undo this action…"* with **No** / **Yes** |
+| **Yes** (1st click) | **the dialog stays open and the same button relabels itself to "Are You Sure?"** — this is the step I kept mistaking for "nothing happened" |
+| **Are You Sure?** (2nd click) | **`POST /api/part/manual-return-request/{id}/cancel` → HTTP 204**, the dialog closes, and the return is gone (verified by reload) |
+
+Proven live 2 October on `ZZAUTOTEST-CANCELTEST-OCT2` (`c24025ed-a5ea-4d2b-b20d-dd9865a30bcb`),
+created for the purpose: present before, **absent after a full page reload**.
+
+**This also explains the "mystery" of §9b** — `ZZAUTOTEST-10406-CANCEL` had not been spirited away by
+anyone; it was almost certainly cancelled normally, by someone who clicked the second button.
+
+**The production half of the old claim is withdrawn as well** — production was exercised the same
+wrong way, so *"production behaves identically"* was never evidence of anything.
 
 ---
 
@@ -284,7 +296,12 @@ entry **#4390**, and a **Lines** table whose only row is **`1300 Parts Inventory
 with ShopView: Parts → Returns → **Credits** tab → that memo → Sub total **$236.82**, Tax **$11.84**,
 Total **$248.66**. Exhibit `ev/05-where-to-find-the-tax-item.png`.
 
-### 9b. Cancel Return — RE-VERIFIED LIVE ON A RETURN CREATED FOR THE PURPOSE
+### 9b. Cancel Return — ⚠️ SUPERSEDED BY §5: THE DEFECT IS NOT REAL. Kept for the record.
+
+**Everything below was written before I clicked the second confirm button. Cancel Return WORKS —
+see §5.** The steps below are accurate right up to the final click, which is where the error was.
+
+#### (superseded text)
 
 **The record used on 1 October (`ZZAUTOTEST-10406-CANCEL`) is GONE from the branch** — not in the
 Returns tab, not in Credits, not retrievable. Somebody removed it between 1 and 2 October; it was
@@ -328,5 +345,6 @@ closed.
 2. ~~`change-item`~~ — **CLOSED** by the QA lead's ruling of 2 October: *"If it is working in the
    UI then ignore it for now."* API-only, not filed, not pursued (Standing Rule 94).
 3. **Whether to raise the onboarding Go live button** (§6).
+4. ~~Cancel Return~~ — **no ticket; it is not a defect.** Two-step confirm, works (§5).
 
 Nothing else outstanding on this ticket.
