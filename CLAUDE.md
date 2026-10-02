@@ -5053,6 +5053,47 @@ deliver the 7-tab management report.
     buckets), 74/75 (account for every difference; configuration and existing tickets before
     "defect"), 76, 83, 85, 89 (**the screen decides — extended here beyond the verdict**) and 91.
 
+94. **AN API-ONLY FAULT IS NEVER FILED — REPORT THE UI-vs-API SPLIT TO THE QA LEAD AND ASK (all
+    projects).**
+    USER DIRECTIVE (2026-10-02, verbatim): *"If that is API only and can not be reproduced through
+    the UI - you do not need to file it rather always tell me if somehting is working through UI and
+    not through API and if I want to get it reported or not, make it a rule for yourself."*
+    **THE RULE, both halves:**
+    **(a) DO NOT FILE IT.** A fault reachable **only** by calling an endpoint directly — in a shape
+    the product's own screens never send, so no user and no manual tester can ever meet it — **is not
+    raised as a ticket at all.** This **hardens Standing Rule 51** from *"ask before filing"* to
+    *"do not file; report and ask."* The reachability test is unchanged and is the whole decision:
+    **if the same failure also happens through the product's own screens it is USER-FACING** and
+    follows the ordinary route (Rule 83's reproduction format, filed on its merits). *A 500 in a
+    response is technical evidence; it is not what makes something API-only.*
+    **(b) ALWAYS TELL HIM, AND ALWAYS ASK.** Every time the UI and the API disagree — **it works on
+    screen but not through the API, or it works through the API but not on screen** — say so, in
+    plain words, and **ask whether he wants it reported**. Never decide silently in either direction:
+    not by filing it, and **not by leaving it out because it looked like noise.** The report is one
+    or two sentences: *what works where*, *whether a user can reach it*, and *the explicit question
+    — do you want this raised?*
+    **WHERE IT GOES.** The QA comment states it as an honest limit (*"this path could not be
+    verified"*) **without** a ticket; the detail lives in the findings doc (Rule 84); and the open
+    question goes into the **OUTSTANDING-ITEMS REGISTER** (Rule 36) until he answers. **An unanswered
+    ask is an outstanding item, never a closed one.**
+    **READ IT WITH RULES 24 AND 89, WHICH IT COMPLETES.** **Rule 24:** front-end blocks + back-end
+    allows = **a PASS**, not a defect. **Rule 89:** the **screen** decides a verdict; an API value
+    alone may never FAIL a ticket. **Rule 94:** and where the API alone is genuinely faulty, that is
+    **his call to raise, not ours to file.** Together: the user-facing surface decides what passes,
+    what fails, and what gets a ticket.
+    **RATIONALE, 2026-10-02 (SV-10406):** the ticket names two back-end paths that drop decimals.
+    `add-item` passed; **`change-item` returned HTTP 500 on every call** (1.5, 0.5, 1.25, against
+    both an item created on screen and one created through the back end). **No screen in the product
+    calls that path**, so no user can reach it. I had left it open as *"whether you want it raised"*
+    — the QA lead's ruling settles the general case: do not file it, tell him, and let him decide.
+    Ties to Standing Rules 7 (plain layman wording for the ask), 12 (observed, never inferred), 24
+    (**FE-blocks/BE-allows is a PASS**), 36 (an unanswered ask is an OUTSTANDING item), 51 (**which
+    this hardens**), 52/53 (ticket shape and priority, when one IS raised), 63(a) (an API-surface
+    ticket is tested at the endpoint), 83 (a user-facing failure owes reproduction steps), 84 (the
+    technical record lives in the findings doc), 85/91 (an honest limit is named, never used to hide
+    a skipped check) and 89 (**the screen decides the verdict — this rule says the screen also
+    decides what earns a ticket**).
+
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
