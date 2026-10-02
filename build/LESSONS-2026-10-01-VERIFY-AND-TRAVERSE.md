@@ -33,12 +33,29 @@ Any cases created from now on go into their own clearly-named folder (the "QA Ad
 Mudassir's section 20481), never mixed into an existing feature folder, so provenance and scope stay
 clear and nothing silently overwrites another author's work.
 
-## Standing check to run before saying a feature/suite is done
+## L5 — ALWAYS RUN A RIGOROUS COVERAGE CHECK BEFORE SAYING A SUITE IS COMPLETE (QA lead, 2026-10-02).
+Ordered after the Chunk-2 authoring: *"'Let me do a rigorous coverage check' — save it as your rule, you
+should always do that."* This is now a MANDATORY, every-time gate (not optional, not only when prompted),
+and it is the concrete defence against the Mudassir-gap failure (L2). Before declaring ANY suite complete:
+1. **Traverse the epic** — JQL `parent = <epic>`, list EVERY child, confirm the exact story set the suite
+   is meant to cover (which chunk/scope each belongs to), and prove no whole story was skipped.
+2. **Per-requirement anchor coverage (Rule 43)** — extract EVERY requirement anchor from the source
+   (every `Sx-Ry / Nz / Ew`), extract every anchor CITED across the live cases, and DIFF. Every source
+   anchor is either cited by a case OR carries a written verdict (e.g. "spec-delivery note, not a product
+   test; covered by <case>"). No silent omission. Script it (Rule 88); show the diff.
+3. **Per-source verdict (Rule 115)** — PRD ✓, design ✓, epic children ✓, tech plan ✓, with what was
+   covered / excluded and why.
+Report the coverage proof (traversal + anchor diff) as evidence; a suite is "complete" only after it is
+shown, never asserted. Worked example: `build/maintenance-reminder-v2/chunk-2/COVERAGE-VERDICT-2026-10-02.md`.
+**Proposed for promotion to a numbered Standing Rule (Rule 72); binding until then.**
+
+## Standing check to run before saying a feature/suite is done (now L5, mandatory every time)
 1. Live format audit (preconditions are discrete lists, not paragraphs; titles ≤ ~80; Rule-117 shape) —
    show the counts.
 2. Epic-to-coverage map (every epic child vs our cases) — show the gap list.
-3. Per-source coverage verdict (Rule 115): PRD ✓, design ✓, epic children ✓, tech plan ✓.
-Only after all three, with evidence shown, is it reported complete.
+3. Per-requirement anchor coverage diff (every source anchor cited or verdicted) — show the diff.
+4. Per-source coverage verdict (Rule 115): PRD ✓, design ✓, epic children ✓, tech plan ✓.
+Only after all four, with evidence shown, is it reported complete.
 
 ## L4 — PLAIN LANGUAGE, ALWAYS. Spell out every abbreviation; give every question full context.
 Failures (QA lead, 2026-10-01): I wrote "MR" without ever expanding it to "Maintenance Reminders",
