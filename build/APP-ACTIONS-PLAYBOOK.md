@@ -1367,6 +1367,49 @@ items are **gated by permission** (a hidden item means the role lacks the perm).
 - **Create a WO FROM a slot (SV-9519):** click a tech's time cell → menu `menu_schedule_new_work_order` → dialog (`select_customer_select`, `select_company_vehicle_select`, `checkbox_is_vehicle_here`, `button_save_work_order`). The create payload carries the slot context — `POST /api/work-orders/create {..., scheduled_start, assigned_staff_id}` → the shift is created atomically and appears on that tech's row (verify via `GET /api/schedule/board?from=..&to=..` → `board.shifts[].staffId` == the row's `data-staff-id`).
 - **Schedule board data:** `GET /api/schedule/board?from=<ISO>&to=<ISO>` → `{data:{board:{shifts,events,series,capacity,workingWindows}}}`; each shift has `staffId,startsAt,endsAt,durationMinutes,workOrder{number,...}`. (Older calendar `/api/calendar` is the legacy view.)
 
+#### Schedule: events, business hours and the Day-view window (proven 2026-10-02, SV-8552)
+- **Day-view window (business-hours build):** the day opens on the shop's saved hours for that date,
+  stretched to fill the timeline. Exact, and it held on every day measured:
+  `pxPerHour = floor((timelineWidth - 4) / windowHours)` and
+  `scrollLeft = round(openHour * pxPerHour) - 4`. The 4 px is a deliberate lead-in; any remainder
+  shows as a few minutes past closing at the right edge (<= 8 px). Minimum hour width is **52 px/h**;
+  when the window will not fit at that width the view falls back to the old behaviour (and on **today**
+  opens ~30 min before now). Closed days and locations with no saved hours use the same 52 px/h 24-hour grid.
+- **Measure it reliably:** fit the hour labels' x against their hour value by least squares (residual
+  ~0.4 px) rather than taking a median gap — a rounded integer px/hour drifts ~11 min over a 13-hour window.
+- **Create an event:** click a technician cell -> `schedule_cell_menu` -> `menu_schedule_create_event` ->
+  `dialog_schedule_event_form` (`input_event_title`, `checkbox_event_all_day`, `input_event_start_date`,
+  `select_event_start_time`, `input_event_end_date`, `select_event_end_time`, `button_event_color`,
+  `input_event_note`, `button_event_confirm`). API: `POST /api/schedule/events`
+  `{title,staffId,departmentId,startsAt,endsAt,color,note}` -> 201. Move = `PATCH /api/schedule/events/{id}`
+  `{startsAt,endsAt,reassign,changeNote}` -> 200. Delete = `DELETE /api/schedule/events/{id}` -> 204.
+  An **all-day** event is simply 00:00 -> 23:59 local (the Edit dialog shows "All day" ticked).
+- **Multi-day work-order shift:** `POST /api/schedule/shifts` with `totalMinutes` > one day
+  (e.g. 1800) and `spreadMode:'single'` -> one shift spanning two dates. An empty POST names the
+  required fields (`line_ids`, `start_date`, `spread_mode`).
+- **Dragging a sidebar work order onto a lane WORKS in-harness** — mouse down, 3-4 small moves to clear the
+  drag threshold, then ~24 steps with 55 ms pauses, pause, mouse up. **A drop that writes nothing is usually
+  the product refusing it**, not a failed drag: a WO with no estimated hours gives the dialog *"Estimate
+  required - ... Shifts are sized from the estimate"*. Pick a sidebar card that shows `Est.` hours.
+- **Blocks:** `[data-test-id="schedule_event_block"]`, class `schedule-block` + `--event` / `--shift` /
+  `--continues-before` / `--continues-after` / `--pinned-text`. The name is `.schedule-block__text`
+  (`position: sticky`, `left: 8px`) and stays at the timeline edge while the bar is cut off — but it can
+  never leave its own bar, so on a narrow Week-view bar it scrolls away once the bar is thinner than the label.
+- **Business hours:** Administration -> Locations -> row's `button_edit_workplace` -> `toggle_business_hours`
+  + `select_business_hours_{from,to}_{day}_{n}`. **Option text is prefixed with the check icon** — match
+  `innerText.replace(/^check\s*/,'')`, not the bare time. Save = the **Save & Close** button ->
+  `POST /api/workplaces/change` (the whole workplace object). Read what the schedule actually uses from
+  `GET /api/schedule/board?from=&to=` -> `board.workingWindows[]` where `staffId === null`:
+  `hoursSource` is `business` when hours are saved and `default` (7:00-19:00) when they are not.
+- **Switching location must go through the UI.** `POST /api/iam/change-location` moves the server session
+  (the board API returns the new location) but the SPA keeps rendering the old one. Use the profile menu ->
+  **Change Location** -> the current location row -> pick from the list that opens (two clicks, not one).
+- **Other controls:** `schedule_filter_display_menu` holds `toggle_schedule_department_<id>` (focus + Space),
+  `toggle_schedule_my_shifts`, `toggle_schedule_show_vin`; `button_schedule_{today,prev,next}`;
+  `text_schedule_range`; `schedule_view_toggle` (Day/Week/Month, leaf text); mini calendar
+  `button_mini_calendar_day_YYYY-MM-DD`; department collapse = `.fc-datagrid-expander`; the names/timeline
+  divider = `.fc-resource-timeline-divider`.
+
 #### Labor line: estimated vs ACTUAL hours + clocking (SV-9500, proven 2026-08-28)
 - **Estimate** = line `time_estimate` (stored in **MINUTES**; 60 = 1.0h). **Actual** = the technician's **clocked** time (start/stop), surfaced as the line's real clocked hours (the Schedule + sidebar use this, NOT the raw `total_labour_time` field which can be inflated by a container-vs-server timezone gap on an open punch).
 - **New Line dialog** (`dialog_line`; a 0-line WO auto-opens it): `select_line_canned_line` ("What are you doing" — pick a canned line to auto-fill labour type/rate), `input_line_description`, `select_line_roster_add_technician` (Add Technician to roster — must have a workplace tech), `input_time_estimate` (Estimated time, hours), `input_tech_time` (Tech time, hours), `button_save_close` / `button_save_add_line`. Create-from-canned = `POST /api/work-orders/{wo}/lines/create-from-canned-line` → 201.
