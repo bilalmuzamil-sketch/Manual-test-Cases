@@ -186,6 +186,35 @@ reads are scoped the same way. So the seeder and every test sign into the same s
 `Staging Heavy Duty`, production `Trucks Hill 2` — and refuse to guess if it is missing. `GS_WORKPLACE`
 overrides.
 
+## Running it in CI, or headed on your own machine
+
+Both work with the ordinary Playwright commands.
+
+```bash
+npx playwright test                        # headless — what CI runs
+npx playwright test --headed               # watch it in a real browser window
+npx playwright test --headed --grep @C44809    # watch just one case
+GS_SLOWMO=400 npx playwright test --headed # slowed down enough to follow
+npx playwright test --ui                   # Playwright's UI mode
+npx playwright test -c build/global-search/e2e/playwright.config.ts   # from the repository root
+```
+
+Three things to know, because each one used to break a run outside this folder:
+
+- **`--headed` really is headed.** The suite opens its own browser rather than Playwright's, so the
+  flag used to be silently ignored. It is now passed on to every worker (`--headed`, `--debug`,
+  `--ui`, or `GS_HEADED=1`).
+- **It runs from any directory.** The suite's data files live in `data/` and are found relative to
+  the code, so running Playwright from the repository root works the same as from this folder.
+- **One worker only — and it refuses more.** Each sign-in ends that account's previous session, so
+  parallel workers log each other out. `--workers=4` or sharding stops the run before seeding, with
+  that reason, instead of failing every test as if staging were down.
+
+**For CI**, `ci/github-actions-example.yml` is a ready workflow (manual trigger; nightly and pull
+request triggers are there, commented out). It needs one repository secret, `GS_SSO`, plus Node,
+Python 3 and `npx playwright install --with-deps chromium`. It is an example, not switched on — turning
+CI on is the team's decision.
+
 ## Running it on Claude — on a pull request, and every night
 
 The same `npm test` runs in Claude's cloud environment, unattended. Nothing in it needs a window or a
