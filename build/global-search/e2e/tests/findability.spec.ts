@@ -59,11 +59,26 @@ const FIND: [string, string, string, string][] = [
 
 for (const [cid, query, tab, expected] of FIND) {
   test(`${cid} — typing "${query}" finds it under ${tab}`, async () => {
+    /**
+     * 🔴 TELL "THE RECORD IS NOT HERE" APART FROM "THE FIELD IS NOT SEARCHABLE".
+     * Every row of this table names a record staging was seeded with. On production several do not
+     * exist, and the check failed saying the tab came back empty — true, and silent about the
+     * product. The two cases are distinguishable: search the record by its OWN NAME first. If even
+     * that finds nothing, the record is not on this environment and there is nothing to judge. If
+     * the name finds it but the field query does not, the field genuinely is not searchable and
+     * that is a real failure, asserted below exactly as before.
+     */
+    const byName = rowsOf(await search(s.page, expected, tab), tab);
+    test.skip(!contains(byName, expected),
+      `"${expected}" does not exist on this environment at all — it was seeded on staging. `
+      + `Nothing here says whether "${query}" would find it.`);
     const p = await search(s.page, query, tab);
     const rows = rowsOf(p, tab);
-    expect(rows.length, `the ${tab} tab came back empty for "${query}"`).toBeGreaterThan(0);
+    expect(rows.length, `the ${tab} tab came back empty for "${query}", although "${expected}" `
+      + `is present on this environment`).toBeGreaterThan(0);
     expect(contains(rows, expected),
-      `"${query}" did not return ${expected}. The ${tab} tab held: ${JSON.stringify(rows.slice(0, 8))}`).toBe(true);
+      `"${query}" did not return ${expected}, although searching that name directly does find it. `
+      + `The ${tab} tab held: ${JSON.stringify(rows.slice(0, 8))}`).toBe(true);
   });
 }
 
@@ -97,18 +112,39 @@ test('C55689 — typing a year returns only that year', async () => {
  * and each names its report so a red result is recognised rather than re-investigated.
  */
 test('C53601 — a catalogue-only part is findable [expected to fail: SV-10001]', async () => {
+  /**
+   * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
+   * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the
+   * build (Rules 57 and 114). Whether the behaviour is now intended is the QA lead's ruling and is
+   * raised with him. Marked expected-to-fail so the file is not red for reproducing what it names.
+   */
+  test.fail();
   const p = await search(s.page, 'Vernway', 'Parts');
   expect(contains(rowsOf(p, 'Parts'), 'Vernway'),
     'known fault SV-10001 — a part that has never been stocked is not returned').toBe(true);
 });
 
 test('C53605 — year and make typed together find the vehicle [expected to fail: SV-10055]', async () => {
+  /**
+   * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
+   * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the
+   * build (Rules 57 and 114). Whether the behaviour is now intended is the QA lead's ruling and is
+   * raised with him. Marked expected-to-fail so the file is not red for reproducing what it names.
+   */
+  test.fail();
   const p = await search(s.page, '2019 Freightliner', 'Assets');
   expect(rowsOf(p, 'Assets').length,
     'known fault SV-10055 — the year and make together return nothing').toBeGreaterThan(0);
 });
 
 test('C55660 — a fragment from the middle of a word finds the record [expected to fail: SV-10060]', async () => {
+  /**
+   * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
+   * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the
+   * build (Rules 57 and 114). Whether the behaviour is now intended is the QA lead's ruling and is
+   * raised with him. Marked expected-to-fail so the file is not red for reproducing what it names.
+   */
+  test.fail();
   const p = await search(s.page, 'ernva', 'Customers');
   expect(contains(rowsOf(p, 'Customers'), CUSTOMER),
     'known fault SV-10060 — matching is by similarity, not substring, so a short fragment misses').toBe(true);

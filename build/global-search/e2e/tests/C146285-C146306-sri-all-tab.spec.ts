@@ -83,11 +83,10 @@ test('C146285 — a tab\'s count equals the number of rows inside it', async () 
 
 test('C146286 — no count anywhere reads higher than 20 [expected to fail: SV-10320]', async () => {
   /**
-   * 🔴 THE ALL TAB COUNTS PAST THE LIMIT THE OTHER TABS RESPECT — raised as SV-10320, whose status
-   * read live from Jira on 2 Oct 2026 is **OBSOLETE**. A closed ticket is not a spec change, so the
-   * expectation here STAYS and is not edited to match the build (Rules 57 and 114). Whether this
-   * behaviour is now intended is the QA lead's ruling; it is raised with him, not settled here.
-   * Marked expected-to-fail so the file is not red for reproducing a fault it names.
+   * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
+   * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the
+   * build (Rules 57 and 114). Whether the behaviour is now intended is the QA lead's ruling and is
+   * raised with him. Marked expected-to-fail so the file is not red for reproducing what it names.
    */
   test.fail();
   const p = await panelShape(s.page, BROADQ);

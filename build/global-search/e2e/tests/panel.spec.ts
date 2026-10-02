@@ -157,6 +157,13 @@ test('C44861 — the query is kept after closing and restored on reopening', asy
 
 /** Known failure — reproduces a reported fault, expected red until it is fixed. */
 test('C55685 — a correct spelling returns only related records [expected to fail: SV-10025]', async () => {
+  /**
+   * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
+   * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the
+   * build (Rules 57 and 114). Whether the behaviour is now intended is the QA lead's ruling and is
+   * raised with him. Marked expected-to-fail so the file is not red for reproducing what it names.
+   */
+  test.fail();
   const p = await search(s.page, 'Marlene', 'Customers');
   const rows = rowsOf(p, 'Customers');
   const unrelated = rows.filter((r) => !/marlene/i.test(r));

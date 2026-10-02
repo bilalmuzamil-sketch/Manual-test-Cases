@@ -155,9 +155,15 @@ for (const [cid, key] of IDS) {
     expect(exact.some(r => carries(r.text)),
       `the exact ${key} "${id}" does not come back at all, so nothing below is about the product. `
       + `rows seen (${exact.length}): ${exact.slice(0, 4).map(r => r.text.slice(0, 90)).join(' // ')}`).toBe(true);
-    // one character changed, in the numeric tail
-    const broken = id.replace(/(\d)(?!.*\d)/, d => (d === '9' ? '8' : String(Number(d) + 1)));
-    expect(broken, 'could not damage the identifier').not.toBe(id);
+    // 🔴 NOT EVERY IDENTIFIER HAS A DIGIT. The part number harvested here was
+    // "AFter Releas regression", so incrementing "the last digit" changed nothing and the check
+    // failed on its own setup rather than on the product. Change the last LETTER instead when
+    // there is no digit to change.
+    let broken = id.replace(/(\d)(?!.*\d)/, d => (d === '9' ? '8' : String(Number(d) + 1)));
+    if (broken === id) {
+      broken = id.replace(/([A-Za-z])(?!.*[A-Za-z])/, c => (c.toLowerCase() === 'z' ? 'y' : String.fromCharCode(c.charCodeAt(0) + 1)));
+    }
+    test.skip(broken === id, `"${id}" carries no digit or letter that can be changed, so it cannot be damaged`);
     const after = await rows(broken);
     expect(after.some(r => carries(r.text)),
       `searching "${broken}" still returned the record whose ${key} is "${id}" — §7 says identifiers bypass fuzzy logic and require an exact match`).toBe(false);
