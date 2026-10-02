@@ -20,3 +20,28 @@ a chart, empty state "No data for selected date range"). Clicking again collapse
 "Today" · "This Week" · "Last Week" · "This Month" · "Last Month" · "This Quarter" · "This Year" · "Last Year" ·
 "Last 12 Months" · "120 Days" · "Custom".
 ## STILL TO OBSERVE: report page drill-in (expand icon, S10/S11) · chart filters (S8) · chart hover/behavior (S9).
+
+## Reports pages (tile drill-in targets, S10/S11) — observed 2026-10-02, build v26.39.1-09be696
+# Evidence: reverify-2026-10-02/reports-landing.png, report-technician-efficiency.png, report-advisor-analysis.png
+Reports left rail sections + entries (the smallest element label each tester sees):
+  LABOR: "Timesheet Activities".
+  PERFORMANCE: "Sales" · "Technician Efficiency" · "Advisor Analysis" (rail label) · "Shop Efficiency" ·
+    "Work In Progress" · "Technician Utilization" · "Sales By Customer" · "Sales By Representative".
+  PARTS: "Parts Velocity" · "Inventory Value".  FINANCE: "Sales Tax Collected".
+  ACCOUNTS RECEIVABLE: "A/R Aging Summary/Detail/Collection".  ACCOUNTS PAYABLE: "A/P Aging Summary/Detail/Unpaid Invoices".
+  ACCOUNTING: "IBS Batches" · "QB Unexported" · "Export Reports".
+# NOTE (glossary): the PERFORMANCE rail shows "Advisor Analysis" but the REPORT PAGE'S OWN HEADING is
+#   "Service Advisor Analysis" (route /reports/service-advisor-analysis). Cases that name "Service Advisor
+#   Analysis" are build-accurate (page heading = smallest element that owns the title). C204098 confirmed OK.
+## A report page layout (Technician Efficiency /reports/technician-efficiency; same shell as Advisor Analysis)
+Heading = report name (e.g. "Technician Efficiency" · "Service Advisor Analysis").
+Filter row (one horizontal line, top-right): "Date: This month" dropdown (calendar icon) · report-specific filter
+  (e.g. "Advisor") · "⋯" (more actions) menu · "Hide Chart" / "Show Chart" toggle (chart icon).
+Embedded CHART panel sits ABOVE the data tabs; empty state in the chart = "No data for selected date range".
+Data TABS under the chart (Technician Efficiency): "Invoiced" · "Completed".
+Empty table state: "No record matches these filters" / "Try changing filters to widen your results."
+Technician Efficiency columns: Date · Invoice · Customer · WO Line · Clocked Hrs · Invoiced Tech Hrs · Hrs Profit · Efficiency.
+Service Advisor Analysis columns: Date · Invoice · Customer · Advisor · Days Open · Lines · Hrs Worked · Hrs Invoiced ·
+  Labor Delta · Billing Efficiency · ELR · Parts Cost · Parts Invoiced · Parts Profit · Parts Margin · Total Profit · T Subtotal.
+# Confirms build-accurate: C137997 (Vlad: Reports>Technician Efficiency, chart above tabs, This Month, No-data state),
+#   C204097 (chart axis — chart panel present), C204098 (Show/Hide Chart control on filter row w/ ⋯ menu, 4 chart reports).

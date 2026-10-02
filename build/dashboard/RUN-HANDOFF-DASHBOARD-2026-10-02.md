@@ -1,14 +1,16 @@
-# HANDOFF → RUN SESSION — Dashboard (54 manual cases)
-### Execute on QA branch **sv490.qa.shopview.com/dashboard** (build `v26.39.1-09be696`), record results. 2026-10-02.
+# HANDOFF → RUN SESSION — Dashboard (61 cases: 56 manual + 5 automated)
+### Execute on QA branch **sv490.qa.shopview.com/dashboard** (build `v26.39.1-09be696`), record results. 2026-10-02 (re-verified).
 
-**You are the run session.** The 54 manual cases (group **12166 "Dashboard (Sep 2026)"**) are build-verified on
-sv490: runnable, render `fr-view`, stamped *"Last checked against build v26.39.1-09be696 on 10/2/2026."*,
+**You are the run session.** The 61 cases (group **12166 "Dashboard (Sep 2026)"**, created_by=3) are build-verified on
+sv490: runnable, render `fr-view` (61/61 clean), stamped *"Last checked against build v26.39.1-09be696 on 10/2/2026."*,
 **AUTOMATION: READY**. Mark Passed / Failed / Blocked.
 
-- **Scope of this hand-off: 54 ours MANUAL cases** (created_by=3), 14 sections (S1–S12 + NF + DATA).
-- **NOT in this hand-off (handled per standards):**
-  - **5 AUTOMATED cases HELD (Rule 71 — need the QA lead's go-ahead to change): C88594, C88609, C88612, C88617, C88623.**
-  - **3 Vladimir's cases (user 1) — hands-off, untouched (Rule 38): C137997, C137998, C137999.**
+- **Scope of this hand-off: all 61 ours cases** (56 MANUAL + 5 AUTOMATED), 14 sections (S1–S12 + NF + DATA).
+  The 5 automated (C88594, C88609, C88612, C88617, C88623) were build-verified this pass under the QA lead's
+  2026-10-02 instruction; `custom_atmstatus` stays 3 (they remain flagged Automated in TestRail) — run them manually too.
+- **NOT in this hand-off:**
+  - **3 Vladimir's cases (user 1): C137997, C137998, C137999 — build-verified against sv490, found build-accurate,
+    LEFT UNCHANGED.** They are automated E2E specs (storage-state / API-seeded preconditions), run by automation, not a manual tester.
 - **Env:** sv490.qa.shopview.com / sv490api. Disposable (Rule 6/107). Access: 3 cookies → /tmp/cln/sv490-cookies.json
   (ask QA lead for fresh set). Boot `qa-branch-boot.mjs sv490 /dashboard admin`.
 
@@ -29,7 +31,17 @@ sv490: runnable, render `fr-view`, stamped *"Last checked against build v26.39.1
 ## Run + result writes — needs the QA lead's go-ahead (Rule 6)
 No manual run exists. Ask the QA lead to authorise a run over these 54, then record with push_results_to_run.py.
 
-## The 54 manual cases
+## The 61 cases (56 manual + 5 automated)
+### 5 automated cases (build-verified this pass; also run manually)
+| C-id | Section | Title |
+|---|---|---|
+| C88594 | S1 | Dashboard entry, landing and the six tiles (automated) |
+| C88609 | S5 | The At Risk Customers tile - headline, line, window control (automated) |
+| C88612 | S6 | View details expands each tile to its own detail content (automated) |
+| C88617 | S7 | Per-tile date ranges - options, updates and independence (automated) |
+| C88623 | S10 | Report drill-in from the tiles (automated) |
+
+### 56 manual cases
 | C-id | Section | Title |
 |---|---|---|
 | C88595 | S1 | Access gates and server-side enforcement |
@@ -86,13 +98,15 @@ No manual run exists. Ask the QA lead to authorise a run over these 54, then rec
 | C88650 | DATA | Internal consistency - headline, sparkline and table recon |
 | C88651 | DATA | Workplace scoping - every figure is for the selected workp |
 | C88652 | DATA | No stale window - the tile equals the report right after a |
+| C204097 | S9 | Chart axis starts at 0, and extends below 0 only for negative values |
+| C204098 | S11 | Show/Hide-chart control sits on the report filter row |
 
 ## OUTSTANDING — what I need from you (run session)
 | # | Item |
 |---|---|
-| 1 | QA lead go-ahead to create the manual run over these 54, then record Passed/Failed/Blocked. |
-| 2 | The 5 automated cases are HELD (Rule 71) — the QA lead decides whether to build-verify them; alert Vlad if changed. |
-| 3 | Vladimir's 3 cases are untouched (Rule 38). |
+| 1 | QA lead go-ahead to create the manual run over these 61, then record Passed/Failed/Blocked. |
+| 2 | The 5 automated cases were build-verified/edited this pass (per QA lead 2026-10-02) — QA lead to alert Vlad's team that the Dashboard automated cases changed. |
+| 3 | Vladimir's 3 cases were build-verified and found accurate — LEFT UNCHANGED. |
 
 **Standing holds:** no Jira/external artefact without the QA lead; automated cases never changed without him;
 Vladimir's never; run creation + result writes need his go-ahead; secrets never committed; QA branch disposable.

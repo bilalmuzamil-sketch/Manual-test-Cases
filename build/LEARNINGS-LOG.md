@@ -929,3 +929,23 @@ The QA lead directed: **stop ONLY when (a) you have a question for me, or (b) th
 Never pause to "check in" and wait. Keep working continuously across the whole task — observe, align, stamp,
 gate, report — committing as you go. The only legitimate stops are a genuine question put to him, or full
 completion of the task. Reinforces Rule 105 (never idle while work remains). Applies to every session.
+
+## 2026-10-02 — Build-verification must not hardcode an ephemeral QA branch host in preconditions
+A full re-verification of the Dashboard suite (group 12166, sv490) found ALL 61 of our cases hardcoded a DEAD QA
+branch host — "sv8311.qa.shopview.com" — in their preconditions (and 5 automated cases carried it inside their
+HOLD marker). The FIRST pass had stamped the build date and flipped markers but left this wrong host, because the
+label scan checked UI glossary terms, not environment hostnames. Lesson: (1) a QA branch is ephemeral, so a
+precondition must be BRANCH-AGNOSTIC — "on the build under test", never "(svNNNN.qa.shopview.com)"; the build is
+named only in the "Last checked against build vX" stamp (deliverable convention). (2) A re-verification is FULL
+(Rule 101) precisely to catch what a first pass's narrower scan missed — "already stamped" is not "already correct".
+(3) When scanning for stale paths, grep the raw case bodies for host patterns (svNNNN.qa.shopview.com), not only UI labels.
+Fix applied: removed the parenthetical host across 61 cases, substance-guarded at token level, served scan 61/61 fr-view.
+
+## 2026-10-02 — "Build-verify someone else's automated cases" ≠ convert them to manual
+QA lead authorised including Vladimir's cases in Dashboard build-verification (explicit override of Rule 38, surfaced
+per Rule 63). Vlad's 3 were automated E2E specs (template "Steps", storage-state / API-seeded preconditions, per-step
+expected). Build-verification of such a case = confirm its UI labels/paths are accurate on the build and align only a
+genuine mismatch — NOT rewrite its automation structure into layman steps (that destroys the spec and is a far bigger
+change than verification). They were build-accurate (Reports→Technician Efficiency, chart above tabs, "This Month",
+"No data for selected date range") so they were LEFT UNCHANGED. When the QA lead wants to be told of changes to another
+author's cases, "no change needed" is the best outcome and must be reported as such.
