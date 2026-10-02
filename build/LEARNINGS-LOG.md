@@ -5165,3 +5165,30 @@ holds no records at all does the check skip, with that as its stated reason.
 that names a specific record is a test with an expiry date on it. Either the run creates the record
 or the run finds one — never both trusted to a file written weeks ago. And a missing fixture must
 never produce a red that points at the product (Rule 104).
+
+### L0288
+**What happened:** the permission comparison checks compare a full-access login against a
+lower-permission one. Eleven of them stood down because the two logins no longer differ: the
+"lower-permission" account now holds **all 58 permissions**. Its role is **Technician**, and that
+role is **shared with three other staff accounts** — so the obvious fix, trimming the role back, is
+not a local change to my own test account. It would silently alter what three colleagues can do on
+production.
+**Also of note:** a role labelled *Technician* carrying 58 permissions is itself suspicious. Rule
+118 exists for exactly this — "Reset To Template" would say whether another session changed it.
+**Fix:** none applied. Surfaced for a decision rather than taken unilaterally, because the standing
+authorisation to edit roles (107) and the standing caution about outward-facing changes point in
+opposite directions when the role is shared.
+**Reusable rule:** before editing any role, **list who else holds it** (`/api/staff?limit=200`,
+compare `role_id`). "It is only a test account" is a claim about the account, not about the role —
+and permissions live on the role. A second login for permission testing needs a role **of its own**,
+held by nobody else, or it will be quietly widened by whoever else needs it.
+
+### L0289
+**What happened:** I predicted out loud that fixing the dead API host would convert skips into
+passes. The opposite happened: 252/86/0 became 217/116/5. The prediction was wrong because the two
+effects are unrelated — the fix restored the live record lookup, while the drop came from production
+records being deleted and from checks I had just changed to stand down rather than assert on data
+they could not trust.
+**Reusable rule:** do not narrate a predicted result before the run that produces it. State the
+change made and what will be measured; let the number speak. A prediction given to someone who
+trusts you becomes a claim, and retracting it costs more than never having made it.

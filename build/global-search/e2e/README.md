@@ -195,29 +195,45 @@ the reason it cannot be measured fairly:
 ## The run these were last verified by
 
 Every file below was run against **production** (`app.shopview.com`, build `v26.40.3-df33ae5`) on
-**2 October 2026**, after the suite was made portable — so these are the numbers you get from a
-clean checkout, not from one particular machine. **Nothing is failing.** 338 tests cover all 251
-checks that passed in run 415, counted live from TestRail rather than from a stored file.
+**2 October 2026**: **217 passed · 116 stood down · 5 failed**, 338 tests in 20 files.
 
-**Seeding is proven on staging**: `npm run seed` created its seven records there and they were
-searchable within a second. The staging *sign-in* needs one thing this suite cannot script — see
-below.
+🔴 **This replaces an earlier figure of 252 passed / 86 skipped / 0 failed, and the earlier figure
+should not be quoted.** It was not measuring what it appeared to. `fixtures/auth.ts` derived the API
+address from a QA branch that had been deleted, so the live record lookup used by 12 of the 20 files
+was failing on every run; and several checks were passing against records seeded on production that
+have since been cleaned up. Fewer checks pass now and more stand down. That is the suite no longer
+reporting a pass it has not earned — a stood-down check names what it could not establish, where a
+false pass is simply believed.
 
-| File | Passed | Skipped | Failed |
+**Why 116 stand down.** The largest groups, each with its reason printed in the run: records seeded
+once on production and since deleted (`ZZLONGROW`, `ZZKRYPTON`, `ZZSOFTHIT`, two `ZZAUTOTEST`
+records) · eleven permission comparisons that cannot run because the two logins no longer differ
+(see below) · six that need a technician role this environment does not have · a handful where the
+environment holds no record with the property under test (no customer postcode, no anchor carrying a
+dash).
+
+⚠️ **The permission checks need two logins that actually differ, and right now they do not.** The
+lower-permission account `bilal.muzamil+serviceadvisorlimitedview@shopview.com` holds **all 58
+permissions**, the same as the full-access one. Its role is **Technician**
+(`31e70dbe-8d9f-485b-9e32-457acd069743`), **shared with three other staff accounts**, so it must not
+be edited without asking — a change there changes what those people can do. Until the two logins
+differ, eleven checks stand down rather than report a pass they cannot support.
+
+| File | Passed | Stood down | Failed |
 |---|---|---|---|
 | `C146197-C146208-sri-work-orders.spec.ts` | 5 | 2 | 0 |
 | `C146202-C146282-sri-retest-full-value.spec.ts` | 28 | 0 | 0 |
 | `C146209-C146223-sri-customers.spec.ts` | 3 | 3 | 0 |
-| `C146224-C146284-sri-entities.spec.ts` | 42 | 0 | 0 |
+| `C146224-C146284-sri-entities.spec.ts` | 23 | 17 | 2 |
 | `C146285-C146306-sri-all-tab.spec.ts` | 19 | 3 | 0 |
 | `C44804-C55683-panel-keyboard.spec.ts` | 11 | 0 | 0 |
 | `access-and-location.spec.ts` | 0 | 6 | 0 |
 | `counts-and-ranking.spec.ts` | 4 | 1 | 0 |
-| `findability-matching.spec.ts` | 19 | 1 | 0 |
+| `findability-matching.spec.ts` | 9 | 9 | 2 |
 | `findability.spec.ts` | 13 | 13 | 0 |
 | `panel.spec.ts` | 11 | 0 | 0 |
-| `permissions-two-accounts.spec.ts` | 11 | 9 | 0 |
-| `ranking-order.spec.ts` | 4 | 7 | 0 |
+| `permissions-two-accounts.spec.ts` | 4 | 15 | 1 |
+| `ranking-order.spec.ts` | 5 | 6 | 0 |
 | `ranking-seeded.spec.ts` | 15 | 8 | 0 |
 | `recent-mobile-empty.spec.ts` | 7 | 0 | 0 |
 | `results-integrity.spec.ts` | 13 | 8 | 0 |
@@ -225,9 +241,34 @@ below.
 | `sri-distinguish-misc.spec.ts` | 14 | 11 | 0 |
 | `structure-and-scoping.spec.ts` | 8 | 5 | 0 |
 | `tabs-groups-navigation.spec.ts` | 14 | 2 | 0 |
-| **Total** | **252** | **86** | **0** |
+| **TOTAL** | **217** | **116** | **5** |
 
-### What a skip means here, and why there are 86 of them
+### The 5 failures, and what is and is not known about them
+
+**Three are one behaviour.** `C146233`, `C146235` and `C44828` all detect the same thing: the panel
+highlights the **whole value** rather than the typed part inside it. Observed directly — querying
+Parts for `Item`, the row paints a single segment, `["Item-8677", marked]`. The requirement these
+checks quote (PRD v1.5 §5.3) says *"the matched substring of the query is highlighted"*, so a person
+searching cannot see which part of the result matched. **This is a CANDIDATE, not a defect**: it
+still needs reconciling against the requirement as it reads today rather than as our own notes quote
+it, and filing is held per ticket regardless.
+
+**`C55659`** — part of a number still finds the record. Not yet diagnosed.
+
+**`C55737`** — the search panel never opened for the lower-permission login (`.search-modal` not
+visible within 20s). This reads as the test's own timing rather than the product, and has not been
+confirmed either way.
+
+### Six checks marked as known-broken did not behave as broken
+
+`SV-10320`, `SV-10340`, `SV-10001`, `SV-10060` and `SV-10025` are reproduced deliberately by specs
+carrying `[expected to fail: …]`. In this run those specs did not fail as instructed. All five
+tickets read **OBSOLETE / Done** when read live on 2 October 2026. Together that is a second,
+independent signal that the behaviour may have changed — but it is one run, taken on the same day a
+genuine measuring fault was fixed, so it is recorded here as a thing to confirm and **not** as a
+finding.
+
+### What a stood-down check means here, and why there are 116 of them
 
 A skip is **never** "this did not run". It means the environment did not hold the data the check
 needs to judge the product fairly, and the spec says in its message exactly what was missing. The
