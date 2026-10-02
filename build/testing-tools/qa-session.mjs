@@ -23,11 +23,11 @@ const cookieDomain = env => env==='branch' ? '.qa.shopview.com' : '.shopview.com
 function port(dir){ return fs.readFileSync(dir+'/port.txt','utf8').trim(); }
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw='analyst1',
-                            cookies=null, vp={width:1900,height:1100}, quiet=true}={}){
+                            cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true}={}){
   const H = env==='prod' ? PROD : env==='staging' ? STAGING : branch(ticket);
   const b = await chromium.launch({executablePath:CHROME, args:[
     '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2']});
-  const ctx = await b.newContext({viewport:vp, ignoreHTTPSErrors:true});
+  const ctx = await b.newContext({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true});
   if (cookies) await ctx.addCookies(Object.entries(cookies).map(([name,value])=>
     ({name, value, domain:cookieDomain(env), path:'/'})));
   const p = await ctx.newPage();
