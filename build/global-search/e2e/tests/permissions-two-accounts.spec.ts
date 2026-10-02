@@ -261,7 +261,7 @@ test('C55721 — a near-miss spelling does not leak a record you may not see @C5
   test.skip(!seed, `the full-access person finds no ${pick!.toLowerCase()} to try this with`);
   const word = (seed!.row.match(/[A-Za-z]{6,}/) || [])[0];
   test.skip(!word, `no word long enough to misspell in "${seed!.row.slice(0, 80)}"`);
-  const typo = word.slice(0, Math.floor(word.length / 2)) + word.slice(Math.floor(word.length / 2) + 1);
+  const typo = word!.slice(0, Math.floor(word!.length / 2)) + word!.slice(Math.floor(word!.length / 2) + 1);
   const asLimited = await rowsAs(limited, typo);
   expect(asLimited.filter(r => norm(r) === norm(seed!.row)),
     `a close-match search for "${typo}" leaked a ${pick!.toLowerCase()} row the person may not see`).toEqual([]);

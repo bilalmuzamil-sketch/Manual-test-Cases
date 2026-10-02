@@ -12,12 +12,13 @@ A check that has not been run by hand does not get a spec.
 
 ```bash
 cd build/global-search/e2e
-npm install
+npm ci                                   # exact versions from the lockfile
 npx playwright install chromium          # the browser, once
 
 cp .env.example .env                     # then fill it in — see below
 set -a && . ./.env && set +a             # or export the variables yourself
 
+npm run login                            # staging only: sign in once, by hand
 npm run seed                             # prepare the environment (see "Seeding")
 npm test                                 # run everything
 ```
@@ -25,6 +26,14 @@ npm test                                 # run everything
 **Nothing else is required.** No relay, no proxy, no file at a fixed path, no browser at a fixed
 location. Earlier versions of this suite needed all of those and could only run on one machine;
 that is fixed, and `fixtures/boot.ts` records what each of them was.
+
+Playwright is pinned to the **exact** version this suite was verified on rather than a `^` range,
+so a library release cannot turn a green suite red on someone else's machine for reasons that have
+nothing to do with the product.
+
+Verified from a clean clone on 2 October 2026: `npm ci` installs, `npx playwright test --list`
+reports 338 tests in 20 files with no environment variables set at all, `npx tsc --noEmit` is
+clean, and a spec file run against production passed 11 of 11.
 
 ### Which environment
 
@@ -48,13 +57,31 @@ query production while you believed you were testing staging.
 
 Staging has no password to script — it signs in through Google.
 
-🔴 **Cookies are not enough on staging, and this is a change in staging rather than in the suite.**
-Measured 2 October 2026 with a fresh cookie set: `/api/auth/me/fe-permissions` answered **200**
-while the browser still sat on `/login`, and the **DEV MODE quick-login panel the old script
-clicked no longer exists**. The app keeps its session in `localStorage`, which only a real sign-in
-writes. So from the same signed-in browser also take **DevTools › Application › Local Storage** and
-set `GS_STAGING_USER` (the whole `user` value) and `GS_STAGING_TOKEN` if there is one. They are
-written before any page loads, exactly as the app does it.
+#### The easy way on staging: sign in once, by hand
+
+```bash
+npm run login            # opens a real browser; sign in with Google yourself
+npm test                 # and every run after this just works
+```
+
+`npm run login` opens a headed browser, waits while you sign in, and only accepts it once three
+things are true at the same time: the API answers, the page is no longer on `/login`, and the
+search control is actually on the page. It then saves the whole session — cookies *and*
+`localStorage` — to `.auth/<host>.json`, which is git-ignored. Every later run picks that file up
+on its own.
+
+Do this once. Redo it when the saved session expires; the suite says so in those words when it
+happens, instead of failing obscurely.
+
+#### The manual way, if you would rather paste values
+
+🔴 **Cookies alone are not enough on staging, and this is a change in staging rather than in the
+suite.** Measured 2 October 2026 with a fresh cookie set: `/api/auth/me/fe-permissions` answered
+**200** while the browser still sat on `/login`, and the **DEV MODE quick-login panel the old
+script clicked no longer exists**. The app keeps its session in `localStorage`, which only a real
+sign-in writes. So from the same signed-in browser also take **DevTools › Application › Local
+Storage** and set `GS_STAGING_USER` (the whole `user` value) and `GS_STAGING_TOKEN` if there is
+one. They are written before any page loads, exactly as the app does it.
 
 All of these expire. The suite tells you which half failed — cookies invalid, or cookies fine but
 the app has no session — rather than failing obscurely.
@@ -129,6 +156,26 @@ no configuration, because it reads whatever that environment actually holds.
 
 **All 251 checks that passed in TestRail run 415 have a spec**, counted live from TestRail rather
 than from a stored file.
+## Finding the TestRail case a test belongs to
+
+Every test title ends with its case number as a tag, so the case number is both readable in the
+output and usable as a selector:
+
+```bash
+npx playwright test --grep "@C44809"      # run exactly that one case
+```
+
+`TESTRAIL-MAPPING.csv` is the full list — case number, spec file, line, test name, and the command
+to run just that case. Regenerate it after adding or renaming tests:
+
+```bash
+npm run mapping
+```
+
+337 of the 338 tests carry a tag. The one that does not is a seed control, which checks the data is
+present and is not a TestRail case. Two cases are deliberately manual-only; the CSV carries the
+reason in its note column.
+
 ## What is deliberately NOT automated, and why
 
 A test that goes red for its own reasons is worse than no test. These are **manual-only**, each with

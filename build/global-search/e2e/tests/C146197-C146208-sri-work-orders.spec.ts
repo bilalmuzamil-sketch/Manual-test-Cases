@@ -281,8 +281,8 @@ test('C146208 — a soft match is drawn as a soft match @C146208', async () => {
 
   expect(soft.length, `"${SOFT}" returned no ${TAB} rows`).toBeGreaterThan(0);
   // The case names the soft row: the near-miss, not the exact hits above it.
-  const exact = soft.filter((r) => new RegExp(SOFT, 'i').test(r.text));
-  const near = soft.filter((r) => !new RegExp(SOFT, 'i').test(r.text));
+  const exact = soft.filter((r) => new RegExp(SOFT!, 'i').test(r.text));
+  const near = soft.filter((r) => !new RegExp(SOFT!, 'i').test(r.text));
   measurements.soft_split_C146208 = { exact: exact.map((r) => r.text), near: near.map((r) => r.text) };
   expect(near.length,
     `no near-miss row came back for "${SOFT}" — every row contains the term literally, so there is ` +

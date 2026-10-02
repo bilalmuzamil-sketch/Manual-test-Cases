@@ -61,7 +61,9 @@ export type LiveAnchors = Partial<Record<AnchorKey, string>> & {
 
 export async function harvestAnchors(page: Page): Promise<LiveAnchors> {
   
-  const sources: [keyof LiveAnchors, string, string[]][] = [
+  // AnchorKey, not `keyof LiveAnchors`: the latter also admits 'punct', which is the sub-map
+  // these anchors are written INTO, never one of the kinds harvested.
+  const sources: [AnchorKey, string, string[]][] = [
     ['assetVin',   '/api/vehicles?limit=40',             ['vin']],
     ['partNumber', '/api/inventory/parts?limit=40',      ['part_number', 'partNumber']],
     ['partSaleNo', '/api/part-sales?limit=40',           ['number', 'sale_number']],

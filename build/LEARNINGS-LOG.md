@@ -5092,3 +5092,43 @@ the suite refuse to start, for a file it no longer needs now anchors are harvest
 same. 338 tests now list with no configuration present at all.
 **Reusable rule:** nothing a spec needs only at RUN time may be read at IMPORT time. A missing
 optional input should cost one skipped check, never the whole suite.
+
+### L0283
+**What happened:** the committed `package-lock.json` recorded `playwright` as a **link** to
+`/opt/node22/lib/node_modules/playwright` — an absolute path inside the container the suite was
+built in. It installed here only because that global copy existed. A clean clone resolved the
+symlink to a path that does not exist and died with `ERR_MODULE_NOT_FOUND: Cannot find package
+'playwright'`, before a single test ran.
+**Why it was invisible:** every check I had run — 338 tests listing, 252 passing on production —
+ran in the container that happened to satisfy the link. The suite was not portable and nothing
+inside it could tell.
+**Fix:** delete `node_modules` and the lockfile, reinstall against the public registry, and pin
+the exact version the suite was verified on instead of a `^` range.
+**Reusable rule:** a suite handed to someone else is not proved portable by passing where it was
+written. Clone it to a new directory, install from the lockfile alone, and run it. And grep the
+lockfile for absolute paths — `grep -c "/opt/\|/home/\|/Users/" package-lock.json` must be 0.
+
+### L0284
+**What happened:** `npx tsc --noEmit` reported **92 errors** on a suite whose 338 tests all ran and
+252 of which passed. Playwright transpiles TypeScript without typechecking, so none of it ever
+surfaced. 75 of the 92 were one missing `lib` entry (`DOM.Iterable`, needed to iterate the
+`NodeListOf` that `querySelectorAll` returns); the remaining 17 were real sloppiness — a key typed
+`keyof LiveAnchors` where only `AnchorKey` was meant, six object literals missing a required field
+they were given later, and two unnarrowed `string | null`s.
+**Why it matters:** the next person opens this in an editor and sees red on almost every file. They
+have no way to know the suite is fine, and the rational conclusion is that it is broken.
+**Fix:** `lib: ["ES2022","DOM","DOM.Iterable"]`, then fix all 17 properly rather than loosening
+`strict`. 92 → 0, still 338 tests.
+**Reusable rule:** green tests are not a clean codebase. Typecheck before handing a suite over, and
+treat a type error in a passing suite as a defect in the handover, not noise.
+
+### L0285
+**What happened:** my C-id tagger matched only titles that **start** with a template variable
+(`` `${cid} — …` ``), so eight table-driven titles written as `` `C${c.cid} — …` `` were silently
+left untagged. The mapping then reported 265 cases where the suite has 295, and the shortfall looked
+like a parser bug in the mapping generator rather than a gap in the tagging.
+**Fix:** match the id anywhere in the title, not only at its start; 337 of 338 now tagged (the one
+left is a seed control, not a case).
+**Reusable rule:** when a generated count is short, check what feeds it before fixing the thing that
+reports it. And a regex anchored to the start of a string is an assumption about every author's
+formatting, not a rule any of them agreed to.

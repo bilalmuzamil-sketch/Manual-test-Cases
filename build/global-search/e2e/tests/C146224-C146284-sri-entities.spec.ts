@@ -68,7 +68,7 @@ const ENTITIES: Entity[] = [
       { name: 'year + make + model (primary)', on: (r) => YEAR.test(r.title.text) && r.title.text.trim().split(/\s+/).length >= 3 },
       { name: 'customer name (secondary)', on: (r) => r.metaParts.join(' ').trim().length > 0 },
     ],
-    held: [],
+    cases: {}, held: [],
   },
   {
     section: 'Parts', tab: 'Parts', a1Field: 'part number',
@@ -78,7 +78,7 @@ const ENTITIES: Entity[] = [
       { name: 'part number (secondary)', on: (r) => r.metaParts.join(' ').trim().length > 0 },
       { name: 'total quantity with a stock-status badge', on: (r, vis) => !!r.badge || /\b\d+\s*(in stock|available|on hand)\b/i.test(vis) },
     ],
-    held: [],
+    cases: {}, held: [],
   },
   {
     section: 'Vendors', tab: 'Vendors', a1Field: 'telephone',
@@ -88,7 +88,7 @@ const ENTITIES: Entity[] = [
       { name: 'telephone (secondary)', on: (r, vis) => PHONE.test(vis) },
       { name: 'address line (secondary)', on: (r) => r.metaParts.some((p) => !PHONE.test(p) && p.trim().length > 3) },
     ],
-    held: [],
+    cases: {}, held: [],
   },
   {
     section: 'Part Sales', tab: 'Part sales', a1Field: 'P-number',
@@ -100,7 +100,7 @@ const ENTITIES: Entity[] = [
       { name: 'total price', on: (r, vis) => MONEY.test(vis) },
       { name: 'created date', on: (r, vis) => DATE.test(vis) },
     ],
-    held: [],
+    cases: {}, held: [],
   },
   {
     section: 'Purchase Orders', tab: 'Purchase orders', a1Field: 'PO number',
@@ -112,7 +112,7 @@ const ENTITIES: Entity[] = [
       { name: 'total', on: (r, vis) => MONEY.test(vis) },
       { name: 'created date', on: (r, vis) => DATE.test(vis) },
     ],
-    held: [],
+    cases: {}, held: [],
   },
   {
     section: 'Vendor Invoices', tab: 'Vendor invoices', a1Field: 'invoice number',
@@ -124,7 +124,7 @@ const ENTITIES: Entity[] = [
       { name: 'total', on: (r, vis) => MONEY.test(vis) },
       { name: 'invoice date', on: (r, vis) => DATE.test(vis) },
     ],
-    held: [],
+    cases: {}, held: [],
   },
 ];
 
