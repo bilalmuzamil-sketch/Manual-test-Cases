@@ -5021,3 +5021,48 @@ no other session is affected, and the route is removed immediately afterwards. T
 proves the panel RECOVERS once the request works again, which is the half a manual tester usually
 forgets. **Reusable rule:** an error state is testable whenever the error can be injected on the
 client side; reach for that before marking a check un-automatable.
+
+### L0276 — COUNT FROM TESTRAIL, NOT FROM A FILE THAT SAYS WHAT TESTRAIL SAID (2026-10-02)
+I reported coverage against `passing-without-specs.json`, a local file. The QA lead pushed back
+("there are 251 that passed"), and a live `get_tests/415` confirmed **251 passed of 304** — the file
+was right, but I had never verified it, and I had been quoting a derived number as though it were
+the source. Reading it live also showed the split exactly: 210 had specs, 41 did not.
+**Reusable rule:** before quoting any count back to him, re-derive it from the system of record in
+that same pass. "The file said so" is not an answer to "how many are there?".
+
+### L0277 — A 405 NAMES THE WAY IN; THE APP'S OWN FORM NAMES IT EXACTLY (2026-10-02)
+`POST /api/customers` → **405 Method Not Allowed (Allow: GET)**. I had been treating production
+seeding as governed by a safety guard and had written 41 checks off as un-automatable partly on
+that basis. The refusal was not a guard at all — it was the wrong route. Driving the app's own
+"New Customer" form and watching the request gave `POST /api/customers/create` → 201. Seeding then
+worked first time, and six ranking checks that could only ever have skipped now run for real.
+**Reusable rule:** a 405 is a signpost, not a wall. Before concluding a write is forbidden, make the
+product perform it once and read what IT sends.
+
+### L0278 — TWO ACCOUNTS BEAT EDITING A ROLE, AND HE HAD ALREADY SAID SO (2026-10-02)
+I had listed 17 permission checks as manual because automating them seemed to need a role edited
+mid-run on a shared environment. The repo already held the answer: a lower-permission production
+login, and his ruling of 2026-09-24 — *"The second person with fewer permission need not to be
+added as new from scratch. You can rather use the other login."* Signing in as BOTH people and
+comparing the same record is stronger than toggling: same record, same moment, nothing mutated,
+nothing left wrong if the run stops half way. 11 of them now pass; the rest skip only where the two
+logins do not differ on that area.
+**Reusable rule:** when automating something looks like it needs a mutation, check whether two
+subjects can be compared instead — and search the repo for a ruling before inventing an approach.
+
+### L0279 — DERIVING A PERMISSION FROM A TAB'S NAME IS A GUESS (2026-10-02)
+Two permission checks failed because I matched the tab label against the permission list: the
+lower-permission login holds `customersView` and nothing containing "asset", yet sees twenty
+Assets. That is correct — **our own C55703 says "a user WITH Customers access sees Customer AND
+Asset results"**: a vehicle belongs to a customer. Vendors, Purchase orders and Vendor invoices are
+likewise one access area, not three. Replaced with an explicit map citing the case.
+**Reusable rule:** the thing on screen and the permission governing it are named by different
+people for different reasons. Map them explicitly, from the spec, and cite it.
+
+### L0280 — THE DOCUMENTED PERMISSION SET WAS STALE, AND READING IT LIVE SAVED THE RUN (2026-10-02)
+`ENVIRONMENT-CREDENTIALS.md` records the limited login as holding **9** permissions and names them.
+It holds **6** today. Because every check reads the account's permissions live and skips when the
+pair cannot demonstrate the thing asked about, the suite adapted instead of asserting against a set
+that no longer exists — which would have produced confident, meaningless passes.
+**Reusable rule:** a spec that depends on an account's shape must read that shape at run time. A
+documented permission list is a description of a past day.

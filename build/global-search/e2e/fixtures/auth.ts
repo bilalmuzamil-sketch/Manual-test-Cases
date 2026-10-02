@@ -36,7 +36,7 @@ function proxy() {
 
 export type Session = { browser: Browser; ctx: BrowserContext; page: Page };
 
-export async function signIn(route = '/work-orders', device?: string): Promise<Session> {
+export async function signIn(route = '/work-orders', device?: string, envFile?: string): Promise<Session> {
   // 🔴 STAGING SIGNS IN DIFFERENTLY, AND WE ALREADY HAVE THAT WORKING. On a QA branch the cookies
   // WERE the session; on staging they only reach the sign-in screen and the app mints the session
   // when the DEV MODE button is clicked. build/testing-tools/staging-cookie-boot.mjs does that,
@@ -62,7 +62,10 @@ export async function signIn(route = '/work-orders', device?: string): Promise<S
         'signed in as the QA lead and expired his live production session.');
     }
     const mod: any = await import('../../../testing-tools/prod-login-boot.mjs');
-    const b = await mod.bootProdLogin('/customers', { settle: 12_000 });
+    // 🔴 ONE PROCESS, TWO ACCOUNTS. The permission checks compare what a full-access person sees
+    // against what the lower-permission person sees, so the account cannot be fixed at module load.
+    // Passing the file per call is what makes that possible; omitting it keeps the old behaviour.
+    const b = await mod.bootProdLogin('/customers', { settle: 12_000, envFile });
     b.page.setDefaultTimeout(60_000);
     if (route && route !== '/customers') {
       await b.page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' }).catch(() => {});

@@ -20,14 +20,18 @@ import fs from 'fs';
 const APP='https://app.shopview.com', APIH='api.shopview.com';
 const ENVF=process.env.PROD_ENVF || '/tmp/shopview/prod-login.env';
 
-function creds() {
-  const d={}; for (const l of fs.readFileSync(ENVF,'utf8').split('\n')) { const m=/^([A-Z_]+)=(.*)$/.exec(l.trim()); if(m) d[m[1]]=m[2]; }
-  if (!d.SV_USER || !d.SV_PASS) throw new Error(`${ENVF} missing SV_USER/SV_PASS`);
+// PROD_ENVF is read once at module load, so a single process could only ever sign in as ONE
+// account. The permission checks need two (a full-access one and the lower-permission one), so
+// the caller may name the file per call; the module default is unchanged for every existing user.
+function creds(envFile) {
+  const f = envFile || ENVF;
+  const d={}; for (const l of fs.readFileSync(f,'utf8').split('\n')) { const m=/^([A-Z_]+)=(.*)$/.exec(l.trim()); if(m) d[m[1]]=m[2]; }
+  if (!d.SV_USER || !d.SV_PASS) throw new Error(`${f} missing SV_USER/SV_PASS`);
   return d;
 }
 
 export async function bootProdLogin(route='/', opts={}) {
-  const { SV_USER, SV_PASS } = creds();
+  const { SV_USER, SV_PASS } = creds(opts.envFile);
   const port = fs.readFileSync('/tmp/atlassian/bridge-port.txt','utf8').trim();  // rotates - never hard-code
   const browser = await chromium.launch({ args:['--no-sandbox'],
     executablePath: process.env.CHROME_BIN || '/opt/pw-browsers/chromium',
