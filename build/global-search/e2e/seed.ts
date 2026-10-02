@@ -36,6 +36,7 @@ import { seedingDir } from './fixtures/data.js';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
 const CHECK = (process.env.GS_SEED || '').toLowerCase() === 'check';
+const STRICT = process.env.GS_SEED_STRICT === '1';
 
 /** One label per environment, so one estate's record ids never overwrite another's. */
 function envLabel(): string {
@@ -155,7 +156,12 @@ export default async function seedEverything(): Promise<void> {
       }
       if (r.status !== 0) {
         failures.push(st.label);
-        if (!st.proof) break;                      // a broken seed step stops the run; a proof keeps going so all are reported
+        // 🔴 A FAILED STEP NO LONGER STOPS THE RUN (QA lead, 2026-10-02: seeding must move ahead,
+        // never stall). Stopping at the first broken step meant one bad record cost the results of
+        // every other test. Now the failure is reported loudly, the remaining steps still run, and
+        // the tests that needed the missing data stand down with their reason. GS_SEED_STRICT=1
+        // restores stop-at-the-first-failure.
+        if (!st.proof && STRICT) break;
       }
     }
   } finally {
@@ -167,9 +173,12 @@ export default async function seedEverything(): Promise<void> {
   }
 
   if (failures.length) {
-    throw new Error(`SEEDING DID NOT COMPLETE on ${APP}. Failed: ${failures.join(' · ')}.\n`
-      + 'Nothing below this point would be measuring the product, so the run stops here. The step\'s '
-      + 'own output above says why; build/global-search/seeding/RESEED.md lists the usual causes.');
+    const msg = `SEEDING DID NOT FULLY COMPLETE on ${APP}. Failed: ${failures.join(' · ')}. The step's own `
+      + 'output above says why; build/global-search/seeding/RESEED.md lists the usual causes.';
+    if (STRICT) throw new Error(`${msg}\nGS_SEED_STRICT=1, so the run stops here.`);
+    console.log(`\n🔴 ${msg}\n   The run continues: tests that needed the missing data will stand down and say so; `
+      + 'every other test runs as normal. (GS_SEED_STRICT=1 stops instead.)\n');
+    return;
   }
   console.log(`\nseeding: every step completed${CHECK ? ' (measured only)' : ''}.\n`);
 }

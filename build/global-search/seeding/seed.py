@@ -209,6 +209,42 @@ def _discover(dv, key):
     print(f"       🔴 could not discover {key}: search did not answer — refusing to assume none exist")
     sys.exit(f"discovery for {key} failed; creating now could duplicate records that already exist")
 
+def _adopt_after_refusal(rec, key, resp):
+    """A CREATE WAS REFUSED — before calling it a failure, find out whether the record is ALREADY THERE.
+
+    🔴 WHY. The engine always looks before it creates, so a refused create almost always means the
+    look-up MISSED a record that exists: the search had not caught up yet, the session was in the
+    wrong shop, or the record's name is spelled differently on the branch. The server then refuses a
+    second record with the same name or number. Treating that as a failure did not stop the run — it
+    did worse: the record's id never reached STATE, so every record that hangs off it (its contacts,
+    assets, part sales) failed in turn with "cannot inject", and a whole branch of data went missing
+    from a run that looked as if it had completed. (Requirement from the QA lead, 2026-10-02: data that
+    is already on the branch must never stall the seeding — use it and move ahead.)
+
+    So: look again, patiently, through the record's own finder; then through the global search by the
+    same value. Found -> adopt it and carry on. Not found -> it really did fail, and is reported so.
+    """
+    body = str(resp.get('raw') or resp.get('error') or '')[:160]
+    print(f"       refused ({resp.get('status')}): {body}")
+    print(f"       looking again before calling it a failure — it may already be on the branch")
+    for wait in (3, 6, 10):
+        time.sleep(wait)
+        hits, _ = find(rec['find'], key)
+        if hits:
+            print(f"       ✅ it IS there (found on a second look) — using the existing record")
+            return hits
+    value = str((rec.get('find') or {}).get('value') or '').strip()
+    if value and (rec.get('find') or {}).get('mode') == 'search':
+        r = call('/api/search?q=' + urllib.parse.quote(value))
+        for g in (((r['json'] or {}).get('data') or {}).get('groups') or []):
+            for i in g.get('items') or []:
+                text = f"{i.get('primary') or ''} {i.get('secondary') or ''}".lower()
+                if value.lower() in text and i.get('id'):
+                    print(f"       ✅ it IS there (found through the global search, {g.get('type')}) — "
+                          f"using the existing record; its fields could not be read back from here")
+                    return [{'id': i['id']}]
+    return []
+
 def find(spec, _key=None):
     """FIND a record. Two modes, because ?search= works on some list endpoints and silently
     matches NOTHING on others (measured: broken on /api/work-orders). Where the spec gives a
@@ -556,9 +592,12 @@ def main():
                     print(f"       recorded {len(made)} live id(s) in {IDS_FILE}")
             ok = bool(made) or (reps == 1 and ok)
             if not ok:
-                report.append({'key': k, 'state': 'CREATE_FAILED', 'http': r['status'],
-                               'body': str(r['raw'][:200]), 'serves': rec['serves']}); continue
-            hits, _ = find(rec['find'], k)
+                hits = _adopt_after_refusal(rec, k, r)
+                if not hits:
+                    report.append({'key': k, 'state': 'CREATE_FAILED', 'http': r['status'],
+                                   'body': str(r['raw'][:200]), 'serves': rec['serves']}); continue
+            else:
+                hits, _ = find(rec['find'], k)
             if not hits:
                 print(f"       created but NOT FINDABLE — indexing lag, or the create dropped the finder field")
                 report.append({'key': k, 'state': 'CREATED_NOT_FOUND', 'serves': rec['serves']}); continue

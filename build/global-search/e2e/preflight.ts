@@ -1,6 +1,6 @@
 /**
- * PREFLIGHT — runs ONCE, before the first test, and stops the run if the environment cannot
- * support it.
+ * PREFLIGHT — runs ONCE, before the first test, and names every record the checks need that is
+ * not on the environment.
  *
  * 🔴 WHY THIS EXISTS. `npm test` used to go straight into the suite. Nothing checked that seeding
  * had been done, and nothing could: `npm run seed` creates CUSTOMERS and nothing else, while the
@@ -13,8 +13,10 @@
  * It is a READ-ONLY check. It creates nothing, so it is safe on any environment — including one
  * where you have not decided yet whether you want to write.
  *
- *   GS_PREFLIGHT=warn   report, but let the run continue anyway
- *   GS_PREFLIGHT=off    skip it entirely
+ *   (default)            report every missing record, then let the run continue — tests that need
+ *                        one stand down with their reason; every other test still runs
+ *   GS_PREFLIGHT=enforce stop the run instead
+ *   GS_PREFLIGHT=off     skip it entirely
  */
 import { signIn, api, APP, type Session } from './fixtures/auth.js';
 import { entityConfigDir, seedingDir } from './fixtures/data.js';
@@ -107,7 +109,10 @@ async function groupTotals(s: Session, term: string): Promise<Record<string, num
 }
 
 export default async function preflight() {
-  const mode = (process.env.GS_PREFLIGHT || 'enforce').toLowerCase();
+  // Default is WARN: report every missing record, then let the run go on — the tests that need a
+  // missing record stand down with their reason and every other test still gives a result
+  // (QA lead, 2026-10-02: never stall). GS_PREFLIGHT=enforce stops the run instead.
+  const mode = (process.env.GS_PREFLIGHT || 'warn').toLowerCase();
   if (mode === 'off') { console.log('preflight: skipped (GS_PREFLIGHT=off)'); return; }
 
   console.log(`\n── Preflight ─────────────────────────────────────────────────────────────────`);
@@ -188,7 +193,7 @@ export default async function preflight() {
     `Nothing is wrong with the product and nothing here is a test failure. The checks that`,
     `need these records will stand down and say so; the rest will run normally.`,
     ``,
-    `    GS_PREFLIGHT=warn npm test    run anyway, with those checks standing down`,
+    `    GS_PREFLIGHT=enforce npm test stop the run instead of carrying on`,
     `    GS_PREFLIGHT=off  npm test    skip this check entirely`,
     ``,
   ];

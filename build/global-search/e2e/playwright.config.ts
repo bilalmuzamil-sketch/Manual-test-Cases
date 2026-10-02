@@ -42,7 +42,7 @@ export default defineConfig({
   // 🔴 SEEDS, THEN VERIFIES, BEFORE THE FIRST TEST — EVERY RUN. The branch is refreshed and a refresh
   // wipes the seeded data; an unseeded run does not fail, its checks stand down, and that was
   // discovered 1.6 hours later. global-setup.ts seeds every record the tests read, then the
-  // preflight proves search returns each one and stops the run if not. GS_SEED=skip|check,
+  // preflight proves search returns each one and names any that is missing. GS_SEED=skip|check,
   // GS_PREFLIGHT=warn|off.
   globalSetup: './global-setup.ts',
   // Index refresh dominates; these are not fast unit tests and pretending otherwise causes flakes.

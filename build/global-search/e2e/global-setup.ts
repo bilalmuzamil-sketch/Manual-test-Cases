@@ -1,19 +1,20 @@
 /**
- * RUNS ONCE, BEFORE THE FIRST TEST, EVERY TIME: seed, then prove the data is there.
+ * RUNS ONCE, BEFORE THE FIRST TEST, EVERY TIME: seed, then check the data is there.
  *
  *   1. SEED   — every record every test reads, on whatever environment GS_APP names (seed.ts).
- *               The branch is refreshed and a refresh wipes what was seeded, so this is not a step
- *               anyone has to remember: `npm test` cannot start without it.
- *   2. VERIFY — the preflight asks search for each record the checks look for, inside the shop the
- *               tests will sign into, and stops the run if any is missing (preflight.ts).
+ *               The branch is refreshed to a standard starting copy, which removes what was seeded,
+ *               so this is not a step anyone has to remember: `npm test` cannot start without it.
+ *               A record that is ALREADY THERE is found and used, never created twice.
+ *   2. CHECK  — the preflight asks search for each record the checks look for, inside the shop the
+ *               tests sign into, and names any that is missing (preflight.ts).
  *
- * Only then does a test start. A seed step that fails stops the run with the step named, because a
- * suite running on half-seeded data does not fail — its checks stand down, and a standing-down suite
- * looks exactly like a suite that ran.
+ * 🔴 NOTHING HERE STALLS THE RUN (QA lead, 2026-10-02). A seeding step that fails, or a record that is
+ * missing, is reported loudly — and then the tests run. The ones that needed the missing data stand
+ * down and say so; every other test still gives a result. One bad record must not cost the results of
+ * three hundred tests. GS_SEED_STRICT=1 / GS_PREFLIGHT=enforce stop at the first problem instead.
  *
- *   GS_SEED=check   measure what is there, create nothing, then verify
- *   GS_SEED=skip    do not seed — ONLY for re-running one spec locally against data you just seeded;
- *                   the preflight still runs and still stops a run on missing data
+ *   GS_SEED=check   measure what is there, create nothing, then check
+ *   GS_SEED=skip    do not seed — ONLY for re-running one spec locally against data you just seeded
  */
 import type { FullConfig } from 'playwright/test';
 import seedEverything from './seed.js';
