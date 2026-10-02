@@ -49,4 +49,16 @@ Per story: author from the finalised PRD anchors (verbatim quotes, Rule 113), ru
 observations). Drive the Chunk-2 design (Rule 115). Rule-116 numeric cases in 26644. No QA build yet ⇒
 AUTOMATION: HOLD (source-verified only). Render-repair (fr-view) each. Keep separate from Chunk 1.
 
-## STATUS 2026-10-02: subfolders created (26636-26644); authoring pending.
+## STATUS 2026-10-02: ALL 8 STORIES + NUMERIC AUTHORED — 86 cases (C204102-C204187)
+Live count per section: S10 (26636) 9 · S11 (26637) 12 · S12 (26638) 8 · S16 (26639) 16 · S17 (26640) 6 ·
+S18 (26641) 13 · S19 (26642) 9 · S22 (26643) 5 · Numeric & date accuracy (26644) 8 = **86**, all
+created_by=3, 0 format defects, all AUTOMATION: HOLD (no MR build), rendered fr-view.
+Builder: `mr2_lib.py` (idempotent); authors `author_batch1..5.py`; log `created-chunk2.json`.
+S19 authored as the v1 MANUAL send (automatic deferred to v2, not authored). Chunk 1 untouched.
+
+**Retired (Option A, user-authorised 2026-10-02):** the superseded gap-fill MR cases C195859-C195875 and
+the auto-email cases C195880-C195892 (30 total) were deleted, with their empty sections (25600 subtree,
+25610). The DI gap-fill (25601), Fixed Rules (25609) and QBO (25611) folders remain.
+
+**Outstanding:** build verification when an MR QA build exists (all HOLD); a test run for Chunk 2 if the
+QA lead wants one.
