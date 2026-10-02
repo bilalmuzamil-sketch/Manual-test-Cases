@@ -153,7 +153,8 @@ async function asTechnicianWith(permissionIds: string[], toggles: Record<string,
     `CONTROL FAILED: after switching to the technician (HTTP ${sw.status}) the session holds `
     + `${JSON.stringify(have)}, not the ${JSON.stringify(want)} just given to the role - so what it sees `
     + 'would not be the technician\'s view. Nothing was judged.');
-  await s.page.goto('/customers', { waitUntil: 'domcontentloaded' });
+  // The dashboard, not /customers: a role without customer access gets "Access restricted" there.
+  await s.page.goto('/dashboard', { waitUntil: 'load' });
   await s.page.waitForTimeout(3_000);
 }
 
@@ -179,6 +180,7 @@ test('C45142 — no work-order access means no jobs in search @C45142', async ()
 });
 
 test('C45144 — parts appear only with Catalog & Inventory access @C45144', async () => {
+  test.setTimeout(300_000);   // two role edits and two searches; staging answered slowly on 2026-10-02
   test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
@@ -219,6 +221,7 @@ test('C45147 — a time-clock-only person gets nothing at all @C45147', async ()
  * then judges the product by it. SV-10278 was withdrawn for exactly this.
  */
 test('C45143 — a part-sales role sees part sales but not parts or suppliers @C45143', async () => {
+  test.setTimeout(300_000);   // two role edits and two searches; staging answered slowly on 2026-10-02
   test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
@@ -290,10 +293,14 @@ test.describe('shop scoping', () => {
       return rowsOf(own, 'Work orders');
     };
     const atHeavy = await readAt(HEAVY_DUTY);
-    expect(contains(atHeavy, heavyJob), `the shop you are in does not show its own job ${heavyJob} `
+    // 🔴 COMPARE THE NUMBER'S DIGITS. The job's own page calls it "S-34868" and the search row shows
+    // "S2- 34868" (staging, 2026-10-02) - the same job, so a text comparison missed it.
+    const digits = (v: string) => (v.match(/\d{3,}/g) ?? []).pop() ?? v;
+    const hasJob = (rows: unknown[]) => rows.some((r) => String(r).replace(/\s+/g, '').includes(digits(heavyJob)));
+    expect(hasJob(atHeavy), `the shop you are in does not show its own job ${heavyJob} `
       + `(searched "${heavyJob.replace(/^\w-/, '')}"; ${atHeavy.length} job row(s) came back: `
       + `${JSON.stringify(atHeavy.slice(0, 5).map((r) => String(r).slice(0, 40)))})`).toBe(true);
     const atLeth = await readAt(LETHBRIDGE);
-    expect(contains(atLeth, heavyJob), 'the other shop\'s job is still returned after moving').toBe(false);
+    expect(hasJob(atLeth), 'the other shop\'s job is still returned after moving').toBe(false);
   });
 });

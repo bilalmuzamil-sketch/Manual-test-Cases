@@ -183,6 +183,12 @@ const BOOST: [string, string][] = [
 for (const [cid, tab] of BOOST) {
   test(`${cid} — ${tab}: what is relevant to where you are is still found from there @${cid}`, async () => {
     test.skip(!BROAD, 'no broad query on this environment');
+    // 🔴 START FROM A NEUTRAL PAGE. Each check leaves the record it opened on screen, and the next one
+    // used to start there: on a part sale, choosing a PART from search opens that sale's "Add Part"
+    // window (the product offering to add it), so C55712 never reached a part's own page and the
+    // search panel could not open over the dialog (staging, 2026-10-02).
+    await s.page.goto('/dashboard', { waitUntil: 'load' });
+    await s.page.waitForTimeout(2_000);
     const terms = [BROAD, ...(await entityTerms(s.page, tab, 6))].filter(Boolean) as string[];
     let q = '', first = '';
     for (const cand of terms) {
