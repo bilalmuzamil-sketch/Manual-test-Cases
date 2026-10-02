@@ -19,7 +19,7 @@
  *   GS_PREFLIGHT=off     skip it entirely
  */
 import { signIn, api, APP, type Session } from './fixtures/auth.js';
-import { entityConfigDir, seedingDir } from './fixtures/data.js';
+import { writeRunStatus, entityConfigDir, seedingDir } from './fixtures/data.js';
 import { IS_PROD } from './fixtures/boot.js';
 import * as fs from 'node:fs';
 
@@ -113,7 +113,7 @@ export default async function preflight() {
   // missing record stand down with their reason and every other test still gives a result
   // (QA lead, 2026-10-02: never stall). GS_PREFLIGHT=enforce stops the run instead.
   const mode = (process.env.GS_PREFLIGHT || 'warn').toLowerCase();
-  if (mode === 'off') { console.log('preflight: skipped (GS_PREFLIGHT=off)'); return; }
+  if (mode === 'off') { console.log('preflight: skipped (GS_PREFLIGHT=off)'); writeRunStatus('preflight', { mode }); return; }
 
   console.log(`\n── Preflight ─────────────────────────────────────────────────────────────────`);
   console.log(`environment: ${APP}`);
@@ -169,6 +169,11 @@ export default async function preflight() {
       `because "could not read" and "not there" are different answers.`);
   }
   const missing = rows.filter((r) => r.found === 0);
+  writeRunStatus('preflight', {
+    mode, checked: rows.length,
+    missing: missing.map((m) => ({ term: m.need.term, kind: m.need.group, created_by_seeder: !!m.need.seeder })),
+    unreadable: unreadable.map((m) => ({ term: m.need.term, kind: m.need.group })),
+  });
   if (!missing.length) {
     console.log(`\npreflight: every record the checks look for is present.\n`);
     return;

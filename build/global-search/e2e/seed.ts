@@ -31,7 +31,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { APP, APIH, IS_PROD, IS_STAGING, credentials, ssoCookie, standardProxy, workplaceHint } from './fixtures/boot.js';
-import { seedingDir } from './fixtures/data.js';
+import { writeRunStatus, seedingDir } from './fixtures/data.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
@@ -172,6 +172,8 @@ export default async function seedEverything(): Promise<void> {
     fs.rmSync(work, { recursive: true, force: true });                  // the session file goes with it
   }
 
+  writeRunStatus('seeding', { completed: !failures.length, measured_only: CHECK, failed_steps: failures,
+    strict: STRICT, finished: new Date().toISOString() });
   if (failures.length) {
     const msg = `SEEDING DID NOT FULLY COMPLETE on ${APP}. Failed: ${failures.join(' · ')}. The step's own `
       + 'output above says why; build/global-search/seeding/RESEED.md lists the usual causes.';

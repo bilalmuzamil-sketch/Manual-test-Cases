@@ -80,8 +80,8 @@ vendors — so the comparisons have a real difference to measure.
 the whole of 2 October in testing; how long it lives beyond that has not been measured.
 
 **Never paste it into a chat, a ticket or a file in this repository** — it is a live session for
-your account. Keep it in `.env` (git-ignored), and for the nightly run in the cloud environment's
-own settings as `GS_SSO`.
+your account. Keep it in `.env` (git-ignored); an unattended run keeps it in its platform's secret
+store as `GS_SSO` (a CI secret, AWS Secrets Manager, or Claude's environment settings).
 
 #### The other way on staging: sign in once, by hand
 
@@ -253,38 +253,71 @@ request triggers are there, commented out). It needs one repository secret, `GS_
 Python 3 and `npx playwright install --with-deps chromium`. It is an example, not switched on — turning
 CI on is the team's decision.
 
-## Running it on Claude — on a pull request, and every night
+## The nightly run — the Engineering team's, on their own machines
 
-The same `npm test` runs in Claude's cloud environment, unattended. Nothing in it needs a window or a
-person: it signs in from one cookie, seeds, verifies, runs, and reports.
+The nightly run belongs to the **Engineering team**, on infrastructure they choose (Claude, AWS or
+any Linux host). The schedule, the machine and where results go are their decisions. The suite's job
+is to run there unattended, and it needs nothing from this repository's sessions or from any person's
+laptop to do it.
 
-**What the cloud environment needs, set once in its own settings** (the cloud environment menu in the
-session's title bar → Edit — never pasted into a chat):
+**What the machine needs**
 
-| Setting | Value |
+| Need | Detail |
 |---|---|
-| Environment variable `GS_SSO` | the `sv_sso_session` cookie from a browser signed in to staging |
-| Environment variable `GS_APP` | `https://app.staging.shopview.com` (or the QA branch being tested) |
-| Network access | must reach `*.shopview.com` — the default policy already did on 2 October 2026 |
+| Node 22, Python 3.8+ | Python standard library only, nothing to `pip install` |
+| A browser | `npx playwright install --with-deps chromium` (the `--with-deps` installs the Linux libraries) |
+| Network | HTTPS to `app.staging.shopview.com` and `api.staging.shopview.com` (or the QA branch being tested). A corporate proxy in `HTTPS_PROXY` is honoured |
+| Secret `GS_SSO` | the staging sign-in cookie — see the first caution below |
+| `GS_APP` | `https://app.staging.shopview.com`, or the QA branch |
+| One worker | the suite refuses more, with the reason (see above) |
 
-**What a run does, in order:** `npm ci` → `npx playwright install chromium` (already present in
-Claude's containers) → `npm test`, which seeds every record, proves search returns them, and only then
-runs the 338 tests.
+Then: `npm ci` → `npm test`. `ci/github-actions-example.yml` is the same sequence as a ready
+workflow; it translates directly to CodeBuild, a cron job or a Claude routine.
 
-**Three things specific to Claude's cloud, all handled in the suite** — listed so nobody re-diagnoses
-them:
+**What a run leaves behind, for the pipeline to read**
 
-- Outbound traffic goes through a local proxy. Chromium does not read `HTTPS_PROXY`, and handed the raw
-  `NO_PROXY` list it bypasses the proxy for everything; even configured cleanly it drops about one
-  request in six. The suite starts its own in-process relay there (`fixtures/relay.ts`). Never on a
-  laptop.
-- The container is fresh every night, so the seeder has no memory of previous runs. It discovers
-  what is already on the environment instead of creating it again — proved from an empty cache.
-- Connections are dropped now and then. Reads retry; a failed seed step is retried once (safe, because
-  each step finds what a first attempt made); writes are never blindly repeated.
+| File | Says |
+|---|---|
+| exit code | `0` = every test behaved as expected; `1` = at least one did not — a new failure, or a known fault that did not happen this time (worth a look: it may be fixed) |
+| `results/e2e-results.json` | every test's result, with its TestRail case id in the title |
+| `results/run-status.json` | **how the run was prepared**: `seeding.completed`, `seeding.failed_steps`, `preflight.missing` |
 
-**When the cookie expires** the run stops at sign-in with a sentence saying so, rather than producing
-a page of failures. Copy a fresh one into `GS_SSO`.
+🔴 **Read `run-status.json`, not only the exit code.** Seeding never stops the run (above), so a night
+where seeding half-failed still exits `0` if what did run passed — with the checks that needed the
+missing data skipped. `seeding.completed: false` or a non-empty `preflight.missing` is the signal that
+the night's results are partial. A pipeline that wants such a night to go red sets
+`GS_SEED_STRICT=1` and `GS_PREFLIGHT=enforce`.
+
+**Nothing to do between runs.** The branch's refresh to its standard starting copy removes the seeded
+records; the next run puts them back. A fresh machine every night is fine: the seeder finds what is
+already on the environment instead of remembering it (proved from an empty cache).
+
+**Two cautions the Engineering team should decide on — neither is something the suite can fix:**
+
+1. **The sign-in is one person's browser cookie.** `GS_SSO` is copied from a browser signed in to
+   staging through Google. Its lifetime is not known, and it belongs to whoever copied it: if they
+   sign out, it stops working. When it does, the run stops at sign-in and says so in one sentence
+   rather than producing a page of failures. A nightly run is better served by a sign-in issued for
+   machines — a service account, or an allow-listed route past the Google step — which only the
+   team that owns staging's sign-in can provide.
+2. **Every run signs in as the same staging account.** A sign-in ends that account's previous session.
+   If the nightly run overlaps with anyone else running this suite against the same environment
+   (Mudassir locally, a pull-request run), each one signs the other out partway through, and the
+   later tests fail as if staging were down. Keep the schedules apart, or give the nightly run an
+   account of its own.
+
+### If it runs in Claude's cloud specifically
+
+Three things differ there, all handled in the suite. They are listed so nobody re-diagnoses them, and
+none of them happens on AWS or a laptop:
+
+- Outbound traffic goes through a local proxy. Chromium does not read `HTTPS_PROXY`, and if it is
+  given the raw `NO_PROXY` list it bypasses the proxy for everything. Even configured cleanly, it
+  drops about one request in six. The suite starts its own in-process relay (`fixtures/relay.ts`)
+  only when it finds that proxy and its certificate bundle. Anywhere else it never starts.
+- Secrets go in the cloud environment's settings (environment variables), never pasted into a chat.
+- Connections are dropped now and then. Reads retry, and a failed seed step is retried once. That is
+  safe because each step finds what a first attempt made. Writes are never blindly repeated.
 
 ## The suite reads the environment; it is never told about it
 

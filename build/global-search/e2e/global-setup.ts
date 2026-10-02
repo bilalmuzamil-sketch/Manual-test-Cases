@@ -19,6 +19,7 @@
 import type { FullConfig } from 'playwright/test';
 import seedEverything from './seed.js';
 import preflight from './preflight.js';
+import { writeRunStatus } from './fixtures/data.js';
 
 export default async function globalSetup(config: FullConfig): Promise<void> {
   // 🔴 ONE WORKER, ENFORCED — NOT JUST CONFIGURED. Every sign-in ends the previous session of the
@@ -30,9 +31,11 @@ export default async function globalSetup(config: FullConfig): Promise<void> {
       + 'sign-in ends the same account\'s previous session, so parallel workers log each other out and '
       + 'every later test fails as if the environment were down. Drop --workers (or set --workers=1).');
   }
+  writeRunStatus('run', { app: process.env.GS_APP || null, started: new Date().toISOString() }, true);
   const mode = (process.env.GS_SEED || 'on').toLowerCase();
   if (mode === 'skip' || mode === 'off') {
     console.log('\nseeding: SKIPPED (GS_SEED=skip). The preflight below still checks the data is there.');
+    writeRunStatus('seeding', { completed: false, skipped: true, failed_steps: [] });
   } else {
     await seedEverything();
   }

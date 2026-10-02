@@ -39,3 +39,26 @@ export function seedingDir(): string {
   }
   return hit;
 }
+
+/**
+ * A MACHINE-READABLE RECORD OF HOW THE RUN WAS PREPARED — results/run-status.json.
+ *
+ * 🔴 WHY. Seeding and the preflight no longer stop the run on a problem (QA lead, 2026-10-02), so a
+ * problem is only ever PRINTED. A person reading the log sees it; a nightly pipeline nobody watches
+ * (the Engineering team's) does not, and would read "40 skipped" as a clean night. This file says, in
+ * a form a pipeline can test: did seeding complete, which steps failed, which records were missing.
+ * Written fresh by every run — the first write replaces the previous run's file, never merges into it.
+ */
+export const RESULTS_DIR = path.join(E2E_DIR, 'results');
+const STATUS_FILE = path.join(RESULTS_DIR, 'run-status.json');
+export function writeRunStatus(part: string, value: unknown, fresh = false): void {
+  try {
+    fs.mkdirSync(RESULTS_DIR, { recursive: true });
+    let cur: Record<string, unknown> = {};
+    if (!fresh) { try { cur = JSON.parse(fs.readFileSync(STATUS_FILE, 'utf8')); } catch { /* first write */ } }
+    cur[part] = value;
+    fs.writeFileSync(STATUS_FILE, JSON.stringify(cur, null, 2) + '\n');
+  } catch (e) {
+    console.log(`(could not write ${STATUS_FILE}: ${(e as Error).message})`);   // never stops a run
+  }
+}
