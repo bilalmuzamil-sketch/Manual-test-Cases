@@ -100,6 +100,11 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **BEFORE AND AFTER EVERY JIRA TICKET WE CREATE OR REWRITE (Standing Rule 95): follow
+>   `build/JIRA-TICKET-STANDARD.md` (canonical example SV-10804 — plain words, Summary → Steps → Expected +
+>   its source → Current, sharp 2× images with captions underneath), run its pre-ticket check first, and
+>   its learning check after — adding anything new to the standard / playbook / lessons / rules / tools in
+>   the same turn.**
 > - **AT EVERY SESSION START, AND BEFORE ANY PASS THAT WILL PRODUCE A PUBLIC DELIVERABLE: READ
 >   `build/LESSONS-INDEX.md` (Standing Rule 82).** It is the RETRIEVAL LAYER for every correction we
 >   have ever made — one row each: *what went wrong · what we do now · where the fix lives* — plus
@@ -5093,6 +5098,42 @@ deliver the 7-tab management report.
     technical record lives in the findings doc), 85/91 (an honest limit is named, never used to hide
     a skipped check) and 89 (**the screen decides the verdict — this rule says the screen also
     decides what earns a ticket**).
+
+95. **EVERY TICKET FOLLOWS THE SV-10804 STANDARD — AND EVERY TICKET IS BRACKETED BY A LEARNING CHECK,
+    BEFORE AND AFTER (all projects).**
+    USER DIRECTIVE (2026-10-02, verbatim): *"Learn from this ticket creating model and save it forever with
+    you as a standard. The tickets should be like this. make it a rule for yourself to always look for
+    before making a ticket and see if something needs to be added to your skills/recipe/playbook/rule or
+    anywhere else."*
+    **THE STANDARD IS `build/JIRA-TICKET-STANDARD.md`; THE CANONICAL EXAMPLE IS
+    [SV-10804](https://shopview.atlassian.net/browse/SV-10804).** Every ticket we create or rewrite uses
+    its layout, in this order: *"Found while testing …"* (when applicable) → **Summary** (2–3 plain
+    sentences) → **Steps to reproduce** (numbered, exact on-screen labels, each image placed right after
+    the step it proves, then a "fastest way to see it" link) → **Expected behaviour + where it comes from**
+    (a document, quoted) → **Current behaviour** (plain sentence, the comparison image, a small table of
+    every try) → the environment and date. **Plain words only** — no account codes, internal ids, endpoints
+    or accounting/technical terms in what the reader reads. **Images are 2× captures, cropped to the rows
+    that matter, with numbered plain captions under the image, uploaded as real attachments and embedded
+    at half size** (`build/testing-tools/ticket_exhibit.py`). Fields: Bug, Medium, Product Area copied from
+    the source ticket (required), labels copied, Relates links.
+    **PART A — BEFORE writing any ticket (mandatory, every ticket):** read the standard, scan
+    `build/LESSONS-INDEX.md` and the playbook recipe for the area; search Jira for a duplicate (Rule 93);
+    re-read the source ticket's newest comments at the moment of filing (Rule 59); reproduce with
+    brand-new data more than once; drive every step the reader will follow on screen (Rule 68); capture
+    the evidence at 2× while there.
+    **PART B — AFTER filing or rewriting (mandatory, same turn):** ask *"did anything on this ticket go
+    wrong, get corrected, or work in a new way?"* and write each answer where it will be found next time —
+    the **standard** (how tickets look), the **playbook** (how to do it in the app/Jira), the
+    **LESSONS-INDEX** (a mistake or a correction), a **Standing Rule** (something always required), or a
+    **tool** in `build/testing-tools/` (repeated work). Commit and push. **If nothing is new, record
+    "learning check: nothing new" in the findings doc** so the check is visibly done.
+    **WHY:** SV-10804 took four rounds to reach this shape — account codes a first-time reader could not
+    follow, images too soft to read, steps that had changed on screen, and a PO routing found only by
+    re-reading the source ticket. Each fix is now in the standard so the next ticket starts there instead
+    of rediscovering it. This is Rule 82 (learning is automatic and retrievable) applied to ticket writing.
+    Ties to Standing Rules 7, 9, 25, 27, 50, 52, 57, 58, 59, 63–69 (ticket format, priority, title, credit
+    line, deep link), 72 (the pre-post gate), 81 (verify as the reader receives it; real attachments), 82,
+    83, 84 (no technical section by default), 93 (search first) and 94.
 
 
 ## Project purpose (Custom Roles project)

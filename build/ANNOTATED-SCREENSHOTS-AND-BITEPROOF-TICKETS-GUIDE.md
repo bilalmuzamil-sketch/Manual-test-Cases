@@ -1,5 +1,8 @@
 # Annotated screenshots + bite-proof Jira tickets — a hand-off guide
 
+> **⚠️ PARTLY SUPERSEDED (2026-10-02) — for TICKETS follow `build/JIRA-TICKET-STANDARD.md` (Standing Rule 95, example SV-10804).** Part 1 (how to annotate) still applies, but images are now 2× captures cropped tight with numbered captions underneath (`build/testing-tools/ticket_exhibit.py`). **Part 2 is out of date:** images go in as real Jira attachments, not GitHub links (Rule 81), and there is no "Technical details for developers" section unless the QA lead asks (Rule 84).
+
+
 **Purpose:** a self-contained guide for another QA session on **(1) how to make annotated
 before/after screenshots** for Jira comments and tickets, and **(2) the small set of habits that
 keep a ticket from biting the QA lead.** Part 1 is the main thing to learn. Part 3 is the checklist.
