@@ -46,9 +46,18 @@ query production while you believed you were testing staging.
 | **Production** | username and password | `GS_USER`, `GS_PASS` |
 | **Staging** | Google sign-in, so cookies from a signed-in browser | `GS_SSO`, `GS_PHPSESSID`, and `GS_CF` if Cloudflare is in front |
 
-Staging has no password to script. Take the cookies from DevTools → Application → Cookies on
-`app.staging.shopview.com`. **They expire** — if a run reports a Google sign-in screen, take a
-fresh set; the suite says so in those words rather than failing obscurely.
+Staging has no password to script — it signs in through Google.
+
+🔴 **Cookies are not enough on staging, and this is a change in staging rather than in the suite.**
+Measured 2 October 2026 with a fresh cookie set: `/api/auth/me/fe-permissions` answered **200**
+while the browser still sat on `/login`, and the **DEV MODE quick-login panel the old script
+clicked no longer exists**. The app keeps its session in `localStorage`, which only a real sign-in
+writes. So from the same signed-in browser also take **DevTools › Application › Local Storage** and
+set `GS_STAGING_USER` (the whole `user` value) and `GS_STAGING_TOKEN` if there is one. They are
+written before any page loads, exactly as the app does it.
+
+All of these expire. The suite tells you which half failed — cookies invalid, or cookies fine but
+the app has no session — rather than failing obscurely.
 
 The permission checks need a second, lower-permission login in `GS_LIMITED_ENVF`. Without it they
 stand down and say which account they would need; everything else still runs.
@@ -138,9 +147,14 @@ the reason it cannot be measured fairly:
 
 ## The run these were last verified by
 
-Every file below was run against **production** (`app.shopview.com`, build `v26.40.2-95f3172`) on
-**2 October 2026**. **Nothing is failing.** 338 tests cover all 251 checks that passed in run 415 —
-counted live from TestRail, not from a stored file.
+Every file below was run against **production** (`app.shopview.com`, build `v26.40.3-df33ae5`) on
+**2 October 2026**, after the suite was made portable — so these are the numbers you get from a
+clean checkout, not from one particular machine. **Nothing is failing.** 338 tests cover all 251
+checks that passed in run 415, counted live from TestRail rather than from a stored file.
+
+**Seeding is proven on staging**: `npm run seed` created its seven records there and they were
+searchable within a second. The staging *sign-in* needs one thing this suite cannot script — see
+below.
 
 | File | Passed | Skipped | Failed |
 |---|---|---|---|
@@ -156,7 +170,7 @@ counted live from TestRail, not from a stored file.
 | `findability.spec.ts` | 13 | 13 | 0 |
 | `panel.spec.ts` | 11 | 0 | 0 |
 | `permissions-two-accounts.spec.ts` | 11 | 9 | 0 |
-| `ranking-order.spec.ts` | 5 | 6 | 0 |
+| `ranking-order.spec.ts` | 4 | 7 | 0 |
 | `ranking-seeded.spec.ts` | 15 | 8 | 0 |
 | `recent-mobile-empty.spec.ts` | 7 | 0 | 0 |
 | `results-integrity.spec.ts` | 13 | 8 | 0 |
@@ -164,9 +178,9 @@ counted live from TestRail, not from a stored file.
 | `sri-distinguish-misc.spec.ts` | 14 | 11 | 0 |
 | `structure-and-scoping.spec.ts` | 8 | 5 | 0 |
 | `tabs-groups-navigation.spec.ts` | 14 | 2 | 0 |
-| **Total** | **253** | **85** | **0** |
+| **Total** | **252** | **86** | **0** |
 
-### What a skip means here, and why there are 85 of them
+### What a skip means here, and why there are 86 of them
 
 A skip is **never** "this did not run". It means the environment did not hold the data the check
 needs to judge the product fairly, and the spec says in its message exactly what was missing. The
