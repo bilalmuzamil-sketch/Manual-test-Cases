@@ -259,6 +259,65 @@ Three things I changed deliberately:
   1.50, 0.50, 1.25, no part attached). They are the evidence for §4, they are named here so they are
   not mistaken for real data, and **AH1 is not used in any comparison table.**
 
+
+---
+
+## 9. Reproduction steps the QA lead asked for (all re-driven live, 2 October)
+
+### 9a. The tax item — why it could not be found, and where it actually is
+
+**The QA lead could not reproduce it: *"I am not able to reproduce it as I am not seeing it in
+vendor credits."* Re-checked live, and the list is findable but unhelpful in two specific ways:**
+
+- the route is **`/accounting/purchases/credits`**, reached by **the module switcher (top-left
+  "ShopHub") → AccountingHub → left nav PURCHASES → Vendor credits**. `/accounting/vendor-credits`
+  and `/accounting/purchases/vendor-credits` both 404 — only the nav path works.
+- **there is NO search box on that list and NO Memo column.** The columns are Source · Date ·
+  Credit # · Vendor · Amount · Available · Status, with only first/prev/next/last paging. So a
+  `ZZAUTOTEST-…` memo cannot be searched for at all — **it has to be found by credit number or
+  amount.**
+
+**Steps:** module switcher → AccountingHub → Purchases → **Vendor credits** → **C-13673**
+(East Shoreham Truck & Equipment Repair, **$248.66**, first page, dated 10/02/2026) → click the row.
+The detail screen shows the whole finding: Memo `ZZAUTOTEST-CM-10406-AH2`, Amount $248.66, Journal
+entry **#4390**, and a **Lines** table whose only row is **`1300 Parts Inventory` $248.66**. Compare
+with ShopView: Parts → Returns → **Credits** tab → that memo → Sub total **$236.82**, Tax **$11.84**,
+Total **$248.66**. Exhibit `ev/05-where-to-find-the-tax-item.png`.
+
+### 9b. Cancel Return — RE-VERIFIED LIVE ON A RETURN CREATED FOR THE PURPOSE
+
+**The record used on 1 October (`ZZAUTOTEST-10406-CANCEL`) is GONE from the branch** — not in the
+Returns tab, not in Credits, not retrievable. Somebody removed it between 1 and 2 October; it was
+not us. **Rather than give steps for a defect last seen yesterday, a fresh manual return was created
+and cancelled today**, and it still fails:
+
+1. Parts → **Returns** → **Create Return** → pick any vendor → pick any part → Qty To Return `1` →
+   **Save Return**. (The one used is **`ZZAUTOTEST-CANCELTEST-OCT2`**, 5 Star Truck Repair, P550848,
+   1.00 @ $53.52, left on the branch and sitting at the top of the Returns tab.)
+2. On that row click the **⋮** menu — it offers exactly one entry, **Cancel Return**.
+3. Click it. The dialog appears: *"This will permanently delete the return. You cannot undo this
+   action. Are you sure you want to delete this return?"* with **No** and **Yes**; Yes is enabled.
+4. Click **Yes** → the dialog closes and **nothing else happens**.
+
+**Measured:** **zero** non-GET requests leave the browser after clicking Yes, and the row is still
+listed. Production behaves identically. Exhibit `ev/06-cancel-return-does-nothing.png`.
+
+### 9c. The Go live button — CANNOT be reproduced on this branch any more
+
+Honest answer: **the books on sv10408 are now live** (I took them live on 2 October so criterion 5
+was testable), and the onboarding screen has replaced the go-live card with the completed summary —
+read live today: *"Backfilled. Everything since 10/02/2026 is in the books — finished Oct 2, 2026
+8:46 AM after 12 minutes. 16,636 written · 152 skipped · 0 failed."* **There is no Go live button on
+that screen to press.** Reproducing it needs an organisation whose books have **not** been taken
+live; it should **not** be attempted on production, because taking the books live there is not
+something to do for a test.
+
+### 9d. `change-item` — CLOSED, no action
+
+QA-lead ruling, 2 October: *"If it is working in the UI then ignore it for now."* It is API-only and
+no screen calls it, so under **Standing Rule 94** it is not filed and not pursued. Recorded here and
+closed.
+
 ---
 
 ## 8. Outstanding
@@ -266,10 +325,8 @@ Three things I changed deliberately:
 1. **An accounting answer on the tax** (§3): on a taxed vendor return the whole document total,
    including tax, is credited to Parts Inventory with no tax line. Not a decimal matter; needs
    whoever owns the inventory/tax mapping to say whether it is intended.
-2. **`change-item` returns HTTP 500 on every call.** **API-only — no screen in the product calls
-   that path**, so no user and no manual tester can reach it. Under **Standing Rule 94** (QA lead's
-   ruling, 2026-10-02) this is **not filed**: it is reported here and to the QA lead with the
-   explicit question of whether he wants it raised.
+2. ~~`change-item`~~ — **CLOSED** by the QA lead's ruling of 2 October: *"If it is working in the
+   UI then ignore it for now."* API-only, not filed, not pursued (Standing Rule 94).
 3. **Whether to raise the onboarding Go live button** (§6).
 
 Nothing else outstanding on this ticket.
