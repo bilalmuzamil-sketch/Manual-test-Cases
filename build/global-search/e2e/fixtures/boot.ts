@@ -202,6 +202,36 @@ export async function signInStaging(route = '/customers', opts: { key?: string; 
       + 'sign-in, so there is no username and password to script. See e2e/.env.example.');
   }
   const { browser, ctx, page } = await launch();
+
+  /**
+   * 🔴 COOKIES AUTHENTICATE THE API; THE APP'S SESSION LIVES IN localStorage.
+   * Measured 2 Oct 2026 on staging: a valid cookie set answers 200 from
+   * /api/auth/me/fe-permissions while the browser still bounces to /login — and staging's login
+   * now goes straight to Google, with the old DEV MODE quick-login panel gone. So there is no
+   * longer any way to script a BROWSER session from cookies alone.
+   *
+   * What the app needs is the `user` object (and usually `token`) it writes at sign-in. Copy them
+   * from a signed-in browser — DevTools › Application › Local Storage — and set GS_STAGING_USER
+   * and GS_STAGING_TOKEN, or put USER_JSON= and TOKEN= in the staging env file. They are read here
+   * and written before any page loads, exactly as the app does it; nothing is forged, and nothing
+   * is committed.
+   */
+  const userJson = process.env.GS_STAGING_USER || f.USER_JSON || '';
+  const token = process.env.GS_STAGING_TOKEN || f.TOKEN || '';
+  if (userJson) {
+    let parsed: any = null;
+    try { parsed = JSON.parse(userJson); } catch {
+      throw new Error('GS_STAGING_USER is not valid JSON. Copy the whole value of the `user` key '
+        + 'from Local Storage, exactly as it appears.');
+    }
+    await ctx.addInitScript(([u, t]: [any, string]) => {
+      try {
+        localStorage.setItem('user', JSON.stringify(u));
+        if (t) localStorage.setItem('token', t);
+      } catch { /* storage unavailable */ }
+    }, [parsed, token] as any);
+  }
+
   const appHost = new URL(APP).host;
   const mk = (name: string, value: string) => [
     { name, value, domain: APIH, path: '/', secure: true, sameSite: 'None' as const },
@@ -220,12 +250,28 @@ export async function signInStaging(route = '/customers', opts: { key?: string; 
    * every time and read as the environment refusing the call. `ctx.request` shares the same cookie
    * jar and is not tied to what the page is doing.
    */
-  const signedIn = async () => {
+  /**
+   * 🔴 THE API ACCEPTING THE COOKIE IS NOT THE APP BEING SIGNED IN, AND CONFUSING THE TWO SKIPS THE
+   * STEP THAT MATTERS. Measured 2 Oct 2026: the cookies answered 200 from
+   * /api/auth/me/fe-permissions while the browser sat on /login?redirect=/customers. This check
+   * therefore reported success, the DEV MODE quick-login was never clicked, and every test then
+   * looked at a sign-in screen — reported as the search panel being missing.
+   *
+   * The app keeps its session in localStorage, which only the quick-login writes. So "signed in"
+   * means BOTH: the API accepts the cookie AND the page is not sitting on the login screen.
+   */
+  const apiOk = async () => {
     try {
       const res = await ctx.request.get(`https://${APIH}/api/auth/me/fe-permissions`, { ignoreHTTPSErrors: true });
       return res.status() === 200;
     } catch { return false; }
   };
+  const appReady = async () => {
+    if (/\/login/.test(page.url())) return false;
+    const shell = await page.locator('.global-search__trigger').count().catch(() => 0);
+    return shell > 0;
+  };
+  const signedIn = async () => (await apiOk()) && (await appReady());
 
   // the panel is filled by an API call, so poll for its button rather than checking once
   if (!(await signedIn())) {
@@ -252,9 +298,19 @@ export async function signInStaging(route = '/customers', opts: { key?: string; 
     }
   }
   if (!(await signedIn())) {
+    const where = page.url();
     throw new Error(
-      'Staging did not sign in. If the page is on a Google sign-in screen, a cookie is missing or '
-      + 'has expired — take a fresh set from a signed-in browser. This is not a fault in the suite.');
+      `Staging did not sign in — the page is on ${where}.\n`
+      + (await apiOk()
+        ? 'The cookies are valid — the API accepts them — but the app itself has no session. '
+          + 'Staging signs in through Google and keeps its session in localStorage, so cookies '
+          + 'alone are not enough. From a signed-in browser, open DevTools › Application › Local '
+          + 'Storage and copy the `user` value (and `token` if present) into GS_STAGING_USER and '
+          + 'GS_STAGING_TOKEN. See .env.example.'
+        : 'The cookies are not valid. If the page shows a Google sign-in screen they have expired — '
+          + 'take a fresh set from a signed-in browser.')
+      + '\nThis is reported rather than worked around, because a session that half-works makes '
+      + 'every later result meaningless.');
   }
   await page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(opts.settle ?? 8_000);
