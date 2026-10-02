@@ -389,7 +389,17 @@ def main():
             continue
         # a fresh work order per purchase order - see work_order_ids()
         existing = {o.get('workOrderId') for o in orders_by_vendor(vid)}
-        wo = next((w for w in wos[used:] if w not in existing), None)
+        # 🔴 "NOT IN AN OPEN ORDER" IS NOT "UNTOUCHED". /api/inventory/orders lists OPEN orders only,
+        # so a work order whose purchase order was RECEIVED looked free, was picked on every run, and
+        # its new part request quietly joined the old order: "ordered but no new PO appeared", and one
+        # more line on the same work order each time. Measured on staging 2026-10-02: S2-34132 had
+        # grown to 10 lines and 40 part requests. Only a work order with no order and no part request
+        # at all can produce a new purchase order, so use the list row's own counts to choose.
+        touched = set()
+        lr_ = call('/api/work-orders?search=Fibridge&limit=100')
+        for w in (((lr_['json'] or {}).get('data') or {}).get('work_orders') or []):
+            if w.get('orderId') or int(w.get('partRequestsCount') or 0) > 0: touched.add(w.get('id'))
+        wo = next((w for w in wos[used:] if w not in existing and w not in touched), None)
         used = (wos.index(wo) + 1) if wo else used
         if wo is None: print(f'  {tag:14} 🔴 no unused work order left'); continue
         lr = call(f'/api/work-orders/{wo}/lines/create-from-canned-line', 'POST',

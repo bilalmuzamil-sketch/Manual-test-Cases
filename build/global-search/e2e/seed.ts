@@ -141,7 +141,15 @@ export default async function seedEverything(): Promise<void> {
       if (CHECK && st.script !== 'seed.py' && !st.proof) continue;      // only the measuring steps
       const args = st.proof ? [] : [CHECK ? '--check' : '--confirm'];
       console.log(`\n──── ${st.label}  [${st.script}${args.length ? ' ' + args.join(' ') : ''} · ${st.manifest}]`);
-      const r = spawnSync(py, [st.script, ...args], { cwd: work, env: { ...env, SEED_MANIFEST: st.manifest }, stdio: 'inherit' });
+      // 🔴 ONE RETRY, BECAUSE EVERY STEP DECIDES FROM THE ENVIRONMENT. Claude's cloud egress drops a
+      // connection now and then (twice in one reseed on 2026-10-02). A step re-run finds what its
+      // first attempt made and creates only what is still missing, so a retry cannot duplicate — and
+      // a second failure is a real one.
+      let r = spawnSync(py, [st.script, ...args], { cwd: work, env: { ...env, SEED_MANIFEST: st.manifest }, stdio: 'inherit' });
+      if (r.status !== 0 && !st.proof) {
+        console.log(`\n──── ${st.label}: failed once — retrying, because a re-run finds what the first attempt made`);
+        r = spawnSync(py, [st.script, ...args], { cwd: work, env: { ...env, SEED_MANIFEST: st.manifest }, stdio: 'inherit' });
+      }
       if (r.status !== 0) {
         failures.push(st.label);
         if (!st.proof) break;                      // a broken seed step stops the run; a proof keeps going so all are reported

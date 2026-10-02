@@ -109,16 +109,27 @@ def call(path, method='GET', body=None):
         data=json.dumps(body).encode() if body is not None else None,
         headers={'Cookie': ck, 'Accept': 'application/json', 'Content-Type': 'application/json',
                  'User-Agent': 'Mozilla/5.0', 'Referer': f"https://{c['host']}/"})
-    try:
-        r = urllib.request.urlopen(req, context=CTX, timeout=60); status, raw, hdrs = r.status, r.read(), r.headers
-    except urllib.error.HTTPError as e:
-        status, raw, hdrs = e.code, e.read(), e.headers
-    except Exception as e:
-        # 🔴 'raw' MUST BE PRESENT ON EVERY RETURN PATH. It was missing here, so any caller that
-        # printed r['raw'] to explain a failure died with a KeyError *instead of* reporting the
-        # failure - the error handler crashed on the error. Cost: a seven-step reseed that stopped
-        # at step 4 with a stack trace rather than a diagnosis.
-        return {'status': 'ERR', 'error': str(e), 'json': None, 'raw': str(e).encode()[:250]}
+    # 🔴 A DROPPED CONNECTION ON A READ IS RETRIED; ON A WRITE IT IS NOT. Claude's cloud egress
+    # resets connections now and then (twice in one reseed on 2026-10-02). A GET is safe to repeat.
+    # A POST is not: the reset can come after the server acted, and repeating it is how duplicates
+    # are made. A failed write is reported, and the next find-or-create pass decides from the
+    # environment whether it landed.
+    tries = 3 if method == 'GET' else 1
+    for attempt in range(tries):
+        try:
+            r = urllib.request.urlopen(req, context=CTX, timeout=60); status, raw, hdrs = r.status, r.read(), r.headers
+            break
+        except urllib.error.HTTPError as e:
+            status, raw, hdrs = e.code, e.read(), e.headers
+            break
+        except Exception as e:                    # any failure to get an answer, as before
+            if attempt + 1 < tries:
+                time.sleep(2 * (attempt + 1)); continue
+            # 'raw' MUST BE PRESENT ON EVERY RETURN PATH: a caller printing r['raw'] to explain a
+            # failure once died with a KeyError instead of reporting it.
+            return {'status': 'ERR', 'error': str(e), 'json': None, 'raw': str(e).encode()[:250]}
+    else:
+        return {'status': 'ERR', 'error': 'no attempt made', 'json': None, 'raw': b'no attempt made'}
     for sc in hdrs.get_all('Set-Cookie') or []:          # playbook §Q1
         m = re.search(r'PHPSESSID=([^;]+)', sc)
         if m and m.group(1) not in ('deleted', '') and m.group(1) != c['PHPSESSID']:

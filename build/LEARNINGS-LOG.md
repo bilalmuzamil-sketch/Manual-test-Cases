@@ -5226,3 +5226,72 @@ someone deliberately named could send their traffic somewhere they had routed it
 **Reusable rule:** a port file is not a running service, a PID file is not a live process, and a
 lock file is not a held lock. Anything auto-detected from the filesystem must be probed before it is
 trusted, or a leftover becomes an outage.
+
+### L0292
+**What happened:** the suite concluded staging could not be signed into by script, because its
+on-screen DEV MODE quick-login panel was removed and its login page goes straight to Google.
+**The panel is gone; the endpoint is not.** `POST /api/quick-login {"key":"admin"}` answers 401
+`sso_required` with no cookie, and **200 (Admin, 59 permissions)** with the `sv_sso_session` cookie
+alone — Cloudflare's cookie is not needed. The `tech` key is a genuine Technician (6 permissions:
+work orders + customers/assets, no parts/part sales/vendors), which gives permission checks a real
+second person with no shared role edited.
+**Reusable rule:** a removed UI control is not a removed capability. Before declaring something
+unscriptable, call the endpoint the control used to call, with the least credential that might pass.
+
+### L0293
+**What happened:** in Claude's cloud container the app rendered as a blank page while every API call
+succeeded. Three stacked causes: Chromium does not read `HTTPS_PROXY`; passing `NO_PROXY` as its
+bypass list made it bypass the proxy for everything (IP ranges and `::` read as match-all); and even
+with a clean proxy setting ~1 request in 6 died with `ERR_TOO_MANY_RETRIES`, including the app's own
+JS and CSS. No flag fixed the last one.
+**Fix:** `fixtures/relay.ts`, an in-process relay — the browser CONNECTs to it, it ends TLS with a
+throwaway certificate and makes each request from Node over HTTP/1.1 through the egress proxy. It
+replaces a separate bridge process whose death mid-session left a stale port file behind.
+**Reusable rule:** "the API works" says nothing about the browser. Prove the page renders. And a
+helper process with a port file is two things that can disagree; run it inside the process that
+needs it.
+
+### L0294
+**What happened:** seeded parts were "missing" from search, and work-order and invoice lists returned
+44 rows and then 0 for the same query. Both were **shop scoping**: parts search and the list
+endpoints answer only for the session's current shop, and quick-login drops you into whichever shop
+that account last used. I first called the empty lists "transient" — they were not; the session was
+in another shop.
+**Fix:** every sign-in — tests and seeder — selects the seeding shop by name and refuses to guess.
+**Reusable rule:** an empty page from a scoped endpoint means "not here", never "nowhere". Fix the
+scope before believing an absence, and never explain an absence as flakiness until you have ruled
+scope out.
+
+### L0295
+**What happened:** the reseed system was built for a QA branch that was always wiped before a reseed,
+so its multi-step chains decided "already done?" from state files beside the scripts. On a machine
+with no state against a branch that was NOT wiped — every new laptop, and every fresh nightly
+container — the first real run created a second batch of 24 work orders and another four purchase
+orders, after printing "2 purchase orders, 5 vendor invoices already on this vendor". 36 work orders
+for one customer then overflowed a search capped at 20 and a proof lost four of seven statuses.
+**Fix:** ids-mode records discover existing work orders through the global search before creating;
+the PO chain recognises an invoice by its deterministic number and its payment by the vendor's unpaid
+list. Proved from an empty cache: 19/4/2 discovered, nothing created.
+**Reusable rule:** idempotence that depends on local memory is not idempotence. "Run it twice" must
+be tested on a SECOND machine, not the same one twice.
+
+### L0296
+**What happened:** three seeding scripts opened `/root/.ccr/ca-bundle.crt` unconditionally — the egress
+certificate of the container they were written in. On any other machine the seeder dies on import.
+`verify_toggle.py` read `/tmp/qa/cookies.json` regardless of the session it was given, which here was
+a stale file for a deleted branch. Two proofs keyed on that branch's numbering (`S9160-`) and on a
+pinned-result feature withdrawn on 2026-09-29.
+**Reusable rule:** grep a tool for absolute paths (`/root/`, `/tmp/`, `/opt/`, `/home/`) and for
+literals naming an environment before calling it portable. And when a feature is withdrawn, its
+proofs must change the same day, or every run reports a fault that is policy.
+
+### L0297
+**What happened:** the seeder reported 23 field gaps it could not repair — "no write endpoint declared
+for this record". Customer creation silently drops `state_or_province` and `telephone`, and three
+seeded contacts had their emails changed by hand. Declaring the repair routes (`/api/customers/change`
+whole-record; `/api/contacts/change` with `contact_id` + `company_id`) fixed all of them on the next run.
+Also: rewriting a shared manifest with `json.dump` re-escaped its characters and re-indented one file
+entirely (709 lines changed for 7 added). Detect each file's indent and escaping and write it back the
+same way.
+**Reusable rule:** a seeder that can detect drift but not repair it reports the same red forever. Every
+record type needs a repair route, or it is a one-shot seed, not a reseed.

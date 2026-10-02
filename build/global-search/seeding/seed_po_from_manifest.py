@@ -33,12 +33,30 @@ def vendor_id(rec):
     """By the vendor's EMAIL, which is unique, through ?search= on its name — a page of the
     unfiltered list is not the whole list (see seed_po_and_invoices.vendor_id)."""
     p = rec['create']['payload']
-    r = call(f"/api/parts-catalogue/vendors?search={p['name'].split()[0]}&limit=100")
-    hit = next((x for x in coll(r) if (x.get('email') or '').lower() == p['email'].lower()), None)
-    if hit: return hit['id']
+    # 🔴 A VENDOR MADE SECONDS AGO MAY NOT BE LISTED YET. On staging 2026-10-02 a vendor created by
+    # the step just before this one was missing from ?search= for one run and present the next. So
+    # retry with a pause before deciding it is not there — "not yet" is not "not at all".
+    for attempt in range(4):
+        r = call(f"/api/parts-catalogue/vendors?search={p['name'].split()[0]}&limit=100")
+        hit = next((x for x in coll(r) if (x.get('email') or '').lower() == p['email'].lower()), None)
+        if hit: return hit['id']
+        if attempt < 3: __import__('time').sleep(5 * (attempt + 1))
     if not coll(call('/api/parts-catalogue/vendors?search=Carolina&limit=10')):
         sys.exit('PROBE BROKEN - vendor ?search= returned nothing even for a vendor known to exist')
     return None
+
+def paid_state(vid, invoice):
+    """'paid' (absent from the unpaid list), 'partial' (balance < amount), 'unpaid', or None if unreadable."""
+    v = call(f'/api/parts-catalogue/vendor/{vid}')
+    acc = (((v['json'] or {}).get('data') or {}).get('vendor') or {}).get('vendor_account_id')
+    if not acc: return None
+    u = call(f'/api/parts-catalogue/vendor/transactions/list-unpaid-by-vendor-account'
+             f'?accountId={acc}&pagination[page]=1&pagination[rowsPerPage]=100')
+    if u['status'] != 200: return None
+    rows = (((u['json'] or {}).get('data') or {}).get('response') or {}).get('collection') or []
+    t = next((x for x in rows if x.get('invoice_number') == invoice), None)
+    if t is None: return 'paid'
+    return 'partial' if 0 < float(t.get('balance') or 0) < float(t.get('amount') or 0) else 'unpaid'
 
 def main():
     m = json.load(open(f'{HERE}/{MANIFEST}'))
@@ -47,22 +65,37 @@ def main():
         print(f'{MANIFEST}: no purchase_orders block — nothing to do'); return
     _seed['ensure_session']()
     recs = {r['key']: r for r in m['records']}
-    orders = coll(call('/api/inventory/orders?limit=250'))
-    deliveries = coll(call('/api/inventory/deliveries?limit=250'))
     bad = 0
     for row in plan:
-        tag = f"ZZSPEC {row['key']}"
+        k, tag = row['key'], f"ZZSPEC {row['key']}"
+        invoice = f"ZZSH-{k[-6:]}".upper()[:21]
         vid = vendor_id(recs[row['vendor']])
         if not vid:
-            print(f"  {row['key']:20} 🔴 vendor {row['vendor']} not found — run seed.py --confirm first"); bad += 1; continue
+            print(f"  {k:20} 🔴 vendor {row['vendor']} not found — run seed.py --confirm first"); bad += 1; continue
+        # 🔴 THE INVOICE IS THE PROOF, NOT THE PURCHASE ORDER. A received order leaves
+        # /api/inventory/orders, so the first version of this script looked for its order there, did
+        # not find it on the second run, and raised another one: a duplicate on every reseed. The
+        # Fibridge chain had already learned exactly this (seed_po_and_invoices.py, "the deliverable is
+        # the invoice") and it was repeated here on 2026-10-02. So: invoice first.
+        deliveries = coll(call('/api/inventory/deliveries?limit=250'))
+        received = any(d.get('vendor_id') == vid and str(d.get('invoice_number')) == invoice for d in deliveries)
+        if row.get('receive') and received:
+            want = {'full': 'paid', 'partial': 'partial'}.get(row.get('pay'))
+            have = paid_state(vid, invoice) if want else None
+            if want and have != want and CONFIRM and have == 'unpaid':
+                r, msg = pay(vid, invoice, row['pay'])
+                print(f"  {k:20} invoice {invoice} there; paid now: {msg}")
+            print(f"  {k:20} ✅ invoice {invoice} present{f' ({have})' if have else ''}")
+            continue
+        orders = coll(call('/api/inventory/orders?limit=250'))
         order = next((o for o in orders if o.get('vendor_id') == vid and tag in (o.get('note') or '')), None)
         if not order:
             if not CONFIRM:
-                print(f"  {row['key']:20} MISSING (would create)"); continue
+                print(f"  {k:20} MISSING (would create)"); continue
             cp = coll(call(f"/api/parts-catalogue/catalogue-parts?search={row['part_number']}&limit=10"))
             part = next((x for x in cp if x.get('part_number') == row['part_number']), None)
             if not part:
-                print(f"  {row['key']:20} 🔴 catalogue part {row['part_number']} not found"); bad += 1; continue
+                print(f"  {k:20} 🔴 catalogue part {row['part_number']} not found"); bad += 1; continue
             body = {'vendor_id': vid, 'note': tag,
                     'items': [{'id': str(__import__('uuid').uuid4()), 'is_core': False, 'part_number': row['part_number'],
                                'quantity': row['quantity'], 'price': row['price'],
@@ -70,24 +103,21 @@ def main():
             r = call('/api/inventory/orders/create', 'POST', body)
             oid = ((r['json'] or {}).get('data') or {}).get('order_id')
             if r['status'] not in (200, 201) or not oid:
-                print(f"  {row['key']:20} 🔴 orders/create {r['status']} {str(r['raw'])[:140]}"); bad += 1; continue
-            orders = coll(call('/api/inventory/orders?limit=250'))
-            order = next((o for o in orders if o.get('id') == oid), {'id': oid})
-            print(f"  {row['key']:20} purchase order created")
-        invoice = f"ZZSH-{row['key'][-6:]}".upper()[:21]
-        received = any(d.get('vendor_id') == vid and d.get('invoice_number') == invoice for d in deliveries)
-        if row.get('receive') and not received:
-            if not CONFIRM:
-                print(f"  {row['key']:20} not received yet (would receive as {invoice})"); continue
-            r, _ = receive(order, vid, invoice)
-            if r['status'] not in (200, 201, 'SKIP'):
-                print(f"  {row['key']:20} 🔴 receive {r['status']} {str(r['raw'])[:140]}"); bad += 1; continue
-            print(f"  {row['key']:20} received -> vendor invoice {invoice}")
-            deliveries = coll(call('/api/inventory/deliveries?limit=250'))
-        if row.get('pay') and CONFIRM:
+                print(f"  {k:20} 🔴 orders/create {r['status']} {str(r['raw'])[:140]}"); bad += 1; continue
+            order = next((o for o in coll(call('/api/inventory/orders?limit=250')) if o.get('id') == oid), {'id': oid})
+            print(f"  {k:20} purchase order created")
+        if not row.get('receive'):
+            print(f"  {k:20} ✅ order present, left on order"); continue
+        if not CONFIRM:
+            print(f"  {k:20} not received yet (would receive as {invoice})"); continue
+        r, _ = receive(order, vid, invoice)
+        if r['status'] not in (200, 201, 'SKIP'):
+            print(f"  {k:20} 🔴 receive {r['status']} {str(r['raw'])[:140]}"); bad += 1; continue
+        print(f"  {k:20} received -> vendor invoice {invoice}")
+        if row.get('pay'):
             r, msg = pay(vid, invoice, row['pay'])
-            print(f"  {row['key']:20} payment: {msg if r is None else str(r['status']) + ' ' + msg}")
-        print(f"  {row['key']:20} ✅ order present{', received' if row.get('receive') else ''}")
+            print(f"  {k:20} payment: {msg if r is None else str(r['status']) + ' ' + msg}")
+        print(f"  {k:20} ✅ invoice {invoice} present")
     if bad: sys.exit(f'{bad} purchase-order row(s) could not be completed')
 
 if __name__ == '__main__':

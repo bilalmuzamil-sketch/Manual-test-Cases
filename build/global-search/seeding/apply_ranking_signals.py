@@ -134,8 +134,16 @@ def signal_tiebreak():
 if __name__ == '__main__':
     if not CONFIRM:
         print('DRY RUN — pass --confirm to apply\n')
-    print('C55708/09/22  work orders OPEN       :', signal_open_work_orders())
-    print('C55710  vendor open purchase order :', signal_vendor_po())
-    print('C55712  part recent activity       :', signal_part_activity())
-    print('C55716  tie-break, updated last    :', signal_tiebreak())
+    results = [
+        ('C55708/09/22  work orders OPEN       :', signal_open_work_orders()),
+        ('C55710  vendor open purchase order :', signal_vendor_po()),
+        ('C55712  part recent activity       :', signal_part_activity()),
+        ('C55716  tie-break, updated last    :', signal_tiebreak()),
+    ]
+    for label, out in results: print(label, out)
     print('\n🔴 Now prove it: python3 verify_ranking.py')
+    # 🔴 A RED LINE MUST FAIL THE STEP. This printed "🔴 customers/change ERR ..." for C55716 on
+    # 2026-10-02 and still exited 0, so an unattended run would have carried on as if the tie-break
+    # signal were in place. Exit non-zero so the orchestrator retries it and, failing twice, stops.
+    if any(str(out).lstrip().startswith('🔴') for _, out in results):
+        sys.exit(1)

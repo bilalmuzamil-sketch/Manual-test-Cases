@@ -18,11 +18,11 @@ npx playwright install chromium          # the browser, once
 cp .env.example .env                     # then fill it in — see below
 set -a && . ./.env && set +a             # or export the variables yourself
 
-npm run login                            # staging only: sign in once, by hand
-npm run seed                             # create what the seeder can (see "Seeding")
-npm run preflight                        # is the environment actually ready? (~20s)
-npm test                                 # run everything -- preflight runs again, and gates it
+npm test                                 # seeds, verifies, then runs everything
 ```
+
+That is the whole sequence. `npm test` seeds the environment and proves the data is there before the
+first test starts — see "Every run seeds first" below. Needs Node and Python 3.8+.
 
 **Nothing else is required.** No relay, no proxy, no file at a fixed path, no browser at a fixed
 location. Earlier versions of this suite needed all of those and could only run on one machine;
@@ -54,11 +54,36 @@ query production while you believed you were testing staging.
 | Environment | How | What to set |
 |---|---|---|
 | **Production** | username and password | `GS_USER`, `GS_PASS` |
-| **Staging** | Google sign-in, so cookies from a signed-in browser | `GS_SSO`, `GS_PHPSESSID`, and `GS_CF` if Cloudflare is in front |
+| **Staging and QA branches** | **one cookie** — the Google session | `GS_SSO` |
 
-Staging has no password to script — it signs in through Google.
+#### Staging: one cookie, and nothing runs by hand
 
-#### The easy way on staging: sign in once, by hand
+Sign in to `app.staging.shopview.com` in any browser, open **DevTools › Application › Cookies**,
+and copy the value of **`sv_sso_session`** into `GS_SSO`. That is the only secret. Every run then
+signs itself in, with no window and no person — which is what makes a nightly run possible.
+
+🔴 **This reverses what this README used to say.** Staging's on-screen DEV MODE quick-login panel
+was removed and its login page goes straight to Google, so the suite concluded staging could not
+be scripted. The panel is gone; the endpoint behind it is not. Measured 2 October 2026:
+
+| | |
+|---|---|
+| quick-login with no cookie | **401** `sso_required` — a cold start cannot get in |
+| quick-login with the Google session cookie | **200**, Admin, 59 permissions |
+| with Cloudflare's cookie as well | not needed |
+
+The same cookie gives the permission checks their second person: quick-login's `tech` key is a
+Technician with 6 permissions — work orders and customers/assets, but not parts, part sales or
+vendors — so the comparisons have a real difference to measure.
+
+**When it expires** the run stops at sign-in and says so in those words; copy a fresh one. It lasted
+the whole of 2 October in testing; how long it lives beyond that has not been measured.
+
+**Never paste it into a chat, a ticket or a file in this repository** — it is a live session for
+your account. Keep it in `.env` (git-ignored), and for the nightly run in the cloud environment's
+own settings as `GS_SSO`.
+
+#### The other way on staging: sign in once, by hand
 
 ```bash
 npm run login            # opens a real browser; sign in with Google yourself
@@ -93,72 +118,73 @@ stand down and say which account they would need; everything else still runs.
 `--workers=1` is not a preference. Signing in as the same person expires their previous session, so
 two workers log each other out and both report a broken environment. `npm test` sets it for you.
 
-## Is the environment ready? The run answers before it starts
+## Every run seeds first — automatically, on every machine
 
-`npm test` will not begin until it has checked that the records the checks look for are actually
-there. It prints a line per record and, if any are missing, **stops before the first test** and
-names them.
+`npm test` cannot start a test until it has done two things, in this order:
+
+1. **Seed** — puts every record the 338 tests read onto the environment `GS_APP` names: passed,
+   failed and blocked cases alike. Nothing to remember and no separate step: the branch is
+   refreshed and a refresh wipes the data, so the run seeds itself every time.
+2. **Verify** — asks search for each record the checks look for, from inside the shop the tests
+   sign into, and **stops the run before the first test** if any is missing, naming it.
 
 ```bash
-npm run preflight        # ask the question on its own, ~20 seconds, read-only
+npm test                     # seed, verify, then run — the normal way
+npm run seed                 # seed + prove, without running tests
+npm run preflight            # verify only (~20s, read-only)
+GS_SEED=check npm test       # measure what is there, create nothing
+GS_SEED=skip npx playwright test tests/panel.spec.ts   # re-run one spec on data you just seeded
 ```
 
-```
-what the checks look for                   kind            found
-✓ "ZZSPEC"                                 customer        18
-✓ "ZZLONGROW"                              asset           2
-✗ "ZZKRYPTON"                              part            0
-```
+🔴 **Why it is not optional.** A run against a wiped branch does not fail. Its checks stand down for
+lack of data, and a standing-down suite looks exactly like a suite that ran. On 2 October 2026 a full
+run spent 1.6 hours to report 116 checks standing down, most of them for records that were simply not
+there.
 
-🔴 **This exists because nothing used to check.** `npm run seed` creates customers and nothing
-else, while the checks also look for named assets, parts, vendors, part sales, purchase orders and
-vendor invoices. On 2 October 2026 a full production run spent **1.6 hours** to report 116 checks
-standing down, most of them for records that were simply not on the environment — and whoever ran
-it found that out at the end. Now they find out at the start.
+### What it seeds, and from where
 
-It reads the same `entity-config.json` the specs read, so it cannot drift out of step with them. It
-creates nothing, so it is safe to run against anything. A record it could not read is reported as
-**could not read**, never as missing — those are different answers, and confusing them would send
-you off seeding records that already exist.
+The seeding engine is `../seeding/` — built over three weeks for exactly these cases, with one rule:
+**measure first, create only what is missing, read every write back.** `seed.ts` runs all of it in the
+order `reseed_everything.sh` proved:
 
-| | |
+| Data set | What it holds |
 |---|---|
-| `GS_PREFLIGHT=warn npm test` | report, run anyway, let those checks stand down |
-| `GS_PREFLIGHT=off npm test` | skip the check entirely |
+| `seed-manifest.json` | the V1-regression records |
+| `seed-manifest-gs-v2.json` | the Fibridge universe — customers, contacts, assets, parts, vendors, 24 work orders across all seven statuses, part sales, purchase orders, vendor invoices paid / part-paid / unpaid, two role fixtures, recent activity |
+| `seed-manifest-ranking.json` | ranking and fuzzy-match pairs, and the signals ranking reads |
+| `seed-manifest-toggle.json` | one record per access area, for the permission checks |
+| `seed-manifest-pertab.json` | begins-with / contains / one-letter-typo trios per tab |
+| `seed-manifest-e2e.json` | this suite's own: the `ZZSPEC` customers, and the `ZZLONGROW` and `ZZSOFTHIT` families the entity checks search for, with their purchase orders and invoices |
 
-## Seeding
+Then three **proofs** search for what was seeded and fail the run if search does not return it — "the
+record exists" is not "search returns it".
 
-⚠️ **`npm run seed` does not create everything the suite needs, and cannot yet.** It creates the
-**customer** records (`ZZSPEC…`). The named **assets, parts, vendors, part sales, purchase orders
-and vendor invoices** the entity checks look for are not created by it — they have to be on the
-environment already. Creating them through the API is a multi-step job that has not been built:
-a part, for instance, needs an existing `catalog_part_id` and `category_id` before it can exist,
-and the asset route silently ignores make, model and unit number (recorded in
-`build/APP-ACTIONS-PLAYBOOK.md`), so an asset made that way is not usable as a fixture.
+**To add data for a new check: add a record to `seed-manifest-e2e.json`.** Never edit the engine.
 
-Until that is built, the preflight tells you which of them are missing and the checks that need
-them stand down with their reason rather than reporting anything about the product.
+### It is safe to run any number of times — including on a fresh machine
 
-```bash
-npm run seed
-```
+Seeding twice creates nothing the second time. That has to hold on a machine that has **never** seeded
+this environment before (a new laptop, or the fresh container every nightly run starts in), and the
+first real run showed it did not: the engine recognised some records only by ids it had remembered, so
+with no memory it made a second batch of 24 work orders next to the existing ones. It now **discovers**
+existing records on the environment before creating anything. Proved on staging on 2 October 2026 from
+an empty cache: it found the 19, 4 and 2 existing work orders and created none.
 
-**The specs do not need seeded data to be correct** — each looks for a record with the property it
-is about and stands down, with a reason, when the environment holds none. What a bare environment
-costs you is *coverage*: a great many checks skip, and a suite that mostly skips tells you little.
+It never writes into the repository: it runs from a temporary copy and keeps record ids between runs
+in `~/.cache/shopview-e2e/` (`GS_SEED_CACHE` to move it).
 
-`seed.ts` creates the handful of records those checks look for — a very long name, two that look
-alike, a prefix/contains pair for ranking, one with a telephone, one with a dash. It is:
+### Needs
 
-* **idempotent** — a name already present is left alone. Safe to re-run; the second run reports
-  `already there` for every row.
-* **additive** — it creates. It never edits or deletes anything that was already there.
-* **visible** — everything is named `ZZSPEC…`, so what the suite put there is obvious.
-* **guarded** — it refuses to touch production unless `GS_SEED_ALLOW_PROD=1`, because running the
-  seeder against the wrong URL should take more than one mistake.
+**Python 3.8 or newer** on `PATH` as `python3` (standard library only — nothing to install; `GS_PYTHON`
+to point at a specific one), and the same sign-in as the tests.
 
-If seeding fails it is almost always a permission: the account must be able to create customers.
-The suite still runs — the affected checks stand down and name what was missing.
+### It signs into the shop the data lives in — and so do the tests
+
+🔴 **Parts search is scoped by shop.** Measured on staging: from "Staging Lethbridge" the seeded parts
+are invisible; from "Staging Heavy Duty", where they are stocked, they come back. The lists the seeder
+reads are scoped the same way. So the seeder and every test sign into the same shop — staging
+`Staging Heavy Duty`, production `Trucks Hill 2` — and refuse to guess if it is missing. `GS_WORKPLACE`
+overrides.
 
 ## The suite reads the environment; it is never told about it
 
