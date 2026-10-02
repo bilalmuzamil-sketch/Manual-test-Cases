@@ -101,7 +101,11 @@ Rule-117 clean; SV-9573..9584 Open). Deltas from the move:
 - **Feature-flag drop (@chris 2026-09-24):** org-level DashboardAdministrator gate removed; access =
   Reports permission only. → **C88595 + C88596 STALE** (still test the removed feature gate / S1-N3/N4);
   rewrite pending approval. ~38 cases' precondition "Dashboard feature is on" reword pending approval.
-- Everything else unchanged/current. Suite count now 60 ours (added C204097).
+- Everything else unchanged/current.
+**ALL FOUR APPROVED EDITS DONE 2026-10-02:** C88595 + C88596 rewritten to single-gate access; S11-R2a
+authored (C204098); 37 preconditions reworded; PRD source-read date re-stamped to 2 Oct on 51 cases.
+**Suite now 61 ours** (added C204097 + C204098) + 3 foreign. Final audit clean: 0 stale refs, S9-R8 +
+S11-R2a covered, 0 format defects, 56 READY + 5 HOLD, all fr-view. **Fully current vs the 2026-09-30 PRD.**
 
 ## PARKED 2026-09-23 — QA lead switched to new project "WO Board and Tech View"
 Dashboards left COMPLETE as source-verified authoring: 59 cases (33 base + 6 design/tech-plan + 20 data-accuracy),
