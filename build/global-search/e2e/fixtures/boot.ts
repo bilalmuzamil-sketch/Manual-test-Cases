@@ -1,6 +1,7 @@
 import { chromium, type Browser, type BrowserContext, type Page } from 'playwright/test';
 import fs from 'node:fs';
 import net from 'node:net';
+import { relayWanted, startRelay } from './relay.js';
 
 /**
  * SIGNING IN, SELF-CONTAINED AND PORTABLE.
@@ -67,14 +68,55 @@ function listening(host: string, port: number, ms = 600): Promise<boolean> {
  */
 async function proxy() {
   if (process.env.GS_PROXY) return { server: process.env.GS_PROXY };
+  // Claude's cloud: Chromium cannot hold TLS through the egress proxy, so relay it (see relay.ts).
+  if (relayWanted()) return { server: await startRelay() };
   const f = process.env.GS_BRIDGE_PORT_FILE || '/tmp/atlassian/bridge-port.txt';
   try {
     if (!fs.existsSync(f)) return undefined;
     const port = Number(fs.readFileSync(f, 'utf8').trim());
     if (!Number.isFinite(port) || port <= 0) return undefined;
     if (await listening('127.0.0.1', port)) return { server: `http://127.0.0.1:${port}` };
-    console.log(`  (ignoring ${f}: nothing is listening on 127.0.0.1:${port} — connecting directly)`);
-    return undefined;
+    console.log(`  (ignoring ${f}: nothing is listening on 127.0.0.1:${port})`);
+  } catch { /* fall through to the standard variables */ }
+  return standardProxy();
+}
+
+/**
+ * The machine's own proxy setting, honoured the way curl and every other tool honour it.
+ *
+ * 🔴 THE BROWSER DOES NOT READ HTTPS_PROXY BY ITSELF. Measured 2 October 2026 in a cloud
+ * container whose outbound traffic must go through a local proxy: `curl` reached staging and got
+ * 200 from every endpoint, the sign-in succeeded, the app wrote its session — and the page stayed
+ * BLANK, because Chromium fetched the app's own JavaScript and CSS directly and every request died
+ * with ERR_TOO_MANY_RETRIES. Nothing about it looked like a network problem: the API calls worked,
+ * the URL was right, there was simply no page.
+ *
+ * Without this, a nightly run in Claude's cloud would never render anything. On a laptop with no
+ * proxy configured it changes nothing at all. NO_PROXY becomes the browser's bypass list.
+ */
+function standardProxy() {
+  const raw = process.env.HTTPS_PROXY || process.env.https_proxy
+    || process.env.HTTP_PROXY || process.env.http_proxy || '';
+  if (!raw) return undefined;
+  try {
+    const u = new URL(raw);
+    // 🔴 NO_PROXY CANNOT BE HANDED TO CHROMIUM AS IT IS. Measured 2 October 2026 in Claude's cloud
+    // container: proxy alone -> 200; proxy with the raw NO_PROXY as its bypass list ->
+    // ERR_TOO_MANY_RETRIES on every page, i.e. exactly as broken as no proxy at all. The list holds
+    // IP ranges and `::` that curl understands and Chromium reads as "bypass everything". Keep only
+    // plain hosts and domain suffixes (16 of that list's 26); the ranges are private addresses this
+    // suite never visits anyway.
+    const bypass = (process.env.NO_PROXY || process.env.no_proxy || '').split(',')
+      .map((x) => x.trim())
+      .filter((x) => x && x !== '::' && /^(\*|\.)?[a-z0-9-]+(\.[a-z0-9-]+)*$/i.test(x))
+      .map((x) => (x.startsWith('.') ? `*${x}` : x))
+      .join(',') || undefined;
+    return {
+      server: `${u.protocol}//${u.host}`,
+      ...(u.username ? { username: decodeURIComponent(u.username) } : {}),
+      ...(u.password ? { password: decodeURIComponent(u.password) } : {}),
+      ...(bypass ? { bypass } : {}),
+    };
   } catch { return undefined; }
 }
 
@@ -221,6 +263,100 @@ export async function signInWithPassword(
  * site bounces to a Google sign-in page; a domain-scoped duplicate makes the server read the stale
  * one and answer 409. A Google sign-in screen here means a cookie is missing or has expired.
  */
+/** The Google session cookie, from the environment or the staging env file. Never logged. */
+export function ssoCookie(): string {
+  const f = readEnvFile(process.env.GS_STAGING_ENVF || '/tmp/shopview/gs-staging.env');
+  return process.env.GS_SSO || f.SV_SSO_SESSION || '';
+}
+
+/**
+ * UNATTENDED SIGN-IN FOR STAGING AND QA BRANCHES — one cookie, no browser window, no person.
+ *
+ * 🔴 THIS REVERSES WHAT THIS FILE USED TO SAY. Until 2 October 2026 the comment below
+ * `signInStaging` read "there is no longer any way to script a BROWSER session from cookies
+ * alone", because staging's DEV MODE quick-login PANEL had been removed and its login page goes
+ * straight to Google. The panel is gone; the endpoint behind it is not. Measured that day:
+ *
+ *     POST /api/quick-login {"key":"admin"}   no cookies               -> 401 sso_required
+ *     POST /api/quick-login {"key":"admin"}   sv_sso_session only      -> 200, Admin, 59 permissions
+ *     POST /api/quick-login {"key":"admin"}   sv_sso_session + Cloudflare -> 200 (Cloudflare not needed)
+ *
+ * So it IS gated — a cold start cannot get in — but the gate is the Google session, and that is
+ * one cookie a person copies once and stores as a secret. The answer carries the user details and
+ * role, and Set-Cookie carries a fresh PHPSESSID (24 hours). Those are exactly what the production
+ * sign-in uses, so the app is put into its signed-in state the same way.
+ *
+ * That is what makes an unattended nightly run possible at all: nothing here needs a window.
+ *
+ * Traps, each measured:
+ *   • HOST-ONLY COOKIE. The SSO cookie is added by `url`, never by `domain`. A domain-scoped copy
+ *     sits alongside the host-only one the server sets, and the next call reads the wrong one and
+ *     answers 409 right after a 200 — which looks like a dead session and is not (playbook §A).
+ *   • ONE QUICK-LOGIN PER RUN. Each call mints a new session for the quick-login account and ends
+ *     the previous one, so two workers sharing it log each other out. The suite runs one worker.
+ *   • THE KEY IS NOT THE ROLE. `tech` was an ADMINISTRATOR on a QA branch once. What the session
+ *     can do is read back from fe-permissions, never assumed from the key that was pressed.
+ */
+export async function signInWithSso(route = '/customers', opts: { key?: string; settle?: number } = {}): Promise<Session> {
+  const sso = ssoCookie();
+  if (!sso) {
+    throw new Error(
+      `No Google session for ${APP}. Set GS_SSO to the value of the sv_sso_session cookie from a `
+      + 'browser signed in to this environment (DevTools › Application › Cookies). It is the only '
+      + 'secret needed; everything else is minted from it. Never commit it.');
+  }
+  const key = opts.key || process.env.GS_LOGIN_AS || 'admin';
+  const { browser, ctx, page } = await launch();
+  const log = (...a: unknown[]) => console.log(new Date().toISOString().slice(11, 19), ...a);
+
+  // Host-only on both hosts: `url`, not `domain` (see the trap above).
+  await ctx.addCookies([
+    { name: 'sv_sso_session', value: sso, url: `https://${APIH}`, secure: true, sameSite: 'None' },
+    { name: 'sv_sso_session', value: sso, url: APP, secure: true, sameSite: 'None' },
+  ]);
+
+  const r = await ctx.request.post(`https://${APIH}/api/quick-login`, {
+    data: { key },
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    ignoreHTTPSErrors: true,
+  });
+  let loginData: any = null;
+  if (r.status() === 200) { try { loginData = (await r.json())?.data; } catch { /* non-JSON */ } }
+  if (!loginData) {
+    await browser.close();
+    const why = r.status() === 401
+      ? 'the Google session has expired or was never valid. Sign in to this environment in a '
+        + 'browser and copy a fresh sv_sso_session into GS_SSO.'
+      : `quick-login answered HTTP ${r.status()}.`;
+    throw new Error(`Could not sign in to ${APP}: ${why}`);
+  }
+  log(`signed in through quick-login as "${key}"`);
+
+  // The app's own signed-in state, in its own shape, before any page loads — the same three
+  // writes the production sign-in makes (see signInWithPassword for why each one matters).
+  const fe = await ctx.request.get(`https://${APIH}/api/auth/me/fe-permissions`,
+    { headers: { Accept: 'application/json' }, ignoreHTTPSErrors: true });
+  const fep = fe.status() === 200 ? (await fe.json())?.data : null;
+  await ctx.addInitScript(([u, f]: [any, any]) => {
+    try {
+      localStorage.setItem('user', JSON.stringify({ data: u }));
+      if (f) localStorage.setItem('fe_permissions_wrapper', JSON.stringify(f));
+      if (u?.token) localStorage.setItem('token', u.token);
+    } catch { /* storage unavailable */ }
+  }, [loginData, fep] as any);
+  const nPerms = (fep?.fe_permissions || []).length;
+
+  await page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(opts.settle ?? 12_000);
+  const version = await page.evaluate(() =>
+    (document.querySelector('meta[name=app-version]') as HTMLMetaElement | null)?.content ?? null).catch(() => null);
+  log(`${page.url()} | app-version=${version} | fe_permissions=${nPerms}`);
+  if (/\/login/.test(page.url())) {
+    log('⚠ still on /login after hydration — investigate before trusting any result');
+  }
+  return { browser, ctx, page };
+}
+
 export async function signInStaging(route = '/customers', opts: { key?: string; settle?: number } = {}): Promise<Session> {
   const f = readEnvFile(process.env.GS_STAGING_ENVF || '/tmp/shopview/gs-staging.env');
   /**
@@ -391,9 +527,14 @@ export async function signInWithSavedState(route = '/customers', opts: { settle?
  *      a browser to do step 1.
  */
 export async function boot(route = '/customers', opts: { envFile?: string; key?: string } = {}): Promise<Session> {
-  if (!opts.envFile && fs.existsSync(authStatePath())) {
-    return signInWithSavedState(route);
-  }
+  // Order of preference, most unattended first:
+  //   1. production       username + password           (scriptable)
+  //   2. anything else    the Google session cookie     (scriptable — one secret, GS_SSO)
+  //   3. a saved session  from `npm run login`           (one person, once)
+  //   4. pasted cookies + Local Storage                  (the old manual route, kept as a fallback)
+  if (IS_PROD || opts.envFile) return signInWithPassword(route, opts);
+  if (ssoCookie()) return signInWithSso(route, opts);
+  if (fs.existsSync(authStatePath())) return signInWithSavedState(route);
   return IS_STAGING ? signInStaging(route, opts) : signInWithPassword(route, opts);
 }
 
