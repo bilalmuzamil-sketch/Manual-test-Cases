@@ -186,6 +186,39 @@ reads are scoped the same way. So the seeder and every test sign into the same s
 `Staging Heavy Duty`, production `Trucks Hill 2` — and refuse to guess if it is missing. `GS_WORKPLACE`
 overrides.
 
+## Running it on Claude — on a pull request, and every night
+
+The same `npm test` runs in Claude's cloud environment, unattended. Nothing in it needs a window or a
+person: it signs in from one cookie, seeds, verifies, runs, and reports.
+
+**What the cloud environment needs, set once in its own settings** (the cloud environment menu in the
+session's title bar → Edit — never pasted into a chat):
+
+| Setting | Value |
+|---|---|
+| Environment variable `GS_SSO` | the `sv_sso_session` cookie from a browser signed in to staging |
+| Environment variable `GS_APP` | `https://app.staging.shopview.com` (or the QA branch being tested) |
+| Network access | must reach `*.shopview.com` — the default policy already did on 2 October 2026 |
+
+**What a run does, in order:** `npm ci` → `npx playwright install chromium` (already present in
+Claude's containers) → `npm test`, which seeds every record, proves search returns them, and only then
+runs the 338 tests.
+
+**Three things specific to Claude's cloud, all handled in the suite** — listed so nobody re-diagnoses
+them:
+
+- Outbound traffic goes through a local proxy. Chromium does not read `HTTPS_PROXY`, and handed the raw
+  `NO_PROXY` list it bypasses the proxy for everything; even configured cleanly it drops about one
+  request in six. The suite starts its own in-process relay there (`fixtures/relay.ts`). Never on a
+  laptop.
+- The container is fresh every night, so the seeder has no memory of previous runs. It discovers
+  what is already on the environment instead of creating it again — proved from an empty cache.
+- Connections are dropped now and then. Reads retry; a failed seed step is retried once (safe, because
+  each step finds what a first attempt made); writes are never blindly repeated.
+
+**When the cookie expires** the run stops at sign-in with a sentence saying so, rather than producing
+a page of failures. Copy a fresh one into `GS_SSO`.
+
 ## The suite reads the environment; it is never told about it
 
 Earlier versions read record values from a JSON file harvested that morning. On 1 October 2026 three
