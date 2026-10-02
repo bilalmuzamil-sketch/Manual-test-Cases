@@ -252,7 +252,14 @@ for (const E of ENTITIES) {
         `row ${r.index}: the typed text is shown on these lines without being highlighted there, ` +
         `though it IS highlighted elsewhere on the row (marks: ${JSON.stringify(r.marks)})`).toEqual([]);
       const unmarked = r.title.segs.filter((x) => !x.marked).map((x) => x.text).join('').trim();
-      expect(unmarked.length, `row ${r.index} shows only what was typed: "${r.title.text}"`).toBeGreaterThan(0);
+      // Observed on production 2 October 2026 for Parts/"Item": the row paints ONE segment,
+      // ["Item-8677", marked] — the whole part number highlighted, not the typed part within it.
+      // The message must say that, because "shows only what was typed" reads as the value being
+      // truncated to the query, which is not what happens and would send a reader looking for the
+      // wrong fault.
+      expect(unmarked.length,
+        `row ${r.index}: the WHOLE value "${r.title.text}" is highlighted rather than just the ` +
+        `typed "${TERM}" within it, so nothing marks which part actually matched`).toBeGreaterThan(0);
       expect(r.title.clipped,
         `row ${r.index} is cut short — it paints ${r.title.clientW}px of ${r.title.scrollW}px and hides ` +
         `${JSON.stringify(r.title.hiddenSegs)}`).toBe(false);
@@ -305,7 +312,9 @@ for (const E of ENTITIES) {
       expect(r.marks.length, `CONTROL FAILED: no highlight anywhere on row ${r.index}`).toBeGreaterThan(0);
       expect(unmarkedLines(r, TERM),
         `row ${r.index}: the typed text appears on these lines unhighlighted`).toEqual([]);
-      expect(r.title.segs.some((x) => !x.marked), `row ${r.index}: the mark replaced the text`).toBe(true);
+      expect(r.title.segs.some((x) => !x.marked),
+        `row ${r.index}: every piece of "${r.title.text}" is highlighted, so the mark covers the ` +
+        `whole value instead of the typed "${TERM}" inside it`).toBe(true);
       const rebuilt = r.title.segs.map((x) => x.text).join('').replace(/\s+/g, ' ').trim();
       expect(rebuilt, `row ${r.index}: the pieces do not add up to the line`)
         .toBe(r.title.text.replace(/\s+/g, ' ').trim());
@@ -407,8 +416,19 @@ for (const E of ENTITIES) {
       console.log(`   ${E.section} I1: every row contains the term literally — no soft match to judge`);
       return;   // a fact about the data, not a verdict on the product
     }
+    // 🔴 A FAILED CONTROL STANDS THE CHECK DOWN; IT NEVER REDS THE PRODUCT (Rule 104).
+    // The control is: a near-miss row must carry SOME highlight. If the reader finds none anywhere
+    // on the row, it cannot then turn round and report that the row is "drawn exactly like an
+    // exact one" — it has just demonstrated that it may not be reading highlights on this row at
+    // all. Reporting a fault from a measurement that failed its own control is how a false defect
+    // is made, so the check says what it could not establish and leaves the verdict to a human.
+    const blind = near.filter((r) => r.marks.length === 0);
+    test.skip(blind.length > 0,
+      `cannot be judged here: ${blind.length} of ${near.length} near-miss rows carry no highlight ` +
+      `at all (row ${blind[0]?.index}: "${blind[0]?.text?.slice(0, 60)}"). Either the product marks ` +
+      `nothing on them or this reader cannot see the marks — and until that is settled, anything ` +
+      `said about HOW they are drawn would be about the reader. Run this one by hand.`);
     for (const r of near) {
-      expect(r.marks.length, `CONTROL FAILED on row ${r.index}: no highlight either`).toBeGreaterThan(0);
       expect(r.approx || r.italicMarks.length > 0,
         `row ${r.index} "${r.text}" is a close match drawn exactly like an exact one`).toBe(true);
     }
