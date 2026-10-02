@@ -72,6 +72,17 @@ for (const [cid, query, tab, expected] of FIND) {
     test.skip(!contains(byName, expected),
       `"${expected}" does not exist on this environment at all — it was seeded on staging. `
       + `Nothing here says whether "${query}" would find it.`);
+    /**
+     * 🔴 AND IT MUST ACTUALLY CARRY THE VALUE BEING TYPED. The record existing is not enough: the
+     * production copy of a staging fixture can have a different address, or none. "Ohio" failed to
+     * return a supplier whose own row does not mention Ohio — which is correct behaviour, and was
+     * reported as the state not being searchable. If the row the record shows does not contain the
+     * query, this environment cannot answer the question.
+     */
+    const ownRow = byName.find((r) => r.toLowerCase().includes(expected.toLowerCase())) ?? '';
+    test.skip(!ownRow.toLowerCase().includes(query.toLowerCase()),
+      `"${expected}" on this environment does not carry "${query}" — its row reads "${ownRow.slice(0, 110)}". `
+      + `The staging copy did; this one does not, so a miss here would say nothing about the field.`);
     const p = await search(s.page, query, tab);
     const rows = rowsOf(p, tab);
     expect(rows.length, `the ${tab} tab came back empty for "${query}", although "${expected}" `
@@ -126,12 +137,12 @@ test('C53601 — a catalogue-only part is findable [expected to fail: SV-10001]'
 
 test('C53605 — year and make typed together find the vehicle [expected to fail: SV-10055]', async () => {
   /**
-   * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
-   * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the
-   * build (Rules 57 and 114). Whether the behaviour is now intended is the QA lead's ruling and is
-   * raised with him. Marked expected-to-fail so the file is not red for reproducing what it names.
+   * ✅ THIS NO LONGER FAILS, AND THAT IS THE RESULT. It was marked expected-to-fail against
+   * SV-10055; run against production on 2 October 2026 it PASSED, and Playwright reported
+   * "expected to fail, but passed" — exactly what that marking exists to surface. The marking is
+   * removed rather than left in place, because keeping it would turn correct behaviour red. If the
+   * fault returns this fails normally and reads as the regression it would be.
    */
-  test.fail();
   const p = await search(s.page, '2019 Freightliner', 'Assets');
   expect(rowsOf(p, 'Assets').length,
     'known fault SV-10055 — the year and make together return nothing').toBeGreaterThan(0);

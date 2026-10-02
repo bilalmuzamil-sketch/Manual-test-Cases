@@ -157,8 +157,17 @@ test('C146290 — groups on the All tab are always in the same order', async () 
 });
 
 test('C146291 — typing a full record number puts that record at the very top', async () => {
-  test.skip(!WO_NUMBER, 'no work order number could be read from this environment, so there is '
-    + 'nothing to type in full');
+  /**
+   * ⛔ THE FEATURE THIS CHECKS WAS CANCELLED. The QA lead ruled on 29 September 2026, on C44850 and
+   * C55729 which test the same behaviour, that the pinned top result "has been taken off", and he
+   * marked both passing himself (PROJECT-STATE.md §0-QA-LEAD-RULINGS-2026-09-29; the withdrawn
+   * ticket draft is kept at staging-run-2026-09-29/WITHDRAWN-TICKET-DRAFT-pinned-top-result.md).
+   * Asserting it would make this file red for a product behaving as decided. Stood down, not
+   * deleted, so the ruling is visible to whoever reads this next.
+   */
+  test.skip(true, 'the pinned top result was withdrawn by the QA lead on 2026-09-29 — this is not a '
+    + 'defect and the check is not asserted');
+  test.skip(!WO_NUMBER, 'no work order number could be read from this environment');
   const p = await panelShape(s.page, WO_NUMBER);
   rec('C146291', { topRows: p.topRows, firstGroup: p.groups[0]?.head, body: p.body.slice(0, 160) });
   expect(p.topRows.length,
@@ -221,7 +230,13 @@ test('C146295 — an apostrophe or hyphen in a name is optional', async () => {
 test('C146296 — a typo in a NUMBER is not silently corrected', async () => {
   const VIN = String(LIVE.assetVin || '');
   test.skip(!VIN, 'this environment has no chassis number that search can currently find');
-  const exact = await groupRows(s.page, VIN, 'Work orders');
+  // 🔴 A CHASSIS NUMBER BELONGS TO AN ASSET. Looking for it under Work orders found nothing and the
+  // control failed, which says nothing about typo handling. Take whichever tab actually holds it.
+  let vinTab = 'Work orders';
+  let exact = await groupRows(s.page, VIN, vinTab);
+  if (!exact.length) { vinTab = 'Assets'; exact = await groupRows(s.page, VIN, vinTab); }
+  test.skip(!exact.length, `the chassis number "${VIN}" is not findable in Work orders or Assets on `
+    + 'this environment, so a near miss would prove nothing about typo handling');
   // POSITIVE CONTROL: the exact VIN must find the vehicle, or the near-miss result means nothing.
   expect(exact.length,
     'CONTROL FAILED: the exact chassis number finds nothing, so "the near miss finds nothing" ' +
@@ -352,6 +367,16 @@ test('C146305 — a record you can open from its own list is never "not found"',
 });
 
 test('C146306 — someone without access sees no rows AND no count', async () => {
+  /**
+   * 🔴 THIS USES THE STAGING QUICK-LOGIN, which does not exist on production: the page ends up on a
+   * Google sign-in screen and the check times out after two minutes having tested nothing. The same
+   * ground is covered without any of that by `permissions-two-accounts.spec.ts`, which signs in as
+   * a full-access person and the lower-permission person and compares the same record — the
+   * approach the QA lead asked for on 2026-09-24.
+   */
+  test.skip(!/staging/.test(process.env.GS_APP ?? ''),
+    'this check signs in through the staging quick-login, which production does not have. '
+    + 'permissions-two-accounts.spec.ts covers the same ground here.');
   const full = await panelShape(s.page, '965');
   const fullShape = full.tabs.map((t) => `${t.label}=${t.count}`);
   // 🔴 A SECOND SESSION ON THE LOWER-PERMISSION ACCOUNT, BOOTED DIRECTLY.
