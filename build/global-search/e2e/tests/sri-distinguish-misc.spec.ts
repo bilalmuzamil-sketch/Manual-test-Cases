@@ -246,10 +246,29 @@ test('C45154 — selecting the record you are already looking at does not reload
   }
   test.skip(!(await s.page.locator(SEL.modal).count()),
     'the search panel will not open on this record page, so re-selecting the same record cannot be tested from here');
+  /**
+   * 🔴 SELECT THE RECORD YOU ARE ON, NOT WHATEVER IS FIRST. Pressing Enter on the top result from
+   * a record page opens whichever record ranks first, which is usually a DIFFERENT one — and the
+   * check then reports "selecting the record already open moved the person somewhere else" about a
+   * product that did exactly what was asked. Identify the open record from its own page and pick
+   * THAT row.
+   */
+  const openRecordId = (landed.match(/\/([^/?#]+)(?:[?#]|$)/) || [])[1] ?? '';
+  const heading = await s.page.evaluate(() =>
+    (document.querySelector('h1, h2, .page-title') as HTMLElement)?.innerText.replace(/\s+/g, ' ').trim() ?? '');
+  const q = heading.split(/\s{2,}|·|\|/)[0].trim() || BROAD;
   await s.page.locator(SEL.input).fill('').catch(() => {});
-  await s.page.locator(SEL.input).type(BROAD, { delay: 45 }).catch(() => {});
+  await s.page.locator(SEL.input).type(q, { delay: 45 }).catch(() => {});
   await s.page.waitForTimeout(3_500);
-  await s.page.keyboard.press('ArrowDown'); await s.page.waitForTimeout(400);
+  const mine = await s.page.evaluate((id) => {
+    const rows = [...document.querySelectorAll('.search-row')];
+    const i = rows.findIndex(r => (r as HTMLElement).getAttribute('href')?.includes(String(id))
+      || (r.querySelector('a') as HTMLAnchorElement | null)?.href?.includes(String(id)));
+    return i;
+  }, openRecordId);
+  test.skip(mine < 0, 'the record whose page is open does not come back in its own search results, '
+    + 'so there is no way to re-select it from here');
+  for (let i = 0; i <= mine; i++) { await s.page.keyboard.press('ArrowDown'); await s.page.waitForTimeout(250); }
   await s.page.keyboard.press('Enter');
   await s.page.waitForTimeout(4_000);
   s.page.off('framenavigated', onNav);

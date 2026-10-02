@@ -80,8 +80,18 @@ export async function harvestAnchors(page: Page): Promise<LiveAnchors> {
     for (const cand of cands) {
       if (await findable(page, cand)) { out[key] = cand; break; }
     }
-    // a punctuated one, for the normalization checks only - skipped quietly if this kind has none
-    for (const cand of cands.filter(v => /[^A-Za-z0-9]/.test(v)).slice(0, 4)) {
+    // A punctuated one, for the normalization checks only.
+    // 🔴 IT HAS TO LOOK LIKE AN IDENTIFIER. Taking the longest punctuated value picked
+    // "56+56+56+56+56+" as an invoice number; stripping its punctuation gives "5656565656", which
+    // of course finds nothing, and the check reported that normalization had lost the record. A
+    // value worth testing normalization on has a real alphanumeric core and a separator or two -
+    // "S-818", "P1-71" - not a run of repeats.
+    const identifierish = (v: string) => {
+      const marks = (v.match(/[^A-Za-z0-9]/g) || []).length;
+      const core = v.replace(/[^A-Za-z0-9]/g, '');
+      return marks >= 1 && marks <= 3 && core.length >= 4 && !/(.{1,3})\1{2,}/.test(v);
+    };
+    for (const cand of cands.filter(identifierish).slice(0, 4)) {
       if (cand === out[key]) { out.punct![key] = cand; break; }
       if (await findable(page, cand)) { out.punct![key] = cand; break; }
     }

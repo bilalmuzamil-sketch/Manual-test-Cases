@@ -133,16 +133,24 @@ for (const [cid, label] of PREFIX_TABS) {
 test('C55707 — a name match ranks above a whole-word match, which ranks above a close match', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
-  const rows = await rowTexts();
-  test.skip(rows.length < 2, 'too few results to judge an order');
+  // 🔴 POSITION IN THE ALL VIEW SPANS GROUPS, SO IT IS NOT AN ORDER. The All view lists each kind
+  // under its own heading; an exact match at row 23 in the Vendors group is not "below" a close
+  // match at row 16 in the Customers group, and comparing their indexes reported a ranking fault
+  // that does not exist. Judge inside ONE group, which is where the requirement orders things.
+  const groups = await s.page.evaluate(() => [...document.querySelectorAll('.search-group')]
+    .map(g => [...g.querySelectorAll('.search-row')].map(r => (r as HTMLElement).innerText.replace(/\s+/g, ' ').trim())));
+  const mixed = groups.find(g => g.some(isFuzzy) && g.some(t => !isFuzzy(t)));
+  test.skip(!mixed, `no single group came back holding both an exact and a close match for "${BROAD}", `
+    + 'so the boundary between them cannot be seen');
+  const rows = mixed!;
   const lastExact = rows.map(isFuzzy).lastIndexOf(false);
   const firstFuzzy = rows.findIndex(isFuzzy);
-  test.skip(firstFuzzy < 0, `nothing came back as a close match for "${BROAD}", so the boundary cannot be seen`);
   // 🔴 THE ONE ORDERING THE PRODUCT ITSELF LABELS. Exact and whole-word matches are not
   // distinguishable from the row text, but a close match IS badged, so the exact/close boundary is
   // the part of §8 that can be measured without guessing which signal fired.
-  expect(firstFuzzy, `a close match is ranked above an exact one (close at #${firstFuzzy + 1}, exact at #${lastExact + 1})`)
-    .toBeGreaterThan(lastExact);
+  expect(firstFuzzy, `inside one group a close match is ranked above an exact one `
+    + `(close at #${firstFuzzy + 1}, exact at #${lastExact + 1}):\n  `
+    + rows.map((r, i) => `${i + 1}. ${r.slice(0, 80)}`).join('\n  ')).toBeGreaterThan(lastExact);
 });
 
 test('C55724 — with everything else equal, the prefix match comes first', async () => {
