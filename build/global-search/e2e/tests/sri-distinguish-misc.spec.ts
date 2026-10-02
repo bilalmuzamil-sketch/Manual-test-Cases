@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
+import { APP, APIH, apiJson, collectionOf } from '../fixtures/boot.js';
 import { openPanel, closePanel, typeAndWait, SEL } from '../fixtures/search.js';
 import { harvestAnchors, broadTerm, entityTerms, type LiveAnchors } from '../fixtures/anchors.js';
 
@@ -158,17 +159,15 @@ const FIELDC: [string, string, string, string[]][] = [
 for (const [cid, tab, what, src] of FIELDC) {
   test(`${cid} — ${tab}: a match on ${what} shows the full value on the row`, async () => {
     const [path, ...fields] = src;
-    const value: string = await s.page.evaluate(async ([p, fs]) => {
-      const r = await fetch(`https://api.shopview.com${p}`, { credentials: 'include' });
-      const j = await r.json().catch(() => null);
-      const rows = j?.data?.collection || j?.collection || j?.data?.partSales || [];
-      for (const rec of rows) for (const f of fs as string[]) {
-        const v = rec?.[f];
+    const value: string = await (async () => {
+      const recs = collectionOf(await apiJson(s, path));
+      for (const rec of recs) for (const f of fields) {
+        const v = (rec as any)?.[f];
         const str = Array.isArray(v) ? String(v[0] ?? '') : String(v ?? '');
         if (str.trim().length >= 4) return str.trim();
       }
       return '';
-    }, [path, fields] as const).catch(() => '');
+    })();
     test.skip(!value, `no ${tab.toLowerCase()} record on this environment has a ${what} recorded, so there is nothing to match on`);
     await typeAndWait(s.page, value);
     const rows = await rowTexts();

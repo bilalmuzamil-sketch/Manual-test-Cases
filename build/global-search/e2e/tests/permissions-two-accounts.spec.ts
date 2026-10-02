@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
+import { APP, APIH } from '../fixtures/boot.js';
 import { openPanel, closePanel, typeAndWait, SEL } from '../fixtures/search.js';
 import { harvestAnchors, broadTerm, entityTerms, type LiveAnchors } from '../fixtures/anchors.js';
 
@@ -290,7 +291,7 @@ for (const [cid, what] of RECENT) {
     await limited.s.page.keyboard.press('Enter');
     await limited.s.page.waitForLoadState('domcontentloaded').catch(() => {});
     await limited.s.page.waitForTimeout(4_000);
-    await limited.s.page.goto('https://app.shopview.com/customers', { waitUntil: 'domcontentloaded', timeout: 25_000 }).catch(() => {});
+    await limited.s.page.goto(`${APP}/customers`, { waitUntil: 'domcontentloaded', timeout: 25_000 }).catch(() => {});
     await limited.s.page.waitForTimeout(3_500);
     await closePanel(limited.s.page); await openPanel(limited.s.page);
     await limited.s.page.locator(SEL.input).fill('').catch(() => {});

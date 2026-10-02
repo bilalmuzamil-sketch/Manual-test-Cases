@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
+import { APP, APIH, apiJson, collectionOf } from '../fixtures/boot.js';
 import { openPanel, closePanel, typeAndWait, SEL } from '../fixtures/search.js';
 import { harvestAnchors, broadTerm, entityTerms, type LiveAnchors } from '../fixtures/anchors.js';
 import { createCustomer, waitUntilFindable, type Seeded } from '../fixtures/seed.js';
@@ -215,7 +216,7 @@ for (const [cid, tab] of BOOST) {
     expect(after.some(r => norm(r) === norm(first)),
       `the record whose page is open is no longer found by the query that found it:\n  looking for: ${first.slice(0, 90)}`)
       .toBe(true);
-    await s.page.goto('https://app.shopview.com/customers', { waitUntil: 'domcontentloaded', timeout: 25_000 }).catch(() => {});
+    await s.page.goto(`${APP}/customers`, { waitUntil: 'domcontentloaded', timeout: 25_000 }).catch(() => {});
     await s.page.waitForTimeout(3_000);
   });
 }
@@ -243,18 +244,18 @@ test('C44900 — vendor invoices are searchable and carry a payment state', asyn
 
 test('C45150 — results never include another organization\'s records', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
-  const mine: string = await s.page.evaluate(async () => {
-    const r = await fetch('https://api.shopview.com/api/staff/my-workplaces', { credentials: 'include' });
-    const j = await r.json().catch(() => null);
-    const c = j?.data?.collection || j?.collection || [];
+  const mine: string = await (async () => {
+    const c = collectionOf(await apiJson(s, '/api/staff/my-workplaces'));
     return String(c[0]?.id || c[0]?.workplace_id || '');
-  }).catch(() => '');
+  })();
   test.skip(!mine, 'the signed-in workplace could not be read');
-  const ids: string[] = await s.page.evaluate(async (q) => {
-    const r = await fetch(`https://api.shopview.com/api/search?query=${encodeURIComponent(q)}`, { credentials: 'include' });
-    const t = await r.text();
-    return [...t.matchAll(/"workplace_?[iI]d"\s*:\s*"([^"]+)"/g)].map(m => m[1]);
-  }, BROAD).catch(() => [] as string[]);
+  const ids: string[] = await (async () => {
+    // 🔴 THE PARAMETER IS `q`, NOT `query`: /api/search?query=… answers 400 and the refusal says so
+    // outright. With the wrong name nothing came back and this check skipped for a reason that had
+    // nothing to do with the product.
+    const j = await apiJson(s, `/api/search?q=${encodeURIComponent(BROAD)}`);
+    return [...JSON.stringify(j ?? {}).matchAll(/"workplace_?[iI]d"\s*:\s*"([^"]+)"/g)].map(m2 => m2[1]);
+  })();
   test.skip(ids.length === 0, 'the results carry no workplace on them, so this cannot be judged from the response');
   expect([...new Set(ids)].filter(w => w !== mine), 'results came back belonging to another organization').toEqual([]);
 });
@@ -266,16 +267,14 @@ const SRI_FIELD: [string, string, string, string[]][] = [
 for (const [cid, tab, what, src] of SRI_FIELD) {
   test(`${cid} — ${tab}: a match on ${what} shows the full value on the row`, async () => {
     const [path, ...fields] = src;
-    const value: string = await s.page.evaluate(async ([p, fs]) => {
-      const r = await fetch('https://api.shopview.com' + p, { credentials: 'include' });
-      const j = await r.json().catch(() => null);
-      const recs = j?.data?.collection || j?.collection || j?.data?.partSales || [];
-      for (const rec of recs) for (const f of fs as string[]) {
-        const v = String(rec?.[f] ?? '').trim();
+    const value: string = await (async () => {
+      const recs = collectionOf(await apiJson(s, path));
+      for (const rec of recs) for (const f of fields) {
+        const v = String((rec as any)?.[f] ?? '').trim();
         if (v.length >= 4) return v;
       }
       return '';
-    }, [path, fields] as const).catch(() => '');
+    })();
     test.skip(!value, `no ${tab.toLowerCase()} record on this environment carries ${what}, so there is nothing to match on`);
     const got = await rows(value);
     test.skip(got.length === 0,
@@ -293,7 +292,7 @@ const INPAGE: [string, string][] = [
 ];
 for (const [cid, what] of INPAGE) {
   test(`${cid} — ${what}`, async () => {
-    await s.page.goto('https://app.shopview.com/work-orders', { waitUntil: 'domcontentloaded', timeout: 30_000 }).catch(() => {});
+    await s.page.goto(`${APP}/work-orders`, { waitUntil: 'domcontentloaded', timeout: 30_000 }).catch(() => {});
     await s.page.waitForTimeout(6_000);
     // 🔴 NOT THE GLOBAL PANEL. This is the page's own filter box, and picking the wrong input makes
     // this check silently measure global search instead.

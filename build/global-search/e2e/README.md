@@ -8,22 +8,76 @@ A check that has not been run by hand does not get a spec.
 
 ---
 
-## Running them
+## Getting it running from a clean checkout
 
 ```bash
-export GS_APP=https://app.shopview.com      # NOT "APP" — a wrong name silently falls back to a dead QA branch
-export GS_API=api.shopview.com              # auth.ts PREPENDS this to each path; it also defaults to the QA branch
-export PROD_ENVF=/tmp/shopview/prod-gs.env  # read at MODULE LOAD, so it must be exported BEFORE node starts
-npx playwright test --workers=1
+cd build/global-search/e2e
+npm install
+npx playwright install chromium          # the browser, once
+
+cp .env.example .env                     # then fill it in — see below
+set -a && . ./.env && set +a             # or export the variables yourself
+
+npm run seed                             # prepare the environment (see "Seeding")
+npm test                                 # run everything
 ```
 
-Against staging instead, export `GS_APP=https://app.staging.shopview.com` and the staging cookie
-file; nothing else changes. **There is no per-environment configuration to edit** — see below.
+**Nothing else is required.** No relay, no proxy, no file at a fixed path, no browser at a fixed
+location. Earlier versions of this suite needed all of those and could only run on one machine;
+that is fixed, and `fixtures/boot.ts` records what each of them was.
 
-`--workers=1` is not a preference. Signing in **expires the same user's previous session**, so two
-workers log each other out and both report a broken environment.
+### Which environment
 
----
+`GS_APP` decides, and everything follows from it:
+
+```bash
+GS_APP=https://app.staging.shopview.com   # staging
+GS_APP=https://app.shopview.com           # production
+```
+
+The API host is derived from it (`app.x` → `api.x`), so there is one variable to change, and no
+spec contains a hard-coded host. That matters: a spec naming the production API would quietly
+query production while you believed you were testing staging.
+
+### Signing in
+
+| Environment | How | What to set |
+|---|---|---|
+| **Production** | username and password | `GS_USER`, `GS_PASS` |
+| **Staging** | Google sign-in, so cookies from a signed-in browser | `GS_SSO`, `GS_PHPSESSID`, and `GS_CF` if Cloudflare is in front |
+
+Staging has no password to script. Take the cookies from DevTools → Application → Cookies on
+`app.staging.shopview.com`. **They expire** — if a run reports a Google sign-in screen, take a
+fresh set; the suite says so in those words rather than failing obscurely.
+
+The permission checks need a second, lower-permission login in `GS_LIMITED_ENVF`. Without it they
+stand down and say which account they would need; everything else still runs.
+
+`--workers=1` is not a preference. Signing in as the same person expires their previous session, so
+two workers log each other out and both report a broken environment. `npm test` sets it for you.
+
+## Seeding
+
+```bash
+npm run seed
+```
+
+**The specs do not need seeded data to be correct** — each looks for a record with the property it
+is about and stands down, with a reason, when the environment holds none. What a bare environment
+costs you is *coverage*: a great many checks skip, and a suite that mostly skips tells you little.
+
+`seed.ts` creates the handful of records those checks look for — a very long name, two that look
+alike, a prefix/contains pair for ranking, one with a telephone, one with a dash. It is:
+
+* **idempotent** — a name already present is left alone. Safe to re-run; the second run reports
+  `already there` for every row.
+* **additive** — it creates. It never edits or deletes anything that was already there.
+* **visible** — everything is named `ZZSPEC…`, so what the suite put there is obvious.
+* **guarded** — it refuses to touch production unless `GS_SEED_ALLOW_PROD=1`, because running the
+  seeder against the wrong URL should take more than one mistake.
+
+If seeding fails it is almost always a permission: the account must be able to create customers.
+The suite still runs — the affected checks stand down and name what was missing.
 
 ## The suite reads the environment; it is never told about it
 

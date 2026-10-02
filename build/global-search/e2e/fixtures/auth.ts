@@ -1,4 +1,5 @@
 import { chromium, type Browser, type BrowserContext, type Page } from 'playwright/test';
+import { boot } from './boot.js';
 import fs from 'node:fs';
 
 export const BRANCH = process.env.GS_BRANCH || 'sv9160';
@@ -25,9 +26,8 @@ function readCookies(): Jar {
 }
 
 /**
- * Chromium cannot TLS through this environment's egress proxy, so a local relay is required and
- * its port rotates per run. `source build/testing-tools/ensure_bridge.sh` writes the port here.
- * A connection failure almost always means that relay is not running — it dies with the container.
+ * A local relay, used ONLY if one is already running. Some sandboxes cannot open TLS directly and
+ * put a relay in front; an ordinary machine needs none, and nothing here requires one.
  */
 function proxy() {
   const f = '/tmp/atlassian/bridge-port.txt';
@@ -37,61 +37,38 @@ function proxy() {
 export type Session = { browser: Browser; ctx: BrowserContext; page: Page };
 
 export async function signIn(route = '/work-orders', device?: string, envFile?: string): Promise<Session> {
-  // 🔴 STAGING SIGNS IN DIFFERENTLY, AND WE ALREADY HAVE THAT WORKING. On a QA branch the cookies
-  // WERE the session; on staging they only reach the sign-in screen and the app mints the session
-  // when the DEV MODE button is clicked. build/testing-tools/staging-cookie-boot.mjs does that,
-  // with the retries and the cookie scoping already proven, and is what every probe in the
-  // 28-29 September run used. Reuse it rather than keeping a second copy that drifts (Rule 97).
-  // 🔴 PRODUCTION SIGNS IN DIFFERENTLY AGAIN, AND THAT IS ALSO ALREADY SOLVED. There is no SSO
-  // cookie on prod and quick-login 500s; the recorded route is POST /api/login, then hydrate the
-  // page from the LOGIN RESPONSE itself. build/testing-tools/prod-login-boot.mjs does exactly that
-  // and is proven (playbook section K). Reuse it rather than growing a third copy that drifts (97).
-  //
-  // 🛑 TWO TRAPS, BOTH PAID FOR ON 2026-10-01:
-  //   1. PROD_ENVF IS READ AT MODULE LOAD. Setting process.env AFTER the import is too late - the
-  //      module has already resolved its default. It must be in the environment before node starts,
-  //      which is why it is asserted here rather than assigned.
-  //   2. A FRESH LOGIN EXPIRES THE SAME USER'S PREVIOUS SESSION. Signing in as the wrong account
-  //      logged the QA lead out of production. Log in ONCE per run and reuse the one session.
-  if (/app\.shopview\.com/.test(APP)) {
-    if (!process.env.PROD_ENVF) {
-      throw new Error(
-        'PROD_ENVF is not set. prod-login-boot.mjs reads it at module load, so it must be exported ' +
-        'BEFORE node starts: PROD_ENVF=/tmp/shopview/prod-gs.env npx playwright test … ' +
-        'Without it the harness silently falls back to the default account - which on 2026-10-01 ' +
-        'signed in as the QA lead and expired his live production session.');
-    }
-    const mod: any = await import('../../../testing-tools/prod-login-boot.mjs');
-    // 🔴 ONE PROCESS, TWO ACCOUNTS. The permission checks compare what a full-access person sees
-    // against what the lower-permission person sees, so the account cannot be fixed at module load.
-    // Passing the file per call is what makes that possible; omitting it keeps the old behaviour.
-    const b = await mod.bootProdLogin('/customers', { settle: 12_000, envFile });
-    b.page.setDefaultTimeout(60_000);
-    if (route && route !== '/customers') {
-      await b.page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' }).catch(() => {});
-      await b.page.waitForTimeout(3_000);
-    }
-    return { browser: b.browser, ctx: b.ctx, page: b.page };
-  }
-
-  if (/staging\./.test(APP)) {
-    const mod: any = await import('../../../testing-tools/staging-cookie-boot.mjs');
-    // Sign in on a route staging definitely has, THEN go where the test asked. Handing the
+  // Each environment signs in its own way — production by password, staging through its DEV MODE
+  // panel — and `fixtures/boot.ts` holds both, with nothing required that an ordinary machine lacks.
+  /**
+   * 🔴 SELF-CONTAINED SINCE 2 OCTOBER 2026. This used to import two scripts from
+   * `build/testing-tools/`, each of which read a local relay's port file unconditionally and
+   * hard-coded `/opt/...` browser paths. That made the whole suite unrunnable outside one
+   * container: the read threw inside `beforeAll`, so every test in a file failed before a single
+   * assertion ran. `fixtures/boot.ts` does the same two sign-ins with nothing required that an
+   * ordinary machine lacks — the relay is used only if one happens to be there.
+   *
+   * 🛑 A FRESH LOGIN EXPIRES THE SAME USER'S PREVIOUS SESSION. Sign in ONCE per run and reuse it;
+   * run with `--workers=1` or two workers log each other out and both report a broken environment.
+   */
+  const b = await boot('/customers', { envFile, key: process.env.GS_LOGIN_AS });
+  b.page.setDefaultTimeout(Number(process.env.GS_TIMEOUT || 60_000));
+  if (route && route !== '/customers') {
+    // Sign in on a route the environment definitely has, THEN go where the test asked. Handing the
     // requested route straight to the sign-in page breaks the sign-in itself when that route does
-    // not exist here - this suite asks for /work-orders and staging spells it /workorders, and the
+    // not exist there — this suite asks for /work-orders and staging spells it /workorders, and the
     // symptom is "no DEV MODE button", which reads as a broken environment and is not.
-    const b = await mod.boot('/customers', { key: process.env.GS_LOGIN_AS || 'admin', settle: 11_000 });
-    b.page.setDefaultTimeout(60_000);
-    if (route && route !== '/customers') {
-      await b.page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' }).catch(() => {});
-      await b.page.waitForTimeout(3_000);
-    }
-    return { browser: b.browser, ctx: b.ctx, page: b.page };
+    await b.page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' }).catch(() => {});
+    await b.page.waitForTimeout(3_000);
   }
+  return b;
+}
 
+/** The old cookie-jar path, kept for a QA branch that still works that way. */
+async function signInWithCookieJar(route: string): Promise<Session> {
   const jar = readCookies();
   const browser = await chromium.launch({
-    executablePath: process.env.CHROME_BIN || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+    // no hard-coded browser path: Playwright resolves the one it installed
+    ...(process.env.CHROME_BIN ? { executablePath: process.env.CHROME_BIN } : {}),
     headless: true,
     proxy: proxy(),
     args: ['--no-sandbox', '--ignore-certificate-errors'],
@@ -146,7 +123,7 @@ export async function signIn(route = '/work-orders', device?: string, envFile?: 
   if (who.status !== 200) {
     throw new Error(`Signed out: the API answered ${who.status} ${JSON.stringify(who.body).slice(0, 120)}. ` +
                     `Cookies are in ${process.env.GS_COOKIES || 'the default path'} — refresh them, and check ` +
-                    `the local relay is up (build/testing-tools/ensure_bridge.sh).`);
+                    `the environment is reachable from this machine.`);
   }
   return { browser, ctx, page };
 }

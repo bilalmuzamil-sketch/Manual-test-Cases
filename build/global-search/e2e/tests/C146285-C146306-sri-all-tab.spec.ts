@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
+import { APP, APIH, apiJson, collectionOf } from '../fixtures/boot.js';
 import { resolveTerm, harvestAnchors, type LiveAnchors } from '../fixtures/anchors.js';
 import { panelShape, openTab, groupRows, lastPointerCheck } from '../fixtures/rowshape.js';
 import * as fs from 'node:fs';
@@ -46,13 +47,11 @@ test.beforeAll(async () => {
     const sample = await groupRows(s.page, woTerm, 'Work orders');
     WO_NUMBER = (sample.map((r) => (r.text.match(/\bS\d-\d+/) || [])[0]).find(Boolean)) ?? '';
   }
-  PHONE = await s.page.evaluate(async () => {
-    const r = await fetch('https://api.shopview.com/api/customers?limit=80', { credentials: 'include' });
-    const j = await r.json().catch(() => null);
-    const rows = j?.data?.collection || j?.collection || [];
+  PHONE = await (async () => {
+    const rows = collectionOf(await apiJson(s, '/api/customers?limit=80'));
     return rows.map((c: any) => String(c?.telephone || c?.phone || ''))
       .find((v: string) => v.replace(/\D/g, '').length >= 7) || '';
-  }).catch(() => '');
+  })();
   console.log(`all-tab values — work order: "${WO_NUMBER || 'none'}", telephone: "${PHONE || 'none'}", `
     + `chassis: "${LIVE.assetVin ?? 'none'}"`);
   await s.page.setViewportSize(VIEWPORT);
@@ -384,8 +383,9 @@ test('C146306 — someone without access sees no rows AND no count', async () =>
   // GS_LOGIN_AS. Passing 'tech' to it would have signed in as ADMIN again and quietly compared
   // the admin against himself, which passes this case for entirely the wrong reason. The boot is
   // called here with an explicit key instead.
-  const mod: any = await import('../../../testing-tools/staging-cookie-boot.mjs');
-  const tech: any = await mod.boot('/customers', { key: 'tech', settle: 11_000 });
+  // the portable staging sign-in, not a script from one particular container
+  const mod: any = await import('../fixtures/boot.js');
+  const tech: any = await mod.signInStaging('/customers', { key: 'tech', settle: 11_000 });
   try {
     await tech.page.setViewportSize(VIEWPORT);
     // CONTROL: prove the second session really is a different, lesser account. Comparing a

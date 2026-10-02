@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
+import { APP, APIH, apiJson, collectionOf } from '../fixtures/boot.js';
 import { openPanel, closePanel, typeAndWait, SEL } from '../fixtures/search.js';
 import { harvestAnchors, broadTerm, type LiveAnchors } from '../fixtures/anchors.js';
 
@@ -109,14 +110,11 @@ for (const [cid, tab, patterns, names] of ROWS) {
 /* ─────────────────────── SOUND-ALIKE AND NUMBER MATCHING (§7) ─────────────────────── */
 test('C44845 — a telephone number matches on its digits, ignoring how it is punctuated', async () => {
   // take a phone number that exists, from the records themselves
-  const phone: string = await s.page.evaluate(async () => {
-    const r = await fetch('https://api.shopview.com/api/customers?limit=60', { credentials: 'include' });
-    const j = await r.json().catch(() => null);
-    const rows = j?.data?.collection || j?.collection || [];
-    const hit = rows.map((c: any) => String(c?.telephone || c?.phone || ''))
-      .find((v: string) => v.replace(/\D/g, '').length >= 7);
-    return hit || '';
-  }).catch(() => '');
+  const phone: string = await (async () => {
+    const rows = collectionOf(await apiJson(s, '/api/customers?limit=60'));
+    return rows.map((c: any) => String(c?.telephone || c?.phone || ''))
+      .find((v: string) => v.replace(/\D/g, '').length >= 7) || '';
+  })();
   test.skip(!phone, 'no customer on this environment has a telephone number recorded');
   const digits = phone.replace(/\D/g, '');
   await typeAndWait(s.page, phone);
@@ -239,19 +237,16 @@ test('C55706 — holding See Financial Data, prices are shown on the rows', asyn
 test('C44880 — results are limited to the signed-in person\'s own workplace', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   // the workplace the session belongs to, read from the app rather than assumed
-  const mine: string = await s.page.evaluate(async () => {
-    const r = await fetch('https://api.shopview.com/api/auth/me', { credentials: 'include' });
-    const j = await r.json().catch(() => null);
+  const mine: string = await (async () => {
+    const j = await apiJson(s, '/api/auth/me');
     return String(j?.data?.workplace_id || j?.workplace_id || j?.data?.workplaceId || '');
-  }).catch(() => '');
+  })();
   test.skip(!mine, 'the signed-in workplace could not be read, so cross-workplace leakage cannot be judged');
   await typeAndWait(s.page, BROAD);
-  const ids: string[] = await s.page.evaluate(async (q) => {
-    const r = await fetch(`https://api.shopview.com/api/search?query=${encodeURIComponent(q)}`, { credentials: 'include' });
-    const j = await r.json().catch(() => null);
-    const flat = JSON.stringify(j ?? {});
-    return [...flat.matchAll(/"workplace_?[iI]d":"([^"]+)"/g)].map(m => m[1]);
-  }, BROAD).catch(() => [] as string[]);
+  const ids: string[] = await (async () => {
+    const j = await apiJson(s, `/api/search?q=${encodeURIComponent(BROAD)}`);
+    return [...JSON.stringify(j ?? {}).matchAll(/"workplace_?[iI]d"\s*:\s*"([^"]+)"/g)].map(m2 => m2[1]);
+  })();
   test.skip(ids.length === 0, 'the results carry no workplace on them, so this cannot be judged from the response');
   const foreign = [...new Set(ids)].filter(w => w !== mine);
   expect(foreign, `results came back belonging to another workplace: ${foreign.join(', ')}`).toEqual([]);

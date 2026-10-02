@@ -1,5 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
+import { APP, APIH, apiJson, collectionOf } from '../fixtures/boot.js';
 import { openPanel, closePanel, typeAndWait, SEL } from '../fixtures/search.js';
 import { harvestAnchors, broadTerm, entityTerms, type LiveAnchors } from '../fixtures/anchors.js';
 
@@ -229,13 +230,10 @@ for (const [cid, tab, key, what] of FIELD) {
 /* ───────────────────────── MATCHING RULES THAT STAND ALONE ───────────────────────── */
 test('C55726 — an accented name matches with or without the accent', async () => {
   // find a record whose name actually carries an accent, rather than assuming one exists
-  const accented = await s.page.evaluate(async () => {
-    const r = await fetch('https://api.shopview.com/api/customers?limit=100', { credentials: 'include' });
-    const j = await r.json().catch(() => null);
-    const rows = j?.data?.collection || j?.collection || [];
-    const hit = rows.map((c: any) => String(c?.name || '')).find((n: string) => /[À-ÿ]/.test(n));
-    return hit || '';
-  }).catch(() => '');
+  const accented = await (async () => {
+    const rows = collectionOf(await apiJson(s, '/api/customers?limit=100'));
+    return rows.map((c: any) => String(c?.name || '')).find((n: string) => /[\u00C0-\u00FF]/.test(n)) || '';
+  })();
   test.skip(!accented, 'no customer on this environment has an accented name, so there is nothing to compare');
   const word = accented.split(/\s+/).find(w => /[À-ÿ]/.test(w)) || accented;
   const withAccent = await highlighted(word);
