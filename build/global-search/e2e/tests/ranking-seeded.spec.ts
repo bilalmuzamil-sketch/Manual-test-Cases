@@ -82,7 +82,7 @@ async function seedPair(): Promise<boolean> {
 }
 
 /* ─────────── PREFIX BEATS CONTAINS, ON A PAIR BUILT FOR THE PURPOSE ─────────── */
-test('C55724b — a name starting with the query ranks above one that only contains it (seeded)', async () => {
+test('C55724b — a name starting with the query ranks above one that only contains it (seeded) @C55724', async () => {
   test.skip(!(await seedPair()), 'the ranking pair could not be created or never became findable');
   const got = (await rows(TOKEN)).filter(r => !/≈|close match/i.test(r));
   const iStarts = got.findIndex(r => plain(r).toLowerCase().startsWith(TOKEN.toLowerCase()));
@@ -95,7 +95,7 @@ test('C55724b — a name starting with the query ranks above one that only conta
     .toBeLessThan(iContains);
 });
 
-test('C55723 — a record matched on its name ranks above one matched on a lesser field', async () => {
+test('C55723 — a record matched on its name ranks above one matched on a lesser field @C55723', async () => {
   test.skip(!(await seedPair()), 'the ranking pair could not be created or never became findable');
   // a third record carrying the token only in a secondary field, never in its name
   const other = `Southern Crossing ${TOKEN.slice(0, 4)}X Transport`;
@@ -112,7 +112,7 @@ test('C55723 — a record matched on its name ranks above one matched on a lesse
     + `on its NAME (#${byName + 1})`).toBeLessThan(bySecondary);
 });
 
-test('C45139 — a match in a lesser field still finds the company', async () => {
+test('C45139 — a match in a lesser field still finds the company @C45139', async () => {
   test.skip(!(await seedPair()), 'the seeded records are not available');
   const only = `Westgate Depot ${TOKEN.slice(0, 5)}Q`;
   const c = await createCustomer(s.page, only, { city: `${TOKEN}ville` });
@@ -123,7 +123,7 @@ test('C45139 — a match in a lesser field still finds the company', async () =>
 });
 
 /* ─────────── A NEW RECORD IS FINDABLE WITHIN 30 SECONDS ─────────── */
-test('C53586 — a newly created customer is findable within 30 seconds', async () => {
+test('C53586 — a newly created customer is findable within 30 seconds @C53586', async () => {
   const name = `ZZSPEC Fresh ${Date.now()}`;
   const c = await createCustomer(s.page, name);
   test.skip(!c, 'a customer could not be created on this environment, so indexing speed cannot be measured');
@@ -134,7 +134,7 @@ test('C53586 — a newly created customer is findable within 30 seconds', async 
     .toBeLessThanOrEqual(30_000);
 });
 
-test('C53587 — a newly created record of another kind is findable within 30 seconds', async () => {
+test('C53587 — a newly created record of another kind is findable within 30 seconds @C53587', async () => {
   // 🔴 WORK ORDERS AND PART SALES ARE NOT CREATABLE FROM ONE CALL — they need a customer, an asset
   // and lines before they exist at all. The indexing promise is per RECORD, not per kind, so this
   // measures it on the kind this account can create in one step and says plainly that it did.
@@ -153,7 +153,7 @@ const PINNED: [string, string][] = [
   ['C55729', 'an exact identifier match is pinned at the top even when a strong name match exists'],
 ];
 for (const [cid, what] of PINNED) {
-  test(`${cid} — ${what}`, async () => {
+  test(`${cid} — ${what} @${cid}`, async () => {
     const id = String(LIVE.partNumber || LIVE.poNumber || LIVE.partSaleNo || '');
     test.skip(!id, 'this environment has no findable identifier to type');
     const got = await rows(id);
@@ -181,7 +181,7 @@ const BOOST: [string, string][] = [
   ['C55712', 'Parts'],     ['C55722', 'Customers'],
 ];
 for (const [cid, tab] of BOOST) {
-  test(`${cid} — ${tab}: what is relevant to where you are is still found from there`, async () => {
+  test(`${cid} — ${tab}: what is relevant to where you are is still found from there @${cid}`, async () => {
     test.skip(!BROAD, 'no broad query on this environment');
     const terms = [BROAD, ...(await entityTerms(s.page, tab, 6))].filter(Boolean) as string[];
     let q = '', first = '';
@@ -222,7 +222,7 @@ for (const [cid, tab] of BOOST) {
 }
 
 /* ─────────── THE LAST ROW AND SCOPE CHECKS ─────────── */
-test('C44899 — purchase orders are searchable and show a real number', async () => {
+test('C44899 — purchase orders are searchable and show a real number @C44899', async () => {
   const po = String(LIVE.poNumber || '');
   test.skip(!po, 'this environment has no findable purchase-order number');
   const got = await rows(po);
@@ -230,7 +230,7 @@ test('C44899 — purchase orders are searchable and show a real number', async (
     `the purchase order "${po}" does not come back by its own number:\n  ${got.slice(0, 3).map(r => r.slice(0, 95)).join('\n  ')}`).toBe(true);
 });
 
-test('C44900 — vendor invoices are searchable and carry a payment state', async () => {
+test('C44900 — vendor invoices are searchable and carry a payment state @C44900', async () => {
   const inv = String(LIVE.invoiceNo || '');
   test.skip(!inv, 'this environment has no findable vendor-invoice number');
   await typeAndWait(s.page, inv);
@@ -242,7 +242,7 @@ test('C44900 — vendor invoices are searchable and carry a payment state', asyn
     `no vendor invoice row shows a payment state:\n  ${got.slice(0, 3).map(r => r.slice(0, 95)).join('\n  ')}`).toBe(true);
 });
 
-test('C45150 — results never include another organization\'s records', async () => {
+test('C45150 — results never include another organization\'s records @C45150', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   const mine: string = await (async () => {
     const c = collectionOf(await apiJson(s, '/api/staff/my-workplaces'));
@@ -265,7 +265,7 @@ const SRI_FIELD: [string, string, string, string[]][] = [
   ['C146262', 'Part sales',  'the asset on the sale',   ['/api/part-sales?limit=40', 'vehicle_name', 'unit', 'licence_plate']],
 ];
 for (const [cid, tab, what, src] of SRI_FIELD) {
-  test(`${cid} — ${tab}: a match on ${what} shows the full value on the row`, async () => {
+  test(`${cid} — ${tab}: a match on ${what} shows the full value on the row @${cid}`, async () => {
     const [path, ...fields] = src;
     const value: string = await (async () => {
       const recs = collectionOf(await apiJson(s, path));
@@ -291,7 +291,7 @@ const INPAGE: [string, string][] = [
   ['C44875', 'clearing it restores the full list'],
 ];
 for (const [cid, what] of INPAGE) {
-  test(`${cid} — ${what}`, async () => {
+  test(`${cid} — ${what} @${cid}`, async () => {
     await s.page.goto(`${APP}/work-orders`, { waitUntil: 'domcontentloaded', timeout: 30_000 }).catch(() => {});
     await s.page.waitForTimeout(6_000);
     // 🔴 NOT THE GLOBAL PANEL. This is the page's own filter box, and picking the wrong input makes
@@ -313,7 +313,7 @@ for (const [cid, what] of INPAGE) {
   });
 }
 
-test('C55736 — a vendor invoice row keeps its row when the total is not shown', async () => {
+test('C55736 — a vendor invoice row keeps its row when the total is not shown @C55736', async () => {
   const inv = String(LIVE.invoiceNo || '');
   test.skip(!inv, 'this environment has no findable vendor-invoice number');
   const got = await rows(inv);

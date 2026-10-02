@@ -86,7 +86,7 @@ const B1: [string, string][] = [
   ['C146260', 'Part sales'], ['C146269', 'Purchase orders'], ['C146280', 'Vendor invoices'],
 ];
 for (const [cid, tab] of B1) {
-  test(`${cid} — ${tab}: two records sharing what was typed can be told apart`, async () => {
+  test(`${cid} — ${tab}: two records sharing what was typed can be told apart @${cid}`, async () => {
     const q = await queryWithTwoRows(tab);
     test.skip(!q, `no query puts two ${tab.toLowerCase()} rows on screen at once here, so there is no pair to tell apart`);
     await typeAndWait(s.page, q!); await openTab(tab);
@@ -106,7 +106,7 @@ const B2: [string, string][] = [
   ['C146261', 'Part sales'], ['C146270', 'Purchase orders'], ['C146281', 'Vendor invoices'],
 ];
 for (const [cid, tab] of B2) {
-  test(`${cid} — ${tab}: two rows with the same first line differ somewhere you can see`, async () => {
+  test(`${cid} — ${tab}: two rows with the same first line differ somewhere you can see @${cid}`, async () => {
     const q = await queryWithTwoRows(tab);
     test.skip(!q, `no query puts two ${tab.toLowerCase()} rows on screen at once here`);
     await typeAndWait(s.page, q!); await openTab(tab);
@@ -132,7 +132,7 @@ const D1: [string, string, RegExp[], string[]][] = [
   ['C146283', 'Vendor invoices', [/\d/, /[A-Za-z]{3,}/],                         ['a number', 'the vendor']],
 ];
 for (const [cid, tab, pats, names] of D1) {
-  test(`${cid} — the ${tab} row shows ${names.join(' and ')}`, async () => {
+  test(`${cid} — the ${tab} row shows ${names.join(' and ')} @${cid}`, async () => {
     const q = await queryWithTwoRows(tab) ?? BROAD;
     test.skip(!q, 'no query reaches this tab on this environment');
     await typeAndWait(s.page, q); 
@@ -157,7 +157,7 @@ const FIELDC: [string, string, string, string[]][] = [
   ['C146204', 'Work orders',     'service advisor name', ['/api/work-orders?limit=40', 'service_advisor_name', 'advisor_name']],
 ];
 for (const [cid, tab, what, src] of FIELDC) {
-  test(`${cid} — ${tab}: a match on ${what} shows the full value on the row`, async () => {
+  test(`${cid} — ${tab}: a match on ${what} shows the full value on the row @${cid}`, async () => {
     const [path, ...fields] = src;
     const value: string = await (async () => {
       const recs = collectionOf(await apiJson(s, path));
@@ -181,7 +181,7 @@ for (const [cid, tab, what, src] of FIELDC) {
 }
 
 /* ───────────────────────── THE SEARCH-FAILURE BANNER (§5.2) ───────────────────────── */
-test('C44876 — when the search cannot run, the panel says so and offers a retry', async () => {
+test('C44876 — when the search cannot run, the panel says so and offers a retry @C44876', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   // 🔴 MAKE THE FAILURE HAPPEN RATHER THAN WAITING FOR ONE. The browser is told to fail the search
   // request; nothing on the server is touched and the route is removed again straight afterwards.
@@ -206,7 +206,7 @@ const NOFLAG: [string, string][] = [
   ['C44897', 'the old search path is gone, with no flag left behind'],
 ];
 for (const [cid, what] of NOFLAG) {
-  test(`${cid} — ${what}`, async () => {
+  test(`${cid} — ${what} @${cid}`, async () => {
     // it opens for this account with nothing enabled first — that IS the check
     await closePanel(s.page);
     await openPanel(s.page);
@@ -219,7 +219,7 @@ for (const [cid, what] of NOFLAG) {
 }
 
 /* ───────────────── SELECTING THE RECORD YOU ARE ALREADY ON ───────────────── */
-test('C45154 — selecting the record you are already looking at does not reload the page', async () => {
+test('C45154 — selecting the record you are already looking at does not reload the page @C45154', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   test.skip((await s.page.locator('.search-row').count()) === 0, 'nothing came back to open');
@@ -275,7 +275,7 @@ test('C45154 — selecting the record you are already looking at does not reload
 });
 
 /* ───────────────── THE COUNT IS ANNOUNCED TO A SCREEN READER ───────────────── */
-test('C44829 — the results count is announced when it changes', async () => {
+test('C44829 — the results count is announced when it changes @C44829', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   // a live region is how a count reaches someone who cannot see it; it must exist AND carry a count

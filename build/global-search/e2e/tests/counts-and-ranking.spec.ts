@@ -24,7 +24,7 @@ test.afterAll(async () => { await s?.browser.close(); });
  * Requirement §5.2: "No count in the modal reads higher than 20 — not a tab, not a group header,
  * not the Show all N link." The per-type tabs obey it; the All tab adds them together.
  */
-test('C53476 — no count reads higher than 20 [expected to fail: SV-10320]', async () => {
+test('C53476 — no count reads higher than 20 [expected to fail: SV-10320] @C53476', async () => {
   /**
    * 🔴 EXPECTED TO FAIL, AND THE TITLE ALONE DID NOT MAKE IT SO. The "[expected to fail: …]" in the
    * title is just text; Playwright needs test.fail() to read a failure here as the known fault
@@ -54,7 +54,7 @@ test('C53476 — no count reads higher than 20 [expected to fail: SV-10320]', as
  * The third part of this check (a boost for one you raised yourself) is NOT automated: nothing on
  * the branch gives two purchase orders alike except their author, and the author is not on the row.
  */
-test('C45137 — still-ordered purchase orders rank above received ones', async () => {
+test('C45137 — still-ordered purchase orders rank above received ones @C45137', async () => {
   // 🔴 "5 Star Truck Repair" IS A STAGING CUSTOMER. On production it returns nothing and this check
   // failed on its own setup. Take a term this environment's purchase orders actually match.
   const poTerm = await resolveTerm(s.page, '5 Star Truck Repair', 'Purchase orders');
@@ -76,7 +76,7 @@ test('C45137 — still-ordered purchase orders rank above received ones', async 
   console.log('state order, for the record:', JSON.stringify(seq));
 });
 
-test('C45138 — unpaid supplier invoices rank above paid ones', async () => {
+test('C45138 — unpaid supplier invoices rank above paid ones @C45138', async () => {
   const p = await search(s.page, 'ZZ', 'Vendor invoices');
   const rows = rowsOf(p, 'Vendor invoices');
   const state = (r: string) => /unpaid/i.test(r) ? 'Unpaid'
@@ -102,7 +102,7 @@ test('C45138 — unpaid supplier invoices rank above paid ones', async () => {
  * Rejected: engine hours (not indexed), assigning a technician (returns success, saves nothing),
  * adding a job line (flips the job to Approved, and open status outranks the tie-break).
  */
-test('C55716 — the record changed most recently is listed first [expected to fail: SV-10340]', async () => {
+test('C55716 — the record changed most recently is listed first [expected to fail: SV-10340] @C55716', async () => {
   /**
    * ✅ THIS NO LONGER FAILS ON PRODUCTION, AND THAT IS THE RESULT.
    * It was marked expected-to-fail against SV-10340 ("Global Search Ignores the Most-Recently-
@@ -158,7 +158,7 @@ test('C55716 — the record changed most recently is listed first [expected to f
 
 /** Same rule, second tab. Two independent tabs failing one shared rule is what points at the
  *  shared scoring step rather than at either record type. */
-test('C55716 (customers) — the customer changed most recently is listed first [expected to fail: SV-10340]', async () => {
+test('C55716 (customers) — the customer changed most recently is listed first [expected to fail: SV-10340] @C55716', async () => {
   /**
    * 🔴 EXPECTED TO FAIL, AND THE TITLE ALONE DID NOT MAKE IT SO. The "[expected to fail: …]" in the
    * title is just text; Playwright needs test.fail() to read a failure here as the known fault

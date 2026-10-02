@@ -25,7 +25,7 @@ test.afterAll(async () => { await s?.browser.close(); });
 
 const fresh = async () => { await closePanel(s.page); await openPanel(s.page); };
 
-test('C44804 — the keyboard shortcut opens a centered box, not one anchored to the header', async () => {
+test('C44804 — the keyboard shortcut opens a centered box, not one anchored to the header @C44804', async () => {
   await closePanel(s.page);
   await expect(s.page.locator(SEL.modal)).toHaveCount(0);
   await s.page.keyboard.press('Control+k');          // trap 1: lowercase k
@@ -40,7 +40,7 @@ test('C44804 — the keyboard shortcut opens a centered box, not one anchored to
   expect(centreOffset, `panel is not centered: ${centreOffset}px off`).toBeLessThan(40);
 });
 
-test('C44805 — clicking the header field opens the same centered box', async () => {
+test('C44805 — clicking the header field opens the same centered box @C44805', async () => {
   await closePanel(s.page);
   await s.page.click('.global-search__trigger');
   await s.page.waitForTimeout(1_500);
@@ -48,7 +48,7 @@ test('C44805 — clicking the header field opens the same centered box', async (
   await expect(s.page.locator(SEL.input)).toBeFocused();
 });
 
-test('C44806 — Esc closes it', async () => {
+test('C44806 — Esc closes it @C44806', async () => {
   await fresh();
   await expect(s.page.locator(SEL.modal)).toBeVisible();
   await s.page.keyboard.press('Escape');
@@ -56,7 +56,7 @@ test('C44806 — Esc closes it', async () => {
   await expect(s.page.locator(SEL.modal)).toHaveCount(0);
 });
 
-test('C44807 — the shortcut pressed again closes it', async () => {
+test('C44807 — the shortcut pressed again closes it @C44807', async () => {
   await fresh();
   await expect(s.page.locator(SEL.modal)).toBeVisible();
   await s.page.keyboard.press('Control+k');
@@ -64,7 +64,7 @@ test('C44807 — the shortcut pressed again closes it', async () => {
   await expect(s.page.locator(SEL.modal)).toHaveCount(0);
 });
 
-test('C44808 — clicking the dimmed page behind it closes it', async () => {
+test('C44808 — clicking the dimmed page behind it closes it @C44808', async () => {
   await fresh();
   await expect(s.page.locator(SEL.modal)).toBeVisible();
   // the underlay, not the page: clicking page coordinates can land ON the panel and close nothing
@@ -73,7 +73,7 @@ test('C44808 — clicking the dimmed page behind it closes it', async () => {
   await expect(s.page.locator(SEL.modal)).toHaveCount(0);
 });
 
-test('C44809 — Down and Up move the highlight across result rows only', async () => {
+test('C44809 — Down and Up move the highlight across result rows only @C44809', async () => {
   await fresh();
   await typeAndWait(s.page, 'a');
   const rows = s.page.locator('.search-row');
@@ -90,7 +90,7 @@ test('C44809 — Down and Up move the highlight across result rows only', async 
   expect(await selected(), 'Up did not move the highlight back').toBe(first);
 });
 
-test('C44812 — Tab reaches the scope tab strip and the arrows cycle it', async () => {
+test('C44812 — Tab reaches the scope tab strip and the arrows cycle it @C44812', async () => {
   await fresh();
   await typeAndWait(s.page, 'a');
   for (let i = 0; i < 6; i++) {
@@ -116,7 +116,7 @@ test('C44812 — Tab reaches the scope tab strip and the arrows cycle it', async
   throw new Error('Tab never reached the scope tab strip in six presses');
 });
 
-test('C44813 — the footer legend stays visible in every state', async () => {
+test('C44813 — the footer legend stays visible in every state @C44813', async () => {
   await fresh();
   const legend = async () => (await s.page.locator(SEL.modal).innerText()).replace(/\s+/g, ' ');
   // empty
@@ -129,7 +129,7 @@ test('C44813 — the footer legend stays visible in every state', async () => {
   expect(await legend(), 'legend missing after clearing').toMatch(/Navigate.*Select.*Close/i);
 });
 
-test('C137996 — the clear control appears only once something is typed', async () => {
+test('C137996 — the clear control appears only once something is typed @C137996', async () => {
   await fresh();
   // 🔴 THE CLEAR CONTROL CARRIES NO "clear" IN ITS CLASS OR ITS LABEL. It is an ICON button with
   // EMPTY text, and what separates it from the tab buttons and the "Show all" links is precisely
@@ -147,7 +147,7 @@ test('C137996 — the clear control appears only once something is typed', async
     .toBeGreaterThan(before);
 });
 
-test('C44814 — the tab strip lists All and the eight entity tabs, in order', async () => {
+test('C44814 — the tab strip lists All and the eight entity tabs, in order @C44814', async () => {
   await fresh();
   await typeAndWait(s.page, 'a');
   const tabs = await s.page.evaluate(() =>
@@ -156,7 +156,7 @@ test('C44814 — the tab strip lists All and the eight entity tabs, in order', a
                         'Part sales', 'Purchase orders', 'Vendor invoices']);
 });
 
-test('C55683 — the shortcut is written on the header field before it is clicked', async () => {
+test('C55683 — the shortcut is written on the header field before it is clicked @C55683', async () => {
   await closePanel(s.page);
   const trigger = await s.page.locator('.global-search__trigger').innerText();
   // the case asks for the RIGHT one for this machine; these run on Linux, so Ctrl

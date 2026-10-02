@@ -69,7 +69,7 @@ const SCOPED: [string, string, string][] = [
   ['C45130', 'Purchase orders', 'purchaseOrder'],
 ];
 for (const [cid, tab] of SCOPED) {
-  test(`${cid} — the ${tab} tab shows only ${tab.toLowerCase()}`, async () => {
+  test(`${cid} — the ${tab} tab shows only ${tab.toLowerCase()} @${cid}`, async () => {
     await typeAndWait(s.page, BROAD);
     const count = await s.page.evaluate(l => {
       const t = [...document.querySelectorAll('.search-tabs__tab')]
@@ -91,7 +91,7 @@ for (const [cid, tab] of SCOPED) {
 const ORDER = ['work orders', 'customers', 'assets', 'parts', 'vendors',
                'part sales', 'purchase orders', 'vendor invoices'];
 for (const cid of ['C44827', 'C44830']) {
-  test(`${cid} — groups appear in the order the requirement fixes`, async () => {
+  test(`${cid} — groups appear in the order the requirement fixes @${cid}`, async () => {
     await typeAndWait(s.page, BROAD);
     const seen = await s.page.evaluate(() =>
       [...document.querySelectorAll('.search-group__title, .search-results__group-title')]
@@ -108,7 +108,7 @@ const NORMALIZED: [string, string][] = [
   ['C44843', 'poNumber'], ['C53579', 'poNumber'], ['C55672', 'partSaleNo'], ['C55714', 'invoiceNo'],
 ];
 for (const [cid, key] of NORMALIZED) {
-  test(`${cid} — ${key} matches with or without its punctuation`, async () => {
+  test(`${cid} — ${key} matches with or without its punctuation @${cid}`, async () => {
     // the punctuated anchor: this check exists to prove a dash is optional, so it needs one
     const id = String((LIVE.punct || {})[key as keyof typeof LIVE.punct] || '');
     test.skip(!id || !/[^A-Za-z0-9]/.test(id), `${key} "${id}" carries no punctuation to strip`);
@@ -122,7 +122,7 @@ for (const [cid, key] of NORMALIZED) {
 }
 
 /* ───────────────────────────── ROW CONTENT (§4 displayed fields) ───────────────────────────── */
-test('C44831 — a work order row carries its number, customer and a status badge', async () => {
+test('C44831 — a work order row carries its number, customer and a status badge @C44831', async () => {
   test.skip(!BROAD, 'no query on this environment matches two kinds of record');
   const rows = await openTabbed(BROAD, 'Work orders');
   test.skip(rows.length === 0, 'no work orders match the broad query here');
@@ -131,7 +131,7 @@ test('C44831 — a work order row carries its number, customer and a status badg
   expect(badge, 'no work order row carries a status badge').toBe(true);
 });
 
-test('C44832 — a customer row carries its name, an address line and an open-count chip', async () => {
+test('C44832 — a customer row carries its name, an address line and an open-count chip @C44832', async () => {
   test.skip(!BROAD, 'no query on this environment matches two kinds of record');
   const rows = await openTabbed(BROAD, 'Customers');
   test.skip(rows.length === 0, 'no customers match the broad query here');
@@ -143,7 +143,7 @@ test('C44832 — a customer row carries its name, an address line and an open-co
   expect(shaped.some(x => x.meta.length > 0), 'not one customer row carries a second line').toBe(true);
 });
 
-test('C146275 — a purchase order row carries everything the requirement names', async () => {
+test('C146275 — a purchase order row carries everything the requirement names @C146275', async () => {
   test.skip(!BROAD, 'no query on this environment matches two kinds of record');
   const rows = await openTabbed(BROAD, 'Purchase orders');
   test.skip(rows.length === 0, 'no purchase orders match the broad query here');
@@ -154,7 +154,7 @@ test('C146275 — a purchase order row carries everything the requirement names'
 });
 
 /* ───────────────────────────── THE EMPTY STATES (§5.2) ───────────────────────────── */
-test('C44855 — the first-time state shows one helper line and nothing else', async () => {
+test('C44855 — the first-time state shows one helper line and nothing else @C44855', async () => {
     await s.page.fill(SEL.input, ''); await s.page.waitForTimeout(1_200);
   const text = (await s.page.locator(SEL.modal).innerText()).replace(/\s+/g, ' ');
   // 🔴 RECENT SEARCHES ARE ALSO `.search-row`. Counting every row therefore reports "results are
@@ -170,7 +170,7 @@ test('C44855 — the first-time state shows one helper line and nothing else', a
     .not.toMatch(/New work order|New customer|Create|Add new/i);
 });
 
-test('C44856 — neither the first-time nor the no-results state offers quick-create', async () => {
+test('C44856 — neither the first-time nor the no-results state offers quick-create @C44856', async () => {
   await typeAndWait(s.page, 'zzqqxx' + Date.now());
   const text = (await s.page.locator(SEL.modal).innerText()).replace(/\s+/g, ' ');
   expect(text, 'the no-results state offers a quick-create button')

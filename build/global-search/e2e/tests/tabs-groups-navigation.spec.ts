@@ -62,7 +62,7 @@ const TABS: [string, string][] = [
   ['C44820', 'Vendors'],   ['C44821', 'Part sales'], ['C45131', 'Vendor invoices'],
 ];
 for (const [cid, label] of TABS) {
-  test(`${cid} — the ${label} tab shows only ${label.toLowerCase()}, with its own count`, async () => {
+  test(`${cid} — the ${label} tab shows only ${label.toLowerCase()}, with its own count @${cid}`, async () => {
     test.skip(!BROAD, 'no query on this environment matches more than one kind of record');
     await typeAndWait(s.page, BROAD);
     const before = await tabStrip();
@@ -81,7 +81,7 @@ for (const [cid, label] of TABS) {
   });
 }
 
-test('C44815 — the All tab shows every kind together', async () => {
+test('C44815 — the All tab shows every kind together @C44815', async () => {
   test.skip(!BROAD, 'no query on this environment matches more than one kind of record');
   await typeAndWait(s.page, BROAD);
   const tabs = await tabStrip();
@@ -94,7 +94,7 @@ test('C44815 — the All tab shows every kind together', async () => {
   expect(groups, 'the All view is not grouping the kinds it returned').toBeGreaterThan(1);
 });
 
-test('C44822 — selecting a scope tab shows that kind only, and its count', async () => {
+test('C44822 — selecting a scope tab shows that kind only, and its count @C44822', async () => {
   test.skip(!BROAD, 'no query on this environment matches more than one kind of record');
   await typeAndWait(s.page, BROAD);
   const tabs = await tabStrip();
@@ -108,7 +108,7 @@ test('C44822 — selecting a scope tab shows that kind only, and its count', asy
 });
 
 /* ───────────────────────── GROUP HEADINGS, THE FIVE CAP, SHOW ALL ───────────────────────── */
-test('C44823 — each group heading carries its total match count', async () => {
+test('C44823 — each group heading carries its total match count @C44823', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const heads = await s.page.evaluate(() =>
@@ -118,7 +118,7 @@ test('C44823 — each group heading carries its total match count', async () => 
   expect(withCount.length, `no group heading carries a count: ${heads.join(' | ')}`).toBe(heads.length);
 });
 
-test('C44824 — a group shows at most five results in the All view', async () => {
+test('C44824 — a group shows at most five results in the All view @C44824', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const perGroup = await s.page.evaluate(() =>
@@ -132,7 +132,7 @@ test('C44824 — a group shows at most five results in the All view', async () =
   expect(Math.max(...perGroup), `a kind has ${big!.count} matches but no group is showing the full five`).toBe(5);
 });
 
-test('C44825 — a group with more than five matches offers Show all', async () => {
+test('C44825 — a group with more than five matches offers Show all @C44825', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const tabs = await tabStrip();
@@ -142,7 +142,7 @@ test('C44825 — a group with more than five matches offers Show all', async () 
   expect(panel, `${big!.label} has ${big!.count} matches but the panel offers no "Show all"`).toMatch(/Show all/i);
 });
 
-test('C44826 — Show all switches the panel to that kind\'s tab', async () => {
+test('C44826 — Show all switches the panel to that kind\'s tab @C44826', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const link = await s.page.evaluate(() => {
@@ -163,7 +163,7 @@ test('C44826 — Show all switches the panel to that kind\'s tab', async () => {
 /* ────────────── CONTACTS ARE NOT A GROUP — A CONTACT MATCH RETURNS ITS COMPANY ────────────── */
 const CONTACTS: string[] = ['C45129', 'C44895'];
 for (const cid of CONTACTS) {
-  test(`${cid} — there is no Contacts tab or group`, async () => {
+  test(`${cid} — there is no Contacts tab or group @${cid}`, async () => {
     test.skip(!BROAD, 'no broad query on this environment');
     await typeAndWait(s.page, BROAD);
     const tabs = await tabStrip();
@@ -176,7 +176,7 @@ for (const cid of CONTACTS) {
 }
 
 /* ─────────────────────────── OPENING A RESULT (§5.5) ─────────────────────────── */
-test('C44810 — Enter opens the highlighted result in the same tab', async () => {
+test('C44810 — Enter opens the highlighted result in the same tab @C44810', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const before = s.page.url();
@@ -193,7 +193,7 @@ test('C44810 — Enter opens the highlighted result in the same tab', async () =
   await s.page.waitForTimeout(2_500);
 });
 
-test('C44811 — Ctrl+Enter opens the highlighted result in a new browser tab', async () => {
+test('C44811 — Ctrl+Enter opens the highlighted result in a new browser tab @C44811', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const rows = await rowTexts();

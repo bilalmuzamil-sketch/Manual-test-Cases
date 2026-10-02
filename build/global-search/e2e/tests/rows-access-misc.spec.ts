@@ -92,7 +92,7 @@ const ROWS: [string, string, RegExp[], string[]][] = [
   ['C44836', 'Part sales', [/P\d-\d+/i], ['a P-number']],   // the price half is checked separately below
 ];
 for (const [cid, tab, patterns, names] of ROWS) {
-  test(`${cid} — a ${tab.replace(/s$/, '')} row shows ${names.join(' and ')}`, async () => {
+  test(`${cid} — a ${tab.replace(/s$/, '')} row shows ${names.join(' and ')} @${cid}`, async () => {
     test.skip(!BROAD, 'no query on this environment matches more than one kind of record');
     await typeAndWait(s.page, BROAD);
     test.skip((await tabCount(tab)) <= 0, `no ${tab.toLowerCase()} match "${BROAD}" on this environment`);
@@ -108,7 +108,7 @@ for (const [cid, tab, patterns, names] of ROWS) {
 }
 
 /* ─────────────────────── SOUND-ALIKE AND NUMBER MATCHING (§7) ─────────────────────── */
-test('C44845 — a telephone number matches on its digits, ignoring how it is punctuated', async () => {
+test('C44845 — a telephone number matches on its digits, ignoring how it is punctuated @C44845', async () => {
   // take a phone number that exists, from the records themselves
   const phone: string = await (async () => {
     const rows = collectionOf(await apiJson(s, '/api/customers?limit=60'));
@@ -135,7 +135,7 @@ const SOUNDALIKE: [string, string][] = [
   ['C96845', 'a near spelling of a vendor contact name is shown and marked as close'],
 ];
 for (const [cid, what] of SOUNDALIKE) {
-  test(`${cid} — ${what}`, async () => {
+  test(`${cid} — ${what} @${cid}`, async () => {
     test.skip(!BROAD || BROAD.length < 5, 'no word long enough on this environment to misspell fairly');
     // swap a letter for one that sounds the same — the kind of near spelling the requirement means
     const near = BROAD.replace(/c/i, 'k').replace(/ph/i, 'f').replace(/i(?=[a-z])/i, 'y');
@@ -154,7 +154,7 @@ for (const [cid, what] of SOUNDALIKE) {
   });
 }
 
-test('C55728 — sound-alike matching applies to names, not to part numbers', async () => {
+test('C55728 — sound-alike matching applies to names, not to part numbers @C55728', async () => {
   const pn = String(LIVE.partNumber || '');
   test.skip(!pn || !/\d/.test(pn), 'this environment has no findable part number to damage');
   // change one digit: a part number must NOT come back through a sound-alike or fuzzy route
@@ -183,7 +183,7 @@ const ACCESS: [string, string, RegExp][] = [
   ['C55705', 'Purchase orders', /vendor|purchase|order.?management/i],
 ];
 for (const [cid, tab, permRe] of ACCESS) {
-  test(`${cid} — holding ${tab} access, ${tab.toLowerCase()} results are shown`, async () => {
+  test(`${cid} — holding ${tab} access, ${tab.toLowerCase()} results are shown @${cid}`, async () => {
     test.skip(!BROAD, 'no broad query on this environment');
     test.skip(!PERMS.some(p => permRe.test(p)),
       `the signed-in account does not hold ${tab} access, so this check cannot be run as itself. `
@@ -215,7 +215,7 @@ async function nonEstimatePartSaleRows(): Promise<string[] | null> {
   return null;
 }
 
-test('C44836b — a completed part sale row carries its total price', async () => {
+test('C44836b — a completed part sale row carries its total price @C44836', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   const rows = await nonEstimatePartSaleRows();
   test.skip(!rows, 'every part sale this environment returns is an Estimate, which carries no total yet');
@@ -223,7 +223,7 @@ test('C44836b — a completed part sale row carries its total price', async () =
     `no completed part sale row shows a total:\n  ${rows!.slice(0, 4).map(r => r.slice(0, 95)).join('\n  ')}`).toBe(true);
 });
 
-test('C55706 — holding See Financial Data, prices are shown on the rows', async () => {
+test('C55706 — holding See Financial Data, prices are shown on the rows @C55706', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   test.skip(!PERMS.some(p => /financial|price|cost/i.test(p)),
     'the signed-in account does not hold See Financial Data, so the masked half is what it would show; that half stays manual');
@@ -234,7 +234,7 @@ test('C55706 — holding See Financial Data, prices are shown on the rows', asyn
     `no price is shown although the account holds See Financial Data:\n  ${rows!.slice(0, 4).map(r => r.slice(0, 90)).join('\n  ')}`).toBe(true);
 });
 
-test('C44880 — results are limited to the signed-in person\'s own workplace', async () => {
+test('C44880 — results are limited to the signed-in person\'s own workplace @C44880', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   // the workplace the session belongs to, read from the app rather than assumed
   const mine: string = await (async () => {
@@ -253,7 +253,7 @@ test('C44880 — results are limited to the signed-in person\'s own workplace', 
 });
 
 /* ─────────────────────── THE CLEAR BUTTON ON A PERSISTED QUERY ─────────────────────── */
-test('C44863 — the persisted query can be cleared with the clear button', async () => {
+test('C44863 — the persisted query can be cleared with the clear button @C44863', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   await closePanel(s.page); await openPanel(s.page);

@@ -26,6 +26,16 @@ export const IS_STAGING = /staging/.test(APP);
 export type Session = { browser: Browser; ctx: BrowserContext; page: Page };
 
 /**
+ * Where the saved sign-in lives, one file per environment so staging and production do not
+ * overwrite each other. Git-ignored: it holds a live session.
+ */
+export function authStatePath(): string {
+  if (process.env.GS_AUTH_STATE) return process.env.GS_AUTH_STATE;
+  const host = new URL(APP).host.replace(/[^a-z0-9.]/gi, '_');
+  return `.auth/${host}.json`;
+}
+
+/**
  * A local relay, ONLY if one is already running. Some sandboxes cannot open TLS directly and put a
  * relay in front; an ordinary machine needs none. Optional in both directions — never required.
  */
@@ -65,7 +75,7 @@ export function credentials(envFile?: string): { user: string; pass: string } {
   return { user, pass };
 }
 
-async function launch(opts: { viewport?: { width: number; height: number }; deviceScaleFactor?: number } = {}) {
+async function launch(opts: { viewport?: { width: number; height: number }; deviceScaleFactor?: number; storageState?: string } = {}) {
   const browser = await chromium.launch({
     args: ['--no-sandbox'],
     // 🔴 NO HARD-CODED BROWSER PATH. Playwright resolves the browser it installed. CHROME_BIN is
@@ -75,6 +85,7 @@ async function launch(opts: { viewport?: { width: number; height: number }; devi
   });
   const ctx = await browser.newContext({
     ignoreHTTPSErrors: true,
+    ...(opts.storageState ? { storageState: opts.storageState } : {}),
     viewport: opts.viewport ?? {
       width: Number(process.env.GS_VW || 1600), height: Number(process.env.GS_VH || 1000),
     },
@@ -317,8 +328,41 @@ export async function signInStaging(route = '/customers', opts: { key?: string; 
   return { browser, ctx, page };
 }
 
-/** Sign in to whichever environment GS_APP names. */
+/**
+ * Reuse a session saved by `npm run login`.
+ *
+ * 🔴 THIS IS THE ROUTE THAT ACTUALLY WORKS WHERE SIGN-IN CANNOT BE SCRIPTED. Staging goes through
+ * Google, so there is nothing to automate — but a person can sign in once, and Playwright can keep
+ * the whole session, localStorage included. That is what `npm run login` saves here.
+ */
+export async function signInWithSavedState(route = '/customers', opts: { settle?: number } = {}): Promise<Session> {
+  const file = authStatePath();
+  const { browser, ctx, page } = await launch({ storageState: file });
+  await page.goto(`${APP}${route}`, { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(opts.settle ?? 8_000);
+  if (/\/login/.test(page.url())) {
+    await browser.close();
+    throw new Error(
+      `The saved session in ${file} is no longer valid — the app sent the browser back to the `
+      + 'login screen. Run `npm run login` again to sign in and save a fresh one.');
+  }
+  return { browser, ctx, page };
+}
+
+/**
+ * Sign in to whichever environment GS_APP names.
+ *
+ * Order of preference, and the reason for it:
+ *   1. a session saved by `npm run login` — works everywhere, including where sign-in goes through
+ *      Google and cannot be scripted at all;
+ *   2. a username and password, where the environment accepts one;
+ *   3. pasted cookies plus the app's stored session, for a headless machine where nobody can open
+ *      a browser to do step 1.
+ */
 export async function boot(route = '/customers', opts: { envFile?: string; key?: string } = {}): Promise<Session> {
+  if (!opts.envFile && fs.existsSync(authStatePath())) {
+    return signInWithSavedState(route);
+  }
   return IS_STAGING ? signInStaging(route, opts) : signInWithPassword(route, opts);
 }
 

@@ -132,7 +132,7 @@ const A1: [string, string][] = [
   ['C146257', 'Part sales'], ['C146266', 'Purchase orders'], ['C146277', 'Vendor invoices'],
 ];
 for (const [cid, tab] of A1) {
-  test(`${cid} — ${tab}: the row shows the whole matched value, not just what was typed`, async () => {
+  test(`${cid} — ${tab}: the row shows the whole matched value, not just what was typed @${cid}`, async () => {
     test.skip(!BROAD, 'no query on this environment matches more than one kind of record');
     const q = await queryThatHighlights(tab);
     test.skip(!q, `no query tried highlights anything in ${tab} on this environment, so there is no matched value to judge`);
@@ -158,7 +158,7 @@ const A2: [string, string][] = [
   ['C146258', 'Part sales'], ['C146267', 'Purchase orders'], ['C146278', 'Vendor invoices'],
 ];
 for (const [cid, tab] of A2) {
-  test(`${cid} — ${tab}: a long value is not cut off through the part that matched`, async () => {
+  test(`${cid} — ${tab}: a long value is not cut off through the part that matched @${cid}`, async () => {
     test.skip(!BROAD, 'no broad query on this environment');
     const q = await queryThatHighlights(tab);
     test.skip(!q, `no query tried highlights anything in ${tab} on this environment`);
@@ -184,7 +184,7 @@ const A3: [string, string][] = [
   ['C146247', 'Vendors'], ['C146268', 'Purchase orders'], ['C146279', 'Vendor invoices'],
 ];
 for (const [cid, tab] of A3) {
-  test(`${cid} — ${tab}: the highlight marks the match inside the text, not instead of it`, async () => {
+  test(`${cid} — ${tab}: the highlight marks the match inside the text, not instead of it @${cid}`, async () => {
     test.skip(!BROAD, 'no broad query on this environment');
     const q = await queryThatHighlights(tab);
     test.skip(!q, `no query tried highlights anything in ${tab} on this environment`);
@@ -215,7 +215,7 @@ const FIELD: [string, string, keyof LiveAnchors, string][] = [
   ['C146271', 'Purchase orders', 'partNumber', 'part number'],
 ];
 for (const [cid, tab, key, what] of FIELD) {
-  test(`${cid} — ${tab}: a match on ${what} shows the full value on the row`, async () => {
+  test(`${cid} — ${tab}: a match on ${what} shows the full value on the row @${cid}`, async () => {
     const id = String((LIVE as Record<string, string | undefined>)[key] || '');
     test.skip(!id, `this environment has no ${what} that search can currently find`);
     const rows = await highlighted(id, tab);
@@ -228,7 +228,7 @@ for (const [cid, tab, key, what] of FIELD) {
 }
 
 /* ───────────────────────── MATCHING RULES THAT STAND ALONE ───────────────────────── */
-test('C55726 — an accented name matches with or without the accent', async () => {
+test('C55726 — an accented name matches with or without the accent @C55726', async () => {
   // find a record whose name actually carries an accent, rather than assuming one exists
   const accented = await (async () => {
     const rows = collectionOf(await apiJson(s, '/api/customers?limit=100'));
@@ -246,7 +246,7 @@ test('C55726 — an accented name matches with or without the accent', async () 
   expect(withAccent, 'the accented spelling found nothing, so the pair proves nothing').toBeTruthy();
 });
 
-test('C44862 — reopening the panel restores the last query, tab and results', async () => {
+test('C44862 — reopening the panel restores the last query, tab and results @C44862', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const tabs = await s.page.evaluate(() => [...document.querySelectorAll('.search-tabs__tab')]
@@ -267,7 +267,7 @@ test('C44862 — reopening the panel restores the last query, tab and results', 
   expect(await s.page.locator('.search-row').count(), 'the result list was not restored').toBe(before.rows);
 });
 
-test('C55730 — a record below the top twenty is not shown until the query is narrowed', async () => {
+test('C55730 — a record below the top twenty is not shown until the query is narrowed @C55730', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const tabs = await s.page.evaluate(() => [...document.querySelectorAll('.search-tabs__tab')]

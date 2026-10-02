@@ -88,7 +88,7 @@ async function asTechnicianWith(permissionIds: string[]) {
  * work-order visibility on their own — woPickParts, workOrderLinesCreateAndEdit, woTechViewMode
  * and scheduleView. Remove one and the test "fails" for a reason that is not the product.
  */
-test('C45142 — no work-order access means no jobs in search', async () => {
+test('C45142 — no work-order access means no jobs in search @C45142', async () => {
   test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
@@ -100,7 +100,7 @@ test('C45142 — no work-order access means no jobs in search', async () => {
   expect(p.counts['Work orders'] ?? 0, 'jobs are still shown to someone with no work-order access').toBeFalsy();
 });
 
-test('C45144 — parts appear only with Catalog & Inventory access', async () => {
+test('C45144 — parts appear only with Catalog & Inventory access @C45144', async () => {
   test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
@@ -112,7 +112,7 @@ test('C45144 — parts appear only with Catalog & Inventory access', async () =>
   expect((await search(s.page, FIXTURE)).counts['Parts'] ?? 0, 'parts hidden with access granted').toBeGreaterThan(0);
 });
 
-test('C45146 — removing customer access removes customers AND vehicles', async () => {
+test('C45146 — removing customer access removes customers AND vehicles @C45146', async () => {
   test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
@@ -124,7 +124,7 @@ test('C45146 — removing customer access removes customers AND vehicles', async
   expect(p.counts['Assets'] ?? 0, 'vehicles still shown — they depend on customer access too').toBeFalsy();
 });
 
-test('C45147 — a time-clock-only person gets nothing at all', async () => {
+test('C45147 — a time-clock-only person gets nothing at all @C45147', async () => {
   test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
@@ -140,7 +140,7 @@ test('C45147 — a time-clock-only person gets nothing at all', async () => {
  * permission straight to the role bypasses that guard and builds a role no person could create,
  * then judges the product by it. SV-10278 was withdrawn for exactly this.
  */
-test('C45143 — a part-sales role sees part sales but not parts or suppliers', async () => {
+test('C45143 — a part-sales role sees part sales but not parts or suppliers @C45143', async () => {
   test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
@@ -170,7 +170,7 @@ test.describe('shop scoping', () => {
   const unique = 'ZZSHOP' + Date.now().toString().slice(-5);
   let heavyJob = '', lethJob = '';
 
-  test('C45151 · C45152 · C55684 — search is limited to the shop you are in, and follows you', async () => {
+  test('C45151 · C45152 · C55684 — search is limited to the shop you are in, and follows you @C45151 @C45152 @C55684', async () => {
   test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');

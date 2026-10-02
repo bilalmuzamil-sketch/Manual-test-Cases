@@ -200,7 +200,7 @@ for (const E of ENTITIES) {
   const C = E.cases;
   const store = (k: string, v: unknown) => { m[`${E.section}:${k}`] = v; };
 
-  test(`C${C.A1.cid} — ${E.section}: the whole ${E.a1Field} is shown, with the typed part marked inside it`, async () => {
+  test(`C${C.A1.cid} — ${E.section}: the whole ${E.a1Field} is shown, with the typed part marked inside it @C${C.A1.cid}`, async () => {
     const rows = await groupRows(s.page, C.A1.term, E.tab);
     store('A1', { pointer: lastPointerCheck, rows: rows.map((r) => ({ ...r, html: undefined })) });
     console.log(`\n== ${E.section} / "${C.A1.term}" → ${rows.length} rows`);
@@ -227,7 +227,7 @@ for (const E of ENTITIES) {
     }
   });
 
-  test(`C${C.A2.cid} — ${E.section}: nothing cut off has eaten the match or what separates the rows`, async () => {
+  test(`C${C.A2.cid} — ${E.section}: nothing cut off has eaten the match or what separates the rows @C${C.A2.cid}`, async () => {
     const rows = await groupRows(s.page, C.A2.term, E.tab);
     for (const r of rows) {
       if (!(r.title.clipped || r.meta.clipped)) continue;
@@ -260,7 +260,7 @@ for (const E of ENTITIES) {
       `and cannot say why (SV-10619 / SV-10551)`).toHaveLength(0);
   });
 
-  test(`C${C.A3.cid} — ${E.section}: the highlight marks the match inside the text, not instead of it`, async () => {
+  test(`C${C.A3.cid} — ${E.section}: the highlight marks the match inside the text, not instead of it @C${C.A3.cid}`, async () => {
     const rows = await groupRows(s.page, C.A3.term, E.tab);
     expect(rows.length).toBeGreaterThan(0);
     for (const r of rows) {
@@ -274,7 +274,7 @@ for (const E of ENTITIES) {
     }
   });
 
-  test(`C${C.B1.cid} — ${E.section}: two records sharing the typed text can be told apart`, async () => {
+  test(`C${C.B1.cid} — ${E.section}: two records sharing the typed text can be told apart @C${C.B1.cid}`, async () => {
     const rows = await groupRows(s.page, C.B1.term, E.tab);
     store('B1', rows.map(visibleRow));
     expect(rows.length, 'this case needs more than one row to be about anything').toBeGreaterThan(1);
@@ -283,7 +283,7 @@ for (const E of ENTITIES) {
     expect(dupes, `these rows read identically to a person: ${JSON.stringify(dupes)}`).toHaveLength(0);
   });
 
-  test(`C${C.B2.cid} — ${E.section}: records with the same bold line differ somewhere you can see`, async () => {
+  test(`C${C.B2.cid} — ${E.section}: records with the same bold line differ somewhere you can see @C${C.B2.cid}`, async () => {
     const rows = await groupRows(s.page, C.B2.term, E.tab);
     const byTitle = new Map<string, RowShape[]>();
     for (const r of rows) byTitle.set(visibleText(r.title), [...(byTitle.get(visibleText(r.title)) ?? []), r]);
@@ -298,7 +298,7 @@ for (const E of ENTITIES) {
     }
   });
 
-  test(`C${C.D1.cid} — ${E.section}: the row shows every field the requirement names`, async () => {
+  test(`C${C.D1.cid} — ${E.section}: the row shows every field the requirement names @C${C.D1.cid}`, async () => {
     const rows = await groupRows(s.page, C.D1.term, E.tab);
     expect(rows.length, `"${C.D1.term}" returns no ${E.tab} rows`).toBeGreaterThan(0);
     // Judge the row that BEST satisfies the case's precondition ("has a value in each field named"),
@@ -344,7 +344,7 @@ for (const E of ENTITIES) {
       .toHaveLength(0);
   });
 
-  test(`C${C.I1.cid} — ${E.section}: a soft match is drawn as a soft match`, async () => {
+  test(`C${C.I1.cid} — ${E.section}: a soft match is drawn as a soft match @C${C.I1.cid}`, async () => {
     const rows = await groupRows(s.page, C.I1.term, E.tab);
     store('I1', { term: C.I1.term, rows: rows.map((r) => ({ text: r.text, approx: r.approx, marks: r.marks, italic: r.italicMarks })) });
     console.log(`   ${E.section} I1 "${C.I1.term}" → ${rows.length} rows`);

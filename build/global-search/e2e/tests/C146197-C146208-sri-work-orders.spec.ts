@@ -102,7 +102,7 @@ test.afterAll(async () => {
 });
 
 /** The fixture itself must be sound before any verdict it produces means anything. */
-test('C146197 — the whole WO number is shown, with what you typed marked inside it', async () => {
+test('C146197 — the whole WO number is shown, with what you typed marked inside it @C146197', async () => {
   expect(rows.length, `"${TERM}" returned no ${TAB} rows — the fixture data is gone, ` +
     `so nothing below would be a statement about the product`).toBeGreaterThan(0);
 
@@ -143,7 +143,7 @@ test('C146197 — the whole WO number is shown, with what you typed marked insid
  */
 let TAIL_TERM = '';
 
-test('C146198 — nothing cut off has eaten the match or what tells the rows apart', async () => {
+test('C146198 — nothing cut off has eaten the match or what tells the rows apart @C146198', async () => {
   for (const r of rows) {
     const clipped = r.title.clipped || r.meta.clipped;
     if (!clipped) continue;                       // nothing is cut off; the case's question is moot
@@ -177,7 +177,7 @@ test('C146198 — nothing cut off has eaten the match or what tells the rows apa
     `the row comes back and cannot say why (SV-10619 / SV-10551)`).toHaveLength(0);
 });
 
-test('C146199 — the highlight marks the match inside the text, not instead of it', async () => {
+test('C146199 — the highlight marks the match inside the text, not instead of it @C146199', async () => {
   for (const r of rows) {
     const segs = r.title.segs;
     expect(segs.some((x) => x.marked), `row ${r.index}: nothing is marked`).toBe(true);
@@ -190,7 +190,7 @@ test('C146199 — the highlight marks the match inside the text, not instead of 
   }
 });
 
-test('C146200 — two records sharing the typed text can be told apart from the rows alone', async () => {
+test('C146200 — two records sharing the typed text can be told apart from the rows alone @C146200', async () => {
   expect(rows.length, 'this case needs at least two rows sharing the fragment').toBeGreaterThan(1);
   const seen = rows.map(visibleRow);
   const dupes = seen.filter((v, i) => seen.indexOf(v) !== i);
@@ -200,7 +200,7 @@ test('C146200 — two records sharing the typed text can be told apart from the 
   expect(new Set(ids).size, `the visible WO numbers are ${JSON.stringify(ids)}`).toBe(rows.length);
 });
 
-test('C146201 — rows with the same bold line still differ somewhere you can see', async () => {
+test('C146201 — rows with the same bold line still differ somewhere you can see @C146201', async () => {
   const byTitle = new Map<string, RowShape[]>();
   for (const r of rows) {
     const k = visibleText(r.title);
@@ -218,7 +218,7 @@ test('C146201 — rows with the same bold line still differ somewhere you can se
 
 const noUnit: number[] = [];
 
-test('C146207 — the row shows every field the requirement names', async () => {
+test('C146207 — the row shows every field the requirement names @C146207', async () => {
   // PRD v1.5 §4: "Displayed: WO number + customer name (primary), status badge,
   // unit number + year/make/model. When the asset has no unit number, the y/m/m stands alone."
   for (const r of rows) {
@@ -264,7 +264,7 @@ test('C146207 — the row shows every field the requirement names', async () => 
  * with that reason rather than reporting a second, duplicate defect. When SV-10740 is fixed this
  * check starts running again by itself, and that is the signal the fix landed.
  */
-test('C146208 — a soft match is drawn as a soft match', async () => {
+test('C146208 — a soft match is drawn as a soft match @C146208', async () => {
   const SOFT = await resolveTerm(s.page, 'ZZSOFTHIT', TAB, { requireSoft: true });
   test.skip(!SOFT, 'no query on this environment returns a close match in this tab, so there is no soft '
     + 'match to judge — a statement about the data, not about the product');

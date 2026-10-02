@@ -65,7 +65,7 @@ test.afterAll(async () => {
 });
 const rec = (k: string, v: unknown) => { m[k] = v; console.log(k, JSON.stringify(v).slice(0, 400)); };
 
-test('C146285 — a tab\'s count equals the number of rows inside it', async () => {
+test('C146285 — a tab\'s count equals the number of rows inside it @C146285', async () => {
   const p = await panelShape(s.page, '965');
   const checked: any[] = [];
   for (const t of p.tabs.filter((t) => t.label !== 'All' && (t.count ?? 0) > 0)) {
@@ -80,7 +80,7 @@ test('C146285 — a tab\'s count equals the number of rows inside it', async () 
   }
 });
 
-test('C146286 — no count anywhere reads higher than 20 [expected to fail: SV-10320]', async () => {
+test('C146286 — no count anywhere reads higher than 20 [expected to fail: SV-10320] @C146286', async () => {
   /**
    * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
    * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the
@@ -97,7 +97,7 @@ test('C146286 — no count anywhere reads higher than 20 [expected to fail: SV-1
   expect(over, `these read above the limit: ${JSON.stringify(over)}`).toHaveLength(0);
 });
 
-test('C146287 — a group on the All tab shows 5 and offers the rest', async () => {
+test('C146287 — a group on the All tab shows 5 and offers the rest @C146287', async () => {
   const p = await panelShape(s.page, BROADQ);
   const big = p.groups.filter((g) => (g.count ?? 0) > 5);
   rec('C146287', p.groups.map((g) => ({ head: g.head, count: g.count, rows: g.rows, showAll: g.showAll })));
@@ -109,7 +109,7 @@ test('C146287 — a group on the All tab shows 5 and offers the rest', async () 
   }
 });
 
-test('C146288 — "Show all" opens that tab and keeps you in the search box', async () => {
+test('C146288 — "Show all" opens that tab and keeps you in the search box @C146288', async () => {
   const p = await panelShape(s.page, BROADQ);
   const g = p.groups.find((x) => x.showAll);
   expect(g, 'no group offers a "Show all" link, so this case cannot be run').toBeTruthy();
@@ -134,7 +134,7 @@ test('C146288 — "Show all" opens that tab and keeps you in the search box', as
     .toMatch(new RegExp(g!.head.split(/\s+/)[0], 'i'));
 });
 
-test('C146289 — all nine tabs are there, named and counted', async () => {
+test('C146289 — all nine tabs are there, named and counted @C146289', async () => {
   const p = await panelShape(s.page, '965');
   const labels = p.tabs.map((t) => t.label);
   rec('C146289', p.tabs);
@@ -144,7 +144,7 @@ test('C146289 — all nine tabs are there, named and counted', async () => {
   expect(uncounted, `these tabs carry no count: ${JSON.stringify(uncounted)}`).toHaveLength(0);
 });
 
-test('C146290 — groups on the All tab are always in the same order', async () => {
+test('C146290 — groups on the All tab are always in the same order @C146290', async () => {
   const p = await panelShape(s.page, '965');
   const heads = p.groups.map((g) => g.head);
   rec('C146290', heads);
@@ -155,7 +155,7 @@ test('C146290 — groups on the All tab are always in the same order', async () 
     .toEqual([...idx].sort((a, b) => a - b));
 });
 
-test('C146291 — typing a full record number puts that record at the very top', async () => {
+test('C146291 — typing a full record number puts that record at the very top @C146291', async () => {
   /**
    * ⛔ THE FEATURE THIS CHECKS WAS CANCELLED. The QA lead ruled on 29 September 2026, on C44850 and
    * C55729 which test the same behaviour, that the pinned top result "has been taken off", and he
@@ -183,7 +183,7 @@ async function sameResults(a: string, b: string, tab?: string) {
   return { a, b, ra, rb, same: JSON.stringify(ra) === JSON.stringify(rb) };
 }
 
-test('C146292 — a number is found with and without its dashes', async () => {
+test('C146292 — a number is found with and without its dashes @C146292', async () => {
   test.skip(!WO_NUMBER, 'no work order number could be read from this environment');
   const r = await sameResults(WO_NUMBER, WO_NUMBER.replace(/-/g, ''), 'Work orders');
   rec('C146292', r);
@@ -191,7 +191,7 @@ test('C146292 — a number is found with and without its dashes', async () => {
   expect(r.rb, `"${r.b}" returns a different list from "${r.a}"`).toEqual(r.ra);
 });
 
-test('C146293 — a phone number is found however it is punctuated', async () => {
+test('C146293 — a phone number is found however it is punctuated @C146293', async () => {
   test.skip(!PHONE, 'no customer on this environment has a telephone recorded, so punctuation '
     + 'cannot be compared');
   const r = await sameResults(PHONE, PHONE.replace(/\D/g, ''), 'Customers');
@@ -200,7 +200,7 @@ test('C146293 — a phone number is found however it is punctuated', async () =>
   expect(r.rb, 'the unpunctuated digits return a different list').toEqual(r.ra);
 });
 
-test('C146294 — an accented name is found typed either way', async () => {
+test('C146294 — an accented name is found typed either way @C146294', async () => {
   // The seeded pair: whatever ZZACC returns is the record; then the same name stripped of accents.
   const seeded = await groupRows(s.page, 'ZZACC', 'Customers');
   rec('C146294.seed', seeded.map((r) => r.text));
@@ -214,7 +214,7 @@ test('C146294 — an accented name is found typed either way', async () => {
   expect(r.rb, `"${plain}" does not return what "${name}" returns`).toEqual(r.ra);
 });
 
-test('C146295 — an apostrophe or hyphen in a name is optional', async () => {
+test('C146295 — an apostrophe or hyphen in a name is optional @C146295', async () => {
   const seeded = await groupRows(s.page, 'ZZPUNC', 'Customers');
   rec('C146295.seed', seeded.map((r) => r.text));
   expect(seeded.length, 'no ZZPUNC customer exists, so the case cannot be run').toBeGreaterThan(0);
@@ -226,7 +226,7 @@ test('C146295 — an apostrophe or hyphen in a name is optional', async () => {
   expect(r.rb, `"${plain}" does not return what "${name}" returns`).toEqual(r.ra);
 });
 
-test('C146296 — a typo in a NUMBER is not silently corrected', async () => {
+test('C146296 — a typo in a NUMBER is not silently corrected @C146296', async () => {
   const VIN = String(LIVE.assetVin || '');
   test.skip(!VIN, 'this environment has no chassis number that search can currently find');
   // 🔴 A CHASSIS NUMBER BELONGS TO AN ASSET. Looking for it under Work orders found nothing and the
@@ -249,7 +249,7 @@ test('C146296 — a typo in a NUMBER is not silently corrected', async () => {
     `a typo in a number is being silently corrected`).toBe(0);
 });
 
-test('C146297 — typing a status word returns nothing because of status', async () => {
+test('C146297 — typing a status word returns nothing because of status @C146297', async () => {
   const found: any = {};
   for (const w of ['Approved', 'Invoiced', 'Unpaid', 'Ordered']) {
     const rows = await groupRows(s.page, w, 'Work orders');
@@ -273,7 +273,7 @@ test('C146297 — typing a status word returns nothing because of status', async
     .toHaveLength(0);
 });
 
-test('C146298 — a work order whose truck has no unit number still reads properly', async () => {
+test('C146298 — a work order whose truck has no unit number still reads properly @C146298', async () => {
   // find a work order whose asset shows no unit number, rather than naming the staging one
   const noUnitTerm = await resolveTerm(s.page, 'ZZNOUNIT', 'Work orders');
   const candidates = noUnitTerm ? await groupRows(s.page, noUnitTerm, 'Work orders') : [];
@@ -290,7 +290,7 @@ test('C146298 — a work order whose truck has no unit number still reads proper
   }
 });
 
-test('C146299 — a very long value does not push the rest of the row out of sight', async () => {
+test('C146299 — a very long value does not push the rest of the row out of sight @C146299', async () => {
   const term = await resolveTerm(s.page, 'ZZLONGROW', 'Work orders');
   test.skip(!term, 'no work order comes back on this environment');
   const rows = await groupRows(s.page, term!, 'Work orders');
@@ -302,7 +302,7 @@ test('C146299 — a very long value does not push the rest of the row out of sig
   }
 });
 
-test('C146300 — a very common word still gives a usable list', async () => {
+test('C146300 — a very common word still gives a usable list @C146300', async () => {
   const rows = await groupRows(s.page, 'Filter', 'Parts');
   const texts = rows.map((r) => r.text);
   rec('C146300', { rows: rows.length, sample: texts.slice(0, 5) });
@@ -313,7 +313,7 @@ test('C146300 — a very common word still gives a usable list', async () => {
     .toHaveLength(0);
 });
 
-test('C146302 — a kind of record that does not exist yet does not break search', async () => {
+test('C146302 — a kind of record that does not exist yet does not break search @C146302', async () => {
   const p = await panelShape(s.page, '965');
   const zero = p.tabs.filter((t) => t.count === 0).map((t) => t.label);
   const headsShown = p.groups.map((g) => g.head);
@@ -327,7 +327,7 @@ test('C146302 — a kind of record that does not exist yet does not break search
     .toBeGreaterThan(0);
 });
 
-test('C146303 — no results shows your query back, and nothing else', async () => {
+test('C146303 — no results shows your query back, and nothing else @C146303', async () => {
   const p = await panelShape(s.page, 'Zqwxpol');
   rec('C146303', { body: p.body, empty: p.empty, rows: p.groups.reduce((n, g) => n + g.rows, 0) });
   expect(p.groups.reduce((n, g) => n + g.rows, 0), 'this term was supposed to match nothing').toBe(0);
@@ -335,7 +335,7 @@ test('C146303 — no results shows your query back, and nothing else', async () 
   expect(p.body, 'the empty state offers more than the message').not.toMatch(/try|suggest|tip|instead|did you mean/i);
 });
 
-test('C146304 — no results inside a tab names the tab', async () => {
+test('C146304 — no results inside a tab names the tab @C146304', async () => {
   const p = await panelShape(s.page, 'ZZVORTAC');
   const emptyTab = p.tabs.find((t) => t.label !== 'All' && t.count === 0);
   rec('C146304.tabs', p.tabs);
@@ -348,7 +348,7 @@ test('C146304 — no results inside a tab names the tab', async () => {
     .toMatch(new RegExp(emptyTab!.label.split(/\s+/)[0], 'i'));
 });
 
-test('C146305 — a record you can open from its own list is never "not found"', async () => {
+test('C146305 — a record you can open from its own list is never "not found" @C146305', async () => {
   const term = await resolveTerm(s.page, 'ZZLONGROW', 'Work orders');
   test.skip(!term, 'no work order comes back on this environment');
   const rows = await groupRows(s.page, term!, 'Work orders');
@@ -365,7 +365,7 @@ test('C146305 — a record you can open from its own list is never "not found"',
     .toBeGreaterThan(0);
 });
 
-test('C146306 — someone without access sees no rows AND no count', async () => {
+test('C146306 — someone without access sees no rows AND no count @C146306', async () => {
   /**
    * 🔴 THIS USES THE STAGING QUICK-LOGIN, which does not exist on production: the page ends up on a
    * Google sign-in screen and the check times out after two minutes having tested nothing. The same
@@ -414,7 +414,7 @@ test('C146306 — someone without access sees no rows AND no count', async () =>
   } finally { await tech.browser.close(); }
 });
 
-test('C146301 — [HELD: the source is silent] what one or two characters do', async () => {
+test('C146301 — [HELD: the source is silent] what one or two characters do @C146301', async () => {
   const one = await panelShape(s.page, '9');
   const two = await panelShape(s.page, '96');
   rec('C146301', {

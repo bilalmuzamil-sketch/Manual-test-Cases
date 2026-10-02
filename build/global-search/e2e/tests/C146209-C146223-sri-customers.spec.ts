@@ -81,7 +81,7 @@ test.afterAll(async () => {
  * 🔴 Its preconditions still carry a leftover "TYPE THIS INTO THE SEARCH BOX: ZZLONGROW" line that
  * contradicts the steps. The steps are what make the case work, so they are what is followed here.
  */
-test('C146209 — each row shows the COMPLETE telephone, with the typed part inside it', async () => {
+test('C146209 — each row shows the COMPLETE telephone, with the typed part inside it @C146209', async () => {
   const rows = await groupRows(s.page, '0900', TAB);
   const note = (r: any) => r.metaParts.find((p: string) => /^[A-Za-z][A-Za-z /]{2,30}:\s/.test(p)) ?? null;
   const notes = rows.map(note).filter(Boolean) as string[];
@@ -103,7 +103,7 @@ test('C146209 — each row shows the COMPLETE telephone, with the typed part ins
     .toHaveLength(0);
 });
 
-test('C146210 — nothing cut off has eaten the match or what tells the rows apart', async () => {
+test('C146210 — nothing cut off has eaten the match or what tells the rows apart @C146210', async () => {
   // The supplied term matches at the START of the name, where a right-hand clip cannot reach it,
   // so — as on the Work Orders sheet — the run that answers this case uses a term from the TAIL of
   // the same records. The Expected is untouched; only the data reaches the state it describes.
@@ -124,7 +124,7 @@ test('C146210 — nothing cut off has eaten the match or what tells the rows apa
     .toBe(seen.length);
 });
 
-test('C146211 — the highlight marks the match inside the text, not instead of it', async () => {
+test('C146211 — the highlight marks the match inside the text, not instead of it @C146211', async () => {
   for (const r of rows) {
     expect(r.title.segs.some((x) => x.marked), `row ${r.index}: nothing is marked`).toBe(true);
     expect(r.title.segs.some((x) => !x.marked), `row ${r.index}: the mark has replaced the text`).toBe(true);
@@ -134,7 +134,7 @@ test('C146211 — the highlight marks the match inside the text, not instead of 
   }
 });
 
-test('C146212 — two customers sharing the typed text can be told apart from the rows alone', async () => {
+test('C146212 — two customers sharing the typed text can be told apart from the rows alone @C146212', async () => {
   expect(rows.length, 'this case needs more than one row').toBeGreaterThan(1);
   const seen = rows.map(visibleRow);
   const dupes = seen.filter((v, i) => seen.indexOf(v) !== i);
@@ -159,7 +159,7 @@ test('C146212 — two customers sharing the typed text can be told apart from th
  */
 let BADGED_CUSTOMER = '7 Star Truck Repair';
 
-test('C146222 — the customer row shows every field the requirement names', async () => {
+test('C146222 — the customer row shows every field the requirement names @C146222', async () => {
   // PRD v1.5 §4: "Displayed: customer name (primary), address line, open WO count badge (e.g. 12),
   // telephone on hover."
   let found = await groupRows(s.page, BADGED_CUSTOMER, TAB);
@@ -211,7 +211,7 @@ test('C146222 — the customer row shows every field the requirement names', asy
     .toHaveLength(0);
 });
 
-test('C146223 — a soft match is drawn as a soft match', async () => {
+test('C146223 — a soft match is drawn as a soft match @C146223', async () => {
   const SOFT = (await resolveTerm(s.page, 'ZZPREFIY')) ?? 'ZZPREFIY';
   const soft = await groupRows(s.page, SOFT, TAB);
   m.soft_C146223 = soft.map((r) => ({ ...r, html: undefined }));

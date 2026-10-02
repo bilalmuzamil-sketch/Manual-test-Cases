@@ -102,7 +102,7 @@ async function seedRecent(): Promise<boolean> {
 }
 
 /* ───────────────────────────── RECENT ACTIVITY (§5.6) ───────────────────────────── */
-test('C44857 — recent activity is grouped by how long ago it was', async () => {
+test('C44857 — recent activity is grouped by how long ago it was @C44857', async () => {
   test.skip(!(await seedRecent()), 'nothing could be opened on this environment, so there is no recent activity to group');
   expect(await reopen(), 'the panel would not reopen after visiting a record').toBe(true);
   const text = await panelText();
@@ -112,7 +112,7 @@ test('C44857 — recent activity is grouped by how long ago it was', async () =>
     .toMatch(/Today|Yesterday|Past week|Past 30 days/i);
 });
 
-test('C44858 — recent activity mixes record kinds in the same row template', async () => {
+test('C44858 — recent activity mixes record kinds in the same row template @C44858', async () => {
   expect(await reopen(), 'the panel would not reopen').toBe(true);
   const text = await panelText();
   test.skip(!/Recent/i.test(text), 'this account has no recent activity to show');
@@ -126,7 +126,7 @@ test('C44858 — recent activity mixes record kinds in the same row template', a
   expect(shapes.size, `recent rows are drawn with ${shapes.size} different templates: ${[...shapes].join(' // ')}`).toBe(1);
 });
 
-test('C44859 — clicking a recent item opens that record', async () => {
+test('C44859 — clicking a recent item opens that record @C44859', async () => {
   expect(await reopen(), 'the panel would not reopen').toBe(true);
   const text = await panelText();
   test.skip(!/Recent/i.test(text), 'this account has no recent activity to click');
@@ -140,7 +140,7 @@ test('C44859 — clicking a recent item opens that record', async () => {
 });
 
 /* ───────────────────────────── THE SCOPED EMPTY STATE (§5.2) ───────────────────────────── */
-test('C44865 — no results inside a tab names the tab as well as the query', async () => {
+test('C44865 — no results inside a tab names the tab as well as the query @C44865', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   // a query that matches nothing anywhere, so every tab is empty
   const nonsense = 'qwkjhx' + Date.now();
@@ -185,7 +185,7 @@ test.describe('on a phone viewport', () => {
   });
   test.afterAll(async () => { await m?.browser.close(); });
 
-  test('C44898 — global search works at a phone size', async () => {
+  test('C44898 — global search works at a phone size @C44898', async () => {
     expect(await reopen(m.page), 'the search surface would not open on the phone session').toBe(true);
     await expect(m.page.locator(SEL.modal)).toBeVisible();
     const box = await m.page.locator(SEL.modal).boundingBox();
@@ -193,7 +193,7 @@ test.describe('on a phone viewport', () => {
     expect(box!.width, `the search surface is ${Math.round(box!.width)}px wide on a 390px screen`).toBeLessThanOrEqual(390);
   });
 
-  test('C45132 — on a phone it is a full-screen surface with a Cancel action', async () => {
+  test('C45132 — on a phone it is a full-screen surface with a Cancel action @C45132', async () => {
     expect(await reopen(m.page), 'the search surface would not open on the phone session').toBe(true);
     const box = await m.page.locator(SEL.modal).boundingBox();
     expect(box, 'the search surface has no box on screen').toBeTruthy();
@@ -204,7 +204,7 @@ test.describe('on a phone viewport', () => {
     expect(text, `no Cancel action on the phone surface: ${text.slice(0, 160)}`).toMatch(/Cancel/i);
   });
 
-  test('C45133 — the scope chips appear only once something is typed', async () => {
+  test('C45133 — the scope chips appear only once something is typed @C45133', async () => {
     expect(await reopen(m.page), 'the search surface would not open on the phone session').toBe(true);
     const chips = () => m.page.locator('.search-tabs__tab').count();
     const before = await chips();

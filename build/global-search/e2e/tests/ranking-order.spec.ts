@@ -113,7 +113,7 @@ const PREFIX_TABS: [string, string][] = [
   ['C72120', 'Parts'], ['C72121', 'Vendors'], ['C72122', 'Assets'],
 ];
 for (const [cid, label] of PREFIX_TABS) {
-  test(`${cid} — ${label}: a name starting with the query ranks above one that only contains it`, async () => {
+  test(`${cid} — ${label}: a name starting with the query ranks above one that only contains it @${cid}`, async () => {
     test.skip(!BROAD, 'no query on this environment matches more than one kind of record');
     const q = await queryWithFairPair(label);
     test.skip(!q, `no query tried produces a fair pair in ${label} on this environment — it needs one row `
@@ -130,7 +130,7 @@ for (const [cid, label] of PREFIX_TABS) {
   });
 }
 
-test('C55707 — a name match ranks above a whole-word match, which ranks above a close match', async () => {
+test('C55707 — a name match ranks above a whole-word match, which ranks above a close match @C55707', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   // 🔴 POSITION IN THE ALL VIEW SPANS GROUPS, SO IT IS NOT AN ORDER. The All view lists each kind
@@ -153,7 +153,7 @@ test('C55707 — a name match ranks above a whole-word match, which ranks above 
     + rows.map((r, i) => `${i + 1}. ${r.slice(0, 80)}`).join('\n  ')).toBeGreaterThan(lastExact);
 });
 
-test('C55724 — with everything else equal, the prefix match comes first', async () => {
+test('C55724 — with everything else equal, the prefix match comes first @C55724', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const rows = (await rowTexts()).filter(t => !isFuzzy(t));
@@ -163,7 +163,7 @@ test('C55724 — with everything else equal, the prefix match comes first', asyn
   expect(p, `a contains-only row is above a prefix row for "${BROAD}"`).toBeLessThan(c);
 });
 
-test('C44851 — within a group, exact matches come before close ones', async () => {
+test('C44851 — within a group, exact matches come before close ones @C44851', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   const groups = await s.page.evaluate(() => [...document.querySelectorAll('.search-group')]
@@ -178,7 +178,7 @@ test('C44851 — within a group, exact matches come before close ones', async ()
   }
 });
 
-test('C44852 — in-stock parts rank above out-of-stock ones, and out-of-stock are still shown', async () => {
+test('C44852 — in-stock parts rank above out-of-stock ones, and out-of-stock are still shown @C44852', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   test.skip(!(await openTab('Parts')), 'there is no Parts tab');
@@ -193,7 +193,7 @@ test('C44852 — in-stock parts rank above out-of-stock ones, and out-of-stock a
   expect(outIdx, 'out-of-stock parts should still be listed, not hidden').toBeGreaterThanOrEqual(0);
 });
 
-test('C53588 — more recent work orders rank above older ones of equal relevance', async () => {
+test('C53588 — more recent work orders rank above older ones of equal relevance @C53588', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   await typeAndWait(s.page, BROAD);
   test.skip(!(await openTab('Work orders')), 'there is no Work orders tab');
@@ -215,7 +215,7 @@ test('C53588 — more recent work orders rank above older ones of equal relevanc
 });
 
 /* ───────────────────────────── RECENT SEARCHES: CLEAR ALL ───────────────────────────── */
-test('C45128 — Clear all empties the history and returns to the first-time state', async () => {
+test('C45128 — Clear all empties the history and returns to the first-time state @C45128', async () => {
   // make sure there IS history to clear, so this never passes by having nothing to do
   await typeAndWait(s.page, BROAD || 'service');
   await closePanel(s.page); await openPanel(s.page);
@@ -248,7 +248,7 @@ test.describe('on a tablet viewport', () => {
   });
   test.afterAll(async () => { await t?.browser.close(); });
 
-  test('C55674 — search can be reached on a tablet as well as a desktop', async () => {
+  test('C55674 — search can be reached on a tablet as well as a desktop @C55674', async () => {
     for (let i = 0; i < 3; i++) {
       await t.page.keyboard.press('Control+k');
       await t.page.waitForTimeout(2_000);
@@ -260,7 +260,7 @@ test.describe('on a tablet viewport', () => {
     await expect(t.page.locator(SEL.input)).toBeFocused();
   });
 
-  test('C45135 — the first-time state on a tablet matches the web one, with no quick-create buttons', async () => {
+  test('C45135 — the first-time state on a tablet matches the web one, with no quick-create buttons @C45135', async () => {
     for (let i = 0; i < 3; i++) {
       if (await t.page.locator(SEL.modal).count()) break;
       await t.page.keyboard.press('Control+k'); await t.page.waitForTimeout(2_000);

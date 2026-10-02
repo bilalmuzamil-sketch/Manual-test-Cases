@@ -131,7 +131,7 @@ const DENIED: [string, string, RegExp, string][] = [
   ['C55704', 'Part sales',      /partSale/i,                     'Part Sales'],
 ];
 for (const [cid, tab, permRe, areaName] of DENIED) {
-  test(`${cid} — without ${areaName} access, no ${tab.toLowerCase()} appear`, async () => {
+  test(`${cid} — without ${areaName} access, no ${tab.toLowerCase()} appear @${cid}`, async () => {
     test.skip(!BROAD, 'no query on this environment matches more than one kind of record');
     test.skip(has(limited, permRe),
       `the lower-permission login now HOLDS ${areaName} access, so it cannot show the absence this case is about. `
@@ -161,7 +161,7 @@ const FLIP: [string, string, RegExp, string][] = [
   ['C55735', 'Vendors',         /vendor|purchasing|ordering/i, 'Vendor & Order Management'],
 ];
 for (const [cid, tab, permRe, areaName] of FLIP) {
-  test(`${cid} — ${areaName}: the same record is shown to one person and withheld from the other`, async () => {
+  test(`${cid} — ${areaName}: the same record is shown to one person and withheld from the other @${cid}`, async () => {
     test.skip(!BROAD, 'no broad query on this environment');
     test.skip(!has(full, permRe) || has(limited, permRe),
       `this pair of logins cannot show the difference for ${areaName}: full has it = ${has(full, permRe)}, `
@@ -176,7 +176,7 @@ for (const [cid, tab, permRe, areaName] of FLIP) {
 }
 
 /* ───────── WHOLE GROUPS, COUNTS AND TABS GO TOGETHER ───────── */
-test('C44881 — a kind with nothing the person may see shows no group at all', async () => {
+test('C44881 — a kind with nothing the person may see shows no group at all @C44881', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   const denied = ['Parts', 'Vendors', 'Part sales', 'Purchase orders', 'Vendor invoices']
     .filter(t => !has(limited, permFor(t)));
@@ -190,7 +190,7 @@ test('C44881 — a kind with nothing the person may see shows no group at all', 
   }
 });
 
-test('C44882 — the counts and tabs are hidden with the group, not just the rows', async () => {
+test('C44882 — the counts and tabs are hidden with the group, not just the rows @C44882', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   const tabs = await tabsAs(limited, BROAD);
   const denied = tabs.filter(t => !/^All$/i.test(t.label)
@@ -202,7 +202,7 @@ test('C44882 — the counts and tabs are hidden with the group, not just the row
   }
 });
 
-test('C55720 — several missing areas are all hidden, and the rest still work', async () => {
+test('C55720 — several missing areas are all hidden, and the rest still work @C55720', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   const tabs = await tabsAs(limited, BROAD);
   const kept = tabs.filter(t => !/^All$/i.test(t.label) && has(limited, permFor(t.label)));
@@ -216,7 +216,7 @@ test('C55720 — several missing areas are all hidden, and the rest still work',
     + kept.map(t => `${t.label}(${t.count})`).join(' | ')).toBeGreaterThan(0);
 });
 
-test('C55737 — records a person cannot see are not counted anywhere', async () => {
+test('C55737 — records a person cannot see are not counted anywhere @C55737', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   const fullTabs = await tabsAs(full, BROAD);
   const limTabs = await tabsAs(limited, BROAD);
@@ -235,7 +235,7 @@ test('C55737 — records a person cannot see are not counted anywhere', async ()
 });
 
 /* ───────── AN EXACT NUMBER, AND A TYPO, MUST NOT LEAK EITHER ───────── */
-test('C55718 — typing the exact number of a record you may not see does not surface it', async () => {
+test('C55718 — typing the exact number of a record you may not see does not surface it @C55718', async () => {
   const candidates: [string, RegExp][] = [
     [String(LIVE.partNumber || ''), /^parts|inventory/i],
     [String(LIVE.poNumber || ''),   /vendor|purchasing|ordering/i],
@@ -253,7 +253,7 @@ test('C55718 — typing the exact number of a record you may not see does not su
     + asLimited.slice(0, 3).map(r => r.slice(0, 100)).join('\n  ')).toBe(false);
 });
 
-test('C55721 — a near-miss spelling does not leak a record you may not see', async () => {
+test('C55721 — a near-miss spelling does not leak a record you may not see @C55721', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   const pick = ['Parts', 'Vendors', 'Part sales'].find(t => has(full, permFor(t)) && !has(limited, permFor(t)));
   test.skip(!pick, 'the two logins do not differ on any area that can be searched by name');
@@ -267,7 +267,7 @@ test('C55721 — a near-miss spelling does not leak a record you may not see', a
     `a close-match search for "${typo}" leaked a ${pick!.toLowerCase()} row the person may not see`).toEqual([]);
 });
 
-test('C55719 — a contact match does not surface a company you may not see', async () => {
+test('C55719 — a contact match does not surface a company you may not see @C55719', async () => {
   test.skip(!has(full, /customer/i) || has(limited, /customer/i),
     'both logins hold Customers access, so a hidden parent company cannot be demonstrated with this pair');
   const seed = await recordOnlyFullCanSee('Customers');
@@ -282,7 +282,7 @@ const RECENT: [string, string][] = [
   ['C45149', 'recent items the person can no longer reach are hidden'],
 ];
 for (const [cid, what] of RECENT) {
-  test(`${cid} — ${what}`, async () => {
+  test(`${cid} — ${what} @${cid}`, async () => {
     // open something as the limited person, then confirm the recent list holds only permitted kinds
     test.skip(!BROAD, 'no broad query on this environment');
     const rows = await rowsAs(limited, BROAD);
@@ -307,7 +307,7 @@ for (const [cid, what] of RECENT) {
   });
 }
 
-test('C45148 — a kind the person is not permitted to see is not listed at all', async () => {
+test('C45148 — a kind the person is not permitted to see is not listed at all @C45148', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
   const tabs = await tabsAs(limited, BROAD);
   const known = ['All', 'Work orders', 'Customers', 'Assets', 'Parts', 'Vendors', 'Part sales', 'Purchase orders', 'Vendor invoices'];
@@ -315,7 +315,7 @@ test('C45148 — a kind the person is not permitted to see is not listed at all'
   expect(unknown.map(t => t.label), 'a result kind outside the specified set is being offered').toEqual([]);
 });
 
-test('C44860 — opening a record records it, and the recent list is per person', async () => {
+test('C44860 — opening a record records it, and the recent list is per person @C44860', async () => {
   // the app itself calls this when a record is opened; it is the contract the case describes
   const r: any = await api(limited.s.page, 'GET', '/api/user/recent-entities');
   expect([200, 204]).toContain(r?.status);

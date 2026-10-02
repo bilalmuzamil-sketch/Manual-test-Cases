@@ -112,7 +112,7 @@ const FUZZY: [string, string, (w: string) => string][] = [
   //   (Rule 115). Run this one by hand against a record you have just created yourself.
 ];
 for (const [cid, key, damage] of FUZZY) {
-  test(`${cid} — a misspelled word still finds the record (${key})`, async () => {
+  test(`${cid} — a misspelled word still finds the record (${key}) @${cid}`, async () => {
     const word = longWord(A[key]);
     test.skip(word.length < 8, `${key} has no word long enough to damage fairly: "${word}"`);
     const typo = damage(word);
@@ -133,7 +133,7 @@ const IDS: [string, string][] = [
   ['C44844', 'assetVin'], ['C44846', 'partNumber'], ['C44849', 'partSaleNo'], ['C44847', 'poNumber'],
 ];
 for (const [cid, key] of IDS) {
-  test(`${cid} — a damaged ${key} does NOT come back (identifiers bypass fuzzy)`, async () => {
+  test(`${cid} — a damaged ${key} does NOT come back (identifiers bypass fuzzy) @${cid}`, async () => {
     // 🔴 LIVE, NOT FROZEN. The value in the config file went stale within an hour on 1 Oct 2026
     // and three identifier checks went red against a product that was working correctly.
     const id = String((LIVE as Record<string, string | undefined>)[key] || '');
@@ -171,7 +171,7 @@ for (const [cid, key] of IDS) {
 }
 
 /* ─────────────────────────────── NORMALIZATION ─────────────────────────────── */
-test('C55727 — a dash or apostrophe is optional in a name', async () => {
+test('C55727 — a dash or apostrophe is optional in a name @C55727', async () => {
   const plate = String(A.assetPlate || '');
   test.skip(!/[-']/.test(plate), 'no anchor with a dash or apostrophe on this environment');
   const withPunct = await rows(plate);
@@ -182,7 +182,7 @@ test('C55727 — a dash or apostrophe is optional in a name', async () => {
     `"${plate.replace(/[-']/g, '')}" did not find what "${plate}" found — punctuation should be optional`).toBe(true);
 });
 
-test('C55659 — part of a number still finds the record', async () => {
+test('C55659 — part of a number still finds the record @C55659', async () => {
   const id = String(LIVE.poNumber || LIVE.invoiceNo || '');
   test.skip(id.length < 5, 'this environment has no findable purchase-order or invoice number to take a fragment from');
   const whole = await rows(id);
@@ -202,7 +202,7 @@ const FIELDS: [string, string, string][] = [
   ['C146220', 'customerPost', 'state or province'],
 ];
 for (const [cid, key, label] of FIELDS) {
-  test(`${cid} — a record is findable by its ${label}`, async () => {
+  test(`${cid} — a record is findable by its ${label} @${cid}`, async () => {
     const v = String(A[key] || '');
     test.skip(v.length < 3, `no ${key} on this environment`);
     const r = await rows(v);
@@ -211,7 +211,7 @@ for (const [cid, key, label] of FIELDS) {
 }
 
 /* ───────────────────────────── EMPTY AND NOISE ───────────────────────────── */
-test('C44864 — nothing found says so, and says nothing else', async () => {
+test('C44864 — nothing found says so, and says nothing else @C44864', async () => {
   // 🔴 A ZZ-PREFIXED NONSENSE QUERY IS NOT NONSENSE HERE. This environment is full of ZZ... test
   // records, so "zzqqxx…" fuzzy-matches them and the panel fills with close matches instead of the
   // empty state. Use letters that resemble nothing in the data.
@@ -227,12 +227,12 @@ test('C44864 — nothing found says so, and says nothing else', async () => {
   expect(await s.page.locator('.search-row').count(), 'rows came back for a nonsense query').toBe(0);
 });
 
-test('C55725 — an unrelated query returns no close matches either', async () => {
+test('C55725 — an unrelated query returns no close matches either @C55725', async () => {
   const r = await rows('zzqqxxnothinglikethis');
   expect(r.length, 'a query resembling nothing returned rows').toBe(0);
 });
 
-test('C55713 — a very short query does not spray noisy close matches', async () => {
+test('C55713 — a very short query does not spray noisy close matches @C55713', async () => {
   const r = await rows('ab');
   // §7 sets a HIGHER bar for short queries (0.80) precisely to avoid noise. Anything that does come
   // back must be a real match, not an approximate one.
@@ -240,7 +240,7 @@ test('C55713 — a very short query does not spray noisy close matches', async (
   expect(approx, `a two-letter query returned ${approx} close matches, which §7 raises the bar to prevent`).toBe(0);
 });
 
-test('C55661 — a query matching several kinds shows every kind', async () => {
+test('C55661 — a query matching several kinds shows every kind @C55661', async () => {
   // 🔴 A ONE-LETTER QUERY RENDERS NO TAB COUNTS AT ALL - the strip reads "All | Work orders | ..."
   // with no numbers, so a count-based assertion can never pass and reports "only one kind came
   // back" when nine kinds did. Measured on production 1 Oct 2026. Use a term broad enough to hit
@@ -258,7 +258,7 @@ test('C55661 — a query matching several kinds shows every kind', async () => {
 });
 
 /* ─────────────────────────── ROW PRESENTATION ─────────────────────────── */
-test('C44828 — the typed text is highlighted inside each matching row', async () => {
+test('C44828 — the typed text is highlighted inside each matching row @C44828', async () => {
   const word = longWord(A.customerName);
   const r = await rows(word);
   expect(r.length, `"${word}" finds nothing`).toBeGreaterThan(0);
@@ -266,7 +266,7 @@ test('C44828 — the typed text is highlighted inside each matching row', async 
   expect(unmarked, `${unmarked} of ${r.length} rows carry no highlight at all`).toBe(0);
 });
 
-test('C44848 — a close match is drawn as a close match', async () => {
+test('C44848 — a close match is drawn as a close match @C44848', async () => {
   const word = longWord(A.customerName);
   test.skip(word.length < 8, 'no long enough anchor to damage');
   const typo = transpose(word);
@@ -276,7 +276,7 @@ test('C44848 — a close match is drawn as a close match', async () => {
   expect(r.some(x => x.approx), 'a fuzzy result is not marked as a close match').toBe(true);
 });
 
-test('C44838 — status and stock badges appear on the rows that carry them', async () => {
+test('C44838 — status and stock badges appear on the rows that carry them @C44838', async () => {
   await typeAndWait(s.page, 'a');
   const badged = await s.page.evaluate(() => [...document.querySelectorAll('.search-row')]
     .filter(r => r.querySelector('[data-test-id="search_row_status_badge"], .search-row__badge, .q-badge')).length);

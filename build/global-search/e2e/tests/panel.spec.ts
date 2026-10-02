@@ -17,7 +17,7 @@ let s: Session;
 test.beforeAll(async () => { s = await signIn('/work-orders'); console.log('build under test:', await buildMarker(s.page)); });
 test.afterAll(async () => { await s?.browser.close(); });
 
-test('C45156 — the keyboard shortcut opens it with the field ready to type', async () => {
+test('C45156 — the keyboard shortcut opens it with the field ready to type @C45156', async () => {
   await closePanel(s.page);
   await expect(s.page.locator(SEL.modal)).toHaveCount(0);
   await s.page.keyboard.press('Control+k');            // lowercase k — Control+K sends Ctrl+Shift+K
@@ -30,7 +30,7 @@ test('C45156 — the keyboard shortcut opens it with the field ready to type', a
  * 🔴 THE TRAP: the tab strip is on screen BEFORE anything is typed. Counting tab ELEMENTS says
  * "a search ran" when none has. What proves a search ran is the tabs carrying COUNTS.
  */
-test('C45161 — one character runs no search, two characters do', async () => {
+test('C45161 — one character runs no search, two characters do @C45161', async () => {
   await closePanel(s.page);
   await openPanel(s.page);
   const input = s.page.locator(SEL.input);
@@ -48,19 +48,19 @@ test('C45161 — one character runs no search, two characters do', async () => {
   await closePanel(s.page);
 });
 
-test('C45155 — the group is called Assets, never Vehicles', async () => {
+test('C45155 — the group is called Assets, never Vehicles @C45155', async () => {
   const p = await search(s.page, 'Cascadia', 'Assets');
   expect(p.groups.some((g) => /^Assets/i.test(g.head))).toBe(true);
   expect(p.groups.some((g) => /vehicle/i.test(g.head)), 'a Vehicles heading is showing').toBe(false);
   expect(Object.keys(p.counts).some((t) => /vehicle/i.test(t)), 'a Vehicles tab is showing').toBe(false);
 });
 
-test('C55675 — a search that matches nothing says so', async () => {
+test('C55675 — a search that matches nothing says so @C55675', async () => {
   const p = await search(s.page, 'ZZNOSUCHRECORD9999');
   expect(p.body, `the panel read: ${p.body}`).toMatch(/no results/i);
 });
 
-test('C55673 — Enter opens the top result with no arrow key first', async () => {
+test('C55673 — Enter opens the top result with no arrow key first @C55673', async () => {
   await typeQuery(s.page, 'Bridgeport');
   await s.page.waitForTimeout(6_000);
   const before = s.page.url();
@@ -71,7 +71,7 @@ test('C55673 — Enter opens the top result with no arrow key first', async () =
   await s.page.waitForTimeout(2_500);
 });
 
-test('C55680 — arrowing moves through rows and never lands on a heading', async () => {
+test('C55680 — arrowing moves through rows and never lands on a heading @C55680', async () => {
   await typeQuery(s.page, FIXTURE);
   await s.page.waitForTimeout(6_000);
   const seen: string[] = [];
@@ -91,7 +91,7 @@ test('C55680 — arrowing moves through rows and never lands on a heading', asyn
  * 🔴 THE TRAP: every row icon carries the SAME class, `lucide-icon`. Reading the class says
  * "one icon for everything". The shape is in the drawing — read the path, and there are eight.
  */
-test('C55682 — every row carries an icon, one per record type', async () => {
+test('C55682 — every row carries an icon, one per record type @C55682', async () => {
   await typeQuery(s.page, FIXTURE);
   await s.page.waitForTimeout(6_500);
   const icons = await s.page.evaluate((sel) => {
@@ -117,7 +117,7 @@ test('C55682 — every row carries an icon, one per record type', async () => {
   await closePanel(s.page);
 });
 
-test('C45157 — a record matching more than once is listed once', async () => {
+test('C45157 — a record matching more than once is listed once @C45157', async () => {
   const p = await search(s.page, 'Bridgeport', 'Customers');
   const rows = rowsOf(p, 'Customers').filter((r) => /ZZAUTOTEST Bridgeport Hauling/i.test(r));
   // 🔴 Two DIFFERENT customers start with the same words. Compare the leading names, not a count.
@@ -125,7 +125,7 @@ test('C45157 — a record matching more than once is listed once', async () => {
   expect(names.size, `the same customer appears twice: ${JSON.stringify(rows)}`).toBe(rows.length);
 });
 
-test('C53589 — typing through a search in flight loses nothing', async () => {
+test('C53589 — typing through a search in flight loses nothing @C53589', async () => {
   await closePanel(s.page); await openPanel(s.page);
   const input = s.page.locator(SEL.input);
   await input.click({ clickCount: 3 }); await input.fill('');
@@ -138,7 +138,7 @@ test('C53589 — typing through a search in flight loses nothing', async () => {
   await closePanel(s.page);
 });
 
-test('C44861 — the query is kept after closing and restored on reopening', async () => {
+test('C44861 — the query is kept after closing and restored on reopening @C44861', async () => {
   await typeQuery(s.page, 'Fibridge');
   await s.page.waitForTimeout(6_000);
   await closePanel(s.page);
@@ -156,7 +156,7 @@ test('C44861 — the query is kept after closing and restored on reopening', asy
 });
 
 /** Known failure — reproduces a reported fault, expected red until it is fixed. */
-test('C55685 — a correct spelling returns only related records [expected to fail: SV-10025]', async () => {
+test('C55685 — a correct spelling returns only related records [expected to fail: SV-10025] @C55685', async () => {
   /**
    * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
    * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the

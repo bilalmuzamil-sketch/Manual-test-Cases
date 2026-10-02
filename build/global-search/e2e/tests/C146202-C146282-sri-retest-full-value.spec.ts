@@ -80,7 +80,7 @@ function fragmentOf(term: string): string | null {
 }
 
 for (const c of CASES) {
-  test(`C${c.cid} — ${c.title}`, async () => {
+  test(`C${c.cid} — ${c.title} @C${c.cid}`, async () => {
     const rec: any = { cid: c.cid, tab: c.tab, suppliedTerm: c.term };
 
     // ── the case supplies no usable term ────────────────────────────────────────────────────────

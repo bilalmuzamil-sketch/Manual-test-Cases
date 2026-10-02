@@ -58,7 +58,7 @@ const FIND: [string, string, string, string][] = [
 ];
 
 for (const [cid, query, tab, expected] of FIND) {
-  test(`${cid} — typing "${query}" finds it under ${tab}`, async () => {
+  test(`${cid} — typing "${query}" finds it under ${tab} @${cid}`, async () => {
     /**
      * 🔴 TELL "THE RECORD IS NOT HERE" APART FROM "THE FIELD IS NOT SEARCHABLE".
      * Every row of this table names a record staging was seeded with. On production several do not
@@ -108,7 +108,7 @@ for (const [cid, query, tab, expected] of FIND) {
 /** Same field typed three ways. Case must never matter — and this check is itself the proof that
  *  underpins the tie-break ticket, where capitalisation is used as a change that cannot alter
  *  match quality. If this ever fails, that argument fails with it. */
-test('C55671 — capitals never change what is found', async () => {
+test('C55671 — capitals never change what is found @C55671', async () => {
   for (const q of ['bridgeport', 'BRIDGEPORT', 'BrIdGePoRt']) {
     const p = await search(s.page, q, 'Customers');
     expect(contains(rowsOf(p, 'Customers'), CUSTOMER), `"${q}" did not return the customer`).toBe(true);
@@ -116,14 +116,14 @@ test('C55671 — capitals never change what is found', async () => {
 });
 
 /** Every row returned must be of the thing typed — not merely "something came back". */
-test('C55688 — typing a make returns only that make', async () => {
+test('C55688 — typing a make returns only that make @C55688', async () => {
   const p = await search(s.page, 'Freightliner', 'Assets');
   const rows = rowsOf(p, 'Assets');
   expect(rows.length).toBeGreaterThan(0);
   for (const r of rows) expect(r, `a non-Freightliner row came back: ${r}`).toMatch(/freightliner/i);
 });
 
-test('C55689 — typing a year returns only that year', async () => {
+test('C55689 — typing a year returns only that year @C55689', async () => {
   const p = await search(s.page, '2019', 'Assets');
   const rows = rowsOf(p, 'Assets');
   expect(rows.length).toBeGreaterThan(0);
@@ -134,7 +134,7 @@ test('C55689 — typing a year returns only that year', async () => {
  * KNOWN FAILURES — these reproduce a reported fault. They are expected to fail until it is fixed,
  * and each names its report so a red result is recognised rather than re-investigated.
  */
-test('C53601 — a catalogue-only part is findable [expected to fail: SV-10001]', async () => {
+test('C53601 — a catalogue-only part is findable [expected to fail: SV-10001] @C53601', async () => {
   /**
    * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
    * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the
@@ -147,7 +147,7 @@ test('C53601 — a catalogue-only part is findable [expected to fail: SV-10001]'
     'known fault SV-10001 — a part that has never been stocked is not returned').toBe(true);
 });
 
-test('C53605 — year and make typed together find the vehicle [expected to fail: SV-10055]', async () => {
+test('C53605 — year and make typed together find the vehicle [expected to fail: SV-10055] @C53605', async () => {
   /**
    * ✅ THIS NO LONGER FAILS, AND THAT IS THE RESULT. It was marked expected-to-fail against
    * SV-10055; run against production on 2 October 2026 it PASSED, and Playwright reported
@@ -160,7 +160,7 @@ test('C53605 — year and make typed together find the vehicle [expected to fail
     'known fault SV-10055 — the year and make together return nothing').toBeGreaterThan(0);
 });
 
-test('C55660 — a fragment from the middle of a word finds the record [expected to fail: SV-10060]', async () => {
+test('C55660 — a fragment from the middle of a word finds the record [expected to fail: SV-10060] @C55660', async () => {
   /**
    * 🔴 REPRODUCES A KNOWN FAULT. Status read live from Jira on 2 October 2026: **OBSOLETE**.
    * A closed ticket is not a spec change, so the expectation STAYS and is not edited to match the
