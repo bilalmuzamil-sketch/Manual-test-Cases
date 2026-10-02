@@ -1,4 +1,5 @@
 import type { Page } from 'playwright/test';
+import { APIH } from './boot.js';
 
 /**
  * SEEDING REAL RECORDS, SO A RANKING CHECK HAS A FAIR PAIR TO JUDGE.
@@ -22,8 +23,11 @@ import type { Page } from 'playwright/test';
 export type Seeded = { id: string; name: string };
 
 export async function createCustomer(page: Page, name: string, extra: Record<string, unknown> = {}): Promise<Seeded | null> {
-  const out = await page.evaluate(async ([n, ex]) => {
-    const r = await fetch('https://api.shopview.com/api/customers/create', {
+  // 🔴 THE API HOST COMES FROM THE ENVIRONMENT UNDER TEST. This was the literal production host, so
+  // on staging every create went to production, was refused there, and six ranking checks failed on
+  // "Failed to fetch" - a fault in this helper reported as six product failures (2026-10-02).
+  const out = await page.evaluate(async ([n, ex, host]) => {
+    const r = await fetch(`https://${host}/api/customers/create`, {
       method: 'POST', credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: n, state_or_province: null, country_code: '', require_po: false,
@@ -34,7 +38,7 @@ export async function createCustomer(page: Page, name: string, extra: Record<str
     let id = '';
     try { const j = JSON.parse(t); id = j?.data?.company_id || j?.data?.id || j?.id || ''; } catch { /* non-JSON */ }
     return { status: r.status, id, body: t.slice(0, 200) };
-  }, [name, extra] as const);
+  }, [name, extra, APIH] as const);
   if (out.status !== 201 && out.status !== 200) {
     console.log(`seed customer "${name}" failed: HTTP ${out.status} ${out.body}`);
     return null;
@@ -61,11 +65,11 @@ export async function waitUntilFindable(page: Page, q: string, needle: string, m
 }
 
 export async function deleteCustomer(page: Page, id: string): Promise<number> {
-  return page.evaluate(async (i) => {
+  return page.evaluate(async ([i, host]) => {
     for (const [m, p] of [['DELETE', `/api/customers/${i}`], ['POST', `/api/customers/${i}/delete`]] as const) {
-      const r = await fetch('https://api.shopview.com' + p, { method: m, credentials: 'include' });
+      const r = await fetch(`https://${host}` + p, { method: m, credentials: 'include' });
       if (r.status < 400) return r.status;
     }
     return 0;
-  }, id);
+  }, [id, APIH] as const);
 }

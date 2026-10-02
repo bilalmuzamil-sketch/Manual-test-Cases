@@ -422,6 +422,11 @@ export async function signInStaging(route = '/customers', opts: { key?: string; 
     ['cf_clearance', process.env.GS_CF || f.CF_CLEARANCE || ''],
   ];
   const valueOf = (name: string) => SOURCES.find(([n]) => n === name)?.[1] ?? '';
+  // 🔴 ONE COOKIE IS ENOUGH NOW. This older route needed a session id copied by hand as well, so
+  // under the unattended setup (GS_SSO alone) it threw and C146306 failed on a sign-in message
+  // (2026-10-02). With the sign-in cookie present and no session id, use the route every other
+  // test uses: it mints the session itself, with the key asked for.
+  if (valueOf('sv_sso_session') && !valueOf('PHPSESSID')) return signInWithSso(route, opts);
   if (!valueOf('sv_sso_session') || !valueOf('PHPSESSID')) {
     throw new Error(
       'Staging needs a live session cookie. Sign in to app.staging.shopview.com in a browser, then '

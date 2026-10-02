@@ -102,7 +102,7 @@ test('C45138 — unpaid supplier invoices rank above paid ones @C45138', async (
  * Rejected: engine hours (not indexed), assigning a technician (returns success, saves nothing),
  * adding a job line (flips the job to Approved, and open status outranks the tie-break).
  */
-test('C55716 — the record changed most recently is listed first [expected to fail: SV-10340] @C55716', async () => {
+test('C55716 — the record changed most recently is listed first @C55716', async () => {
   /**
    * ✅ THIS NO LONGER FAILS ON PRODUCTION, AND THAT IS THE RESULT.
    * It was marked expected-to-fail against SV-10340 ("Global Search Ignores the Most-Recently-
@@ -140,9 +140,13 @@ test('C55716 — the record changed most recently is listed first [expected to f
   expect(before.length, 'both suppliers must come back for there to be a tie').toBeGreaterThanOrEqual(2);
 
   // Edit the one listed SECOND. Editing the one already on top proves nothing either way.
-  const list = await api(s.page, 'GET', '/api/parts-catalogue/vendors?pagination[rowsPerPage]=250');
-  const mine = ((list.body as any)?.data?.collection ?? []).filter((v: any) => String(v.name).includes(tag));
-  const target = mine[1] ?? mine[0];
+  // 🔴 ASK FOR THE TWO BY NAME. This read "the first 250 suppliers" and filtered them; the list
+  // ignores that page size, so on staging (2026-10-02) the two just made were not in it, `target`
+  // was undefined and the check crashed on "reading 'id'" - a fault here, reported as a failure.
+  const list = await api(s.page, 'GET', `/api/parts-catalogue/vendors?search=${encodeURIComponent(tag)}&limit=50`);
+  const mine = ((list.body as any)?.data?.collection ?? []).filter((v: any) => made.includes(v.id));
+  expect(mine.length, `the two suppliers just created (${made.join(', ')}) are not in the supplier list`).toBe(2);
+  const target = mine[1];
   const w = await api(s.page, 'POST', '/api/parts-catalogue/change-vendor', { ...target, vendor_id: target.id, id: target.id, name: lowered });
   expect(w.status, `the rename was refused: ${w.text}`).toBeLessThan(400);
 

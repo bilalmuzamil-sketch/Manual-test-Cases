@@ -51,8 +51,27 @@ test.beforeAll(async () => {
     ? `technician baseline: ${baselinePerms.join(',')}`
     : `the technician role ${TECH_ROLE} does not exist here — the role-editing checks will stand down`);
   const staff = ((await api(s.page, 'GET', '/api/staff?limit=250')).body as any)?.data?.collection ?? [];
-  techStaffId = staff.find((x: any) => x.is_active && /Brandi/i.test(x.first_name ?? ''))?.id ?? '';
-  adminStaffId = staff.find((x: any) => x.is_active && /admin/i.test((x.role_label ?? '') + (x.first_name ?? '')))?.id ?? '';
+  /**
+   * 🔴 FIND PEOPLE BY THEIR ROLE, NEVER BY A FIRST NAME. This looked for a technician called "Brandi",
+   * who exists on the old QA branch and not on staging. The id came back empty, switching to an empty
+   * id is refused (400), and the session simply STAYED THE ADMIN - so on 2026-10-02 five checks
+   * measured what an administrator sees and reported it as a technician seeing too much. Prefer
+   * someone whose own shop is the one the data is seeded in, so a switch does not land elsewhere.
+   */
+  const active = staff.filter((x: any) => x.is_active);
+  const pick = (ok: (x: any) => boolean) =>
+    (active.find((x: any) => ok(x) && x.workplace_id === HEAVY_DUTY) ?? active.find(ok))?.id ?? '';
+  techStaffId = pick((x) => x.role_id === TECH_ROLE);
+  adminStaffId = pick((x) => /^admin(istrator)?$/i.test(String(x.role_label ?? '')));
+  console.log(`technician to switch to: ${techStaffId || 'NONE'} · admin to switch back to: ${adminStaffId || 'NONE'}`);
+  const adminRole = active.find((x: any) => x.id === adminStaffId)?.role_id;
+  // The admin role holds every permission EXCEPT the technician's own view mode (it uses the full
+  // view), so the list is the two roles together.
+  const fromAdmin = adminRole ? ((((await api(s.page, 'GET', `/api/roles/${adminRole}`)).body as any)?.data?.fe_permissions) ?? []) : [];
+  catalogue = [...fromAdmin, ...(baselineRole?.fe_permissions ?? [])]
+    .map((p: any) => ({ id: p.id, code: p.code }))
+    .filter((p, i, a) => a.findIndex((q) => q.id === p.id) === i);
+  console.log(`permission list: ${catalogue.length} (the admin role and the technician role together)`);
 });
 
 test.afterAll(async () => {
@@ -70,15 +89,70 @@ test.afterAll(async () => {
   await s?.browser.close();
 });
 
-const idsOf = (codes: string[]) =>
-  baselineRole.fe_permissions.filter((p: any) => codes.includes(p.code)).map((p: any) => p.id);
+/**
+ * 🔴 PERMISSION IDS COME FROM THE FULL LIST, NOT FROM THE ROLE BEING EDITED. This looked ids up in
+ * the technician's OWN permissions, so a permission the technician does not already hold - the very
+ * one C45144 and C45143 must GRANT - came back undefined and nothing was granted (staging,
+ * 2026-10-02: "parts hidden with access granted" for a role that was never given parts). The admin
+ * role holds every permission, so it is the catalogue.
+ */
+let catalogue: Array<{ id: string; code: string }> = [];
+let implied: string[] = [];   // permissions the role's view mode added by itself, see asTechnicianWith
+const idsOf = (codes: string[]) => {
+  const ids = codes.map((c) => catalogue.find((p) => p.code === c)?.id);
+  test.skip(ids.some((x) => !x), `permission(s) ${codes.filter((_c, i) => !ids[i]).join(', ')} not found in `
+    + 'the full permission list, so the role cannot be built for this check');
+  return ids as string[];
+};
+const codesOf = (ids: string[]) => ids.map((i) => catalogue.find((p) => p.id === i)?.code ?? i).sort();
 
-async function asTechnicianWith(permissionIds: string[]) {
+/**
+ * Back to the admin, in the seeding shop. 🔴 Every check that edits the role LEAVES the session as the
+ * technician, so a check that needs the admin must say so: C45143's admin control and the shop test's
+ * job creation both ran as the technician without it (staging, 2026-10-02).
+ */
+async function asAdmin() {
   await api(s.page, 'POST', '/api/switch-user', { user_id: adminStaffId });
   await s.page.waitForTimeout(800);
-  await api(s.page, 'PUT', `/api/roles/${TECH_ROLE}`, { ...baselineRole, fe_permissions: permissionIds });
-  await api(s.page, 'POST', '/api/switch-user', { user_id: techStaffId });
+  await api(s.page, 'POST', '/api/iam/change-location', { workplace_id: HEAVY_DUTY, workplace_timezone: 'America/Edmonton' });
+  await s.page.reload({ waitUntil: 'load' });
+  await s.page.waitForTimeout(3_000);
+}
+
+async function asTechnicianWith(permissionIds: string[], toggles: Record<string, boolean> = {}) {
+  test.skip(!techStaffId || !adminStaffId, 'no active technician (or no admin to switch back to) on '
+    + 'this environment, so there is nobody to look through the edited role with');
+  await api(s.page, 'POST', '/api/switch-user', { user_id: adminStaffId });
+  await s.page.waitForTimeout(800);
+  await api(s.page, 'PUT', `/api/roles/${TECH_ROLE}`, { ...baselineRole, fe_permissions: permissionIds,
+    cross_toggles: { ...baselineRole.cross_toggles, ...toggles } });
+  const sw = await api(s.page, 'POST', '/api/switch-user', { user_id: techStaffId });
   await s.page.waitForTimeout(1_000);
+  // Parts and jobs are listed per shop, and a switch can land in the person's own shop.
+  await api(s.page, 'POST', '/api/iam/change-location', { workplace_id: HEAVY_DUTY, workplace_timezone: 'America/Edmonton' });
+  /**
+   * 🔴 PROVE WHO WE ARE BEFORE JUDGING WHAT WE SEE (Rule 104). The permissions the session now holds
+   * must be exactly the ones just written to the role. Anything else means the switch or the role
+   * edit did not happen, and every count read below would describe somebody else - so the check
+   * stands down with that reason instead of reporting a product fault.
+   */
+  const want = codesOf(permissionIds);
+  const me = ((await api(s.page, 'GET', '/api/auth/me/fe-permissions')).body as any)?.data;
+  const have = [...(me?.fe_permissions ?? [])].sort();
+  /**
+   * 🔴 STAGING ADDS ONE PERMISSION BY ITSELF (measured 2026-10-02): the role's view mode always brings
+   * its own work-order view permission — woTechViewMode in tech view, woFullViewMode in full view —
+   * even when the role was saved without it. So that one is accepted and NAMED in the result; any
+   * other difference still means the switch or the edit failed.
+   */
+  const VIEW = ['woTechViewMode', 'woFullViewMode'];
+  implied = have.filter((c) => !want.includes(c));
+  const missingNow = want.filter((c) => !have.includes(c));
+  if (implied.length) console.log(`   the session also holds ${implied.join(', ')}, added by the role's view mode`);
+  test.skip(missingNow.length > 0 || implied.some((c) => !VIEW.includes(c)),
+    `CONTROL FAILED: after switching to the technician (HTTP ${sw.status}) the session holds `
+    + `${JSON.stringify(have)}, not the ${JSON.stringify(want)} just given to the role - so what it sees `
+    + 'would not be the technician\'s view. Nothing was judged.');
   await s.page.goto('/customers', { waitUntil: 'domcontentloaded' });
   await s.page.waitForTimeout(3_000);
 }
@@ -97,7 +171,11 @@ test('C45142 — no work-order access means no jobs in search @C45142', async ()
   const strip = new Set(idsOf(siblings));
   await asTechnicianWith(baselineRole.fe_permissions.map((p: any) => p.id).filter((id: string) => !strip.has(id)));
   const p = await search(s.page, FIXTURE);
-  expect(p.counts['Work orders'] ?? 0, 'jobs are still shown to someone with no work-order access').toBeFalsy();
+  // Staging cannot make a role with NO work-order permission at all - the view mode always adds its
+  // own (see asTechnicianWith) - so this is the nearest such person, and the message says which.
+  expect(p.counts['Work orders'] ?? 0, 'jobs are still shown to someone with no work-order access'
+    + (implied.length ? ` (other than ${implied.join(', ')}, which staging adds to every role by its view mode)` : ''))
+    .toBeFalsy();
 });
 
 test('C45144 — parts appear only with Catalog & Inventory access @C45144', async () => {
@@ -144,17 +222,16 @@ test('C45143 — a part-sales role sees part sales but not parts or suppliers @C
   test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
-  await api(s.page, 'POST', '/api/switch-user', { user_id: adminStaffId });
-  await s.page.waitForTimeout(800);
-  await api(s.page, 'PUT', `/api/roles/${TECH_ROLE}`, {
-    ...baselineRole,
-    fe_permissions: idsOf(['partSalesView']),
-    cross_toggles: { ...baselineRole.cross_toggles, seeFinancialData: true },  // the guard the screen enforces
-  });
-  await api(s.page, 'POST', '/api/switch-user', { user_id: techStaffId });
-  await s.page.waitForTimeout(1_000);
-  await s.page.goto('/customers', { waitUntil: 'domcontentloaded' });
-  await s.page.waitForTimeout(3_000);
+  // 🔴 THROUGH THE SAME SWITCH-AND-PROVE PATH AS EVERY OTHER CHECK. This one switched by hand and
+  // never moved to the seeding shop, so it searched the technician's own shop and found no part
+  // sales (staging, 2026-10-02). Done by hand the same role sees part sales and nothing else.
+  // Positive control first: the admin must see part sales for this word, or a zero means nothing.
+  await asAdmin();
+  const adminView = await search(s.page, FIXTURE);
+  test.skip(!(adminView.counts['Part sales'] ?? 0), `the admin sees no part sales for "${FIXTURE}" here, `
+    + 'so a technician seeing none would say nothing');
+  await asTechnicianWith(idsOf(['partSalesView', 'seeFinancialData']),
+    { seeFinancialData: true });                                   // the guard the roles screen enforces
   const p = await search(s.page, FIXTURE);
   expect(p.counts['Part sales'] ?? 0, 'part sales hidden from a part-sales role').toBeGreaterThan(0);
   expect(p.counts['Parts'] ?? 0, 'parts shown to a part-sales-only role').toBeFalsy();
@@ -175,8 +252,20 @@ test.describe('shop scoping', () => {
     + 'environment. The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
     test.setTimeout(300_000);
-    const veh = '14a069cd-4846-4a57-835a-05f4b32649a8';
-    const company = 'e049c07d-9b16-4f95-9e01-71da22e1104a';
+    await asAdmin();
+    // 🔴 SEEDED RECORDS, LOOKED UP - NEVER IDS COPIED FROM ONE BRANCH. These two ids were the QA
+    // branch's; on staging both creates were refused and the check failed on "a job could not be
+    // created at each shop". The vehicle is the seeded ZZLONGROW one (seed-manifest-e2e.json).
+    const vrows = ((await api(s.page, 'GET', '/api/vehicles?search=ZZLRAST0000000001&limit=5')).body as any)?.data?.collection ?? [];
+    const vrow = vrows.find((v: any) => v.vin === 'ZZLRAST0000000001');
+    const veh = vrow?.id ?? '';
+    // The vehicle list does not name its owner (companies: []), so the owner is found by its seeded
+    // name. Proved on staging 2026-10-02: this pair creates a job at the seeding shop (201).
+    const OWNER = 'ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786';
+    const crows = ((await api(s.page, 'GET', `/api/customers?search=${encodeURIComponent(OWNER)}&limit=5`)).body as any)?.data?.collection ?? [];
+    const company = crows.find((c: any) => c.name === OWNER)?.id ?? '';
+    test.skip(!veh || !company, 'the seeded vehicle ZZLRAST0000000001 or its owner was not found - '
+      + `run the seeding (npm run seed); vehicles found ${vrows.length}, owners found ${crows.length}`);
     for (const [wp, label] of [[HEAVY_DUTY, 'heavy'], [LETHBRIDGE, 'leth']] as const) {
       await api(s.page, 'POST', '/api/iam/change-location', { workplace_id: wp, workplace_timezone: 'America/Edmonton' });
       await s.page.waitForTimeout(1_500);
@@ -201,7 +290,9 @@ test.describe('shop scoping', () => {
       return rowsOf(own, 'Work orders');
     };
     const atHeavy = await readAt(HEAVY_DUTY);
-    expect(contains(atHeavy, heavyJob), 'the shop you are in does not show its own job').toBe(true);
+    expect(contains(atHeavy, heavyJob), `the shop you are in does not show its own job ${heavyJob} `
+      + `(searched "${heavyJob.replace(/^\w-/, '')}"; ${atHeavy.length} job row(s) came back: `
+      + `${JSON.stringify(atHeavy.slice(0, 5).map((r) => String(r).slice(0, 40)))})`).toBe(true);
     const atLeth = await readAt(LETHBRIDGE);
     expect(contains(atLeth, heavyJob), 'the other shop\'s job is still returned after moving').toBe(false);
   });
