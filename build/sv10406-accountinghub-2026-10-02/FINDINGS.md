@@ -181,6 +181,26 @@ time, now re-confirmed on the rebuilt branch.
 
 ---
 
+## 5b. The manual-return legs re-driven on the CURRENT build (added after a self-check)
+
+**A gap I found in my own posted comment and closed.** Rows 6 and 7 of the checks table — a manual
+return keeping its decimal when it is *created* and when the credit is *posted* — were exercised on
+the **1 October build `v26.39.2-998e506`**, and on 2 October I had only re-read the resulting record
+rather than re-performing the actions. The comment said I re-ran everything from scratch; that was
+true of the decimal criteria and **not** of these two. Both are now driven on `v26.40.3-e9ae339`:
+
+| Leg | How | Result |
+|---|---|---|
+| **Create** | Parts > Returns > **Create Return**, vendor 5 Star Truck Repair, part **P550848**, *Qty To Return* typed as **1.5**, price $53.52, **Save Return** | Row stores **1.50**, total **$80.28** = 1.5 × $53.52. Packaging slip `ZZAUTOTEST-MAN-OCT2` |
+| **Post the credit** | Tick the row's checkbox → **Receive Credit** → Process Return screen → credit memo number → **Post Credit** | Stored credit `ZZAUTOTEST-CM-10406-MANOCT2`: qty **1.50**, unit $53.52, sub total **$80.28**, tax $4.01, total $84.29 |
+
+**The navigation detail worth recording:** a manual return is **not** opened by clicking its row —
+clicking does nothing. **Tick its checkbox and a "Receive Credit" button appears**, which opens
+`/parts/confirm-return?id=<id>&isManualReturn=1`. Its row menu offers only *Cancel Return*, which
+independently re-confirms §5.
+
+---
+
 ## 6. Observations, each with its bucket (Standing Rule 93)
 
 - **~~Only 1 of 8 confirmed returns reached AccountingHub~~ — WITHDRAWN, this was my error.**
@@ -246,8 +266,10 @@ Three things I changed deliberately:
 1. **An accounting answer on the tax** (§3): on a taxed vendor return the whole document total,
    including tax, is credited to Parts Inventory with no tax line. Not a decimal matter; needs
    whoever owns the inventory/tax mapping to say whether it is intended.
-2. **Whether `change-item`'s HTTP 500 matters**, and whether it should be raised — API-only, so I
-   have not filed it.
+2. **`change-item` returns HTTP 500 on every call.** **API-only — no screen in the product calls
+   that path**, so no user and no manual tester can reach it. Under **Standing Rule 94** (QA lead's
+   ruling, 2026-10-02) this is **not filed**: it is reported here and to the QA lead with the
+   explicit question of whether he wants it raised.
 3. **Whether to raise the onboarding Go live button** (§6).
 
 Nothing else outstanding on this ticket.
