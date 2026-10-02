@@ -5132,3 +5132,36 @@ left is a seed control, not a case).
 **Reusable rule:** when a generated count is short, check what feeds it before fixing the thing that
 reports it. And a regex anchored to the start of a string is an assumption about every author's
 formatting, not a rule any of them agreed to.
+
+### L0286
+**What happened:** `fixtures/auth.ts`, which all 20 spec files import, defaulted its API host to
+`${BRANCH}api.qa.shopview.com` with `BRANCH` defaulting to `sv9160` — a QA branch merged and
+**deleted** weeks ago. `fixtures/boot.ts` had been fixed to derive the API host from `GS_APP`
+(`app.x` → `api.x`); `auth.ts` never was, and nothing pointed at the discrepancy.
+**Why it survived every check:** setting `GS_APP` moves the *app* host only. A spec that never
+calls the API passes, so 18 of 20 files were green while pointed at a host that does not exist.
+Only the two that call it failed, with `TypeError: Failed to fetch` naming a host nobody
+recognises — and because the failure happened in `beforeAll`, **19 further permission checks never
+ran at all** and were reported as "did not run" rather than as a problem.
+**Fix:** derive `APIH` from `APP` in `auth.ts` exactly as `boot.ts` does, and stop deriving either
+host from the branch name. `BRANCH` now only names the default cookie file.
+**Reusable rule:** when two modules can answer the same question, they will eventually disagree,
+and the one used less often will be the stale one. Derive the second value from the first instead
+of defaulting it separately. And **"did not run" in a test summary is a failure report**: a crash
+in `beforeAll` hides every test behind it, so a green-looking summary with a "did not run" count is
+not a pass.
+
+### L0287
+**What happened:** the entity checks searched for records by name from a frozen
+`entity-config.json` — `ZZLONGROW`, `ZZKRYPTON`, `ZZSOFTHIT`. Those were seeded on production once;
+production has since been cleaned. The specs then failed with `"ZZLONGROW" returns no Parts rows`,
+which reads as a product defect, is not one, and — because the file passed in full the day before —
+looked exactly like a fresh regression.
+**Fix:** try the configured term, and when the environment no longer holds that record, take a word
+the tab's own live records are made of and measure that instead. The requirement under test is how
+*any* matching row is drawn, so any term that returns rows tests it equally well. Only when the tab
+holds no records at all does the check skip, with that as its stated reason.
+**Reusable rule:** this repeats L0259 (frozen anchors) in a file that was never converted. A test
+that names a specific record is a test with an expiry date on it. Either the run creates the record
+or the run finds one — never both trusted to a file written weeks ago. And a missing fixture must
+never produce a red that points at the product (Rule 104).

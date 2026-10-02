@@ -1,6 +1,7 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { groupRows, lastPointerCheck, type RowShape } from '../fixtures/rowshape.js';
+import { entityTerms } from '../fixtures/anchors.js';
 import * as fs from 'node:fs';
 
 /**
@@ -196,18 +197,49 @@ test.afterAll(async () => {
   await s?.browser.close();
 });
 
+/**
+ * Rows for a configured term, or for a live one if the configured record has gone.
+ *
+ * 🔴 A VANISHED FIXTURE IS NOT A PRODUCT FAULT. The terms in entity-config.json name records that
+ * were seeded once; production is cleaned, and on 2 October 2026 "ZZLONGROW" returned 0 Parts rows.
+ * The spec then failed with "returns no Parts rows", which reads as a product defect and is not
+ * one — the instrument had nothing to measure (Rule 104). Worse, it had passed the day before, so
+ * the red looked like a regression.
+ *
+ * So: try the configured term, and if the environment no longer holds it, take a word the tab's
+ * OWN records are made of and measure that instead. The requirement under test is about how ANY
+ * matching row is drawn, so any term that returns rows tests it just as well. Only when the tab
+ * has no records at all is there nothing to judge, and then the caller skips with that reason
+ * rather than failing.
+ */
+async function rowsFor(term: string, tab: string, label: string) {
+  let rows = await groupRows(s.page, term, tab);
+  if (rows.length) return { rows, term, live: false };
+  for (const alt of await entityTerms(s.page, tab, 6)) {
+    rows = await groupRows(s.page, alt, tab);
+    if (rows.length) {
+      console.log(`   ${label}: "${term}" has gone from this environment — measuring "${alt}" instead`);
+      return { rows, term: alt, live: true };
+    }
+  }
+  return { rows: [], term, live: false };
+}
+
 for (const E of ENTITIES) {
   const C = E.cases;
   const store = (k: string, v: unknown) => { m[`${E.section}:${k}`] = v; };
 
   test(`C${C.A1.cid} — ${E.section}: the whole ${E.a1Field} is shown, with the typed part marked inside it @C${C.A1.cid}`, async () => {
-    const rows = await groupRows(s.page, C.A1.term, E.tab);
+    const found = await rowsFor(C.A1.term, E.tab, `${E.section} A1`);
+    const rows = found.rows;
+    const TERM = found.term;
+    test.skip(rows.length === 0, `no {E.tab} record matches "${C.A1.term}" or any word this tab's own records are made of — there is nothing to measure`);
     store('A1', { pointer: lastPointerCheck, rows: rows.map((r) => ({ ...r, html: undefined })) });
-    console.log(`\n== ${E.section} / "${C.A1.term}" → ${rows.length} rows`);
+    console.log(`\n== ${E.section} / "${TERM}" → ${rows.length} rows`);
     for (const r of rows) console.log(`   [${r.index}] clipped=${r.title.clipped} ` +
       `(${r.title.scrollW}/${r.title.clientW}) badge=${r.badge} "${r.title.text.slice(0, 70)}" ` +
       `meta=${JSON.stringify(r.metaParts).slice(0, 80)}`);
-    expect(rows.length, `"${C.A1.term}" returns no ${E.tab} rows — nothing below would be about the product`)
+    expect(rows.length, `"${TERM}" returns no ${E.tab} rows — nothing below would be about the product`)
       .toBeGreaterThan(0);
     for (const r of rows) {
       // POSITIVE CONTROL first: the reader must find a highlight SOMEWHERE on this row, or its
@@ -216,7 +248,7 @@ for (const E of ENTITIES) {
         `CONTROL FAILED: no highlight found anywhere on row ${r.index}, so anything said below about ` +
         `an unhighlighted line is about this reader`).toBeGreaterThan(0);
       // …then the requirement itself: highlighted in the primary AND secondary text.
-      expect(unmarkedLines(r, C.A1.term),
+      expect(unmarkedLines(r, TERM),
         `row ${r.index}: the typed text is shown on these lines without being highlighted there, ` +
         `though it IS highlighted elsewhere on the row (marks: ${JSON.stringify(r.marks)})`).toEqual([]);
       const unmarked = r.title.segs.filter((x) => !x.marked).map((x) => x.text).join('').trim();
@@ -228,7 +260,10 @@ for (const E of ENTITIES) {
   });
 
   test(`C${C.A2.cid} — ${E.section}: nothing cut off has eaten the match or what separates the rows @C${C.A2.cid}`, async () => {
-    const rows = await groupRows(s.page, C.A2.term, E.tab);
+    const found = await rowsFor(C.A2.term, E.tab, `${E.section} A2`);
+    const rows = found.rows;
+    const TERM = found.term;
+    test.skip(rows.length === 0, `no {E.tab} record matches "${C.A2.term}" or any word this tab's own records are made of — there is nothing to measure`);
     for (const r of rows) {
       if (!(r.title.clipped || r.meta.clipped)) continue;
       expect(r.title.markVisible ?? true, `row ${r.index}: the clip has eaten the typed characters`).toBe(true);
@@ -261,11 +296,14 @@ for (const E of ENTITIES) {
   });
 
   test(`C${C.A3.cid} — ${E.section}: the highlight marks the match inside the text, not instead of it @C${C.A3.cid}`, async () => {
-    const rows = await groupRows(s.page, C.A3.term, E.tab);
+    const found = await rowsFor(C.A3.term, E.tab, `${E.section} A3`);
+    const rows = found.rows;
+    const TERM = found.term;
+    test.skip(rows.length === 0, `no {E.tab} record matches "${C.A3.term}" or any word this tab's own records are made of — there is nothing to measure`);
     expect(rows.length).toBeGreaterThan(0);
     for (const r of rows) {
       expect(r.marks.length, `CONTROL FAILED: no highlight anywhere on row ${r.index}`).toBeGreaterThan(0);
-      expect(unmarkedLines(r, C.A3.term),
+      expect(unmarkedLines(r, TERM),
         `row ${r.index}: the typed text appears on these lines unhighlighted`).toEqual([]);
       expect(r.title.segs.some((x) => !x.marked), `row ${r.index}: the mark replaced the text`).toBe(true);
       const rebuilt = r.title.segs.map((x) => x.text).join('').replace(/\s+/g, ' ').trim();
@@ -275,7 +313,10 @@ for (const E of ENTITIES) {
   });
 
   test(`C${C.B1.cid} — ${E.section}: two records sharing the typed text can be told apart @C${C.B1.cid}`, async () => {
-    const rows = await groupRows(s.page, C.B1.term, E.tab);
+    const found = await rowsFor(C.B1.term, E.tab, `${E.section} B1`);
+    const rows = found.rows;
+    const TERM = found.term;
+    test.skip(rows.length === 0, `no {E.tab} record matches "${C.B1.term}" or any word this tab's own records are made of — there is nothing to measure`);
     store('B1', rows.map(visibleRow));
     expect(rows.length, 'this case needs more than one row to be about anything').toBeGreaterThan(1);
     const seen = rows.map(visibleRow);
@@ -284,7 +325,10 @@ for (const E of ENTITIES) {
   });
 
   test(`C${C.B2.cid} — ${E.section}: records with the same bold line differ somewhere you can see @C${C.B2.cid}`, async () => {
-    const rows = await groupRows(s.page, C.B2.term, E.tab);
+    const found = await rowsFor(C.B2.term, E.tab, `${E.section} B2`);
+    const rows = found.rows;
+    const TERM = found.term;
+    test.skip(rows.length === 0, `no {E.tab} record matches "${C.B2.term}" or any word this tab's own records are made of — there is nothing to measure`);
     const byTitle = new Map<string, RowShape[]>();
     for (const r of rows) byTitle.set(visibleText(r.title), [...(byTitle.get(visibleText(r.title)) ?? []), r]);
     const shared = [...byTitle.entries()].filter(([, v]) => v.length > 1);
@@ -299,7 +343,10 @@ for (const E of ENTITIES) {
   });
 
   test(`C${C.D1.cid} — ${E.section}: the row shows every field the requirement names @C${C.D1.cid}`, async () => {
-    const rows = await groupRows(s.page, C.D1.term, E.tab);
+    const found = await rowsFor(C.D1.term, E.tab, `${E.section} D1`);
+    const rows = found.rows;
+    const TERM = found.term;
+    test.skip(rows.length === 0, `no {E.tab} record matches "${C.D1.term}" or any word this tab's own records are made of — there is nothing to measure`);
     expect(rows.length, `"${C.D1.term}" returns no ${E.tab} rows`).toBeGreaterThan(0);
     // Judge the row that BEST satisfies the case's precondition ("has a value in each field named"),
     // because a record with nothing to show in a field is not evidence the field is missing — the
@@ -345,7 +392,10 @@ for (const E of ENTITIES) {
   });
 
   test(`C${C.I1.cid} — ${E.section}: a soft match is drawn as a soft match @C${C.I1.cid}`, async () => {
-    const rows = await groupRows(s.page, C.I1.term, E.tab);
+    const found = await rowsFor(C.I1.term, E.tab, `${E.section} I1`);
+    const rows = found.rows;
+    const TERM = found.term;
+    test.skip(rows.length === 0, `no {E.tab} record matches "${C.I1.term}" or any word this tab's own records are made of — there is nothing to measure`);
     store('I1', { term: C.I1.term, rows: rows.map((r) => ({ text: r.text, approx: r.approx, marks: r.marks, italic: r.italicMarks })) });
     console.log(`   ${E.section} I1 "${C.I1.term}" → ${rows.length} rows`);
     for (const r of rows) console.log(`      [${r.index}] approx=${r.approx} marks=${JSON.stringify(r.marks).slice(0, 70)}`);

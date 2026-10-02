@@ -2,9 +2,17 @@ import { chromium, type Browser, type BrowserContext, type Page } from 'playwrig
 import { boot } from './boot.js';
 import fs from 'node:fs';
 
-export const BRANCH = process.env.GS_BRANCH || 'sv9160';
-export const APP    = process.env.GS_APP    || `https://${BRANCH}.qa.shopview.com`;
-export const APIH   = process.env.GS_API    || `${BRANCH}api.qa.shopview.com`;   // NO dot before `api`
+// 🔴 NEITHER HOST IS DERIVED FROM THE BRANCH ANY MORE. These used to default to
+// `sv9160.qa.shopview.com` / `sv9160api.qa.shopview.com`. That branch was merged and DELETED, and
+// the API default was the dangerous one: setting GS_APP to production or staging moved the app
+// host but left API calls pointed at the dead branch, so a spec that never touched the API passed
+// while one that did failed with `TypeError: Failed to fetch` naming a host nobody recognised.
+// On 2 October 2026 that silently cost the permission checks 2 failures and 19 tests that never
+// ran. The API host now follows GS_APP (app.x -> api.x), exactly as fixtures/boot.ts derives it,
+// so there is one variable to set and no way for the two to disagree.
+export const BRANCH = process.env.GS_BRANCH || 'sv9160';   // only names the default cookie file
+export const APP    = process.env.GS_APP || 'https://app.staging.shopview.com';
+export const APIH   = process.env.GS_API || new URL(APP).host.replace(/^app\./, 'api.');
 
 type Jar = { sv_sso_session?: string; PHPSESSID?: string; cf_clearance?: string };
 
