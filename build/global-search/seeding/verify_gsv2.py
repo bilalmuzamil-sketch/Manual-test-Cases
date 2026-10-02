@@ -165,7 +165,7 @@ def main():
     # prove still matters — the index is organisation-wide while a work order belongs to one shop, so
     # a row can be found and still not open — so prove it on the work order search actually returns.
     d, _ = search('S2-15430')
-    wos = rows(d or {}, 'work_orders') if d else []
+    wos = [i for _, i in rows(d or {}, 'work_orders')] if d else []      # rows() yields (group, item) pairs
     p = (d or {}).get('pinned') or next((i for i in wos if 'S2-15430' in str(i.get('primary'))), None) or {}
     v = call_retry(f"/api/work-orders/view/{p.get('id')}") if p.get('id') else {'status': 'NOT IN THE RESULTS'}
     ok = v.get('status') == 200
