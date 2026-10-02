@@ -348,3 +348,26 @@ closed.
 4. ~~Cancel Return~~ — **no ticket; it is not a defect.** Two-step confirm, works (§5).
 
 Nothing else outstanding on this ticket.
+
+---
+
+## 10. The tax item re-tested on STAGING with brand-new data (2 Oct 2026, late)
+
+**Why:** the QA lead: *"DO not try proving it as a problem with the existing data, create new data and then let me know if it is still happening if it is still happening, create a NEW ticket and we will link it to the main ticket."* The `sv10408` branch was torn down mid-run (app 502 / API 503 from ~20:08 UTC; QA lead: *"The QA branch will not return. You need to test that on the staging branch"*), so the test moved to staging. Recipe saved first as playbook **§AJ**.
+
+**Environment:** `app.staging.shopview.com`, build **`v26.40.3-36ebbb0`**, last-modified Fri 02 Oct 2026 08:14:25 GMT, etag `93d2b678509110cd4613a81d515af033` — read at start and again before writing, unchanged. Note: this build predates the branch build (09:34 GMT), so the merge may not be deployed yet; the tax behaviour does not depend on the SV-10406 fix. Admin, Staging Heavy Duty - 9919 (GST 5%). AccountingHub is live on staging.
+
+**Two fresh specimens, both reproduce (2 of 2):**
+
+| Run | Work order | Part | ShopView credit | Receipt journal entry | Vendor-credit journal entry |
+|---|---|---|---|---|---|
+| 1 | S2-34863 | ZZTAXSTG-497933, 3 × $120.00 | ZZAUTOTEST-CM-TAXSTG-01: $360.00 + tax $18.00 = $378.00 | **#15500** (bill ZZTAXSTG-RCV1): Dr 5000 Parts COGS $360.00 · Dr 6110 Sales Tax Expense $18.00 · Cr 2000 AP $378.00 | **#15501** (credit C-13808): Dr 2000 AP $378.00 · **Cr 1300 Parts Inventory $378.00** — no tax line |
+| 2 | S2-34864 | ZZTAXSTG-980466, 2 × $85.50 | ZZAUTOTEST-CM-TAXSTG-02: $171.00 + tax $8.55 = $179.55 | **#15505** (bill ZZTAXSTG-RCV2): Dr 5000 Parts COGS $171.00 · Dr 6110 Sales Tax Expense $8.55 · Cr 2000 AP $179.55 | **#15506** (credit C-13809): Dr 2000 AP $179.55 · **Cr 1300 Parts Inventory $179.55** — no tax line |
+
+Run 2 was driven on screen for receive, return (part ⋮ → Return → "Add new part return request", Return Reason, Quantity, Save & Close) and credit (Parts → Returns → tick → Receive Credit → Process Return → Credit Memo Number → Post Credit). Work order, line, part request and order were set up through the API (§AJ).
+
+**What this adds to the 11 earlier observations:** the receipt shows where the money went *in*. The credit does not reverse it — the tax booked to **6110 Sales Tax Expense** on receipt comes back out of **1300 Parts Inventory**, and for a work-order part even the part cost does: it went in to **5000 Parts COGS** and comes out of **1300 Parts Inventory**.
+
+**Duplicate search (Rule 93):** no defect ticket for it. **SV-9537** (Done) is why receipt tax lands in Sales Tax Expense, and it says nothing about credits. **SV-10370** ("Route the complete inventory lifecycle", Open) plans the vendor-credit rework and requires *"separately attributable tax"* and *"Tax is recorded once per vendor credit"*; **SV-10374** (Open) is its sibling.
+
+**NOT FILED — on hold, and the reason is a newer source.** Re-reading SV-10406 immediately before filing (Rule 59) found **Chris Ward's comment 77800, 2 Oct 13:56:49 −0500**: *"Bilal found that a taxed vendor return credits Parts Inventory with the tax-inclusive amount and posts no tax line (all 11 taxed returns he confirmed). Could you fold that into SV-10370 or SV-10374, whichever fits?"* (addressed to Chris Amani). The PO has already routed the finding into the existing feature tickets, and neither SV-10370 nor SV-10374 has any comment yet. A new ticket would cut across that routing, so it is held for the QA lead's decision. Exhibits are ready in `ev-staging/` (`01-shopview-credit-360-plus-18-tax.png`, `02-receipt-vs-return-journal-entries.png`).
