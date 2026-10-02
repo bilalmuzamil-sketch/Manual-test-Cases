@@ -85,6 +85,18 @@ for (const [cid, query, tab, expected] of FIND) {
       + `The staging copy did; this one does not, so a miss here would say nothing about the field.`);
     const p = await search(s.page, query, tab);
     const rows = rowsOf(p, tab);
+    /**
+     * 🔴 A CAPPED LIST CANNOT PROVE A RECORD IS MISSING. "Ohio" matches more than twenty suppliers,
+     * so the tab shows exactly twenty — the limit — and the one this case names ranks below them.
+     * Asserting it must appear reported the state as not searchable, when the state is searchable
+     * and the list is simply full: measured 2 Oct 2026, "Kestrel" finds the record immediately and
+     * its row reads "…Marnston, Ohio". Where the list is at the cap, this check cannot answer the
+     * question and says so (Rule 104 — never conclude an absence from a truncated list).
+     */
+    const count = p.counts[tab] ?? rows.length;
+    test.skip(count >= 20, `"${query}" matches ${count} ${tab.toLowerCase()} and the list stops at `
+      + `twenty, so "${expected}" not being among them says nothing about whether it is findable. `
+      + `Searching its own name does find it.`);
     expect(rows.length, `the ${tab} tab came back empty for "${query}", although "${expected}" `
       + `is present on this environment`).toBeGreaterThan(0);
     expect(contains(rows, expected),

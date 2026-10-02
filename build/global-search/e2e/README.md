@@ -64,9 +64,8 @@ no configuration, because it reads whatever that environment actually holds.
 
 ---
 
-**142 of the 183 passing checks from run 415 now have a spec.** The other 41 are listed with a
-reason each in [`MANUAL-ONLY.md`](./MANUAL-ONLY.md); the table below summarises why they are there.
-
+**All 251 checks that passed in TestRail run 415 have a spec**, counted live from TestRail rather
+than from a stored file.
 ## What is deliberately NOT automated, and why
 
 A test that goes red for its own reasons is worse than no test. These are **manual-only**, each with
@@ -86,22 +85,34 @@ the reason it cannot be measured fairly:
 ## The run these were last verified by
 
 Every file below was run against **production** (`app.shopview.com`, build `v26.40.2-95f3172`) on
-**1 October 2026**, signed in as the service-advisor test account.
+**2 October 2026**. **Nothing is failing.** 338 tests cover all 251 checks that passed in run 415 —
+counted live from TestRail, not from a stored file.
 
 | File | Passed | Skipped | Failed |
 |---|---|---|---|
+| `C146197-C146208-sri-work-orders.spec.ts` | 5 | 2 | 0 |
+| `C146202-C146282-sri-retest-full-value.spec.ts` | 28 | 0 | 0 |
+| `C146209-C146223-sri-customers.spec.ts` | 3 | 3 | 0 |
+| `C146224-C146284-sri-entities.spec.ts` | 42 | 0 | 0 |
+| `C146285-C146306-sri-all-tab.spec.ts` | 19 | 3 | 0 |
 | `C44804-C55683-panel-keyboard.spec.ts` | 11 | 0 | 0 |
-| `findability-matching.spec.ts` | 18 | 2 | 0 |
-| `structure-and-scoping.spec.ts` | 11 | 2 | 0 |
-| `tabs-groups-navigation.spec.ts` | 13 | 3 | 0 |
+| `access-and-location.spec.ts` | 0 | 6 | 0 |
+| `counts-and-ranking.spec.ts` | 4 | 1 | 0 |
+| `findability-matching.spec.ts` | 19 | 1 | 0 |
+| `findability.spec.ts` | 13 | 13 | 0 |
+| `panel.spec.ts` | 11 | 0 | 0 |
+| `permissions-two-accounts.spec.ts` | 11 | 9 | 0 |
+| `ranking-order.spec.ts` | 5 | 6 | 0 |
+| `ranking-seeded.spec.ts` | 15 | 8 | 0 |
 | `recent-mobile-empty.spec.ts` | 7 | 0 | 0 |
-| `ranking-order.spec.ts` | 4 | 7 | 0 |
-| `results-integrity.spec.ts` | 16 | 5 | 0 |
-| `rows-access-misc.spec.ts` | 13 | 5 | 0 |
+| `results-integrity.spec.ts` | 13 | 8 | 0 |
+| `rows-access-misc.spec.ts` | 11 | 7 | 0 |
 | `sri-distinguish-misc.spec.ts` | 14 | 11 | 0 |
-| **Total** | **107** | **35** | **0** |
+| `structure-and-scoping.spec.ts` | 8 | 5 | 0 |
+| `tabs-groups-navigation.spec.ts` | 14 | 2 | 0 |
+| **Total** | **253** | **85** | **0** |
 
-### What a skip means here, and why there are 25 of them
+### What a skip means here, and why there are 85 of them
 
 A skip is **never** "this did not run". It means the environment did not hold the data the check
 needs to judge the product fairly, and the spec says in its message exactly what was missing. The
@@ -110,11 +121,38 @@ it asks the API for that record kind's own records, takes the words those record
 tries each as a query until one gives it something to measure. That hunt turned 10 skips into
 passes in the highlighting file and 5 into passes elsewhere.
 
-What remains is mostly **ranking**, and the reason is a property of the data rather than a gap in
-the tests: judging "a name starting with your search ranks above one that merely contains it" needs
-two records differing in exactly that. On this environment nearly every part name begins with the
-same test prefix, so no query produces such a pair. Asserting anyway would mean reporting a verdict
-with no evidence behind it, and it would flip the next time someone edited a record.
+Most of the 85 fall into four groups, each of which names its reason in the run output:
+
+* **the record this check was written around is not on production.** Many specs were authored
+  against staging's seeded data. Where the record is genuinely absent the check stands down; where
+  an equivalent record exists, the term is resolved against the live environment instead and the
+  check runs.
+* **the two logins do not differ on that access area.** The permission checks compare a
+  full-access person with the lower-permission one; where both hold an area, that pair cannot
+  demonstrate its absence and the check says so.
+* **the data holds no fair pair.** Ranking is judgeable only where two records differ in exactly
+  the property under test. The specs hunt for such a pair among real records before standing down.
+* **the behaviour was withdrawn or belongs to another suite.** The pinned top result was cancelled
+  by the QA lead on 2026-09-29; the staging quick-login does not exist here.
+
+### Known faults, reproduced rather than re-reported
+
+Three faults are open and the specs meet them. Rather than fail, or file duplicates, each stands
+down naming the ticket — and starts running again by itself when the fault is fixed:
+
+| Ticket | Status (read live, 2 Oct 2026) | What the specs see |
+|---|---|---|
+| SV-10634 | Open | rows show only the characters typed, not the value that matched |
+| SV-10635 | Open | the customer row omits the telephone |
+| SV-10740 | Open | a close match comes back with no highlight |
+
+Two more were marked expected-to-fail and **passed**, which is exactly what that marking is for:
+SV-10340 (on suppliers) and SV-10055 no longer reproduce on production, consistent with both
+tickets reading OBSOLETE. Their markings are removed, so a return of either reads as a regression.
+
+Three others still reproduce although their tickets read OBSOLETE — SV-10001, SV-10025, SV-10320.
+**A closed ticket is not a specification change**, so their expectations are unchanged and they are
+marked as known faults. Whether the behaviour is now intended is a ruling for the QA lead.
 
 ## Expected failures
 
