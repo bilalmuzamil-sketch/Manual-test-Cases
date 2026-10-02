@@ -1,0 +1,45 @@
+Found while testing [SV-10406|https://shopview.atlassian.net/browse/SV-10406]
+
+h3. Summary
+
+When a returned part's vendor credit is posted, AccountingHub takes the whole credit *including the tax* out of *1300 Parts Inventory* and posts no tax line. When that part was received, the tax went into *6110 Sales Tax Expense*, so the credit should take the tax back out of Sales Tax Expense.
+
+h3. Steps to reproduce
+
+Open staging: https://app.staging.shopview.com/ (admin login, location *Staging Heavy Duty - 9919*).
+
+# Open a work order with an approved line (for example *S2-34864*).
+# Under the line's *Parts*, click *+ Add Part*. Fill in *Part number*, *Description*, *Qty* 2, *Cost* 85.50 and *Sell price* 130, click *More options*, choose a *Vendor* (Source is already *Vendor*) and click *Save Part*.
+# Click *Order* on the new part's row.
+# Click *Receive* on the part's row. In *Receive parts*, enter a *Vendor Invoice Number* and tick the part. *Tax* fills in by itself. Click *Receive Parts (1)*.
+# Click the *⋮* next to the part → *Return*. Enter a *Return Reason* and *Quantity* 2 → *Save & Close*.
+# Go to *Parts* → *Returns*, tick the part's row and click *Receive Credit*. Enter a *Credit Memo Number* and click *Post Credit*. The credit shows the parts, the tax and the total:
+
+!01-shopview-credit-360-plus-18-tax.png|width=900,height=185!
+
+# Click the module switcher at the top left (*ShopHub*) → *AccountingHub* → *Purchases* → *Vendor credits*. Open the new credit and click its *Journal entry*.
+
+*Fastest way to see it:* open credit C-13808 (https://app.staging.shopview.com/accounting/purchases/credits/01a0fe48-d839-73b0-b50b-5ea9ed220c0e) and click *Journal entry #15501*. Compare it with the entry for when that part was received, *#15500* (https://app.staging.shopview.com/accounting/ledger/journal-entries/01a0fe48-290d-728d-864d-250b944cb0ae).
+
+h3. Expected behaviour
+
+The vendor credit takes the tax back out of *6110 Sales Tax Expense*, the account the receipt put it in, and only the part's value comes off the parts account. Inventory is never credited with tax.
+
+*Where this comes from:*
+* [SV-9537|https://shopview.atlassian.net/browse/SV-9537] (Done), acceptance criteria: _"Posting a vendor bill with tax debits Sales Tax Expense, not Sales Tax Payable."_ That is why the tax is in Sales Tax Expense, and the credit has to undo that.
+* [SV-10370|https://shopview.atlassian.net/browse/SV-10370], S3-R10, on how vendor credits post: _"separately attributable tax remains separate."_
+
+h3. Current behaviour
+
+The vendor credit credits *1300 Parts Inventory* with the full amount including tax, and there is no tax line. Sales Tax Expense keeps the tax:
+
+!02-receipt-vs-return-journal-entries.png|width=900,height=497!
+
+It happened every time, at both tax rates:
+
+||Work order||Credit||When received||When credited||
+|S2-34863|C-13808: $360.00 + $18.00 tax|#15500: Sales Tax Expense $18.00|#15501: Parts Inventory −$378.00, no tax line|
+|S2-34864|C-13809: $171.00 + $8.55 tax|#15505: Sales Tax Expense $8.55|#15506: Parts Inventory −$179.55, no tax line|
+|S2-34864|C-13810: $171.00 + $22.23 tax|#15508: Sales Tax Expense $22.23|#15509: Parts Inventory −$193.23, no tax line|
+
+Staging, build v26.40.3-36ebbb0, 2 October 2026. Chris Ward asked on SV-10406 for this to be handled within SV-10370 or SV-10374.
