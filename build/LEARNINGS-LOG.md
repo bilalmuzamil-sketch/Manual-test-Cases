@@ -5192,3 +5192,37 @@ they could not trust.
 **Reusable rule:** do not narrate a predicted result before the run that produces it. State the
 change made and what will be measured; let the number speak. A prediction given to someone who
 trusts you becomes a claim, and retracting it costs more than never having made it.
+
+### L0290
+**What happened:** asked how the suite ensures its data is seeded before the first test, the answer
+was: it does not. `npm test` went straight into the run. `npm run seed` creates **customers only**,
+while the checks also look for named assets, parts, vendors, part sales, purchase orders and vendor
+invoices. A full production run therefore spent **1.6 hours** to report 116 checks standing down,
+most of them for records that were simply absent — discovered at the end, by someone who had no way
+to know in advance.
+**Fix:** a read-only `preflight.ts` wired as Playwright's `globalSetup`. It reads the same
+`entity-config.json` the specs read (so it cannot drift from them), asks the search API for each
+term — one request answers every record kind at once — prints a found/missing line per record, and
+**throws before the first test** when any are missing, naming them and saying which the seeder can
+and cannot create. `GS_PREFLIGHT=warn` runs anyway; `off` skips it.
+**Two things it must get right, both got wrong first:** a request that FAILS must report *could not
+read*, never *missing* — confusing them sends someone seeding records that already exist (fixed with
+two attempts and an explicit `null`); and the "which of these can the seeder make" flag was first
+written as a sentence and tested with `.includes('npm run seed')`, which is also true of *"NOT
+seeded by `npm run seed`"* — so every record the seeder **cannot** create was listed under *create
+these with the seeder*. A preflight that misdirects is worse than none.
+**Reusable rule:** a suite that depends on fixtures must be able to answer "is this environment
+ready?" in seconds, without running. And the gate belongs in `globalSetup`, not in a test — a test
+that checks seeding runs in file order, after other tests have already wasted their time.
+
+### L0291
+**What happened:** `fixtures/boot.ts` used a local proxy whenever `/tmp/atlassian/bridge-port.txt`
+existed. The process behind that port stopped mid-session while the file stayed on disk, and from
+then on every run died at sign-in with `ECONNREFUSED 127.0.0.1:36901` — which reads as the product
+being unreachable and is nothing of the sort.
+**Fix:** dial the port before believing it; if nothing answers, say so in one line and connect
+directly. An explicit `GS_PROXY` is still obeyed without the check — silently bypassing a proxy
+someone deliberately named could send their traffic somewhere they had routed it away from.
+**Reusable rule:** a port file is not a running service, a PID file is not a live process, and a
+lock file is not a held lock. Anything auto-detected from the filesystem must be probed before it is
+trusted, or a leftover becomes an outage.

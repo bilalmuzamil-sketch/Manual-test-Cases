@@ -1,5 +1,6 @@
 import { chromium, type Browser, type BrowserContext, type Page } from 'playwright/test';
 import fs from 'node:fs';
+import net from 'node:net';
 
 /**
  * SIGNING IN, SELF-CONTAINED AND PORTABLE.
@@ -39,11 +40,41 @@ export function authStatePath(): string {
  * A local relay, ONLY if one is already running. Some sandboxes cannot open TLS directly and put a
  * relay in front; an ordinary machine needs none. Optional in both directions — never required.
  */
-function proxy() {
-  const f = process.env.GS_BRIDGE_PORT_FILE || '/tmp/atlassian/bridge-port.txt';
+/** Is anything actually listening there? A dead proxy is worse than no proxy. */
+function listening(host: string, port: number, ms = 600): Promise<boolean> {
+  return new Promise((resolve) => {
+    const sock = new net.Socket();
+    const done = (ok: boolean) => { sock.destroy(); resolve(ok); };
+    sock.setTimeout(ms);
+    sock.once('connect', () => done(true));
+    sock.once('timeout', () => done(false));
+    sock.once('error', () => done(false));
+    sock.connect(port, host);
+  });
+}
+
+/**
+ * An optional local proxy — never required, and never used unless it answers.
+ *
+ * 🔴 A PORT FILE IS NOT A RUNNING PROXY. This used to trust `/tmp/atlassian/bridge-port.txt`
+ * merely because it existed. On 2 October 2026 the process behind it stopped while the file stayed
+ * on disk, and from then on every run died with `ECONNREFUSED 127.0.0.1:36901` at sign-in — which
+ * looks like the product being unreachable and is nothing of the sort. The file is a leftover, so
+ * the port is now dialled before it is believed, and an unanswered one is ignored and announced.
+ *
+ * An explicit GS_PROXY is obeyed without this check: if someone names a proxy, a silent fallback to
+ * a direct connection could send their traffic somewhere they deliberately routed it away from.
+ */
+async function proxy() {
   if (process.env.GS_PROXY) return { server: process.env.GS_PROXY };
+  const f = process.env.GS_BRIDGE_PORT_FILE || '/tmp/atlassian/bridge-port.txt';
   try {
-    return fs.existsSync(f) ? { server: `http://127.0.0.1:${fs.readFileSync(f, 'utf8').trim()}` } : undefined;
+    if (!fs.existsSync(f)) return undefined;
+    const port = Number(fs.readFileSync(f, 'utf8').trim());
+    if (!Number.isFinite(port) || port <= 0) return undefined;
+    if (await listening('127.0.0.1', port)) return { server: `http://127.0.0.1:${port}` };
+    console.log(`  (ignoring ${f}: nothing is listening on 127.0.0.1:${port} — connecting directly)`);
+    return undefined;
   } catch { return undefined; }
 }
 
@@ -81,7 +112,7 @@ async function launch(opts: { viewport?: { width: number; height: number }; devi
     // 🔴 NO HARD-CODED BROWSER PATH. Playwright resolves the browser it installed. CHROME_BIN is
     // honoured for a sandbox that ships its own, but it is not required.
     ...(process.env.CHROME_BIN ? { executablePath: process.env.CHROME_BIN } : {}),
-    proxy: proxy(),
+    proxy: await proxy(),
   });
   const ctx = await browser.newContext({
     ignoreHTTPSErrors: true,

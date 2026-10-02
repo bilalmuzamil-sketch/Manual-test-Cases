@@ -11,7 +11,8 @@
     "test:staging": "GS_APP=https://app.staging.shopview.com playwright test --workers=1",
     "mapping": "tsx mapping.ts",
     "list": "playwright test --list",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "preflight": "tsx preflight.ts"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

@@ -19,8 +19,9 @@ cp .env.example .env                     # then fill it in — see below
 set -a && . ./.env && set +a             # or export the variables yourself
 
 npm run login                            # staging only: sign in once, by hand
-npm run seed                             # prepare the environment (see "Seeding")
-npm test                                 # run everything
+npm run seed                             # create what the seeder can (see "Seeding")
+npm run preflight                        # is the environment actually ready? (~20s)
+npm test                                 # run everything -- preflight runs again, and gates it
 ```
 
 **Nothing else is required.** No relay, no proxy, no file at a fixed path, no browser at a fixed
@@ -92,7 +93,51 @@ stand down and say which account they would need; everything else still runs.
 `--workers=1` is not a preference. Signing in as the same person expires their previous session, so
 two workers log each other out and both report a broken environment. `npm test` sets it for you.
 
+## Is the environment ready? The run answers before it starts
+
+`npm test` will not begin until it has checked that the records the checks look for are actually
+there. It prints a line per record and, if any are missing, **stops before the first test** and
+names them.
+
+```bash
+npm run preflight        # ask the question on its own, ~20 seconds, read-only
+```
+
+```
+what the checks look for                   kind            found
+✓ "ZZSPEC"                                 customer        18
+✓ "ZZLONGROW"                              asset           2
+✗ "ZZKRYPTON"                              part            0
+```
+
+🔴 **This exists because nothing used to check.** `npm run seed` creates customers and nothing
+else, while the checks also look for named assets, parts, vendors, part sales, purchase orders and
+vendor invoices. On 2 October 2026 a full production run spent **1.6 hours** to report 116 checks
+standing down, most of them for records that were simply not on the environment — and whoever ran
+it found that out at the end. Now they find out at the start.
+
+It reads the same `entity-config.json` the specs read, so it cannot drift out of step with them. It
+creates nothing, so it is safe to run against anything. A record it could not read is reported as
+**could not read**, never as missing — those are different answers, and confusing them would send
+you off seeding records that already exist.
+
+| | |
+|---|---|
+| `GS_PREFLIGHT=warn npm test` | report, run anyway, let those checks stand down |
+| `GS_PREFLIGHT=off npm test` | skip the check entirely |
+
 ## Seeding
+
+⚠️ **`npm run seed` does not create everything the suite needs, and cannot yet.** It creates the
+**customer** records (`ZZSPEC…`). The named **assets, parts, vendors, part sales, purchase orders
+and vendor invoices** the entity checks look for are not created by it — they have to be on the
+environment already. Creating them through the API is a multi-step job that has not been built:
+a part, for instance, needs an existing `catalog_part_id` and `category_id` before it can exist,
+and the asset route silently ignores make, model and unit number (recorded in
+`build/APP-ACTIONS-PLAYBOOK.md`), so an asset made that way is not usable as a fixture.
+
+Until that is built, the preflight tells you which of them are missing and the checks that need
+them stand down with their reason rather than reporting anything about the product.
 
 ```bash
 npm run seed
