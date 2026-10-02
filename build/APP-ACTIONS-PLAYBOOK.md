@@ -5819,3 +5819,55 @@ Gotchas worth keeping: the reset **page** cannot be reached headlessly (without 
 bounces to Google; with one it redirects to `/workorders`), `GET /api/organizations` is a **global**
 list and is not "my organizations", and a session minted on staging never works against a branch —
 each branch has its own database.
+
+## §AJ — VENDOR RETURN → VENDOR CREDIT → ACCOUNTINGHUB, built from scratch (proven 2026-10-02, SV-10406)
+
+**Use this to seed a brand-new taxed vendor credit and see how AccountingHub books it. Every step below
+was proven on `sv10408` (`v26.40.3-e9ae339`); do not rediscover any of it.**
+
+**1. Work order** — `POST /api/work-orders/create {company_id, vehicle_id, workplace_id, start_date,
+is_vehicle_here:true}` → 201 `data.work_order_id`. The active location must be the WO's location (§T.1).
+
+**2. Line — use the New Line dialog, the API 400s ("Labor or fixed prices must be set").**
+`button_new_line` → click `select_line_canned_line` (this IS the Line Name / "What Are You Doing?"
+combobox), type the name, press **Enter then Tab** (Escape throws the text away → "Line Name is a
+required field") → click `select_labour_type` (labelled "Labor Rate") and choose with the **keyboard:
+ArrowDown, ArrowDown, Enter** (a mouse click on the option does not register) → type `1` into
+`input_time_estimate` → `button_save_close` → `POST /api/work-orders/lines/create` 201. The line
+object's id is **`line_id`** (not `id`). Authorise: `POST /api/work-orders/lines/change-status
+{work_order_id, line_ids:[lineId], line_id:lineId, status:'authorized'}` → 200 (without `line_id` it
+400s "line_id: Missing required parameter").
+
+**3. Vendor part + order** — `POST /api/work-orders/part/make-request {work_order, line, description,
+part_number:<unique>, quantity:3, part_source_type:'vendor', is_authorized:false,
+part_category_id:'0044fbd9-5ce3-4d33-9b27-b2db6a6ba075' (HD-Fasteners on the shared org), cost:120,
+sell_price:180, vendor_id}` → 201. **`/api/vendors` is 404 on this build** — take a `vendor_id` from
+`GET /api/inventory/returns` rows. Order: `perform-request-status-action {part_request_id, action:'order'}`
+→ 201 `data.orderId`. **Run make-request once only** — a re-run adds a second request.
+The part request appears under `collection[].part_requests[]`; once ordered the part sits in `parts[]`.
+
+**4. Receive on screen** — `/order/{orderId}?receive=1&workOrderId={WO}`: vendor in
+`select_assign_vendor_{PO}` (first menu item), `input_invoice_{PO}` (≤ 21 chars), `input_qty_{itemId}`
+= 3; the Tax box pre-fills at the location rate (GST 5% → $18.00 on $360.00); `button_receive_po_{PO}`.
+**Success = the page drops you on the PO list**, and re-opening `/order/{PO}` also lands on the list.
+`parts[].status` stays "Authorized" (it is the APPROVAL state) — confirm via the WO **Parts** tab, which
+shows **Received**. There is no `/workorders/{id}/parts` route ("coffee break" page) — click the
+`Parts (n)` tab on `/lines`.
+
+**5. Return** — `POST /api/work-orders/part/make-return-request {part_id:<parts[].id>, work_order_id,
+quantity, return_reason:'Incorrect'}` → 200; it shows on Parts → Returns as status Returned.
+
+**6. Post the credit on screen** — Parts → Returns → tick the row's `.q-checkbox` → **Receive Credit**
+→ `/parts/confirm-return?ids=<returnId>&isManualReturn=0` → `input_credit_memo_number` →
+`button_post_credit`. Stored credit: `GET /api/inventory/returns` (find `credit_memo_number`) →
+`/api/inventory/returns/{vendor_return_id}` → `content` JSON → `return_details {sub_total, tax, total}`.
+Helper: `node /tmp/qa10406/tx2.mjs <packaging-slip-or-PN> <memo> <tag>` (rebuild from this text if /tmp
+is gone).
+
+**7. AccountingHub** — `GET /api/accounting/vendor-credits?page=1&per_page=50` (match `memo`) →
+`/api/accounting/vendor-credits/{id}` (`journal_entry.entry_number`) →
+`/api/accounting/journal-entries/{journal_entry_id}` (lines). Screen: module switcher → AccountingHub
+→ Purchases → **Vendor credits** (`/accounting/purchases/credits`; no search box, no memo column — find
+by amount/credit #). Postings only happen once the books are **live** (go-live) and the backfill is
+`completed`; a credit confirmed before go-live is excluded by design. **Load an app page before any
+in-page `s.api` call** — from a blank page the fetch fails with "Failed to fetch".
