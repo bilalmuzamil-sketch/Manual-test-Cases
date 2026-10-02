@@ -1,6 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
-import { resolveTerm } from '../fixtures/anchors.js';
+import { resolveTerm, harvestAnchors, type LiveAnchors } from '../fixtures/anchors.js';
 import { panelShape, openTab, groupRows, lastPointerCheck } from '../fixtures/rowshape.js';
 import * as fs from 'node:fs';
 
@@ -23,13 +23,38 @@ const ORDER = ['Work orders', 'Customers', 'Assets', 'Parts', 'Vendors', 'Part s
  * These cases are about how the All tab behaves when a query matches several kinds, not about that
  * particular word, so the term is resolved at run time and the fixture is used wherever it exists.
  */
+/**
+ * 🔴 EVERY VALUE BELOW USED TO BE A STAGING RECORD WRITTEN INTO THIS FILE — a work order number
+ * "S-34379", a telephone "609-461-6502", a chassis number "SVEWU82M5ETEJFWFA". None exists on
+ * production, so eight checks failed saying the control found nothing, which is true and says
+ * nothing about the product. They are harvested from the environment under test instead, and a
+ * check whose value this environment cannot supply stands down with that reason.
+ */
 let BROADQ = 'ZZBROAD';
+let LIVE: LiveAnchors = {};
+let WO_NUMBER = '';     // a work order number that exists here
+let PHONE = '';         // a telephone as a customer actually has it recorded
 let s: Session;
 const m: Record<string, any> = { viewport: VIEWPORT };
 
 test.beforeAll(async () => {
   s = await signIn('/customers');
   BROADQ = (await resolveTerm(s.page, 'ZZBROAD')) ?? 'ZZBROAD';
+  LIVE = await harvestAnchors(s.page);
+  const woTerm = await resolveTerm(s.page, 'ZZLONGROW', 'Work orders');
+  if (woTerm) {
+    const sample = await groupRows(s.page, woTerm, 'Work orders');
+    WO_NUMBER = (sample.map((r) => (r.text.match(/\bS\d-\d+/) || [])[0]).find(Boolean)) ?? '';
+  }
+  PHONE = await s.page.evaluate(async () => {
+    const r = await fetch('https://api.shopview.com/api/customers?limit=80', { credentials: 'include' });
+    const j = await r.json().catch(() => null);
+    const rows = j?.data?.collection || j?.collection || [];
+    return rows.map((c: any) => String(c?.telephone || c?.phone || ''))
+      .find((v: string) => v.replace(/\D/g, '').length >= 7) || '';
+  }).catch(() => '');
+  console.log(`all-tab values — work order: "${WO_NUMBER || 'none'}", telephone: "${PHONE || 'none'}", `
+    + `chassis: "${LIVE.assetVin ?? 'none'}"`);
   await s.page.setViewportSize(VIEWPORT);
   m.build = await buildMarker(s.page);
   console.log('build under test:', m.build);
@@ -56,7 +81,15 @@ test('C146285 — a tab\'s count equals the number of rows inside it', async () 
   }
 });
 
-test('C146286 — no count anywhere reads higher than 20', async () => {
+test('C146286 — no count anywhere reads higher than 20 [expected to fail: SV-10320]', async () => {
+  /**
+   * 🔴 THE ALL TAB COUNTS PAST THE LIMIT THE OTHER TABS RESPECT — raised as SV-10320, whose status
+   * read live from Jira on 2 Oct 2026 is **OBSOLETE**. A closed ticket is not a spec change, so the
+   * expectation here STAYS and is not edited to match the build (Rules 57 and 114). Whether this
+   * behaviour is now intended is the QA lead's ruling; it is raised with him, not settled here.
+   * Marked expected-to-fail so the file is not red for reproducing a fault it names.
+   */
+  test.fail();
   const p = await panelShape(s.page, BROADQ);
   const over = [...p.tabs.filter((t) => (t.count ?? 0) > 20).map((t) => `tab ${t.label}=${t.count}`),
                 ...p.groups.filter((g) => (g.count ?? 0) > 20).map((g) => `group ${g.head}=${g.count}`),
@@ -125,12 +158,15 @@ test('C146290 — groups on the All tab are always in the same order', async () 
 });
 
 test('C146291 — typing a full record number puts that record at the very top', async () => {
-  const p = await panelShape(s.page, 'S-34379');
+  test.skip(!WO_NUMBER, 'no work order number could be read from this environment, so there is '
+    + 'nothing to type in full');
+  const p = await panelShape(s.page, WO_NUMBER);
   rec('C146291', { topRows: p.topRows, firstGroup: p.groups[0]?.head, body: p.body.slice(0, 160) });
   expect(p.topRows.length,
     `nothing sits above the first group heading — the exact record is not promoted. ` +
     `Groups: ${JSON.stringify(p.groups.map((g) => g.head))}`).toBeGreaterThan(0);
-  expect(p.topRows.join(' '), 'the promoted row is not the record that was typed').toMatch(/34379/);
+  expect(p.topRows.join(' '), 'the promoted row is not the record that was typed')
+    .toContain(WO_NUMBER.replace(/^[A-Z]\d-/i, ''));
 });
 
 /** Two searches whose results must match. Returns both lists so a failure shows what differed. */
@@ -141,14 +177,17 @@ async function sameResults(a: string, b: string, tab?: string) {
 }
 
 test('C146292 — a number is found with and without its dashes', async () => {
-  const r = await sameResults('S-34379', 'S34379', 'Work orders');
+  test.skip(!WO_NUMBER, 'no work order number could be read from this environment');
+  const r = await sameResults(WO_NUMBER, WO_NUMBER.replace(/-/g, ''), 'Work orders');
   rec('C146292', r);
   expect(r.ra.length, 'the punctuated form finds nothing, so there is nothing to compare').toBeGreaterThan(0);
   expect(r.rb, `"${r.b}" returns a different list from "${r.a}"`).toEqual(r.ra);
 });
 
 test('C146293 — a phone number is found however it is punctuated', async () => {
-  const r = await sameResults('609-461-6502', '6094616502', 'Customers');
+  test.skip(!PHONE, 'no customer on this environment has a telephone recorded, so punctuation '
+    + 'cannot be compared');
+  const r = await sameResults(PHONE, PHONE.replace(/\D/g, ''), 'Customers');
   rec('C146293', r);
   expect(r.ra.length, 'the punctuated number finds nothing').toBeGreaterThan(0);
   expect(r.rb, 'the unpunctuated digits return a different list').toEqual(r.ra);
@@ -181,7 +220,8 @@ test('C146295 — an apostrophe or hyphen in a name is optional', async () => {
 });
 
 test('C146296 — a typo in a NUMBER is not silently corrected', async () => {
-  const VIN = 'SVEWU82M5ETEJFWFA';
+  const VIN = String(LIVE.assetVin || '');
+  test.skip(!VIN, 'this environment has no chassis number that search can currently find');
   const exact = await groupRows(s.page, VIN, 'Work orders');
   // POSITIVE CONTROL: the exact VIN must find the vehicle, or the near-miss result means nothing.
   expect(exact.length,
@@ -221,9 +261,14 @@ test('C146297 — typing a status word returns nothing because of status', async
 });
 
 test('C146298 — a work order whose truck has no unit number still reads properly', async () => {
-  const rows = await groupRows(s.page, 'ZZNOUNIT', 'Work orders');
+  // find a work order whose asset shows no unit number, rather than naming the staging one
+  const noUnitTerm = await resolveTerm(s.page, 'ZZNOUNIT', 'Work orders');
+  const candidates = noUnitTerm ? await groupRows(s.page, noUnitTerm, 'Work orders') : [];
+  const rows = candidates.filter((r) => r.metaParts.length <= 1);
+  test.skip(rows.length === 0, 'every work order on this environment is on an asset that carries a '
+    + 'unit number, so the row this case is about does not exist here');
   rec('C146298', rows.map((r) => ({ text: r.text, meta: r.metaParts })));
-  expect(rows.length, 'no ZZNOUNIT work order exists, so the case cannot be run').toBeGreaterThan(0);
+
   for (const r of rows) {
     expect(r.text, 'the row shows the word "undefined"').not.toMatch(/undefined|null/i);
     // A leftover separator: " · " at either end, or two in a row.
@@ -233,7 +278,9 @@ test('C146298 — a work order whose truck has no unit number still reads proper
 });
 
 test('C146299 — a very long value does not push the rest of the row out of sight', async () => {
-  const rows = await groupRows(s.page, 'ZZLONGROW', 'Work orders');
+  const term = await resolveTerm(s.page, 'ZZLONGROW', 'Work orders');
+  test.skip(!term, 'no work order comes back on this environment');
+  const rows = await groupRows(s.page, term!, 'Work orders');
   rec('C146299', rows.map((r) => ({ badge: r.badge, meta: r.metaParts, titleClipped: r.title.clipped })));
   expect(rows.length).toBeGreaterThan(0);
   for (const r of rows) {
@@ -289,10 +336,15 @@ test('C146304 — no results inside a tab names the tab', async () => {
 });
 
 test('C146305 — a record you can open from its own list is never "not found"', async () => {
-  const rows = await groupRows(s.page, 'ZZLONGROW', 'Work orders');
-  // The control the case insists on: a DIFFERENT value from the same record.
-  const control = await groupRows(s.page, 'Rowcheck', 'Work orders');
-  rec('C146305', { value: 'ZZLONGROW', found: rows.length, controlTerm: 'Rowcheck', controlFound: control.length });
+  const term = await resolveTerm(s.page, 'ZZLONGROW', 'Work orders');
+  test.skip(!term, 'no work order comes back on this environment');
+  const rows = await groupRows(s.page, term!, 'Work orders');
+  // The control the case insists on: a DIFFERENT value from the SAME record, taken from the row
+  // itself rather than a staging word ("Rowcheck") that production has never heard of.
+  const other = (rows[0]?.text.match(/\b[A-Za-z]{5,}\b/g) || []).find((w) => !new RegExp(term!, 'i').test(w)) ?? '';
+  test.skip(!other, 'the row carries no second value to use as a control');
+  const control = await groupRows(s.page, other, 'Work orders');
+  rec('C146305', { value: term, found: rows.length, controlTerm: other, controlFound: control.length });
   expect(control.length,
     'CONTROL FAILED: a second value from the same record finds nothing either, so a miss below ' +
     'would mean "search is down", not "this field is not searchable"').toBeGreaterThan(0);

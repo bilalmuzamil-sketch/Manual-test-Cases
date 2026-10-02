@@ -25,6 +25,19 @@ test.afterAll(async () => { await s?.browser.close(); });
  * not the Show all N link." The per-type tabs obey it; the All tab adds them together.
  */
 test('C53476 — no count reads higher than 20 [expected to fail: SV-10320]', async () => {
+  /**
+   * 🔴 EXPECTED TO FAIL, AND THE TITLE ALONE DID NOT MAKE IT SO. The "[expected to fail: …]" in the
+   * title is just text; Playwright needs test.fail() to read a failure here as the known fault
+   * rather than a regression. Without it this file was red for reproducing exactly what it says it
+   * reproduces.
+   *
+   * 🛑 AND THE TICKET IS NOW **OBSOLETE** (status read live from Jira, 2 Oct 2026). A closed ticket
+   * is not a spec change, so the expectation STAYS and is not edited to match the build (Rules 57
+   * and 114). Whether this behaviour is now intended is the QA lead's ruling to make, and it is
+   * raised with him rather than settled here.
+   */
+  test.fail();
+
   const p = await search(s.page, 'ZZ');
   const over = Object.entries(p.counts).filter(([, v]) => (v ?? 0) > 20);
   // The per-type tabs are correct — assert that too, so a regression there is not hidden by the known fault.
@@ -85,6 +98,19 @@ test('C45138 — unpaid supplier invoices rank above paid ones', async () => {
  * adding a job line (flips the job to Approved, and open status outranks the tie-break).
  */
 test('C55716 — the record changed most recently is listed first [expected to fail: SV-10340]', async () => {
+  /**
+   * 🔴 EXPECTED TO FAIL, AND THE TITLE ALONE DID NOT MAKE IT SO. The "[expected to fail: …]" in the
+   * title is just text; Playwright needs test.fail() to read a failure here as the known fault
+   * rather than a regression. Without it this file was red for reproducing exactly what it says it
+   * reproduces.
+   *
+   * 🛑 AND THE TICKET IS NOW **OBSOLETE** (status read live from Jira, 2 Oct 2026). A closed ticket
+   * is not a spec change, so the expectation STAYS and is not edited to match the build (Rules 57
+   * and 114). Whether this behaviour is now intended is the QA lead's ruling to make, and it is
+   * raised with him rather than settled here.
+   */
+  test.fail();
+
   test.setTimeout(240_000);
   const tag = 'ZZE2E' + Date.now().toString().slice(-5);
   const shared = `${tag} Halloway Brothers`;
@@ -129,6 +155,19 @@ test('C55716 — the record changed most recently is listed first [expected to f
 /** Same rule, second tab. Two independent tabs failing one shared rule is what points at the
  *  shared scoring step rather than at either record type. */
 test('C55716 (customers) — the customer changed most recently is listed first [expected to fail: SV-10340]', async () => {
+  /**
+   * 🔴 EXPECTED TO FAIL, AND THE TITLE ALONE DID NOT MAKE IT SO. The "[expected to fail: …]" in the
+   * title is just text; Playwright needs test.fail() to read a failure here as the known fault
+   * rather than a regression. Without it this file was red for reproducing exactly what it says it
+   * reproduces.
+   *
+   * 🛑 AND THE TICKET IS NOW **OBSOLETE** (status read live from Jira, 2 Oct 2026). A closed ticket
+   * is not a spec change, so the expectation STAYS and is not edited to match the build (Rules 57
+   * and 114). Whether this behaviour is now intended is the QA lead's ruling to make, and it is
+   * raised with him rather than settled here.
+   */
+  test.fail();
+
   test.setTimeout(240_000);
   const p = await search(s.page, 'ZZTIEBREAK', 'Customers');
   const rows = rowsOf(p, 'Customers');

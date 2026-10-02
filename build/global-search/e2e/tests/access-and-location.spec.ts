@@ -31,10 +31,25 @@ test.beforeAll(async () => {
   s = await signIn('/customers');
   FIXTURE = (await resolveTerm(s.page, 'ZZAUTOTEST')) ?? FIXTURE;
   console.log('build under test:', await buildMarker(s.page));
+  /**
+   * 🔴 THIS FILE EDITS A ROLE, AND THE ROLE IT NAMES IS STAGING'S.
+   * On production that id returns nothing, `baselineRole` was undefined, and reading
+   * `.fe_permissions` off it threw INSIDE beforeAll — which fails every test in the file, not just
+   * the one that needed the role. Guard it: without the role there is nothing to restore and
+   * nothing safe to change, so each check stands down with that reason.
+   *
+   * The ground these cover is also covered without mutating anything, by
+   * `permissions-two-accounts.spec.ts`: it signs in as a full-access person and a lower-permission
+   * person and compares the same record. That is the approach the QA lead asked for on
+   * 2026-09-24, and it is why this file is not being repaired to edit roles on production.
+   */
   const role = await api(s.page, 'GET', `/api/roles/${TECH_ROLE}`);
-  baselineRole = (role.body as any)?.data;
-  baselinePerms = baselineRole.fe_permissions.map((p: any) => p.code).sort();
-  console.log('technician baseline:', baselinePerms.join(','));
+  baselineRole = (role.body as any)?.data ?? null;
+  baselinePerms = Array.isArray(baselineRole?.fe_permissions)
+    ? baselineRole.fe_permissions.map((p: any) => p.code).sort() : [];
+  console.log(baselineRole
+    ? `technician baseline: ${baselinePerms.join(',')}`
+    : `the technician role ${TECH_ROLE} does not exist here — the role-editing checks will stand down`);
   const staff = ((await api(s.page, 'GET', '/api/staff?limit=250')).body as any)?.data?.collection ?? [];
   techStaffId = staff.find((x: any) => x.is_active && /Brandi/i.test(x.first_name ?? ''))?.id ?? '';
   adminStaffId = staff.find((x: any) => x.is_active && /admin/i.test((x.role_label ?? '') + (x.first_name ?? '')))?.id ?? '';
@@ -74,6 +89,9 @@ async function asTechnicianWith(permissionIds: string[]) {
  * and scheduleView. Remove one and the test "fails" for a reason that is not the product.
  */
 test('C45142 — no work-order access means no jobs in search', async () => {
+  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
+    + 'environment. The same ground is covered without mutating anything by '
+    + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   const siblings = ['workOrdersView', 'woPickParts', 'workOrderLinesCreateAndEdit', 'woTechViewMode',
                     'scheduleView', 'woFullViewMode', 'woOrderParts', 'woReviewWorkOrders', 'workOrdersCreateAndEdit'];
   const strip = new Set(idsOf(siblings));
@@ -83,6 +101,9 @@ test('C45142 — no work-order access means no jobs in search', async () => {
 });
 
 test('C45144 — parts appear only with Catalog & Inventory access', async () => {
+  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
+    + 'environment. The same ground is covered without mutating anything by '
+    + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   const all = baselineRole.fe_permissions.map((p: any) => p.id);
   const parts = idsOf(['catalogInventoryView'])[0];
   await asTechnicianWith(all.filter((id: string) => id !== parts));
@@ -92,6 +113,9 @@ test('C45144 — parts appear only with Catalog & Inventory access', async () =>
 });
 
 test('C45146 — removing customer access removes customers AND vehicles', async () => {
+  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
+    + 'environment. The same ground is covered without mutating anything by '
+    + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   const all = baselineRole.fe_permissions.map((p: any) => p.id);
   const cust = idsOf(['customersView'])[0];
   await asTechnicianWith(all.filter((id: string) => id !== cust));
@@ -101,6 +125,9 @@ test('C45146 — removing customer access removes customers AND vehicles', async
 });
 
 test('C45147 — a time-clock-only person gets nothing at all', async () => {
+  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
+    + 'environment. The same ground is covered without mutating anything by '
+    + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   await asTechnicianWith(idsOf(['timesheetsView']));
   const p = await search(s.page, FIXTURE);
   for (const [tab, v] of Object.entries(p.counts)) expect(v ?? 0, `${tab} returned results`).toBeFalsy();
@@ -114,6 +141,9 @@ test('C45147 — a time-clock-only person gets nothing at all', async () => {
  * then judges the product by it. SV-10278 was withdrawn for exactly this.
  */
 test('C45143 — a part-sales role sees part sales but not parts or suppliers', async () => {
+  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
+    + 'environment. The same ground is covered without mutating anything by '
+    + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   await api(s.page, 'POST', '/api/switch-user', { user_id: adminStaffId });
   await s.page.waitForTimeout(800);
   await api(s.page, 'PUT', `/api/roles/${TECH_ROLE}`, {
@@ -141,6 +171,9 @@ test.describe('shop scoping', () => {
   let heavyJob = '', lethJob = '';
 
   test('C45151 · C45152 · C55684 — search is limited to the shop you are in, and follows you', async () => {
+  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
+    + 'environment. The same ground is covered without mutating anything by '
+    + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
     test.setTimeout(300_000);
     const veh = '14a069cd-4846-4a57-835a-05f4b32649a8';
     const company = 'e049c07d-9b16-4f95-9e01-71da22e1104a';
