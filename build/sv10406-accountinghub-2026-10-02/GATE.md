@@ -55,3 +55,41 @@ Bucket: already tracked.
 
 The superseded `ev/01-shopview-vs-accountinghub.png` was removed: its footer carried the retracted
 "the two systems do not agree" sentence, and leaving it would have contradicted the corrected record.
+
+
+---
+
+## Consolidation to a single comment — 2 October 2026, 12:05 UTC
+
+The QA lead: *"there should not be any correction note in a different comment. I want one single
+comment in the ticket that tells it all as per the standard comment with exhibits and everything."*
+
+The ticket carried **three** comments of mine, not one:
+
+| id | What it was | Action |
+|---|---|---|
+| 77727 | QA PASS against the **old** build `v26.39.2-998e506`, with "parts could not be exercised, see the comment below" | **Deleted** (HTTP 204) — text archived at `superseded-comments/comment-77727_2026-10-01_qa-pass-on-old-build.txt` |
+| 77728 | "STILL TO BE TESTED" — the four blocked items, tagging Stefan | **Deleted** (HTTP 204) — text archived at `superseded-comments/comment-77728_2026-10-01_blocked-items.txt` |
+| 77791 | Today's result | **Rewritten in place** as the single complete comment |
+
+Everything load-bearing from the deleted two was folded into 77791 before they were removed: the
+manual-return create/credit checks, the automated-tests criterion (a code-review matter), the
+Cancel Return finding, the two API-only paths, and the answer to my own sv10408-vs-sv10406 branch
+question. The two deleted comments reported against a build that no longer exists and listed
+blockers that are now all cleared, so nothing in them was still true and uncaptured.
+
+**A fourth exhibit was built so that every picture in the single comment comes from the CURRENT
+build** — the 1 Oct exhibits showed `v26.39.2-998e506`. `ev/04-quarter-unit-and-the-whole-unit-control.png`
+re-captures the 1.25 case and a whole-unit control on `v26.40.3-e9ae339`.
+
+### Gate on the consolidated post
+
+| Check | Result |
+|---|---|
+| Build marker re-read at post time | `v26.40.3-e9ae339`, sha256 `3d6dedfab1ad6c40…` — identical |
+| Ticket state | TESTING QA, priority Medium, unchanged |
+| Bar-word scan (correction / apologies / I was wrong / needs a developer / AI terms) | **none present** |
+| Mentions | none — nobody tagged, per instruction |
+| Technical-details section (Rule 84) | absent, not asked for |
+| ADF read-back | first text `OVERALL QA STATUS: PASSED`; **4 media nodes, all type `file`**, in the intended order, each with width **and** height; two tables (12 rows and 7 rows); `MENTIONS: none` |
+| Comments remaining on the ticket | 4 total — Chris Ward, parth fadadu, Stefan Mitrovic, and **exactly one** of mine |

@@ -1,0 +1,42 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+
+Tested on the QA branch sv10408.qa.shopview.com (build v26.39.2-998e506) on 1 October 2026. Decimal accepted quantities survive confirming, and the credit follows the decimal.
+
+A few parts of the ticket could not be exercised on this environment. They are listed in a separate comment below, with what would need to be switched on to finish them.
+{panel}
+
+h3. What this means
+
+Accepting 1.5 units now saves 1.5 and credits one and a half times the price per unit. Accepting half a unit saves 0.5 and still pays a credit, instead of rounding down to nothing and leaving only the restocking fee. Whole-unit returns are untouched.
+
+h3. Decimals survive the save
+
+!01-decimals-survive-the-save.png|width=900,height=534!
+
+_Both returns were confirmed with a decimal typed on the Confirm Return screen, then reopened from the Credits tab. Under the old behaviour 1.5 became 1 and 0.5 became 0, so the half-unit return would have credited nothing at all and left only the $5.00 fee._
+
+!02-quarter-unit-and-whole-unit.png|width=900,height=534!
+
+_The third decimal the ticket names, and a whole-unit return beside it as a control._
+
+h3. The four returns, read back from a freshly opened credit
+
+||*Credit memo*||*Accepted*||*Price per unit*||*Restocking fee*||*Credit*||
+|ZZAUTOTEST-CM-10406-A|1.50|$14.69|-|$22.04|
+|ZZAUTOTEST-CM-10406-B|0.50|$35.53|$5.00|$12.77|
+|ZZAUTOTEST-CM-10406-C|1.25|$35.53|-|$44.41|
+|ZZAUTOTEST-CM-10406-D|1.00|$139.54|-|$139.54|
+
+Each one was typed into the Confirm Return screen, posted, then reopened from the Credits tab; the saved record was read directly as well, so these are stored values and not a form still on screen.
+
+h3. What was checked
+
+||*#*||*Check*||*Status*||
+|1|1.5 accepted is saved as 1.5, and the credit is 1.5 times the price per unit|PASSED|
+|2|0.5 accepted is saved as 0.5, and the credit is not just the restocking fee|PASSED|
+|3|1.25 accepted is saved as 1.25|PASSED|
+|4|A whole-unit return behaves exactly as before|PASSED|
+|5|The manual return workflow still keeps decimals when a return is created|PASSED|
+|6|The manual return workflow still keeps decimals when the credit is posted|PASSED|
+|7|The ShopView side of a 1.5-unit return at full credit with no fee and no tax|PASSED - credit $22.04, which is 1.5 x $14.69|

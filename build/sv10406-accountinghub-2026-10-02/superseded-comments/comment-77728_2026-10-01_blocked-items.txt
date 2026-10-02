@@ -1,0 +1,40 @@
+[~accountid:5bd6d7573aa82432ce72b8d3] 
+
+
+{panel:bgColor=#fffae6}
+*STILL TO BE TESTED - and what needs switching on to do it*
+
+Four parts of this ticket could not be exercised on the QA branch. None of them changes the PASSED result below, which covers everything the environment allowed; they are the remainder, with the specific thing each one needs.
+{panel}
+
+h3. 1. Do ShopView and AccountingHub agree on the inventory change?
+
+This is the acceptance criterion about a 1.5-unit return at full credit with no fees or tax. The ShopView half is done - that return credits $22.04, which is exactly 1.5 x $14.69. The other half cannot be checked anywhere I have access to.
+
+*On the QA branch the module is not switched on.* The module switcher at the top left offers AccountingHub, but choosing it lands on a page describing the module and ending "Contact us in the chat button below to talk about adding the Accounting module".
+
+!03-accountinghub-not-on-branch.png|width=900,height=450!
+
+This is not something I can turn on myself. The Feature Flag Overrides panel in Dev Tools lists BillingPortal, CustomerPortal, DashboardAdministrator, DashboardAll, DigitalInspections, FeesAndDiscounts, LateFeesMvp, PartSales, QuickBooks, ShopCoach and ShopPay - there is no Accounting entry, so it is an organisation entitlement rather than a toggle.
+
+*What would unblock it:* AccountingHub enabled on the QA branch's organisation, on an organisation where returns actually post into the books. Without that there is nothing for a return to agree or disagree with. If return events are not expected to post into AccountingHub yet, that is worth knowing too, because then this criterion cannot be met by anyone at the moment.
+
+h3. 2. The two paths that only exist in the API
+
+The ticket names two more places that drop decimals the same way - adding a return item, and changing a return item - and says no screen calls them today. That is also why I cannot reach them: the usual way to find an endpoint is to open the screen that uses it and watch what it sends, and here there is no such screen. Six likely routes were tried and all returned "not found".
+
+*What would unblock it:* the route and an example payload for each. Send me those two and I will run 0.5, 1.25 and 1.5 through both and report back the stored values.
+
+h3. 3. Cancelling a manual return
+
+The manual-return criterion covers create, cancel and credit. Create and credit both pass. Cancel could not be demonstrated because the action does nothing - the confirmation dialog appears, Yes is enabled, clicking it closes the dialog, and no request is sent. Production does exactly the same, so this is existing behaviour and not something this branch caused.
+
+*What would unblock it:* a working Cancel Return. This looks like a separate defect in its own right rather than part of this ticket - happy to raise it as one if you want.
+
+h3. 4. The automated tests
+
+The last acceptance criterion asks for automated tests covering 0.5, 1.25 and 1.5 on the confirm path and both API-only paths. That lives in the pull request rather than in the running application, so it needs a code review rather than QA.
+
+h3. One question that is not about the environment
+
+The branch I was given for this ticket is *sv10408*, which is named for the sibling ticket. Everything in this ticket's scope behaves correctly there - but because production is already correct too, correct behaviour on that branch does not on its own prove it carries this particular change. Could you confirm that sv10408 is the right branch for [SV-10406], or point me at the right one?
