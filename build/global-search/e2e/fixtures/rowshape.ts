@@ -184,7 +184,13 @@ export async function groupRows(page: Page, term: string, tab: string): Promise<
       }).filter((x) => x.text !== '');
       const marked = segs.filter((x) => x.marked);
       return {
-        text: (el.innerText || '').replace(/\s+/g, ' ').trim(),
+        // 🔴 BUILT FROM THE SAME TEXT NODES AS `segs`, NOT FROM innerText.
+        // innerText inserts whitespace at inline-element boundaries, so a customer literally named
+        // "Asher transport3" read back as "Asher transport 3" once the product marked "transport".
+        // The check that the marked and unmarked parts add up to the line then compared two
+        // different readings of one string and reported the highlight as having altered the text.
+        // It is a measurement artifact and it fires on any value with a digit against a word.
+        text: segs.map((x) => x.text).join('').replace(/\s+/g, ' ').trim(),
         segs,
         clipped: scrollW > clientW + VIS_SLACK,
         scrollW, clientW,

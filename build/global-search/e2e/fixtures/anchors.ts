@@ -193,28 +193,68 @@ export async function entityTerms(page: Page, tab: string, max = 10): Promise<st
  * from the environment under test, saying in the log which one was used so a result can never be
  * read against the wrong data.
  */
-export async function resolveTerm(page: Page, preferred: string, tab?: string): Promise<string | null> {
-  const countsFor = async (q: string): Promise<number> => {
+export async function resolveTerm(
+  page: Page, preferred: string, tab?: string,
+  opts: { requireMark?: boolean; requireSoft?: boolean } = {},
+): Promise<string | null> {
+  /**
+   * 🔴 SCOPE TO THE TAB BEFORE JUDGING ANYTHING ABOUT IT. Counting marks on the All view and the
+   * tab's total separately accepted "service": the All view is full of highlighted customers, and
+   * the Work orders tab reported fourteen matches — but inside that tab not one row was marked,
+   * because the query matched a field the row does not display. The check then reported "row 0 has
+   * no highlight at all" about a product highlighting correctly everywhere it should. Click the
+   * tab, then look at what is actually in it.
+   */
+  const usable = async (q: string): Promise<number> => {
     await typeAndWait(page, q);
-    if (!tab) return page.locator('.search-row').count();
-    return page.evaluate(l => {
-      const t = [...document.querySelectorAll('.search-tabs__tab')]
-        .find(e => (e as HTMLElement).innerText.replace(/\s*\(\d+\)/, '').trim().toLowerCase() === String(l).toLowerCase());
-      return t ? Number(((t as HTMLElement).innerText.match(/\((\d+)\)/) || [])[1] ?? 0) : 0;
-    }, tab);
+    if (tab) {
+      const clicked = await page.evaluate((l) => {
+        const t = [...document.querySelectorAll('.search-tabs__tab')]
+          .find(e => (e as HTMLElement).innerText.replace(/\s*\(\d+\)/, '').trim().toLowerCase() === String(l).toLowerCase());
+        if (!t) return false; (t as HTMLElement).click(); return true;
+      }, tab);
+      if (!clicked) return 0;
+      await page.waitForTimeout(2_200);
+    }
+    return page.evaluate(([needMark, needSoft]) => {
+      const rows = [...document.querySelectorAll('.search-row')];
+      // 🔴 A SOFT-MATCH CHECK NEEDS A SOFT MATCH TO LOOK AT. A term every row contains literally
+      // gives nothing to judge, and the check then "fails" while saying in its own message that it
+      // is a statement about the data rather than the product. Find a term that actually produces
+      // a close match, or let the caller skip.
+      if (needSoft && !rows.some(r => /≈|close match/i.test(r.textContent || ''))) return 0;
+      if (!needMark) return rows.length;
+      // 🔴 THE SAME ELEMENT THE CHECKS READ, OR THIS PROVES NOTHING. They look for
+      // `mark.search-highlight` inside `.search-row__title`; a plain `mark` anywhere in the row —
+      // in the meta line, say — let "service" through while the titles carried no highlight at
+      // all, and the check then failed on row 0. Match their reading exactly, and require it on
+      // EVERY row, because that is what they assert.
+      const lit = (r: Element) => {
+        const title = r.querySelector('.search-row__title');
+        return !!(title ?? r).querySelector('mark.search-highlight');
+      };
+      return rows.length && rows.every(lit) ? rows.length : 0;
+    }, [!!opts.requireMark, !!opts.requireSoft] as const);
   };
-  if (preferred && await countsFor(preferred) > 0) {
+
+  if (preferred && await usable(preferred) > 0) {
     console.log(`term for ${tab ?? 'any kind'}: "${preferred}" (the seeded fixture, still present)`);
     return preferred;
   }
   const candidates = tab ? await entityTerms(page, tab, 10) : [];
-  const generic = ['service', 'transport', 'repair', 'truck', 'auto', 'ZZAUTOTEST'];
+  const generic = opts.requireSoft
+    // deliberately damaged words: a close match is what is wanted, so give the matcher something
+    // to be approximate about
+    ? ['servcie', 'trasnport', 'repiar', 'trcuk', 'ZZSOFTHIT', 'Fibrdige']
+    : ['service', 'transport', 'repair', 'truck', 'auto', 'ZZAUTOTEST', 'ZZLONGROW'];
   for (const q of [...candidates, ...generic]) {
-    if (q && await countsFor(q) > 0) {
-      console.log(`term for ${tab ?? 'any kind'}: "${q}" — the fixture "${preferred}" is not on this environment`);
+    if (q && await usable(q) > 0) {
+      console.log(`term for ${tab ?? 'any kind'}: "${q}" — the fixture "${preferred}" `
+        + `${opts.requireMark ? 'gives no highlighted row' : 'is not on this environment'}`);
       return q;
     }
   }
-  console.log(`term for ${tab ?? 'any kind'}: NONE — neither "${preferred}" nor any harvested term returns a row`);
+  console.log(`term for ${tab ?? 'any kind'}: NONE — nothing tried returns `
+    + `${opts.requireMark ? 'a highlighted row' : 'a row'}`);
   return null;
 }

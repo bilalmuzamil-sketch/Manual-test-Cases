@@ -53,7 +53,7 @@ test.beforeAll(async () => {
   s = await signIn('/customers');
   await s.page.setViewportSize(VIEWPORT);
   m.build = await buildMarker(s.page);
-  const resolved = await resolveTerm(s.page, TERM, TAB);
+  const resolved = await resolveTerm(s.page, TERM, TAB, { requireMark: true });
   if (resolved) TERM = resolved;
   rows = await groupRows(s.page, TERM, TAB);
   m.pointer = lastPointerCheck;
