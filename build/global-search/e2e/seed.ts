@@ -31,9 +31,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { APP, APIH, IS_PROD, IS_STAGING, credentials, ssoCookie, standardProxy, workplaceHint } from './fixtures/boot.js';
+import { seedingDir } from './fixtures/data.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const SEEDING = path.resolve(HERE, '../seeding');
+
 const CHECK = (process.env.GS_SEED || '').toLowerCase() === 'check';
 
 /** One label per environment, so one estate's record ids never overwrite another's. */
@@ -115,6 +116,8 @@ export default async function seedEverything(): Promise<void> {
   const shop = workplaceHint();
   console.log(`\n── Seeding ${APP}  (shop: ${shop}${CHECK ? ', MEASURE ONLY' : ''}) ──────────────────────────`);
   const py = python();
+  const SEEDING = seedingDir();
+  console.log(`seeding engine: ${SEEDING}`);
 
   // A private working copy of the seeder, so nothing it writes lands in the repository.
   const work = fs.mkdtempSync(path.join(os.tmpdir(), 'shopview-seed-'));

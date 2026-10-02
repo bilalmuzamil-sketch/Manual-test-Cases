@@ -15,10 +15,20 @@
  *   GS_SEED=skip    do not seed — ONLY for re-running one spec locally against data you just seeded;
  *                   the preflight still runs and still stops a run on missing data
  */
+import type { FullConfig } from 'playwright/test';
 import seedEverything from './seed.js';
 import preflight from './preflight.js';
 
-export default async function globalSetup(): Promise<void> {
+export default async function globalSetup(config: FullConfig): Promise<void> {
+  // 🔴 ONE WORKER, ENFORCED — NOT JUST CONFIGURED. Every sign-in ends the previous session of the
+  // same account, so two workers log each other out and every test after that reads as a broken
+  // environment. The config says workers: 1, but a CI command line (`--workers=4`, or sharding)
+  // overrides it silently, so refuse here, before seeding, with the reason.
+  if (config.workers > 1) {
+    throw new Error(`This suite must run with ONE worker; this run asked for ${config.workers}. Each `
+      + 'sign-in ends the same account\'s previous session, so parallel workers log each other out and '
+      + 'every later test fails as if the environment were down. Drop --workers (or set --workers=1).');
+  }
   const mode = (process.env.GS_SEED || 'on').toLowerCase();
   if (mode === 'skip' || mode === 'off') {
     console.log('\nseeding: SKIPPED (GS_SEED=skip). The preflight below still checks the data is there.');

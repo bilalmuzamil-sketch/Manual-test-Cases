@@ -1,4 +1,5 @@
 import { test, expect } from 'playwright/test';
+import { retestPlanPath } from '../fixtures/data.js';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { resolveTerm } from '../fixtures/anchors.js';
 import { groupRows, lastPointerCheck } from '../fixtures/rowshape.js';
@@ -37,7 +38,7 @@ type Retest = { cid: number; term: string | null; title: string; tab: string };
 let CASES: Retest[] = [];
 try {
   CASES = JSON.parse(fs.readFileSync(
-    process.env.GS_RETEST_PLAN || '../staging-run-2026-09-29/retest-plan.json', 'utf8'));
+    retestPlanPath(), 'utf8'));
 } catch {
   // the plan is an input, not a requirement: without it this file simply has nothing to run, and
   // saying so beats failing the whole suite at collection time

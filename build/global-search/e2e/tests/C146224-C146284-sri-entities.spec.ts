@@ -1,4 +1,5 @@
 import { test, expect } from 'playwright/test';
+import { entityConfigDir } from '../fixtures/data.js';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { groupRows, lastPointerCheck, type RowShape } from '../fixtures/rowshape.js';
 import { entityTerms } from '../fixtures/anchors.js';
@@ -135,7 +136,7 @@ const ENTITIES: Entity[] = [
 // spec's own guards correctly refuse to judge - 46 checks came back unjudgeable for exactly that
 // reason on 2026-10-01. Point GS_ENTITY_CONFIG at a config harvested from the environment under
 // test and the same checks become runnable anywhere, without seeding anything.
-const CFG_DIR = process.env.GS_ENTITY_CONFIG || '../staging-run-2026-09-29';
+const CFG_DIR = entityConfigDir();
 const CFG = JSON.parse(fs.readFileSync(`${CFG_DIR}/entity-config.json`, 'utf8'));
 const FOUND = JSON.parse(fs.readFileSync(`${CFG_DIR}/held-terms-found.json`, 'utf8'));
 for (const e of ENTITIES) {

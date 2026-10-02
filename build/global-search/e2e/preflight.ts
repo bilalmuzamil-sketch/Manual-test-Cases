@@ -17,6 +17,7 @@
  *   GS_PREFLIGHT=off    skip it entirely
  */
 import { signIn, api, APP, type Session } from './fixtures/auth.js';
+import { entityConfigDir, seedingDir } from './fixtures/data.js';
 import { IS_PROD } from './fixtures/boot.js';
 import * as fs from 'node:fs';
 
@@ -47,10 +48,10 @@ const SECTION_GROUP: Record<string, string> = {
 let MANIFEST_TEXT: string | null = null;
 function seededByManifest(term: string): boolean {
   if (MANIFEST_TEXT === null) {
-    const dir = new URL('../seeding/', import.meta.url);
     try {
+      const dir = seedingDir();
       MANIFEST_TEXT = fs.readdirSync(dir).filter((f) => /^seed-manifest.*\.json$/.test(f))
-        .map((f) => fs.readFileSync(new URL(f, dir), 'utf8')).join('\n').toLowerCase();
+        .map((f) => fs.readFileSync(`${dir}/${f}`, 'utf8')).join('\n').toLowerCase();
     } catch { MANIFEST_TEXT = ''; }
   }
   return MANIFEST_TEXT.includes(term.toLowerCase());
@@ -61,7 +62,7 @@ function seededByManifest(term: string): boolean {
  * out of step with them. If that file moves or its terms change, the preflight changes with it.
  */
 function needsFromEntityConfig(): Need[] {
-  const dir = process.env.GS_ENTITY_CONFIG || '../staging-run-2026-09-29';
+  const dir = entityConfigDir();
   const out: Need[] = [];
   let cfg: any;
   try { cfg = JSON.parse(fs.readFileSync(`${dir}/entity-config.json`, 'utf8')); }

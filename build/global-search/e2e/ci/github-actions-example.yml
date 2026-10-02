@@ -1,0 +1,47 @@
+# EXAMPLE — not active. Copy to .github/workflows/ in the repository that runs this suite.
+#
+# Runs the Global Search V2 specs headless in CI: seeds the environment, proves the data is there,
+# then runs every spec. Nothing here is specific to one machine.
+#
+# Needs ONE repository secret:  GS_SSO  — the sv_sso_session cookie from a browser signed in to
+# staging (Settings → Secrets and variables → Actions). Never commit it.
+name: Global Search V2 e2e
+
+on:
+  workflow_dispatch:            # run by hand from the Actions tab
+  # schedule:
+  #   - cron: '45 6 * * *'      # nightly — 06:45 UTC; adjust to taste
+  # pull_request:
+  #   paths: ['build/global-search/**']
+
+concurrency:                    # never two runs at once: each sign-in ends the previous session
+  group: global-search-e2e
+  cancel-in-progress: false
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180        # ~25 min of seeding + ~1.6 h of tests
+    defaults:
+      run:
+        working-directory: build/global-search/e2e
+    env:
+      GS_APP: https://app.staging.shopview.com
+      GS_SSO: ${{ secrets.GS_SSO }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - uses: actions/setup-python@v5      # the seeder: standard library only, nothing to pip install
+        with: { python-version: '3.11' }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm test                      # ONE worker — the suite refuses more, with the reason
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-results
+          path: |
+            build/global-search/e2e/results/
+            build/global-search/e2e/playwright-report/
+            build/global-search/e2e/test-results/

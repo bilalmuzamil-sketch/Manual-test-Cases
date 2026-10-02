@@ -149,7 +149,12 @@ export function credentials(envFile?: string): { user: string; pass: string } {
 }
 
 async function launch(opts: { viewport?: { width: number; height: number }; deviceScaleFactor?: number; storageState?: string } = {}) {
+  const headed = process.env.GS_HEADED === '1';
   const browser = await chromium.launch({
+    // Headless unless the run asked to watch (--headed / --debug / --ui, or GS_HEADED=1) — see
+    // playwright.config.ts for why that has to be passed on by hand.
+    headless: !headed,
+    ...(headed && process.env.GS_SLOWMO ? { slowMo: Number(process.env.GS_SLOWMO) } : {}),
     args: ['--no-sandbox'],
     // 🔴 NO HARD-CODED BROWSER PATH. Playwright resolves the browser it installed. CHROME_BIN is
     // honoured for a sandbox that ships its own, but it is not required.

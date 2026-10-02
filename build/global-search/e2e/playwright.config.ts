@@ -26,6 +26,17 @@ import { defineConfig } from 'playwright/test';
  * test measures the old state and reports a fault that is not there. That mistake cost this
  * project several false findings, so the helpers make the wait explicit rather than incidental.
  */
+// 🔴 HEADED MODE MUST REACH THE SUITE'S OWN BROWSER. These tests sign in with a browser they launch
+// themselves (fixtures/boot.ts), not Playwright's `page` fixture, so `--headed` used to change
+// nothing: the run stayed invisible and looked like the flag was broken. This file is evaluated by
+// the main Playwright process BEFORE any worker starts, and workers inherit its environment — so
+// the flags are read here and handed on. GS_HEADED=1 does the same by hand; GS_SLOWMO=<ms> slows
+// every action so a person can follow it.
+if (process.argv.some((a) => a === '--headed' || a === '--debug' || a === '--ui' || a.startsWith('--ui='))
+    || process.env.PWDEBUG) {
+  process.env.GS_HEADED = '1';
+}
+
 export default defineConfig({
   testDir: './tests',
   // 🔴 SEEDS, THEN VERIFIES, BEFORE THE FIRST TEST — EVERY RUN. The branch is refreshed and a refresh

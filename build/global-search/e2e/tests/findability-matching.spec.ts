@@ -1,4 +1,5 @@
 import { test, expect } from 'playwright/test';
+import { entityConfigDir } from '../fixtures/data.js';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { openPanel, closePanel, typeQuery, SEL, typeAndWait } from '../fixtures/search.js';
 import { harvestAnchors, broadTerm, type LiveAnchors } from '../fixtures/anchors.js';
@@ -27,7 +28,7 @@ import fs from 'node:fs';
  * harvested live anyway (see fixtures/anchors.ts). Anyone cloning this repo without the staging
  * run's folder would have seen the suite refuse to start for a file it does not actually need.
  */
-const CFG = process.env.GS_ENTITY_CONFIG || '../staging-run-2026-09-29';
+const CFG = entityConfigDir();
 const readJson = (p: string, fallback: unknown) => {
   try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return fallback; }
 };
