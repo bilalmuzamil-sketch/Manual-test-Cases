@@ -53,8 +53,9 @@ Three things make that observable from outside without reading the code:
 | 2 | 08:22 | `v26.40.3-36ebbb0` | 01/08/2026 | **563 ms** | 1 s | **null**, set 7.35 s later |
 | 3 | 08:51 | `v26.40.3-36ebbb0` | 22/09/2026 | **531 ms** | 1 s | **null**, set ~0.8 s later |
 | 4 | 09:06 | `v26.40.3-36ebbb0` (marker verified either side) | 01/08/2026 | **457 ms** | 1 s | **null**, set ~8 s later |
+| 5 | 09:22 | `v26.40.3-36ebbb0` | 22/09/2026 | **1,008 ms** | 0 s (same second) | **null**, set ~0.6 s later |
 
-On `v26.40.3-36ebbb0` the whole go-live request is **457–563 ms** — roughly **one seventh** of the
+On `v26.40.3-36ebbb0` the whole go-live request is **457–1,008 ms** — roughly **one seventh** of the
 3.9 s the count alone takes for the same window. The count cannot be inside it. And the run record
 appears with `estimated_total: null`, the number arriving seconds later, which is the worker
 computing it.
@@ -123,8 +124,11 @@ Reported, not filed, pending the QA lead's call:
 
 Staging keeps the restore-after discipline (it is shared). Fixtures were **removed** (3 credit
 memos, 3 deposits, confirmed by the tool). The books were reset and taken live again. The original
-state was `go_live_date 2026-09-22`, activated `2026-09-22T16:19:28Z`; the exact original
-timestamps cannot be reinstated, and the final restore is recorded in the execution notes.
+state was `go_live_date 2026-09-22`, activated `2026-09-22T16:19:28Z`. **The final restore put it
+back to the same go-live date**: activated `2026-10-02T09:22:02Z`, `go_live_date 2026-09-22`, books
+rebuilding (run `6a62269a`). The activation timestamp is necessarily today's — that cannot be
+reinstated — but the go-live date, and therefore which history is on the books, matches the
+original.
 
 ---
 
