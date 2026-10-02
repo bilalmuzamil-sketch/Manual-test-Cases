@@ -233,7 +233,7 @@ for (const E of ENTITIES) {
     const found = await rowsFor(C.A1.term, E.tab, `${E.section} A1`);
     const rows = found.rows;
     const TERM = found.term;
-    test.skip(rows.length === 0, `no {E.tab} record matches "${C.A1.term}" or any word this tab's own records are made of — there is nothing to measure`);
+    test.skip(rows.length === 0, `no ${E.tab} record matches "${C.A1.term}" or any word this tab's own records are made of — there is nothing to measure`);
     store('A1', { pointer: lastPointerCheck, rows: rows.map((r) => ({ ...r, html: undefined })) });
     console.log(`\n== ${E.section} / "${TERM}" → ${rows.length} rows`);
     for (const r of rows) console.log(`   [${r.index}] clipped=${r.title.clipped} ` +
@@ -263,7 +263,7 @@ for (const E of ENTITIES) {
     const found = await rowsFor(C.A2.term, E.tab, `${E.section} A2`);
     const rows = found.rows;
     const TERM = found.term;
-    test.skip(rows.length === 0, `no {E.tab} record matches "${C.A2.term}" or any word this tab's own records are made of — there is nothing to measure`);
+    test.skip(rows.length === 0, `no ${E.tab} record matches "${C.A2.term}" or any word this tab's own records are made of — there is nothing to measure`);
     for (const r of rows) {
       if (!(r.title.clipped || r.meta.clipped)) continue;
       expect(r.title.markVisible ?? true, `row ${r.index}: the clip has eaten the typed characters`).toBe(true);
@@ -299,7 +299,7 @@ for (const E of ENTITIES) {
     const found = await rowsFor(C.A3.term, E.tab, `${E.section} A3`);
     const rows = found.rows;
     const TERM = found.term;
-    test.skip(rows.length === 0, `no {E.tab} record matches "${C.A3.term}" or any word this tab's own records are made of — there is nothing to measure`);
+    test.skip(rows.length === 0, `no ${E.tab} record matches "${C.A3.term}" or any word this tab's own records are made of — there is nothing to measure`);
     expect(rows.length).toBeGreaterThan(0);
     for (const r of rows) {
       expect(r.marks.length, `CONTROL FAILED: no highlight anywhere on row ${r.index}`).toBeGreaterThan(0);
@@ -316,7 +316,7 @@ for (const E of ENTITIES) {
     const found = await rowsFor(C.B1.term, E.tab, `${E.section} B1`);
     const rows = found.rows;
     const TERM = found.term;
-    test.skip(rows.length === 0, `no {E.tab} record matches "${C.B1.term}" or any word this tab's own records are made of — there is nothing to measure`);
+    test.skip(rows.length === 0, `no ${E.tab} record matches "${C.B1.term}" or any word this tab's own records are made of — there is nothing to measure`);
     store('B1', rows.map(visibleRow));
     expect(rows.length, 'this case needs more than one row to be about anything').toBeGreaterThan(1);
     const seen = rows.map(visibleRow);
@@ -328,7 +328,7 @@ for (const E of ENTITIES) {
     const found = await rowsFor(C.B2.term, E.tab, `${E.section} B2`);
     const rows = found.rows;
     const TERM = found.term;
-    test.skip(rows.length === 0, `no {E.tab} record matches "${C.B2.term}" or any word this tab's own records are made of — there is nothing to measure`);
+    test.skip(rows.length === 0, `no ${E.tab} record matches "${C.B2.term}" or any word this tab's own records are made of — there is nothing to measure`);
     const byTitle = new Map<string, RowShape[]>();
     for (const r of rows) byTitle.set(visibleText(r.title), [...(byTitle.get(visibleText(r.title)) ?? []), r]);
     const shared = [...byTitle.entries()].filter(([, v]) => v.length > 1);
@@ -346,7 +346,7 @@ for (const E of ENTITIES) {
     const found = await rowsFor(C.D1.term, E.tab, `${E.section} D1`);
     const rows = found.rows;
     const TERM = found.term;
-    test.skip(rows.length === 0, `no {E.tab} record matches "${C.D1.term}" or any word this tab's own records are made of — there is nothing to measure`);
+    test.skip(rows.length === 0, `no ${E.tab} record matches "${C.D1.term}" or any word this tab's own records are made of — there is nothing to measure`);
     expect(rows.length, `"${C.D1.term}" returns no ${E.tab} rows`).toBeGreaterThan(0);
     // Judge the row that BEST satisfies the case's precondition ("has a value in each field named"),
     // because a record with nothing to show in a field is not evidence the field is missing — the
@@ -392,10 +392,12 @@ for (const E of ENTITIES) {
   });
 
   test(`C${C.I1.cid} — ${E.section}: a soft match is drawn as a soft match @C${C.I1.cid}`, async () => {
-    const found = await rowsFor(C.I1.term, E.tab, `${E.section} I1`);
-    const rows = found.rows;
-    const TERM = found.term;
-    test.skip(rows.length === 0, `no {E.tab} record matches "${C.I1.term}" or any word this tab's own records are made of — there is nothing to measure`);
+    const rows = await groupRows(s.page, C.I1.term, E.tab);
+    const TERM = C.I1.term;
+    test.skip(rows.length === 0,
+      `"${C.I1.term}" is not on this environment. This check needs a record built so that a ` +
+      `misspelling finds it; no other term can stand in for one, because a word the rows already ` +
+      `contain matches them exactly. Re-seed it, or run this check by hand.`);
     store('I1', { term: C.I1.term, rows: rows.map((r) => ({ text: r.text, approx: r.approx, marks: r.marks, italic: r.italicMarks })) });
     console.log(`   ${E.section} I1 "${C.I1.term}" → ${rows.length} rows`);
     for (const r of rows) console.log(`      [${r.index}] approx=${r.approx} marks=${JSON.stringify(r.marks).slice(0, 70)}`);
