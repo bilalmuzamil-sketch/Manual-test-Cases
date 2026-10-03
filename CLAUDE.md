@@ -5226,6 +5226,17 @@ deliver the 7-tab management report.
     it belongs in the remaining-issues comment**, and with the question I give him **steps to reproduce it himself**
     (exact screen, data, clicks, and what to look at). He decides; until he does it is an OUTSTANDING item (Rule 36),
     not a footnote. This is Rule 91 (a skip is not mine to decide) applied to judgement calls about faults.
+    **(f) EVERYTHING I REPORT — to the PO, the developer, OR to the QA lead himself — CARRIES ANNOTATED SCREENSHOTS AND
+    STEPS TO REPRODUCE, AND NOTHING ELSE THAT IS NOT NEEDED.** USER DIRECTIVE (2026-10-03, verbatim): *"everything
+    taht you report it should be reported with annotated screenshots and steps of replication and it should have
+    necessary details for a layman to understand but NOT unecessary comments or paragraphs, the POS hate them. They
+    just want to know what is happening see what is happening and reproduce what is happening in lay man terms and
+    then to assign the ticket to the develpers after understanding the issue for a fix"*. Each reported item is:
+    **what is happening (one line) · the annotated screenshot that shows it · the steps to reproduce it in plain
+    words** — and, where it is a defect, what it should be and where that comes from. **No explanatory paragraphs, no
+    reasoning essays, no "why I think this is fine".** A question to the QA lead about a possible fault (clause d)
+    meets the same bar: he must be able to SEE it and REPRODUCE it before he decides. Steps without a screenshot are
+    an incomplete report.
     **(e) THE PRE-POST GATE (Rule 72) CHECKS IT:** a green panel with any point unverified or not fixed, or any
     "not treated as a fault" wording, means the comment is not ready to post.
     **RATIONALE, 2026-10-03 (SV-8552):** comment 77784 carried a green *"OVERALL QA STATUS: PASSED"* while point 4 was
