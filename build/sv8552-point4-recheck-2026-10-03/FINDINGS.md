@@ -67,3 +67,14 @@ Updated in place: what's happening (2 items) · what it should be · 2 screensho
 ## QA lead's layout ruling for comment 77811 (3 Oct)
 *"this comment of Chris [77810] … should be on the top explaining the dev what is happening with the annotated screenshots. Then a line break and below that line break the other things from your 'Three things I looked at closely and did not treat as faults'"*.
 Plan: top = Chris's "big jobs should follow suit" — the three big-job failures (+ the two pending checks) with screenshots; `----`; below = A (Week view sliver), B (Create Event slides the timeline), C (no "8 AM" label on an 8:30 day), each one line + fresh 2× annotated screenshot + steps. D (closed-day scroll, 1 Oct comment) not one of the three — asked. **Blocked on fresh QA cookies; nothing posted.**
+
+## Fresh sign-in (3 Oct ~11:20Z) — remaining big-job checks and items A–E, build `v26.40.2-b57d7c7`
+**Big jobs, single-day:** Jason Johnson 14-hour job (Wed Oct 21 7 AM–9 PM, fresh) and Brandi Smith 8-hour job. Day view: the day stretches to fit the 14-hour job (bar 527–1689, timeline 523–1699), so no single-day job is wider than the screen when the day opens. Scrolled (sl 816): Jason's name x 299 → **not visible**; Brandi's partly cut (165 of 223 px visible). Neither has `--pinned-text`. Week view 1700/1100: one day column, nothing cut. Week view 700 at sl 252: Brandi's bar 185–277 (timeline 223), name 29 of 56 px visible — **cut, not pinned** (item E).
+**Items captured for the QA lead's decision (no comment posted):**
+- **A** Week 700, "Jarod off" (David Haynes, Mon Oct 5–Tue Oct 6): 90 px of bar left → name pinned; 24 px left → name gone, "PM" shows.
+- **B** Fri Oct 9 Day: **left-click** an empty spot (Clayton Stephens, 3 PM) opens a menu *Assign Work Order / Create Event / New Work Order*; clicking **Create Event** moves the timeline scroll 1310 → 2191 (first label 9 AM → 3 PM). Escape closed the dialog; nothing saved. Whether the timeline slides back on close was **not** checked.
+- **C** Wed Oct 7 (8:30–4:30): labels 8 AM at x 459–489 (under the name column), first visible label 9 AM at 605; timeline starts at 523.
+- **D** Sat Oct 10 (closed) at 1700: scrollable by 72 px; at 0 the 10 PM label is cut and 11 PM off screen; at max 12 AM is off the left. (Production equivalence is from the 1 Oct pass, not re-checked today.)
+- **E** as above.
+Also seen: Emily Madden's continuous Oct 20–21 job in Week view 700 at sl 252 is cut and not pinned — consistent with remaining issue 2.
+Not ours on the branch: an event "Title should stay multi day" (Emily Madden, 8:00 AM – 2:15 AM, Week 1 of 2) created by someone else.
