@@ -150,24 +150,31 @@ for (const [cid, tab, pats, names] of D1) {
  * Each searches a value taken live from the field in question, so the row that comes back is known
  * to have matched on THAT field rather than on something else containing the same text.
  */
-const FIELDC: [string, string, string, string[]][] = [
-  ['C146238', 'Parts',           'bin location', ['/api/inventory/parts?limit=60', 'bin_location', 'bin']],
-  ['C146242', 'Parts',           'tags',         ['/api/inventory/parts?limit=60', 'tags', 'tag']],
-  ['C146250', 'Vendors',         'email address',['/api/vendors?limit=60', 'email', 'contact_email']],
-  ['C146204', 'Work orders',     'service advisor name', ['/api/work-orders?limit=40', 'service_advisor_name', 'advisor_name']],
+/**
+ * 🔴 WHERE EACH VALUE LIVES, MEASURED ON STAGING 2026-10-03 - NOT GUESSED. The first version guessed
+ * paths and field names, and three of four were wrong there, so every check stood down with "no record
+ * has a ... recorded" although hundreds do: suppliers live at /api/parts-catalogue/vendors (not
+ * /api/vendors); a part's bin is binLocations[].name (not bin_location); the work-order list answers
+ * under data.work_orders with serviceAdvisorFirstName/LastName. Tags are a list of words whose first
+ * is often three letters, so the LONGEST tag is taken - it is also the most distinctive to search.
+ */
+type Pick = (rows: any[]) => string;
+const longest = (vals: string[]) => vals.filter((v) => v.trim().length >= 4).sort((x, y) => y.length - x.length)[0] ?? '';
+const FIELDC: [string, string, string, string, Pick][] = [
+  ['C146238', 'Parts',       'bin location',         '/api/inventory/parts?limit=60',
+    (rows) => longest(rows.flatMap((r) => (r.binLocations ?? []).map((b: any) => String(b?.name ?? ''))))],
+  ['C146242', 'Parts',       'tags',                 '/api/inventory/parts?limit=60',
+    (rows) => longest(rows.flatMap((r) => (Array.isArray(r.tags) ? r.tags : []).map(String)))],
+  ['C146250', 'Vendors',     'email address',        '/api/parts-catalogue/vendors?limit=60',
+    (rows) => rows.map((r) => String(r.email ?? '')).find((v) => v.includes('@')) ?? ''],
+  ['C146204', 'Work orders', 'service advisor name', '/api/work-orders?limit=40',
+    (rows) => rows.map((r) => `${r.serviceAdvisorFirstName ?? ''} ${r.serviceAdvisorLastName ?? ''}`.trim())
+      .find((v) => v.length >= 4) ?? ''],
 ];
-for (const [cid, tab, what, src] of FIELDC) {
+for (const [cid, tab, what, path, pick] of FIELDC) {
   test(`${cid} — ${tab}: a match on ${what} shows the full value on the row @${cid}`, async () => {
-    const [path, ...fields] = src;
-    const value: string = await (async () => {
-      const recs = collectionOf(await apiJson(s, path));
-      for (const rec of recs) for (const f of fields) {
-        const v = (rec as any)?.[f];
-        const str = Array.isArray(v) ? String(v[0] ?? '') : String(v ?? '');
-        if (str.trim().length >= 4) return str.trim();
-      }
-      return '';
-    })();
+    const j: any = await apiJson(s, path);
+    const value: string = pick(collectionOf(j).length ? collectionOf(j) : (j?.data?.work_orders ?? []));
     test.skip(!value, `no ${tab.toLowerCase()} record on this environment has a ${what} recorded, so there is nothing to match on`);
     await typeAndWait(s.page, value);
     const rows = await rowTexts();
