@@ -100,6 +100,9 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **BEFORE ANY PASS/FAIL VERDICT — BUILD THE VARIANT MATRIX FIRST (Standing Rule 96):** list every KIND of the
+>   thing the requirement names (each creation mode, first/middle/last, narrow/wide, every view), seed and observe
+>   each one, and never write PASSED for more than the cells you actually observed. (SV-8552, 2026-10-03.)
 > - **BEFORE AND AFTER EVERY JIRA TICKET WE CREATE OR REWRITE (Standing Rule 95): follow
 >   `build/JIRA-TICKET-STANDARD.md` (canonical example SV-10804 — plain words, Summary → Steps → Expected +
 >   its source → Current, sharp 2× images with captions underneath), run its pre-ticket check first, and
@@ -5135,6 +5138,55 @@ deliver the 7-tab management report.
     line, deep link), 72 (the pre-post gate), 81 (verify as the reader receives it; real attachments), 82,
     83, 84 (no technical section by default), 93 (search first) and 94.
 
+
+96. **NO VERDICT WITHOUT A VARIANT MATRIX — a PASS on a requirement may only be written once EVERY KIND of
+    the thing it names has been observed, and the row may never claim more than its specimens cover (all
+    projects). THE GATE THAT STOPS ONE SPECIMEN BEING REPORTED AS THE WHOLE.**
+    USER DIRECTIVE (2026-10-03, verbatim): *"First you have to tell me why did you skip testing something which
+    was important and then without testing the core point fully you lied to me and told me its overall passed.
+    Why do you skip things like that and take them casually? You have almost caused me to loose my job. You need
+    a process or a rule and learning saved with you to make sure it and something similar never happens again"*
+    — and the definition he gave of the thing I under-tested: *"A multi day job is the one that starts in one date
+    and then it end maybe 2 days after and you have to navigate to that last day to see that last day of job
+    there."*
+    **THE FAILURE, NAMED EXACTLY:** SV-8552 point 4 (*"For full-day and multi-day jobs, the name should always stay
+    on screen"*) was reported **PASSED** in comment 77784 on the strength of an all-day event, a multi-day EVENT in
+    Week view, and **one** multi-day work-order shift I had created myself, in **one** booking shape. A multi-day
+    work order can be booked **two ways** — one continuous block, or day by day (one piece per day) — and the
+    day-by-day kind loses its name on every day. **My specimen happened to be the kind that works, and I wrote the
+    verdict for the whole requirement.** Chris found it on the branch; the QA lead had to ask why. **Then, re-checking,
+    I did it AGAIN on a smaller scale:** I told him the cause was bar width, a theory from three specimens, and fresh
+    data disproved it within the hour. **Both errors are the same error: a conclusion wider than the observations.**
+    **WHY IT HAPPENS (so the gate targets the cause, not the symptom):** (1) I test the specimens that are already
+    on screen or quickest to make, and never ask *how many different kinds of this thing exist*; (2) when those
+    pass, I generalise to the requirement's full wording — that is a **prediction** (Rule 12), not an observation;
+    (3) the developer's own summary (*"on full-day and multi-day bars, the name now stays visible"*) framed the test
+    instead of the requirement (Rule 66). Rules 50, 76(c) and 91 already said this in words; **nothing mechanical
+    stopped me** — so this rule is mechanical.
+    **THE GATE — four steps, written into the findings doc BEFORE the first observation, checked BEFORE posting:**
+    **(1) QUOTE THE REQUIREMENT AND LIST EVERY NOUN IT NAMES** ("full-day jobs", "multi-day jobs", "the edge of the
+    screen", "when the bar is cut off"). Each noun is a population, never a single example.
+    **(2) ENUMERATE THE KINDS OF EACH NOUN — the dimensions it can vary along.** Find them, do not guess them:
+    **every creation mode the product offers** (each option in the create dialog; each value of an enum — read the
+    validation error of a bogus value, e.g. *"The spread mode must be single or series."*); **position** (first /
+    middle / last day, first / last row, start / end of a list); **size** (narrower / wider than the screen, short /
+    long, one line / wrapping); **every view and surface the requirement can appear on** (Day / Week / Month, screen
+    / PDF / export — Rule 40); **window size** (wide and narrow — Rule 80); **existing vs freshly created data**; and
+    **the reader's own definition** of the thing (a multi-day job = starts on one date, ends on a later one → **go to
+    its last day**).
+    **(3) SEED A FRESH SPECIMEN FOR EVERY CELL AND OBSERVE IT** (Rule 87). The matrix is a table in the findings doc,
+    one row per cell, each with its own observed result.
+    **(4) A VERDICT ROW MAY ONLY CLAIM WHAT ITS CELLS COVER.** PASSED requires **every cell observed and passing**. If
+    any cell is unobserved, the row is not PASSED — go and observe it (Rule 91: skipping it is not mine to decide), or,
+    with the QA lead's say-so, word the row to the exact scope covered (*"PASSED for full-day events and continuous
+    multi-day jobs; day-by-day jobs not checked"*). **An explanation of a cause ("it's the bar width") is held to the
+    same bar: it must predict every cell before it is told to anyone.**
+    **THE PRE-POST GATE (Rule 72) NOW INCLUDES:** for every PASSED row, point at its matrix in the findings doc and
+    confirm every cell is observed. **A PASSED row with no matrix behind it is not ready to post.**
+    **HONESTY:** when the matrix finds that a verdict already given was wider than its evidence, **say so to the QA
+    lead plainly and first**, with what was and was not covered — never soften it, never let him find it from someone
+    else. Canonical record: `build/sv8552-point4-recheck-2026-10-03/FINDINGS.md` (the matrix that should have existed
+    on 2 Oct). Ties to Standing Rules 12, 17, 40, 50, 66, 68, 72, 76, 77, 80, 85, 87 and 91.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

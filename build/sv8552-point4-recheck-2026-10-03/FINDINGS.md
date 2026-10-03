@@ -1,27 +1,36 @@
 # SV-8552 — point 4 re-check (3 Oct 2026)
 
-**Why:** the QA lead: *"The point 4 from Chris's 2nd last comment seems to not have been followed by you when you tested … Check the last comment of chris too."*
+**Why:** the QA lead: *"The point 4 from Chris's 2nd last comment seems to not have been followed by you when you tested … Check the last comment of chris too."* and then: *"why did you skip testing something which was important and then without testing the core point fully … told me its overall passed."*
 
-**Sources read live:** SV-8552, status **Code Review**, 14 comments. Chris Ward 77735 (1 Oct 10:41 −0500) point 4: *"Keep the task name visible. For full-day and multi-day jobs, the name should always stay on screen. It used to stick to the edge of the screen when the bar was cut off."* Chris Ward 77810 (2 Oct 18:59 −0500, after my 77784): *"In the QA environment, a full day job has the title moving with page scroll. That's exactly right. Big jobs should follow suit as well. It's important to match the behavior."*
+**Sources read live (3 Oct ~05:09Z):** SV-8552, status **Code Review**, 14 comments, assignee Dipesh Changawala. Chris Ward 77735 (1 Oct) point 4: *"Keep the task name visible. For full-day and multi-day jobs, the name should always stay on screen. It used to stick to the edge of the screen when the bar was cut off."* Chris Ward 77810 (2 Oct 18:59 −0500): *"In the QA environment, a full day job has the title moving with page scroll. That's exactly right. Big jobs should follow suit as well."*
 
-**Build:** `sv8552.qa.shopview.com`, `v26.40.2-b57d7c7`, last-modified Fri 02 Oct 2026 07:49:51 GMT, etag `69a4a9ecfb83cd23d6fe39475f164032` — the same build my 77784 comment passed. The branch was asleep; woken via the Wake Up button (~90 s). Viewport 1700 × 1050, Day view.
+**Build:** `sv8552.qa.shopview.com`, `v26.40.2-b57d7c7` (read at 05:04Z and 05:08Z) — the same build my comment 77784 passed. Woken via the sleep page (*Wake Up*, up in ~15 s this time; can take up to 5 min).
 
-## What my 2 Oct pass actually checked for point 4
-D1/D2 = an **all-day** bar in Day view (name pinned); D3 = a multi-day bar in **Week** view; E4 = clicking a cut-off multi-day work-order shift opens its card. **No check scrolled a multi-day work-order bar in Day view and watched its name.** The only multi-day work-order bar I measured (20/21 Oct) was **wider than the screen**. So the PASS on point 4 claimed more than was measured.
+## What my 2 Oct pass actually covered for point 4 — and why the PASS was wrong
+I observed: an all-day event in Day view, a multi-day **event** ("Jarod off") in Week view, and **one** multi-day work-order shift that I had created myself as **one continuous block**. All kept their names. I wrote "PASSED" for the whole requirement. I never asked how many *kinds* of multi-day job exist. There are two booking modes — **one continuous block** (`spreadMode: single`) and **day by day** (`spreadMode: series`, one piece per day) — and the day-by-day kind fails. My specimen happened to be the kind that works.
 
-## Measured today (Day view, name x vs timeline left edge 523)
+**A second error, made in my first reply this morning:** I told the QA lead the cause was bar *width* (only bars wider than the screen keep the name). That was also drawn from too few specimens. With fresh data the real split is the **booking mode**: a continuous job narrower than the screen (Thu Oct 15, bar 1163 px) keeps its name.
 
-| Day | Bar | Bar width | Scrolled | Name x | Pinned? |
-|---|---|---|---|---|---|
-| Fri 9 Oct | all-day event | 3504 | 0 → 2328 | 535–536 throughout | **yes** (`position: sticky`) |
-| Mon 5 Oct | multi-day task "Jarod off" | 2603 | 1536, 2304 | 535 | **yes** |
-| Tue 20 / Wed 21 Oct | multi-day WO shift, wider than the screen | 1453 / 2913 | up to 2328 | 531 | **yes** (`--pinned-text`) |
-| Fri 2 Oct | multi-day WO shift S2-9379 (first day, `--continues-after`) | 936 | 1632 | **189 — off-screen** | **no** |
-| Mon 5 Oct | same shift, last day (`--continues-before`) | 495 | 1536 | **317 — off-screen; only "oot" visible** | **no** |
-| Wed 14 Oct | ordinary single-day shift | 365 | — | — | not sticky (by design per point 4) |
+## Variant matrix (all observed live today)
 
-**Result: point 4 is NOT met for multi-day work-order jobs whose bar is narrower than the screen.** Their name scrolls away; only bars wider than the screen get `--pinned-text`. Multi-day *tasks/events* and all-day bars are fine. This is what Chris's 77810 describes ("big jobs should follow suit"). Exhibit: `ev/01-multi-day-job-loses-its-name-hd.png` (2×).
+| Job | Booked as | View / window | Day | Name pinned when cut off? |
+|---|---|---|---|---|
+| all-day event | — | Day 1700 | Fri 9 Oct | **yes** |
+| "Jarod off" multi-day task | — | Day 1700 | Mon 5 Oct | **yes** |
+| S2-9379, Emily Madden, Oct 13 2 PM → Oct 15 3 PM (fresh) | one continuous block | Day 1700 | first / middle / last | **yes / yes / yes** |
+| S2-9379, Emily Madden, Oct 27 → 29 (fresh) | day by day | Day 1700 | first / middle / last | **NO / NO / NO** |
+| S2-9379, Clayton Stephens, Oct 2 + Oct 5 (pre-existing) | day by day | Day 1700 | first / last | **NO / NO** |
+| S2-9379 Oct 13–15 | one continuous block | Week 700 | Wed column, scrolled 168 px | **NO** ("…ruck & Trailer Repair Blackfoot") |
+| S2-9379 Oct 27–29 | day by day | Week 700 | Wed column, scrolled 168 px | **yes** |
+| both | both | Week 1700 | — | not cut off at 1700 (week fits) |
 
-**Bucket (Rule 93):** already tracked — Chris's 77810 on the same ticket raises it; the ticket is back in Code Review. Nothing new filed. My comment 77784 row 4 / D-rows say PASSED and needs correcting in place (awaiting the QA lead).
+Mechanism (for the findings record only, not posted per Rule 84): the pinned behaviour comes from the `schedule-block--pinned-text` class. In Day view it is on continuous blocks and not on series pieces; in Week view it is the other way round.
 
-**Not yet re-checked:** ordinary long single-day jobs cut off at the edge — point 4 did not ask for them, and Chris's "big jobs" may or may not include them (ask, Rule 55).
+## Posted
+SV-8552 comment **77811** for Dipesh — *"Remaining issue to be fixed"*, two issues with steps, expected + source, current, and 4 annotated 2× exhibits (attachments 61733–61736). Read back: 4 media `type=file` in order, both ordered lists start at 1 (5 and 6 items), mention resolves to Dipesh Changawala, AI-fingerprint scan empty. No technical section (Rule 84).
+
+**Not done:** comment 77784 still says point 4 PASSED — awaiting the QA lead on whether to correct it in place.
+
+**Data left on the branch (per-ticket branch, no cleanup):** shift `84a74d81…` (Oct 13–15 continuous) and series `29356a89…` (Oct 27–29), both S2-9379 on Emily Madden.
+
+**Learning check (Rule 95/82):** Standing Rule 96 (variant matrix before any verdict), LESSONS-INDEX row, playbook §Schedule recipe for the two booking modes.

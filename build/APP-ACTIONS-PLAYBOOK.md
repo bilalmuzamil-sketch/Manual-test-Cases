@@ -1384,6 +1384,15 @@ items are **gated by permission** (a hidden item means the role lacks the perm).
   `{title,staffId,departmentId,startsAt,endsAt,color,note}` -> 201. Move = `PATCH /api/schedule/events/{id}`
   `{startsAt,endsAt,reassign,changeNote}` -> 200. Delete = `DELETE /api/schedule/events/{id}` -> 204.
   An **all-day** event is simply 00:00 -> 23:59 local (the Edit dialog shows "All day" ticked).
+- **A multi-day work order can be booked TWO WAYS, and they render differently — test BOTH (proven 2026-10-03, SV-8552):**
+  `spreadMode:'single'` = **one continuous block** spanning the dates (one shift, `seriesId:null`); `spreadMode:'series'` =
+  **day by day**, one shift per working day sharing a `seriesId` (e.g. `totalMinutes:1440, perDayMinutes:480` → 3 days of 8 h).
+  Any other value → 400 *"The spread mode must be single or series."* On sv8552 (`v26.40.2-b57d7c7`) the pinned job name
+  (`schedule-block--pinned-text`) is on continuous blocks in **Day** view but on day-by-day pieces in **Week** view.
+  Check the **first, middle and last day** of each (navigate with `button_mini_calendar_day_YYYY-MM-DD`), and Week view at a
+  **narrow (~700 px)** window, where the week scrolls sideways.
+- **Waking a sleeping QA branch:** open `https://sleep.qa.shopview.com/?app=sv<ticket>&api=sv<ticket>`, click **Wake Up**,
+  and poll `index.html` for the app-version — usually seconds, can take **up to 5 minutes**.
 - **Multi-day work-order shift:** `POST /api/schedule/shifts` with `totalMinutes` > one day
   (e.g. 1800) and `spreadMode:'single'` -> one shift spanning two dates. An empty POST names the
   required fields (`line_ids`, `start_date`, `spread_mode`).
