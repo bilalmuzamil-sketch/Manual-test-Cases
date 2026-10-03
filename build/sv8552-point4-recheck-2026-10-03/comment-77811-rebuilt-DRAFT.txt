@@ -1,0 +1,41 @@
+[~accountid:712020:ae9c04d8-74e7-48c4-91fc-370caedf9615]
+
+h3. Remaining issue to be fixed
+
+[Chris's last comment|https://shopview.atlassian.net/browse/SV-8552?focusedCommentId=77810]: _"In the QA environment, a full day job has the title moving with page scroll. That's exactly right. Big jobs should follow suit as well."_ Big jobs don't do this yet:
+
+*1. Day view - a multi-day job booked day by day loses its name on every day, including the last day.*
+Schedule > Day > click *29* (October) > scroll right to 11 AM > Emily Madden's S2-9379 bar has no name.
+!01-last-day-name-scrolls-away-hd.png|width=1400,height=733!
+
+*2. Week view, narrow window - a multi-day job booked as one block inside one week loses its name.*
+Make the window about 700 px wide > Schedule > Day > click *14* (October) > Week > scroll right until Wednesday Oct 14 is the first full day > Emily Madden's S2-9379 bar reads "...ruck & Trailer Repair Blackfoot".
+!04-week-view-narrow-continuous-job-loses-name-hd.png|width=700,height=889!
+
+*3. Day view - a long single-day job loses its name.*
+Schedule > Day > click *21* (October) > scroll right to 4 PM > Brandi Smith's 8-hour S2-9379 bar has no name.
+!05-long-single-day-job-loses-name-hd.png|width=1400,height=1265!
+
+*What it should be:* the job name stays pinned at the left edge whenever the bar is cut off - for multi-day jobs and long jobs, in Day and Week view - the same as full-day jobs (Chris, point 4: _"For full-day and multi-day jobs, the name should always stay on screen"_).
+
+----
+
+h3. Also found while testing
+
+*A. Week view, narrow window - the name disappears when only a thin piece of the bar is left.*
+Window about 700 px > Schedule > Day > click *5* (October) > Week > slowly scroll right while watching "Jarod off" on David Haynes' row.
+!A-week-view-name-gone-on-thin-bar-hd.png|width=700,height=1599!
+
+*B. Opening Create Event slides the timeline about 6 hours.*
+Schedule > Day > click *9* (October) > left-click an empty spot on Clayton Stephens' row at 3 PM > click *Create Event* > the timeline now starts at 3 PM instead of 9 AM.
+!B-create-event-slides-timeline-hd.png|width=1360,height=1521!
+
+*C. On a day that starts at 8:30, no "8 AM" label is shown.*
+Schedule > Day > click *7* (October; hours 8:30 AM - 4:30 PM) > the first hour label is 9 AM. The test plan says the "8 AM" label shows half cut off.
+!C-no-8am-label-on-830-day-hd.png|width=1400,height=593!
+
+*D. On a closed day, the 24 hours don't quite fit on a wide screen.*
+Window 1700 px wide > Schedule > Day > click *10* (October, shop closed) > 10 PM is cut at the right; scroll right and 12 AM is cut at the left. The handoff says all 24 hours fit on a wide screen.
+!D-closed-day-24h-do-not-fit-hd.png|width=1360,height=769!
+
+Tested on sv8552.qa.shopview.com (build v26.40.2-b57d7c7), 3 Oct 2026.
