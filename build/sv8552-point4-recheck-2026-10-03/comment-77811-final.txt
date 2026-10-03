@@ -1,0 +1,29 @@
+[~accountid:712020:ae9c04d8-74e7-48c4-91fc-370caedf9615]
+
+h3. Remaining issue to be fixed
+
+[Chris's last comment|https://shopview.atlassian.net/browse/SV-8552?focusedCommentId=77810]: _"In the QA environment, a full day job has the title moving with page scroll. That's exactly right. Big jobs should follow suit as well."_
+
+Big jobs don't do this yet:
+
+*1. Day view - a multi-day job booked day by day loses its name on every day, including the last day.*
+Schedule > Day > click *29* (October) > scroll right to 11 AM > Emily Madden's S2-9379 bar has no name.
+!01-last-day-name-scrolls-away-hd.png|width=1400,height=733!
+
+*2. Week view, narrow window - a multi-day job booked as one block inside one week loses its name.*
+Make the window about 700 px wide > Schedule > Day > click *14* (October) > Week > scroll right until Wednesday Oct 14 is the first full day > Emily Madden's S2-9379 bar reads "...ruck & Trailer Repair Blackfoot".
+!04-week-view-narrow-continuous-job-loses-name-hd.png|width=700,height=889!
+
+*3. A long single-day job loses its name - in Day view, and in Week view with a narrow window.*
+Day view: Schedule > Day > click *21* (October) > scroll right to 4 PM > Brandi Smith's 8-hour S2-9379 bar has no name.
+!05-long-single-day-job-loses-name-hd.png|width=1400,height=1265!
+Week view: make the window about 700 px wide > Schedule > Day > click *21* (October) > Week > scroll right until Thursday Oct 22 is the first full day > Brandi Smith's job on Wed Oct 21 is cut off with its name.
+!E-week-view-single-day-job-name-cut-hd.png|width=700,height=1616!
+
+*What it should be:* the job name stays pinned at the left edge whenever the bar is cut off - for multi-day jobs and long jobs, in Day and Week view - the same as full-day jobs (Chris, point 4: _"For full-day and multi-day jobs, the name should always stay on screen"_).
+
+----
+
+The other issues found while testing have been reported separately here: [SV-10806|https://shopview.atlassian.net/browse/SV-10806]
+
+Tested on sv8552.qa.shopview.com (build v26.40.2-b57d7c7), 3 Oct 2026.

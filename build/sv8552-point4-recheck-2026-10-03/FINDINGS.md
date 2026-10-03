@@ -78,3 +78,12 @@ Plan: top = Chris's "big jobs should follow suit" — the three big-job failures
 - **E** as above.
 Also seen: Emily Madden's continuous Oct 20–21 job in Week view 700 at sl 252 is cut and not pinned — consistent with remaining issue 2.
 Not ours on the branch: an event "Title should stay multi day" (Emily Madden, 8:00 AM – 2:15 AM, Week 1 of 2) created by someone else.
+
+## 3 Oct (later) — new ticket SV-10806 + comment 77811 rebuilt (QA lead's layout ruling)
+- **Gate:** build re-read `v26.40.2-b57d7c7` (last-modified Fri 02 Oct 07:49:51 GMT, etag `69a4a9ec…`) — unchanged. SV-8552 still Code Review, last comment 77811. Duplicate search (4 JQL queries, last 60 days): none.
+- **B re-checked live just before filing:** scroll 1310 → 2191 on Create Event; the form's start time is 3:00 PM (matches the click, so test-plan item G passes); after Esc the scroll **stays at 2191** (timeline stays at 3 PM).
+- **Sources for the expected behaviour** (found in this session's earlier transcript, Dipesh's Powertools QA plan rev 2): D — *"Its name stays visible at the left edge for as long as any part of the bar is on screen."*; F — *"Drag, create and delete a job. The screen does not jump or resize."*; A — *"Open Wednesday. It starts exactly at 8:30 AM. The "8 AM" label is half cut off at the left edge, which is expected."*
+- **[SV-10806](https://shopview.atlassian.net/browse/SV-10806)** created: Bug, Medium, Product Area Schedule, no parent (SV-8552 has none), Relates SV-8552, labels none (SV-8552's only label is `QAcomplete`, a QA-status marker, deliberately not copied). First line "Found while testing SV-8552" (linked). Items A, B, C each with steps, expected+source, current, image as a real attachment. Read back: 3 media type `file`.
+- **Comment 77811 updated in place:** @Dipesh, Chris 77810 quoted on top, items 1–3, **E folded into item 3** (QA lead ruled long single-day jobs are big jobs), rule, link to SV-10806. Read back: mention + 4 file media, SV-10806 link present.
+- **D excluded** — Dipesh 77238: *"Large screens (wider than about 1770px): all 24 hours fit on the screen"*; tested at 1700 px.
+- **Learning check (Rule 95 Part B):** the developer's test plan text is NOT lost when Powertools needs Google sign-in — it was pasted into this session earlier and is recoverable from the transcript; search it before calling a source unavailable.

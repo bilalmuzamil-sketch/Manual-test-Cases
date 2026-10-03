@@ -1,0 +1,58 @@
+Found while testing [SV-8552|https://shopview.atlassian.net/browse/SV-8552]
+
+----
+
+h3. Summary
+Three small display problems on the Schedule page. In Week view a job's name disappears when only a thin piece of its bar is left on screen. In Day view, choosing Create Event moves the whole timeline about 6 hours. On a day that opens at 8:30 AM there is no "8 AM" label at the start of the timeline.
+
+*Open the QA site to reproduce:* [https://sv8552.qa.shopview.com|https://sv8552.qa.shopview.com] (location *Staging Heavy Duty - 9919*).
+
+----
+
+h3. 1. Week view: the job name disappears on a thin piece of the bar
+*Steps to reproduce*
+# Make the browser window narrow, about 700 px wide (half a laptop screen).
+# Click *Schedule* > *Day*, then click *5* (October) in the small calendar, then click *Week*.
+# Look at David Haynes' row: the bar *Jarod off* shows its name.
+# Slowly scroll the timeline to the right.
+# When only a thin piece of the bar is left on the left, the name is gone - only "PM" is visible (picture below, box 2).
+
+*Expected:* the name stays at the left edge for as long as any part of the bar is on screen.
+Source: Chris, [SV-8552 point 4|https://shopview.atlassian.net/browse/SV-8552?focusedCommentId=77735] - _"For full-day and multi-day jobs, the name should always stay on screen"_, and Dipesh's QA test plan for SV-8552 (section D) - _"Its name stays visible at the left edge for as long as any part of the bar is on screen."_
+*Current:* the name stays while a wide piece of the bar is visible, then vanishes when only a thin piece of the bar is left, while that piece is still on screen.
+
+!A-week-view-name-gone-on-thin-bar-hd.png|width=700,height=1599!
+
+----
+
+h3. 2. Day view: Create Event moves the timeline about 6 hours
+*Steps to reproduce*
+# Use a normal wide browser window.
+# Click *Schedule* > *Day*, then click *9* (October) in the small calendar. The day shows from *9 AM*.
+# Left-click an empty spot on *Clayton Stephens'* row under *3 PM*. A small menu opens.
+# Click *Create Event*.
+# The timeline jumps: it now starts at *3 PM* instead of *9 AM* (picture below, box 3). Press *Esc* to close the dialog - the timeline stays at 3 PM.
+
+*Expected:* the screen does not jump. The event form opens over the day as it was.
+Source: Dipesh's QA test plan for SV-8552 (section F) - _"Drag, create and delete a job. The screen does not jump or resize."_
+*Current:* the timeline slides about 6 hours to the right and stays there after the dialog is closed. (The start time in the form, 3:00 PM, is correct.)
+
+!B-create-event-slides-timeline-hd.png|width=1360,height=1521!
+
+----
+
+h3. 3. Day view: no "8 AM" label on a day that opens at 8:30 AM
+*Steps to reproduce*
+# Use a normal wide browser window.
+# Click *Schedule* > *Day*, then click *7* (October) in the small calendar. Shop hours that day are *8:30 AM - 4:30 PM*.
+# Look at the hour labels across the top of the timeline. The first label is *9 AM*; the space before it is empty (picture below, box 1).
+
+*Expected:* the timeline starts at 8:30 and the "8 AM" label shows half cut off at the left edge.
+Source: Dipesh's QA test plan for SV-8552 (section A) - _"Open Wednesday. It starts exactly at 8:30 AM. The "8 AM" label is half cut off at the left edge, which is expected."_
+*Current:* no label at all before 9 AM.
+
+!C-no-8am-label-on-830-day-hd.png|width=1400,height=593!
+
+----
+
+Tested on sv8552.qa.shopview.com, build v26.40.2-b57d7c7, 3 October 2026.
