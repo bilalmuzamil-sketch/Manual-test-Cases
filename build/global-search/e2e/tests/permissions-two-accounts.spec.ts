@@ -1,6 +1,6 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
-import { APP, APIH } from '../fixtures/boot.js';
+import { APP, APIH, IS_PROD } from '../fixtures/boot.js';
 import { openPanel, closePanel, typeAndWait, SEL } from '../fixtures/search.js';
 import { harvestAnchors, broadTerm, entityTerms, type LiveAnchors } from '../fixtures/anchors.js';
 
@@ -40,8 +40,31 @@ const LIMITED_ENVF = process.env.GS_LIMITED_ENVF || '/tmp/shopview/prod-login-li
 const LIMITED_KEY = process.env.GS_LIMITED_KEY || 'tech';
 const FULL_KEY = process.env.GS_LOGIN_AS || 'admin';
 
-type Who = { s: Session; perms: string[]; label: string };
+type Who = { s: Session; perms: string[]; label: string; as?: string };
 let full: Who, limited: Who;
+/**
+ * 🔴 A THIRD, NARROWER PERSON - FOR THE CHECKS THE TECHNICIAN CANNOT SERVE (2026-10-03).
+ * The technician holds Customers and Work Orders, so "without Customers access" could never be shown.
+ * Staging has staff on narrower roles (Time Clock User: no customers, parts, suppliers or part sales).
+ * Staging's quick sign-in has only two accounts and a second sign-in to one ends the first, so this
+ * person is reached by SWITCHING inside the full-access session and switching back before the
+ * full-access person is used again (actAs). Nothing shared is edited - no role, no assignment.
+ * Every role on staging can see work orders, so the two work-order checks still stand down.
+ */
+let narrow: Who | null = null;
+let fullAs = '';                 // the admin staff member the full session switches back to
+let acting: Who | null = null;
+const HEAVY_DUTY = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';
+async function actAs(w: Who) {
+  if (!narrow || w === limited || acting === w || (w === full && acting === null)) return;
+  const id = w === narrow ? narrow.as! : fullAs;
+  await api(full.s.page, 'POST', '/api/switch-user', { user_id: id });
+  await full.s.page.waitForTimeout(800);
+  await api(full.s.page, 'POST', '/api/iam/change-location', { workplace_id: HEAVY_DUTY, workplace_timezone: 'America/Edmonton' });
+  await full.s.page.goto(`${APP}/dashboard`, { waitUntil: 'load' });
+  await full.s.page.waitForTimeout(3_000);
+  acting = w;
+}
 let BROAD = '';
 let LIVE: LiveAnchors = {};
 
@@ -69,6 +92,27 @@ test.beforeAll(async () => {
   console.log(`lower-permission account: ${limited.perms.length} permissions -> ${limited.perms.slice(0, 12).join(', ')}`);
 });
 
+test.beforeAll(async () => {
+  if (IS_PROD) return;
+  const role = process.env.GS_NARROW_ROLE || 'Time Clock User';
+  const staff: any[] = (((await api(full.s.page, 'GET', '/api/staff?limit=250')).body as any)?.data?.collection ?? [])
+    .filter((x: any) => x.is_active);
+  const prefer = (ok: (x: any) => boolean) => staff.find((x) => ok(x) && x.workplace_id === HEAVY_DUTY) ?? staff.find(ok);
+  const who = prefer((x) => String(x.role_label) === role);
+  fullAs = prefer((x) => /^admin(istrator)?$/i.test(String(x.role_label ?? '')))?.id ?? '';
+  if (!who || !fullAs) { console.log(`no active "${role}" staff (or no admin to switch back to) — the narrower checks stand down`); return; }
+  narrow = { s: full.s, perms: [], label: `the ${role} person`, as: who.id };
+  await actAs(narrow);
+  narrow.perms = await permsOf(full.s);
+  await actAs(full);
+  console.log(`narrower person (${role}): ${narrow.perms.length} permissions -> ${narrow.perms.join(', ')}`);
+  if (narrow.perms.length >= full.perms.length) narrow = null;   // the switch did not take: never compare a person with themselves
+});
+
+/** the lower-permission person who LACKS this area: the technician if it does, else the narrower person */
+const lacking = (re: RegExp): Who | null =>
+  !has(limited, re) ? limited : (narrow && !has(narrow, re) ? narrow : null);
+
 test.afterAll(async () => { await full?.s?.browser.close(); await limited?.s?.browser.close(); });
 
 const has = (w: Who, re: RegExp) => w.perms.some(p => re.test(p));
@@ -95,11 +139,13 @@ const permFor = (tabLabel: string) => GOVERNED_BY[tabLabel.toLowerCase()] ?? new
 
 /** search as this person and return the rows, with the scope forced back to All */
 async function rowsAs(w: Who, q: string): Promise<string[]> {
+  await actAs(w);
   await typeAndWait(w.s.page, q);
   return w.s.page.evaluate(() => [...document.querySelectorAll('.search-row')]
     .map(r => (r as HTMLElement).innerText.replace(/\s+/g, ' ').trim()));
 }
 async function tabsAs(w: Who, q: string) {
+  await actAs(w);
   await typeAndWait(w.s.page, q);
   return w.s.page.evaluate(() => [...document.querySelectorAll('.search-tabs__tab')].map(t => ({
     label: (t as HTMLElement).innerText.replace(/\s*\(\d+\)/, '').trim(),
@@ -113,6 +159,7 @@ const norm = (t: string) => t.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
  * see. Taken live so the check never depends on a record that has since been edited or removed.
  */
 async function recordOnlyFullCanSee(tab: string): Promise<{ q: string; row: string } | null> {
+  await actAs(full);
   const terms = [BROAD, ...(await entityTerms(full.s.page, tab, 8))].filter(Boolean) as string[];
   for (const q of terms) {
     const tabs = await tabsAs(full, q);
@@ -141,17 +188,20 @@ const DENIED: [string, string, RegExp, string][] = [
 for (const [cid, tab, permRe, areaName] of DENIED) {
   test(`${cid} — without ${areaName} access, no ${tab.toLowerCase()} appear @${cid}`, async () => {
     test.skip(!BROAD, 'no query on this environment matches more than one kind of record');
-    test.skip(has(limited, permRe),
-      `the lower-permission login now HOLDS ${areaName} access, so it cannot show the absence this case is about. `
-      + `It holds: ${limited.perms.join(', ')}. Point GS_LIMITED_ENVF at a login without ${areaName}.`);
+    const who = lacking(permRe);
+    test.skip(!who,
+      `no lower-permission person here lacks ${areaName} access, so the absence this case is about cannot be shown. `
+      + `The technician holds: ${limited.perms.join(', ')}`
+      + (narrow ? `; the ${narrow.label.replace(/^the /, '')} holds: ${narrow.perms.join(', ')}` : '')
+      + `. Every role on this environment includes it.`);
     test.skip(!has(full, permRe),
       `the full-access login does not hold ${areaName} access either, so there is no difference to compare`);
     const seed = await recordOnlyFullCanSee(tab);
     test.skip(!seed, `the full-access person finds no ${tab.toLowerCase()} on this environment, so there is nothing to hide`);
     // the same query, as the person without that access
-    const tabs = await tabsAs(limited, seed!.q);
+    const tabs = await tabsAs(who!, seed!.q);
     const mine = tabs.find(x => x.label.toLowerCase() === tab.toLowerCase());
-    const rows = await rowsAs(limited, seed!.q);
+    const rows = await rowsAs(who!, seed!.q);
     const leaked = rows.filter(r => norm(r) === norm(seed!.row));
     expect(leaked, `a person without ${areaName} access was shown a ${tab.toLowerCase()} row: ${seed!.row.slice(0, 110)}`)
       .toEqual([]);
@@ -171,12 +221,13 @@ const FLIP: [string, string, RegExp, string][] = [
 for (const [cid, tab, permRe, areaName] of FLIP) {
   test(`${cid} — ${areaName}: the same record is shown to one person and withheld from the other @${cid}`, async () => {
     test.skip(!BROAD, 'no broad query on this environment');
-    test.skip(!has(full, permRe) || has(limited, permRe),
-      `this pair of logins cannot show the difference for ${areaName}: full has it = ${has(full, permRe)}, `
-      + `lower-permission has it = ${has(limited, permRe)}. Both must differ for the comparison to mean anything.`);
+    const who = lacking(permRe);
+    test.skip(!has(full, permRe) || !who,
+      `no pair of logins here can show the difference for ${areaName}: full has it = ${has(full, permRe)}, `
+      + `and every lower-permission person available holds it too. Both must differ for the comparison to mean anything.`);
     const seed = await recordOnlyFullCanSee(tab);
     test.skip(!seed, `no ${tab.toLowerCase()} is visible even to the full-access person, so there is nothing to compare`);
-    const asLimited = await rowsAs(limited, seed!.q);
+    const asLimited = await rowsAs(who!, seed!.q);
     expect(asLimited.filter(r => norm(r) === norm(seed!.row)),
       `the same ${tab.toLowerCase()} row is visible to a person without ${areaName} access:\n  ${seed!.row.slice(0, 120)}`)
       .toEqual([]);
@@ -288,11 +339,12 @@ test('C55721 — a near-miss spelling does not leak a record you may not see @C5
 });
 
 test('C55719 — a contact match does not surface a company you may not see @C55719', async () => {
-  test.skip(!has(full, /customer/i) || has(limited, /customer/i),
-    'both logins hold Customers access, so a hidden parent company cannot be demonstrated with this pair');
+  const who = lacking(/customer/i);
+  test.skip(!has(full, /customer/i) || !who,
+    'every lower-permission person available holds Customers access, so a hidden parent company cannot be demonstrated');
   const seed = await recordOnlyFullCanSee('Customers');
   test.skip(!seed, 'no customer is visible even to the full-access person');
-  const asLimited = await rowsAs(limited, seed!.q);
+  const asLimited = await rowsAs(who!, seed!.q);
   expect(asLimited.filter(r => norm(r) === norm(seed!.row)), 'a hidden company was surfaced through a contact match').toEqual([]);
 });
 
