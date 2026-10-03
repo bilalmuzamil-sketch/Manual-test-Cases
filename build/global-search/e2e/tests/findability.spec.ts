@@ -1,5 +1,5 @@
 import { test, expect } from 'playwright/test';
-import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
+import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
 import { resolveTerm } from '../fixtures/anchors.js';
 import { search, rowsOf, contains } from '../fixtures/search.js';
 
@@ -33,6 +33,21 @@ const CUSTOMER = 'ZZAUTOTEST Bridgeport Hauling';
 const VENDOR   = 'ZZAUTOTEST Kestrel Parts Supply';
 const PART     = 'ZZAUTOTEST Brake Chamber';
 const ASSET    = 'ZZT-4471';
+
+/**
+ * Everything stored on a record, as one string: the list row's fields, and for a customer the full
+ * record including its contacts (there is no contacts list; /api/customers/view/<id> carries them).
+ */
+async function recordText(kind: 'customer' | 'vendor' | 'asset', name: string): Promise<string> {
+  const list = kind === 'customer' ? '/api/customers' : kind === 'vendor' ? '/api/parts-catalogue/vendors' : '/api/vehicles';
+  const r: any = await api(s.page, 'GET', `${list}?search=${encodeURIComponent(name)}&limit=25`);
+  const rows: any[] = r?.body?.data?.collection ?? [];
+  const row = rows.find((x) => [x.name, x.unit].some((v) => String(v ?? '').trim() === name)) ?? rows[0];
+  if (!row) return '';
+  if (kind !== 'customer') return JSON.stringify(row);
+  const v: any = await api(s.page, 'GET', `/api/customers/view/${row.id}`);
+  return JSON.stringify(row) + JSON.stringify(v?.body?.data ?? {});
+}
 
 /** Each row: [C-id, what a person types, which tab, what must come back]. */
 const FIND: [string, string, string, string][] = [
@@ -80,7 +95,17 @@ for (const [cid, query, tab, expected] of FIND) {
      * query, this environment cannot answer the question.
      */
     const ownRow = byName.find((r) => r.toLowerCase().includes(expected.toLowerCase())) ?? '';
-    test.skip(!ownRow.toLowerCase().includes(query.toLowerCase()),
+    /**
+     * 🔴 READ THE RECORD, NOT ONLY ITS ROW (2026-10-03). A result row is a summary - it shows no
+     * e-mail, website, contact name, job title, plate or serial number - so judging "does the record
+     * carry this?" from the row text could never succeed for those fields, and eight checks stood
+     * down on staging though the seeded records hold every value. The record's own stored details
+     * are read as well; spaces and punctuation are ignored, so "419-555-0143" matches "(419) 555-0143".
+     */
+    const stored = await recordText(tab === 'Assets' ? 'asset' : tab === 'Vendors' ? 'vendor' : 'customer', expected);
+    const flat = (t: string) => t.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const carries = ownRow.toLowerCase().includes(query.toLowerCase()) || flat(stored).includes(flat(query));
+    test.skip(!carries,
       `"${expected}" on this environment does not carry "${query}" — its row reads "${ownRow.slice(0, 110)}". `
       + `The staging copy did; this one does not, so a miss here would say nothing about the field.`);
     const p = await search(s.page, query, tab);
