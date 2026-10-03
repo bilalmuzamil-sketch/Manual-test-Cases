@@ -57,3 +57,9 @@ Fresh jobs, all work order S2-9379, all created this pass:
 
 ## Comment 77811 shortened (QA lead: *"The comment is too big. We just need something like whats happening vs what it should be that is it."*)
 Updated in place: what's happening (2 items) · what it should be · 2 screenshots. Unused attachments 61734 and 61735 deleted. Read back: 2 media `type=file`, 1 list with 2 items, mention = Dipesh. Text saved as `comment-77811-short.txt`.
+
+## QA lead's answers (3 Oct) and the follow-up
+- *"Big jobs" includes long single-day jobs?* → **"Yes"**. *Edit the old comment 77784?* → **"Dont edit old comment"** — 77784 left untouched.
+- **Observed (05:3x Z, same build):** Brandi Smith, ordinary 8-hour job Wed Oct 21 9 AM–5 PM (fresh, S2-9379, `--shift --blue`, no `--pinned-text`): name at x 606 when opened; scrolled to 4 PM the bar sits at 523–740 with **no name**. On the same screen Emily Madden's continuous multi-day job (Oct 20 2 PM → Oct 21 8 PM) keeps its name pinned. Exhibit `ev/05-long-single-day-job-loses-name-hd.png`.
+- **Comment 77811 updated in place** with item 3 (long single-day job) + exhibit 05 (attachment uploaded). Pre-post gate: build `v26.40.2-b57d7c7`, last-modified Fri 02 Oct 07:49:51 GMT, etag `69a4a9ec…` unchanged; ticket still Code Review, no new comment since Chris 77810. Read back: 3 media `type=file` in order, 1 list of 3 items, mention = Dipesh, AI-fingerprint scan empty.
+- **Not yet observed (Rule 96 cells still open):** a single-day job **wider than the screen** (14 h, Jason Johnson, Oct 21 7 AM – 9 PM) and long single-day jobs in **Week view**. The create call failed because the **QA sign-in expired** (`/api/auth/me` → 401 `sso_required`; the app and API hosts themselves answer 200). Needs fresh `.qa.shopview.com` cookies.
