@@ -20,6 +20,7 @@ import type { FullConfig } from 'playwright/test';
 import seedEverything from './seed.js';
 import preflight from './preflight.js';
 import { writeRunStatus } from './fixtures/data.js';
+import { resetTechnicianRole } from './fixtures/roles.js';
 
 export default async function globalSetup(config: FullConfig): Promise<void> {
   // 🔴 ONE WORKER, ENFORCED — NOT JUST CONFIGURED. Every sign-in ends the previous session of the
@@ -39,5 +40,8 @@ export default async function globalSetup(config: FullConfig): Promise<void> {
   } else {
     await seedEverything();
   }
+  // Before any test: put the Technician role back to its template and record that proven default.
+  // The access checks edit this role and restore it to exactly this (see fixtures/roles.ts).
+  await resetTechnicianRole();
   await preflight();
 }

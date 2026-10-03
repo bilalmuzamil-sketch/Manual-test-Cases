@@ -1,6 +1,7 @@
 import { test, expect } from 'playwright/test';
 import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
 import { resolveTerm } from '../fixtures/anchors.js';
+import { TECH_ROLE as TECH_ROLE_ID, technicianBaseline } from '../fixtures/roles.js';
 import { search, rowsOf, contains } from '../fixtures/search.js';
 
 /**
@@ -11,7 +12,7 @@ import { search, rowsOf, contains } from '../fixtures/search.js';
  * then READ BACK — a write that returns success is not proof it saved (see the note below).
  * Do not run this file against anything but a disposable QA branch.
  */
-const TECH_ROLE = process.env.GS_TECH_ROLE || 'af8d02b5-ecd1-4205-a82f-32a4d5bb1015';
+const TECH_ROLE = TECH_ROLE_ID;
 const HEAVY_DUTY = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';
 const LETHBRIDGE = 'f8a8b802-7780-4b16-bf10-343caeb616b2';
 
@@ -43,8 +44,14 @@ test.beforeAll(async () => {
    * person and compares the same record. That is the approach the QA lead asked for on
    * 2026-09-24, and it is why this file is not being repaired to edit roles on production.
    */
-  const role = await api(s.page, 'GET', `/api/roles/${TECH_ROLE}`);
-  baselineRole = (role.body as any)?.data ?? null;
+  /**
+   * 🔴 THE BASELINE IS THE PROVED TEMPLATE, NEVER THE ROLE AS IT STANDS NOW. Reading the live role
+   * here is what broke staging: after a timeout Playwright re-runs this beforeAll in a fresh worker,
+   * which read the role as the last check had left it and later "restored" it to that. The run's
+   * global setup resets the role on the roles screen and writes the result; only that is trusted.
+   */
+  baselineRole = technicianBaseline();
+  if (!baselineRole) console.log('no proven technician default for this run (fixtures/roles.ts) — the role checks stand down');
   baselinePerms = Array.isArray(baselineRole?.fe_permissions)
     ? baselineRole.fe_permissions.map((p: any) => p.code).sort() : [];
   console.log(baselineRole
@@ -164,8 +171,8 @@ async function asTechnicianWith(permissionIds: string[], toggles: Record<string,
  * and scheduleView. Remove one and the test "fails" for a reason that is not the product.
  */
 test('C45142 — no work-order access means no jobs in search @C45142', async () => {
-  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
-    + 'environment. The same ground is covered without mutating anything by '
+  test.skip(!baselineRole, 'this check edits the technician role, and this run has no proven default for it (the role '
+    + 'is not on this environment, or the run-start reset did not complete - see results/run-status.json). The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   const siblings = ['workOrdersView', 'woPickParts', 'workOrderLinesCreateAndEdit', 'woTechViewMode',
                     'scheduleView', 'woFullViewMode', 'woOrderParts', 'woReviewWorkOrders', 'workOrdersCreateAndEdit'];
@@ -181,8 +188,8 @@ test('C45142 — no work-order access means no jobs in search @C45142', async ()
 
 test('C45144 — parts appear only with Catalog & Inventory access @C45144', async () => {
   test.setTimeout(300_000);   // two role edits and two searches; staging answered slowly on 2026-10-02
-  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
-    + 'environment. The same ground is covered without mutating anything by '
+  test.skip(!baselineRole, 'this check edits the technician role, and this run has no proven default for it (the role '
+    + 'is not on this environment, or the run-start reset did not complete - see results/run-status.json). The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   const all = baselineRole.fe_permissions.map((p: any) => p.id);
   const parts = idsOf(['catalogInventoryView'])[0];
@@ -193,8 +200,8 @@ test('C45144 — parts appear only with Catalog & Inventory access @C45144', asy
 });
 
 test('C45146 — removing customer access removes customers AND vehicles @C45146', async () => {
-  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
-    + 'environment. The same ground is covered without mutating anything by '
+  test.skip(!baselineRole, 'this check edits the technician role, and this run has no proven default for it (the role '
+    + 'is not on this environment, or the run-start reset did not complete - see results/run-status.json). The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   const all = baselineRole.fe_permissions.map((p: any) => p.id);
   const cust = idsOf(['customersView'])[0];
@@ -205,8 +212,8 @@ test('C45146 — removing customer access removes customers AND vehicles @C45146
 });
 
 test('C45147 — a time-clock-only person gets nothing at all @C45147', async () => {
-  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
-    + 'environment. The same ground is covered without mutating anything by '
+  test.skip(!baselineRole, 'this check edits the technician role, and this run has no proven default for it (the role '
+    + 'is not on this environment, or the run-start reset did not complete - see results/run-status.json). The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   await asTechnicianWith(idsOf(['timesheetsView']));
   const p = await search(s.page, FIXTURE);
@@ -222,8 +229,8 @@ test('C45147 — a time-clock-only person gets nothing at all @C45147', async ()
  */
 test('C45143 — a part-sales role sees part sales but not parts or suppliers @C45143', async () => {
   test.setTimeout(300_000);   // two role edits and two searches; staging answered slowly on 2026-10-02
-  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
-    + 'environment. The same ground is covered without mutating anything by '
+  test.skip(!baselineRole, 'this check edits the technician role, and this run has no proven default for it (the role '
+    + 'is not on this environment, or the run-start reset did not complete - see results/run-status.json). The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
   // 🔴 THROUGH THE SAME SWITCH-AND-PROVE PATH AS EVERY OTHER CHECK. This one switched by hand and
   // never moved to the seeding shop, so it searched the technician's own shop and found no part
@@ -251,8 +258,8 @@ test.describe('shop scoping', () => {
   let heavyJob = '', lethJob = '';
 
   test('C45151 · C45152 · C55684 — search is limited to the shop you are in, and follows you @C45151 @C45152 @C55684', async () => {
-  test.skip(!baselineRole, 'this check edits the technician role, which does not exist on this '
-    + 'environment. The same ground is covered without mutating anything by '
+  test.skip(!baselineRole, 'this check edits the technician role, and this run has no proven default for it (the role '
+    + 'is not on this environment, or the run-start reset did not complete - see results/run-status.json). The same ground is covered without mutating anything by '
     + 'permissions-two-accounts.spec.ts, which compares a full-access person with a lower-permission one.');
     test.setTimeout(300_000);
     await asAdmin();

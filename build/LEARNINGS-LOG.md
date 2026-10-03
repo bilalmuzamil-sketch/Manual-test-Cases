@@ -5295,3 +5295,24 @@ entirely (709 lines changed for 7 added). Detect each file's indent and escaping
 same way.
 **Reusable rule:** a seeder that can detect drift but not repair it reports the same red forever. Every
 record type needs a repair route, or it is a one-shot seed, not a reseed.
+
+### L0298
+**What happened (2026-10-02/03, Global Search e2e on staging):** `access-and-location.spec.ts` edits the
+shared **Technician** role (62 people hold it on staging) and restores it in `afterAll` to the baseline
+read in `beforeAll`. A test timed out; Playwright tore the worker down and ran `beforeAll` AGAIN in a
+fresh worker, which read the role **as the previous check had left it** (time-clock only), called that
+the baseline, and "restored" it to exactly that — logging `restored identical to baseline: true`. The
+role sat without work orders, customers or schedule for about an hour, until a container restart
+killed a later run mid-edit and its first log line showed the impossible baseline. Repaired on the
+roles screen: Administration → Roles & Permissions → Technician pencil → **Reset to Template** → Save
+went ENABLED (proof of drift) → "Confirm Permission Updates" listed the damage → Save. Read back: the
+six template permissions.
+**Reusable rule:** a test that mutates shared state must never take "the state before I started" from
+the live system inside a hook that can re-run. Prove the default once per RUN (global setup, Rule 118 —
+the template, not the current value), write it to a file, and restore to the file. And "restored
+identical to baseline: true" proves nothing about the baseline — check the baseline itself.
+Also measured: the role edit page is `/administration/roles-permissions/<id>/edit` (Settings lives
+under `/administration`, not `/settings`); its Save sends `PUT /api/roles/<id>` with camelCase
+`fePermissions`/`viewMode`/`crossToggles`; there is no template-read API (`/api/role-templates/<id>` 404s),
+so the screen is the only proof; and the role's view mode always adds its own view permission
+(`woTechViewMode` / `woFullViewMode`) even when saved without it.
