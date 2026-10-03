@@ -160,3 +160,9 @@ nothing new"* — so it is visible that the check ran.
 ## 8. A "remaining issue" comment to a developer (QA lead, 2026-10-03)
 *"The comment is too big. We just need something like whats happening vs what it should be that is it."*
 Keep it to: the mention · a title · **What's happening** (one line per issue, with one example on the branch) · **What it should be** (one line, naming where it comes from) · the screenshots. No full step lists, no tables, no "for reference" sections. Example: SV-8552 comment 77811.
+
+## 9. When the fix is only partial (Standing Rule 97, QA lead 2026-10-03)
+- The QA comment's first panel is **not green**: *"OVERALL QA STATUS: PARTIALLY PASSED"*, then one line — the details of what passed are below, and the remaining issues to be fixed are in a separate comment.
+- The remaining issues go in **their own comment** to the developer, in the §8 short format.
+- **Never** a "things I did not treat as faults" section. Anything that looks wrong goes to the QA lead as a question, with steps for him to reproduce it; he decides whether it joins the remaining-issues comment.
+- Green *"OVERALL QA STATUS: PASSED"* only when every point is verified fixed.

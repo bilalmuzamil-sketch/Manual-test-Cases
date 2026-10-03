@@ -100,6 +100,9 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **GREEN "OVERALL QA STATUS: PASSED" ONLY WHEN THE TICKET IS 100% FIXED (Standing Rule 97).** Anything less =
+>   "PARTIALLY PASSED" (non-green), remaining issues in a SEPARATE comment to the dev, and NO "not treated as a fault"
+>   section — ask the QA lead instead, with steps for him to reproduce it.
 > - **BEFORE ANY PASS/FAIL VERDICT — BUILD THE VARIANT MATRIX FIRST (Standing Rule 96):** list every KIND of the
 >   thing the requirement names (each creation mode, first/middle/last, narrow/wide, every view), seed and observe
 >   each one, and never write PASSED for more than the cells you actually observed. (SV-8552, 2026-10-03.)
@@ -5197,6 +5200,40 @@ deliver the 7-tab management report.
     lead plainly and first**, with what was and was not covered — never soften it, never let him find it from someone
     else. Canonical record: `build/sv8552-point4-recheck-2026-10-03/FINDINGS.md` (the matrix that should have existed
     on 2 Oct). Ties to Standing Rules 12, 17, 40, 50, 66, 68, 72, 76, 77, 80, 85, 87 and 91.
+
+97. **GREEN "OVERALL QA STATUS: PASSED" ONLY FOR A 100% VERIFIED FIX — ANYTHING LESS IS "PARTIALLY PASSED", THE
+    REMAINING ISSUES GO IN A SEPARATE COMMENT, AND THERE IS NO "NOT TREATED AS A FAULT" SECTION (all projects).**
+    USER DIRECTIVE (2026-10-03, verbatim): *"Also remember, when its not a full fix the title of your comment should
+    not say OVERALL QA PASSED in Green. Rather it should say Its Partially passed and the details are mentioned below
+    the remaining issues to be fixed are posted in a separate comment above. Then in the new comment put what is
+    remaining to be fixed, and there is nothing like "I did not treat them as fault" if there is a fault and believe it
+    is not normal, ask me if that should also be the part of the new comment where we are asking the dev to fix
+    something, but do give steps of replication to me to replicate that too. The Green Overall passed comment should
+    ONLY be when the ticket is fully 100% verified to be a fix."*
+    **(a) THE GREEN PASSED PANEL IS RESERVED.** `OVERALL QA STATUS: PASSED` in a green panel is posted **only** when
+    every point of the ticket — every PO point, every acceptance criterion, every variant (Rule 96) — is verified
+    fixed. **One point not fully fixed means it is not a PASS.**
+    **(b) A PARTIAL FIX GETS A "PARTIALLY PASSED" TITLE.** The QA comment opens with a **non-green** panel reading
+    **"OVERALL QA STATUS: PARTIALLY PASSED"**, followed by one plain line: the details of what passed are below, and
+    **the remaining issues to be fixed are posted in a separate comment**. The passed details (checks table, exhibits)
+    follow as usual.
+    **(c) THE REMAINING ISSUES GO IN THEIR OWN COMMENT**, addressed to the developer, in the short format (title
+    *"Remaining issue to be fixed"* · **What's happening**, one line each with an example on the branch · **What it
+    should be**, one line with its source · annotated screenshots) — `build/JIRA-TICKET-STANDARD.md` §8. Canonical
+    example: SV-8552 comment 77811.
+    **(d) NO "THINGS I DID NOT TREAT AS FAULTS" SECTION — EVER.** If I see something I believe is **not normal**, I do
+    not decide on my own that it is acceptable and file it under a "not a fault" heading. I **ASK THE QA LEAD whether
+    it belongs in the remaining-issues comment**, and with the question I give him **steps to reproduce it himself**
+    (exact screen, data, clicks, and what to look at). He decides; until he does it is an OUTSTANDING item (Rule 36),
+    not a footnote. This is Rule 91 (a skip is not mine to decide) applied to judgement calls about faults.
+    **(e) THE PRE-POST GATE (Rule 72) CHECKS IT:** a green panel with any point unverified or not fixed, or any
+    "not treated as a fault" wording, means the comment is not ready to post.
+    **RATIONALE, 2026-10-03 (SV-8552):** comment 77784 carried a green *"OVERALL QA STATUS: PASSED"* while point 4 was
+    only partly fixed, and it closed with *"Three things I looked at closely and did not treat as faults"* — three
+    judgement calls I made on the QA lead's behalf without asking. Ties to Standing Rules 7, 25, 36 (an unanswered ask
+    is outstanding), 61 (ask when a judgement is not mine), 65 (human voice), 72 (the pre-post gate), 77 step 9 (**this
+    rule supersedes its "deliberately not treated as a fault" clause (f)**), 83 (failure reproduction steps), 84, 90
+    (a FAILED comment's order), 91 (a skip is not mine to decide) and 96 (an overall PASS is earned).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
