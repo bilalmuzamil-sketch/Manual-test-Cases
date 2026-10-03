@@ -40,10 +40,38 @@ export async function createCustomer(page: Page, name: string, extra: Record<str
     return { status: r.status, id, body: t.slice(0, 200) };
   }, [name, extra, APIH] as const);
   if (out.status !== 201 && out.status !== 200) {
+    // 🔴 ALREADY THERE -> USE IT AND MOVE ON (QA lead, 2026-10-02: data that is already on the branch
+    // must never stall a run). The shop refuses a second customer with the same name - "Company with
+    // provided name already exists." - which is what a re-run against the same branch meets. So find
+    // that customer by its exact name and bring the details THIS run depends on up to date, then
+    // carry on with it. Without this two ranking checks stood down on their second run (2026-10-03).
+    if (/already exists/i.test(out.body)) {
+      const adopted = await adoptCustomer(page, name, extra);
+      if (adopted) { console.log(`customer "${name}" already existed — using it, with this run's details applied`); return adopted; }
+    }
     console.log(`seed customer "${name}" failed: HTTP ${out.status} ${out.body}`);
     return null;
   }
   return { id: out.id, name };
+}
+
+/** Find a customer by its exact name and apply `extra` to it (the whole record is sent back - a partial
+ *  write is ignored by this endpoint). Returns null if it cannot be found or updated. */
+async function adoptCustomer(page: Page, name: string, extra: Record<string, unknown>): Promise<Seeded | null> {
+  const res = await page.evaluate(async ([n, ex, host]) => {
+    const r = await fetch(`https://${host}/api/customers?search=${encodeURIComponent(n as string)}&limit=25`, { credentials: 'include' });
+    const rows = ((await r.json().catch(() => null))?.data?.collection ?? []) as any[];
+    const c = rows.find((x) => String(x.name).trim() === String(n).trim());
+    if (!c) return { id: '', status: r.status, note: `not found among ${rows.length} rows` };
+    if (!Object.keys(ex as object).length) return { id: c.id, status: 200, note: 'nothing to update' };
+    const w = await fetch(`https://${host}/api/customers/change`, {
+      method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...c, company_id: c.id, ...(ex as object) }),
+    });
+    return { id: w.status < 300 ? c.id : '', status: w.status, note: (await w.text()).slice(0, 160) };
+  }, [name, extra, APIH] as const);
+  if (!res.id) console.log(`could not use the existing customer "${name}": ${res.status} ${res.note}`);
+  return res.id ? { id: res.id, name } : null;
 }
 
 /**

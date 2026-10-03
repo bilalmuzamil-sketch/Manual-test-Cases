@@ -122,7 +122,9 @@ async function asAdmin() {
   await api(s.page, 'POST', '/api/switch-user', { user_id: adminStaffId });
   await s.page.waitForTimeout(800);
   await api(s.page, 'POST', '/api/iam/change-location', { workplace_id: HEAVY_DUTY, workplace_timezone: 'America/Edmonton' });
-  await s.page.reload({ waitUntil: 'load' });
+  // A fresh page, never a reload: the page left open is often the "Access restricted" screen the last
+  // (lesser) role was shown, and searching from a reload of it hung until the test timed out.
+  await s.page.goto('/dashboard', { waitUntil: 'load' });
   await s.page.waitForTimeout(3_000);
 }
 
