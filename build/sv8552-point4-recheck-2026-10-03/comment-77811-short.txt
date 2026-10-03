@@ -1,0 +1,13 @@
+[~accountid:712020:ae9c04d8-74e7-48c4-91fc-370caedf9615]
+
+h3. Remaining issue to be fixed
+
+*What's happening*
+# *Day view:* a multi-day job booked day by day loses its name when you scroll right - on every day, including the last day. Example: S2-9379 on Emily Madden, Oct 27 - 29.
+# *Week view (narrow window):* a multi-day job booked as one block inside a single week loses the start of its name when you scroll right. Example: S2-9379 on Emily Madden, Oct 13 - 15.
+
+*What it should be*
+The job name stays pinned at the left edge whenever the bar is cut off, for every multi-day job, in Day and Week view - the same as full-day jobs do now (Chris, point 4 and his last comment).
+
+!01-last-day-name-scrolls-away-hd.png|width=1400,height=733!
+!04-week-view-narrow-continuous-job-loses-name-hd.png|width=700,height=889!

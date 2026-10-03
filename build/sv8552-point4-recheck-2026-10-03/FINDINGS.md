@@ -54,3 +54,6 @@ Fresh jobs, all work order S2-9379, all created this pass:
 | Month 1700 / 1100 / 700 | names fully visible (700 px: month only 29 px wider than the window, ≤ 23 px lost) | same | — |
 
 **Conclusion, held to Rule 96 (facts per specimen, no theory):** point 4 is not met for (a) day-by-day multi-day jobs in Day view, on every one of their days, and (b) continuous multi-day jobs that sit inside one week, in Week view on a narrower window. Comment 77811 reported both; the 5-day jobs reproduce both. **Open question, not decided by me:** whether Chris's *"Big jobs should follow suit"* also covers long single-day jobs (Brandi's 8-hour job loses its name too). Point 4 itself names only *"full-day and multi-day jobs"*.
+
+## Comment 77811 shortened (QA lead: *"The comment is too big. We just need something like whats happening vs what it should be that is it."*)
+Updated in place: what's happening (2 items) · what it should be · 2 screenshots. Unused attachments 61734 and 61735 deleted. Read back: 2 media `type=file`, 1 list with 2 items, mention = Dipesh. Text saved as `comment-77811-short.txt`.

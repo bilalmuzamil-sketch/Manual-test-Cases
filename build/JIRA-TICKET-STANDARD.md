@@ -156,3 +156,7 @@ For each yes, write it down **in the same turn** where it will be found next tim
 
 Then commit and push (Rule 29). If nothing needs adding, say so in the findings doc — *"learning check:
 nothing new"* — so it is visible that the check ran.
+
+## 8. A "remaining issue" comment to a developer (QA lead, 2026-10-03)
+*"The comment is too big. We just need something like whats happening vs what it should be that is it."*
+Keep it to: the mention · a title · **What's happening** (one line per issue, with one example on the branch) · **What it should be** (one line, naming where it comes from) · the screenshots. No full step lists, no tables, no "for reference" sections. Example: SV-8552 comment 77811.
