@@ -34,3 +34,23 @@ SV-8552 comment **77811** for Dipesh — *"Remaining issue to be fixed"*, two is
 **Data left on the branch (per-ticket branch, no cleanup):** shift `84a74d81…` (Oct 13–15 continuous) and series `29356a89…` (Oct 27–29), both S2-9379 on Emily Madden.
 
 **Learning check (Rule 95/82):** Standing Rule 96 (variant matrix before any verdict), LESSONS-INDEX row, playbook §Schedule recipe for the two booking modes.
+
+## Second pass — 5-day jobs, at the QA lead's request (3 Oct ~05:15–05:30Z, build `v26.40.2-b57d7c7`)
+QA lead: *"Make a 5 days job, and read point 4 again from chris and the last comment of chris too."* **Nothing posted in this pass.**
+
+Fresh jobs, all work order S2-9379, all created this pass:
+- **David Haynes** — one continuous block, Thu Oct 22 9 AM → Mon Oct 26 5 PM (crosses the weekend and the week boundary)
+- **Julie Olson** — day by day, Thu 22 · Fri 23 · Mon 26 · Tue 27 · Wed 28 (weekend skipped by the app)
+- **Karen Peck** — one continuous block, Mon Nov 2 9 AM → Fri Nov 6 5 PM (inside one week)
+- **John Ortiz** — day by day, Mon Nov 2 → Fri Nov 6
+- **Brandi Smith** — an ordinary single-day 8-hour job, Wed Oct 21 9 AM–5 PM
+
+| View / window | Continuous 5-day (David, Karen) | Day-by-day 5-day (Julie, John) | Single-day 8 h (Brandi) |
+|---|---|---|---|
+| Day 1700, every day incl. the LAST day, 5 scroll positions | **name pinned on all 7 days checked** (only shrinks when the visible bar is narrower than the name) | **name scrolls away on all 10 days checked** | **name scrolls away** |
+| Week 1700 | week fits, nothing cut | week fits, nothing cut | — |
+| Week 1100 / 700, job inside one week (Karen / John, Nov 2–8) | **name scrolls away** (700 px: "air Blackfoot" only) | pinned | — |
+| Week 1100 / 700, job crossing the week (David / Julie, Oct 19–25 and Oct 26–Nov 1) | pinned | pinned | — |
+| Month 1700 / 1100 / 700 | names fully visible (700 px: month only 29 px wider than the window, ≤ 23 px lost) | same | — |
+
+**Conclusion, held to Rule 96 (facts per specimen, no theory):** point 4 is not met for (a) day-by-day multi-day jobs in Day view, on every one of their days, and (b) continuous multi-day jobs that sit inside one week, in Week view on a narrower window. Comment 77811 reported both; the 5-day jobs reproduce both. **Open question, not decided by me:** whether Chris's *"Big jobs should follow suit"* also covers long single-day jobs (Brandi's 8-hour job loses its name too). Point 4 itself names only *"full-day and multi-day jobs"*.

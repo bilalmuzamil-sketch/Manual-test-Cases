@@ -5183,6 +5183,16 @@ deliver the 7-tab management report.
     same bar: it must predict every cell before it is told to anyone.**
     **THE PRE-POST GATE (Rule 72) NOW INCLUDES:** for every PASSED row, point at its matrix in the findings doc and
     confirm every cell is observed. **A PASSED row with no matrix behind it is not ready to post.**
+    **THE OVERALL VERDICT (added 2026-10-03, the QA lead: *"I need a gap corrected here you confidently skip things on
+    your own and mark ticket as overall QA passed"*):** **`OVERALL QA STATUS: PASSED` is EARNED, never the default
+    when nothing happened to fail.** Before it is written: **(a)** every point the PO/reporter wrote has its own matrix
+    and every cell is observed; **(b)** for every point, **the case MOST LIKELY TO FAIL was deliberately tried** — the
+    other creation mode, the last day, the narrow window, the other view — an attempt to BREAK it, not to confirm the
+    developer's summary; **(c)** any word in the requirement with more than one reading (*"big jobs"*, *"multi-day"*,
+    *"the edge"*) has the reading I used written down, and if I am not certain it is the PO's reading, **I ask before
+    passing**; **(d)** on a ticket where a PO has written numbered points, **the QA lead sees the per-point coverage
+    before an overall PASS is posted** (what kinds were tried, what was not). A point I could not fully cover makes the
+    overall verdict NOT PASSED until he decides.
     **HONESTY:** when the matrix finds that a verdict already given was wider than its evidence, **say so to the QA
     lead plainly and first**, with what was and was not covered — never soften it, never let him find it from someone
     else. Canonical record: `build/sv8552-point4-recheck-2026-10-03/FINDINGS.md` (the matrix that should have existed
