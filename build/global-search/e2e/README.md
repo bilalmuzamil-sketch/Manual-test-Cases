@@ -248,6 +248,12 @@ Three things to know, because each one used to break a run outside this folder:
   parallel workers log each other out. `--workers=4` or sharding stops the run before seeding, with
   that reason, instead of failing every test as if staging were down.
 
+**Proved on staging, 3 October 2026** (one spec file, 11 tests each time): `CI=1` from the
+repository root with `-c` → 11 passed · `--headed` under a virtual display (`xvfb-run`) → 11 passed ·
+the control: `--headed` with **no** display fails with *"you launched a headed browser without having
+a XServer running"*, which is what shows the window is real and not a hidden browser · `--workers=4` →
+refused before anything runs, with the reason.
+
 **For CI**, `ci/github-actions-example.yml` is a ready workflow (manual trigger; nightly and pull
 request triggers are there, commented out). It needs one repository secret, `GS_SSO`, plus Node,
 Python 3 and `npx playwright install --with-deps chromium`. It is an example, not switched on — turning
