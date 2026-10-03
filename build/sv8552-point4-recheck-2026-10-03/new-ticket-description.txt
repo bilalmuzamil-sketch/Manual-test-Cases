@@ -3,7 +3,7 @@ Found while testing [SV-8552|https://shopview.atlassian.net/browse/SV-8552]
 ----
 
 h3. Summary
-Three small display problems on the Schedule page. In Week view a job's name disappears when only a thin piece of its bar is left on screen. In Day view, choosing Create Event moves the whole timeline about 6 hours. On a day that opens at 8:30 AM there is no "8 AM" label at the start of the timeline.
+Four small display problems on the Schedule page. In Week view a job's name disappears when only a thin piece of its bar is left on screen. In Day view, choosing Create Event moves the whole timeline about 6 hours. On a day that opens at 8:30 AM there is no "8 AM" label at the start of the timeline. On a day the shop is closed, the 24 hours do not fit on a 1700 px wide screen.
 
 *Open the QA site to reproduce:* [https://sv8552.qa.shopview.com|https://sv8552.qa.shopview.com] (location *Staging Heavy Duty - 9919*).
 
@@ -52,6 +52,21 @@ Source: Dipesh's QA test plan for SV-8552 (section A) - _"Open Wednesday. It sta
 *Current:* no label at all before 9 AM.
 
 !C-no-8am-label-on-830-day-hd.png|width=1400,height=593!
+
+----
+
+h3. 4. Day view: on a closed day the 24 hours do not fit on a 1700 px wide screen
+*Steps to reproduce*
+# Make the browser window 1700 px wide.
+# Click *Schedule* > *Day*, then click *10* (October) in the small calendar. The shop is closed that day (Saturday).
+# Look at the right end of the hour labels: *10 PM* is cut off and *11 PM* is not on screen (picture below, box 1).
+# Scroll the timeline to the right end: now *12 AM* is off the left edge (picture below, box 2).
+
+*Expected:* on a closed day all 24 hours fit on the screen.
+Source: Dipesh's QA test plan for SV-8552 asks for a browser "at least 1680 px wide" and says (section F) _"Closed days open the old way (all 24 hours fit)."_ Note: Dipesh's later [comment|https://shopview.atlassian.net/browse/SV-8552?focusedCommentId=77238] says _"Large screens (wider than about 1770px): all 24 hours fit on the screen"_, so the two disagree for widths between 1680 and 1770 px.
+*Current:* at 1700 px the timeline is a little too short for 24 hours, so either end is always cut off.
+
+!D2-closed-day-24h-do-not-fit-hd.png|width=1360,height=726!
 
 ----
 

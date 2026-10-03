@@ -87,3 +87,9 @@ Not ours on the branch: an event "Title should stay multi day" (Emily Madden, 8:
 - **Comment 77811 updated in place:** @Dipesh, Chris 77810 quoted on top, items 1–3, **E folded into item 3** (QA lead ruled long single-day jobs are big jobs), rule, link to SV-10806. Read back: mention + 4 file media, SV-10806 link present.
 - **D excluded** — Dipesh 77238: *"Large screens (wider than about 1770px): all 24 hours fit on the screen"*; tested at 1700 px.
 - **Learning check (Rule 95 Part B):** the developer's test plan text is NOT lost when Powertools needs Google sign-in — it was pasted into this session earlier and is recoverable from the transcript; search it before calling a source unavailable.
+
+## 3 Oct (later) — D added to SV-10806 on the QA lead's "Yes"
+- Re-checked live 12:52Z, build `v26.40.2-b57d7c7`: Sat Oct 10 at a 1700 px window, timeline 523–1699, scrollable 72 px; at 0 the 10 PM label is cut (1673–1710) and 11 PM off screen; at the right end 12 AM is off the left (456–494). Same numbers as 11:20Z.
+- New exhibit `ev/D2-closed-day-24h-do-not-fit-hd.png` (old D caption's "production did the same on 1 Oct" removed — not re-checked today).
+- SV-10806: item 4 added; source quoted from the test plan (1680 px minimum + "Closed days open the old way (all 24 hours fit)") with Dipesh 77238's ">1770 px" quoted beside it, so the PO sees the conflict. Summary sentence and title updated. Read back: 4 sections, 4 file media, Medium.
+- Learning check: nothing new.
