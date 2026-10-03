@@ -198,12 +198,26 @@ test('C44881 — a kind with nothing the person may see shows no group at all @C
   }
 });
 
+/**
+ * 🔴 WHICH AREAS THIS PERSON LACKS - READ FROM THE FULL-ACCESS PERSON'S TABS (2026-10-03).
+ * These checks looked for the missing areas among the lower-permission person's OWN tabs. The product
+ * removes a forbidden kind's tab altogether, so there was never one to find: "keeps 3 areas and
+ * lacks 0", and three checks stood down on correct behaviour. The kinds the full-access person is
+ * offered for the same query, minus the ones this person holds, are the ones that must be hidden.
+ */
+async function lostAreas(q: string) {
+  const fullTabs = (await tabsAs(full, q)).filter((t) => !/^All$/i.test(t.label) && t.count > 0);
+  const limTabs = await tabsAs(limited, q);
+  const lost = fullTabs.filter((t) => !has(limited, permFor(t.label)))
+    .map((t) => ({ label: t.label, fullCount: t.count, count: limTabs.find((x) => x.label.toLowerCase() === t.label.toLowerCase())?.count ?? 0 }));
+  const kept = limTabs.filter((t) => !/^All$/i.test(t.label) && has(limited, permFor(t.label)));
+  return { lost, kept, limTabs, fullTabs };
+}
+
 test('C44882 — the counts and tabs are hidden with the group, not just the rows @C44882', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
-  const tabs = await tabsAs(limited, BROAD);
-  const denied = tabs.filter(t => !/^All$/i.test(t.label)
-    && !has(limited, permFor(t.label)));
-  test.skip(denied.length === 0, 'the lower-permission login holds every area, so nothing should be hidden');
+  const { lost: denied } = await lostAreas(BROAD);
+  test.skip(denied.length === 0, 'the full-access person is offered no kind here that the lower-permission person lacks');
   for (const t of denied) {
     expect(t.count, `the ${t.label} tab reports ${t.count} matches to a person without that access`)
       .toBeLessThanOrEqual(0);
@@ -212,9 +226,7 @@ test('C44882 — the counts and tabs are hidden with the group, not just the row
 
 test('C55720 — several missing areas are all hidden, and the rest still work @C55720', async () => {
   test.skip(!BROAD, 'no broad query on this environment');
-  const tabs = await tabsAs(limited, BROAD);
-  const kept = tabs.filter(t => !/^All$/i.test(t.label) && has(limited, permFor(t.label)));
-  const lost = tabs.filter(t => !/^All$/i.test(t.label) && !has(limited, permFor(t.label)));
+  const { lost, kept } = await lostAreas(BROAD);
   test.skip(kept.length === 0 || lost.length === 0,
     `this login is not a mixed case: it keeps ${kept.length} areas and lacks ${lost.length}`);
   for (const t of lost) expect(t.count, `${t.label} is still counted for a person without that access`).toBeLessThanOrEqual(0);
@@ -231,8 +243,8 @@ test('C55737 — records a person cannot see are not counted anywhere @C55737', 
   const fullAll = fullTabs.find(t => /^All$/i.test(t.label))?.count ?? -1;
   const limAll = limTabs.find(t => /^All$/i.test(t.label))?.count ?? -1;
   test.skip(fullAll < 0 || limAll < 0, 'the All tab carries no count for this query');
-  const lost = limTabs.filter(t => !/^All$/i.test(t.label) && !has(limited, permFor(t.label)));
-  test.skip(lost.length === 0, 'the lower-permission login is not short of any area');
+  const lost = (await lostAreas(BROAD)).lost;
+  test.skip(lost.length === 0, 'the full-access person is offered no kind here that the lower-permission person lacks');
   // the hidden kinds must be absent from the overall total too, not merely from their own tab
   expect(limAll, `the All count for the lower-permission person (${limAll}) is not lower than the full-access `
     + `person's (${fullAll}), although ${lost.map(t => t.label).join(', ')} should be hidden from them`)
