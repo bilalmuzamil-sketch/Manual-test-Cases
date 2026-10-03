@@ -1,0 +1,17 @@
+{
+  "_README": "Sample values the findability checks search for. EVERY ONE IS A VALUE OUR OWN SEEDING PUTS ON THE ENVIRONMENT, so it exists on every run, on every environment the suite seeds (2026-10-03). Before this the file was missing from the suite and the only copy anywhere held PRODUCTION's values, so on staging seven checks always stood down with 'no <value> on this environment'. If you change a seeded record, change its value here too.",
+  "customerName": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+  "_customerName": "seed-manifest-e2e.json e2e_lr_owner (name). The misspelling checks damage its longest word.",
+  "assetMake": "Freightliner",
+  "_assetMake": "seeded twelve times (seed-manifest.json and seed-manifest-gs-v2.json maker_name). Not 'Rowcheck': swapping two middle letters of an 8-letter word leaves 0.20 trigram overlap, below the 0.35 the requirement sets, so the check rightly declines; 'Freigthliner' scores 0.43.",
+  "assetPlate": "W-123786",
+  "_assetPlate": "seed-manifest-e2e.json e2e_lr_asset_1 (licence_plate) - carries the dash the 'punctuation is optional' check needs.",
+  "customerCity": "Marnston",
+  "_customerCity": "seed-manifest-e2e.json e2e_cust_phone (city) - one seeded customer only.",
+  "customerPost": "44872",
+  "_customerPost": "seed-manifest-e2e.json customers (postal_code).",
+  "customerState": "Ohio",
+  "_customerState": "seed-manifest-e2e.json customers (state_or_province - written by the repair step, since create drops it).",
+  "partVendor": "ZZSOFTHIT Supply Co",
+  "_partVendor": "the stocked part ZZSH-8101 carries this supplier once seed_po_from_manifest.py receives its purchase order (measured on staging 2026-10-03: vendor_name 'ZZSOFTHIT Supply Co', and searching the name returns the part)."
+}

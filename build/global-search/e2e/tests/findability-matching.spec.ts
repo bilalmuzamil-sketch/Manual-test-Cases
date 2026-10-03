@@ -200,7 +200,7 @@ const FIELDS: [string, string, string][] = [
   ['C53585', 'customerCity', 'city'],
   ['C53604', 'customerPost', 'postal code'],
   ['C44837', 'partVendor',   'the vendor on a part'],
-  ['C146220', 'customerPost', 'state or province'],
+  ['C146220', 'customerState', 'state or province'],   // was wired to the postcode by mistake
 ];
 for (const [cid, key, label] of FIELDS) {
   test(`${cid} — a record is findable by its ${label} @${cid}`, async () => {
