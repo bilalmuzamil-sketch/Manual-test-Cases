@@ -5237,6 +5237,13 @@ deliver the 7-tab management report.
     reasoning essays, no "why I think this is fine".** A question to the QA lead about a possible fault (clause d)
     meets the same bar: he must be able to SEE it and REPRODUCE it before he decides. Steps without a screenshot are
     an incomplete report.
+    **(g) THE REMAINING-ISSUES COMMENT HAS A FIXED LAYOUT, ON EVERY TICKET.** QA-lead directive (2026-10-03, verbatim):
+    *"this comment of Chris … should be on the top explaining the dev what is happening with the annotated screenshots.
+    Then a line break and below that line break the other things"* and *"remember that as a permanent rule for the new
+    tickets aswell. I do not want to repeat myself again and again"*. **TOP:** the PO's latest ask (link to his
+    comment), each failing item as one line + annotated screenshot + plain steps, then what it should be, quoting him.
+    **A LINE BREAK (`----`).** **BELOW:** the other items the QA lead has said yes to, each in the same one-line +
+    screenshot + steps form. **Nothing goes below the line without his yes** (clause d).
     **(e) THE PRE-POST GATE (Rule 72) CHECKS IT:** a green panel with any point unverified or not fixed, or any
     "not treated as a fault" wording, means the comment is not ready to post.
     **RATIONALE, 2026-10-03 (SV-8552):** comment 77784 carried a green *"OVERALL QA STATUS: PASSED"* while point 4 was

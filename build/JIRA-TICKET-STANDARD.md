@@ -167,3 +167,4 @@ Keep it to: the mention · a title · **What's happening** (one line per issue, 
 - **Never** a "things I did not treat as faults" section. Anything that looks wrong goes to the QA lead as a question, with steps for him to reproduce it; he decides whether it joins the remaining-issues comment.
 - Green *"OVERALL QA STATUS: PASSED"* only when every point is verified fixed.
 - **Every item reported, including questions to the QA lead about a possible fault:** one line of what is happening · an annotated screenshot · plain steps to reproduce. No paragraphs. POs want to see it, reproduce it and assign it — nothing more (Rule 97(f)).
+- **Remaining-issues comment layout (Rule 97(g)):** TOP = the PO's latest ask (linked), each failing item as one line + annotated screenshot + steps, then what it should be quoting the PO · `----` · BELOW = other items the QA lead approved, same form. Nothing below the line without his yes.
