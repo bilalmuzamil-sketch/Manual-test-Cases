@@ -159,3 +159,13 @@ STAGING** (2026-09-28 → 10-01, build **v26.39.1-02c6b6c**, org "Staging Heavy 
 
 ## 2026-10-05 · Rule 115 clarity pass — CLEAN
 Ran `check_tester_runnable.py` on all 55. PASS, 0 flagged (the suite had already been rewritten from robotic to plain). No changes.
+
+## 2026-10-05 · Rule 115 precondition pass (2nd tester complaint — CONFIRMED valid)
+Nebojsa said the preconditions were wrong — he was right. Verified on Production v26.40.7-e1021b1 (the eight Work
+Order settings confirmed live). Real scope was SMALL: most preconditions already named role/permissions/settings/route.
+Genuine gaps fixed (role + gating settings + concrete data, modelled on Nebojsa's own corrected cases): **C44594,
+C44595** (wizard cases — added the Admin role + the settings that make the wizard open: Require Tech Story ON etc.),
+**C44552** (settings case — added concrete customer/vehicle/WO/line setup). All 3 render fr-view clean and pass the gate.
+PROTECTED (left untouched, edited by others): Nebojsa (user 2) — C44596, C44597, C44601; Vladimir (user 1) — C44575,
+C44583, C44587, C44604, C44605. **C44596 is still vague but is Nebojsa's own edit, so left to him.** None of Vlad's 5
+needed a precondition fix (they were adequately written). Gate now flags only C44596 (Nebojsa's). Jargon check: clean.
