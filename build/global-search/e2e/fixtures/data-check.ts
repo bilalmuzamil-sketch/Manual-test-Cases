@@ -103,8 +103,13 @@ export async function ensureTestData(info: TestInfo): Promise<void> {
 
   // Who is the session right now? A lesser person must not check or create anything.
   const who = runEngine(WORK, 'seed.py', ['--whoami'], { SEED_PROFILE: profile, SEED_MANIFEST: PLAN_FILE.e2e });
-  let perms = 0;
-  try { perms = JSON.parse(who.out.trim().split('\n').pop() || '{}').permissions ?? 0; } catch { /* below */ }
+  let perms = 0, status = 0;
+  try { ({ permissions: perms = 0, status = 0 } = JSON.parse(who.out.trim().split('\n').pop() || '{}')); } catch { /* below */ }
+  if (status === 401) {
+    // the recorded session has ended (a permission check switching people ends it) - not a lesser person
+    info.annotations.push({ type: 'data', description: 'the recorded full-access session has ended since the last sign-in; relying on the run-start check' });
+    return;
+  }
   if (perms < Number(process.env.GS_FULL_PERMS_MIN || 40)) {
     info.annotations.push({ type: 'data', description: `the session is acting as a lesser person (${perms} permissions) right now; relying on the run-start check` });
     return;

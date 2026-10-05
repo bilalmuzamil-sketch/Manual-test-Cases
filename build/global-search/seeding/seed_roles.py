@@ -33,7 +33,7 @@ written here is READ BACK and the removal is proved, never assumed.
 
 Run:  python3 seed_roles.py [--confirm]
 """
-import json, os, sys, runpy
+import json, os, sys, runpy, urllib.parse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.environ.setdefault('SEED_MANIFEST', 'seed-manifest-gs-v2.json')
@@ -147,24 +147,38 @@ def main():
     # 🔴 A ROLE NOBODY HOLDS PROVES NOTHING (2026-10-05). The e2e permission checks act as a real
     # staff member (switch-user inside the full-access session), so each fixture role needs one person
     # on it. Found by email; created with the recipe in seed-manifest.json (POST /api/iam/create).
-    staff = []
-    try: staff = ((call('/api/staff?limit=300')['json'] or {}).get('data') or {}).get('collection') or []
-    except Exception: pass
-    wp = next((x.get('workplace_id') for x in staff if x.get('workplace_id')), None)
+    # 🔴 THE PERSON MUST WORK WHERE THE TEST DATA LIVES (2026-10-05). The first run put them in "QB
+    # Location" (the first workplace a list happened to show); the checks switch to Staging Heavy Duty,
+    # where every seeded record is. And 🔴 THE PLAIN STAFF LIST LEAVES THEM OUT (measured: 22 rows,
+    # neither new person among them, both found at once by ?search=), so look people up by search.
+    wps = ((call('/api/staff/my-workplaces')['json'] or {}).get('data')) or []
+    wps = wps.get('collection', []) if isinstance(wps, dict) else wps      # answered as {collection: [...]}
+    wp = next((w['id'] for w in wps if 'heavy duty' in str(w.get('name', '')).lower()), None) \
+        or next((w['id'] for w in wps if w.get('id')), None)
+    def find_staff(email):
+        r = call('/api/staff?search=' + urllib.parse.quote(email))
+        rows = ((r['json'] or {}).get('data') or {}).get('collection') or []
+        return next((x for x in rows if str(x.get('email', '')).lower() == email), None)
     for spec in WANTED:
         st = spec.get('staff'); rid = (state.get(spec['name']) or {}).get('id') or by_name.get(spec['name'])
         if not st or not rid: continue
-        have = next((x for x in staff if str(x.get('email', '')).lower() == st['email']), None)
+        have = find_staff(st['email'])
         if have:
-            ok = have.get('role_id') == rid or have.get('role_label') == spec['name']
-            print(f"  staff {st['email']:42} exists on {have.get('role_label')!r} {'✅' if ok else '🔴 WRONG ROLE'}"
-                  f" active={have.get('is_active')}")
+            ok = (have.get('role_id') == rid or have.get('role_label') == spec['name']) and have.get('workplace_id') == wp
+            print(f"  staff {st['email']:42} exists on {have.get('role_label')!r} at "
+                  f"{have.get('defaultWorkplaceName')!r} {'✅' if ok else '🔴 WRONG ROLE OR WORKPLACE'} active={have.get('is_active')}")
             if not ok and CONFIRM:
+                # 🔴 A MISPLACED PERSON IS REPLACED, NOT MOVED (2026-10-05). /api/staff/{id}/change takes a
+                # different workplace field and no departments; posting workplace_id there answered 201 and
+                # left the workplace EMPTY. Deleting and re-creating in the right workplace is clean.
                 sid = have.get('staff_id') or have.get('id')
-                r = call(f'/api/staff/{sid}/change', 'POST', {'first_name': st['first'], 'last_name': st['last'],
-                         'email': st['email'], 'workplace_id': have.get('workplace_id') or wp, 'role_id': rid})
-                print(f"       moved to {spec['name']!r} -> {r['status']} {'' if r['status'] < 300 else str(r['raw'])[:200]}")
-            continue
+                r = call(f'/api/staff/{sid}', 'DELETE')
+                print(f"       removed to re-create at the test workplace -> {r['status']}")
+                if r['status'] >= 300:
+                    continue
+                have = None
+            if have:
+                continue
         if not CONFIRM:
             print(f"  staff {st['email']:42} would create on {spec['name']!r}"); continue
         # 🔴 THE FIELD NAMES ARE SNAKE_CASE AND A DEPARTMENT IS REQUIRED (read from the product,
