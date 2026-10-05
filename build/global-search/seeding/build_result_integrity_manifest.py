@@ -277,7 +277,11 @@ R += [
  customer('ri_cust_same_b', f'{TWIN} Identical Name Cartage', ['CUST-B2'],
    'Kept as a single record. Its sibling cannot be created - see the note above - so this one '
    'serves only as a normal customer; CUST-B2 is marked not-applicable rather than unseeded.',
-   address='88 Different Street', find_by=('address_1', '88 Different Street'),
+   address='88 Different Street', find_by=('name', f'{TWIN} Identical Name Cartage'),
+   # 🔴 FOUND BY NAME since 2026-10-05. /api/customers/create DROPS the address, so a finder keyed
+   # on address_1 could never see the record it had just created, never repaired it, and the
+   # second create answered "Company with provided name already exists." (sv10740). Customer names
+   # are unique in this product (see above), so the name is an unambiguous finder.
    # The `na` here was withdrawn on the same day and for the same reason: it claimed a search for
    # the address "proves nothing about this record", and the measurement says otherwise - the row
    # that comes back IS this record, matched on address_line_1. The finder being an address is a
@@ -372,7 +376,9 @@ R += [
    'the two people matched. Neutral company name, so the hit is attributable to the contacts.'),
  contact('ri_contact_dualrep_1', 'ri_cust_dualrep', DUALREP, ['CUST-C9'],
    'First of two same-named contacts at this one customer.',
-   email='dualrep.one@zzresultintegrity.test'),
+   email='dualrep.one@zzresultintegrity.test', find_by_email=True),
+   # 🔴 find_by_email added 2026-10-05: keyed on first_name, this finder returned its SIBLING
+   # (same first name, dualrep.two) on sv10740 and reported a false email GAP.
  contact('ri_contact_dualrep_2', 'ri_cust_dualrep', DUALREP, ['CUST-C9'],
    '🔴 SECOND of two same-named contacts at one customer. Its `na` was WITHDRAWN 2026-09-29: the '
    'sentence said "a finder keyed on first_name cannot distinguish them", and this record has been '

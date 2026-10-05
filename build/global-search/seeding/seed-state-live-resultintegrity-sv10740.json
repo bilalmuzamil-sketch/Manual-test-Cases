@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-10-05T073105Z",
+ "when_utc": "2026-10-05T073241Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty - 9919",
   "_why": "Overridden by SEED_WORKPLACE; this is the hint for staging."
@@ -8,6 +8,7 @@
   "ri_cust_twin_a": "b69747a4-338e-4e30-9a7c-964f55859045",
   "ri_cust_twin_b": "a59002c3-365a-44ff-bec5-801d0fdd737d",
   "ri_contact_twin_a": "3ed7c48a-e8a9-4fa8-9b0d-64dc31aeaed8",
+  "ri_cust_same_b": "578d2dea-a465-4ec2-afd7-889878cf66cf",
   "ri_vend_twin_a": "0faf6f87-64dc-4df9-b406-0a3f9b18a3bc",
   "ri_vend_twin_b": "0c075a5b-b209-4d7f-8a02-8979147efbe4",
   "ri_vend_same_a": "c4e4a026-d1e4-465c-8b9e-9cef0233a2f2",
@@ -29,10 +30,7 @@
   "ri_cust_samerep_b": "bab8a9a9-8ece-42bb-9f44-b341f865f85b",
   "ri_contact_samerep_b": "9111d1b1-7487-42bb-a290-2f0b018fb38e",
   "ri_cust_dualrep": "fd4fe30c-9fc0-4efd-b760-73881cc8e689",
-  "ri_contact_dualrep_1": [
-   "0156b22d-67a4-484d-a778-ee968ba3c2e5",
-   "d207b7f0-7cd4-45dc-9eea-8127fef4c4d0"
-  ],
+  "ri_contact_dualrep_1": "d207b7f0-7cd4-45dc-9eea-8127fef4c4d0",
   "ri_contact_dualrep_2": "0156b22d-67a4-484d-a778-ee968ba3c2e5",
   "ri_cust_province": "7308c1e4-67c9-49ea-96e9-4e369423973e",
   "ri_cust_soft_hit": "705a50b7-26b5-4820-8ba1-18db2ed01020",
@@ -125,9 +123,21 @@
   },
   {
    "key": "ri_cust_same_b",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"error\":\"Company with provided name already exists.\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "578d2dea-a465-4ec2-afd7-889878cf66cf"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     "CUST-B2"
    ]
@@ -585,22 +595,16 @@
    "key": "ri_contact_dualrep_1",
    "state": "PRESENT",
    "ids": [
-    "0156b22d-67a4-484d-a778-ee968ba3c2e5",
     "d207b7f0-7cd4-45dc-9eea-8127fef4c4d0"
    ],
    "fields_ok": [
     "first_name",
     "last_name",
     "title",
-    "telephone"
+    "telephone",
+    "email"
    ],
-   "gaps": [
-    {
-     "field": "email",
-     "wanted": "dualrep.one@zzresultintegrity.test",
-     "holds": "dualrep.two@zzresultintegrity.test"
-    }
-   ],
+   "gaps": [],
    "not_compared": [],
    "serves": [
     "CUST-C9"
