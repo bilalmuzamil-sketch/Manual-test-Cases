@@ -1,4 +1,6 @@
 import { test, expect } from '../fixtures/test.js';
+import { RESULTS_DIR } from '../fixtures/data.js';
+import path from 'node:path';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { groupRows, lastPointerCheck, type RowShape } from '../fixtures/rowshape.js';
 import * as fs from 'node:fs';
@@ -96,8 +98,8 @@ test.beforeAll(async () => {
 });
 
 test.afterAll(async () => {
-  fs.mkdirSync('results', { recursive: true });
-  fs.writeFileSync('results/sri-work-orders.json', JSON.stringify(measurements, null, 1));
+  fs.mkdirSync(RESULTS_DIR, { recursive: true });   // the suite's own folder, wherever the run was started
+  fs.writeFileSync(path.join(RESULTS_DIR, 'sri-work-orders.json'), JSON.stringify(measurements, null, 1));
   await s?.browser.close();
 });
 

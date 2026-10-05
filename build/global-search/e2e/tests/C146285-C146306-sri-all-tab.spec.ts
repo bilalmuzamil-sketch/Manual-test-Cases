@@ -1,4 +1,6 @@
 import { test, expect } from '../fixtures/test.js';
+import { RESULTS_DIR } from '../fixtures/data.js';
+import path from 'node:path';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { APP, APIH, apiJson, collectionOf } from '../fixtures/boot.js';
 import { resolveTerm, harvestAnchors, type LiveAnchors } from '../fixtures/anchors.js';
@@ -59,8 +61,8 @@ test.beforeAll(async () => {
   console.log('build under test:', m.build);
 });
 test.afterAll(async () => {
-  fs.mkdirSync('results', { recursive: true });
-  fs.writeFileSync('results/sri-all-tab.json', JSON.stringify(m, null, 1));
+  fs.mkdirSync(RESULTS_DIR, { recursive: true });   // the suite's own folder, wherever the run was started
+  fs.writeFileSync(path.join(RESULTS_DIR, 'sri-all-tab.json'), JSON.stringify(m, null, 1));
   await s?.browser.close();
 });
 const rec = (k: string, v: unknown) => { m[k] = v; console.log(k, JSON.stringify(v).slice(0, 400)); };
