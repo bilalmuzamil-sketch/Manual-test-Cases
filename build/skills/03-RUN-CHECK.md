@@ -886,6 +886,18 @@ in as needed, and finish them. A case may remain un-verified ONLY under §8.4 (g
 negative surprises** — because a case left non-runnable for the testers is the surprise that bites him
 publicly (Rules 7/9/28).
 
+**ALSO RUN `check_tester_runnable.py` (Rule 115, QA lead 2026-10-05; L0047).** Runnable-SHAPE is not
+enough — the tester must also be able to READ the case. Run
+`python3 build/testing-tools/check_tester_runnable.py --cases <ids>` (or `--bodies <json>`); it must exit 0.
+It fails on **developer jargon in tester-facing text** (internal codes, `endpoint`/`API`/`payload`,
+`authorization failure`/HTTP codes, `server-side`/`p95`/`circuit breaker`/`MAX_EXECUTION_TIME`, latency in ms,
+requirement ids) — those belong ONLY in the `Source —` provenance block — and on **a not-hand-testable check
+still marked `AUTOMATION: READY`** (performance budgets, server enforcement, analytics) — keep only the
+manual part, else mark `AUTOMATION: HOLD - not manually testable (developer/automated check only)`. Expected
+substance stays the source's (57/114); you fix WORDING and the marker, never the asserted outcome. A case it
+flags is reworded/re-marked, never shipped. This came from a real manual-tester complaint on Dashboard
+(C88595, C88631) — **a manual QA tester must never again report a build-verified case as unclear/unrunnable.**
+
 **RATIONALE, 2026-08-19:** a Report Suite build-verify left **157 cases "present but not individually
 re-stamped"** plus **~30 on `HOLD` for a second sign-in or an "unseedable" data-state** — the product
 of an over-cautious orchestration instruction (no `quick-login`/`switch-user`; accept an honest N-of-M

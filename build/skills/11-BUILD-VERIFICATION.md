@@ -15,7 +15,7 @@
 **This lane's ONLY job is to make every case's STEPS and PRECONDITIONS 100% runnable by a manual QA
 tester** — real routes written as UI clicks, every quoted label read off the CURRENT build, every named
 state reachable via those clicks, fields render `fr-view`, the `AUTOMATION:` marker set. **DONE = the
-runnable-shape gate reports 0 NOT-RUNNABLE + the precondition-label gate is clean + render is OK** (Rule 84).
+runnable-shape gate reports 0 NOT-RUNNABLE + the precondition-label gate is clean + render is OK + `check_tester_runnable.py` exits 0 (no developer jargon, nothing not-hand-testable marked READY — Rule 115)** (Rules 84, 115).
 **This lane does NOT:** run a case to Pass/Fail, decide a verdict, push results into the TestRail run, or
 create defects. **"Driven live" here means walk the route to prove it is followable and read the labels off
 the screen — never to produce a verdict.** Producing verdicts, **pushing Passed/Failed/Blocked into the
@@ -26,6 +26,25 @@ lane's output against an execution standard** — a build-verified suite whose c
 COMPLETE for this lane even though no case has a result yet. (The 2026-09-09 confusion: build verification
 was wrongly called "falling short" for not executing each case to a verdict — that verdict is the results
 lane's job, L0022.)
+
+## 🔒 RULE 115 — DONE ALSO MEANS THE MANUAL TESTER CAN READ AND RUN EVERY CASE (QA lead, 2026-10-05; L0047)
+**The authoring session CREATES the cases; THIS lane makes them FULLY build-verified AND FULLY
+understandable by the manual QA tester AND FULLY runnable by hand — all three, or the pass is not done.**
+"Runnable-shaped" (the shape gate) and "build-accurate labels" are necessary, never sufficient. Two things
+are FORBIDDEN in any case this lane marks `AUTOMATION: READY`: **(a) developer jargon in tester-facing text**
+(internal codes like `reportsPageAccess`, `endpoint`/`API`/`payload`, `authorization failure`/HTTP codes,
+`server-side`/`p95`/`circuit breaker`/`MAX_EXECUTION_TIME`, latency in ms, requirement ids `S1-R6`/`FR-0xx`)
+— these live ONLY in the `Source —` provenance block (Rule 54/110); **(b) a check not doable by hand marked
+READY** (performance/latency budgets, server enforcement the screen never shows, analytics events) — keep
+only the manual part as the steps/Expected, else mark `AUTOMATION: HOLD - not manually testable
+(developer/automated check only)` and report it, never READY. Expected SUBSTANCE stays the source's (57/114);
+clarity is wording + testability-marking, never softening the outcome. **ENFORCED — part of DONE:**
+`python3 build/testing-tools/check_tester_runnable.py --cases <ids>` (or `--bodies <json>`) must exit 0 before
+the suite is reported build-verified, recorded in the report with the render + runnable-shape checks. **A
+manual QA tester must NEVER again report a build-verified case as unclear or unrunnable.** When a tester is
+actively editing the suite, detect by `updated_by`/`updated_on` and never edit a case they already changed
+(Rules 83/86); fix only the untouched ones and hand the tester a precise list of the rest. Full text:
+`build/rules/RULES-61-ONWARD.md` rule 115.
 
 ## 🔒 RULE 101 — THERE IS NO DELTA BUILD-VERIFICATION; WALK EVERY CASE ON THE CURRENT BUILD
 **Every build-verification walks the route of EVERY case in the suite, live, on the build as it stands this

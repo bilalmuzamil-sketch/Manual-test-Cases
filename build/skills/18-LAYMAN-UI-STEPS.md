@@ -234,3 +234,22 @@ in it: a label goes in only from a probe with committed evidence.
 *"121 of 122 are runnable; the preconditions of the 118 that were walked on the build are build-verified;
 the labels in all of them are now confirmed against the observed-label file."* **Never let a
 runnability score stand in for a label check.**
+
+## 🛑 RUNNABLE ALSO MEANS READABLE — NO DEVELOPER JARGON, NOTHING UN-RUNNABLE MARKED READY (Rule 115; QA lead 2026-10-05; L0047)
+A case can be perfectly "runnable-shaped" and still be unrunnable because the tester cannot understand it.
+A manual tester (Nebojsa) reported Dashboard cases he "does not know what they mean and has no clue how to
+run." So, on every case this lane marks `AUTOMATION: READY`:
+- **Tester-facing text uses the build's on-screen words only** (preconditions, steps, and the Expected
+  outcome above the `Source —` block). BARRED there: internal permission codes (`reportsPageAccess`),
+  `endpoint`/`API`/`payload`/`request`, `authorization failure`/HTTP codes, `server-side`/`p95`/`circuit
+  breaker`/`MAX_EXECUTION_TIME`, latency in ms, requirement ids (`S1-R6`/`FR-0xx`). Those are reference
+  shorthand and belong ONLY in the `Source —` provenance block (Rule 54/110).
+- **Nothing that can only be proven with developer tooling may be marked READY** (performance/latency
+  budgets, server enforcement the screen never shows, analytics events, code-level caching). Keep only the
+  hand-observable part as the steps/Expected; if nothing is hand-observable the case is NOT a manual case —
+  mark `AUTOMATION: HOLD - not manually testable (developer/automated check only); <what it checks>` and
+  name it in the report (Rule 98). A one-line caveat that a tiny SUB-aspect is a developer check, where the
+  main check IS manual, is fine and stays.
+- **Expected SUBSTANCE is still the source's (57/114).** Fix wording and the marker, never the outcome.
+- **ENFORCED:** `python3 build/testing-tools/check_tester_runnable.py --cases <ids>` must exit 0 before the
+  suite is reported done. A manual QA tester must NEVER again report a build-verified case as unclear/unrunnable.
