@@ -5316,3 +5316,20 @@ under `/administration`, not `/settings`); its Save sends `PUT /api/roles/<id>` 
 `fePermissions`/`viewMode`/`crossToggles`; there is no template-read API (`/api/role-templates/<id>` 404s),
 so the screen is the only proof; and the role's view mode always adds its own view permission
 (`woTechViewMode` / `woFullViewMode`) even when saved without it.
+
+### L0299
+**What happened (2026-10-05, Global Search e2e on staging):** the QA lead asked that every test make
+sure its own data is on the branch before it runs. The suite seeded once at the start of the run, so a
+one-test run seeded everything (slow), and a record deleted mid-run made a later test fail half-way
+through for a reason that had nothing to do with the product.
+**What was built:** *declare per test, seed per run, check per test.* `data/test-data.json` (built by
+`tools/build_data_map.py`, which fails if any case is unmapped) names each case's records. At the start
+of the run, global setup asks Playwright which tests were chosen (`--list`, which does not run global
+setup) and seeds only their records plus what they depend on (`seed.py --only`). Just before each test, an
+automatic fixture checks those records (`--check --only`), creates any that are missing, checks again,
+and stands the test down **naming the record** if one still cannot be made.
+**Reusable rules:** (1) the per-test check must use the session the test already holds. A second sign-in
+to the same account signs the first one out, so a check that signs in for itself breaks the very test it
+guards. (2) Ask the session who it is first: while a permission test is acting as a lesser person, every
+hidden record reads as "missing". Skip the live check then, and say so in the annotation. (3) If the
+selection cannot be listed, seed everything: seeding too much is safe, seeding too little is not.

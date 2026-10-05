@@ -5733,3 +5733,18 @@ three wrong characterisations before it was found — see learning **L0233**.
   ("cannot be changed manually") and `closed` is not a status name. A **part sale is a work order**,
   so the same call marks one Paid.
 - A new customer, work order or part sale is findable in global search in **about 5 seconds**.
+- **Supplier contacts (measured 2026-10-05):** list `GET /api/parts-catalogue/list-vendor-contacts?vendorId=<id>`;
+  create `POST /api/parts-catalogue/add-vendor-contact` with `{vendor_id, first_name, last_name, title,
+  telephone, email, department:'preferred'}`. The supplier itself reads at `/api/parts-catalogue/vendor/<id>`;
+  its page is `/parts/vendor/<id>/contacts`. Supplier emails and contact first names repeat on staging,
+  so find a contact by two fields (seed.py `also: {field: value}`), never by one.
+- **Part sale (measured 2026-10-05):** `POST /api/part-sales` takes `{company_id, customer_id, vehicle_id}`;
+  its page is `/parts/part-sale/<id>/part-requests`.
+- **Customer delete:** `POST /api/customers/delete {company_id}`. Contacts and vehicles must go first.
+- **Roles:** listing the roles is a `POST` (a `GET /api/roles` refuses); one role reads at
+  `GET /api/roles/<id>`. The edit screen is `/administration/roles-permissions/<id>/edit`. Every staging
+  role carries `workOrdersView`; **Time Clock User** has no customer access.
+- **Dating the standard copy:** after a reset the branch's own records carry creation dates on or before
+  the reset (last one: **2026-09-28 14:19:29**). Anything dated later was made since and is gone after
+  the next reset, so it must be in a seeding plan (`seed-manifest-fixtures.json` holds the 86 that were
+  made by hand on 2026-09-29).
