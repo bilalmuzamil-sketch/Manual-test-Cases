@@ -52,3 +52,17 @@ numeric/money-accuracy DATA folder (Rule 116).
    reflected as HOLD in the cases; rest of S8 is live.
 3. **Sibling Founder Mode features** (Notifications, What/Why, Price/Category, Part Lifecycle) not yet
    authored — awaiting the go-ahead to proceed feature by feature.
+
+## 2026-10-05 — brought current with the specification edit of 5 October 2026 (QA lead approved "Apply A, B and C")
+- Spec 867434569 edited 5 Oct with no change-log row: 104 -> 111 requirements. Findings: `STALE-CHECK-2026-10-05.md`.
+- **18 cases updated** (C154586, C154589, C154591, C154593, C154595, C154596, C154597, C154598, C154601,
+  C154603, C154608, C154611, C154618, C154624, C154625, C154634, C154635, C154640) — 9 of them TestRail
+  Automated (Vladimir notified: `FOR-VLADIMIR-2026-10-05.md`). C154587 and C154602 needed no edit.
+- **4 new cases** in folder 30737 "Specification update 5 October 2026 (QA Additions)": C236959 (S3-R6),
+  C236960 (S8-N6), C236961 (S8-R15), C236962 (768px form factor).
+- Every precondition rewritten to be runnable by a manual tester (`runnable_pre_2026_10_05.py`); "invoiced,
+  nothing paid" = pay in full then reverse the payment (closing New Customer Payment unpaid cancels the invoice).
+- **All 22 are AUTOMATION: HOLD — need re-checking on a Part Sales build.** Labels to confirm there: line
+  "Decline", reversing a payment in payment history, ShopPay switch location, Customer Portal permission name.
+- Case count ours: 57 + 4 = **61**. Scripts: `stale_fix_2026_10_05.py`, `new_cases_2026_10_05.py`; log
+  `stale-fix-log-2026-10-05.json`, `new-cases-2026-10-05.json`; snapshots `snapshots-2026-10-05/`.
