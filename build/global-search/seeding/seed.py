@@ -262,6 +262,15 @@ def _adopt_after_refusal(rec, key, resp):
                     return [{'id': i['id']}]
     return []
 
+def _also(spec, rows):
+    """🔴 WHEN ONE FIELD IS NOT ENOUGH TO TELL RECORDS APART (2026-10-05). Hand-made suppliers share one
+    e-mail address and two contacts share a first name, so a lookup on that one field found up to
+    seven records and compared the entry against whichever came first - a 'gap' that was really the
+    wrong record. `also` names further fields that must ALSO equal the entry's values."""
+    also = spec.get('also') or {}
+    norm = lambda v: str(v if v is not None else '').strip().lower()
+    return [x for x in rows if all(norm(x.get(k)) == norm(v) for k, v in also.items())]
+
 def find(spec, _key=None):
     """FIND a record. Two modes, because ?search= works on some list endpoints and silently
     matches NOTHING on others (measured: broken on /api/work-orders). Where the spec gives a
@@ -335,8 +344,8 @@ def find(spec, _key=None):
         for step in spec['path'].split('.'):
             node = (node or {}).get(step) or ([] if step == spec['path'].split('.')[-1] else {})
         rows = node if isinstance(node, list) else []
-        return [x for x in rows
-                if str(x.get(spec['field']) or '').strip().lower() == str(spec['value']).strip().lower()], 'ok'
+        return _also(spec, [x for x in rows
+                if str(x.get(spec['field']) or '').strip().lower() == str(spec['value']).strip().lower()]), 'ok'
     if spec['mode'] == 'search':
         # 🔴 A SINGLE EMPTY READ IS NOT A MISSING RECORD, AND ON THIS API THE DIFFERENCE IS
         # DANGEROUS. Production's list endpoints return transient empties and errors: on
@@ -350,7 +359,7 @@ def find(spec, _key=None):
         for attempt in range(3):
             r = call(f"{spec['list']}?search={urllib.parse.quote(spec['value'])}&limit=100")
             if r['status'] == 200:
-                hit = [x for x in rows(r) if str(x.get(spec['field']) or '') == spec['value']]
+                hit = _also(spec, [x for x in rows(r) if str(x.get(spec['field']) or '') == spec['value']])
                 if hit: return hit, 'ok'
                 last = ([], 'ok')
             else:
@@ -509,9 +518,32 @@ def repair(rec, record, gaps):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--confirm', action='store_true'); ap.add_argument('--check', action='store_true')
+    ap.add_argument('--only', default='', help='comma-separated record keys: process just these and what they depend on')
+    ap.add_argument('--report', default='', help='write the per-record result as JSON to this file')
     a = ap.parse_args()
     if not (a.confirm or a.check): sys.exit("pass --check or --confirm")
     man = json.load(open(f'{HERE}/{MANIFEST}'))
+    if a.only:
+        # 🔴 PER-TEST SEEDING (QA lead, 2026-10-05): a run seeds exactly what the selected tests need,
+        # and a test whose record is missing seeds just that record. A record cannot be made without
+        # the records it hangs off (a contact needs its customer, a vehicle its owner), so the closure
+        # is taken: any string in a record naming another record's key - "inject", "parent", "@key" -
+        # is a dependency. Order is the manifest's own, which is already dependency order.
+        keys = {r['key'] for r in man['records']}
+        want = {k.strip() for k in a.only.split(',') if k.strip()}
+        unknown = want - keys
+        if unknown: print(f"  (not in this plan, ignored: {', '.join(sorted(unknown))})")
+        want &= keys
+        by = {r['key']: r for r in man['records']}
+        def deps(r):
+            txt = json.dumps({'c': r.get('create'), 'f': r.get('find'), 'w': r.get('write')})
+            return {k for k in keys if k != r['key'] and re.search(r'"@?%s"' % re.escape(k), txt)}
+        todo = list(want)
+        while todo:
+            for d in deps(by[todo.pop()]):
+                if d not in want: want.add(d); todo.append(d)
+        man = dict(man); man['records'] = [r for r in man['records'] if r['key'] in want]
+        print(f"  --only: {len(man['records'])} record(s) incl. dependencies: {', '.join(r['key'] for r in man['records'])}")
     print("=== session ==="); ensure_session()
     report = []
     print("\n=== records ===")
@@ -669,6 +701,10 @@ def main():
 
     blocked = [r for r in report if r['state'] in ('BLOCKED', 'MISSING', 'CREATE_FAILED', 'DUPLICATE',
                                                    'CREATED_NOT_FOUND', 'UNVERIFIED')]
+    if a.report:
+        # Machine-readable, for the per-test data check: one line per record, its state and any gap.
+        json.dump([{'key': r['key'], 'state': r['state'], 'gaps': [g['field'] for g in r.get('gaps', [])]}
+                   for r in report], open(a.report, 'w'), indent=1)
     at_risk = sorted({c for r in blocked for c in r.get('serves', [])}
                      | {c for r in report if r.get('gaps') for c in r.get('serves', [])})
     print(f"\n=== summary ===")

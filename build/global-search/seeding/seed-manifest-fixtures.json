@@ -1,0 +1,3866 @@
+{
+ "_README": "GENERATED from staging by e2e/tools/codify_fixtures.py on capture day, then maintained here. The records the checks search for that were once made by hand (2026-09-29), so a reset of the branch no longer loses them. Same engine, same rules as every other plan.",
+ "environment": {
+  "workplace_name_hint": "Heavy Duty",
+  "tag": "ZZSPEC",
+  "_workplace": "The orchestrator sets SEED_WORKPLACE to the same shop the tests sign into, because parts search is scoped by shop (measured 2026-10-02)."
+ },
+ "records": [
+  {
+   "key": "fx_cust_rowcheck_dualrep_transport",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Dualrep Transport",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Dualrep Transport",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "country_code": "US",
+     "address": "21 Result Row Way",
+     "phone": "(264) 400-0900"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_contact_zzdualrep_rowcheck",
+   "type": "Contact",
+   "serves": [],
+   "_why": "a contact of a hand-made customer",
+   "find": {
+    "mode": "child",
+    "parent": "fx_cust_rowcheck_dualrep_transport",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "ZZDUALREP",
+    "also": {
+     "last_name": "RowCheck",
+     "email": "dualrep.two@zzresultintegrity.test"
+    }
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "ZZDUALREP",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "dualrep.two@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "fx_cust_rowcheck_dualrep_transport"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@fx_cust_rowcheck_dualrep_transport"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "fx_contact_zzdualrep_rowcheck__2",
+   "type": "Contact",
+   "serves": [],
+   "_why": "a contact of a hand-made customer",
+   "find": {
+    "mode": "child",
+    "parent": "fx_cust_rowcheck_dualrep_transport",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "ZZDUALREP",
+    "also": {
+     "last_name": "RowCheck",
+     "email": "dualrep.one@zzresultintegrity.test"
+    }
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "ZZDUALREP",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "dualrep.one@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "fx_cust_rowcheck_dualrep_transport"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@fx_cust_rowcheck_dualrep_transport"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "fx_cust_rowcheck_hidden_fields_holdings",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Hidden Fields Holdings",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Hidden Fields Holdings",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "country_code": "US",
+     "address": "21 Result Row Way",
+     "phone": "(264) 400-0900"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_contact_rowhidden_rowcheck",
+   "type": "Contact",
+   "serves": [],
+   "_why": "a contact of a hand-made customer",
+   "find": {
+    "mode": "child",
+    "parent": "fx_cust_rowcheck_hidden_fields_holdings",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "RowHidden",
+    "also": {
+     "last_name": "RowCheck",
+     "email": "rowhidden@zzresultintegrity.test"
+    }
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "RowHidden",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "rowhidden@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "fx_cust_rowcheck_hidden_fields_holdings"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@fx_cust_rowcheck_hidden_fields_holdings"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "fx_veh_zzhiddenvin0000001",
+   "type": "Vehicle",
+   "serves": [],
+   "_why": "a vehicle of a hand-made customer",
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZHIDDENVIN0000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Motors",
+     "model_name": "Quietline",
+     "year": "2021",
+     "vin": "ZZHIDDENVIN0000001"
+    },
+    "inject": {
+     "customer_id": "fx_contact_rowhidden_rowcheck",
+     "company_id": "fx_cust_rowcheck_hidden_fields_holdings"
+    }
+   },
+   "verify": [
+    "vin"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "read_as": {
+    "maker_name": "vehicle_make",
+    "model_name": "vehicle_model"
+   }
+  },
+  {
+   "key": "fx_ps_zzhiddenvin0000001",
+   "type": "PartSale",
+   "serves": [],
+   "_why": "a part sale on that vehicle (part-sales create accepts vehicle_id; measured 2026-10-05)",
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "vehicleVin",
+    "value": "ZZHIDDENVIN0000001",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "fx_cust_rowcheck_hidden_fields_holdings",
+     "customer_id": "fx_contact_rowhidden_rowcheck",
+     "vehicle_id": "fx_veh_zzhiddenvin0000001"
+    },
+    "id_from": "data.0.id"
+   }
+  },
+  {
+   "key": "fx_wo_rowcheck_hidden_fields_holdings",
+   "type": "WorkOrder",
+   "count": 1,
+   "serves": [],
+   "_why": "1 work order(s) for this customer",
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The id list starts EMPTY on purpose - a hardcoded list survives a redeploy as a list of ids that point at nothing, which is how four work orders were reported \"created but NOT FINDABLE\" on every single redeploy.",
+    "discover": {
+     "search": "Rowcheck Hidden Fields Holdings",
+     "group": "work_orders",
+     "match_secondary": "Rowcheck Hidden Fields Holdings",
+     "_why": "adopt the work orders already there"
+    }
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "fx_cust_rowcheck_hidden_fields_holdings",
+     "vehicle_id": "fx_veh_zzhiddenvin0000001",
+     "customer_id": "fx_contact_rowhidden_rowcheck"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ]
+  },
+  {
+   "key": "fx_veh_zzrinounitvin0002",
+   "type": "Vehicle",
+   "serves": [],
+   "_why": "a vehicle of a hand-made customer",
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZRINOUNITVIN0002",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "ZZNOUNIT Trucks",
+     "model_name": "Plainline",
+     "year": "2021",
+     "vin": "ZZRINOUNITVIN0002"
+    },
+    "inject": {
+     "customer_id": "fx_contact_rowhidden_rowcheck",
+     "company_id": "fx_cust_rowcheck_hidden_fields_holdings"
+    }
+   },
+   "verify": [
+    "vin"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "read_as": {
+    "maker_name": "vehicle_make",
+    "model_name": "vehicle_model"
+   }
+  },
+  {
+   "key": "fx_wo_rowcheck_hidden_fields_holdings__2",
+   "type": "WorkOrder",
+   "count": 1,
+   "serves": [],
+   "_why": "1 work order(s) for this customer",
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The id list starts EMPTY on purpose - a hardcoded list survives a redeploy as a list of ids that point at nothing, which is how four work orders were reported \"created but NOT FINDABLE\" on every single redeploy.",
+    "discover": {
+     "search": "Rowcheck Hidden Fields Holdings",
+     "group": "work_orders",
+     "match_secondary": "Rowcheck Hidden Fields Holdings",
+     "_why": "adopt the work orders already there"
+    }
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "fx_cust_rowcheck_hidden_fields_holdings",
+     "vehicle_id": "fx_veh_zzrinounitvin0002",
+     "customer_id": "fx_contact_rowhidden_rowcheck"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ]
+  },
+  {
+   "key": "fx_veh_zzrinounitvin0001",
+   "type": "Vehicle",
+   "serves": [],
+   "_why": "a vehicle of a hand-made customer",
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZRINOUNITVIN0001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "ZZNOUNIT Trucks",
+     "model_name": "Plainline",
+     "year": "2021",
+     "unit": "BILALUNIT",
+     "vin": "ZZRINOUNITVIN0001"
+    },
+    "inject": {
+     "customer_id": "fx_contact_rowhidden_rowcheck",
+     "company_id": "fx_cust_rowcheck_hidden_fields_holdings"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "read_as": {
+    "maker_name": "vehicle_make",
+    "model_name": "vehicle_model"
+   }
+  },
+  {
+   "key": "fx_wo_rowcheck_hidden_fields_holdings__3",
+   "type": "WorkOrder",
+   "count": 1,
+   "serves": [],
+   "_why": "1 work order(s) for this customer",
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The id list starts EMPTY on purpose - a hardcoded list survives a redeploy as a list of ids that point at nothing, which is how four work orders were reported \"created but NOT FINDABLE\" on every single redeploy.",
+    "discover": {
+     "search": "Rowcheck Hidden Fields Holdings",
+     "group": "work_orders",
+     "match_secondary": "Rowcheck Hidden Fields Holdings",
+     "_why": "adopt the work orders already there"
+    }
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "fx_cust_rowcheck_hidden_fields_holdings",
+     "vehicle_id": "fx_veh_zzrinounitvin0001",
+     "customer_id": "fx_contact_rowhidden_rowcheck"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ]
+  },
+  {
+   "key": "fx_cust_rowcheck_provincial_cartage",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Provincial Cartage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Provincial Cartage",
+     "city": "Fernvale",
+     "state_or_province": "ZZQUEBEXA",
+     "postal_code": "44872-9001",
+     "country_code": "US",
+     "address": "21 Result Row Way",
+     "phone": "(264) 400-0900"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_cust_rowcheck_samerep_freight",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Samerep Freight",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Samerep Freight",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "country_code": "US",
+     "address": "21 Result Row Way",
+     "phone": "(264) 400-0900"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_contact_zzsamerep_rowcheck",
+   "type": "Contact",
+   "serves": [],
+   "_why": "a contact of a hand-made customer",
+   "find": {
+    "mode": "child",
+    "parent": "fx_cust_rowcheck_samerep_freight",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "ZZSAMEREP",
+    "also": {
+     "last_name": "RowCheck",
+     "email": "samerep.a@zzresultintegrity.test"
+    }
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "ZZSAMEREP",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "samerep.a@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "fx_cust_rowcheck_samerep_freight"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@fx_cust_rowcheck_samerep_freight"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "fx_cust_rowcheck_samerep_haulage",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Rowcheck Samerep Haulage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Rowcheck Samerep Haulage",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "country_code": "US",
+     "address": "21 Result Row Way",
+     "phone": "(264) 400-0900"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_contact_zzsamerep_rowcheck__2",
+   "type": "Contact",
+   "serves": [],
+   "_why": "a contact of a hand-made customer",
+   "find": {
+    "mode": "child",
+    "parent": "fx_cust_rowcheck_samerep_haulage",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "ZZSAMEREP",
+    "also": {
+     "last_name": "RowCheck",
+     "email": "samerep.b@zzresultintegrity.test"
+    }
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "ZZSAMEREP",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "samerep.b@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "fx_cust_rowcheck_samerep_haulage"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@fx_cust_rowcheck_samerep_haulage"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "fx_cust_zzsofthiy_cartage",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZSOFTHIY Cartage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZSOFTHIY Cartage",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "country_code": "US",
+     "address": "21 Result Row Way",
+     "phone": "(264) 400-0900"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_contact_rowsoft_rowcheck",
+   "type": "Contact",
+   "serves": [],
+   "_why": "a contact of a hand-made customer",
+   "find": {
+    "mode": "child",
+    "parent": "fx_cust_zzsofthiy_cartage",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "RowSoft",
+    "also": {
+     "last_name": "RowCheck",
+     "email": "rowsoft@zzresultintegrity.test"
+    }
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "RowSoft",
+     "last_name": "RowCheck",
+     "title": "Owner",
+     "telephone": "(264) 400-0900",
+     "email": "rowsoft@zzresultintegrity.test"
+    },
+    "inject": {
+     "company_id": "fx_cust_zzsofthiy_cartage"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "write": {
+    "endpoint": "/api/contacts/change",
+    "whole_record": true,
+    "id_as": {
+     "contact_id": "id"
+    },
+    "also": {
+     "company_id": "@fx_cust_zzsofthiy_cartage"
+    },
+    "_why": "repairs drift: on staging 2026-10-02 three seeded contacts had their emails changed by hand and could not be put back, because no route was declared"
+   }
+  },
+  {
+   "key": "fx_veh_zzrisoftvin000001",
+   "type": "Vehicle",
+   "serves": [],
+   "_why": "a vehicle of a hand-made customer",
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZRISOFTVIN000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Trucks",
+     "model_name": "Softline",
+     "year": "2021",
+     "unit": "ZZRI-SOFT-01",
+     "vin": "ZZRISOFTVIN000001",
+     "licence_plate": "ZZRI-SOFT-01"
+    },
+    "inject": {
+     "customer_id": "fx_contact_rowsoft_rowcheck",
+     "company_id": "fx_cust_zzsofthiy_cartage"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit",
+    "licence_plate"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "read_as": {
+    "maker_name": "vehicle_make",
+    "model_name": "vehicle_model"
+   }
+  },
+  {
+   "key": "fx_ps_zzrisoftvin000001",
+   "type": "PartSale",
+   "serves": [],
+   "_why": "a part sale on that vehicle (part-sales create accepts vehicle_id; measured 2026-10-05)",
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "vehicleVin",
+    "value": "ZZRISOFTVIN000001",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "fx_cust_zzsofthiy_cartage",
+     "customer_id": "fx_contact_rowsoft_rowcheck",
+     "vehicle_id": "fx_veh_zzrisoftvin000001"
+    },
+    "id_from": "data.0.id"
+   }
+  },
+  {
+   "key": "fx_wo_zzsofthiy_cartage",
+   "type": "WorkOrder",
+   "count": 1,
+   "serves": [],
+   "_why": "1 work order(s) for this customer",
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The id list starts EMPTY on purpose - a hardcoded list survives a redeploy as a list of ids that point at nothing, which is how four work orders were reported \"created but NOT FINDABLE\" on every single redeploy.",
+    "discover": {
+     "search": "ZZSOFTHIY Cartage",
+     "group": "work_orders",
+     "match_secondary": "ZZSOFTHIY Cartage",
+     "_why": "adopt the work orders already there"
+    }
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "fx_cust_zzsofthiy_cartage",
+     "vehicle_id": "fx_veh_zzrisoftvin000001",
+     "customer_id": "fx_contact_rowsoft_rowcheck"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ]
+  },
+  {
+   "key": "fx_vendor_rowcheck_quiet_fields_supply_zzhidden_ve",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "hand-made supplier on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "zzhidden.vendor@staging.shopview.local",
+    "control": "Carolina Truck",
+    "also": {
+     "name": "Rowcheck Quiet Fields Supply",
+     "address_1": "21 Result Row Way"
+    }
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "Rowcheck Quiet Fields Supply",
+     "address_1": "21 Result Row Way",
+     "address_2": "ZZHIDDENSUITE 12",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "zzhidden.vendor@staging.shopview.local",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name",
+    "email",
+    "address_1",
+    "address_2",
+    "telephone"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "type": "VendorContact",
+   "find": {
+    "mode": "child",
+    "parent": "fx_vendor_rowcheck_quiet_fields_supply_zzhidden_ve",
+    "also": {
+     "last_name": "RowCheck"
+    },
+    "view": "/api/parts-catalogue/list-vendor-contacts?vendorId={id}&pagination%5BrowsPerPage%5D=1000",
+    "path": "collection",
+    "field": "first_name",
+    "value": "ZZHIDDENCONTACT"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor-contact",
+    "payload": {
+     "first_name": "ZZHIDDENCONTACT",
+     "last_name": "RowCheck",
+     "title": "Parts Rep",
+     "telephone": "(264) 400-0900",
+     "email": "zzhidden.contact@staging.shopview.local",
+     "department": "preferred"
+    },
+    "inject": {
+     "vendor_id": "fx_vendor_rowcheck_quiet_fields_supply_zzhidden_ve"
+    },
+    "_why": "measured 2026-10-05 through the supplier page's Add Contact form; Title and Department are required"
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "key": "fx_vcontact_zzhiddencontact_rowcheck",
+   "serves": [],
+   "_why": "a supplier contact made by hand"
+  },
+  {
+   "key": "fx_cust_zzacc_jos_mart_nez",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZACC José Martínez",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZACC José Martínez",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "country_code": "US",
+     "address": "1 Ranking Way",
+     "phone": "(264) 400-0000"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_cust_zzpunc_o_brien_haulage",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZPUNC O'Brien Haulage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZPUNC O'Brien Haulage",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "country_code": "US",
+     "address": "1 Ranking Way",
+     "phone": "(264) 400-0000"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_cust_zzpunc_smith_jones_motors",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZPUNC Smith-Jones Motors",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZPUNC Smith-Jones Motors",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-2001",
+     "country_code": "US",
+     "address": "1 Ranking Way",
+     "phone": "(264) 400-0000"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_cust_bolton_zzvortac_services",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "Bolton ZZVORTAC Services",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "Bolton ZZVORTAC Services",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "country_code": "US",
+     "address": "9 Parity Row",
+     "phone": "(264) 400-0900"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_cust_zzvortac_freight_ltd",
+   "type": "Customer",
+   "serves": [],
+   "_why": "hand-made on staging 2026-09-29; captured by tools/codify_fixtures.py",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZVORTAC Freight Ltd",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZVORTAC Freight Ltd",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "country_code": "US",
+     "address": "9 Parity Row",
+     "phone": "(264) 400-0900"
+    }
+   },
+   "verify": [
+    "name",
+    "city",
+    "address",
+    "phone",
+    "state_or_province",
+    "postal_code"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true,
+    "_why": "A SPARSE PATCH IS IGNORED — send the whole record back. create silently DROPS state_or_province and telephone, so those surface as gaps and are written here."
+   }
+  },
+  {
+   "key": "fx_vendor_northgate_zzvortac_parts_ap_zzparity_tes",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "hand-made supplier on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "ap@zzparity.test",
+    "control": "Carolina Truck",
+    "also": {
+     "name": "Northgate ZZVORTAC Parts",
+     "address_1": "9 Parity Row"
+    }
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "Northgate ZZVORTAC Parts",
+     "address_1": "9 Parity Row",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzparity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name",
+    "email",
+    "address_1",
+    "telephone"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "fx_vendor_zzvortac_supply_co_ap_zzparity_test",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "hand-made supplier on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "ap@zzparity.test",
+    "control": "Carolina Truck",
+    "also": {
+     "name": "ZZVORTAC Supply Co",
+     "address_1": "9 Parity Row"
+    }
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZVORTAC Supply Co",
+     "address_1": "9 Parity Row",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzparity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name",
+    "email",
+    "address_1",
+    "telephone"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "fx_cat_paritypn_9001",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PARITYPN-9001",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZVORTAC Brake Kit",
+     "part_number": "PARITYPN-9001"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_paritypn_9001",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PARITYPN-9001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 1,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "PARITYPN-9001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 1
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_paritypn_9002",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PARITYPN-9002",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "Heavy Duty ZZVORTAC Filter",
+     "part_number": "PARITYPN-9002"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_paritypn_9002",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "PARITYPN-9002",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 1,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "PARITYPN-9002",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 1
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4003",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4003",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 03",
+     "part_number": "ZZBROAD-4003"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4003",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4003",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4003",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4004",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4004",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 04",
+     "part_number": "ZZBROAD-4004"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4004",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4004",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4004",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4011",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4011",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 11",
+     "part_number": "ZZBROAD-4011"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4011",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4011",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4011",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4018",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4018",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 18",
+     "part_number": "ZZBROAD-4018"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4018",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4018",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4018",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4019",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4019",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 19",
+     "part_number": "ZZBROAD-4019"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4019",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4019",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4019",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4012",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4012",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 12",
+     "part_number": "ZZBROAD-4012"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4012",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4012",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4012",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4009",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4009",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 09",
+     "part_number": "ZZBROAD-4009"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4009",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4009",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4009",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4017",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4017",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 17",
+     "part_number": "ZZBROAD-4017"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4017",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4017",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4017",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4008",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4008",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 08",
+     "part_number": "ZZBROAD-4008"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4008",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4008",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4008",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4014",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4014",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 14",
+     "part_number": "ZZBROAD-4014"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4014",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4014",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4014",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4021",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4021",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 21",
+     "part_number": "ZZBROAD-4021"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4021",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4021",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4021",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4013",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4013",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 13",
+     "part_number": "ZZBROAD-4013"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4013",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4013",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4013",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4007",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4007",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 07",
+     "part_number": "ZZBROAD-4007"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4007",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4007",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4007",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4002",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4002",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 02",
+     "part_number": "ZZBROAD-4002"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4002",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4002",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4002",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4016",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4016",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 16",
+     "part_number": "ZZBROAD-4016"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4016",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4016",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4016",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4010",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4010",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 10",
+     "part_number": "ZZBROAD-4010"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4010",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4010",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4010",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4001",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4001",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 01",
+     "part_number": "ZZBROAD-4001"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4001",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4001",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4001",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4006",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4006",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 06",
+     "part_number": "ZZBROAD-4006"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4006",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4006",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4006",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4005",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4005",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 05",
+     "part_number": "ZZBROAD-4005"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4005",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4005",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4005",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4999",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4999",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Target Widget",
+     "part_number": "ZZBROAD-4999"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4999",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4999",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 1,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4999",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 1
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4020",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4020",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 20",
+     "part_number": "ZZBROAD-4020"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4020",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4020",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4020",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_cat_zzbroad_4015",
+   "type": "CataloguePart",
+   "serves": [],
+   "_why": "hand-made catalogue part on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4015",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZBROAD Widget 15",
+     "part_number": "ZZBROAD-4015"
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ]
+  },
+  {
+   "key": "fx_inv_zzbroad_4015",
+   "type": "InventoryPart",
+   "serves": [],
+   "_why": "its stocked copy, in the seeding shop",
+   "find": {
+    "mode": "search",
+    "list": "/api/inventory/parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZBROAD-4015",
+    "control": "P550848"
+   },
+   "create": {
+    "endpoint": "/api/inventory/parts/create",
+    "payload": {
+     "quantity": 12,
+     "cost": 41.0,
+     "tags": [],
+     "min": 2,
+     "max": 100,
+     "sell_price": 79.99
+    },
+    "resolve_by_example": {
+     "catalog_part_id": {
+      "list": "/api/parts-catalogue/catalogue-parts",
+      "coll": "collection",
+      "match_field": "part_number",
+      "value": "ZZBROAD-4015",
+      "take": "id",
+      "take_as": "catalog_part_id",
+      "also_take": {
+       "category_id": "category"
+      }
+     }
+    },
+    "resolve_nested": {
+     "bins": {
+      "list": "/api/inventory/parts",
+      "coll": "collection",
+      "search": "P550848",
+      "take_path": "binLocations.0.binLocationId",
+      "template": [
+       {
+        "id": "@",
+        "isDefault": true,
+        "quantity": 12
+       }
+      ]
+     }
+    },
+    "id_from": "data.part_id"
+   },
+   "verify": [
+    "part_number"
+   ],
+   "skip_verify": [
+    "tags",
+    "bins",
+    "catalog_part_id",
+    "sell_price",
+    "cost",
+    "quantity",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "key": "fx_vendor_zzsofthiy_supply_ap_zzresultintegrity_te",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "hand-made supplier on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "ap@zzresultintegrity.test",
+    "control": "Carolina Truck",
+    "also": {
+     "name": "ZZSOFTHIY Supply",
+     "address_1": "21 Result Row Way"
+    }
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZSOFTHIY Supply",
+     "address_1": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name",
+    "email",
+    "address_1",
+    "telephone"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "fx_vendor_zzlongrow_identical_name_supply_ap_zzres",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "hand-made supplier on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "ap@zzresultintegrity.test",
+    "control": "Carolina Truck",
+    "also": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "88 Different Street"
+    }
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "88 Different Street",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name",
+    "email",
+    "address_1",
+    "telephone"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "type": "VendorContact",
+   "find": {
+    "mode": "child",
+    "parent": "fx_vendor_zzlongrow_identical_name_supply_ap_zzres",
+    "also": {
+     "last_name": "Delacroixson"
+    },
+    "view": "/api/parts-catalogue/list-vendor-contacts?vendorId={id}&pagination%5BrowsPerPage%5D=1000",
+    "path": "collection",
+    "field": "first_name",
+    "value": "ZZVENDCONTACT"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor-contact",
+    "payload": {
+     "first_name": "ZZVENDCONTACT",
+     "last_name": "Delacroixson",
+     "title": "Parts Manager",
+     "telephone": "(555) 909 - 1212",
+     "email": "zzvendcontact.delacroixson@staging.shopview.local",
+     "department": "preferred"
+    },
+    "inject": {
+     "vendor_id": "fx_vendor_zzlongrow_identical_name_supply_ap_zzres"
+    },
+    "_why": "measured 2026-10-05 through the supplier page's Add Contact form; Title and Department are required"
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "key": "fx_vcontact_zzvendcontact_delacroixson",
+   "serves": [],
+   "_why": "a supplier contact made by hand"
+  },
+  {
+   "key": "fx_vendor_zzlongrow_identical_name_supply_ap_zzres__2",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "hand-made supplier on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "ap@zzresultintegrity.test",
+    "control": "Carolina Truck",
+    "also": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "21 Result Row Way"
+    }
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name",
+    "email",
+    "address_1",
+    "telephone"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "fx_vendor_zzlongrow_industrial_parts_and_equipment",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "hand-made supplier on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "ap@zzresultintegrity.test",
+    "control": "Carolina Truck",
+    "also": {
+     "name": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 123786",
+     "address_1": "21 Result Row Way"
+    }
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 123786",
+     "address_1": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name",
+    "email",
+    "address_1",
+    "telephone"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "fx_vendor_zzlongrow_industrial_parts_and_equipment__2",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "hand-made supplier on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "ap@zzresultintegrity.test",
+    "control": "Carolina Truck",
+    "also": {
+     "name": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 185786",
+     "address_1": "21 Result Row Way"
+    }
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Industrial Parts And Equipment Supply Company Of Greater Fernvale 185786",
+     "address_1": "21 Result Row Way",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name",
+    "email",
+    "address_1",
+    "telephone"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "fx_vendor_zzlongrow_identical_name_supply_ap_zzres__3",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "hand-made supplier on staging 2026-09-29",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "email",
+    "value": "ap@zzresultintegrity.test",
+    "control": "Carolina Truck",
+    "also": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "4 Sameface Road"
+    }
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZLONGROW Identical Name Supply",
+     "address_1": "4 Sameface Road",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-9001",
+     "telephone": "(264) 400-0900",
+     "email": "ap@zzresultintegrity.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name",
+    "email",
+    "address_1",
+    "telephone"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
+  }
+ ]
+}

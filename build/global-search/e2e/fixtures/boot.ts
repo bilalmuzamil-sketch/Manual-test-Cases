@@ -2,6 +2,7 @@ import { chromium, type Browser, type BrowserContext, type Page } from 'playwrig
 import fs from 'node:fs';
 import net from 'node:net';
 import { relayWanted, startRelay } from './relay.js';
+import { rememberSession } from './seedwork.js';
 
 /**
  * SIGNING IN, SELF-CONTAINED AND PORTABLE.
@@ -589,11 +590,20 @@ export async function boot(route = '/customers', opts: { envFile?: string; key?:
   //   4. pasted cookies + Local Storage                  (the old manual route, kept as a fallback)
   // A password file only means something where there are passwords. Off production the same
   // request is answered by a quick-login KEY (admin, tech) behind the Google session.
-  if (IS_PROD) return signInWithPassword(route, opts);
-  if (ssoCookie()) return signInWithSso(route, opts);
-  if (opts.envFile) return signInWithPassword(route, opts);
-  if (fs.existsSync(authStatePath())) return signInWithSavedState(route);
-  return IS_STAGING ? signInStaging(route, opts) : signInWithPassword(route, opts);
+  const s = IS_PROD ? await signInWithPassword(route, opts)
+    : ssoCookie() ? await signInWithSso(route, opts)
+    : opts.envFile ? await signInWithPassword(route, opts)
+    : fs.existsSync(authStatePath()) ? await signInWithSavedState(route)
+    : IS_STAGING ? await signInStaging(route, opts) : await signInWithPassword(route, opts);
+  // Hand the FULL-ACCESS session to the per-test data check (fixtures/seedwork.ts says why). The
+  // lower-permission person - another quick-login key, or another password file - is never recorded.
+  const fullAccess = (opts.key ?? 'admin') === 'admin' && (!opts.envFile || opts.envFile === (process.env.PROD_ENVF || '/tmp/shopview/prod-gs.env'));
+  if (fullAccess) {
+    const jar = await s.ctx.cookies(`https://${APIH}`).catch(() => []);
+    const sid = jar.find((c) => c.name === 'PHPSESSID' && c.value && c.value !== 'deleted')?.value;
+    if (sid) rememberSession(new URL(APP).host, APIH, { PHPSESSID: sid, ...(ssoCookie() ? { sv_sso_session: ssoCookie() } : {}) });
+  }
+  return s;
 }
 
 /**
