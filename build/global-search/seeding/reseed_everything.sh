@@ -35,6 +35,17 @@ cd "$(dirname "$0")"
 # longer exists - reporting a dead environment that is perfectly healthy.
 case "${1:-}" in
   qa)      HOST="https://sv9160.qa.shopview.com"; export SEED_PROFILE=/tmp/qa/cookies.json
+           QA_BR=sv9160; QA_API="https://sv9160api.qa.shopview.com"
+           V2=1 ;;
+  sv[0-9]*)
+           # ANY OTHER QA BRANCH, named by its number: ./reseed_everything.sh sv10740
+           # Added 2026-10-05 for sv10740. Its OWN profile dir (/tmp/<branch>/cookies.json), so its
+           # state and ids files are keyed '<branch>' and can never overwrite sv9160's 'qa' ones -
+           # branch-assigned ids from one branch are meaningless on another (Rule 111).
+           # QA branches are copies of the staging estate: two workplaces, so pin the one staging uses.
+           QA_BR="${1}"; HOST="https://${QA_BR}.qa.shopview.com"; QA_API="https://${QA_BR}api.qa.shopview.com"
+           export SEED_PROFILE="/tmp/${QA_BR}/cookies.json"
+           export SEED_WORKPLACE="${SEED_WORKPLACE:-Staging Heavy Duty - 9919}"
            V2=1 ;;
   staging) HOST="https://app.staging.shopview.com"; export SEED_PROFILE=/tmp/staging/cookies.json
            export SEED_WORKPLACE="Staging Heavy Duty - 9919"
@@ -50,7 +61,7 @@ case "${1:-}" in
            # POST /api/login (playbook section K). ONE login per run: a fresh one expires this
            # user's previous session, including the QA lead's own browser.
            V2=1 ;;
-  *) echo "usage: $0 qa|staging|live"; exit 2 ;;
+  *) echo "usage: $0 qa|staging|live|sv<NNNN>"; exit 2 ;;
 esac
 
 echo "=============================================================="
@@ -66,8 +77,8 @@ echo "=============================================================="
 #   · the SSO token expires, and then quick-login cannot rescue the session either - it needs a
 #     live SSO session to work. That one needs a human, so say so immediately instead of failing
 #     sixteen steps deep.
-if [ "${1}" = "qa" ]; then
-  API="https://sv9160api.qa.shopview.com"
+if [ -n "${QA_API:-}" ]; then
+  API="$QA_API"
   # A path that CANNOT exist: 302 = asleep · 503 = booting · 401 = awake, unauthenticated ·
   # 404 = awake AND authenticated. Never probe the app host - it is served from S3 and answers
   # 200 to any nonsense path, so it reports a dead API as healthy.
@@ -77,7 +88,7 @@ if [ "${1}" = "qa" ]; then
     echo "---- branch is ASLEEP (302 to the parking page) — waking it"
     curl -s --max-time 60 -X POST \
       https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv \
-      -H 'Content-Type: application/json' -d '{"action":"wake","env":"sv9160"}'; echo
+      -H 'Content-Type: application/json' -d "{\"action\":\"wake\",\"env\":\"${QA_BR}\"}"; echo
     for i in $(seq 1 30); do sleep 20; CODE=$(probe)
       [ "$CODE" != "302" ] && [ "$CODE" != "503" ] && break
       echo "     still coming up (HTTP $CODE) …"; done
@@ -182,8 +193,17 @@ fi
 # host is behind a parking page" - a sleeping QA branch answers 403 to everything, and reading that
 # as "V2 is live" would pick the wrong verifier for every universe.
 API_HOST="$(echo "$HOST" | sed 's#https://##; s#^app#api#')"
-S_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://$API_HOST/api/search?q=x")
-F_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://$API_HOST/api/global-search/fetch?q=x")
+# A QA branch's API is a SEPARATE host (<branch>api.qa...), and its app host is S3, which answers
+# 200 to anything. And unauthenticated, a QA branch answers 401 to EVERY path, real or not (measured
+# on sv10740, 2026-10-05) - so there the probe must carry the session to tell 200 from 404.
+[ -n "${QA_API:-}" ] && API_HOST="${QA_API#https://}"
+PCK=$(python3 -c "
+import json,os
+try: c=json.load(open(os.environ['SEED_PROFILE']))
+except Exception: c={}
+print('; '.join(f'{k}={c[k]}' for k in ('sv_sso_session','PHPSESSID','cf_clearance') if c.get(k)))" 2>/dev/null)
+S_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 -H "Cookie: $PCK" -H 'Accept: application/json' "https://$API_HOST/api/search?q=x")
+F_CODE=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 -H "Cookie: $PCK" -H 'Accept: application/json' "https://$API_HOST/api/global-search/fetch?q=x")
 if   [ "$S_CODE" != "404" ] && [ "$F_CODE" = "404" ]; then MEASURED=1
 elif [ "$S_CODE" = "404" ] && [ "$F_CODE" != "404" ]; then MEASURED=0
 else MEASURED="$V2"
@@ -253,7 +273,9 @@ step() { local label="$1"; shift
            # their own request code, so the recovery is done HERE too, once per step: re-mint the
            # session and run the step again. A step that fails for any other reason simply fails
            # twice and stops, which is the same outcome as before, one retry later.
-           if [ -f "${SEED_LOGIN:-/tmp/prod/login.json}" ]; then
+           # 🔴 PRODUCTION ONLY (or an explicit SEED_LOGIN): the default credential is a production
+           # one, and relogin.py would otherwise send it to a staging / QA-branch host.
+           if { [ "${1}" = "live" ] || [ -n "${SEED_LOGIN:-}" ]; } && [ -f "${SEED_LOGIN:-/tmp/prod/login.json}" ]; then
              echo "     ↻ step failed — re-minting the session and retrying ONCE"
              python3 relogin.py || true
              if "$@"; then echo "     ✓ done in $((SECONDS-t0))s (after one re-login)"; return 0; fi

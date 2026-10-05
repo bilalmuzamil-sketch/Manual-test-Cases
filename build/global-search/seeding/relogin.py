@@ -15,7 +15,7 @@ lead kills the browser he is working in — which is exactly how three productio
 
     SEED_PROFILE=/tmp/prod/creds.json python3 relogin.py
 """
-import json, os, re, sys, urllib.request, urllib.error
+import sys, json, os, re, sys, urllib.request, urllib.error
 
 PROFILE = os.environ.get('SEED_PROFILE', '/tmp/prod/creds.json')
 LOGIN = os.environ.get('SEED_LOGIN', '/tmp/prod/login.json')
@@ -27,6 +27,10 @@ cred = json.load(open(LOGIN))
 c = json.load(open(PROFILE)) if os.path.exists(PROFILE) else {}
 c.setdefault('host', 'app.shopview.com')
 c.setdefault('api', 'api.shopview.com')
+# 🔴 The default credential is a PRODUCTION one - never send it to another host (2026-10-05).
+if 'SEED_LOGIN' not in os.environ and c['host'] != 'app.shopview.com':
+    sys.exit(f"relogin.py: refusing to send the production credential to {c['host']} - "
+             "set SEED_LOGIN to that environment's own credential file")
 
 req = urllib.request.Request(
     f"https://{c['api']}/api/login",

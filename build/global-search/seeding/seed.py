@@ -178,6 +178,12 @@ def password_login():
     path = os.environ.get('SEED_LOGIN', '/tmp/prod/login.json')
     if not os.path.exists(path):
         return False
+    # 🔴 The DEFAULT credential is a PRODUCTION one. Never send it to another host: a staging or
+    # QA-branch run that hit session_expired used to POST the production password to that
+    # environment's /api/login (found 2026-10-05 before the sv10740 reseed). Another environment
+    # may use a password login only when SEED_LOGIN names its own credential explicitly.
+    if 'SEED_LOGIN' not in os.environ and _c().get('host') != 'app.shopview.com':
+        return False
     try:
         cred = json.load(open(path))
         body = json.dumps({'username': cred['username'],
@@ -230,7 +236,10 @@ def ensure_session():
         # log-in its fine"). PRODUCTION may not: quick-login 500s there (playbook section K), and
         # inventing a session on an environment where it cannot work turns a clear auth failure
         # into a confusing one.
-        if COOKIES not in ('/tmp/qa/cookies.json', '/tmp/staging/cookies.json'):
+        # Any QA branch profile (/tmp/sv<NNNN>/cookies.json) counts as a QA branch - added
+        # 2026-10-05 for sv10740.
+        if COOKIES not in ('/tmp/qa/cookies.json', '/tmp/staging/cookies.json') and \
+                not re.fullmatch(r'/tmp/sv\d+/cookies\.json', COOKIES):
             sys.exit("session is not live on this profile, and quick-login works only on the QA "
                      "branch and staging - log in again and rewrite the profile")
         r = call('/api/quick-login', 'POST', {'key': 'admin'})

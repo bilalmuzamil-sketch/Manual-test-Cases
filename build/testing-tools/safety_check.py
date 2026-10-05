@@ -54,7 +54,9 @@ def check_secrets_staged():
         skip('literal-credential scan', 'nothing staged')
         return
     literals, where = [], []
-    for base in ('/tmp/prod', '/tmp/qa', '/tmp/staging'):
+    # Every QA branch gets its own /tmp/sv<NNNN>/ profile (2026-10-05), so scan those too.
+    import glob as _glob
+    for base in ('/tmp/prod', '/tmp/qa', '/tmp/staging', *sorted(_glob.glob('/tmp/sv[0-9]*'))):
         for name in ('login.json', 'creds.json', 'cookies.json'):
             p = os.path.join(base, name)
             if not os.path.exists(p):

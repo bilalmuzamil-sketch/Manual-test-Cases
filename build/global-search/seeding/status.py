@@ -321,7 +321,9 @@ def main():
         print(f" {R}🔴 {len(broken)} UNIVERSE(S) NEED RESEEDING.{X}  One command rebuilds all of them:")
         # Name the environment we actually measured - telling a staging reader to run the
         # QA rebuild is how one estate's data ends up overwriting another's.
-        target = "qa" if "sv9160" in C["host"] else ("live" if C["host"] == "app.shopview.com" else "staging")
+        _br = C["host"].split('.')[0]
+        target = "qa" if _br == "sv9160" else (_br if C["host"].endswith(".qa.shopview.com")
+                  else ("live" if C["host"] == "app.shopview.com" else "staging"))
         print(f"\n      ./reseed_everything.sh {target}\n")
         print("    It is safe to run even for the parts that are fine — every step measures first")
         print("    and creates only the difference.")
