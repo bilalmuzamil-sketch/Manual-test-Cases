@@ -5818,6 +5818,14 @@ The route that works, end to end:
    *parameters* it actually reads are snake_case (`new_password`, `confirmed_password`).
    Diagnostic that isolates it: send only `?username=&token=` and watch the token/user errors vanish,
    leaving the two password errors — that proves the query is read and the body is not.
+   **⚠️ CHANGED by 2026-10-05 (sv9667 `v26.40.7-7ffda69` AND production `v26.40.7-e1021b1`): the
+   all-query form above now FAILS. The endpoint reads `username` + `token` from the QUERY and the two
+   passwords from a JSON BODY in snake_case:** `POST /api/reset-password?username=<email>&token=<hex>`
+   with `Content-Type: application/json` and `{"new_password":pw,"confirmed_password":pw}` → **201
+   `{"data":[]}`**. Same diagnostic finds it if it moves again. **On a QA branch, a `fetch` made from a
+   page must carry `credentials:'include'`** — without it the edge gate answers **401 `sso_required`**
+   before the app sees the request (production has no SSO gate, so the same code works there and fails
+   on the branch — that difference is the tell).
 5. `POST /api/login {username, password}` → **200**. Note the branch API *does* do password auth; the
    `sso_required` 401 you get from a cold `curl` is the edge gate, and it disappears once a valid
    `sv_sso_session` cookie is present.
@@ -5828,6 +5836,37 @@ Gotchas worth keeping: the reset **page** cannot be reached headlessly (without 
 bounces to Google; with one it redirects to `/workorders`), `GET /api/organizations` is a **global**
 list and is not "my organizations", and a session minted on staging never works against a branch —
 each branch has its own database.
+
+### §AC.15 — Note attachments, a staff member who LEAVES, and genuine sign-ins as any role (proven 2026-10-05, SV-10323)
+
+**Notes and attachments.** Create `POST /api/note/create {type, reference_id, content}` (`type` =
+`work_order` · `work_order_line` · `customer` · `vehicle` · `part_sale`; asset notes take the **asset id**,
+not a work-order id) → 201 `{data:{id}}`. Attach: multipart `POST /api/note/add-attachments` with
+`note_id` + `attachments[]` → 201. Toggle For Customer: `POST /api/note/update-attachment {"id","forCustomer"}`
+→ 201 `{data:{attachment_id}}`. Delete a note: `POST /api/note/delete {id}` → 200. Screen ids:
+`checkbox_attachment_for_customer_<attId>`, `note_card_<noteId>`, `note_attachment_card_<attId>`.
+**The Notes tab has a different test-id per page:** work order `link_notes_tab` · customer `tab_notes` ·
+asset `vehicle_tab_notes` · part sale `route_tab_notes`. The For Customer box renders only for a
+**full-view-mode** user (`woFullViewMode`) on a note **written by staff** (`note.source === "user"`).
+
+**A staff member who leaves (an uploader with no organization).** Create staff with **snake_case**
+`POST /api/iam/create {email, first_name, last_name, role_id, departments:[deptId], workplace_id}` → 201
+(the validation errors come back camelCase — the casing trap again); `forgot-password` → read the link from
+the plus-alias mailbox → reset (§AC.14 step 4, new form) → sign in with `/api/login` from a context that
+has `sv_sso_session` + `cf_clearance` but **no PHPSESSID** (production: the normal login form) → write
+the note + attachment **as that person** → then `DELETE /api/staff/{staff_id}` → 200. **Put a guard
+between "created" and "delete"**: if the note or attachment did not come back 201, stop — a missing guard
+deleted the first test user before it had written anything, and the reset token was spent with it.
+
+**Genuine sign-in as any role on a branch.** Swap the Tech user's role with
+`POST /api/staff/{staff_id}/change` (full staff body, new `role_id`), then click the branch's
+`button_quick_login_tech`. **Never use `POST /api/switch-user` for a screen check** — it leaves the
+admin's `user` + `fe_permissions_wrapper` in localStorage, so the screen draws admin controls for the
+impersonated user and the evidence is worthless. Edit a role's permissions with
+`PUT /api/roles/{id} {name, description, fePermissions:[permission ids], viewMode, crossToggles}` → 200
+(capture the editor's own request once to get the id list; read back with `GET /api/roles/{id}` and
+search the response for the permission **name**). **The staff list is not a directory** — it is filtered
+by location/department; never conclude someone "is not staff" from it.
 
 ## §AJ — VENDOR RETURN → VENDOR CREDIT → ACCOUNTINGHUB, built from scratch (proven 2026-10-02, SV-10406)
 

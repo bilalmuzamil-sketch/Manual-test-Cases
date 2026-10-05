@@ -57,7 +57,18 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-02, ~16:10 UTC. **FIVE TICKETS TESTED AND COMMENTED TODAY. NOTHING BLOCKS ME. FOUR DECISIONS SIT WITH YOU, AND ONE ROW BELOW IS MY OWN MISS.**
+## ⚠️ NEWEST — 2026-10-05, ~18:00 UTC. **SV-10323 TESTED — ALL 9 CHECKS PASS. COMMENT DRAFTED, NOT POSTED: TWO QUESTIONS FOR YOU.**
+
+| # | What is missing | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| 1 | **Technician sees no For Customer box at all** (not greyed out). Spec S10-R5b: *"A user who can only view the record sees the checkbox disabled"*; Nemanja's handoff names the Technician as the view-only user. Same on production, so it predates this fix. **Steps:** sv9667 → Tech quick-login → work order S2-17414 → Notes → the files show no For Customer box. Evidence `build/sv10323-note-attachment-org-check-2026-10-05/ev/raw/prod-technician-no-box.png` (production). **Should it go to Nemanja as a remaining issue, or is it outside this ticket?** | QA lead (Rule 97(d)) | Whether SV-10323 posts green PASSED or PARTIALLY PASSED | 2026-10-05 |
+| 2 | Rule 84: technical-details section on the SV-10323 comment — yes or no? | QA lead | Posting the comment (default without it if unanswered) | 2026-10-05 |
+
+Also SV-8552 / SV-10806 (3 Oct): **nothing outstanding** — you said *"leave everything as it is now"*.
+
+---
+
+## 2026-10-02, ~16:10 UTC. **FIVE TICKETS TESTED AND COMMENTED TODAY. NOTHING BLOCKS ME. FOUR DECISIONS SIT WITH YOU, AND ONE ROW BELOW IS MY OWN MISS.**
 
 **Register honesty first:** before this entry the newest row in this file was **10 September**. Today's
 five tickets were not in it. Standing Rule 36 says this file is updated *the moment* an item is raised

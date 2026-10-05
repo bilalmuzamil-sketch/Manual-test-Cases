@@ -1,0 +1,35 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+I tested this on the QA branch [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build v26.40.7-7ffda69) on 5 October 2026, against the ticket, Nemanja's QA checklist and spec rule S10-R5b, and compared it with production (build v26.40.7-e1021b1). All 9 checks passed.
+
+The For Customer box on a note's file now follows the note's own shop. A shop can no longer change another shop's files, and a file added by someone who has since left the shop can be shared with the customer again.
+
+h3. Before and after: the person who added the file has left the shop
+
+!01-staff-removed-before-after-hd.png|width=900,height=835!
+_On production, once the staff member who added the file is removed, ticking For Customer fails with "Attachment is not found". On the QA branch the same steps tick the box and it stays ticked after a reload._
+
+h3. What I checked
+
+||#||Check||Status||
+|1|A user with Edit ticks For Customer on a file - on a work order, a work order line, a customer, an asset and a part sale. It saves and is still ticked after a reload.|PASSED|
+|2|A user who can only view the record sees the box greyed out. Clicking it does nothing, and the shop's server refuses the change if it is sent anyway. Checked with the Sales Representative and Office User roles on all five record types.|PASSED|
+|3|The box follows the right permission for each record type: work orders and lines follow Work Orders Edit, part sales follow Part Sales Edit, customers and assets follow Customers Edit. Taking Customers Edit away from a role greys out the box on customer and asset notes.|PASSED|
+|4|A shop cannot change the For Customer setting on another shop's file. I set up a second shop and tried both ways. Both were refused as "not found", and the other shop's file was not changed.|PASSED|
+|5|The refusal for another shop's file is word for word the same as for a file that does not exist, so it gives nothing away.|PASSED|
+|6|A file that does not exist now answers "not found" (404). Production answers 400.|PASSED|
+|7|A file added by a staff member who has since been removed can still be shared with the customer by the shop (picture above).|PASSED|
+|8|The second shop can still change its own files normally.|PASSED|
+|9|Automated tests for the cross-shop cases and the removed-uploader case are in the pull request, and all of its checks pass.|PASSED|
+
+h3. Before and after: a user who can only view work orders
+
+!02-view-only-before-after-hd.png|width=900,height=561!
+_On production a user with Work Orders View only could tick For Customer. On the QA branch the box is greyed out for that user, and still shows whether the customer can see the file._
+
+h3. How to see it yourself
+# Open [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] as Admin and open work order *S2-17414*, *Notes* tab.
+# The note *"ZZAUTOTEST SV-10323 note by a staff member who then leaves"* was added by a staff member who has since been removed. Click *For Customer* on its file *zz10323_leaver.png*. It ticks with no error. Reload: it is still ticked.
+# As Admin, go to *Administration > Staff*, open *Tech ShopView* and change the role to *Sales Representative* (Work Orders View, no Work Orders Edit). Sign out, sign back in with the *Tech* quick-login and open the same Notes tab. The *For Customer* boxes are greyed out and clicking them does nothing.
