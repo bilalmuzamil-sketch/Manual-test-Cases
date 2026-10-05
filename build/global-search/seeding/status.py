@@ -278,6 +278,14 @@ def main():
             if _num:
                 import re as _re
                 wo_sub = _re.sub(r'^S-', 'S2-', _num)       # the view says S-889, the search shows S2-889
+                # ...on production and staging. A QA branch shows its own shop prefix (S10740- on
+                # sv10740, 2026-10-05), so read the displayed form from the search itself.
+                _dg = _num.split('-', 1)[-1]
+                _ss, _sj = api(f'/api/search?q={_dg}')
+                for _g in (((_sj or {}).get('data') or {}).get('groups') or []):
+                    for _i in (_g.get('items') or []) if _g.get('type') == 'work_orders' else []:
+                        if _re.fullmatch(rf'S\d*-{_dg}', _i.get('primary') or ''):
+                            wo_sub = _i['primary']
     except Exception:
         pass
 

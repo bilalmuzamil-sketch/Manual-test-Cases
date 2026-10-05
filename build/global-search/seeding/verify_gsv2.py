@@ -175,6 +175,22 @@ def _absent(q, group):
     return not rows
 
 
+def _display_number(raw):
+    """The work-order number exactly as the SEARCH shows it. Searched by its digits, and the row
+    whose number ends in those digits is taken; falls back to the production/staging `S2-` form."""
+    digits = raw.split('-', 1)[-1]
+    d, err = search(digits)
+    if not err:
+        for g in ((d or {}).get('groups') or []):
+            if g['type'] != 'work_orders':
+                continue
+            for i in (g.get('items') or []):
+                prim = i.get('primary') or ''
+                if re.fullmatch(rf'S\d*-{re.escape(digits)}', prim):
+                    return prim
+    return re.sub(r'^S-', 'S2-', raw)
+
+
 def resolve_env_identifiers():
     """Returns the substitutions this environment needs, each one measured."""
     sub = {}
@@ -185,20 +201,22 @@ def resolve_env_identifiers():
     raw = _wo_number(wid)
     if not raw:
         return sub
-    # The view API answers `S-889`; the SEARCH displays `S2-889`, and that is what a tester reads
-    # off the screen and types. Measured on production and staging alike.
-    disp = re.sub(r'^S-', 'S2-', raw)
+    # The view API answers `S-889`; the SEARCH displays it with a shop prefix, and that is what a
+    # tester reads off the screen and types. `S2-` on production and staging, but `S10740-` on the
+    # sv10740 QA branch (2026-10-05) - so the prefix is READ from the search, never assumed.
+    disp = _display_number(raw)
+    pre = disp.split('-', 1)[0]
     if disp != 'S2-15430':
         DIVERGENCES.append(f"the cases name work order S2-15430; this environment's seeded work "
                            f"order is {disp} (branch-assigned, Rule 111)")
         digits = disp.split('-', 1)[1]
         sub['S2-15430'] = disp
-        sub['S215430'] = f'S2{digits}'
-        sub['S2 15430'] = f'S2 {digits}'
+        sub['S215430'] = f'{pre}{digits}'
+        sub['S2 15430'] = f'{pre} {digits}'
         # two near misses that MUST return nothing — probed, not assumed
         found = []
         for delta in range(1, 40):
-            cand = f'S2-{int(digits) + delta}'
+            cand = f'{pre}-{int(digits) + delta}'
             if _absent(cand, 'work_orders'):
                 found.append(cand)
             if len(found) == 2:
