@@ -47,3 +47,6 @@ Ran the precondition gate across all 91. One gap: **C88573** (report-formatting 
 inspection run" with no route — fixed by adding the observed route (open the unit's "Inspections" tab > the run's
 "Report"/"PDF"). fr-view clean. All 91 now pass. (Other last-1.5-week suites swept the same day: Dashboard & Founder
 Part Sales clean; Mudassir's 3 jargon cases left as his own authored cases.)
+- 2026-10-05 (later): stronger gate re-flagged **C88573** — the route reached the report but never said how to CREATE the
+  inspection. Added the proven seeding path used by 5 build-verified DVI cases (Work Orders > New, pick customer and unit,
+  start an inspection from a published template, complete and sign it). All 91 pass; fr-view clean.
