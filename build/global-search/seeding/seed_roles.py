@@ -54,12 +54,14 @@ SOURCE_ROLE_NAME = 'Office User'
 WANTED = [
     {'name': 'ZZAUTOTEST No Work Orders View',
      'drop': ['workOrdersView', 'woFullViewMode'],
-     'gate': 'workOrdersView', 'serves': 'C44879, C44882',
+     'gate': 'workOrdersView', 'serves': 'C44879, C44882, C55732',
+     'staff': {'first': 'ZZAUTOTEST', 'last': 'NoWorkOrders', 'email': 'zzautotest.nowo@staging.shopview.local'},
      'note': 'viewMode must be null - a role with no Work Order View has no meaningful view mode, '
              'and the product FE sends null for exactly this shape. woFullViewMode goes with it.'},
     {'name': 'ZZAUTOTEST No Customers View',
      'drop': ['customersView', 'customersCreateAndEdit', 'customersDelete'],
      'gate': 'customersView', 'serves': 'C44882',
+     'staff': {'first': 'ZZAUTOTEST', 'last': 'NoCustomers', 'email': 'zzautotest.nocust@staging.shopview.local'},
      'note': 'removes BOTH the Customers and the Assets groups - they share one permission. The '
              'create/edit and delete permissions must go too or the view refuses to come off.'},
 ]
@@ -141,6 +143,35 @@ def main():
         print(f"       read back: {len(held)} permissions, {gate} removed? "
               f"{'✅ yes' if ok else '🔴 NO — it refused to come off'}")
         state[name] = {'id': rid, 'drops': drop, 'serves': spec['serves'], 'removal_verified': ok}
+
+    # 🔴 A ROLE NOBODY HOLDS PROVES NOTHING (2026-10-05). The e2e permission checks act as a real
+    # staff member (switch-user inside the full-access session), so each fixture role needs one person
+    # on it. Found by email; created with the recipe in seed-manifest.json (POST /api/iam/create).
+    staff = []
+    try: staff = ((call('/api/staff?limit=300')['json'] or {}).get('data') or {}).get('collection') or []
+    except Exception: pass
+    wp = next((x.get('workplace_id') for x in staff if x.get('workplace_id')), None)
+    for spec in WANTED:
+        st = spec.get('staff'); rid = (state.get(spec['name']) or {}).get('id') or by_name.get(spec['name'])
+        if not st or not rid: continue
+        have = next((x for x in staff if str(x.get('email', '')).lower() == st['email']), None)
+        if have:
+            ok = have.get('role_id') == rid or have.get('role_label') == spec['name']
+            print(f"  staff {st['email']:42} exists on {have.get('role_label')!r} {'✅' if ok else '🔴 WRONG ROLE'}"
+                  f" active={have.get('is_active')}")
+            if not ok and CONFIRM:
+                sid = have.get('staff_id') or have.get('id')
+                r = call(f'/api/staff/{sid}/change', 'POST', {'first_name': st['first'], 'last_name': st['last'],
+                         'email': st['email'], 'workplace_id': have.get('workplace_id') or wp, 'role_id': rid})
+                print(f"       moved to {spec['name']!r} -> {r['status']} {'' if r['status'] < 300 else str(r['raw'])[:200]}")
+            continue
+        if not CONFIRM:
+            print(f"  staff {st['email']:42} would create on {spec['name']!r}"); continue
+        body = {'email': st['email'], 'firstName': st['first'], 'lastName': st['last'], 'roleId': rid,
+                'departments': [], 'workplaceId': wp}
+        r = call('/api/iam/create', 'POST', body)
+        print(f"  staff {st['email']:42} create -> {r['status']}" + ('' if r['status'] < 300 else f"  {str(r['raw'])[:300]}"))
+        state.setdefault(spec['name'], {})['staff_create'] = r['status']
 
     if CONFIRM:
         json.dump(state, open(STATE, 'w'), indent=1)

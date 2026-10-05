@@ -49,15 +49,16 @@ let full: Who, limited: Who;
  * Staging's quick sign-in has only two accounts and a second sign-in to one ends the first, so this
  * person is reached by SWITCHING inside the full-access session and switching back before the
  * full-access person is used again (actAs). Nothing shared is edited - no role, no assignment.
- * Every role on staging can see work orders, so the two work-order checks still stand down.
+ * Every STOCK role on staging can see work orders, so a seeded ZZAUTOTEST person on a role without
+ * them is tried second (seeding/seed_roles.py, 2026-10-05).
  */
-let narrow: Who | null = null;
+let narrows: Who[] = [];        // every narrower person available, tried in order (2026-10-05)
 let fullAs = '';                 // the admin staff member the full session switches back to
 let acting: Who | null = null;
 const HEAVY_DUTY = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';
 async function actAs(w: Who) {
-  if (!narrow || w === limited || acting === w || (w === full && acting === null)) return;
-  const id = w === narrow ? narrow.as! : fullAs;
+  if (!narrows.length || w === limited || acting === w || (w === full && acting === null)) return;
+  const id = w === full ? fullAs : w.as!;
   await api(full.s.page, 'POST', '/api/switch-user', { user_id: id });
   await full.s.page.waitForTimeout(800);
   await api(full.s.page, 'POST', '/api/iam/change-location', { workplace_id: HEAVY_DUTY, workplace_timezone: 'America/Edmonton' });
@@ -94,24 +95,34 @@ test.beforeAll(async () => {
 
 test.beforeAll(async () => {
   if (IS_PROD) return;
-  const role = process.env.GS_NARROW_ROLE || 'Time Clock User';
+  // 🔴 ONE NARROWER PERSON COULD NOT SERVE THE WORK-ORDER CHECKS (2026-10-05): every stock role on
+  // staging can see work orders. seeding/seed_roles.py now makes a role without them AND puts one
+  // ZZAUTOTEST person on it, so that person is the second one tried. GS_NARROW_ROLE (comma-separated)
+  // overrides the list.
+  const roles = (process.env.GS_NARROW_ROLE || 'Time Clock User,ZZAUTOTEST No Work Orders View')
+    .split(',').map((r) => r.trim()).filter(Boolean);
   const staff: any[] = (((await api(full.s.page, 'GET', '/api/staff?limit=250')).body as any)?.data?.collection ?? [])
     .filter((x: any) => x.is_active);
   const prefer = (ok: (x: any) => boolean) => staff.find((x) => ok(x) && x.workplace_id === HEAVY_DUTY) ?? staff.find(ok);
-  const who = prefer((x) => String(x.role_label) === role);
   fullAs = prefer((x) => /^admin(istrator)?$/i.test(String(x.role_label ?? '')))?.id ?? '';
-  if (!who || !fullAs) { console.log(`no active "${role}" staff (or no admin to switch back to) — the narrower checks stand down`); return; }
-  narrow = { s: full.s, perms: [], label: `the ${role} person`, as: who.id };
-  await actAs(narrow);
-  narrow.perms = await permsOf(full.s);
-  await actAs(full);
-  console.log(`narrower person (${role}): ${narrow.perms.length} permissions -> ${narrow.perms.join(', ')}`);
-  if (narrow.perms.length >= full.perms.length) narrow = null;   // the switch did not take: never compare a person with themselves
+  if (!fullAs) { console.log('no admin to switch back to — the narrower checks stand down'); return; }
+  for (const role of roles) {
+    const who = prefer((x) => String(x.role_label) === role);
+    if (!who) { console.log(`no active "${role}" staff — not available as a narrower person`); continue; }
+    const n: Who = { s: full.s, perms: [], label: `the ${role} person`, as: who.id };
+    narrows.push(n);
+    await actAs(n);
+    n.perms = await permsOf(full.s);
+    await actAs(full);
+    console.log(`narrower person (${role}): ${n.perms.length} permissions -> ${n.perms.join(', ')}`);
+    // the switch did not take: never compare a person with themselves
+    if (n.perms.length >= full.perms.length) narrows = narrows.filter((x) => x !== n);
+  }
 });
 
-/** the lower-permission person who LACKS this area: the technician if it does, else the narrower person */
+/** the lower-permission person who LACKS this area: the technician if it does, else the first narrower person who does */
 const lacking = (re: RegExp): Who | null =>
-  !has(limited, re) ? limited : (narrow && !has(narrow, re) ? narrow : null);
+  !has(limited, re) ? limited : (narrows.find((n) => !has(n, re)) ?? null);
 
 test.afterAll(async () => { await full?.s?.browser.close(); await limited?.s?.browser.close(); });
 
@@ -192,8 +203,8 @@ for (const [cid, tab, permRe, areaName] of DENIED) {
     test.skip(!who,
       `no lower-permission person here lacks ${areaName} access, so the absence this case is about cannot be shown. `
       + `The technician holds: ${limited.perms.join(', ')}`
-      + (narrow ? `; the ${narrow.label.replace(/^the /, '')} holds: ${narrow.perms.join(', ')}` : '')
-      + `. Every role on this environment includes it.`);
+      + narrows.map((n) => `; the ${n.label.replace(/^the /, '')} holds: ${n.perms.join(', ')}`).join('')
+      + `. Nobody available lacks it - check that seeding/seed_roles.py ran (it makes a role without work orders and a person on it).`);
     test.skip(!has(full, permRe),
       `the full-access login does not hold ${areaName} access either, so there is no difference to compare`);
     const seed = await recordOnlyFullCanSee(tab);

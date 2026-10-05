@@ -72,6 +72,8 @@ export const STEP_SCRIPT: Record<string, { manifest: string; script: string }> =
   'e2e:#po': { manifest: 'seed-manifest-e2e.json', script: 'seed_po_from_manifest.py' },
 };
 
+const STANDALONE = new Set(['gs-v2:#roles']);
+
 export type PlannedStep = { label: string; manifest: string; script: string; args?: string[] };
 
 /**
@@ -90,7 +92,9 @@ export function planFor(cases: string[]): PlannedStep[] {
       records.get(plan)!.add(key);
     }
   }
-  const fullPlans = new Set([...steps].map((s) => s.split(':')[0]));
+  // A step that makes no use of its plan's records (the roles step makes roles and staff only) does
+  // not drag the whole plan in with it.
+  const fullPlans = new Set([...steps].filter((s) => !STANDALONE.has(s)).map((s) => s.split(':')[0]));
   const out: PlannedStep[] = [];
   for (const [plan, file] of Object.entries(PLAN_FILE)) {
     if (fullPlans.has(plan)) out.push({ label: `${plan}: every record (a step below needs them all)`, manifest: file, script: 'seed.py' });
