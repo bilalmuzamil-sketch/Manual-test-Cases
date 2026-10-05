@@ -1,11 +1,14 @@
-# HANDOFF → RUN SESSION — Dashboard (61 cases: 56 manual + 5 automated)
-### Execute on QA branch **sv490.qa.shopview.com/dashboard** (build `v26.39.1-09be696`), record results. 2026-10-02 (re-verified).
+# HANDOFF → RUN SESSION — Dashboard (61 cases: 55 manual + 5 automated + 1 held performance case)
+### Execute on QA branch **sv490.qa.shopview.com/dashboard** (build `v26.39.1-09be696`), record results. 2026-10-02; clarity pass 2026-10-05 (Rule 115).
+> 2026-10-05: reworded 4 cases to remove developer jargon and make them hand-runnable (C88594, C88595, C88630), and re-marked C88631 as not-manually-testable. All 61 now pass `check_tester_runnable.py`. Expected meaning unchanged (source quotes intact).
 
 **You are the run session.** The 61 cases (group **12166 "Dashboard (Sep 2026)"**, created_by=3) are build-verified on
 sv490: runnable, render `fr-view` (61/61 clean), stamped *"Last checked against build v26.39.1-09be696 on 10/2/2026."*,
 **AUTOMATION: READY**. Mark Passed / Failed / Blocked.
 
-- **Scope of this hand-off: all 61 ours cases** (56 MANUAL + 5 AUTOMATED), 14 sections (S1–S12 + NF + DATA).
+- **Scope of this hand-off: 60 runnable cases** (55 MANUAL + 5 AUTOMATED), 14 sections (S1–S12 + NF + DATA).
+  **C88631 (NF) is HELD — not manually testable** (performance budget / circuit breaker are developer/automated
+  checks); its user-visible half — one tile can fail while the others load — is covered by the Section 6 loading/failure case. Do not run C88631 by hand.
   The 5 automated (C88594, C88609, C88612, C88617, C88623) were build-verified this pass under the QA lead's
   2026-10-02 instruction; `custom_atmstatus` stays 3 (they remain flagged Automated in TestRail) — run them manually too.
 - **NOT in this hand-off:**
@@ -31,7 +34,7 @@ sv490: runnable, render `fr-view` (61/61 clean), stamped *"Last checked against 
 ## Run + result writes — needs the QA lead's go-ahead (Rule 6)
 No manual run exists. Ask the QA lead to authorise a run over these 54, then record with push_results_to_run.py.
 
-## The 61 cases (56 manual + 5 automated)
+## The cases (55 manual + 5 automated runnable; C88631 held, not manually testable)
 ### 5 automated cases (build-verified this pass; also run manually)
 | C-id | Section | Title |
 |---|---|---|
@@ -41,7 +44,7 @@ No manual run exists. Ask the QA lead to authorise a run over these 54, then rec
 | C88617 | S7 | Per-tile date ranges - options, updates and independence (automated) |
 | C88623 | S10 | Report drill-in from the tiles (automated) |
 
-### 56 manual cases
+### 55 manual cases
 | C-id | Section | Title |
 |---|---|---|
 | C88595 | S1 | Access gates and server-side enforcement |
@@ -76,7 +79,6 @@ No manual run exists. Ask the QA lead to authorise a run over these 54, then rec
 | C88628 | S6 | Expanded count detail tables show the design's columns |
 | C88629 | S12 | New Dashboard visual conformance - cards, panel, pill, ico |
 | C88630 | S5 | At Risk line revenue aggregates all at-risk customers, not |
-| C88631 | NF | Dashboard performance budget and per-tile circuit breaker |
 | C88632 | NF | Sales and Advisor Analysis report corrections ship with a  |
 | C88633 | DATA | Revenue - exact value to the cent, and equals the Sales re |
 | C88634 | DATA | Revenue - credit memos and a true negative figure |

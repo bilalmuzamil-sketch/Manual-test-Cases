@@ -49,3 +49,20 @@ Vlad's cases" hold for build-verification (surfaced to the QA lead, Rule 63). No
   glossary are confirmed; these need live data/interaction a tester drives.
 
 - Run hand-off: RUN-HANDOFF-DASHBOARD-2026-10-02.md (updated to 61 READY).
+
+## Status — 2026-10-05 · MANUAL-TESTER CLARITY PASS (Rule 115, new)
+Trigger: the manual tester (Nebojsa Glavinic) reported Dashboard cases he could not understand or run.
+QA lead made it a standing rule (115): this lane's definition of done is a case that is build-verified AND
+layman-understandable AND hand-runnable — the authoring session creates, this lane makes them runnable.
+- Checked all 61 ours cases (none edited by Nebojsa yet — all still show the 10/2 shared-account edit, so all eligible).
+- New gate `build/testing-tools/check_tester_runnable.py` flagged **4** cases; the other 57 passed.
+- Fixed (jargon → on-screen words; meaning unchanged; Source quotes intact; fr-view clean):
+  - **C88594** — removed "API" from the precondition.
+  - **C88595** — removed reportsPageAccess / endpoint / authorization-failure; kept the manual gate check; the
+    server-enforcement line now reads as the automated check, not a manual step.
+  - **C88630** — removed "server-side"; plain wording for the At Risk 12-month figure.
+  - **C88631** — performance budget / circuit breaker is NOT hand-testable; re-marked
+    `AUTOMATION: HOLD - not manually testable (developer/automated check only)`, NOT READY. Its user-visible
+    half (one tile fails, others load) is covered by the Section 6 loading/failure case.
+- Result: all 61 pass `check_tester_runnable.py`; run hand-off now 55 manual + 5 automated runnable + C88631 held.
+- The 5 automated (C88594 among them) remain `custom_atmstatus=3`; C88594 was edited this pass → in the "tell Vlad" set.

@@ -4041,3 +4041,57 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     edit path is Rule 106 (reconcile the case against the live source; correct the case, not the ticket);
     Rule 62-b turns a build-vs-Expected gap into three outcomes, never an Expected rewrite; Rule 109 keeps
     a V1-vs-V2 comparison case's Expected on the V1 behaviour, never the V2 spec.
+
+115. **A BUILD-VERIFIED CASE IS FULLY RUNNABLE AND FULLY UNDERSTANDABLE BY THE MANUAL TESTER — THAT IS
+    THIS LANE'S DEFINITION OF DONE (all projects, permanent; QA lead, 2026-10-05).**
+    **THE ORDER (QA lead, 2026-10-05, after the manual tester Nebojsa Glavinic reported Dashboard cases he
+    "does not know what they mean and has no clue how to run/automate"):** *"your job is to make the tests
+    ready for a manual tester to be able to successfully RUN them … make the test Authentic and RUNNABLE
+    while making sure they are build verified. The other session's work is just to make the test cases;
+    your job is to make sure they are FULLY build verified and FULLY understandable by the manual QA
+    tester and are FULLY runnable. For future make sure I should NEVER get such complaints from a manual
+    QA tester for the same."*
+    **DIVISION OF LABOUR (fixed here).** The AUTHORING session CREATES the cases from the sources. THIS
+    build-verification / VIU lane OWNS three deliverables on every case it touches, together, not one of
+    three: **(1) FULLY build-verified** (labels/paths/stamp/marker — Rules 102, 54) · **(2) FULLY
+    understandable by a layman manual tester** (Rules 7/9/110) · **(3) FULLY runnable by hand to a
+    verdict** (Rules 84, 18). A pass is **NOT done** when the labels are build-accurate, the date is
+    stamped and the marker is READY — it is done only when the assigned manual tester can **read every
+    case and run it to Passed/Failed without asking what anything means.** "Runnable-shaped" (84) and
+    "build-accurate labels" (102) are necessary, never sufficient. This is the operator bar behind Rules
+    7/9/110 for build-verified output, and it AMENDS Rules 102 and 84.
+    **TWO FAILURE MODES NOW FORBIDDEN IN ANY CASE THIS LANE MARKS `AUTOMATION: READY`** (both hit live on
+    Dashboard, group 12166, 2026-10-02 — C88631, C88595):
+    **(a) DEVELOPER JARGON IN TESTER-FACING TEXT.** Preconditions, steps and the Expected outcome
+    (everything ABOVE the `Source —` provenance block) use the build's **on-screen words only**. BARRED
+    from tester-facing text: internal permission codes (e.g. `reportsPageAccess`), `endpoint` / `API` /
+    `payload` / `request` / `authorization failure` / HTTP status codes, `server-side` / `p95` /
+    `circuit breaker` / `MAX_EXECUTION_TIME`, latency figures in milliseconds, and requirement ids
+    (`FR-0xx`, `S1-R6`). These are filing/reference shorthand and live ONLY in the `Source —` provenance
+    block (Rule 54), never in what the tester is told to do or see. Where the behaviour's meaning needs a
+    code, give the plain words the tester sees on screen and keep the code in provenance (Rule 110).
+    **(b) A CHECK THAT CANNOT BE DONE BY HAND, MARKED READY.** A case whose outcome can be proven only
+    with developer tooling (performance/latency budgets, server enforcement the screen never reveals,
+    analytics events, code-level caching) is NOT a manual `READY` case. Fix it one of two ways: **if a
+    manual-observable behaviour is genuinely present, keep ONLY that as the steps/Expected** and move the
+    non-hand part into provenance as context; **if nothing in the case is hand-observable, it is not a
+    manual case** — mark it `AUTOMATION: HOLD - not manually testable (developer/automated check only);
+    <what it checks>` and name it in the report (Rule 98), **never READY.** A one-line honest caveat that
+    a tiny SUB-aspect is a developer check, where the case's MAIN check is manual and clear, is fine and
+    stays (e.g. C88597, C88601, C88652 on Dashboard are correct).
+    **EXPECTED SUBSTANCE IS STILL THE SOURCE'S (Rules 57/114).** Reword for clarity and to the build
+    glossary; **never change the asserted outcome.** Making a case understandable is wording +
+    testability-marking, never softening or sharpening what must happen. If a case cannot be made BOTH
+    clear AND hand-runnable without changing its meaning, that is an **OUTSTANDING item for the QA lead
+    (Rules 98/99), not a READY case.**
+    **ENFORCED, NOT ADVISORY.** Before any case is reported build-verified, run
+    `python3 build/testing-tools/check_tester_runnable.py --sections <ids>` (or `--cases <ids>`); it must
+    exit 0. It flags developer jargon in tester-facing text and any not-hand-testable case still marked
+    READY. A case it flags is reworded or re-marked — never shipped. A green run is recorded in the pass's
+    report alongside the render and runnable-shape checks.
+    **THE STANDING BAR.** A manual QA tester must **NEVER again** report that a case this lane marked
+    build-verified is unclear or unrunnable. If it happens, it is a failure of THIS rule, logged to
+    `build/LEARNINGS-LOG.md` and fixed across the whole suite, not case by case.
+    **COORDINATION.** When a manual tester is actively editing a suite's cases, this lane does NOT edit a
+    case the tester has already changed (Rules 83/86) — detect by `updated_by`/`updated_on`, skip those,
+    and correct only the cases the tester has not yet touched; hand the tester a precise list of the rest.

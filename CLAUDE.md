@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **108 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **115 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -230,6 +230,19 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   meaningful and consistent with the Build Glossary** (the `OBSERVED-UI-LABELS-<env>.md` terms the tester
   sees) — align the words to the screen, never the asserted outcome. Wording-to-glossary ≠ changing Expected
   to match build behaviour (that stays a three-outcomes conflict, 62-b). Full text: `RULES-61-ONWARD.md` rule 102.
+- **🛑 "DONE" MEANS THE MANUAL TESTER CAN READ AND RUN EVERY CASE — FULLY UNDERSTANDABLE + FULLY RUNNABLE,
+  NOT JUST STAMPED (115; QA lead 2026-10-05, after a manual tester reported Dashboard cases he could not
+  understand or run).** The authoring session MAKES cases; THIS lane makes them (a) build-verified (102/54)
+  AND (b) layman-understandable (7/9/110) AND (c) hand-runnable to a verdict (84/18) — all three, or it is
+  not done. **FORBIDDEN in any `AUTOMATION: READY` case: (i) developer jargon in tester-facing text** (permission
+  codes, endpoint/API/payload/request, authorization-failure/HTTP codes, server-side/p95/circuit-breaker/ms,
+  requirement ids) — those live ONLY in the `Source —` provenance block (54/110); **(ii) a check not doable
+  by hand marked READY** — keep only the manual part, else mark `AUTOMATION: HOLD - not manually testable
+  (developer/automated check only)` and report it (98), never READY. Expected substance still the source's
+  (57/114); clarity is wording + testability-marking, never softening the outcome. **ENFORCED:**
+  `python3 build/testing-tools/check_tester_runnable.py --sections <ids>` must exit 0 before any suite is
+  reported build-verified. **A manual tester must NEVER again report a build-verified case as unclear/unrunnable.**
+  Don't edit a case the tester is already editing (83/86). Full text: `RULES-61-ONWARD.md` rule 115.
 - **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY (2026-09-02).** Run
   `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. Carry `sv_sso_session` ONLY,
   scoped **HOST-ONLY** — a domain-scoped cookie 409s right after a 200 login, which looks like a dead
@@ -324,7 +337,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 
 ---
 
-## 2 · THE RULE INDEX — all 108 rules, and where each one lives
+## 2 · THE RULE INDEX — all 115 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -463,6 +476,7 @@ rule. Generated from the split files' own headers.
 | **112** | WHEN THE SEEDED RECORD'S REAL IDENTIFIER DIFFERS FROM THE ONE THE CASE NAMES, CORRECT THE IDENTIFIER IN THE CASE — **THE IDENTIFIER ONLY, AND NOTHING ELSE** (QA lead, 2026-09-17) |
 | **113** | VERIFY AGAINST THE **REAL CASE TEXT**, NEVER AGAINST A SUMMARY OF IT — a handoff is a map, not the territory (QA lead, 2026-09-17) |
 | **114** | THE EXPECTED RESULT IS THE **VERBATIM QUOTE FROM THE SOURCE, AND IS NEVER CHANGED** — quoted in the source's own words with page/section/version cited (54), never paraphrased/softened/sharpened or edited to match the build; a build that differs is a deviation (62-b), and the only permitted edit is correcting it BACK to the source quote (106). Hardens Rule 57 (QA lead, 2026-09-21) |
+| **115** | A BUILD-VERIFIED CASE IS **FULLY RUNNABLE AND FULLY UNDERSTANDABLE BY THE MANUAL TESTER** — this lane's definition of done is all three together (build-verified + layman-understandable + hand-runnable), never just stamp+marker. FORBIDDEN in a READY case: developer jargon in tester-facing text (codes/endpoint/API/p95/circuit-breaker/ms/req-ids → provenance only, 110) · a check not doable by hand marked READY (→ keep only the manual part, else HOLD "not manually testable"). Expected substance still the source's (57/114). Enforced by `check_tester_runnable.py`. A manual tester must NEVER again report a build-verified case as unclear/unrunnable. Amends 102/84 (QA lead, 2026-10-05) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`

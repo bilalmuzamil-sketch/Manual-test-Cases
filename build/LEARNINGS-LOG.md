@@ -949,3 +949,19 @@ genuine mismatch — NOT rewrite its automation structure into layman steps (tha
 change than verification). They were build-accurate (Reports→Technician Efficiency, chart above tabs, "This Month",
 "No data for selected date range") so they were LEFT UNCHANGED. When the QA lead wants to be told of changes to another
 author's cases, "no change needed" is the best outcome and must be reported as such.
+
+## 2026-10-05 — Rule 115: build-verification's definition of done is a case the MANUAL TESTER can read and run
+The manual tester (Nebojsa) reported Dashboard cases he "does not know what they mean and has no clue how to
+run/automate." Root cause: cases authored in an earlier session carried developer jargon (reportsPageAccess,
+endpoint, authorization failure, p95, circuit breaker, latency in ms, requirement ids) in TESTER-FACING text, and
+one (C88631) was a pure performance NFR marked AUTOMATION: READY though no part is hand-observable. My build-verify
+passes had confirmed labels + stamped + flipped markers but NOT caught these — "runnable-shaped" and "build-accurate
+labels" are necessary, not sufficient. QA lead made it a standing rule: the authoring session CREATES cases; THIS
+lane makes them FULLY build-verified + FULLY understandable + FULLY hand-runnable, together. Two forbidden things in
+any READY case: (a) developer jargon in tester-facing text (codes/endpoint/API/p95/circuit-breaker/ms/req-ids live
+ONLY in the Source provenance block, Rule 54/110); (b) a not-hand-testable check marked READY (keep only the manual
+part, else HOLD "not manually testable"). Expected SUBSTANCE still the source's (57/114) — clarity is wording +
+testability-marking, never softening the outcome. ENFORCED by `build/testing-tools/check_tester_runnable.py` (must
+exit 0 before reporting a suite build-verified). A manual tester must NEVER again report a build-verified case as
+unclear/unrunnable. Also: when a tester is actively editing a suite, detect by updated_by/updated_on and never edit a
+case they already changed (Rules 83/86).
