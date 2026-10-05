@@ -29,3 +29,13 @@
 - Run hand-off: RUN-HANDOFF-MUDASSIR-PART-SALES-2026-10-01.md. Deposit glossary: OBSERVED-UI-LABELS-sv9667-DEPOSITS.md.
 - RESIDUAL (run session confirms live): QuickBooks settings (Automatically Apply Credits/Payments, Deposit sync
   enabled) · Part Sale Log entries (Deposit received/applied, Delete Deposit) · "Access restricted" gate.
+
+## 2026-10-05 · Rule 115 clarity pass
+Ran `check_tester_runnable.py` on all 57. Flagged 1; fixed: C154635 (removed spec-id citation S8-R8/S8-R11 from the step and
+Expected head; meaning unchanged, fr-view clean). All 57 now pass.
+## 2026-10-05 · Rule 115 — Mudassir's Part Sales additions (group 20481, created_by=6)
+Ran the gate on Mudassir's 43. Flagged 3 — NOT rewritten, because they are the designated tester's OWN authored cases and the
+flagged terms are the subject, not confusing shorthand: C154871 & C154873 are permission/server-enforcement security tests
+(the "server enforces" is the thing under test; direct-request method is the tester's own), and C154883 is a deliberate
+"record PRD discrepancies, do not score" note where requirement id S1-R22 is the subject and is already explained in plain words.
+Reported to the QA lead for Mudassir rather than changed.

@@ -33,3 +33,9 @@ spec's, Rule 114). After verifying, flip marker to **AUTOMATION: READY**. Build-
 ## NEXT (resume here)
 1. Confirm the 91 transform wrote (stamp 91/91, markers READY, glossary applied); gates: runnable, render, served fr-view.
 2. Report to QA lead + deliver the run hand-off.
+
+## 2026-10-05 · Rule 115 clarity pass (manual-tester runnable + understandable)
+Ran `check_tester_runnable.py` on all 91. Flagged 5; fixed 4 (jargon → plain words, meaning unchanged, fr-view clean):
+C88583/C88585/C88592 (removed spec-id citations S12-R31/S12-R11/S15-R1 from steps), C154646 (server-side → behind-the-scenes).
+LEFT: **C154644** — edited by Vladimir (user 1) on 2026-10-02, so not touched (coordination, Rules 83/86). It still has
+"endpoint"/"server-enforced" wording and a not-hand-testable server-refusal marked READY; needs the same fix once Vlad is done.

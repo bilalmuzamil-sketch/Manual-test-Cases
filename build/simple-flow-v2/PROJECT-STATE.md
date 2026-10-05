@@ -156,3 +156,6 @@ STAGING** (2026-09-28 → 10-01, build **v26.39.1-02c6b6c**, org "Staging Heavy 
 - Staging is cookie-gated behind Cloudflare: `sv_sso_session` + `PHPSESSID` + `cf_clearance` in
   `/tmp/cln/cookies.json`; browser via `staging-boot2.mjs` (SV_KEY=admin), node fetch `NODE_USE_ENV_PROXY=1`,
   Chrome-131 UA. TestRail API rate-limits rapid bursts (HTTP 400) — page reads in small paced batches.
+
+## 2026-10-05 · Rule 115 clarity pass — CLEAN
+Ran `check_tester_runnable.py` on all 55. PASS, 0 flagged (the suite had already been rewritten from robotic to plain). No changes.
