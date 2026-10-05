@@ -106,6 +106,7 @@ IN_SCOPE_TESTER = {                            # Rule 38's amendment, per projec
     6559: (6, 'Mudassir Qamar'),
     6597: (4, 'Viktoria Videnovic'),
     6617: (4, 'Viktoria Videnovic'),
+    20435: (6, 'Mudassir Qamar'),               # Founder Mode Part Sales QA Additions - in scope (PROJECT-STATE 10-01; QA lead 10-05)
 }
 
 
@@ -243,7 +244,9 @@ def main():
     build_claim, deferred = [], []
     for c in cases:
         e = flat(c.get('custom_expected'))
-        if not re.search(r'as per epic|Source:\s*\S', e, re.I):
+        # Founder Mode suites (2026-09/10) carry "Source — where this behaviour comes from … Epic SV-xxxx";
+        # the old two-phrase test called all 104 Part Sales cases unsourced (instrument fault, 2026-10-05).
+        if not re.search(r'as per epic|Source:\s*\S|Source\s*[—-]+\s*where this behaviour comes from', e, re.I):
             no_source.append(c['id'])
         ms = [l.strip() for l in e.split('\n') if l.strip().upper().startswith('AUTOMATION:')]
         if len(ms) != 1:

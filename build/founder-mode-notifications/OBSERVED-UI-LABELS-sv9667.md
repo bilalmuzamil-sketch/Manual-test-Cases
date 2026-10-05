@@ -29,3 +29,22 @@ quick note "ZZAUTOTEST Road test", notes on WO S2-4219 (Admin→group/Tech; Tech
   Technician, 6 permissions; can open Notifications and write work-order notes, and @-mention "Admin ShopView").
 - Observation (not a ruling): Tech ShopView received the work-order note notification; the part-sale note sent the same way
   had not appeared in its inbox at the time of reading (C154702 covers this — run session confirms).
+
+### Gate vocabulary — confirmed on sv9667 v26.40.7-7ffda69, 2026-10-05 (evidence build-verify-2026-10-05/nt-*)
+`Notifications` · `Inbox` · `Tag groups` · `Quick notes` · `Preferences` · `Search` · `Unread only` · `Mark all read` · `Mark as read` ·
+`New tag group` · `Edit tag group` · `Delete tag group` · `Public tag group` · `Members` · `Name` · `Visibility` · `Create` · `Save` · `Cancel` · `Delete` ·
+`New quick note` · `Edit quick note` · `Delete quick note` · `Preview` · `Notification preferences` · `Email notifications` · `Save preferences` ·
+`New Note` · `Create note for` · `Tag groups:` · `Quick notes:` · `Reminder Date` · `Customer Visible` · `Delete Note` · `Edit` · `Add attachment` ·
+`Tagged:` · `Notes` · `Sort By` · `Admin ShopView` · `Tech ShopView` · `Change Location` · `Create Work Order` · `Part Sales` · `Work Orders` ·
+`Customers` · `Assets` · `Roles & Permissions` · `Create Custom Role` · `Choose a template` · `Service Advisor` · `Technician` · `Edit Staff Member` · `Staff` ·
+`Work orders` · `Part sales` · `Customers` · `Collect In Portal` · `Dashboard` · `Admin ShopView (You)`.
+Locations on this build: "Staging Heavy Duty - 9919" · "Staging Lethbridge - 4310" · "QB Location".
+Staff used as examples (exist on this build): "Ashlee Thomas" · "Ashley Schultz" · "Amy Fernandez" · "Angelica Harper".
+### Example data the tester types (not screen labels)
+Tag-group, quick-note and role names such as "Service Team", "Waiting on parts", "Techs", "ZZ Pair", "ZZ Public team", "ZZ Personal team",
+"ZZ Public team 2", "ZZ Note", "ZZ L1 public", "ZZ L2 public", "ZZ work order secret", "ZZ part sale hello", and any name beginning "ZZAUTOTEST".
+Role names typed by the tester: "ZZAUTOTEST Work orders only" · "ZZAUTOTEST Customers only" · "ZZAUTOTEST Part sales only" · "ZZAUTOTEST PS and customer delete" ·
+"ZZAUTOTEST WO delete" · "ZZAUTOTEST No work order or customer view" · "ZZAUTOTEST No work order view" · "ZZAUTOTEST Editors" · "ZZAUTOTEST View only".
+Example message text typed by the tester: "Vehicle is waiting on parts; will update the customer" · "@Service Team please road test" ·
+"Please check this @Tech ShopView and @ZZ Pair today" · "@ me if urgent".
+Wording the cases quote from their own instructions (not screen labels): "Sign in as User C" · "Another user at the location" · "another user" · "that is not a tag (e.g".

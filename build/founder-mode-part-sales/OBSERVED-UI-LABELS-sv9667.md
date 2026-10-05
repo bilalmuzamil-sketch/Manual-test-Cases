@@ -65,3 +65,20 @@ Seeded sale P9667-370 (4 Star Truck Repair, Water Pump $517.55 + core $79.99, ve
 - **Move Part** (tick a row → toolbar ⋮): dialog "Select part sale to move part to" → **Part Sale** list (part sales only, no work orders) → Cancel / **Move**. **Split Part Sale** creates and opens a new sale at once (no dialog).
 - **New Inventory Part** (Parts → Inventory): Catalog Part · Vendor · Category · Manufacturer · Cost · Sell Price · Core Charge · Min · Max · Tags · Bin Location · Quantity · **Save** (no free Description field).
 - **QuickBooks NOT connected on this QA branch** (Settings → QuickBooks shows only the heading; server reports no company) — proved, `build-verify-2026-10-05/quickbooks-not-connected-claim.json` (blocker_gate exit 0). No QuickBooks login is held.
+
+### Gate vocabulary — labels confirmed on sv9667 v26.40.7-7ffda69 on 2026-10-05 (evidence: build-verify-2026-10-05/seed-*, roles/staff dumps)
+`Core for Water Pump` · `Parts Manager` · `Service Advisor` · `Edit tax rate` · `Taxes` · `GST` · `New Tax` · `Add Part` · `Save & Close` · `Save & Add Part` ·
+`Authorize` · `Decline` · `Auth To Order` · `Order` · `Awaiting` · `Receive` · `Receive parts` · `Receive Parts` · `Parts received.` · `Return Core` ·
+`Returned` · `Cancel Return` · `Put Back` · `Add Part Fee / Discount` · `Audit Log` · `Part Sale Log` · `Delete Part Sale` · `Split Part Sale` · `Move Part` ·
+`Set Status` · `Finance` · `Add Deposit` · `Create Deposit` · `Record Deposit` · `Collect In Portal` · `Create Invoice` · `New Customer Payment` ·
+`Make Payment` · `New Payment` · `Reverse` · `Issue Credit` · `Payments` · `Deposits` · `Part Sales` · `Work Orders` · `Create Work Order` ·
+`Customers` · `New Customer` · `Vendors` · `New Vendor` · `Inventory` · `New Inventory Part` · `Catalog` · `Sales Representative` · `Edit Staff Member` ·
+`Roles & Permissions` · `Create Custom Role` · `Choose a template` · `Change Location` · `Customer portal` · `See Financial Data` ·
+`Vendor and order management` · `Work order lines` · `Invoicing & payments` · `Stats` · `Notes` · `Estimate` · `Approved` · `Complete` · `Invoiced` · `Paid` · `Declined`.
+Permission names that do **NOT** exist on this build (cases mention them only to say so): "Vendors" (as a permission) · "Work Order Parts".
+Staff on this build used as examples: "Ashlee Thomas" · "Ashley Schultz" · "Mudassir Qamar" (the only Sales Representative today) · "Admin ShopView" · "Tech ShopView".
+
+### Example data the tester types (not screen labels; anything typed is accepted)
+"Oil Filter" · "Brake Pads" · "Water Pump" · role and record names beginning "ZZAUTOTEST" (Rule 6 test-data tag), e.g. "ZZAUTOTEST No financial data",
+"ZZAUTOTEST Parts no core", "ZZAUTOTEST Core - Water Pump", "ZZAUTOTEST 6%", "ZZAUTOTEST No part sale edit", "ZZAUTOTEST No invoicing edit",
+"ZZAUTOTEST No portal", "ZZAUTOTEST 8.25%".

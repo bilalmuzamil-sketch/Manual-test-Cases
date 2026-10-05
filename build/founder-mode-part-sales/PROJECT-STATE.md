@@ -43,6 +43,6 @@ Reported to the QA lead for Mudassir rather than changed.
 ## 2026-10-05 · FULL BUILD-VERIFY on sv9667 v26.40.7-7ffda69 (QA lead order, unattended)
 Group 20435 now holds 104 (61 Bilal + 43 Mudassir). Walked the whole core flow through the screen (seeded P9667-370/371).
 **82 written** (all except the 22 Vlad-edited Automated cases, held under Rule 71), fr-view 82/82, write log 82/82 OK.
-Markers: 54 READY · 19 HOLD QuickBooks (not connected on this branch, proved) · 8 portal-HOLD · 1 Not available (C154595).
+Markers (final): 45 READY · 22 HOLD QuickBooks (not connected on this branch, proved) · 8 portal-HOLD · 6 HOLD not-manual/old-sign-in · 1 Not available (C154595).
 Hand-off: RUN-HANDOFF-PART-SALES-2026-10-05.md. Outstanding: go-ahead for the 22 held automated; Mudassir's 16 READY→QB-HOLD
 (tell him); C154601 "Charged" tag absent (three outcomes in case); QuickBooks test company for this branch.

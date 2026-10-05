@@ -39,12 +39,13 @@ import argparse, base64, html, json, re, sys, urllib.request
 
 HOST = 'https://shopview.testrail.io'
 
-SCREEN = re.compile(r'\b(work orders?|customers?|parts|schedule|reports|settings)\b', re.I)
+# 'notifications' / 'the bell': the Notifications page is reached from the bell in the top navigation (Founder Mode, 2026-10)
+SCREEN = re.compile(r'\b(work orders?|customers?|parts|schedule|reports|settings|notifications page|the bell)\b', re.I)
 NAV    = re.compile(r'\b(click|open|go to|navigate to|select|tick|choose|press|switch to|set the)\b', re.I)
 TAB    = re.compile(r'\b(tab|panel|menu|dialog|icon|button|column|row|filter|chip|toggle|list|card)\b', re.I)
 
 JARGON = [
-    (re.compile(r'\b[a-z]+[A-Z][A-Za-z]*\b'),           'a camelCase identifier (e.g. a permission name)'),
+    (re.compile(r'\b(?!iPad|iPhone|iOS|macOS|eBay)[a-z]+[A-Z][A-Za-z]*\b'),           'a camelCase identifier (e.g. a permission name)'),
     (re.compile(r'\bS\d+-[RN]\d+[a-z]?\b'),             'a specification anchor (e.g. S3-R5)'),
     (re.compile(r'/api/|\bHTTP\b|\b\d{3}\s+error\b'),   'an API path or HTTP term'),
     (re.compile(r'\bplan\s+[A-Z]', ),                   'an implementation-plan reference'),
