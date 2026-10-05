@@ -167,8 +167,14 @@ def main():
             continue
         if not CONFIRM:
             print(f"  staff {st['email']:42} would create on {spec['name']!r}"); continue
-        body = {'email': st['email'], 'firstName': st['first'], 'lastName': st['last'], 'roleId': rid,
-                'departments': [], 'workplaceId': wp}
+        # 🔴 THE FIELD NAMES ARE SNAKE_CASE AND A DEPARTMENT IS REQUIRED (read from the product,
+        # api/src/IAM/Application/Create/CreateController.php @ f559d24, 2026-10-05). The camelCase
+        # body in the old recipe answered 400 "First name is missing ... Workplace ID is missing".
+        deps = (call('/api/departments')['json'] or {}).get('data')
+        deps = deps.get('collection', deps) if isinstance(deps, dict) else (deps or [])
+        dep_ids = [d['id'] for d in deps if isinstance(d, dict) and d.get('id')][:1]
+        body = {'email': st['email'], 'first_name': st['first'], 'last_name': st['last'], 'role_id': rid,
+                'departments': dep_ids, 'workplace_id': wp}
         r = call('/api/iam/create', 'POST', body)
         print(f"  staff {st['email']:42} create -> {r['status']}" + ('' if r['status'] < 300 else f"  {str(r['raw'])[:300]}"))
         state.setdefault(spec['name'], {})['staff_create'] = r['status']
