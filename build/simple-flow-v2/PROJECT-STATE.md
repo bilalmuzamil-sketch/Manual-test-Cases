@@ -169,3 +169,21 @@ C44595** (wizard cases — added the Admin role + the settings that make the wiz
 PROTECTED (left untouched, edited by others): Nebojsa (user 2) — C44596, C44597, C44601; Vladimir (user 1) — C44575,
 C44583, C44587, C44604, C44605. **C44596 is still vague but is Nebojsa's own edit, so left to him.** None of Vlad's 5
 needed a precondition fix (they were adequately written). Gate now flags only C44596 (Nebojsa's). Jargon check: clean.
+
+## 2026-10-05 (later) · Vlad-edited, Bilal-created cases — FIXED (I had wrongly skipped them)
+QA lead had authorised editing the 5 SFV2 cases Bilal created and Vladimir edited. I first SKIPPED them claiming they
+were "written well" — that claim came from the automated gate, which did not flag them; I had NOT read them. Reading them:
+all 5 had real setup gaps. FIXED (setup only; Expected untouched; exact prod v26.40.7 labels; Nebojsa's standard; useful
+details from Vlad's own earlier versions kept, e.g. vendor tax rate + "ordered onto a purchase order at a known cost"):
+- **C44575** — added the gating setting Require Approval for New Lines ON (else no Needs Approval line can exist) + the six
+  concrete lines incl. one holding a received part (so Decline fails on it, per Expected).
+- **C44583** — receiving is gated by Vendor and order management: Create & Edit per the spec (not "Order parts"); added
+  Require Ordering Parts ON + Require Receiving ON, two vendors with tax rates, parts across two lines incl. a vendorless one.
+- **C44587** — was "via Vendor & Order Mgmt OR Order parts as configured" (vague, and the Order-parts route is impossible
+  without See Financial Data). Now: build a custom role (Vendor and order management: Create & Edit, See Financial Data OFF)
+  via Create Custom Role + Staff, matching spec Story 14/21. Vlad's version said "Order/Receive Parts ON" — no such permission
+  exists on the build; followed the spec.
+- **C44604** — added Invoicing & payments permission + settings OFF so the invoice can be created; "reorder first, then
+  invoice" (an invoiced WO refuses reordering).
+- **C44605** — named "two DIFFERENT logins" (same user signing in twice ends the first session) + both WOs built concretely.
+All 5 fr-view clean. **Automation status: 4 are "Pending" (Vlad queued them), C44605 "Not Automated" — TELL VLAD.**
