@@ -141,6 +141,44 @@ lack of data, and a standing-down suite looks exactly like a suite that ran. On 
 run spent 1.6 hours to report 116 checks standing down, most of them for records that were simply not
 there.
 
+### Every test case has its own data, checked just before it runs
+
+Decided with the QA lead on 5 October 2026: **declare per test, seed per run, check per test.**
+
+1. **Each test case names the data it needs** in `data/test-data.json`: the seeded records, any step
+   that is not a single record (work-order statuses, purchase orders and invoices), or — for the few
+   that need nothing of ours — why not. All 294 cases are mapped. The file is built by
+   `python3 tools/build_data_map.py`, which **fails if any case is unmapped** or names a record that no
+   seeding plan makes; edit `data/test-data-manual.json` (or a seeded record's `serves` note) and
+   rebuild.
+2. **The run seeds exactly what the selected tests need, once.** `npm test` seeds everything.
+   `npx playwright test tests/panel.spec.ts --grep C45155` seeds only that test's records, and says
+   so: `selection: 1 of 338 tests (1 case(s)) — seeding only what they need`.
+3. **Immediately before each test, its own records are checked.** A missing one is seeded on the
+   spot, then the check waits until search finds it; if it still cannot be made, the test stands down
+   naming it — before it starts, never half-way through. Each result carries a note:
+   `confirmed on the branch before this test: 5 of 5 record(s)`, or `seeded before this test: …`.
+
+The check uses the session the test already holds (a second sign-in would sign the test out), and
+only while that session is the full-access person — the permission checks switch to a lesser person
+for a while, and those tests rely on the check made at the start of the run.
+
+```bash
+GS_DATA_CHECK=off npm test           # skip the per-test check (run-start seeding still happens)
+GS_DATA_RECHECK_SECS=0 npm test      # re-check every record before every test (default: 120 s)
+```
+
+Proved on staging, 5 October 2026: a one-test run seeded only that test's 11 records and passed; a
+record deleted on purpose (`ZZACC José Martínez`) with run-start seeding switched off was noticed by
+the per-test check, re-created exactly, found by search, and the test passed.
+
+**Records once made by hand are now a plan.** About twenty families of records the checks search for
+were made by hand on staging on 29 September and were in no plan — a reset would have lost them for
+good. `seeding/seed-manifest-fixtures.json` (86 entries, captured from staging by
+`tools/codify_fixtures.py`) re-creates them exactly; proved by finding all 86 on staging with no field
+differences. The shop's standard records (created on or before the last reset, 28 September) are
+restored by a reset and are marked as such in the map.
+
 ### Nothing stalls the run — data that is already there is used, not fought
 
 Confirmed with the QA lead on 2 October 2026: if a record being seeded is **already on the branch**,
@@ -179,7 +217,8 @@ order `reseed_everything.sh` proved:
 | `seed-manifest-ranking.json` | ranking and fuzzy-match pairs, and the signals ranking reads |
 | `seed-manifest-toggle.json` | one record per access area, for the permission checks |
 | `seed-manifest-pertab.json` | begins-with / contains / one-letter-typo trios per tab |
-| `seed-manifest-e2e.json` | this suite's own: the `ZZSPEC` customers, and the `ZZLONGROW` and `ZZSOFTHIT` families the entity checks search for, with their purchase orders and invoices |
+| `seed-manifest-e2e.json` | this suite's own: the `ZZSPEC` customers, and the `ZZLONGROW` and `ZZSOFTHIT` families the entity checks search for, with their vehicles, work orders, purchase orders and invoices |
+| `seed-manifest-fixtures.json` | the records once made by hand on staging (Rowcheck…, ZZACC, ZZPUNC, ZZVORTAC, ZZNOUNIT, ZZBROAD, ZZSOFTHIY, supplier contacts), captured so a reset no longer loses them |
 
 Then three **proofs** search for what was seeded and fail the run if search does not return it — "the
 record exists" is not "search returns it".
