@@ -57,7 +57,7 @@ CAVEAT = [r'cannot be done by hand', r'cannot be proven by hand', r'developer/au
 # A precondition must let the tester REACH the start state by hand: exact role+permissions, the gating
 # settings, and concrete UI-buildable data. These patterns are the two real defects the tester found.
 VAGUE_ROLE = re.compile(
-    r'signed in with the permissions the step needs|with the permissions the step|'
+    r'as configured|e\.g\. via|signed in with the permissions the step needs|with the permissions the step|'
     r'signed in with the (?:right |invoicing |correct )?permissions\b|'
     r'signed in with the permissions\b|as a user with the (?:right )?permissions', re.I)
 # a concrete role names the actual role word
@@ -66,8 +66,15 @@ NAMES_ROLE = re.compile(r'\b(logged in|signed in) as (?:an? )?(admin|owner|techn
 # a Work Order / org setting that gates behaviour
 NAMES_SETTING = re.compile(r'Require (Approval|Review|Tech Stor|Mileage|Engine Hours|Ordering|Receiving|Picking)', re.I)
 # a bare state assertion with no "how to reach it"
-STATE_ASSERT = re.compile(r'\b(a work order with|a work order whose|an already-invoiced|'
-                          r'a WO with a|set up:\s|with a Needs Approval line|whose lines are all)\b', re.I)
+STATE_ASSERT = re.compile(r'\b(a work order with|a work order whose|an already-invoiced|an invoiced work order|'
+                          r'a WO with a|set up:\s|with a Needs Approval line|whose lines are all|'
+                          r'a selection (mixing|holding)|the work order has|parts awaiting receipt|'
+                          r'a line (that )?holds?|holding received parts|one holding received)\b', re.I)
+# L0049: opening an existing record is NOT building the state; a non-trivial state needs BUILD steps
+BUILD = re.compile(r'\b(add(ed)? (a|one|two|three|four|another|the|more)|left as added|click (&ldquo;|")?order|'
+                   r'order on (it|each|every|that|the)|you (approve|decline|complete|invoice)|approve and then|'
+                   r'and then (complete|add|receive)|decline it|receive it|create (a|the|an)|invoice (it|from)|'
+                   r'typed in by hand|seed(ed)?|create custom role)\b', re.I)
 # a concrete UI setup route (creating/opening the record / navigating to it)
 HAS_ROUTE = re.compile(r'top menu|>\s|&gt;|create a (work order|customer)|open a work order by|'
                        r'Customers\s*&gt;|New Customer|add a (labour|labor|part) line|'
@@ -85,6 +92,8 @@ def precond_issues(case):
             issues.append('vague role (name the exact role + permissions)')
     if STATE_ASSERT.search(pre) and not NAMES_SETTING.search(pre) and not HAS_ROUTE.search(pre):
         issues.append('asserts a start state but names no gating setting and no UI setup route')
+    elif STATE_ASSERT.search(pre) and not BUILD.search(pre):
+        issues.append('asserts a start state but never says how to BUILD it (opening a record is not building the state)')
     return issues
 
 

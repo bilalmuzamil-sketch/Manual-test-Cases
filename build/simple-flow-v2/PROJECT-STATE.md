@@ -187,3 +187,14 @@ details from Vlad's own earlier versions kept, e.g. vendor tax rate + "ordered o
   invoice" (an invoiced WO refuses reordering).
 - **C44605** — named "two DIFFERENT logins" (same user signing in twice ends the first session) + both WOs built concretely.
 All 5 fr-view clean. **Automation status: 4 are "Pending" (Vlad queued them), C44605 "Not Automated" — TELL VLAD.**
+
+## 2026-10-05 (later) · Stronger precondition gate — 9 more setup gaps found and fixed
+Gate strengthened (L0049): a non-trivial start state now needs BUILD steps, not just a route to open a record. Read all 9
+newly flagged cases; all were real gaps. Fixed (setup only, Expected untouched, prod v26.40.7 labels, spec-grounded part
+states — Requested = typed in without a price; Quoted = created with pricing; Auth to order = vendor part on approved line;
+"Receive later" is a yes/no permission OFF by default, even for Admin):
+C44563 (+Require Approval ON; clock-in for "Clock out and complete"; Create invoice last) · C44571 · C44580 · C44581 ·
+C44584 & C44585 (receive gated by Vendor and order management: Create & Edit per spec, not "Order parts") · C44592 (how to
+switch Receive later ON) · C44593 (custom role without Receive later; setup b) · C44600 (Require Tech Story ON so the wizard
+has something to collect; deposit WO via Finance tab).
+**All 55 SFV2 cases now pass the strengthened gate. fr-view clean 9/9.**
