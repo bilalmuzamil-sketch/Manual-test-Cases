@@ -1,10 +1,11 @@
 {
- "when_utc": "2026-10-05T071326Z",
+ "when_utc": "2026-10-05T071635Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
  "live_ids": {
   "rank_q_prefix": "9b1c1277-09bc-4079-8050-55affbcce0a6",
+  "rank_q_whole": "c92ca41d-f6f8-4fce-b4a3-8bd0792ee718",
   "rank_q_typo": "54e45978-4b22-48c7-a6ae-a7e057add654",
   "rank_c_open": "e28e4fc9-86a3-44b2-b3c7-b6fec410730a",
   "rank_c_none": "515527ac-dd9d-4b17-b16c-9680d6be78fc",
@@ -16,6 +17,7 @@
   "rank_n_none": "9ab89481-2df4-4ee0-a6a6-3dea44b0ed30",
   "rank_t_older": "53193e47-9493-4dd6-9c3d-ce7d68453e2e",
   "rank_t_newer": "fb2274f7-2968-4513-9864-4261c457c192",
+  "rank_i_instock": "338c8ab2-3c36-4b28-97db-5e7ef0c57410",
   "rank_i_outstock": "b184873e-8966-48fb-9b40-e06fd7a3ccf8",
   "rank_p_active": "8d0d15d1-f2ce-4052-923b-65e349250c68",
   "rank_p_quiet": "cf48e233-626a-4115-83fd-3ad309ff7c5e",
@@ -23,8 +25,9 @@
   "rank_f_contact": "f0531b4e-0d2d-4e56-be25-f9fc1eb402cd",
   "fz_short": "a6b1db61-d5b0-4f9b-b861-8cb0202ebb38",
   "fz_long": "f9f87061-da7d-4e24-b84f-adc304c40368",
-  "rank_i_instock_inv": "97fae4d3-fa63-47bf-8609-ece35028a87a",
+  "rank_i_instock_inv": "37a398c5-fe4c-4d80-a600-cabfc4b08a4d",
   "rank_i_outstock_inv": "61f32d42-fb52-4be9-a2e7-422eabb787ed",
+  "rank_p_active_inv": "b924ae55-a24b-4f7f-88ae-1d4e08ab8c27",
   "rank_p_quiet_inv": "5d2711f0-dd7a-4bdc-8072-da43a1f4ef7c",
   "rank_c_open_contact": "0e61ee55-7fe9-4993-92c3-868ef4fd9a96",
   "rank_c_open_vehicle": "469d3ead-0738-400a-908b-0cb4e91ca97f",
@@ -58,6 +61,7 @@
   "pin_rival": "17ed4f92-ace3-4334-b582-f27a59a9d408",
   "broad_01": "186f0df4-2a1f-42e4-831d-345b4015c4a5",
   "broad_02": "2d1ce928-ea57-4604-ae1b-b4a9bce8bde9",
+  "broad_03": "0e14c22e-65d3-437b-8900-fccdd4bff042",
   "broad_04": "f81d0d73-b0ea-478d-8c30-adb2fbe04ea4",
   "broad_05": "56dda0a4-270d-4755-a9ad-a3513663bfb7",
   "broad_06": "9d8fafea-494d-4555-ac4f-7e61313cc59c",
@@ -74,10 +78,12 @@
   "broad_17": "f4b89dab-852e-49f9-b18a-8c5defbe6eeb",
   "broad_18": "30361f3a-66ee-4598-bda8-ab817f539f3c",
   "broad_19": "fa6ffc50-9b93-4294-904d-7ba403bdc48b",
+  "broad_20": "f3815b9e-7335-4bba-8fc5-1e49c1e3f4f9",
   "broad_21": "e2aaa38d-9640-4a27-b346-6a1db8fad7f8",
   "broad_target": "0078f2b3-6815-4a9a-a683-9116d3c64dd4",
   "broad_01_inv": "99fec9c8-1eb7-4344-85ba-bb31c1338ff2",
   "broad_02_inv": "90f066ca-6f04-40ba-9b34-6204a488adeb",
+  "broad_03_inv": "53c53b54-8d9a-4e5c-a6dd-66c431f02d71",
   "broad_04_inv": "cef3a377-3797-4a80-bc77-fc6877863a95",
   "broad_05_inv": "a0ba6bc7-e35c-4811-91eb-b73990f1161f",
   "broad_06_inv": "b3a61b8e-cdc7-490a-b45d-b83238c6fd50",
@@ -94,6 +100,7 @@
   "broad_17_inv": "7430eb84-53cb-4753-ba31-4a8c83a1c9de",
   "broad_18_inv": "8538ba3a-5ae3-4ec5-bfcf-250af664f964",
   "broad_19_inv": "76a88bd1-7b0b-45c5-9b0b-28c6102703eb",
+  "broad_20_inv": "979d4ea9-c6c1-4afa-bcfc-b7a7429da009",
   "broad_21_inv": "100a62f9-83d3-40bf-a379-3ea713dd2c00",
   "broad_target_inv": "9d0ee006-3e24-45dd-9d93-52cd43f43527"
  },
@@ -121,8 +128,21 @@
   },
   {
    "key": "rank_q_whole",
-   "state": "UNVERIFIED",
-   "reason": "probe ERR",
+   "state": "PRESENT",
+   "ids": [
+    "c92ca41d-f6f8-4fce-b4a3-8bd0792ee718"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
@@ -374,9 +394,16 @@
   },
   {
    "key": "rank_i_instock",
-   "state": "CREATE_FAILED",
-   "http": "ERR",
-   "body": "b'<urlopen error [Errno 104] Connection reset by peer>'",
+   "state": "PRESENT",
+   "ids": [
+    "338c8ab2-3c36-4b28-97db-5e7ef0c57410"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     44852
    ]
@@ -513,7 +540,13 @@
   },
   {
    "key": "rank_i_instock_inv",
-   "state": "CREATED_NOT_FOUND",
+   "state": "PRESENT",
+   "ids": [
+    "37a398c5-fe4c-4d80-a600-cabfc4b08a4d"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     44852
    ]
@@ -533,9 +566,13 @@
   },
   {
    "key": "rank_p_active_inv",
-   "state": "CREATE_FAILED",
-   "http": "ERR",
-   "body": "b'<urlopen error [Errno 104] Connection reset by peer>'",
+   "state": "PRESENT",
+   "ids": [
+    "b924ae55-a24b-4f7f-88ae-1d4e08ab8c27"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55712
    ]
@@ -839,23 +876,14 @@
    ],
    "fields_ok": [
     "name",
+    "address",
     "city",
     "state_or_province",
     "postal_code",
+    "phone",
     "country_code"
    ],
-   "gaps": [
-    {
-     "field": "address",
-     "wanted": "1 Ranking Way",
-     "holds": null
-    },
-    {
-     "field": "phone",
-     "wanted": "(264) 400-0000",
-     "holds": null
-    }
-   ],
+   "gaps": [],
    "not_compared": [],
    "serves": [
     55726
@@ -1058,8 +1086,16 @@
   },
   {
    "key": "broad_03",
-   "state": "UNVERIFIED",
-   "reason": "probe ERR",
+   "state": "PRESENT",
+   "ids": [
+    "0e14c22e-65d3-437b-8900-fccdd4bff042"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
@@ -1322,8 +1358,16 @@
   },
   {
    "key": "broad_20",
-   "state": "UNVERIFIED",
-   "reason": "probe ERR",
+   "state": "PRESENT",
+   "ids": [
+    "f3815b9e-7335-4bba-8fc5-1e49c1e3f4f9"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
@@ -1388,9 +1432,13 @@
   },
   {
    "key": "broad_03_inv",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"error\":\"Cannot add part variant as one such already exists in the system.\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "53c53b54-8d9a-4e5c-a6dd-66c431f02d71"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
@@ -1605,9 +1653,13 @@
   },
   {
    "key": "broad_20_inv",
-   "state": "CREATE_FAILED",
-   "http": 400,
-   "body": "b'{\"errors\":[{\"error\":\"Cannot add part variant as one such already exists in the system.\"}]}'",
+   "state": "PRESENT",
+   "ids": [
+    "979d4ea9-c6c1-4afa-bcfc-b7a7429da009"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55730
    ]
