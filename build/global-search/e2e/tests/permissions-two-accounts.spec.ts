@@ -101,8 +101,12 @@ test.beforeAll(async () => {
   // overrides the list.
   const roles = (process.env.GS_NARROW_ROLE || 'Time Clock User,ZZAUTOTEST No Work Orders View')
     .split(',').map((r) => r.trim()).filter(Boolean);
-  const staff: any[] = (((await api(full.s.page, 'GET', '/api/staff?limit=250')).body as any)?.data?.collection ?? [])
-    .filter((x: any) => x.is_active);
+  // 🔴 THE PLAIN STAFF LIST LEAVES SOME PEOPLE OUT (staging, 2026-10-05: 22 rows, and neither seeded
+  // ZZAUTOTEST person among them; ?search= finds them at once). So the seeded people are searched for too.
+  const listed = async (q: string) => (((await api(full.s.page, 'GET', `/api/staff${q}`)).body as any)?.data?.collection ?? []);
+  const seen = new Set<string>();
+  const staff: any[] = [...await listed(''), ...await listed('?search=ZZAUTOTEST')]
+    .filter((x: any) => x.is_active && !seen.has(x.id) && seen.add(x.id));
   const prefer = (ok: (x: any) => boolean) => staff.find((x) => ok(x) && x.workplace_id === HEAVY_DUTY) ?? staff.find(ok);
   fullAs = prefer((x) => /^admin(istrator)?$/i.test(String(x.role_label ?? '')))?.id ?? '';
   if (!fullAs) { console.log('no admin to switch back to — the narrower checks stand down'); return; }
