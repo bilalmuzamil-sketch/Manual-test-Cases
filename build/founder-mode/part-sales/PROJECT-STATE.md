@@ -72,3 +72,5 @@ numeric/money-accuracy DATA folder (Rule 116).
 - Mudassir's 3 stale cases (C154874, C154877, C154883): change list `FOR-MUDASSIR-2026-10-05.md`.
 - Build re-check of the 22: Part Sales QA build sv9667.qa.shopview.com is up at **v26.40.7-7ffda69**
   (2026-10-05); sign-in refused without a session — waiting on an `sv_sso_session` cookie for sv9667.
+- **QA lead decision 2026-10-05: do NOT set the 8 updated cases with earlier results in run 492 back to Retest**
+  (Passed C154586, C154589, C154593, C154598, C154601, C154611, C154625; Failed C154591). Mudassir's results stay as recorded.
