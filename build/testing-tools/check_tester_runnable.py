@@ -36,7 +36,7 @@ JARGON = [
     (r'\bauthorization failure\b', 'authorization failure', False),
     (r'\bHTTP\b', 'HTTP', True),
     (r'\bserver[- ]side\b', 'server-side', False),
-    (r'\bp9[0-9]\b', 'p95/p99 percentile', False),
+    (r'\bp9[0-9]\b(?!-\d)', 'p95/p99 percentile', False),
     (r'\bcircuit breaker\b', 'circuit breaker', False),
     (r'MAX_EXECUTION', 'MAX_EXECUTION_TIME', True),
     (r'\bAPM\b', 'APM', True),
@@ -50,7 +50,7 @@ JARGON = [
 # everyday product names that merely look like camelCase codes (a tester reads them fine)
 PLAIN_WORDS = {'iPad', 'iPads', 'iPhone', 'iPhones', 'iOS', 'macOS', 'eBay', 'eTransfer'}
 # tokens that mean "only provable with developer tooling" -> never a manual READY case
-NOT_HAND = [r'\bp9[0-9]\b', r'\bAPM\b', r'\bserver timing\b', r'performance tooling',
+NOT_HAND = [r'\bp9[0-9]\b(?!-\d)', r'\bAPM\b', r'\bserver timing\b', r'performance tooling',
             r'\bcircuit breaker\b', r'MAX_EXECUTION', r'\b\d+\s?ms\b']
 # allowed: a one-line caveat that a SUB-aspect is a dev check (main check stays manual) -> warn only
 CAVEAT = [r'cannot be done by hand', r'cannot be proven by hand', r'developer/automated check', r'not by eye']
@@ -113,7 +113,7 @@ def tester_text(case):
     for s in (case.get('custom_steps_separated') or []):
         st += ' ' + strip_tags(s.get('content', '')) + ' ' + strip_tags(s.get('expected', ''))
     exp = case.get('custom_expected') or ''
-    exp = re.split(r'Source\s*&mdash;|Source\s*—|Source &#8212;|Exact quotes', exp)[0]
+    exp = re.split(r'Source\s*&mdash;|Source\s*—|Source &#8212;|Source - where|Exact quotes', exp)[0]
     exp = strip_tags(exp)
     return pre + '\n' + st + '\n' + exp
 
