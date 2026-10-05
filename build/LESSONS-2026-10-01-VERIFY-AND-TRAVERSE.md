@@ -49,6 +49,15 @@ Report the coverage proof (traversal + anchor diff) as evidence; a suite is "com
 shown, never asserted. Worked example: `build/maintenance-reminder-v2/chunk-2/COVERAGE-VERDICT-2026-10-02.md`.
 **Proposed for promotion to a numbered Standing Rule (Rule 72); binding until then.**
 
+## L6 — COMMUNICATION RULES (QA lead, 2026-10-05), binding on every reply, proposed for Standing Rule.
+1. **Full names only.** Never a short form, abbreviation or internal/file/section codename in anything the
+   user or a tester reads; always the full product/feature/document name (e.g. "Digital Vehicle Inspection
+   Version 2", not "DVI V2"; "Work Orders Board View and Technician View", not "WO Board").
+2. **Never say anything without context.** Every statement carries what it is and why it matters, in one read.
+3. **Never surface an item outstanding ON THE USER without giving the solution for it** in the same breath —
+   what to do, and the option to do it. No bare "waiting on you".
+4. **No unnecessary paragraphs.** Lead with the answer; prefer a short table or a line; cut filler.
+
 ## Standing check to run before saying a feature/suite is done (now L5, mandatory every time)
 1. Live format audit (preconditions are discrete lists, not paragraphs; titles ≤ ~80; Rule-117 shape) —
    show the counts.
