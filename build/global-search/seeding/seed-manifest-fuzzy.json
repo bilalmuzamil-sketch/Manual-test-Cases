@@ -1,0 +1,268 @@
+{
+ "_README": "SV-10740 \u2014 short-word typo tolerance (\"Short Words Lose Their Record On A One-Letter Typo\").\n\nThe ticket measured nine tabs on STAGING with words that happened to exist there. A QA branch is a\ncopy of staging, but three of the nine words have no record on sv10740 (measured 2026-10-05 by\n../sv10740-fuzzy/measure_ticket_words.py): Part Sales 'Adrian', Purchase Orders 'Adams' and\nVendor Invoices 'Abadi' - the correct word finds NOTHING there, so the typo row cannot be tested.\nThis universe adds exactly those three, under the ticket's own words, so the tester types what the\nticket says. The other six words already exist on the staging estate and are measured, not seeded.\n\nEach word is the record's NON-identifier field the ticket exercises: a part sale is indexed on its\nCUSTOMER name, and purchase orders / vendor invoices on their VENDOR name (see the gsv2 manifest).\nThe purchase order and the invoice are a stateful chain, seeded by seed_po_and_invoices.py with\nSEED_PO_PLAN=fuzzy_adams / fuzzy_abadi.\n",
+ "environment": {
+  "tag": "ZZAUTOTEST",
+  "workplace_name_hint": "Heavy Duty",
+  "_note": "environment-agnostic; ids and state are keyed per environment"
+ },
+ "records": [
+  {
+   "key": "cust_fz_adrian",
+   "type": "Customer",
+   "serves": [
+    "SV-10740 Part sales: Adrian / Adrxan"
+   ],
+   "_why": "Part Sales is indexed on the customer's name; the part sale below makes 'Adrian' a Part Sales word. 'Adrian' must be a whole word so the one-letter typo 'Adrxan' is the ticket's exact slip.",
+   "find": {
+    "mode": "search",
+    "list": "/api/customers",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZAUTOTEST Adrian Cartage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/customers/create",
+    "payload": {
+     "name": "ZZAUTOTEST Adrian Cartage",
+     "address": "17 Typo Lane",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872-7401",
+     "phone": "(264) 555-0741",
+     "country_code": "US"
+    }
+   },
+   "verify": [
+    "name",
+    "city"
+   ],
+   "read_as": {
+    "address": "address_1",
+    "phone": "telephone"
+   },
+   "write": {
+    "endpoint": "/api/customers/change",
+    "whole_record": true
+   }
+  },
+  {
+   "key": "contact_fz_adrian",
+   "type": "Contact (a PERSON at a customer company)",
+   "depends_on": "cust_fz_adrian",
+   "serves": [],
+   "find": {
+    "mode": "child",
+    "parent": "cust_fz_adrian",
+    "view": "/api/customers/view/{id}",
+    "path": "company.contacts",
+    "field": "first_name",
+    "value": "Tovah"
+   },
+   "create": {
+    "endpoint": "/api/contacts/create",
+    "payload": {
+     "first_name": "Tovah",
+     "last_name": "Kellerby",
+     "title": "Dispatcher",
+     "telephone": "(264) 555-0743",
+     "email": "tovah@zzfuzzy-cartage.test"
+    },
+    "inject": {
+     "company_id": "cust_fz_adrian"
+    }
+   },
+   "verify": [
+    "first_name",
+    "last_name"
+   ],
+   "read_as": {}
+  },
+  {
+   "key": "part_sale_fz_adrian",
+   "type": "PartSale",
+   "depends_on": "cust_fz_adrian",
+   "serves": [
+    "SV-10740 Part sales: Adrian / Adrxan"
+   ],
+   "_why": "The record the Part Sales row of SV-10740 must find - by customer name.",
+   "find": {
+    "mode": "search",
+    "list": "/api/part-sales",
+    "coll": "partSales",
+    "field": "companyName",
+    "value": "ZZAUTOTEST Adrian Cartage",
+    "control": "4 Star Truck Repair"
+   },
+   "create": {
+    "endpoint": "/api/part-sales",
+    "payload": {},
+    "inject": {
+     "company_id": "cust_fz_adrian"
+    },
+    "id_from": "data.0.id"
+   },
+   "skip_verify": [
+    "company_id"
+   ]
+  },
+  {
+   "key": "vendor_fz_adams",
+   "type": "Vendor",
+   "unique": true,
+   "serves": [
+    "SV-10740 Purchase orders: Adams / Adxms"
+   ],
+   "_why": "Purchase orders and vendor invoices are indexed on their VENDOR name, so 'Adams' reaches the tab through this vendor's PO / invoice (seed_po_and_invoices.py).",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZAUTOTEST Adams Brake Supply",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZAUTOTEST Adams Brake Supply",
+     "address_1": "5 Adams Freight Way",
+     "city": "Marnston",
+     "state_or_province": "Ohio",
+     "postal_code": "43055-7400",
+     "telephone": "(264) 555-0742",
+     "email": "parts@adams-brake.test",
+     "credit_term": "Net 30",
+     "credit_limit": 25000
+    },
+    "resolve": {
+     "tax_id": "/api/taxes"
+    }
+   },
+   "read_as": {},
+   "verify": [
+    "name",
+    "city"
+   ],
+   "skip_verify": [
+    "credit_limit",
+    "tax_id"
+   ]
+  },
+  {
+   "key": "vendor_fz_abadi",
+   "type": "Vendor",
+   "unique": true,
+   "serves": [
+    "SV-10740 Vendor invoices: Abadi / Abxdi"
+   ],
+   "_why": "Purchase orders and vendor invoices are indexed on their VENDOR name, so 'Abadi' reaches the tab through this vendor's PO / invoice (seed_po_and_invoices.py).",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZAUTOTEST Abadi Brake Supply",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZAUTOTEST Abadi Brake Supply",
+     "address_1": "9 Abadi Supply Road",
+     "city": "Marnston",
+     "state_or_province": "Ohio",
+     "postal_code": "43055-7400",
+     "telephone": "(264) 555-0742",
+     "email": "parts@abadi-brake.test",
+     "credit_term": "Net 30",
+     "credit_limit": 25000
+    },
+    "resolve": {
+     "tax_id": "/api/taxes"
+    }
+   },
+   "read_as": {},
+   "verify": [
+    "name",
+    "city"
+   ],
+   "skip_verify": [
+    "credit_limit",
+    "tax_id"
+   ]
+  },
+  {
+   "key": "cpart_fz_adams",
+   "type": "CataloguePart",
+   "serves": [],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZFZ-ADAMS-01",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZAUTOTEST Brake Drum FZ1",
+     "part_number": "ZZFZ-ADAMS-01",
+     "tags": []
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "skip_verify": [
+    "tags"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/change-catalogue-part",
+    "whole_record": true,
+    "id_as": {
+     "category_id": "category",
+     "manufacturerId": "manufacturer_id"
+    }
+   }
+  },
+  {
+   "key": "cpart_fz_abadi",
+   "type": "CataloguePart",
+   "serves": [],
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/catalogue-parts",
+    "coll": "collection",
+    "field": "part_number",
+    "value": "ZZFZ-ABADI-01",
+    "control": "21-361"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-catalogue-part",
+    "payload": {
+     "name": "ZZAUTOTEST Brake Lining FZ2",
+     "part_number": "ZZFZ-ABADI-01",
+     "tags": []
+    }
+   },
+   "verify": [
+    "part_number",
+    "name"
+   ],
+   "skip_verify": [
+    "tags"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/change-catalogue-part",
+    "whole_record": true,
+    "id_as": {
+     "category_id": "category",
+     "manufacturerId": "manufacturer_id"
+    }
+   }
+  }
+ ]
+}

@@ -977,7 +977,12 @@ if __name__ == '__main__':
     build_ticket(wb)
     build_summary(wb, counts)
     wb._sheets.insert(1, wb._sheets.pop(wb._sheets.index(wb['Summary'])))
-    out = os.path.join(HERE, 'ShopView-Global-Search-Result-Row-Tests-for-Manual-QA.xlsx')
+    # 🔴 ONE WORKBOOK PER ENVIRONMENT (2026-10-05). The terms are environment data, so the file
+    # testers use for production must never be overwritten by a QA-branch build. Production keeps
+    # the original name; any other environment gets its own.
+    _env = os.path.basename(_terms_file(HERE))[len('discovered-terms-'):-len('.json')]
+    _suffix = '' if _env == 'prod' else f'-{_env.upper()}'
+    out = os.path.join(HERE, f'ShopView-Global-Search-Result-Row-Tests-for-Manual-QA{_suffix}.xlsx')
     wb.save(out)
     print(f"{sum(n for _, n in counts)} test rows + {n_q} PO questions -> {os.path.basename(out)}")
     for t, n in counts: print(f"  {t:26} {n}")

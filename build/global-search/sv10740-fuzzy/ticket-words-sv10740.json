@@ -1,0 +1,210 @@
+{
+ "measured": "2026-10-05T07:52:14Z",
+ "host": null,
+ "types": [
+  "assets",
+  "customers",
+  "part_sales",
+  "parts",
+  "purchase_orders",
+  "vendor_invoices",
+  "vendors",
+  "work_orders"
+ ],
+ "rows": [
+  {
+   "tab": "all",
+   "word": "Maria",
+   "typo": "Maxia",
+   "correct_count": 39,
+   "correct_sample": [
+    "S2-7715",
+    "Mariah's Truck & Trailer Repair",
+    "Ave Maria Truck Repair"
+   ],
+   "correct_fields": [
+    "address_line_1",
+    "city",
+    "contact_names",
+    "customer_name",
+    "description",
+    "name"
+   ],
+   "typo_count": 47,
+   "typo_has_record": true,
+   "typo_sample": [
+    "Andrews' Truck & Trailer Repair LLC",
+    "The Villages Truck Repair",
+    "Ave Maria Truck Repair"
+   ],
+   "verdict": "FOUND (typo forgiven)"
+  },
+  {
+   "tab": "work_orders",
+   "word": "Santa",
+   "typo": "Saxta",
+   "correct_count": 3,
+   "correct_sample": [
+    "S10740-17620",
+    "S10740-17619",
+    "S10740-17621"
+   ],
+   "correct_fields": [
+    "asset_model",
+    "customer_name"
+   ],
+   "typo_count": 3,
+   "typo_has_record": true,
+   "typo_sample": [
+    "S10740-17621",
+    "S10740-17620",
+    "S10740-17619"
+   ],
+   "verdict": "FOUND (typo forgiven)"
+  },
+  {
+   "tab": "customers",
+   "word": "Greene",
+   "typo": "Grexne",
+   "correct_count": 20,
+   "correct_sample": [
+    "Truckmaster Truck & Trailer Repair - Erie",
+    "Kearny Truck Repair",
+    "Portage Truck & Equipment Repair"
+   ],
+   "correct_fields": [
+    "address_line_1",
+    "contact_names"
+   ],
+   "typo_count": 3,
+   "typo_has_record": true,
+   "typo_sample": [
+    "Truckmaster Truck & Trailer Repair - Erie",
+    "North Reading Fleet Services",
+    "Derus Trucking & Repair"
+   ],
+   "verdict": "FOUND (typo forgiven)"
+  },
+  {
+   "tab": "assets",
+   "word": "Johnson",
+   "typo": "Johxson",
+   "correct_count": 20,
+   "correct_sample": [
+    "2018 Freightliner Cascadia",
+    "2024 Freightliner Cascadia",
+    "2014 Ford F-150"
+   ],
+   "correct_fields": [
+    "customer_name"
+   ],
+   "typo_count": 6,
+   "typo_has_record": true,
+   "typo_sample": [
+    "2018 Freightliner Cascadia",
+    "2024 Freightliner Cascadia",
+    "2014 Ford F-150"
+   ],
+   "verdict": "FOUND (typo forgiven)"
+  },
+  {
+   "tab": "parts",
+   "word": "Cleaner",
+   "typo": "Clexner",
+   "correct_count": 20,
+   "correct_sample": [
+    "Brake & Parts Cleaner",
+    "Restore Plus Cooling System Cleaner",
+    "BATTERY CLEANER & LEAK DETECTOR"
+   ],
+   "correct_fields": [
+    "description",
+    "tags"
+   ],
+   "typo_count": 5,
+   "typo_has_record": true,
+   "typo_sample": [
+    "Brake & Parts Cleaner",
+    "Restore Plus Cooling System Cleaner",
+    "BATTERY CLEANER & LEAK DETECTOR"
+   ],
+   "verdict": "FOUND (typo forgiven)"
+  },
+  {
+   "tab": "vendors",
+   "word": "Ranking",
+   "typo": "Ranxing",
+   "correct_count": 7,
+   "correct_sample": [
+    "ZZVENDORPO Supply Open",
+    "ZZVENDORPO Supply Quiet",
+    "Paradise Diesel Repair"
+   ],
+   "correct_fields": [
+    "address_line_1"
+   ],
+   "typo_count": 7,
+   "typo_has_record": true,
+   "typo_sample": [
+    "ZZVENDORPO Supply Open",
+    "ZZVENDORPO Supply Quiet",
+    "Paradise Diesel Repair"
+   ],
+   "verdict": "FOUND (typo forgiven)"
+  },
+  {
+   "tab": "part_sales",
+   "word": "Adrian",
+   "typo": "Adrxan",
+   "correct_count": 1,
+   "correct_sample": [
+    "P10740-256"
+   ],
+   "correct_fields": [
+    "customer_name"
+   ],
+   "typo_count": 1,
+   "typo_has_record": true,
+   "typo_sample": [
+    "P10740-256"
+   ],
+   "verdict": "FOUND (typo forgiven)"
+  },
+  {
+   "tab": "purchase_orders",
+   "word": "Adams",
+   "typo": "Adxms",
+   "correct_count": 1,
+   "correct_sample": [
+    "I10740-1402"
+   ],
+   "correct_fields": [
+    "vendor_name"
+   ],
+   "typo_count": 1,
+   "typo_has_record": true,
+   "typo_sample": [
+    "I10740-1402"
+   ],
+   "verdict": "FOUND (typo forgiven)"
+  },
+  {
+   "tab": "vendor_invoices",
+   "word": "Abadi",
+   "typo": "Abxdi",
+   "correct_count": 1,
+   "correct_sample": [
+    "ZZTINV-FZABADI-DI01"
+   ],
+   "correct_fields": [
+    "vendor_name"
+   ],
+   "typo_count": 1,
+   "typo_has_record": true,
+   "typo_sample": [
+    "ZZTINV-FZABADI-DI01"
+   ],
+   "verdict": "FOUND (typo forgiven)"
+  }
+ ]
+}

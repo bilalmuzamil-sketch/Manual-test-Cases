@@ -1,0 +1,143 @@
+{
+ "when_utc": "2026-10-05T074823Z",
+ "environment": {
+  "tag": "ZZAUTOTEST",
+  "workplace_name_hint": "Heavy Duty",
+  "_note": "environment-agnostic; ids and state are keyed per environment"
+ },
+ "live_ids": {
+  "cust_fz_adrian": "640b25b4-9c4c-4c50-bce9-119f0390e458",
+  "contact_fz_adrian": "06ec23dd-c6dd-447a-93a4-6645c896d30e",
+  "part_sale_fz_adrian": "73d0d998-4207-4f50-91ae-9d0a0d0d07bf",
+  "vendor_fz_adams": "f593afc1-9fe5-4d40-9740-beb20903ab0c",
+  "vendor_fz_abadi": "9521cff7-371a-4781-9da0-ceb5d4240acc",
+  "cpart_fz_adams": "de6e269a-5ba6-4759-847c-b3172560e73d",
+  "cpart_fz_abadi": "f2ed2cc8-aaea-428d-b312-80629fbd2572"
+ },
+ "records": [
+  {
+   "key": "cust_fz_adrian",
+   "state": "PRESENT",
+   "ids": [
+    "640b25b4-9c4c-4c50-bce9-119f0390e458"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "SV-10740 Part sales: Adrian / Adrxan"
+   ]
+  },
+  {
+   "key": "contact_fz_adrian",
+   "state": "PRESENT",
+   "ids": [
+    "06ec23dd-c6dd-447a-93a4-6645c896d30e"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": []
+  },
+  {
+   "key": "part_sale_fz_adrian",
+   "state": "PRESENT",
+   "ids": [
+    "73d0d998-4207-4f50-91ae-9d0a0d0d07bf"
+   ],
+   "fields_ok": [],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "SV-10740 Part sales: Adrian / Adrxan"
+   ]
+  },
+  {
+   "key": "vendor_fz_adams",
+   "state": "PRESENT",
+   "ids": [
+    "f593afc1-9fe5-4d40-9740-beb20903ab0c"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "SV-10740 Purchase orders: Adams / Adxms"
+   ]
+  },
+  {
+   "key": "vendor_fz_abadi",
+   "state": "PRESENT",
+   "ids": [
+    "9521cff7-371a-4781-9da0-ceb5d4240acc"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    "SV-10740 Vendor invoices: Abadi / Abxdi"
+   ]
+  },
+  {
+   "key": "cpart_fz_adams",
+   "state": "PRESENT",
+   "ids": [
+    "de6e269a-5ba6-4759-847c-b3172560e73d"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": []
+  },
+  {
+   "key": "cpart_fz_abadi",
+   "state": "PRESENT",
+   "ids": [
+    "f2ed2cc8-aaea-428d-b312-80629fbd2572"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": []
+  }
+ ],
+ "_note": "Live ids re-derived this run. Never trust an older copy - a redeploy changes them."
+}

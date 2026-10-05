@@ -224,6 +224,15 @@ UNIVERSES = [
      ('ZZSOFTHIT', 'purchase_orders', 'ZZSOFTHIY Supply'),
      ('ZZSOFTHIT', 'vendor_invoices', 'ZZSOFTHIY Supply'),
   ], 'seed-manifest-result-integrity.json', 'verify_by_search.py'),
+
+ # SV-10740 (short-word typos), 2026-10-05: the three ticket words a staging-copy branch lacks.
+ # The other six words of the ticket live in the staging estate and are measured, not seeded.
+ ('SV-10740 short-word typos  (Adrian / Adams / Abadi, 7 records)', [
+     ('Adrian', 'customers',       'Adrian Cartage'),
+     ('Adrian', 'part_sales',      'Adrian'),
+     ('Adams',  'purchase_orders', 'Adams Brake Supply'),
+     ('Abadi',  'vendor_invoices', 'Abadi Brake Supply'),
+  ], 'seed-manifest-fuzzy.json', None),
 ]
 
 ROLES = ['ZZAUTOTEST No Work Orders View', 'ZZAUTOTEST No Customers View',

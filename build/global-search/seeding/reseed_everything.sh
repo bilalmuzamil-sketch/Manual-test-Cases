@@ -378,6 +378,15 @@ if [ "$V2" = "1" ]; then
   # fields, seeded deliberately and proved through the search.
   step "17e field coverage (7 fields, 11 cases)" python3 seed_field_coverage.py --confirm || exit 1
 
+  # SV-10740 (2026-10-05): short-word typo tolerance. Three of the ticket's nine words have no record
+  # on a staging-copy branch (Part Sales 'Adrian', Purchase Orders 'Adams', Vendor Invoices 'Abadi');
+  # this adds them under the ticket's own words. The proof is the ticket's whole table, by identity,
+  # plus a real identifier per exempt field (the ticket's S3-/I3-/P3- numbers are staging's).
+  step "18  SV-10740 typo-tolerance records"   env SEED_MANIFEST=seed-manifest-fuzzy.json python3 seed.py --confirm || exit 1
+  step "18b SV-10740 Adams PO"  env SEED_MANIFEST=seed-manifest-fuzzy.json SEED_PO_PLAN=fuzzy_adams SEED_PO_SLUG=fzadams SEED_PO_READBACK=Adams SEED_PO_VENDOR="ZZAUTOTEST Adams Brake Supply" python3 seed_po_and_invoices.py --confirm || exit 1
+  step "18c SV-10740 Abadi invoice"  env SEED_MANIFEST=seed-manifest-fuzzy.json SEED_PO_PLAN=fuzzy_abadi SEED_PO_SLUG=fzabadi SEED_PO_READBACK=Abadi SEED_PO_VENDOR="ZZAUTOTEST Abadi Brake Supply" python3 seed_po_and_invoices.py --confirm || exit 1
+  step "18d SV-10740 PROOF (ticket table + identifiers)"  sh -c 'cd ../sv10740-fuzzy && python3 measure_ticket_words.py && python3 measure_identifiers.py'
+
   # 🔴 BOTH OF THESE ARE PROVED BY status.py, NOT BY A DEDICATED VERIFIER. Their assertion is a
   # RANKING one - which match label each row carries - and on Parts the expected answer is
   # currently the WRONG one, because SV-10279 is open. A verifier that failed on that would be

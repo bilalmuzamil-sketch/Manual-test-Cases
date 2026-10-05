@@ -96,6 +96,20 @@ PLAN_TOGGLE = [
 if os.environ.get('SEED_PO_PLAN') == 'toggle':
     PLAN = PLAN_TOGGLE
 
+# SV-10740 (short-word typos, 2026-10-05): ONE purchase order for the 'Adams' vendor, left ORDERED
+# so it stays in the Purchase Orders group, and ONE received order for the 'Abadi' vendor, which
+# is what creates the vendor invoice. Each is reached by the vendor's name (seed-manifest-fuzzy.json).
+PLAN_FUZZY = {
+    'fuzzy_adams': [{'tag': 'fz_adams_po', 'pn': 'ZZFZ-ADAMS-01', 'route': 'stock',
+                     'desc': 'ZZAUTOTEST Brake Drum FZ1', 'qty': 2, 'cost': 40.0, 'sell': 80.0,
+                     'receive': False, 'pay': None}],
+    'fuzzy_abadi': [{'tag': 'fz_abadi_inv', 'pn': 'ZZFZ-ABADI-01', 'route': 'stock',
+                     'desc': 'ZZAUTOTEST Brake Lining FZ2', 'qty': 2, 'cost': 35.0, 'sell': 70.0,
+                     'receive': True, 'pay': None}],
+}
+if os.environ.get('SEED_PO_PLAN') in PLAN_FUZZY:
+    PLAN = PLAN_FUZZY[os.environ['SEED_PO_PLAN']]
+
 def invoice_number(pn):
     """The invoice number for a plan row - UNIQUE ACROSS THE BRANCH AND SHORT ENOUGH TO SURVIVE.
 
@@ -173,6 +187,10 @@ def work_order_ids():
     opening a new one - measured 2026-09-16, when four plan rows all landed inside S-17630 and the
     script correctly reported 'ordered but no new PO appeared'. Four purchase orders therefore need
     four DIFFERENT work orders."""
+    # A plan made only of 'stock' rows (SV-10740's) never raises a PO from a work order, so it
+    # needs no work orders and may have no ids file at all.
+    if all(r['route'] == 'stock' for r in PLAN):
+        return []
     ids = json.load(open(f'{HERE}/{IDS_FILE}'))
     lst = ids.get(WO_KEY) or []
     if not lst:
