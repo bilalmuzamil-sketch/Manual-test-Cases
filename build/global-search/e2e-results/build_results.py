@@ -2,15 +2,24 @@
 
 Reads Playwright's own JSON results (never the console text), classifies each test, and writes:
   Summary · All results · Passed · Failed · Known faults (still there) · Known faults (gone?) · Stood down
-Usage: build_results.py <e2e-results.json> <out.xlsx> <ticket-status.json> <build> <env>
+Usage: build_results.py <e2e-results.json> <out.xlsx> <ticket-status.json> <build> <env> [re-run.json ...]
+                        [--replace] [--classify classify-<date>.json]
+  --replace   a re-run REPLACES the result of the test it repeats (the first result is kept in its own
+              column); without it a re-run is only shown beside a failed row, as on 2 October 2026
+  --classify  that run's reading of each failure (ticketed / possible / ours); without it, the
+              2 October 2026 reading below is used, so that workbook can be rebuilt unchanged
 """
 import json, re, sys, datetime
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
-src, out, tickets_f, build, env = sys.argv[1:6]
-rerun_fs = sys.argv[6:]            # re-runs, oldest first; a later one wins for a test in both
+ARGS = sys.argv[1:]
+REPLACE = '--replace' in ARGS
+CLASSIFY = ARGS[ARGS.index('--classify') + 1] if '--classify' in ARGS else None
+ARGS = [a for i, a in enumerate(ARGS) if a != '--replace' and a != '--classify' and (i == 0 or ARGS[i - 1] != '--classify')]
+src, out, tickets_f, build, env = ARGS[0:5]
+rerun_fs = ARGS[5:]                # re-runs, oldest first; a later one wins for a test in both
 TICKETS = json.load(open(tickets_f)) if tickets_f != '-' else {}
 TR = 'https://shopview.testrail.io/index.php?/cases/view/'
 RUN = 'https://shopview.testrail.io/index.php?/runs/view/415'
@@ -84,6 +93,25 @@ OURS = {
      for c in ('146245', '146247', '146266', '146268')},
   '44809':  'The search box did not respond to a click within 60 seconds — test timing, not a product behaviour.',
 }
+if CLASSIFY:                        # this run's own reading replaces the 2 October one
+    _c = json.load(open(CLASSIFY))
+    TICKETED = {k: tuple(v) for k, v in _c.get('ticketed', {}).items()}
+    POSSIBLE = {k: v[0] if isinstance(v, list) else v for k, v in _c.get('possible', {}).items()}
+    POSSIBLE_TODO = {k: v[1] for k, v in _c.get('possible', {}).items() if isinstance(v, list) and len(v) > 1}
+    OURS = _c.get('ours', {})
+    TEXT = _c.get('text', {})
+else:
+    POSSIBLE_TODO, TEXT = {}, {}
+if REPLACE:                         # the latest attempt at a test is its result; the first is kept beside it
+    LABEL = {'expected': 'Passed', 'skipped': 'Stood down', 'unexpected': 'Failed', 'flaky': 'Passed on retry'}
+    for r in rows:
+        rr = RERUN.get((r['file'], norm(r['title'])))
+        if not rr: continue
+        first = r['kind'] if r['kind'] != 'Failed' else 'Failed'
+        detail = r['reason'] or r['err']
+        for k in ('_status', 'kind', 'err', 'reason', 'secs', 'ticket'): r[k] = rr[k]
+        r['rerun'], r['rerun_detail'] = f'First run: {first}', detail
+        r['replaced'] = True
 for r in rows:
     # C55716 (suppliers) still carried a stale "expected to fail" title and crashed: it is a failure.
     if not (r['kind'] == 'Failed' or (r['kind'] == 'Known fault — did not reproduce' and r['cid'] == '55716')):
@@ -97,6 +125,7 @@ for r in rows:
         r['kind'], r['why'] = K_NEW, POSSIBLE[c]
     else:
         r['kind'], r['why'] = K_NEW, 'Not yet looked at.'
+    if r.get('replaced'): continue
     rr = RERUN.get((r['file'], norm(r['title'])))
     r['rerun'] = ({'expected': 'Passed', 'skipped': 'Stood down', 'unexpected': 'Failed', 'flaky': 'Passed on retry'}
                   .get(rr['_status'], rr['_status']) if rr else '')
@@ -132,6 +161,8 @@ def todo(r):
     if k == K_TICKET:
         return (f"Nothing new to raise: this is the behaviour {r['rel']} describes (status {TICKETS.get(r['rel'], 'unknown')}). "
                 'It should pass once that fix reaches this build.')
+    if k == K_NEW and r['cid'] in POSSIBLE_TODO:
+        return POSSIBLE_TODO[r['cid']]
     if k == K_NEW:
         return ('Check it against the requirement as it reads today (not yet done), then decide whether to raise it. '
                 'Nothing has been raised.')
@@ -152,7 +183,8 @@ FILLS = {'Passed': 'E2EFDA', K_TICKET: 'FFF2CC', K_NEW: 'FCE4D6', K_OURS: 'E4DFE
 COLS = [('Case', 10), ('Case in TestRail', 16), ('Test run', 12), ('What the test checks', 60), ('Result', 22),
         ('Likely cause', 34), ('What happened', 70), ('What needs to be done', 50), ('Ticket', 12),
         ('Ticket status (read live)', 18), ('Spec file', 40), ('Line', 6), ('Seconds', 8),
-        ('Re-run after fixing the test', 18), ('Re-run detail', 60)]
+        ('Re-run after fixing the test' if not REPLACE else 'First result (a re-run replaced it)', 18),
+        ('Re-run detail' if not REPLACE else 'What the first result said', 60)]
 
 def sheet(wb, name, data, note):
     ws = wb.create_sheet(name)
@@ -163,7 +195,7 @@ def sheet(wb, name, data, note):
         ws.column_dimensions[get_column_letter(i)].width = w
     for n, r in enumerate(data, 3):
         vals = [f"C{r['cid']}" if r['cid'] else '', 'Open case' if r['cid'] else '', 'Run 415',
-                r['title'], r['kind'], cause(r) if r['kind'] == 'Failed' else '', happened(r), todo(r),
+                r['title'], r['kind'], cause(r), happened(r), todo(r),
                 related(r) or '', TICKETS.get(related(r), '') if related(r) else '', r['file'], r['line'], r['secs'],
                 r.get('rerun', ''), r.get('rerun_detail', '')[:400]]
         for i, v in enumerate(vals, 1):
@@ -183,7 +215,7 @@ order = KINDS
 srt = sorted(rows, key=lambda r: (order.index(r['kind']), r['file'] or '', r['line'] or 0))
 sheet(wb, 'All results', srt, 'Every test in this run, one row each. The Summary counts are formulas over this sheet.')
 sheet(wb, 'Possible new problems', [r for r in srt if r['kind'] == K_NEW],
-      'Failures not described by any ticket. NOT yet checked against the requirement as it reads today, and nothing has been raised.')
+      TEXT.get('possible_note', 'Failures not described by any ticket. NOT yet checked against the requirement as it reads today, and nothing has been raised.'))
 sheet(wb, 'Already reported', [r for r in srt if r['kind'] == K_TICKET],
       'Failures showing a behaviour a filed ticket already describes. The ticket and its live status are on each row. Nothing new to raise.')
 sheet(wb, "Our test's fault", [r for r in srt if r['kind'] == K_OURS],
@@ -200,9 +232,9 @@ sheet(wb, 'Passed', [r for r in srt if r['kind'] == 'Passed'], 'Tests that passe
 s = summ
 s.column_dimensions['A'].width = 44; s.column_dimensions['B'].width = 16; s.column_dimensions['C'].width = 70
 s['A1'] = 'Global Search V2 — automated test results'; s['A1'].font = Font(name=F, size=14, bold=True)
-info = [('Environment', env), ('Build tested', build), ('Run date', '2 October 2026 (full run); fixed tests re-run 2–3 October 2026, same build'),
-        ('How it was run', 'npm test from a fresh copy of the branch: the data was seeded and checked first, then every spec ran. '
-                           'Failures caused by the tests themselves were then fixed and those test files re-run on the same build.'),
+info = [('Environment', env), ('Build tested', build), ('Run date', TEXT.get('run_date', '2 October 2026 (full run); fixed tests re-run 2–3 October 2026, same build')),
+        ('How it was run', TEXT.get('how', 'npm test from a fresh copy of the branch: the data was seeded and checked first, then every spec ran. '
+                           'Failures caused by the tests themselves were then fixed and those test files re-run on the same build.')),
         ('Recorded in TestRail?', 'No — by instruction, this run is reported only in this file.'),
         ('Test run these cases belong to', 'Run 415')]
 for i, (k, v) in enumerate(info, 3):
@@ -215,7 +247,7 @@ s.cell(row=r0 - 1, column=1, value='Result').font = H_FONT; s.cell(row=r0 - 1, c
 s.cell(row=r0 - 1, column=2, value='Tests').font = H_FONT; s.cell(row=r0 - 1, column=2).fill = H_FILL
 s.cell(row=r0 - 1, column=3, value='What it means').font = H_FONT; s.cell(row=r0 - 1, column=3).fill = H_FILL
 meaning = {'Passed': 'The product did what the requirement says.',
-           K_NEW: 'The product did not, and no ticket describes it. Not yet checked against the requirement; nothing raised.',
+           K_NEW: TEXT.get('meaning_new', 'The product did not, and no ticket describes it. Not yet checked against the requirement; nothing raised.'),
            K_TICKET: 'The product did not, in a way a filed ticket already describes. Nothing new.',
            K_OURS: 'The test was at fault, not the product. Fixed; see the re-run result on each row.',
            'Known fault — still there': 'A fault already in a ticket is still present. Expected.',

@@ -1,7 +1,39 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0-QA-LEAD-RULINGS-2026-09-29 (LATEST) — run 415 is now 193 tests, 184 pass, 9 fail
+## §0-AUTOMATED-SUITE-AND-CLEANUP-2026-10-05 (LATEST) — what to do on 6 October
+
+**🛑 THE QA LEAD'S PLAN FOR THIS SUITE (2026-10-05, Global Search ONLY — he said "do not save it as your
+rule"):** *"For Global Search Wait for One day, the fixes will be moved to Production and the plan is to
+delete ALL the test cases which will still be appearing FAILED. … anything which is PASSED will be
+considered the feature for now and the rest of the tests which failed will not be considered the part
+of the feature so we will delete them."* A reminder fires in this session on **2026-10-06 ~16:54 UTC**.
+Steps: (1) read Production's build marker and compare with staging `v26.40.7-f559d24` (= product
+`develop` head f559d24 on 5 Oct); (2) the deciding full run on Production; (3)
+`cleanup/plan_deletions.py plan <results.json> <build>` — dry run, archives every case first, holds
+Automated (C45153) and never deletes a case that could not run; (4) **he approves the list**, then
+`plan_deletions.py apply <plan.json> --approved "<his words>"`. Open questions put to him, with the
+defaults I stated: stood-down cases are not deleted (default yes) · Vladimir's cases (none in run 415 —
+all 304 are created_by 3) · Automated C45153 held for him · the matching `spec.ts` tests removed with
+their cases (default yes) · full text archived first (default yes).
+
+**Automated suite, 5 October (staging, build v26.40.7-f559d24):** full run from a fresh copy with an
+empty seeding cache — 338 tests, then our own faults fixed and re-run. Final: **266 passed · 5 possible
+new problems · 10 already reported · 21 known faults still there · 1 known fault gone (C146286) · 35
+stood down** — workbook `e2e-results/Global Search V2 - Automated Test Results - Staging - 2026-10-05.xlsx`
+(built with `--replace --classify classify-2026-10-05.json`). Per-test data checking is live (README
+"Every test case has its own data"); `e2e/tools/check_data.ts` explains any "data not on the branch".
+The no-work-order person exists (`zzautotest.nowo@staging.shopview.local`, Staging Heavy Duty, role
+"ZZAUTOTEST No Work Orders View"); C44879 and C55732 pass.
+
+**All 38 problems were checked against the live sources** (four-way, Rule 106):
+`source-verify-2026-10-05/RECONCILIATION-ALL-38-2026-10-05.md`. Every quote matches today's text. The
+Product Owner wrote on SV-10635 on 5 Oct "we do not show phone on hover" — C146222's Expected is now
+out of date and is NOT edited without his naming it (114(c)).
+
+---
+
+## §0-QA-LEAD-RULINGS-2026-09-29 — run 415 is now 193 tests, 184 pass, 9 fail
 
 The QA lead ruled on all six failing checks that had no report raised. Live state after his rulings
 and my re-verification, on **`app.staging.shopview.com`**, build **`v26.39.1-02c6b6c`**:

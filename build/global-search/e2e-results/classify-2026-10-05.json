@@ -1,0 +1,29 @@
+{
+ "_why": "The reading of each failure in the 2026-10-05 staging run (build v26.40.7-f559d24), from the four-way check against the sources as they read that day: build/global-search/source-verify-2026-10-05/RECONCILIATION-ALL-38-2026-10-05.md. Nothing was raised; no case was edited.",
+ "text": {
+  "run_date": "5 October 2026 — full run from a fresh copy of the branch with an empty seeding cache (15:53–18:26 UTC); the 24 tests our own faults stood down or failed were fixed and re-run the same evening, same build, and the two work-order permission checks were re-run once their test person existed",
+  "how": "npm test from a fresh copy: every record seeded from nothing at the start, and each test's own records checked again just before it ran. A re-run REPLACES the result of the test it repeats; the first result is kept in the last two columns.",
+  "possible_note": "Failures no ticket describes. Each was checked on 5 October 2026 against the requirement as it read that day (the four-way check). What it means is on each row. Nothing has been raised.",
+  "meaning_new": "The product did not do what the test expects, and no ticket describes it. Checked against today's requirement — see each row for what it means. Nothing raised."
+ },
+ "ticketed": {
+  "146205": ["SV-10634", "The row shows only the characters typed, not the whole value that matched."],
+  "146206": ["SV-10634", "The row shows only the characters typed, not the whole value that matched."],
+  "146238": ["SV-10634", "The row shows only the characters typed, not the whole value that matched."],
+  "146242": ["SV-10634", "The row shows only the characters typed, not the whole value that matched."],
+  "146252": ["SV-10634", "The row shows only the characters typed, not the whole value that matched."],
+  "146271": ["SV-10634", "The row shows only the characters typed, not the whole value that matched."],
+  "146272": ["SV-10634", "The row shows only the characters typed, not the whole value that matched."],
+  "146209": ["SV-10634", "The row shows only the characters typed, not the whole value that matched."],
+  "146216": ["SV-10634", "A contact e-mail match shows 'Contact match' and a contact's name, not the e-mail — the same family as SV-10634 (the requirement promises the 'Contact match' label; whether the matched value itself must show is a question for the Product Owner)."],
+  "146222": ["SV-10635", "No telephone on hover. The Product Owner wrote on SV-10635 on 5 October 2026: \"we do not show phone on hover\" — so the product follows the newer word and this case is out of date. Its expected result is not edited without the QA lead naming it."]
+ },
+ "possible": {
+  "146233": ["Parts: typing part of a part's name highlights the WHOLE name. The requirement (v1.5 §5.3) says only the matched part is highlighted.", "Real against the requirement as it reads today. Report prepared and held; nothing raised (Global Search clean-up after the release decides what happens to failing cases)."],
+  "146235": ["Parts: typing part of a part's name highlights the WHOLE name. The requirement (v1.5 §5.3) says only the matched part is highlighted.", "Real against the requirement as it reads today. Report prepared and held; nothing raised."],
+  "146227": ["Vehicles: two different vehicles read identically. The story (SV-9170) says a row carries its identifier; the requirement (§4) lists only year, make, model and owner for a vehicle row.", "The two sources disagree — a question for the Product Owner, not a fault to raise."],
+  "146228": ["Vehicles: two different vehicles read identically. The story (SV-9170) says a row carries its identifier; the requirement (§4) lists only year, make, model and owner for a vehicle row.", "The two sources disagree — a question for the Product Owner, not a fault to raise."],
+  "45137": ["Purchase orders: a received order is listed above one still on order.", "Probably NOT a fault: the requirement (§6.1) adds a bonus for 'Ordered' to other scores; it does not promise every ordered one comes first. The case reads more into it than the requirement says."]
+ },
+ "ours": {}
+}
