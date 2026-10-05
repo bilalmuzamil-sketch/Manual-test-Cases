@@ -1,0 +1,41 @@
+{
+ "claim": "QuickBooks is not connected on sv9667 and cannot be connected from here",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "Same sidebar-click method opened and rendered Taxes, Categories, Roles & Permissions, Staff (Edit Staff Member dialog) and Payment Methods in this run (build-verify-2026-10-05/taxes.txt, categories.txt, staff-edit3.txt); same API cookie set reads /api/bookkeeping/integration 200 with full toggles, so the instrument works.",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Avatar menu > Settings > sidebar INTEGRATIONS > QuickBooks clicked in the real UI (ps5_settings.mjs 10-05, mps_qb_log.mjs 10-01): page shows only the heading 'QuickBooks' (quickbooks.txt, settings-qb.txt).",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Three visits on two days (10-01, 10-05 x2), waits 4.5s, 8s and 12s+; same result each time (ps5_g/ps5_h logs).",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "URL after click = /administration/QuickBooks (recorded in quickbooks.txt line 1); no new tab; API call /api/bookkeeping/integration fired (ps5_h network log).",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "GET /api/bookkeeping/integration -> data.collection = null, customers = [], vendors = [], and an Intuit authUrl is offered = org not connected to a QuickBooks company (ps_qbapi.mjs output 10-05).",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "grep -iE 'intuit|quickbooks' ENVIRONMENT-CREDENTIALS.md APP-ACTIONS-PLAYBOOK.md: no QuickBooks/Intuit sandbox login exists anywhere; playbook lines 1666/1669 record QuickBooks absent on earlier builds; ls BLOCKED-*.md: none on QuickBooks.",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely my fault: a permission or slow render hiding a Connect button. Ruled out: admin role (full permissions), 12s+ wait, and the server itself reports no connected company (collection null). Connecting needs an Intuit sandbox login via OAuth, which we do not hold - an external system, not a QA-branch setting I can change.",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}
