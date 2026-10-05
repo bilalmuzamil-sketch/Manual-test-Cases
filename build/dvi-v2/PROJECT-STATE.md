@@ -41,3 +41,9 @@ and **C154644** (removed "endpoint"/"server-enforced"; the server-side flag gati
 C154644 was created by Bilal (user 3) but had been edited by Vladimir (user 1) on 2026-10-02 — QA lead authorised editing it (2026-10-05)
 because Bilal authored it, and to notify Vlad so he adjusts his automation. **Now 91/91 pass the gate.**
 **TO TELL VLAD (so he adjusts DVI automations to the reworded cases):** C88583, C88585, C88592, C154646, C154644.
+
+## 2026-10-05 · Rule 115 precondition sweep
+Ran the precondition gate across all 91. One gap: **C88573** (report-formatting case) asserted "a report for an
+inspection run" with no route — fixed by adding the observed route (open the unit's "Inspections" tab > the run's
+"Report"/"PDF"). fr-view clean. All 91 now pass. (Other last-1.5-week suites swept the same day: Dashboard & Founder
+Part Sales clean; Mudassir's 3 jargon cases left as his own authored cases.)

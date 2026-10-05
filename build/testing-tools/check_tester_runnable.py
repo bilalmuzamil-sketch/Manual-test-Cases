@@ -68,9 +68,12 @@ NAMES_SETTING = re.compile(r'Require (Approval|Review|Tech Stor|Mileage|Engine H
 # a bare state assertion with no "how to reach it"
 STATE_ASSERT = re.compile(r'\b(a work order with|a work order whose|an already-invoiced|'
                           r'a WO with a|set up:\s|with a Needs Approval line|whose lines are all)\b', re.I)
-# a concrete UI setup route (creating/opening the record)
+# a concrete UI setup route (creating/opening the record / navigating to it)
 HAS_ROUTE = re.compile(r'top menu|>\s|&gt;|create a (work order|customer)|open a work order by|'
-                       r'Customers\s*&gt;|New Customer|add a (labour|labor|part) line', re.I)
+                       r'Customers\s*&gt;|New Customer|add a (labour|labor|part) line|'
+                       r'open (its|the|a) [^.]*?(tab|report|row|run|record|page|screen|panel|list)|'
+                       r'from (Customers|the [^.]*? sidebar|the [^.]*? menu)|'
+                       r'in the (history |run )?table|left sidebar|click &ldquo;|click "', re.I)
 
 
 def precond_issues(case):
