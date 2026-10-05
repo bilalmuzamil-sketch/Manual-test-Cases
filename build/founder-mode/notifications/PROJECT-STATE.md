@@ -50,3 +50,6 @@ only"), Expected = runnable observations with the **verbatim source quote** kept
 - **No tech plan** for Notifications — remind the QA lead (Rule 30) if release-note/NFR behaviour
   should be covered.
 - Nothing else outstanding.
+
+## 2026-10-05 — source re-check (spec edited 2 Oct 2026)
+6 cases updated (C154680, C154698, C154702, C154704, C154705, C154706) and 12 new cases C236963-C236974 in folder 30738. Suite now **68** cases; 208/208 requirements cited. Details: `STALE-CHECK-2026-10-05.md`. Stories now Ready for QA; build verification goes to the build verification session (L7).
