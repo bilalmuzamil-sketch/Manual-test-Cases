@@ -47,6 +47,8 @@ JARGON = [
     (r'\bFR-\d+\b', 'requirement id (FR-0xx)', True),
     (r'\bNFR-\d+\b', 'requirement id (NFR-0xx)', True),
 ]
+# everyday product names that merely look like camelCase codes (a tester reads them fine)
+PLAIN_WORDS = {'iPad', 'iPads', 'iPhone', 'iPhones', 'iOS', 'macOS', 'eBay', 'eTransfer'}
 # tokens that mean "only provable with developer tooling" -> never a manual READY case
 NOT_HAND = [r'\bp9[0-9]\b', r'\bAPM\b', r'\bserver timing\b', r'performance tooling',
             r'\bcircuit breaker\b', r'MAX_EXECUTION', r'\b\d+\s?ms\b']
@@ -59,7 +61,8 @@ CAVEAT = [r'cannot be done by hand', r'cannot be proven by hand', r'developer/au
 VAGUE_ROLE = re.compile(
     r'as configured|e\.g\. via|signed in with the permissions the step needs|with the permissions the step|'
     r'signed in with the (?:right |invoicing |correct )?permissions\b|'
-    r'signed in with the permissions\b|as a user with the (?:right )?permissions', re.I)
+    r'signed in with the permissions\b|as a user with the (?:right )?permissions|'
+    r'signed in as a user with|you are signed in with\b', re.I)
 # a concrete role names the actual role word
 NAMES_ROLE = re.compile(r'\b(logged in|signed in) as (?:an? )?(admin|owner|technician|service advisor|'
                         r'office user|parts|vendor|sales|reduced-role|view-only)', re.I)
@@ -126,9 +129,9 @@ def scan_case(case):
     jh = []
     for pat, label, cs in JARGON:
         flags = 0 if cs else re.I
-        if re.search(pat, t, flags):
-            ex = re.search(pat, t, flags).group(0)
-            jh.append(f'{label} ("{ex}")')
+        found = [m.group(0) for m in re.finditer(pat, t, flags) if m.group(0) not in PLAIN_WORDS]
+        if found:
+            jh.append(f'{label} ("{found[0]}")')
     nh = [p for p in NOT_HAND if re.search(p, t, re.I)]
     cav = [p for p in CAVEAT if re.search(p, t, re.I)]
     return jh, nh, cav
