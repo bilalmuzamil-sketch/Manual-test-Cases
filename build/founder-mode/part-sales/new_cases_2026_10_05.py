@@ -103,7 +103,10 @@ CASES = [
 ]
 
 def main():
-    for cs in CASES: assert len(cs["title"]) <= 80, cs["title"]
+    from runnable_pre_2026_10_05 import NEW_PRE
+    for cs in CASES:
+        assert len(cs["title"]) <= 80, cs["title"]
+        cs["pre"] = NEW_PRE[cs["anchors"][0]]
     if not APPLY:
         for cs in CASES: print(f"[DRY] {cs['anchors']}  {cs['title']}  ({len(cs['title'])} chars)")
         return

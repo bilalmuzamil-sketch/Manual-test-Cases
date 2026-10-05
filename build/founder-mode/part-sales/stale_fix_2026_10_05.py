@@ -176,7 +176,7 @@ def e154625(c):
             "On the Finance tab, find and click Add Deposit.",
             "Read the dialog fields and the pre-filled Memo; compare the number in the Memo with the sale number shown on the part sale (e.g. P4-413).",
             "Confirm Add Deposit is available while the sale is Estimate, Approved or Complete.",
-            "Take a deposit (e.g. $50.00), then change the sale's status to Declined; look for Add Deposit again and check the deposit already taken is still listed."]),
+            "Take a deposit (e.g. $50.00). Then decline every line (each row's menu -> Decline) so the sale reads Declined; look for Add Deposit again and check the deposit already taken is still listed."]),
         custom_expected=rebuild(c["custom_expected"], results=[
             "The Finance tab shows Add Deposit; clicking it opens the same Create Deposit dialog a work order uses (Deposit Date, Payment Method, Deposit Amount, Reference Number, Memo).",
             'The Memo pre-fills "Deposit for Part Sale " followed by the sale number exactly as the sale shows it (e.g. "Deposit for Part Sale P4-413").',
@@ -203,9 +203,18 @@ def e154635(c):
                 Q("S8-N4", "Every other requirement in this story is live")]))
 EDITS[154635] = ("now", e154635)
 
-def e154634(c):  # punctuation-only quote re-sync
+def e154634(c):  # quote re-sync + make the unreachable-portal half honest for a manual tester
     exp = c["custom_expected"].replace("S8-R10's disabled", "S8-R10’s disabled")
-    return dict(custom_expected=rebuild(exp, behaviour_changed=False))
+    return dict(
+        title="Collect in Portal is hidden without online payments or portal access",
+        custom_steps=ol([
+            "Using the shop with ShopPay turned off (or the user without Customer Portal access), open the part sale's Finance tab and click Add Deposit.",
+            "In the Create Deposit dialog look for Collect in Portal, then record a deposit with Record Deposit (e.g. $50.00).",
+            "Open a service work order the same way and look for Collect in Portal there, for comparison."]),
+        custom_expected=rebuild(exp, behaviour_changed=False, results=[
+            "When the shop takes no online payments or the user has no Customer Portal access, Collect in Portal is not shown at all, the same as on the work order.",
+            "Recording the deposit with Record Deposit still works.",
+            "Not checkable by hand: when the Customer Portal cannot be reached, the hand-off is treated as declined and Collect in Portal stays disabled. A manual tester cannot take the portal offline, so this part is left to automation."]))
 EDITS[154634] = ("now", e154634)
 
 # ---- Automated (custom_atmstatus 3) - prepared, applied ONLY with the QA lead's go-ahead (Rule 71)
@@ -297,7 +306,7 @@ EDITS[154611] = ("automated", e154611)
 
 def e154618(c):
     return dict(
-        title="The rep locks once invoiced, unlocks on reversal; non-reps unpickable",
+        title="Sales Representative locks once invoiced and unlocks on reversal",
         custom_preconds=ol([ROLE, CUST,
             "Two staff members marked as sales representatives (Settings -> Staff), e.g. \"Dana Lee\" and \"Sam Ortiz\".",
             "An invoiced part sale with no payment applied, Sales Representative set to the first rep. Seed it:",
@@ -356,6 +365,14 @@ def main():
         if atm == 3 and batch != "automated":
             print(f"[STOP] C{cid} is Automated now - moved out of the 'now' batch"); continue
         payload = fn(c)
+        from runnable_pre_2026_10_05 import PRE, STEP_FIX
+        if cid in PRE: payload["custom_preconds"] = ol(PRE[cid])
+        if cid in STEP_FIX: payload["custom_steps"] = ol(STEP_FIX[cid])
+        exp = payload.get("custom_expected", c["custom_expected"])
+        if STAMP + READY in exp:
+            exp = exp.replace(STAMP + READY, RECHECK + HOLD_RECHECK)
+        assert exp.count("AUTOMATION:") == 1, f"C{cid} marker count"
+        payload["custom_expected"] = exp
         if not APPLY:
             print(f"[DRY] {batch:9} C{cid} atm={atm} fields={list(payload)} title={payload.get('title', c['title'])[:70]}"); continue
         json.dump(c, open(f"{snap_dir}/C{cid}-before.json", "w"), indent=1)
