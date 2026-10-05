@@ -66,3 +66,9 @@ numeric/money-accuracy DATA folder (Rule 116).
   "Decline", reversing a payment in payment history, ShopPay switch location, Customer Portal permission name.
 - Case count ours: 57 + 4 = **61**. Scripts: `stale_fix_2026_10_05.py`, `new_cases_2026_10_05.py`; log
   `stale-fix-log-2026-10-05.json`, `new-cases-2026-10-05.json`; snapshots `snapshots-2026-10-05/`.
+- **Run 492** "FM1 · Part Sales v1 · sv9667.qa" (Mudassir's, owner 6) now holds 104 tests: C236959-C236962 added
+  2026-10-05 union-only and assigned to Mudassir; earlier results untouched. Run 497 (created 2026-10-02) no
+  longer exists; run 495 is Vladimir's automation iteration run (unassigned) — left alone.
+- Mudassir's 3 stale cases (C154874, C154877, C154883): change list `FOR-MUDASSIR-2026-10-05.md`.
+- Build re-check of the 22: Part Sales QA build sv9667.qa.shopview.com is up at **v26.40.7-7ffda69**
+  (2026-10-05); sign-in refused without a session — waiting on an `sv_sso_session` cookie for sv9667.
