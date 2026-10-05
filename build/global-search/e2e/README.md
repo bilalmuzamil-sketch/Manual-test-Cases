@@ -172,6 +172,22 @@ Proved on staging, 5 October 2026: a one-test run seeded only that test's 11 rec
 record deleted on purpose (`ZZACC José Martínez`) with run-start seeding switched off was noticed by
 the per-test check, re-created exactly, found by search, and the test passed.
 
+**The decisive proof, 5 October 2026 — a full run from a fresh copy of the repository, with an empty
+seeding cache and nothing but the staging sign-in (`GS_SSO`):** all 338 tests ran in 2.5 hours; every
+record was seeded from nothing; the per-test check ran before 268 tests and confirmed their records
+each time. It also caught a fault **in this suite**: the customers half of C55716 renamed a seeded
+customer ("ZZTIEBREAK Transport One" → "…one") and never put it back, the engine's name lookup was
+case-sensitive while the product is not, and 22 tests stood down **before starting, naming the
+record** instead of failing half-way for a reason that had nothing to do with search. Fixed (the test
+restores the name; lookups ignore case like the product). Re-run: 21 passed and 3 stood down for reasons of their own (no fair word pair, workplace unreadable, too few groups) — none for data.
+If a test ever stands down with *"its data is not on the branch and could not be seeded"*, ask the
+engine why — it prints the whole answer and changes nothing:
+
+```bash
+npx tsx tools/check_data.ts ranking rank_t_older            # is it there? (plans: v1reg gs-v2 ranking toggle pertab e2e fixtures)
+npx tsx tools/check_data.ts ranking rank_t_older --repair   # create what is missing, then check again
+```
+
 **Records once made by hand are now a plan.** About twenty families of records the checks search for
 were made by hand on staging on 29 September and were in no plan — a reset would have lost them for
 good. `seeding/seed-manifest-fixtures.json` (86 entries, captured from staging by
@@ -292,6 +308,12 @@ repository root with `-c` → 11 passed · `--headed` under a virtual display (`
 the control: `--headed` with **no** display fails with *"you launched a headed browser without having
 a XServer running"*, which is what shows the window is real and not a hidden browser · `--workers=4` →
 refused before anything runs, with the reason.
+
+**Proved again on the per-test design, 5 October 2026** (`C146209-C146223-sri-customers.spec.ts`, 6
+tests, records seeded before each): `CI=1` · from the repository root with `-c` · `--headed` under
+`xvfb-run` — the three gave the **same result test for test** (3 passed, 2 failed on known product
+faults, 1 stood down), each test noting *"confirmed on the branch before this test: 4 of 4 records"*;
+the no-display control refused again.
 
 **For CI**, `ci/github-actions-example.yml` is a ready workflow (manual trigger; nightly and pull
 request triggers are there, commented out). It needs one repository secret, `GS_SSO`, plus Node,
