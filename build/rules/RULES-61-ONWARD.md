@@ -4095,3 +4095,26 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **COORDINATION.** When a manual tester is actively editing a suite's cases, this lane does NOT edit a
     case the tester has already changed (Rules 83/86) — detect by `updated_by`/`updated_on`, skip those,
     and correct only the cases the tester has not yet touched; hand the tester a precise list of the rest.
+
+    **🛑 115-AMENDMENT (QA lead, 2026-10-05, second complaint — the manual tester Nebojsa Glavinic said
+    the PRECONDITIONS are wrong, and he was right).** "Fully runnable" is not only jargon-free wording; it
+    is a tester who can REACH THE START STATE BY HAND. A build-verified case's PRECONDITIONS must carry,
+    concretely and verified on the build:
+    **(i) THE EXACT ROLE AND PERMISSIONS** — "Logged in as Admin (Invoicing & Payments Create & Edit + See
+    Financial Data)", never "signed in with the permissions the step needs" / "with the right permissions".
+    **(ii) EVERY SETTING THAT GATES THE BEHAVIOUR** — the Work Order / org settings that must be ON or OFF
+    for the screen or action to appear (e.g. "Require Review OFF, Require Approval for New Lines ON").
+    A screen reached only when a setting is ON is UNREACHABLE if the setting is unnamed — that is the
+    defect that made our "run the wizard" cases impossible as written (C44597: with nothing outstanding the
+    app invoices directly and no wizard opens).
+    **(iii) THE CONCRETE DATA, CREATED BY UI** — "a customer with a contact and a vehicle, on a
+    charge-account credit term; a work order for that customer with the contact assigned and two Declined
+    lines" — never a bare STATE ASSERTION ("a work order with a Needs Approval line") with no setup, and
+    never a spec-level state (Rule 18). The tester must be able to BUILD the state from the words.
+    **THE STANDARD IS THE TESTER'S OWN:** match the shape the manual tester uses when he fixes a case
+    himself (named role+permissions · the gating settings · the concrete customer/vehicle/line setup).
+    **ENFORCED:** `check_tester_runnable.py` now also fails a `READY` case whose preconditions use a vague
+    role phrase, or assert a non-trivial state while naming no gating setting and no UI setup route. A case
+    it flags is rewritten to the standard (settings verified on the build), never shipped.
+    **BUILD-VERIFY THE SETTINGS:** the required settings/role/data are confirmed on the live build, not
+    guessed — a guessed setting is a NEW wrong precondition. This is part of "FULLY build verified".

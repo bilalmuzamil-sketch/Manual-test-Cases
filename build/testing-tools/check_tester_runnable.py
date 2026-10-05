@@ -53,6 +53,37 @@ NOT_HAND = [r'\bp9[0-9]\b', r'\bAPM\b', r'\bserver timing\b', r'performance tool
 # allowed: a one-line caveat that a SUB-aspect is a dev check (main check stays manual) -> warn only
 CAVEAT = [r'cannot be done by hand', r'cannot be proven by hand', r'developer/automated check', r'not by eye']
 
+# --- Rule 115 precondition-runnability (QA lead 2026-10-05, 2nd complaint: preconditions were wrong) ---
+# A precondition must let the tester REACH the start state by hand: exact role+permissions, the gating
+# settings, and concrete UI-buildable data. These patterns are the two real defects the tester found.
+VAGUE_ROLE = re.compile(
+    r'signed in with the permissions the step needs|with the permissions the step|'
+    r'signed in with the (?:right |invoicing |correct )?permissions\b|'
+    r'signed in with the permissions\b|as a user with the (?:right )?permissions', re.I)
+# a concrete role names the actual role word
+NAMES_ROLE = re.compile(r'\b(logged in|signed in) as (?:an? )?(admin|owner|technician|service advisor|'
+                        r'office user|parts|vendor|sales|reduced-role|view-only)', re.I)
+# a Work Order / org setting that gates behaviour
+NAMES_SETTING = re.compile(r'Require (Approval|Review|Tech Stor|Mileage|Engine Hours|Ordering|Receiving|Picking)', re.I)
+# a bare state assertion with no "how to reach it"
+STATE_ASSERT = re.compile(r'\b(a work order with|a work order whose|an already-invoiced|'
+                          r'a WO with a|set up:\s|with a Needs Approval line|whose lines are all)\b', re.I)
+# a concrete UI setup route (creating/opening the record)
+HAS_ROUTE = re.compile(r'top menu|>\s|&gt;|create a (work order|customer)|open a work order by|'
+                       r'Customers\s*&gt;|New Customer|add a (labour|labor|part) line', re.I)
+
+
+def precond_issues(case):
+    """Return list of precondition problems (Rule 115 amendment)."""
+    pre = strip_tags(case.get('custom_preconds'))
+    issues = []
+    if VAGUE_ROLE.search(pre) or not NAMES_ROLE.search(pre):
+        if VAGUE_ROLE.search(pre):
+            issues.append('vague role (name the exact role + permissions)')
+    if STATE_ASSERT.search(pre) and not NAMES_SETTING.search(pre) and not HAS_ROUTE.search(pre):
+        issues.append('asserts a start state but names no gating setting and no UI setup route')
+    return issues
+
 
 def strip_tags(s):
     s = s or ''
@@ -97,6 +128,7 @@ def main():
     ap.add_argument('--bodies', help='local JSON {cid: case} to scan instead of fetching')
     ap.add_argument('--creds', default='/tmp/testrail/creds.json')
     ap.add_argument('--protect-authors', default='1', help='created_by ids to SKIP (default Vladimir=1)')
+    ap.add_argument('--no-preconds', action='store_true', help='skip the precondition-runnability check (Rule 115 amendment)')
     a = ap.parse_args()
     protect = {int(x) for x in a.protect_authors.split(',') if x.strip()}
 
@@ -130,6 +162,10 @@ def main():
             problems.append('JARGON: ' + '; '.join(jh))
         if nh and rdy:
             problems.append('NOT-HAND-TESTABLE but READY: ' + ', '.join(sorted(nh)))
+        if rdy and not a.no_preconds:
+            pi = precond_issues(c)
+            if pi:
+                problems.append('PRECONDITION GAP: ' + '; '.join(pi))
         if problems:
             flagged.append((cid, c.get('title', ''), problems))
         elif cav:

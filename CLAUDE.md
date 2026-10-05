@@ -239,8 +239,13 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   requirement ids) — those live ONLY in the `Source —` provenance block (54/110); **(ii) a check not doable
   by hand marked READY** — keep only the manual part, else mark `AUTOMATION: HOLD - not manually testable
   (developer/automated check only)` and report it (98), never READY. Expected substance still the source's
-  (57/114); clarity is wording + testability-marking, never softening the outcome. **ENFORCED:**
-  `python3 build/testing-tools/check_tester_runnable.py --sections <ids>` must exit 0 before any suite is
+  (57/114); clarity is wording + testability-marking, never softening the outcome. **(iii) PRECONDITIONS
+  MUST LET THE TESTER REACH THE START STATE BY HAND (amendment 2026-10-05, 2nd tester complaint):** name the
+  EXACT role + permissions (never "the permissions the step needs"), EVERY setting that gates the behaviour
+  (a screen gated by an unnamed setting is unreachable), and the CONCRETE UI-buildable data (never a bare
+  state assertion like "a WO with a Needs Approval line" with no setup) — match the shape the tester uses
+  when he fixes a case himself, and VERIFY the settings on the build, never guess. **ENFORCED:**
+  `python3 build/testing-tools/check_tester_runnable.py --cases <ids>` must exit 0 before any suite is
   reported build-verified. **A manual tester must NEVER again report a build-verified case as unclear/unrunnable.**
   Don't edit a case the tester is already editing (83/86). Full text: `RULES-61-ONWARD.md` rule 115.
 - **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY (2026-09-02).** Run
@@ -476,7 +481,7 @@ rule. Generated from the split files' own headers.
 | **112** | WHEN THE SEEDED RECORD'S REAL IDENTIFIER DIFFERS FROM THE ONE THE CASE NAMES, CORRECT THE IDENTIFIER IN THE CASE — **THE IDENTIFIER ONLY, AND NOTHING ELSE** (QA lead, 2026-09-17) |
 | **113** | VERIFY AGAINST THE **REAL CASE TEXT**, NEVER AGAINST A SUMMARY OF IT — a handoff is a map, not the territory (QA lead, 2026-09-17) |
 | **114** | THE EXPECTED RESULT IS THE **VERBATIM QUOTE FROM THE SOURCE, AND IS NEVER CHANGED** — quoted in the source's own words with page/section/version cited (54), never paraphrased/softened/sharpened or edited to match the build; a build that differs is a deviation (62-b), and the only permitted edit is correcting it BACK to the source quote (106). Hardens Rule 57 (QA lead, 2026-09-21) |
-| **115** | A BUILD-VERIFIED CASE IS **FULLY RUNNABLE AND FULLY UNDERSTANDABLE BY THE MANUAL TESTER** — this lane's definition of done is all three together (build-verified + layman-understandable + hand-runnable), never just stamp+marker. FORBIDDEN in a READY case: developer jargon in tester-facing text (codes/endpoint/API/p95/circuit-breaker/ms/req-ids → provenance only, 110) · a check not doable by hand marked READY (→ keep only the manual part, else HOLD "not manually testable"). Expected substance still the source's (57/114). Enforced by `check_tester_runnable.py`. A manual tester must NEVER again report a build-verified case as unclear/unrunnable. Amends 102/84 (QA lead, 2026-10-05) |
+| **115** | A BUILD-VERIFIED CASE IS **FULLY RUNNABLE AND FULLY UNDERSTANDABLE BY THE MANUAL TESTER** — this lane's definition of done is all three together (build-verified + layman-understandable + hand-runnable), never just stamp+marker. FORBIDDEN in a READY case: developer jargon in tester-facing text (codes/endpoint/API/p95/circuit-breaker/ms/req-ids → provenance only, 110) · a check not doable by hand marked READY (→ keep only the manual part, else HOLD "not manually testable") · PRECONDITIONS that don't let the tester reach the start state by hand — name the exact role+permissions, every gating setting, and concrete UI-buildable data (verify settings on the build, never guess), never a vague role or a bare state assertion (amendment 2026-10-05, 2nd tester complaint). Expected substance still the source's (57/114). Enforced by `check_tester_runnable.py`. A manual tester must NEVER again report a build-verified case as unclear/unrunnable. Amends 102/84 (QA lead, 2026-10-05) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
