@@ -1,0 +1,240 @@
+{
+ "when_utc": "2026-10-05T072222Z",
+ "environment": {
+  "workplace_name_hint": "Staging Heavy Duty"
+ },
+ "live_ids": {
+  "pfx_cust_a": "57098f15-9259-40db-8ac5-ad6087a3d04b",
+  "pfx_cust_b": "f180e826-a05f-4581-b9eb-92dd591abcab",
+  "pfx_vend_a": "6bdc5bb3-53fa-49b2-b762-a9cb3e408043",
+  "pfx_asset_owner": "24b11a78-854f-4cbe-98f4-8304bd945127",
+  "pfx_asset_contact": "ff3d8818-d2ae-4cd5-b853-2519d86d259a",
+  "pfx_asset_a": "411d2bbf-c2c2-4384-9dea-c05a17761e45",
+  "pfx_asset_b": "49fed70f-d1ed-4344-98f1-b6380738fbf4",
+  "pfx_part_a_cat": "e6c058e4-dcf8-4fd8-ae00-f3d3219b2746",
+  "pfx_part_a_inv": "2808ccae-69dd-4bcd-b1b6-102b2cd1be88",
+  "pfx_part_b_cat": "111f31e1-ad96-4683-b938-fdbd56f3b6ea",
+  "pfx_part_b_inv": "ba87a270-e289-4af1-9503-09ecceb219bc"
+ },
+ "records": [
+  {
+   "key": "pfx_cust_a",
+   "state": "PRESENT",
+   "ids": [
+    "57098f15-9259-40db-8ac5-ad6087a3d04b"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707,
+    55724
+   ]
+  },
+  {
+   "key": "pfx_cust_b",
+   "state": "PRESENT",
+   "ids": [
+    "f180e826-a05f-4581-b9eb-92dd591abcab"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707,
+    55724
+   ]
+  },
+  {
+   "key": "pfx_vend_a",
+   "state": "PRESENT",
+   "ids": [
+    "6bdc5bb3-53fa-49b2-b762-a9cb3e408043"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707
+   ]
+  },
+  {
+   "key": "pfx_vend_b",
+   "state": "UNVERIFIED",
+   "reason": "probe ERR",
+   "serves": [
+    55707
+   ]
+  },
+  {
+   "key": "pfx_asset_owner",
+   "state": "PRESENT",
+   "ids": [
+    "24b11a78-854f-4cbe-98f4-8304bd945127"
+   ],
+   "fields_ok": [
+    "name",
+    "address",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "phone",
+    "country_code"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707,
+    55724
+   ]
+  },
+  {
+   "key": "pfx_asset_contact",
+   "state": "PRESENT",
+   "ids": [
+    "ff3d8818-d2ae-4cd5-b853-2519d86d259a"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone",
+    "email"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707
+   ]
+  },
+  {
+   "key": "pfx_asset_a",
+   "state": "PRESENT",
+   "ids": [
+    "411d2bbf-c2c2-4384-9dea-c05a17761e45"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707
+   ]
+  },
+  {
+   "key": "pfx_asset_b",
+   "state": "PRESENT",
+   "ids": [
+    "49fed70f-d1ed-4344-98f1-b6380738fbf4"
+   ],
+   "fields_ok": [
+    "year",
+    "unit",
+    "vin",
+    "licence_plate"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707
+   ]
+  },
+  {
+   "key": "pfx_part_a_cat",
+   "state": "PRESENT",
+   "ids": [
+    "e6c058e4-dcf8-4fd8-ae00-f3d3219b2746"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707
+   ]
+  },
+  {
+   "key": "pfx_part_a_inv",
+   "state": "PRESENT",
+   "ids": [
+    "2808ccae-69dd-4bcd-b1b6-102b2cd1be88"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707
+   ]
+  },
+  {
+   "key": "pfx_part_b_cat",
+   "state": "PRESENT",
+   "ids": [
+    "111f31e1-ad96-4683-b938-fdbd56f3b6ea"
+   ],
+   "fields_ok": [
+    "name",
+    "part_number"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707
+   ]
+  },
+  {
+   "key": "pfx_part_b_inv",
+   "state": "PRESENT",
+   "ids": [
+    "ba87a270-e289-4af1-9503-09ecceb219bc"
+   ],
+   "fields_ok": [
+    "quantity",
+    "min",
+    "max"
+   ],
+   "gaps": [],
+   "not_compared": [],
+   "serves": [
+    55707
+   ]
+  }
+ ],
+ "_note": "Live ids re-derived this run. Never trust an older copy - a redeploy changes them."
+}
