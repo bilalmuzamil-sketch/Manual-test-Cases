@@ -46,12 +46,12 @@ wording he chose (put to the QA lead 2026-10-05, not rewritten).
 
 ## LATER THE SAME NIGHT — final gate pass (supersedes the marker lists above where they differ)
 - Mudassir's cases that cannot be set up by hand on this QA branch were re-marked (his checks unchanged):
-  **HOLD — not manually testable (needs engineering / an automated run / a pre-deploy record):** C154861 C154862 C154867 C154873 C154876 ·
+  **HOLD — not manually testable (needs engineering / an automated run / a pre-deploy record):** C154861 C154867 C154873 C154876 (C154862 keeps its portal HOLD) ·
   **HOLD — needs a sign-in made before this build was installed:** C154860 · **HOLD — QuickBooks:** C154868 C154874 C154875.
 - Label alignment: "Vendors" permission → "Vendor and order management" (C154871 C154872); "Decline every line" explained (C154880);
   routes added to the first steps of C154853 C154863 C154865 C154866 C154871 C154872 C154879 C154880 C154881; C154596 / C236962 first steps.
 - C154618 examples switched to staff who exist here ("Ashlee Thomas", "Ashley Schultz"; "Dana Lee"/"Sam Ortiz" are not on this build).
-- **Final markers on the 82 written:** READY 45 · HOLD QuickBooks 22 · HOLD portal 8 · HOLD not-manual / old-sign-in 6 · Not available 1.
+- **Final markers on the 82 written (counted live from TestRail):** READY 46 · HOLD QuickBooks 22 · HOLD portal 8 · HOLD not-manual 4 · HOLD old sign-in 1 · Not available 1.
 - Gates on the READY set: runnability (check_runnable_cases) clean except **C154883** (Mudassir's "record PRD discrepancies, do not score"
   note — a review task, not a screen test; left for the QA lead) · precondition labels ALL CLEAR · Rule 115 clean except Mudassir's
   C154871/C154873/C154883 wording already put to the QA lead · served fr-view on every write.
