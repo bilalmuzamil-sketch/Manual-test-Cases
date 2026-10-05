@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-10-05T072222Z",
+ "when_utc": "2026-10-05T072239Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty"
  },
@@ -7,6 +7,7 @@
   "pfx_cust_a": "57098f15-9259-40db-8ac5-ad6087a3d04b",
   "pfx_cust_b": "f180e826-a05f-4581-b9eb-92dd591abcab",
   "pfx_vend_a": "6bdc5bb3-53fa-49b2-b762-a9cb3e408043",
+  "pfx_vend_b": "515ad397-58d9-45b5-88b4-d38c88c2d3a7",
   "pfx_asset_owner": "24b11a78-854f-4cbe-98f4-8304bd945127",
   "pfx_asset_contact": "ff3d8818-d2ae-4cd5-b853-2519d86d259a",
   "pfx_asset_a": "411d2bbf-c2c2-4384-9dea-c05a17761e45",
@@ -86,8 +87,23 @@
   },
   {
    "key": "pfx_vend_b",
-   "state": "UNVERIFIED",
-   "reason": "probe ERR",
+   "state": "PRESENT",
+   "ids": [
+    "515ad397-58d9-45b5-88b4-d38c88c2d3a7"
+   ],
+   "fields_ok": [
+    "name",
+    "address_1",
+    "city",
+    "state_or_province",
+    "postal_code",
+    "telephone",
+    "email",
+    "credit_term",
+    "credit_limit"
+   ],
+   "gaps": [],
+   "not_compared": [],
    "serves": [
     55707
    ]
