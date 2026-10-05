@@ -184,17 +184,30 @@ test('C55716 (customers) — the customer changed most recently is listed first 
   const list = await api(s.page, 'GET', '/api/customers?pagination[rowsPerPage]=50&search=ZZTIEBREAK');
   const all = ((list.body as any)?.data?.collection ?? []);
   const secondName = rows[1].split(/\s{2,}|·/)[0].trim();
-  const target = all.find((c: any) => secondName.includes(c.name)) ?? all[1];
-  const lowered = String(target.name).replace(/(\w)(\w*)$/, (_m, a, b) => a.toLowerCase() + b);
-
-  const cur = await api(s.page, 'GET', `/api/customers/view/${target.id}`);
-  const w = await api(s.page, 'POST', '/api/customers/change',
-    { ...(cur.body as any)?.data?.company, company_id: target.id, id: target.id, name: lowered });
-  expect(w.status, `the rename was refused: ${w.text}`).toBeLessThan(400);
-
-  expect(await waitForIndex(s.page, 'ZZTIEBREAK', 'Customers', lowered),
-    'the rename never showed, so the entry did not rebuild').toBe(true);
-  const after = rowsOf(await search(s.page, 'ZZTIEBREAK', 'Customers'), 'Customers');
-  expect(positionOf(after, lowered),
-    `known fault SV-10340 — the customer edited seconds ago is not first. Order: ${JSON.stringify(after)}`).toBe(0);
+  const target = all.find((c: any) => secondName.toLowerCase().includes(String(c.name).toLowerCase())) ?? all[1];
+  // 🔴 THE EDIT IS UNDONE, ALWAYS (2026-10-05). This used to lower-case the last word and leave it so:
+  // the seeded "ZZTIEBREAK Transport One" stayed "...Transport one", the seeding engine (exact name)
+  // no longer found it, the product (case-blind) refused to re-create it, and 22 tests across the next
+  // run stood down for "missing" data. Now the case of the last word's first letter is FLIPPED (always
+  // a real change, even on a name an older run left lowered) and the seeded name is put back after.
+  const original = String(target.name).replace(/(\w)(\w*)$/, (_m, a, b) => a.toUpperCase() + b);
+  const touched = String(target.name).replace(/(\w)(\w*)$/, (_m, a, b) =>
+    (a === a.toUpperCase() ? a.toLowerCase() : a.toUpperCase()) + b);
+  const rename = async (name: string) => {
+    const cur = await api(s.page, 'GET', `/api/customers/view/${target.id}`);
+    return api(s.page, 'POST', '/api/customers/change',
+      { ...(cur.body as any)?.data?.company, company_id: target.id, id: target.id, name });
+  };
+  try {
+    const w = await rename(touched);
+    expect(w.status, `the rename was refused: ${w.text}`).toBeLessThan(400);
+    expect(await waitForIndex(s.page, 'ZZTIEBREAK', 'Customers', touched),
+      'the rename never showed, so the entry did not rebuild').toBe(true);
+    const after = rowsOf(await search(s.page, 'ZZTIEBREAK', 'Customers'), 'Customers');
+    expect(positionOf(after, touched),
+      `known fault SV-10340 — the customer edited seconds ago is not first. Order: ${JSON.stringify(after)}`).toBe(0);
+  } finally {
+    const back = await rename(original);
+    console.log(`restored the seeded name "${original}" -> ${back.status}`);
+  }
 });

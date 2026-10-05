@@ -359,7 +359,11 @@ def find(spec, _key=None):
         for attempt in range(3):
             r = call(f"{spec['list']}?search={urllib.parse.quote(spec['value'])}&limit=100")
             if r['status'] == 200:
-                hit = _also(spec, [x for x in rows(r) if str(x.get(spec['field']) or '') == spec['value']])
+                # 🔴 CASE-BLIND, LIKE THE PRODUCT (2026-10-05). The product refuses "ZZTIEBREAK Transport
+                # One" when "...Transport one" exists, so an exact-case match read that record as
+                # missing, tried to create it, was refused, and every test needing it stood down.
+                want = str(spec['value']).strip().lower()
+                hit = _also(spec, [x for x in rows(r) if str(x.get(spec['field']) or '').strip().lower() == want])
                 if hit: return hit, 'ok'
                 last = ([], 'ok')
             else:
