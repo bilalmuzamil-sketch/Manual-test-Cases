@@ -76,3 +76,14 @@ NEVER let a ticket key or status code carry the meaning. Every question states, 
 situation is, why it matters, what I need decided, the options with what we'd then do, and the cost of
 saying nothing. A ticket key goes at the END as a reference only. If it can't be understood in one
 read without opening anything, it isn't written yet.
+
+## L7 — BUILD VERIFICATION IS HANDED OVER, NOT DONE HERE (QA lead, 2026-10-05), binding.
+Ordered after I started signing into the Part Sales QA build to re-check 22 cases: *"always ask me to
+handover to the build verification session where something needs to be verified in the build for the
+test cases."*
+**The rule:** whenever cases this session created or updated need checking on a build (build
+verification, re-verification, label/route confirmation), **do not sign into the build or run the check.**
+Instead, give the QA lead the **test case links** (C-id + `https://shopview.testrail.io/index.php?/cases/view/<id>`)
+and **ask whether to hand them over** to the build verification session. Build verification belongs to
+that session; it also keeps one session per build (Rule 83), so testers on the branch are not logged out.
+**Proposed for promotion to a numbered Standing Rule (Rule 72); binding until then.**
