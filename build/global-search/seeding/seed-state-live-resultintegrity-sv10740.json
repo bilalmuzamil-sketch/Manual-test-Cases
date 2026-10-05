@@ -1,5 +1,5 @@
 {
- "when_utc": "2026-10-05T073017Z",
+ "when_utc": "2026-10-05T073105Z",
  "environment": {
   "workplace_name_hint": "Staging Heavy Duty - 9919",
   "_why": "Overridden by SEED_WORKPLACE; this is the hint for staging."
@@ -29,6 +29,10 @@
   "ri_cust_samerep_b": "bab8a9a9-8ece-42bb-9f44-b341f865f85b",
   "ri_contact_samerep_b": "9111d1b1-7487-42bb-a290-2f0b018fb38e",
   "ri_cust_dualrep": "fd4fe30c-9fc0-4efd-b760-73881cc8e689",
+  "ri_contact_dualrep_1": [
+   "0156b22d-67a4-484d-a778-ee968ba3c2e5",
+   "d207b7f0-7cd4-45dc-9eea-8127fef4c4d0"
+  ],
   "ri_contact_dualrep_2": "0156b22d-67a4-484d-a778-ee968ba3c2e5",
   "ri_cust_province": "7308c1e4-67c9-49ea-96e9-4e369423973e",
   "ri_cust_soft_hit": "705a50b7-26b5-4820-8ba1-18db2ed01020",
@@ -121,7 +125,9 @@
   },
   {
    "key": "ri_cust_same_b",
-   "state": "CREATED_NOT_FOUND",
+   "state": "CREATE_FAILED",
+   "http": 400,
+   "body": "b'{\"errors\":[{\"error\":\"Company with provided name already exists.\"}]}'",
    "serves": [
     "CUST-B2"
    ]
@@ -577,7 +583,25 @@
   },
   {
    "key": "ri_contact_dualrep_1",
-   "state": "CREATED_NOT_FOUND",
+   "state": "PRESENT",
+   "ids": [
+    "0156b22d-67a4-484d-a778-ee968ba3c2e5",
+    "d207b7f0-7cd4-45dc-9eea-8127fef4c4d0"
+   ],
+   "fields_ok": [
+    "first_name",
+    "last_name",
+    "title",
+    "telephone"
+   ],
+   "gaps": [
+    {
+     "field": "email",
+     "wanted": "dualrep.one@zzresultintegrity.test",
+     "holds": "dualrep.two@zzresultintegrity.test"
+    }
+   ],
+   "not_compared": [],
    "serves": [
     "CUST-C9"
    ]
