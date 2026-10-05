@@ -14,6 +14,11 @@ The redeployments clear the data. This card exists so putting it back is a comma
 | **`RESEED GLOBAL SEARCH STAGING`** | **everything** — all 7 universes, ~223 records | `app.staging.shopview.com`, workplace **Staging Heavy Duty - 9919** |
 | **`RESEED GLOBAL SEARCH QA`** | **everything** — all 7 universes | `sv9160.qa.shopview.com` |
 | **`RESEED GLOBAL SEARCH LIVE`** | **everything** — Global Search V2 shipped to production on 2026-10-01 (`v26.40.0`) | `app.shopview.com`, workplace **Trucks Hill 2** |
+| **`RESEED GLOBAL SEARCH sv<NNNN>`** — e.g. `RESEED GLOBAL SEARCH sv10740` | **everything** — **any other QA branch**, by its number. Its data is kept separate from every other branch's. First done on **sv10740**, 2026-10-05: all 7 universes PRESENT, build `v26.40.3-da63248` | `sv<NNNN>.qa.shopview.com`, workplace **Staging Heavy Duty - 9919** |
+
+> 🔴 **A QA branch shows its own work-order prefix.** On sv10740 work orders read **`S10740-…`**,
+> purchase orders **`I10740-…`** — not `S2-…`. Cases that name `S2-15430` use **`S10740-17584`**
+> there. The checks read the prefix off the search; never type the production one on a branch.
 
 ### 2 · Paste me three values
 

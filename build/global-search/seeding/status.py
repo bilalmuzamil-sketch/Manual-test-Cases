@@ -236,7 +236,12 @@ def main():
 
     m = marker()
     last = None
-    sf = os.path.join(HERE, 'last-seen-marker.json')
+    # 🔴 ONE FILE PER ENVIRONMENT (2026-10-05). A single shared file made sv10740 report "THE
+    # BRANCH WAS REDEPLOYED v26.40.2 → v26.40.3" - comparing it with PRODUCTION's last build.
+    _h = C['host']
+    _env = ('qa' if _h.startswith('sv9160.') else 'prod' if _h == 'app.shopview.com'
+            else 'staging' if _h == 'app.staging.shopview.com' else _h.split('.')[0])
+    sf = os.path.join(HERE, f'last-seen-marker-{_env}.json')
     if os.path.exists(sf):
         try: last = json.load(open(sf)).get('marker')
         except Exception: pass

@@ -389,8 +389,11 @@ fi
 echo
 echo "---- writing the record inventories"
 SEED_MANIFEST=seed-manifest-gs-v2.json python3 dump_seed_manifest.py \
-  > "SEED-MANIFEST-GS-V2-$([ "$1" = qa ] && echo qa || echo prod).md" 2>/dev/null \
-  && echo "     SEED-MANIFEST-GS-V2-*.md"
+  > "SEED-MANIFEST-GS-V2-$(case "$1" in qa) echo qa;; live) echo prod;; *) echo "$1";; esac).md" 2>/dev/null \
+  && echo "     SEED-MANIFEST-GS-V2-<env>.md"
+# 🔴 Until 2026-10-05 this wrote 'prod' for EVERY environment but qa - so a staging or sv10740
+# run silently overwrote production's record inventory with its own ids (caught in the sv10740
+# reseed's diff and restored from git). Each environment writes only its own file.
 
 echo
 echo "=============================================================="
