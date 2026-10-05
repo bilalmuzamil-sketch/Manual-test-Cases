@@ -543,6 +543,10 @@
    "write": {
     "endpoint": "/api/vehicles/change",
     "whole_record": true
+   },
+   "read_as": {
+    "maker_name": "vehicle_make",
+    "model_name": "vehicle_model"
    }
   },
   {
@@ -589,6 +593,10 @@
    "write": {
     "endpoint": "/api/vehicles/change",
     "whole_record": true
+   },
+   "read_as": {
+    "maker_name": "vehicle_make",
+    "model_name": "vehicle_model"
    }
   },
   {
@@ -1637,6 +1645,268 @@
     "part_number",
     "name"
    ]
+  },
+  {
+   "key": "e2e_lr_wo",
+   "type": "WorkOrder",
+   "count": 2,
+   "serves": [
+    146197,
+    146198,
+    146199,
+    146200,
+    146201,
+    146207
+   ],
+   "_why": "Work-order rows that carry the keyword: \"ZZLONGROW\" used to return customers, assets and vendors but NO work orders, so these checks only ran on work orders another test happened to leave behind.",
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The id list starts EMPTY on purpose - a hardcoded list survives a redeploy as a list of ids that point at nothing, which is how four work orders were reported \"created but NOT FINDABLE\" on every single redeploy.",
+    "discover": {
+     "search": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "group": "work_orders",
+     "match_secondary": "ZZLONGROW Heavy Haulage And Trailer Repair Services Of Greater Fernvale 123786",
+     "_why": "adopt the work orders already there instead of creating a second batch"
+    }
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "e2e_lr_owner",
+     "vehicle_id": "e2e_lr_asset_1",
+     "customer_id": "e2e_lr_owner_contact"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 2,
+    "_why": "a work order needs a vehicle: without one the server answers 500 (measured 2026-10-05)"
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ]
+  },
+  {
+   "key": "e2e_sh_asset_begins",
+   "type": "Vehicle",
+   "serves": [
+    146208
+   ],
+   "_why": "a vehicle so this customer can carry a work order",
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZSHAST0000000001",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Trucks",
+     "model_name": "Softline",
+     "year": 2022,
+     "unit": "ZZSOFTHIT-01",
+     "vin": "ZZSHAST0000000001"
+    },
+    "inject": {
+     "customer_id": "e2e_sh_contact_begins",
+     "company_id": "e2e_sh_cust_begins"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "read_as": {
+    "maker_name": "vehicle_make",
+    "model_name": "vehicle_model"
+   }
+  },
+  {
+   "key": "e2e_sh_wo_begins",
+   "type": "WorkOrder",
+   "count": 1,
+   "serves": [
+    146208
+   ],
+   "_why": "an exact ZZSOFTHIT work order, beside the near-miss one",
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The id list starts EMPTY on purpose - a hardcoded list survives a redeploy as a list of ids that point at nothing, which is how four work orders were reported \"created but NOT FINDABLE\" on every single redeploy.",
+    "discover": {
+     "search": "ZZSOFTHIT Hauling",
+     "group": "work_orders",
+     "match_secondary": "ZZSOFTHIT Hauling",
+     "_why": "adopt the work orders already there instead of creating a second batch"
+    }
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "e2e_sh_cust_begins",
+     "vehicle_id": "e2e_sh_asset_begins",
+     "customer_id": "e2e_sh_contact_begins"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1,
+    "_why": "a work order needs a vehicle: without one the server answers 500 (measured 2026-10-05)"
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ]
+  },
+  {
+   "key": "e2e_sh_asset_typo",
+   "type": "Vehicle",
+   "serves": [
+    146208
+   ],
+   "_why": "a vehicle so this customer can carry a work order",
+   "find": {
+    "mode": "search",
+    "list": "/api/vehicles",
+    "coll": "collection",
+    "field": "vin",
+    "value": "ZZSHAST0000000003",
+    "control": null
+   },
+   "create": {
+    "endpoint": "/api/vehicles/create",
+    "payload": {
+     "maker_name": "Rowcheck Trucks",
+     "model_name": "Softline",
+     "year": 2022,
+     "unit": "ZZSOFTHIP-03",
+     "vin": "ZZSHAST0000000003"
+    },
+    "inject": {
+     "customer_id": "e2e_sh_contact_typo",
+     "company_id": "e2e_sh_cust_typo"
+    }
+   },
+   "verify": [
+    "vin",
+    "unit"
+   ],
+   "write": {
+    "endpoint": "/api/vehicles/change",
+    "whole_record": true
+   },
+   "read_as": {
+    "maker_name": "vehicle_make",
+    "model_name": "vehicle_model"
+   }
+  },
+  {
+   "key": "e2e_sh_wo_typo",
+   "type": "WorkOrder",
+   "count": 1,
+   "serves": [
+    146208
+   ],
+   "_why": "the near-miss (ZZSOFTHIP) work order the soft-match check needs",
+   "find": {
+    "mode": "ids",
+    "view": "/api/work-orders/view/{id}",
+    "coll": "work_order",
+    "field": "number",
+    "ids": [],
+    "_why": "?search= is BROKEN on /api/work-orders and ?page= is IGNORED, so the only reliable route is the ids the seeder records as it creates them. The id list starts EMPTY on purpose - a hardcoded list survives a redeploy as a list of ids that point at nothing, which is how four work orders were reported \"created but NOT FINDABLE\" on every single redeploy.",
+    "discover": {
+     "search": "ZZSOFTHIP Logistics",
+     "group": "work_orders",
+     "match_secondary": "ZZSOFTHIP Logistics",
+     "_why": "adopt the work orders already there instead of creating a second batch"
+    }
+   },
+   "create": {
+    "endpoint": "/api/work-orders/create",
+    "payload": {
+     "is_vehicle_here": false
+    },
+    "inject": {
+     "company_id": "e2e_sh_cust_typo",
+     "vehicle_id": "e2e_sh_asset_typo",
+     "customer_id": "e2e_sh_contact_typo"
+    },
+    "id_from": "data.work_order_id",
+    "repeat": 1,
+    "_why": "a work order needs a vehicle: without one the server answers 500 (measured 2026-10-05)"
+   },
+   "skip_verify": [
+    "is_vehicle_here",
+    "company_id",
+    "vehicle_id",
+    "customer_id"
+   ]
+  },
+  {
+   "key": "e2e_broad_vendor",
+   "type": "Vendor",
+   "serves": [],
+   "_why": "\"transport\" on a second kind of record: the broad-word checks need a word that spans kinds, and our own data carried it on customers only",
+   "find": {
+    "mode": "search",
+    "list": "/api/parts-catalogue/vendors",
+    "coll": "collection",
+    "field": "name",
+    "value": "ZZE2E Transport Supply Co",
+    "control": "Carolina Truck"
+   },
+   "create": {
+    "endpoint": "/api/parts-catalogue/add-vendor",
+    "payload": {
+     "name": "ZZE2E Transport Supply Co",
+     "address_1": "40 Longrow Supply Park",
+     "city": "Fernvale",
+     "state_or_province": "Ohio",
+     "postal_code": "44872",
+     "telephone": "(264) 410-0388",
+     "email": "transport@zze2e.test",
+     "credit_term": "Net 30",
+     "credit_limit": 5000
+    },
+    "resolve_by_example": {
+     "tax_id": {
+      "list": "/api/parts-catalogue/vendors",
+      "match_field": "name",
+      "value": "Carolina Truck & Trailer Repair",
+      "take": "tax_id",
+      "take_as": "tax_id"
+     }
+    }
+   },
+   "verify": [
+    "name"
+   ],
+   "write": {
+    "endpoint": "/api/parts-catalogue/vendors/change",
+    "whole_record": true
+   }
   }
  ],
  "purchase_orders": {

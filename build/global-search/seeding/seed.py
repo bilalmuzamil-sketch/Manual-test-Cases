@@ -520,7 +520,17 @@ def main():
     ap.add_argument('--confirm', action='store_true'); ap.add_argument('--check', action='store_true')
     ap.add_argument('--only', default='', help='comma-separated record keys: process just these and what they depend on')
     ap.add_argument('--report', default='', help='write the per-record result as JSON to this file')
+    ap.add_argument('--whoami', action='store_true', help='print the session\'s permission count as JSON and exit')
+    ap.add_argument('--wait-findable', type=int, default=0, metavar='SECS',
+                    help='after --confirm, wait up to SECS for search to return each record just made')
     a = ap.parse_args()
+    if a.whoami:
+        # Used by the per-test data check: a session that has switched to a lesser person (the
+        # permission checks do) must never be the one that checks or creates data.
+        r = call('/api/auth/me/fe-permissions')
+        d = ((r['json'] or {}).get('data') or {}) if r['status'] == 200 else {}
+        print(json.dumps({'status': r['status'], 'permissions': len(d.get('fe_permissions') or [])}))
+        return
     if not (a.confirm or a.check): sys.exit("pass --check or --confirm")
     man = json.load(open(f'{HERE}/{MANIFEST}'))
     if a.only:
@@ -701,6 +711,23 @@ def main():
 
     blocked = [r for r in report if r['state'] in ('BLOCKED', 'MISSING', 'CREATE_FAILED', 'DUPLICATE',
                                                    'CREATED_NOT_FOUND', 'UNVERIFIED')]
+    if a.wait_findable and a.confirm:
+        # 🔴 A RECORD JUST MADE IS NOT SEARCHABLE YET - the index catches up a few to thirty seconds
+        # later. A test that searched at once would fail on the indexer, not the product. So for each
+        # record this run created or repaired, wait until the global search returns its own value.
+        made = [r for r in man['records'] if (r.get('find') or {}).get('mode') == 'search'
+                and str((r.get('find') or {}).get('value') or '').strip()]
+        deadline = time.time() + a.wait_findable
+        for rec in made:
+            v = str(rec['find']['value']).strip()
+            want = re.sub(r'[^a-z0-9]', '', v.lower())
+            while True:
+                r = call('/api/search?q=' + urllib.parse.quote(v))
+                hit = any(want in re.sub(r'[^a-z0-9]', '', json.dumps(g.get('items') or []).lower())
+                          for g in (((r['json'] or {}).get('data') or {}).get('groups') or []))
+                if hit or time.time() > deadline: break
+                time.sleep(3)
+            print(f"  {rec['key']:24s} {'findable' if hit else '🔶 NOT YET FINDABLE'} through search")
     if a.report:
         # Machine-readable, for the per-test data check: one line per record, its state and any gap.
         json.dump([{'key': r['key'], 'state': r['state'], 'gaps': [g['field'] for g in r.get('gaps', [])]}

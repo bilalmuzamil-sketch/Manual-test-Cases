@@ -1,4 +1,4 @@
-import { test, expect } from 'playwright/test';
+import { test, expect } from '../fixtures/test.js';
 import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
 import { resolveTerm } from '../fixtures/anchors.js';
 import { TECH_ROLE as TECH_ROLE_ID, technicianBaseline } from '../fixtures/roles.js';

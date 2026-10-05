@@ -70,12 +70,25 @@ def main():
             else: unseeded.setdefault(c, set()).add(w)
     # 3 · hand-written
     manual = json.load(open(os.path.join(DATA, 'test-data-manual.json'))) if os.path.exists(os.path.join(DATA, 'test-data-manual.json')) else {}
-    for c, v in (manual.get('cases') or {}).items():
-        if c not in m: continue
-        if v.get('replace'): m[c]['needs'] = set()
-        m[c]['needs'] |= set(v.get('needs', [])); m[c]['from'].add('by hand')
-        for k in ('own', 'none', 'baseline'):
-            if v.get(k): m[c][k] = v[k]
+    bundles = manual.get('bundles') or {}
+    def expand(v):
+        out = set(v.get('needs', []))
+        for w in v.get('words', []):
+            h = holders(w, idx)
+            if not h: raise SystemExit(f'🔴 the word {w!r} is held by no seeded record - seed it, or mark the case baseline')
+            out |= set(h)
+        for b in v.get('bundles', []):
+            if b not in bundles: raise SystemExit(f'🔴 unknown bundle {b!r}')
+            out |= expand(bundles[b])
+        return out
+    for key, v in (manual.get('cases') or {}).items():
+        for c in key.split(','):
+            c = c.strip()
+            if c not in m: print(f'  (hand-written entry for C{c}, which no test carries - ignored)'); continue
+            if v.get('replace'): m[c]['needs'] = set()
+            m[c]['needs'] |= expand(v); m[c]['from'].add('by hand')
+            for k in ('own', 'none', 'baseline'):
+                if v.get(k): m[c][k] = v[k]
     # validate every need names a real record or step
     known = {f'{t}:{r["key"]}' for t, man in manifests() for r in man.get('records', [])} | STEPS
     bad = sorted({n for v in m.values() for n in v['needs'] if n not in known})

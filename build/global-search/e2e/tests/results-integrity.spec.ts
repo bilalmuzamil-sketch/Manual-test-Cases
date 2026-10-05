@@ -1,4 +1,4 @@
-import { test, expect } from 'playwright/test';
+import { test, expect } from '../fixtures/test.js';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { APP, APIH, apiJson, collectionOf } from '../fixtures/boot.js';
 import { openPanel, closePanel, typeAndWait, SEL } from '../fixtures/search.js';

@@ -1,4 +1,4 @@
-import { test, expect } from 'playwright/test';
+import { test, expect } from '../fixtures/test.js';
 import { signIn, buildMarker, type Session } from '../fixtures/auth.js';
 import { groupRows, lastPointerCheck, type RowShape } from '../fixtures/rowshape.js';
 import * as fs from 'node:fs';

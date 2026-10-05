@@ -1,4 +1,4 @@
-import { test, expect } from 'playwright/test';
+import { test, expect } from '../fixtures/test.js';
 import { signIn, buildMarker, api, type Session } from '../fixtures/auth.js';
 import { resolveTerm } from '../fixtures/anchors.js';
 import { search, rowsOf, contains } from '../fixtures/search.js';

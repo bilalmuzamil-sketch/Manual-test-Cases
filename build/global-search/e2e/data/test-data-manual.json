@@ -1,0 +1,385 @@
+{
+ "_README": "Hand-written layer of the per-test data map (QA lead, 2026-10-05). Read by tools/build_data_map.py together with each seeded record's 'serves' note and the search words in entity-config / retest-plan / held-terms, and turned into data/test-data.json. A key may list several cases separated by commas. Each entry says what the test needs: 'needs' (records '<plan>:<key>' or steps '<plan>:#<step>'), 'words' (a search word - every seeded record holding it), 'bundles' (named sets below), and, where nothing of ours is needed, 'none' / 'baseline' / 'own' with the reason. 'baseline' = the shop's standard starting records, which a reset of the branch restores (measured 2026-10-05: they carry creation dates on or before the last reset, 2026-09-28 14:19).",
+ "bundles": {
+  "every-kind": {
+   "_why": "one findable record of every kind: the suite's 'live' sample values (a serial number, part number, part sale, purchase order, invoice) are taken from what the branch holds, and these guarantee each kind is not empty",
+   "needs": [
+    "e2e:e2e_lr_owner",
+    "e2e:e2e_lr_asset_1",
+    "e2e:e2e_lr_inv_1",
+    "e2e:e2e_lr_vendor_1",
+    "e2e:e2e_lr_ps_1",
+    "e2e:e2e_lr_wo",
+    "e2e:#po",
+    "gs-v2:#po-invoices"
+   ]
+  },
+  "broad": {
+   "_why": "the broad search word ('transport' first) must light up several kinds of record",
+   "words": [
+    "transport"
+   ],
+   "needs": [
+    "e2e:e2e_broad_vendor"
+   ]
+  },
+  "v1reg": {
+   "_why": "the V1-regression family (ZZAUTOTEST Bridgeport Hauling, its contact Marlene, the 2019 Freightliner Cascadia, Kestrel Parts Supply, ZZT-88-4412 and the part sale)",
+   "needs": [
+    "v1reg:customer",
+    "v1reg:contact",
+    "v1reg:asset",
+    "v1reg:work_orders",
+    "v1reg:vendor",
+    "v1reg:part_catalogue_only",
+    "v1reg:part_catalogue_stocked_source",
+    "v1reg:part_stocked",
+    "v1reg:customer_fuzzy_target",
+    "v1reg:customer_fuzzy_nearmiss",
+    "v1reg:part_sale"
+   ]
+  },
+  "areas": {
+   "_why": "one record per access area, for the permission checks (the toggle plan)",
+   "needs": [
+    "toggle:tog_part_inv",
+    "toggle:tog_cust",
+    "toggle:tog_cust_vehicle",
+    "toggle:tog_work_order",
+    "toggle:tog_part_sale",
+    "toggle:tog_vendor",
+    "toggle:tog_ven_part_inv"
+   ]
+  }
+ },
+ "cases": {
+  "45142,45144,45146,45147,45143": {
+   "bundles": [
+    "v1reg",
+    "areas"
+   ],
+   "_why": "searches the seeded ZZAUTOTEST word as the technician with one area at a time removed"
+  },
+  "45152": {
+   "needs": [
+    "e2e:e2e_lr_owner",
+    "e2e:e2e_lr_asset_1"
+   ],
+   "own": "creates one work order at each shop for the seeded ZZLONGROW customer and vehicle, then searches for them"
+  },
+  "146197,146198,146199,146200,146201,146207": {
+   "needs": [
+    "e2e:e2e_lr_wo"
+   ],
+   "_why": "work orders that carry ZZLONGROW"
+  },
+  "146208": {
+   "needs": [
+    "e2e:e2e_sh_wo_begins",
+    "e2e:e2e_sh_wo_typo"
+   ],
+   "_why": "an exact and a near-miss (ZZSOFTHIP) work order"
+  },
+  "146209,146210,146211,146212,146222": {
+   "needs": [
+    "e2e:e2e_lr_owner",
+    "e2e:e2e_lr_owner_contact",
+    "e2e:e2e_lr_cust2",
+    "e2e:e2e_lr_cust2_contact"
+   ],
+   "_why": "ZZLONGROW customers, whose telephones end 123786"
+  },
+  "146223": {
+   "words": [
+    "ZZPREFIX"
+   ],
+   "_why": "the soft match: ZZPREFIY is a deliberate misspelling of the seeded ZZPREFIX"
+  },
+  "146202": {
+   "baseline": "the chassis SVEWU82M5ETEJFWFA is a vehicle in the standard copy (created 2024-12-28) with 20 work orders"
+  },
+  "146204": {
+   "baseline": "reads a service-advisor name from the work orders in the standard copy"
+  },
+  "146214,146221": {
+   "baseline": "7 Star Truck Repair (telephone 609-461-6502, postal code H8A3X9) is in the standard copy"
+  },
+  "146215,146216": {
+   "baseline": "the ZZAUTOTEST contacts on 4 Star Truck Repair were created 2026-09-07, before the last reset, so the standard copy holds them"
+  },
+  "146217,146218": {
+   "baseline": "Savannah and 'Apt. 199' are in the standard copy (contacts and addresses dated 2023-2025)"
+  },
+  "146271": {
+   "needs": [
+    "e2e:#po",
+    "gs-v2:#po-invoices"
+   ],
+   "baseline": "the fragment '0123' also matches part numbers in the standard copy"
+  },
+  "146273": {
+   "needs": [
+    "e2e:#po",
+    "gs-v2:#po-invoices"
+   ],
+   "_why": "every purchase order the seeding raises is created by the quick-login admin, 'Admin ShopView'"
+  },
+  "146274": {
+   "needs": [
+    "e2e:#po",
+    "gs-v2:#po-invoices"
+   ],
+   "_why": "the supplied number I-1522 belonged to a hand-made order; a purchase-order number cannot be re-created, so after a reset the check uses a number from the seeded orders (the file already falls back to the tab's own records)"
+  },
+  "146282": {
+   "needs": [
+    "gs-v2:#po-invoices"
+   ],
+   "baseline": "purchase order I2-965 (Willoughby Mechanical Services) is in the standard copy"
+  },
+  "146285,146286,146287,146288,146289,146290,146300": {
+   "words": [
+    "ZZBROAD"
+   ],
+   "_why": "22 ZZBROAD Widget parts - more than the 20 the panel shows"
+  },
+  "146291,146292,146305": {
+   "needs": [
+    "e2e:e2e_lr_wo"
+   ],
+   "bundles": [
+    "every-kind"
+   ],
+   "_why": "a real work-order number, taken from the ZZLONGROW work orders"
+  },
+  "146293": {
+   "needs": [
+    "e2e:e2e_cust_phone"
+   ],
+   "baseline": "the telephone is read from the first customers listed, which includes the standard copy"
+  },
+  "146294": {
+   "words": [
+    "ZZACC"
+   ],
+   "_why": "the accented customer ZZACC José Martínez"
+  },
+  "146295": {
+   "words": [
+    "ZZPUNC"
+   ],
+   "_why": "ZZPUNC Smith-Jones Motors and ZZPUNC O'Brien Haulage"
+  },
+  "146296": {
+   "bundles": [
+    "every-kind"
+   ],
+   "_why": "damages a real identifier taken from the branch"
+  },
+  "146297": {
+   "needs": [
+    "gs-v2:work_orders_fib_main",
+    "gs-v2:#statuses"
+   ],
+   "_why": "work orders in every status, so a status word has something to (not) match"
+  },
+  "146298": {
+   "words": [
+    "ZZNOUNIT"
+   ],
+   "_why": "a work order whose vehicle has no unit number"
+  },
+  "146299": {
+   "needs": [
+    "e2e:e2e_cust_long"
+   ],
+   "words": [
+    "ZZLONGROW"
+   ],
+   "_why": "a very long name"
+  },
+  "146302,146303": {
+   "none": "searches for something that matches nothing"
+  },
+  "146304": {
+   "words": [
+    "ZZVORTAC"
+   ],
+   "_why": "a word that hits some kinds of record and not others"
+  },
+  "146306": {
+   "bundles": [
+    "broad"
+   ],
+   "baseline": "searches '965', which matches records of many kinds in the standard copy"
+  },
+  "146301": {
+   "none": "held: the source is silent; the check only records what one or two characters do"
+  },
+  "44804,44805,44806,44807,44808,44813,137996,55683": {
+   "none": "judges the search box itself - opening, closing, the shortcut, the legend, the clear control - typing at most a letter or two"
+  },
+  "44847": {
+   "needs": [
+    "e2e:#po",
+    "gs-v2:#po-invoices"
+   ],
+   "_why": "damages a real purchase-order number taken from the branch"
+  },
+  "55727": {
+   "needs": [
+    "e2e:e2e_lr_asset_1"
+   ],
+   "_why": "the plate W-123786 (data/anchors.json)"
+  },
+  "146220": {
+   "needs": [
+    "e2e:e2e_cust_long",
+    "fixtures:fx_cust_rowcheck_provincial_cartage"
+   ],
+   "_why": "a customer with a state or province: Ohio (data/anchors.json) and ZZQUEBEXA (retest plan)"
+  },
+  "44864,55725": {
+   "none": "searches nonsense that matches nothing"
+  },
+  "55688,55689": {
+   "bundles": [
+    "v1reg"
+   ],
+   "_why": "searches the make Freightliner and the year 2019"
+  },
+  "45156,45161": {
+   "none": "judges the search box and when a search starts, typing a letter or two"
+  },
+  "45155,45157,53589": {
+   "bundles": [
+    "v1reg"
+   ],
+   "_why": "searches Cascadia, Bridgeport and Marlene"
+  },
+  "44878,44879,45145,55704,44881,44882,55720,55718,55721,55719,55717,45149,45148,44860": {
+   "bundles": [
+    "broad",
+    "every-kind",
+    "areas"
+   ],
+   "baseline": "the narrower third person is a Time Clock User on the standard copy's staff"
+  },
+  "55724": {
+   "bundles": [
+    "broad"
+   ],
+   "words": [
+    "ZZPREFIX"
+   ],
+   "own": "ranking-seeded's C55724b creates its own prefix/contains pair"
+  },
+  "45128,55674,45135": {
+   "none": "judges recent-search history and the tablet layout, not records"
+  },
+  "53586,53587": {
+   "own": "creates a new record and times how long until search finds it"
+  },
+  "44850,55729": {
+   "bundles": [
+    "every-kind"
+   ],
+   "_why": "types a real identifier taken from the branch"
+  },
+  "44853,44854,55711": {
+   "bundles": [
+    "broad",
+    "every-kind"
+   ],
+   "_why": "opens a record from a broad search and searches again from its page"
+  },
+  "45150": {
+   "none": "checks no other organization's records appear - needs nothing of ours"
+  },
+  "44857": {
+   "needs": [
+    "gs-v2:#recent"
+   ],
+   "_why": "a recent-activity list with items of different ages"
+  },
+  "44865": {
+   "bundles": [
+    "broad"
+   ]
+  },
+  "45132,45133": {
+   "none": "judges the phone layout and when the scope chips appear"
+  },
+  "55726": {
+   "words": [
+    "ZZACC"
+   ]
+  },
+  "55730": {
+   "words": [
+    "ZZBROAD"
+   ],
+   "_why": "a word matching more than twenty records"
+  },
+  "96844,96845": {
+   "bundles": [
+    "broad"
+   ],
+   "_why": "misspells the broad word and checks the near matches are marked"
+  },
+  "55728": {
+   "bundles": [
+    "every-kind"
+   ],
+   "_why": "misspells a real part number taken from the branch"
+  },
+  "44877,55702,55703,55705,44880": {
+   "bundles": [
+    "broad",
+    "every-kind"
+   ]
+  },
+  "55706": {
+   "needs": [
+    "e2e:e2e_lr_ps_1",
+    "e2e:#po",
+    "gs-v2:#po-invoices"
+   ],
+   "_why": "rows that carry a price: part sales, purchase orders, invoices"
+  },
+  "44876,44829": {
+   "bundles": [
+    "broad"
+   ]
+  },
+  "45158,44897": {
+   "none": "checks search needs no switch and the old search path is gone"
+  },
+  "45154": {
+   "bundles": [
+    "every-kind"
+   ]
+  },
+  "44827,44810,44811": {
+   "bundles": [
+    "broad"
+   ]
+  },
+  "44843,55714": {
+   "needs": [
+    "e2e:#po",
+    "gs-v2:#po-invoices"
+   ],
+   "_why": "a real purchase-order and invoice number taken from the branch"
+  },
+  "44855,44856": {
+   "none": "judges the first-time and no-results states"
+  },
+  "title:seed control — the regression dataset is present": {
+   "bundles": [
+    "v1reg"
+   ],
+   "_why": "the positive control for the V1-regression family"
+  }
+ }
+}

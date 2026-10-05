@@ -32,6 +32,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { APP, APIH, IS_PROD, IS_STAGING, credentials, ssoCookie, standardProxy, workplaceHint } from './fixtures/boot.js';
 import { writeRunStatus, seedingDir } from './fixtures/data.js';
+import { selection, planFor } from './fixtures/selection.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
@@ -66,6 +67,7 @@ const STEPS: Step[] = [
   { label: 'per-tab records',                    manifest: 'seed-manifest-pertab.json', script: 'seed.py' },
   { label: 'this suite\'s own records',          manifest: 'seed-manifest-e2e.json',    script: 'seed.py' },
   { label: 'this suite\'s purchase orders + invoices', manifest: 'seed-manifest-e2e.json', script: 'seed_po_from_manifest.py' },
+  { label: 'records once made by hand on staging (captured 2026-10-05)', manifest: 'seed-manifest-fixtures.json', script: 'seed.py' },
   { label: 'PROOF — Fibridge',                   manifest: 'seed-manifest-gs-v2.json',  script: 'verify_gsv2.py',    proof: true },
   { label: 'PROOF — ranking',                    manifest: 'seed-manifest-ranking.json', script: 'verify_ranking.py', proof: true },
   { label: 'PROOF — toggle',                     manifest: 'seed-manifest-toggle.json', script: 'verify_toggle.py',  proof: true },
@@ -140,10 +142,21 @@ export default async function seedEverything(): Promise<void> {
 
   const env = { ...process.env, SEED_PROFILE: profile, SEED_WORKPLACE: shop, PYTHONUNBUFFERED: '1' };
   const failures: string[] = [];
+  /**
+   * 🔴 SEED WHAT THE SELECTED TESTS NEED (QA lead, 2026-10-05). A full run takes every step below, as
+   * proved; a run narrowed to some tests (a spec file, --grep, --last-failed...) seeds only the records
+   * those tests name in data/test-data.json, plus any step they need - and the per-test check then
+   * confirms each test's own records immediately before it starts. The proofs belong to full runs.
+   */
+  const sel = process.env.GS_SEED_ALL === '1' ? { all: true, tests: 0, total: 0, cases: [] } : selection();
+  const steps: Step[] = sel.all ? STEPS : planFor(sel.cases);
+  console.log(sel.all ? 'selection: the whole suite — seeding everything'
+    : `selection: ${sel.tests} of ${sel.total} tests (${sel.cases.length} case(s)) — seeding only what they need`);
+  writeRunStatus('selection', { all: sel.all, tests: sel.tests, total: sel.total, steps: steps.map((x) => x.label) });
   try {
-    for (const st of STEPS) {
+    for (const st of steps) {
       if (CHECK && st.script !== 'seed.py' && !st.proof) continue;      // only the measuring steps
-      const args = st.proof ? [] : [CHECK ? '--check' : '--confirm'];
+      const args = st.proof ? [] : [CHECK ? '--check' : '--confirm', ...(st.args ?? [])];
       console.log(`\n──── ${st.label}  [${st.script}${args.length ? ' ' + args.join(' ') : ''} · ${st.manifest}]`);
       // 🔴 ONE RETRY, BECAUSE EVERY STEP DECIDES FROM THE ENVIRONMENT. Claude's cloud egress drops a
       // connection now and then (twice in one reseed on 2026-10-02). A step re-run finds what its
