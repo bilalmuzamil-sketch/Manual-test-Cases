@@ -98,3 +98,16 @@ QA lead wants one.
     anyone else.** The PO sheet above is NOT sent; it stays as reference.
   - **Build verification is NOT done by this session** (L7): all 209 touched cases go to the build verification
     session once a Maintenance Reminders QA build exists.
+
+## 2026-10-06 (afternoon) — source currency re-check + runnability fixes (QA lead: "Fix them")
+- **Source currency:** all 9 Confluence pages unchanged since 5 Oct 14:58 UTC; comment threads (PO answers) and epic
+  SV-3780 (20 stories, 27 engineering tasks) read in full — nothing new. Evidence: `../source-currency-2026-10-06/`.
+- **Why the fixes:** the manual tester now assigned to Maintenance Reminders (Nebojsa Glavinic, from 6 Oct) earlier
+  found Claude-written cases unclear and "out of the context". Read-only audit of all 209 live cases:
+  `../source-currency-2026-10-06/RUNNABILITY-AUDIT-2026-10-06.md`.
+- **42 cases updated, 42/42 read back exactly** (`../runnability-fix-2026-10-06/`, before/after snapshots, apply-log.json):
+  wording checks now say "write down what you see; do not pass or fail on the wording" (7); reading dates are
+  "N days before today" with the 6 Oct date as the example (14); data the case did not give is now spelled out or
+  marked Blocked with a reason (4); audit parts say to write "audit not checked by hand" in the result comment (13);
+  every case that seeds readings through Mark complete says to mark Blocked, not Failed, if seeding fails (21).
+  Source lines, verbatim quotes and AUTOMATION markers unchanged (asserted per case).
