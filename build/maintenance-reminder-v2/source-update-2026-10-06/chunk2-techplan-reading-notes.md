@@ -350,3 +350,105 @@ File: `sources/tech-plan/Plan-1-Track-act-clear-Technical-Implementation-Plan.md
 - TV L1105 (FD-26): certificate: two date inputs (Start, End) + term select; typed wins.
 - TV L1108 (FD-29, Chunk 1): "None of this customer's contacts has an email address, so no reminder can be sent." + "Add contact".
 - EX L1110-1163 risks (BR/FR): TV L1121/1122 BR8/BR9 closed (copied mileage not a reading; Mark complete records readings). TV L1129 BR16: copied pricing may differ from home by design.
+
+## Plan 1 L2540–2708 (Phase P3 Readings, complete)
+- TV L2552/2567: a WO reading counts only when entered/changed; blank or 0 on the WO is not a reading.
+- TV L2577: saving the asset's reading dialog also updates the asset's Mileage/Engine Hours and pushes the value to OPEN work orders (as a copy, not a WO reading). Undo: soft-removes and reverts the asset value to the previous live value.
+- TV L2578: current card shows value, date read, source, state (In the shop), entered by.
+- TV L2579: implausible = lower than the previous live value, or (new − previous)/max(1, days since previous) > 1,500 mileage (24 hours) per day.
+- TV L2591 ReadingDialog: per meter current left read-only with source + age ("In the shop" state), new right; labels "Mileage" / "Engine hours"; orange confirm on implausible or lower; Undo toast; no forecast. (Asset surface — Chunk 1 S9 mount; S10 itself is Chunk 2.)
+- TV L2593 ReadingWarning: orange inline confirmation with buttons "Save anyway" / "Change" (never red). (Plan-only labels.)
+- TV L2595-2597: existing VehicleCard (WO asset card) mileage/engine-hours inputs keep working and are captured.
+- TV L2622-2636 sketch: re-saving the same value on the WO is a no-op; changing it again corrects the same WO reading in place (last entered wins, S10-R8); In the shop dated the WO start date, Recorded dated the invoice date if invoiced; lower than previous flagged.
+- TV L2648-2662: asset-side same value twice the same day = one reading.
+- TV L2670-2686 tests: undo only the latest and only your own reading; 409 → "This can no longer be undone"; empty form cannot submit; no red anywhere.
+- TV L2692-2694 walk: change mileage in the WO asset card → persists; asset edit dialog engine hours → persists.
+- INFO L2696-2707 E2E: none in P3 (dialog mounted in P5, Chunk 1).
+- EX L2546-2585 file/table list: data model, idempotency keys, historical load CLI (EX for testers; observable effect on QA after the load: past WO values appear as readings).
+
+## Plan 1 L2709–2979 (Phase P4 Engine and projection, complete)
+- TV L2715: Plan 2 TD-108 makes an In the shop value a position floor (due at once), rate/pairs/age unchanged — also on asset tab and worklist.
+- EX L2717-2752 tables, ports, CLI, Terraform (nightly refresh), FE contract freeze. TV consequence L2738/2743: the 24-month window slides nightly — a unit whose readings age past 24 months turns to No data on the next nightly refresh (timing EX for a manual tester; a seeded old history can be observed).
+- TV L2770-2774 (S11-R6): "impossible year" = a reading dated before 1990 or before the vehicle's model year (plan detail; spec says "impossible year").
+- TV L2776-2780 (S10-E4): same-day readings → higher value used for the rate.
+- TV L2789-2793 guards: <7 days, not increasing, >365 days, above 1,500/24 per day → pair discarded.
+- TV L2803-2809 rate = sum of gains of the last 3 usable pairs / sum of their days (E6: 11,700/120 = 97.5).
+- TV L2819-2833 ConfidenceTable exactly the spec table (≤30, ≤90, ≤180, ≤365, else Low).
+- TV L2837-2839: projected date for a meter target: if a RECORDED reading already reached the target → the date of the first such reading, exact (not an estimate); else last recorded date + ceil((target − last value) / rate) days; may lie in the past → overdue.
+- TV L2848-2854: compliance due = End date (day precision), due soon from End − Remind before expiry months; no certificate → no due ("No record").
+- TV L2857-2872: calendar always proposes; meter in No data proposes nothing; meter "At" done → never again; Every needs an anchor value.
+- TV L2874-2875: earliest wins; same-day tie: exact > High > Medium > Low.
+- TV L2879: due soon from the LARGEST before row of the service's reminder offsets (Chunk 1 S5/S9).
+- TV L2884-2888: calendar Every N months uses month-end clamping (Jan 31 + 1 month = Feb 28/29); Every N days adds days.
+- TV L2893-2897 CycleHistory: anchor = latest effective completion; calendar At: a completion on/after (P − 182 days) moves the pending occurrence one year; missed occurrence stays overdue; early/late does not move next year's date. Meter At done = any effective completion after enrolment, or the enrolment "last done".
+- EX L2899-2952 recompute service (transaction, chunks, nightly refresh).
+- TV L2956-2962 tests restate: S11-E6 example; guard examples (6 days, equal values, 400 days, above ceiling, future date, 1985 reading, older than 24 months); every cell + S11-E5; Jan 31 + 1 month; calendar At missed stays overdue; tie; recorded reading past target → exact date; compliance due/due soon/overdue from End + 1.
+- INFO L2964-2978 no E2E; Dev-layer only (engine). => the S11/S12 numeric cases are manual via seeded readings (asset reading history through the reading dialog, back-dating needs import or WO history — see case notes).
+
+## Plan 1 L3149–3378 (Phase P6: files, FE, sketches 5, 5b, 7)
+- TV L3165: line close date stamped by every closing path: complete the line, bulk action bar, create invoice, clock out, review (+ required-data path).
+- TV L3166: a WO created from a row copies the asset's mileage/hours (no reading).
+- TV L3168: copied line: local labour type (same id → same name → default), no fixed price, no parts/adjustments/inspections, internal line note.
+- TV L3173 ResetDateProposal: all the service's lines closed → the LATEST line end date (≤ invoice date); a DECLINED line is ignored; ALL lines declined → no reset (link declined; S17-N2); no lines left (deleted by hand) → invoice date (S18-R13, S16-N4).
+- TV L3174: lines appended in order from the HOME location's live canned lines; ids already added on this WO by any maintenance link are skipped (dedupe across services and across earlier adds); service with no live canned lines → "no lines" link; WO note "{service} added from {schedule}" (internal, never mentions copying); audit.
+- TV L3175 note texts (three variants; third "Copied from {home}." when no parts and not fixed).
+- TV L3178 Mark complete: covered completions; optional reading (elsewhere); optional certificate (Start = Reset date, End = Start + term); with where = work order, an open lines link of this service on that WO is marked reset so invoicing changes nothing (S18-E8); readings settled before completion. Undo: refused unless the path is work order / elsewhere; refused if a LATER effective completion exists; voids the certificate it created and removes the reading it wrote; reopens the link; re-settles readings.
+- TV L3179 picker: number, location, date (= start date), status, invoice date, lines-closed date, default Reset date; every location of the org.
+- TV L3188 merge: enrolments move; same schedule on both → keep the one with the later effective completion, the other ended "merged"; completions, records, links and readings move when the source asset is deleted.
+- TV L3189 A28 response: next due counts from / next due on (shown in the toast).
+- TV L3209 MarkCompleteDialog: title "Mark {service} complete"; the (i) line; "Where was it done?" radio "On a work order" / "Completed elsewhere"; picker; Reset date; certificate fields (Start defaults to Reset date); toast "{service} marked complete · next due counts from {date}" with Undo.
+- TV L3210 picker: searchable, 20 per page, WOs of this asset from every location (number, location, date, status badge).
+- TV L3211 ResetDateField: max = location today (future dates not selectable), required, chips "Lines closed 4 Sep · Use invoice date (1 Oct)".
+- TV L3213: default = today for an uninvoiced WO, else lines-closed, else invoice date; elsewhere → no default.
+- TV L3215: completed rows read "Completed · next due counts from {date}" (asset tab, Chunk 1).
+- TV L3222-3276 sketch 5: on invoicing: readings settled first, then each open lines/no-lines link: enrolment ended → orphaned (no reset, S18-R18); proposal null (all declined) → declined; else completion (proposed), covered completions, link reset; recompute; a failure never rolls back the invoice.
+- TV L3278-3280: Mark complete already linked to this WO → invoicing finds nothing to reset; a WO split before Plan 2 leaves links on the original (Plan 2 Q5 fixes).
+- TV L3282-3283: VOID path reconciled at next invoice.
+- TV L3285-3331 sketch 5b: reversal undoes invoice completions not superseded by a later completion (+ covered), reopens links, readings back to In the shop unless a Mark complete On that WO keeps them, recompute.
+- TV L3333-3369 sketch 7: Create work order refused when the service already has a live WO (Open instead); WO created at the header location as an ESTIMATE for the enrolment's customer, preferred contact, the asset; copies mileage/hours; lines home or copied.
+
+## Plan 1 L3378–3598 (Phase P6: sketch 8/8b, Mark complete FE sketch, tests, DoD walk, E2E P6-1..P6-4, dev-layer)
+- TV L3385-3413 sketch 8: invoiced/paid WO refused; lines in home order; duplicates skipped; one WO note per service "{service} added from {schedule}".
+- TV L3419-3440 sketch 8b: copied line: same name/description/hours/tech time; labour type same → name → default; none → none (cost 0); fixed price cleared → priced by the labour rate; status = the location's default line status; internal line note not customer-visible.
+- TV L3447-3487 Mark complete FE: default "On a work order"; Start date follows the Reset date until the user edits Start; 400 errors render inline (no toast); toast uses "next due counts from"; Undo 409 → "can no longer be undone"; "Lines closed" chip only when every linked line has a close date, else only "Use invoice date".
+- TV L3491: proposal: all closed → latest close date; ONE OPEN line → invoice date; deleted lines → invoice date; all declined → no reset; close date after invoice date clamped to the invoice date.
+- TV L3495-3497: later completion blocks Undo; covered undone too; created certificate voided; Mark complete On a WO with a TYPED mileage → reading recorded at the Reset date, confidence age refreshed; a WO whose mileage was only copied → nothing recorded; Undo → back to In the shop.
+- TV L3499: removed enrolment → orphaned, no completion; already reset by Mark complete → nothing at invoicing.
+- TV L3501: forced failure still creates the invoice (EX).
+- TV L3502: Create work order: estimate at the header location with the lines in order; a second Create refused (Open instead); copied work elsewhere.
+- TV L3503: picker lists WOs from another location of the same org; future date refused; compliance completion with no dates → Start = Reset date, End = + term.
+- TV L3504: asset delete for one customer ends that customer's enrolments only; merge keeps the later-completed enrolment; VIN-change merge moves enrolments.
+- TV L3510-3515: reverse-invoice and payment-dialog dismissal → completion undone, covered undone, link open, readings In the shop, due date back to pre-invoice; re-invoice proposes the same lines-closed date; a Mark complete with a later Reset date between invoice and reversal is NOT undone (superseded rule); credit memo → nothing changes.
+- TV L3519-3533 FE tests: elsewhere needs a date, optional shop name and reading; rejection keeps the dialog open; invoice completion shows no Undo complete.
+- TV L3540-3549 DoD walk (runnable): asset tab → row menu → Mark complete → On a work order → picker shows WOs from both locations; pick an invoiced WO → Reset date defaults to lines-closed or invoice date with chips; save → toast with Undo; row "Completed"; Undo restores; WO with mileage entered on it (e.g. 61,000) → Mark complete On a work order → mileage card shows 61,000 recorded (not In the shop) dated the Reset date; Completed elsewhere: Reset date required, future impossible; compliance → Start = Reset date, follows it; End = Start + term → asset card "CVIP · … · ends D Mon YYYY", row due "<End date> · Certificate". Invoicing still succeeds. Invoice-reset service shows no Undo complete.
+- TV L3554-3593 E2E P6-1..P6-4 (runnable values): P6-1 invoicing resets from lines-closed date (Last done = today, ~6 months out); P6-2 toast "Oil marked complete · next due counts from <today>", row "Completed · next due counts from <today>", mileage card 61,000 recorded, Undo → Overdue and In the shop; P6-3 compliance elsewhere: Start today, End today + 12 months, row due "<D Mon YYYY+1>" with "Certificate", asset card "CVIP · C-… · ends …"; P6-4 elsewhere: Reset date empty and required (Confirm blocked), shop "Jiffy", reading 61,000, date today − 3 → "Completed · next due counts from <date>", mileage 61,000 recorded.
+- INFO L3595-3597 dev-layer list.
+
+## Plan 1 L3854–4264 (§7 Testing strategy — read: unit/integration/manual lists L3854-3878; test ids L3879-3907; conventions L3916-3942; scenarios P3/P4 L4046-4048, P5-1/P5-2 L4050-4068, P6 L4086-4120; backlog L4176-4189; testability notes L4214-4228; environment notes L4229-4248)
+- TV L3874: historical load runs on QA after each branch-build deploy (testers can rely on past WO mileage appearing as readings on QA).
+- TV L3897: reading dialog ids: confirm-anyway button (label "Save anyway" per L2593).
+- TV L4053-4058 P5-1: a service with a mileage trigger and no readings reads "Calendar · needs mileage reading" on the asset tab; CVIP without a record reads "No record".
+- TV L4061-4068 P5-2: asset reading 50,000 → enter 49,000 → orange warning (not red), nothing saved yet → "Save anyway" → card 49,000 recorded, undo toast → Undo → card 50,000 again.
+- TV/BLOCKER L4224 (B5): the reading dialog records readings dated TODAY only; there is no way to back-date a reading through the product UI or API. => every manual S11/S12 case that needs several dated readings (rate, pairs, age, 24-month window) needs readings from work orders with past dates or imported history. A WO reading is dated by its invoice date (recorded) or WO start date (In the shop) (TD-35); whether a tester can create a WO with a past start date and invoice it with a past date is NOT stated anywhere — this is a precondition blocker to surface (Rule 68) and an engineering/QA-lead question: "how do testers seed dated readings?" (data import of assets/WOs with history, or a back-office seed).
+- TV L4231-4234: invoicing on the QA environment only (local stack 500s).
+- INFO L4235-4247: collisions/locators (EX).
+- INFO L4186: cross-location picker needs ≥2 workplaces.
+
+## Plan 1 L4344–5032 (§10 traceability — Chunk 2 rows located by grep and read: L4691–4787 S10/S11/S12, L4874–4938 S16/S17/S18/S22, L5001–5005 E2E rows)
+- INFO: restates §1. TV L4723: S11-E1 No data rendered as an ordinary state, no warning style. L4772/4782: S12-R7/S12-N2 row menu "other triggers" list (OtherTriggersMenu) — the menu label is not given in the plan (Chunk 1 asset tab shows it; check design). L4905: S18-R9 visible display → Plan 2.
+
+## Plan 1 L5058–5363 (Appendix: contradictions, editorial, amendments, audit fixes 2026-10-02, revision 2026-10-04, re-audit 2026-10-04, Revision 3, final audit fixes, final answers)
+- INFO history. TV-relevant: L5235 copied lines inherit "awaiting authorization blocks tech-view edits"; L5240 certificate End same day number (14 Oct 2025 + 12 months = 14 Oct 2026); L5263 no labour type → copied with none, not priced; L5303-5304 the 2026-10-05 change-log rows quoted verbatim (match the main page saved today); L5356 Q7b hard delete kept; L5357 "Soon" for every guessed date incl. Low.
+- Plan 1 coverage statement: sections touching Chunk 2 read in full: L313–666 (§1 S10–S12, S13/S14/S21 context, S18/S16/S17/S22 subsets, deferred, NFR, NFR-F, clarifications, answers index), L667–1163 (§2–§3 incl. 2.11–2.13 seams, D0–D29, TD-01..TD-36, FD-1..FD-29, risks — the Chunk 2 rows classified above), L2540–2708 (P3), L2709–2979 (P4), L3149–3598 (P6), L3854–3942 + L4046–4120 + L4176–4248 (§7 strategy, ids, conventions, P3–P6 scenarios, backlog, testability, environment), L4691–4787 + L4874–4938 + L5001–5005 (§10 Chunk 2 rows), L5058–5363 (Appendix). Not read here (Chunk 1 pass): P0, P1, P2, P5 (except P5-1/P5-2 scenarios), P7 phase blocks, §4 DDL, §5 endpoint tables, §8 rollback detail, §9 security, §10 Chunk 1 rows, §11 tickets.
+
+## Plan 1 P5 (L2980–3148) and P7 (L3599–3853) — Chunk 2 rule renderings located by grep; read in full: L3004–3099 (P5 FE files, DueCell/ConfidenceMeter sketch, tests, walk), L3104–3124 (P5-1/P5-2), P7 grep lines 3601–3852 (Chunk 1 worklist; Chunk 2 touch points only)
+- TV L3010: asset tab "Enter mileage" button opens the reading dialog (asset only); empty state "This unit is not on a maintenance schedule" + Enroll in Schedule (Chunk 1).
+- TV L3011 ReadingCard: Mileage left, hours right; recorded value exact with source + age, "In the shop"; estimate: rounded value, "Estimated" badge, "640 a week", "Measured from N visits", confidence meter; No data state. (S11-R12/R18/R25 render on the ASSET tab = Chunk 1 surface; Chunk 2 owns the rule.)
+- TV L3014-3015: row menu "Other triggers" lists every candidate with date + trigger, winner marked (S12-R7, S12-N2).
+- TV L3024-3046 DueCell: estimate → month + confidence meter; needs readings → "Calendar · needs mileage reading" / "… mileage and engine hours readings"; certificate → day + "Certificate"; calendar → "Calendar"; compliance without record → "No record".
+- TV L3048-3059 ConfidenceMeter: three-bar meter + "{High|Medium|Low} confidence"; Low grey/amber, never red; hover: "based on mileage estimate" (the rule), the S11-R27 disclaimer verbatim, "View work orders" link → the asset's Work Orders tab; hover/focus/tap; phone sheet.
+- TV L3064: rounding to 100/10; recorded exact; confidence age from today.
+- TV L3087-3097 walk: Enter mileage → lower value → orange confirm → save → Undo; reading cards recorded/estimated + confidence; meter hover "View work orders"; Other triggers lists every candidate.
+- TV L3630/L3776 (P7): worklist primary action Create work order → Open work order when live → Invoice when complete; Create work order sends from the worklist and navigates to the new WO (estimate) with the lines (S17-R7 on the worklist = Chunk 1 surface).
+- TV L3795: from the worklist at a non-home header location the new WO carries copied lines with the "Copied from {home}. Parts used there, for reference: …" note (S13-R30/S16-N6 — Chunk 1 surface, Chunk 2 rule).
+- TV L3797: Mark complete from the worklist → the row leaves (S13-R43, Chunk 1).
