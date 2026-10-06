@@ -16,7 +16,7 @@ Build: QA branch **sv9667.qa.shopview.com**, app **v26.40.7-7ffda69**. Cookies i
   Authoring notes: origin/claude/slack-session-setup-7v5itm:build/founder-mode/notifications/PROJECT-STATE.md.
 
 ## Standards to apply on every case touched
-Rule 115 (+ precondition amendment, L0049 build-steps) · Rule 117 (other branch: concise title, seed values as examples
+Rule 115 (+ precondition amendment, L0049 build-steps) · [Rule 117 line removed 2026-10-06: that is the test-writing session's rule, not this lane's — QA lead]
 beside QA steps, build glossary, Expected = runnable observations + verbatim quote) · Expected substance never changed
 (57/114) · stamp "Last checked against build v26.40.7-7ffda69 on 10/5/2026." · marker READY / staging-only portal HOLD /
 "Not available on Build to test Yet - Last checked 10/5/2026" (Rule 69) · fr-view served scan · check_tester_runnable.py.
