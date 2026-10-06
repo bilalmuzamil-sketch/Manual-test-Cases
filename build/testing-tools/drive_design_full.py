@@ -451,7 +451,37 @@ def discover(args, board, out, url):
 
 
 # --------------------------------------------------------------------------------------------- interaction worker
-def worker(wid, nworkers, args_d, board_s, out_s, url, cands):
+_CDP = {}
+def _cdp(ctx, pg):
+    if id(pg) not in _CDP:
+        c = ctx.new_cdp_session(pg); c.send("DOM.enable"); c.send("CSS.enable"); _CDP[id(pg)] = c
+    return _CDP[id(pg)]
+
+
+def force_hover(ctx, pg, idx):
+    """Force :hover/:focus-within on the element and every ancestor (what a real pointer over it would set)."""
+    cdp = _cdp(ctx, pg)
+    pg.evaluate("(i) => { let e = document.querySelector('[data-dd-idx=\"' + i + '\"]'); let k = 0; while (e && e !== document.documentElement) { e.setAttribute('data-dd-anc', String(k++)); e = e.parentElement; } }", idx)
+    root = cdp.send("DOM.getDocument", {"depth": 0})["root"]["nodeId"]
+    nodes = cdp.send("DOM.querySelectorAll", {"nodeId": root, "selector": "[data-dd-anc]"})["nodeIds"]
+    for n in nodes:
+        cdp.send("CSS.forcePseudoState", {"nodeId": n, "forcedPseudoClasses": ["hover", "focus-within"]})
+    pg.evaluate("() => { window.__ddForced = true; }")
+    _CDP[("nodes", id(pg))] = nodes
+    return nodes
+
+
+def unforce(ctx, pg):
+    cdp = _cdp(ctx, pg)
+    for n in _CDP.pop(("nodes", id(pg)), []):
+        try:
+            cdp.send("CSS.forcePseudoState", {"nodeId": n, "forcedPseudoClasses": []})
+        except Exception:
+            pass
+    pg.evaluate("() => document.querySelectorAll('[data-dd-anc]').forEach(e => e.removeAttribute('data-dd-anc'))")
+
+
+def worker(wid, nworkers, args_d, board_s, out_s, url, cands, mode="normal"):
     from playwright.sync_api import sync_playwright
     args = argparse.Namespace(**args_d); board = pathlib.Path(board_s); out = pathlib.Path(out_s)
     name = board.stem.replace(".dc", "")
@@ -496,7 +526,7 @@ def worker(wid, nworkers, args_d, board_s, out_s, url, cands):
         page_ids_all = _disc["_page_ids"]
         scroll_mode = any(x.get("mode") == "scroll" for x in _disc["pages"])
         for c in mine:
-            for action in ("hover", "click"):
+            for action in (("hover-forced", "click-forced") if mode == "forced" else ("hover", "click")):
                 if (c["idx"], action) in done:
                     continue
                 rec = {"board": board.name, "page": c["page"], "idx": c["idx"], "label": c["label"], "tag": c["tag"], "kinds": c["kinds"],
@@ -516,9 +546,18 @@ def worker(wid, nworkers, args_d, board_s, out_s, url, cands):
                     if action == "hover":
                         pg.mouse.move(h["cx"], h["cy"])
                         pg.wait_for_timeout(wait)
+                    elif action == "hover-forced":
+                        # the element is covered (e.g. by a modal drawn over the screen): force the CSS :hover and
+                        # :focus-within state on it and its ancestors through the DevTools protocol, as a real hover would set
+                        forced_nodes = force_hover(ctx, pg, c["idx"])
+                        rec["forced_nodes"] = len(forced_nodes)
+                        pg.wait_for_timeout(max(wait, 400))
                     else:
                         url_before = pg.url.split("#")[0]
-                        pg.mouse.click(h["cx"], h["cy"])
+                        if action == "click-forced":
+                            pg.evaluate("(i) => document.querySelector('[data-dd-idx=\"' + i + '\"]').click()", c["idx"])   # the element's own activation, under the overlay
+                        else:
+                            pg.mouse.click(h["cx"], h["cy"])
                         pg.wait_for_timeout(wait)
                         try:
                             pg.wait_for_load_state("load", timeout=20000)
@@ -541,7 +580,7 @@ def worker(wid, nworkers, args_d, board_s, out_s, url, cands):
                             rec["nav_hash"] = frag
                             rec["nav_target_text"] = pg.evaluate("(f) => { const t = document.getElementById(f); return t ? t.innerText.split('\\n').filter(Boolean).slice(0, 4).join(' / ') : null; }", frag)
                             rec["nav_target_exists"] = rec["nav_target_text"] is not None
-                        if c.get("title") and action == "hover":
+                        if c.get("title") and action in ("hover", "hover-forced"):
                             rec["native_title_tooltip"] = c["title"]
                         exposed = bool(d["newly"]) or bool(rec.get("native_title_tooltip"))
                         rec["exposed"] = exposed
@@ -560,6 +599,11 @@ def worker(wid, nworkers, args_d, board_s, out_s, url, cands):
                         rec["exposed_kind"] = "navigation-other-board" if rec.get("navigated_to_document") else "none"
                 except Exception as e:
                     rec["error"] = repr(e)[:400]; rec["exposed"] = None; state["dirty"] = True
+                if action == "hover-forced":
+                    try:
+                        unforce(ctx, pg)
+                    except Exception:
+                        state["dirty"] = True
                 fh.write(json.dumps(rec, ensure_ascii=False) + "\n"); fh.flush()
         b.close()
     fh.close()
@@ -579,6 +623,7 @@ def main():
     ap.add_argument("--pages", default="", help="force the page ids (comma list) instead of auto-detecting the board's page nav")
     ap.add_argument("--reuse-census", action="store_true", help="reuse the JS-listener census from an existing discovery.json (it is slow on huge boards)")
     ap.add_argument("--skip-discovery", action="store_true")
+    ap.add_argument("--no-forced", action="store_true", help="skip the forced pass over covered elements")
     args = ap.parse_args()
     w, h = args.viewport.split("x"); args.vp = {"width": int(w), "height": int(h)}
     board = pathlib.Path(args.board).resolve(); out = pathlib.Path(args.out).resolve(); args.cdn_cache = str(pathlib.Path(args.cdn_cache).resolve()); (out / "screenshots").mkdir(parents=True, exist_ok=True)
@@ -605,6 +650,26 @@ def main():
         else:
             with mp.get_context("spawn").Pool(nw) as pool:
                 pool.starmap(worker, [(i, nw, ad, str(board), str(out), url, cands) for i in range(nw)])
+    # FORCED PASS: every element a real pointer could not reach (covered by an overlay drawn over the screen) is
+    # hovered again with :hover/:focus-within forced, and activated with its own click(), so nothing under a drawn
+    # modal goes undriven.
+    prev = {}
+    for f in sorted(out.glob(f".{name}-interactions.w*.jsonl")):
+        for line in open(f):
+            try:
+                d = json.loads(line); prev[(d["idx"], d["action"])] = d
+            except Exception:
+                pass
+    occl = sorted({k[0] for k, d in prev.items() if d.get("on_top") is False and k[1] in ("hover", "click")})
+    if occl and not args.no_forced:
+        fc = [c for c in cands if c["idx"] in set(occl)]
+        print(f"[{name}] forced pass over {len(fc)} covered elements", flush=True)
+        nwf = max(1, min(args.workers, len(fc)))
+        if nwf == 1:
+            worker(0, 1, ad, str(board), str(out), url, fc, "forced")
+        else:
+            with mp.get_context("spawn").Pool(nwf) as pool:
+                pool.starmap(worker, [(i, nwf, ad, str(board), str(out), url, fc, "forced") for i in range(nwf)])
     # merge worker logs, de-duplicate on (idx, action), keep last
     recs = {}
     for f in sorted(out.glob(f".{name}-interactions.w*.jsonl")):
@@ -627,8 +692,12 @@ def main():
             "hover_exposed": sum(1 for r in hv if r.get("exposed")), "click_exposed": sum(1 for r in ck if r.get("exposed")),
             "click_navigated_in_board": sum(1 for r in ck if r.get("urlChanged")), "click_navigated_other_board": sum(1 for r in ck if r.get("navigated_to_document")),
             "hover_style_change": sum(1 for r in hv if r.get("style_changed")),
-            "occluded": sum(1 for r in rs if r.get("on_top") is False),
-            "failed": sum(1 for r in rs if "error" in r), "missing": 2 * len(cs) - len(rs),
+            "occluded": len({r["idx"] for r in rs if r.get("on_top") is False and r["action"] in ("hover", "click")}),
+            "covered_forced_hovered": sum(1 for r in rs if r["action"] == "hover-forced" and "error" not in r),
+            "covered_forced_clicked": sum(1 for r in rs if r["action"] == "click-forced" and "error" not in r),
+            "forced_hover_exposed": sum(1 for r in rs if r["action"] == "hover-forced" and r.get("exposed")),
+            "forced_click_exposed": sum(1 for r in rs if r["action"] == "click-forced" and r.get("exposed")),
+            "failed": sum(1 for r in rs if "error" in r), "missing": 2 * len(cs) - len(hv) - len(ck),
             "fail_reasons": sorted({r["error"][:120] for r in rs if "error" in r})[:10],
         }
     hid_total = len(disc["hidden_inventory"])
