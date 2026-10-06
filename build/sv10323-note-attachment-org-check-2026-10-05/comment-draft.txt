@@ -6,7 +6,7 @@ I tested this on the QA branch [sv9667.qa.shopview.com|https://sv9667.qa.shopvie
 
 The For Customer box on a note's file now follows the note's own shop. A shop can no longer change another shop's files, and a file added by someone who has since left the shop can be shared with the customer again.
 
-*Why this is partially passed and not fully passed:* one point is still open, and it is posted as a question to Nemanja in the [next comment|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=77937]. A user with the Technician role sees no For Customer box at all, while the spec says a user who can only view the record should see it greyed out. Production does the same, so this change did not cause it, but it sits inside the rule this ticket implements, so we need to know whether it was left out on purpose or belongs to this fix. Once that question is answered (and fixed, if it needs fixing), this ticket will be marked fully passed.
+*Why partially passed:* this change also applies the spec's For Customer rule (Nemanja, comment 77887: _"now checks the note's organization and the For Customer rule (Edit for the record kind)"_). That rule, Notifications Update V1 (version 27), S10-R5b, says: _"A user who can only view the record sees the checkbox disabled, so they can still tell which files the customer sees."_ A Technician (view-only on work orders) sees no box at all - the same as production. I have asked Nemanja in the [next comment|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=77937] whether that is intended. Once it is answered (and fixed, if needed), this ticket will be marked fully passed.
 
 h3. Before and after: the person who added the file has left the shop
 

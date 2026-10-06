@@ -118,3 +118,6 @@ passed and shoul dbe fully passed after the last comment is addressed"*. Comment
 is open", and table row 10 = the Technician point marked OPEN. Comment **77937** updated in place (PUT 200) with one line: the ticket stays
 Partially Passed until this is answered (and fixed if needed). Read back: 77936 panel type `warning`, 2 media `file` 900×835 / 900×561,
 11 table rows (header + 10); 77937 1 media `file` 900×617.
+
+## Update 2026-10-06 ~03:30 UTC — reasoning now quotes the rule
+QA lead: *"You say  \" but it sits inside the rule this ticket implements,\" but you never quote that rule, it should be authentic always. Keep your comment short concise but the rule quotation."* 77936 PUT 200: the paragraph now quotes Nemanja 77887 (*"now checks the note's organization and the For Customer rule (Edit for the record kind)"*) and S10-R5b verbatim, from the live spec re-read at v27 (2026-10-01). Read back: panel still PARTIALLY PASSED, 2 media, 11 table rows.
