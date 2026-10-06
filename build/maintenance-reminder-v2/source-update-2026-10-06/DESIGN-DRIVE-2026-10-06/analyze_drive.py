@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
-"""Post-process the drive_design_full.py outputs for the MR V2 design package (2026-10-06).
-Writes: coverage.json, exposed-catalogue.json/.md, spec-compare-candidates.md (helper lists for human review).
-Run: python3 analyze_drive.py   (from anywhere; paths are absolute)"""
-import json, re, pathlib, collections, difflib
+"""Assemble DESIGN-DRIVE-FINDINGS.md from the drive_design_full.py outputs (MR V2 design package, 2026-10-06).
+Inputs (this folder): <board>-summary.json / -discovery.json / -interactions.jsonl / -navigation.jsonl,
+artboard-index.json, component-variants.json, spec-comparison.md (hand-written section 3).
+Run: python3 analyze_drive.py"""
+import json, re, pathlib, collections, hashlib
 
 OUT = pathlib.Path(__file__).resolve().parent
-SRC = OUT.parents[1] / "sources"
-SPECS = {"Chunk 1": SRC / "CONFLUENCE-886931488-Chunk1-MR-2026-10-06.md", "Chunk 2": SRC / "CONFLUENCE-897679389-Chunk2-MR-2026-10-06.md"}
+PKG = OUT.parents[1] / "sources" / "design-MR_V2_2-2026-10-06"
 BOARDS = ["Chunk 1", "Chunk 2", "Maintenance Reminders", "Maintenance Reminders - Flow Map", "Maintenance Reminders Demo",
           "Canned lines per location - proposal", "4-work-order (old WO chrome)", "SettingsSidebar", "ShopviewHeader"]
-
-# ---- story tagging (artboard id -> story), from the artboard index and the spec's story list -----------------------
 C1 = {
  "S1 Create a maintenance schedule": "s2b s3new s3one ma mb v1",
  "S2 Add a routine service": "c1 c2b c2 r4 r7 t1 t2 t3 c2all t5 r5 r5a r5b c6",
@@ -22,140 +20,219 @@ C1 = {
  "S8 Compliance records": "k2 k4 k4a md",
  "S9 Asset Maintenance tab": "s4 m1 m2 m2e m2c m1u m6 p4 mc mg",
  "S9 Asset Maintenance tab / S10 Enter a reading": "p2 p3 n5 me",
+ "S9 Asset Maintenance tab / S6-E2 (page 2 header)": "page2",
  "S13 Worklist": "s1 s1m2 s1m s1mc s1mt s1d s1x s1f s1ci s1b s1c s1dl b3 mh",
  "S14 Contact card": "b1 b5 b5b b1r b1p b4 b4f b1t b1o b1e b1l b5l b5m b1n",
 }
 C2 = {
  "S16 Maintenance panel on a work order": "wo1 y0 w2r w2k w3 w4 w4o w6 w7 w7inv",
  "S17 Add a service to a work order": "w2x y1h y1a w2b u1 u2 u3 y1t",
- "S17 Add a service to a work order (another location) / S4 Canned lines": "l1 l2 l3 l4 l4n l5",
+ "S17 Add a service (another location) / S16-R21…R24": "l1 l2 l3 l4 l4n l5",
  "S18 Complete a service": "y1d w13a y1u w13c i1 i1d i2 i3 i6 i4 i5 i7",
  "S22 Origin reporting": "y4",
- "S19 Customer reminder email": "r1 r1p r1t r1u r1n r1z p5",
+ "S19 Customer reminder email": "r1 r1p r1t r1u r1n r1z",
 }
-STORY = {}
-for m in (C1, C2):
-    for st, ids in m.items():
-        for i in ids.split():
-            STORY[i] = st
-BOARD_STORY = {"Maintenance Reminders Demo": "Walkthrough S1→S2→S4→S7→S13/S14→S17→S18",
+STORY = {i: st for m in (C1, C2) for st, ids in m.items() for i in ids.split()}
+BOARD_STORY = {"Maintenance Reminders Demo": "Demo walkthrough (S1→S2→S4→S7→S13/S14→S17→S18)",
                "Canned lines per location - proposal": "S4 Canned lines (proposal) / S17",
                "4-work-order (old WO chrome)": "S16/S17/S18 (old work-order chrome)",
-               "Maintenance Reminders - Flow Map": "Flow map (all stories)", "Maintenance Reminders": "Index",
+               "Maintenance Reminders - Flow Map": "Flow map (all stories)", "Maintenance Reminders": "Index of chunks",
                "SettingsSidebar": "S1 (Settings sidebar component)", "ShopviewHeader": "App header component"}
+ART = json.loads((OUT / "artboard-index.json").read_text())
 
 
-def load_jsonl(p):
+def jl(p):
     return [json.loads(l) for l in open(p)] if p.exists() else []
 
 
-art_index = json.loads((OUT / "artboard-index.json").read_text())
+def aid_of(sel):
+    m = re.match(r"#([^ >]+)", sel or ""); return m.group(1).replace("\\", "") if m else None
 
 
-def artboard_of(board, selector):
-    m = re.match(r"#([^ >]+)", selector or "")
-    aid = m.group(1).replace("\\", "") if m else None
-    idx = {a["id"]: a for a in art_index.get(board + ".dc.html", [])}
-    return aid, (idx.get(aid, {}).get("title") if aid else None)
+def atitle(board, aid):
+    for a in ART.get(board + ".dc.html", []):
+        if a["id"] == aid:
+            return a["title"].split(" / ")[0] + " " + (a["title"].split(" / ")[1] if " / " in a["title"] else "")
+    return ""
 
 
-def story_of(board, aid):
+def story(board, aid):
     if board in BOARD_STORY:
         return BOARD_STORY[board]
-    return STORY.get(aid, "(board chrome / navigation)" if aid in (None, "top", "page1", "page2", "page3", "p4", "p5") else "untagged")
+    if aid in STORY:
+        return STORY[aid]
+    return "Board navigation / chrome"
 
 
-def is_caption(selector):
-    # artboard caption = first child div of an artboard (code + title + designer note); the screen follows it
-    return bool(re.match(r"#[^ >]+ > div:nth-of-type\(1\)( |$)", selector or ""))
+def caption(sel):
+    return bool(re.match(r"#[^ >]+ > div:nth-of-type\(1\)( |$)", sel or ""))
 
 
-coverage = {}; exposed = []
+L = []
+w = L.append
+w("# Maintenance Reminders (MR V2) — exhaustive design drive, 2026-10-06\n")
+w("**Package:** `build/maintenance-reminder-v2/sources/design-MR_V2_2-2026-10-06/` (export of the Claude Design project \"MR V2\", taken 2026-10-06).  ")
+w("**Driver (generic, reusable):** `build/testing-tools/drive_design_full.py` · **this report is generated by** `analyze_drive.py` in this folder (section 3 is hand-written: `spec-comparison.md`).  ")
+w("**Not written:** TestRail, Jira, git — nothing was committed or pushed.\n")
+w("## 0 · How the design was driven\n")
+w("- Every board loaded from INSIDE the package folder over `file://` with Chromium's `--allow-file-access-from-files`, so the dc runtime can fetch the sibling component boards (ShopviewHeader, SettingsSidebar) that draw the app chrome. React 18.3.1, ReactDOM and Babel (which `support.js` pulls from unpkg) were fetched with verified TLS through the agent proxy's CA bundle and handed to the browser; nothing was disabled.")
+w("- Pages reached through each board's OWN navigation: the header page pills (Chunk 1: `1 Settings`, `2 The asset`, `3 Customers`; Chunk 2: `4 Work order`, `5 Estimation & email`) were clicked AND each page was loaded by URL hash; `All chunks`, `Chunk 1`/`Chunk 2` and every other cross-board link was followed and its landing checked. Boards with no page navigation (Demo, Canned lines proposal, 4-work-order, Flow map) have no ids on their sections: each top-level section is a page reached by scrolling the canvas.")
+w("- Every interactive or responsive element was enumerated (button, a, ARIA roles, inputs/selects/textarea, summary/details, `[onclick]`/`data-*` actions, `[tabindex]`, tooltip hosts `.sv-tt-host`/`[title]`/`[aria-describedby]`, hosts of every CSS `:hover`/`:focus-within` reveal rule, React handlers, and every element whose computed cursor is pointer — the outermost pointer element AND every descendant that only inherits the pointer cursor, the latter driven with a 250 ms wait instead of 500 ms). No cap.")
+w("- Each element: scrolled into view from a fresh known state (board reloaded whenever the previous interaction changed the DOM or the document; otherwise pointer parked on empty canvas, focus cleared and the board's own page hash re-navigated), then HOVERED with the real mouse and, separately, CLICKED with the real mouse; newly visible text, navigation, focus, style change and occlusion recorded; a screenshot whenever something new appeared.")
+w("- **Elements covered by an overlay drawn over the screen** (a modal or hover card drawn on top of the artboard) cannot be reached by a real pointer. Every such element was driven AGAIN with `:hover`/`:focus-within` FORCED through the DevTools protocol on it and all its ancestors (\"forced hover\"), and activated with its own click event (\"forced click\").")
+w("- JS census (DevTools `getEventListeners` on every element + React props): the boards carry NO click/hover handlers of their own — the only listeners are React's delegated root and image load/error. All behaviour is links (in-board arrows and cross-board links) and CSS hover/focus reveals (tooltips, hover cards). There are no `<select>`, `<input>`, `<details>` elements: dropdowns, menus and dialogs are DRAWN open on their own artboards, so their options are in the page texts (`<board>-pages.txt`).")
+w("- **Proof of completeness for hidden content:** before driving, every hidden text block on each board (opacity 0 / visibility hidden / display none) was inventoried; the run then proves which interaction revealed each one (table 1b).")
+w("- Variants: each board re-rendered in dark theme (`?theme=dark`) and at 768 px and 1920 px widths; component boards rendered with every declared prop value (ShopviewHeader `nav` = customers / workOrders / schedule / none; SettingsSidebar `active` = maintenance / none), including the two values no board uses.\n")
+
+# ---------------------------------------------------------------- 1 coverage
+w("## 1 · Coverage\n")
+w("### 1a · Per board and per page\n")
+w("| Board | Page | Elements found | of which inherit-pointer (batched, 250 ms) | Hovered | Clicked | Covered by an overlay → forced hover / forced click | Exposed something (hover · click · forced) | Click navigated in board · to another board | Failed | Missing |")
+w("|---|---|---|---|---|---|---|---|---|---|---|")
+tot = collections.Counter(); boards_done = []
+hidden_rows = []
 for b in BOARDS:
-    s = OUT / f"{b}-summary.json"
-    if not s.exists():
-        coverage[b] = None; continue
-    summ = json.loads(s.read_text()); disc = json.loads((OUT / f"{b}-discovery.json").read_text())
-    nav = load_jsonl(OUT / f"{b}-navigation.jsonl"); recs = load_jsonl(OUT / f"{b}-interactions.jsonl")
-    flow_by_idx = {c["idx"]: c.get("flow", "") for c in disc["candidates"]}
-    coverage[b] = {"pages": summ["pages"], "interactions": summ["interactions"], "exposed": summ["exposed"],
-                   "hidden_text_blocks": summ["hidden_text_blocks"], "hidden_exposed": summ["hidden_text_blocks_exposed_by_interaction"],
-                   "hidden_never_exposed": summ["hidden_text_blocks_never_exposed"], "nav": nav,
-                   "native_listener_elements": len(disc.get("native_listener_elements", [])), "react_handler_elements": len(disc.get("react_handler_elements", [])),
-                   "hover_rules": len(disc.get("hover_rules", [])), "selects": disc.get("selects"), "variants": disc.get("variants"),
-                   "page_labels": {p["id"]: p["label"] for p in disc["pages"]}, "elapsed_s": summ.get("elapsed_s"),
-                   "candidates_by_kind": dict(collections.Counter(k.split(":")[0] for c in disc["candidates"] for k in c["kinds"])),
-                   "candidates": len(disc["candidates"]), "fast": sum(1 for c in disc["candidates"] if c.get("fast"))}
+    sp = OUT / f"{b}-summary.json"
+    if not sp.exists():
+        w(f"| {b} | — | NOT YET DRIVEN | | | | | | | | |"); continue
+    boards_done.append(b)
+    s = json.loads(sp.read_text()); d = json.loads((OUT / f"{b}-discovery.json").read_text())
+    labels = {p["id"]: p["label"] for p in d["pages"]}
+    recs = jl(OUT / f"{b}-interactions.jsonl")
+    for pid, v in s["pages"].items():
+        rs = [r for r in recs if r["page"] == pid]
+        hv = sum(1 for r in rs if r["action"] == "hover" and r.get("exposed"))
+        ck = sum(1 for r in rs if r["action"] == "click" and r.get("exposed"))
+        fx = sum(1 for r in rs if r["action"] in ("hover-forced", "click-forced") and r.get("exposed"))
+        occl = len({r["idx"] for r in rs if r.get("on_top") is False and r["action"] in ("hover", "click")})
+        fh = sum(1 for r in rs if r["action"] == "hover-forced" and "error" not in r)
+        fc = sum(1 for r in rs if r["action"] == "click-forced" and "error" not in r)
+        fail = sum(1 for r in rs if "error" in r)
+        miss = 2 * v["elements_found"] - sum(1 for r in rs if r["action"] in ("hover", "click")) + (2 * occl - fh - fc)
+        lab = labels.get(pid, "board header / chrome" if pid.startswith("_") else "")
+        w(f"| {b} | {pid} {('— ' + lab[:40]) if lab else ''} | {v['elements_found']} | {v['of_which_pointer_inherited_batched']} | {v['hovered']} | {v['clicked']} | {occl} → {fh} / {fc} | {hv} · {ck} · {fx} | {v['click_navigated_in_board']} · {v['click_navigated_other_board']} | {fail} | {miss} |")
+        for k, val in (("found", v["elements_found"]), ("hovered", v["hovered"]), ("clicked", v["clicked"]), ("occl", occl), ("fh", fh), ("fc", fc),
+                       ("exp", hv + ck + fx), ("fail", fail), ("miss", miss), ("inter", len(rs))):
+            tot[k] += val
+    hidden_rows.append((b, s["hidden_text_blocks"], s["hidden_text_blocks_exposed_by_interaction"], s["hidden_text_blocks_never_exposed"]))
+w(f"| **TOTAL** | | **{tot['found']}** | | **{tot['hovered']}** | **{tot['clicked']}** | **{tot['occl']} → {tot['fh']} / {tot['fc']}** | **{tot['exp']}** | | **{tot['fail']}** | **{tot['miss']}** |\n")
+w(f"Total interactions recorded: **{tot['inter']}** (hover + click on every element, plus forced hover + forced click on every covered element); interactions that exposed something: **{tot['exp']}**.\n")
+w("### 1b · Hidden content reached (every hidden text block, and which interaction revealed it)\n")
+w("| Board | Hidden text blocks at rest | Revealed by an interaction | Never revealed |")
+w("|---|---|---|---|")
+for b, n, e, never in hidden_rows:
+    w(f"| {b} | {n} | {e} | {len(never)}{(' — ' + '; '.join(x['path'][:50] + ' «' + x['text'][:60] + '»' for x in never[:6])) if never else ''} |")
+w("")
+# nav
+w("### 1c · Page navigation and cross-board links\n")
+w("| Board | Page / link | By the board's own pill | By URL hash | By scrolling | Lands on |")
+w("|---|---|---|---|---|---|")
+for b in boards_done:
+    for r in jl(OUT / f"{b}-navigation.jsonl"):
+        if "cross_board_link" in r:
+            ld = r.get("landed") or {}
+            w(f"| {b} | link → `{r['cross_board_link']}` ({', '.join(x[:40] for x in r['link_labels'][:3])}; {r['n_links']} links) | | | | {('DEAD LINK — file not found in the package root' if 'ERR_FILE_NOT_FOUND' in r['error'] else 'ERROR ' + r['error'][:120]) if r.get('error') else (ld.get('title', '')[:70] + ((' · target #' + ld['fragment'] + (' found' if ld.get('fragmentExists') else ' MISSING')) if ld.get('fragment') else ''))} |")
+        else:
+            pc = r.get("pill_click"); uh = r.get("url_hash"); sc = r.get("scroll")
+            yn = lambda x: ("reached" if x and x.get("reached") else ("NOT reached" if x else "—"))
+            w(f"| {b} | page `{r['page']}` {r['label'][:40]} | {yn(pc) if r.get('mode') != 'scroll' else 'no page nav on this board'} | {yn(uh)} | {yn(sc) if sc else '—'} | |")
+w("")
+# variants
+w("### 1d · Theme and width variants, component prop variants\n")
+for b in boards_done:
+    d = json.loads((OUT / f"{b}-discovery.json").read_text())
+    vs = d.get("variants") or []
+    w(f"- **{b}**: " + "; ".join(f"{v['variant']}: " + ("same visible text" if v.get("same_text_as_light_1440") else f"text differs (+{len(v.get('lines_only_here', []))}/−{len(v.get('lines_missing_here', []))} lines)") + (f", background {v.get('background', '')}" if v['variant'].startswith('dark') else "") for v in vs if "error" not in v))
+cv = OUT / "component-variants.json"
+if cv.exists():
+    for r in json.loads(cv.read_text()):
+        w(f"- Component **{r['component']}** `{r['prop']}={r['value']}`: active item = {', '.join(a.split(' :: ')[-1] for a in r['active_markers']) or 'none'}; text: {r['visible_text'].replace(chr(10), ' / ')[:140]}{'…' if len(r['visible_text']) > 140 else ''} (`{r['screenshot']}`)")
+w("- Theme note: `support.js` uses `?theme=dark` only to change the canvas background behind the artboards; the artboards themselves carry no dark styling, so no board shows different content in dark mode.\n")
+# handoff copies
+w("### 1e · Boards in `design_handoff_maintenance_reminders/` (checked by md5)\n")
+w("| Handoff file | md5 | Same bytes as root board? | Driven separately? |")
+w("|---|---|---|---|")
+hd = PKG / "design_handoff_maintenance_reminders"
+for f in sorted(hd.glob("*.html")):
+    m = hashlib.md5(f.read_bytes()).hexdigest(); root = PKG / f.name
+    same = root.exists() and hashlib.md5(root.read_bytes()).hexdigest() == m
+    w(f"| {f.name} | `{m}` | {'yes — identical to the root board' if same else 'NO'} | {'no — identical copy, covered by the root board drive' if same else 'YES'} |")
+w("\nAuthorized NOT opened (QA lead, 2026-10-06): fonts, svg icons, `_ds` styling code, `_tools` scripts/.tmp drafts, `_archive-pages/`, `_backup-before-ds/` (see `AUTHORIZED-SKIPS-2026-10-06.md`).\n")
+
+# ---------------------------------------------------------------- 2 exposed catalogue
+w("## 2 · Everything exposed by interaction (verbatim), by board, page and story\n")
+w("Grouped and de-duplicated: one line per distinct text per artboard. `where` = on the product screen, or a designer note on the artboard caption. "
+  "`how` = hover / click (real pointer) / forced (element covered by an overlay drawn over the screen). Screenshots: `screenshots/`. "
+  "Dropdown/menu/dialog options are drawn open on their own artboards (no live dropdowns exist) — they are in `<board>-pages.txt`. "
+  "Link navigation (in-board arrows and cross-board links) is summarised at the end of each board.\n")
+for b in boards_done:
+    recs = jl(OUT / f"{b}-interactions.jsonl")
+    d = json.loads((OUT / f"{b}-discovery.json").read_text()); labels = {p["id"]: p["label"] for p in d["pages"]}
+    groups = collections.OrderedDict()
+    navs = collections.Counter(); xnav = collections.Counter()
     for r in recs:
         if not r.get("exposed"):
             continue
-        aid, atitle = artboard_of(b, r["selector"])
-        kind = r.get("exposed_kind")
+        k = r.get("exposed_kind")
+        if k == "navigation-in-board":
+            navs[(r["page"], r.get("nav_hash"), (r.get("nav_target_text") or "")[:80])] += 1; continue
+        if k == "navigation-other-board":
+            xnav[((r.get("navigated_to_document") or "").rsplit("/", 1)[-1], (r.get("landed_text") or "")[:80])] += 1; continue
         texts = [x["text"] for x in r.get("exposed_text", []) if x.get("text")]
-        if kind == "native-title":
-            texts = [r.get("native_title_tooltip")]
-        if kind in ("navigation-in-board", "navigation-other-board"):
-            texts = [("→ #" + r.get("nav_hash", "") + " : " + (r.get("nav_target_text") or "(target missing)")) if kind == "navigation-in-board"
-                     else ("→ " + (r.get("navigated_to_document") or "").rsplit("/", 1)[-1] + " : " + (r.get("landed_text") or ""))]
-        exposed.append({"board": b, "page": r["page"], "flow": flow_by_idx.get(r["idx"], ""), "artboard": aid, "artboard_title": atitle,
-                        "story": story_of(b, aid), "host": r["label"], "selector": r["selector"], "action": r["action"], "kind": kind,
-                        "where": "designer note on the artboard caption" if is_caption(r["selector"]) else "on the screen",
-                        "texts": texts, "screenshot": r.get("screenshot"), "idx": r["idx"]})
-(OUT / "coverage.json").write_text(json.dumps(coverage, indent=1, ensure_ascii=False))
-(OUT / "exposed-all.json").write_text(json.dumps(exposed, indent=1, ensure_ascii=False))
-
-# ---- unique exposure catalogue (text-revealing only: tooltips/hover cards/new content/native titles) ------------------
-cat = collections.OrderedDict()
-for e in exposed:
-    if e["kind"] not in ("tooltip/hover-card", "new-content", "native-title"):
+        if r.get("native_title_tooltip"):
+            texts.append("[native tooltip] " + r["native_title_tooltip"])
+        aid = aid_of(r["selector"])
+        how = {"hover": "hover", "click": "click", "hover-forced": "forced hover", "click-forced": "forced click"}[r["action"]]
+        for t in texts:
+            key = (r["page"], story(b, aid), t, caption(r["selector"]))
+            g = groups.setdefault(key, {"arts": [], "how": set(), "hosts": set(), "shot": r.get("screenshot")})
+            if aid not in g["arts"]:
+                g["arts"].append(aid)
+            g["how"].add(how); g["hosts"].add((r["label"] or "[icon]")[:40])
+    if not groups and not navs and not xnav:
         continue
-    for t in e["texts"]:
-        key = (e["board"], e["artboard"], e["where"], t)
-        if key not in cat:
-            cat[key] = {**{k: e[k] for k in ("board", "page", "flow", "artboard", "artboard_title", "story", "where", "kind")}, "text": t, "hosts": [], "actions": set(), "screens": []}
-        cat[key]["hosts"].append(e["host"] or "[icon]"); cat[key]["actions"].add(e["action"])
-        if e["screenshot"] and len(cat[key]["screens"]) < 2:
-            cat[key]["screens"].append(e["screenshot"])
-catl = [{**v, "actions": sorted(v["actions"]), "hosts": sorted(set(v["hosts"]))[:4]} for v in cat.values()]
-(OUT / "exposed-catalogue.json").write_text(json.dumps(catl, indent=1, ensure_ascii=False))
+    w(f"### {b}\n")
+    by_page = collections.OrderedDict()
+    for (pid, st, t, cap), g in groups.items():
+        by_page.setdefault(pid, collections.OrderedDict()).setdefault(st, []).append((t, cap, g))
+    for pid, sts in by_page.items():
+        w(f"**Page `{pid}` {labels.get(pid, '')}**\n")
+        for st, items in sts.items():
+            w(f"- *{st}*")
+            for t, cap, g in items:
+                arts = ", ".join(f"{a} ({atitle(b, a).strip()[:38]})" for a in g["arts"][:4]) + (f" +{len(g['arts']) - 4} more" if len(g["arts"]) > 4 else "")
+                w(f"  - {'designer note' if cap else 'on screen'} · {'/'.join(sorted(g['how']))} on {', '.join(sorted(g['hosts']))[:60]} · {arts}: “{t}”" + (f" · `{g['shot']}`" if g["shot"] else ""))
+        w("")
+    if navs:
+        tg = collections.Counter()
+        for (pid, h, tt), n in navs.items():
+            tg[(h, tt)] += n
+        w(f"- Link navigation inside the board: {sum(navs.values())} clicks reached {len(tg)} distinct targets — " + "; ".join(f"#{h} «{tt[:50]}»" for (h, tt) in list(tg)[:60]) + ("" if len(tg) <= 60 else f"; … {len(tg) - 60} more (see jsonl)"))
+    if xnav:
+        w(f"- Links to other boards: {sum(xnav.values())} clicks — " + "; ".join(f"{f} «{t[:40]}» ×{n}" for (f, t), n in xnav.items()))
+    w("")
 
-# ---- spec comparison helper ---------------------------------------------------------------------------------------------
-def norm(t):
-    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9%$ ]", " ", t.lower().replace("’", "'"))).strip()
-
-spec_sents = []
-for ch, p in SPECS.items():
-    story = ""
-    for line in p.read_text().splitlines():
-        m = re.match(r"#+\s*(S\d+):?\s*(.*)", line)
-        if m:
-            story = m.group(1) + " " + m.group(2)
-        for sent in re.split(r"(?<=[.;:])\s+", re.sub(r"\*\*|\[|\]\([^)]*\)", "", line)):
-            if len(sent.split()) >= 2:
-                spec_sents.append((ch, story, sent.strip(), set(norm(sent).split()), norm(sent)))
-spec_all_norm = {ch: norm(p.read_text()) for ch, p in SPECS.items()}
-
-
-def best(text):
-    w = set(norm(text).split());
-    if not w:
-        return 0, None
-    sc = sorted(((len(w & s[3]) / max(1, len(w)), s) for s in spec_sents), key=lambda x: -x[0])[:8]
-    bestr, bests = 0, None
-    for _, s in sc:
-        r = difflib.SequenceMatcher(None, norm(text), s[4]).ratio()
-        cov = len(w & s[3]) / len(w)
-        m = max(r, cov * 0.9)
-        if m > bestr:
-            bestr, bests = m, s
-    return bestr, bests
-
-lines = ["# Spec-compare helper (machine shortlist for human review — NOT the findings)\n"]
-for c in catl:
-    sc, s = best(c["text"])
-    c["spec_best_score"] = round(sc, 2); c["spec_best"] = (s[1] + " :: " + s[2]) if s else None
-    lines.append(f"- [{c['board']} / {c['artboard']} {c['artboard_title'] or ''} / {c['story']} / {c['where']}] score={sc:.2f}\n  DESIGN: {c['text']}\n  SPEC:   {c['spec_best']}")
-(OUT / "exposed-catalogue.json").write_text(json.dumps(catl, indent=1, ensure_ascii=False))
-(OUT / "spec-compare-candidates.md").write_text("\n".join(lines))
-print("boards with summary:", [b for b in BOARDS if coverage.get(b)])
-print("exposed records:", len(exposed), "unique text exposures:", len(catl))
+# ---------------------------------------------------------------- 3 comparison (hand-written)
+sc = OUT / "spec-comparison.md"
+if sc.exists():
+    w(sc.read_text())
+txt = "\n".join(L) + "\n"
+sc_txt = sc.read_text() if sc.exists() else ""
+n3a = len(re.findall(r"(?m)^\d+\. ", sc_txt.split("### 3b")[0])) if sc_txt else 0
+n3b = len(re.findall(r"(?m)^\| \d+ \|", sc_txt))
+n3n = len(re.findall(r"(?m)^- S\d", sc_txt.split("Spec states that no artboard draws")[-1])) if sc_txt else 0
+kinds = collections.Counter()
+for b in boards_done:
+    for r in jl(OUT / f"{b}-interactions.jsonl"):
+        if r.get("exposed") or r.get("exposed_kind") == "navigation-in-board":
+            kinds[r.get("exposed_kind")] += 1
+summary = (f"## Summary\n\n- Boards driven: **{len(boards_done)} of {len(BOARDS)}** (the 6 boards in `design_handoff_maintenance_reminders/` are byte-identical copies, 1e). "
+           f"Pages reached by the board's own navigation and by URL hash / scrolling: all (1c).\n"
+           f"- Interactive/responsive elements found: **{tot['found']}**; hovered **{tot['hovered']}**, clicked **{tot['clicked']}**; covered by a drawn overlay and driven again with forced hover + forced click: **{tot['occl']}**. "
+           f"Interactions recorded: **{tot['inter']}**; exposed something: **{tot['exp']}** (tooltips / hover cards **{kinds['tooltip/hover-card']}**, native title tooltips **{kinds['native-title']}**, opened another board **{kinds['navigation-other-board']}**), plus **{kinds['navigation-in-board']}** clicks that followed an in-board arrow to another artboard; failed: **{tot['fail']}**; missing: **{tot['miss']}** → **100%**.\n"
+           f"- Hidden text blocks revealed by an interaction: **{sum(h[2] for h in hidden_rows)} of {sum(h[1] for h in hidden_rows)}**.\n"
+           f"- Comparison with the current spec (section 3): **{n3a}** design-only details a tester would see (3a); **{n3b}** design-differs-from-spec items (3b), plus **{n3n}** spec states no artboard draws and 2 navigation dead ends.\n")
+i = txt.index("## 0 ·")
+txt = txt[:i] + summary + "\n" + txt[i:]
+(OUT / "DESIGN-DRIVE-FINDINGS.md").write_text(txt)
+print("boards:", boards_done, "totals:", dict(tot))

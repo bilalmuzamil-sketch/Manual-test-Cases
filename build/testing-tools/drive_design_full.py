@@ -4,7 +4,8 @@
 Generic: works on any static/"dc" design board (Claude Design export `*.dc.html`) or any HTML prototype.
 
     python3 drive_design_full.py <board.html> <out-dir> [--workers 3] [--wait 500] [--fast-wait 250]
-                                 [--viewport 1440x900] [--serve] [--cdn-cache DIR] [--only-pages a,b]
+                                 [--viewport 1440x900] [--serve] [--cdn-cache DIR] [--pages a,b]
+                                 [--skip-discovery] [--reuse-census] [--no-forced]
 
 What it does, per board:
   0. Loads the board from INSIDE its own folder (file:// with --allow-file-access-from-files so the dc runtime can
@@ -32,6 +33,10 @@ What it does, per board:
      newly visible text (visible-text diff of the element's artboard scope + any DOM added anywhere), tooltip /
      title text, navigation (hash target or other board), hover style change, occlusion; screenshot when
      something new appeared. Every <select> has its options recorded; every <details> is toggled.
+  3b. FORCED PASS: every element a real pointer cannot reach because an overlay (a modal / hover card DRAWN over
+     the screen) covers it is driven again: :hover/:focus-within forced through the DevTools protocol on it and all
+     its ancestors ("hover-forced"), and its own click/mouse events dispatched ("click-forced"). Disable: --no-forced.
+     Resume: a re-run skips every (element, action) already recorded without error by any worker; failed ones retry.
   4. VARIANTS: re-renders the board in dark theme (?theme=dark) and at 768 / 1920 px widths and records whether
      any visible text differs.
 
@@ -125,6 +130,9 @@ dd.pages = (forced) => {
     seen.add(bid); res.push({id: bid, label: dd.label(b), linkPath: dd.path(b), mode: 'hash'});
   }
   if (res.length) return res;
+  // only real sections count as pages (a component board's toolbar items are not pages)
+  const big = blocks.filter(b => b.getBoundingClientRect().height >= 300);
+  if (big.length < 2) return [];
   return blocks.map((b, i) => { const id = b.id || ('sec-' + (i + 1)); b.setAttribute('data-dd-page', id);
     return {id, label: dd.firstLines(b, 2), linkPath: null, mode: 'scroll'}; });
 };
@@ -492,7 +500,9 @@ def worker(wid, nworkers, args_d, board_s, out_s, url, cands, mode="normal"):
         try:
             for line in open(f):
                 try:
-                    d = json.loads(line); done.add((d["idx"], d["action"]))
+                    d = json.loads(line)
+                    if "error" not in d:      # failed interactions are retried on resume
+                        done.add((d["idx"], d["action"]))
                 except Exception:
                     pass
         except Exception:
@@ -555,7 +565,8 @@ def worker(wid, nworkers, args_d, board_s, out_s, url, cands, mode="normal"):
                     else:
                         url_before = pg.url.split("#")[0]
                         if action == "click-forced":
-                            pg.evaluate("(i) => document.querySelector('[data-dd-idx=\"' + i + '\"]').click()", c["idx"])   # the element's own activation, under the overlay
+                            # the element's own activation, under the overlay (SVG nodes have no .click(): dispatch the event)
+                            pg.evaluate("(i) => { const e = document.querySelector('[data-dd-idx=\"' + i + '\"]'); for (const t of ['pointerdown', 'mousedown', 'pointerup', 'mouseup']) e.dispatchEvent(new MouseEvent(t, {bubbles: true, cancelable: true, view: window})); if (typeof e.click === 'function') e.click(); else e.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window})); }", c["idx"])
                         else:
                             pg.mouse.click(h["cx"], h["cy"])
                         pg.wait_for_timeout(wait)
@@ -674,7 +685,10 @@ def main():
     recs = {}
     for f in sorted(out.glob(f".{name}-interactions.w*.jsonl")):
         for line in open(f):
-            d = json.loads(line); recs[(d["idx"], d["action"])] = d
+            d = json.loads(line)
+            if "error" in d and (d["idx"], d["action"]) in recs and "error" not in recs[(d["idx"], d["action"])]:
+                continue
+            recs[(d["idx"], d["action"])] = d
     with open(out / f"{name}-interactions.jsonl", "w") as fh:
         for k in sorted(recs):
             fh.write(json.dumps(recs[k], ensure_ascii=False) + "\n")
