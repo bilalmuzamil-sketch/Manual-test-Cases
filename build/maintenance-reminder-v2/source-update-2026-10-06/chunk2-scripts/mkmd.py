@@ -37,13 +37,18 @@ w("Scope: the 86 live Chunk 2 cases (TestRail folder 26635; stories S10, S11, S1
   "5 October 2026. **Proposals only: nothing was written to TestRail and nothing was committed.** Machine-readable proposals, with full replacement "
   "HTML for every case: `chunk2-proposals.json` (same folder).")
 w("")
-w(f"**Counts:** {len(P['updates'])} updates · {len(P['new'])} new · {len(P['retire'])} retire · {len(P['diverge'])} diverge (PO questions) · "
+w("**Revised 6 Oct 2026 with the coordinator's decisions:** our own HOLD marker (no flag), the 49 flag-only corrections listed in full, and "
+  "blockers B1–B3 resolved from the specification (dated readings seeded through Mark complete On a work order; worklist routes to the contact "
+  "card; a pending invoice through a reversed payment).")
+w("")
+w(f"**Counts:** {len(P['updates'])} updates · {len(P['new'])} new · {len(P['flag_only'])} flag-only corrections · {len(P['retire'])} retire · {len(P['diverge'])} diverge (PO questions) · "
   f"{len(P['exclude'])} exclude · {len(P['systemic_corrections'])} systemic corrections · {len(P['blockers'])} blockers · "
   f"{len(P['chunk1_notes'])} notes for the Chunk 1 reviewer.")
 w("")
 w("Every proposed case: three-part Expected (plain results · Source line naming documents only · verbatim quotes with anchors), click-by-click "
   "preconditions with ZZAUTOTEST example values, product labels only from the spec or the design boards (marked 'in the design' where design-only), "
-  "title ≤ 80 characters, no requirement ids in titles, preconditions, steps or plain results, and the HOLD marker copied exactly from `mr2_lib.py`.")
+  "title ≤ 80 characters, no requirement ids in titles, preconditions, steps or plain results, and the marker `AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build` (our own text, coordinator decision; the "
+  "`mr2_lib.py` marker named the removed flag).")
 w("")
 w("## 1. Per-source verdict")
 w("")
@@ -53,7 +58,7 @@ rows = [
  ("Chunk 2 MR spec, Confluence 897679389, as edited 5 Oct 2026 19:58 (saved `sources/CONFLUENCE-897679389-Chunk2-MR-2026-10-06.md`)",
   "UPDATE + ADD + DIVERGE",
   f"{len(changed)} anchors rewritten under existing quotes ({sum(len(v) for v in changed.values())} quotes in {len(set().union(*changed.values()))} cases fail); {len(grew)} anchors gained sentences that their cases do not "
-  "test; 9 anchors cited by no case. → 24 whole-case updates, 14 spec-sourced new cases, S10-R1 held (D1)."),
+  "test; 9 anchors cited by no case. → whole-case updates, 14 spec-sourced new cases, S10-R1 held (D1)."),
  ("Main page 'Maintenance Reminders V1', Confluence 833290250, as edited 5 Oct 2026 (saved `sources/CONFLUENCE-833290250-…-2026-10-06.md`)",
   "UPDATE + DIVERGE", "'No feature flag' (5 Oct) makes the flag precondition in all 86 cases stale (SC1) and contradicts the mandated HOLD marker (SC2). "
   "'Audit recorded, no screen in v1' makes three cases' audit steps unrunnable (C204106, C204154, C204179 updated). Its Reusable components row for "
@@ -62,9 +67,9 @@ rows = [
   "Confirms nearly every Chunk 2 rule. ADD: N15 (no card or step on part sales / imported work orders), N16 (every invoicing path shows the step "
   "once), N4 support, NFR-114 partial split in C204151, D2 reading date in N6. DIVERGE: D3, D5, D6, D9, D10, D11, D12, D13. EXCLUDE: engineering-only "
   "NFRs. Labels it alone gives are listed as unconfirmed (blocker B4)."),
- ("Plan 1 — Track, act, clear — Technical Implementation Plan (5,363 lines; every section touching Chunk 2)", "CONFIRM + BLOCKER",
-  "Confirms S10/S11/S12/S18 mechanics. Testability note B5 (no back-dated readings) → blocker B1. §7: historical load runs on QA after each deploy "
-  "(used as the route in C204126 and N6)."),
+ ("Plan 1 — Track, act, clear — Technical Implementation Plan (5,363 lines; every section touching Chunk 2)", "CONFIRM",
+  "Confirms S10/S11/S12/S18 mechanics. Its testability note B5 (the reading window cannot back-date) is answered by the spec's own route, S18-R19 "
+  "(blocker B1, resolved); TD-06 (a work order reading is corrected in place) backs C204127; §7 historical load backs N6."),
  ("Design MR_V2_2, Chunk 2 board (current, 6 Oct export)", "CONFIRM labels + DIVERGE",
   "Source of the window, toast, step and email labels used in the cases (frames W2a, W2c–W2e, W2r, W2k, W13–W13c, W14, I1–I7, R1–R1Z). DIVERGE: "
   "D2, D4, D6, D7, D8, D14, D15."),
@@ -151,29 +156,40 @@ w("|---|---|---|")
 for e in P["exclude"]:
     w(f"| {e['item']} | {', '.join(e['anchors'])} | {e['reason']} |")
 w("")
-w("## 8. Systemic corrections and blockers")
+w("## 8. Systemic corrections, flag-only cases and blockers")
 w("")
 s1, s2, s3 = P["systemic_corrections"]
-w(f"- **SC1 — stale feature-flag precondition.** {s1['why']} Found in **{s1['cases_total']} of 86** cases "
-  f"({'; '.join(f'“{k}” ×{v}' for k, v in s1['variant_counts'].items())}). {len(s1['already_fixed_by_updates'])} are fixed by the updates above; "
-  f"**{len(s1['cases_to_edit'])} need the sentence removed and nothing else**: " + ", ".join(f"C{i}" for i in s1["cases_to_edit"]) + ".")
-w(f"- **SC2 — the HOLD marker names the flag.** {s2['why']}")
-w("- **SC3 — requirement ids in tester text** (not already fixed by an update): " +
-  "; ".join(f"C{r['case_id']}: “{r['lines'][0][:120]}”" for r in s3["cases_to_edit"]) + ".")
-for b in P["blockers"]:
-    extra = ""
-    if b["id"] == "B1":
-        extra = (" Cases: " + ", ".join(f"C{i}" for i in b["cases"]) + ". Softer dependency (need a unit already in a given state): "
-                 + ", ".join(f"C{i}" for i in b["softer_dependency"]["cases"]) + ". " + b["also"] + " Routes found: " + " / ".join(b["routes_found"]))
-    if b["id"] == "B4":
-        extra = " Items: " + "; ".join(b["items"]) + ". " + b["handling"]
-    w(f"- **{b['id']} — {b['what']}.** {b.get('evidence','')}{extra} {('Ask: ' + b['ask']) if b.get('ask') else ''}")
+w(f"- **SC1 — stale feature-flag precondition (resolved).** {s1['why']} Found in **{s1['cases_total']} of 86** cases "
+  f"({'; '.join(f'“{k}” ×{v}' for k, v in s1['variant_counts'].items())}). {len(s1['fixed_by_updates'])} are fixed inside the whole-case updates; "
+  f"**{len(s1['fixed_by_flag_only'])} are in the `flag_only` list** of the JSON: preconditions with that one sentence dropped, nothing else changed, "
+  f"and the marker replaced.")
+w(f"- **SC2 — marker (resolved).** {s2['why']}")
+w("- **SC3 — requirement ids in tester text (resolved).** C204116's “(per S2-R16)” becomes “(picked in that service's Services also covered step)” "
+  "in its flag_only entry; every other occurrence was in a case now rewritten.")
 w("")
-w("## 9. Quote check (script: scratchpad `c2/verify.py`, run 6 Oct 2026)")
+w("**Flag-only cases** (only the flag sentence removed and the marker replaced; steps, results, source line and quotes untouched):")
+w("")
+w(", ".join(f"[C{f['case_id']}]({TR}{f['case_id']})" + ("*" if f["sc3_fixed"] else "") for f in P["flag_only"]) + "  (* also SC3)")
+w("")
+for b in P["blockers"]:
+    if b["id"] == "B1":
+        w(f"- **B1 — {b['what']}: {b['status']}.** {b['route']} Cases rewritten with exact seeded figures: "
+          + ", ".join(f"C{i}" for i in b["cases_rewritten"]) + f"; new {b['new_case']}. Not rewritten: "
+          + ", ".join(f"C{i}" for i in b["not_rewritten"]["cases"]) + f" — {b['not_rewritten']['note']}")
+    elif b["id"] == "B4":
+        w(f"- **B4 — {b['what']}: {b['status']}.** " + "; ".join(b["items"]) + ".")
+    elif b["id"] == "B5":
+        w(f"- **B5 — {b['what']}: {b['status']}.** {b['evidence']}.")
+    else:
+        w(f"- **{b['id']} — {b['what']}: {b['status']}.** {b['route']} Cases: {', '.join(b['cases'])}.")
+w("")
+w("## 9. Quote check (script: `chunk2-scripts/verify.py`, run 6 Oct 2026)")
 w("")
 w(f"- **Proposals:** {V['nq']} quotes parsed from the HTML that would be written; **{V['ok']} of {V['nq']} verbatim** in the cleaned source "
-  f"(Chunk 2 page anchor, Plan 2 text or main page text); every title ≤ 80 characters; marker exact, once, last; no requirement ids or flag text in "
+  f"(Chunk 2 page anchor, Plan 2 text, Plan 1 text or main page text); every title ≤ 80 characters; marker exact, once, last; no requirement ids or flag text in "
   f"tester-facing text. **Failures: {len(V['fails'])}.**")
+w(f"- **Flag-only cases:** {V['flag_only_ok']} of {V['flag_only_n']} differ from the live case only by the removed flag sentence (and C204116's id) "
+  "and the new marker; updates and flag-only together cover all 86 cases exactly once.")
 w(f"- **Live cases as they stand:** {V['live_total']} quotes in 86 cases; **{V['live_ok']} still verbatim, {len(V['live_changed'])} CHANGED, "
   f"{len(V['live_gone'])} cite a vanished anchor.** CHANGED: " + ", ".join(f"C{c} {a}" for c, a in V["live_changed"]) +
   ". Every CHANGED quote is replaced by an update.")
@@ -184,5 +200,6 @@ w("## 10. Notes for the Chunk 1 reviewer (not proposed here)")
 w("")
 for n in P["chunk1_notes"]: w(f"- {n}")
 w("")
-open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "findings_part1.md"), "w").write("\n".join(L) + "\n")
+HERE = os.path.dirname(os.path.abspath(__file__))
+open(OUTD + "/CHUNK2-FINDINGS.md", "w").write("\n".join(L) + "\n" + open(os.path.join(HERE, "coverage.md")).read())
 print("ok", len(L))

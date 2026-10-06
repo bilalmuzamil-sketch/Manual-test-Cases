@@ -113,38 +113,44 @@ new("N7", "Mileage copied onto a new work order is not a reading", ["S10"],
 new("N8", "A unit with nothing dated: the email says Nothing is scheduled yet", ["S19"],
     [LOGIN_ADMIN,
      "Open Settings > Maintenance and create a schedule 'ZZAUTOTEST Compliance only' with one compliance service 'CVIP' (12-month term). Save.",
-     "Enroll unit 'ZZAUTOTEST 407' of 'ZZAUTOTEST Fleet Co' on it, with no CVIP certificate on file.",
+     "Enroll unit 'ZZAUTOTEST 407' of 'ZZAUTOTEST Fleet Co' on it, with no CVIP certificate on file (do not use Add record). This is the unit's "
+     "only service.",
      CONTACT.replace("'ZZAUTOTEST 402'", "'ZZAUTOTEST 407'"),
-     WORKLIST + " Find unit 407's row. If the unit has no row, its contact card cannot be reached: mark this case Blocked and report it.",
+     WORKLIST + " Make sure no tile is active (click an active tile again to clear it). Find unit 407's CVIP row: a compliance service with no "
+     "certificate appears, reading No record, while no tile is active.",
      QA_MAIL],
-    ["On 407's row press Contact and check Send reminder.",
-     "Press Send reminder and read Email content and the Reminder table.",
-     "Press Send and read the email."],
+    ["On 407's No record row press Contact and look at Send reminder on the contact card.",
+     "Press Send reminder and read Email content and the Reminder table in the Send email window.",
+     "Press Send and read the email in the mailbox."],
     ["Send reminder is available.",
      "Instead of the opening line and the table, the email reads Nothing is scheduled for ZZAUTOTEST 407 yet. (design example: Nothing is "
      "scheduled for 402 yet.)",
      "The call to action and the signature are still there."],
     [Q("S19-R23")],
-    "S19-R23 is new on 5 Oct and no case cited it. Reaching the contact card for a unit with nothing dated depends on it having a worklist row "
-    "(blocker B2). Wording matches the Chunk 2 board frame R1Z.")
+    "S19-R23 is new on 5 Oct and no case cited it. Route to the contact card resolved from the spec (coordinator decision B2): Chunk 1 S13-N2 lists "
+    "a compliance service with no record on the worklist, reading No record, while no tile is active. Wording matches the Chunk 2 board frame R1Z.")
 
 new("N9", "Nothing due within 91 days: the email lists the next two as Coming up", ["S19"],
     [LOGIN_ADMIN,
      "Open Settings > Maintenance and create a schedule 'ZZAUTOTEST Later PM' with three Calendar services, each Every 12 months: 'PM-B', 'PM-C' "
-     "and 'PM-D'. Save.",
-     "Enroll unit 'ZZAUTOTEST 408' with last service dates (examples for 6 Oct 2026): PM-B 6 Feb 2026 (due Feb 2027), PM-C 6 Apr 2026 (due Apr 2027) "
-     "and PM-D 6 Jun 2026 (due Jun 2027). Nothing is due within 91 days.",
+     "and 'PM-D', and a fourth service 'PM-N' with a Distance trigger of Every 15,000 mileage and a Calendar trigger of Every 12 months. Save.",
+     "Create unit 'ZZAUTOTEST 408' with no mileage recorded (leave Mileage empty). Enroll it with last service dates (examples for 6 Oct 2026): "
+     "PM-B 6 Feb 2026 (due Feb 2027), PM-C 6 Apr 2026 (due Apr 2027), PM-D 6 Jun 2026 (due Jun 2027) and PM-N today (calendar due Oct 2027). "
+     "Nothing is due within 91 days.",
      CONTACT.replace("'ZZAUTOTEST 402'", "'ZZAUTOTEST 408'"),
-     WORKLIST + " Find unit 408's row. If the unit has no row, its contact card cannot be reached: mark this case Blocked and report it.",
+     WORKLIST + " Find unit 408's PM-N row: with no mileage reading it is a Needs readings row, which the worklist lists whatever its date.",
      QA_MAIL],
-    ["On 408's row press Contact and check Send reminder.",
+    ["On 408's PM-N row press Contact and look at Send reminder on the contact card.",
      "Press Send reminder, read the Reminder table, press Send and read the email."],
     ["Send reminder is available, not disabled, although nothing is due.",
      "The email lists the next two upcoming services, PM-B and PM-C, each as Coming up.",
-     "PM-D is not included."],
-    [Q("S19-R7")],
-    "S19-R7 was rewritten on 5 Oct (next two upcoming services as Coming up; Send reminder never disabled) and no case covered the new rule. "
-    "Reachability of the contact card is blocker B2. Matches the Chunk 2 board frame R1N.")
+     "PM-D is not included.",
+     "Whether PM-N (the Needs readings row, calendar due Oct 2027) also appears is an open product question: write down what you see and do not "
+     "pass or fail the case on it."],
+    [Q("S19-R7"), Q("S19-R6")],
+    "S19-R7 was rewritten on 5 Oct (next two upcoming services as Coming up; Send reminder never disabled) and no case covered the new rule. Route "
+    "to the contact card resolved from the spec (coordinator decision B2): Chunk 1 S13-R36 lists every Needs readings row whatever its date. Whether "
+    "that row itself rides in the email is DIVERGE D16. Matches the Chunk 2 board frame R1N.")
 
 new("N10", "Mark complete creates no work order and sets no maintenance origin", ["S22"],
     [LOGIN_ADMIN, SCHED, ENROLL, NEWWO],
@@ -214,19 +220,21 @@ new("N13", "Reversing an invoice undoes its resets; services are proposed again"
 new("N14", "A pending invoice voided by adding a line: services proposed again", ["S18"],
     [LOGIN_ADMIN, SCHED, ENROLL,
      "Create a work order for the unit, press Add Service > Add on PM-A and complete every PM-A line.",
-     "Create an invoice that stays pending (unpaid) without the payment window removing it, the way the shop normally leaves an invoice unpaid "
-     "(for example a customer on credit terms). If you cannot produce a pending invoice, mark this case Blocked and report it."],
-    ["With the invoice pending, add a new hand-typed line to the work order.",
+     "Open the Finance tab and press Create Invoice; press Confirm dates in When was the maintenance done?. In the New Customer Payment window record "
+     "a payment for the full balance (for example Payment Method Cash) and save it. Do not just close the window: closing it reverses the invoice.",
+     "From the work order's payment history, reverse that payment. The invoice stays, unpaid and not sent: it is pending.",
+     "Open the asset's Maintenance tab and check PM-A has been reset (it counts from today)."],
+    ["With the invoice pending, add a new hand-typed line to the work order (New Line).",
      "Check the invoice: ShopView voids it because a line was added.",
      "Read the asset's PM-A.",
-     "Invoice the work order again and read When was the maintenance done?."],
+     "Complete the new line, press Create Invoice again and read When was the maintenance done?."],
     ["The pending invoice is voided when the line is added.",
-     "Its reset of PM-A is undone, as for a reversal.",
+     "Its reset of PM-A is undone, as for a reversal: PM-A reads due again.",
      "At the next invoice, PM-A is proposed again in When was the maintenance done?."],
     [Q("S18-E3"), Q("S18-E2", "The resets that invoice made are undone, and its services are proposed again when the work order is next invoiced, "
                               "keeping any date a person entered")],
     "S18-E3 was rewritten on 5 Oct (a voided pending invoice is treated like a reversal); the old case said 'A voided invoice is not a case'. "
-    "How a tester leaves an invoice pending is blocker B3.")
+    "Pending-invoice route from the coordinator (decision B3): record a full payment, then reverse the payment, leaving the invoice pending.")
 
 new("N15", "Part sales and imported work orders show no maintenance card or step", ["S16", "S18"],
     [LOGIN_ADMIN, SCHED, ENROLL,

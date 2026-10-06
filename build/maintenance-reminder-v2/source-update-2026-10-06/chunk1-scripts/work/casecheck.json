@@ -1,0 +1,2622 @@
+{
+ "rows": [
+  [
+   146309,
+   "S1-R1",
+   "MISMATCH",
+   "Settings will carry a Maintenance entry with a single list of maintenance schedules. A schedule belongs to the location it was built at, as canned lines and inspection templates do ... There is no reminder settings tab, because the email carries no shop-editable content",
+   "Settings will carry a Maintenance entry with a single list of maintenance schedules, shared by the whole organization: every location sees every schedule and can enrol onto it. Each schedule keeps its canned lines at its home location, the location it was built at, because canned lines are kept per location. There is no reminder settings tab, because the email carries no shop-editable content"
+  ],
+  [
+   146309,
+   "S1-N2",
+   "OK",
+   "A user without Settings Service cannot reach the tab",
+   "A user without Settings Service cannot reach the tab"
+  ],
+  [
+   146310,
+   "S1-N1",
+   "OK",
+   "A schedule with no services cannot be saved. It shows an empty state prompting the first service",
+   "A schedule with no services cannot be saved. It shows an empty state prompting the first service"
+  ],
+  [
+   146311,
+   "S1-R3",
+   "OK",
+   "New schedule opens an empty editor titled Untitled schedule. There is no modal and no template",
+   "New schedule opens an empty editor titled Untitled schedule. There is no modal and no template"
+  ],
+  [
+   146311,
+   "S1-R4",
+   "OK",
+   "A schedule exists from its first Save. Leaving the editor before that leaves nothing behind",
+   "A schedule exists from its first Save. Leaving the editor before that leaves nothing behind"
+  ],
+  [
+   146312,
+   "S1-R6",
+   "OK",
+   "The editor will carry only a name and an ordered list of services",
+   "The editor will carry only a name and an ordered list of services"
+  ],
+  [
+   146312,
+   "S1-R7",
+   "OK",
+   "The title will read Untitled schedule with inline edit, following the DVI pattern",
+   "The title will read Untitled schedule with inline edit, following the DVI pattern"
+  ],
+  [
+   146312,
+   "S1-R8",
+   "OK",
+   "The editor will carry Cancel and Save. Save is disabled until the schedule has at least one service. The name, the services and their order are saved only when Save is pressed; Cancel discards every unsaved change, asking first when there are any",
+   "The editor will carry Cancel and Save. Save is disabled until the schedule has at least one service. The name, the services and their order are saved only when Save is pressed; Cancel discards every unsaved change, asking first when there are any"
+  ],
+  [
+   146313,
+   "S1-N3",
+   "OK",
+   "A schedule cannot be saved with a blank name, and an inline rename cannot be left blank. Both revert to the previous name rather than erroring",
+   "A schedule cannot be saved with a blank name, and an inline rename cannot be left blank. Both revert to the previous name rather than erroring"
+  ],
+  [
+   146313,
+   "S1-E2",
+   "MISMATCH",
+   "Two schedules may not carry the same name. Adding vi1 to the name as we do for DVI",
+   "Two schedules cannot have the same name, as with inspection templates. A name already in use is refused inline: A schedule with this name already exists. A duplicate is named with (Copy), then (Copy 2), per S6-R12"
+  ],
+  [
+   146314,
+   "S1-R9",
+   "MISMATCH",
+   "Services are listed as a table: Service, Interval and Canned Lines. The interval renders each trigger separated by a dot, never by or, for example 15,000 mileage \u00b7 3 months, or 30 days, and the canned-lines cell carries the line count and any absorption, for example 4 lines \u00b7 3 absorbed",
+   "Services are listed as a table: Service, Interval and Canned Lines. The interval renders each trigger separated by a dot, never by or, for example 15,000 mileage \u00b7 3 months, or 30 days, and the canned-lines cell carries the line count and how many came from covered services, for example 4 lines \u00b7 3 covered"
+  ],
+  [
+   146314,
+   "S1-R10",
+   "OK",
+   "Services will be reorderable by drag and by Move up / Move down",
+   "Services will be reorderable by drag and by Move up / Move down"
+  ],
+  [
+   146315,
+   "S1-R2",
+   "OK",
+   "The schedule list has two tabs, Active and Archived, each with a count. Its columns are Schedule, Services and Assets, and each sorts from its header; the default is Schedule, A to Z. A search above the table matches schedule and service names. An active schedule's menu offers Edit, Duplicate and Archive; an archived schedule's offers Restore",
+   "The schedule list has two tabs, Active and Archived, each with a count. Its columns are Schedule, Services and Assets, and each sorts from its header; the default is Schedule, A to Z. A search above the table matches schedule and service names. An active schedule's menu offers Edit, Duplicate and Archive; an archived schedule's offers Restore. Clicking an archived schedule opens it read-only, per S1-R13"
+  ],
+  [
+   146315,
+   "S1-R12",
+   "OK",
+   "Each schedule shows how many assets are enrolled on it as plain read-only text, as the inspection templates list does, never as a badge. The count opens nothing",
+   "Each schedule shows how many assets are enrolled on it as plain read-only text, as the inspection templates list does, never as a badge. The count opens nothing; a list of enrolled assets is out of this release"
+  ],
+  [
+   146315,
+   "S1-R13",
+   "OK",
+   "An archived schedule opens read-only all the way down, its services, triggers and lines, so a shop can find what it archived and see it before restoring it",
+   "An archived schedule opens read-only all the way down, its services, triggers and lines, so a shop can find what it archived and see it before restoring it"
+  ],
+  [
+   146315,
+   "S1-E1",
+   "OK",
+   "A schedule created by mistake is archived, like any other. There is no delete anywhere in the feature and no draft state to abandon",
+   "A schedule created by mistake is archived, like any other. There is no delete anywhere in the feature and no draft state to abandon, so a schedule that was never wanted sits archived rather than disappearing"
+  ],
+  [
+   146316,
+   "S2-R1",
+   "OK",
+   "Add service opens a blank service form",
+   "Add service opens a blank service form"
+  ],
+  [
+   146316,
+   "S2-R2",
+   "MISMATCH",
+   "The form sequence will be: name, is this compliance, triggers and intervals, services also covered, canned lines, reminder timing. There is no send switch anywhere in the form or in the service table",
+   "The form sequence will be: name, is this compliance, triggers and intervals, services also covered (when shown, per S2-R18), canned lines, reminder timing. There is no send switch anywhere in the form or in the service table"
+  ],
+  [
+   146316,
+   "S2-R3",
+   "OK",
+   "A service will carry exactly one name. There is no customer facing name, so the name a shop gives a service is the name its customer reads in a reminder",
+   "A service will carry exactly one name. There is no customer facing name, so the name a shop gives a service is the name its customer reads in a reminder"
+  ],
+  [
+   146316,
+   "S2-N4",
+   "OK",
+   "A service cannot be saved with a blank name",
+   "A service cannot be saved with a blank name"
+  ],
+  [
+   146317,
+   "S2-R4",
+   "OK",
+   "The calendar interval will always be present, always editable, and required. It shows as a ticked checkbox that cannot be unticked, with a hover explaining that every service carries a calendar interval",
+   "The calendar interval will always be present, always editable, and required. It shows as a ticked checkbox that cannot be unticked, with a hover explaining that every service carries a calendar interval"
+  ],
+  [
+   146317,
+   "S2-R5",
+   "OK",
+   "Distance and engine hours will be optional additional triggers, each revealing its own interval row when selected",
+   "Distance and engine hours will be optional additional triggers, each revealing its own interval row when selected"
+  ],
+  [
+   146317,
+   "S2-N1",
+   "OK",
+   "A service cannot be saved with the calendar interval empty",
+   "A service cannot be saved with the calendar interval empty"
+  ],
+  [
+   146317,
+   "S2-N3",
+   "OK",
+   "Selecting no additional trigger is valid. Calendar alone is a complete service",
+   "Selecting no additional trigger is valid. Calendar alone is a complete service"
+  ],
+  [
+   146317,
+   "S2-E1",
+   "OK",
+   "Distance and engine hours selected together still produce one calendar row, not two",
+   "Distance and engine hours selected together still produce one calendar row, not two"
+  ],
+  [
+   146318,
+   "S2-R6",
+   "MISMATCH",
+   "Each interval row has an operator, Every or At. Every repeats and counts again from each completion. At is a fixed point: on the calendar it is a day of the year and falls on that day each year ... on a meter it is one reading",
+   "Each interval row has an operator, \"Every\" or \"At\". \"Every\" repeats and counts again from each completion. \"At\" is a fixed point: on the calendar it is a day of the year and falls on that day each year, which is how seasonal work such as winterizing is set; on a meter it is one reading"
+  ],
+  [
+   146318,
+   "S2-R7",
+   "MISMATCH",
+   "On the calendar row, choosing At turns the value into a (calendar) day-and-month picker, for example 15 Nov. At is never a month on its own",
+   "On the calendar row, choosing \"At\" turns the value into a (calendar) day-and-month picker, for example 15 Nov. \"At\" is never a month on its own"
+  ],
+  [
+   146318,
+   "S2-R8",
+   "OK",
+   "The calendar interval carries a number and a unit, days or months, both chosen from a list rather than typed. Months run 1 to 12 and days are whole numbers. Either rebases on completion per S2-R6",
+   "The calendar interval carries a number and a unit, days or months, both chosen from a list rather than typed. Months run 1 to 12 and days are whole numbers. Either rebases on completion per S2-R6"
+  ],
+  [
+   146319,
+   "S2-R10",
+   "OK",
+   "There is one distance unit and its name is the word mileage, written in full wherever a unit is named. mi and km never appear: the single unit covers both, so an abbreviation would claim one of them",
+   "There is one distance unit and its name is the word mileage, written in full wherever a unit is named. mi and km never appear: the single unit covers both, so an abbreviation would claim one of them"
+  ],
+  [
+   146319,
+   "S2-R15",
+   "OK",
+   "Engine hours are written hours in full wherever the unit is named, never hrs, on the same rule as mileage in S2-R10",
+   "Engine hours are written hours in full wherever the unit is named, never hrs, on the same rule as mileage in S2-R10"
+  ],
+  [
+   146320,
+   "S2-R9",
+   "OK",
+   "Interval values are whole numbers, minimum 1, with no decimals and no negatives. Mileage is capped at 999,999, engine hours at 99,999 and days at 999. An interval longer than 12 months is set in days",
+   "Interval values are whole numbers, minimum 1, with no decimals and no negatives. Mileage is capped at 999,999, engine hours at 99,999 and days at 999. An interval longer than 12 months is set in days"
+  ],
+  [
+   146320,
+   "S2-N2",
+   "OK",
+   "A decimal interval value is rejected inline",
+   "A decimal interval value is rejected inline"
+  ],
+  [
+   146320,
+   "S2-N5",
+   "OK",
+   "A number field accepts digits only. Letters and symbols do not enter the field, so there is no error to show",
+   "A number field accepts digits only. Letters and symbols do not enter the field, so there is no error to show"
+  ],
+  [
+   146320,
+   "S2-N6",
+   "OK",
+   "An interval of zero is rejected inline, on the same rule as a decimal and a negative",
+   "An interval of zero is rejected inline, on the same rule as a decimal and a negative"
+  ],
+  [
+   146320,
+   "S2-N7",
+   "MISMATCH",
+   "A calendar At row cannot be saved without a day and a month",
+   "A calendar \"At\" row cannot be saved without a day and a month"
+  ],
+  [
+   146321,
+   "S2-R11",
+   "OK",
+   "The service comes due at whichever trigger arrives first. The triggers block states this once, in one plain line beneath its heading. There is no or between the triggers and no warning panel",
+   "The service comes due at whichever trigger arrives first. The triggers block states this once, in one plain line beneath its heading. There is no or between the triggers and no warning panel"
+  ],
+  [
+   146322,
+   "S2-R14",
+   "OK",
+   "A months interval resolves to the same day of a later month, counted from the last completion, and produces a specific date rather than a month. A days interval counts days and drifts relative to the calendar",
+   "A months interval resolves to the same day of a later month, counted from the last completion, and produces a specific date rather than a month. A days interval counts days and drifts relative to the calendar, which is what a shop choosing days is asking for"
+  ],
+  [
+   146322,
+   "S2-E5",
+   "OK",
+   "Where the anchor day does not exist in the target month, the date falls on that month's last day. A service completed on 31 January and set to one month comes due 28 February, and the following cycle counts from that date",
+   "Where the anchor day does not exist in the target month, the date falls on that month's last day. A service completed on 31 January and set to one month comes due 28 February, and the following cycle counts from that date"
+  ],
+  [
+   146322,
+   "S2-E2",
+   "MISMATCH",
+   "A service needed at two fixed points is set up as two At rows",
+   "A service needed at two fixed points in the year is set up as two services, each with its own At"
+  ],
+  [
+   146322,
+   "S2-E3",
+   "MISMATCH",
+   "There is no one-time flag. A meter At row covers the one-off case",
+   "There is no one-time flag. A meter \"At\" row covers the one-off case"
+  ],
+  [
+   146323,
+   "S2-R16",
+   "OK",
+   "A service can name the other services on its schedule that it also covers, in a step before canned lines: a multi-select of the schedule's other services. PM-C covering PM-A and PM-B means that doing PM-C does both",
+   "A service can name the other services on its schedule that it also covers, in a step before canned lines: a multi-select of the schedule's other services. PM-C covering PM-A and PM-B means that doing PM-C does both"
+  ],
+  [
+   146323,
+   "S2-R17",
+   "OK",
+   "The covered services' canned lines arrive in the canned lines step pre-filled and editable, each marked with the service it came from, for example from PM-A. Changing or removing them here changes this service only, never the one they came from",
+   "The covered services' canned lines arrive in the canned lines step pre-filled and editable, each marked with the service it came from, for example from PM-A. Changing or removing them here changes this service only, never the one they came from. For a user without access to the home location they show pre-filled and read only, like the rest of the lines, per S4-R9"
+  ],
+  [
+   146323,
+   "S2-R18",
+   "OK",
+   "Services also covered shows only when the schedule already has at least one other routine service. On the first service, and on every compliance service, the step is not shown",
+   "Services also covered shows only when the schedule already has at least one other routine service. On the first service, and on every compliance service, the step is not shown and the steps after it move up by one"
+  ],
+  [
+   146323,
+   "S2-N8",
+   "MISMATCH",
+   "A compliance service is never offered in the picker and cannot name services of its own. It absorbs nothing and is absorbed by nothing",
+   "A compliance service is never offered in the picker and cannot name services of its own. It covers nothing and is covered by nothing, per S12-R13"
+  ],
+  [
+   146323,
+   "S2-N9",
+   "MISMATCH",
+   "A service cannot cover a service that already covers it, directly or through another; the list does not offer it ... In the canned-lines count, N absorbed counts the lines that came from covered services",
+   "A service cannot cover a service that already covers it, directly or through another; the list does not offer it. Covering is not inherited: a service names every service it covers. In the canned-lines count, N covered counts the lines that came from covered services"
+  ],
+  [
+   146323,
+   "S2-E6",
+   "OK",
+   "A service may cover nothing, and most will. Covering is never inferred from shared canned lines or from interval length; a shop states it",
+   "A service may cover nothing, and most will. Covering is never inferred from shared canned lines or from interval length; a shop states it"
+  ],
+  [
+   146324,
+   "S3-R1",
+   "OK",
+   "The service form will ask Is this a compliance inspection? before the trigger, because it changes the trigger",
+   "The service form will ask Is this a compliance inspection? before the trigger, because it changes the trigger"
+  ],
+  [
+   146324,
+   "S3-R2",
+   "OK",
+   "Turning it on will replace the trigger block with the compliance block. The two never appear together",
+   "Turning it on will replace the trigger block with the compliance block. The two never appear together"
+  ],
+  [
+   146324,
+   "S3-N1",
+   "OK",
+   "A compliance service has no meter triggers and no calendar interval",
+   "A compliance service has no meter triggers and no calendar interval"
+  ],
+  [
+   146325,
+   "S3-R3",
+   "OK",
+   "Type is free text and required. An (i) beside it shows examples: Annual safety, Annual state, Annual federal, Emissions test",
+   "Type is free text and required. An (i) beside it shows examples: Annual safety, Annual state, Annual federal, Emissions test"
+  ],
+  [
+   146325,
+   "S3-R12",
+   "ANCHOR-REMOVED",
+   "A compliance type a shop has added can be renamed, and cannot be deleted while any record still references it",
+   null
+  ],
+  [
+   146326,
+   "S3-R6",
+   "OK",
+   "The term is chosen on its own. The type fills in nothing",
+   "The term is chosen on its own. The type fills in nothing"
+  ],
+  [
+   146326,
+   "S3-R7",
+   "OK",
+   "Term will be in months, from 1 to 60, selected from a list, and is required. A compliance service without a term cannot produce a due date",
+   "Term will be in months, from 1 to 60, selected from a list, and is required. A compliance service without a term cannot produce a due date"
+  ],
+  [
+   146326,
+   "S3-R8",
+   "OK",
+   "Remind before expiry ... It is in months, defaults to 1 month for a term up to 12 months and 2 months above that, and can be changed. It cannot be longer than the term; a longer value is refused inline: Remind before expiry cannot be longer than the 6-month term",
+   "Remind before expiry sets how long before a certificate expires the service starts to read due soon. It is in months, defaults to 1 month for a term up to 12 months and 2 months above that, and can be changed. It cannot be longer than the term; a longer value is refused inline: Remind before expiry cannot be longer than the 6-month term"
+  ],
+  [
+   146326,
+   "S3-E2",
+   "OK",
+   "A bus and a tractor may carry the same type with different terms, 6 and 12 months",
+   "A bus and a tractor may carry the same type with different terms, 6 and 12 months"
+  ],
+  [
+   146327,
+   "S3-R9",
+   "OK",
+   "No certificate date will appear on this form. Certificate dates belong to the record on the asset",
+   "No certificate date will appear on this form. Certificate dates belong to the record on the asset"
+  ],
+  [
+   146327,
+   "S3-R10",
+   "OK",
+   "A compliance service will be orange, never red",
+   "A compliance service will be orange, never red"
+  ],
+  [
+   146327,
+   "S3-N2",
+   "OK",
+   "A compliance service with no matching record on the asset cannot come due, reads No record, and is excluded from every count",
+   "A compliance service with no matching record on the asset cannot come due, reads No record, and is excluded from every count"
+  ],
+  [
+   146328,
+   "S4-R4",
+   "OK",
+   "The empty state will read No lines on this service yet on one line, with the button beside it",
+   "The empty state will read No lines on this service yet on one line, with the button beside it"
+  ],
+  [
+   146328,
+   "S4-R1",
+   "OK",
+   "Add canned lines will open a picker with search",
+   "Add canned lines will open a picker with search"
+  ],
+  [
+   146328,
+   "S4-R2",
+   "OK",
+   "The picker will show hours per line, and no price",
+   "The picker will show hours per line, and no price"
+  ],
+  [
+   146328,
+   "S4-R3",
+   "OK",
+   "Selected lines will be ordered and reorderable by drag",
+   "Selected lines will be ordered and reorderable by drag"
+  ],
+  [
+   146328,
+   "S4-E3",
+   "OK",
+   "The picker does not offer creating a new canned line. That stays in Settings",
+   "The picker does not offer creating a new canned line. That stays in Settings"
+  ],
+  [
+   146329,
+   "S4-R6",
+   "OK",
+   "A service will invent no prices and estimate no time. Its hours are the sum of its lines' hours, and it shows no value anywhere in this feature",
+   "A service will invent no prices and estimate no time. Its hours are the sum of its lines' hours, and it shows no value anywhere in this feature"
+  ],
+  [
+   146329,
+   "S4-R5",
+   "OK",
+   "The line count is not a link and opens nothing. Hovering it opens a card styled as a small modal that lists the services it covers and then its canned lines, one per row, and closes when the pointer leaves",
+   "The line count is not a link and opens nothing. Hovering it opens a card styled as a small modal that lists the services it covers and then its canned lines, one per row, and closes when the pointer leaves"
+  ],
+  [
+   146330,
+   "S4-N1",
+   "OK",
+   "A service with no canned lines saves normally and is fully functional",
+   "A service with no canned lines saves normally and is fully functional"
+  ],
+  [
+   146330,
+   "S4-N2",
+   "OK",
+   "A shop that types every line freeform never uses this and is not prompted to",
+   "A shop that types every line freeform never uses this and is not prompted to"
+  ],
+  [
+   146330,
+   "S4-E1",
+   "OK",
+   "A canned line edited later in Settings changes what the service adds from then on",
+   "A canned line edited later in Settings changes what the service adds from then on"
+  ],
+  [
+   146330,
+   "S4-E2",
+   "OK",
+   "A canned line deleted in Settings leaves the service with one fewer line, without error",
+   "A canned line deleted in Settings leaves the service with one fewer line, without error"
+  ],
+  [
+   146331,
+   "S5-R1",
+   "OK",
+   "Reminder timing is set on each service, as one list of rows, each reading [ before | after ] [ n ] [ days ]. Rows are in days and nothing else",
+   "Reminder timing is set on each service, as one list of rows, each reading [ before | after ] [ n ] [ days ]. Rows are in days and nothing else. Services on one schedule may warn differently, because a large job needs weeks of notice where a routine one needs days, and one schedule with per-service timing keeps a manufacturer's schedule whole rather than splitting it in two"
+  ],
+  [
+   146331,
+   "S5-R2",
+   "OK",
+   "Every new service starts with three default rows: 14 days before, on the due date, and 7 days after",
+   "Every new service starts with three default rows: 14 days before, on the due date, and 7 days after. The shop changes them per service"
+  ],
+  [
+   146331,
+   "S5-R3",
+   "OK",
+   "The due date row cannot be deleted. Its delete control is disabled, not hidden",
+   "The due date row cannot be deleted. Its delete control is disabled, not hidden"
+  ],
+  [
+   146331,
+   "S5-R4",
+   "OK",
+   "The ceiling is five rows, after which Add reminder disables",
+   "The ceiling is five rows, after which Add reminder disables"
+  ],
+  [
+   146331,
+   "S5-R12",
+   "MISMATCH",
+   "A reminder row's days run 1 to 365. Two identical rows cannot both be saved, and a before row longer than the service's calendar interval is refused inline",
+   "A reminder row's days run 1 to 365. Two identical rows cannot both be saved. A before row must be shorter than the service's calendar interval: for a service every 7 days, a before row runs 1 to 6 days. A before row of the interval or longer is refused inline. For an interval in months, a month counts as 30 days, so a 1-month service allows a before row of 1 to 29 days"
+  ],
+  [
+   146332,
+   "S5-R8",
+   "MISMATCH",
+   "The rows drive when a service reads due soon on the asset tab, the worklist and the panel. They do not decide whether a row is listed on the worklist, which S13 does. In this release they email nobody",
+   "The rows drive when a service reads due soon on the asset tab, the worklist and the panel. They do not decide whether a row is listed on the worklist, which S13 does. In v1 they email nobody"
+  ],
+  [
+   146332,
+   "S5-R11",
+   "OK",
+   "A compliance service has no reminder rows. Its form shows Remind before expiry, per S3-R8, in their place",
+   "A compliance service has no reminder rows. Its form shows Remind before expiry, per S3-R8, in their place"
+  ],
+  [
+   146332,
+   "S5-N1",
+   "MISMATCH",
+   "Nothing in this release emails a customer automatically. There is no send switch on the schedule or on a service ... Reminders are not labelled internal-only",
+   "Nothing in v1 emails a customer automatically. There is no send switch on the schedule or on a service. A reminder reaches a customer only when someone presses Send reminder on the contact card, per S14; automatic sending is deferred to v2. Reminders are not labelled internal-only"
+  ],
+  [
+   146332,
+   "S5-E1",
+   "MISMATCH",
+   "Rows after the due date carry no internal effect in this release: a service is overdue from its due date onward whatever they say. They are kept because the email chunk sends on them",
+   "Rows after the due date carry no internal effect in v1: a service is overdue from its due date onward whatever they say. They are kept for automatic sending, deferred to v2"
+  ],
+  [
+   146333,
+   "S6-R1",
+   "OK",
+   "Applying a schedule to an asset copies its services onto that asset",
+   "Applying a schedule to an asset copies its services onto that asset"
+  ],
+  [
+   146333,
+   "S6-R2",
+   "OK",
+   "Editing a schedule afterwards will not touch assets already carrying it. They are not notified, not recalculated, not migrated",
+   "Editing a schedule afterwards will not touch assets already carrying it. They are not notified, not recalculated, not migrated"
+  ],
+  [
+   146333,
+   "S6-R3",
+   "OK",
+   "Editing will be silent. No interstitial, no affected asset count, no conflict preview",
+   "Editing will be silent. No interstitial, no affected asset count, no conflict preview"
+  ],
+  [
+   146333,
+   "S6-R4",
+   "OK",
+   "Assets enrolled later receive whatever the schedule says at that time",
+   "Assets enrolled later receive whatever the schedule says at that time"
+  ],
+  [
+   146333,
+   "S6-N1",
+   "OK",
+   "There is no re-apply or refresh action for already enrolled assets",
+   "There is no re-apply or refresh action for already enrolled assets"
+  ],
+  [
+   146333,
+   "S6-N2",
+   "OK",
+   "In this release a change to a schedule does not reach assets already on it. Removing the asset and enrolling it again, or archiving the schedule, moves it to the schedule's current form",
+   "In this release a change to a schedule does not reach assets already on it. Removing the asset and enrolling it again, or archiving the schedule, moves it to the schedule's current form"
+  ],
+  [
+   146334,
+   "S6-R11",
+   "OK",
+   "A service can be edited or removed from a schedule. Both ask for confirmation over the service editor, naming the service and the outcome: assets already enrolled are untouched, assets enrolled from now on get the schedule as it now stands. Removing a service that another covers names that service ... the lines already copied into PM-C stay",
+   "A service can be edited or removed from a schedule. Both ask for confirmation over the service editor, naming the service and the outcome: assets already enrolled are untouched, assets enrolled from now on get the schedule as it now stands. Removing a service that another covers names that service, for example PM-C covers PM-B. Removing PM-B takes it off PM-C; the lines already copied into PM-C stay"
+  ],
+  [
+   146334,
+   "S6-N3",
+   "OK",
+   "Removing a service never removes it from an asset already carrying it. There is no retroactive path, by design, and nothing warns as though there were",
+   "Removing a service never removes it from an asset already carrying it. There is no retroactive path, by design, and nothing warns as though there were"
+  ],
+  [
+   146335,
+   "S6-R12",
+   "MISMATCH",
+   "An active schedule can be duplicated. The copy is named after the original with a numeric suffix, lands in the list beside it, opens for editing, and carries no enrolled assets. An archived schedule offers Restore alone",
+   "An active schedule can be duplicated. The copy is named after the original with (Copy), then (Copy 2) and so on, as inspection templates are, lands in the list beside it, opens for editing, and carries no enrolled assets. An archived schedule offers Restore alone"
+  ],
+  [
+   146336,
+   "S6-R5",
+   "OK",
+   "A schedule can be archived, never deleted",
+   "A schedule can be archived, never deleted"
+  ],
+  [
+   146336,
+   "S6-R6",
+   "MISMATCH",
+   "Archiving deactivates the schedule and unenrols every asset on it. The confirmation says so in these words: Archiving deactivates the schedule. All assets enrolled in the schedule will be unenrolled. Its action is red",
+   "Archiving deactivates the schedule and unenrolls every asset on it. The confirmation says so in these words: Archiving deactivates the schedule. All assets enrolled in the schedule will be unenrolled. Its action is red"
+  ],
+  [
+   146336,
+   "S6-R7",
+   "OK",
+   "An archived schedule cannot be applied to new assets",
+   "An archived schedule cannot be applied to new assets"
+  ],
+  [
+   146336,
+   "S6-R8",
+   "OK",
+   "Restoring an archived schedule makes it available to enrol again. It enrols nothing: the assets archiving unenrolled stay unenrolled until someone enrols them again",
+   "Restoring an archived schedule makes it available to enrol again. It enrols nothing: the assets archiving unenrolled stay unenrolled until someone enrols them again"
+  ],
+  [
+   146337,
+   "S6-R13",
+   "OK",
+   "Remove from schedule, in the schedule's menu on the asset's Maintenance tab, takes that one asset off that schedule. It asks first: Remove 402 from Highway Tractor PM? Its maintenance history is kept. Its reminders from this schedule stop. The action is red and needs the same permission as enrolling",
+   "Remove from schedule, in the schedule's menu on the asset's Maintenance tab, takes that one asset off that schedule. It asks first: Remove 402 from Highway Tractor PM? Its maintenance history is kept. Its reminders from this schedule stop. The action is red and needs the same permission as enrolling"
+  ],
+  [
+   146337,
+   "S6-R14",
+   "OK",
+   "After Remove from schedule, that schedule's rows leave the asset tab and the worklist. History stays ... the asset's certificates stay ... an open work order is not changed. Enrolling the asset again later counts from its last completion ... Changing an asset's schedule is Remove from schedule, then Enrol",
+   "After Remove from schedule, that schedule's rows leave the asset tab and the worklist. History stays, per S6-E1; the asset's certificates stay, per S8-R8; an open work order is not changed. Enrolling the asset again later counts from its last completion, per S6-E2. Changing an asset's schedule is Remove from schedule, then Enrol"
+  ],
+  [
+   146338,
+   "S6-E1",
+   "OK",
+   "Removing a schedule from an asset does not destroy history. Cycles belong to the asset and service pair",
+   "Removing a schedule from an asset does not destroy history. Cycles belong to the asset and service pair"
+  ],
+  [
+   146338,
+   "S6-E2",
+   "OK",
+   "Applying a new schedule afterwards anchors each service from the last completion of the service of the same name on that asset, otherwise from now",
+   "Applying a new schedule afterwards anchors each service from the last completion of the service of the same name on that asset, otherwise from now"
+  ],
+  [
+   146338,
+   "S6-E4",
+   "MISMATCH",
+   "Archiving unenrols without destroying history. Each asset keeps its completed cycles ... so enrolling it again later anchors from the last completion",
+   "Archiving unenrolls without destroying history. Each asset keeps its completed cycles per S6-E1, so enrolling it again later anchors from the last completion per S6-E2"
+  ],
+  [
+   146338,
+   "S6-E3",
+   "OK",
+   "A new regulatory requirement is the known weak point. The shop must apply the schedule again per unit and nothing warns it",
+   "A new regulatory requirement is the known weak point. The shop must apply the schedule again per unit and nothing warns it"
+  ],
+  [
+   146339,
+   "S7-R1",
+   "MISMATCH",
+   "Enrolment starts from the asset's Maintenance tab, from the maintenance panel on a work order, or for several assets at once from the customer's Assets tab. All three open the same modal, which offers the schedules of the location chosen in the header",
+   "Enrolment starts from the asset's Maintenance tab, from the maintenance panel on a work order, or for several assets at once from the customer's Assets tab. All three open the same modal, which offers every active schedule of the organization, whichever location is chosen in the header, each with its home location per S1-R14 where there is more than one workplace"
+  ],
+  [
+   146339,
+   "S7-R23",
+   "OK",
+   "Enrolment is for one of the asset's customers. Where the asset is linked to more than one customer, the modal asks which, preselected where there is only one",
+   "Enrolment is for one of the asset's customers. Where the asset is linked to more than one customer, the modal asks which, preselected where there is only one. That customer's notification setting, preferred contact and name govern the asset on every surface, and the asset appears once"
+  ],
+  [
+   146339,
+   "S7-N1",
+   "ANCHOR-REMOVED",
+   "An asset with no customer cannot be enrolled",
+   null
+  ],
+  [
+   146339,
+   "S7-N6",
+   "OK",
+   "Where the organization has no schedules, the enrolment modal says so plainly and offers the route to create one rather than presenting an empty control",
+   "Where the organization has no schedules, the enrolment modal says so plainly and offers the route to create one rather than presenting an empty control. This is the state every shop starts in"
+  ],
+  [
+   146339,
+   "S7-E8",
+   "OK",
+   "A schedule the asset is already on is not offered in the modal",
+   "A schedule the asset is already on is not offered in the modal"
+  ],
+  [
+   146340,
+   "S7-R2",
+   "OK",
+   "The modal will collect, in order: the schedule, then one optional last service date per service. Current readings are not collected here",
+   "The modal will collect, in order: the schedule, then one optional last service date per service. Current readings are not collected here, because the asset header and the work order already carry them"
+  ],
+  [
+   146340,
+   "S7-R4",
+   "OK",
+   "Each last service date is filled in with the most recent completion on this asset of a service with the same name, from any schedule, and is otherwise blank. The advisor can change it. A renamed service has no match. Blank means counting starts today ... The date cannot be in the future",
+   "Each last service date is filled in with the most recent completion on this asset of a service with the same name, from any schedule, and is otherwise blank. The advisor can change it. A renamed service has no match. Blank means counting starts today, stated in the modal. The date cannot be in the future. Names match ignoring capitals and surrounding spaces. Where two services match, the latest completion wins"
+  ],
+  [
+   146340,
+   "S7-R8",
+   "OK",
+   "(optional) will sit in brackets inline with its label",
+   "(optional) will sit in brackets inline with its label"
+  ],
+  [
+   146340,
+   "S7-E5",
+   "OK",
+   "Enrolment applies the schedule as it stands. Nothing is skipped or negotiated",
+   "Enrolment applies the schedule as it stands. Nothing is skipped or negotiated"
+  ],
+  [
+   146340,
+   "S7-E3",
+   "OK",
+   "Enrolment never invents a past. A due date comes from a last service date the advisor entered or the system recorded, otherwise from today",
+   "Enrolment never invents a past. A due date comes from a last service date the advisor entered or the system recorded, otherwise from today"
+  ],
+  [
+   146341,
+   "S7-R6",
+   "MISMATCH",
+   "A compliance service will show its existing record's number and expiry, or No record with + Add record",
+   "A compliance service will show its existing record's number and End date, or No record with + Add record"
+  ],
+  [
+   146341,
+   "S7-R15",
+   "OK",
+   "Where a service watches a meter that has no usable readings, its row carries a badge naming the meter, Needs mileage reading or Needs engine hours reading ... The calendar date still shows",
+   "Where a service watches a meter that has no usable readings, its row carries a badge naming the meter, Needs mileage reading or Needs engine hours reading, so the advisor sees what the schedule cannot yet measure. The calendar date still shows"
+  ],
+  [
+   146341,
+   "S7-E1",
+   "MISMATCH",
+   "A meter At that has already been passed at enrolment shows what happened and offers Mark as done or Leave due. The default is done",
+   "A meter \"At\" that has already been passed at enrolment shows what happened and offers Mark as done or Leave due. The default is done"
+  ],
+  [
+   146341,
+   "S7-E2",
+   "MISMATCH",
+   "A calendar At takes its next occurrence, counting today if that day has not passed",
+   "A calendar \"At\" takes its next occurrence, counting today if that day has not passed"
+  ],
+  [
+   146342,
+   "S7-R24",
+   "MISMATCH",
+   "The customer's Assets tab has Enroll in maintenance schedule beside New Asset. It opens the enrolment modal with an Assets section: every active asset of that customer with a checkbox and Select all, and a search matching type, make, unit and VIN",
+   "The customer's Assets tab has Enroll in Schedule beside New Asset. It opens the enrolment modal with an Assets section: every asset of that customer with a checkbox and Select all, and a search matching type, make, unit and VIN"
+  ],
+  [
+   146342,
+   "S7-R25",
+   "OK",
+   "In the Assets section an asset already on the chosen schedule is greyed, cannot be ticked, and reads Already on this schedule. The action reads Enroll N assets",
+   "In the Assets section an asset already on the chosen schedule is greyed, cannot be ticked, and reads Already on this schedule. The action reads Enroll N assets"
+  ],
+  [
+   146342,
+   "S7-R26",
+   "OK",
+   "Bulk enrolment asks for no last service dates and no certificates. Each asset takes its dates from its own history ... 8 of 12 have a last service on record; the rest count from today",
+   "Bulk enrolment asks for no last service dates and no certificates. Each asset takes its dates from its own history, per S7-R4, and the modal says how many have one, for example 8 of 12 have a last service on record; the rest count from today. Certificates are added on each asset afterwards"
+  ],
+  [
+   146342,
+   "S7-N7",
+   "OK",
+   "Bulk enrolment works for one customer at a time, from that customer's Assets tab. There is no enrolment across customers",
+   "Bulk enrolment works for one customer at a time, from that customer's Assets tab. There is no enrolment across customers"
+  ],
+  [
+   146342,
+   "S7-N4",
+   "OK",
+   "There is no bulk path from the schedule side",
+   "There is no bulk path from the schedule side. Enrolment starts from an asset, never by applying a schedule outward to many customers at once"
+  ],
+  [
+   146342,
+   "S7-E4",
+   "OK",
+   "An asset may be enrolled on more than one schedule. Overlapping services are allowed and produce separate rows",
+   "An asset may be enrolled on more than one schedule. Overlapping services are allowed and produce separate rows"
+  ],
+  [
+   146343,
+   "S7-R13",
+   "OK",
+   "The enrolment modal will show the customer's Send preventive maintenance notifications setting and let it be changed there, writing the customer's own field",
+   "The enrolment modal will show the customer's Send preventive maintenance notifications setting and let it be changed there, writing the customer's own field. An advisor who finds it off mid-enrolment does not have to leave the modal to change it"
+  ],
+  [
+   146343,
+   "S7-R14",
+   "OK",
+   "Enrolling an asset on a schedule and enrolling a customer in notifications are two separate acts",
+   "Enrolling an asset on a schedule and enrolling a customer in notifications are two separate acts. A shop may track a unit internally while the customer receives nothing"
+  ],
+  [
+   146343,
+   "S7-R17",
+   "OK",
+   "The setting is on by default, for existing and new customers alike",
+   "The setting is on by default, for existing and new customers alike. It is an exception a shop applies rather than a permission it must collect: where it is off, Send reminder is unavailable for that customer, per S14-R9"
+  ],
+  [
+   146343,
+   "S7-R18",
+   "OK",
+   "The field lives on the customer as a live toggle, Maintenance notifications, on the customer information card, and as a checkbox in the enrolment modal ... It is not in the customer edit dialog, and it is not a tab, a page or a preferences matrix",
+   "The field lives on the customer as a live toggle, Maintenance notifications, on the customer information card, and as a checkbox in the enrolment modal per S7-R13. It is not in the customer edit dialog, and it is not a tab, a page or a preferences matrix"
+  ],
+  [
+   146343,
+   "S7-R19",
+   "OK",
+   "Turning it off will state how many of that customer's enrolled units will not receive reminders",
+   "Turning it off will state how many of that customer's enrolled units will not receive reminders. A fleet does not go silent without the shop being told what it just silenced"
+  ],
+  [
+   146343,
+   "S7-R20",
+   "MISMATCH",
+   "A customer whose setting is on but who has no email address on file receives nothing. Every surface that shows the setting says so where it applies",
+   "A customer none of whose contacts has an email address cannot be sent a reminder. Every surface that shows the setting says so where it applies, with a way to add a contact"
+  ],
+  [
+   146343,
+   "S7-R21",
+   "OK",
+   "One value covers every unit that customer owns, including units enrolled after it was set",
+   "One value covers every unit that customer owns, including units enrolled after it was set"
+  ],
+  [
+   146343,
+   "S7-R22",
+   "OK",
+   "Changing it follows the permission to edit a customer. It is not financial data and does not sit behind the AP and AR visibility gate",
+   "Changing it follows the permission to edit a customer. It is not financial data and does not sit behind the AP and AR visibility gate the way the PO requirement does"
+  ],
+  [
+   146344,
+   "S7-N5",
+   "OK",
+   "There is no bulk consent action anywhere. The setting is on by default, so there is nothing to turn on in bulk",
+   "There is no bulk consent action anywhere. The setting is on by default, so there is nothing to turn on in bulk"
+  ],
+  [
+   146344,
+   "S7-E7",
+   "OK",
+   "A setting changed from inside enrolment stands even if the enrolment is then cancelled. Enrolling a unit and notifying a customer are two separate acts",
+   "A setting changed from inside enrolment stands even if the enrolment is then cancelled. Enrolling a unit and notifying a customer are two separate acts"
+  ],
+  [
+   146344,
+   "S7-E6",
+   "OK",
+   "A unit whose enrolling customer is unlinked from it stops being tracked for that customer. Enrolling it again for another customer follows that customer's setting from then on",
+   "A unit whose enrolling customer is unlinked from it stops being tracked for that customer. Enrolling it again for another customer follows that customer's setting from then on"
+  ],
+  [
+   146345,
+   "S7-R9",
+   "MISMATCH",
+   "Enrolment will never trigger a bulk customer send. Services already due or overdue at enrolment are suppressed from automatic email",
+   "Enrolment never sends anything to a customer. Nothing in v1 emails a customer automatically, per S5-N1"
+  ],
+  [
+   146345,
+   "S7-R10",
+   "OK",
+   "The confirmation will state both halves: the rows appear on the worklist, no emails are sent for them",
+   "The confirmation will state both halves: the rows appear on the worklist, no emails are sent for them"
+  ],
+  [
+   146345,
+   "S7-N2",
+   "OK",
+   "Nothing is suppressed internally. Every row appears immediately with its real status",
+   "Nothing is suppressed internally. Every row appears immediately with its real status"
+  ],
+  [
+   146345,
+   "S7-N3",
+   "ANCHOR-REMOVED",
+   "Services falling due after enrolment send normally. Suppression covers the backlog only",
+   null
+  ],
+  [
+   146346,
+   "S8-R13",
+   "MISMATCH",
+   "The asset card carries a Compliance section below Contact, one line per current record, for example CVIP \u00b7 AB-4471902 \u00b7 expires Oct 2026, each opening the record form, with + Add record beneath. It shows whether or not the asset is on a schedule",
+   "The asset card carries a Compliance section below Contact, one line per current record, for example CVIP \u00b7 AB-4471902 \u00b7 ends 14 Oct 2026, each opening the record form, with + Add record beneath. It shows whether or not the asset is on a schedule"
+  ],
+  [
+   146346,
+   "S8-R5",
+   "OK",
+   "One record form will serve two entry points: the enrolment modal's record row and the work order",
+   "One record form will serve two entry points: the enrolment modal's record row and the work order"
+  ],
+  [
+   146346,
+   "S8-R7",
+   "OK",
+   "Where a record exists, the row will show it with Edit, and + Add record stays beside it for a renewal",
+   "Where a record exists, the row will show it with Edit, and + Add record stays beside it for a renewal"
+  ],
+  [
+   146347,
+   "S8-R2",
+   "MISMATCH",
+   "A record will carry type, term, effective date, expiry date, an optional artefact number and one optional attachment",
+   "A record will carry type, term, Start date, End date, an optional certificate number and one optional attachment"
+  ],
+  [
+   146347,
+   "S8-R3",
+   "OK",
+   "The number field is labelled Certificate number",
+   "The number field is labelled Certificate number"
+  ],
+  [
+   146347,
+   "S8-R4",
+   "OK",
+   "The number field is optional but always present. Every v1 type produces a document",
+   "The number field is optional but always present. Every v1 type produces a document"
+  ],
+  [
+   146347,
+   "S8-R6",
+   "OK",
+   "Field widths will follow one scale, half or full",
+   "Field widths will follow one scale, half or full"
+  ],
+  [
+   146347,
+   "S8-R9",
+   "MISMATCH",
+   "The attachment will reuse the DVI attachment component. Replacing the file replaces the record's only attachment",
+   "A record carries one optional file: PDF, JPEG or PNG, up to 10 MB. It can be replaced or removed; replacing it replaces the record's only attachment"
+  ],
+  [
+   146348,
+   "S8-R10",
+   "MISMATCH",
+   "Term, effective month and expiry month derive from one another: any two give the third. Certificate dates are months, never days, and a certificate always expires on the last day of its expiry month. A month a person typed always wins over a derived one",
+   "Term, Start date and End date derive from one another: Start date plus the term fills End date, and End date less the term fills Start date. Both are days, picked from a calendar, so nobody has to guess whether a certificate ends on the same day or at the end of a month. A date a person typed always wins over a derived one. End date lands on the same day number: 14 Oct 2025 plus 12 months is 14 Oct 2026. Where that day does not exist in the end month, it is the last day of that month, so 31 Jan plus 1 month is the last day of February"
+  ],
+  [
+   146348,
+   "S8-R11",
+   "OK",
+   "A record needs the term and at least one of the two dates. It cannot be saved with neither",
+   "A record needs the term and at least one of the two dates. It cannot be saved with neither. A certificate in hand always shows when it ends; when it started is sometimes nowhere on the document"
+  ],
+  [
+   146348,
+   "S8-E2",
+   "MISMATCH",
+   "A certificate expires on the last day of its expiry month, not the last working day",
+   "A certificate is valid through its End date and lapses the day after. A weekend or holiday does not move it"
+  ],
+  [
+   146348,
+   "S8-E1",
+   "MISMATCH",
+   "A certificate arrives already months old, issued by another shop. The effective date is entered manually",
+   "A certificate arrives already months old, issued by another shop. The Start date is entered by hand"
+  ],
+  [
+   146349,
+   "S8-R12",
+   "OK",
+   "A record belongs to the asset and to the compliance service it was added for. An asset can hold several records for a service; the one with the latest expiry is current and drives the service. Renewing adds a new record; earlier ones stay read-only beneath the current one. Edit corrects the current record only ... a record added for a service of the same name carries over",
+   "A record belongs to the asset and to the compliance service it was added for. An asset can hold several records for a service; the one with the latest expiry is current and drives the service. Renewing adds a new record; earlier ones stay read-only beneath the current one. Edit corrects the current record only. When the asset is enrolled on another schedule, a record added for a service of the same name carries over. A renewal drives the service as soon as it is entered, even when its Start date is still ahead"
+  ],
+  [
+   146349,
+   "S8-R8",
+   "OK",
+   "A record belongs to the asset and survives the removal of any schedule",
+   "A record belongs to the asset and survives the removal of any schedule"
+  ],
+  [
+   146349,
+   "S8-N1",
+   "OK",
+   "A record can exist with no schedule and no enrolment",
+   "A record can exist with no schedule and no enrolment"
+  ],
+  [
+   146349,
+   "S8-N3",
+   "OK",
+   "There is no Certificates tab in v1. Records are reached from the asset card ... and from the service row that uses them",
+   "There is no Certificates tab in v1. Records are reached from the asset card, per S8-R13, and from the service row that uses them"
+  ],
+  [
+   146349,
+   "S8-E4",
+   "OK",
+   "Adding a record for a service that is overdue moves its due date immediately",
+   "Adding a record for a service that is overdue moves its due date immediately"
+  ],
+  [
+   146350,
+   "S8-N2",
+   "OK",
+   "A compliance service with no record cannot come due and is excluded from every count",
+   "A compliance service with no record cannot come due and is excluded from every count"
+  ],
+  [
+   146350,
+   "S8-E3",
+   "OK",
+   "A work order closing two compliance inspections asks for details per record, not once for the work order",
+   "A work order closing two compliance inspections asks for details per record, not once for the work order"
+  ],
+  [
+   146351,
+   "S9-R16",
+   "OK",
+   "The Maintenance tab is the last tab on the asset page, after Notes. The asset still opens on Work Orders",
+   "The Maintenance tab is the last tab on the asset page, after Notes. The asset still opens on Work Orders"
+  ],
+  [
+   146351,
+   "S9-R14",
+   "MISMATCH",
+   "An asset on no schedule shows This unit is not on a maintenance schedule, with Enrol ... For an asset with no customer, Enrol is disabled and reads Add a customer to this unit to enrol it",
+   "An asset on no schedule shows This unit is not on a maintenance schedule, with Enroll in Schedule per S7"
+  ],
+  [
+   146352,
+   "S9-R1",
+   "OK",
+   "The tab will open with current readings: distance and engine hours, each showing whether it is recorded or estimated, with its age",
+   "The tab will open with current readings: distance and engine hours, each showing whether it is recorded or estimated, with its age"
+  ],
+  [
+   146352,
+   "S9-R2",
+   "OK",
+   "A recorded reading will show the exact value with no qualifier. An estimate will carry a badge and its basis",
+   "A recorded reading will show the exact value with no qualifier. An estimate will carry a badge and its basis"
+  ],
+  [
+   146352,
+   "S9-R17",
+   "OK",
+   "The confidence meter's Low state is never red. Red is reserved for overdue",
+   "The confidence meter's Low state is never red. Red is reserved for overdue"
+  ],
+  [
+   146353,
+   "S9-R4",
+   "OK",
+   "Services will be listed flat and sorted by date, with the schedule as a column, not grouped by schedule",
+   "Services will be listed flat and sorted by date, with the schedule as a column, not grouped by schedule"
+  ],
+  [
+   146353,
+   "S9-R5",
+   "OK",
+   "Each row will show next due as a date, with the rule that produced it beneath",
+   "Each row will show next due as a date, with the rule that produced it beneath"
+  ],
+  [
+   146353,
+   "S9-R6",
+   "OK",
+   "Last done will be the date its cycle counts from ... labelled so it cannot be confused with a line completion date",
+   "Last done will be the date its cycle counts from, as confirmed per S18-R13, or the date entered for a completion elsewhere, labelled so it cannot be confused with a line completion date"
+  ],
+  [
+   146353,
+   "S9-R10",
+   "OK",
+   "A service will appear once. A unit that missed four cycles shows one row reading overdue, with the date it fell due",
+   "A service will appear once. A unit that missed four cycles shows one row reading overdue, with the date it fell due"
+  ],
+  [
+   146353,
+   "S9-E1",
+   "OK",
+   "A unit on two schedules carrying the same service shows two rows, each with its schedule as a chip",
+   "A unit on two schedules carrying the same service shows two rows, each with its schedule as a chip"
+  ],
+  [
+   146354,
+   "S9-R7",
+   "OK",
+   "Status will be a badge beside the service, carrying exactly three values: due soon, due today, overdue. A service with no badge is tracked and nothing is due ... joins no other status set in the product",
+   "Status will be a badge beside the service, carrying exactly three values: due soon, due today, overdue. A service with no badge is tracked and nothing is due. It is a display on the asset and joins no other status set in the product"
+  ],
+  [
+   146354,
+   "S9-R8",
+   "OK",
+   "Due soon starts when the service's first reminder row is reached, and for a compliance service at its Remind before expiry",
+   "Due soon starts when the service's first reminder row is reached, and for a compliance service at its Remind before expiry, per S12-R4"
+  ],
+  [
+   146354,
+   "S9-N1",
+   "OK",
+   "There is no Active or Paused status",
+   "There is no Active or Paused status"
+  ],
+  [
+   146354,
+   "S9-N2",
+   "OK",
+   "There is no Ignore, Pause, Service history or Activity action",
+   "There is no Ignore, Pause, Service history or Activity action"
+  ],
+  [
+   146355,
+   "S9-R12",
+   "OK",
+   "The Due cell shows one line: the earliest candidate and the trigger that produced it. Every other candidate is reachable from the row menu rather than stacked in the cell, because a service resets on the first trigger and the later candidates are then recomputed",
+   "The Due cell shows one line: the earliest candidate and the trigger that produced it. Every other candidate is reachable from the row menu rather than stacked in the cell, because a service resets on the first trigger and the later candidates are then recomputed, so they name dates that will not happen. The Interval column already says which triggers the service watches"
+  ],
+  [
+   146355,
+   "S9-N3",
+   "OK",
+   "A service whose meter has no usable readings shows the calendar date and reads Calendar \u00b7 needs mileage reading, or engine hours. This is the ordinary case, not a warning",
+   "A service whose meter has no usable readings shows the calendar date and reads Calendar \u00b7 needs mileage reading, or engine hours. This is the ordinary case, not a warning"
+  ],
+  [
+   146356,
+   "S9-R9",
+   "OK",
+   "A routine service row offers Mark complete, Create work order, Skip, and Other triggers",
+   "A routine service row offers Mark complete, Create work order, Skip, and Other triggers. Mark complete opens the modal of S18-R1 and resets the service at once"
+  ],
+  [
+   146356,
+   "S9-R11",
+   "OK",
+   "A compliance service row offers Mark complete, Create work order and Skip",
+   "A compliance service row offers Mark complete, Create work order and Skip. Mark complete opens the modal of S18-R1, with the certificate of S18-R5"
+  ],
+  [
+   146356,
+   "S9-R13",
+   "OK",
+   "Skip means the shop knows the service is due and is not acting on it now. It hides the row from the worklist; on the asset tab the row stays with a grey Skipped badge and its date unchanged ... Skip moves no date and records no completion",
+   "Skip means the shop knows the service is due and is not acting on it now. It hides the row from the worklist; on the asset tab the row stays with a grey Skipped badge and its date unchanged. Its menu offers Undo skip, and for a compliance service also + Add record. Skip moves no date and records no completion"
+  ],
+  [
+   146356,
+   "S9-R18",
+   "OK",
+   "A skipped routine service comes back on the worklist when the asset gets a new reading or a new work order. A skipped compliance service comes back when its record changes",
+   "A skipped routine service comes back on the worklist when the asset gets a new reading or a new work order. A skipped compliance service comes back when its record changes"
+  ],
+  [
+   146356,
+   "S9-E4",
+   "OK",
+   "A unit off the road, or a customer having the inspection done elsewhere, is what Skip is for",
+   "A unit off the road, or a customer having the inspection done elsewhere, is what Skip is for. Adding a record afterwards brings the service back on its own, because a compliance service with no current record cannot come due per S3-N2"
+  ],
+  [
+   146357,
+   "S11-R9",
+   "OK",
+   "Every estimated due date shows a month, at every confidence, with its confidence beneath it as the meter and a word: High, Medium or Low confidence. The rule that produced it ... sits in the meter's hover ... An exact date belongs to a recorded reading alone",
+   "Every estimated due date shows a month, at every confidence, with its confidence beneath it as the meter and a word: High, Medium or Low confidence. The rule that produced it, for example based on mileage estimate, sits in the meter's hover. A due or overdue service shows its badge and still its month. An exact date belongs to a recorded reading alone"
+  ],
+  [
+   146357,
+   "S11-R13",
+   "MISMATCH",
+   "An overdue row derived from a meter estimate shows its estimated month and carries no figure at any confidence: never overdue by 1,200 mileage. A date from a certificate term reads its month and Certificate ... A date from the calendar reads its month and Calendar",
+   "An overdue row derived from a meter estimate shows its estimated month and carries no figure at any confidence: never overdue by 1,200 mileage. A date from a certificate reads its End date and Certificate, for example 14 Oct 2026 \u00b7 Certificate, because the certificate names the day. A date from the calendar reads its month and Calendar"
+  ],
+  [
+   146357,
+   "S9-E2",
+   "OK",
+   "Entering a reading here recalculates every dependent service immediately",
+   "Entering a reading here recalculates every dependent service immediately"
+  ],
+  [
+   146358,
+   "S13-R1",
+   "OK",
+   "The list will sit under Customers as a Maintenance reminders tab. It is organization wide, not location specific",
+   "The list will sit under Customers as a Maintenance reminders tab. It is organization wide, not location specific"
+  ],
+  [
+   146358,
+   "S13-R32",
+   "OK",
+   "The Customers page's search is shared by both tabs: a term typed on one stays when switching to the other. The New customer action belongs to the Customers tab and does not appear here",
+   "The Customers page's search is shared by both tabs: a term typed on one stays when switching to the other. The New customer action belongs to the Customers tab and does not appear here"
+  ],
+  [
+   146358,
+   "S13-N1",
+   "OK",
+   "There is no count badge on the Customers nav item, nor on the Maintenance reminders tab",
+   "There is no count badge on the Customers nav item, nor on the Maintenance reminders tab"
+  ],
+  [
+   146358,
+   "S13-R35",
+   "OK",
+   "Rows open nothing. The row's buttons and its three-dot menu are the only way into anything from the list",
+   "Rows open nothing. The row's buttons and its three-dot menu are the only way into anything from the list"
+  ],
+  [
+   146358,
+   "S13-R11",
+   "OK",
+   "The list will be server side paged and sorted",
+   "The list will be server side paged and sorted"
+  ],
+  [
+   146359,
+   "S13-R2",
+   "OK",
+   "The header has four tiles. Overdue: due before today. Due in a month: today up to 30 days ahead. Due in 3 months: 31 to 91 days ahead. Needs readings: per S13-R22. Each counts assets; an asset with rows in two tiles counts once in each, so the tiles do not add up to a total",
+   "The header has four tiles. Overdue: due before today. Due in a month: today up to 30 days ahead. Due in 3 months: 31 to 91 days ahead. Needs readings: per S13-R22. Each counts assets; an asset with rows in two tiles counts once in each, so the tiles do not add up to a total"
+  ],
+  [
+   146359,
+   "S13-R3",
+   "OK",
+   "Tiles will act as filters. All carry the same visual treatment, with no colour singling out overdue",
+   "Tiles will act as filters. All carry the same visual treatment, with no colour singling out overdue"
+  ],
+  [
+   146359,
+   "S13-R4",
+   "OK",
+   "Clicking a tile filters the list. Clicking it again clears the filter",
+   "Clicking a tile filters the list. Clicking it again clears the filter"
+  ],
+  [
+   146359,
+   "S13-R5",
+   "OK",
+   "More than one tile may be active at once",
+   "More than one tile may be active at once"
+  ],
+  [
+   146359,
+   "S13-N3",
+   "OK",
+   "A service appears once however many cycles it has missed",
+   "A service appears once however many cycles it has missed"
+  ],
+  [
+   146360,
+   "S13-R20",
+   "OK",
+   "The three time tiles do not overlap, and selecting two shows both. Needs readings crosses them: selected with a time tile it shows the assets that have a row in each, with every matching row",
+   "The three time tiles do not overlap, and selecting two shows both. Needs readings crosses them: selected with a time tile it shows the assets that have a row in each, with every matching row"
+  ],
+  [
+   146360,
+   "S13-R22",
+   "OK",
+   "A row counts toward Needs readings when its service watches mileage or engine hours and that meter has no usable pair of readings: no reading, only one, or none that can be compared. The row still shows its calendar date. A calendar-only service never counts",
+   "A row counts toward Needs readings when its service watches mileage or engine hours and that meter has no usable pair of readings: no reading, only one, or none that can be compared. The row still shows its calendar date. A calendar-only service never counts"
+  ],
+  [
+   146361,
+   "S13-R36",
+   "OK",
+   "With no tile active the list shows every row that is overdue, due today or due within the next 91 days, plus every Needs readings row whatever its date. A service further out is not listed",
+   "With no tile active the list shows every row that is overdue, due today or due within the next 91 days, plus every Needs readings row whatever its date. A service further out is not listed"
+  ],
+  [
+   146361,
+   "S13-R37",
+   "MISMATCH",
+   "The list shows 50 rows per page, sorted by due date, oldest first, then by unit. Asset, customer, service and due are sortable by their column header. Search matches unit number, VIN, customer and service name, and narrows the tiles as the location filter does",
+   "The list loads 50 rows at a time from the server as the user scrolls, as the Work Orders list does, sorted by due date, oldest first, then by unit. Asset, customer, service and due are sortable by their column header. Search matches unit number, VIN, customer and service name, and narrows the tiles as the location filter does"
+  ],
+  [
+   146361,
+   "S13-R33",
+   "OK",
+   "Where nothing is enrolled, the tab says there are no maintenance reminders yet. Where assets are enrolled but nothing falls inside the list's window, the time tiles read zero and the table says nothing is due in the next three months. With a tile, filter or search active and nothing matching, the table reads No reminders match, with Clear filters",
+   "Where nothing is enrolled, the tab says there are no maintenance reminders yet. Where assets are enrolled but nothing falls inside the list's window, the time tiles read zero and the table says nothing is due in the next three months. With a tile, filter or search active and nothing matching, the table reads No reminders match, with Clear filters"
+  ],
+  [
+   146362,
+   "S13-R6",
+   "OK",
+   "The column set will be one across every group, with cells adapting rather than columns changing: asset, customer, service, due status, due with its confidence or rule beneath, work order with its status, actions",
+   "The column set will be one across every group, with cells adapting rather than columns changing: asset, customer, service, due status, due with its confidence or rule beneath, work order with its status, actions"
+  ],
+  [
+   146362,
+   "S13-R7",
+   "OK",
+   "The unit will read as unit number followed by year, make and model, falling back to year, make and model where there is no unit number",
+   "The unit will read as unit number followed by year, make and model, falling back to year, make and model where there is no unit number"
+  ],
+  [
+   146362,
+   "S13-R9",
+   "OK",
+   "The location column will render only for an organization with more than one workplace",
+   "The location column will render only for an organization with more than one workplace. This holds for every user of that organization, including one who can open only one of its workplaces"
+  ],
+  [
+   146363,
+   "S13-R13",
+   "OK",
+   "The Due status column carries the asset tab's three badges, due soon, due today and overdue, per S9-R7, and is empty for a service not yet due. It is headed Due status so it never reads as a work order's status",
+   "The Due status column carries the asset tab's three badges, due soon, due today and overdue, per S9-R7, and is empty for a service not yet due. It is headed Due status so it never reads as a work order's status"
+  ],
+  [
+   146363,
+   "S13-R23",
+   "OK",
+   "The two maintenance surfaces carry the same due badges, due soon, due today and overdue, per S9-R7. A work order's status is a different thing and appears only as the badge beside its number",
+   "The two maintenance surfaces carry the same due badges, due soon, due today and overdue, per S9-R7. A work order's status is a different thing and appears only as the badge beside its number"
+  ],
+  [
+   146363,
+   "S13-R14",
+   "OK",
+   "The row shows the most recent work order on which this service is addressed, whichever path addressed it, as a link with that work order's own status as a badge beside it ... A row with no work order shows a dash. A declined work order stays linked with its badge and the row offers Create work order again. With a live work order linked, Create work order becomes Open work order; a complete one shows Invoice",
+   "The row shows the most recent work order on which this service is addressed, whichever path addressed it, as a link with that work order's own status as a badge beside it, per S13-R25. A row with no work order shows a dash. A declined work order stays linked with its badge and the row offers Create work order again. With a live work order linked, Create work order becomes Open work order; a complete one shows Invoice per S13-R26"
+  ],
+  [
+   146363,
+   "S13-R25",
+   "MISMATCH",
+   "The badge beside the work order number shows its status exactly as the app names it, every value up to invoicing, On Hold and Review included. Complete means the work is done and the service has not yet reset; invoicing resets it and the row moves on to its next cycle",
+   "The badge beside the work order number shows its status exactly as the app names it, every value up to invoicing, Review included. Complete means the work is done and the service has not yet reset; invoicing resets it, or Mark complete resets it at once, and the row moves on to its next cycle, per S18-R6"
+  ],
+  [
+   146363,
+   "S13-R26",
+   "MISMATCH",
+   "A row whose work order is complete but not invoiced offers Invoice, which opens that work order's invoicing. The service resets only when the invoice exists, so this is the action that clears the row",
+   "A row whose work order is complete but not invoiced offers Invoice, which opens that work order's invoicing; the service then resets through the step after invoicing. Where the work order won't be invoiced yet, Mark complete in the row's menu resets the service at once and the row leaves the list, per S18-R6"
+  ],
+  [
+   146364,
+   "S13-R34",
+   "OK",
+   "A row whose due date is estimated from a meter shows its confidence beneath the date, the asset tab's meter and word, with the rule in its hover per S11-R9. A compliance row shows Certificate and a calendar row Calendar instead, never a confidence meter; a meter with no usable readings reads Calendar \u00b7 needs mileage reading",
+   "A row whose due date is estimated from a meter shows its confidence beneath the date, the asset tab's meter and word, with the rule in its hover per S11-R9. A compliance row shows Certificate and a calendar row Calendar instead, never a confidence meter; a meter with no usable readings reads Calendar \u00b7 needs mileage reading"
+  ],
+  [
+   146364,
+   "S13-E3",
+   "OK",
+   "A row whose meter has no usable readings shows the calendar date and says which reading is needed. This is the majority case and carries no warning styling",
+   "A row whose meter has no usable readings shows the calendar date and says which reading is needed. This is the majority case and carries no warning styling"
+  ],
+  [
+   146365,
+   "S13-R17",
+   "OK",
+   "A work order is created per row. There is no multi asset work order",
+   "A work order is created per row. There is no multi asset work order"
+  ],
+  [
+   146365,
+   "S13-R30",
+   "MISMATCH",
+   "Create work order creates a work order, in estimate status as every new work order starts, for that customer and asset. Where the service's schedule belongs to the location chosen in the header it adds the service's canned lines per S16-R19, and it opens the work order. The row's Work Order column then links to it per S13-R14",
+   "Create work order creates a work order, in estimate status as every new work order starts, for that customer and asset, at the location chosen in the header per S13-R38. At the schedule's home location it adds the service's canned lines per S16-R19; at any other location it adds the same work per S16-N6. It opens the work order, and the row's Work Order column then links to it per S13-R14"
+  ],
+  [
+   146365,
+   "S13-R38",
+   "OK",
+   "Create work order raises the work order at the location chosen in the header, as creating a work order does today",
+   "Create work order raises the work order at the location chosen in the header, as creating a work order does today"
+  ],
+  [
+   146365,
+   "S13-E1",
+   "OK",
+   "A unit on two schedules whose services fall close together produces two rows, each with its own Create work order",
+   "A unit on two schedules whose services fall close together produces two rows, each with its own Create work order"
+  ],
+  [
+   146366,
+   "S13-R16",
+   "MISMATCH",
+   "Row actions are Contact and Create work order, and behind the menu Mark complete, Skip and Open asset. A Needs readings row keeps every action",
+   "Row actions are Contact and Create work order, and behind the menu Mark complete, Skip and Open asset. Mark complete opens the modal of S18-R1 and resets the service at once. A Needs readings row keeps every action"
+  ],
+  [
+   146366,
+   "S13-R41",
+   "MISMATCH",
+   "Where the customer has no phone and no email, the row's Contact button has an orange border and a hover: No phone or email on file",
+   "Where the asset's contact has no phone and no email, and the customer has no company phone, the row's Contact button has an orange border and a hover: No phone or email on file"
+  ],
+  [
+   146367,
+   "S13-R18",
+   "OK",
+   "Where a unit sits on more than one schedule, each of its rows will carry the schedule name as a chip beside the service",
+   "Where a unit sits on more than one schedule, each of its rows will carry the schedule name as a chip beside the service"
+  ],
+  [
+   146367,
+   "S13-R10",
+   "OK",
+   "Sorting will be by clicking a column header, never by a tile or badge. There is no separate sort control",
+   "Sorting will be by clicking a column header, never by a tile or badge. There is no separate sort control"
+  ],
+  [
+   146368,
+   "S13-R27",
+   "OK",
+   "A row's location is the workplace of its asset's most recent work order, which is the only place an asset has a location. An asset never yet on a work order has no location and shows none",
+   "A row's location is the workplace of its asset's most recent work order, which is the only place an asset has a location. An asset never yet on a work order has no location and shows none. A visit from imported history counts as a work order here"
+  ],
+  [
+   146368,
+   "S13-R28",
+   "OK",
+   "The list is organization wide per S13-R1 and is never narrowed by the location chosen in the header, which would hide every unit never yet serviced. An organization with more than one workplace gets a location filter instead, using the application's filter component",
+   "The list is organization wide per S13-R1 and is never narrowed by the location chosen in the header, which would hide every unit never yet serviced. An organization with more than one workplace gets a location filter instead, using the application's filter component"
+  ],
+  [
+   146368,
+   "S13-R29",
+   "OK",
+   "With the location filter applied, each tile counts only what that filter shows",
+   "With the location filter applied, each tile counts only what that filter shows"
+  ],
+  [
+   146368,
+   "S13-R12",
+   "OK",
+   "The tiles, the Compliance inspection chip and, for an organization with more than one workplace, the location filter of S13-R28 are the list's filters. There is no customer or status filter",
+   "The tiles, the Compliance inspection chip and, for an organization with more than one workplace, the location filter of S13-R28 are the list's filters. There is no customer or status filter"
+  ],
+  [
+   146369,
+   "S13-R40",
+   "OK",
+   "A Compliance inspection chip above the table, styled like Assigned to me on the Work Orders list, shows compliance rows only. It combines with the tiles, and the tiles count what it shows",
+   "A Compliance inspection chip above the table, styled like Assigned to me on the Work Orders list, shows compliance rows only. It combines with the tiles, and the tiles count what it shows"
+  ],
+  [
+   146369,
+   "S13-N2",
+   "OK",
+   "A compliance service with no record appears only while no tile is active. It reads No record, sorts last and is excluded from every tile count",
+   "A compliance service with no record appears only while no tile is active. It reads No record, sorts last and is excluded from every tile count"
+  ],
+  [
+   146370,
+   "S13-R42",
+   "OK",
+   "Leaving the list and coming back keeps its tiles, chip, location filter, search and sort, following the Work Orders list: filters are saved to the user and carried in the address, sort is personal, and search is kept for the browser's Back",
+   "Leaving the list and coming back keeps its tiles, chip, location filter, search and sort, following the Work Orders list: filters are saved to the user and carried in the address, sort is personal, and search is kept for the browser's Back"
+  ],
+  [
+   146370,
+   "S13-R39",
+   "OK",
+   "Below tablet width the worklist shows one card per row, as the Customers list does; the tiles scroll sideways and the row menu opens as an action sheet",
+   "Below tablet width the worklist shows one card per row, as the Customers list does; the tiles scroll sideways and the row menu opens as an action sheet"
+  ],
+  [
+   146370,
+   "S13-E5",
+   "MISMATCH",
+   "An asset that is deleted or made inactive, or whose customer is deleted, leaves the worklist. Its history is kept per S21-R6",
+   "An asset that is deleted, or whose customer is deleted, leaves the worklist. Its history is kept per S21-R6"
+  ],
+  [
+   146371,
+   "S14-R1",
+   "OK",
+   "Contact will open a card carrying the contact's telephone and mobile, then the customer's company telephone, each labelled",
+   "Contact will open a card carrying the contact's telephone and mobile, then the customer's company telephone, each labelled"
+  ],
+  [
+   146371,
+   "S14-R2",
+   "OK",
+   "The email address will carry a copy control",
+   "The email address will carry a copy control"
+  ],
+  [
+   146371,
+   "S14-R3",
+   "OK",
+   "A phone number will be tappable, so the card is usable on a phone",
+   "A phone number will be tappable, so the card is usable on a phone"
+  ],
+  [
+   146372,
+   "S14-R4",
+   "MISMATCH",
+   "Send reminder will send the email for that one asset, with its current state. It carries none of the customer's other units, per S14-R6. The email itself is the one specified in S19; its sender and delivery are still to be confirmed per Open Questions, so the action is built here and switched on once they are",
+   "Send reminder sends the email of S19 for that one asset, with its current state, through the application's existing send email dialog, per S19-R3. It carries none of the customer's other units, per S14-R6"
+  ],
+  [
+   146372,
+   "S14-R5",
+   "MISMATCH",
+   "The send control reads Send reminder. Nothing is emailed automatically in this release, so there is no Resend",
+   "The send control reads Send reminder. Nothing is emailed automatically in v1, so there is no Resend"
+  ],
+  [
+   146372,
+   "S14-R6",
+   "OK",
+   "A send from a row will cover that one asset only, never the customer's other units",
+   "A send from a row will cover that one asset only, never the customer's other units"
+  ],
+  [
+   146372,
+   "S14-E2",
+   "OK",
+   "Sending a reminder writes an audit entry and updates last sent",
+   "Sending a reminder writes an audit entry and updates last sent"
+  ],
+  [
+   146372,
+   "S14-E3",
+   "OK",
+   "Read receipts are not tracked",
+   "Read receipts are not tracked"
+  ],
+  [
+   146373,
+   "S14-R8",
+   "OK",
+   "The card will render a state for a contact with no email, and a state for a contact with no phone number",
+   "The card will render a state for a contact with no email, and a state for a contact with no phone number"
+  ],
+  [
+   146373,
+   "S14-N2",
+   "MISMATCH",
+   "A contact with neither email nor phone shows both empty states and no send action",
+   "A contact with neither email nor phone shows both empty states. There is no send action unless another of the customer's contacts has an email address, per the rule above"
+  ],
+  [
+   146373,
+   "S14-N4",
+   "OK",
+   "An asset with no preferred contact shows an empty state in place of the contact details, with an action to set one. There is no send action until a contact exists",
+   "An asset with no preferred contact shows an empty state in place of the contact details, with an action to set one. There is no send action until a contact exists"
+  ],
+  [
+   146373,
+   "S14-E1",
+   "OK",
+   "The empty states are common rather than exceptional, so the card must read as complete in every one of them",
+   "The empty states are common rather than exceptional, so the card must read as complete in every one of them"
+  ],
+  [
+   146374,
+   "S14-N1",
+   "OK",
+   "Where the customer's notification setting is off, Send reminder is disabled with the reason shown beside it, not hidden",
+   "Where the customer's notification setting is off, Send reminder is disabled with the reason shown beside it, not hidden"
+  ],
+  [
+   146374,
+   "S14-R9",
+   "OK",
+   "Where the customer's notification setting is off, the row still appears and the send action is unavailable, naming that setting as the reason. An advisor must never press send and get silence",
+   "Where the customer's notification setting is off, the row still appears and the send action is unavailable, naming that setting as the reason. An advisor must never press send and get silence"
+  ],
+  [
+   146374,
+   "S14-N5",
+   "OK",
+   "Nothing is hidden from the worklist because of the notification setting. It affects sending and nothing else",
+   "Nothing is hidden from the worklist because of the notification setting. It affects sending and nothing else"
+  ],
+  [
+   146374,
+   "S14-R10",
+   "OK",
+   "Sending by hand follows the permission to edit a customer ... A user without it does not see Send reminder at all, hidden rather than disabled, because it is not something they can fix from the card",
+   "Sending by hand follows the permission to edit a customer, the same one that governs the notification setting per S7-R22. A user without it does not see Send reminder at all, hidden rather than disabled, because it is not something they can fix from the card"
+  ],
+  [
+   146375,
+   "S14-R12",
+   "OK",
+   "A line beneath the address reads last sent <date> once a reminder has been sent by hand for that asset, so nobody sends twice without knowing",
+   "A line beneath the address reads last sent <date> once a reminder has been sent by hand for that asset, so nobody sends twice without knowing"
+  ],
+  [
+   146376,
+   "S21-R1",
+   "OK",
+   "Every state change produces an entry with an actor and a timestamp: readings, corrections, completions and their undo, skips, compliance record changes, cycle-date corrections in the step after invoicing, enrolments, removals from a schedule, schedule edits, archive and restore, and sends",
+   "Every state change produces an entry with an actor and a timestamp: readings, corrections, completions and their undo, skips, compliance record changes, cycle-date corrections in the step after invoicing, enrolments, removals from a schedule, schedule edits, archive and restore, and sends"
+  ],
+  [
+   146376,
+   "S21-R3",
+   "OK",
+   "A completion will record where it happened, including when that is another shop",
+   "A completion will record where it happened, including when that is another shop"
+  ],
+  [
+   146377,
+   "S21-R2",
+   "OK",
+   "Adding a service to a work order will write both a work order note and an audit entry, naming the schedule and service it came from",
+   "Adding a service to a work order will write both a work order note and an audit entry, naming the schedule and service it came from"
+  ],
+  [
+   146377,
+   "S21-E1",
+   "OK",
+   "Where the note and the audit entry record the origin, a per line tag is cosmetic and can be deferred",
+   "Where the note and the audit entry record the origin, a per line tag is cosmetic and can be deferred"
+  ],
+  [
+   146378,
+   "S21-R4",
+   "OK",
+   "A reading correction will keep both values, each with its timestamp and author",
+   "A reading correction will keep both values, each with its timestamp and author"
+  ],
+  [
+   146378,
+   "S21-E2",
+   "OK",
+   "A due date that moved weeks after a new reading must be traceable to the reading that moved it",
+   "A due date that moved weeks after a new reading must be traceable to the reading that moved it"
+  ],
+  [
+   146379,
+   "S21-R5",
+   "OK",
+   "Sends will be logged with message, recipient and timestamp",
+   "Sends will be logged with message, recipient and timestamp"
+  ],
+  [
+   146380,
+   "S21-R6",
+   "MISMATCH",
+   "Audit entries will outlive the objects they describe. Nothing that carries one is hard deleted",
+   "Audit entries will outlive the objects they describe. Maintenance records, readings, certificates and audit entries are never hard deleted. An asset itself is deleted as ShopView deletes it today; its maintenance history stays in the data, with no screen to view it in v1"
+  ],
+  [
+   146380,
+   "S21-N1",
+   "OK",
+   "A work order link is never hard deleted, or the trail goes with it",
+   "A work order link is never hard deleted, or the trail goes with it"
+  ],
+  [
+   146380,
+   "S21-N2",
+   "OK",
+   "An unenrolled asset and an archived schedule keep their entries",
+   "An unenrolled asset and an archived schedule keep their entries"
+  ],
+  [
+   146381,
+   "S21-R7",
+   "OK",
+   "A change to a customer's notification setting is recorded with who made it and when. A shop asserting a customer's consent on their behalf is the one thing that later needs a name and a date against it",
+   "A change to a customer's notification setting is recorded with who made it and when. A shop asserting a customer's consent on their behalf is the one thing that later needs a name and a date against it"
+  ],
+  [
+   146382,
+   "S2-R14",
+   "OK",
+   "A months interval resolves to the same day of a later month, counted from the last completion, and produces a specific date rather than a month. A days interval counts days and drifts relative to the calendar",
+   "A months interval resolves to the same day of a later month, counted from the last completion, and produces a specific date rather than a month. A days interval counts days and drifts relative to the calendar, which is what a shop choosing days is asking for"
+  ],
+  [
+   146382,
+   "S2-E5",
+   "OK",
+   "Where the anchor day does not exist in the target month, the date falls on that month's last day. A service completed on 31 January and set to one month comes due 28 February, and the following cycle counts from that date",
+   "Where the anchor day does not exist in the target month, the date falls on that month's last day. A service completed on 31 January and set to one month comes due 28 February, and the following cycle counts from that date"
+  ],
+  [
+   146383,
+   "S8-R10",
+   "MISMATCH",
+   "Term, effective month and expiry month derive from one another: any two give the third. Certificate dates are months, never days, and a certificate always expires on the last day of its expiry month. A month a person typed always wins over a derived one",
+   "Term, Start date and End date derive from one another: Start date plus the term fills End date, and End date less the term fills Start date. Both are days, picked from a calendar, so nobody has to guess whether a certificate ends on the same day or at the end of a month. A date a person typed always wins over a derived one. End date lands on the same day number: 14 Oct 2025 plus 12 months is 14 Oct 2026. Where that day does not exist in the end month, it is the last day of that month, so 31 Jan plus 1 month is the last day of February"
+  ],
+  [
+   146383,
+   "S8-E2",
+   "MISMATCH",
+   "A certificate expires on the last day of its expiry month, not the last working day",
+   "A certificate is valid through its End date and lapses the day after. A weekend or holiday does not move it"
+  ],
+  [
+   146383,
+   "S8-E1",
+   "MISMATCH",
+   "A certificate arrives already months old, issued by another shop. The effective date is entered manually",
+   "A certificate arrives already months old, issued by another shop. The Start date is entered by hand"
+  ],
+  [
+   146384,
+   "S3-R8",
+   "OK",
+   "Remind before expiry ... It is in months, defaults to 1 month for a term up to 12 months and 2 months above that, and can be changed. It cannot be longer than the term; a longer value is refused inline: Remind before expiry cannot be longer than the 6-month term",
+   "Remind before expiry sets how long before a certificate expires the service starts to read due soon. It is in months, defaults to 1 month for a term up to 12 months and 2 months above that, and can be changed. It cannot be longer than the term; a longer value is refused inline: Remind before expiry cannot be longer than the 6-month term"
+  ],
+  [
+   146385,
+   "S11-R22",
+   "MISMATCH",
+   "Confidence is set by two inputs, graded separately, and the lower of the two wins: how many usable readings the unit has, and how old the last recorded one is",
+   "Confidence comes from one table that reads two things together: how old the unit's last recorded reading is, and how many usable pairs it has. Every combination has its own cell, given in S11-R24 and in the table beneath these requirements. Nothing is graded separately and nothing caps anything"
+  ],
+  [
+   146385,
+   "S11-R23",
+   "MISMATCH",
+   "By count of usable pairs ... none is No data; one is Low; two or three is Medium; four or more is High. In a clean history that is two visits for Low, three or four for Medium and five or more for High. Where a guard discards a pair the count drops with it, so a unit with five visits and one bad pair has three pairs and reads Medium",
+   "A usable pair is two consecutive readings that survive the guards in S11-R4, S11-R5, S11-R19 and S11-R20, after S11-R6 has removed impossible readings. Only readings from the last 24 months count, per S11-R26. No usable pair is No data. In a clean history one pair is two visits, two or three pairs are three or four visits, and four or more pairs are five or more visits. Where a guard discards a pair the count drops with it"
+  ],
+  [
+   146385,
+   "S11-R24",
+   "MISMATCH",
+   "By age of the most recent recorded reading, by date: up to and including 90 days leaves the grade where the count put it; from 91 to 180 days caps it at Medium; 181 days or more caps it at Low",
+   "By age of the last recorded reading, then usable pairs. Up to 30 days: one pair Medium, two or more High. 31 to 90 days: one pair Low, two or three Medium, four or more High. 91 to 180 days: one pair Low, two or more Medium. 181 to 365 days: four or more Medium, fewer Low. Over 365 days: Low. A value shown In the shop per S10-R11 is not yet recorded and does not refresh the age until its work order is invoiced"
+  ],
+  [
+   146386,
+   "S11-E5",
+   "MISMATCH",
+   "Six visits, five usable pairs, the last reading 120 days old: the count says High, the age caps it at Medium, and Medium is what the unit shows. Two visits read yesterday, one usable pair: the age allows High, the count says Low, and Low is what it shows",
+   "Two visits, the last one yesterday: one pair, under 30 days, Medium. Six visits, five pairs, the last reading 120 days old: Medium. Twelve visits over three years, the last one eight months ago: Medium. The same unit fourteen months after its last visit: Low. Every reading older than 24 months: No data, and the calendar governs"
+  ],
+  [
+   146386,
+   "S11-R10",
+   "OK",
+   "Distance and engine hours will each carry their own confidence, computed independently",
+   "Distance and engine hours will each carry their own confidence, computed independently"
+  ],
+  [
+   146386,
+   "S11-R25",
+   "OK",
+   "Measured from N visits, where a card shows it, counts the readings that took part in at least one usable pair. A visit whose only pairs were discarded does not count",
+   "Measured from N visits, where a card shows it, counts the readings that took part in at least one usable pair. A visit whose only pairs were discarded does not count"
+  ],
+  [
+   146386,
+   "S11-R17",
+   "OK",
+   "No data is a separate state, not a confidence level. It applies where there is nothing to estimate from, the calendar governs, and the row says the meter has no basis yet",
+   "No data is a separate state, not a confidence level. It applies where there is nothing to estimate from, the calendar governs, and the row says the meter has no basis yet"
+  ],
+  [
+   146387,
+   "S13-R2",
+   "OK",
+   "The header has four tiles. Overdue: due before today. Due in a month: today up to 30 days ahead. Due in 3 months: 31 to 91 days ahead. Needs readings: per S13-R22",
+   "The header has four tiles. Overdue: due before today. Due in a month: today up to 30 days ahead. Due in 3 months: 31 to 91 days ahead. Needs readings: per S13-R22. Each counts assets; an asset with rows in two tiles counts once in each, so the tiles do not add up to a total"
+  ],
+  [
+   146387,
+   "S13-R36",
+   "OK",
+   "With no tile active the list shows every row that is overdue, due today or due within the next 91 days, plus every Needs readings row whatever its date. A service further out is not listed",
+   "With no tile active the list shows every row that is overdue, due today or due within the next 91 days, plus every Needs readings row whatever its date. A service further out is not listed"
+  ],
+  [
+   146388,
+   "S13-R2",
+   "OK",
+   "Each counts assets; an asset with rows in two tiles counts once in each, so the tiles do not add up to a total",
+   "The header has four tiles. Overdue: due before today. Due in a month: today up to 30 days ahead. Due in 3 months: 31 to 91 days ahead. Needs readings: per S13-R22. Each counts assets; an asset with rows in two tiles counts once in each, so the tiles do not add up to a total"
+  ],
+  [
+   146388,
+   "S13-R29",
+   "OK",
+   "With the location filter applied, each tile counts only what that filter shows",
+   "With the location filter applied, each tile counts only what that filter shows"
+  ],
+  [
+   146388,
+   "S13-N3",
+   "OK",
+   "A service appears once however many cycles it has missed",
+   "A service appears once however many cycles it has missed"
+  ],
+  [
+   146389,
+   "S2-R9",
+   "OK",
+   "Interval values are whole numbers, minimum 1, with no decimals and no negatives. Mileage is capped at 999,999, engine hours at 99,999 and days at 999. An interval longer than 12 months is set in days",
+   "Interval values are whole numbers, minimum 1, with no decimals and no negatives. Mileage is capped at 999,999, engine hours at 99,999 and days at 999. An interval longer than 12 months is set in days"
+  ]
+ ],
+ "cited": {
+  "S1-R1": [
+   146309
+  ],
+  "S1-N2": [
+   146309
+  ],
+  "S1-N1": [
+   146310
+  ],
+  "S1-R3": [
+   146311
+  ],
+  "S1-R4": [
+   146311
+  ],
+  "S1-R6": [
+   146312
+  ],
+  "S1-R7": [
+   146312
+  ],
+  "S1-R8": [
+   146312
+  ],
+  "S1-N3": [
+   146313
+  ],
+  "S1-E2": [
+   146313
+  ],
+  "S1-R9": [
+   146314
+  ],
+  "S1-R10": [
+   146314
+  ],
+  "S1-R2": [
+   146315
+  ],
+  "S1-R12": [
+   146315
+  ],
+  "S1-R13": [
+   146315
+  ],
+  "S1-E1": [
+   146315
+  ],
+  "S2-R1": [
+   146316
+  ],
+  "S2-R2": [
+   146316
+  ],
+  "S2-R3": [
+   146316
+  ],
+  "S2-N4": [
+   146316
+  ],
+  "S2-R4": [
+   146317
+  ],
+  "S2-R5": [
+   146317
+  ],
+  "S2-N1": [
+   146317
+  ],
+  "S2-N3": [
+   146317
+  ],
+  "S2-E1": [
+   146317
+  ],
+  "S2-R6": [
+   146318
+  ],
+  "S2-R7": [
+   146318
+  ],
+  "S2-R8": [
+   146318
+  ],
+  "S2-R10": [
+   146319
+  ],
+  "S2-R15": [
+   146319
+  ],
+  "S2-R9": [
+   146320,
+   146389
+  ],
+  "S2-N2": [
+   146320
+  ],
+  "S2-N5": [
+   146320
+  ],
+  "S2-N6": [
+   146320
+  ],
+  "S2-N7": [
+   146320
+  ],
+  "S2-R11": [
+   146321
+  ],
+  "S2-R14": [
+   146322,
+   146382
+  ],
+  "S2-E5": [
+   146322,
+   146382
+  ],
+  "S2-E2": [
+   146322
+  ],
+  "S2-E3": [
+   146322
+  ],
+  "S2-R16": [
+   146323
+  ],
+  "S2-R17": [
+   146323
+  ],
+  "S2-R18": [
+   146323
+  ],
+  "S2-N8": [
+   146323
+  ],
+  "S2-N9": [
+   146323
+  ],
+  "S2-E6": [
+   146323
+  ],
+  "S3-R1": [
+   146324
+  ],
+  "S3-R2": [
+   146324
+  ],
+  "S3-N1": [
+   146324
+  ],
+  "S3-R3": [
+   146325
+  ],
+  "S3-R12": [
+   146325
+  ],
+  "S3-R6": [
+   146326
+  ],
+  "S3-R7": [
+   146326
+  ],
+  "S3-R8": [
+   146326,
+   146384
+  ],
+  "S3-E2": [
+   146326
+  ],
+  "S3-R9": [
+   146327
+  ],
+  "S3-R10": [
+   146327
+  ],
+  "S3-N2": [
+   146327
+  ],
+  "S4-R4": [
+   146328
+  ],
+  "S4-R1": [
+   146328
+  ],
+  "S4-R2": [
+   146328
+  ],
+  "S4-R3": [
+   146328
+  ],
+  "S4-E3": [
+   146328
+  ],
+  "S4-R6": [
+   146329
+  ],
+  "S4-R5": [
+   146329
+  ],
+  "S4-N1": [
+   146330
+  ],
+  "S4-N2": [
+   146330
+  ],
+  "S4-E1": [
+   146330
+  ],
+  "S4-E2": [
+   146330
+  ],
+  "S5-R1": [
+   146331
+  ],
+  "S5-R2": [
+   146331
+  ],
+  "S5-R3": [
+   146331
+  ],
+  "S5-R4": [
+   146331
+  ],
+  "S5-R12": [
+   146331
+  ],
+  "S5-R8": [
+   146332
+  ],
+  "S5-R11": [
+   146332
+  ],
+  "S5-N1": [
+   146332
+  ],
+  "S5-E1": [
+   146332
+  ],
+  "S6-R1": [
+   146333
+  ],
+  "S6-R2": [
+   146333
+  ],
+  "S6-R3": [
+   146333
+  ],
+  "S6-R4": [
+   146333
+  ],
+  "S6-N1": [
+   146333
+  ],
+  "S6-N2": [
+   146333
+  ],
+  "S6-R11": [
+   146334
+  ],
+  "S6-N3": [
+   146334
+  ],
+  "S6-R12": [
+   146335
+  ],
+  "S6-R5": [
+   146336
+  ],
+  "S6-R6": [
+   146336
+  ],
+  "S6-R7": [
+   146336
+  ],
+  "S6-R8": [
+   146336
+  ],
+  "S6-R13": [
+   146337
+  ],
+  "S6-R14": [
+   146337
+  ],
+  "S6-E1": [
+   146338
+  ],
+  "S6-E2": [
+   146338
+  ],
+  "S6-E4": [
+   146338
+  ],
+  "S6-E3": [
+   146338
+  ],
+  "S7-R1": [
+   146339
+  ],
+  "S7-R23": [
+   146339
+  ],
+  "S7-N1": [
+   146339
+  ],
+  "S7-N6": [
+   146339
+  ],
+  "S7-E8": [
+   146339
+  ],
+  "S7-R2": [
+   146340
+  ],
+  "S7-R4": [
+   146340
+  ],
+  "S7-R8": [
+   146340
+  ],
+  "S7-E5": [
+   146340
+  ],
+  "S7-E3": [
+   146340
+  ],
+  "S7-R6": [
+   146341
+  ],
+  "S7-R15": [
+   146341
+  ],
+  "S7-E1": [
+   146341
+  ],
+  "S7-E2": [
+   146341
+  ],
+  "S7-R24": [
+   146342
+  ],
+  "S7-R25": [
+   146342
+  ],
+  "S7-R26": [
+   146342
+  ],
+  "S7-N7": [
+   146342
+  ],
+  "S7-N4": [
+   146342
+  ],
+  "S7-E4": [
+   146342
+  ],
+  "S7-R13": [
+   146343
+  ],
+  "S7-R14": [
+   146343
+  ],
+  "S7-R17": [
+   146343
+  ],
+  "S7-R18": [
+   146343
+  ],
+  "S7-R19": [
+   146343
+  ],
+  "S7-R20": [
+   146343
+  ],
+  "S7-R21": [
+   146343
+  ],
+  "S7-R22": [
+   146343
+  ],
+  "S7-N5": [
+   146344
+  ],
+  "S7-E7": [
+   146344
+  ],
+  "S7-E6": [
+   146344
+  ],
+  "S7-R9": [
+   146345
+  ],
+  "S7-R10": [
+   146345
+  ],
+  "S7-N2": [
+   146345
+  ],
+  "S7-N3": [
+   146345
+  ],
+  "S8-R13": [
+   146346
+  ],
+  "S8-R5": [
+   146346
+  ],
+  "S8-R7": [
+   146346
+  ],
+  "S8-R2": [
+   146347
+  ],
+  "S8-R3": [
+   146347
+  ],
+  "S8-R4": [
+   146347
+  ],
+  "S8-R6": [
+   146347
+  ],
+  "S8-R9": [
+   146347
+  ],
+  "S8-R10": [
+   146348,
+   146383
+  ],
+  "S8-R11": [
+   146348
+  ],
+  "S8-E2": [
+   146348,
+   146383
+  ],
+  "S8-E1": [
+   146348,
+   146383
+  ],
+  "S8-R12": [
+   146349
+  ],
+  "S8-R8": [
+   146349
+  ],
+  "S8-N1": [
+   146349
+  ],
+  "S8-N3": [
+   146349
+  ],
+  "S8-E4": [
+   146349
+  ],
+  "S8-N2": [
+   146350
+  ],
+  "S8-E3": [
+   146350
+  ],
+  "S9-R16": [
+   146351
+  ],
+  "S9-R14": [
+   146351
+  ],
+  "S9-R1": [
+   146352
+  ],
+  "S9-R2": [
+   146352
+  ],
+  "S9-R17": [
+   146352
+  ],
+  "S9-R4": [
+   146353
+  ],
+  "S9-R5": [
+   146353
+  ],
+  "S9-R6": [
+   146353
+  ],
+  "S9-R10": [
+   146353
+  ],
+  "S9-E1": [
+   146353
+  ],
+  "S9-R7": [
+   146354
+  ],
+  "S9-R8": [
+   146354
+  ],
+  "S9-N1": [
+   146354
+  ],
+  "S9-N2": [
+   146354
+  ],
+  "S9-R12": [
+   146355
+  ],
+  "S9-N3": [
+   146355
+  ],
+  "S9-R9": [
+   146356
+  ],
+  "S9-R11": [
+   146356
+  ],
+  "S9-R13": [
+   146356
+  ],
+  "S9-R18": [
+   146356
+  ],
+  "S9-E4": [
+   146356
+  ],
+  "S11-R9": [
+   146357
+  ],
+  "S11-R13": [
+   146357
+  ],
+  "S9-E2": [
+   146357
+  ],
+  "S13-R1": [
+   146358
+  ],
+  "S13-R32": [
+   146358
+  ],
+  "S13-N1": [
+   146358
+  ],
+  "S13-R35": [
+   146358
+  ],
+  "S13-R11": [
+   146358
+  ],
+  "S13-R2": [
+   146359,
+   146387,
+   146388
+  ],
+  "S13-R3": [
+   146359
+  ],
+  "S13-R4": [
+   146359
+  ],
+  "S13-R5": [
+   146359
+  ],
+  "S13-N3": [
+   146359,
+   146388
+  ],
+  "S13-R20": [
+   146360
+  ],
+  "S13-R22": [
+   146360
+  ],
+  "S13-R36": [
+   146361,
+   146387
+  ],
+  "S13-R37": [
+   146361
+  ],
+  "S13-R33": [
+   146361
+  ],
+  "S13-R6": [
+   146362
+  ],
+  "S13-R7": [
+   146362
+  ],
+  "S13-R9": [
+   146362
+  ],
+  "S13-R13": [
+   146363
+  ],
+  "S13-R23": [
+   146363
+  ],
+  "S13-R14": [
+   146363
+  ],
+  "S13-R25": [
+   146363
+  ],
+  "S13-R26": [
+   146363
+  ],
+  "S13-R34": [
+   146364
+  ],
+  "S13-E3": [
+   146364
+  ],
+  "S13-R17": [
+   146365
+  ],
+  "S13-R30": [
+   146365
+  ],
+  "S13-R38": [
+   146365
+  ],
+  "S13-E1": [
+   146365
+  ],
+  "S13-R16": [
+   146366
+  ],
+  "S13-R41": [
+   146366
+  ],
+  "S13-R18": [
+   146367
+  ],
+  "S13-R10": [
+   146367
+  ],
+  "S13-R27": [
+   146368
+  ],
+  "S13-R28": [
+   146368
+  ],
+  "S13-R29": [
+   146368,
+   146388
+  ],
+  "S13-R12": [
+   146368
+  ],
+  "S13-R40": [
+   146369
+  ],
+  "S13-N2": [
+   146369
+  ],
+  "S13-R42": [
+   146370
+  ],
+  "S13-R39": [
+   146370
+  ],
+  "S13-E5": [
+   146370
+  ],
+  "S14-R1": [
+   146371
+  ],
+  "S14-R2": [
+   146371
+  ],
+  "S14-R3": [
+   146371
+  ],
+  "S14-R4": [
+   146372
+  ],
+  "S14-R5": [
+   146372
+  ],
+  "S14-R6": [
+   146372
+  ],
+  "S14-E2": [
+   146372
+  ],
+  "S14-E3": [
+   146372
+  ],
+  "S14-R8": [
+   146373
+  ],
+  "S14-N2": [
+   146373
+  ],
+  "S14-N4": [
+   146373
+  ],
+  "S14-E1": [
+   146373
+  ],
+  "S14-N1": [
+   146374
+  ],
+  "S14-R9": [
+   146374
+  ],
+  "S14-N5": [
+   146374
+  ],
+  "S14-R10": [
+   146374
+  ],
+  "S14-R12": [
+   146375
+  ],
+  "S21-R1": [
+   146376
+  ],
+  "S21-R3": [
+   146376
+  ],
+  "S21-R2": [
+   146377
+  ],
+  "S21-E1": [
+   146377
+  ],
+  "S21-R4": [
+   146378
+  ],
+  "S21-E2": [
+   146378
+  ],
+  "S21-R5": [
+   146379
+  ],
+  "S21-R6": [
+   146380
+  ],
+  "S21-N1": [
+   146380
+  ],
+  "S21-N2": [
+   146380
+  ],
+  "S21-R7": [
+   146381
+  ],
+  "S11-R22": [
+   146385
+  ],
+  "S11-R23": [
+   146385
+  ],
+  "S11-R24": [
+   146385
+  ],
+  "S11-E5": [
+   146386
+  ],
+  "S11-R10": [
+   146386
+  ],
+  "S11-R25": [
+   146386
+  ],
+  "S11-R17": [
+   146386
+  ]
+ }
+}

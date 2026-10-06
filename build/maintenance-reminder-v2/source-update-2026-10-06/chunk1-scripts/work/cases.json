@@ -1,0 +1,3069 @@
+[
+ {
+  "id": 146309,
+  "sec": "S1 — Create a maintenance schedule",
+  "title": "Maintenance settings sit under Settings and need Settings Service",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).",
+   "In the left sidebar under Settings choose \"Maintenance\" (it sits beneath \"Inspection Templates\"). Schedules here belong to the location chosen in the header.",
+   "A second test user WITHOUT \"Settings Service\" (set under Settings > Staff / Roles)."
+  ],
+  "steps": [
+   "As a user WITH Settings Service, open Settings and find the Maintenance entry; note where it sits and what it lists.",
+   "Look for any separate reminder-settings tab.",
+   "Sign in as the user WITHOUT Settings Service and try to reach the Maintenance tab."
+  ],
+  "results": [
+   "Settings shows a \"Maintenance\" entry beneath \"Inspection Templates\", holding a single list of maintenance schedules; each schedule belongs to the location it was built at.",
+   "There is no separate reminder-settings tab.",
+   "The user without \"Settings Service\" cannot reach the Maintenance tab."
+  ],
+  "source": "Epic SV-3780 (Maintenance Reminders); story SV-10558 (S1, Create a maintenance schedule); Chunk 1 MR spec (Confluence 886931488), Part 1 / S1; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S1-R1",
+    "Settings will carry a Maintenance entry with a single list of maintenance schedules. A schedule belongs to the location it was built at, as canned lines and inspection templates do ... There is no reminder settings tab, because the email carries no shop-editable content"
+   ],
+   [
+    "S1-N2",
+    "A user without Settings Service cannot reach the tab"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146310,
+  "sec": "S1 — Create a maintenance schedule",
+  "title": "The empty Maintenance screen prompts the first schedule",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).",
+   "In the left sidebar under Settings choose \"Maintenance\" (it sits beneath \"Inspection Templates\"). Schedules here belong to the location chosen in the header.",
+   "The shop has no maintenance schedules yet. If any exist, archive them, or use a fresh test location so the list is empty."
+  ],
+  "steps": [
+   "Open Settings > Maintenance with no schedules defined and read the screen.",
+   "Start a new schedule and, before adding any service, try to Save it."
+  ],
+  "results": [
+   "The empty screen shows a single call to action prompting the first schedule/service.",
+   "A schedule with no services cannot be saved - Save stays disabled and the empty state prompts the first service."
+  ],
+  "source": "Epic SV-3780 (Maintenance Reminders); story SV-10558 (S1, Create a maintenance schedule); Chunk 1 MR spec (Confluence 886931488), Part 1 / S1; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S1-N1",
+    "A schedule with no services cannot be saved. It shows an empty state prompting the first service"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146311,
+  "sec": "S1 — Create a maintenance schedule",
+  "title": "New schedule opens an empty Untitled schedule editor",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).",
+   "In the left sidebar under Settings choose \"Maintenance\" (it sits beneath \"Inspection Templates\"). Schedules here belong to the location chosen in the header."
+  ],
+  "steps": [
+   "In Settings > Maintenance click New schedule.",
+   "Read the editor that opens - its title and whether any modal or template chooser appears.",
+   "Leave the editor without saving, return to the schedule list, and look for a draft."
+  ],
+  "results": [
+   "New schedule opens straight into an empty editor titled \"Untitled schedule\" - no modal and no template to choose.",
+   "The schedule exists only from its first Save; leaving before that leaves nothing in the list (no draft)."
+  ],
+  "source": "Epic SV-3780 (Maintenance Reminders); story SV-10558 (S1, Create a maintenance schedule); Chunk 1 MR spec (Confluence 886931488), Part 1 / S1; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S1-R3",
+    "New schedule opens an empty editor titled Untitled schedule. There is no modal and no template"
+   ],
+   [
+    "S1-R4",
+    "A schedule exists from its first Save. Leaving the editor before that leaves nothing behind"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146312,
+  "sec": "S1 — Create a maintenance schedule",
+  "title": "Save is disabled until the schedule has one service",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).",
+   "In the left sidebar under Settings choose \"Maintenance\" (it sits beneath \"Inspection Templates\"). Schedules here belong to the location chosen in the header.",
+   "A new schedule editor is open (click New schedule)."
+  ],
+  "steps": [
+   "Read the editor top to bottom (what it contains).",
+   "Click the title and try to rename it inline.",
+   "Note the Save button state before adding any service, then after adding one service (Add service -> name it -> set an interval -> save the service).",
+   "Make a change and press Cancel."
+  ],
+  "results": [
+   "The editor carries only a name at the top and an ordered list of services beneath it (reminder timing lives on each service, not here).",
+   "The title reads \"Untitled schedule\" and edits inline; the editor has Cancel and Save.",
+   "Save is disabled until at least one service exists, then becomes enabled; name, services and order save only on Save.",
+   "Cancel discards unsaved changes, asking first when there are any."
+  ],
+  "source": "Epic SV-3780 (Maintenance Reminders); story SV-10558 (S1, Create a maintenance schedule); Chunk 1 MR spec (Confluence 886931488), Part 1 / S1; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S1-R6",
+    "The editor will carry only a name and an ordered list of services"
+   ],
+   [
+    "S1-R7",
+    "The title will read Untitled schedule with inline edit, following the DVI pattern"
+   ],
+   [
+    "S1-R8",
+    "The editor will carry Cancel and Save. Save is disabled until the schedule has at least one service. The name, the services and their order are saved only when Save is pressed; Cancel discards every unsaved change, asking first when there are any"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146313,
+  "sec": "S1 — Create a maintenance schedule",
+  "title": "A schedule name cannot be blank or duplicated",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).",
+   "In the left sidebar under Settings choose \"Maintenance\" (it sits beneath \"Inspection Templates\"). Schedules here belong to the location chosen in the header.",
+   "One schedule already exists with a known name (e.g. \"Highway Tractor PM\").",
+   "Seed a maintenance schedule (standard steps):",
+   "↳ In Settings > Maintenance click New schedule; the \"Untitled schedule\" editor opens.",
+   "↳ Inline-edit the title to a test name (e.g. \"Highway Tractor PM\").",
+   "↳ Click Add service, give it a name (e.g. \"PM-A\") and a calendar interval (e.g. Every 3 months), and save the service.",
+   "↳ Click Save on the schedule."
+  ],
+  "steps": [
+   "Open a new schedule editor and try to Save with the name left blank.",
+   "Inline-rename a schedule to blank and move focus away.",
+   "Name a schedule the same as an existing one (e.g. \"Highway Tractor PM\") and save."
+  ],
+  "results": [
+   "A schedule cannot be saved with a blank name, and an inline rename cannot be left blank - both revert to the previous name rather than showing an error.",
+   "Two schedules may not carry the same name; a \"vi1\"-style suffix is added (as for DVI)."
+  ],
+  "source": "Epic SV-3780 (Maintenance Reminders); story SV-10558 (S1, Create a maintenance schedule); Chunk 1 MR spec (Confluence 886931488), Part 1 / S1; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S1-N3",
+    "A schedule cannot be saved with a blank name, and an inline rename cannot be left blank. Both revert to the previous name rather than erroring"
+   ],
+   [
+    "S1-E2",
+    "Two schedules may not carry the same name. Adding vi1 to the name as we do for DVI"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146314,
+  "sec": "S1 — Create a maintenance schedule",
+  "title": "The service table shows Service, Interval, Canned Lines and reorders",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).",
+   "In the left sidebar under Settings choose \"Maintenance\" (it sits beneath \"Inspection Templates\"). Schedules here belong to the location chosen in the header.",
+   "A schedule open in the editor with at least two services - one with several triggers, one whose lines include absorbed lines. Seed it:",
+   "↳ New schedule -> Add service \"PM-A\" (calendar Every 3 months + a mileage trigger e.g. 15,000 mileage) with several canned lines.",
+   "↳ Add service \"PM-C\" that covers PM-A (so some of its lines are absorbed)."
+  ],
+  "steps": [
+   "Read the service table columns and how the Interval and Canned Lines cells render.",
+   "Reorder services by drag, then by Move up / Move down."
+  ],
+  "results": [
+   "Services are listed as a table with columns Service, Interval and Canned Lines.",
+   "The Interval cell shows each trigger separated by a dot, never \"or\" (e.g. \"15,000 mileage - 3 months\" or \"30 days\"); the Canned Lines cell shows the line count and any absorption (e.g. \"4 lines - 3 absorbed\").",
+   "Services reorder by drag and by Move up / Move down."
+  ],
+  "source": "Epic SV-3780 (Maintenance Reminders); story SV-10558 (S1, Create a maintenance schedule); Chunk 1 MR spec (Confluence 886931488), Part 1 / S1; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S1-R9",
+    "Services are listed as a table: Service, Interval and Canned Lines. The interval renders each trigger separated by a dot, never by or, for example 15,000 mileage · 3 months, or 30 days, and the canned-lines cell carries the line count and any absorption, for example 4 lines · 3 absorbed"
+   ],
+   [
+    "S1-R10",
+    "Services will be reorderable by drag and by Move up / Move down"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146315,
+  "sec": "S1 — Create a maintenance schedule",
+  "title": "The schedule list: Active/Archived tabs, search, row menu",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).",
+   "In the left sidebar under Settings choose \"Maintenance\" (it sits beneath \"Inspection Templates\"). Schedules here belong to the location chosen in the header.",
+   "Several schedules exist - at least one active with assets enrolled and one archived. Seed them:",
+   "Seed a maintenance schedule (standard steps):",
+   "↳ In Settings > Maintenance click New schedule; the \"Untitled schedule\" editor opens.",
+   "↳ Inline-edit the title to a test name (e.g. \"Highway Tractor PM\").",
+   "↳ Click Add service, give it a name (e.g. \"PM-A\") and a calendar interval (e.g. Every 3 months), and save the service.",
+   "↳ Click Save on the schedule.",
+   "↳ To seed an archived schedule, open its row menu and choose Archive.",
+   "↳ Seed a second schedule and enrol an asset on it (asset Maintenance tab -> Enrol) so its Assets count is non-zero."
+  ],
+  "steps": [
+   "Read the list: its tabs and counts, its columns and default sort, and the search above it.",
+   "Open the row menu on an active schedule, then on an archived one.",
+   "Click an archived schedule and try to change something.",
+   "Read how the enrolled-asset count is shown, and click it."
+  ],
+  "results": [
+   "The list has two tabs, Active and Archived, each with a count; columns are Schedule, Services and Assets, each sortable from its header (default Schedule A-Z); the search above matches schedule and service names.",
+   "An active schedule's row menu offers Edit, Duplicate and Archive; an archived schedule's offers Restore.",
+   "Each schedule shows its enrolled-asset count as plain read-only text (never a badge), and the count opens nothing.",
+   "Clicking an archived schedule opens it read-only all the way down (services, triggers, lines); there is no delete anywhere - a mistaken schedule is archived, not deleted."
+  ],
+  "source": "Epic SV-3780 (Maintenance Reminders); story SV-10558 (S1, Create a maintenance schedule); Chunk 1 MR spec (Confluence 886931488), Part 1 / S1; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S1-R2",
+    "The schedule list has two tabs, Active and Archived, each with a count. Its columns are Schedule, Services and Assets, and each sorts from its header; the default is Schedule, A to Z. A search above the table matches schedule and service names. An active schedule's menu offers Edit, Duplicate and Archive; an archived schedule's offers Restore"
+   ],
+   [
+    "S1-R12",
+    "Each schedule shows how many assets are enrolled on it as plain read-only text, as the inspection templates list does, never as a badge. The count opens nothing"
+   ],
+   [
+    "S1-R13",
+    "An archived schedule opens read-only all the way down, its services, triggers and lines, so a shop can find what it archived and see it before restoring it"
+   ],
+   [
+    "S1-E1",
+    "A schedule created by mistake is archived, like any other. There is no delete anywhere in the feature and no draft state to abandon"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146316,
+  "sec": "S2 — Add a routine service (triggers, intervals, covers)",
+  "title": "Add service opens a blank form in a fixed order",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (it ships behind the maintenance_reminders flag).",
+   "A schedule open in the editor with the service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open an existing schedule and Edit).",
+   "↳ Click Add service to open the blank service form."
+  ],
+  "steps": [
+   "Click Add service.",
+   "Read the order of the sections down the form.",
+   "Try to Save the service with the name left blank."
+  ],
+  "results": [
+   "Add service opens a blank service form.",
+   "The sections run in this order: name, \"is this compliance\", triggers and intervals, services also covered, canned lines, reminder timing - with no send switch anywhere in the form or the service table.",
+   "The service has exactly one name (no separate customer-facing name), and it cannot be saved with a blank name."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2, Add a routine service to a schedule); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R1",
+    "Add service opens a blank service form"
+   ],
+   [
+    "S2-R2",
+    "The form sequence will be: name, is this compliance, triggers and intervals, services also covered, canned lines, reminder timing. There is no send switch anywhere in the form or in the service table"
+   ],
+   [
+    "S2-R3",
+    "A service will carry exactly one name. There is no customer facing name, so the name a shop gives a service is the name its customer reads in a reminder"
+   ],
+   [
+    "S2-N4",
+    "A service cannot be saved with a blank name"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146317,
+  "sec": "S2 — Add a routine service (triggers, intervals, covers)",
+  "title": "Calendar interval is required; distance and hours are optional",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (it ships behind the maintenance_reminders flag).",
+   "A schedule open in the editor with the service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open an existing schedule and Edit).",
+   "↳ Click Add service to open the blank service form.",
+   "Leave \"is this compliance\" off (a routine service)."
+  ],
+  "steps": [
+   "Look at the calendar interval control and try to untick it (hover its checkbox).",
+   "Tick Distance, then Engine hours, and watch the interval rows appear.",
+   "Try to Save with the calendar interval left empty.",
+   "Save a service with no additional trigger selected.",
+   "Select Distance and Engine hours together and count the calendar rows."
+  ],
+  "results": [
+   "The calendar interval is always present, always editable and required - a ticked checkbox that cannot be unticked, with a hover explaining every service carries a calendar interval.",
+   "Distance and Engine hours are optional additional triggers; ticking each reveals its own interval row.",
+   "A service cannot be saved with the calendar interval empty; a service with calendar only (no additional trigger) saves fine.",
+   "Distance and Engine hours selected together still produce one calendar row, not two."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2, Add a routine service to a schedule); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R4",
+    "The calendar interval will always be present, always editable, and required. It shows as a ticked checkbox that cannot be unticked, with a hover explaining that every service carries a calendar interval"
+   ],
+   [
+    "S2-R5",
+    "Distance and engine hours will be optional additional triggers, each revealing its own interval row when selected"
+   ],
+   [
+    "S2-N1",
+    "A service cannot be saved with the calendar interval empty"
+   ],
+   [
+    "S2-N3",
+    "Selecting no additional trigger is valid. Calendar alone is a complete service"
+   ],
+   [
+    "S2-E1",
+    "Distance and engine hours selected together still produce one calendar row, not two"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146318,
+  "sec": "S2 — Add a routine service (triggers, intervals, covers)",
+  "title": "Interval operator Every vs At; calendar At is a day-and-month picker",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (it ships behind the maintenance_reminders flag).",
+   "A schedule open in the editor with the service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open an existing schedule and Edit).",
+   "↳ Click Add service to open the blank service form.",
+   "The calendar interval row is visible on the service form."
+  ],
+  "steps": [
+   "On an interval row, switch the operator between \"Every\" and \"At\".",
+   "On the calendar row choose \"At\" and see how the value control changes.",
+   "On the calendar row choose \"Every\" and read the number and unit controls."
+  ],
+  "results": [
+   "Each interval row has an operator \"Every\" or \"At\": Every repeats and counts again from each completion; At is a fixed point (on the calendar a day that falls each year; on a meter one reading).",
+   "On the calendar row, \"At\" turns the value into a day-and-month picker (e.g. 15 Nov) - never a month on its own.",
+   "The calendar \"Every\" interval carries a number and a unit (days or months) chosen from a list, not typed; months run 1-12, days are whole numbers, and either rebases on completion."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2, Add a routine service to a schedule); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R6",
+    "Each interval row has an operator, Every or At. Every repeats and counts again from each completion. At is a fixed point: on the calendar it is a day of the year and falls on that day each year ... on a meter it is one reading"
+   ],
+   [
+    "S2-R7",
+    "On the calendar row, choosing At turns the value into a (calendar) day-and-month picker, for example 15 Nov. At is never a month on its own"
+   ],
+   [
+    "S2-R8",
+    "The calendar interval carries a number and a unit, days or months, both chosen from a list rather than typed. Months run 1 to 12 and days are whole numbers. Either rebases on completion per S2-R6"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146319,
+  "sec": "S2 — Add a routine service (triggers, intervals, covers)",
+  "title": "The distance unit is 'mileage' and the meter unit is 'hours', in full",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (it ships behind the maintenance_reminders flag).",
+   "A schedule open in the editor with the service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open an existing schedule and Edit).",
+   "↳ Click Add service to open the blank service form.",
+   "On the service form, tick Distance and Engine hours so both units appear."
+  ],
+  "steps": [
+   "Read how the distance unit is named wherever it appears.",
+   "Read how the engine-hours unit is named wherever it appears."
+  ],
+  "results": [
+   "The distance unit is the word \"mileage\", written in full wherever a unit is named; \"mi\" and \"km\" never appear.",
+   "Engine hours are written \"hours\" in full wherever the unit is named, never \"hrs\"."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2, Add a routine service to a schedule); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R10",
+    "There is one distance unit and its name is the word mileage, written in full wherever a unit is named. mi and km never appear: the single unit covers both, so an abbreviation would claim one of them"
+   ],
+   [
+    "S2-R15",
+    "Engine hours are written hours in full wherever the unit is named, never hrs, on the same rule as mileage in S2-R10"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146320,
+  "sec": "S2 — Add a routine service (triggers, intervals, covers)",
+  "title": "Interval fields take whole numbers within caps only",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (it ships behind the maintenance_reminders flag).",
+   "A schedule open in the editor with the service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open an existing schedule and Edit).",
+   "↳ Click Add service to open the blank service form.",
+   "Calendar, Distance and Engine-hours interval rows all visible."
+  ],
+  "steps": [
+   "Enter a decimal, a negative, and a zero into an interval value.",
+   "Type letters and symbols into a number field.",
+   "Enter values above the caps: mileage > 999,999, engine hours > 99,999, days > 999.",
+   "Set the calendar operator to \"At\" and try to Save with no day and/or no month."
+  ],
+  "results": [
+   "Interval values are whole numbers, minimum 1, no decimals and no negatives; mileage caps at 999,999, engine hours at 99,999, days at 999.",
+   "A decimal is rejected inline and a zero is rejected inline (same rule).",
+   "A number field accepts digits only - letters and symbols do not enter, so there is no error to show.",
+   "A calendar \"At\" row cannot be saved without both a day and a month."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2, Add a routine service to a schedule); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R9",
+    "Interval values are whole numbers, minimum 1, with no decimals and no negatives. Mileage is capped at 999,999, engine hours at 99,999 and days at 999. An interval longer than 12 months is set in days"
+   ],
+   [
+    "S2-N2",
+    "A decimal interval value is rejected inline"
+   ],
+   [
+    "S2-N5",
+    "A number field accepts digits only. Letters and symbols do not enter the field, so there is no error to show"
+   ],
+   [
+    "S2-N6",
+    "An interval of zero is rejected inline, on the same rule as a decimal and a negative"
+   ],
+   [
+    "S2-N7",
+    "A calendar At row cannot be saved without a day and a month"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146321,
+  "sec": "S2 — Add a routine service (triggers, intervals, covers)",
+  "title": "The service comes due at whichever trigger arrives first",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (it ships behind the maintenance_reminders flag).",
+   "A schedule open in the editor with the service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open an existing schedule and Edit).",
+   "↳ Click Add service to open the blank service form.",
+   "Set more than one trigger on the service (e.g. calendar plus mileage)."
+  ],
+  "steps": [
+   "Read the line beneath the triggers block heading."
+  ],
+  "results": [
+   "The triggers block states, in one plain line beneath its heading, that the service comes due at whichever trigger arrives first; there is no \"or\" between the triggers and no warning panel."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2, Add a routine service to a schedule); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R11",
+    "The service comes due at whichever trigger arrives first. The triggers block states this once, in one plain line beneath its heading. There is no or between the triggers and no warning panel"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146322,
+  "sec": "S2 — Add a routine service (triggers, intervals, covers)",
+  "title": "Months land on the same day; a missing day falls on month-end",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (it ships behind the maintenance_reminders flag).",
+   "A schedule open in the editor with the service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open an existing schedule and Edit).",
+   "↳ Click Add service to open the blank service form.",
+   "Prepare services to compare a months interval against a days interval, and a service completed on 31 January set to a 1-month interval."
+  ],
+  "steps": [
+   "Set a service to a months interval and note the next due date after a completion.",
+   "Set a service to a days interval and note how the date drifts.",
+   "Complete a \"1 month\" service on 31 January and read the next due date, then the cycle after.",
+   "Set up a service needed at two fixed points, and look for any one-time flag."
+  ],
+  "results": [
+   "A months interval resolves to the same day of a later month, counted from the last completion (a specific date, not a month); a days interval counts days and drifts against the calendar.",
+   "Where the anchor day does not exist in the target month, the date falls on that month's last day: 31 January + one month comes due 28 February, and the next cycle counts from 28 February.",
+   "A service needed at two fixed points is set up as two \"At\" rows; there is no one-time flag (a meter \"At\" row covers the one-off case)."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2, Add a routine service to a schedule); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R14",
+    "A months interval resolves to the same day of a later month, counted from the last completion, and produces a specific date rather than a month. A days interval counts days and drifts relative to the calendar"
+   ],
+   [
+    "S2-E5",
+    "Where the anchor day does not exist in the target month, the date falls on that month's last day. A service completed on 31 January and set to one month comes due 28 February, and the following cycle counts from that date"
+   ],
+   [
+    "S2-E2",
+    "A service needed at two fixed points is set up as two At rows"
+   ],
+   [
+    "S2-E3",
+    "There is no one-time flag. A meter At row covers the one-off case"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146323,
+  "sec": "S2 — Add a routine service (triggers, intervals, covers)",
+  "title": "Services also covered pre-fills the covered service's lines",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (it ships behind the maintenance_reminders flag).",
+   "A schedule that already has at least two routine services and one compliance service. Seed it:",
+   "↳ Settings > Maintenance > New schedule; Add service \"PM-A\" and \"PM-B\" (routine, each with canned lines).",
+   "↳ Add a compliance service (turn on \"is this a compliance inspection?\").",
+   "↳ Add a new routine service \"PM-C\" and reach its \"services also covered\" step."
+  ],
+  "steps": [
+   "On PM-C, at \"services also covered\", pick PM-A and PM-B.",
+   "Move to the canned-lines step and read the pre-filled lines and their markers.",
+   "Add the first routine service on a fresh schedule and check whether the covers step shows.",
+   "Open the compliance service and look for the covers picker.",
+   "Try to make a service cover one that already covers it."
+  ],
+  "results": [
+   "A service can name the schedule's other services it also covers (a multi-select), in a step before canned lines; covering is never inferred from shared lines or interval length, and a service may cover nothing.",
+   "The covered services' canned lines arrive in the canned-lines step pre-filled and editable, each marked with its source (e.g. \"from PM-A\"); editing them here changes this service only, and the line count shows \"N absorbed\".",
+   "The \"services also covered\" step shows only when the schedule already has another routine service (not on the first service, not on any compliance service).",
+   "A compliance service is never offered in the picker and cannot name services of its own; a service cannot cover one that already covers it (directly or indirectly) and the list does not offer it."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2, Add a routine service to a schedule); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R16",
+    "A service can name the other services on its schedule that it also covers, in a step before canned lines: a multi-select of the schedule's other services. PM-C covering PM-A and PM-B means that doing PM-C does both"
+   ],
+   [
+    "S2-R17",
+    "The covered services' canned lines arrive in the canned lines step pre-filled and editable, each marked with the service it came from, for example from PM-A. Changing or removing them here changes this service only, never the one they came from"
+   ],
+   [
+    "S2-R18",
+    "Services also covered shows only when the schedule already has at least one other routine service. On the first service, and on every compliance service, the step is not shown"
+   ],
+   [
+    "S2-N8",
+    "A compliance service is never offered in the picker and cannot name services of its own. It absorbs nothing and is absorbed by nothing"
+   ],
+   [
+    "S2-N9",
+    "A service cannot cover a service that already covers it, directly or through another; the list does not offer it ... In the canned-lines count, N absorbed counts the lines that came from covered services"
+   ],
+   [
+    "S2-E6",
+    "A service may cover nothing, and most will. Covering is never inferred from shared canned lines or from interval length; a shop states it"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146324,
+  "sec": "S3 — Add a compliance inspection service",
+  "title": "Is this a compliance inspection? is asked before the trigger",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule open in the editor with a service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open a schedule and Edit).",
+   "↳ Click Add service to open the service form."
+  ],
+  "steps": [
+   "Find the \"Is this a compliance inspection?\" control and note where it sits relative to the trigger block.",
+   "Turn it on and watch the trigger block."
+  ],
+  "results": [
+   "The form asks \"Is this a compliance inspection?\" before the trigger, because the answer changes the trigger.",
+   "Turning it on replaces the trigger block with the compliance block; the two never appear together.",
+   "A compliance service has no meter triggers and no calendar interval."
+  ],
+  "source": "Epic SV-3780; story SV-10560 (S3, Add a compliance inspection service); Chunk 1 MR spec (Confluence 886931488), S3; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S3-R1",
+    "The service form will ask Is this a compliance inspection? before the trigger, because it changes the trigger"
+   ],
+   [
+    "S3-R2",
+    "Turning it on will replace the trigger block with the compliance block. The two never appear together"
+   ],
+   [
+    "S3-N1",
+    "A compliance service has no meter triggers and no calendar interval"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146325,
+  "sec": "S3 — Add a compliance inspection service",
+  "title": "Compliance Type is required free text and can be renamed",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule open in the editor with a service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open a schedule and Edit).",
+   "↳ Click Add service to open the service form.",
+   "↳ Turn on \"Is this a compliance inspection?\" so the compliance block shows.",
+   "At least one compliance type already exists and is referenced by a record (so deletion can be tried)."
+  ],
+  "steps": [
+   "Read the Type field and open its (i) for examples; try to Save with Type blank.",
+   "Rename an existing compliance type.",
+   "Try to delete a type that a record still references."
+  ],
+  "results": [
+   "Type is free text and required; an (i) beside it shows examples: Annual safety, Annual state, Annual federal, Emissions test.",
+   "A compliance type that has been added can be renamed, and cannot be deleted while any record still references it."
+  ],
+  "source": "Epic SV-3780; story SV-10560 (S3, Add a compliance inspection service); Chunk 1 MR spec (Confluence 886931488), S3; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S3-R3",
+    "Type is free text and required. An (i) beside it shows examples: Annual safety, Annual state, Annual federal, Emissions test"
+   ],
+   [
+    "S3-R12",
+    "A compliance type a shop has added can be renamed, and cannot be deleted while any record still references it"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146326,
+  "sec": "S3 — Add a compliance inspection service",
+  "title": "Compliance Term and Remind before expiry are in months",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule open in the editor with a service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open a schedule and Edit).",
+   "↳ Click Add service to open the service form.",
+   "↳ Turn on \"Is this a compliance inspection?\" so the compliance block shows."
+  ],
+  "steps": [
+   "Read the Term control (its range and whether it is required) and try to Save without it.",
+   "Read Remind before expiry: its default for a term up to 12 months and above 12; change it; then set it longer than the term.",
+   "Set the same type with different terms on two assets (e.g. a bus 6 months, a tractor 12)."
+  ],
+  "results": [
+   "Term is in months, 1 to 60, chosen from a list, and required (without it a compliance service cannot produce a due date); the type fills in nothing.",
+   "Remind before expiry is in months, defaults to 1 month for a term up to 12 months and 2 months above that, and can be changed.",
+   "Remind before expiry cannot be longer than the term: a longer value is refused inline (e.g. \"Remind before expiry cannot be longer than the 6-month term\").",
+   "The same type may carry different terms on different assets (a bus 6 months, a tractor 12)."
+  ],
+  "source": "Epic SV-3780; story SV-10560 (S3, Add a compliance inspection service); Chunk 1 MR spec (Confluence 886931488), S3; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S3-R6",
+    "The term is chosen on its own. The type fills in nothing"
+   ],
+   [
+    "S3-R7",
+    "Term will be in months, from 1 to 60, selected from a list, and is required. A compliance service without a term cannot produce a due date"
+   ],
+   [
+    "S3-R8",
+    "Remind before expiry ... It is in months, defaults to 1 month for a term up to 12 months and 2 months above that, and can be changed. It cannot be longer than the term; a longer value is refused inline: Remind before expiry cannot be longer than the 6-month term"
+   ],
+   [
+    "S3-E2",
+    "A bus and a tractor may carry the same type with different terms, 6 and 12 months"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146327,
+  "sec": "S3 — Add a compliance inspection service",
+  "title": "No certificate date on the form; a compliance service is orange",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule open in the editor with a service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open a schedule and Edit).",
+   "↳ Click Add service to open the service form.",
+   "↳ Turn on \"Is this a compliance inspection?\" so the compliance block shows.",
+   "Save the compliance service on a schedule and enrol an asset that has no matching certificate record."
+  ],
+  "steps": [
+   "Look at the compliance service form for any certificate date field.",
+   "On the enrolled asset, read the compliance service colour and its state with no record."
+  ],
+  "results": [
+   "No certificate date appears on the Settings form (certificate dates belong to the record on the asset, S8).",
+   "A compliance service is orange, never red.",
+   "A compliance service with no matching record on the asset cannot come due, reads \"No record\", and is excluded from every count."
+  ],
+  "source": "Epic SV-3780; story SV-10560 (S3, Add a compliance inspection service); Chunk 1 MR spec (Confluence 886931488), S3; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S3-R9",
+    "No certificate date will appear on this form. Certificate dates belong to the record on the asset"
+   ],
+   [
+    "S3-R10",
+    "A compliance service will be orange, never red"
+   ],
+   [
+    "S3-N2",
+    "A compliance service with no matching record on the asset cannot come due, reads No record, and is excluded from every count"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146328,
+  "sec": "S4 — Attach canned lines to a service",
+  "title": "Add canned lines opens a searchable picker showing hours",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule open in the editor with a service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open a schedule and Edit).",
+   "↳ Click Add service to open the service form.",
+   "The shop has canned lines defined (Settings). Reach the canned-lines step of the service form."
+  ],
+  "steps": [
+   "Read the empty state before any line is added.",
+   "Open Add canned lines and use its search; read what each line shows.",
+   "Select several lines and reorder them by drag.",
+   "Look for any option to create a new canned line from the picker."
+  ],
+  "results": [
+   "The empty state reads \"No lines on this service yet\" on one line with the button beside it; Add canned lines opens a picker with search.",
+   "The picker shows hours per line and no price; selected lines are ordered and reorderable by drag.",
+   "The picker does not offer creating a new canned line (that stays in Settings)."
+  ],
+  "source": "Epic SV-3780; story SV-10561 (S4, Attach canned lines to a service); Chunk 1 MR spec (Confluence 886931488), S4; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S4-R4",
+    "The empty state will read No lines on this service yet on one line, with the button beside it"
+   ],
+   [
+    "S4-R1",
+    "Add canned lines will open a picker with search"
+   ],
+   [
+    "S4-R2",
+    "The picker will show hours per line, and no price"
+   ],
+   [
+    "S4-R3",
+    "Selected lines will be ordered and reorderable by drag"
+   ],
+   [
+    "S4-E3",
+    "The picker does not offer creating a new canned line. That stays in Settings"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146329,
+  "sec": "S4 — Attach canned lines to a service",
+  "title": "A service shows no value; the line count opens a hover card",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule open in the editor with a service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open a schedule and Edit).",
+   "↳ Click Add service to open the service form.",
+   "A service with several canned lines, some absorbed from a covered service."
+  ],
+  "steps": [
+   "Look anywhere on the service for a price or estimated time.",
+   "Hover the line count and read the card, then move the pointer away."
+  ],
+  "results": [
+   "A service shows no price and no estimated time anywhere in this feature; its hours are the sum of its lines' hours.",
+   "The line count is not a link and opens nothing; hovering it opens a small-modal card listing the services it covers then its canned lines, one per row, and it closes when the pointer leaves."
+  ],
+  "source": "Epic SV-3780; story SV-10561 (S4, Attach canned lines to a service); Chunk 1 MR spec (Confluence 886931488), S4; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S4-R6",
+    "A service will invent no prices and estimate no time. Its hours are the sum of its lines' hours, and it shows no value anywhere in this feature"
+   ],
+   [
+    "S4-R5",
+    "The line count is not a link and opens nothing. Hovering it opens a card styled as a small modal that lists the services it covers and then its canned lines, one per row, and closes when the pointer leaves"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146330,
+  "sec": "S4 — Attach canned lines to a service",
+  "title": "Canned lines are optional; Settings edits flow through",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule open in the editor with a service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open a schedule and Edit).",
+   "↳ Click Add service to open the service form.",
+   "A service with no canned lines, and another service with a canned line you will edit/delete in Settings."
+  ],
+  "steps": [
+   "Save a service with no canned lines and confirm it works.",
+   "Edit a canned line in Settings and check what the service adds afterwards.",
+   "Delete a canned line in Settings and re-open the service."
+  ],
+  "results": [
+   "A service with no canned lines saves normally and is fully functional; a shop that types every line freeform is never prompted to use this.",
+   "A canned line edited later in Settings changes what the service adds from then on.",
+   "A canned line deleted in Settings leaves the service with one fewer line, without error."
+  ],
+  "source": "Epic SV-3780; story SV-10561 (S4, Attach canned lines to a service); Chunk 1 MR spec (Confluence 886931488), S4; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S4-N1",
+    "A service with no canned lines saves normally and is fully functional"
+   ],
+   [
+    "S4-N2",
+    "A shop that types every line freeform never uses this and is not prompted to"
+   ],
+   [
+    "S4-E1",
+    "A canned line edited later in Settings changes what the service adds from then on"
+   ],
+   [
+    "S4-E2",
+    "A canned line deleted in Settings leaves the service with one fewer line, without error"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146331,
+  "sec": "S5 — Reminder timing",
+  "title": "Reminder timing rows are in days with a protected due-date row",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule open in the editor with a service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open a schedule and Edit).",
+   "↳ Click Add service to open the service form.",
+   "Reach the reminder-timing step of a new routine service form."
+  ],
+  "steps": [
+   "Read the default reminder rows on a new service.",
+   "Read a row's controls ([before|after] [n] [days]).",
+   "Try to delete the due-date row; keep adding rows past five.",
+   "Add two identical rows, and a \"before\" row longer than the service's calendar interval."
+  ],
+  "results": [
+   "Reminder timing is one list of rows, each reading [ before | after ] [ n ] [ days ] - in days and nothing else; timing is per service.",
+   "Every new service starts with three default rows: 14 days before, on the due date, and 7 days after.",
+   "The due-date row cannot be deleted (its delete control is disabled, not hidden); the ceiling is five rows, after which Add reminder disables.",
+   "Days run 1 to 365; two identical rows cannot both be saved; a \"before\" row longer than the calendar interval is refused inline."
+  ],
+  "source": "Epic SV-3780; story SV-10562 (S5, Reminder timing); Chunk 1 MR spec (Confluence 886931488), S5; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S5-R1",
+    "Reminder timing is set on each service, as one list of rows, each reading [ before | after ] [ n ] [ days ]. Rows are in days and nothing else"
+   ],
+   [
+    "S5-R2",
+    "Every new service starts with three default rows: 14 days before, on the due date, and 7 days after"
+   ],
+   [
+    "S5-R3",
+    "The due date row cannot be deleted. Its delete control is disabled, not hidden"
+   ],
+   [
+    "S5-R4",
+    "The ceiling is five rows, after which Add reminder disables"
+   ],
+   [
+    "S5-R12",
+    "A reminder row's days run 1 to 365. Two identical rows cannot both be saved, and a before row longer than the service's calendar interval is refused inline"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146332,
+  "sec": "S5 — Reminder timing",
+  "title": "Reminder rows drive due-soon only; compliance has none",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule open in the editor with a service form ready. Seed it:",
+   "↳ Settings > Maintenance > New schedule (or open a schedule and Edit).",
+   "↳ Click Add service to open the service form.",
+   "A routine service with reminder rows, and a compliance service, both available to inspect."
+  ],
+  "steps": [
+   "Check what the reminder rows affect on the asset tab, the worklist and the panel.",
+   "Look for any send switch on the schedule or service.",
+   "Open a compliance service form and look for reminder rows.",
+   "Note the effect of rows dated after the due date."
+  ],
+  "results": [
+   "The rows drive when a service reads \"due soon\" on the asset tab, the worklist and the panel; they do not decide whether a row is listed on the worklist (S13 does), and in this release they email nobody.",
+   "Nothing in this release emails a customer automatically - there is no send switch on the schedule or a service; reminders are not labelled internal-only.",
+   "A compliance service has no reminder rows; its form shows \"Remind before expiry\" in their place.",
+   "Rows after the due date carry no internal effect this release (a service is overdue from its due date onward whatever they say); they are kept because the email chunk sends on them."
+  ],
+  "source": "Epic SV-3780; story SV-10562 (S5, Reminder timing); Chunk 1 MR spec (Confluence 886931488), S5; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S5-R8",
+    "The rows drive when a service reads due soon on the asset tab, the worklist and the panel. They do not decide whether a row is listed on the worklist, which S13 does. In this release they email nobody"
+   ],
+   [
+    "S5-R11",
+    "A compliance service has no reminder rows. Its form shows Remind before expiry, per S3-R8, in their place"
+   ],
+   [
+    "S5-N1",
+    "Nothing in this release emails a customer automatically. There is no send switch on the schedule or on a service ... Reminders are not labelled internal-only"
+   ],
+   [
+    "S5-E1",
+    "Rows after the due date carry no internal effect in this release: a service is overdue from its due date onward whatever they say. They are kept because the email chunk sends on them"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146333,
+  "sec": "S6 — Edit, archive and restore a schedule",
+  "title": "Editing a schedule is silent and never touches enrolled assets",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule with at least one asset enrolled, and one not-yet-enrolled asset. Seed it:",
+   "↳ Settings > Maintenance > New schedule \"Highway Tractor PM\"; Add service PM-A (calendar Every 3 months) and Save.",
+   "↳ Open an asset's Maintenance tab (last tab) -> Enrol -> pick \"Highway Tractor PM\" to enrol one asset.",
+   "↳ Keep a second asset un-enrolled for comparison."
+  ],
+  "steps": [
+   "Open the schedule (Edit), change a service or interval, and Save; watch for any interstitial, affected-asset count or conflict preview.",
+   "Open an already-enrolled asset and check its services are unchanged.",
+   "Enrol the second asset now and confirm it gets the current schedule.",
+   "Look for any re-apply or refresh action."
+  ],
+  "results": [
+   "Editing the schedule does not touch assets already carrying it - they are not notified, recalculated or migrated.",
+   "Editing is silent: no interstitial, no affected-asset count, no conflict preview.",
+   "Assets enrolled later receive whatever the schedule says at that time; there is no re-apply or refresh action for already-enrolled assets.",
+   "The only ways a change reaches an already-enrolled asset are removing and re-enrolling it, or archiving the schedule."
+  ],
+  "source": "Epic SV-3780; story SV-10563 (S6, Edit and archive a schedule); Chunk 1 MR spec (Confluence 886931488), S6; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S6-R1",
+    "Applying a schedule to an asset copies its services onto that asset"
+   ],
+   [
+    "S6-R2",
+    "Editing a schedule afterwards will not touch assets already carrying it. They are not notified, not recalculated, not migrated"
+   ],
+   [
+    "S6-R3",
+    "Editing will be silent. No interstitial, no affected asset count, no conflict preview"
+   ],
+   [
+    "S6-R4",
+    "Assets enrolled later receive whatever the schedule says at that time"
+   ],
+   [
+    "S6-N1",
+    "There is no re-apply or refresh action for already enrolled assets"
+   ],
+   [
+    "S6-N2",
+    "In this release a change to a schedule does not reach assets already on it. Removing the asset and enrolling it again, or archiving the schedule, moves it to the schedule's current form"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146334,
+  "sec": "S6 — Edit, archive and restore a schedule",
+  "title": "Editing or removing a service asks first and spares enrolled assets",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule where one service (PM-B) is covered by another (PM-C), with an asset already enrolled. Seed: New schedule; Add PM-B and PM-C (PM-C covers PM-B); enrol an asset."
+  ],
+  "steps": [
+   "Edit a service and read the confirmation that opens over the service editor.",
+   "Remove PM-B and read how the confirmation names PM-C.",
+   "Check an already-enrolled asset after removing the service."
+  ],
+  "results": [
+   "Editing or removing a service asks for confirmation over the service editor, naming the service and the outcome: assets already enrolled are untouched, assets enrolled from now get the schedule as it stands.",
+   "Removing a service another covers names that service (e.g. \"PM-C covers PM-B\"); removing PM-B takes it off PM-C, but the lines already copied into PM-C stay.",
+   "Removing a service never removes it from an asset already carrying it - there is no retroactive path and nothing warns as though there were."
+  ],
+  "source": "Epic SV-3780; story SV-10563 (S6, Edit and archive a schedule); Chunk 1 MR spec (Confluence 886931488), S6; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S6-R11",
+    "A service can be edited or removed from a schedule. Both ask for confirmation over the service editor, naming the service and the outcome: assets already enrolled are untouched, assets enrolled from now on get the schedule as it now stands. Removing a service that another covers names that service ... the lines already copied into PM-C stay"
+   ],
+   [
+    "S6-N3",
+    "Removing a service never removes it from an asset already carrying it. There is no retroactive path, by design, and nothing warns as though there were"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146335,
+  "sec": "S6 — Edit, archive and restore a schedule",
+  "title": "An active schedule can be duplicated; the copy has no assets",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule with at least one asset enrolled, and one not-yet-enrolled asset. Seed it:",
+   "↳ Settings > Maintenance > New schedule \"Highway Tractor PM\"; Add service PM-A (calendar Every 3 months) and Save.",
+   "↳ Open an asset's Maintenance tab (last tab) -> Enrol -> pick \"Highway Tractor PM\" to enrol one asset.",
+   "↳ Keep a second asset un-enrolled for comparison.",
+   "One archived schedule also exists."
+  ],
+  "steps": [
+   "On an active schedule with assets enrolled, open its row menu -> Duplicate; observe the copy's name, where it lands, and whether it opens.",
+   "Confirm the copy carries no enrolled assets.",
+   "Open an archived schedule's row menu and read its options."
+  ],
+  "results": [
+   "An active schedule can be duplicated; the copy is named after the original with a numeric suffix, lands beside it in the list, opens for editing, and carries no enrolled assets.",
+   "An archived schedule offers Restore alone (no Duplicate)."
+  ],
+  "source": "Epic SV-3780; story SV-10563 (S6, Edit and archive a schedule); Chunk 1 MR spec (Confluence 886931488), S6; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S6-R12",
+    "An active schedule can be duplicated. The copy is named after the original with a numeric suffix, lands in the list beside it, opens for editing, and carries no enrolled assets. An archived schedule offers Restore alone"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146336,
+  "sec": "S6 — Edit, archive and restore a schedule",
+  "title": "Archiving deactivates and unenrols; restoring re-enrols nobody",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A schedule with at least one asset enrolled, and one not-yet-enrolled asset. Seed it:",
+   "↳ Settings > Maintenance > New schedule \"Highway Tractor PM\"; Add service PM-A (calendar Every 3 months) and Save.",
+   "↳ Open an asset's Maintenance tab (last tab) -> Enrol -> pick \"Highway Tractor PM\" to enrol one asset.",
+   "↳ Keep a second asset un-enrolled for comparison."
+  ],
+  "steps": [
+   "On the active schedule with assets enrolled, open its row menu -> Archive and read the confirmation wording and its action colour.",
+   "After archiving, try to apply the schedule to a new asset.",
+   "Restore the schedule and check whether any assets are re-enrolled."
+  ],
+  "results": [
+   "A schedule can be archived, never deleted; archiving deactivates it and unenrols every asset on it.",
+   "The confirmation reads exactly: \"Archiving deactivates the schedule. All assets enrolled in the schedule will be unenrolled.\" and its action is red.",
+   "An archived schedule cannot be applied to new assets; restoring makes it available to enrol again but enrols nothing - the assets it unenrolled stay unenrolled until someone enrols them again."
+  ],
+  "source": "Epic SV-3780; story SV-10563 (S6, Edit and archive a schedule); Chunk 1 MR spec (Confluence 886931488), S6; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S6-R5",
+    "A schedule can be archived, never deleted"
+   ],
+   [
+    "S6-R6",
+    "Archiving deactivates the schedule and unenrols every asset on it. The confirmation says so in these words: Archiving deactivates the schedule. All assets enrolled in the schedule will be unenrolled. Its action is red"
+   ],
+   [
+    "S6-R7",
+    "An archived schedule cannot be applied to new assets"
+   ],
+   [
+    "S6-R8",
+    "Restoring an archived schedule makes it available to enrol again. It enrols nothing: the assets archiving unenrolled stay unenrolled until someone enrols them again"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146337,
+  "sec": "S6 — Edit, archive and restore a schedule",
+  "title": "Remove from schedule takes one asset off; history stays",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "An asset enrolled on a schedule (e.g. Highway Tractor PM) with an open work order and certificates; you hold the enrol permission. Seed: enrol the asset (asset Maintenance tab -> Enrol), raise a work order on it."
+  ],
+  "steps": [
+   "On the asset's Maintenance tab, open the schedule's menu and choose \"Remove from schedule\".",
+   "Read the confirmation and its action colour, then confirm.",
+   "Check the asset tab, the worklist, the asset's history, its certificates and the open work order afterwards."
+  ],
+  "results": [
+   "\"Remove from schedule\" takes that one asset off that schedule; it asks first (e.g. \"Remove 402 from Highway Tractor PM?\"), the action is red, and it needs the same permission as enrolling.",
+   "After removal, that schedule's rows leave the asset tab and the worklist; the maintenance history is kept, the certificates stay, and an open work order is not changed.",
+   "Enrolling the asset again later counts from its last completion; changing an asset's schedule is \"Remove from schedule\" then \"Enrol\"."
+  ],
+  "source": "Epic SV-3780; story SV-10563 (S6, Edit and archive a schedule); Chunk 1 MR spec (Confluence 886931488), S6; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S6-R13",
+    "Remove from schedule, in the schedule's menu on the asset's Maintenance tab, takes that one asset off that schedule. It asks first: Remove 402 from Highway Tractor PM? Its maintenance history is kept. Its reminders from this schedule stop. The action is red and needs the same permission as enrolling"
+   ],
+   [
+    "S6-R14",
+    "After Remove from schedule, that schedule's rows leave the asset tab and the worklist. History stays ... the asset's certificates stay ... an open work order is not changed. Enrolling the asset again later counts from its last completion ... Changing an asset's schedule is Remove from schedule, then Enrol"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146338,
+  "sec": "S6 — Edit, archive and restore a schedule",
+  "title": "History survives removal; re-enrol anchors from last completion",
+  "pre": [
+   "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "An asset with completed maintenance cycles that is removed from a schedule (or whose schedule is archived), then enrolled again later. Seed: enrol an asset, complete a cycle or two, then remove it (or archive the schedule)."
+  ],
+  "steps": [
+   "Remove the schedule from the asset (or archive the schedule) and check the asset's cycle history.",
+   "Enrol the asset on a schedule again and check where each service anchors from."
+  ],
+  "results": [
+   "Removing a schedule from an asset does not destroy history - cycles belong to the asset-and-service pair.",
+   "Applying a schedule afterwards anchors each service from the last completion of the same-named service on that asset, otherwise from now.",
+   "Archiving unenrols without destroying history, so enrolling again later anchors from the last completion.",
+   "A new regulatory requirement is the known weak point: the shop must apply the schedule again per unit and nothing warns it."
+  ],
+  "source": "Epic SV-3780; story SV-10563 (S6, Edit and archive a schedule); Chunk 1 MR spec (Confluence 886931488), S6; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S6-E1",
+    "Removing a schedule from an asset does not destroy history. Cycles belong to the asset and service pair"
+   ],
+   [
+    "S6-E2",
+    "Applying a new schedule afterwards anchors each service from the last completion of the service of the same name on that asset, otherwise from now"
+   ],
+   [
+    "S6-E4",
+    "Archiving unenrols without destroying history. Each asset keeps its completed cycles ... so enrolling it again later anchors from the last completion"
+   ],
+   [
+    "S6-E3",
+    "A new regulatory requirement is the known weak point. The shop must apply the schedule again per unit and nothing warns it"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146339,
+  "sec": "S7 — Enrol an asset onto a schedule",
+  "title": "Enrolment opens the same modal from three places",
+  "pre": [
+   "You are signed in as a service advisor with view and edit customers, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "An asset that has a customer, and a schedule to enrol it on. Seed them:",
+   "↳ Ensure a schedule exists (Settings > Maintenance > New schedule + at least one service).",
+   "↳ Open an asset that has a customer (from Customers > a customer > Assets, or from Work Orders) and open its Maintenance tab (the last tab on the asset page).",
+   "Also have: an asset linked to more than one customer, an asset with no customer, and (to see the no-schedules state) an org/location with no schedules."
+  ],
+  "steps": [
+   "Start enrolment from the asset's Maintenance tab (Enrol), from the maintenance panel on a work order, and from the customer's Assets tab; confirm the same modal opens.",
+   "On an asset linked to more than one customer, see how the modal asks which customer.",
+   "Try to enrol an asset with no customer.",
+   "In an org/location with no schedules, open the modal.",
+   "Try to pick a schedule the asset is already on."
+  ],
+  "results": [
+   "All three entry points open the same enrolment modal, offering the schedules of the location chosen in the header.",
+   "Enrolment is for one of the asset's customers; where the asset has more than one, the modal asks which (preselected when only one), and the asset appears once.",
+   "An asset with no customer cannot be enrolled; with no schedules the modal says so and offers the route to create one (not an empty control); a schedule the asset is already on is not offered."
+  ],
+  "source": "Epic SV-3780; story SV-10564 (S7, Enrol an asset onto a schedule); Chunk 1 MR spec (Confluence 886931488), S7; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S7-R1",
+    "Enrolment starts from the asset's Maintenance tab, from the maintenance panel on a work order, or for several assets at once from the customer's Assets tab. All three open the same modal, which offers the schedules of the location chosen in the header"
+   ],
+   [
+    "S7-R23",
+    "Enrolment is for one of the asset's customers. Where the asset is linked to more than one customer, the modal asks which, preselected where there is only one"
+   ],
+   [
+    "S7-N1",
+    "An asset with no customer cannot be enrolled"
+   ],
+   [
+    "S7-N6",
+    "Where the organization has no schedules, the enrolment modal says so plainly and offers the route to create one rather than presenting an empty control"
+   ],
+   [
+    "S7-E8",
+    "A schedule the asset is already on is not offered in the modal"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146340,
+  "sec": "S7 — Enrol an asset onto a schedule",
+  "title": "The modal collects the schedule then optional last-service dates",
+  "pre": [
+   "You are signed in as a service advisor with view and edit customers, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "An asset that has a customer, and a schedule to enrol it on. Seed them:",
+   "↳ Ensure a schedule exists (Settings > Maintenance > New schedule + at least one service).",
+   "↳ Open an asset that has a customer (from Customers > a customer > Assets, or from Work Orders) and open its Maintenance tab (the last tab on the asset page).",
+   "The asset has prior completions for some services of the same name; pick a schedule whose services partly match."
+  ],
+  "steps": [
+   "Pick a schedule and read the fields the modal fills with (services and a last-service date per service).",
+   "Check which last-service dates are pre-filled and from where; try to set one in the future.",
+   "Read the modal title, the unit/customer wording, and how \"(optional)\" is shown."
+  ],
+  "results": [
+   "The modal collects, in order: the schedule, then one optional last-service date per service; current readings are not collected here.",
+   "Each last-service date is pre-filled from the most recent completion on this asset of a same-named service (any schedule), else blank; the advisor can change it, a renamed service has no match, blank means counting starts today, and the date cannot be in the future.",
+   "The title is static with the unit and customer in the body at normal weight, \"(optional)\" sits in brackets inline with its label; enrolment applies the schedule as it stands, and a due date comes from a last-service date entered or recorded, else from today."
+  ],
+  "source": "Epic SV-3780; story SV-10564 (S7, Enrol an asset onto a schedule); Chunk 1 MR spec (Confluence 886931488), S7; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S7-R2",
+    "The modal will collect, in order: the schedule, then one optional last service date per service. Current readings are not collected here"
+   ],
+   [
+    "S7-R4",
+    "Each last service date is filled in with the most recent completion on this asset of a service with the same name, from any schedule, and is otherwise blank. The advisor can change it. A renamed service has no match. Blank means counting starts today ... The date cannot be in the future"
+   ],
+   [
+    "S7-R8",
+    "(optional) will sit in brackets inline with its label"
+   ],
+   [
+    "S7-E5",
+    "Enrolment applies the schedule as it stands. Nothing is skipped or negotiated"
+   ],
+   [
+    "S7-E3",
+    "Enrolment never invents a past. A due date comes from a last service date the advisor entered or the system recorded, otherwise from today"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146341,
+  "sec": "S7 — Enrol an asset onto a schedule",
+  "title": "Compliance rows show the record; meterless services flag a reading",
+  "pre": [
+   "You are signed in as a service advisor with view and edit customers, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "An asset that has a customer, and a schedule to enrol it on. Seed them:",
+   "↳ Ensure a schedule exists (Settings > Maintenance > New schedule + at least one service).",
+   "↳ Open an asset that has a customer (from Customers > a customer > Assets, or from Work Orders) and open its Maintenance tab (the last tab on the asset page).",
+   "Pick a schedule that includes a compliance service, a service watching a meter with no usable readings, a meter \"At\" already passed, and a calendar \"At\"."
+  ],
+  "steps": [
+   "Read a compliance service row in the modal.",
+   "Read a row whose meter has no readings.",
+   "Enrol and see how a meter \"At\" already passed, and a calendar \"At\", start their first cycle."
+  ],
+  "results": [
+   "A compliance service shows its existing record's number and expiry, or \"No record\" with \"+ Add record\".",
+   "A service watching a meter with no usable readings carries a badge \"Needs mileage reading\" or \"Needs engine hours reading\"; the calendar date still shows.",
+   "A meter \"At\" already passed at enrolment shows what happened and offers Mark as done or Leave due (default done); a calendar \"At\" takes its next occurrence, counting today if that day has not passed."
+  ],
+  "source": "Epic SV-3780; story SV-10564 (S7, Enrol an asset onto a schedule); Chunk 1 MR spec (Confluence 886931488), S7; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S7-R6",
+    "A compliance service will show its existing record's number and expiry, or No record with + Add record"
+   ],
+   [
+    "S7-R15",
+    "Where a service watches a meter that has no usable readings, its row carries a badge naming the meter, Needs mileage reading or Needs engine hours reading ... The calendar date still shows"
+   ],
+   [
+    "S7-E1",
+    "A meter At that has already been passed at enrolment shows what happened and offers Mark as done or Leave due. The default is done"
+   ],
+   [
+    "S7-E2",
+    "A calendar At takes its next occurrence, counting today if that day has not passed"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146342,
+  "sec": "S7 — Enrol an asset onto a schedule",
+  "title": "Bulk enrolment from the customer's Assets tab",
+  "pre": [
+   "You are signed in as a service advisor with view and edit customers, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "A customer with several active assets, some already on the target schedule and some with prior history. Seed: a customer with 4+ assets; enrol one or two on the target schedule beforehand."
+  ],
+  "steps": [
+   "On the customer's Assets tab find \"Enroll in maintenance schedule\" beside New Asset and open it.",
+   "Use the Assets section: checkboxes, Select all, and search; note greyed assets and the action label.",
+   "Pick a schedule and read what the modal says about last-service dates and certificates."
+  ],
+  "results": [
+   "The customer's Assets tab has \"Enroll in maintenance schedule\" beside New Asset; it opens the modal with an Assets section listing every active asset (checkbox + Select all) and a search matching type, make, unit and VIN.",
+   "An asset already on the chosen schedule is greyed, cannot be ticked, and reads \"Already on this schedule\"; the action reads \"Enroll N assets\".",
+   "Bulk enrolment asks for no last-service dates and no certificates - each asset takes its dates from its own history and the modal says how many have one (e.g. \"8 of 12 have a last service on record; the rest count from today\"); it works for one customer at a time, with no path across customers and none from the schedule side."
+  ],
+  "source": "Epic SV-3780; story SV-10564 (S7, Enrol an asset onto a schedule); Chunk 1 MR spec (Confluence 886931488), S7; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S7-R24",
+    "The customer's Assets tab has Enroll in maintenance schedule beside New Asset. It opens the enrolment modal with an Assets section: every active asset of that customer with a checkbox and Select all, and a search matching type, make, unit and VIN"
+   ],
+   [
+    "S7-R25",
+    "In the Assets section an asset already on the chosen schedule is greyed, cannot be ticked, and reads Already on this schedule. The action reads Enroll N assets"
+   ],
+   [
+    "S7-R26",
+    "Bulk enrolment asks for no last service dates and no certificates. Each asset takes its dates from its own history ... 8 of 12 have a last service on record; the rest count from today"
+   ],
+   [
+    "S7-N7",
+    "Bulk enrolment works for one customer at a time, from that customer's Assets tab. There is no enrolment across customers"
+   ],
+   [
+    "S7-N4",
+    "There is no bulk path from the schedule side"
+   ],
+   [
+    "S7-E4",
+    "An asset may be enrolled on more than one schedule. Overlapping services are allowed and produce separate rows"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146343,
+  "sec": "S7 — Enrol an asset onto a schedule",
+  "title": "The Maintenance-notifications setting is a live customer toggle",
+  "pre": [
+   "You are signed in as a service advisor with view and edit customers, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "An asset that has a customer, and a schedule to enrol it on. Seed them:",
+   "↳ Ensure a schedule exists (Settings > Maintenance > New schedule + at least one service).",
+   "↳ Open an asset that has a customer (from Customers > a customer > Assets, or from Work Orders) and open its Maintenance tab (the last tab on the asset page).",
+   "A customer with several enrolled units; be able to open the customer information card and the enrolment modal."
+  ],
+  "steps": [
+   "In the enrolment modal find \"Send preventive maintenance notifications\" and change it there.",
+   "On the customer information card find the \"Maintenance notifications\" toggle; confirm it is not in the customer edit dialog.",
+   "Turn it off and read what it states about affected units; check a customer whose setting is on but who has no email."
+  ],
+  "results": [
+   "The enrolment modal shows the customer's \"Send preventive maintenance notifications\" setting and lets it be changed there (writing the customer's own field); enrolling an asset and enrolling a customer in notifications are two separate acts.",
+   "The setting is on by default for existing and new customers; it lives on the customer as a live toggle \"Maintenance notifications\" on the customer information card and as a checkbox in the modal - not in the customer edit dialog, not a tab/page/matrix; one value covers every unit that customer owns.",
+   "Turning it off states how many of that customer's enrolled units will not receive reminders; a customer whose setting is on but has no email on file receives nothing, and every surface says so where it applies.",
+   "Changing it follows the permission to edit a customer; it is not financial data and does not sit behind the AP/AR visibility gate."
+  ],
+  "source": "Epic SV-3780; story SV-10564 (S7, Enrol an asset onto a schedule); Chunk 1 MR spec (Confluence 886931488), S7; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S7-R13",
+    "The enrolment modal will show the customer's Send preventive maintenance notifications setting and let it be changed there, writing the customer's own field"
+   ],
+   [
+    "S7-R14",
+    "Enrolling an asset on a schedule and enrolling a customer in notifications are two separate acts"
+   ],
+   [
+    "S7-R17",
+    "The setting is on by default, for existing and new customers alike"
+   ],
+   [
+    "S7-R18",
+    "The field lives on the customer as a live toggle, Maintenance notifications, on the customer information card, and as a checkbox in the enrolment modal ... It is not in the customer edit dialog, and it is not a tab, a page or a preferences matrix"
+   ],
+   [
+    "S7-R19",
+    "Turning it off will state how many of that customer's enrolled units will not receive reminders"
+   ],
+   [
+    "S7-R20",
+    "A customer whose setting is on but who has no email address on file receives nothing. Every surface that shows the setting says so where it applies"
+   ],
+   [
+    "S7-R21",
+    "One value covers every unit that customer owns, including units enrolled after it was set"
+   ],
+   [
+    "S7-R22",
+    "Changing it follows the permission to edit a customer. It is not financial data and does not sit behind the AP and AR visibility gate"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146344,
+  "sec": "S7 — Enrol an asset onto a schedule",
+  "title": "No bulk consent; the setting stands if enrolment is cancelled",
+  "pre": [
+   "You are signed in as a service advisor with view and edit customers, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "An asset that has a customer, and a schedule to enrol it on. Seed them:",
+   "↳ Ensure a schedule exists (Settings > Maintenance > New schedule + at least one service).",
+   "↳ Open an asset that has a customer (from Customers > a customer > Assets, or from Work Orders) and open its Maintenance tab (the last tab on the asset page).",
+   "A customer whose notification setting you will change from inside enrolment, and a unit whose enrolling customer you will unlink."
+  ],
+  "steps": [
+   "Look for any bulk consent action anywhere.",
+   "Change the setting inside enrolment, then cancel the enrolment; re-check the setting.",
+   "Unlink the enrolling customer from a unit and check tracking."
+  ],
+  "results": [
+   "There is no bulk consent action anywhere - the setting is on by default, so there is nothing to turn on in bulk.",
+   "A setting changed from inside enrolment stands even if the enrolment is then cancelled (enrolling a unit and notifying a customer are separate acts).",
+   "A unit whose enrolling customer is unlinked from it stops being tracked for that customer; enrolling it again for another customer follows that customer's setting from then on."
+  ],
+  "source": "Epic SV-3780; story SV-10564 (S7, Enrol an asset onto a schedule); Chunk 1 MR spec (Confluence 886931488), S7; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S7-N5",
+    "There is no bulk consent action anywhere. The setting is on by default, so there is nothing to turn on in bulk"
+   ],
+   [
+    "S7-E7",
+    "A setting changed from inside enrolment stands even if the enrolment is then cancelled. Enrolling a unit and notifying a customer are two separate acts"
+   ],
+   [
+    "S7-E6",
+    "A unit whose enrolling customer is unlinked from it stops being tracked for that customer. Enrolling it again for another customer follows that customer's setting from then on"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146345,
+  "sec": "S7 — Enrol an asset onto a schedule",
+  "title": "Enrolment never triggers a bulk send; the backlog goes to the worklist",
+  "pre": [
+   "You are signed in as a service advisor with view and edit customers, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "An asset that has a customer, and a schedule to enrol it on. Seed them:",
+   "↳ Ensure a schedule exists (Settings > Maintenance > New schedule + at least one service).",
+   "↳ Open an asset that has a customer (from Customers > a customer > Assets, or from Work Orders) and open its Maintenance tab (the last tab on the asset page).",
+   "Pick a schedule where several services are already due or overdue at the moment of enrolment (set last-service dates in the past)."
+  ],
+  "steps": [
+   "Enrol the asset and read the confirmation.",
+   "Check the worklist for the already-due rows and their status.",
+   "Confirm no email was sent for the backlog; check a service that falls due after enrolment."
+  ],
+  "results": [
+   "Enrolment never triggers a bulk customer send; services already due or overdue at enrolment are suppressed from automatic email.",
+   "The confirmation states both halves: the rows appear on the worklist, and no emails are sent for them.",
+   "Nothing is suppressed internally - every row appears immediately with its real status; services falling due after enrolment send normally (suppression covers the backlog only)."
+  ],
+  "source": "Epic SV-3780; story SV-10564 (S7, Enrol an asset onto a schedule); Chunk 1 MR spec (Confluence 886931488), S7; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S7-R9",
+    "Enrolment will never trigger a bulk customer send. Services already due or overdue at enrolment are suppressed from automatic email"
+   ],
+   [
+    "S7-R10",
+    "The confirmation will state both halves: the rows appear on the worklist, no emails are sent for them"
+   ],
+   [
+    "S7-N2",
+    "Nothing is suppressed internally. Every row appears immediately with its real status"
+   ],
+   [
+    "S7-N3",
+    "Services falling due after enrolment send normally. Suppression covers the backlog only"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146346,
+  "sec": "S8 — Compliance inspection records on the asset",
+  "title": "Compliance records sit in the asset card's Compliance section",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "A compliance service on the asset with a current record. Seed it:",
+   "↳ Ensure a schedule with a compliance service exists and the asset is enrolled (asset Maintenance tab -> Enrol).",
+   "↳ On the asset card Compliance section, click \"+ Add record\": choose a Type (e.g. CVIP), a Term, and an effective or expiry month; Save."
+  ],
+  "steps": [
+   "Read the Compliance section on the asset card (below Contact) and the \"+ Add record\" control.",
+   "Open a record from its line, and open the same form from the enrolment modal and from a work order.",
+   "On a service that already has a record, look for Edit and a renewal control."
+  ],
+  "results": [
+   "The asset card has a Compliance section below Contact, one line per current record (e.g. \"CVIP - AB-4471902 - expires Oct 2026\"), each opening the record form, with \"+ Add record\" beneath; it shows whether or not the asset is on a schedule.",
+   "One record form serves two entry points: the enrolment modal's record row and the work order.",
+   "Where a record exists, the row shows it with Edit, and \"+ Add record\" stays beside it for a renewal."
+  ],
+  "source": "Epic SV-3780; story SV-10565 (S8, Compliance inspection records on the asset); Chunk 1 MR spec (Confluence 886931488), S8; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S8-R13",
+    "The asset card carries a Compliance section below Contact, one line per current record, for example CVIP · AB-4471902 · expires Oct 2026, each opening the record form, with + Add record beneath. It shows whether or not the asset is on a schedule"
+   ],
+   [
+    "S8-R5",
+    "One record form will serve two entry points: the enrolment modal's record row and the work order"
+   ],
+   [
+    "S8-R7",
+    "Where a record exists, the row will show it with Edit, and + Add record stays beside it for a renewal"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146347,
+  "sec": "S8 — Compliance inspection records on the asset",
+  "title": "A compliance record's fields, Certificate number and attachment",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "Open the record form: on the asset card Compliance section click \"+ Add record\" on a compliance service."
+  ],
+  "steps": [
+   "Read the fields on the form and their widths.",
+   "Read the number field label and whether it is required.",
+   "Add an attachment, then replace it."
+  ],
+  "results": [
+   "A record carries type, term, effective date, expiry date, an optional artefact number and one optional attachment; field widths follow one scale, half or full.",
+   "The number field is labelled \"Certificate number\"; it is optional but always present.",
+   "The attachment reuses the DVI attachment component; replacing the file replaces the record's only attachment."
+  ],
+  "source": "Epic SV-3780; story SV-10565 (S8, Compliance inspection records on the asset); Chunk 1 MR spec (Confluence 886931488), S8; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S8-R2",
+    "A record will carry type, term, effective date, expiry date, an optional artefact number and one optional attachment"
+   ],
+   [
+    "S8-R3",
+    "The number field is labelled Certificate number"
+   ],
+   [
+    "S8-R4",
+    "The number field is optional but always present. Every v1 type produces a document"
+   ],
+   [
+    "S8-R6",
+    "Field widths will follow one scale, half or full"
+   ],
+   [
+    "S8-R9",
+    "The attachment will reuse the DVI attachment component. Replacing the file replaces the record's only attachment"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146348,
+  "sec": "S8 — Compliance inspection records on the asset",
+  "title": "Term, effective and expiry months derive; expiry is month-end",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "The record form open (\"+ Add record\" on a compliance service)."
+  ],
+  "steps": [
+   "Enter any two of term / effective month / expiry month and check the third derives.",
+   "Type a month that conflicts with a derived one and see which wins.",
+   "Try to Save with the term but neither date; then Save with a term and one date.",
+   "Read where the expiry falls within the month."
+  ],
+  "results": [
+   "Term, effective month and expiry month derive from one another (any two give the third); dates are months not days, a certificate always expires on the last day of its expiry month (not the last working day), and a typed month wins over a derived one.",
+   "A record needs the term and at least one of the two dates; it cannot be saved with neither.",
+   "A certificate that arrives already months old (issued by another shop) has its effective date entered manually."
+  ],
+  "source": "Epic SV-3780; story SV-10565 (S8, Compliance inspection records on the asset); Chunk 1 MR spec (Confluence 886931488), S8; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S8-R10",
+    "Term, effective month and expiry month derive from one another: any two give the third. Certificate dates are months, never days, and a certificate always expires on the last day of its expiry month. A month a person typed always wins over a derived one"
+   ],
+   [
+    "S8-R11",
+    "A record needs the term and at least one of the two dates. It cannot be saved with neither"
+   ],
+   [
+    "S8-E2",
+    "A certificate expires on the last day of its expiry month, not the last working day"
+   ],
+   [
+    "S8-E1",
+    "A certificate arrives already months old, issued by another shop. The effective date is entered manually"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146349,
+  "sec": "S8 — Compliance inspection records on the asset",
+  "title": "Latest-expiry record is current; renewing keeps history",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "A compliance service on the asset with a current record. Seed it:",
+   "↳ Ensure a schedule with a compliance service exists and the asset is enrolled (asset Maintenance tab -> Enrol).",
+   "↳ On the asset card Compliance section, click \"+ Add record\": choose a Type (e.g. CVIP), a Term, and an effective or expiry month; Save.",
+   "Also have an overdue compliance service to test add-moves-due."
+  ],
+  "steps": [
+   "Add a second (renewal) record and see which drives the service and where the earlier one goes.",
+   "Edit and confirm it corrects the current record only.",
+   "Remove any schedule and confirm the record survives; look for a Certificates tab.",
+   "Add a record for an overdue service and check its due date."
+  ],
+  "results": [
+   "A record belongs to the asset and the compliance service it was added for; an asset can hold several, the latest-expiry one is current and drives the service, renewing adds a new record with earlier ones read-only beneath, Edit corrects the current record only, and a same-named record carries over when enrolled on another schedule.",
+   "A record survives removal of any schedule and can exist with no schedule/enrolment; there is no Certificates tab in v1 (records are reached from the asset card and the service row).",
+   "Adding a record for an overdue service moves its due date immediately."
+  ],
+  "source": "Epic SV-3780; story SV-10565 (S8, Compliance inspection records on the asset); Chunk 1 MR spec (Confluence 886931488), S8; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S8-R12",
+    "A record belongs to the asset and to the compliance service it was added for. An asset can hold several records for a service; the one with the latest expiry is current and drives the service. Renewing adds a new record; earlier ones stay read-only beneath the current one. Edit corrects the current record only ... a record added for a service of the same name carries over"
+   ],
+   [
+    "S8-R8",
+    "A record belongs to the asset and survives the removal of any schedule"
+   ],
+   [
+    "S8-N1",
+    "A record can exist with no schedule and no enrolment"
+   ],
+   [
+    "S8-N3",
+    "There is no Certificates tab in v1. Records are reached from the asset card ... and from the service row that uses them"
+   ],
+   [
+    "S8-E4",
+    "Adding a record for a service that is overdue moves its due date immediately"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146350,
+  "sec": "S8 — Compliance inspection records on the asset",
+  "title": "A recordless compliance service can't come due; closing two asks per record",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "A compliance service on the asset with no record, and a work order closing two compliance inspections."
+  ],
+  "steps": [
+   "Check whether the recordless compliance service can come due or appears in counts.",
+   "On the work order closing two compliance inspections, see how details are requested."
+  ],
+  "results": [
+   "A compliance service with no record cannot come due and is excluded from every count.",
+   "A work order closing two compliance inspections asks for details per record, not once for the work order."
+  ],
+  "source": "Epic SV-3780; story SV-10565 (S8, Compliance inspection records on the asset); Chunk 1 MR spec (Confluence 886931488), S8; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S8-N2",
+    "A compliance service with no record cannot come due and is excluded from every count"
+   ],
+   [
+    "S8-E3",
+    "A work order closing two compliance inspections asks for details per record, not once for the work order"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146351,
+  "sec": "S9 — The asset Maintenance tab",
+  "title": "The Maintenance tab is last; an unenrolled unit prompts Enrol",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "An asset not on any schedule, and another asset with no customer."
+  ],
+  "steps": [
+   "Find the Maintenance tab position among the asset tabs and note which tab the asset opens on.",
+   "Open the Maintenance tab for a unit on no schedule.",
+   "Open it for a unit with no customer."
+  ],
+  "results": [
+   "The Maintenance tab is the last tab on the asset page, after Notes; the asset still opens on Work Orders.",
+   "A unit on no schedule shows \"This unit is not on a maintenance schedule\" with Enrol.",
+   "For an asset with no customer, Enrol is disabled and reads \"Add a customer to this unit to enrol it\"."
+  ],
+  "source": "Epic SV-3780; story SV-10566 (S9, The asset Maintenance tab); Chunk 1 MR spec (Confluence 886931488), S9 (confidence display copied from S11); read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S9-R16",
+    "The Maintenance tab is the last tab on the asset page, after Notes. The asset still opens on Work Orders"
+   ],
+   [
+    "S9-R14",
+    "An asset on no schedule shows This unit is not on a maintenance schedule, with Enrol ... For an asset with no customer, Enrol is disabled and reads Add a customer to this unit to enrol it"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146352,
+  "sec": "S9 — The asset Maintenance tab",
+  "title": "Two reading cards: recorded exact, estimate has a badge",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "An enrolled unit on its Maintenance tab. Seed it: enrol an asset (asset Maintenance tab -> Enrol -> pick a schedule).",
+   "The unit has a recorded mileage reading and an estimated engine-hours reading."
+  ],
+  "steps": [
+   "Read the two reading cards (mileage left, engine hours right).",
+   "On a recorded reading check for any qualifier; on an estimate check the badge and its basis.",
+   "Check the colour of a Low-confidence meter."
+  ],
+  "results": [
+   "The tab opens with current readings - distance and engine hours - each showing whether it is recorded or estimated, with its age.",
+   "A recorded reading shows the exact value with no qualifier; an estimate carries a badge and its basis.",
+   "The confidence meter's Low state is never red (red is reserved for overdue)."
+  ],
+  "source": "Epic SV-3780; story SV-10566 (S9, The asset Maintenance tab); Chunk 1 MR spec (Confluence 886931488), S9 (confidence display copied from S11); read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S9-R1",
+    "The tab will open with current readings: distance and engine hours, each showing whether it is recorded or estimated, with its age"
+   ],
+   [
+    "S9-R2",
+    "A recorded reading will show the exact value with no qualifier. An estimate will carry a badge and its basis"
+   ],
+   [
+    "S9-R17",
+    "The confidence meter's Low state is never red. Red is reserved for overdue"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146353,
+  "sec": "S9 — The asset Maintenance tab",
+  "title": "Services list flat by date with the schedule as a column",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "A unit enrolled on two schedules, with one service overdue for several cycles and one service shared across both schedules. Seed: enrol the unit on two schedules that share a service; set a service overdue by backdating its last-service date."
+  ],
+  "steps": [
+   "Read the service list beneath the reading cards: its sort, the schedule column and grouping.",
+   "Read one row: next due, the rule beneath, and Last done.",
+   "Find the multi-cycle-overdue service and the service shared by two schedules."
+  ],
+  "results": [
+   "Services are listed flat and sorted by date, with the schedule as a column (not grouped by schedule); each row shows next due as a date with the rule beneath, and Last done as the date its cycle counts from (labelled so it is not confused with a line completion date).",
+   "A service appears once - a unit that missed four cycles shows one row reading overdue with the date it fell due.",
+   "A unit on two schedules carrying the same service shows two rows, each with its schedule as a chip."
+  ],
+  "source": "Epic SV-3780; story SV-10566 (S9, The asset Maintenance tab); Chunk 1 MR spec (Confluence 886931488), S9 (confidence display copied from S11); read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S9-R4",
+    "Services will be listed flat and sorted by date, with the schedule as a column, not grouped by schedule"
+   ],
+   [
+    "S9-R5",
+    "Each row will show next due as a date, with the rule that produced it beneath"
+   ],
+   [
+    "S9-R6",
+    "Last done will be the date its cycle counts from ... labelled so it cannot be confused with a line completion date"
+   ],
+   [
+    "S9-R10",
+    "A service will appear once. A unit that missed four cycles shows one row reading overdue, with the date it fell due"
+   ],
+   [
+    "S9-E1",
+    "A unit on two schedules carrying the same service shows two rows, each with its schedule as a chip"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146354,
+  "sec": "S9 — The asset Maintenance tab",
+  "title": "The status badge carries exactly three values",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "A unit with services in due-soon, due-today and overdue states, plus one not due. Seed by backdating last-service dates and reminder timing so services fall in each state."
+  ],
+  "steps": [
+   "Read the badge beside each service.",
+   "Check when \"due soon\" starts (routine vs compliance).",
+   "Look for any Active/Paused status or Ignore/Pause/Service history/Activity actions."
+  ],
+  "results": [
+   "Status is a badge beside the service carrying exactly three values: due soon, due today, overdue; a service with no badge is tracked and nothing is due. It is a display on the asset and joins no other status set.",
+   "Due soon starts when the service's first reminder row is reached, and for a compliance service at its Remind before expiry.",
+   "There is no Active or Paused status, and no Ignore, Pause, Service history or Activity action."
+  ],
+  "source": "Epic SV-3780; story SV-10566 (S9, The asset Maintenance tab); Chunk 1 MR spec (Confluence 886931488), S9 (confidence display copied from S11); read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S9-R7",
+    "Status will be a badge beside the service, carrying exactly three values: due soon, due today, overdue. A service with no badge is tracked and nothing is due ... joins no other status set in the product"
+   ],
+   [
+    "S9-R8",
+    "Due soon starts when the service's first reminder row is reached, and for a compliance service at its Remind before expiry"
+   ],
+   [
+    "S9-N1",
+    "There is no Active or Paused status"
+   ],
+   [
+    "S9-N2",
+    "There is no Ignore, Pause, Service history or Activity action"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146355,
+  "sec": "S9 — The asset Maintenance tab",
+  "title": "The Due cell shows the earliest candidate and its trigger",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "A service watching several triggers, and a service whose meter has no usable readings. Seed a service with a calendar + mileage + hours trigger, and a meter-watching service with no readings."
+  ],
+  "steps": [
+   "Read the Due cell of a multi-trigger service and look for other candidate dates.",
+   "Open the row menu and find the other candidates / Other triggers.",
+   "Read the Due cell of a service whose meter has no readings."
+  ],
+  "results": [
+   "The Due cell shows one line: the earliest candidate and the trigger that produced it; every other candidate is reachable from the row menu rather than stacked in the cell.",
+   "A service whose meter has no usable readings shows the calendar date and reads \"Calendar - needs mileage reading\" (or engine hours) - the ordinary case, not a warning."
+  ],
+  "source": "Epic SV-3780; story SV-10566 (S9, The asset Maintenance tab); Chunk 1 MR spec (Confluence 886931488), S9 (confidence display copied from S11); read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S9-R12",
+    "The Due cell shows one line: the earliest candidate and the trigger that produced it. Every other candidate is reachable from the row menu rather than stacked in the cell, because a service resets on the first trigger and the later candidates are then recomputed"
+   ],
+   [
+    "S9-N3",
+    "A service whose meter has no usable readings shows the calendar date and reads Calendar · needs mileage reading, or engine hours. This is the ordinary case, not a warning"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146356,
+  "sec": "S9 — The asset Maintenance tab",
+  "title": "The row menu and Skip; a skipped row returns on its own",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "An enrolled unit on its Maintenance tab. Seed it: enrol an asset (asset Maintenance tab -> Enrol -> pick a schedule).",
+   "The unit has a routine service row and a compliance service row that are due."
+  ],
+  "steps": [
+   "Open a routine row's menu, then a compliance row's menu, and read the actions.",
+   "Skip a routine service and check the asset row and the worklist.",
+   "Give the unit a new reading (or work order) and check the routine row returns; change a compliance record and check its row returns."
+  ],
+  "results": [
+   "A routine service row offers Mark complete, Create work order, Skip and Other triggers; a compliance service row offers Mark complete, Create work order and Skip.",
+   "Skip hides the row from the worklist; on the asset tab the row stays with a grey \"Skipped\" badge and its date unchanged, its menu offers Undo skip (and for compliance \"+ Add record\"), and Skip moves no date and records no completion.",
+   "A skipped routine service returns to the worklist on a new reading or work order; a skipped compliance service returns when its record changes."
+  ],
+  "source": "Epic SV-3780; story SV-10566 (S9, The asset Maintenance tab); Chunk 1 MR spec (Confluence 886931488), S9 (confidence display copied from S11); read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S9-R9",
+    "A routine service row offers Mark complete, Create work order, Skip, and Other triggers"
+   ],
+   [
+    "S9-R11",
+    "A compliance service row offers Mark complete, Create work order and Skip"
+   ],
+   [
+    "S9-R13",
+    "Skip means the shop knows the service is due and is not acting on it now. It hides the row from the worklist; on the asset tab the row stays with a grey Skipped badge and its date unchanged ... Skip moves no date and records no completion"
+   ],
+   [
+    "S9-R18",
+    "A skipped routine service comes back on the worklist when the asset gets a new reading or a new work order. A skipped compliance service comes back when its record changes"
+   ],
+   [
+    "S9-E4",
+    "A unit off the road, or a customer having the inspection done elsewhere, is what Skip is for"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146357,
+  "sec": "S9 — The asset Maintenance tab",
+  "title": "Estimated due dates read as a month with confidence",
+  "pre": [
+   "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open an asset page and its Maintenance tab (the last tab, after Notes). The asset card is on the left; the Compliance section sits below Contact.",
+   "A unit whose services are due from meter estimates, plus a compliance date and a calendar date; \"Enter mileage\" is available above the cards. Seed readings so at least one service is due from a mileage estimate."
+  ],
+  "steps": [
+   "Read how an estimated due date is shown (month, confidence, hover rule).",
+   "Read an overdue meter-estimate row, a certificate-term date, and a calendar date.",
+   "Use Enter mileage to record a reading and watch the dependent services."
+  ],
+  "results": [
+   "Every estimated due date shows a month, at every confidence, with its confidence beneath (the meter and a word - High/Medium/Low confidence) and the rule (e.g. \"based on mileage estimate\") in the meter's hover; an exact date belongs to a recorded reading alone.",
+   "An overdue row from a meter estimate shows its estimated month and no figure (never \"overdue by 1,200 mileage\"); a certificate-term date reads its month and \"Certificate\"; a calendar date reads its month and \"Calendar\".",
+   "Entering a reading recalculates every dependent service immediately."
+  ],
+  "source": "Epic SV-3780; story SV-10566 (S9, The asset Maintenance tab); Chunk 1 MR spec (Confluence 886931488), S9 (confidence display copied from S11); read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S11-R9",
+    "Every estimated due date shows a month, at every confidence, with its confidence beneath it as the meter and a word: High, Medium or Low confidence. The rule that produced it ... sits in the meter's hover ... An exact date belongs to a recorded reading alone"
+   ],
+   [
+    "S11-R13",
+    "An overdue row derived from a meter estimate shows its estimated month and carries no figure at any confidence: never overdue by 1,200 mileage. A date from a certificate term reads its month and Certificate ... A date from the calendar reads its month and Calendar"
+   ],
+   [
+    "S9-E2",
+    "Entering a reading here recalculates every dependent service immediately"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146358,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "The worklist is a Maintenance reminders tab under Customers",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open the Customers page (do not switch tabs yet)."
+  ],
+  "steps": [
+   "Find the \"Maintenance reminders\" tab under Customers and open it.",
+   "Type a term in the search on the Customers tab, switch to Maintenance reminders, and check the term.",
+   "Look for a \"New customer\" action on this tab.",
+   "Look for a count badge on the Customers nav item and on the Maintenance reminders tab.",
+   "Click a row body (not a button or the menu) and see whether anything opens.",
+   "Page and sort the list and note whether pages/sorts come from the server."
+  ],
+  "results": [
+   "The list sits under Customers as a \"Maintenance reminders\" tab and is organization-wide, not location-specific.",
+   "The Customers search is shared by both tabs (a term typed on one stays when switching); \"New customer\" belongs to the Customers tab and does not appear here.",
+   "There is no count badge on the Customers nav item, nor on the Maintenance reminders tab.",
+   "Rows open nothing - the row's buttons and its three-dot menu are the only way into anything; the list is server-side paged and sorted."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R1",
+    "The list will sit under Customers as a Maintenance reminders tab. It is organization wide, not location specific"
+   ],
+   [
+    "S13-R32",
+    "The Customers page's search is shared by both tabs: a term typed on one stays when switching to the other. The New customer action belongs to the Customers tab and does not appear here"
+   ],
+   [
+    "S13-N1",
+    "There is no count badge on the Customers nav item, nor on the Maintenance reminders tab"
+   ],
+   [
+    "S13-R35",
+    "Rows open nothing. The row's buttons and its three-dot menu are the only way into anything from the list"
+   ],
+   [
+    "S13-R11",
+    "The list will be server side paged and sorted"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146359,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "Four header tiles filter, count assets, and don't add up",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "Enrolled assets with services falling due across the windows. Seed them: enrol several assets (asset Maintenance tab -> Enrol) and backdate last-service dates so services land Overdue, within 30 days, within 31-91 days, plus a meter-driven service with no readings (Needs readings). Include one asset with rows in two windows and one service overdue several cycles."
+  ],
+  "steps": [
+   "Read the four header tiles and their labels.",
+   "Note the colour treatment of the Overdue tile against the others.",
+   "Click a tile to filter, then click it again.",
+   "Click a second tile as well.",
+   "Check what each tile counts (assets or rows) and whether the tiles sum to a total.",
+   "Find a service that missed several cycles and count its rows."
+  ],
+  "results": [
+   "The header has four tiles: Overdue (due before today), Due in a month (today up to 30 days ahead), Due in 3 months (31-91 days ahead) and Needs readings; each counts assets, an asset with rows in two tiles counts once in each, so the tiles do not add up to a total.",
+   "Tiles act as filters, all with the same visual treatment - no colour singles out Overdue.",
+   "Clicking a tile filters the list; clicking it again clears it; more than one tile may be active at once.",
+   "A service appears once however many cycles it has missed."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R2",
+    "The header has four tiles. Overdue: due before today. Due in a month: today up to 30 days ahead. Due in 3 months: 31 to 91 days ahead. Needs readings: per S13-R22. Each counts assets; an asset with rows in two tiles counts once in each, so the tiles do not add up to a total"
+   ],
+   [
+    "S13-R3",
+    "Tiles will act as filters. All carry the same visual treatment, with no colour singling out overdue"
+   ],
+   [
+    "S13-R4",
+    "Clicking a tile filters the list. Clicking it again clears the filter"
+   ],
+   [
+    "S13-R5",
+    "More than one tile may be active at once"
+   ],
+   [
+    "S13-N3",
+    "A service appears once however many cycles it has missed"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146360,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "Time tiles don't overlap; Needs readings crosses them",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "Assets with meter-driven services that lack usable readings, plus calendar-only services. Seed: enrol assets on meter-watching services with no readings, and some on calendar-only services."
+  ],
+  "steps": [
+   "Select two time tiles and confirm both sets show.",
+   "Select Needs readings together with a time tile and read what shows.",
+   "Identify what makes a row count toward Needs readings (no reading / one reading / uncomparable), and confirm a calendar-only service never counts."
+  ],
+  "results": [
+   "The three time tiles do not overlap, and selecting two shows both; Needs readings crosses them - selected with a time tile it shows assets with a row in each, with every matching row.",
+   "A row counts toward Needs readings when its service watches mileage or engine hours and that meter has no usable pair of readings (none, only one, or uncomparable); the row still shows its calendar date, and a calendar-only service never counts."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R20",
+    "The three time tiles do not overlap, and selecting two shows both. Needs readings crosses them: selected with a time tile it shows the assets that have a row in each, with every matching row"
+   ],
+   [
+    "S13-R22",
+    "A row counts toward Needs readings when its service watches mileage or engine hours and that meter has no usable pair of readings: no reading, only one, or none that can be compared. The row still shows its calendar date. A calendar-only service never counts"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146361,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "No-tile window is 91 days; paging, sort and empty states",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "Enough enrolled assets to page (50+ rows); plus access to an org with nothing enrolled and an org with assets enrolled but nothing due soon.",
+   "Enrolled assets with services falling due across the windows. Seed them: enrol several assets (asset Maintenance tab -> Enrol) and backdate last-service dates so services land Overdue, within 30 days, within 31-91 days, plus a meter-driven service with no readings (Needs readings). Include one asset with rows in two windows and one service overdue several cycles."
+  ],
+  "steps": [
+   "With no tile active, read which rows appear and which are excluded.",
+   "Count rows per page and read the default sort; sort by each sortable column header.",
+   "Search by unit number, VIN, customer and service name.",
+   "View the tab with nothing enrolled; with assets enrolled but nothing in the window; and with a filter active and nothing matching."
+  ],
+  "results": [
+   "With no tile active the list shows every row overdue, due today or due within the next 91 days, plus every Needs readings row whatever its date; a service further out is not listed.",
+   "The list shows 50 rows per page, sorted by due date oldest first then by unit; Asset, customer, service and due sort by their column header; search matches unit number, VIN, customer and service name and narrows the tiles.",
+   "Empty states: nothing enrolled -> \"there are no maintenance reminders yet\"; enrolled but nothing in window -> tiles read zero and the table says nothing is due in the next three months; a filter/search matching nothing -> \"No reminders match\" with Clear filters."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R36",
+    "With no tile active the list shows every row that is overdue, due today or due within the next 91 days, plus every Needs readings row whatever its date. A service further out is not listed"
+   ],
+   [
+    "S13-R37",
+    "The list shows 50 rows per page, sorted by due date, oldest first, then by unit. Asset, customer, service and due are sortable by their column header. Search matches unit number, VIN, customer and service name, and narrows the tiles as the location filter does"
+   ],
+   [
+    "S13-R33",
+    "Where nothing is enrolled, the tab says there are no maintenance reminders yet. Where assets are enrolled but nothing falls inside the list's window, the time tiles read zero and the table says nothing is due in the next three months. With a tile, filter or search active and nothing matching, the table reads No reminders match, with Clear filters"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146362,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "One column set; unit shows number + year/make/model",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "Rows including a unit with a unit number and one without; use a two-workplace org to see the location column."
+  ],
+  "steps": [
+   "Read the column headers and confirm the set is constant across groups (cells adapt, columns do not change).",
+   "Read how the unit is rendered for a unit with a number and one without.",
+   "Check whether a location column renders on a one-workplace org versus a multi-workplace org."
+  ],
+  "results": [
+   "The column set is one across every group (cells adapt, columns do not change): asset, customer, service, due status, due (with confidence or rule beneath), work order (with status), actions.",
+   "The unit reads as unit number then year, make and model, falling back to year, make and model where there is no unit number.",
+   "The location column renders only for an organization with more than one workplace."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R6",
+    "The column set will be one across every group, with cells adapting rather than columns changing: asset, customer, service, due status, due with its confidence or rule beneath, work order with its status, actions"
+   ],
+   [
+    "S13-R7",
+    "The unit will read as unit number followed by year, make and model, falling back to year, make and model where there is no unit number"
+   ],
+   [
+    "S13-R9",
+    "The location column will render only for an organization with more than one workplace"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146363,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "Due status vs work order status; Invoice clears a row",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "Rows in due soon / due today / overdue; a not-yet-due row; a row with no work order; a row with a declined work order; a row with a complete-but-not-invoiced work order. Seed by creating work orders from some rows and taking them to those states."
+  ],
+  "steps": [
+   "Read the Due status column values, and a not-yet-due row.",
+   "Compare the Due status badge with the work order status badge on the same row.",
+   "Read the Work Order column for a row with a linked WO, one with none, and one declined.",
+   "Read the WO status badge values, including a Complete one.",
+   "On a complete-but-not-invoiced row, use Invoice and watch the row."
+  ],
+  "results": [
+   "The Due status column carries the three badges (due soon, due today, overdue) and is empty for a service not yet due; it is headed \"Due status\" so it never reads as a work order's status.",
+   "The Work Order column shows the most recent work order addressing this service as a link with its own status badge; no work order shows a dash; a declined WO stays linked and the row offers Create work order again; a live WO makes it Open work order, a complete one shows Invoice.",
+   "The WO status badge shows the app's exact status (up to invoicing, including On Hold and Review); a complete-but-not-invoiced row offers Invoice, and the service resets and the row clears only when the invoice exists."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R13",
+    "The Due status column carries the asset tab's three badges, due soon, due today and overdue, per S9-R7, and is empty for a service not yet due. It is headed Due status so it never reads as a work order's status"
+   ],
+   [
+    "S13-R23",
+    "The two maintenance surfaces carry the same due badges, due soon, due today and overdue, per S9-R7. A work order's status is a different thing and appears only as the badge beside its number"
+   ],
+   [
+    "S13-R14",
+    "The row shows the most recent work order on which this service is addressed, whichever path addressed it, as a link with that work order's own status as a badge beside it ... A row with no work order shows a dash. A declined work order stays linked with its badge and the row offers Create work order again. With a live work order linked, Create work order becomes Open work order; a complete one shows Invoice"
+   ],
+   [
+    "S13-R25",
+    "The badge beside the work order number shows its status exactly as the app names it, every value up to invoicing, On Hold and Review included. Complete means the work is done and the service has not yet reset; invoicing resets it and the row moves on to its next cycle"
+   ],
+   [
+    "S13-R26",
+    "A row whose work order is complete but not invoiced offers Invoice, which opens that work order's invoicing. The service resets only when the invoice exists, so this is the action that clears the row"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146364,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "A due date shows confidence, Certificate or Calendar, never a figure",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "Rows due from a meter estimate, from a certificate term, and from the calendar; plus a meter row with no usable readings."
+  ],
+  "steps": [
+   "Read the area beneath the due date on a meter-estimated row (meter, word, hover rule).",
+   "Read a compliance row and a calendar row beneath the due date.",
+   "Read a meter row whose meter has no usable readings."
+  ],
+  "results": [
+   "A meter-estimated row shows its confidence beneath the date (the meter and a word) with the rule in its hover.",
+   "A compliance row shows \"Certificate\" and a calendar row shows \"Calendar\" instead, never a confidence meter.",
+   "A meter row with no usable readings shows the calendar date and says which reading is needed (e.g. \"Calendar - needs mileage reading\") - the majority case, no warning styling."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R34",
+    "A row whose due date is estimated from a meter shows its confidence beneath the date, the asset tab's meter and word, with the rule in its hover per S11-R9. A compliance row shows Certificate and a calendar row Calendar instead, never a confidence meter; a meter with no usable readings reads Calendar · needs mileage reading"
+   ],
+   [
+    "S13-E3",
+    "A row whose meter has no usable readings shows the calendar date and says which reading is needed. This is the majority case and carries no warning styling"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146365,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "Create work order raises one estimate WO per row",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "A row whose service schedule belongs to the header location, and a unit on two schedules with services falling close together."
+  ],
+  "steps": [
+   "On a row use Create work order and read the new work order's status, customer/asset, and whether the service's canned lines are added.",
+   "Confirm it opens the work order and the row's Work Order column then links to it.",
+   "Note the workplace the work order is raised at.",
+   "On the two-schedule unit, confirm each row has its own Create work order.",
+   "Look for any way to raise one work order covering several assets."
+  ],
+  "results": [
+   "Create work order creates a work order in estimate status for that customer and asset; where the service's schedule belongs to the header location it adds the service's canned lines and opens the work order, and the row's Work Order column links to it; it is raised at the header location.",
+   "A work order is created per row - there is no multi-asset work order.",
+   "A unit on two schedules whose services fall close together produces two rows, each with its own Create work order."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R17",
+    "A work order is created per row. There is no multi asset work order"
+   ],
+   [
+    "S13-R30",
+    "Create work order creates a work order, in estimate status as every new work order starts, for that customer and asset. Where the service's schedule belongs to the location chosen in the header it adds the service's canned lines per S16-R19, and it opens the work order. The row's Work Order column then links to it per S13-R14"
+   ],
+   [
+    "S13-R38",
+    "Create work order raises the work order at the location chosen in the header, as creating a work order does today"
+   ],
+   [
+    "S13-E1",
+    "A unit on two schedules whose services fall close together produces two rows, each with its own Create work order"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146366,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "Row actions are Contact and Create work order",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "A normal row, a Needs readings row, and a row whose customer has no phone and no email. Seed a customer with no phone/email for the last."
+  ],
+  "steps": [
+   "Read a row's visible buttons and open its three-dot menu.",
+   "Confirm a Needs readings row keeps every action.",
+   "Look at the Contact button on a row whose customer has no phone and no email, and hover it."
+  ],
+  "results": [
+   "Row actions are Contact and Create work order, and behind the menu Mark complete, Skip and Open asset; a Needs readings row keeps every action.",
+   "Where the customer has no phone and no email, the Contact button has an orange border and a hover reading \"No phone or email on file\"."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R16",
+    "Row actions are Contact and Create work order, and behind the menu Mark complete, Skip and Open asset. A Needs readings row keeps every action"
+   ],
+   [
+    "S13-R41",
+    "Where the customer has no phone and no email, the row's Contact button has an orange border and a hover: No phone or email on file"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146367,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "Multi-schedule units show a schedule chip; sort by header only",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "A unit enrolled on more than one schedule. Seed: enrol one unit on two schedules."
+  ],
+  "steps": [
+   "Find the multi-schedule unit's rows and read the chip beside each service.",
+   "Sort the list by clicking a column header; look for any separate sort control, tile-sort or badge-sort."
+  ],
+  "results": [
+   "Where a unit sits on more than one schedule, each of its rows carries the schedule name as a chip beside the service.",
+   "Sorting is by clicking a column header, never by a tile or badge; there is no separate sort control."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R18",
+    "Where a unit sits on more than one schedule, each of its rows will carry the schedule name as a chip beside the service"
+   ],
+   [
+    "S13-R10",
+    "Sorting will be by clicking a column header, never by a tile or badge. There is no separate sort control"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146368,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "Row location and the multi-workplace location filter",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "A two-workplace org; a serviced asset and an asset never on a work order; the header location control set to one workplace."
+  ],
+  "steps": [
+   "Read a serviced row's location and the location of an asset never on a work order.",
+   "Change the header location and confirm the list is not narrowed by it.",
+   "Use the location filter and confirm each tile counts only what the filter shows.",
+   "List the filters the list offers, and look for a customer or status filter."
+  ],
+  "results": [
+   "A row's location is the workplace of its asset's most recent work order; an asset never on a work order has no location and shows none.",
+   "The list is org-wide and never narrowed by the header location; a multi-workplace org gets a location filter instead, and with it applied each tile counts only what the filter shows.",
+   "The tiles, the Compliance inspection chip and (multi-workplace) the location filter are the only filters - there is no customer or status filter."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R27",
+    "A row's location is the workplace of its asset's most recent work order, which is the only place an asset has a location. An asset never yet on a work order has no location and shows none"
+   ],
+   [
+    "S13-R28",
+    "The list is organization wide per S13-R1 and is never narrowed by the location chosen in the header, which would hide every unit never yet serviced. An organization with more than one workplace gets a location filter instead, using the application's filter component"
+   ],
+   [
+    "S13-R29",
+    "With the location filter applied, each tile counts only what that filter shows"
+   ],
+   [
+    "S13-R12",
+    "The tiles, the Compliance inspection chip and, for an organization with more than one workplace, the location filter of S13-R28 are the list's filters. There is no customer or status filter"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146369,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "The Compliance inspection chip; no-record services sort last",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "Compliance rows present, including a compliance service with no record. Seed a compliance service on an enrolled asset with no record."
+  ],
+  "steps": [
+   "Find the Compliance inspection chip above the table and turn it on.",
+   "Combine it with a tile and check the tile counts.",
+   "With no tile active, find the no-record compliance service and read its row and sort position; then activate a tile and check whether it still shows."
+  ],
+  "results": [
+   "A \"Compliance inspection\" chip above the table (styled like \"Assigned to me\" on Work Orders) shows compliance rows only; it combines with the tiles, and the tiles count what it shows.",
+   "A compliance service with no record appears only while no tile is active; it reads \"No record\", sorts last, and is excluded from every tile count."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R40",
+    "A Compliance inspection chip above the table, styled like Assigned to me on the Work Orders list, shows compliance rows only. It combines with the tiles, and the tiles count what it shows"
+   ],
+   [
+    "S13-N2",
+    "A compliance service with no record appears only while no tile is active. It reads No record, sorts last and is excluded from every tile count"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146370,
+  "sec": "S13 — The maintenance reminders worklist",
+  "title": "Worklist keeps filters, shows cards on tablet, drops deleted assets",
+  "pre": [
+   "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
+   "Filters/chip/search/sort you can set; a browser you can narrow below tablet width; a disposable test asset you can delete or make inactive (or whose customer can be deleted)."
+  ],
+  "steps": [
+   "Set tiles, the chip, a location filter, a search and a sort, leave the tab and come back; check what is kept and what the address bar carries.",
+   "Narrow the browser below tablet width and read the layout, the tiles and the row menu.",
+   "Delete or deactivate a test asset (or its customer) and check the worklist and that its history is kept."
+  ],
+  "results": [
+   "Leaving and returning keeps the tiles, chip, location filter, search and sort (filters saved to the user and carried in the address, sort personal, search kept for the browser Back).",
+   "Below tablet width the worklist shows one card per row; the tiles scroll sideways and the row menu opens as an action sheet.",
+   "An asset deleted or made inactive, or whose customer is deleted, leaves the worklist; its history is kept."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13, The worklist); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R42",
+    "Leaving the list and coming back keeps its tiles, chip, location filter, search and sort, following the Work Orders list: filters are saved to the user and carried in the address, sort is personal, and search is kept for the browser's Back"
+   ],
+   [
+    "S13-R39",
+    "Below tablet width the worklist shows one card per row, as the Customers list does; the tiles scroll sideways and the row menu opens as an action sheet"
+   ],
+   [
+    "S13-E5",
+    "An asset that is deleted or made inactive, or whose customer is deleted, leaves the worklist. Its history is kept per S21-R6"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146371,
+  "sec": "S14 — Contact card and manual send",
+  "title": "The Contact card shows labelled phones, copy and tap",
+  "pre": [
+   "You are signed in as a service advisor with edit-customer permission (which governs sending), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers > Maintenance reminders and use a row's Contact button to open the contact card. Seed a worklist row: enrol an asset (asset Maintenance tab -> Enrol) whose customer has contact details.",
+   "The row's customer has a telephone, mobile, company telephone and an email on file (set on the customer record)."
+  ],
+  "steps": [
+   "Open the contact card from the row's Contact button and read the numbers, their labels and order.",
+   "Find the copy control on the email address.",
+   "Tap/click a phone number (open the card on a phone to confirm it is tappable)."
+  ],
+  "results": [
+   "The card carries the contact's telephone and mobile, then the customer's company telephone, each labelled.",
+   "The email address has a copy control.",
+   "A phone number is tappable, so the card is usable on a phone."
+  ],
+  "source": "Epic SV-3780; story SV-10571 (S14, Contact the customer from a row); Chunk 1 MR spec (Confluence 886931488), S14; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S14-R1",
+    "Contact will open a card carrying the contact's telephone and mobile, then the customer's company telephone, each labelled"
+   ],
+   [
+    "S14-R2",
+    "The email address will carry a copy control"
+   ],
+   [
+    "S14-R3",
+    "A phone number will be tappable, so the card is usable on a phone"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146372,
+  "sec": "S14 — Contact card and manual send",
+  "title": "Send reminder covers one asset, updates last sent, no Resend",
+  "pre": [
+   "You are signed in as a service advisor with edit-customer permission (which governs sending), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers > Maintenance reminders and use a row's Contact button to open the contact card. Seed a worklist row: enrol an asset (asset Maintenance tab -> Enrol) whose customer has contact details.",
+   "The customer has more than one enrolled unit; the audit trail is reachable so a written entry can be checked."
+  ],
+  "steps": [
+   "On the card, read the send control label and look for any Resend.",
+   "Press Send reminder for this asset and confirm what it covers (this asset only, not the customer's other units).",
+   "After sending, check the audit entry, the \"last sent\" line, and whether a read receipt is tracked."
+  ],
+  "results": [
+   "Send reminder sends the email for that one asset with its current state; a send from a row covers that one asset only, never the customer's other units.",
+   "The control reads \"Send reminder\"; nothing is emailed automatically this release, so there is no Resend (the email is the one in S19; its sender/delivery are still to be confirmed, so the action is built and switched on once they are).",
+   "Sending writes an audit entry and updates \"last sent\"; read receipts are not tracked."
+  ],
+  "source": "Epic SV-3780; story SV-10571 (S14, Contact the customer from a row); Chunk 1 MR spec (Confluence 886931488), S14; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S14-R4",
+    "Send reminder will send the email for that one asset, with its current state. It carries none of the customer's other units, per S14-R6. The email itself is the one specified in S19; its sender and delivery are still to be confirmed per Open Questions, so the action is built here and switched on once they are"
+   ],
+   [
+    "S14-R5",
+    "The send control reads Send reminder. Nothing is emailed automatically in this release, so there is no Resend"
+   ],
+   [
+    "S14-R6",
+    "A send from a row will cover that one asset only, never the customer's other units"
+   ],
+   [
+    "S14-E2",
+    "Sending a reminder writes an audit entry and updates last sent"
+   ],
+   [
+    "S14-E3",
+    "Read receipts are not tracked"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146373,
+  "sec": "S14 — Contact card and manual send",
+  "title": "The card reads complete in every empty state",
+  "pre": [
+   "You are signed in as a service advisor with edit-customer permission (which governs sending), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers > Maintenance reminders and use a row's Contact button to open the contact card. Seed a worklist row: enrol an asset (asset Maintenance tab -> Enrol) whose customer has contact details.",
+   "Rows to seed: a contact with no email; a contact with no phone; a contact with neither; and an asset with no preferred contact (set these on the customer/asset records)."
+  ],
+  "steps": [
+   "Open the card for a contact with no email, and one with no phone.",
+   "Open the card for a contact with neither email nor phone.",
+   "Open the card for an asset with no preferred contact.",
+   "In each case judge whether the card reads as complete and whether a send action is offered."
+  ],
+  "results": [
+   "The card renders a distinct state for a contact with no email, and for a contact with no phone.",
+   "A contact with neither email nor phone shows both empty states and no send action.",
+   "An asset with no preferred contact shows an empty state in place of the contact details, with an action to set one, and no send action until a contact exists.",
+   "The empty states read as complete rather than broken in every one of them."
+  ],
+  "source": "Epic SV-3780; story SV-10571 (S14, Contact the customer from a row); Chunk 1 MR spec (Confluence 886931488), S14; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S14-R8",
+    "The card will render a state for a contact with no email, and a state for a contact with no phone number"
+   ],
+   [
+    "S14-N2",
+    "A contact with neither email nor phone shows both empty states and no send action"
+   ],
+   [
+    "S14-N4",
+    "An asset with no preferred contact shows an empty state in place of the contact details, with an action to set one. There is no send action until a contact exists"
+   ],
+   [
+    "S14-E1",
+    "The empty states are common rather than exceptional, so the card must read as complete in every one of them"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146374,
+  "sec": "S14 — Contact card and manual send",
+  "title": "Notification off disables Send; no permission hides it",
+  "pre": [
+   "You are signed in as a service advisor with edit-customer permission (which governs sending), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers > Maintenance reminders and use a row's Contact button to open the contact card. Seed a worklist row: enrol an asset (asset Maintenance tab -> Enrol) whose customer has contact details.",
+   "A customer whose \"Maintenance notifications\" setting is OFF; and access to a user WITHOUT edit-customer permission."
+  ],
+  "steps": [
+   "Open the card for a customer whose notification setting is off and read the send control and any reason.",
+   "Confirm the row still appears on the worklist and nothing is hidden from it because of the setting.",
+   "Sign in as a user without edit-customer permission and open the same card; look for Send reminder."
+  ],
+  "results": [
+   "With the notification setting off, Send reminder is disabled with the reason shown beside it (not hidden); the row still appears and the send action names that setting - an advisor never presses send and gets silence.",
+   "Nothing is hidden from the worklist because of the setting; it affects sending only.",
+   "A user without edit-customer permission does not see Send reminder at all (hidden, not disabled)."
+  ],
+  "source": "Epic SV-3780; story SV-10571 (S14, Contact the customer from a row); Chunk 1 MR spec (Confluence 886931488), S14; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S14-N1",
+    "Where the customer's notification setting is off, Send reminder is disabled with the reason shown beside it, not hidden"
+   ],
+   [
+    "S14-R9",
+    "Where the customer's notification setting is off, the row still appears and the send action is unavailable, naming that setting as the reason. An advisor must never press send and get silence"
+   ],
+   [
+    "S14-N5",
+    "Nothing is hidden from the worklist because of the notification setting. It affects sending and nothing else"
+   ],
+   [
+    "S14-R10",
+    "Sending by hand follows the permission to edit a customer ... A user without it does not see Send reminder at all, hidden rather than disabled, because it is not something they can fix from the card"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146375,
+  "sec": "S14 — Contact card and manual send",
+  "title": "A 'last sent' line appears after a hand send",
+  "pre": [
+   "You are signed in as a service advisor with edit-customer permission (which governs sending), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag).",
+   "Open Customers > Maintenance reminders and use a row's Contact button to open the contact card. Seed a worklist row: enrol an asset (asset Maintenance tab -> Enrol) whose customer has contact details.",
+   "One asset for which a reminder has already been sent by hand, and one for which none has."
+  ],
+  "steps": [
+   "Open the card for an asset with no hand-send and confirm there is no last-sent line.",
+   "Send a reminder, reopen the card and read the line beneath the address."
+  ],
+  "results": [
+   "A line beneath the address reads \"last sent <date>\" once a reminder has been sent by hand for that asset, so nobody sends twice without knowing."
+  ],
+  "source": "Epic SV-3780; story SV-10571 (S14, Contact the customer from a row); Chunk 1 MR spec (Confluence 886931488), S14; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S14-R12",
+    "A line beneath the address reads last sent <date> once a reminder has been sent by hand for that asset, so nobody sends twice without knowing"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146376,
+  "sec": "S21 — Audit and traceability",
+  "title": "Every maintenance state change writes an audit entry",
+  "pre": [
+   "You are signed in as a service advisor, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). Open the audit trail wherever the build surfaces it for the asset/customer and check entries against the action you just performed.",
+   "An enrolled asset you can drive through each state change. Seed: enrol an asset; be ready to record a reading, correct it, complete a service and undo it, skip, change a compliance record, correct a cycle date after invoicing, remove from a schedule, edit/archive/restore a schedule, and send; plus a completion done at another shop."
+  ],
+  "steps": [
+   "Perform each state change in turn (reading, correction, completion + undo, skip, compliance record change, cycle-date correction after invoicing, enrolment, removal, schedule edit, archive, restore, send).",
+   "After each, open the audit trail and confirm an entry with an actor and a timestamp.",
+   "For a completion done at another shop, read where the entry records it happened."
+  ],
+  "results": [
+   "Every state change produces an entry with an actor and a timestamp - readings, corrections, completions and their undo, skips, compliance record changes, cycle-date corrections after invoicing, enrolments, removals, schedule edits, archive and restore, and sends.",
+   "A completion records where it happened, including when that is another shop."
+  ],
+  "source": "Epic SV-3780; story SV-10576 (S21, The audit trail); Chunk 1 MR spec (Confluence 886931488), S21; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S21-R1",
+    "Every state change produces an entry with an actor and a timestamp: readings, corrections, completions and their undo, skips, compliance record changes, cycle-date corrections in the step after invoicing, enrolments, removals from a schedule, schedule edits, archive and restore, and sends"
+   ],
+   [
+    "S21-R3",
+    "A completion will record where it happened, including when that is another shop"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146377,
+  "sec": "S21 — Audit and traceability",
+  "title": "Adding a service to a work order writes a note and audit entry",
+  "pre": [
+   "You are signed in as a service advisor, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). Open the audit trail wherever the build surfaces it for the asset/customer and check entries against the action you just performed.",
+   "A work order to which a maintenance service is added from a schedule. Seed: create a work order from a worklist row (Create work order), or add a maintenance service to an existing work order."
+  ],
+  "steps": [
+   "Add a maintenance service to a work order.",
+   "Read the work order note and the audit entry.",
+   "Look at whether the per-line origin tag is present or deferred."
+  ],
+  "results": [
+   "Adding a service to a work order writes both a work order note and an audit entry, naming the schedule and service it came from.",
+   "Because the note and audit entry record the origin, a per-line tag is cosmetic and can be deferred."
+  ],
+  "source": "Epic SV-3780; story SV-10576 (S21, The audit trail); Chunk 1 MR spec (Confluence 886931488), S21; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S21-R2",
+    "Adding a service to a work order will write both a work order note and an audit entry, naming the schedule and service it came from"
+   ],
+   [
+    "S21-E1",
+    "Where the note and the audit entry record the origin, a per line tag is cosmetic and can be deferred"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146378,
+  "sec": "S21 — Audit and traceability",
+  "title": "A reading correction keeps both values and is traceable",
+  "pre": [
+   "You are signed in as a service advisor, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). Open the audit trail wherever the build surfaces it for the asset/customer and check entries against the action you just performed.",
+   "An asset with a recorded reading you will correct; and a service whose due date moves weeks later when a new reading is entered. Seed the readings on an enrolled meter-driven service."
+  ],
+  "steps": [
+   "Correct a reading and open the audit trail; read both the old and the new value.",
+   "Enter a new reading that moves a due date weeks out, then trace the moved due date back through the audit trail."
+  ],
+  "results": [
+   "A reading correction keeps both values, each with its timestamp and author.",
+   "A due date that moved weeks after a new reading is traceable to the reading that moved it."
+  ],
+  "source": "Epic SV-3780; story SV-10576 (S21, The audit trail); Chunk 1 MR spec (Confluence 886931488), S21; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S21-R4",
+    "A reading correction will keep both values, each with its timestamp and author"
+   ],
+   [
+    "S21-E2",
+    "A due date that moved weeks after a new reading must be traceable to the reading that moved it"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146379,
+  "sec": "S21 — Audit and traceability",
+  "title": "Sends are logged with message, recipient and timestamp",
+  "pre": [
+   "You are signed in as a service advisor, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). Open the audit trail wherever the build surfaces it for the asset/customer and check entries against the action you just performed.",
+   "An asset for which a reminder is sent by hand (enrol an asset whose customer has an email)."
+  ],
+  "steps": [
+   "Send a reminder, then open the audit trail and read the send entry."
+  ],
+  "results": [
+   "The send is logged with its message, recipient and timestamp."
+  ],
+  "source": "Epic SV-3780; story SV-10576 (S21, The audit trail); Chunk 1 MR spec (Confluence 886931488), S21; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S21-R5",
+    "Sends will be logged with message, recipient and timestamp"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146380,
+  "sec": "S21 — Audit and traceability",
+  "title": "Audit entries outlive their objects and aren't hard-deleted",
+  "pre": [
+   "You are signed in as a service advisor, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). Open the audit trail wherever the build surfaces it for the asset/customer and check entries against the action you just performed.",
+   "A disposable test asset you can unenrol, a schedule you can archive, and a work order link an audited action references. Seed: perform audited actions on the asset/schedule first so entries exist."
+  ],
+  "steps": [
+   "Unenrol an asset that carries audit entries and confirm the entries remain.",
+   "Archive a schedule that carries audit entries and confirm the entries remain.",
+   "Confirm a work order link referenced by the trail is never hard-deleted."
+  ],
+  "results": [
+   "Audit entries outlive the objects they describe; nothing that carries one is hard-deleted.",
+   "A work order link referenced by the trail is never hard-deleted.",
+   "An unenrolled asset and an archived schedule keep their entries."
+  ],
+  "source": "Epic SV-3780; story SV-10576 (S21, The audit trail); Chunk 1 MR spec (Confluence 886931488), S21; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S21-R6",
+    "Audit entries will outlive the objects they describe. Nothing that carries one is hard deleted"
+   ],
+   [
+    "S21-N1",
+    "A work order link is never hard deleted, or the trail goes with it"
+   ],
+   [
+    "S21-N2",
+    "An unenrolled asset and an archived schedule keep their entries"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146381,
+  "sec": "S21 — Audit and traceability",
+  "title": "A notification-setting change is recorded with who and when",
+  "pre": [
+   "You are signed in as a service advisor, on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). Open the audit trail wherever the build surfaces it for the asset/customer and check entries against the action you just performed.",
+   "A customer whose \"Maintenance notifications\" setting you can change, and the case where a shop asserts the customer's consent on their behalf."
+  ],
+  "steps": [
+   "Change a customer's notification setting and open the audit trail; read who made it and when.",
+   "Assert the customer's consent on their behalf and confirm a name and date are recorded against it."
+  ],
+  "results": [
+   "A change to a customer's notification setting is recorded with who made it and when.",
+   "A shop asserting a customer's consent on their behalf is recorded with a name and a date against it."
+  ],
+  "source": "Epic SV-3780; story SV-10576 (S21, The audit trail); Chunk 1 MR spec (Confluence 886931488), S21; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S21-R7",
+    "A change to a customer's notification setting is recorded with who made it and when. A shop asserting a customer's consent on their behalf is the one thing that later needs a name and a date against it"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146382,
+  "sec": "Numeric and date accuracy (Rule 116)",
+  "title": "Month intervals land on the same day; month-end rolls back",
+  "pre": [
+   "You are signed in as an Owner/Admin (Settings Service), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). These are numeric/date-accuracy cases (Rule 116): seed the exact inputs, read the produced value back, and compare it to the stated value - never eyeball, never accept \"a number\".",
+   "Two schedules to seed: a routine service with a 1-month calendar interval, and one with a 90-day interval, on assets you can complete on specific dates. Seed: Settings > Maintenance > New schedule; Add service with Every 1 month; a second with Every 90 days. Compute each expected date by hand first."
+  ],
+  "steps": [
+   "Complete the 1-month service on 15 Jan 2026 and read the next due date; complete again on 15 Feb 2026 and read the next.",
+   "Complete the 1-month service on 31 Jan 2026 and read the next due date, then the cycle after.",
+   "Complete the 1-month service on 31 Jan 2028 (leap year) and read the next due date.",
+   "Complete the 90-day service on 1 Jan 2026, then on 1 Feb 2026, comparing the day-of-month against the month version.",
+   "Confirm the same due date shows on the asset Maintenance tab and the worklist row."
+  ],
+  "results": [
+   "A months interval resolves to the same day of a later month: 15 Jan 2026 -> 15 Feb 2026, and 15 Feb 2026 -> 15 Mar 2026.",
+   "Where the anchor day is missing in the target month it falls on that month's last day: 31 Jan 2026 + 1 month -> 28 Feb 2026 (next cycle counts from 28 Feb 2026 -> 28 Mar 2026); 31 Jan 2028 + 1 month -> 29 Feb 2028.",
+   "A days interval drifts: 90 days from 1 Jan 2026 -> 1 Apr 2026, but 90 days from 1 Feb 2026 -> 2 May 2026 (not the 1st).",
+   "The same computed due date shows identically on the asset Maintenance tab and the worklist row."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R14",
+    "A months interval resolves to the same day of a later month, counted from the last completion, and produces a specific date rather than a month. A days interval counts days and drifts relative to the calendar"
+   ],
+   [
+    "S2-E5",
+    "Where the anchor day does not exist in the target month, the date falls on that month's last day. A service completed on 31 January and set to one month comes due 28 February, and the following cycle counts from that date"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146383,
+  "sec": "Numeric and date accuracy (Rule 116)",
+  "title": "Certificate term/effective/expiry derive; expiry is month-end",
+  "pre": [
+   "You are signed in as an Owner/Admin (Settings Service), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). These are numeric/date-accuracy cases (Rule 116): seed the exact inputs, read the produced value back, and compare it to the stated value - never eyeball, never accept \"a number\".",
+   "A compliance service on an asset, ready to add a record (\"+ Add record\"). Compute each expected value by hand first."
+  ],
+  "steps": [
+   "Enter effective month Oct 2026 and term 6 months; read the derived expiry.",
+   "Enter effective month Mar 2026 and term 12 months; read the derived expiry date.",
+   "Enter expiry month Feb 2027 and term 12 months; read the derived effective month.",
+   "Type an expiry month that conflicts with the derived one and see which is kept.",
+   "Enter a certificate whose effective month is months in the past and confirm the effective month is entered by hand."
+  ],
+  "results": [
+   "Any two of term / effective month / expiry month give the third: effective Oct 2026 + 6 months -> expiry Apr 2027; effective Mar 2026 + 12 months -> expiry Mar 2027; expiry Feb 2027 + 12 months -> effective Feb 2026.",
+   "A certificate expires on the last day of its expiry month: Apr 2027 -> 30 Apr 2027; Mar 2027 -> 31 Mar 2027; Feb 2027 -> 28 Feb 2027.",
+   "A typed month wins over a derived one; a certificate that arrives months old has its effective date entered manually."
+  ],
+  "source": "Epic SV-3780; story SV-10565 (S8); Chunk 1 MR spec (Confluence 886931488), S8; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S8-R10",
+    "Term, effective month and expiry month derive from one another: any two give the third. Certificate dates are months, never days, and a certificate always expires on the last day of its expiry month. A month a person typed always wins over a derived one"
+   ],
+   [
+    "S8-E2",
+    "A certificate expires on the last day of its expiry month, not the last working day"
+   ],
+   [
+    "S8-E1",
+    "A certificate arrives already months old, issued by another shop. The effective date is entered manually"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146384,
+  "sec": "Numeric and date accuracy (Rule 116)",
+  "title": "Remind before expiry: default by term band and the term cap",
+  "pre": [
+   "You are signed in as an Owner/Admin (Settings Service), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). These are numeric/date-accuracy cases (Rule 116): seed the exact inputs, read the produced value back, and compare it to the stated value - never eyeball, never accept \"a number\".",
+   "A compliance service form open (turn on \"Is this a compliance inspection?\"). Compute each expected value by hand first."
+  ],
+  "steps": [
+   "Set the term to 12 months and read the default Remind before expiry.",
+   "Set the term to 24 months and read the default Remind before expiry.",
+   "With a 6-month term, set Remind before expiry to 6 months, then to 7 months."
+  ],
+  "results": [
+   "Remind before expiry defaults to 1 month for a term up to 12 months (a 12-month term -> 1) and 2 months above that (a 24-month term -> 2).",
+   "It cannot be longer than the term: with a 6-month term, 6 is accepted and 7 is refused inline (\"Remind before expiry cannot be longer than the 6-month term\")."
+  ],
+  "source": "Epic SV-3780; story SV-10560 (S3); Chunk 1 MR spec (Confluence 886931488), S3; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S3-R8",
+    "Remind before expiry ... It is in months, defaults to 1 month for a term up to 12 months and 2 months above that, and can be changed. It cannot be longer than the term; a longer value is refused inline: Remind before expiry cannot be longer than the 6-month term"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146385,
+  "sec": "Numeric and date accuracy (Rule 116)",
+  "title": "Confidence grade: pair count and reading age, lower wins",
+  "pre": [
+   "You are signed in as an Owner/Admin (Settings Service), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). These are numeric/date-accuracy cases (Rule 116): seed the exact inputs, read the produced value back, and compare it to the stated value - never eyeball, never accept \"a number\".",
+   "An enrolled unit with a meter-driven service, seeded with reading histories to hit each band. Usable pairs are consecutive readings that survive the guards; a discarded pair drops the count. Compute each expected grade by hand first."
+  ],
+  "steps": [
+   "Seed a clean history of 2 visits (1 pair) with a recent last reading and read the grade; then 3 visits (2 pairs); 4 visits (3 pairs); 5 visits (4 pairs).",
+   "Seed a unit with no usable pair and read the state.",
+   "Hold the count at 5+ visits and set the last recorded reading to 60, then 120, then 200 days old; read the grade each time.",
+   "Seed 5 visits where one pair is discarded by a guard and read the grade."
+  ],
+  "results": [
+   "By usable-pair count (clean history): none = No data, 1 pair (2 visits) = Low, 2-3 pairs (3-4 visits) = Medium, 4+ pairs (5+ visits) = High.",
+   "By last-reading age: <=90 days keeps the count grade; 91-180 caps at Medium; 181+ caps at Low - so a High-by-count unit reads High at 60 days, Medium at 120, Low at 200.",
+   "Confidence is the lower of the two; a discarded pair drops the count, so 5 visits with one bad pair = 3 pairs = Medium."
+  ],
+  "source": "Epic SV-3780; Chunk 1 MR spec (Confluence 886931488), the confidence matrix (S11-R22/R23/R24/R25/E5), reproduced in the spec as the basis for the S9 asset-tab and S13 worklist confidence display; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S11-R22",
+    "Confidence is set by two inputs, graded separately, and the lower of the two wins: how many usable readings the unit has, and how old the last recorded one is"
+   ],
+   [
+    "S11-R23",
+    "By count of usable pairs ... none is No data; one is Low; two or three is Medium; four or more is High. In a clean history that is two visits for Low, three or four for Medium and five or more for High. Where a guard discards a pair the count drops with it, so a unit with five visits and one bad pair has three pairs and reads Medium"
+   ],
+   [
+    "S11-R24",
+    "By age of the most recent recorded reading, by date: up to and including 90 days leaves the grade where the count put it; from 91 to 180 days caps it at Medium; 181 days or more caps it at Low"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146386,
+  "sec": "Numeric and date accuracy (Rule 116)",
+  "title": "Confidence worked examples, per-meter, N-visits, No-data",
+  "pre": [
+   "You are signed in as an Owner/Admin (Settings Service), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). These are numeric/date-accuracy cases (Rule 116): seed the exact inputs, read the produced value back, and compare it to the stated value - never eyeball, never accept \"a number\".",
+   "A unit whose mileage and engine-hours histories can be seeded independently. Compute every expected value by hand first."
+  ],
+  "steps": [
+   "Seed six visits with five usable pairs, last reading 120 days old, and read the grade.",
+   "Seed two visits read yesterday with one usable pair, and read the grade.",
+   "Seed a strong mileage history and a weak engine-hours history on one unit and read both meters' grades.",
+   "On a card showing \"from N visits\", seed a visit whose only pairs were discarded and read N.",
+   "Seed a unit with nothing to estimate from and read the state and which basis governs the due date."
+  ],
+  "results": [
+   "Six visits, five pairs, last reading 120 days old: count says High, age caps at Medium -> shows Medium. Two visits read yesterday, one pair: age allows High, count says Low -> shows Low.",
+   "Distance and engine hours each carry their own confidence, computed independently, so one unit can show a strong mileage grade and a weaker hours grade at once.",
+   "\"from N visits\" counts readings that took part in at least one usable pair; a visit whose only pairs were discarded does not count.",
+   "No data is a separate state, not a confidence level: nothing to estimate from, the calendar governs, and the row says the meter has no basis yet."
+  ],
+  "source": "Epic SV-3780; Chunk 1 MR spec (Confluence 886931488), the confidence matrix (S11-R22/R23/R24/R25/E5), reproduced in the spec as the basis for the S9 asset-tab and S13 worklist confidence display; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S11-E5",
+    "Six visits, five usable pairs, the last reading 120 days old: the count says High, the age caps it at Medium, and Medium is what the unit shows. Two visits read yesterday, one usable pair: the age allows High, the count says Low, and Low is what it shows"
+   ],
+   [
+    "S11-R10",
+    "Distance and engine hours will each carry their own confidence, computed independently"
+   ],
+   [
+    "S11-R25",
+    "Measured from N visits, where a card shows it, counts the readings that took part in at least one usable pair. A visit whose only pairs were discarded does not count"
+   ],
+   [
+    "S11-R17",
+    "No data is a separate state, not a confidence level. It applies where there is nothing to estimate from, the calendar governs, and the row says the meter has no basis yet"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146387,
+  "sec": "Numeric and date accuracy (Rule 116)",
+  "title": "Worklist tile day-window boundaries",
+  "pre": [
+   "You are signed in as an Owner/Admin (Settings Service), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). These are numeric/date-accuracy cases (Rule 116): seed the exact inputs, read the produced value back, and compare it to the stated value - never eyeball, never accept \"a number\".",
+   "Enrolled assets with services due at fixed offsets from a known \"today\": -1, 0, +30, +31, +91 and +92 days, plus a Needs-readings service due +200 days. Seed by backdating/forward-dating last-service dates. Compute which tile each falls in by hand first."
+  ],
+  "steps": [
+   "With no tile active, read which of the seeded rows appear and which are excluded.",
+   "Read which tile each seeded row counts toward at each boundary.",
+   "Confirm the +92 row is excluded from the no-tile list and the +200 Needs-readings row is included."
+  ],
+  "results": [
+   "Overdue = due before today (the -1 row); Due in a month = today up to 30 days ahead (the 0 and +30 rows); Due in 3 months = 31-91 days ahead (the +31 and +91 rows); +92 is not listed.",
+   "With no tile active the list shows overdue / due today / next 91 days plus every Needs readings row whatever its date - so +200 Needs-readings is listed and +92 routine is not."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R2",
+    "The header has four tiles. Overdue: due before today. Due in a month: today up to 30 days ahead. Due in 3 months: 31 to 91 days ahead. Needs readings: per S13-R22"
+   ],
+   [
+    "S13-R36",
+    "With no tile active the list shows every row that is overdue, due today or due within the next 91 days, plus every Needs readings row whatever its date. A service further out is not listed"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146388,
+  "sec": "Numeric and date accuracy (Rule 116)",
+  "title": "Worklist tile counts: once per tile, no total, filtered",
+  "pre": [
+   "You are signed in as an Owner/Admin (Settings Service), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). These are numeric/date-accuracy cases (Rule 116): seed the exact inputs, read the produced value back, and compare it to the stated value - never eyeball, never accept \"a number\".",
+   "An asset with one row Overdue and one row Due in 3 months; a service that has missed several cycles; a two-workplace org with assets at each workplace. Compute each expected count by hand first."
+  ],
+  "steps": [
+   "Read each tile's count and the table row count, and check whether the tiles sum to the table total.",
+   "Confirm the asset with rows in two tiles is counted once in each.",
+   "Find the multi-cycle-overdue service and confirm it is one row counted once.",
+   "Apply the location filter to one workplace and re-read every tile count."
+  ],
+  "results": [
+   "Each tile counts assets; an asset with rows in two tiles counts once in each, so the tile counts do not sum to the table row count.",
+   "A service appears once however many cycles it missed, and is counted once.",
+   "With the location filter applied, each tile counts only what that filter shows."
+  ],
+  "source": "Epic SV-3780; story SV-10570 (S13); Chunk 1 MR spec (Confluence 886931488), S13; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S13-R2",
+    "Each counts assets; an asset with rows in two tiles counts once in each, so the tiles do not add up to a total"
+   ],
+   [
+    "S13-R29",
+    "With the location filter applied, each tile counts only what that filter shows"
+   ],
+   [
+    "S13-N3",
+    "A service appears once however many cycles it has missed"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ },
+ {
+  "id": 146389,
+  "sec": "Numeric and date accuracy (Rule 116)",
+  "title": "Interval fields: whole numbers within exact caps",
+  "pre": [
+   "You are signed in as an Owner/Admin (Settings Service), on the build under test. The Maintenance Reminders feature is on (behind the maintenance_reminders flag). These are numeric/date-accuracy cases (Rule 116): seed the exact inputs, read the produced value back, and compare it to the stated value - never eyeball, never accept \"a number\".",
+   "A routine service form with calendar (days/months), distance and engine-hours interval rows visible (Add service, tick Distance and Engine hours). Know each cap before testing."
+  ],
+  "steps": [
+   "In the mileage interval enter 999,999, then 1,000,000.",
+   "In the engine-hours interval enter 99,999, then 100,000.",
+   "In a days interval enter 999, then 1,000.",
+   "Read the calendar months list and try 1 and 12.",
+   "Enter 0, a decimal, and a negative in any interval; try to type letters and symbols."
+  ],
+  "results": [
+   "Interval values are whole numbers, minimum 1: mileage caps at 999,999 (1,000,000 refused), engine hours at 99,999 (100,000 refused), days at 999 (1,000 refused); calendar months run 1-12.",
+   "0, a decimal and a negative are each refused inline; a number field accepts digits only, so letters and symbols do not enter and there is no error to show."
+  ],
+  "source": "Epic SV-3780; story SV-10559 (S2); Chunk 1 MR spec (Confluence 886931488), S2; read 29 Sep 2026. Source-verified 29 September 2026; not yet build-verified.",
+  "quotes": [
+   [
+    "S2-R9",
+    "Interval values are whole numbers, minimum 1, with no decimals and no negatives. Mileage is capped at 999,999, engine hours at 99,999 and days at 999. An interval longer than 12 months is set in days"
+   ]
+  ],
+  "tail": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+ }
+]

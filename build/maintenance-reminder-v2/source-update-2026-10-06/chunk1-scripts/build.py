@@ -1,11 +1,16 @@
 import json, re, sys, html, collections
-sys.path.insert(0, '/tmp/claude-0/-home-user-Manual-test-Cases/06e6c85d-c9b5-5e70-a786-f21cb2d333a2/scratchpad')
+import os
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
 from p_common import *
 import p_upd1, p_upd2, p_upd3, p_new
 from p_upd1 import FLAGWHY
 from p_diverge import DIVERGE, EXCLUDE
 ROOT = '/home/user/Manual-test-Cases/build/maintenance-reminder-v2/'
-SP = '/tmp/claude-0/-home-user-Manual-test-Cases/06e6c85d-c9b5-5e70-a786-f21cb2d333a2/scratchpad/'
+import os, sys
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+SP = os.path.join(HERE, 'work') + '/'
 cases = {c['id']: c for c in json.load(open(SP + 'cases.json'))}
 U = {}
 for m in (p_upd1, p_upd2, p_upd3):
@@ -14,6 +19,8 @@ for m in (p_upd1, p_upd2, p_upd3):
         U[k] = v
 import p_patch
 p_patch.apply(U, p_new.N)
+import p_v2
+p_v2.apply(U, p_new.N)
 
 def clean(t):
     t = t.replace('**', '').replace('\\-', '-').replace('\\<', '<').replace('\\>', '>').replace('\\[', '[').replace('\\]', ']').replace('\\_', '_').replace('\\*', '*')
@@ -44,8 +51,9 @@ def check_quote(ref, q):
         if text is None: return 'ANCHOR-NOT-IN-CURRENT-CHUNK1'
         parts = [p.strip(' .') for p in re.split(r'\.\.\.|…', qn) if p.strip(' .')]
         return 'OK' if all(p in text for p in parts) else 'NOT-VERBATIM'
-    if ref.startswith('S16-N6'):
-        return 'OK' if qn in A2.get('S16-N6', '') else 'NOT-VERBATIM'
+    m2 = re.match(r'^(S\d+-[A-Z]+\d+) \(Chunk 2 MR', ref)
+    if m2:
+        return 'OK' if qn in A2.get(m2.group(1), '') else 'NOT-VERBATIM'
     if ref.startswith('Chunk 1 MR'):
         return 'OK' if qn in SPEC else 'NOT-VERBATIM'
     if ref.startswith('Plan 1'):
@@ -58,7 +66,7 @@ def check_quote(ref, q):
         return 'OK' if qn in MAINT else 'NOT-VERBATIM'
     return 'UNKNOWN-REF'
 
-FORBID = [r'\bS\d{1,2}-[A-Z]+\d+\b', r'\bSV-\d+', r'\bflag\b', r'Rule \d', r'\bDVI\b', r'absorb', r'Plan [12]', r'\bTD-\d', r'\bFD-\d', r'\bAPI\b', r'\bHTTP\b', r'[Ee]ffective', r'expiry month', r'\(S\d{1,2}\)', r'\bS\d{1,2}\b(?! ·)']
+FORBID = [r'\bS\d{1,2}-[A-Z]+\d+\b', r'\bSV-\d+', r'\bflag\b', r'Rule \d', r'\bDVI\b', r'absorb', r'Plan [12]', r'\bTD-\d', r'\bFD-\d', r'\bAPI\b', r'\bHTTP\b', r'[Ee]ffective', r'expiry month', r'mail catcher', r'mail sink', r'testability', r'\(S\d{1,2}\)', r'\bS\d{1,2}\b(?! ·)']
 
 def mech(c):
     def fix(t):
@@ -84,8 +92,13 @@ for cid in sorted(cases):
         u = dict(case_id=cid, why=FLAGWHY, title=c['title'], preconds=pre, steps=steps, results=res,
                  source=src(story, story + ' (unchanged requirements)'), quotes=[list(q) for q in c['quotes']])
         p_patch.mech_fix(cid, u)
-    updates.append({k: u[k] for k in ['case_id', 'why', 'title', 'preconds', 'steps', 'results', 'source', 'quotes']})
-new = [{k: n[k] for k in ['story', 'title', 'preconds', 'steps', 'results', 'source', 'quotes']} for n in p_new.N]
+        p_v2.mech_fix(cid, u)
+    u['marker'] = MARKER
+    updates.append({k: u[k] for k in ['case_id', 'why', 'title', 'preconds', 'steps', 'results', 'source', 'quotes', 'marker']})
+new = [dict({k: n[k] for k in ['story', 'title', 'preconds', 'steps', 'results', 'source', 'quotes']}, marker=MARKER) for n in p_new.N]
+for x in updates + new:
+    assert x['marker'] == 'AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build'
+    assert x['source'].endswith('read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.'), x['source'][-80:]
 
 # ---- checks ----
 fails = []; nq = 0; lint = []
@@ -120,5 +133,6 @@ print('current anchors not cited by any proposed case:', len(unc), unc)
 out = dict(updates=updates, new=new, diverge=DIVERGE, exclude=EXCLUDE)
 if '--write' in sys.argv:
     json.dump(out, open(ROOT + 'source-update-2026-10-06/chunk1-proposals.json', 'w'), indent=1, ensure_ascii=False)
+    os.makedirs(SP, exist_ok=True)
     json.dump(dict(fails=fails, lint=lint, nq=nq, cited=cited, uncited=unc), open(SP + 'check_result.json', 'w'), indent=1, ensure_ascii=False)
     print('written')

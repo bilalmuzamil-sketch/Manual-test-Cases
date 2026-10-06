@@ -25,7 +25,7 @@ def src(story, section=None, plan1=None, plan2=None, main=None, design=None):
     if plan1: s += f'; {P1}, {plan1}'
     if plan2: s += f'; {P2}, {plan2}'
     if design: s += f'; {DES}, {design}'
-    return s + '; read 6 Oct 2026.'
+    return s + '; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.'
 
 ADMIN = 'You are signed in, on the build under test, as an Owner/Admin or as a user with "Settings Service" enabled.'
 NAV = 'In the left sidebar under Settings, open the "Maintenance" entry beneath "Inspection Templates" (if the build labels it "Maintenance schedules", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.'
@@ -43,3 +43,23 @@ WORKLIST = 'Open Customers from the top navigation and switch to its "Maintenanc
 TWO_WP = 'Your organization has two workplaces (locations), e.g. "Calgary South" and "Red Deer", and your user can open both; you switch between them with the location control in the header.'
 HISTORY = ('Readings come only from the asset\'s past work orders (loaded once on the test environment) and from new entries dated today; a dated reading history cannot be typed in by hand. '
            'Pick an asset whose Work Orders tab lists past work orders carrying a Mileage value, and note each work order\'s date and mileage. If no such asset exists on the environment, mark the case Blocked with that reason.')
+
+MARKER = 'AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build'
+MAIL = "Give the test customer's contact an email address you can open (e.g. your own work email), so the reminder lands in your inbox."
+
+def fmt(n):
+    return f'{n:,}'
+def seed(unit, readings, then=None):
+    """readings: list of (days_before_today, mileage, engine_hours_or_None), oldest first."""
+    n = len(readings)
+    lines = [f'Seed {unit}\'s reading history by hand (standard steps; Mark complete on a work order records that work order\'s mileage and engine hours as readings dated its Reset date):',
+             f'↳ In Settings > Maintenance (needs Settings Service) create, once, a throwaway schedule "ZZAUTOTEST Reading seed" with one routine service per reading: ' + ', '.join(f'"ZZ Seed {i}"' for i in range(1, n + 1)) + ' (calendar Every 12 months each). Enrol the unit on it (its Maintenance tab > Enroll in Schedule, dates blank).',
+             '↳ For each reading below, oldest first: Work Orders > New Work Order for the unit; type the mileage (and the engine hours, where given) in the work order\'s Mileage (and Engine Hours) field; on that work order\'s maintenance card open the next "ZZ Seed" service\'s row menu > Mark complete > On a work order (this work order) > Reset date = the date given > Mark complete. A Reset date is never in the future.']
+    parts = []
+    for i, (d, m, h) in enumerate(readings, 1):
+        t = f'ZZ Seed {i}: Reset date {d} days before today, Mileage {fmt(m)}'
+        if h is not None: t += f', Engine Hours {fmt(h)}'
+        parts.append(t)
+    lines.append('↳ Readings: ' + '; '.join(parts) + '.')
+    lines.append('↳ Then remove the unit from the throwaway schedule (Maintenance tab > schedule menu > Remove from schedule)' + (f', and {then}' if then else '') + '. A unit whose past invoiced work orders already carry the same history may be used instead.')
+    return lines

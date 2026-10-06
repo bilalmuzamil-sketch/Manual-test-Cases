@@ -5,6 +5,11 @@ UPD_IDS = {u["case_id"] for u in UPD}
 def li(h): return [html.unescape(re.sub(r"<[^>]+>", "", x)).strip() for x in re.findall(r"<li>(.*?)</li>", h or "", re.S)]
 def plain_res(e): return li((e or "").split("<strong>Source")[0])
 
+_DF = ROOT + "/source-update-2026-10-06/DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md"
+_dtxt = open(_DF, encoding="utf-8").read() if os.path.exists(_DF) else ""
+DRIVE_STATUS = ("DESIGN-DRIVE-FINDINGS.md not found" if not _dtxt else
+                ("DESIGN-DRIVE-FINDINGS.md still reads 'IN PROGRESS' (%d bytes); no final Chunk 2 findings to fold in yet" % len(_dtxt.encode())
+                 if "IN PROGRESS" in _dtxt else "DESIGN-DRIVE-FINDINGS.md is final: fold-in required"))
 RETIRE = []  # no behaviour was wholly removed; the reversed S18-E3 text in C204170 is replaced through its update
 
 def D(id_, topic, a, b, question, cases, note=""):
@@ -102,6 +107,19 @@ DIVERGE = [
       {"source": "Design MR_V2_2, Chunk 2 board, frames W4 and W4o", "quote": "CVIP · Due 14 Sep 2026 || CVIP · Overdue · 14 Aug 2026 (no 'Certificate')"},
       "Should a compliance row on the card read '14 Sep 2026 · Certificate' as on the asset tab (spec), or just the date (design)?", ["C204138"],
       "C204138 keeps the spec quote; the build is judged against it."),
+    D("D16", "Does a Needs readings row ride in the reminder email?",
+      {"source": "Chunk 2 MR S19-R6", "quote": SPEC["S19-R6"]},
+      {"source": "Chunk 2 MR S19-R7 and Chunk 1 MR S13-R36 (the worklist lists every Needs readings row whatever its date)",
+       "quote": SPEC["S19-R7"]},
+      "A unit whose only worklist row is a Needs readings row with a far calendar date: does the email carry that row (the worklist shows it), or "
+      "only the next two upcoming services (it is not overdue, due today or within 91 days)?", ["N9"],
+      "N9 asserts the next two upcoming services and records, without judging, whether the Needs readings service appears."),
+    D("D17", "How is an older reading corrected?",
+      {"source": "Chunk 2 MR S10-R8 and S11-R7", "quote": SPEC["S10-R8"] + " || " + SPEC["S11-R7"]},
+      {"source": "Plan 1 §3.2 TD-06", "quote": "one row per (WO, meter), updated in place on each WO edit that changes the value (TD-34)"},
+      "S11-R7 says a correction anywhere in the history recomputes the rate, but S10-R8 corrects only by entering the right value as the newest "
+      "reading. Is changing the Mileage on an older work order the intended way to correct an older reading, and does it then stay dated as before "
+      "and leave the current reading alone?", ["C204127"], "C204127 corrects the latest reading only."),
 ]
 
 EXCLUDE = [
@@ -128,70 +146,84 @@ EXCLUDE = [
      "tester-visible part (resets undone, proposed again) is new case N13."},
 ]
 
-flag_cases, flag_variants, rid_cases = [], {}, []
+# ---------------------------------------------------------------- SC1 / SC2 / SC3: flag-only corrections (coordinator decision 6 Oct 2026)
+FLAG_VARIANTS = [("The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).", ""),
+                 ("The Maintenance Reminders feature is on (maintenance_reminders flag).", ""),
+                 (", maintenance_reminders flag on.", "."),
+                 ("Flag on.", "")]
+SC3_FIX = {204116: ("(per S2-R16)", "(picked in that service's Services also covered step)")}
 RID2 = re.compile(r"\bS\d{1,2}-[RNE]\d+\b|\(S\d{1,2}\)|\bper S\d")
+flag_cases, flag_variants, rid_cases, FLAG_ONLY = [], {}, [], []
 for c in SNAP:
     pre = li(c["custom_preconds"])
+    new_pre, hit = [], False
     for line in pre:
-        if "maintenance_reminders" in line or "Flag on." in line:
-            for v in ["The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).",
-                      "The Maintenance Reminders feature is on (maintenance_reminders flag).", ", maintenance_reminders flag on.", "Flag on."]:
-                if v in line:
-                    flag_variants.setdefault(v, []).append(c["id"])
-            flag_cases.append(c["id"])
-            break
+        l2 = line
+        for v, r in FLAG_VARIANTS:
+            if v in l2:
+                flag_variants.setdefault(v, []).append(c["id"]); hit = True
+                l2 = l2.replace(v, r)
+        l2 = re.sub(r"\s+", " ", l2).strip()
+        if c["id"] in SC3_FIX and SC3_FIX[c["id"]][0] in l2:
+            l2 = l2.replace(*SC3_FIX[c["id"]])
+        if l2: new_pre.append(l2)
+    if hit: flag_cases.append(c["id"])
     hits = [l for l in li(c["custom_preconds"]) + li(c["custom_steps"]) + plain_res(c["custom_expected"]) if RID2.search(l)]
     if hits and c["id"] not in UPD_IDS:
         rid_cases.append({"case_id": c["id"], "lines": hits})
+    if c["id"] in UPD_IDS: continue
+    assert OLD_MARK in c["custom_expected"], c["id"]
+    exp_new = c["custom_expected"].replace(esc(OLD_MARK), esc(MARK)).replace(OLD_MARK, MARK)
+    FLAG_ONLY.append({"case_id": c["id"], "link": f"https://shopview.testrail.io/index.php?/cases/view/{c['id']}", "title": c["title"],
+                      "preconds": new_pre, "custom_preconds": ol(new_pre), "custom_expected_marker_fix": True,
+                      "custom_expected": exp_new, "sc3_fixed": c["id"] in SC3_FIX,
+                      "note": "Only the feature-flag sentence is removed from the preconditions and the AUTOMATION marker is replaced; steps, results, "
+                              "source line and quotes are unchanged" + ("; the requirement id in the preconditions is replaced by plain words (SC3)."
+                                                                       if c["id"] in SC3_FIX else ".")})
 flag_left = sorted(set(flag_cases) - UPD_IDS)
+assert [f["case_id"] for f in FLAG_ONLY] == [c["id"] for c in SNAP if c["id"] not in UPD_IDS]
 SYSTEMIC = [
-    {"id": "SC1", "what": "Stale feature-flag precondition", "why": "Main page, decided 5 October 2026: 'No feature flag.' The feature ships to every "
-     "organization at release. A precondition telling testers to turn a flag on cannot be carried out.",
-     "find_replace": {k: ("." if k.startswith(",") else "") for k in flag_variants}, "variant_counts": {k: len(v) for k, v in flag_variants.items()},
-     "cases_total": len(set(flag_cases)), "already_fixed_by_updates": sorted(set(flag_cases) & UPD_IDS), "cases_to_edit": flag_left,
-     "note": "Remove the sentence (and the leading comma variant) only; change nothing else in those cases (identifier-only correction style, Rule 111)."},
-    {"id": "SC2", "what": "AUTOMATION marker still says the feature ships behind the maintenance_reminders flag", "why": "The instruction for this review "
-     "is to use the mr2_lib.py HOLD marker exactly, and it names the flag that no longer exists. Used exactly as instructed in every proposal; this is a "
-     "Rule 63 conflict for the QA lead to decide (suggested wording: 'AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build').",
-     "cases_affected": "all 86 Chunk 2 cases and every proposal here"},
-    {"id": "SC3", "what": "Requirement ids inside preconditions, steps or plain results (Rules 7/9/117)", "cases_to_edit": rid_cases,
-     "note": "Cases already rewritten in 'updates' are excluded from this list."},
+    {"id": "SC1", "what": "Stale feature-flag precondition", "status": "RESOLVED in the proposals",
+     "why": "Main page, decided 5 October 2026: 'No feature flag.' The feature ships to every organization at release. A precondition telling testers "
+            "to turn a flag on cannot be carried out.",
+     "variant_counts": {k: len(v) for k, v in flag_variants.items()}, "cases_total": len(set(flag_cases)),
+     "fixed_by_updates": sorted(set(flag_cases) & UPD_IDS), "fixed_by_flag_only": flag_left},
+    {"id": "SC2", "what": "AUTOMATION marker named the removed flag", "status": "RESOLVED (coordinator decision 6 Oct 2026)",
+     "why": "Every proposal (updates, new and flag_only) now ends with our own marker text, not a quote: '" + MARK + "'.",
+     "cases_affected": "all 86 Chunk 2 cases and every new case"},
+    {"id": "SC3", "what": "Requirement ids inside preconditions, steps or plain results (Rules 7/9/117)", "status": "RESOLVED",
+     "cases": rid_cases, "note": "C204116's '(per S2-R16)' becomes plain words in its flag_only entry; every other occurrence was in a case now rewritten."},
 ]
 
 NUMERIC = [204124, 204125, 204126, 204127, 204180, 204181, 204182, 204183, 204184, 204185, 204186]
-SOFT = [204111, 204112, 204115, 204118, 204128, 204129, 204130, 204131, 204132, 204133, 204134, 204135]
+SOFT = [204111, 204112, 204115, 204118, 204129, 204130, 204132, 204133, 204134, 204135]
 BLOCKERS = [
-    {"id": "B1", "what": "Testers cannot create readings with past dates", "evidence": "Plan 1 §7 testability note B5: the reading window records "
-     "today's date only, and there is no way to back-date a reading. Older review question OQ-4 (Review Decisions Chunk one, page 892305428) asked the "
-     "same. Plan 2 D2: a work order reading is dated by its invoice date, else its start date.",
-     "cases": NUMERIC,
-     "softer_dependency": {"cases": SOFT, "note": "These need a unit already in a given state (an estimate at a given confidence, No data, both "
-                           "meters read). Such units can be found among existing units with loaded history rather than seeded; the precondition "
-                           "should name how to find one (Maintenance tab shows the state) instead of 'has a reading history'."},
-     "also": "C204187 says 'you can seed exact dated readings' but needs no dated reading: its precondition sentence should simply be dropped.",
-     "routes_found": ["Use units whose past invoiced work orders carry Mileage (loaded as dated readings on QA after each deploy, Plan 1 §7).",
-                      "Mark complete On a work order with a past Reset date records that work order's readings dated the Reset date (S18-R19) — a "
-                      "possible way to plant one dated reading per work order; needs engineering to confirm it is safe for seeding."],
-     "ask": "Engineering / QA lead: how should testers seed exact dated reading histories (for the worked examples of 97.5 a day, each confidence cell and "
-            "the 24-month cut-off)? A data import of assets and work orders with history, or a back-office seed?"},
-    {"id": "B2", "what": "Reaching the contact card for a unit with nothing on the worklist", "evidence": "Send reminder lives on the contact card, "
-     "which opens from worklist rows (main page component table). S19-R7 and S19-R23 describe units with nothing due within 91 days or nothing dated, "
-     "which may have no worklist row.", "cases": ["N8", "N9"], "ask": "PO: how does an advisor reach Send reminder for such a unit?"},
-    {"id": "B3", "what": "Leaving an invoice pending so it can be voided", "evidence": "S18-E2: closing an unpaid invoice's payment window reverses it "
-     "seconds after invoicing. S18-E3 needs a pending invoice that survives.", "cases": ["N14"], "ask": "QA lead / engineering: which shop set-up leaves "
-     "an invoice pending on the QA branch?"},
-    {"id": "B4", "what": "Labels the spec and design do not give", "items": [
+    {"id": "B1", "what": "Seeding readings with past dates", "status": "RESOLVED from the specification (coordinator decision)",
+     "route": "S18-R19: Mark complete On a work order records that work order's mileage and engine hours as the asset's readings, dated the Reset date. "
+              "A throwaway schedule 'ZZAUTOTEST Reading seed' holds one routine service per reading ('ZZ Seed 1', 'ZZ Seed 2', …, Every 12 months), "
+              "enrolled with last service dates five years back so every seed row is overdue and shows on the work order card; for each reading, "
+              "oldest first with rising values: New Work Order, type the mileage, Mark complete a seed service On this work order with Reset date = the "
+              "reading's date; afterwards Remove from schedule. Also allowed: units whose past invoiced work orders already carry mileage (Plan 1 §7).",
+     "cases_rewritten": NUMERIC + [204128, 204131, 204187], "new_case": "N17 (band edges)",
+     "not_rewritten": {"cases": SOFT, "note": "These need a unit already in some state (an estimate, No data, a Low date). They keep their wording "
+                       "(flag sentence removed); the recipe above, or a never-read unit for No data, meets their preconditions."}},
+    {"id": "B2", "what": "Reaching the contact card for a unit with nothing on the worklist", "status": "RESOLVED from the specification",
+     "route": "Chunk 1 S13-R36 lists every Needs readings row whatever its date (N9 uses a mileage service with no reading); S13-N2 lists a compliance "
+              "service with no record, reading No record, while no tile is active (N8). Whether the Needs readings row itself rides in the email is "
+              "DIVERGE D16.", "cases": ["N8", "N9"]},
+    {"id": "B3", "what": "Leaving an invoice pending so it can be voided", "status": "RESOLVED (coordinator route)",
+     "route": "Create Invoice, record a full payment in New Customer Payment (do not just close it), then reverse that payment from the work order's "
+              "payment history; the invoice stays unpaid and not sent.", "cases": ["N14"]},
+    {"id": "B4", "what": "Labels the spec and design do not give", "status": "KEPT: described in plain words; the tester records the wording shown; "
+     "build verification confirms", "items": [
         "the confirm button of the implausible-reading warning (plan: 'Save anyway')",
         "the card's control for adding a compliance certificate",
         "the notice for a service that has just become due (plan: 'Now due'; DIVERGE D11)",
-        "the work order's split action, the asset merge action, the invoice reverse action and the credit memo action (existing app features)",
+        "the work order's split action, the asset merge action, the invoice reverse action, the credit memo action and the payment-history reverse",
         "the invoicing permission name for a role",
-        "the 'Closed {date}' caption on a closed line (plan only)"],
-     "handling": "Cases describe the action in plain words and ask the tester to record the wording shown."},
-    {"id": "B5", "what": "Design drive results not complete", "evidence": "DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md exists but reads 'Status: IN "
-     "PROGRESS' and holds no Chunk 2 findings yet (read in full, 13 lines, at 09:47). Its Chunk 2 discovery file was read for the board's hidden tooltip "
-     "texts (31): every one matches the board text already used here (S16-R21 (i), S16-R23 line notes, S16-N7 (i), step (i), email notes). Its "
-     "interaction logs were empty at the time.", "ask": "Fold the drive's final Chunk 2 findings into these proposals when it finishes."},
+        "the 'Closed {date}' caption on a closed line (plan only)",
+        "'New Customer Payment' and 'Payment Method' (existing payment window; given by the coordinator, not in spec or design)"]},
+    {"id": "B5", "what": "Design drive results", "status": "PENDING", "evidence": DRIVE_STATUS},
 ]
 
 CHUNK1 = [

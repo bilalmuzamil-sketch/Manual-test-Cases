@@ -13,8 +13,10 @@ def blob(p): return clean(open(p, encoding="utf-8").read())
 DOCS = {
     "plan2": blob(SRC + "/tech-plan/Plan-2-The-work-order-and-the-customer-Technical-Implementation-Plan.md"),
     "main": blob(SRC + "/CONFLUENCE-833290250-Maintenance-Reminders-V1-2026-10-06.md"),
+    "plan1": blob(SRC + "/tech-plan/Plan-1-Track-act-clear-Technical-Implementation-Plan.md"),
 }
-MARK = "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+OLD_MARK = "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
+MARK = "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"  # coordinator decision 6 Oct 2026 (SC2): no flag exists
 STORY = {"S10": ("SV-10567", "Enter a reading", 26636), "S11": ("SV-10568", "Rate, estimate and confidence", 26637),
          "S12": ("SV-10569", "Due date resolution", 26638), "S16": ("SV-10572", "The maintenance panel on a work order", 26639),
          "S17": ("SV-10573", "Add a service to a work order", 26640), "S18": ("SV-10574", "Complete a service and reset the cycle", 26641),
@@ -24,6 +26,7 @@ SECNAME = {26636: "S10 — Enter a reading", 26637: "S11 — Rate, estimate and 
            26641: "S18 — Complete a service and reset the cycle", 26642: "S19 — The customer reminder email (sent by hand)",
            26643: "S22 — Origin reporting", 26644: "Numeric and date accuracy (Rule 116)"}
 PLAN2 = "Plan 2 — The work order and the customer — Technical Implementation Plan"
+PLAN1 = "Plan 1 — Track, act, clear — Technical Implementation Plan"
 MAINP = "Maintenance Reminders V1 main page (Confluence 833290250) as edited 5 October 2026"
 
 def Q(anchor, part=None):
@@ -35,11 +38,12 @@ def PQ(label, text, doc):
     assert text in DOCS[doc], f"{label}: not verbatim in {doc}: {text}"
     return {"anchor": label, "quote": text, "doc": doc}
 
-def source_line(stories, plan=None, main=False):
+def source_line(stories, plan=None, main=False, plan1=None):
     st = "; ".join(f"story {STORY[s][0]} ({s}, {STORY[s][1]})" for s in stories)
     parts = [f"Epic SV-3780 (Maintenance Reminders); {st}; Chunk 2 MR (Confluence 897679389) as edited 5 October 2026, "
              + ", ".join(stories)]
     if plan: parts.append(f"{PLAN2}, {plan}")
+    if plan1: parts.append(f"{PLAN1}, {plan1}")
     if main: parts.append(MAINP + ", change log")
     return "; ".join(parts) + "; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified."
 
@@ -73,18 +77,21 @@ WORKLIST = "Open Customers > Maintenance reminders (the worklist)."
 QA_MAIL = "On the QA environment, send only to a mailbox the QA team controls."
 
 UPD, NEW = [], []
-def upd(cid, title, stories, pre, steps, results, quotes, reason, plan=None, main=False, anchors_changed=()):
+def upd(cid, title, stories, pre, steps, results, quotes, reason, plan=None, main=False, anchors_changed=(), plan1=None, section=None):
     assert len(title) <= 80, (cid, len(title), title)
-    src = source_line(stories, plan, main)
+    for i, u in enumerate(UPD):
+        if u["case_id"] == cid: del UPD[i]; break   # a later rewrite replaces an earlier one
+    src = source_line(stories, plan, main, plan1)
+    sec = section or STORY[stories[0]][2]
     UPD.append({"case_id": cid, "link": f"https://shopview.testrail.io/index.php?/cases/view/{cid}",
-                "section_id": STORY[stories[0]][2], "section": SECNAME[STORY[stories[0]][2]],
+                "section_id": sec, "section": SECNAME[sec],
                 "reason": reason, "anchors_changed": list(anchors_changed),
                 "title": title, "preconditions": pre, "steps": steps, "expected_results": results,
                 "source": src, "quotes": quotes,
                 "custom_preconds": ol(pre), "custom_steps": ol(steps), "custom_expected": expected(results, src, quotes)})
-def new(key, title, stories, pre, steps, results, quotes, reason, plan=None, main=False, section=None):
+def new(key, title, stories, pre, steps, results, quotes, reason, plan=None, main=False, section=None, plan1=None):
     assert len(title) <= 80, (key, len(title), title)
-    src = source_line(stories, plan, main)
+    src = source_line(stories, plan, main, plan1)
     sec = section or STORY[stories[0]][2]
     NEW.append({"key": key, "section_id": sec, "section": SECNAME[sec], "reason": reason,
                 "title": title, "preconditions": pre, "steps": steps, "expected_results": results,
@@ -93,6 +100,7 @@ def new(key, title, stories, pre, steps, results, quotes, reason, plan=None, mai
 
 exec(open(os.path.join(os.path.dirname(__file__), "cases_upd.py"), encoding="utf-8").read())
 exec(open(os.path.join(os.path.dirname(__file__), "cases_new.py"), encoding="utf-8").read())
+exec(open(os.path.join(os.path.dirname(__file__), "cases_seed.py"), encoding="utf-8").read())
 exec(open(os.path.join(os.path.dirname(__file__), "registers.py"), encoding="utf-8").read())
 
 # guards: no requirement ids in title / pre / steps / plain results
@@ -107,10 +115,10 @@ for c in UPD + NEW:
 
 out = {"meta": {"generated": "2026-10-06", "chunk": 2, "testrail_folder": 26635,
                 "spec": "Chunk 2 MR, Confluence 897679389, lastModified 2026-10-05 19:58, saved sources/CONFLUENCE-897679389-Chunk2-MR-2026-10-06.md",
-                "marker": MARK, "writes": "none — proposals only; no TestRail write, no commit",
+                "marker": MARK, "old_marker": OLD_MARK, "writes": "none — proposals only; no TestRail write, no commit",
                 "format": "custom_preconds / custom_steps / custom_expected are full replacement HTML in the mr2_lib.add() house format"},
-       "updates": UPD, "new": NEW, "retire": RETIRE, "diverge": DIVERGE, "exclude": EXCLUDE,
+       "updates": UPD, "new": NEW, "flag_only": FLAG_ONLY, "retire": RETIRE, "diverge": DIVERGE, "exclude": EXCLUDE,
        "systemic_corrections": SYSTEMIC, "blockers": BLOCKERS, "chunk1_notes": CHUNK1}
 json.dump(out, open(OUT, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-print(f"updates {len(UPD)} new {len(NEW)} retire {len(RETIRE)} diverge {len(DIVERGE)} exclude {len(EXCLUDE)} "
+print(f"updates {len(UPD)} new {len(NEW)} flag_only {len(FLAG_ONLY)} retire {len(RETIRE)} diverge {len(DIVERGE)} exclude {len(EXCLUDE)} "
       f"systemic {len(SYSTEMIC)} blockers {len(BLOCKERS)} chunk1 {len(CHUNK1)}")

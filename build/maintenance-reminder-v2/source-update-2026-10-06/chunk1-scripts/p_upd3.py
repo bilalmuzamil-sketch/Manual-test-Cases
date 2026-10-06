@@ -149,26 +149,25 @@ U[146370] = dict(why='S13-E5 changed: "made inactive" removed (only a deleted as
 
 # ---------------- S14 ----------------
 SENDPRE = [ADVISOR, WORKLIST, 'A worklist row whose customer has the setting "Maintenance notifications" on, a preferred contact on the asset, and a contact with an email address.',
-           'On the test environment maintenance emails go to a mail catcher (sink), not to real inboxes; ask the QA lead for access to it. Without access, skip the mail-catcher checks.']
+           MAIL]
 U[146372] = dict(why='S14-R4 changed: Send reminder uses the application\'s existing send email dialog; the "sender and delivery still to be confirmed / switched on" wording was removed. The audit-entry part cannot be checked by hand (no audit screen in v1). ' + FLAGWHY,
  title='Send reminder covers one asset, updates last sent, no Resend',
  preconds=SENDPRE + ['The customer has a second enrolled asset with a row on the worklist.'],
  steps=['Open the row\'s Contact card; read the send control and look for any Resend.',
         'Press Send reminder; read the dialog that opens and which unit its reminder covers.',
         'Send it; read the confirmation and the card again.',
-        'Check the mail catcher for the email and the units it lists.'],
+        'Open your inbox and read the reminder email and the units it lists.'],
  results=['The control reads "Send reminder"; there is no Resend.',
           'The application\'s existing send email dialog opens, covering this asset only; the customer\'s other asset is not in it.',
           'After sending, a confirmation appears and the card reads "Last sent" with today\'s date.',
-          'One email arrived, about this asset only. (The audit entry a send writes cannot be checked by hand: no screen shows the audit in this release.)'],
- source=src('S14', 'S14 (S14-R4 to S14-R6, S14-E2, S14-E3)', plan2='section 3 Frontend decisions, FD-216; section 1 NFR-118'),
+          'One email arrived in your inbox, about this asset only. The audit entry a send writes cannot be checked by hand in v1 — no screen shows the audit.'],
+ source=src('S14', 'S14 (S14-R4 to S14-R6, S14-E2, S14-E3)', plan2='section 3 Frontend decisions, FD-216'),
  quotes=[['S14-R5', 'The send control reads Send reminder. Nothing is emailed automatically in v1, so there is no Resend'],
          ['S14-R4', 'Send reminder sends the email of S19 for that one asset, with its current state, through the application\'s existing send email dialog, per S19-R3'],
          ['Plan 2 §3 FD-216', 'After a send: toast "Reminder sent." and "Last sent {date}"'],
          ['S14-R6', 'A send from a row will cover that one asset only, never the customer\'s other units'],
          ['S14-E2', 'Sending a reminder writes an audit entry and updates last sent'],
-         ['S21-N3', 'No screen shows the audit in v1'],
-         ['Plan 2 §1 NFR-118', 'Outside production, every maintenance email (Send reminder, A41) is delivered only to a mail sink or an explicit recipient allowlist']])
+         ['S21-N3', 'No screen shows the audit in v1']])
 
 U[146373] = dict(why='S14-N2 changed: with neither email nor phone there is no send action unless another of the customer\'s contacts has an email (was: no send action). ' + FLAGWHY,
  title='The contact card reads complete in every empty state',
@@ -223,7 +222,7 @@ U[146375] = dict(why='Adds the tech plan\'s and design\'s "Last sent" line wordi
          ['Design board, artboard B1r', 'Last sent 2 Oct 2026']])
 
 # ---------------- S21 ----------------
-NOAUDIT = 'cannot be checked by hand in this release: no screen shows the audit'
+NOAUDIT = 'cannot be checked by hand in v1 — no screen shows the audit'
 S21PRE = [ADVISOR, 'An asset enrolled on a schedule (standard enrolment steps).']
 U[146376] = dict(why='S21-N3 (new): no screen shows the audit in v1. The old case told the tester to "open the audit trail wherever the build surfaces it", which no build will have; the case now separates what a tester can see from what only a developer or automated check can confirm. ' + FLAGWHY,
  title='Every maintenance state change is recorded (no audit screen in v1)',
@@ -286,7 +285,7 @@ U[146380] = dict(why='S21-R6 changed: an asset is deleted as ShopView deletes it
         'Delete the test asset the way the app deletes an asset today; open the worklist.'],
  results=['Enrolling again pre-fills 1 Sep 2026: removal kept the history.',
           'After archive and restore the pre-fill is again 1 Sep 2026: archiving kept the history.',
-          'The asset is deleted as today and its rows leave the worklist. That its maintenance history and audit entries are still kept in the data cannot be checked by hand in this release: no screen shows them.'],
+          'The asset is deleted as today and its rows leave the worklist. That its maintenance history and audit entries are still kept in the data cannot be checked by hand in v1 — no screen shows them.'],
  source=src('S21', 'S21 (S21-R6, S21-N1, S21-N2, S21-N3)'),
  quotes=[['S6-E1', 'Removing a schedule from an asset does not destroy history'],
          ['S21-N2', 'An unenrolled asset and an archived schedule keep their entries'],

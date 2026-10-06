@@ -1,6 +1,9 @@
 import json, re, collections
 ROOT = '/home/user/Manual-test-Cases/build/maintenance-reminder-v2/'
-SP = '/tmp/claude-0/-home-user-Manual-test-Cases/06e6c85d-c9b5-5e70-a786-f21cb2d333a2/scratchpad/'
+import os, sys
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+SP = os.path.join(HERE, 'work') + '/'
 P = json.load(open(ROOT + 'source-update-2026-10-06/chunk1-proposals.json'))
 import sys
 sys.path.insert(0, SP)
@@ -32,7 +35,9 @@ w(f"**Counts:** {len(P['updates'])} updates (full replacement content) · {len(P
 w('')
 w('**Why all 81 are updates:** every precondition says the feature "ships behind the maintenance_reminders flag"; the 5 Oct spec says it ships to every organization with no feature flag. Every Source line is restamped to the 5 Oct spec. ' + f'{NFLAG} cases change only in that way (plus the Settings-entry wording and the "Enroll in Schedule" label); {len(P["updates"]) - NFLAG} change in substance.')
 w('')
-w('**Before applying (needs the QA lead):** `mr_lib.py` MARKER still reads "(feature ships behind the maintenance_reminders flag)" and `expected()` appends "Source-verified 29 September 2026; not yet build-verified." Both are now stale. I did not change mr_lib (out of my remit); the proposals\' Source lines carry "read 6 Oct 2026", and the applier must change the MARKER text and the date stamp, or the applied cases will contradict themselves.')
+w('**Marker and source stamp (coordinator decision, 6 Oct):** every update and new case carries `marker` = "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build", and every Source line ends "read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified." The coordinator\'s renderer takes the Source text as-is; mr_lib\'s old MARKER (which names the flag) and its 29 September stamp are not used.')
+w('')
+w('**Second pass (coordinator decisions, 6 Oct):** (1) marker and stamp as above; (2) the six S21 audit cases stay manual: each has real hand steps for what is visible, and the plain results say the audit part "cannot be checked by hand in v1 — no screen shows the audit"; (3) reading histories are now seeded by hand through Mark complete On a work order, which records that work order\'s mileage and engine hours as readings dated the Reset date (S18-R19): C146352, C146355, C146357, C146364, C146385, C146386 and NEW-7 carry the recipe ("ZZAUTOTEST Reading seed" schedule, "ZZ Seed n" services, one work order per reading, oldest first) with worked values that produce exactly what each case checks; (4) send cases tell the tester to give the contact an email address they can open, so the reminder lands in their own inbox; (5) NEW-2 uses "the organization\'s Feature flags page" and stays on HOLD until the label is confirmed on the build.')
 w('')
 w('## 1. Per-source verdicts')
 w('')
@@ -41,14 +46,14 @@ w('|---|---|---|')
 w('| Chunk 1 MR (Confluence 886931488) as edited 5 Oct 2026 vs the 29 Sep copy | **UPDATE + ADD** | 270 anchors now (254 before): 49 changed, 19 added, 3 removed, 202 the same. Changes drive the substantive updates; the 19 added anchors drive most new cases; S2-R19 and S7-R7, cited by no case before, are now quoted in C146323 and C146340. |')
 w('| Maintenance Reminders V1 main page (833290250), key decisions | **UPDATE + ADD** | No feature flag (all 81). Loading/error/failed-save, phone, and permissions decisions had no case: NEW-20, NEW-22, NEW-23, NEW-24. |')
 w('| Review decisions 892305428 (Chunk one), 891944985 (Chunk three), 841678852 (open questions), run log 891519016 | **CONFIRM** | Every Chunk 1 item is answered in or superseded by the 5 Oct spec. Open items left (MF-14/15/16/18, OQ-4) are Chunk 2; OQ-5 is not testable. Nothing to add. |')
-w('| Plan 1 — Track, act, clear — Technical Implementation Plan (5,363 lines) | **ADD (informs) + DIVERGE + EXCLUDE** | Added tester-visible details the spec does not give: first Save keeps the editor open with a toast (D21); archived names reserved (S1-E2 row); "Lines from {home}" before first Save (FD-23); read-only lines also hide Move up/down (FD-24); 13/14/15-day and 29/30 boundaries (P1 tests); certificate clamp both ways (Q15, certificateDates tests); Undo complete only for the latest Mark complete and "This can no longer be undone" (§1, §5.4); Open/Invoice offer a location switch (FD-16); Invoice falls back to Open work order (FR10); Settings entry not gated on Digital Inspections (FR13); hover by focus/Enter/tap (NFR-F08); loading never shows 0 (NFR-F03); testability note B5 (estimates need dated history). Divergences: name matching (TD-23), Status column (P5), toggle disabled vs hidden, Settings entry label. DB/API/architecture excluded. |')
-w('| Plan 2 — The work order and the customer (sections touching Chunk 1) | **ADD (informs) + DIVERGE** | Send reminder states and "Last sent {date}" (FD-216), mail sink on QA (NFR-118), send dialog title and toast differ from the design. |')
+w('| Plan 1 — Track, act, clear — Technical Implementation Plan (5,363 lines) | **ADD (informs) + DIVERGE + EXCLUDE** | Added tester-visible details the spec does not give: first Save keeps the editor open with a toast (D21); archived names reserved (S1-E2 row); "Lines from {home}" before first Save (FD-23); read-only lines also hide Move up/down (FD-24); 13/14/15-day and 29/30 boundaries (P1 tests); certificate clamp both ways (Q15, certificateDates tests); Undo complete only for the latest Mark complete and "This can no longer be undone" (§1, §5.4); Open/Invoice offer a location switch (FD-16); Invoice falls back to Open work order (FR10); Settings entry not gated on Digital Inspections (FR13); hover by focus/Enter/tap (NFR-F08); loading never shows 0 (NFR-F03); testability note B5 (no API to backdate a reading; answered by the hand route of S18-R19). Divergences: name matching (TD-23), Status column (P5), toggle disabled vs hidden, Settings entry label. DB/API/architecture excluded. |')
+w('| Plan 2 — The work order and the customer (sections touching Chunk 1) | **ADD (informs) + DIVERGE** | Send reminder states and "Last sent {date}" (FD-216); send dialog title and toast differ from the design. (NFR-118 sends QA mail only to allowed addresses; testers use an address they can open.) |')
 w('| Design board "Chunk 1.dc.html", 6 Oct vs 29 Sep | **UPDATE (labels) + DIVERGE** | New board: "covered" (not "absorbed"), "Lines from <home>", "Enroll in Schedule", Start/End date, "ends 14 Oct 2026", Mark complete modal, Send email dialog, contact-card states. 33 divergences recorded (section 6); the spec wins in every case and no case follows the design where they differ. |')
 w('| Design-package reading notes (other worker, 1,277 lines) and NEW-SCREENSHOTS-READ | **CONFIRM + DIVERGE** | Screenshots and handoff markdown are older than the spec (spec wins). Folded in: "Not on a maintenance schedule", "Certificate unknown", "Add history record", rule-in-cell, one-pair Low grade, "Completed", remove-confirm outcome, 2-month default, "at always takes a month", covering (i), 36 months, one labelled phone, phone hover ending, live-WO rows. |')
 w('| Design inventories inv1/inv1b/inv1c and audit.json | **CONFIRM (superseded)** | An intermediate snapshot (still "absorbed", Effective/Expiry); nothing new. |')
 w('| "Canned lines per location - proposal.dc.html" | **CONFIRM** | Matches S4-R7/R8 and S13-R30/S16-N6 (used in NEW-3 and NEW-18). Design-only: the picker marks lines already on the service "Already added". |')
 w('| "Maintenance Reminders Demo.dc.html", "4-work-order (old WO chrome).dc.html" | **EXCLUDE (superseded)** | Older board states; the work-order board is Chunk 2. |')
-w('| Design drive (DESIGN-DRIVE-FINDINGS.md) | **STILL TO BE FOLDED IN** | The file says "Status: IN PROGRESS" (Chunk 1 still being driven at 09:54). Its findings are not in these proposals. |')
+w('| Design drive (DESIGN-DRIVE-FINDINGS.md) | **STILL TO BE FOLDED IN** | The file says "Status: IN PROGRESS" (Chunk 1 still being driven when last checked, after 10:01). Its findings are not in these proposals. |')
 w('')
 w('## 2. Quote check')
 w('')
@@ -57,7 +62,7 @@ w('- Defects that pre-date the spec change: the spec\'s quotation marks around "
 CR = json.load(open(SP + 'check_result.json'))
 nqc = sum(len(x['quotes']) for x in P['updates'] + P['new']); nqd = 2 * len(P['diverge'])
 assert CR['nq'] == nqc + nqd and not CR['fails'] and not CR['lint']
-w(f'- **Proposals:** {CR["nq"]} quotes ({nqc} in cases, {nqd} in DIVERGE pairs) checked by script against the cleaned sources (spec anchors with `**` and backslashes removed, "..." elisions allowed; Plan 1 / Plan 2 / main page text; the design board\'s visible and attribute text). **{CR["nq"]} of {CR["nq"]} verbatim, {len(CR["fails"])} failures.** All {len(P["updates"]) + len(P["new"])} titles are 80 characters or fewer (longest {max(len(x["title"]) for x in P["updates"] + P["new"])}). A lint over every precondition, step and result found no story ids, Jira keys, "flag", "absorb", "Effective", "expiry month", "DVI", "API" or "Plan" references. Check script: `build.py` in the session scratchpad (re-runnable).')
+w(f'- **Proposals:** {CR["nq"]} quotes ({nqc} in cases, {nqd} in DIVERGE pairs) checked by script against the cleaned sources (spec anchors with `**` and backslashes removed, "..." elisions allowed; Plan 1 / Plan 2 / main page text; the design board\'s visible and attribute text). **{CR["nq"]} of {CR["nq"]} verbatim, {len(CR["fails"])} failures.** All {len(P["updates"]) + len(P["new"])} titles are 80 characters or fewer (longest {max(len(x["title"]) for x in P["updates"] + P["new"])}). A lint over every precondition, step and result found no story ids, Jira keys, "flag", "absorb", "Effective", "expiry month", "DVI", "API" or "Plan" references. Every script is saved in `chunk1-scripts/` (run `python3 build.py --write`, then `python3 mkmd.py`; `casecheck.py` and `anchors.py` run from `build/maintenance-reminder-v2/`).')
 w('- Every one of the 270 current anchors is cited by at least one proposed case (table below).')
 w('')
 w('## 3. Anchor coverage — every current anchor')
@@ -117,16 +122,16 @@ for s in [
  'Work-order status word "Complete" (spec) vs "Completed" (design): the badge must show the app\'s own word.',
  '"This can no longer be undone", "Unable to load …" and the location-switch prompt come from the tech plan only (no design, no spec words).',
  'The meter hover text of S11-R27 and "View work orders" exist only in the spec (the design shows other text).',
- 'Where Digital Inspections is turned off for a test organization (NEW-2 assumes Settings > Feature Flags on QA).',
+ 'The Feature flags page label (NEW-2 calls it "the organization\'s Feature flags page", Settings > Feature flags; to be confirmed on the build).',
 ]:
     w('- ' + s)
 w('')
 w('## 9. Testability notes and questions')
 w('')
 for s in [
- '**Estimates and confidence cannot be seeded by hand** (Plan 1 testability note B5: readings are recorded "today" only). C146352, C146355, C146357, C146364, C146385, C146386 and NEW-7 now tell the tester to find an asset whose past work orders carry mileage (loaded once on QA) and to mark the case Blocked if none exists.',
- '**Audit (S21): no screen in v1 (S21-N3).** C146376–C146381 now check only what a tester can see and state plainly which part cannot be checked by hand. Decision for the QA lead: keep them as hand cases with that note, or retire them to automation-only (Rule 114).',
- '**Mail sink:** on QA, Send reminder emails go to a mail catcher (Plan 2 NFR-118). The send cases need access to it, or the "email arrived" checks are skipped.',
+ '**Reading histories are seeded by hand** (S18-R19 route): one throwaway schedule "ZZAUTOTEST Reading seed" with services "ZZ Seed 1…n" (Every 12 months); per reading, a new work order with the mileage typed in, then Mark complete On a work order with the past Reset date; then Remove from schedule. Worked values: C146352/NEW-7 100,000 (120 days ago) and 104,000 (60 days ago) give one pair, 60 days, Low; C146357/C146364 100,000 (200 days ago) and 130,000 (20 days ago) give about 167 a day, Medium, PM-A (15,000, last service 200 days ago) overdue about 110 days, PM-B (60,000) due about 160 days ahead; C146385 ten ladders (readings 30 days apart, +3,000 each) hit every cell of the locked table; C146386 adds yesterday, 14 months, all older than 24 months, a mileage/engine-hours split and a 3-day pair that the seven-day guard discards (N = 2, not 3). Units whose past invoiced work orders already carry the same history may be used instead.',
+ '**Audit (S21): no screen in v1 (S21-N3).** C146376–C146381 stay manual (coordinator decision): each checks what a tester can see, and the plain results say the audit part "cannot be checked by hand in v1 — no screen shows the audit".',
+ '**Email:** the send cases tell the tester to give the contact an email address they can open, so the reminder lands in their own inbox.',
  '**Day-level calendar dates are not shown** (a calendar date reads its month and "Calendar", S11-R13), so C146382 now checks months chosen so the clamp and the days/months drift change the month. A Reset date cannot be in the future, so the old 31 Jan 2028 step became 31 Jan 2024.',
  '**Rest after completion (S13-R43, new)** made the old tile-boundary seeding impossible (a date typed at enrolment rests the row). C146359, C146387 and C146388 now seed with blank dates and day intervals.',
  '**Questions for the PO (not cases):** field length limits (Plan 1: names 120, certificate number 64, shop name 160 characters; no source says what the form does at the limit); Plan 2 TD-123 implies a service-contents hover on the asset tab that the spec does not describe; the spec does not say what happens to the legacy surfaces in today\'s app (asset "Add Schedule", Reports > Maintenance, the front-of-app banner); the design\'s service-row "Duplicate".',
@@ -162,18 +167,16 @@ rows = [
  ('source-update-2026-10-06/AUTHORIZED-SKIPS-2026-10-06.md', '933 B', 'read in full (QA lead skip list for fonts, icons, DS code, designer scripts, backups)', '100% read'),
  ('snapshots-2026-10-06/chunk1-cases-before.json (81 cases)', '265,663 B', 'parsed by script; every case\'s title, preconditions, steps, results, source and quotes read', '100% read'),
  ('mr_lib.py and v2_s1.py … v2_s14_s21_data.py (house format)', 'mr_lib 3,819 B', 'mr_lib read in full; v2_s1.py read for the case style', 'mr_lib 100%; v2 scripts: format only'),
+ ('sources/CONFLUENCE-897679389-Chunk2-MR-2026-10-06.md (Chunk 2 spec)', 'anchors only', 'S16-N6, S11-R2/R4/R5/R19/R20 and S10-R10/N6 read for the quotes and the seeding arithmetic', 'Chunk 2 scope beyond these anchors not read here'),
 ]
 for r in rows: w('| ' + ' | '.join(r) + ' |')
 w('')
-w('Not read (and why): the Chunk 2 spec page (897679389) beyond the S16-N6 anchor quoted in NEW-18 — Chunk 2 scope, reviewed by the Chunk 2 worker; Plan 2 sections that touch only the work order, invoicing and the email (Chunk 2); fonts, icons, design-system code, designer build scripts and board backups (QA lead\'s authorized skips, 6 Oct). Screenshots were read by the design-package worker, whose notes I read in full.')
+w('Not read (and why): the Chunk 2 spec page (897679389) beyond the anchors quoted (S16-N6 in NEW-18, S11-R4 in C146386) and those read for the seeding arithmetic — Chunk 2 scope, reviewed by the Chunk 2 worker; Plan 2 sections that touch only the work order, invoicing and the email (Chunk 2); fonts, icons, design-system code, designer build scripts and board backups (QA lead\'s authorized skips, 6 Oct). Screenshots were read by the design-package worker, whose notes I read in full.')
 w('')
 w('## OUTSTANDING — what I need from you')
 w('')
-w('1. Approve the proposals before anyone writes them to TestRail (no TestRail write was made).')
-w('2. Change `mr_lib.py` before applying: the MARKER still names the feature flag and `expected()` stamps "Source-verified 29 September 2026".')
-w('3. Decide the six S21 audit cases: keep as hand cases with the "cannot be checked by hand" note, or move them to automation-only.')
-w('4. Send the 33 DIVERGE items to the PO (labels first: Settings entry, Due status, tile name, empty states, record form, Mark complete line).')
-w('5. Arrange QA access to the maintenance mail catcher, and confirm QA has assets with past work-order mileage (estimate and confidence cases).')
-w('6. The design-drive findings were not ready; they still have to be folded into these proposals.')
+w('1. Apply the proposals with the coordinator\'s renderer (no TestRail write was made here).')
+w('2. Send the 33 DIVERGE items to the PO (labels first: Settings entry, Due status, tile name, empty states, record form, Mark complete line).')
+w('3. The design-drive findings are still IN PROGRESS (file last checked after 10:01); send them when final and I will fold them in.')
 open(ROOT + 'source-update-2026-10-06/CHUNK1-FINDINGS.md', 'w').write('\n'.join(L) + '\n')
 print('written', len(L), 'lines')

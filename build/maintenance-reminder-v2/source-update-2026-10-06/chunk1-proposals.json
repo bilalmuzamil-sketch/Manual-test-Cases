@@ -26,7 +26,7 @@
     "After switching to \"Red Deer\" the same schedules are listed: every location sees every schedule.",
     "The user without \"Settings Service\" cannot reach the Maintenance entry."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (Where it lives; S1-R1, S1-N2); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (Where it lives; S1-R1, S1-N2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Chunk 1 MR, S1 Where it lives",
@@ -44,7 +44,8 @@
      "S1-N2",
      "A user without Settings Service cannot reach the tab"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146310,
@@ -63,13 +64,14 @@
     "The empty screen shows a single call to action prompting the first schedule/service.",
     "A schedule with no services cannot be saved - Save stays disabled and the empty state prompts the first service."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S1-N1",
      "A schedule with no services cannot be saved. It shows an empty state prompting the first service"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146311,
@@ -90,7 +92,7 @@
     "Nothing was left behind: the list shows no draft for the editor you left without saving.",
     "After the first Save the editor stays open on the saved schedule and a success message (toast) appears; the schedule is now in the list."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (New schedule; S1-R3, S1-R4); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.1 Settled decisions, D21; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (New schedule; S1-R3, S1-R4); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.1 Settled decisions, D21; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S1-R3",
@@ -104,7 +106,8 @@
      "Plan 1 §3.1 D21",
      "After the first Save of a new schedule the editor stays open, does `router.replace` to the schedule's `/:id` route and shows a success toast"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146312,
@@ -127,7 +130,7 @@
     "Save is disabled until at least one service exists, then becomes enabled; name, services and order save only on Save.",
     "Cancel discards unsaved changes, asking first when there are any."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S1-R6",
@@ -141,7 +144,8 @@
      "S1-R8",
      "The editor will carry Cancel and Save. Save is disabled until the schedule has at least one service. The name, the services and their order are saved only when Save is pressed; Cancel discards every unsaved change, asking first when there are any"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146313,
@@ -169,7 +173,7 @@
     "Save is refused with the message \"A schedule with this name already exists.\" shown inline under the name.",
     "The archived schedule's name is refused the same way."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (The editor; S1-N3, S1-E2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1, requirement table row S1-E2; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (The editor; S1-N3, S1-E2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1, requirement table row S1-E2; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S1-N3",
@@ -187,7 +191,8 @@
      "Plan 1 §1 S1-E2",
      "Names unique across the organization (archived included); duplicate named (Copy), (Copy 2)"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146314,
@@ -210,7 +215,7 @@
     "PM-A's Interval reads \"15,000 mileage · 3 months\" (a dot between triggers, never \"or\"); PM-C's Canned Lines reads \"4 lines · 3 covered\" (1 own line + 3 from PM-A = 4).",
     "Services reorder by drag and by Move up / Move down."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (The service table; S1-R9, S1-R10); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (The service table; S1-R9, S1-R10); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S1-R9",
@@ -224,7 +229,8 @@
      "S1-R10",
      "Services will be reorderable by drag and by Move up / Move down"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146315,
@@ -254,7 +260,7 @@
     "Each schedule shows its enrolled-asset count as plain read-only text (never a badge), and the count opens nothing.",
     "Clicking an archived schedule opens it read-only all the way down (services, triggers, lines); there is no delete anywhere - a mistaken schedule is archived, not deleted."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S1-R2",
@@ -272,7 +278,8 @@
      "S1-E1",
      "A schedule created by mistake is archived, like any other. There is no delete anywhere in the feature and no draft state to abandon"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146316,
@@ -295,7 +302,7 @@
     "There is no send switch anywhere in the form or in the service table; the service has exactly one name (no separate customer-facing name).",
     "The service cannot be saved with a blank name."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Add service; The form, in order); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Add service; The form, in order); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R1",
@@ -317,7 +324,8 @@
      "S2-R3",
      "A service will carry exactly one name. There is no customer facing name, so the name a shop gives a service is the name its customer reads in a reminder"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146317,
@@ -343,7 +351,7 @@
     "A service cannot be saved with the calendar interval empty; a service with calendar only (no additional trigger) saves fine.",
     "Distance and Engine hours selected together still produce one calendar row, not two."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R4",
@@ -365,7 +373,8 @@
      "S2-E1",
      "Distance and engine hours selected together still produce one calendar row, not two"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146318,
@@ -386,7 +395,7 @@
     "On the calendar row \"At\" turns the value into a day-and-month picker (e.g. 15 Nov); it never offers a month on its own.",
     "With \"Every\" the calendar row has a number and a unit (days or months), both picked from lists, not typed; months run 1 to 12."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Triggers and intervals; S2-R6, S2-R7, S2-R8); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Triggers and intervals; S2-R6, S2-R7, S2-R8); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R6",
@@ -400,7 +409,8 @@
      "S2-R8",
      "The calendar interval carries a number and a unit, days or months, both chosen from a list rather than typed. Months run 1 to 12 and days are whole numbers"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146319,
@@ -421,7 +431,7 @@
     "The distance unit is the word \"mileage\", written in full wherever a unit is named; \"mi\" and \"km\" never appear.",
     "Engine hours are written \"hours\" in full wherever the unit is named, never \"hrs\"."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R10",
@@ -431,7 +441,8 @@
      "S2-R15",
      "Engine hours are written hours in full wherever the unit is named, never hrs, on the same rule as mileage in S2-R10"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146320,
@@ -454,7 +465,7 @@
     "Values above the caps are refused: mileage stops at 999,999, engine hours at 99,999, days at 999.",
     "The service cannot be saved while the \"At\" row has no day and month."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (What the number fields accept; S2-R9, S2-N2, S2-N5, S2-N6, S2-N7); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (What the number fields accept; S2-R9, S2-N2, S2-N5, S2-N6, S2-N7); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-N2",
@@ -476,7 +487,8 @@
      "S2-N6",
      "An interval of zero is rejected inline, on the same rule as a decimal and a negative"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146321,
@@ -495,13 +507,14 @@
    "results": [
     "The triggers block states, in one plain line beneath its heading, that the service comes due at whichever trigger arrives first; there is no \"or\" between the triggers and no warning panel."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R11",
      "The service comes due at whichever trigger arrives first. The triggers block states this once, in one plain line beneath its heading. There is no or between the triggers and no warning panel"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146322,
@@ -522,7 +535,7 @@
     "A service has one calendar row; there is no one-time option.",
     "A meter row accepts \"At\" (one reading), which covers a one-off job."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (How the next date is worked out; S2-E2, S2-E3); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (How the next date is worked out; S2-E2, S2-E3); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-E2",
@@ -536,7 +549,8 @@
      "S2-E3",
      "There is no one-time flag. A meter \"At\" row covers the one-off case"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146323,
@@ -567,7 +581,7 @@
     "PM-C is not offered when editing PM-A, because PM-C already covers PM-A.",
     "Picking PM-C does not also pick PM-A or PM-B; each covered service has to be named."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Services also covered; S2-R16 to S2-R19, S2-N8, S2-N9, S2-E6); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards R4 / R7 (Services also covered); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Services also covered; S2-R16 to S2-R19, S2-N8, S2-N9, S2-E6); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards R4 / R7 (Services also covered); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R16",
@@ -609,7 +623,8 @@
      "Design board, artboard R4",
      "Build the smallest service first. PM-C covers PM-A and PM-B, so their lines arrive in the next step."
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146324,
@@ -630,7 +645,7 @@
     "Turning it on replaces the trigger block with the compliance block; the two never appear together.",
     "A compliance service has no meter triggers and no calendar interval."
    ],
-   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S3-R1",
@@ -644,7 +659,8 @@
      "S3-N1",
      "A compliance service has no meter triggers and no calendar interval"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146325,
@@ -665,7 +681,7 @@
     "Type accepts any free text you type.",
     "The service cannot be saved with Type blank."
    ],
-   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (Type; S3-R3); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (Type; S3-R3); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S3-R3",
@@ -679,7 +695,8 @@
      "S3-R3",
      "Type is free text and required"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146326,
@@ -702,7 +719,7 @@
     "The 8-month value is refused inline with \"Remind before expiry cannot be longer than the 6-month term\".",
     "Both services save: the same type can carry different terms (6 and 12 months), and choosing a type fills in nothing."
    ],
-   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (Term and Remind before expiry; S3-R6, S3-R7, S3-R8, S3-E2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard R6; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (Term and Remind before expiry; S3-R6, S3-R7, S3-R8, S3-E2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard R6; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S3-R7",
@@ -724,7 +741,8 @@
      "S3-R6",
      "The term is chosen on its own. The type fills in nothing"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146327,
@@ -749,7 +767,7 @@
     "The CVIP row reads \"No record\" and shows no due badge; compliance styling is orange, never red.",
     "The record-less CVIP row is not counted in any tile."
    ],
-   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (What it does not ask for; How it behaves afterwards); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (What it does not ask for; How it behaves afterwards); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S3-R9",
@@ -767,7 +785,8 @@
      "S3-N2",
      "is excluded from every count"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146328,
@@ -791,7 +810,7 @@
     "The picker shows hours per line and no price; selected lines are ordered and reorderable by drag.",
     "The picker does not offer creating a new canned line (that stays in Settings)."
    ],
-   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S4-R4",
@@ -813,7 +832,8 @@
      "S4-E3",
      "The picker does not offer creating a new canned line. That stays in Settings"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146329,
@@ -834,7 +854,7 @@
     "Clicking the line count opens nothing (it is not a link).",
     "Hovering opens a card styled as a small modal that lists the services it covers (PM-A) and then its canned lines, one per row; it closes when the pointer leaves."
    ],
-   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (What the service is worth; The line count); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (What the service is worth; The line count); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S4-R6",
@@ -848,7 +868,8 @@
      "S4-R5",
      "Hovering it opens a card styled as a small modal that lists the services it covers and then its canned lines, one per row, and closes when the pointer leaves"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146330,
@@ -871,7 +892,7 @@
     "A canned line edited later in Settings changes what the service adds from then on.",
     "A canned line deleted in Settings leaves the service with one fewer line, without error."
    ],
-   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S4-N1",
@@ -889,7 +910,8 @@
      "S4-E2",
      "A canned line deleted in Settings leaves the service with one fewer line, without error"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146331,
@@ -914,7 +936,7 @@
     "With Every 1 month (counted as 30 days) 30 is refused inline and 29 is accepted.",
     "With Every 7 days 7 is refused inline and 6 is accepted."
    ],
-   "source": "Epic SV-3780, story SV-10562 (S5, Reminder timing), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S5 (The rows; S5-R1 to S5-R4, S5-R12); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P1, frontend tests (serviceFormRules); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10562 (S5, Reminder timing), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S5 (The rows; S5-R1 to S5-R4, S5-R12); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P1, frontend tests (serviceFormRules); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S5-R1",
@@ -944,7 +966,8 @@
      "S5-R4",
      "The ceiling is five rows, after which Add reminder disables"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146332,
@@ -968,7 +991,7 @@
     "The CVIP form has no reminder rows; it shows \"Remind before expiry\" in their place.",
     "Nothing is emailed automatically; a reminder reaches a customer only when someone presses Send reminder on the contact card."
    ],
-   "source": "Epic SV-3780, story SV-10562 (S5, Reminder timing), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S5 (What the rows drive; Compliance is the exception); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10562 (S5, Reminder timing), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S5 (What the rows drive; Compliance is the exception); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S5-R8",
@@ -990,7 +1013,8 @@
      "S5-E1",
      "Rows after the due date carry no internal effect in v1: a service is overdue from its due date onward whatever they say"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146333,
@@ -1015,7 +1039,7 @@
     "Assets enrolled later receive whatever the schedule says at that time; there is no re-apply or refresh action for already-enrolled assets.",
     "The only ways a change reaches an already-enrolled asset are removing and re-enrolling it, or archiving the schedule."
    ],
-   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S6-R1",
@@ -1041,7 +1065,8 @@
      "S6-N2",
      "In this release a change to a schedule does not reach assets already on it. Removing the asset and enrolling it again, or archiving the schedule, moves it to the schedule's current form"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146334,
@@ -1067,7 +1092,7 @@
     "The remove confirmation names the covering service: \"PM-C covers PM-B. Removing PM-B takes it off PM-C; the lines already copied into PM-C stay.\"",
     "PM-C keeps the lines copied from PM-B; the enrolled asset still shows PM-A every 3 months and still carries PM-B (nothing reaches already-enrolled assets, and nothing warns as though it would)."
    ],
-   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (Editing or removing a service; S6-R11, S6-N3); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards E04e, E04r; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (Editing or removing a service; S6-R11, S6-N3); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards E04e, E04r; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S6-R11",
@@ -1085,7 +1110,8 @@
      "S6-N3",
      "Removing a service never removes it from an asset already carrying it. There is no retroactive path, by design, and nothing warns as though there were"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146335,
@@ -1117,7 +1143,7 @@
     "The second copy is named \"Highway Tractor PM (Copy 2)\".",
     "The archived schedule offers Restore only."
    ],
-   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (Duplicating; S6-R12); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (Duplicating; S6-R12); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S6-R12",
@@ -1135,7 +1161,8 @@
      "S6-R12",
      "An archived schedule offers Restore alone"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146336,
@@ -1166,7 +1193,7 @@
     "The asset is no longer enrolled, and the archived schedule is not offered for enrolment.",
     "After Restore the schedule can be picked again, but the asset is still not enrolled until someone enrolls it."
    ],
-   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (Archiving and restoring; S6-R5 to S6-R8); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard E06; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (Archiving and restoring; S6-R5 to S6-R8); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard E06; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S6-R5",
@@ -1188,7 +1215,8 @@
      "Design board, artboard E06",
      "Archive Schedule"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146337,
@@ -1208,7 +1236,7 @@
     "After removal, that schedule's rows leave the asset tab and the worklist; the maintenance history is kept, the certificates stay, and an open work order is not changed.",
     "Enrolling the asset again later counts from its last completion; changing an asset's schedule is \"Remove from schedule\" then \"Enrol\"."
    ],
-   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S6-R13",
@@ -1218,7 +1246,8 @@
      "S6-R14",
      "After Remove from schedule, that schedule's rows leave the asset tab and the worklist. History stays ... the asset's certificates stay ... an open work order is not changed. Enrolling the asset again later counts from its last completion ... Changing an asset's schedule is Remove from schedule, then Enrol"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146338,
@@ -1251,7 +1280,7 @@
     "After archive and restore, enrolling again pre-fills 1 Sep 2026 again: archiving removed the enrolment, not the history.",
     "The enrolled asset does not get the new CVIP service, and nothing warns about it: the shop must enrol the asset again to get it."
    ],
-   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (What survives; S6-E1, S6-E2, S6-E4); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (What survives; S6-E1, S6-E2, S6-E4); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S6-E1",
@@ -1273,7 +1302,8 @@
      "S6-E3",
      "A new regulatory requirement is the known weak point. The shop must apply the schedule again per unit and nothing warns it"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146339,
@@ -1300,7 +1330,7 @@
     "A schedule the asset is already on is not offered.",
     "With no schedules the modal says so plainly and offers a route to create one, not an empty list."
    ],
-   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (Where it starts; S7-R1, S7-R23, S7-E8, S7-N6); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-23; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (Where it starts; S7-R1, S7-R23, S7-E8, S7-N6); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-23; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-R1",
@@ -1326,7 +1356,8 @@
      "Plan 1 §3.3 FD-23",
      "Rendered under the name on the list (desktop + mobile), in the editor header and on each enrolment schedule option"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146340,
@@ -1354,7 +1385,7 @@
     "PM-A comes due Dec 2026 (1 Sep 2026 + 3 months); PM-B comes due 6 months from today and PM-C 12 months from today.",
     "Every service of \"Highway Tractor PM\" was added (none skipped), and PM-A appears on separate rows for \"Yard PM\" and \"Highway Tractor PM\": overlapping services on two schedules are allowed."
    ],
-   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (Choosing the schedule, then the services; S7-R2, S7-R4, S7-R7, S7-R8, S7-E3); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard X1; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (Choosing the schedule, then the services; S7-R2, S7-R4, S7-R7, S7-R8, S7-E3); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard X1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-R7",
@@ -1396,7 +1427,8 @@
      "S7-E4",
      "An asset may be enrolled on more than one schedule. Overlapping services are allowed and produce separate rows"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146341,
@@ -1421,7 +1453,7 @@
     "Engine overhaul shows that 250,000 has already been passed and offers \"Mark as done\" or \"Leave due\"; \"Mark as done\" is chosen by default.",
     "Winter prep comes due on its next 15 Nov: this year if today is before 15 Nov (e.g. enrolled 6 Oct 2026 -> Nov 2026), otherwise next year."
    ],
-   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (A compliance service in that list; Where the first cycle starts; S7-R6, S7-R15, S7-E1, S7-E2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, frontend table (EnrolmentServiceRow); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (A compliance service in that list; Where the first cycle starts; S7-R6, S7-R15, S7-E1, S7-E2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, frontend table (EnrolmentServiceRow); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-R6",
@@ -1443,7 +1475,8 @@
      "Plan 1 §6 P2 EnrolmentServiceRow",
      "compliance record line \"{number} · ends {endDate}\" or \"No record\" + \"+ Add record\""
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146342,
@@ -1471,7 +1504,7 @@
     "No last service dates and no certificates are asked for; the modal says \"2 of 3 have a last service on record; the rest count from today.\"",
     "After enrolling, the three assets read \"Already on this schedule\" as well."
    ],
-   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (Several assets at once; S7-R24 to S7-R26, S7-N4, S7-N7); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, frontend table (EnrolmentAssetsSection); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards X4a to X4d; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (Several assets at once; S7-R24 to S7-R26, S7-N4, S7-N7); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, frontend table (EnrolmentAssetsSection); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards X4a to X4d; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-R24",
@@ -1501,7 +1534,8 @@
      "S7-N4",
      "There is no bulk path from the schedule side"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146343,
@@ -1529,7 +1563,7 @@
     "The edit dialog has no such field; there is no tab, page or preferences matrix for it.",
     "Halden Grading shows a note that no reminder can be sent because none of its contacts has an email address, with Add contact opening the app's contact form; after saving a contact with an email the note disappears."
    ],
-   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (The customer's notification setting; S7-R13, S7-R17 to S7-R21, S7-E7); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-29; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard CS0; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (The customer's notification setting; S7-R13, S7-R17 to S7-R21, S7-E7); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-29; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard CS0; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-R13",
@@ -1571,7 +1605,8 @@
      "S7-R21",
      "One value covers every unit that customer owns, including units enrolled after it was set"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146344,
@@ -1594,7 +1629,7 @@
     "A setting changed from inside enrolment stands even if the enrolment is then cancelled (enrolling a unit and notifying a customer are separate acts).",
     "A unit whose enrolling customer is unlinked from it stops being tracked for that customer; enrolling it again for another customer follows that customer's setting from then on."
    ],
-   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-N5",
@@ -1608,7 +1643,8 @@
      "S7-E6",
      "A unit whose enrolling customer is unlinked from it stops being tracked for that customer. Enrolling it again for another customer follows that customer's setting from then on"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146345,
@@ -1618,21 +1654,21 @@
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
     "A customer whose setting \"Maintenance notifications\" is on and who has a contact with an email address.",
     "A schedule with PM-A (calendar Every 30 days) exists.",
-    "On the test environment, maintenance emails go to a mail catcher (sink) instead of real inboxes; ask the QA lead for access to it. Without access, check only steps 1 to 3."
+    "Give the test customer's contact an email address you can open (e.g. your own work email), so the reminder lands in your inbox."
    ],
    "steps": [
     "Enrol one of the customer's assets on the schedule with PM-A's last service date 40 days before today, and read the confirmation shown after Enroll.",
     "Open Customers > Maintenance reminders and find the asset's PM-A row.",
     "Open the row's Contact card and read the line under the email address.",
-    "Look in the mail catcher for any email to the customer."
+    "Look in your inbox (the contact's address) for any reminder email."
    ],
    "results": [
     "The confirmation states both halves: the rows appear on the worklist, and no email is sent for them.",
     "The PM-A row is listed at once with its real status \"Overdue\" (40 days since the last service on a 30-day interval).",
     "The card shows that no reminder has been sent (no last sent date).",
-    "No email was sent to the customer."
+    "No reminder email has arrived in your inbox."
    ],
-   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (What enrolling sends, and what it does not; S7-R9, S7-R10, S7-N2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, sketch (EnrolmentDialog caption); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard X1s; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (What enrolling sends, and what it does not; S7-R9, S7-R10, S7-N2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, sketch (EnrolmentDialog caption); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard X1s; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-R10",
@@ -1658,7 +1694,8 @@
      "Design board, artboard X4d",
      "3 assets enrolled on Highway Tractor PM. Their services now appear on the worklist. No email is sent."
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146346,
@@ -1683,7 +1720,7 @@
     "The existing record shows Edit, and + Add record stays beside it for a renewal.",
     "The Compliance section still shows the record when the asset is on no schedule."
    ],
-   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (Where records are reached; S8-R5, S8-R7, S8-R13); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (Where records are reached; S8-R5, S8-R7, S8-R13); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S8-R13",
@@ -1709,7 +1746,8 @@
      "S8-N1",
      "A record can exist with no schedule and no enrolment"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146347,
@@ -1733,7 +1771,7 @@
     "The PDF attaches; Replace swaps it for the PNG (the record keeps only one file); Remove clears it.",
     "The .docx file and the 12 MB PDF are both refused."
    ],
-   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (The number and the file; S8-R2 to S8-R4, S8-R6, S8-R9); Plan 1 — Track, act, clear — Technical Implementation Plan, section 5.2 API contract, A20; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard K4; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (The number and the file; S8-R2 to S8-R4, S8-R6, S8-R9); Plan 1 — Track, act, clear — Technical Implementation Plan, section 5.2 API contract, A20; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard K4; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S8-R2",
@@ -1767,7 +1805,8 @@
      "Design board, artboard K4",
      "PDF, JPEG or PNG, up to 10 MB"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146348,
@@ -1797,7 +1836,7 @@
     "With End date = today the certificate is still valid: the row reads \"Due today\", not \"Overdue\".",
     "With End date = yesterday the certificate has lapsed: the row reads \"Overdue\"."
    ],
-   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (Term and the two dates; S8-R10, S8-R11, S8-E1, S8-E2); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (Term and the two dates; S8-R10, S8-R11, S8-E1, S8-E2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S8-R10",
@@ -1827,7 +1866,8 @@
      "S8-E2",
      "A certificate is valid through its End date and lapses the day after. A weekend or holiday does not move it"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146349,
@@ -1855,7 +1895,7 @@
     "There is no Certificates tab; records are reached from the asset card and from the service row.",
     "Adding the record moves the overdue service's due date at once (it no longer reads \"Overdue\")."
    ],
-   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (What a record belongs to; S8-R8, S8-R12, S8-N1, S8-N3, S8-E4); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (What a record belongs to; S8-R8, S8-R12, S8-N1, S8-N3, S8-E4); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S8-R12",
@@ -1881,7 +1921,8 @@
      "S8-R8",
      "A record belongs to the asset and survives the removal of any schedule"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146350,
@@ -1900,7 +1941,7 @@
     "A compliance service with no record cannot come due and is excluded from every count.",
     "A work order closing two compliance inspections asks for details per record, not once for the work order."
    ],
-   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S8-N2",
@@ -1910,7 +1951,8 @@
      "S8-E3",
      "A work order closing two compliance inspections asks for details per record, not once for the work order"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146351,
@@ -1928,7 +1970,7 @@
     "The asset opens on Work Orders; the Maintenance tab is the last tab, after Notes.",
     "The tab reads \"This unit is not on a maintenance schedule\" with Enroll in Schedule."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (S9-R14, S9-R16); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (S9-R14, S9-R16); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-R16",
@@ -1938,16 +1980,20 @@
      "S9-R14",
      "An asset on no schedule shows This unit is not on a maintenance schedule, with Enroll in Schedule per S7"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146352,
-   "why": "Testability: an estimate needs a dated reading history, which cannot be typed in by hand (tech plan testability note B5); the precondition now says how to find such an asset. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "The reading cards need a dated reading history, which the old precondition could not produce by hand. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
    "title": "Two reading cards: recorded is exact, an estimate has a badge",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
-    "Readings come only from the asset's past work orders (loaded once on the test environment) and from new entries dated today; a dated reading history cannot be typed in by hand. Pick an asset whose Work Orders tab lists past work orders carrying a Mileage value, and note each work order's date and mileage. If no such asset exists on the environment, mark the case Blocked with that reason.",
-    "Enrol that asset on a schedule (Maintenance tab > Enroll in Schedule). The asset has a recorded mileage and an estimated engine-hours value (or the reverse)."
+    "Seed a test unit (e.g. unit 402)'s reading history by hand (standard steps; Mark complete on a work order records that work order's mileage and engine hours as readings dated its Reset date):",
+    "↳ In Settings > Maintenance (needs Settings Service) create, once, a throwaway schedule \"ZZAUTOTEST Reading seed\" with one routine service per reading: \"ZZ Seed 1\", \"ZZ Seed 2\" (calendar Every 12 months each). Enrol the unit on it (its Maintenance tab > Enroll in Schedule, dates blank).",
+    "↳ For each reading below, oldest first: Work Orders > New Work Order for the unit; type the mileage (and the engine hours, where given) in the work order's Mileage (and Engine Hours) field; on that work order's maintenance card open the next \"ZZ Seed\" service's row menu > Mark complete > On a work order (this work order) > Reset date = the date given > Mark complete. A Reset date is never in the future.",
+    "↳ Readings: ZZ Seed 1: Reset date 120 days before today, Mileage 100,000; ZZ Seed 2: Reset date 60 days before today, Mileage 104,000.",
+    "↳ Then remove the unit from the throwaway schedule (Maintenance tab > schedule menu > Remove from schedule), and enrol it on any schedule with a mileage-driven service (e.g. \"Highway Tractor PM\" with PM-A: calendar Every 12 months + Distance Every 15,000 mileage), dates blank, so its Maintenance tab shows the reading cards. A unit whose past invoiced work orders already carry the same history may be used instead."
    ],
    "steps": [
     "On the Maintenance tab read the two reading cards (mileage on the left, engine hours on the right).",
@@ -1955,11 +2001,11 @@
     "Find a Low confidence meter and read its colour."
    ],
    "results": [
-    "The tab opens with the two current readings, each saying whether it is recorded or estimated and how old it is.",
-    "The recorded value is exact with no qualifier; the estimate carries a badge (e.g. \"Estimated\") and its basis.",
-    "Low confidence is not red (red is kept for overdue)."
+    "The tab opens with the two reading cards: mileage says it is recorded (104,000, recorded 60 days ago) and shows an estimate beside it; engine hours has no reading yet.",
+    "The recorded 104,000 shows exactly, with no qualifier; the estimate carries a badge (e.g. \"Estimated\") and its basis (e.g. \"measured from 2 visits\").",
+    "The mileage confidence reads Low (one usable pair, last reading 60 days old) and its meter is not red."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (The two reading cards; S9-R1, S9-R2, S9-R17); Plan 1 — Track, act, clear — Technical Implementation Plan, section 7 Testability notes, B5; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (The two reading cards; S9-R1, S9-R2, S9-R17; S11-R24 copied from Chunk 2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-R1",
@@ -1970,14 +2016,15 @@
      "A recorded reading will show the exact value with no qualifier. An estimate will carry a badge and its basis"
     ],
     [
-     "S9-R17",
-     "The confidence meter's Low state is never red. Red is reserved for overdue"
+     "S11-R24",
+     "31 to 90 days: one pair Low"
     ],
     [
-     "Plan 1 §7 Testability B5",
-     "There is no API to backdate a reading"
+     "S9-R17",
+     "The confidence meter's Low state is never red. Red is reserved for overdue"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146353,
@@ -1998,7 +2045,7 @@
     "A service appears once - a unit that missed four cycles shows one row reading overdue with the date it fell due.",
     "A unit on two schedules carrying the same service shows two rows, each with its schedule as a chip."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-R4",
@@ -2020,7 +2067,8 @@
      "S9-E1",
      "A unit on two schedules carrying the same service shows two rows, each with its schedule as a chip"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146354,
@@ -2041,7 +2089,7 @@
     "Due soon starts when the service's first reminder row is reached, and for a compliance service at its Remind before expiry.",
     "There is no Active or Paused status, and no Ignore, Pause, Service history or Activity action."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-R7",
@@ -2059,28 +2107,33 @@
      "S9-N2",
      "There is no Ignore, Pause, Service history or Activity action"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146355,
-   "why": "Adds what Other triggers lists (every candidate, the first marked) from the design and tech plan. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Adds what Other triggers lists (every candidate, the first marked) from the design and tech plan. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks.",
    "title": "The Due cell shows the earliest candidate; Other triggers lists the rest",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
-    "Readings come only from the asset's past work orders (loaded once on the test environment) and from new entries dated today; a dated reading history cannot be typed in by hand. Pick an asset whose Work Orders tab lists past work orders carrying a Mileage value, and note each work order's date and mileage. If no such asset exists on the environment, mark the case Blocked with that reason.",
-    "Enrol that asset on a schedule with PM-C (calendar Every 12 months + Distance Every 60,000 mileage + Engine hours Every 1,000 hours) and a service \"TIRES\" (calendar Every 6 months + Distance Every 90,000 mileage) on an asset with no mileage reading (use a second asset for TIRES if needed)."
+    "Seed asset A (e.g. unit 402)'s reading history by hand (standard steps; Mark complete on a work order records that work order's mileage and engine hours as readings dated its Reset date):",
+    "↳ In Settings > Maintenance (needs Settings Service) create, once, a throwaway schedule \"ZZAUTOTEST Reading seed\" with one routine service per reading: \"ZZ Seed 1\", \"ZZ Seed 2\", \"ZZ Seed 3\" (calendar Every 12 months each). Enrol the unit on it (its Maintenance tab > Enroll in Schedule, dates blank).",
+    "↳ For each reading below, oldest first: Work Orders > New Work Order for the unit; type the mileage (and the engine hours, where given) in the work order's Mileage (and Engine Hours) field; on that work order's maintenance card open the next \"ZZ Seed\" service's row menu > Mark complete > On a work order (this work order) > Reset date = the date given > Mark complete. A Reset date is never in the future.",
+    "↳ Readings: ZZ Seed 1: Reset date 90 days before today, Mileage 100,000, Engine Hours 5,000; ZZ Seed 2: Reset date 60 days before today, Mileage 103,000, Engine Hours 5,150; ZZ Seed 3: Reset date 30 days before today, Mileage 106,000, Engine Hours 5,300.",
+    "↳ Then remove the unit from the throwaway schedule (Maintenance tab > schedule menu > Remove from schedule), and enrol it on a schedule with PM-C (calendar Every 12 months + Distance Every 60,000 mileage + Engine hours Every 1,000 hours), dates blank. A unit whose past invoiced work orders already carry the same history may be used instead.",
+    "Asset B: a new test unit created with Mileage left empty (Customers > the customer > Assets > New Asset), enrolled with blank dates on a schedule with \"TIRES\" (calendar Every 6 months + Distance Every 90,000 mileage)."
    ],
    "steps": [
-    "Read PM-C's Due cell: how many dates and which trigger.",
+    "On asset A read PM-C's Due cell: how many dates and which trigger.",
     "Open PM-C's row menu > Other triggers and read the list.",
-    "Read the TIRES row on the asset with no mileage reading."
+    "On asset B read the TIRES row."
    ],
    "results": [
     "The Due cell shows one line: the earliest date and the trigger that produced it.",
     "Other triggers lists every candidate date with its trigger, the earliest one marked \"First\".",
     "TIRES shows its calendar date and reads \"Calendar · needs mileage reading\"; this is styled as an ordinary row, not a warning."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (The list beneath them; S9-R12, S9-N3); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P5, frontend table (OtherTriggersMenu); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard P4; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (The list beneath them; S9-R12, S9-N3); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P5, frontend table (OtherTriggersMenu); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard P4; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-R12",
@@ -2102,7 +2155,8 @@
      "S9-N3",
      "A service whose meter has no usable readings shows the calendar date and reads Calendar · needs mileage reading, or engine hours. This is the ordinary case, not a warning"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146356,
@@ -2124,7 +2178,7 @@
     "Skip hides the row from the worklist; on the asset tab the row stays with a grey \"Skipped\" badge and its date unchanged, its menu offers Undo skip (and for compliance \"+ Add record\"), and Skip moves no date and records no completion.",
     "A skipped routine service returns to the worklist on a new reading or work order; a skipped compliance service returns when its record changes."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-R9",
@@ -2146,34 +2200,44 @@
      "S9-E4",
      "A unit off the road, or a customer having the inspection done elsewhere, is what Skip is for"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146357,
-   "why": "S11-R13 changed: a certificate date reads its End date and \"Certificate\" (e.g. \"14 Oct 2026 · Certificate\"; was the term month). Precondition now says how to find an asset with estimates (testability note B5). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S11-R13 changed: a certificate date reads its End date and \"Certificate\" (e.g. \"14 Oct 2026 · Certificate\"; was the term month). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks.",
    "title": "Due dates: a month for estimates, End date for certificates",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
-    "Readings come only from the asset's past work orders (loaded once on the test environment) and from new entries dated today; a dated reading history cannot be typed in by hand. Pick an asset whose Work Orders tab lists past work orders carrying a Mileage value, and note each work order's date and mileage. If no such asset exists on the environment, mark the case Blocked with that reason.",
-    "Enrol that asset on a schedule with PM-A (Every 12 months + Distance Every 15,000 mileage), CVIP (compliance, Term 12 months) and \"Lube\" (calendar only, Every 3 months). Add a CVIP record with End date 14 Oct 2026 (asset card Compliance section > + Add record)."
+    "Seed unit 402's reading history by hand (standard steps; Mark complete on a work order records that work order's mileage and engine hours as readings dated its Reset date):",
+    "↳ In Settings > Maintenance (needs Settings Service) create, once, a throwaway schedule \"ZZAUTOTEST Reading seed\" with one routine service per reading: \"ZZ Seed 1\", \"ZZ Seed 2\" (calendar Every 12 months each). Enrol the unit on it (its Maintenance tab > Enroll in Schedule, dates blank).",
+    "↳ For each reading below, oldest first: Work Orders > New Work Order for the unit; type the mileage (and the engine hours, where given) in the work order's Mileage (and Engine Hours) field; on that work order's maintenance card open the next \"ZZ Seed\" service's row menu > Mark complete > On a work order (this work order) > Reset date = the date given > Mark complete. A Reset date is never in the future.",
+    "↳ Readings: ZZ Seed 1: Reset date 200 days before today, Mileage 100,000; ZZ Seed 2: Reset date 20 days before today, Mileage 130,000.",
+    "↳ Then remove the unit from the throwaway schedule (Maintenance tab > schedule menu > Remove from schedule), and enrol it on a schedule \"Due check\" with PM-A (calendar Every 12 months + Distance Every 15,000 mileage) and PM-B (calendar Every 12 months + Distance Every 60,000 mileage), both with last service date 200 days before today, CVIP (compliance, Term 12 months) and \"Lube\" (calendar Every 60 days, date blank). A unit whose past invoiced work orders already carry the same history may be used instead.",
+    "On the asset card Compliance section click + Add record for CVIP: Term 12 months, End date = 30 days after today; Save.",
+    "Worked values: the rate is 30,000 mileage over 180 days, about 167 a day; PM-A came due at 115,000 (about 110 days ago); PM-B comes due at 160,000 (30,000 after the last reading, about 180 days after it, so about 160 days ahead, before its calendar date 165 days ahead)."
    ],
    "steps": [
-    "Read PM-A's Due cell where it comes from the mileage estimate: the date, and what sits beneath it; hover the confidence meter.",
-    "If an estimated service is overdue, read its Due cell.",
-    "Read the CVIP Due cell and the Lube Due cell.",
-    "Click Enter mileage, save a new mileage, and read PM-A's Due cell again."
+    "Read PM-B's Due cell: the date and what sits beneath it; hover the confidence meter.",
+    "Read PM-A's Due cell and badge.",
+    "Read the CVIP and Lube Due cells.",
+    "Click Enter mileage, save 140,000, and read PM-B's Due cell again."
    ],
    "results": [
-    "An estimated date shows a month (e.g. \"Dec 2026\") with the confidence meter and a word (High, Medium or Low confidence) beneath; the rule (e.g. \"based on mileage estimate\") appears in the meter's hover.",
-    "An overdue estimated row shows its month and the badge, never a figure such as \"overdue by 1,200 mileage\".",
-    "CVIP reads \"14 Oct 2026 · Certificate\"; Lube reads its month and \"Calendar\".",
-    "PM-A's date is worked out again at once from the new reading."
+    "PM-B shows a month about 160 days ahead, with the confidence meter and \"Medium confidence\" beneath (one pair, last reading 20 days old); the meter's hover gives the rule (e.g. \"based on mileage estimate\").",
+    "PM-A reads Overdue with its estimated month (about 110 days ago) and carries no figure, never \"overdue by … mileage\".",
+    "CVIP reads its End date and \"Certificate\" (e.g. \"5 Nov 2026 · Certificate\"); Lube reads its month and \"Calendar\".",
+    "PM-B's date is worked out again at once from the new reading and moves earlier."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Confidence, as the cards show it; S11-R9, S11-R13 copied from Chunk 2; S9-E2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 7 Testability notes, B5; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Confidence, as the cards show it; S11-R9, S11-R13, S11-R24 copied from Chunk 2; S9-E2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S11-R9",
      "Every estimated due date shows a month, at every confidence, with its confidence beneath it as the meter and a word: High, Medium or Low confidence. The rule that produced it, for example based on mileage estimate, sits in the meter's hover"
+    ],
+    [
+     "S11-R24",
+     "Up to 30 days: one pair Medium"
     ],
     [
      "S11-R13",
@@ -2187,7 +2251,8 @@
      "S9-E2",
      "Entering a reading here recalculates every dependent service immediately"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146358,
@@ -2213,7 +2278,7 @@
     "Clicking the row body opens nothing; only the row's buttons and three-dot menu open things.",
     "The first 50 rows show; scrolling to the bottom loads the remaining 16 (66 − 50) without any page buttons."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R1, S13-R32, S13-N1, S13-R35, S13-R37); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R1, S13-R32, S13-N1, S13-R35, S13-R37); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R1",
@@ -2243,7 +2308,8 @@
      "S13-R11",
      "The list will be server side paged and sorted"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146359,
@@ -2268,7 +2334,7 @@
     "Clicking a tile filters the list; clicking it again clears it; more than one tile may be active at once.",
     "A service appears once however many cycles it has missed."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R2",
@@ -2290,7 +2356,8 @@
      "S13-N3",
      "A service appears once however many cycles it has missed"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146360,
@@ -2310,7 +2377,7 @@
     "The three time tiles do not overlap, and selecting two shows both; Needs readings crosses them - selected with a time tile it shows assets with a row in each, with every matching row.",
     "A row counts toward Needs readings when its service watches mileage or engine hours and that meter has no usable pair of readings (none, only one, or uncomparable); the row still shows its calendar date, and a calendar-only service never counts."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R20",
@@ -2320,7 +2387,8 @@
      "S13-R22",
      "A row counts toward Needs readings when its service watches mileage or engine hours and that meter has no usable pair of readings: no reading, only one, or none that can be compared. The row still shows its calendar date. A calendar-only service never counts"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146361,
@@ -2347,7 +2415,7 @@
     "The table reads \"No reminders match\" with Clear filters; Clear filters clears the tile, the chip, the location filter and the search.",
     "With nothing enrolled the tab says there are no maintenance reminders yet; with nothing inside the window the time tiles read 0 and the table says nothing is due in the next three months."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R33, S13-R36, S13-R37); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P7, worklist empty states; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R33, S13-R36, S13-R37); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P7, worklist empty states; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R36",
@@ -2373,7 +2441,8 @@
      "S13-R33",
      "Where nothing is enrolled, the tab says there are no maintenance reminders yet. Where assets are enrolled but nothing falls inside the list's window, the time tiles read zero and the table says nothing is due in the next three months"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146362,
@@ -2399,7 +2468,7 @@
     "The Location column shows for this user too, because the organization has more than one workplace.",
     "With one workplace there is no Location column."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R6, S13-R7, S13-R9); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R6, S13-R7, S13-R9); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R6",
@@ -2417,7 +2486,8 @@
      "S13-R9",
      "The location column will render only for an organization with more than one workplace"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146363,
@@ -2445,7 +2515,7 @@
     "Invoice opens that work order's invoicing; once invoiced, the service resets and the row leaves the list.",
     "Mark complete resets the service at once and the row leaves the list without waiting for an invoice."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R13, S13-R14, S13-R23, S13-R25, S13-R26); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S1 (Status column); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R13, S13-R14, S13-R23, S13-R25, S13-R26); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S1 (Status column); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R13",
@@ -2471,29 +2541,35 @@
      "S13-R26",
      "Where the work order won't be invoiced yet, Mark complete in the row's menu resets the service at once and the row leaves the list, per S18-R6"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146364,
-   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Precondition now says how to find an asset with estimates (tech plan testability note B5).",
+   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks.",
    "title": "A due date shows confidence, Certificate or Calendar, never a figure",
    "preconds": [
-    "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test.",
-    "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab. For the location cases use a two-workplace org (on a one-workplace org the location filter is absent).",
-    "Readings come only from the asset's past work orders (loaded once on the test environment) and from new entries dated today; a dated reading history cannot be typed in by hand. Pick an asset whose Work Orders tab lists past work orders carrying a Mileage value, and note each work order's date and mileage. If no such asset exists on the environment, mark the case Blocked with that reason.",
-    "Rows due from a meter estimate, from a certificate term, and from the calendar; plus a meter row with no usable readings."
+    "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
+    "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab.",
+    "Seed unit 402's reading history by hand (standard steps; Mark complete on a work order records that work order's mileage and engine hours as readings dated its Reset date):",
+    "↳ In Settings > Maintenance (needs Settings Service) create, once, a throwaway schedule \"ZZAUTOTEST Reading seed\" with one routine service per reading: \"ZZ Seed 1\", \"ZZ Seed 2\" (calendar Every 12 months each). Enrol the unit on it (its Maintenance tab > Enroll in Schedule, dates blank).",
+    "↳ For each reading below, oldest first: Work Orders > New Work Order for the unit; type the mileage (and the engine hours, where given) in the work order's Mileage (and Engine Hours) field; on that work order's maintenance card open the next \"ZZ Seed\" service's row menu > Mark complete > On a work order (this work order) > Reset date = the date given > Mark complete. A Reset date is never in the future.",
+    "↳ Readings: ZZ Seed 1: Reset date 200 days before today, Mileage 100,000; ZZ Seed 2: Reset date 20 days before today, Mileage 130,000.",
+    "↳ Then remove the unit from the throwaway schedule (Maintenance tab > schedule menu > Remove from schedule), and enrol it on a schedule \"Due check\" with PM-A (calendar Every 12 months + Distance Every 15,000 mileage, last service date 200 days before today; overdue by its mileage estimate), CVIP (compliance, Term 12 months) and \"Lube\" (calendar Every 60 days, date blank). A unit whose past invoiced work orders already carry the same history may be used instead.",
+    "On unit 402's asset card add a CVIP record: Term 12 months, End date = 20 days after today (+ Add record, Save).",
+    "A second test unit created with Mileage left empty, enrolled with blank dates on a service \"NR\" (calendar Every 30 days + Distance Every 15,000 mileage)."
    ],
    "steps": [
-    "Read the area beneath the due date on a meter-estimated row (meter, word, hover rule).",
-    "Read a compliance row and a calendar row beneath the due date.",
-    "Read a meter row whose meter has no usable readings."
+    "Read the area beneath the due date on unit 402's PM-A row (meter, word) and hover the meter.",
+    "Read unit 402's CVIP row and Lube row beneath the due date.",
+    "Read the second unit's NR row."
    ],
    "results": [
     "A meter-estimated row shows its confidence beneath the date (the meter and a word) with the rule in its hover.",
     "A compliance row shows \"Certificate\" and a calendar row shows \"Calendar\" instead, never a confidence meter.",
     "A meter row with no usable readings shows the calendar date and says which reading is needed (e.g. \"Calendar · needs mileage reading\") - the majority case, no warning styling."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R34",
@@ -2503,7 +2579,8 @@
      "S13-E3",
      "A row whose meter has no usable readings shows the calendar date and says which reading is needed. This is the majority case and carries no warning styling"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146365,
@@ -2527,7 +2604,7 @@
     "The unit has two rows, each with its own Create work order.",
     "There is no multi-asset work order; one work order is created per row."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R14, S13-R17, S13-R30, S13-R38, S13-E1); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R14, S13-R17, S13-R30, S13-R38, S13-E1); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R30",
@@ -2549,7 +2626,8 @@
      "S13-R17",
      "A work order is created per row. There is no multi asset work order"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146366,
@@ -2573,7 +2651,7 @@
     "The Contact button has an orange border and its hover reads \"No phone or email on file\".",
     "The Contact button has no orange border (the company phone is a way to reach the customer)."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R16, S13-R41); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S1; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R16, S13-R41); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R16",
@@ -2591,7 +2669,8 @@
      "S13-R41",
      "and the customer has no company phone"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146367,
@@ -2610,7 +2689,7 @@
     "Where a unit sits on more than one schedule, each of its rows carries the schedule name as a chip beside the service.",
     "Sorting is by clicking a column header, never by a tile or badge; there is no separate sort control."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R18",
@@ -2620,7 +2699,8 @@
      "S13-R10",
      "Sorting will be by clicking a column header, never by a tile or badge. There is no separate sort control"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146368,
@@ -2642,7 +2722,7 @@
     "The list is org-wide and never narrowed by the header location; a multi-workplace org gets a location filter instead, and with it applied each tile counts only what the filter shows.",
     "The tiles, the Compliance inspection chip and (multi-workplace) the location filter are the only filters - there is no customer or status filter."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R27",
@@ -2660,7 +2740,8 @@
      "S13-R12",
      "The tiles, the Compliance inspection chip and, for an organization with more than one workplace, the location filter of S13-R28 are the list's filters. There is no customer or status filter"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146369,
@@ -2680,7 +2761,7 @@
     "A \"Compliance inspection\" chip above the table (styled like \"Assigned to me\" on Work Orders) shows compliance rows only; it combines with the tiles, and the tiles count what it shows.",
     "A compliance service with no record appears only while no tile is active; it reads \"No record\", sorts last, and is excluded from every tile count."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R40",
@@ -2690,7 +2771,8 @@
      "S13-N2",
      "A compliance service with no record appears only while no tile is active. It reads No record, sorts last and is excluded from every tile count"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146370,
@@ -2714,7 +2796,7 @@
     "Below tablet width each row is a card, the tiles scroll sideways, and the row menu opens as an action sheet.",
     "The deleted asset's rows and the deleted customer's rows have left the worklist."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R39, S13-R42, S13-E5); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R39, S13-R42, S13-E5); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R42",
@@ -2732,7 +2814,8 @@
      "S13-E5",
      "An asset that is deleted, or whose customer is deleted, leaves the worklist"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146371,
@@ -2753,7 +2836,7 @@
     "The email address has a copy control.",
     "A phone number is tappable, so the card is usable on a phone."
    ],
-   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S14-R1",
@@ -2767,7 +2850,8 @@
      "S14-R3",
      "A phone number will be tappable, so the card is usable on a phone"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146372,
@@ -2777,23 +2861,23 @@
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
     "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab.",
     "A worklist row whose customer has the setting \"Maintenance notifications\" on, a preferred contact on the asset, and a contact with an email address.",
-    "On the test environment maintenance emails go to a mail catcher (sink), not to real inboxes; ask the QA lead for access to it. Without access, skip the mail-catcher checks.",
+    "Give the test customer's contact an email address you can open (e.g. your own work email), so the reminder lands in your inbox.",
     "The customer has a second enrolled asset with a row on the worklist."
    ],
    "steps": [
     "Open the row's Contact card; read the send control and look for any Resend.",
     "Press Send reminder; read the dialog that opens and which unit its reminder covers.",
     "Send it; read the confirmation and the card again.",
-    "Check the mail catcher for the email and the units it lists."
+    "Open your inbox and read the reminder email and the units it lists."
    ],
    "results": [
     "The control reads \"Send reminder\"; there is no Resend.",
     "The application's existing send email dialog opens, covering this asset only; the customer's other asset is not in it.",
     "After sending, a confirmation appears and the card reads \"Last sent\" with today's date.",
-    "One email arrived, about this asset only. (The audit entry a send writes cannot be checked by hand: no screen shows the audit in this release.)",
+    "One email arrived in your inbox, about this asset only. The audit entry a send writes cannot be checked by hand in v1 — no screen shows the audit.",
     "Nothing on the card or the row shows whether the customer opened the email."
    ],
-   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R4 to S14-R6, S14-E2, S14-E3); Plan 2 — The work order and the customer — Technical Implementation Plan, section 3 Frontend decisions, FD-216; section 1 NFR-118; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R4 to S14-R6, S14-E2, S14-E3); Plan 2 — The work order and the customer — Technical Implementation Plan, section 3 Frontend decisions, FD-216; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S14-R5",
@@ -2820,14 +2904,11 @@
      "No screen shows the audit in v1"
     ],
     [
-     "Plan 2 §1 NFR-118",
-     "Outside production, every maintenance email (Send reminder, A41) is delivered only to a mail sink or an explicit recipient allowlist"
-    ],
-    [
      "S14-E3",
      "Read receipts are not tracked"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146373,
@@ -2855,7 +2936,7 @@
     "E shows an empty state in place of the contact details with an action to set one, and no send action; after setting a contact the card updates.",
     "Every state reads as complete, not broken."
    ],
-   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R8, S14-N2, S14-N4, S14-E1); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P7, frontend table (ContactCard); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards B1e, B1p, B1n; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R8, S14-N2, S14-N4, S14-E1); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P7, frontend table (ContactCard); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards B1e, B1p, B1n; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S14-R8",
@@ -2877,7 +2958,8 @@
      "Plan 1 §6 P7 ContactCard",
      "no-email / no-phone / no-contact states (S14-R8, N2, N4, E1) with \"Set contact\""
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146374,
@@ -2899,7 +2981,7 @@
     "The row is still listed; nothing is hidden from the worklist because of the setting.",
     "This user does not see Send reminder at all (hidden, not disabled)."
    ],
-   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R9, S14-R10, S14-N1, S14-N5); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard B1o; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R9, S14-R10, S14-N1, S14-N5); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard B1o; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S14-N1",
@@ -2921,7 +3003,8 @@
      "S14-R10",
      "A user without it does not see Send reminder at all, hidden rather than disabled, because it is not something they can fix from the card"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146375,
@@ -2931,7 +3014,7 @@
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
     "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab.",
     "A worklist row whose customer has the setting \"Maintenance notifications\" on, a preferred contact on the asset, and a contact with an email address.",
-    "On the test environment maintenance emails go to a mail catcher (sink), not to real inboxes; ask the QA lead for access to it. Without access, skip the mail-catcher checks.",
+    "Give the test customer's contact an email address you can open (e.g. your own work email), so the reminder lands in your inbox.",
     "A second row for an asset of the same customer for which no reminder has ever been sent."
    ],
    "steps": [
@@ -2942,7 +3025,7 @@
     "Before any send the card shows no last-sent date (the design shows \"Not sent yet\").",
     "After the send the line reads \"Last sent\" with today's date (e.g. \"Last sent 2 Oct 2026\") and it is still there after a reload."
    ],
-   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R12); Plan 2 — The work order and the customer — Technical Implementation Plan, section 3 Frontend decisions, FD-216; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards B1, B1r; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R12); Plan 2 — The work order and the customer — Technical Implementation Plan, section 3 Frontend decisions, FD-216; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards B1, B1r; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Design board, artboard B1",
@@ -2956,7 +3039,8 @@
      "Design board, artboard B1r",
      "Last sent 2 Oct 2026"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146376,
@@ -2975,9 +3059,9 @@
    "results": [
     "Every change completes and its effect shows where the case for that action says (reading card, badge, Skipped state, record line, worklist row, last sent).",
     "No screen lists the audit entries in this release.",
-    "That each change wrote an entry with an actor and a timestamp, and that the completion recorded where it happened, cannot be checked by hand in this release: no screen shows the audit; it is for a developer or automated check."
+    "That each change wrote an entry with an actor and a timestamp, and that the completion recorded where it happened, cannot be checked by hand in v1 — no screen shows the audit; it is for a developer or automated check."
    ],
-   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R1, S21-R3, S21-N3); Plan 1 — Track, act, clear — Technical Implementation Plan, section 10 Requirement Traceability, S21 row; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R1, S21-R3, S21-N3); Plan 1 — Track, act, clear — Technical Implementation Plan, section 10 Requirement Traceability, S21 row; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S21-R1",
@@ -2991,7 +3075,8 @@
      "S21-R3",
      "A completion will record where it happened, including when that is another shop"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146377,
@@ -3010,9 +3095,9 @@
    "results": [
     "A work order opens with PM-A's lines.",
     "The work order carries an internal note naming the service and schedule it came from: \"PM-A added from Highway Tractor PM\".",
-    "Lines need not carry a per-line origin tag (it may come later). The matching audit entry cannot be checked by hand in this release: no screen shows the audit."
+    "Lines need not carry a per-line origin tag (it may come later). The matching audit entry cannot be checked by hand in v1 — no screen shows the audit."
    ],
-   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R2, S21-E1, S21-N3); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 requirement table, S17-R5; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R2, S21-E1, S21-N3); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 requirement table, S17-R5; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S21-R2",
@@ -3030,7 +3115,8 @@
      "S21-N3",
      "No screen shows the audit in v1"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146378,
@@ -3047,9 +3133,9 @@
    ],
    "results": [
     "The mileage card shows the corrected value and the services that depend on it update.",
-    "That both values were kept with their times and authors, and that a later moved due date can be traced back to the reading, cannot be checked by hand in this release: no screen shows the audit; it is for a developer or automated check."
+    "That both values were kept with their times and authors, and that a later moved due date can be traced back to the reading, cannot be checked by hand in v1 — no screen shows the audit; it is for a developer or automated check."
    ],
-   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R4, S21-E2, S21-N3); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R4, S21-E2, S21-N3); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-E2",
@@ -3067,7 +3153,8 @@
      "S21-N3",
      "No screen shows the audit in v1"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146379,
@@ -3077,7 +3164,7 @@
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
     "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab.",
     "A worklist row whose customer has the setting \"Maintenance notifications\" on, a preferred contact on the asset, and a contact with an email address.",
-    "On the test environment maintenance emails go to a mail catcher (sink), not to real inboxes; ask the QA lead for access to it. Without access, skip the mail-catcher checks."
+    "Give the test customer's contact an email address you can open (e.g. your own work email), so the reminder lands in your inbox."
    ],
    "steps": [
     "Send a reminder from the row's Contact card.",
@@ -3085,9 +3172,9 @@
    ],
    "results": [
     "The card shows \"Last sent\" with today's date.",
-    "That the send was logged with its message, recipient and timestamp cannot be checked by hand in this release: no screen shows the audit; it is for a developer or automated check."
+    "That the send was logged with its message, recipient and timestamp cannot be checked by hand in v1 — no screen shows the audit; it is for a developer or automated check."
    ],
-   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R5, S21-N3); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R5, S21-N3); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S14-E2",
@@ -3097,7 +3184,8 @@
      "S21-R5",
      "Sends will be logged with message, recipient and timestamp"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146380,
@@ -3116,9 +3204,9 @@
    "results": [
     "Enrolling again pre-fills 1 Sep 2026: removal kept the history.",
     "After archive and restore the pre-fill is again 1 Sep 2026: archiving kept the history.",
-    "The asset is deleted as today and its rows leave the worklist. That its maintenance history and audit entries are still kept in the data cannot be checked by hand in this release: no screen shows them."
+    "The asset is deleted as today and its rows leave the worklist. That its maintenance history and audit entries are still kept in the data cannot be checked by hand in v1 — no screen shows them."
    ],
-   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R6, S21-N1, S21-N2, S21-N3); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R6, S21-N1, S21-N2, S21-N3); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S6-E1",
@@ -3140,7 +3228,8 @@
      "S21-N1",
      "A work order link is never hard deleted, or the trail goes with it"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146381,
@@ -3156,9 +3245,9 @@
    ],
    "results": [
     "The toggle changes and stays changed after a reload.",
-    "That each change was recorded with who made it and when cannot be checked by hand in this release: no screen shows the audit; it is for a developer or automated check."
+    "That each change was recorded with who made it and when cannot be checked by hand in v1 — no screen shows the audit; it is for a developer or automated check."
    ],
-   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R7, S21-N3); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10576 (S21, The audit trail), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S21 (S21-R7, S21-N3); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-R18",
@@ -3168,7 +3257,8 @@
      "S21-R7",
      "A change to a customer's notification setting is recorded with who made it and when"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146382,
@@ -3194,7 +3284,7 @@
     "Asset 4: D90 reads \"Jan 2026 · Calendar\" (1 Nov 2025 + 90 days = 30 Jan 2026) while M3 reads \"Feb 2026 · Calendar\" (1 Nov 2025 + 3 months = 1 Feb 2026): days drift against the calendar, months keep the day.",
     "The worklist shows the same months as the asset tab."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (How the next date is worked out; S2-R14, S2-E5; S11-R13 copied from Chunk 2; S18-R3); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (How the next date is worked out; S2-R14, S2-E5; S11-R13 copied from Chunk 2; S18-R3); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R14",
@@ -3216,7 +3306,8 @@
      "S18-R3",
      "Reset date is always shown and is never in the future"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146383,
@@ -3241,7 +3332,7 @@
     "28 Feb 2027 (31 Mar − 1 month: 31 Feb does not exist, so the last day of February; the rule holds both ways).",
     "Changing the Term re-works the untouched End date to 14 Apr 2026; once End date is typed too (1 Mar 2026), changing the Term leaves both typed dates as they are."
    ],
-   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (Term and the two dates; S8-R10); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, frontend tests (certificateDates); section 1 Product answers index, Q15; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (Term and the two dates; S8-R10); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, frontend tests (certificateDates); section 1 Product answers index, Q15; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S8-R10",
@@ -3263,7 +3354,8 @@
      "Plan 1 §6 P2 certificateDates tests",
      "a changed term re-derives only the untouched date"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146384,
@@ -3282,37 +3374,50 @@
     "Remind before expiry defaults to 1 month for a term up to 12 months (a 12-month term -> 1) and 2 months above that (a 24-month term -> 2).",
     "It cannot be longer than the term: with a 6-month term, 6 is accepted and 7 is refused inline (\"Remind before expiry cannot be longer than the 6-month term\")."
    ],
-   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S3-R8",
      "Remind before expiry ... It is in months, defaults to 1 month for a term up to 12 months and 2 months above that, and can be changed. It cannot be longer than the term; a longer value is refused inline: Remind before expiry cannot be longer than the 6-month term"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146385,
-   "why": "S11-R22/R23/R24 changed: confidence now comes from one locked table of reading age by usable pairs (was \"lower of two grades wins\"). Testability: reading histories cannot be typed in by hand (testability note B5), so the case reads assets that already have them. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S11-R22/R23/R24 changed: confidence now comes from one locked table of reading age by usable pairs (was \"lower of two grades wins\"). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks.",
    "title": "Confidence follows the locked table: age of last reading by pairs",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
     "These are number and date accuracy cases: enter the exact inputs, read the value the screen shows, and compare it with the value worked out below.",
-    "Readings come only from the asset's past work orders (loaded once on the test environment) and from new entries dated today; a dated reading history cannot be typed in by hand. Pick an asset whose Work Orders tab lists past work orders carrying a Mileage value, and note each work order's date and mileage. If no such asset exists on the environment, mark the case Blocked with that reason.",
-    "On each asset's Maintenance tab the mileage card shows the last recorded date and \"Measured from N visits\"; in a clean history N visits make N − 1 usable pairs.",
-    "Find assets that match as many of these as the environment has: (a) 2 visits, last 10 days ago; (b) 3 visits, last 20 days ago; (c) 2 visits, last 60 days ago; (d) 4 visits, last 60 days ago; (e) 5 visits, last 60 days ago; (f) 2 visits, last 120 days ago; (g) 3 visits, last 120 days ago; (h) 4 visits, last 200 days ago; (i) 5 visits, last 200 days ago; (j) any count, last 400 days ago. Mark any you cannot find as Blocked with that reason."
+    "Ten test units, (a) to (j). Readings are 30 days apart and rise by 3,000 (100 a day), so every pair is usable; N visits make N − 1 usable pairs.",
+    "Seed each unit's reading history by hand (standard steps; Mark complete on a work order records that work order's mileage and engine hours as readings dated its Reset date):",
+    "↳ In Settings > Maintenance (needs Settings Service) create, once, a throwaway schedule \"ZZAUTOTEST Reading seed\" with one routine service per reading: \"ZZ Seed 1\", \"ZZ Seed 2\", \"ZZ Seed 3\", \"ZZ Seed 4\", \"ZZ Seed 5\" (calendar Every 12 months each). Enrol each test unit on it in turn (its Maintenance tab > Enroll in Schedule, dates blank).",
+    "↳ For each reading below, oldest first: Work Orders > New Work Order for the unit; type the mileage (and the engine hours, where given) in the work order's Mileage (and Engine Hours) field; on that work order's maintenance card open the next \"ZZ Seed\" service's row menu > Mark complete > On a work order (this work order) > Reset date = the date given > Mark complete. A Reset date is never in the future.",
+    "↳ Unit (a): ZZ Seed 1 40 days before today, Mileage 100,000; ZZ Seed 2 10 days before today, Mileage 103,000.",
+    "↳ Unit (b): ZZ Seed 1 80 days before today, Mileage 100,000; ZZ Seed 2 50 days before today, Mileage 103,000; ZZ Seed 3 20 days before today, Mileage 106,000.",
+    "↳ Unit (c): ZZ Seed 1 90 days before today, Mileage 100,000; ZZ Seed 2 60 days before today, Mileage 103,000.",
+    "↳ Unit (d): ZZ Seed 1 150 days before today, Mileage 100,000; ZZ Seed 2 120 days before today, Mileage 103,000; ZZ Seed 3 90 days before today, Mileage 106,000; ZZ Seed 4 60 days before today, Mileage 109,000.",
+    "↳ Unit (e): ZZ Seed 1 180 days before today, Mileage 100,000; ZZ Seed 2 150 days before today, Mileage 103,000; ZZ Seed 3 120 days before today, Mileage 106,000; ZZ Seed 4 90 days before today, Mileage 109,000; ZZ Seed 5 60 days before today, Mileage 112,000.",
+    "↳ Unit (f): ZZ Seed 1 150 days before today, Mileage 100,000; ZZ Seed 2 120 days before today, Mileage 103,000.",
+    "↳ Unit (g): ZZ Seed 1 180 days before today, Mileage 100,000; ZZ Seed 2 150 days before today, Mileage 103,000; ZZ Seed 3 120 days before today, Mileage 106,000.",
+    "↳ Unit (h): ZZ Seed 1 290 days before today, Mileage 100,000; ZZ Seed 2 260 days before today, Mileage 103,000; ZZ Seed 3 230 days before today, Mileage 106,000; ZZ Seed 4 200 days before today, Mileage 109,000.",
+    "↳ Unit (i): ZZ Seed 1 320 days before today, Mileage 100,000; ZZ Seed 2 290 days before today, Mileage 103,000; ZZ Seed 3 260 days before today, Mileage 106,000; ZZ Seed 4 230 days before today, Mileage 109,000; ZZ Seed 5 200 days before today, Mileage 112,000.",
+    "↳ Unit (j): ZZ Seed 1 430 days before today, Mileage 100,000; ZZ Seed 2 400 days before today, Mileage 103,000.",
+    "↳ After each unit is seeded, remove it from the throwaway schedule (Maintenance tab > schedule menu > Remove from schedule), then enrol it on any schedule with a mileage-driven service (e.g. \"Highway Tractor PM\" with PM-A: calendar Every 12 months + Distance Every 15,000 mileage), dates blank, so its Maintenance tab shows the reading cards."
    ],
    "steps": [
-    "For each asset read N and the last recorded date on the mileage card, work out the age in days and the pairs (N − 1), and look up the expected word in the results.",
-    "Read the confidence word on the card and compare."
+    "For each unit open its Maintenance tab and read the mileage card: the last recorded date, \"Measured from N visits\" and the confidence word.",
+    "Compare each word with the expected grade below."
    ],
    "results": [
-    "Up to 30 days: (a) 1 pair -> Medium; (b) 2 pairs -> High.",
-    "31 to 90 days: (c) 1 pair -> Low; (d) 3 pairs -> Medium; (e) 4 pairs -> High.",
-    "91 to 180 days: (f) 1 pair -> Low; (g) 2 pairs -> Medium.",
-    "181 to 365 days: (h) 3 pairs -> Low; (i) 4 pairs -> Medium.",
-    "Over 365 days: (j) -> Low, whatever the count."
+    "Up to 30 days: (a) 2 visits, 1 pair, last 10 days ago -> Medium; (b) 3 visits, 2 pairs, last 20 days ago -> High.",
+    "31 to 90 days: (c) 1 pair, 60 days -> Low; (d) 4 visits, 3 pairs, 60 days -> Medium; (e) 5 visits, 4 pairs, 60 days -> High.",
+    "91 to 180 days: (f) 1 pair, 120 days -> Low; (g) 2 pairs, 120 days -> Medium.",
+    "181 to 365 days: (h) 3 pairs, 200 days -> Low; (i) 4 pairs, 200 days -> Medium.",
+    "Over 365 days: (j) 1 pair, 400 days -> Low."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Confidence, as the cards show it: S11-R22 to S11-R24 and the confidence table, copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 7 Testability notes, B5; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Confidence, as the cards show it: S11-R22 to S11-R24 and the confidence table, copied from Chunk 2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S11-R24",
@@ -3342,35 +3447,45 @@
      "S11-R23",
      "In a clean history one pair is two visits, two or three pairs are three or four visits, and four or more pairs are five or more visits"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146386,
-   "why": "S11-E5 changed (new worked examples under the locked table). S11-R26 (24-month limit) was cited by no case. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S11-E5 changed (new worked examples under the locked table). S11-R26 (24-month limit) was cited by no case. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks.",
    "title": "Confidence worked examples, per meter, N visits and No data",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
     "These are number and date accuracy cases: enter the exact inputs, read the value the screen shows, and compare it with the value worked out below.",
-    "Readings come only from the asset's past work orders (loaded once on the test environment) and from new entries dated today; a dated reading history cannot be typed in by hand. Pick an asset whose Work Orders tab lists past work orders carrying a Mileage value, and note each work order's date and mileage. If no such asset exists on the environment, mark the case Blocked with that reason.",
-    "Look for: (a) an asset with 2 visits, the last one yesterday; (b) 6 visits, last 120 days ago; (c) 12 visits over three years, last 8 months ago; (d) an asset whose last visit was about 14 months ago; (e) an asset whose readings are all older than 24 months; (f) an asset with a good mileage history and a thin engine-hours history. Mark any you cannot find as Blocked with that reason."
+    "Six test units, (a), (b), (d), (e), (f) and (g).",
+    "Seed each unit's reading history by hand (standard steps; Mark complete on a work order records that work order's mileage and engine hours as readings dated its Reset date):",
+    "↳ In Settings > Maintenance (needs Settings Service) create, once, a throwaway schedule \"ZZAUTOTEST Reading seed\" with one routine service per reading: \"ZZ Seed 1\", \"ZZ Seed 2\", \"ZZ Seed 3\", \"ZZ Seed 4\", \"ZZ Seed 5\", \"ZZ Seed 6\" (calendar Every 12 months each). Enrol each test unit on it in turn (its Maintenance tab > Enroll in Schedule, dates blank).",
+    "↳ For each reading below, oldest first: Work Orders > New Work Order for the unit; type the mileage (and the engine hours, where given) in the work order's Mileage (and Engine Hours) field; on that work order's maintenance card open the next \"ZZ Seed\" service's row menu > Mark complete > On a work order (this work order) > Reset date = the date given > Mark complete. A Reset date is never in the future.",
+    "↳ Unit (a): ZZ Seed 1 31 days before today, Mileage 100,000; ZZ Seed 2 1 days before today, Mileage 103,000.",
+    "↳ Unit (b): ZZ Seed 1 270 days before today, Mileage 100,000; ZZ Seed 2 240 days before today, Mileage 103,000; ZZ Seed 3 210 days before today, Mileage 106,000; ZZ Seed 4 180 days before today, Mileage 109,000; ZZ Seed 5 150 days before today, Mileage 112,000; ZZ Seed 6 120 days before today, Mileage 115,000.",
+    "↳ Unit (d): ZZ Seed 1 455 days before today, Mileage 100,000; ZZ Seed 2 425 days before today, Mileage 103,000.",
+    "↳ Unit (e): ZZ Seed 1 790 days before today, Mileage 100,000; ZZ Seed 2 760 days before today, Mileage 103,000.",
+    "↳ Unit (f): ZZ Seed 1 130 days before today, Mileage 100,000, Engine Hours 5,000; ZZ Seed 2 100 days before today, Mileage 103,000, Engine Hours 5,150; ZZ Seed 3 70 days before today, Mileage 106,000; ZZ Seed 4 40 days before today, Mileage 109,000; ZZ Seed 5 10 days before today, Mileage 112,000.",
+    "↳ Unit (g): ZZ Seed 1 60 days before today, Mileage 100,000; ZZ Seed 2 57 days before today, Mileage 100,300; ZZ Seed 3 30 days before today, Mileage 103,000.",
+    "↳ After each unit is seeded, remove it from the throwaway schedule (Maintenance tab > schedule menu > Remove from schedule), then enrol it on a schedule with \"Oil\" (calendar Every 6 months + Distance Every 15,000 mileage), dates blank."
    ],
    "steps": [
-    "For (a) to (d) read the mileage card's confidence word.",
-    "For (e) read the mileage card and the Due cell of a mileage-driven service.",
+    "For (a), (b) and (d) read the mileage card's confidence word.",
+    "For (e) read the mileage card and Oil's Due cell.",
     "For (f) read the mileage card and the engine-hours card.",
-    "On any card read \"Measured from N visits\" and count the asset's past work orders with a mileage value."
+    "For (g) read \"Measured from N visits\" on the mileage card."
    ],
    "results": [
-    "(a) Medium (1 pair, under 30 days); (b) Medium (5 pairs, 120 days); (c) Medium; (d) Low.",
-    "(e) No data: no estimate is offered, and the service's Due cell shows its calendar date (\"Calendar · needs mileage reading\").",
-    "(f) Each meter shows its own confidence (e.g. mileage High, engine hours Low).",
-    "N counts only the visits that took part in at least one usable pair, so it can be lower than the number of work orders."
+    "(a) Medium (one pair, last reading yesterday); (b) Medium (five pairs, last reading 120 days old); (d) Low (last reading about 14 months old).",
+    "(e) No data: the mileage card offers no estimate, and Oil's Due cell shows its calendar date (the meter offers no date).",
+    "(f) Each meter grades on its own: mileage High (four pairs, last reading 10 days old), engine hours Low (one pair, last reading 100 days old).",
+    "(g) \"Measured from 2 visits\", not 3: the first two readings are 3 days apart, so that pair is discarded and the first visit takes part in no usable pair."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Confidence, as the cards show it: S11-R10, S11-R17, S11-R25, S11-R26, S11-E5, copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 7 Testability notes, B5; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Confidence, as the cards show it: S11-R10, S11-R17, S11-R24 to S11-R26, S11-E5, copied from Chunk 2; S11-R4 from Chunk 2 MR, Confluence 897679389); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S11-E5",
-     "Two visits, the last one yesterday: one pair, under 30 days, Medium. Six visits, five pairs, the last reading 120 days old: Medium. Twelve visits over three years, the last one eight months ago: Medium. The same unit fourteen months after its last visit: Low"
+     "Two visits, the last one yesterday: one pair, under 30 days, Medium. Six visits, five pairs, the last reading 120 days old: Medium ... The same unit fourteen months after its last visit: Low"
     ],
     [
      "S11-R26",
@@ -3381,14 +3496,27 @@
      "Distance and engine hours will each carry their own confidence, computed independently"
     ],
     [
+     "S11-R24",
+     "Up to 30 days: one pair Medium, two or more High"
+    ],
+    [
+     "S11-R24",
+     "91 to 180 days: one pair Low"
+    ],
+    [
      "S11-R25",
      "Measured from N visits, where a card shows it, counts the readings that took part in at least one usable pair. A visit whose only pairs were discarded does not count"
+    ],
+    [
+     "S11-R4 (Chunk 2 MR, Confluence 897679389)",
+     "Pairs less than seven days apart will be discarded"
     ],
     [
      "S11-R17",
      "No data is a separate state, not a confidence level"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146387,
@@ -3411,7 +3539,7 @@
     "Overdue shows asset 3 (due before today); Due in a month shows asset 2 (today) and D30 (+30); Due in 3 months shows D31 (+31) and D91 (+91).",
     "Needs readings shows NR200 although it is +200 days out."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R2, S13-R36, S13-R43); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R2, S13-R36, S13-R43); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R36",
@@ -3425,7 +3553,8 @@
      "S13-R43",
      "A Needs readings row stays listed, per S13-R36. Every other completion rests the row, including a last service date entered at enrolment"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146388,
@@ -3447,7 +3576,7 @@
     "A service appears once however many cycles it missed, and is counted once.",
     "With the location filter applied, each tile counts only what that filter shows."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R2",
@@ -3461,7 +3590,8 @@
      "S13-N3",
      "A service appears once however many cycles it has missed"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146389,
@@ -3482,13 +3612,14 @@
     "Interval values are whole numbers, minimum 1: mileage caps at 999,999 (1,000,000 refused), engine hours at 99,999 (100,000 refused), days at 999 (1,000 refused); calendar months run 1-12.",
     "0, a decimal and a negative are each refused inline; a number field accepts digits only, so letters and symbols do not enter and there is no error to show."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R9",
      "Interval values are whole numbers, minimum 1, with no decimals and no negatives. Mileage is capped at 999,999, engine hours at 99,999 and days at 999. An interval longer than 12 months is set in days"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   }
  ],
  "new": [
@@ -3514,7 +3645,7 @@
     "With \"Red Deer\" in the header the schedule still reads \"Lines from Calgary South\": the home location does not follow the header.",
     "With one workplace no home location line is shown."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (S1-R14); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-23; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard R1; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (S1-R14); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-23; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard R1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Plan 1 §3.3 FD-23",
@@ -3536,26 +3667,27 @@
      "S1-R14",
      "With one workplace it is not shown"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S1",
    "title": "The Maintenance entry needs only Settings Service, not Digital Inspections",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "The environment lets you turn Digital Inspections off for a test organization (on QA under Settings > Feature Flags); if it does not, mark the case Blocked with that reason."
+    "The organization's Feature flags page (Settings > Feature flags) lets you turn Digital Inspections off for a test organization; confirm the page's exact label on the build."
    ],
    "steps": [
-    "Turn Digital Inspections off for the test organization.",
+    "On the organization's Feature flags page turn Digital Inspections off.",
     "As a user with Settings Service, open Settings and look for the Maintenance entry beneath \"Inspection Templates\".",
-    "Turn Digital Inspections back on."
+    "On the Feature flags page turn Digital Inspections back on."
    ],
    "results": [
     "Digital Inspections is off.",
     "The Maintenance entry is still shown and opens: it needs Settings Service only.",
     "Digital Inspections is restored."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (S1-N2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 2.8 Permission gating; section 3.5 Frontend risks, FR13; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (S1-N2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 2.8 Permission gating; section 3.5 Frontend risks, FR13; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Plan 1 §3.5 FR13",
@@ -3569,7 +3701,8 @@
      "S1-N2",
      "A user without Settings Service cannot reach the tab"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S4",
@@ -3590,7 +3723,7 @@
     "\"Red Deer brake check\" is not offered; \"Engine oil and filter change\" (Calgary South) is. The picker has no Location field.",
     "For the unsaved schedule built at \"Red Deer\" the picker offers \"Red Deer brake check\"."
    ],
-   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (The picker; S4-R7, S4-R8); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 requirement table, S4-R1; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (The picker; S4-R7, S4-R8); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 requirement table, S4-R1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S4-R8",
@@ -3604,7 +3737,8 @@
      "Plan 1 §1 S4-R1",
      "the home location's canned lines (header workplace for an unsaved schedule)"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S4",
@@ -3624,7 +3758,7 @@
     "There is no Add canned lines, no remove and no reordering; the (i) reads \"These lines belong to Calgary South. Only someone with access to Calgary South can change them.\"",
     "The other steps stay editable: the interval change saves."
    ],
-   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (The picker; S4-R9; S2-R17); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-24; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard R4ro; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (The picker; S4-R9; S2-R17); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-24; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard R4ro; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R17",
@@ -3642,7 +3776,8 @@
      "Plan 1 §3.3 FD-24",
      "hides Add canned lines, remove and Move up/down"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S5",
@@ -3665,7 +3800,7 @@
     "At 14 days the untouched row is removed again; at Every 3 months it comes back and there is no note.",
     "After you edited a row nothing is added or removed automatically; the 10-day row stays and is refused inline (10 is not shorter than 7)."
    ],
-   "source": "Epic SV-3780, story SV-10562 (S5, Reminder timing), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S5 (The rows; S5-R12, S5-R13); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P1, tests (ReminderOffsetsTest, ReminderTimingRows.spec); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard C7; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10562 (S5, Reminder timing), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S5 (The rows; S5-R12, S5-R13); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P1, tests (ReminderOffsetsTest, ReminderTimingRows.spec); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard C7; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S5-R13",
@@ -3687,7 +3822,8 @@
      "Plan 1 §6 P1 tests",
      "after a row edit nothing is added or removed automatically and the inline refusal shows"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S6",
@@ -3706,7 +3842,7 @@
     "The copy \"Home lines (Copy)\" opens for editing.",
     "It reads \"Lines from Calgary South\" and PM-A still carries \"Engine oil and filter change\", although it was duplicated from \"Red Deer\"."
    ],
-   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (Duplicating; S6-E5, S6-R12); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (Duplicating; S6-E5, S6-R12); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S6-R12",
@@ -3716,15 +3852,19 @@
      "S6-E5",
      "A duplicate keeps the original's home location and its canned lines, whichever location it is duplicated from"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
    "title": "The confidence meter's hover ends with the estimate disclaimer",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
-    "Readings come only from the asset's past work orders (loaded once on the test environment) and from new entries dated today; a dated reading history cannot be typed in by hand. Pick an asset whose Work Orders tab lists past work orders carrying a Mileage value, and note each work order's date and mileage. If no such asset exists on the environment, mark the case Blocked with that reason.",
-    "Enrol that asset on a schedule with a mileage-driven service so its Due cell shows a confidence meter."
+    "Seed a test unit (e.g. unit 402)'s reading history by hand (standard steps; Mark complete on a work order records that work order's mileage and engine hours as readings dated its Reset date):",
+    "↳ In Settings > Maintenance (needs Settings Service) create, once, a throwaway schedule \"ZZAUTOTEST Reading seed\" with one routine service per reading: \"ZZ Seed 1\", \"ZZ Seed 2\" (calendar Every 12 months each). Enrol the unit on it (its Maintenance tab > Enroll in Schedule, dates blank).",
+    "↳ For each reading below, oldest first: Work Orders > New Work Order for the unit; type the mileage (and the engine hours, where given) in the work order's Mileage (and Engine Hours) field; on that work order's maintenance card open the next \"ZZ Seed\" service's row menu > Mark complete > On a work order (this work order) > Reset date = the date given > Mark complete. A Reset date is never in the future.",
+    "↳ Readings: ZZ Seed 1: Reset date 120 days before today, Mileage 100,000; ZZ Seed 2: Reset date 60 days before today, Mileage 104,000.",
+    "↳ Then remove the unit from the throwaway schedule (Maintenance tab > schedule menu > Remove from schedule), and enrol it on a schedule with PM-A (calendar Every 12 months + Distance Every 15,000 mileage), dates blank, so PM-A's Due cell shows an estimated month with a confidence meter. A unit whose past invoiced work orders already carry the same history may be used instead."
    ],
    "steps": [
     "Hover (or tap) the confidence meter under the service's due month and read the card to the end.",
@@ -3734,7 +3874,7 @@
     "The card gives the rule (e.g. \"based on mileage estimate\") and ends with \"This is the system's best estimate from this unit's past readings. Check its history if in doubt.\"",
     "View work orders opens the asset's Work Orders tab."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Confidence, as the cards show it; S11-R9, S11-R27 copied from Chunk 2); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Confidence, as the cards show it; S11-R9, S11-R27 copied from Chunk 2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S11-R9",
@@ -3744,7 +3884,8 @@
      "S11-R27",
      "The meter's hover ends with: This is the system's best estimate from this unit's past readings. Check its history if in doubt. Beside it, View work orders opens the asset's Work Orders tab"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -3764,7 +3905,7 @@
     "The modal is titled \"Mark PM-A complete\" with one line under the title: \"PM-A resets now from the date below. It won't wait for an invoice\".",
     "The worklist opens the same modal."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete: the manual reset; S18-R1 copied from Chunk 2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards M1, M2; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete: the manual reset; S18-R1 copied from Chunk 2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards M1, M2; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S18-R1",
@@ -3782,7 +3923,8 @@
      "S18-R1",
      "Every place opens the same modal"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -3803,7 +3945,7 @@
     "Both work orders are listed, each with its number, location, date and status (e.g. \"S3780-15904 · Calgary South · 22 Sep 2026 · In progress\").",
     "Opened from the work order card, that work order is already chosen."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R2 copied from Chunk 2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard M2; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R2 copied from Chunk 2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard M2; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S18-R2",
@@ -3817,7 +3959,8 @@
      "S18-R2",
      "Opened from a work order card, that work order is already chosen"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -3839,7 +3982,7 @@
     "Reset date shows day 1 (the day the lines were all closed), with both offers beneath it, e.g. \"Lines closed 4 Sep · Use invoice date (1 Oct)\".",
     "Reset date changes to day 2, the invoice date."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R3 copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P6, note under the Mark complete sketch; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R3 copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P6, note under the Mark complete sketch; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S18-R3",
@@ -3857,7 +4000,8 @@
      "Plan 1 §6 P6 note",
      "the \"Lines closed\" offer appears only when A27 `linesClosedOn` is non-null"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -3876,7 +4020,7 @@
     "It cannot be confirmed without a Reset date.",
     "It confirms; PM-A now counts from 3 Sep 2026 (the row reads \"Completed · next due counts from 3 Sep 2026\")."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R4, S18-R17 copied from Chunk 2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard M2e; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R4, S18-R17 copied from Chunk 2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard M2e; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S18-R4",
@@ -3890,7 +4034,8 @@
      "S18-R17",
      "The row reads Completed · next due counts from 2 Oct 2026"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -3909,7 +4054,7 @@
     "End date fills in as 2 Oct 2027 (Start + 12 months); after changing Start date to 1 Oct 2026 it shows 1 Oct 2027.",
     "The Compliance line reads \"CVIP · AB-5500001 · ends 1 Oct 2027\" and the Due cell reads \"1 Oct 2027 · Certificate\"."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R5 copied from Chunk 2; S8-R13; S11-R13); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R5 copied from Chunk 2; S8-R13; S11-R13); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S18-R5",
@@ -3923,7 +4068,8 @@
      "S11-R13",
      "A date from a certificate reads its End date and Certificate, for example 14 Oct 2026 · Certificate"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -3944,7 +4090,7 @@
     "PM-B's row stays on the worklist, its work order badge reads Complete and the row offers Invoice.",
     "PM-B has not reset: it still shows its old due date and badge."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R6 copied from Chunk 2); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R6 copied from Chunk 2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S18-R6",
@@ -3958,7 +4104,8 @@
      "S18-R6",
      "A service whose lines were added instead, and not marked complete, waits for its work order's invoice"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -3980,7 +4127,7 @@
     "PM-A has left the worklist.",
     "After Undo complete PM-A reads Overdue again and is back on the worklist."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R17 copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.2 Technical decisions, TD-36; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R17 copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.2 Technical decisions, TD-36; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S18-R17",
@@ -3998,7 +4145,8 @@
      "Plan 1 §3.2 TD-36",
      "Undo complete, an invoice reversal and the VOID reconciliation restore the previous `last_done_path`, so the row returns"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -4021,7 +4169,7 @@
     "The second completion is recorded in tab A.",
     "Tab B shows \"This can no longer be undone\" and nothing is undone: only the latest Mark complete can be undone."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R17 copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 requirement table, S18-R17; section 5.4 item 4; section 6 Phase P6 browser-walk; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R17 copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 requirement table, S18-R17; section 5.4 item 4; section 6 Phase P6 browser-walk; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Plan 1 §6 P6 browser-walk",
@@ -4039,7 +4187,8 @@
      "Plan 1 §5.4",
      "an undo that is no longer allowed shows \"This can no longer be undone\" instead of the generic conflict toast"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -4059,7 +4208,7 @@
     "The mileage card shows 350,000 as recorded, dated today (the Reset date).",
     "After Undo complete the 350,000 reading is removed again."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R19 copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 requirement table, S18-R19; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard M2; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (Mark complete; S18-R19 copied from Chunk 2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 requirement table, S18-R19; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard M2; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Design board, artboard M2",
@@ -4073,7 +4222,8 @@
      "Plan 1 §1 S18-R19",
      "undone by Undo complete"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S13",
@@ -4096,7 +4246,7 @@
     "The asset tab still shows R15 with \"Completed · next due counts from <today>\".",
     "R15 is back, reading Due soon: its first reminder (14 days before a due date 15 days on) is reached after 1 day (15 − 14 = 1)."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R43; S13-R36); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R43; S13-R36); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R43",
@@ -4114,7 +4264,8 @@
      "S13-R43",
      "returns when its next cycle reaches its first reminder row"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S13",
@@ -4133,7 +4284,7 @@
     "A work order opens in estimate status at \"Red Deer\".",
     "It carries a line \"Engine oil and filter change\" with the same description and 0.8 hours as at Calgary South, priced at Red Deer's rates; no parts and no prices are copied."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R30, S13-R38; S16-N6 from Chunk 2); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R30, S13-R38; S16-N6 from Chunk 2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R30",
@@ -4147,7 +4298,8 @@
      "S16-N6 (Chunk 2 MR, Confluence 897679389)",
      "Add Service at a location other than the schedule's home location adds the same work, not the home location's lines: each canned line's name, description and hours, as new lines at this location's rates. Prices and parts are not copied"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S13",
@@ -4163,13 +4315,14 @@
    "results": [
     "The app offers to switch to \"Calgary South\" so the work order can open, instead of failing to load it."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R14, S13-R28); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-16; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R14, S13-R28); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-16; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Plan 1 §3.3 FD-16",
      "Open/Invoice push `?locationId={workplaceId}` so `useWorkOrderLocationResolver` offers the location switch"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S13",
@@ -4191,7 +4344,7 @@
     "The list loads.",
     "The failed save keeps the form open with your values; saving after reconnecting works."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (worklist); main page key decisions on loading and errors; Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (loading and error behaviour); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 NFR-F03; section 2.9 Shared components (QueryState); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (worklist); main page key decisions on loading and errors; Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (loading and error behaviour); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 NFR-F03; section 2.9 Shared components (QueryState); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Maintenance Reminders V1, key decision",
@@ -4213,7 +4366,8 @@
      "Plan 1 §1 NFR-F03",
      "No \"0\" or empty state while a count or list is loading (skeleton/spinner)"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S4",
@@ -4234,7 +4388,7 @@
     "Enter and Space open it.",
     "A tap opens it, shown as a sheet on the phone."
    ],
-   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (The line count; S4-R5); Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (phone); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 NFR-F08; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (The line count; S4-R5); Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (phone); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 NFR-F08; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Plan 1 §1 NFR-F08",
@@ -4252,7 +4406,8 @@
      "Maintenance Reminders V1, key decision",
      "every hover opens on tap"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -4272,7 +4427,7 @@
     "Every tab is reachable by scrolling the tab bar; services show as cards and the row menu opens as an action sheet.",
     "The enrolment modal opens full screen."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9; S1; S7; Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (phone); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 NFR-F10; section 6 Phase P5 browser-walk; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9; S1; S7; Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (phone); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1 NFR-F10; section 6 Phase P5 browser-walk; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Maintenance Reminders V1, key decision",
@@ -4286,7 +4441,8 @@
      "Plan 1 §1 NFR-F10",
      "Phone (<sm) dialogs fullscreen. Lists become cards below md. Menus become action sheets"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S9",
@@ -4308,7 +4464,7 @@
     "There is no Enroll in Schedule button, and the toggle cannot be changed.",
     "Send reminder is not shown."
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9; S7; S13; S14; Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (permissions); Plan 1 — Track, act, clear — Technical Implementation Plan, section 7 Backlog (role-gate items); read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9; S7; S13; S14; Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (permissions); Plan 1 — Track, act, clear — Technical Implementation Plan, section 7 Backlog (role-gate items); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Maintenance Reminders V1, key decision",
@@ -4334,7 +4490,8 @@
      "S14-R10",
      "A user without it does not see Send reminder at all, hidden rather than disabled"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S13",
@@ -4352,7 +4509,7 @@
     "User A sees no Create work order anywhere.",
     "User B sees Open work order instead of Invoice."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R16, S13-R26); Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (permissions); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.5 Frontend risks, FR10; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R16, S13-R26); Maintenance Reminders V1 (Confluence 833290250) as edited 5 October 2026, Key decisions (permissions); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.5 Frontend risks, FR10; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "Maintenance Reminders V1, key decision",
@@ -4362,7 +4519,8 @@
      "Plan 1 §3.5 FR10",
      "Hidden when the user lacks the `finance` route permissions (falls back to Open work order)"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "story": "S14",
@@ -4370,9 +4528,9 @@
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
     "Open Customers from the top navigation and switch to its \"Maintenance reminders\" tab.",
-    "A row whose asset's preferred contact has NO email while another contact of the same customer has one (e.g. Brabay Maintenance: Dave Brabay no email, Lisa Brabay accounts@brabay.example); setting on.",
+    "A row whose asset's preferred contact has NO email while another contact of the same customer has one (e.g. Brabay Maintenance: Dave Brabay with no email, Lisa Brabay with an email address); setting on.",
     "A second asset, of a customer with an email contact, whose only worklist row is a Needs readings row due more than 91 days out (enrol an asset with no mileage reading, blank dates, on a service \"NR200\": Every 200 days + Distance Every 15,000 mileage); nothing of it falls due inside 91 days.",
-    "Mail-catcher access as in the other send cases."
+    "Give Lisa Brabay's contact an email address you can open (e.g. your own work email), so the reminder lands in your inbox."
    ],
    "steps": [
     "Open the first row's Contact card and look for Send reminder.",
@@ -4381,10 +4539,10 @@
    ],
    "results": [
     "Send reminder is offered although the preferred contact has no email.",
-    "The send email dialog lists the customer's contacts to pick from; the email goes to the picked contact.",
+    "The send email dialog lists the customer's contacts to pick from; the email goes to the picked contact and arrives in your inbox.",
     "Send reminder is enabled, not disabled for having nothing due."
    ],
-   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R13); Plan 2 — The work order and the customer — Technical Implementation Plan, section 3 Frontend decisions, FD-216; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards B1l, B5l; read 6 Oct 2026.",
+   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R13); Plan 2 — The work order and the customer — Technical Implementation Plan, section 3 Frontend decisions, FD-216; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards B1l, B5l; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S14-R13",
@@ -4402,7 +4560,8 @@
      "Plan 2 §3 FD-216",
      "Enabled otherwise, including when nothing is due"
     ]
-   ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   }
  ],
  "diverge": [

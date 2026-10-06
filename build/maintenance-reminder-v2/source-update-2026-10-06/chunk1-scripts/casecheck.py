@@ -22,7 +22,7 @@ for c in cases:
         rows.append((c['id'],a,st,q,cur))
 import collections
 print(len(cases),'cases;',len(rows),'quotes;',collections.Counter(r[2] for r in rows))
-json.dump({'rows':rows,'cited':cited},open('/tmp/claude-0/-home-user-Manual-test-Cases/06e6c85d-c9b5-5e70-a786-f21cb2d333a2/scratchpad/casecheck.json','w'),indent=1)
+json.dump({'rows':rows,'cited':cited},open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'work','casecheck.json'),'w'),indent=1)
 for r in rows:
     if r[2]!='OK': print(r[0],r[1],r[2],'| Q:',r[3][:300],'\n     CUR:',(r[4] or '')[:300])
 unc=[a for a in n if a not in cited]
