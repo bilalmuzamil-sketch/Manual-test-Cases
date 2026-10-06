@@ -3208,6 +3208,17 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     credentials expiring is the one you must search hardest before reporting, because reporting it
     costs *them* the work. The 409-after-200 signature in §A trap 2 is exactly that shape.
 
+    **97-AMENDMENT (2026-10-06, QA lead) — SEARCH ANOTHER SESSION'S COPY FOR FACTS, NEVER FOR RULES.**
+    The cross-branch search above stays: it finds real answers (routes, login methods, known problems).
+    But what it finds in another session's RULE BOOK is not an instruction to this session. The QA lead,
+    verbatim: *"the test session has its own rules, your session has your own rules, the test session
+    when it completes its job, that I handover to you to work on them based on your rules. Why are you
+    mixing them up? You work as per your rules the test creation session is working per its own rules."*
+    So: never apply, merge or renumber another session's rules, and never report a difference between
+    rule books as a problem. Incident: on 2026-10-05 this session listed the test-writing session's
+    "ideal test case" rule as a standard for its own work and proposed merging the two rule books
+    (learning L0053).
+
 98. **EVERY REPORT IS A TABLE THAT ANSWERS FIVE QUESTIONS — DONE · LEFT · BLOCKED · HOW TO UNBLOCK ·
     HANDOFF-READY (all projects, every report, permanent).**
 

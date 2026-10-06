@@ -1805,8 +1805,8 @@ of asking.
   the date.
 - **Reuse recorded recipes; never re-derive (Rule 27).** Read `build/APP-ACTIONS-PLAYBOOK.md` before
   any environment action, and **append any new proven recipe immediately, in the same session** —
-  success-proven knowledge only, never dead ends. **The books ARE the channel between parallel
-  sessions; there is no live message bus.**
+  success-proven knowledge only, never dead ends. **Shared notes carry FACTS between parallel
+  sessions, never rules: each session follows only its own rule book (QA lead, 2026-10-06; CLAUDE.md §6).**
 - **Every DEVIATION / Failed / Blocked cell carries a plain "What needs to be done"** a
   non-technical QA can act on. Never a bare status.
 - **API-content cases go in a section whose title includes "API" (Rule 4).**
