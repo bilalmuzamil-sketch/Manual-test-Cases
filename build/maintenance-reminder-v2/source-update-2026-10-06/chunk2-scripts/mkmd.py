@@ -37,7 +37,10 @@ w("Scope: the 86 live Chunk 2 cases (TestRail folder 26635; stories S10, S11, S1
   "5 October 2026. **Proposals only: nothing was written to TestRail and nothing was committed.** Machine-readable proposals, with full replacement "
   "HTML for every case: `chunk2-proposals.json` (same folder).")
 w("")
-w("**Revised 6 Oct 2026 with the coordinator's decisions:** our own HOLD marker (no flag), the 49 flag-only corrections listed in full, and "
+w("**Second revision, 6 Oct 2026: the final design drive is folded in** (§8a): design-only text a tester sees, cited to its artboard, added "
+  "to the cases that exercise those screens; the drive's design-vs-spec rows added as DIVERGE D18–D29; labels it draws settled.")
+w("")
+w("**Revised 6 Oct 2026 with the coordinator's decisions:** our own HOLD marker (no flag), the flag-only corrections listed in full, and "
   "blockers B1–B3 resolved from the specification (dated readings seeded through Mark complete On a work order; worklist routes to the contact "
   "card; a pending invoice through a reversed payment).")
 w("")
@@ -93,8 +96,9 @@ rows = [
   "Spec wins; differences noted (e.g. 'Enroll in maintenance schedule', '+ Add', 'Already addressed', money on rows)."),
  ("Older review pages 841678852, 891519016, 891944985, 892305428 (Sep 2026)", "History only", "Superseded by the chunk page. OQ-4 (date a reading "
   "was observed) supports blocker B1."),
- ("Design drive (DESIGN-DRIVE-2026-10-06)", "Pending", "Findings file IN PROGRESS with no Chunk 2 findings yet; its Chunk 2 hidden-tooltip "
-  "inventory (31 texts) matches the board text used. Still to be folded in (blocker B5)."),
+ ("Design drive, FINAL (DESIGN-DRIVE-FINDINGS.md + spec-comparison.md; every board, page, hover and click)", "CONFIRM + ADD (labels) + DIVERGE",
+  "3a design-only texts on Chunk 2 screens added to the cases that exercise them (none contradicts the spec); 3b Chunk 2 rows added as "
+  "D18–D29 (3b-11/12 were already D8/D7; 3b-6 resolved on checking, D21); labels settled: 'Closed 4 Sep', 'Lines can’t be created here'. See §8a."),
 ]
 for r in rows: w("| " + " | ".join(x.replace("|", "/") for x in r) + " |")
 w("")
@@ -147,6 +151,7 @@ for d in P["diverge"]:
     w(f"- A: {d['side_a']['source']}: “{d['side_a']['quote']}”")
     w(f"- B: {d['side_b']['source']}: “{d['side_b']['quote']}”")
     w(f"- Question: {d['po_question']}")
+    if d.get("design_drive_row"): w(f"- Design drive row: {d['design_drive_row']}")
     w(f"- In the cases: {d['case_handling']}")
     w("")
 w("## 7. EXCLUDE")
@@ -177,16 +182,25 @@ for b in P["blockers"]:
           + ", ".join(f"C{i}" for i in b["cases_rewritten"]) + f"; new {b['new_case']}. Not rewritten: "
           + ", ".join(f"C{i}" for i in b["not_rewritten"]["cases"]) + f" — {b['not_rewritten']['note']}")
     elif b["id"] == "B4":
-        w(f"- **B4 — {b['what']}: {b['status']}.** " + "; ".join(b["items"]) + ".")
+        w(f"- **B4 — {b['what']}: {b['status']}.** Settled: " + "; ".join(b["settled"]) + ". Drawn on no board (kept in plain words; the tester "
+          "records the wording; build verification confirms): " + "; ".join(b["not_drawn"]) + ".")
     elif b["id"] == "B5":
         w(f"- **B5 — {b['what']}: {b['status']}.** {b['evidence']}.")
     else:
         w(f"- **{b['id']} — {b['what']}: {b['status']}.** {b['route']} Cases: {', '.join(b['cases'])}.")
 w("")
+w("## 8a. Design drive fold-in (final drive, 6 Oct 2026)")
+w("")
+touched = [u for u in P["updates"] if "Design drive fold-in" in u["reason"]]
+w(f"Cases carrying design-only text from the drive ({len(touched)}): " + ", ".join(f"C{u['case_id']}" for u in touched) + ". Each design text is quoted "
+  "verbatim in the case's quotes with its board and artboard, and checked word for word against the drive's page texts and exposures.")
+w("")
+for n in P["design_drive_notes"]: w(f"- {n}")
+w("")
 w("## 9. Quote check (script: `chunk2-scripts/verify.py`, run 6 Oct 2026)")
 w("")
 w(f"- **Proposals:** {V['nq']} quotes parsed from the HTML that would be written; **{V['ok']} of {V['nq']} verbatim** in the cleaned source "
-  f"(Chunk 2 page anchor, Plan 2 text, Plan 1 text or main page text); every title ≤ 80 characters; marker exact, once, last; no requirement ids or flag text in "
+  f"(Chunk 2 page anchor, Plan 2 text, Plan 1 text, main page text, or the design drive's page texts for design quotes); every title ≤ 80 characters; marker exact, once, last; no requirement ids or flag text in "
   f"tester-facing text. **Failures: {len(V['fails'])}.**")
 w(f"- **Flag-only cases:** {V['flag_only_ok']} of {V['flag_only_n']} differ from the live case only by the removed flag sentence (and C204116's id) "
   "and the new marker; updates and flag-only together cover all 86 cases exactly once.")

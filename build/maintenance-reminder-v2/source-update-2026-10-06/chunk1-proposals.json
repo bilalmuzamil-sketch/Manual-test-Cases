@@ -49,7 +49,7 @@
   },
   {
    "case_id": 146310,
-   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Precondition said a fresh location gives an empty list; schedules are now organization-wide (S1-R1).",
+   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Precondition said a fresh location gives an empty list; schedules are now organization-wide (S1-R1). Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "The empty Maintenance screen prompts the first schedule",
    "preconds": [
     "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test.",
@@ -61,11 +61,23 @@
     "Start a new schedule and, before adding any service, try to Save it."
    ],
    "results": [
-    "The empty screen shows a single call to action prompting the first schedule/service.",
+    "The empty screen offers one thing to press: on the design it reads \"No schedules yet\" with the button \"Create the first schedule\" (record the build's wording).",
     "A schedule with no services cannot be saved - Save stays disabled and the empty state prompts the first service."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (unchanged requirements); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard P01; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
+    [
+     "Chunk 1 MR, S1 Nothing there yet",
+     "The first screen every shop sees has one thing to press."
+    ],
+    [
+     "Design board, artboard P01",
+     "No schedules yet"
+    ],
+    [
+     "Design board, artboard P01",
+     "Create the first schedule"
+    ],
     [
      "S1-N1",
      "A schedule with no services cannot be saved. It shows an empty state prompting the first service"
@@ -149,7 +161,7 @@
   },
   {
    "case_id": 146313,
-   "why": "S1-E2 changed: a duplicate name is refused inline with \"A schedule with this name already exists.\" (was a \"vi1\" suffix). Tech plan adds that archived schedules count. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S1-E2 changed: a duplicate name is refused inline with \"A schedule with this name already exists.\" (was a \"vi1\" suffix). Tech plan adds that archived schedules count. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "A schedule name cannot be blank or already in use",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -171,9 +183,10 @@
     "The blank title reverts to the previous name (\"Untitled schedule\" for a new one); no error is shown.",
     "The blank inline rename reverts to the previous name; no error is shown.",
     "Save is refused with the message \"A schedule with this name already exists.\" shown inline under the name.",
-    "The archived schedule's name is refused the same way."
+    "The archived schedule's name is refused the same way.",
+    "On the design the validation note reads \"Blank on blur reverts to the previous name. Same for rename.\""
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (The editor; S1-N3, S1-E2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1, requirement table row S1-E2; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (The editor; S1-N3, S1-E2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 1, requirement table row S1-E2; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard V1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S1-N3",
@@ -190,13 +203,17 @@
     [
      "Plan 1 §1 S1-E2",
      "Names unique across the organization (archived included); duplicate named (Copy), (Copy 2)"
+    ],
+    [
+     "Design board, artboard V1 (validation)",
+     "Blank on blur reverts to the previous name. Same for rename."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146314,
-   "why": "S1-R9 changed: the canned-lines cell reads \"4 lines · 3 covered\" (was \"absorbed\"). Quote and result no longer match. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S1-R9 changed: the canned-lines cell reads \"4 lines · 3 covered\" (was \"absorbed\"). Quote and result no longer match. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "The service table shows Service, Interval, Canned Lines and reorders",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -208,14 +225,16 @@
    "steps": [
     "Read the service table's column headers.",
     "Read the Interval cell of PM-A and the Canned Lines cell of PM-C.",
-    "Reorder the services by drag, then with Move up / Move down."
+    "Reorder the services by drag, then with Move up / Move down.",
+    "Add a third service (\"PM-D\", Every 12 months) and see where it lands in the table."
    ],
    "results": [
     "The table has three columns: Service, Interval and Canned Lines.",
     "PM-A's Interval reads \"15,000 mileage · 3 months\" (a dot between triggers, never \"or\"); PM-C's Canned Lines reads \"4 lines · 3 covered\" (1 own line + 3 from PM-A = 4).",
-    "Services reorder by drag and by Move up / Move down."
+    "Services reorder by drag and by Move up / Move down.",
+    "The new service lands at the bottom of the table (design: the drag handle's tooltip says \"New services land at the bottom.\")."
    ],
-   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (The service table; S1-R9, S1-R10); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10558 (S1, Create a maintenance schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S1 (The service table; S1-R9, S1-R10); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard D1 (drag-handle tooltip); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S1-R9",
@@ -228,6 +247,10 @@
     [
      "S1-R10",
      "Services will be reorderable by drag and by Move up / Move down"
+    ],
+    [
+     "Design board, service table (drag-handle tooltip)",
+     "New services land at the bottom."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -283,7 +306,7 @@
   },
   {
    "case_id": 146316,
-   "why": "S2-R2 changed: the covered step shows only \"when shown, per S2-R18\". Quote no longer matches. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S2-R2 changed: the covered step shows only \"when shown, per S2-R18\". Quote no longer matches. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Add service opens a blank form in a fixed order",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -300,9 +323,10 @@
     "Add service opens a blank service form (no name, no values filled in).",
     "The sections run: name, \"Is this a compliance inspection?\", triggers and intervals, services also covered, canned lines, reminder timing.",
     "There is no send switch anywhere in the form or in the service table; the service has exactly one name (no separate customer-facing name).",
-    "The service cannot be saved with a blank name."
+    "The service cannot be saved with a blank name.",
+    "On the design the blank name shows the inline message \"Enter a service name.\" (record the build's wording)."
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Add service; The form, in order); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Add service; The form, in order); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard V1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R1",
@@ -323,13 +347,17 @@
     [
      "S2-R3",
      "A service will carry exactly one name. There is no customer facing name, so the name a shop gives a service is the name its customer reads in a reminder"
+    ],
+    [
+     "Design board, artboard V1 (validation)",
+     "Enter a service name."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146317,
-   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Calendar interval is required; distance and hours are optional",
    "preconds": [
     "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test.",
@@ -343,15 +371,17 @@
     "Tick Distance, then Engine hours, and watch the interval rows appear.",
     "Try to Save with the calendar interval left empty.",
     "Save a service with no additional trigger selected.",
-    "Select Distance and Engine hours together and count the calendar rows."
+    "Select Distance and Engine hours together and count the calendar rows.",
+    "Hover the (i) beside \"Triggers and intervals\"."
    ],
    "results": [
     "The calendar interval is always present, always editable and required - a ticked checkbox that cannot be unticked, with a hover explaining every service carries a calendar interval.",
     "Distance and Engine hours are optional additional triggers; ticking each reveals its own interval row.",
     "A service cannot be saved with the calendar interval empty; a service with calendar only (no additional trigger) saves fine.",
-    "Distance and Engine hours selected together still produce one calendar row, not two."
+    "Distance and Engine hours selected together still produce one calendar row, not two.",
+    "On the design the calendar checkbox hover reads \"Calendar always applies, so every service comes due even with no readings.\" and the (i) beside \"Triggers and intervals\" reads \"Calendar is required so the service always comes due. Distance and engine-hour readings come from work orders and are often missing, so they are optional additions that bring the service due sooner when a unit works harder. Whole numbers only.\""
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (unchanged requirements); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), service form P04 to P06; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R4",
@@ -372,13 +402,21 @@
     [
      "S2-E1",
      "Distance and engine hours selected together still produce one calendar row, not two"
+    ],
+    [
+     "Design board, service form (Calendar hover)",
+     "Calendar always applies, so every service comes due even with no readings."
+    ],
+    [
+     "Design board, service form (Triggers (i))",
+     "Calendar is required so the service always comes due. Distance and engine-hour readings come from work orders and are often missing, so they are optional additions that bring the service due sooner when a unit works harder. Whole numbers only."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146318,
-   "why": "Quote defect: the spec's quotation marks around \"Every\" and \"At\" were dropped, so the quotes are not verbatim. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Quote defect: the spec's quotation marks around \"Every\" and \"At\" were dropped, so the quotes are not verbatim. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Interval operator Every vs At; calendar At is a day-and-month picker",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -388,14 +426,16 @@
    "steps": [
     "On an interval row open the operator and read its two choices.",
     "On the calendar row choose \"At\" and read how the value control changes; pick 15 Nov.",
-    "On the calendar row choose \"Every\" and read the number and unit controls."
+    "On the calendar row choose \"Every\" and read the number and unit controls.",
+    "Hover the \"Every\" operator and read its tooltip."
    ],
    "results": [
     "Each interval row offers the operator \"Every\" or \"At\".",
     "On the calendar row \"At\" turns the value into a day-and-month picker (e.g. 15 Nov); it never offers a month on its own.",
-    "With \"Every\" the calendar row has a number and a unit (days or months), both picked from lists, not typed; months run 1 to 12."
+    "With \"Every\" the calendar row has a number and a unit (days or months), both picked from lists, not typed; months run 1 to 12.",
+    "On the design the operator's tooltip reads \"every rebases on the last completion. at is a fixed point that never moves.\""
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Triggers and intervals; S2-R6, S2-R7, S2-R8); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (Triggers and intervals; S2-R6, S2-R7, S2-R8); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), service form P04 to P06; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-R6",
@@ -408,6 +448,10 @@
     [
      "S2-R8",
      "The calendar interval carries a number and a unit, days or months, both chosen from a list rather than typed. Months run 1 to 12 and days are whole numbers"
+    ],
+    [
+     "Design board, service form (operator tooltip)",
+     "every rebases on the last completion. at is a fixed point that never moves."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -446,7 +490,7 @@
   },
   {
    "case_id": 146320,
-   "why": "Quote defect: S2-N7 quote dropped the spec's quotation marks around \"At\". Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Quote defect: S2-N7 quote dropped the spec's quotation marks around \"At\". Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Interval fields take whole numbers within caps only",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -463,9 +507,11 @@
     "2.5 is refused inline; -3 and 0 are refused inline on the same rule.",
     "Letters and symbols do not enter the field; there is no error to show.",
     "Values above the caps are refused: mileage stops at 999,999, engine hours at 99,999, days at 999.",
-    "The service cannot be saved while the \"At\" row has no day and month."
+    "The service cannot be saved while the \"At\" row has no day and month.",
+    "On the design the inline messages read \"Enter a whole number.\" (2.5), \"Enter a number greater than 0.\" (0) and \"Choose a day and month.\" (the empty \"At\"); record the build's wording.",
+    "On the design the number-field note reads \"Digits only. Letters cannot be typed, so there is no error state.\""
    ],
-   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (What the number fields accept; S2-R9, S2-N2, S2-N5, S2-N6, S2-N7); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10559 (S2, Add a routine service to a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S2 (What the number fields accept; S2-R9, S2-N2, S2-N5, S2-N6, S2-N7); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard V1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S2-N2",
@@ -486,6 +532,22 @@
     [
      "S2-N6",
      "An interval of zero is rejected inline, on the same rule as a decimal and a negative"
+    ],
+    [
+     "Design board, artboard V1 (validation)",
+     "Enter a whole number."
+    ],
+    [
+     "Design board, artboard V1 (validation)",
+     "Enter a number greater than 0."
+    ],
+    [
+     "Design board, artboard V1 (validation)",
+     "Choose a day and month."
+    ],
+    [
+     "Design board, artboard V1 (validation)",
+     "Digits only. Letters cannot be typed, so there is no error state."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -628,7 +690,7 @@
   },
   {
    "case_id": 146324,
-   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Is this a compliance inspection? is asked before the trigger",
    "preconds": [
     "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test.",
@@ -638,14 +700,16 @@
    ],
    "steps": [
     "Find the \"Is this a compliance inspection?\" control and note where it sits relative to the trigger block.",
-    "Turn it on and watch the trigger block."
+    "Turn it on and watch the trigger block.",
+    "Hover the (i) beside \"Is this a compliance inspection?\"."
    ],
    "results": [
     "The form asks \"Is this a compliance inspection?\" before the trigger, because the answer changes the trigger.",
     "Turning it on replaces the trigger block with the compliance block; the two never appear together.",
-    "A compliance service has no meter triggers and no calendar interval."
+    "A compliance service has no meter triggers and no calendar interval.",
+    "On the design the (i) reads \"A compliance inspection runs on the term the agency set, so distance and calendar triggers do not apply. The certificate’s End date is held on the asset’s record.\""
    ],
-   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (unchanged requirements); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), service form P04, K01; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S3-R1",
@@ -658,13 +722,17 @@
     [
      "S3-N1",
      "A compliance service has no meter triggers and no calendar interval"
+    ],
+    [
+     "Design board, service form (compliance (i))",
+     "A compliance inspection runs on the term the agency set, so distance and calendar triggers do not apply. The certificate’s End date is held on the asset’s record."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146325,
-   "why": "Cited S3-R12 (rename / delete of a compliance type), which the 5 Oct spec removed. The case now tests only the Type field. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Cited S3-R12 (rename / delete of a compliance type), which the 5 Oct spec removed. The case now tests only the Type field. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Compliance Type is required free text with examples in an (i)",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -679,9 +747,10 @@
    "results": [
     "The (i) beside Type shows the examples Annual safety, Annual state, Annual federal, Emissions test.",
     "Type accepts any free text you type.",
-    "The service cannot be saved with Type blank."
+    "The service cannot be saved with Type blank.",
+    "On the design the (i) reads \"e.g. Annual safety, Annual state, Annual federal, Emissions test\"."
    ],
-   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (Type; S3-R3); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (Type; S3-R3); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards K01, K02; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S3-R3",
@@ -694,13 +763,17 @@
     [
      "S3-R3",
      "Type is free text and required"
+    ],
+    [
+     "Design board, artboards K01 and K02 (Type (i))",
+     "e.g. Annual safety, Annual state, Annual federal, Emissions test"
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146326,
-   "why": "S3-R8 changed: Remind before expiry now \"sets how long before a certificate expires the service starts to read due soon\". The bus/tractor step set terms on assets; terms are set on the service. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S3-R8 changed: Remind before expiry now \"sets how long before a certificate expires the service starts to read due soon\". The bus/tractor step set terms on assets; terms are set on the service. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Compliance Term and Remind before expiry are in months",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -711,15 +784,17 @@
     "Open the Term list and read its range; try to save the service without a Term.",
     "Choose Term 12 months and read Remind before expiry; then choose Term 24 months and read it again; change it to 3 months.",
     "Choose Term 6 months and set Remind before expiry to 8 months.",
-    "Add two compliance services with the same Type \"CVIP\" (name one \"CVIP bus\", Term 6 months; the other \"CVIP tractor\", Term 12 months)."
+    "Add two compliance services with the same Type \"CVIP\" (name one \"CVIP bus\", Term 6 months; the other \"CVIP tractor\", Term 12 months).",
+    "Hover the (i) beside Term and the (i) beside Remind before expiry."
    ],
    "results": [
     "Term is chosen from a list of months, 1 to 60, and is required: the service cannot be saved without it.",
     "Remind before expiry defaults to 1 month for the 12-month term and to 2 months for the 24-month term, and can be changed (3 months is accepted).",
     "The 8-month value is refused inline with \"Remind before expiry cannot be longer than the 6-month term\".",
-    "Both services save: the same type can carry different terms (6 and 12 months), and choosing a type fills in nothing."
+    "Both services save: the same type can carry different terms (6 and 12 months), and choosing a type fills in nothing.",
+    "On the design the Term (i) reads \"1 to 60 months.\" and the Remind before expiry (i) reads \"How far ahead of expiry the service starts to read due soon. It cannot be longer than the term.\""
    ],
-   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (Term and Remind before expiry; S3-R6, S3-R7, S3-R8, S3-E2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard R6; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10560 (S3, Add a compliance inspection service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S3 (Term and Remind before expiry; S3-R6, S3-R7, S3-R8, S3-E2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard R6 and artboards K01, K02; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S3-R7",
@@ -740,6 +815,14 @@
     [
      "S3-R6",
      "The term is chosen on its own. The type fills in nothing"
+    ],
+    [
+     "Design board, artboards K01 and K02 (Term (i))",
+     "1 to 60 months."
+    ],
+    [
+     "Design board, artboards K01 and K02 (Remind before expiry (i))",
+     "How far ahead of expiry the service starts to read due soon. It cannot be longer than the term."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -837,7 +920,7 @@
   },
   {
    "case_id": 146329,
-   "why": "Precondition said \"absorbed\" (now \"covered\", S1-R9/S2-N9). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Precondition said \"absorbed\" (now \"covered\", S1-R9/S2-N9). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "A service shows no value; the line count opens a hover card",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -852,9 +935,10 @@
    "results": [
     "No price and no estimated time appear anywhere; the hours shown are the sum of the lines' hours.",
     "Clicking the line count opens nothing (it is not a link).",
-    "Hovering opens a card styled as a small modal that lists the services it covers (PM-A) and then its canned lines, one per row; it closes when the pointer leaves."
+    "Hovering opens a card styled as a small modal that lists the services it covers (PM-A) and then its canned lines, one per row; it closes when the pointer leaves.",
+    "On the design the hover card is headed \"COVERS\" and then \"CANNED LINES\"."
    ],
-   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (What the service is worth; The line count); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10561 (S4, Attach canned lines to a service), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S4 (What the service is worth; The line count); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), editor service table (line-count hover card); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S4-R6",
@@ -867,6 +951,14 @@
     [
      "S4-R5",
      "Hovering it opens a card styled as a small modal that lists the services it covers and then its canned lines, one per row, and closes when the pointer leaves"
+    ],
+    [
+     "Design board, editor service table (line-count hover card)",
+     "COVERS"
+    ],
+    [
+     "Design board, editor service table (line-count hover card)",
+     "CANNED LINES"
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -915,7 +1007,7 @@
   },
   {
    "case_id": 146331,
-   "why": "S5-R12 changed: a before row must be shorter than the calendar interval (7 days -> 1 to 6; a month counts as 30 days, so 1 month -> 1 to 29). Old quote no longer matches. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S5-R12 changed: a before row must be shorter than the calendar interval (7 days -> 1 to 6; a month counts as 30 days, so 1 month -> 1 to 29). Old quote no longer matches. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Reminder rows are in days; a before row must be shorter than the interval",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -927,16 +1019,20 @@
     "Try to delete the \"On the due date\" row; then add rows until Add reminder disables.",
     "Set a before row to 366 days; then make two rows identical (e.g. two \"before 10 days\").",
     "Set the before row to 30 days, then 29 days.",
-    "Change the calendar to Every 7 days and set the before row to 7 days, then 6 days."
+    "Change the calendar to Every 7 days and set the before row to 7 days, then 6 days.",
+    "Hover the (i) beside the reminder rows, and hover the disabled delete on the \"On the due date\" row.",
+    "Open a schedule in the service builder and hover the (i) on the reminder step."
    ],
    "results": [
     "Three default rows: 14 days before, on the due date, 7 days after; each row reads [before | after] [n] [days], in days only.",
     "The due-date row's delete control is disabled (visible, not hidden); after five rows Add reminder disables.",
     "366 is refused (days run 1 to 365); the two identical rows cannot both be saved.",
     "With Every 1 month (counted as 30 days) 30 is refused inline and 29 is accepted.",
-    "With Every 7 days 7 is refused inline and 6 is accepted."
+    "With Every 7 days 7 is refused inline and 6 is accepted.",
+    "On the design the (i) reads \"Days from this service’s due date, up to five, when it starts to read due soon. The reminder on the due date cannot be removed.\" and the disabled delete's tooltip reads \"The reminder on the due date cannot be removed.\"",
+    "On the design that (i) reads \"Every new service starts with these rows. Days from this service’s own due date, up to five, when it starts to read due soon.\""
    ],
-   "source": "Epic SV-3780, story SV-10562 (S5, Reminder timing), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S5 (The rows; S5-R1 to S5-R4, S5-R12); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P1, frontend tests (serviceFormRules); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10562 (S5, Reminder timing), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S5 (The rows; S5-R1 to S5-R4, S5-R12); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P1, frontend tests (serviceFormRules); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), service form P04 to P06 and artboards R4, R4ro; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S5-R1",
@@ -965,6 +1061,18 @@
     [
      "S5-R4",
      "The ceiling is five rows, after which Add reminder disables"
+    ],
+    [
+     "Design board, service form (reminder (i))",
+     "Days from this service’s due date, up to five, when it starts to read due soon. The reminder on the due date cannot be removed."
+    ],
+    [
+     "Design board, service form (due-date row tooltip)",
+     "The reminder on the due date cannot be removed."
+    ],
+    [
+     "Design board, artboards R4 and R4ro (reminder step (i))",
+     "Every new service starts with these rows. Days from this service’s own due date, up to five, when it starts to read due soon."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -1251,7 +1359,7 @@
   },
   {
    "case_id": 146338,
-   "why": "Quote defect: S6-E4 quoted \"unenrols\"; the spec reads \"unenrolls\". Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Quote defect: S6-E4 quoted \"unenrols\"; the spec reads \"unenrolls\". Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "History survives removal; enrolling again anchors from last completion",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
@@ -1271,16 +1379,18 @@
     "Click Enroll in Schedule, pick \"Highway Tractor PM\" and read PM-A's last service date; click Enroll.",
     "Read PM-A's Due cell.",
     "Archive the schedule in Settings, restore it, enrol the asset again and read PM-A's last service date.",
-    "In Settings add a new service \"CVIP\" (compliance, Term 12 months) to \"Highway Tractor PM\" and save; reopen the enrolled asset's Maintenance tab."
+    "In Settings add a new service \"CVIP\" (compliance, Term 12 months) to \"Highway Tractor PM\" and save; reopen the enrolled asset's Maintenance tab.",
+    "On the asset's Maintenance tab open the schedule menu and hover the (i) beside Remove from schedule."
    ],
    "results": [
     "The asset leaves the schedule; its completion is kept.",
     "PM-A's last service date is pre-filled with 1 Sep 2026 (the last completion of a same-named service).",
     "PM-A comes due 3 months after 1 Sep 2026 (Dec 2026).",
     "After archive and restore, enrolling again pre-fills 1 Sep 2026 again: archiving removed the enrolment, not the history.",
-    "The enrolled asset does not get the new CVIP service, and nothing warns about it: the shop must enrol the asset again to get it."
+    "The enrolled asset does not get the new CVIP service, and nothing warns about it: the shop must enrol the asset again to get it.",
+    "On the design the (i) reads \"Removing a schedule and adding another keeps every cycle: the new schedule's services anchor from the last completion of a matching service where one exists, otherwise from now.\""
    ],
-   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (What survives; S6-E1, S6-E2, S6-E4); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10563 (S6, Edit and archive a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S6 (What survives; S6-E1, S6-E2, S6-E4); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard M1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S6-E1",
@@ -1301,6 +1411,10 @@
     [
      "S6-E3",
      "A new regulatory requirement is the known weak point. The shop must apply the schedule again per unit and nothing warns it"
+    ],
+    [
+     "Design board, artboard M1 (schedule header (i))",
+     "Removing a schedule and adding another keeps every cycle: the new schedule's services anchor from the last completion of a matching service where one exists, otherwise from now."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -1361,7 +1475,7 @@
   },
   {
    "case_id": 146340,
-   "why": "S7-R4 changed: names match ignoring capitals and surrounding spaces, and the latest completion wins. S7-R7 (static title) was asserted but not quoted (uncited anchor). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S7-R4 changed: names match ignoring capitals and surrounding spaces, and the latest completion wins. S7-R7 (static title) was asserted but not quoted (uncited anchor). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "The modal collects the schedule, then optional last-service dates",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -1370,12 +1484,13 @@
     "Asset 402 enrolled on \"Fleet PM\" and \"Yard PM\". On its Maintenance tab: the \"pm-a\" row menu > Mark complete > Completed elsewhere, Reset date 1 Aug 2026 > confirm; the \"PM-A\" row (Yard PM) > Mark complete > Completed elsewhere, Reset date 1 Sep 2026 > confirm."
    ],
    "steps": [
-    "On asset 402 click Enroll in Schedule and read the modal title and the line beneath it; open the same modal on another asset and compare the title.",
+    "On asset 402 click Enroll in Schedule and read the modal title (the design titles it \"Enroll in a schedule\") and the line beneath it; open the same modal on another asset and compare the title.",
     "Pick \"Highway Tractor PM\" and read what the modal asks for, in order, and how \"(optional)\" is shown.",
     "Read the pre-filled last service dates of PM-A, PM-B and PM-C.",
     "Read what the modal says about a blank date; try to enter a date after today for PM-B.",
     "Leave PM-B and PM-C blank and click Enroll; read the three due dates on the Maintenance tab.",
-    "Read asset 402's Maintenance tab."
+    "Read asset 402's Maintenance tab.",
+    "Hover the (i) beside the \"LAST SERVICE (OPTIONAL)\" heading."
    ],
    "results": [
     "The title is the same for every asset (static); the unit and customer appear in the body at normal weight (e.g. \"402 · 2019 Freightliner Cascadia · Aacrest Works\").",
@@ -1383,7 +1498,8 @@
     "PM-A is pre-filled with 1 Sep 2026: \"pm-a\" and \"PM-A\" both match despite the capitals, and the later completion (1 Sep over 1 Aug) wins. PM-B and PM-C are blank.",
     "The modal states that a blank date counts from today; a date after today cannot be entered.",
     "PM-A comes due Dec 2026 (1 Sep 2026 + 3 months); PM-B comes due 6 months from today and PM-C 12 months from today.",
-    "Every service of \"Highway Tractor PM\" was added (none skipped), and PM-A appears on separate rows for \"Yard PM\" and \"Highway Tractor PM\": overlapping services on two schedules are allowed."
+    "Every service of \"Highway Tractor PM\" was added (none skipped), and PM-A appears on separate rows for \"Yard PM\" and \"Highway Tractor PM\": overlapping services on two schedules are allowed.",
+    "On the design the (i) reads \"One last-service date per service. Brakes done last week and an oil service long overdue cannot be described by a single date. Left blank, counting starts today.\""
    ],
    "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (Choosing the schedule, then the services; S7-R2, S7-R4, S7-R7, S7-R8, S7-E3); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard X1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
@@ -1426,13 +1542,21 @@
     [
      "S7-E4",
      "An asset may be enrolled on more than one schedule. Overlapping services are allowed and produce separate rows"
+    ],
+    [
+     "Design board, artboard X1 (title)",
+     "Enroll in a schedule"
+    ],
+    [
+     "Design board, artboard X1 (LAST SERVICE (i))",
+     "One last-service date per service. Brakes done last week and an oil service long overdue cannot be described by a single date. Left blank, counting starts today."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146341,
-   "why": "S7-R6 changed: a compliance row shows the record's number and End date (was expiry). Quote defect: S7-E1/S7-E2 dropped the quotation marks around \"At\". Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S7-R6 changed: a compliance row shows the record's number and End date (was expiry). Quote defect: S7-E1/S7-E2 dropped the quotation marks around \"At\". Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Compliance rows show the record; meterless services flag a reading",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -1445,15 +1569,17 @@
     "On asset A click Enroll in Schedule, pick \"Highway Tractor PM\" and read the CVIP row and the Federal Annual Inspection row.",
     "Read the PM-A row on asset A.",
     "On asset B open the modal, pick the schedule and read the Engine overhaul row and its default choice.",
-    "Enroll asset A; read Winter prep's due date on its Maintenance tab."
+    "Enroll asset A; read Winter prep's due date on its Maintenance tab.",
+    "Hover the (i) beside the \"Needs mileage reading\" badge."
    ],
    "results": [
     "The CVIP row shows the record's number and End date (\"AB-4471902 · ends 14 Oct 2026\"); Federal Annual Inspection shows that it has no record, with + Add record.",
     "PM-A carries the badge \"Needs mileage reading\", and its calendar date still shows.",
     "Engine overhaul shows that 250,000 has already been passed and offers \"Mark as done\" or \"Leave due\"; \"Mark as done\" is chosen by default.",
-    "Winter prep comes due on its next 15 Nov: this year if today is before 15 Nov (e.g. enrolled 6 Oct 2026 -> Nov 2026), otherwise next year."
+    "Winter prep comes due on its next 15 Nov: this year if today is before 15 Nov (e.g. enrolled 6 Oct 2026 -> Nov 2026), otherwise next year.",
+    "On the design the (i) reads \"Each meter is judged on its own: a service measured from mileage and one measured from engine hours never share a badge.\""
    ],
-   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (A compliance service in that list; Where the first cycle starts; S7-R6, S7-R15, S7-E1, S7-E2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, frontend table (EnrolmentServiceRow); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (A compliance service in that list; Where the first cycle starts; S7-R6, S7-R15, S7-E1, S7-E2); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P2, frontend table (EnrolmentServiceRow); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard X1r; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-R6",
@@ -1474,6 +1600,10 @@
     [
      "Plan 1 §6 P2 EnrolmentServiceRow",
      "compliance record line \"{number} · ends {endDate}\" or \"No record\" + \"+ Add record\""
+    ],
+    [
+     "Design board, artboard X1r (badge (i))",
+     "Each meter is judged on its own: a service measured from mileage and one measured from engine hours never share a badge."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -1539,7 +1669,7 @@
   },
   {
    "case_id": 146343,
-   "why": "S7-R17 and S7-R20 changed: the setting is an exception a shop applies (off makes Send reminder unavailable); a customer none of whose contacts has an email cannot be sent a reminder, with a way to add a contact. Old S7-R20 wording no longer exists. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S7-R17 and S7-R20 changed: the setting is an exception a shop applies (off makes Send reminder unavailable); a customer none of whose contacts has an email cannot be sent a reminder, with a way to add a contact. Old S7-R20 wording no longer exists. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "The Maintenance notifications setting is a live customer toggle",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -1553,7 +1683,8 @@
     "Create a new customer and read its toggle.",
     "On Abode turn the toggle off and read what it states; turn it back on.",
     "Open the Abode customer edit dialog and look for the setting.",
-    "Open \"Halden Grading\": read the note by the toggle and press Add contact; add a contact with an email address and save."
+    "Open \"Halden Grading\": read the note by the toggle and press Add contact; add a contact with an email address and save.",
+    "Hover the (i) beside \"Send preventive maintenance notifications\" in the modal, and the (i) beside the \"Maintenance notifications\" toggle on the customer card."
    ],
    "results": [
     "The modal shows the customer's setting as a checkbox and lets it be changed there; the change is saved on the customer even though the enrolment was cancelled.",
@@ -1561,9 +1692,10 @@
     "A new customer starts with the toggle on.",
     "Turning it off states how many enrolled units will not receive reminders (e.g. \"2 enrolled units will not receive reminders\").",
     "The edit dialog has no such field; there is no tab, page or preferences matrix for it.",
-    "Halden Grading shows a note that no reminder can be sent because none of its contacts has an email address, with Add contact opening the app's contact form; after saving a contact with an email the note disappears."
+    "Halden Grading shows a note that no reminder can be sent because none of its contacts has an email address, with Add contact opening the app's contact form; after saving a contact with an email the note disappears.",
+    "On the design the modal's (i) reads \"The customer’s own setting, for every asset they own. Reminders are sent by hand with Send reminder. Off, Send reminder is unavailable; due dates are still tracked.\" and the card's (i) reads \"Covers every asset this customer owns, including units enrolled later. Turning it off does not remove any unit from maintenance tracking.\""
    ],
-   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (The customer's notification setting; S7-R13, S7-R17 to S7-R21, S7-E7); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-29; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard CS0; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10564 (S7, Enrol an asset onto a schedule), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S7 (The customer's notification setting; S7-R13, S7-R17 to S7-R21, S7-E7); Plan 1 — Track, act, clear — Technical Implementation Plan, section 3.3 Frontend decisions, FD-29; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard CS0 and artboards X1, CS0; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S7-R13",
@@ -1604,6 +1736,14 @@
     [
      "S7-R21",
      "One value covers every unit that customer owns, including units enrolled after it was set"
+    ],
+    [
+     "Design board, artboard X1 (notification (i))",
+     "The customer’s own setting, for every asset they own. Reminders are sent by hand with Send reminder. Off, Send reminder is unavailable; due dates are still tracked."
+    ],
+    [
+     "Design board, artboard CS0 (toggle (i))",
+     "Covers every asset this customer owns, including units enrolled later. Turning it off does not remove any unit from maintenance tracking."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -1751,7 +1891,7 @@
   },
   {
    "case_id": 146347,
-   "why": "S8-R2 changed (Start date, End date, optional certificate number) and S8-R9 changed (one optional PDF, JPEG or PNG up to 10 MB; replace or remove; was \"reuse the DVI attachment component\"). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S8-R2 changed (Start date, End date, optional certificate number) and S8-R9 changed (one optional PDF, JPEG or PNG up to 10 MB; replace or remove; was \"reuse the DVI attachment component\"). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "A compliance record's fields, Certificate number and attachment",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -1763,13 +1903,15 @@
     "Click + Add record and read the fields, their labels and their widths.",
     "Read the number field's label; save a record with it left empty (Term 12 months, Start date 14 Oct 2025).",
     "Edit the record: attach the 1 MB PDF and save; then attach the PNG with Replace; then Remove it.",
-    "Try to attach the .docx file, then the 12 MB PDF."
+    "Try to attach the .docx file, then the 12 MB PDF.",
+    "Hover the (i) beside Type."
    ],
    "results": [
     "The form has Type, Term, Start date, End date, Certificate number and one attachment; each field is half or full width.",
     "The number field is labelled \"Certificate number\"; it is always shown and the record saves with it empty.",
     "The PDF attaches; Replace swaps it for the PNG (the record keeps only one file); Remove clears it.",
-    "The .docx file and the 12 MB PDF are both refused."
+    "The .docx file and the 12 MB PDF are both refused.",
+    "On the design the Type (i) reads \"The compliance inspection this record belongs to.\""
    ],
    "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (The number and the file; S8-R2 to S8-R4, S8-R6, S8-R9); Plan 1 — Track, act, clear — Technical Implementation Plan, section 5.2 API contract, A20; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard K4; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
@@ -1804,13 +1946,17 @@
     [
      "Design board, artboard K4",
      "PDF, JPEG or PNG, up to 10 MB"
+    ],
+    [
+     "Design board, artboard K4 (Type (i))",
+     "The compliance inspection this record belongs to."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146348,
-   "why": "S8-R10, S8-R11, S8-E1 and S8-E2 changed: certificate dates are days (Start date / End date), End date keeps the day number and clamps to month-end, valid through End date and lapses the day after (was months and month-end expiry). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S8-R10, S8-R11, S8-E1 and S8-E2 changed: certificate dates are days (Start date / End date), End date keeps the day number and clamps to month-end, valid through End date and lapses the day after (was months and month-end expiry). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Start date, End date and term derive; valid through the End date",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -1825,7 +1971,8 @@
     "Click + Add record for a certificate issued months ago by another shop: Term 12 months and type Start date 14 Oct 2025 by hand; read End date.",
     "Click + Add record: Term 12 months, leave both dates empty and try to save.",
     "Save a record with Term 12 months and End date = today; read the CVIP row's badge.",
-    "Edit that record, set End date = yesterday, save, and read the badge again."
+    "Edit that record, set End date = yesterday, save, and read the badge again.",
+    "Hover the (i) beside Start date and the (i) beside End date."
    ],
    "results": [
     "End date fills in as 14 Oct 2026 (same day number, 12 months on).",
@@ -1834,9 +1981,10 @@
     "The Start date can be typed by hand; End date fills in as 14 Oct 2026.",
     "The record cannot be saved with neither date.",
     "With End date = today the certificate is still valid: the row reads \"Due today\", not \"Overdue\".",
-    "With End date = yesterday the certificate has lapsed: the row reads \"Overdue\"."
+    "With End date = yesterday the certificate has lapsed: the row reads \"Overdue\".",
+    "On the design the Start date (i) reads \"Entered by hand, because it comes from the agency and has nothing to do with when a work order completed.\" and the End date (i) reads \"A certificate is valid through its End date.\""
    ],
-   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (Term and the two dates; S8-R10, S8-R11, S8-E1, S8-E2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10565 (S8, Compliance inspection records on the asset), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S8 (Term and the two dates; S8-R10, S8-R11, S8-E1, S8-E2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard K4; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S8-R10",
@@ -1865,6 +2013,14 @@
     [
      "S8-E2",
      "A certificate is valid through its End date and lapses the day after. A weekend or holiday does not move it"
+    ],
+    [
+     "Design board, artboard K4 (Start date (i))",
+     "Entered by hand, because it comes from the agency and has nothing to do with when a work order completed."
+    ],
+    [
+     "Design board, artboard K4 (End date (i))",
+     "A certificate is valid through its End date."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -1985,7 +2141,7 @@
   },
   {
    "case_id": 146352,
-   "why": "The reading cards need a dated reading history, which the old precondition could not produce by hand. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "The reading cards need a dated reading history, which the old precondition could not produce by hand. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Two reading cards: recorded is exact, an estimate has a badge",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -1998,14 +2154,16 @@
    "steps": [
     "On the Maintenance tab read the two reading cards (mileage on the left, engine hours on the right).",
     "On the recorded card check for any qualifier next to the value; on the estimated card read the badge and the line explaining its basis.",
-    "Find a Low confidence meter and read its colour."
+    "Find a Low confidence meter and read its colour.",
+    "Hover the (i) beside the mileage \"Current estimate\"."
    ],
    "results": [
     "The tab opens with the two reading cards: mileage says it is recorded (104,000, recorded 60 days ago) and shows an estimate beside it; engine hours has no reading yet.",
     "The recorded 104,000 shows exactly, with no qualifier; the estimate carries a badge (e.g. \"Estimated\") and its basis (e.g. \"measured from 2 visits\").",
-    "The mileage confidence reads Low (one usable pair, last reading 60 days old) and its meter is not red."
+    "The mileage confidence reads Low (one usable pair, last reading 60 days old) and its meter is not red.",
+    "On the design the (i) reads \"The estimate works out a rate from the last three usable pairs of readings, read as one period, and carries the last reading forward at that rate. At least two readings are needed for any estimate. A new recorded reading replaces it outright.\""
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (The two reading cards; S9-R1, S9-R2, S9-R17; S11-R24 copied from Chunk 2); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (The two reading cards; S9-R1, S9-R2, S9-R17; S11-R24 copied from Chunk 2); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S4; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-R1",
@@ -2022,13 +2180,17 @@
     [
      "S9-R17",
      "The confidence meter's Low state is never red. Red is reserved for overdue"
+    ],
+    [
+     "Design board, artboard S4 (estimate (i))",
+     "The estimate works out a rate from the last three usable pairs of readings, read as one period, and carries the last reading forward at that rate. At least two readings are needed for any estimate. A new recorded reading replaces it outright."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146353,
-   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Services list flat by date with the schedule as a column",
    "preconds": [
     "You are signed in as a service advisor with view customers (and edit customers to add or change a record), on the build under test.",
@@ -2038,14 +2200,16 @@
    "steps": [
     "Read the service list beneath the reading cards: its sort, the schedule column and grouping.",
     "Read one row: next due, the rule beneath, and Last done.",
-    "Find the multi-cycle-overdue service and the service shared by two schedules."
+    "Find the multi-cycle-overdue service and the service shared by two schedules.",
+    "Hover the (i) beside the list heading."
    ],
    "results": [
     "Services are listed flat and sorted by date, with the schedule as a column (not grouped by schedule); each row shows next due as a date with the rule beneath, and Last done as the date its cycle counts from (labelled so it is not confused with a line completion date).",
     "A service appears once - a unit that missed four cycles shows one row reading overdue with the date it fell due.",
-    "A unit on two schedules carrying the same service shows two rows, each with its schedule as a chip."
+    "A unit on two schedules carrying the same service shows two rows, each with its schedule as a chip.",
+    "On the design the (i) reads \"One list for the whole asset, ordered by what comes due first. Schedules are a column, not a heading, so two schedules never split the order.\""
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (unchanged requirements); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S4; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-R4",
@@ -2066,6 +2230,10 @@
     [
      "S9-E1",
      "A unit on two schedules carrying the same service shows two rows, each with its schedule as a chip"
+    ],
+    [
+     "Design board, artboard S4 (list (i))",
+     "One list for the whole asset, ordered by what comes due first. Schedules are a column, not a heading, so two schedules never split the order."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -2112,7 +2280,7 @@
   },
   {
    "case_id": 146355,
-   "why": "Adds what Other triggers lists (every candidate, the first marked) from the design and tech plan. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks.",
+   "why": "Adds what Other triggers lists (every candidate, the first marked) from the design and tech plan. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "The Due cell shows the earliest candidate; Other triggers lists the rest",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -2126,14 +2294,16 @@
    "steps": [
     "On asset A read PM-C's Due cell: how many dates and which trigger.",
     "Open PM-C's row menu > Other triggers and read the list.",
-    "On asset B read the TIRES row."
+    "On asset B read the TIRES row.",
+    "Hover the (i) on the Due column heading."
    ],
    "results": [
     "The Due cell shows one line: the earliest date and the trigger that produced it.",
     "Other triggers lists every candidate date with its trigger, the earliest one marked \"First\".",
-    "TIRES shows its calendar date and reads \"Calendar · needs mileage reading\"; this is styled as an ordinary row, not a warning."
+    "TIRES shows its calendar date and reads \"Calendar · needs mileage reading\"; this is styled as an ordinary row, not a warning.",
+    "On the design the (i) reads \"The earliest candidate and the trigger that produced it. Other candidates are in the row menu. A date known only to the month shows the month. Every estimate shows a month with its confidence; once due, the badge carries it.\""
    ],
-   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (The list beneath them; S9-R12, S9-N3); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P5, frontend table (OtherTriggersMenu); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard P4; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10566 (S9, The asset Maintenance tab), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S9 (The list beneath them; S9-R12, S9-N3); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P5, frontend table (OtherTriggersMenu); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard P4 and artboard S4; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S9-R12",
@@ -2154,6 +2324,10 @@
     [
      "S9-N3",
      "A service whose meter has no usable readings shows the calendar date and reads Calendar · needs mileage reading, or engine hours. This is the ordinary case, not a warning"
+    ],
+    [
+     "Design board, artboard S4 (Due (i))",
+     "The earliest candidate and the trigger that produced it. Other candidates are in the row menu. A date known only to the month shows the month. Every estimate shows a month with its confidence; once due, the badge carries it."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -2361,7 +2535,7 @@
   },
   {
    "case_id": 146360,
-   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Time tiles don't overlap; Needs readings crosses them",
    "preconds": [
     "You are signed in as a service advisor (view customers; edit customers to raise a work order), on the build under test.",
@@ -2371,13 +2545,15 @@
    "steps": [
     "Select two time tiles and confirm both sets show.",
     "Select Needs readings together with a time tile and read what shows.",
-    "Identify what makes a row count toward Needs readings (no reading / one reading / uncomparable), and confirm a calendar-only service never counts."
+    "Identify what makes a row count toward Needs readings (no reading / one reading / uncomparable), and confirm a calendar-only service never counts.",
+    "Hover the (i) on the Needs readings tile."
    ],
    "results": [
     "The three time tiles do not overlap, and selecting two shows both; Needs readings crosses them - selected with a time tile it shows assets with a row in each, with every matching row.",
-    "A row counts toward Needs readings when its service watches mileage or engine hours and that meter has no usable pair of readings (none, only one, or uncomparable); the row still shows its calendar date, and a calendar-only service never counts."
+    "A row counts toward Needs readings when its service watches mileage or engine hours and that meter has no usable pair of readings (none, only one, or uncomparable); the row still shows its calendar date, and a calendar-only service never counts.",
+    "On the design the (i) reads \"A meter with no reading, or not enough readings to measure a rate. The calendar date still shows, and every action stays available.\""
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R20",
@@ -2386,6 +2562,10 @@
     [
      "S13-R22",
      "A row counts toward Needs readings when its service watches mileage or engine hours and that meter has no usable pair of readings: no reading, only one, or none that can be compared. The row still shows its calendar date. A calendar-only service never counts"
+    ],
+    [
+     "Design board, artboard S1 (Needs readings (i))",
+     "A meter with no reading, or not enough readings to measure a rate. The calendar date still shows, and every action stays available."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -2491,7 +2671,7 @@
   },
   {
    "case_id": 146363,
-   "why": "S13-R25 changed (no On Hold; Mark complete resets at once) and S13-R26 changed (invoicing resets through the step after invoicing; Mark complete is the alternative). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S13-R25 changed (no On Hold; Mark complete resets at once) and S13-R26 changed (invoicing resets through the step after invoicing; Mark complete is the alternative). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Due status vs work order status; Invoice or Mark complete clears a row",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions. Raising a work order also needs create and edit work orders.",
@@ -2505,7 +2685,8 @@
     "Read the Work Order column for a row with no work order, one with a live work order, and the declined one.",
     "Read the work order badges you created (Estimate, Approved, Complete) and look for \"On Hold\" anywhere.",
     "On the first Complete row press Invoice and invoice the work order; return to the list.",
-    "On the second Complete row open the three-dot menu > Mark complete, keep the default Reset date and confirm."
+    "On the second Complete row open the three-dot menu > Mark complete, keep the default Reset date and confirm.",
+    "Hover the (i) on the due-status column heading and note the heading the build shows."
    ],
    "results": [
     "The due-status column carries only due soon, due today and overdue, and is empty for the not-yet-due row.",
@@ -2513,7 +2694,8 @@
     "No work order: a dash. Live work order: a link with its status badge, and the button reads Open work order. Declined: still linked with its badge, and the row offers Create work order again.",
     "Each badge shows the work order's status as the app names it (e.g. Estimate, Approved, Complete); \"On Hold\" never appears.",
     "Invoice opens that work order's invoicing; once invoiced, the service resets and the row leaves the list.",
-    "Mark complete resets the service at once and the row leaves the list without waiting for an invoice."
+    "Mark complete resets the service at once and the row leaves the list without waiting for an invoice.",
+    "On the design the (i) reads \"Overdue: past its due date. Due today: an exact certificate or calendar date that falls today. Due soon: inside the first reminder, 14 days by default. Empty: not yet due.\" (the design heads the column \"Status\"; the spec says \"Due status\": record the build's heading)."
    ],
    "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R13, S13-R14, S13-R23, S13-R25, S13-R26); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S1 (Status column); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
@@ -2540,13 +2722,17 @@
     [
      "S13-R26",
      "Where the work order won't be invoiced yet, Mark complete in the row's menu resets the service at once and the row leaves the list, per S18-R6"
+    ],
+    [
+     "Design board, artboard S1 (Status (i))",
+     "Overdue: past its due date. Due today: an exact certificate or calendar date that falls today. Due soon: inside the first reminder, 14 days by default. Empty: not yet due."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146364,
-   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks.",
+   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Reading history is now seeded by hand: Mark complete On a work order records that work order's mileage and engine hours as readings dated the Reset date (S18-R19), with worked values that produce exactly what the case checks. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "A due date shows confidence, Certificate or Calendar, never a figure",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -2562,14 +2748,16 @@
    "steps": [
     "Read the area beneath the due date on unit 402's PM-A row (meter, word) and hover the meter.",
     "Read unit 402's CVIP row and Lube row beneath the due date.",
-    "Read the second unit's NR row."
+    "Read the second unit's NR row.",
+    "Hover the meter icon beside the estimated due month."
    ],
    "results": [
     "A meter-estimated row shows its confidence beneath the date (the meter and a word) with the rule in its hover.",
     "A compliance row shows \"Certificate\" and a calendar row shows \"Calendar\" instead, never a confidence meter.",
-    "A meter row with no usable readings shows the calendar date and says which reading is needed (e.g. \"Calendar · needs mileage reading\") - the majority case, no warning styling."
+    "A meter row with no usable readings shows the calendar date and says which reading is needed (e.g. \"Calendar · needs mileage reading\") - the majority case, no warning styling.",
+    "On the design the hover reads \"Based on mileage estimate\"."
    ],
-   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (unchanged requirements); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S13-R34",
@@ -2578,6 +2766,10 @@
     [
      "S13-E3",
      "A row whose meter has no usable readings shows the calendar date and says which reading is needed. This is the majority case and carries no warning styling"
+    ],
+    [
+     "Design board, artboard S1 (meter hover)",
+     "Based on mileage estimate"
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -2631,7 +2823,7 @@
   },
   {
    "case_id": 146366,
-   "why": "S13-R41 changed: the orange Contact border needs the asset's contact to have no phone and no email AND the customer to have no company phone. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S13-R41 changed: the orange Contact border needs the asset's contact to have no phone and no email AND the customer to have no company phone. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): the design words the hover differently; the case follows the spec and asks the tester to record the build's wording (DIVERGE).",
    "title": "Row actions are Contact and Create work order; menu holds the rest",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions. Raising a work order also needs create and edit work orders.",
@@ -2648,7 +2840,7 @@
    "results": [
     "The row shows Contact and Create work order; the menu offers Mark complete, Skip and Open asset.",
     "The Needs readings row has the same actions.",
-    "The Contact button has an orange border and its hover reads \"No phone or email on file\".",
+    "The Contact button has an orange border and its hover reads \"No phone or email on file\". (The design's hover reads \"Contact · no phone or email on file\"; record the build's wording.)",
     "The Contact button has no orange border (the company phone is a way to reach the customer)."
    ],
    "source": "Epic SV-3780, story SV-10570 (S13, The maintenance reminders worklist), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S13 (S13-R16, S13-R41); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard S1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
@@ -2668,6 +2860,10 @@
     [
      "S13-R41",
      "and the customer has no company phone"
+    ],
+    [
+     "Design board, artboard S1 (Contact hover)",
+     "Contact · no phone or email on file"
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -2819,7 +3015,7 @@
   },
   {
    "case_id": 146371,
-   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "The Contact card shows labelled phones, copy and tap",
    "preconds": [
     "You are signed in as a service advisor with edit-customer permission (which governs sending), on the build under test.",
@@ -2829,14 +3025,16 @@
    "steps": [
     "Open the contact card from the row's Contact button and read the numbers, their labels and order.",
     "Find the copy control on the email address.",
-    "Tap/click a phone number (open the card on a phone to confirm it is tappable)."
+    "Tap/click a phone number (open the card on a phone to confirm it is tappable).",
+    "Hover the copy control beside the email address."
    ],
    "results": [
     "The card carries the contact's telephone and mobile, then the customer's company telephone, each labelled.",
     "The email address has a copy control.",
-    "A phone number is tappable, so the card is usable on a phone."
+    "A phone number is tappable, so the card is usable on a phone.",
+    "On the design its tooltip reads \"Copy address\"."
    ],
-   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (unchanged requirements); read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (unchanged requirements); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard B1; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S14-R1",
@@ -2849,6 +3047,10 @@
     [
      "S14-R3",
      "A phone number will be tappable, so the card is usable on a phone"
+    ],
+    [
+     "Design board, artboard B1 (copy control tooltip)",
+     "Copy address"
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -2912,7 +3114,7 @@
   },
   {
    "case_id": 146373,
-   "why": "S14-N2 changed: with neither email nor phone there is no send action unless another of the customer's contacts has an email (was: no send action). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "S14-N2 changed: with neither email nor phone there is no send action unless another of the customer's contacts has an email (was: no send action). Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "The contact card reads complete in every empty state",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -2928,13 +3130,16 @@
     "Open the Contact card for row A, then row B.",
     "Open the card for row C, then row D; look for Send reminder on each.",
     "Open the card for row E; use its action to set a preferred contact and save.",
-    "In each case judge whether the card reads as complete or as broken."
+    "In each case judge whether the card reads as complete or as broken.",
+    "On each card read the empty-state labels and hover their (i)."
    ],
    "results": [
     "A shows its no-email state; B shows its no-phone state.",
     "C shows both empty states and no Send reminder; D shows both empty states and does offer Send reminder (another contact has an email).",
     "E shows an empty state in place of the contact details with an action to set one, and no send action; after setting a contact the card updates.",
-    "Every state reads as complete, not broken."
+    "Every state reads as complete, not broken.",
+    "On the design: no email reads \"No email address\" with \"Add an address\" and the (i) \"The phone is the only route until an address is added.\"; no phone reads \"No phone number\" with \"Add a number\" and the (i) \"Call is unavailable until one is added. Email is the only route.\"; no contact reads \"No contact information\" with \"Add contact information\".",
+    "On the design a contact with neither shows \"No phone number\" with the hover \"Nothing to call.\" and \"No email address\" with the hover \"Nothing to send to.\""
    ],
    "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R8, S14-N2, S14-N4, S14-E1); Plan 1 — Track, act, clear — Technical Implementation Plan, section 6 Phase P7, frontend table (ContactCard); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards B1e, B1p, B1n; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
@@ -2957,13 +3162,37 @@
     [
      "Plan 1 §6 P7 ContactCard",
      "no-email / no-phone / no-contact states (S14-R8, N2, N4, E1) with \"Set contact\""
+    ],
+    [
+     "Design board, artboard B1e (no email)",
+     "The phone is the only route until an address is added."
+    ],
+    [
+     "Design board, artboard B1p (no phone)",
+     "Call is unavailable until one is added. Email is the only route."
+    ],
+    [
+     "Design board, artboard B1p (no contact)",
+     "No contact information"
+    ],
+    [
+     "Design board, artboard B1p (no contact)",
+     "Add contact information"
+    ],
+    [
+     "Design board, artboard B1p (no phone, no email)",
+     "Nothing to call."
+    ],
+    [
+     "Design board, artboard B1p (no phone, no email)",
+     "Nothing to send to."
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
   },
   {
    "case_id": 146374,
-   "why": "Adds the design's reason wording beside the disabled Send reminder. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec.",
+   "why": "Adds the design's reason wording beside the disabled Send reminder. Preconditions said the feature ships behind a feature flag; the spec of 5 Oct says it ships to every organization with no feature flag. Source line restamped to the 5 Oct spec. Design drive (6 Oct): adds what the tester sees there on the design, cited to the artboard; the spec does not contradict it.",
    "title": "Notifications off disables Send; no permission hides it",
    "preconds": [
     "You are signed in, on the build under test, as a service advisor with the view customers and create and edit customers permissions.",
@@ -2974,11 +3203,15 @@
    "steps": [
     "Open the row's Contact card and read the send control and the text beside it.",
     "Check that the row is still on the worklist with its tiles counted as before.",
+    "Still as the advisor, read the lines under the email address on that card.",
+    "On the customer information card turn \"Maintenance notifications\" on, send a reminder from the row's Contact card, turn the toggle off again and reopen the Contact card.",
     "Sign in as the user without create and edit customers and open the same card; look for Send reminder."
    ],
    "results": [
     "Send reminder is shown but disabled, with the reason beside it naming the setting (e.g. \"Notifications off for this customer\").",
     "The row is still listed; nothing is hidden from the worklist because of the setting.",
+    "On the design the card reads \"Notifications off for this customer\" and offers \"Turn on for this customer\" (a design-only shortcut; record whether the build has it).",
+    "The last-sent line still shows the date of that send while Send reminder is disabled (on the design it reads e.g. \"Last sent 12 Aug, before it was turned off\"; record the build's wording).",
     "This user does not see Send reminder at all (hidden, not disabled)."
    ],
    "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R9, S14-R10, S14-N1, S14-N5); Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboard B1o; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
@@ -3002,6 +3235,18 @@
     [
      "S14-R10",
      "A user without it does not see Send reminder at all, hidden rather than disabled, because it is not something they can fix from the card"
+    ],
+    [
+     "Design board, artboard B1o",
+     "Notifications off for this customer"
+    ],
+    [
+     "Design board, artboard B1o",
+     "Turn on for this customer"
+    ],
+    [
+     "Design board, artboard B1o",
+     "Last sent 12 Aug, before it was turned off"
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -4539,10 +4784,11 @@
    ],
    "results": [
     "Send reminder is offered although the preferred contact has no email.",
-    "The send email dialog lists the customer's contacts to pick from; the email goes to the picked contact and arrives in your inbox.",
+    "The Send email dialog opens (the design titles it \"Send email\"), listing the customer's contacts to pick from with the preferred contact tagged \"Preferred contact\", a field for \"Optional emails\" and the toggle \"Include your email to BCC\"; the email goes to the picked contact and arrives in your inbox.",
+    "On the design the Optional emails field hints \"Addresses separated by commas\" and the reminder text is marked \"Read only\".",
     "Send reminder is enabled, not disabled for having nothing due."
    ],
-   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R13); Plan 2 — The work order and the customer — Technical Implementation Plan, section 3 Frontend decisions, FD-216; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards B1l, B5l; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
+   "source": "Epic SV-3780, story SV-10571 (S14, Contact the customer from a row), Chunk 1 MR (Confluence 886931488) as edited 5 October 2026, S14 (S14-R13); Plan 2 — The work order and the customer — Technical Implementation Plan, section 3 Frontend decisions, FD-216; Design board \"Chunk 1.dc.html\" (MR V2 Claude Design project, version of 6 October 2026), artboards B1l, B5, B5l; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.",
    "quotes": [
     [
      "S14-R13",
@@ -4559,6 +4805,30 @@
     [
      "Plan 2 §3 FD-216",
      "Enabled otherwise, including when nothing is due"
+    ],
+    [
+     "Design board, artboard B5 (dialog)",
+     "Addresses separated by commas"
+    ],
+    [
+     "Design board, artboard B5 (dialog)",
+     "Read only"
+    ],
+    [
+     "Design board, artboard B5 (dialog)",
+     "Send email"
+    ],
+    [
+     "Design board, artboard B5 (dialog)",
+     "Preferred contact"
+    ],
+    [
+     "Design board, artboard B5 (dialog)",
+     "Optional emails"
+    ],
+    [
+     "Design board, artboard B5 (dialog)",
+     "Include your email to BCC"
     ]
    ],
    "marker": "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
@@ -5050,6 +5320,291 @@
     146363,
     146365
    ]
+  },
+  {
+   "topic": "Contact button hover: spec \"No phone or email on file\"; design \"Contact · no phone or email on file\"",
+   "source_a": [
+    "S13-R41",
+    "the row's Contact button has an orange border and a hover: No phone or email on file"
+   ],
+   "source_b": [
+    "Design board, artboard S1 (Contact hover)",
+    "Contact · no phone or email on file"
+   ],
+   "affected_cases": [
+    146366
+   ]
+  },
+  {
+   "topic": "Worklist Due-column (i) grades one pair as Low; the spec table grades one pair up to 30 days as Medium",
+   "source_a": [
+    "S11-R24",
+    "Up to 30 days: one pair Medium, two or more High"
+   ],
+   "source_b": [
+    "Design board, artboard S1 (Due (i))",
+    "Low: one pair, or the last reading is old."
+   ],
+   "affected_cases": [
+    146364,
+    146385
+   ]
+  },
+  {
+   "topic": "Asset-tab confidence meter hover (desktop): spec ends with the fixed disclaimer and View work orders; the design hover ends differently and has no View work orders",
+   "source_a": [
+    "S11-R27",
+    "Beside it, View work orders opens the asset's Work Orders tab"
+   ],
+   "source_b": [
+    "Design board, artboard S4 (meter hover)",
+    "Low, Medium or High, grading the meter. Four visits inside ten months with the last reading six days old. Confidence falls as the last reading ages. Separate from a reading’s own state, which is recorded or estimated."
+   ],
+   "affected_cases": [
+    "NEW-7"
+   ]
+  },
+  {
+   "topic": "Record form (i) says any two of term, Start date and End date give the third; the spec derives only the dates from the term and requires the term",
+   "source_a": [
+    "S8-R11",
+    "A record needs the term and at least one of the two dates"
+   ],
+   "source_b": [
+    "Design board, artboard K4 (Term (i))",
+    "From the certificate. Any two of term, Start date and End date give the third."
+   ],
+   "affected_cases": [
+    146348,
+    146383
+   ]
+  },
+  {
+   "topic": "Turning notifications off: spec states the count of silenced units; no artboard draws it (the toggle (i) says only that tracking continues)",
+   "source_a": [
+    "S7-R19",
+    "Turning it off will state how many of that customer's enrolled units will not receive reminders"
+   ],
+   "source_b": [
+    "Design board, artboard CS0 (toggle (i))",
+    "Turning it off does not remove any unit from maintenance tracking."
+   ],
+   "affected_cases": [
+    146343
+   ]
+  },
+  {
+   "topic": "Schedule list button: spec \"New schedule\"; design \"New Schedule\" (capital S)",
+   "source_a": [
+    "S1-R3",
+    "New schedule opens an empty editor titled Untitled schedule"
+   ],
+   "source_b": [
+    "Design board, artboard R1 (list button)",
+    "New Schedule"
+   ],
+   "affected_cases": [
+    146311,
+    146312,
+    146313
+   ]
+  },
+  {
+   "topic": "Compliance row cannot be dragged on the design; the spec makes every service reorderable",
+   "source_a": [
+    "S1-R10",
+    "Services will be reorderable by drag and by Move up / Move down"
+   ],
+   "source_b": [
+    "Design board, service table (compliance drag-handle tooltip)",
+    "A compliance inspection has no place in the routine ladder. It covers nothing and is covered by nothing, so there is no position to move it to."
+   ],
+   "affected_cases": [
+    146314
+   ]
+  },
+  {
+   "topic": "Remind before expiry (i): the design gives two wordings for one control (K01/K02 vs R6); the spec gives none",
+   "source_a": [
+    "Design board, artboards K01 and K02 (Remind before expiry (i))",
+    "How far ahead of expiry the service starts to read due soon. It cannot be longer than the term."
+   ],
+   "source_b": [
+    "Design board, artboard R6 (Remind before expiry (i))",
+    "How far ahead to warn."
+   ],
+   "affected_cases": [
+    146326
+   ]
+  },
+  {
+   "topic": "Blank last-service date: the spec says it is stated in the modal; the design states it only inside a hover (i)",
+   "source_a": [
+    "S7-R4",
+    "Blank means counting starts today, stated in the modal"
+   ],
+   "source_b": [
+    "Design board, artboard X1 (LAST SERVICE (i))",
+    "Left blank, counting starts today."
+   ],
+   "affected_cases": [
+    146340
+   ]
+  },
+  {
+   "topic": "Spec internal: number fields accept digits only (symbols do not enter), yet a decimal and a negative are \"rejected inline\"; the design draws a decimal message",
+   "source_a": [
+    "S2-N5",
+    "A number field accepts digits only. Letters and symbols do not enter the field, so there is no error to show"
+   ],
+   "source_b": [
+    "S2-N6",
+    "An interval of zero is rejected inline, on the same rule as a decimal and a negative"
+   ],
+   "affected_cases": [
+    146320,
+    146389
+   ]
+  },
+  {
+   "topic": "Empty contact card action: tech plan \"Set contact\" (choose an existing contact); design \"Add contact information\" (a new contact form)",
+   "source_a": [
+    "Plan 1 §6 P7 ContactCard",
+    "no-email / no-phone / no-contact states (S14-R8, N2, N4, E1) with \"Set contact\""
+   ],
+   "source_b": [
+    "Design board, artboard B1p (no contact)",
+    "Add contact information"
+   ],
+   "affected_cases": [
+    146373
+   ]
+  },
+  {
+   "topic": "Demo board (superseded): triggers (i) mentions telematics; spec has no telematics in v1",
+   "source_a": [
+    "S10-N5 (Chunk 2 MR, Confluence 897679389)",
+    "There is no live telematics feed in v1"
+   ],
+   "source_b": [
+    "Design Demo board (Add a service, Triggers (i))",
+    "Calendar is required so a reminder always fires. Distance and engine-hour readings depend on telematics many assets do not have, so they are optional additions that bring the service due sooner when a unit works harder. Whole numbers only."
+   ],
+   "affected_cases": [
+    146317
+   ]
+  },
+  {
+   "topic": "Demo board (superseded): estimate from the two most recent readings; spec uses the last three usable pairs",
+   "source_a": [
+    "S11-R2 (Chunk 2 MR, Confluence 897679389)",
+    "The rate is what the meter added across the unit's last three usable pairs, divided by the days those pairs span"
+   ],
+   "source_b": [
+    "Design Demo board (asset, estimate (i))",
+    "The estimate takes the two most recent recorded readings, works out a rate from the distance and days between them, and carries the last reading forward at that rate. A new recorded reading replaces it outright."
+   ],
+   "affected_cases": [
+    146352
+   ]
+  },
+  {
+   "topic": "Demo board (superseded): a low-confidence future date reads Soon; spec shows a month at every confidence",
+   "source_a": [
+    "S11-R9",
+    "Every estimated due date shows a month, at every confidence"
+   ],
+   "source_b": [
+    "Design Demo board (asset, Due (i))",
+    "At low confidence a future date reads Soon; once due, the badge carries it."
+   ],
+   "affected_cases": [
+    146357
+   ]
+  },
+  {
+   "topic": "Demo board (superseded): worklist Due (i) grades confidence by agreement of readings; spec uses the age-by-pairs table",
+   "source_a": [
+    "S11-R22",
+    "Confidence comes from one table that reads two things together: how old the unit's last recorded reading is, and how many usable pairs it has"
+   ],
+   "source_b": [
+    "Design Demo board (worklist, Due (i))",
+    "High: several recent readings agree. Medium: few or older readings. Low: irregular readings, so the month may move."
+   ],
+   "affected_cases": [
+    146364,
+    146385
+   ]
+  },
+  {
+   "topic": "Demo board (superseded): notification (i) says only the email stops; spec has no automatic email in v1 and Send reminder becomes unavailable",
+   "source_a": [
+    "S14-R9",
+    "the row still appears and the send action is unavailable, naming that setting as the reason"
+   ],
+   "source_b": [
+    "Design Demo board (enrolment, notification (i))",
+    "The customer’s own setting. It covers every asset they own. Off, due dates are still tracked; only the email stops."
+   ],
+   "affected_cases": [
+    146343
+   ]
+  },
+  {
+   "topic": "Demo board (superseded): compliance (i) says the expiry month is held on the record; spec certificate dates are days",
+   "source_a": [
+    "S8-R10",
+    "Both are days, picked from a calendar, so nobody has to guess whether a certificate ends on the same day or at the end of a month"
+   ],
+   "source_b": [
+    "Design Demo board (compliance switch (i))",
+    "The expiry month is held on the asset’s record."
+   ],
+   "affected_cases": [
+    146324
+   ]
+  },
+  {
+   "topic": "Demo board (superseded): \"absorbs\" wording; spec and the current board say \"covers\"",
+   "source_a": [
+    "S2-N8",
+    "It covers nothing and is covered by nothing"
+   ],
+   "source_b": [
+    "Design Demo board (drag-handle tooltip)",
+    "It absorbs nothing and is absorbed by nothing"
+   ],
+   "affected_cases": [
+    146323
+   ]
+  },
+  {
+   "topic": "Demo board (superseded): Send reminder has its own confirmation step; spec opens the send email dialog directly",
+   "source_a": [
+    "S14-R13",
+    "It opens the send email dialog of S19-R3, where the user picks who receives it from the customer's contacts"
+   ],
+   "source_b": [
+    "Design Demo board (B5 designer note)",
+    "The friction is deliberate, so nobody fires an email with one stray click."
+   ],
+   "affected_cases": [
+    146372,
+    "NEW-25"
+   ]
+  },
+  {
+   "topic": "Design-package defect (note, no case): 35 \"Create work order\" links in Chunk 1 point at Chunk 2#v5, which does not exist",
+   "source_a": [
+    "Design board, worklist rows (link label)",
+    "Create work order"
+   ],
+   "source_b": [
+    "Design drive findings §1c",
+    "link → `Chunk 2.dc.html#v5` (Create work order; 35 links)"
+   ],
+   "affected_cases": []
   }
  ],
  "exclude": [
@@ -5120,6 +5675,22 @@
   {
    "item": "Design-drive output (DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md)",
    "reason": "Not present when this review finished (only the ShopviewHeader component was driven). Still to be folded in; nothing excluded on its account."
+  },
+  {
+   "item": "Design drive 3a: Engine hours \"Current estimate\" (i) \"The same calculation, run against the hour meter.\" and the P2/P3 reading-card (i)s",
+   "reason": "Reading cards and the estimate are S10/S11 (Chunk 2); the Chunk 1 copy of S11 covers confidence only. Handed to the Chunk 2 review; Chunk 1 case C146352 carries the mileage estimate (i)."
+  },
+  {
+   "item": "Design drive 3a: designer notes (captions on artboards X1, X1s, X1r, CS0, P4, B4, B4f, B1o, T5) and the pencil tooltip \"Edit\"",
+   "reason": "Designer notes are board annotations, not product screens, so a tester never sees them; the pencil tooltip is the existing product control. No case."
+  },
+  {
+   "item": "Design drive 3a: Canned lines per location proposal board hover (hours per line, e.g. \"Engine oil and filter change 1.2 hours\")",
+   "reason": "Confirms S4-R2 (hours per line, no price), already tested by C146328; no new behaviour. No change."
+  },
+  {
+   "item": "Design drive \"spec states that no artboard draws\" (S1-E2 name-in-use message, S7-E1 Mark as done / Leave due, S7-R19 count statement, S11 \"No data\", S11-R27 hover ending, S13-R33 \"No reminders match\", S1-R10 Move up / Move down)",
+   "reason": "Not excluded from testing: the cases keep the spec wording as their only source (C146313, C146342, C146343, C146365, C146314, NEW-7). Listed so nobody takes screen wording for them from the design."
   }
  ]
 }

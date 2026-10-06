@@ -19,7 +19,9 @@ items listed under "Not read in full, and why", none of which carries Chunk 2 re
 | `…/uploads/*.md` (12 files) | 9,653 · 20,564 · 26,150 · 16,279 · 6,487 · 13,338 · 7,581 · 20,104 · 34,090 · 11,277 · 7,036 · 7,238 B | All 12 in full (before this pass was resumed) |
 | `source-update-2026-10-06/NEW-SCREENSHOTS-READ-2026-10-06.md` | 3,721 B · 21 lines | All |
 | `source-update-2026-10-06/DESIGN-PACKAGE-READING-NOTES.md` (written by the screenshot reader while this review ran) | 265,878 B · 743 lines | Every Chunk 2 entry: A1–A80 (searched by tag), A77–A106 in full (lines 340–466), §B6–B13 handoff markdown in full (lines 509–564), §C5 Chunk 2 board in full (lines 711–735); the remaining §B/§C entries are Chunk 1 boards and uploads already read directly |
-| `source-update-2026-10-06/DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md` | 1,022 B · 13 lines | All. Status IN PROGRESS, no Chunk 2 findings yet; its `Chunk 2-discovery.json` hidden-text inventory (31 tooltip texts) read in full |
+| `source-update-2026-10-06/DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md` (FINAL) | 129,428 B · 646 lines | 1–646, all |
+| `…/DESIGN-DRIVE-2026-10-06/spec-comparison.md` | 29,780 B · 134 lines | 1–134, all |
+| `…/DESIGN-DRIVE-2026-10-06/*-pages.txt` (Chunk 1, Chunk 2, 4-work-order, Demo, Canned lines) | 78,770 · 46,203 · 23,686 · 23,786 · 18,777 B | Used by script as the label corpus: every design text in a case or DIVERGE row is asserted verbatim against them (with the findings file's exposures); searched for each unconfirmed label |
 | `snapshots-2026-10-06/chunk2-cases-before.json` (the 86 live cases) | 246,424 B | All 86 cases dumped to plain text and read in full; quotes checked by script |
 | `chunk-2/mr2_lib.py` | 3,451 B · 56 lines | All (house format and marker) |
 | Older review pages 841678852, 891519016, 891944985, 892305428 (saved by another session) | 100,547 · 78,435 · 8,438 · 37,262 B | Searched for every Chunk 2 story id; every hit read (MF-12…MF-21, FF-2, FF-5, OQ-4); history superseded by the chunk page |
@@ -29,11 +31,10 @@ Plan 1 lines 77–312 and P7 3599–3853 beyond their Chunk 2 hits (Chunk 1 tabl
 Chunk 2 hits (superseded history); the screenshots themselves (read through the screenshot reader's notes, as instructed); the design
 package's fonts, icons, styling code and archived boards (authorised skip, `AUTHORIZED-SKIPS-2026-10-06.md`).
 
-**Not driven:** the design itself was not driven by this review (another worker is driving it). Its findings file still read "IN PROGRESS" when this
-revision was finished, so its Chunk 2 results are still to be folded in (blocker B5).
+**Design drive:** not driven by this review; the final drive output (above) was read in full and folded in (§8a).
 
 **Scripts** (all in `chunk2-scripts/`, re-runnable from the repo): `gen.py` builds `chunk2-proposals.json` from `cases_upd.py`, `cases_new.py`,
-`cases_seed.py` and `registers.py` (quotes are copied from the saved sources and asserted word for word while building; seeded figures are computed and
+`cases_seed.py`, `cases_design.py`, `registers.py` and `designreg.py` (quotes are copied from the saved sources and asserted word for word while building; seeded figures are computed and
 asserted); `verify.py` is the independent check (quotes parsed from the HTML that would be written, titles, marker, ids, flag text, flag-only diff, live
 quote re-check, anchor coverage) and writes `verify_out.json`; `mkmd.py` writes this file; `anchors.py`, `dump.py` and `show.py` are helpers.
 Run order: `python3 gen.py && python3 verify.py && python3 mkmd.py`.
@@ -41,5 +42,5 @@ Run order: `python3 gen.py && python3 verify.py && python3 mkmd.py`.
 ## OUTSTANDING — what I need from you
 
 1. Approve or amend the updates, new cases and flag-only corrections before anything is written to TestRail (no write was made).
-2. Send the DIVERGE questions D1–D17 to the PO / engineering.
-3. Send me the design drive's final findings when it completes, to fold in (B5).
+2. Send the DIVERGE questions to the PO / engineering (D1–D29; D21 needs no answer, it was resolved on checking; D22–D29 only ask to confirm the
+   Demo and older work-order boards are retired).

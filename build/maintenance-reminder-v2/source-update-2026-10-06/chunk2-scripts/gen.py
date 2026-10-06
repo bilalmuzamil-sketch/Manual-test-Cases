@@ -35,7 +35,7 @@ def Q(anchor, part=None):
     assert part in full, f"{anchor}: not verbatim: {part}"
     return {"anchor": anchor, "quote": part, "doc": "chunk2"}
 def PQ(label, text, doc):
-    assert text in DOCS[doc], f"{label}: not verbatim in {doc}: {text}"
+    assert clean(text) in DOCS[doc], f"{label}: not verbatim in {doc}: {text}"
     return {"anchor": label, "quote": text, "doc": doc}
 
 def source_line(stories, plan=None, main=False, plan1=None):
@@ -101,7 +101,9 @@ def new(key, title, stories, pre, steps, results, quotes, reason, plan=None, mai
 exec(open(os.path.join(os.path.dirname(__file__), "cases_upd.py"), encoding="utf-8").read())
 exec(open(os.path.join(os.path.dirname(__file__), "cases_new.py"), encoding="utf-8").read())
 exec(open(os.path.join(os.path.dirname(__file__), "cases_seed.py"), encoding="utf-8").read())
+exec(open(os.path.join(os.path.dirname(__file__), "cases_design.py"), encoding="utf-8").read())
 exec(open(os.path.join(os.path.dirname(__file__), "registers.py"), encoding="utf-8").read())
+exec(open(os.path.join(os.path.dirname(__file__), "designreg.py"), encoding="utf-8").read())
 
 # guards: no requirement ids in title / pre / steps / plain results
 RID = re.compile(r"\bS\d{1,2}-[RNE]\d+\b|\(S\d{1,2}\)|\bper S\d")
@@ -118,7 +120,7 @@ out = {"meta": {"generated": "2026-10-06", "chunk": 2, "testrail_folder": 26635,
                 "marker": MARK, "old_marker": OLD_MARK, "writes": "none — proposals only; no TestRail write, no commit",
                 "format": "custom_preconds / custom_steps / custom_expected are full replacement HTML in the mr2_lib.add() house format"},
        "updates": UPD, "new": NEW, "flag_only": FLAG_ONLY, "retire": RETIRE, "diverge": DIVERGE, "exclude": EXCLUDE,
-       "systemic_corrections": SYSTEMIC, "blockers": BLOCKERS, "chunk1_notes": CHUNK1}
+       "systemic_corrections": SYSTEMIC, "design_drive_notes": DRIVE_NOTES, "blockers": BLOCKERS, "chunk1_notes": CHUNK1}
 json.dump(out, open(OUT, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 print(f"updates {len(UPD)} new {len(NEW)} flag_only {len(FLAG_ONLY)} retire {len(RETIRE)} diverge {len(DIVERGE)} exclude {len(EXCLUDE)} "
       f"systemic {len(SYSTEMIC)} blockers {len(BLOCKERS)} chunk1 {len(CHUNK1)}")

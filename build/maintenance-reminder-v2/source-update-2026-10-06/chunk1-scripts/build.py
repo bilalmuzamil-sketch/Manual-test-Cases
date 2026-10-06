@@ -21,6 +21,10 @@ import p_patch
 p_patch.apply(U, p_new.N)
 import p_v2
 p_v2.apply(U, p_new.N)
+import p_v3
+p_v3.apply(U, p_new.N)
+DIVERGE = DIVERGE + p_v3.DIVERGE
+EXCLUDE = EXCLUDE + p_v3.EXCLUDE
 
 def clean(t):
     t = t.replace('**', '').replace('\\-', '-').replace('\\<', '<').replace('\\>', '>').replace('\\[', '[').replace('\\]', ']').replace('\\_', '_').replace('\\*', '*')
@@ -40,6 +44,9 @@ PL1 = clean(open(ROOT + 'sources/tech-plan/Plan-1-Track-act-clear-Technical-Impl
 PL2 = clean(open(ROOT + 'sources/tech-plan/Plan-2-The-work-order-and-the-customer-Technical-Implementation-Plan.md', encoding='utf-8').read())
 BOARD = open(ROOT + 'source-update-2026-10-06/design-text/Chunk1-board-text-2026-10-06.txt', encoding='utf-8').read()
 BOARD += '\n' + open(ROOT + 'source-update-2026-10-06/design-text/Chunk1-board-attribute-text-2026-10-06.txt', encoding='utf-8').read()
+BOARD += '\n' + open(SP + 'drive_corpus.txt', encoding='utf-8').read()
+DEMO = open(ROOT + 'source-update-2026-10-06/design-text/Demo-board-text-2026-10-06.txt', encoding='utf-8').read()
+DRIVE = open(ROOT + 'source-update-2026-10-06/DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md', encoding='utf-8').read()
 BOARDLINES = set(l.strip() for l in BOARD.splitlines())
 
 def norm(q):
@@ -60,6 +67,10 @@ def check_quote(ref, q):
         return 'OK' if qn in PL1 else 'NOT-VERBATIM'
     if ref.startswith('Plan 2'):
         return 'OK' if qn in PL2 else 'NOT-VERBATIM'
+    if ref.startswith('Design drive findings'):
+        return 'OK' if (q in DRIVE) else 'NOT-VERBATIM'
+    if ref.startswith('Design Demo board'):
+        return 'OK' if (norm(q) in norm(DEMO)) else 'NOT-VERBATIM'
     if ref.startswith('Design'):
         return 'OK' if (q in BOARD) else 'NOT-VERBATIM'
     if ref.startswith('Maintenance Reminders V1'):
@@ -93,6 +104,7 @@ for cid in sorted(cases):
                  source=src(story, story + ' (unchanged requirements)'), quotes=[list(q) for q in c['quotes']])
         p_patch.mech_fix(cid, u)
         p_v2.mech_fix(cid, u)
+        p_v3.mech_fix(cid, u)
     u['marker'] = MARKER
     updates.append({k: u[k] for k in ['case_id', 'why', 'title', 'preconds', 'steps', 'results', 'source', 'quotes', 'marker']})
 new = [dict({k: n[k] for k in ['story', 'title', 'preconds', 'steps', 'results', 'source', 'quotes']}, marker=MARKER) for n in p_new.N]

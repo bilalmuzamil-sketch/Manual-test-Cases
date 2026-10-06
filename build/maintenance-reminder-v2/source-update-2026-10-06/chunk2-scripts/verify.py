@@ -8,6 +8,10 @@ SPEC = anchors(ROOT + "/sources/CONFLUENCE-897679389-Chunk2-MR-2026-10-06.md")
 DOC = {"plan2": clean(open(ROOT + "/sources/tech-plan/Plan-2-The-work-order-and-the-customer-Technical-Implementation-Plan.md").read()),
        "main": clean(open(ROOT + "/sources/CONFLUENCE-833290250-Maintenance-Reminders-V1-2026-10-06.md").read()),
        "plan1": clean(open(ROOT + "/sources/tech-plan/Plan-1-Track-act-clear-Technical-Implementation-Plan.md").read())}
+_DD = ROOT + "/source-update-2026-10-06/DESIGN-DRIVE-2026-10-06/"
+DOC["design"] = clean(" ".join(open(_DD + f, encoding="utf-8").read() for f in [
+    "Chunk 1-pages.txt", "Chunk 2-pages.txt", "4-work-order (old WO chrome)-pages.txt", "Maintenance Reminders Demo-pages.txt",
+    "Canned lines per location - proposal-pages.txt", "DESIGN-DRIVE-FINDINGS.md"]))
 OLD_MARK = "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build (feature ships behind the maintenance_reminders flag)"
 MARK = "AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build"
 P = json.load(open(ROOT + "/source-update-2026-10-06/chunk2-proposals.json"))
@@ -34,6 +38,8 @@ for c in P["updates"] + P["new"]:
             good = a in SPEC and q2 in SPEC[a]
         elif a.startswith("Plan 2"):
             good = q2 in DOC["plan2"]
+        elif a.startswith("Design"):
+            good = q2 in DOC["design"]
         elif a.startswith("Plan 1"):
             good = q2 in DOC["plan1"]
         elif a.startswith("Main page"):
