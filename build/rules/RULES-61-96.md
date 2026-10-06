@@ -2746,3 +2746,26 @@ large that is. Make it a rule, you are NOT supposed to skip anything unless auth
 4. **Coverage is proven, not asserted.** Every review records a "Reading coverage" list: each source file, its size,
    the line ranges read, and "100% read". Anything that could not be read is named, with the reason, and reported to
    the QA lead — never silently left out.
+
+## 120 · THE WHOLE DESIGN IS DRIVEN, EVERY TIME — EVERY BOARD, EVERY PAGE, EVERY CHUNK, EVERY CLICKABLE (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-06: *"you will and ALWAYS must drive the full design. You would need to click ALL
+chunks to be able to access both the chunks one by one, make sure that you fully drive the design by clicking
+everywhere to see if clicking anywhere exposes something that you need for your test cases. You must explore
+everything in chunk 1 and Chunk 2 and everything else which you see, driving the whole design should be in your
+rules."* It strengthens Rule 115's design clause and Rule 119 (nothing skipped).
+
+1. **Every board file and every page in it is opened**, including navigation the design itself offers ("All
+   chunks", the page pills such as 1 Settings · 2 The asset · 3 Customers, the Chunk 1 / Chunk 2 switch), so each
+   chunk and each page is reached one by one. A board is never judged from its static text alone.
+2. **Every clickable thing is clicked and every hover target hovered**: buttons, links, tabs, pills, menus (⋮),
+   dropdowns, checkboxes, toggles, expanders, rows, cards, info (i) icons and tooltips — anything that responds.
+   Each interaction is done from a known state, and whatever it exposes (a modal, menu, tooltip, expanded panel,
+   new text) is recorded verbatim with a screenshot.
+3. **Everything else visible is explored too** — other boards in the package (flow maps, demos, proposals,
+   sidebars, headers) get the same treatment.
+4. **Coverage is proven**: per board, the count of interactive elements found, clicked/hovered, and those that
+   exposed something, with the exposed content logged. Anything that could not be driven is named with the reason.
+5. Driving the design is for **what the screens are and what a tester will see** (labels, navigation, states). The
+   expected behaviour still comes from the specification (Rules 57/113); a design that disagrees with it is a
+   product-owner question, never a silent choice.

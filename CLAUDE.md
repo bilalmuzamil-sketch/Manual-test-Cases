@@ -44,6 +44,10 @@ These are stated here **in full** because a session that gets only this far must
   source (spec, Confluence tree, tech plan, design + uploads, tickets); size is never a reason to sample. Only he
   can authorize a skip. Rules 88/95 decide HOW (chunks, workers, running notes), never WHETHER. Every review
   states its reading coverage (file, size, line ranges, 100% read).
+- **🔴 THE WHOLE DESIGN IS DRIVEN, EVERY TIME (120).** Open every board and every page, using the design's own
+  navigation ("All chunks", page pills, Chunk 1 / Chunk 2) to reach each chunk one by one; click every clickable
+  and hover every hover target; record what each exposes; prove coverage per board. Also every other board in the
+  package. Expected behaviour still comes from the specification.
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
@@ -425,6 +429,10 @@ rule books are never compared, merged, renumbered or synced; handed-over work is
 **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 118. Only the QA lead can authorize a
 skip; Rules 88 and 95 govern how a large source is read (in chunks or by workers), never whether; every review
 records its reading coverage.
+
+**🔴 Rule 120 (the whole design is driven, every time)** was ordered by the QA lead **2026-10-06** and lives
+at the end of `build/rules/RULES-61-96.md`, after 119. Every board, page and chunk (via the design's own "All
+chunks" navigation), every clickable clicked and every hover hovered, exposed content recorded, coverage proven.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is

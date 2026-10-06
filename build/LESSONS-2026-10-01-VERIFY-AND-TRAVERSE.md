@@ -104,3 +104,8 @@ Recorded as **Standing Rule 119**. The failure: I told the Maintenance Reminders
 tester-facing sections of two large technical plans (680 KB and 451 KB). The QA lead: never skip reading anything,
 however large, unless he authorizes it. Read every line, in chunks or across workers with running notes; classify
 what is not tester-visible instead of not reading it; prove coverage (file, size, line ranges, 100% read).
+
+## L10 — DRIVE THE WHOLE DESIGN, EVERY TIME (QA lead, 2026-10-06), binding.
+Recorded as **Standing Rule 120**. Reading a board's text or diffing it is not driving it. Use the design's own
+navigation ("All chunks", page pills, Chunk 1 / Chunk 2) to reach every chunk and page; click every clickable and
+hover every hover target; log what each exposes; prove coverage per board; do the same for every other board.
