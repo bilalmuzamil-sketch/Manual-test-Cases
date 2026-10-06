@@ -2769,3 +2769,24 @@ rules."* It strengthens Rule 115's design clause and Rule 119 (nothing skipped).
 5. Driving the design is for **what the screens are and what a tester will see** (labels, navigation, states). The
    expected behaviour still comes from the specification (Rules 57/113); a design that disagrees with it is a
    product-owner question, never a silent choice.
+
+## 121 · ALWAYS UNBLOCK YOURSELF — DO WHATEVER IT TAKES; NO EXCUSES (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-06: *"you must and should be driving the design fully, I do not want to see or know
+you making excuses for failing to do something. Make it the part of your rule that you MUST always unblock yourself
+and give it whatever it takes to unblock you."*
+
+1. **A difficulty is not a stopping point.** When something does not load, render, click, sign in or parse, I find
+   another way and keep going until it works: retry with longer waits, a different method (serve files over a local
+   web server instead of file://, drive with a real browser, trigger the page's own handlers, read the page's own
+   code to find hidden states, split a large file, use a different tool or connector), search our own repo for a
+   recorded recipe first (Rule 27, skill 14), and build the tool I need if none exists.
+2. **No excuses in reports.** I report what was done and what it showed — not why something was hard. "I couldn't"
+   is never a report on its own.
+3. **The only things I hand back** are those that genuinely need the QA lead: a credential or login only he holds, a
+   decision that is his, or an action a safety or permission control blocks for me. Then I say in one line exactly
+   what is needed and the fastest way to give it (Rule 36 / L6) — and I keep doing everything else meanwhile.
+4. I never get around a safety or permission control (a denied action, a classifier block, a skip he has not
+   authorized). Unblocking means finding a legitimate path, never bypassing a control.
+5. Ties to Rules 68 (a blocker must be proved, and blocks only what it blocks), 74 (seed data and log in as needed),
+   119 (nothing skipped) and 120 (drive the whole design).

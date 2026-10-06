@@ -48,6 +48,11 @@ These are stated here **in full** because a session that gets only this far must
   navigation ("All chunks", page pills, Chunk 1 / Chunk 2) to reach each chunk one by one; click every clickable
   and hover every hover target; record what each exposes; prove coverage per board. Also every other board in the
   package. Expected behaviour still comes from the specification.
+- **🔴 ALWAYS UNBLOCK YOURSELF — WHATEVER IT TAKES; NO EXCUSES (121).** A difficulty is never a stopping point: find
+  another way (other method, tool, server, wait, the page's own code, a recipe from our repo, a tool I build) until
+  it works. Report results, not why things were hard. Hand back only what truly needs the QA lead (a credential he
+  holds, his decision, a control that blocks me) in one line with the fastest fix, and keep working meanwhile.
+  Never get around a safety or permission control.
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
@@ -433,6 +438,9 @@ records its reading coverage.
 **🔴 Rule 120 (the whole design is driven, every time)** was ordered by the QA lead **2026-10-06** and lives
 at the end of `build/rules/RULES-61-96.md`, after 119. Every board, page and chunk (via the design's own "All
 chunks" navigation), every clickable clicked and every hover hovered, exposed content recorded, coverage proven.
+
+**🔴 Rule 121 (always unblock yourself — whatever it takes; no excuses)** was ordered by the QA lead
+**2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 120.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
