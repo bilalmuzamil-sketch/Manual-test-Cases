@@ -39,6 +39,11 @@ These are stated here **in full** because a session that gets only this far must
   method, a known problem with a test site, where a record is). I do not compare, merge, renumber or "sync"
   rule books, and I take handed-over work as delivered. Any pointer in this copy to another session's rule file
   (e.g. `build/rules/RULES-61-ONWARD.md`) means facts only, never rules.
+- **🔴 NOTHING IS SKIPPED — EVERY SOURCE IS READ IN FULL, HOWEVER LARGE (119).** QA lead, 2026-10-06: *"do NOT
+  skip reading anything ever no matter how large that is ... unless authorized by me."* Read every line of every
+  source (spec, Confluence tree, tech plan, design + uploads, tickets); size is never a reason to sample. Only he
+  can authorize a skip. Rules 88/95 decide HOW (chunks, workers, running notes), never WHETHER. Every review
+  states its reading coverage (file, size, line ranges, 100% read).
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
@@ -415,6 +420,11 @@ implication is never authorization.
 ordered by the QA lead **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 117.
 My rules are this copy's index, rule files and skills; another session's notes are read for facts only;
 rule books are never compared, merged, renumbered or synced; handed-over work is taken as delivered.
+
+**🔴 Rule 119 (nothing is skipped — every source is read in full, however large)** was ordered by the QA lead
+**2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 118. Only the QA lead can authorize a
+skip; Rules 88 and 95 govern how a large source is read (in chunks or by workers), never whether; every review
+records its reading coverage.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is

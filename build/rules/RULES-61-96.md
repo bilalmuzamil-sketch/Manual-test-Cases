@@ -2726,3 +2726,23 @@ approval to do so").
 5. **Wherever my copy points at another session's rule file — for example
    `build/rules/RULES-61-ONWARD.md` — that file is read for facts only, never rules.** I may still search
    other sessions' files for facts.
+
+## 119 · NOTHING IS SKIPPED — EVERY SOURCE IS READ IN FULL, HOWEVER LARGE, UNLESS THE QA LEAD AUTHORIZES A SKIP (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-06, verbatim: *"Make sure that you do NOT skip reading anything ever no matter how
+large that is. Make it a rule, you are NOT supposed to skip anything unless authorized by me."*
+
+1. **Every source is read in full, every line**: specifications, every page in a Confluence tree, technical plans,
+   design boards and their uploaded notes and screenshots, tickets, PO answers, review pages, run logs — whatever the
+   size. Size is never a reason to read only part of something, to sample, to "read the relevant sections", or to
+   rely on a search hit instead of reading.
+2. **Only the QA lead can authorize a skip**, for a named item, and the authorization is recorded with its date.
+   My own judgement that something is irrelevant (architecture, database, API, boilerplate) is not authorization:
+   I read it, then classify it (tester-visible, or excluded with the reason). If I believe something should not
+   be read (for example third-party library code bundled with a design), I ask first and read it unless he agrees.
+3. **How, not whether.** Rules 88 and 95 (never bulk-read into my own context; script the bulk work) govern HOW a
+   large source is read: in sequential chunks, or split across workers, with running notes written to a file as
+   each chunk is read. They never permit reading less.
+4. **Coverage is proven, not asserted.** Every review records a "Reading coverage" list: each source file, its size,
+   the line ranges read, and "100% read". Anything that could not be read is named, with the reason, and reported to
+   the QA lead — never silently left out.

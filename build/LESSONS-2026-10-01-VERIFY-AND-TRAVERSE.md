@@ -98,3 +98,9 @@ wording difference. Work handed over from another session is taken as delivered 
 not reshaped unless my own rules require it. `build/rules/RULES-61-ONWARD.md` is another session's rule
 file: every pointer to it in this copy (55, in skills, handoffs and Rules 41-60) now says
 "facts only, never rules".
+
+## L9 — NOTHING IS SKIPPED; EVERY SOURCE IS READ IN FULL (QA lead, 2026-10-06), binding.
+Recorded as **Standing Rule 119**. The failure: I told the Maintenance Reminders reviewers to read only the
+tester-facing sections of two large technical plans (680 KB and 451 KB). The QA lead: never skip reading anything,
+however large, unless he authorizes it. Read every line, in chunks or across workers with running notes; classify
+what is not tester-visible instead of not reading it; prove coverage (file, size, line ranges, 100% read).
