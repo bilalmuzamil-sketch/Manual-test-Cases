@@ -646,10 +646,11 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     "unsourced" cases are TRACEABILITY GAPS, not sourceless cases, and deleting one of those throws
     away real coverage.** The full requirement, the three states, the automation precondition and the
     deletion discipline are **Standing Rule 64** — read it before acting on this paragraph.
-    **TWO-SESSION KNOWLEDGE SHARING:** this workspace is worked
-    by more than one Claude session in parallel; there is no live message bus between
-    them, so **this CLAUDE.md + the build/*-PROCESS.md docs ARE the shared brain** — any
-    session that learns/changes a durable rule MUST write it here so the other session
-    picks it up, and MUST read here before acting. Ties to Standing Rules
+    **TWO-SESSION KNOWLEDGE SHARING — FACTS ONLY, NEVER RULES (amended 2026-10-06, Rule 109):**
+    this workspace is worked by more than one Claude session in parallel; there is no live
+    message bus between them. Durable FACTS (routes, logins, test-site problems, where a
+    record is) are written into this copy's books, and another session's notes may be read
+    for facts only. RULES are never shared: each session follows only its own copy. MUST
+    read this copy before acting. Ties to Standing Rules
     6/8/9/10/11/12/13/14/15 and build/SPEC-RECHECK-PROCESS.md +
     build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md.

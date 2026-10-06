@@ -2780,10 +2780,10 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     ticket keys that prove it. **A proposal with no evidence is an opinion** (Rule 12).
     **🔴 IT PROPOSES; IT NEVER EDITS THE RULES OR SKILLS ITSELF.** That is the QA lead's call via
     **Rule 72** — no addition to the Standing Rules or the Skills is recorded without his go-ahead —
-    and **the main session records the approved changes** in `build/rules/` and `build/skills/`, keeping
-    the CLAUDE.md index row consistent. **A lane session that edits the rules on its own initiative has
-    broken Rule 72 even if its proposal was correct**, because the rules are the shared brain across
-    sessions and a unilateral edit is indistinguishable from a drift.
+    and **each session records the approved changes in its OWN copy** of `build/rules/` and
+    `build/skills/` (never in another session's copy — Rule 109), keeping the CLAUDE.md index row
+    consistent. **A session that edits its rules on its own initiative has broken Rule 72 even if its
+    proposal was correct**, because a unilateral edit is indistinguishable from a drift.
     **A RETRO WITH NO PROPOSAL SAYS SO PLAINLY.** *"Nothing new was learned that is worth a rule"* is a
     **legitimate and welcome outcome**, and it is far better than a manufactured one. **Never invent a
     proposal for form's sake** — a rule added to fill a template dilutes the set, and the set only works
@@ -3097,17 +3097,20 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     reported absent; a 42 KB `CLAUDE.md` to be measured as 459 KB; and existing build-verify
     directories to be denied.** Every one of those was a confident report about a file that was sitting
     in the repository at the time. Fetch first, then search.
-    **🔴 (B) SEARCH THE CANONICAL BRANCH, NOT ONLY YOUR OWN. ADDED 2026-08-28, SAME CAUSE.**
-    **The workspace's shared knowledge lives on `origin/claude/slack-session-0sxnd9`.** If you are on a
-    different branch, **you do NOT need to check it out** — read straight from the remote ref:
+    **🔴 (B) YOU MAY ALSO SEARCH ANOTHER SESSION'S BRANCH — FOR FACTS ONLY, NEVER RULES. ADDED 2026-08-28;
+    AMENDED 2026-10-06 (Rule 109).** Another session's branch (e.g. `origin/claude/slack-session-0sxnd9`)
+    may hold a FACT you need — a route, a login method, a known test-site problem, where a record is, how
+    a BLOCKED file was resolved. Read it straight from the remote ref without checking it out. **Never take
+    a rule, standard or procedure from it** — your rules are only this copy's `CLAUDE.md`, `build/rules/`
+    and `build/skills/`:
     ```
-    git ls-tree -r --name-only origin/claude/slack-session-0sxnd9 | grep -E 'skills/|rules/|BLOCKED|PLAYBOOK'
+    git ls-tree -r --name-only origin/claude/slack-session-0sxnd9 | grep -E 'BLOCKED|PLAYBOOK|DIAGNOSIS|PROJECT-STATE'
     git show origin/claude/slack-session-0sxnd9:<path> | grep -n "<what you need>"
     git show origin/claude/slack-session-0sxnd9:<path> | sed -n '1,80p'
     git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
     ```
-    **"NOT ON THIS BRANCH" IS NEVER A VALID REASON TO CONCLUDE SOMETHING DOES NOT EXIST — check the
-    canonical branch before saying anything is missing.** **WHAT WENT WRONG:** on 2026-08-28 a session
+    **"NOT ON THIS BRANCH" IS NEVER A VALID REASON TO CONCLUDE SOMETHING DOES NOT EXIST — check other
+    branches for the FACT before saying it is missing (facts only — Rule 109).** **WHAT WENT WRONG:** on 2026-08-28 a session
     on `claude/heic-upload-iphone-test-sz7h5p` was given this drill and reported that
     `build/skills/14-ACCESS-RESILIENCE.md`, `build/rules/RULES-*.md`, the `build/BLOCKED-*.md` files and
     the diagnosis files "are not on this branch", and that "the rules live inside CLAUDE.md". **Every
@@ -3761,3 +3764,32 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     non-compliant. **RELATION TO OTHER RULES:** operationalises Rule 57 (the source list is open-ended)
     and Rule 31/59/81 (fetch the latest of every source first); the drill lives in
     `build/skills/02-SOURCE-CHECK.md`. Learning L0043.
+
+109. **EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects,
+    permanent; QA lead, 2026-10-06).**
+    **WHAT HE SAID (2026-10-06, verbatim headings):** *"each session follows only its own rule book"* —
+    *"Follow only your own rule book"* · *"Facts may be shared; rules may not"* · *"Don't compare or merge
+    rule books"* · *"Work handed over from another session"* is taken as delivered · *"Clean up your own
+    copy"* · *"Record this now, in your own copy … This message is my approval to do so. You don't need to
+    propose the wording first."*
+    **THE RULE.**
+    (1) **Only this copy's rules apply.** The rules, standards and procedures this session follows are
+        ONLY this checkout's `CLAUDE.md`, `build/rules/` and `build/skills/`. Never take a rule, standard
+        or procedure from another session's copy, branch, handoff or notes.
+    (2) **Facts may be shared; rules may not.** Another session's notes, `PROJECT-STATE.md` files,
+        playbook entries and `BLOCKED-*.md` files may be read for FACTS only — a route, a login method, a
+        known test-site problem, where a record is, how a block was resolved. A fact read there is still
+        checked before it is relied on (Rules 12, 86, 100).
+    (3) **Never compare, merge or "sync" rule books.** Do not report numbering differences between copies,
+        do not renumber to match another copy, do not import another copy's rules.
+    (4) **Handed-over work is taken as delivered.** Work handed over from another session is not redone or
+        reshaped unless one of THIS copy's rules specifically requires the change.
+    (5) **This copy never tells you to follow, read for rules, or keep in step with another session's
+        rules.** Any such wording in this copy is rewritten to "facts only, never rules". Searching other
+        sessions' files for facts stays allowed.
+    (6) **Git follows the same line:** push only to your own branch; never rebase onto, merge from or push
+        into another session's branch, because that would pull its rule book into yours.
+    **RELATION TO OTHER RULES:** amends the "two-session knowledge sharing" passage under Rule 20, clause
+    (6) of Rule 21, the recording note under Rules 72/93, and Rule 97(B) (another session's branch is now
+    searched for facts only). Approved directly by the QA lead in the same message, so Rule 72's proposal
+    step was satisfied by his instruction. Learning L0048.

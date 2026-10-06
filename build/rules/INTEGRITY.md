@@ -464,3 +464,15 @@ It deliberately does NOT touch the standing holds — Jira/external artefacts (6
 Vladimir's cases (38), Automated cases (71), secrets (82), production. Unblocking concerns reaching a
 test STATE, never widening what may be published or written. Indexed in `CLAUDE.md` §2 and folded into
 the existing §1 blocker bullet as an amendment per the §1 admission gate. Rule count 106 → **107**.
+
+## Rule 109 added 2026-10-06
+
+**109 — EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK.** Ordered by the QA lead on 2026-10-06, who
+approved the wording in the same message ("You don't need to propose the wording first"), so Rule 72's
+proposal step was met by his instruction. Facts may be read from other sessions; rules may not.
+Point-5 clean-up done in the same commit: Rule 20 knowledge-sharing passage, Rule 21 clause (6),
+Rules 72/93 recording note, Rule 97(B), the CLAUDE.md Rule 97 bullet and §6 paragraph, the four
+handoffs' "search the canonical branch" block, skill 00's committer branch, and skill 13's rebase command.
+§1 is already over its 20,000-byte cap, so no new §1 bullet was added: the rule is indexed in §2, pointed
+at from READ THIS FIRST, and the existing §1 Rule 97 bullet was amended in place. Rule 108 has no entry
+in this file (a gap that pre-dates this one; not reconstructed here). Rule count 108 → **109**.

@@ -13,6 +13,9 @@ points at are the authority; this file only tells you which rules exist and wher
   byte-verified both ways and the hashes are recorded in `build/rules/INTEGRITY.md`.
 - **PER-PROJECT HISTORY** is in `build/rules/PROJECT-HISTORY-ARCHIVE.md`. The **canonical live
   document for each project is its own `build/<project>/PROJECT-STATE.md`** — read that first.
+- **🛑 ONLY THIS COPY'S RULES APPLY (Rule 109, QA lead 2026-10-06).** Follow only this index, `build/rules/`
+  and `build/skills/` in this checkout. Another session's notes or branch may be read for FACTS only —
+  never for rules. Never compare, merge or "sync" rule books.
 
 ### ⚠️ WHY THIS INDEX EXISTS — THE FAILURE IT FIXES
 
@@ -20,7 +23,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **108 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **109 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -147,8 +150,8 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   **Walk stalls ⇒ grep the build's chunks.** API only to SEED (14) or READ a set. `03-RUN-CHECK.md`.
 - **NEVER DECLARE A BLOCKER — OR RUN THE FIRST PROBE — WITHOUT SEARCHING THE REPO FIRST (97, amended
   2026-09-02).** **STEP 0 IS `git fetch origin`** — never search, measure or report a repository fact from
-  a stale checkout — and if you are on a different branch, search the canonical one **without checking it
-  out**: `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` (or
+  a stale checkout — and you may also search another session's branch **for facts only, never rules
+  (109)**, without checking it out: `git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/` (or
   `git show`). **"Not on this branch" is NEVER a reason to conclude something does not
   exist.** Before reporting anything as impossible, blocked, unavailable or unreconstructable — **and
   before the FIRST PROBE of any environment, not after the first failure** — **grep the workspace using
@@ -312,7 +315,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 
 ---
 
-## 2 · THE RULE INDEX — all 108 rules, and where each one lives
+## 2 · THE RULE INDEX — all 109 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -393,7 +396,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-ONWARD.md` — rules 61–102 (**range-free name, permanent since 2026-09-03 — it is NOT renamed when a rule is added; see `build/rules/INTEGRITY.md`**)
+### `build/rules/RULES-61-ONWARD.md` — rules 61–109 (**range-free name, permanent since 2026-09-03 — it is NOT renamed when a rule is added; see `build/rules/INTEGRITY.md`**)
 
 | # | Rule (short title) |
 |---|---|
@@ -445,6 +448,7 @@ rule. Generated from the split files' own headers.
 | **106** | BEFORE PROPOSING A DEFECT, RECONCILE THE CASE'S EXPECTED AGAINST THE **LIVE** SOURCE — if they disagree the CASE is wrong, ask to fix the case, not to file a ticket |
 | **107** | STANDING AUTHORISATION TO UNBLOCK — seed/change/delete any test data, edit roles, use either surface; seven routes tried and NAMED before anything is called blocked; the standing holds (62 · 6 · 38 · 71 · 82) are untouched |
 | **108** | A SOURCE VERIFICATION READS THE WHOLE DOCUMENT AND EVERY LINK IT NAMES — requirement body + full Q&A/decision log (Q1..QN, grows) + User Feedback Summary + Change Log + header + every ticket/page/design the doc links; reading only the requirement section is non-compliant |
+| **109** | EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — facts may be shared, rules may not; never compare, merge or "sync" rule books; handed-over work is taken as delivered; push only to your own branch |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`
@@ -734,17 +738,18 @@ Compact form — **the rule named in brackets is the authority; read it before r
 | Standing Rules 1–20 (full text) | `build/rules/RULES-01-20.md` |
 | Standing Rules 21–40 (full text) | `build/rules/RULES-21-40.md` |
 | Standing Rules 41–60 (full text) | `build/rules/RULES-41-60.md` |
-| Standing Rules 61 onward (full text — 61–108 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
+| Standing Rules 61 onward (full text — 61–109 today, and every rule added later) | `build/rules/RULES-61-ONWARD.md` |
 | Per-project narrative history (projects 1–7) | `build/rules/PROJECT-HISTORY-ARCHIVE.md` |
 | Byte-verification hashes for the split | `build/rules/INTEGRITY.md` |
 | Staging/QA/prod action recipes, TestRail traps | `build/APP-ACTIONS-PLAYBOOK.md` |
 | Durable env facts, IDs, endpoints, auth | `build/APP-ACTIONS-PLAYBOOK.md` + `build/TESTING-RUNBOOK.md` |
 | Everything we are waiting on | `build/OUTSTANDING-ITEMS-REGISTER.md` |
 
-**Two-session shared brain:** this workspace is worked by more than one session in parallel with **no
-live message bus** — **this index, the `build/rules/` files, the skills and each `PROJECT-STATE.md`
-ARE the channel.** Any session that learns a durable fact writes it there; any session must read
-before acting. **Propose skill/rule changes before recording them (72).**
+**Facts are shared, rules are not (Rule 109):** this workspace is worked by more than one session in
+parallel with **no live message bus**. This session follows **only its own** index, `build/rules/` and
+skills. Durable FACTS (a route, a login method, a known test-site problem, where a record is) are written
+into this copy, and another session's notes may be read for **facts only — never as rules**. Read this
+copy before acting. **Propose skill/rule changes before recording them (72).**
 
 **Persistence:** secrets are ephemeral (`/tmp`, re-supplied per environment). Everything else here is
 durable memory — update it when a fact genuinely changes.

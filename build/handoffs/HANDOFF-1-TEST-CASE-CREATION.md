@@ -491,21 +491,23 @@ and wrongly. **On 2026-08-28 alone a stale checkout caused a 479-line security t
 reported absent, a 42 KB `CLAUDE.md` to be measured as 459 KB, and existing build-verify directories to
 be denied.** Fetch first, then search.
 
-**🔴 SEARCH THE CANONICAL BRANCH, NOT ONLY YOUR OWN (added 2026-08-28, same cause).** The workspace's
-shared knowledge lives on **`origin/claude/slack-session-0sxnd9`**. If you are on a different branch you
-do **NOT** need to check it out — read straight from the remote ref:
+**🔴 YOU MAY ALSO SEARCH ANOTHER SESSION'S BRANCH — FOR FACTS ONLY, NEVER RULES (added 2026-08-28;
+amended 2026-10-06, Rule 109).** Another session's branch (e.g. **`origin/claude/slack-session-0sxnd9`**)
+may hold a FACT you need — a route, a login method, a known test-site problem, where a record is. Read it
+straight from the remote ref without checking it out. **Never take a rule, standard or procedure from it**
+— your rules are only your own copy's `CLAUDE.md`, `build/rules/` and `build/skills/`:
 
 ```
-git ls-tree -r --name-only origin/claude/slack-session-0sxnd9 | grep -E 'skills/|rules/|BLOCKED|PLAYBOOK'
+git ls-tree -r --name-only origin/claude/slack-session-0sxnd9 | grep -E 'BLOCKED|PLAYBOOK|DIAGNOSIS|PROJECT-STATE'
 git show origin/claude/slack-session-0sxnd9:<path> | grep -n "<what you need>"
 git show origin/claude/slack-session-0sxnd9:<path> | sed -n '1,80p'
 git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
 ```
 
-**"NOT ON THIS BRANCH" IS NEVER A VALID REASON TO CONCLUDE SOMETHING DOES NOT EXIST — check the
-canonical branch before saying anything is missing.** On 2026-08-28 a session on another branch
+**"NOT ON THIS BRANCH" IS NEVER A VALID REASON TO CONCLUDE SOMETHING DOES NOT EXIST — check other
+branches for the FACT before saying it is missing (facts only — Rule 109).** On 2026-08-28 a session on another branch
 reported `build/skills/14-ACCESS-RESILIENCE.md`, `build/rules/RULES-*.md` and the `build/BLOCKED-*.md`
-files as absent; all of them existed on the canonical branch at that moment.
+files as absent; all of them existed on the other session's branch at that moment.
 
 **DURABLE FACT:** the Standing Rules moved **OUT of `CLAUDE.md` into `build/rules/RULES-*.md` on
 2026-08-21; `CLAUDE.md` is now an INDEX.** A session asserting "the rules live inside CLAUDE.md" is
