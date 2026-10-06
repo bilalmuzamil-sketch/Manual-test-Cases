@@ -1,0 +1,17 @@
+[~accountid:712020:8f740284-c818-4164-82d3-e6f98ccbba71] one question on this ticket.
+
+*A Technician sees no For Customer box at all. Was that left this way on purpose, or should it be part of this fix?*
+
+!03-technician-no-box-vs-greyed-out-hd.png|width=900,height=617!
+_Top: signed in as a Technician (view-only on work orders) - the file shows, but there is no For Customer box under it. Bottom: a Sales Representative, also view-only, sees the box greyed out._
+
+*Steps to see it*
+# Open [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] and use the *Tech* quick-login (role: Technician).
+# Open work order *S2-17414* and click the *Notes* tab.
+# Look under any file: there is no *For Customer* box.
+
+*What the spec and your checklist say:* spec rule S10-R5b - _"A user who can only view the record sees the checkbox disabled, so they can still tell which files the customer sees."_ Your QA checklist also names the Technician as the view-only user, with _"the switch is disabled"_.
+
+Production does the same today, so this was not caused by this change.
+
+Tested on sv9667.qa.shopview.com (build v26.40.7-7ffda69), 5 October 2026.

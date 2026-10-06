@@ -31,5 +31,5 @@ _On production a user with Work Orders View only could tick For Customer. On the
 
 h3. How to see it yourself
 # Open [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] as Admin and open work order *S2-17414*, *Notes* tab.
-# The note *"ZZAUTOTEST SV-10323 note by a staff member who then leaves"* was added by a staff member who has since been removed. Click *For Customer* on its file *zz10323_leaver.png*. It ticks with no error. Reload: it is still ticked.
+# The note *"ZZAUTOTEST SV-10323 note by a staff member who then leaves"* was added by a staff member who has since been removed. Its file *zz10323_leaver.png* is already ticked *For Customer*. Click the box to clear it, then click it again to tick it. Both work with no error. Reload: it is still ticked.
 # As Admin, go to *Administration > Staff*, open *Tech ShopView* and change the role to *Sales Representative* (Work Orders View, no Work Orders Edit). Sign out, sign back in with the *Tech* quick-login and open the same Notes tab. The *For Customer* boxes are greyed out and clicking them does nothing.

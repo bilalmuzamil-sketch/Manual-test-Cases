@@ -93,8 +93,18 @@ Branch, Sales Representative (Work Orders View only): disabled, no request, 403 
 - **Production (restore-after):** all SV-10323 notes deleted (27554943, the view-only note, ae033525), all three test staff deleted;
   read back: 0 SV-10323 notes, 0 test staff.
 
-## Pre-post gate
-Pending — the comment is drafted (`comment-draft.txt`) but **not posted**: waiting on Q1 and the Rule-84 technical-section question.
+## QA lead's ruling and what was posted
+QA lead, 6 Oct 2026, verbatim: *"Then for that ticket mark it as QA Passed but in the later comment put a question for the developer if
+this was left intentional or should be the part of that fix."* Technical section: not answered → posted without one (Rule 84).
+- **Comment 77936** — OVERALL QA STATUS: PASSED (`comment-draft.txt`), images 01 + 02.
+- **Comment 77937** — question to Nemanja about the Technician (`comment-question-nemanja.txt`), image 03.
+
+## Pre-post gate (Rule 72), 2026-10-06 03:12 UTC
+Build marker re-read live: `v26.40.7-7ffda69` (unchanged) · session 200 · named test data (leaver note c4cdab05) present and ticked, so step
+2 was reworded to "clear it, then tick it again" · ticket re-read: TESTING QA, Medium, no new comments since 77887 · tone/fingerprint scan on
+both bodies: 0 hits · no technical section · 3 images uploaded as real attachments. **Read-back after posting:** 77936 first line
+"OVERALL QA STATUS: PASSED", 2 media type `file` (900×835, 900×561, in order), table 1 header + 9 rows; 77937 mention @Nemanja Djuric,
+1 media type `file` (900×617).
 
 ## Learning check (Rule 95)
 New and recorded: `reset-password` from a QA-branch page context needs `credentials:'include'` (else 401 `sso_required` — production has no
