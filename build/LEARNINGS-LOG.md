@@ -917,3 +917,35 @@ Vladimir's cases, no committed secrets, production is not a test environment.
 **Carry forever, and it is encoded in `build/inline-add-edit-parts/probe_inline_surfaces.mjs` (header + a status note) and `build/inline-add-edit-parts/PROJECT-STATE.md`:** the WO-line part-status vocabulary on this build includes at least **Requested** (line Needs Approval), **Auth to order** (line Authorized + Source Vendor → action Order), **Awaiting** (ordered → action Receive), **Approved/Complete** (line-level). To build-verify any case that asserts a specific part status, first reach the exact line-status + part-source combination that produces it — never infer absence from a part observed in a different combination.
 
 **L0045 (2026-09-21) — THE EXPECTED RESULT IS THE VERBATIM QUOTE FROM THE SOURCE AND IS NEVER CHANGED (QA lead standing directive; promoted to Rule 57 amendment 2026-09-21).** Verbatim: *"So REMEMBER always, the expected behavior should be the exact QUOTE from the sources, that MUST NOT ever be changed. Save it as your rule forever."* A case's Expected Result must reproduce the source (spec/PRD, epic story, PO verified answer, design — Rule 57 source list) word for word, cited with its page/section/requirement id, and must never be reworded, paraphrased, summarised, softened, or edited toward the build. It arose while checking C55736/C55737: a prior session had reworded their Expected and embedded build-flavoured reasoning ("a part row does not print a price for anyone"); the fix was to re-quote the Expected straight from PRD 576978945 §4/§5.2/§9 + the 2026-08-12 engineering resolution and strip the build language. **Reconciles with Rules 102 and 7/9/18:** the clear/plain/Build-Glossary wording those rules require applies to PRECONDITIONS, STEPS and clarifying bracket labels — NEVER to the asserted Expected behaviour, which stays the source's exact words. If the source wording is itself unclear, HOLD and ask (Rule 58); never "clarify" by rewriting it. Still open for the same reason: C44882 and C55706 list "part purchase/sell price" and "work-order total" as masked money fields, which PRD §4 does not display on those rows — to be corrected TO the §4 quote (part-sale total, PO total, vendor-invoice total) on go-ahead. Encoded in `build/rules/RULES-41-60.md` rule 57 (2026-09-21 amendment), `CLAUDE.md` §1, and `build/global-search/source-reconcile-expected-2026-09-21.md`.
+
+## L0042 — 2026-10-06 · each session follows only its own rule book; facts may be shared, rules may not
+
+**The QA lead, 2026-10-06:** *"I run several sessions, each with its own job and its own rule book. …
+Follow only your own rule book. … Facts may be shared; rules may not. … Don't compare or merge rule
+books."* Recorded as **Rule 114** (`build/rules/RULES-61-96.md`), with his express approval to record it
+without a proposal.
+
+**What it changed in practice.** This copy's rule book had been quietly pointing outward: the index said
+Rule 109 was *"numbered … to continue CANONICAL's sequence … it must be carried across"*; a numbering
+note in the rule file said *"read them there, not here"*; and handoff 3 said the workspace's skills and
+rules *"live on"* another branch. Each of those told a session to take rules from a book it does not own.
+All three were rewritten to **facts only**. 27 file pointers to another copy's rule file were dealt with
+mechanically, each line asserted to contain the pointer before it was touched: **16 repointed** to this
+copy's own `RULES-61-96.md` (the rule lives here too) and **11 marked "another copy's rule book — read it
+for facts only"** (the rule number does not exist in this copy).
+
+**The test that sorts any pointer.** Does **my index** name the file, and does **my file** hold that rule
+number? Both yes → it is my rule. Either no → it is a fact about where another session keeps its rules,
+and nothing more.
+
+**The trap it closes.** A rule copied in from another book arrives without the reasoning, corrections and
+rulings that shaped it there — it looks authoritative and is the least checked thing in the file. A fact
+can be checked against the environment; a borrowed rule cannot.
+
+**Scope kept deliberately narrow:** skills `10`/`11`/`16` and handoffs 1/2/4 instruct other lanes and
+were not touched (point 4: do not reshape another session's work). Old log entries citing other rule
+numbers are history and stay as written.
+
+**Graduated-to:** Rule 114 · `CLAUDE.md` §1 critical core + index paragraph · `HANDOFF-3-VIU.md` reading
+rule · `build/skills/12-VIU.md` §4.
+
