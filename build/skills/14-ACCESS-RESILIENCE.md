@@ -60,7 +60,10 @@ that does not need that system.
 
 ---
 
-## 0.5 · BLOCKER? SEARCH THE SHARED BRAIN FIRST — before you call it a blocker
+## 0.5 · BLOCKER? SEARCH THE SHARED BRAIN FOR FACTS FIRST — before you call it a blocker
+
+**Facts only, never rules (Rule 116).** Another session's notes can tell you how something was solved;
+they never tell you which rule to follow. Your rules are the ones in your own copy.
 
 **NEVER GIVE UP ON A BLOCKER WITHOUT SEARCHING THE REPO FIRST (USER DIRECTIVE, 2026-08-26, verbatim).**
 *"Almost every 'this is impossible' in this workspace has already been hit, solved, and written down by

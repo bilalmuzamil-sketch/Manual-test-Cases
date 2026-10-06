@@ -912,7 +912,8 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     decomposition) and 67 (**whose "what is left" column is exactly where this failure surfaces, and
     which this rule is the precondition of**).
     **THE FAST PATH TO CLEARING A BLOCKER (added 2026-08-26, USER DIRECTIVE): SEARCH THE SHARED BRAIN
-    FIRST — using the EXACT ERROR STRING as the search key — before you call anything a blocker.** Almost
+    FOR FACTS FIRST — using the EXACT ERROR STRING as the search key — before you call anything a
+    blocker.** (Facts only, never rules — Rule 116.) Almost
     every *"this is impossible"* here has already been hit, solved and written down by another session.
     The procedure (four files in order, `git log --grep`, `BLOCKED-*.md`, past FINDINGS, and the "write it
     down if you solve something new" mandate) is `build/skills/14-ACCESS-RESILIENCE.md` **§0.5**. This is
@@ -1829,8 +1830,8 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **Rule 72** — no addition to the Standing Rules or the Skills is recorded without his go-ahead —
     and **the main session records the approved changes** in `build/rules/` and `build/skills/`, keeping
     the CLAUDE.md index row consistent. **A lane session that edits the rules on its own initiative has
-    broken Rule 72 even if its proposal was correct**, because the rules are the shared brain across
-    sessions and a unilateral edit is indistinguishable from a drift.
+    broken Rule 72 even if its proposal was correct**, because a unilateral edit to the rule book is
+    indistinguishable from a drift.
     **A RETRO WITH NO PROPOSAL SAYS SO PLAINLY.** *"Nothing new was learned that is worth a rule"* is a
     **legitimate and welcome outcome**, and it is far better than a manufactured one. **Never invent a
     proposal for form's sake** — a rule added to fill a template dilutes the set, and the set only works
@@ -2148,11 +2149,10 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
 
 ---
 
-> **⚠️ NUMBERING NOTE (2026-09-14).** The canonical shared-brain branch
-> `origin/claude/slack-session-0sxnd9` has renamed this file to **`build/rules/RULES-61-ONWARD.md`** and
-> carries rules up to **108**. Rule 109 below is numbered to continue that sequence, so it can be moved
-> onto canonical without a collision. **This branch's copy is behind canonical on rules 97–108 — read
-> them there, not here.**
+> **NUMBERING NOTE (revised 2026-10-06, Rule 116).** The rules in this file are this copy's rules, and
+> they are the only ones this session follows. Another session's copy may number or word its rules
+> differently; that is expected and is not reconciled. Its rules are never read here as instructions —
+> facts only, never rules.
 
 109. **FOR A V1-versus-V2 COMPARISON SUITE, V1 *IS* THE SPECIFICATION — AND V1 MEANS THE V1 PRODUCT
     REPOSITORY, NOT ANY DOCUMENT (all projects, permanent; QA lead, 2026-09-14).**
@@ -2606,3 +2606,36 @@ endpoint later turns it back into a seeded record.
 A blocked report on a missing API must state which rungs of the ladder were tried and what each
 returned. **"Three endpoints returned 404" is not evidence of anything** — it is three guesses. If
 the front-end code was not read, the work is not blocked; it is not finished.
+
+---
+
+## RULE 116 — EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK. FACTS MAY BE SHARED; RULES MAY NOT.
+
+**Standing instruction from the QA lead, 2026-10-06, approved for recording as written** (*"This
+message is my approval to do so. You don't need to propose the wording first."* — so Rule 72's
+propose-first step was satisfied by the order itself).
+
+### 116.1 · My rules are the ones in my own copy
+My rules are the ones in my own copy: this index (`CLAUDE.md`), my `build/rules/` files and my
+`build/skills/`. I never take a rule, standard or procedure from another session's copy, even if it
+looks better or newer.
+
+### 116.2 · Facts may be shared; rules may not
+Another session's notes may be read for FACTS ONLY — how to reach a screen, a login method, a known
+problem with a test site, where a record is. They are never read as instructions.
+
+### 116.3 · Rule books are not compared, merged or synced
+Another session's rules may be numbered or worded differently from mine. That is expected and is not
+a problem. I do not report it, renumber anything, or try to merge or "sync" the copies.
+
+### 116.4 · Work handed over from another session
+When the QA lead hands me something another session has finished, I take it as delivered and do my
+own job on it by my own rules. I do not redo or reshape the other session's work to match my rules,
+unless my own rules specifically require a change.
+
+### 116.5 · Anything in my copy that points at another session's rules means "facts only, never rules"
+If anything in my rule book tells me to read, follow or keep in step with another session's rules, it
+is changed to say "facts only, never rules". I may still search other sessions' files for facts.
+Applied on 2026-10-06 to: the 109 numbering note (index and this file), the index's "shared brain"
+paragraph, Rule 68's and Skill 14 §0.5's "search the shared brain", Rule 93's reason for not editing
+rules, and the two handoff lines that said other lanes "pick up" the main session's learnings.

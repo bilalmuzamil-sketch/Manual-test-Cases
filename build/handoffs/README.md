@@ -58,8 +58,9 @@ and it is the only session that consolidates that picture.
 session that believes a rule or a skill should change **proposes it to the QA lead** — states what it
 found, what it thinks should change and why — and waits. It does not edit `CLAUDE.md`, it does not edit
 a skill file to suit its own pass, and it does not quietly work to a rule it has decided is wrong.
-Durable learnings go back through the main session so both the shared brain (`CLAUDE.md`, the process
-docs, the playbook) and the other lanes pick them up.
+Durable FACTS go back through the main session, which records them in its own copy (`CLAUDE.md`, the
+process docs, the playbook). Another lane may read them for facts only; each session follows only its
+own rule book (Rule 116).
 
 ---
 

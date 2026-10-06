@@ -289,8 +289,8 @@ source conflict or a foreign edit you notice while executing is **written up and
 actioned in place, and never an excuse to enter another lane's territory.
 
 **The main session stays the brain.** It holds the cross-project state; it is the only session that
-consolidates that picture. Durable learnings go back through it so the shared brain and the other three
-lanes pick them up.
+consolidates that picture. Durable FACTS go back through it; another lane may read them for facts
+only, and each session follows only its own rule book (Rule 116).
 
 ---
 
