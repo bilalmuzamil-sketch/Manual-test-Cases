@@ -3,7 +3,7 @@
 This file holds the FULL, VERBATIM text of Standing Rules 1–20.
 
 Full archive: build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md
-Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-ONWARD.md
+Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.md, build/rules/RULES-21-40.md, build/rules/RULES-41-60.md, build/rules/RULES-61-96.md
 
 **Read the rule you are about to apply here, in full — the index is not the rule.**
 
@@ -648,8 +648,8 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     deletion discipline are **Standing Rule 64** — read it before acting on this paragraph.
     **TWO-SESSION KNOWLEDGE SHARING:** this workspace is worked
     by more than one Claude session in parallel; there is no live message bus between
-    them, so **this CLAUDE.md + the build/*-PROCESS.md docs ARE the shared brain** — any
-    session that learns/changes a durable rule MUST write it here so the other session
-    picks it up, and MUST read here before acting. Ties to Standing Rules
+    them, so **this CLAUDE.md + the build/*-PROCESS.md docs ARE the shared brain FOR FACTS** — any
+    session that learns a durable fact writes it here and reads here before acting. **Rules are
+    never shared: each session follows only its own rule book — facts only, never rules (Rule 118).** Ties to Standing Rules
     6/8/9/10/11/12/13/14/15 and build/SPEC-RECHECK-PROCESS.md +
     build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md.

@@ -13,7 +13,7 @@ to get unblocked on that and if the suite is ready to be handded of to the Manua
 
 **Five tables, in this order, in EVERY report — status updates included, not just end-of-project
 ones.** The full text with all the column definitions is Rule 98 in
-[`../rules/RULES-61-ONWARD.md`](../rules/RULES-61-ONWARD.md); the skeleton is:
+[`../rules/RULES-61-ONWARD.md`](../rules/RULES-61-ONWARD.md) *(another session's rule file — facts only, never rules; Rule 118)*; the skeleton is:
 
 | # | Table | The column that people forget, and why it matters |
 |---|---|---|

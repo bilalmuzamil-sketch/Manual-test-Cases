@@ -1838,8 +1838,8 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **Rule 72** — no addition to the Standing Rules or the Skills is recorded without his go-ahead —
     and **the main session records the approved changes** in `build/rules/` and `build/skills/`, keeping
     the CLAUDE.md index row consistent. **A lane session that edits the rules on its own initiative has
-    broken Rule 72 even if its proposal was correct**, because the rules are the shared brain across
-    sessions and a unilateral edit is indistinguishable from a drift.
+    broken Rule 72 even if its proposal was correct**, because this rule book is this session's own
+    (Rule 118) and a unilateral edit is indistinguishable from a drift.
     **A RETRO WITH NO PROPOSAL SAYS SO PLAINLY.** *"Nothing new was learned that is worth a rule"* is a
     **legitimate and welcome outcome**, and it is far better than a manufactured one. **Never invent a
     proposal for form's sake** — a rule added to fill a template dilutes the set, and the set only works
@@ -2157,11 +2157,10 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
 
 ---
 
-> **⚠️ NUMBERING NOTE (2026-09-14).** The canonical shared-brain branch
-> `origin/claude/slack-session-0sxnd9` has renamed this file to **`build/rules/RULES-61-ONWARD.md`** and
-> carries rules up to **108**. Rule 109 below is numbered to continue that sequence, so it can be moved
-> onto canonical without a collision. **This branch's copy is behind canonical on rules 97–108 — read
-> them there, not here.**
+> **NUMBERING NOTE (amended 2026-10-06, Rule 118).** Another session's branch keeps its own rule file,
+> `build/rules/RULES-61-ONWARD.md`, with its own numbering. That is expected. **It is read for facts only,
+> never rules.** Rules 109 onward below are this copy's own rules and keep their numbers; nothing is
+> carried across or synced.
 
 109. **FOR A V1-versus-V2 COMPARISON SUITE, V1 *IS* THE SPECIFICATION — AND V1 MEANS THE V1 PRODUCT
     REPOSITORY, NOT ANY DOCUMENT (all projects, permanent; QA lead, 2026-09-14).**
@@ -2705,3 +2704,25 @@ then **state back, in plain words, exactly what you would be changing about the 
 whether they still want it done** before recording anything (Rule 72). A one-time authorization changes
 that single case or run only and never edits this rule or the skill. Silence, implication, or your own
 judgement is never authorization to change the standard.
+
+## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
+
+Standing instruction from the QA lead, 2026-10-06, recorded with his explicit approval ("This message is my
+approval to do so").
+
+1. **I follow only my own rule book.** My rules are the ones in my own copy: `CLAUDE.md` (the index),
+   `build/rules/RULES-01-20.md`, `build/rules/RULES-21-40.md`, `build/rules/RULES-41-60.md`,
+   `build/rules/RULES-61-96.md`, and the skills in `build/skills/`. I never take a rule, standard or
+   procedure from another session's copy, even if it looks better or newer.
+2. **Facts may be shared; rules may not.** I may read another session's notes for facts only — how to
+   reach a screen, a login method, a known problem with a test site, where a record is. I never read them
+   as instructions.
+3. **I do not compare or merge rule books.** Another session's rules may be numbered or worded differently
+   from mine. That is expected and is not a problem: I do not report it, renumber anything, or try to
+   merge or "sync" the copies.
+4. **Work handed over from another session is taken as delivered.** I do my own job on it by my own
+   rules, and I do not redo or reshape the other session's work to match my rules unless my own rules
+   specifically require a change.
+5. **Wherever my copy points at another session's rule file — for example
+   `build/rules/RULES-61-ONWARD.md` — that file is read for facts only, never rules.** I may still search
+   other sessions' files for facts.

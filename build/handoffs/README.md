@@ -29,7 +29,7 @@ Inline and verbatim, because **a session must not have to open another file to l
 **A HANDOFF WITHOUT IT IS NON-COMPLIANT AND MUST NOT BE ISSUED.** If you are authoring or revising a
 handoff, copy the section from any of the four existing handoffs. If a handoff already has a
 token/quota section, **MERGE into it — never duplicate.** Authority: **Standing Rule 95**
-(`build/rules/RULES-61-ONWARD.md`); it ties Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90.
+(`build/rules/RULES-61-ONWARD.md` *(another session's rule file — facts only, never rules; Rule 118)*); it ties Rules 12, 50, 75, 76, 77, 78, 79, 80, 86, 88, 90.
 
 ---
 
@@ -51,7 +51,7 @@ playbook or the relevant skill IN THE SAME PASS**.
 
 **A HANDOFF WITHOUT IT IS NON-COMPLIANT AND MUST NOT BE ISSUED.** Copy the section from any of the four
 existing handoffs; merge rather than duplicate if a similar section exists. Routers and other skills take
-it **by pointer only**. Authority: **Standing Rule 97** (`build/rules/RULES-61-ONWARD.md`); it ties Rules 27,
+it **by pointer only**. Authority: **Standing Rule 97** (`build/rules/RULES-61-ONWARD.md` *(another session's rule file — facts only, never rules; Rule 118)*); it ties Rules 27,
 29, 59, 68, 76, 79, 86, 88, 89, 93.
 
 ---
@@ -106,7 +106,7 @@ handoff already has a blocked-handling section. Routers and other skills take it
 Authority: the QA lead, **2026-08-31** (*"WHY are you failing to unblock yourself?"*) — the incident
 was **18 cases parked as "blocked" when every one had a defined outcome already written down, and 12
 more called blocked before the search was finished.** It ties Rules **12, 14, 26, 57, 58, 68, 69, 74,
-97** (`build/rules/RULES-01-20.md`, `RULES-41-60.md`, `RULES-61-ONWARD.md`).
+97** (`build/rules/RULES-01-20.md`, `RULES-41-60.md`, `RULES-61-ONWARD.md` *(another session's rule file — facts only, never rules; Rule 118)*).
 
 ---
 
@@ -135,8 +135,9 @@ and it is the only session that consolidates that picture.
 session that believes a rule or a skill should change **proposes it to the QA lead** — states what it
 found, what it thinks should change and why — and waits. It does not edit `CLAUDE.md`, it does not edit
 a skill file to suit its own pass, and it does not quietly work to a rule it has decided is wrong.
-Durable learnings go back through the main session so both the shared brain (`CLAUDE.md`, the process
-docs, the playbook) and the other lanes pick them up.
+Durable learnings go back through the main session: facts into the shared files (the process docs,
+the playbook) for any session to read; rules only into this copy's own rule book. Other sessions'
+rules are never followed or synced — facts only, never rules (Rule 118).
 
 ---
 
