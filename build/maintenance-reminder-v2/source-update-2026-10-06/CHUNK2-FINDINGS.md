@@ -2,18 +2,20 @@
 
 Scope: the 86 live Chunk 2 cases (TestRail folder 26635; stories S10, S11, S12, S16, S17, S18, S19, S22) against the sources as edited on 5 October 2026. **Proposals only: nothing was written to TestRail and nothing was committed.** Machine-readable proposals, with full replacement HTML for every case: `chunk2-proposals.json` (same folder).
 
-**Counts:** 24 updates · 16 new · 0 retire · 15 diverge (PO questions) · 10 exclude · 3 systemic corrections · 5 blockers · 11 notes for the Chunk 1 reviewer.
+**Revised 6 Oct 2026 with the coordinator's decisions:** our own HOLD marker (no flag), the 49 flag-only corrections listed in full, and blockers B1–B3 resolved from the specification (dated readings seeded through Mark complete On a work order; worklist routes to the contact card; a pending invoice through a reversed payment).
 
-Every proposed case: three-part Expected (plain results · Source line naming documents only · verbatim quotes with anchors), click-by-click preconditions with ZZAUTOTEST example values, product labels only from the spec or the design boards (marked 'in the design' where design-only), title ≤ 80 characters, no requirement ids in titles, preconditions, steps or plain results, and the HOLD marker copied exactly from `mr2_lib.py`.
+**Counts:** 37 updates · 17 new · 49 flag-only corrections · 0 retire · 17 diverge (PO questions) · 10 exclude · 3 systemic corrections · 5 blockers · 11 notes for the Chunk 1 reviewer.
+
+Every proposed case: three-part Expected (plain results · Source line naming documents only · verbatim quotes with anchors), click-by-click preconditions with ZZAUTOTEST example values, product labels only from the spec or the design boards (marked 'in the design' where design-only), title ≤ 80 characters, no requirement ids in titles, preconditions, steps or plain results, and the marker `AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build` (our own text, coordinator decision; the `mr2_lib.py` marker named the removed flag).
 
 ## 1. Per-source verdict
 
 | Source (version read) | Verdict | What it changes |
 |---|---|---|
-| Chunk 2 MR spec, Confluence 897679389, as edited 5 Oct 2026 19:58 (saved `sources/CONFLUENCE-897679389-Chunk2-MR-2026-10-06.md`) | UPDATE + ADD + DIVERGE | 14 anchors rewritten under existing quotes (14 quotes in 12 cases fail); 8 anchors gained sentences that their cases do not test; 9 anchors cited by no case. → 24 whole-case updates, 14 spec-sourced new cases, S10-R1 held (D1). |
+| Chunk 2 MR spec, Confluence 897679389, as edited 5 Oct 2026 19:58 (saved `sources/CONFLUENCE-897679389-Chunk2-MR-2026-10-06.md`) | UPDATE + ADD + DIVERGE | 14 anchors rewritten under existing quotes (14 quotes in 12 cases fail); 8 anchors gained sentences that their cases do not test; 9 anchors cited by no case. → whole-case updates, 14 spec-sourced new cases, S10-R1 held (D1). |
 | Main page 'Maintenance Reminders V1', Confluence 833290250, as edited 5 Oct 2026 (saved `sources/CONFLUENCE-833290250-…-2026-10-06.md`) | UPDATE + DIVERGE | 'No feature flag' (5 Oct) makes the flag precondition in all 86 cases stale (SC1) and contradicts the mandated HOLD marker (SC2). 'Audit recorded, no screen in v1' makes three cases' audit steps unrunnable (C204106, C204154, C204179 updated). Its Reusable components row for the reading dialog conflicts with S16-R12 (D1). Says the chunk page wins where they differ. |
 | Plan 2 — The work order and the customer — Technical Implementation Plan (3,240 lines, revision 3 of 5 Oct) | CONFIRM + ADD + DIVERGE + EXCLUDE | Confirms nearly every Chunk 2 rule. ADD: N15 (no card or step on part sales / imported work orders), N16 (every invoicing path shows the step once), N4 support, NFR-114 partial split in C204151, D2 reading date in N6. DIVERGE: D3, D5, D6, D9, D10, D11, D12, D13. EXCLUDE: engineering-only NFRs. Labels it alone gives are listed as unconfirmed (blocker B4). |
-| Plan 1 — Track, act, clear — Technical Implementation Plan (5,363 lines; every section touching Chunk 2) | CONFIRM + BLOCKER | Confirms S10/S11/S12/S18 mechanics. Testability note B5 (no back-dated readings) → blocker B1. §7: historical load runs on QA after each deploy (used as the route in C204126 and N6). |
+| Plan 1 — Track, act, clear — Technical Implementation Plan (5,363 lines; every section touching Chunk 2) | CONFIRM | Confirms S10/S11/S12/S18 mechanics. Its testability note B5 (the reading window cannot back-date) is answered by the spec's own route, S18-R19 (blocker B1, resolved); TD-06 (a work order reading is corrected in place) backs C204127; §7 historical load backs N6. |
 | Design MR_V2_2, Chunk 2 board (current, 6 Oct export) | CONFIRM labels + DIVERGE | Source of the window, toast, step and email labels used in the cases (frames W2a, W2c–W2e, W2r, W2k, W13–W13c, W14, I1–I7, R1–R1Z). DIVERGE: D2, D4, D6, D7, D8, D14, D15. |
 | Design, Chunk 2 board (2 Oct copy, `chunk-2/Chunk-2-design.dc.html`) | Superseded | Diffed against the current board: new frames W2r, W2k, W13c, I1d, W14 rows, R1N, R1Z and the 'Payment' step in the flow strip are all reflected in the proposals. |
 | Design MR_V2_2, Chunk 1 board (shared components) | CONFIRM labels + DIVERGE | Reading window (Enter mileage, CURRENT/NEW, Save the reading, In the shop), Mark complete modal ('Its readings are recorded: …'), Send email window (Send to, Preferred contact, Optional emails, No email, Add email, Email for …, Include your email to BCC, Hello,), toast 'Reminder sent to Dave Brabay', Last sent. D7 (modal subtitle). |
@@ -99,7 +101,7 @@ Status: **OK** quote still verbatim and the case still tests the whole anchor ·
 | S18-R16 | OK | C204167 | C204167 |
 | S18-R17 | GREW | C204168 | C204168, N12 |
 | S18-R18 | OK | C204164 | C204164 |
-| S18-R19 | UNCITED | — | N1 |
+| S18-R19 | UNCITED | — | C204124, C204125, C204126, C204127, C204128, C204131, C204180, C204181, C204182, C204183, C204184, C204185, C204186, N1, N17 |
 | S18-R20 | UNCITED | — | N2 |
 | S18-R21 | UNCITED | — | N3 |
 | S18-N1 | OK | C204167 | C204167 |
@@ -117,7 +119,7 @@ Status: **OK** quote still verbatim and the case still tests the whole anchor ·
 | S18-E5 | OK | C204166 | C204166 |
 | S18-E6 | OK | C204161 | C204161 |
 | S18-E7 | OK | C204162 | C204162 |
-| S18-E8 | OK | C204170, C204187 | C204170, C204187 |
+| S18-E8 | OK | C204170, C204187 | C204170 |
 | S10-R1 | HELD (D1) | C204102 | — (held, D1) |
 | S10-R2 | OK | C204102 | C204102 |
 | S10-R4 | OK | C204102 | C204102 |
@@ -134,15 +136,15 @@ Status: **OK** quote still verbatim and the case still tests the whole anchor ·
 | S10-N3 | OK | C204104 | C204104 |
 | S10-N4 | OK | C204103 | C204103 |
 | S10-N5 | OK | C204109 | C204109 |
-| S10-N6 | UNCITED | — | N7 |
+| S10-N6 | UNCITED | — | C204131, N7 |
 | S10-E1 | OK | C204110 | C204110 |
 | S10-E2 | OK | C204110 | C204110 |
-| S10-E3 | OK | C204110 | C204110 |
+| S10-E3 | OK | C204110 | C204110, C204127 |
 | S10-E4 | OK | C204110 | C204110 |
 | S11-R1 | OK | C204124 | C204124 |
 | S11-R2 | OK | C204125, C204180 | C204125, C204180 |
 | S11-R3 | OK | C204124 | C204124 |
-| S11-R4 | OK | C204126 | C204126 |
+| S11-R4 | OK | C204126 | C204126, C204183 |
 | S11-R5 | OK | C204126 | C204126 |
 | S11-R6 | OK | C204126 | C204126 |
 | S11-R7 | OK | C204127 | C204127 |
@@ -152,14 +154,14 @@ Status: **OK** quote still verbatim and the case still tests the whole anchor ·
 | S11-R10 | OK | C204131 | C204131 |
 | S11-R11 | OK | C204130 | C204130 |
 | S11-R12 | OK | C204132, C204184 | C204132, C204184 |
-| S11-R18 | OK | C204132 | C204132 |
+| S11-R18 | OK | C204132 | C204125, C204132 |
 | S11-R19 | CHANGED | C204126 | C204126 |
 | S11-R20 | OK | C204126 | C204126 |
 | S11-R21 | OK | C204181 | C204181 |
 | S11-R22 | OK | C204181 | C204181 |
-| S11-R23 | OK | C204126, C204183 | C204126, C204183 |
-| S11-R24 | OK | C204181 | C204181 |
-| S11-R25 | OK | C204133 | C204133 |
+| S11-R23 | OK | C204126, C204183 | C204126, C204183, C204185 |
+| S11-R24 | OK | C204181 | C204181, N17 |
+| S11-R25 | OK | C204133 | C204126, C204133 |
 | S11-R26 | OK | C204185 | C204185 |
 | S11-R27 | OK | C204133 | C204133 |
 | S11-R13 | OK | C204130 | C204130 |
@@ -178,14 +180,14 @@ Status: **OK** quote still verbatim and the case still tests the whole anchor ·
 | S12-R4 | OK | C204114, C204186 | C204114, C204186 |
 | S12-R5 | OK | C204111, C204186 | C204111, C204186 |
 | S12-R6 | OK | C204115 | C204115 |
-| S12-R7 | OK | C204111 | C204111 |
+| S12-R7 | OK | C204111 | C204111, C204186 |
 | S12-R8 | OK | C204115 | C204115 |
 | S12-R9 | OK | C204117 | C204117 |
 | S12-R10 | OK | C204116 | C204116 |
 | S12-R11 | OK | C204116 | C204116 |
 | S12-R12 | OK | C204117 | C204117 |
 | S12-R13 | OK | C204116 | C204116 |
-| S12-R14 | OK | C204118 | C204118 |
+| S12-R14 | OK | C204118 | C204118, N17 |
 | S12-N1 | OK | C204112 | C204112 |
 | S12-N2 | OK | C204112 | C204112 |
 | S12-E1 | OK | C204118 | C204118 |
@@ -198,7 +200,7 @@ Status: **OK** quote still verbatim and the case still tests the whole anchor ·
 | S19-R3 | CHANGED | C204172 | C204172 |
 | S19-R4 | OK | C204173 | C204173 |
 | S19-R5 | OK | C204174 | C204174 |
-| S19-R6 | CHANGED | C204174 | C204174 |
+| S19-R6 | CHANGED | C204174 | C204174, N9 |
 | S19-R7 | CHANGED | C204174 | N9 |
 | S19-R8 | OK | C204174 | C204174 |
 | S19-R9 | CHANGED | C204175 | C204175 |
@@ -235,7 +237,6 @@ Status: **OK** quote still verbatim and the case still tests the whole anchor ·
 | [C204105](https://shopview.testrail.io/index.php?/cases/view/204105) | A work order reading shows In the shop until invoiced or Mark complete | S10-R11 gained a sentence on 5 Oct: Mark complete on that work order also fixes the reading (S18-R19). Steps and results rewritten to cover it, with the payment-window warning testers need. In the shop wording from the Chunk 1 board frame P3. |
 | [C204106](https://shopview.testrail.io/index.php?/cases/view/204106) | Correct a wrong reading by entering the right one; the last one counts | Old step 'Open the audit / reading history' cannot be carried out: the 5 Oct answers record the audit with no screen in v1 (main page change log; Chunk 1 S21-N3). Rewritten so the hand-checkable part is checked and the audit part is plainly marked as not checkable by hand (Rule 114). |
 | [C204108](https://shopview.testrail.io/index.php?/cases/view/204108) | No reading is rejected; an implausible value asks to confirm, then saves | S10-N2 gained the implausible-value figures on 5 Oct (1,500 mileage / 24 engine hours a day). Rewritten with worked ceilings (Rule 116). |
-| [C204126](https://shopview.testrail.io/index.php?/cases/view/204126) | A usable pair, and the guards that drop pairs from the rate | S11-R19 was rewritten on 5 Oct: one ceiling of 1,500 mileage or 24 engine hours a day replaces 'what that class of unit can plausibly accrue'. The old steps also asked testers to 'create pairs' with dates they cannot set: the reading window records today only (Plan 1 testability note B5). Rewritten to use the loaded work-order history plus readings typed today; still depends on blocker B1 for exact dated histories. |
 | [C204136](https://shopview.testrail.io/index.php?/cases/view/204136) | Card sits in the asset card, collapsed, with a count badge and nothing else | S16-R2 gained 'It carries the badge alone, with no other text' on 5 Oct. The design (frame W2k) still shows 'Maintenance schedule' and '1 due': held as DIVERGE D2 inside the case rather than resolved from the build. |
 | [C204137](https://shopview.testrail.io/index.php?/cases/view/204137) | Expanded card: covered services fold in only under a listed coverer | S16-R3 changed on 5 Oct: covered services fold in only 'where that service is also listed, and otherwise kept on rows of their own'. Rewritten with one unit for each branch. |
 | [C204140](https://shopview.testrail.io/index.php?/cases/view/204140) | Add Service is a button on every row and opens the Add Service window | S16-R8 was rewritten on 5 Oct: Add Service is a button that opens the Add Service modal offering this work order or a new one (it was 'the existing inline add pattern'). Window labels from the Chunk 2 board frame W2a; the tech plan names them differently (DIVERGE D6). |
@@ -255,6 +256,20 @@ Status: **OK** quote still verbatim and the case still tests the whole anchor ·
 | [C204179](https://shopview.testrail.io/index.php?/cases/view/204179) | Setting off blocks every send; a send updates Last sent; no bounces | Old step 'Send a reminder and open the audit' cannot be carried out: no screen shows the audit in v1 (5 Oct answers). Rewritten so the audit part is plainly marked as not checkable by hand (Rule 114). Toast and Last sent wording from the Chunk 1 board frame B1r. |
 | [C204119](https://shopview.testrail.io/index.php?/cases/view/204119) | Work orders from a due service or Add Service show the Maintenance schedule | S22-R1 was rewritten on 5 Oct: a work order also carries the origin when Add Service added a service to it. The design capitalises the column as Maintenance Schedule (frame W14). |
 | [C204122](https://shopview.testrail.io/index.php?/cases/view/204122) | From maintenance filter: count and total of every matching work order | S22-R4 was rewritten on 5 Oct: a From maintenance filter and a count-and-total line ('Origin and value will be reportable together' is gone). Rewritten with a hand-computed total (Rule 116). Wording of the line from the spec and the Chunk 2 board frame W14. |
+| [C204180](https://shopview.testrail.io/index.php?/cases/view/204180) | Rate maths: last three usable pairs over the days they span (worked example) | Coordinator decision (B1): seed dated readings by hand through Mark complete On a work order. Dates chosen so the spec's own worked example (97.5 a day, due in March) is reproduced exactly, with an extra older pair that would move the month to April if it were used. |
+| [C204125](https://shopview.testrail.io/index.php?/cases/view/204125) | The rate uses the last three usable pairs; with one or two, all of them | Coordinator decision (B1): seeded dated readings replace 'Give the unit more than three usable pairs', which a tester could not do. Figures chosen so each branch gives a different whole weekly rate. |
+| [C204124](https://shopview.testrail.io/index.php?/cases/view/204124) | An estimate carries the last reading forward at the unit's own rate | Coordinator decision (B1): seeded readings give an exact expected estimate (Rule 116). Imported history cannot be created by hand, so that part is conditional on such a unit existing. |
+| [C204126](https://shopview.testrail.io/index.php?/cases/view/204126) | A usable pair, and the guards that drop pairs from the rate | S11-R19 was rewritten on 5 Oct (one ceiling of 1,500 mileage or 24 engine hours a day). Coordinator decision (B1): one seeded unit per guard plus a control, so each guard is seen on its own (Measured from N visits drops from 3 to 2). |
+| [C204127](https://shopview.testrail.io/index.php?/cases/view/204127) | Correcting a reading recomputes the rate at once | Old steps ('Build up a rate', 'Correct a reading somewhere earlier') could not be done by hand. Coordinator decision (B1): seeded readings; the correction is made on the work order that carries the reading (corrected in place, Plan 1 TD-06). Correcting an older reading is DIVERGE D17. |
+| [C204181](https://shopview.testrail.io/index.php?/cases/view/204181) | Confidence table: age of last reading × usable pairs, every cell | Coordinator decision (B1): one seeded unit per cell of the confidence table, so every cell is observed (Rule 116), plus the In the shop rule. |
+| [C204182](https://shopview.testrail.io/index.php?/cases/view/204182) | Confidence worked examples: visits and age together decide the grade | Coordinator decision (B1): each of the spec's worked examples is seeded literally ('the same unit fourteen months after' is reproduced as a second unit with the same visits shifted back six months, because a tester cannot wait). |
+| [C204183](https://shopview.testrail.io/index.php?/cases/view/204183) | A dropped pair lowers the usable-pair count and so the confidence | Coordinator decision (B1): seeded readings make the 'five visits, one bad pair' example exact. |
+| [C204184](https://shopview.testrail.io/index.php?/cases/view/204184) | Estimates round: mileage to the nearest 100, hours to the nearest 10 | Coordinator decision (B1): seeded readings give estimates that land between rounding steps, so rounding can be seen. |
+| [C204185](https://shopview.testrail.io/index.php?/cases/view/204185) | 24-month cut-off: readings older than two years give No data | Coordinator decision (B1): Reset dates more than 24 months back seed readings older than the cut-off; a second unit straddles it. |
+| [C204186](https://shopview.testrail.io/index.php?/cases/view/204186) | Due date: the earliest candidate wins; compliance is due on its End date | Coordinator decision (B1): seeded readings give an exact meter candidate; certificates with chosen Start dates put CVIP at each state on the day. |
+| [C204187](https://shopview.testrail.io/index.php?/cases/view/204187) | Next due counts from the Work done date chosen in the step, not the invoice | Old precondition 'you can seed exact dated readings' did not apply and the steps were abstract. Rewritten click by click; the Monday example (S18-E8) stays in C204170, so this case keeps one behaviour. |
+| [C204128](https://shopview.testrail.io/index.php?/cases/view/204128) | Confidence reads Low, Medium or High; No data is its own state | Coordinator decision (B1, 'where useful'): seeded units show each grade side by side; the old precondition ('has a mileage reading history') did not say how to reach each state. |
+| [C204131](https://shopview.testrail.io/index.php?/cases/view/204131) | Mileage and engine hours each carry their own confidence | Coordinator decision (B1, 'where useful'): one seeded unit whose two meters have different histories. |
 
 ## 4. New cases
 
@@ -267,15 +282,16 @@ Status: **OK** quote still verbatim and the case still tests the whole anchor ·
 | N5 | S18 — Complete a service and reset the cycle | The step cannot be reopened and its dates cannot be changed afterwards | S18-N8 is new on 5 Oct and no case cited it. |
 | N6 | S10 — Enter a reading | Past work order mileage is loaded as dated readings from the first day | S10-R12 is new on 5 Oct (no feature flag; past readings loaded once) and no case cited it. Which date a work order reading carries (invoice date, else start date) is stated only in the tech plan. |
 | N7 | S10 — Enter a reading | Mileage copied onto a new work order is not a reading | S10-N6 is new on 5 Oct and no case cited it. |
-| N8 | S19 — The customer reminder email (sent by hand) | A unit with nothing dated: the email says Nothing is scheduled yet | S19-R23 is new on 5 Oct and no case cited it. Reaching the contact card for a unit with nothing dated depends on it having a worklist row (blocker B2). Wording matches the Chunk 2 board frame R1Z. |
-| N9 | S19 — The customer reminder email (sent by hand) | Nothing due within 91 days: the email lists the next two as Coming up | S19-R7 was rewritten on 5 Oct (next two upcoming services as Coming up; Send reminder never disabled) and no case covered the new rule. Reachability of the contact card is blocker B2. Matches the Chunk 2 board frame R1N. |
+| N8 | S19 — The customer reminder email (sent by hand) | A unit with nothing dated: the email says Nothing is scheduled yet | S19-R23 is new on 5 Oct and no case cited it. Route to the contact card resolved from the spec (coordinator decision B2): Chunk 1 S13-N2 lists a compliance service with no record on the worklist, reading No record, while no tile is active. Wording matches the Chunk 2 board frame R1Z. |
+| N9 | S19 — The customer reminder email (sent by hand) | Nothing due within 91 days: the email lists the next two as Coming up | S19-R7 was rewritten on 5 Oct (next two upcoming services as Coming up; Send reminder never disabled) and no case covered the new rule. Route to the contact card resolved from the spec (coordinator decision B2): Chunk 1 S13-R36 lists every Needs readings row whatever its date. Whether that row itself rides in the email is DIVERGE D16. Matches the Chunk 2 board frame R1N. |
 | N10 | S22 — Origin reporting | Mark complete creates no work order and sets no maintenance origin | S22-N3 is new on 5 Oct and no case cited it. |
 | N11 | S22 — Origin reporting | A user who cannot open the schedule sees its name as plain text | S22-R2 gained this sentence on 5 Oct; its quote in the existing case still matched, so the new sentence was untested. |
 | N12 | S16 — The maintenance panel on a work order | After a reset Remove is gone; adding again re-attaches the lines still there | Two sentences added to S16-R25 on 5 Oct; the existing case's quote still matched, so they were untested. The tech plan (FD-211) differs on where Undo complete appears for a lines-added row (DIVERGE D5). |
 | N13 | S18 — Complete a service and reset the cycle | Reversing an invoice undoes its resets; services are proposed again | S18-E2 was rewritten on 5 Oct and now says reversal undoes the resets and re-proposes, and a credit memo changes nothing; the old case said the opposite. The reverse and credit memo actions' on-screen names are not in the spec or design. |
-| N14 | S18 — Complete a service and reset the cycle | A pending invoice voided by adding a line: services proposed again | S18-E3 was rewritten on 5 Oct (a voided pending invoice is treated like a reversal); the old case said 'A voided invoice is not a case'. How a tester leaves an invoice pending is blocker B3. |
+| N14 | S18 — Complete a service and reset the cycle | A pending invoice voided by adding a line: services proposed again | S18-E3 was rewritten on 5 Oct (a voided pending invoice is treated like a reversal); the old case said 'A voided invoice is not a case'. Pending-invoice route from the coordinator (decision B3): record a full payment, then reverse the payment, leaving the invoice pending. |
 | N15 | S16 — The maintenance panel on a work order | Part sales and imported work orders show no maintenance card or step | Rule 115 ADD from the tech plan: testable behaviour the spec does not state for part sales and imported work orders. |
 | N16 | S18 — Complete a service and reset the cycle | Every way of invoicing shows the step exactly once | Rule 115 ADD from the tech plan: the spec names the five paths that close a line, and the plan's Definition of Done requires every invoicing path to show the step exactly once. |
+| N17 | Numeric and date accuracy (Rule 116) | Confidence changes band exactly at 30/31, 90/91, 180/181 and 365/366 days | Rule 116 boundaries: the existing table case shows one unit inside each band; this case checks each band edge, using the seeding route (coordinator decision B1). |
 
 ## 5. Retire
 
@@ -373,6 +389,18 @@ None. No Chunk 2 behaviour was removed outright on 5 Oct. The reversed S18-E3 te
 - Question: Should a compliance row on the card read '14 Sep 2026 · Certificate' as on the asset tab (spec), or just the date (design)?
 - In the cases: C204138 keeps the spec quote; the build is judged against it.
 
+**D16 · Does a Needs readings row ride in the reminder email?** — affects N9
+- A: Chunk 2 MR S19-R6: “An email carries every service of the asset that the worklist shows: overdue, due today and due within the next 91 days, per S13-R36, whatever state each one is in”
+- B: Chunk 2 MR S19-R7 and Chunk 1 MR S13-R36 (the worklist lists every Needs readings row whatever its date): “Where none is, it carries the asset's next two upcoming services, each as Coming up, so Send reminder always has something to send and is never disabled for having nothing due. Nothing beyond those is included”
+- Question: A unit whose only worklist row is a Needs readings row with a far calendar date: does the email carry that row (the worklist shows it), or only the next two upcoming services (it is not overdue, due today or within 91 days)?
+- In the cases: N9 asserts the next two upcoming services and records, without judging, whether the Needs readings service appears.
+
+**D17 · How is an older reading corrected?** — affects C204127
+- A: Chunk 2 MR S10-R8 and S11-R7: “A wrong reading is corrected by entering the right one: the last value entered is the current reading, per S10-R10, and both values stay in the audit, per S21-R4 || The rate will never be cached incrementally. A correction anywhere in the history recomputes it”
+- B: Plan 1 §3.2 TD-06: “one row per (WO, meter), updated in place on each WO edit that changes the value (TD-34)”
+- Question: S11-R7 says a correction anywhere in the history recomputes the rate, but S10-R8 corrects only by entering the right value as the newest reading. Is changing the Mileage on an older work order the intended way to correct an older reading, and does it then stay dated as before and leave the current reading alone?
+- In the cases: C204127 corrects the latest reading only.
+
 ## 7. EXCLUDE
 
 | Item | Anchors | Why |
@@ -388,20 +416,26 @@ None. No Chunk 2 behaviour was removed outright on 5 Oct. The reversed S18-E3 te
 | Feature flag on/off behaviour | main page 'No feature flag' (5 Oct 2026) | There is no feature flag any more; nothing to test. Stale flag text in cases is a systemic correction (below). |
 | Accounting / webhook side effects of reversal | Plan 2 §3a | Internal integration events with no screen; the tester-visible part (resets undone, proposed again) is new case N13. |
 
-## 8. Systemic corrections and blockers
+## 8. Systemic corrections, flag-only cases and blockers
 
-- **SC1 — stale feature-flag precondition.** Main page, decided 5 October 2026: 'No feature flag.' The feature ships to every organization at release. A precondition telling testers to turn a flag on cannot be carried out. Found in **86 of 86** cases (“The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).” ×9; “The Maintenance Reminders feature is on (maintenance_reminders flag).” ×72; “Flag on.” ×3; “, maintenance_reminders flag on.” ×2). 24 are fixed by the updates above; **62 need the sentence removed and nothing else**: C204103, C204104, C204107, C204109, C204110, C204111, C204112, C204113, C204114, C204115, C204116, C204117, C204118, C204120, C204121, C204123, C204124, C204125, C204127, C204128, C204129, C204130, C204131, C204132, C204133, C204134, C204135, C204138, C204139, C204143, C204144, C204145, C204146, C204148, C204150, C204153, C204155, C204156, C204157, C204158, C204159, C204160, C204161, C204162, C204163, C204164, C204165, C204166, C204167, C204169, C204171, C204173, C204176, C204178, C204180, C204181, C204182, C204183, C204184, C204185, C204186, C204187.
-- **SC2 — the HOLD marker names the flag.** The instruction for this review is to use the mr2_lib.py HOLD marker exactly, and it names the flag that no longer exists. Used exactly as instructed in every proposal; this is a Rule 63 conflict for the QA lead to decide (suggested wording: 'AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build').
-- **SC3 — requirement ids in tester text** (not already fixed by an update): C204116: “You are signed in with View customers; a schedule has a service that NAMES other services as covered (per S2-R16), plus ”.
-- **B1 — Testers cannot create readings with past dates.** Plan 1 §7 testability note B5: the reading window records today's date only, and there is no way to back-date a reading. Older review question OQ-4 (Review Decisions Chunk one, page 892305428) asked the same. Plan 2 D2: a work order reading is dated by its invoice date, else its start date. Cases: C204124, C204125, C204126, C204127, C204180, C204181, C204182, C204183, C204184, C204185, C204186. Softer dependency (need a unit already in a given state): C204111, C204112, C204115, C204118, C204128, C204129, C204130, C204131, C204132, C204133, C204134, C204135. C204187 says 'you can seed exact dated readings' but needs no dated reading: its precondition sentence should simply be dropped. Routes found: Use units whose past invoiced work orders carry Mileage (loaded as dated readings on QA after each deploy, Plan 1 §7). / Mark complete On a work order with a past Reset date records that work order's readings dated the Reset date (S18-R19) — a possible way to plant one dated reading per work order; needs engineering to confirm it is safe for seeding. Ask: Engineering / QA lead: how should testers seed exact dated reading histories (for the worked examples of 97.5 a day, each confidence cell and the 24-month cut-off)? A data import of assets and work orders with history, or a back-office seed?
-- **B2 — Reaching the contact card for a unit with nothing on the worklist.** Send reminder lives on the contact card, which opens from worklist rows (main page component table). S19-R7 and S19-R23 describe units with nothing due within 91 days or nothing dated, which may have no worklist row. Ask: PO: how does an advisor reach Send reminder for such a unit?
-- **B3 — Leaving an invoice pending so it can be voided.** S18-E2: closing an unpaid invoice's payment window reverses it seconds after invoicing. S18-E3 needs a pending invoice that survives. Ask: QA lead / engineering: which shop set-up leaves an invoice pending on the QA branch?
-- **B4 — Labels the spec and design do not give.**  Items: the confirm button of the implausible-reading warning (plan: 'Save anyway'); the card's control for adding a compliance certificate; the notice for a service that has just become due (plan: 'Now due'; DIVERGE D11); the work order's split action, the asset merge action, the invoice reverse action and the credit memo action (existing app features); the invoicing permission name for a role; the 'Closed {date}' caption on a closed line (plan only). Cases describe the action in plain words and ask the tester to record the wording shown. 
-- **B5 — Design drive results not complete.** DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md exists but reads 'Status: IN PROGRESS' and holds no Chunk 2 findings yet (read in full, 13 lines, at 09:47). Its Chunk 2 discovery file was read for the board's hidden tooltip texts (31): every one matches the board text already used here (S16-R21 (i), S16-R23 line notes, S16-N7 (i), step (i), email notes). Its interaction logs were empty at the time. Ask: Fold the drive's final Chunk 2 findings into these proposals when it finishes.
+- **SC1 — stale feature-flag precondition (resolved).** Main page, decided 5 October 2026: 'No feature flag.' The feature ships to every organization at release. A precondition telling testers to turn a flag on cannot be carried out. Found in **86 of 86** cases (“The Maintenance Reminders feature is on for the shop (it ships behind the maintenance_reminders flag).” ×9; “The Maintenance Reminders feature is on (maintenance_reminders flag).” ×72; “Flag on.” ×3; “, maintenance_reminders flag on.” ×2). 37 are fixed inside the whole-case updates; **49 are in the `flag_only` list** of the JSON: preconditions with that one sentence dropped, nothing else changed, and the marker replaced.
+- **SC2 — marker (resolved).** Every proposal (updates, new and flag_only) now ends with our own marker text, not a quote: 'AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build'.
+- **SC3 — requirement ids in tester text (resolved).** C204116's “(per S2-R16)” becomes “(picked in that service's Services also covered step)” in its flag_only entry; every other occurrence was in a case now rewritten.
 
-## 9. Quote check (script: scratchpad `c2/verify.py`, run 6 Oct 2026)
+**Flag-only cases** (only the flag sentence removed and the marker replaced; steps, results, source line and quotes untouched):
 
-- **Proposals:** 87 quotes parsed from the HTML that would be written; **87 of 87 verbatim** in the cleaned source (Chunk 2 page anchor, Plan 2 text or main page text); every title ≤ 80 characters; marker exact, once, last; no requirement ids or flag text in tester-facing text. **Failures: 0.**
+[C204103](https://shopview.testrail.io/index.php?/cases/view/204103), [C204104](https://shopview.testrail.io/index.php?/cases/view/204104), [C204107](https://shopview.testrail.io/index.php?/cases/view/204107), [C204109](https://shopview.testrail.io/index.php?/cases/view/204109), [C204110](https://shopview.testrail.io/index.php?/cases/view/204110), [C204129](https://shopview.testrail.io/index.php?/cases/view/204129), [C204130](https://shopview.testrail.io/index.php?/cases/view/204130), [C204132](https://shopview.testrail.io/index.php?/cases/view/204132), [C204133](https://shopview.testrail.io/index.php?/cases/view/204133), [C204134](https://shopview.testrail.io/index.php?/cases/view/204134), [C204135](https://shopview.testrail.io/index.php?/cases/view/204135), [C204111](https://shopview.testrail.io/index.php?/cases/view/204111), [C204112](https://shopview.testrail.io/index.php?/cases/view/204112), [C204113](https://shopview.testrail.io/index.php?/cases/view/204113), [C204114](https://shopview.testrail.io/index.php?/cases/view/204114), [C204115](https://shopview.testrail.io/index.php?/cases/view/204115), [C204116](https://shopview.testrail.io/index.php?/cases/view/204116)*, [C204117](https://shopview.testrail.io/index.php?/cases/view/204117), [C204118](https://shopview.testrail.io/index.php?/cases/view/204118), [C204138](https://shopview.testrail.io/index.php?/cases/view/204138), [C204139](https://shopview.testrail.io/index.php?/cases/view/204139), [C204143](https://shopview.testrail.io/index.php?/cases/view/204143), [C204144](https://shopview.testrail.io/index.php?/cases/view/204144), [C204145](https://shopview.testrail.io/index.php?/cases/view/204145), [C204146](https://shopview.testrail.io/index.php?/cases/view/204146), [C204148](https://shopview.testrail.io/index.php?/cases/view/204148), [C204150](https://shopview.testrail.io/index.php?/cases/view/204150), [C204153](https://shopview.testrail.io/index.php?/cases/view/204153), [C204155](https://shopview.testrail.io/index.php?/cases/view/204155), [C204156](https://shopview.testrail.io/index.php?/cases/view/204156), [C204157](https://shopview.testrail.io/index.php?/cases/view/204157), [C204158](https://shopview.testrail.io/index.php?/cases/view/204158), [C204159](https://shopview.testrail.io/index.php?/cases/view/204159), [C204160](https://shopview.testrail.io/index.php?/cases/view/204160), [C204161](https://shopview.testrail.io/index.php?/cases/view/204161), [C204162](https://shopview.testrail.io/index.php?/cases/view/204162), [C204163](https://shopview.testrail.io/index.php?/cases/view/204163), [C204164](https://shopview.testrail.io/index.php?/cases/view/204164), [C204165](https://shopview.testrail.io/index.php?/cases/view/204165), [C204166](https://shopview.testrail.io/index.php?/cases/view/204166), [C204167](https://shopview.testrail.io/index.php?/cases/view/204167), [C204169](https://shopview.testrail.io/index.php?/cases/view/204169), [C204171](https://shopview.testrail.io/index.php?/cases/view/204171), [C204173](https://shopview.testrail.io/index.php?/cases/view/204173), [C204176](https://shopview.testrail.io/index.php?/cases/view/204176), [C204178](https://shopview.testrail.io/index.php?/cases/view/204178), [C204120](https://shopview.testrail.io/index.php?/cases/view/204120), [C204121](https://shopview.testrail.io/index.php?/cases/view/204121), [C204123](https://shopview.testrail.io/index.php?/cases/view/204123)  (* also SC3)
+
+- **B1 — Seeding readings with past dates: RESOLVED from the specification (coordinator decision).** S18-R19: Mark complete On a work order records that work order's mileage and engine hours as the asset's readings, dated the Reset date. A throwaway schedule 'ZZAUTOTEST Reading seed' holds one routine service per reading ('ZZ Seed 1', 'ZZ Seed 2', …, Every 12 months), enrolled with last service dates five years back so every seed row is overdue and shows on the work order card; for each reading, oldest first with rising values: New Work Order, type the mileage, Mark complete a seed service On this work order with Reset date = the reading's date; afterwards Remove from schedule. Also allowed: units whose past invoiced work orders already carry mileage (Plan 1 §7). Cases rewritten with exact seeded figures: C204124, C204125, C204126, C204127, C204180, C204181, C204182, C204183, C204184, C204185, C204186, C204128, C204131, C204187; new N17 (band edges). Not rewritten: C204111, C204112, C204115, C204118, C204129, C204130, C204132, C204133, C204134, C204135 — These need a unit already in some state (an estimate, No data, a Low date). They keep their wording (flag sentence removed); the recipe above, or a never-read unit for No data, meets their preconditions.
+- **B2 — Reaching the contact card for a unit with nothing on the worklist: RESOLVED from the specification.** Chunk 1 S13-R36 lists every Needs readings row whatever its date (N9 uses a mileage service with no reading); S13-N2 lists a compliance service with no record, reading No record, while no tile is active (N8). Whether the Needs readings row itself rides in the email is DIVERGE D16. Cases: N8, N9.
+- **B3 — Leaving an invoice pending so it can be voided: RESOLVED (coordinator route).** Create Invoice, record a full payment in New Customer Payment (do not just close it), then reverse that payment from the work order's payment history; the invoice stays unpaid and not sent. Cases: N14.
+- **B4 — Labels the spec and design do not give: KEPT: described in plain words; the tester records the wording shown; build verification confirms.** the confirm button of the implausible-reading warning (plan: 'Save anyway'); the card's control for adding a compliance certificate; the notice for a service that has just become due (plan: 'Now due'; DIVERGE D11); the work order's split action, the asset merge action, the invoice reverse action, the credit memo action and the payment-history reverse; the invoicing permission name for a role; the 'Closed {date}' caption on a closed line (plan only); 'New Customer Payment' and 'Payment Method' (existing payment window; given by the coordinator, not in spec or design).
+- **B5 — Design drive results: PENDING.** DESIGN-DRIVE-FINDINGS.md still reads 'IN PROGRESS' (1022 bytes); no final Chunk 2 findings to fold in yet.
+
+## 9. Quote check (script: `chunk2-scripts/verify.py`, run 6 Oct 2026)
+
+- **Proposals:** 133 quotes parsed from the HTML that would be written; **133 of 133 verbatim** in the cleaned source (Chunk 2 page anchor, Plan 2 text, Plan 1 text or main page text); every title ≤ 80 characters; marker exact, once, last; no requirement ids or flag text in tester-facing text. **Failures: 0.**
+- **Flag-only cases:** 49 of 49 differ from the live case only by the removed flag sentence (and C204116's id) and the new marker; updates and flag-only together cover all 86 cases exactly once.
 - **Live cases as they stand:** 190 quotes in 86 cases; **176 still verbatim, 14 CHANGED, 0 cite a vanished anchor.** CHANGED: C204126 S11-R19, C204137 S16-R3, C204140 S16-R8, C204142 S16-R12, C204152 S17-R1, C204170 S18-E2, C204170 S18-E3, C204172 S19-R3, C204174 S19-R6, C204174 S19-R7, C204175 S19-R9, C204177 S19-R19, C204119 S22-R1, C204122 S22-R4. Every CHANGED quote is replaced by an update.
 - Cleaning used for comparison: markdown marks (`**`, backticks, backslashes) removed, `->` read as `→`, whitespace collapsed; quotes split on '…' are checked part by part. Quotes keep the source's own words; only the markdown formatting marks are not reproduced.
 
@@ -450,13 +484,17 @@ Plan 1 lines 77–312 and P7 3599–3853 beyond their Chunk 2 hits (Chunk 1 tabl
 Chunk 2 hits (superseded history); the screenshots themselves (read through the screenshot reader's notes, as instructed); the design
 package's fonts, icons, styling code and archived boards (authorised skip, `AUTHORIZED-SKIPS-2026-10-06.md`).
 
-**Not driven:** the design itself was not driven by this review (another worker is driving it). Its Chunk 2 results are still to be folded in (blocker B5).
+**Not driven:** the design itself was not driven by this review (another worker is driving it). Its findings file still read "IN PROGRESS" when this
+revision was finished, so its Chunk 2 results are still to be folded in (blocker B5).
+
+**Scripts** (all in `chunk2-scripts/`, re-runnable from the repo): `gen.py` builds `chunk2-proposals.json` from `cases_upd.py`, `cases_new.py`,
+`cases_seed.py` and `registers.py` (quotes are copied from the saved sources and asserted word for word while building; seeded figures are computed and
+asserted); `verify.py` is the independent check (quotes parsed from the HTML that would be written, titles, marker, ids, flag text, flag-only diff, live
+quote re-check, anchor coverage) and writes `verify_out.json`; `mkmd.py` writes this file; `anchors.py`, `dump.py` and `show.py` are helpers.
+Run order: `python3 gen.py && python3 verify.py && python3 mkmd.py`.
 
 ## OUTSTANDING — what I need from you
 
-1. Approve or amend the 24 updates and 16 new cases before anything is written to TestRail (no write was made).
-2. Decide the HOLD marker wording (SC2): the mandated marker still names the removed feature flag.
-3. Approve removing the flag sentence from the 62 other cases (SC1) and the requirement id in C204116 (SC3).
-4. Send the 15 DIVERGE questions to the PO / engineering (D1–D15).
-5. Say how testers should seed dated reading histories (B1), reach the contact card for a unit with nothing on the worklist (B2) and leave an invoice pending (B3).
-6. Let me fold in the design drive's Chunk 2 findings when it finishes (B5).
+1. Approve or amend the updates, new cases and flag-only corrections before anything is written to TestRail (no write was made).
+2. Send the DIVERGE questions D1–D17 to the PO / engineering.
+3. Send me the design drive's final findings when it completes, to fold in (B5).

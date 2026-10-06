@@ -29,13 +29,17 @@ Plan 1 lines 77–312 and P7 3599–3853 beyond their Chunk 2 hits (Chunk 1 tabl
 Chunk 2 hits (superseded history); the screenshots themselves (read through the screenshot reader's notes, as instructed); the design
 package's fonts, icons, styling code and archived boards (authorised skip, `AUTHORIZED-SKIPS-2026-10-06.md`).
 
-**Not driven:** the design itself was not driven by this review (another worker is driving it). Its Chunk 2 results are still to be folded in (blocker B5).
+**Not driven:** the design itself was not driven by this review (another worker is driving it). Its findings file still read "IN PROGRESS" when this
+revision was finished, so its Chunk 2 results are still to be folded in (blocker B5).
+
+**Scripts** (all in `chunk2-scripts/`, re-runnable from the repo): `gen.py` builds `chunk2-proposals.json` from `cases_upd.py`, `cases_new.py`,
+`cases_seed.py` and `registers.py` (quotes are copied from the saved sources and asserted word for word while building; seeded figures are computed and
+asserted); `verify.py` is the independent check (quotes parsed from the HTML that would be written, titles, marker, ids, flag text, flag-only diff, live
+quote re-check, anchor coverage) and writes `verify_out.json`; `mkmd.py` writes this file; `anchors.py`, `dump.py` and `show.py` are helpers.
+Run order: `python3 gen.py && python3 verify.py && python3 mkmd.py`.
 
 ## OUTSTANDING — what I need from you
 
-1. Approve or amend the 24 updates and 16 new cases before anything is written to TestRail (no write was made).
-2. Decide the HOLD marker wording (SC2): the mandated marker still names the removed feature flag.
-3. Approve removing the flag sentence from the 62 other cases (SC1) and the requirement id in C204116 (SC3).
-4. Send the 15 DIVERGE questions to the PO / engineering (D1–D15).
-5. Say how testers should seed dated reading histories (B1), reach the contact card for a unit with nothing on the worklist (B2) and leave an invoice pending (B3).
-6. Let me fold in the design drive's Chunk 2 findings when it finishes (B5).
+1. Approve or amend the updates, new cases and flag-only corrections before anything is written to TestRail (no write was made).
+2. Send the DIVERGE questions D1–D17 to the PO / engineering.
+3. Send me the design drive's final findings when it completes, to fold in (B5).
