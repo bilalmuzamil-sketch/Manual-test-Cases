@@ -1,0 +1,21 @@
+import fs from 'fs'; import {ob,j} from './lib.mjs';
+// node cr2.mjs <tag> [acceptQty] [fee] [tax]
+const [tag,acc,fee,tax]=process.argv.slice(2); const R=JSON.parse(fs.readFileSync(`run-${tag}.json`));
+const s=await ob({vp:{width:1900,height:1000},dpr:2}); const P=s.page;
+await s.go('/parts/returns');
+const row=await P.evaluate(pn=>{const el=[...document.querySelectorAll('td,div,span')].filter(e=>e.children.length===0&&e.textContent.includes(pn)); if(!el.length) return null; const tr=el[0].closest('tr'); const cb=tr.querySelector('.q-checkbox'); cb.scrollIntoView({block:'center'}); const r=cb.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};},R.pn);
+await P.mouse.click(row.x,row.y); await P.waitForTimeout(1000);
+const b=P.locator('button',{hasText:'Receive Credit'}).first(); let bb=await b.boundingBox(); await P.mouse.click(bb.x+bb.width/2,bb.y+bb.height/2); await P.waitForTimeout(4000);
+const memo='ZZ10804-CM-'+tag; await P.fill('[data-test-id="input_credit_memo_number"]',memo);
+const setv=async(loc,v)=>{const e=loc; bb=await e.boundingBox(); await P.mouse.click(bb.x+bb.width/2,bb.y+bb.height/2); await P.keyboard.press('Control+A'); await P.keyboard.type(String(v)); await P.keyboard.press('Tab'); await P.waitForTimeout(800);};
+if(acc) await setv(P.locator('[data-test-id="input_received_quantity_0"]'),acc);
+if(fee) await setv(P.locator('[data-test-id="input_base"]').nth(0),fee);
+if(tax) await setv(P.locator('[data-test-id="input_base"]').nth(1),tax);
+const vals=await P.evaluate(()=>{const t=document.querySelector('[data-test-id="table_confirm_return_items"]').innerText; return t.replace(/\n+/g,' | ').slice(-260);});
+console.log('screen',vals);
+await P.screenshot({path:`${tag}-05-credit-before-post.png`});
+const pc=P.locator('[data-test-id="button_post_credit"]'); bb=await pc.boundingBox(); await P.mouse.click(bb.x+bb.width/2,bb.y+bb.height/2); await P.waitForTimeout(4000);
+console.log(s.writes.filter(w=>!/envelope|touch|quick-login/.test(w)).join('\n').slice(0,700));
+console.log('after',P.url());
+R.memo=memo; fs.writeFileSync(`run-${tag}.json`,JSON.stringify(R));
+await s.close();

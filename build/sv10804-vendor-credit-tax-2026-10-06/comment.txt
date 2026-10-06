@@ -1,0 +1,64 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on the QA branch [sv10360.qa.shopview.com|https://sv10360.qa.shopview.com] (build v26.40.8-1bc3b12) on 6 October 2026. 12 of 12 checks passed.
+* A vendor credit with tax now takes the tax back out of {{Sales Tax Expense}}.
+* {{Parts Inventory}} goes down by the part only, never by the tax.
+
+h3. Before and after
+
+!01-before-vs-after-hd.png|width=1662,height=596!
+_Before the fix the whole credit, tax included, came off Parts Inventory. After the fix the part comes off Parts Inventory and the tax comes off Sales Tax Expense._
+
+h3. What I checked
+
+||#||Check||Status||
+|1|The ticket's example: 2 parts at $85.50 returned to 5 Star Truck Repair (GST 5%). Credit C-13665, $179.55: Parts Inventory $171.00 and Sales Tax Expense $8.55.|PASSED|
+|2|A different tax rate: Asbury Park Truck Repair (HST BC 12%). Credit C-13666, $191.52: Parts Inventory $171.00 and Sales Tax Expense $20.52.|PASSED|
+|3|A vendor with no tax: Antioch Diesel & Fleet Repair. Credit C-13667, $171.00: one line to Parts Inventory, as before.|PASSED|
+|4|A $10.00 {{Restocking Fee}} on the credit. Credit C-13668, $169.05: Parts Inventory $161.00 and Sales Tax Expense $8.05.|PASSED|
+|5|Credit for 1 of the 2 parts ({{Accepted Quantity}} 1). Credit C-13669, $89.78: Parts Inventory $85.50 and Sales Tax Expense $4.28.|PASSED|
+|6|Tax typed by hand on the credit ($5.00 instead of $8.55). Credit C-13670, $176.00: Parts Inventory $171.00 and Sales Tax Expense $5.00.|PASSED|
+|7|A return made from {{Parts}} > {{Returns}} > {{Create Return}} (no work order), 2 × P550848. Credit C-13671, $112.39: Parts Inventory $107.04 and Sales Tax Expense $5.35.|PASSED|
+|8|A credit typed in on the vendor's page ({{New Credit}}, $50.00, no tax). Credit C-13672: one line to Parts Inventory, as before.|PASSED|
+|9|A tax with its own account: HST BC's {{Paid (bills)}} account pointed at a new account. The receipt and credit C-13673 both used that account for the $20.52.|PASSED|
+|10|Receiving a part still records its tax in Sales Tax Expense (receipts ZZ10804RCV-A, -B and -C).|PASSED|
+|11|The credit's own page lists the same two lines as its journal entry (Parts Inventory $171.00, GST $8.55).|PASSED|
+|12|The {{Sales tax detail}} report shows each credit as a minus tax line. Clicking a credit number opens that credit. Clicking a bill still opens the bill.|PASSED|
+
+h3. The ticket's example, step by step
+
+!02-credit-received-returned-hd.png|width=1544,height=1043!
+_The credit in ShopView, then the receipt and the return in AccountingHub. The $8.55 that went into Sales Tax Expense on receipt comes back out of it on return._
+
+!03-sales-tax-detail-hd.png|width=1191,height=593!
+_Every credit now shows on the Sales tax detail report under its tax code._
+
+h3. How to see it yourself
+
+Fastest way: open [credit C-13665|https://sv10360.qa.shopview.com/accounting/purchases/credits/01a1119a-0056-714e-aaee-3d1b823fd858] and click {{Journal entry}} *#13732*.
+
+To make a new one:
+# Open [sv10360.qa.shopview.com|https://sv10360.qa.shopview.com] as Admin, location {{Staging Heavy Duty - 9919}}.
+# Open work order *S2-17435*.
+# Under any line's {{Parts}}, click {{+ Add Part}}.
+# Click {{More options}}.
+# Pick vendor *5 Star Truck Repair*, quantity 2, cost 85.50.
+# Click {{Save Part}}.
+# Click {{Order}} on the part's row.
+# Click {{Receive}}, enter a {{Vendor Invoice Number}}, tick the part and click {{Receive Parts (1)}}.
+# Click the part's {{⋮}} > {{Return}}, enter a {{Return Reason}} and {{Quantity}} 2, then click {{Save & Close}}.
+# Go to {{Parts}} > {{Returns}}, tick the part's row and click {{Receive Credit}}.
+# Enter a {{Credit Memo Number}} and click {{Post Credit}}.
+# Click {{ShopHub}} > {{AccountingHub}} > {{Vendor credits}}, open the new credit and click its {{Journal entry}}.
+
+Expected:
+* {{1300 Parts Inventory}} is credited the part only ($171.00).
+* {{6110 Sales Tax Expense}} is credited the tax ($8.55).
+
+Note: AccountingHub had not been started on this branch, so I started it as of 6 October first ({{Settings}} > {{Onboarding sync}} > {{Go live}}).
+
+h3. What I could not check
+
+Production has no AccountingHub, so the "before" picture comes from staging (2 October, credit C-13808), the same flow at the same 5% rate.

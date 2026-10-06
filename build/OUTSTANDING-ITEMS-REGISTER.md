@@ -57,7 +57,14 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-06, ~03:15 UTC. **SV-10323 POSTED: PARTIALLY PASSED (77936) + A QUESTION TO NEMANJA (77937); FULLY PASSED ONCE HE ANSWERS.**
+## ⚠️ NEWEST — 2026-10-06, ~14:55 UTC. **SV-10804 POSTED: PASSED (comment 77983), 12 of 12 checks, on sv10360 `v26.40.8-1bc3b12`.**
+
+| # | What I need | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| 1 | Do you want a technical details section on SV-10804's comment 77983? (journal-entry numbers, credit ids, PR heads, endpoints) | You (QA lead) | Nothing — posted without one per Rule 84; can be added in place | 2026-10-06 |
+| 2 | Do you want the three cost-routing observations (part cost leaves Parts Inventory though it came in through Parts COGS; restocking fee has no Restocking Fees line; a manual vendor credit goes to Parts Inventory) mentioned on SV-10804 or on SV-10370? All three are SV-10370 scope (Open), not this ticket. | You (QA lead) | Nothing on SV-10804 | 2026-10-06 |
+
+## ⚠️ PREVIOUS — 2026-10-06, ~03:15 UTC. **SV-10323 POSTED: PARTIALLY PASSED (77936) + A QUESTION TO NEMANJA (77937); FULLY PASSED ONCE HE ANSWERS.**
 
 | # | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|---|

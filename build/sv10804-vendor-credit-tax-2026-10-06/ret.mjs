@@ -1,0 +1,16 @@
+import fs from 'fs'; import {ob,j} from './lib.mjs';
+const R=JSON.parse(fs.readFileSync(`run-${process.argv[2]}.json`)); const qty=process.argv[3]||'2';
+const s=await ob({vp:{width:1700,height:1000},dpr:2}); const P=s.page;
+await s.go('/workorders/'+R.wo+'/lines');
+const loc=()=>P.evaluate(pn=>{const el=[...document.querySelectorAll('*')].find(e=>e.children.length===0&&e.textContent.trim()===pn); if(!el) return null; const tr=el.closest('tr'); const b=tr.querySelector('[data-test-id^="button_part_context_menu_"]'); b.scrollIntoView({block:'center'}); const r=b.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2,id:b.getAttribute('data-test-id')};},R.pn);
+await loc(); await P.waitForTimeout(400); const m=await loc(); console.log('menu',j(m));
+await P.mouse.click(m.x,m.y); await P.waitForTimeout(1200);
+const items=await P.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.trim())); console.log('items',items.join(' | '));
+const it=P.locator('.q-menu .q-item',{hasText:/^Return$/}).first(); let bb=await it.boundingBox(); await P.mouse.click(bb.x+bb.width/2,bb.y+bb.height/2); await P.waitForTimeout(1500);
+await P.fill('[data-test-id="input_return_reason"]','ZZAUTOTEST SV-10804 run '+R.tag).catch(async()=>{const e=P.locator('[data-test-id="input_return_reason"]'); bb=await e.boundingBox(); await P.mouse.click(bb.x+bb.width/2,bb.y+bb.height/2); await P.keyboard.type('Incorrect'); await P.keyboard.press('Enter');});
+await P.fill('[data-test-id="input_return_quantity"]',qty);
+const dl=await P.evaluate(()=>document.querySelector('.q-dialog')?.innerText.replace(/\n+/g,' | ')); console.log('dialog',dl.slice(0,400));
+await P.screenshot({path:`${R.tag}-04-return-dialog.png`});
+const c=P.locator('[data-test-id="button_confirm_dialog"]'); bb=await c.boundingBox(); await P.mouse.click(bb.x+bb.width/2,bb.y+bb.height/2); await P.waitForTimeout(3000);
+console.log(s.writes.filter(w=>!/envelope|touch|quick-login/.test(w)).join('\n').slice(0,600));
+await s.close();
