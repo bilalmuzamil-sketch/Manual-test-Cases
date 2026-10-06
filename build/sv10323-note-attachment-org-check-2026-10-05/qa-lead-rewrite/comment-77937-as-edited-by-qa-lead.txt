@@ -1,0 +1,33 @@
+[~accountid:712020:8f740284-c818-4164-82d3-e6f98ccbba71] 
+
+*Should a Technician see the* {{For Customer}} *checkbox as disabled, or is it intentionally hidden?*
+
+Currently, a Technician with *view-only Work Order access* can see the file, but the {{For Customer}} checkbox is not shown at all.
+
+A Sales Representative with view-only access sees the same checkbox *disabled*.
+
+*Steps to Reproduce*
+
+# Open {{sv9667.qa.shopview.com}} using the *Tech* quick-login.
+# Open Work Order *S2-17414*.
+# Go to *Notes*.
+# Check any attached file.
+
+*Actual Result*
+The file is visible, but there is no {{For Customer}} checkbox.
+
+*Spec Reference*
+Spec rule *S10-R5b*:
+
+{quote}_"A user who can only view the record sees the checkbox disabled, so they can still tell which files the customer sees."_{quote}
+
+*QA Checklist Reference*
+The QA checklist also names the Technician as the view-only user, with:
+
+{quote}_"the switch is disabled"_{quote}
+
+Production behaves the same way today, so this was *not introduced by this change*.
+
+This is the only remaining open point on the ticket. I’m keeping it *Partially Passed* until we confirm whether this behavior is expected and, if not, whether it should be included in this fix.
+
+!03-technician-no-box-vs-greyed-out-hd.png|width=900,height=617!

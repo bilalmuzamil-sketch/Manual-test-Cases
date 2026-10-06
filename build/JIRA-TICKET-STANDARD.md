@@ -168,3 +168,31 @@ Keep it to: the mention · a title · **What's happening** (one line per issue, 
 - Green *"OVERALL QA STATUS: PASSED"* only when every point is verified fixed.
 - **Every item reported, including questions to the QA lead about a possible fault:** one line of what is happening · an annotated screenshot · plain steps to reproduce. No paragraphs. POs want to see it, reproduce it and assign it — nothing more (Rule 97(f)).
 - **Remaining-issues comment layout (Rule 97(g)):** TOP = the PO's latest ask (linked), each failing item as one line + annotated screenshot + steps, then what it should be quoting the PO · `----` · BELOW = other items the QA lead approved, same form. Nothing below the line without his yes.
+
+## 10. How a QA comment is WRITTEN — the SV-10323 model (the QA lead's own rewrite, 2026-10-06)
+The QA lead rewrote my two SV-10323 comments himself and said: *"I expect you to keep your comments simple and
+replicatable/runnable/understandable like this."* His versions are saved word for word in
+`build/sv10323-note-attachment-org-check-2026-10-05/qa-lead-rewrite/` — **copy that shape.**
+
+**What he changed, and what I do from now on:**
+1. **One idea per line.** No sentence carries two facts. Long sentences became bullets or separate lines.
+2. **The summary under the verdict panel is a short lead-in + bullets:** *"The main fix is working:"* then one bullet per
+   result. No scope sentence (branch, build, check count) up there — that stays in the "How to see it yourself" part.
+3. **Every reason is its own heading** — *"Why this is still Partially Passed"* — not a bold phrase inside a paragraph.
+4. **Every source is quoted as a quote block on its own, introduced by who said it and where:**
+   *"Nemanja stated in comment 77887:"* + `{quote}…{quote}`; *"Notifications Update V1 (version 27), S10-R5b states:"* +
+   `{quote}…{quote}`. Never a quote buried inside a sentence.
+5. **The finding is one sentence, with the key words in bold** — *"a **Technician with view-only Work Order access sees
+   no** `For Customer` **checkbox at all**."*
+6. **On-screen labels in monospace** — `{{For Customer}}` — so the reader can find the exact word on screen.
+7. **Steps: one action per step.** *Open S2-17414* · *Go to Notes* · *Check any attached file* — never two clicks in one
+   step.
+8. **A question to a developer is laid out in labelled blocks, in this order:** the mention → **the question in bold** →
+   *Currently, …* (one line) → the comparison (one line) → **Steps to Reproduce** → **Actual Result** → **Spec Reference**
+   (quote) → **QA Checklist Reference** (quote) → was it introduced by this change? (one line) → the status and what closes
+   it → **the screenshot last**.
+9. **Plain, polite business English** — *"I asked Nemanja for clarification in comment 77937 on whether this is
+   intentional."* · *"Once that is confirmed, and fixed if required, the ticket can be marked fully passed."*
+
+**The test before posting:** could a PO who has never seen the feature read each line on its own, follow the steps
+without asking anything, and see the source of every "should"? If a line needs re-reading, split it.

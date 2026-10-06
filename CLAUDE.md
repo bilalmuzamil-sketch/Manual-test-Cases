@@ -5487,6 +5487,11 @@ regression / bug-fix re-testing.
   are the DEFAULT requirements for any comparison file unless the user overrides.
 
 ## Deliverable conventions the user likes
+- **HOW A QA COMMENT READS — copy the QA lead's own rewrite of SV-10323 (2026-10-06, `build/JIRA-TICKET-STANDARD.md` §10):**
+  one idea per line · a short lead-in + bullets under the verdict · each reason its own heading · every source as its
+  own quote block ("X stated in …:") · on-screen labels in `{{monospace}}` · one action per step · a developer question in
+  labelled blocks (question · currently · steps · actual result · spec ref · checklist ref · introduced-by-this? · status),
+  screenshot last.
 - **A FAILED ITEM IS WRITTEN AS A REPRODUCTION, NOT AS EVIDENCE (Standing Rule 83, QA-lead ruling
   2026-09-17).** In any QA comment or ticket, the failing part follows a fixed order: **(1)** a concise
   description of *what is happening and where* (one or two lines, never a paragraph) · **(2) Steps of
