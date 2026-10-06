@@ -20,8 +20,8 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     trigger phrases, kickoff prompt, originating-instructions+corrections, exact deliverable
     format (mirror 1:1, canonical example path), numbered steps, reusable generator/tooling,
     guardrails, honesty notes; (4) carry a human-readable filename (Rule 19); (5) get a row
-    added to build/PROCESS-CATALOG.md in the SAME turn; (6) be indexed in this CLAUDE.md and
-    shared with the other session; (7) end by telling the user the name + how to call it and
+    added to build/PROCESS-CATALOG.md in the SAME turn; (6) be indexed in this CLAUDE.md (it is this session's own
+    procedure — other sessions keep their own, and only facts pass between sessions, Rule 98); (7) end by telling the user the name + how to call it and
     offering a dry-run. **The full checklist is build/PROCESS-AUTHORING-STANDARD.md.** The
     canonical index of all callable processes is **build/PROCESS-CATALOG.md** (read it to
     pick/name a process for any project). Ties to Standing Rules 16/17/18/19.

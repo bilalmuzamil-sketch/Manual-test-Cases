@@ -71,7 +71,7 @@ A finding that belongs to another lane is **written up and handed back**, never 
 
 ---
 
-## The MAIN session stays the brain
+## The MAIN session holds the cross-project picture — facts, not rules
 
 The main session (the one that produced these handoffs) holds the **cross-project state** — which
 projects are active, what each is waiting on, which rulings are in force, where each suite stands —
@@ -79,10 +79,10 @@ and it is the only session that consolidates that picture.
 
 **Rule/skill changes are never made unilaterally by a lane session.** Under **Rule 72**, a lane
 session that believes a rule or a skill should change **proposes it to the QA lead** — states what it
-found, what it thinks should change and why — and waits. It does not edit `CLAUDE.md`, it does not edit
-a skill file to suit its own pass, and it does not quietly work to a rule it has decided is wrong.
-Durable learnings go back through the main session so both the shared brain (`CLAUDE.md`, the process
-docs, the playbook) and the other lanes pick them up.
+found, what it thinks should change and why — and waits. Until he approves, it does not edit its `CLAUDE.md` or a skill file, never edits one to suit its own
+pass, and does not quietly work to a rule it has decided is wrong. **Once approved, each session records
+the change in its OWN copy; no session takes rules from another's** (Rule 98). Only FACTS — the playbook,
+each `PROJECT-STATE.md`, the `BLOCKED-*.md` files — pass between sessions.
 
 ---
 

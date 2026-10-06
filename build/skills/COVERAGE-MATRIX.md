@@ -138,6 +138,7 @@ WORTH:**
 | R50 | The creation hold is **JIRA TICKETS ONLY** — `add_case` permitted and expected | R62 corrected, 08-11 | `00` §11.1 | PRESENT |
 | R51 | *"anything that stops you from creating/updating a test case You MUST let me know"* | R62, 08-11 | `00` §11.1/§13, `07` | PRESENT |
 | R52 | The hold **re-stated 2026-08-12**; the new bar is **for the future**, not a signal to file | R62/R52, 08-12 | `00` §11.1, `06` | **ADDED** |
+| R98 | **Follow only your own rule book** — facts may be shared between sessions, rules never; don't compare, merge or renumber rule books; handed-over work is taken as delivered; confirm the checkout is your own pushed copy before acting | QA lead 2026-10-06 (verbatim; approval to record given in the same message) | `CLAUDE.md` §1 + §6, `RULES-61-97.md` Rule 98, `00`, `13`, handoffs | **ADDED** |
 
 ---
 
