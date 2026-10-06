@@ -3088,3 +3088,22 @@ format rule was amended (CLAUDE.md §5 and full Rule 61) to allow the trailing a
 render-repair tool was updated so it no longer flags a note after the marker. The marker is still the
 single machine literal the automation counter reads, and the counter is position-independent, so the
 count is unaffected.
+
+## 2026-10-06 — Maintenance Reminders source update (Chunk 1 group 19397 · Chunk 2 group 26635)
+Both suites updated to the 6 Oct specification, Plan 1 + Plan 2 and design MR_V2_2 (record:
+`build/maintenance-reminder-v2/PROJECT-STATE.md`). Open items, each with its solution:
+- **MR-1 · Build verification of all 209 touched cases** — no Maintenance Reminders QA build exists yet. **Solution:**
+  hand the case list to the build verification session (L7) once a build is named; until then every case is marked
+  `AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build`.
+- **MR-2 · 27 PO questions for Milos Vasic** — `build/maintenance-reminder-v2/source-update-2026-10-06/Maintenance-Reminders_Questions-for-Milos-Vasic_2026-10-06.{xlsx,docx}`.
+  **Solution:** the QA lead sends it (Rule 66: last); answers are applied to the cases listed per question in the
+  QA-internal notes file. Requirement S10-R1 stays uncovered until "Work order maintenance card #3" is answered.
+- **MR-3 · 14 places where the engineers' tech plans contradict the specification or the design** — listed in the
+  QA-internal notes file. **Solution:** the QA lead passes them to engineering; the cases already follow the
+  specification/design (ruling of 12 Aug 2026), so no case waits on this.
+- **MR-4 · Designer notes** — 35 "Create work order" links on the Chunk 1 board point at a Chunk 2 screen that does
+  not exist, plus three design gaps (remove-service confirmation, turning notifications off, two wordings of one
+  hover). **Solution:** the QA lead forwards the QA-internal notes "FOR THE DESIGNER" block; nothing in the cases waits.
+- **MR-5 · Three possible extra PO questions not on the sheet** (field length limits from Plan 1, a service-contents
+  hover implied by Plan 2, what happens to today's older maintenance screens). **Solution:** say "add them" and they
+  go on the sheet as questions 28–30 before it is sent.

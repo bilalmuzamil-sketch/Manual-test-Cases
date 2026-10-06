@@ -1,0 +1,589 @@
+{
+ "path": "/home/user/Manual-test-Cases/build/maintenance-reminder-v2/source-update-2026-10-06/Maintenance-Reminders_Questions-for-Milos-Vasic_2026-10-06.xlsx",
+ "title": "MAINTENANCE REMINDERS (Chunk 1 and Chunk 2) — questions for Milos Vasic, 6 October 2026",
+ "intro": "On 6 October 2026 we compared the two Maintenance Reminders description pages (Chunk 1: Settings, the asset and the reminders list; Chunk 2: the work order and the customer) with the design boards and the engineers’ plans. Almost everything agrees. The rows below are the places where they say different things and we cannot tell which one you intend. None of them is a bug report — nothing here has been built and tested yet. Each sheet covers one part of the feature. Please answer in the last column, or in a message as the sheet name, the number and a letter, for example “Maintenance reminders list 2: A”. A few words is plenty.",
+ "sheets": [
+  {
+   "name": "Schedules in Settings",
+   "rows": [
+    {
+     "topic": "Maintenance Reminders — Settings, Maintenance (schedules): which services a bigger service covers",
+     "now": "The description says a service covers another one only when the shop picks it; it is never worked out from the interval or from lines the two share. The design’s help text (the “i” beside “Services” in the schedule editor) says the opposite: “A service of larger scope includes the work of every smaller routine service, so one visit clears both.”",
+     "question": "Does a bigger service cover the smaller ones automatically, or only the ones the shop picks for it?",
+     "options": "A) Only the ones the shop picks — the help text in the design will be reworded\nB) Automatically — every smaller routine service in the same schedule is covered, and the description will be changed\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — Settings, Maintenance (schedules): services that repeat every 3 years",
+     "now": "The description says a calendar interval longer than 12 months must be typed in days, and days stop at 999 (about 2 years and 9 months). So a service due every 3 years cannot be set at all. The design’s sample schedule has one set to “Every 36 months”, although the design’s own interval box elsewhere also allows only 1 to 12 months.",
+     "question": "Should a shop be able to set a service that repeats every 3 years (or longer) on the calendar?",
+     "options": "A) Yes — allow more than 12 months (please give the highest number of months: ........)\nB) Yes — keep months at 12, but raise the days limit above 999 so it can be typed in days\nC) No — 3-year services are not supported in this version; the sample in the design will be corrected\nD) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — Settings, Maintenance (schedules): typing a decimal or a minus sign into a number box",
+     "now": "The description says two different things. One sentence: number boxes accept digits only, so a decimal point or a minus sign simply does not go in and there is no message. Another sentence: zero is refused with a message “on the same rule as a decimal and a negative”. The design draws a message for a decimal: typing 1.5 shows “Enter a whole number.”",
+     "question": "When someone types 2.5 or -3 into an interval box, what should happen?",
+     "options": "A) The “.” or “-” does not go in at all, so there is no message (only zero gets a message)\nB) The characters go in and a message appears under the box, as the design draws (“Enter a whole number.”)\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — Settings, Maintenance (schedules): copying one service inside a schedule",
+     "now": "In the design, the menu on a service row in the schedule editor offers “Edit service”, “Duplicate” and “Remove service”. The description says a service can be edited or removed, and says nothing about duplicating one. (Duplicating a whole schedule is in the description already; this is about one service inside a schedule.)",
+     "question": "Should a service in a schedule have a “Duplicate” option?",
+     "options": "A) Yes — keep “Duplicate”; it makes a copy of that service in the same schedule (please say what the copy is called: ........)\nB) No — only edit and remove; “Duplicate” comes out of the service menu\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — Settings, Maintenance (schedules): moving a compliance inspection in the list",
+     "now": "The description says every service in a schedule can be moved by dragging, or with Move up / Move down. In the design, a compliance inspection row cannot be moved; its tooltip says it “has no place in the routine ladder … so there is no position to move it to.”",
+     "question": "Can a compliance inspection be moved up or down the list of services?",
+     "options": "A) No — compliance inspections stay where they are, as the design shows\nB) Yes — every service can be moved, compliance inspections included\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — Settings, Maintenance (schedules): the “New schedule” button",
+     "now": "The button on the list of schedules reads “New schedule” in the description and “New Schedule” (capital S) in the design.",
+     "question": "Which spelling should the button use?",
+     "options": "A) “New schedule”\nB) “New Schedule”\nC) Whichever matches the app’s other “New …” buttons"
+    }
+   ]
+  },
+  {
+   "name": "Asset Maintenance tab",
+   "rows": [
+    {
+     "topic": "Maintenance Reminders — the asset’s Maintenance tab: four wording differences",
+     "now": "The description and the design use different words in four places:\n(a) A unit on no schedule. Description: “This unit is not on a maintenance schedule”. Design: “Not on a maintenance schedule”.\n(b) The button that puts it on one. Description: “Enroll in Schedule” (also on the work order’s maintenance card). Design: “Enroll in a schedule” (on the tab, on the work order card, and as the title of the window it opens).\n(c) A compliance inspection with no certificate recorded. Description: “No record”. Design: “Certificate unknown” on the tab, “no certificate on file” in the enrolment window.\n(d) The button to add a certificate. Description: “+ Add record”. Design: “Add history record” (also the form’s title and its confirmation).",
+     "question": "For each of (a) to (d), whose words should the screen use?",
+     "options": "A) The description’s words for all four\nB) The design’s words for all four\nC) Mixed — please write the letter and the side, e.g. “a: design, b: description, c: design, d: description”"
+    },
+    {
+     "topic": "Maintenance Reminders — the asset’s Maintenance tab: is a certificate’s term required?",
+     "now": "The description says a certificate record needs its term plus at least one of its two dates, and cannot be saved without the term. The design’s help text beside “Term” on the record form says: “Any two of term, Start date and End date give the third.” That would let someone save a Start date and an End date with no term.",
+     "question": "Must every certificate record have a term?",
+     "options": "A) Yes — the term is always required; the help text will be reworded\nB) No — any two of term, Start date and End date are enough, and the system works out the third\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the asset’s Maintenance tab: what sits under an estimated due month",
+     "now": "For a due date estimated from mileage or engine hours, the description puts a small confidence meter and a word (High, Medium or Low confidence) under the month, and keeps the reason (for example “based on mileage estimate”) inside the meter’s hover. The reminders list follows the same rule. The design’s desktop asset tab instead prints “Based on mileage estimate” under the month, with no meter.",
+     "question": "What should appear under an estimated month on the asset’s Maintenance tab?",
+     "options": "A) The meter and the confidence word, with the reason in the hover (as described)\nB) The reason as plain text, with no meter (as drawn)\nC) Both — the meter and the word, and the reason as plain text\nD) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the asset’s Maintenance tab: how the confidence hover ends",
+     "now": "The description says the confidence meter’s hover always ends with: “This is the system’s best estimate from this unit’s past readings. Check its history if in doubt.” and has a “View work orders” link beside it that opens the asset’s Work Orders tab. The design’s hovers (desktop and phone) end with other explanations, and no screen in the design shows “View work orders”.",
+     "question": "Should the hover end with that sentence and offer “View work orders”?",
+     "options": "A) Yes — both the sentence and the link, as described\nB) The sentence only, without the link\nC) Neither — the design’s hover text is what you want\nD) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the asset’s Maintenance tab and the work order card: how a certificate’s due date reads",
+     "now": "The description says a due date that comes from a certificate is written as its End date followed by “Certificate”, for example “14 Oct 2026 · Certificate”, and that the work order’s maintenance card uses the same words as the asset tab. The design writes the date with “Based on the certificate term” under it on the asset tab, and the date alone on the work order card (for example “CVIP · Due 14 Sep 2026”).",
+     "question": "How should a certificate’s due date read on the asset tab and on the work order card?",
+     "options": "A) “14 Oct 2026 · Certificate” on both, as described\nB) As the design draws it — “Based on the certificate term” under the date on the tab, and the date alone on the card\nC) Not sure — please check with the engineers"
+    }
+   ]
+  },
+  {
+   "name": "Maintenance reminders list",
+   "rows": [
+    {
+     "topic": "Maintenance Reminders — the maintenance reminders list: four wording differences",
+     "now": "The description and the design use different words in four places on the list:\n(a) The column showing due soon / due today / overdue. Description: “Due status” (chosen so it never reads as the work order’s own status). Design: “Status”.\n(b) The third summary tile. Description: “Due in 3 months”. Design: “Due in three months”.\n(c) The table when nothing falls in the next three months. Description: it says nothing is due in the next three months. Design: “Nothing is due.”\n(d) The hover on a Contact button when there is no phone or email. Description: “No phone or email on file”. Design: “Contact · no phone or email on file”.",
+     "question": "For each of (a) to (d), whose words should the list use?",
+     "options": "A) The description’s words for all four\nB) The design’s words for all four\nC) Mixed — please write the letter and the side, e.g. “a: description, b: design …”"
+    },
+    {
+     "topic": "Maintenance Reminders — the maintenance reminders list: sorting on a phone",
+     "now": "The description says the list is sorted only by clicking a column heading, and that there is no separate sort control. The design’s phone layout has no column headings and shows a “Sort: Due, soonest first” control instead.",
+     "question": "How does someone sort the reminders list on a phone?",
+     "options": "A) With the “Sort” control the phone design shows (the “no sort control” rule is for the desktop list)\nB) They cannot — on a phone the list is always soonest due first, with no control\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the maintenance reminders list: a reminder whose work order is still open",
+     "now": "The description says that once a live work order is linked to a reminder, the row’s “Create work order” button becomes “Open work order”. In the design, rows whose work order is at Estimate or In progress show only the work order number as a link and the “Contact” button — no “Open work order” button.",
+     "question": "When a reminder’s work order is still open, does the row show an “Open work order” button?",
+     "options": "A) Yes — “Open work order” takes the place of “Create work order”, as described\nB) No — the work order number link is enough, as drawn\nC) Not sure — please check with the engineers"
+    }
+   ]
+  },
+  {
+   "name": "Contact card and email",
+   "rows": [
+    {
+     "topic": "Maintenance Reminders — the contact card on the reminders list: which phone numbers it shows",
+     "now": "The description says the contact card shows the contact’s telephone and mobile, then the customer’s company telephone, each with its own label. The design shows a single phone number, labelled with the person’s name and role (for example “Dave Brabay · owner”).",
+     "question": "Which phone numbers should the contact card show?",
+     "options": "A) All three, each labelled, as described\nB) One number only, as drawn (please say which one: ........)\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the contact card: an asset with no preferred contact",
+     "now": "The description says the card then shows an empty state “with an action to set one”. The engineers read that as “Set contact” — choose one of the customer’s existing contacts. The design shows “Add contact information”, which opens a form for a brand-new contact.",
+     "question": "What should the action on an asset with no preferred contact do?",
+     "options": "A) Pick one of the customer’s existing contacts\nB) Add a brand-new contact, as drawn\nC) Both — pick an existing contact or add a new one\nD) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the reminder email: High or Medium confidence dates",
+     "now": "The description says each row of the email shows its due month where the date is sound, and “Soon” where the date would be a guess, including every Low confidence date. The engineers have assumed that every date estimated from mileage or engine hours counts as a guess — so High and Medium confidence dates would also read “Soon”. The engineers raised this on the description’s comment thread on 5 October; if you have already answered it there, just write “answered on the thread”.",
+     "question": "In the reminder email, does a High or Medium confidence estimate show its month, or “Soon”?",
+     "options": "A) Its month — only Low confidence dates read “Soon”\nB) “Soon” — every date estimated from readings reads “Soon”, whatever its confidence\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the reminder email: a unit with no readings to estimate from",
+     "now": "When a unit has no mileage readings yet, its due date comes from the service’s calendar interval. A note in the email design says such a unit reads “Soon” rather than a date. The description does not mention this case.",
+     "question": "In the email, does that unit’s row show its calendar month, or “Soon”?",
+     "options": "A) Its calendar month\nB) “Soon”\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the reminder email: certificate rows and “due today” rows",
+     "now": "The description says each row of the email shows its due month. The email design and the engineers’ plan show a certificate’s exact day (for example “14 Aug 2026 · Past due”), and “Today” for a service due today.",
+     "question": "In the email, should a certificate show its exact day, and a service due today say “Today”?",
+     "options": "A) Yes to both — exact day for a certificate, “Today” for due today, the month for everything else\nB) No — every row shows its month only\nC) Exact day for a certificate, but the month (not “Today”) for a service due today\nD) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the reminder email: a unit whose only reminder is waiting for a reading",
+     "now": "The reminders list shows a service that is waiting for a mileage reading (“Needs readings”) even when its calendar date is far away. The description says the email carries every service the list shows for the unit — and also that when nothing is overdue, due today or due within the next 91 days, the email carries the next two upcoming services instead, and nothing else. For a unit like this, the two sentences give different emails.",
+     "question": "For a unit whose only row on the list is a “Needs readings” service with a far-off date, what does the email list?",
+     "options": "A) That service, because the list shows it\nB) Only the next two upcoming services, marked “Coming up” (that service appears only if it is one of those two)\nC) Not sure — please check with the engineers"
+    }
+   ]
+  },
+  {
+   "name": "Work order maintenance card",
+   "rows": [
+    {
+     "topic": "Maintenance Reminders — the maintenance card on a work order: what the closed card shows",
+     "now": "The description says the closed card carries a badge counting the services that are due, “the badge alone, with no other text”. The design’s closed card shows a title, the count with a word, and an expand arrow: “Maintenance schedule · 1 due”. The engineers plan a title and a badge with just the number.",
+     "question": "Apart from the count, may the closed card show a title and the word “due”?",
+     "options": "A) A title and the number only — e.g. “Maintenance schedule” with a badge reading “1”\nB) As the design shows — “Maintenance schedule” and “1 due”\nC) The badge alone, no title at all\nD) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the maintenance card on a work order: does the count include a covered service?",
+     "now": "When the card is opened, a service that another one covers is folded inside it (for example PM-A shown inside PM-C) rather than given its own row. The description says the badge counts “the services” that are due. The engineers have assumed a folded service is not counted separately.",
+     "question": "When PM-A and PM-C are both due and PM-A is folded inside PM-C, does the badge read 1 or 2?",
+     "options": "A) 1 — it counts the rows shown\nB) 2 — it counts every service that is due\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — the maintenance card on a work order: entering a reading",
+     "now": "One sentence in the description says the reading window is the same on the asset and on the work order. Another sentence, and the main Maintenance Reminders page, say that on a work order readings are typed into its existing Mileage and Engine Hours boxes, and the maintenance card opens no reading window of its own.",
+     "question": "On a work order, how is a reading entered?",
+     "options": "A) Only in the work order’s own Mileage and Engine Hours boxes — the sentence about the same window is out of date\nB) In those boxes, and also through the same reading window as on the asset\nC) Not sure — please check with the engineers"
+    }
+   ]
+  },
+  {
+   "name": "Readings and estimates",
+   "rows": [
+    {
+     "topic": "Maintenance Reminders — readings and estimates: how confidence is graded",
+     "now": "The description’s confidence table, agreed on 1 October, grades a unit whose last reading is 30 days old or less and that has one pair of readings (two visits) as Medium. The design’s help text on the reminders list says “Low: one pair, or the last reading is old.”, and the design’s sample engine-hours card shows Low for two visits with the last reading six days old.",
+     "question": "Does the table decide, so the help text and the sample are corrected to match it?",
+     "options": "A) Yes — the table decides (one recent pair is Medium); the help text will be reworded and the sample fixed\nB) No — one pair should always be Low; the table needs changing\nC) Not sure — please check with the engineers"
+    },
+    {
+     "topic": "Maintenance Reminders — readings and estimates: correcting an older reading",
+     "now": "The description says a wrong reading is corrected by entering the right one, and the last one entered becomes the current reading. It also says a correction anywhere in the history recalculates the rate. The engineers let someone change the Mileage on an older work order, which changes that older reading where it sits.",
+     "question": "Can a shop correct an older reading by changing the Mileage on that old work order?",
+     "options": "A) Yes — it corrects that reading, which keeps its original date; the current reading stays as it is, and the estimate is recalculated\nB) No — only the newest reading can be corrected, by entering the right value; older readings are never changed\nC) Not sure — please check with the engineers"
+    }
+   ]
+  },
+  {
+   "name": "Mark complete",
+   "rows": [
+    {
+     "topic": "Maintenance Reminders — marking a service complete: the line in the Mark complete window",
+     "now": "The description gives one line directly under the window’s title: “PM-A resets now from the date below. It won’t wait for an invoice”. The design words it “PM-A resets from this date. It won’t wait for an invoice.” and places it under the Reset date box.",
+     "question": "Which words should the line use, and where does it sit?",
+     "options": "A) The description’s words, under the title\nB) The design’s words, under the Reset date box\nC) The description’s words, under the Reset date box\nD) Not sure — please check with the engineers"
+    }
+   ]
+  },
+  {
+   "name": "Older design boards",
+   "rows": [
+    {
+     "topic": "Maintenance Reminders — the design: the two older boards",
+     "now": "The description pages name the “Chunk 1” and “Chunk 2” boards as their design. The same design project still holds two older boards — the “Demo” board and an older work-order board — and they say things that neither the description nor the newer boards say any more. For example: readings “depend on telematics”; the estimate uses only the last two readings; a low-confidence date reads “Soon” on the asset; confidence depends on whether readings “agree”; turning reminders off stops “only the email”; a certificate’s expiry is held as a month; a bigger service “absorbs” smaller ones; Send reminder asks for a second confirmation; the date after invoicing defaults to the invoice date; certificates are entered as “date completed and date expires”; and a separate step appears when a work order is completed.",
+     "question": "Are the Demo board and the older work-order board retired, so that the description and the Chunk 1 and Chunk 2 boards decide?",
+     "options": "A) Yes — both older boards are retired; ignore them\nB) No — some of what they show still applies (please say which: ........)\nC) Not sure — please check with the designer"
+    }
+   ]
+  }
+ ],
+ "internal": [
+  [
+   "Schedules in Settings #1",
+   "C146323 https://shopview.testrail.io/index.php?/cases/view/146323",
+   "S2-E6, artboard D1",
+   "Items: Chunk 1 D29 (diverge index 28).\nDescription vs current design (the design’s own help text). A document-vs-document disagreement is a PO question (skill 07 §5). Older-board “absorbs” wording (Chunk 1 D51, Chunk 2 D26) is on the Older design boards row.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Schedules in Settings #2",
+   "C146389 https://shopview.testrail.io/index.php?/cases/view/146389\nC146320 https://shopview.testrail.io/index.php?/cases/view/146320",
+   "S2-R9, artboard D1",
+   "Items: Chunk 1 D30 (diverge index 29).\nDescription vs the design’s sample schedule (PM-D “36 months”). The design contradicts itself (artboard C6 caps months at 1 to 12), so the sample alone would be a designer note; it stays a PO row because it exposes a real product gap the description creates (days capped at 999, months at 12), which only the PO can decide.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Schedules in Settings #3",
+   "C146320 https://shopview.testrail.io/index.php?/cases/view/146320\nC146389 https://shopview.testrail.io/index.php?/cases/view/146389",
+   "S2-N5, S2-N6",
+   "Items: Chunk 1 D43 (diverge index 42).\nThe description contradicts itself, and the design takes one side. An ambiguous source is never settled from the build (Rule 58).\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Schedules in Settings #4",
+   "C146334 https://shopview.testrail.io/index.php?/cases/view/146334",
+   "S6-R11, artboard C5",
+   "Items: Chunk 1 D4 (diverge index 3).\nDesign adds an action the description does not describe; also listed in Chunk 1 findings §9 “Questions for the PO”.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Schedules in Settings #5",
+   "C146314 https://shopview.testrail.io/index.php?/cases/view/146314",
+   "S1-R10",
+   "Items: Chunk 1 D40 (diverge index 39).\nDescription vs current design.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Schedules in Settings #6",
+   "C146311 https://shopview.testrail.io/index.php?/cases/view/146311\nC146312 https://shopview.testrail.io/index.php?/cases/view/146312\nC146313 https://shopview.testrail.io/index.php?/cases/view/146313",
+   "S1-R3, artboard R1",
+   "Items: Chunk 1 D39 (diverge index 38).\nLabel wording, description vs design. Kept as its own row because it is the only wording difference on this screen.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Asset Maintenance tab #1",
+   "C146351 https://shopview.testrail.io/index.php?/cases/view/146351\nC146339 https://shopview.testrail.io/index.php?/cases/view/146339\nC146340 https://shopview.testrail.io/index.php?/cases/view/146340\nC204141 https://shopview.testrail.io/index.php?/cases/view/204141\nC146341 https://shopview.testrail.io/index.php?/cases/view/146341\nC146327 https://shopview.testrail.io/index.php?/cases/view/146327\nC146350 https://shopview.testrail.io/index.php?/cases/view/146350\nC146369 https://shopview.testrail.io/index.php?/cases/view/146369\nC146346 https://shopview.testrail.io/index.php?/cases/view/146346\nC146347 https://shopview.testrail.io/index.php?/cases/view/146347\nC146349 https://shopview.testrail.io/index.php?/cases/view/146349",
+   "S9-R14, artboard M4; Plan 1 §6, artboard X1; S16-R11; S7-R6, artboard X1; S3-N2, artboard K2; S8-R13, artboard K4",
+   "Items: Chunk 1 D19 (diverge index 18), Chunk 1 D12 (diverge index 11), Chunk 2 D8, Chunk 1 D13 (diverge index 12), Chunk 1 D20 (diverge index 19), Chunk 1 D21 (diverge index 20).\nLabel wording, description vs design, grouped per screen so the PO answers once. The enrolment window title (Chunk 1 D12) has no description wording; design “Enroll in a schedule” vs plan “Enroll in schedule” is settled for the cases by the 12 Aug ruling (design over plan) and is mentioned here only as context.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8). Chunk 2 D8 - C204141 asks the tester to record the wording.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Asset Maintenance tab #2",
+   "C146348 https://shopview.testrail.io/index.php?/cases/view/146348\nC146383 https://shopview.testrail.io/index.php?/cases/view/146383",
+   "S8-R11, artboard K4",
+   "Items: Chunk 1 D37 (diverge index 36).\nDescription vs current design (help text that implies different saving rules).\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Asset Maintenance tab #3",
+   "C146357 https://shopview.testrail.io/index.php?/cases/view/146357\nC146364 https://shopview.testrail.io/index.php?/cases/view/146364",
+   "S11-R9, artboard S4",
+   "Items: Chunk 1 D22 (diverge index 21).\nDescription vs current design (layout of the estimated-date cell).\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Asset Maintenance tab #4",
+   "C310727 (NEW-7) https://shopview.testrail.io/index.php?/cases/view/310727\nC204133 https://shopview.testrail.io/index.php?/cases/view/204133",
+   "S11-R27, artboard Mh; S11-R27, artboard S4; S11-R27, artboards S4",
+   "Items: Chunk 1 D32 (diverge index 31), Chunk 1 D36 (diverge index 35), Chunk 2 D20.\nDescription vs current design: the design draws a hover with different content and never draws View work orders. Merged from both reviewers.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8). Chunk 2 D20 - C204133 keeps the spec quote; the wording 'This is the system's best estimate…' and 'View work orders' can be taken from the spec only.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Asset Maintenance tab #5",
+   "C146357 https://shopview.testrail.io/index.php?/cases/view/146357\nC204138 https://shopview.testrail.io/index.php?/cases/view/204138",
+   "S11-R13, artboard S4; S11-R13, S16-R4",
+   "Items: Chunk 1 D23 (diverge index 22), Chunk 2 D15.\nDescription vs current design, on two screens the description ties together. Merged from both reviewers.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8). Chunk 2 D15 - C204138 keeps the spec quote; the build is judged against it.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Maintenance reminders list #1",
+   "C146362 https://shopview.testrail.io/index.php?/cases/view/146362\nC146363 https://shopview.testrail.io/index.php?/cases/view/146363\nC146359 https://shopview.testrail.io/index.php?/cases/view/146359\nC146387 https://shopview.testrail.io/index.php?/cases/view/146387\nC146361 https://shopview.testrail.io/index.php?/cases/view/146361\nC146366 https://shopview.testrail.io/index.php?/cases/view/146366",
+   "S13-R13, artboard S1; S13-R2, artboard S1; S13-R33, artboard S1c; S13-R41, artboard S1",
+   "Items: Chunk 1 D6 (diverge index 5), Chunk 1 D7 (diverge index 6), Chunk 1 D8 (diverge index 7), Chunk 1 D34 (diverge index 33).\nLabel wording, description vs design, grouped per screen. For (c) the engineers’ plan agrees with the description.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Maintenance reminders list #2",
+   "C146367 https://shopview.testrail.io/index.php?/cases/view/146367",
+   "S13-R10, artboard Mh",
+   "Items: Chunk 1 D14 (diverge index 13).\nDescription vs current design (phone).\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Maintenance reminders list #3",
+   "C146363 https://shopview.testrail.io/index.php?/cases/view/146363\nC146365 https://shopview.testrail.io/index.php?/cases/view/146365",
+   "S13-R14, artboard S1",
+   "Items: Chunk 1 D33 (diverge index 32).\nDescription vs current design.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Contact card and email #1",
+   "C146371 https://shopview.testrail.io/index.php?/cases/view/146371",
+   "S14-R1, artboard B1",
+   "Items: Chunk 1 D31 (diverge index 30).\nDescription vs current design.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Contact card and email #2",
+   "C146373 https://shopview.testrail.io/index.php?/cases/view/146373",
+   "Plan 1 §6, artboard B1p",
+   "Items: Chunk 1 D44 (diverge index 43).\nThe description is not specific; the engineers’ plan and the design read it two different ways (different behaviour, not just a label).\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Contact card and email #3",
+   "C204175 https://shopview.testrail.io/index.php?/cases/view/204175",
+   "S19-R9, Plan 2 §0",
+   "Items: Chunk 2 D3.\nPlan 2 records this as its own assumption, asked on the Chunk 2 thread 2026-10-05 (reply 919502849), with no answer in our sources. The description’s “where the date is sound” is ambiguous (Rule 58). Split from the next row (skill 07 §3: one question per row).\nCase handling as the reviewers recorded it: Chunk 2 D3 - C204175 asserts only Low → Soon and no confidence words; High/Medium is recorded, not judged.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Contact card and email #4",
+   "C204175 https://shopview.testrail.io/index.php?/cases/view/204175",
+   "S19-R9, Plan 2 §0",
+   "Items: Chunk 2 D3.\nSecond half of Chunk 2 D3 (design board R1 note vs the description’s silence on a calendar date standing in for a missing estimate).\nCase handling as the reviewers recorded it: Chunk 2 D3 - C204175 asserts only Low → Soon and no confidence words; High/Medium is recorded, not judged.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Contact card and email #5",
+   "C204174 https://shopview.testrail.io/index.php?/cases/view/204174\nC204175 https://shopview.testrail.io/index.php?/cases/view/204175",
+   "S19-R9, Plan 2 §1",
+   "Items: Chunk 2 D4.\nDescription vs design and plan together.\nCase handling as the reviewers recorded it: Chunk 2 D4 - Cases avoid asserting the format of a certificate or due-today row.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Contact card and email #6",
+   "C310712 (N9) https://shopview.testrail.io/index.php?/cases/view/310712",
+   "S13-R36, S19-R6, S19-R7",
+   "Items: Chunk 2 D16.\nThe description contradicts itself for this one case.\nCase handling as the reviewers recorded it: Chunk 2 D16 - N9 asserts the next two upcoming services and records, without judging, whether the Needs readings service appears.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Work order maintenance card #1",
+   "C204136 https://shopview.testrail.io/index.php?/cases/view/204136",
+   "S16-R2",
+   "Items: Chunk 2 D2.\nDescription vs current design. The PO’s 5 Oct answer (“the collapsed card carries its badge alone”, recorded in Plan 2) does not say whether a card title is allowed.\nCase handling as the reviewers recorded it: Chunk 2 D2 - C204136 asks the tester to record the words and not fail on them until answered.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Work order maintenance card #2",
+   "C204136 https://shopview.testrail.io/index.php?/cases/view/204136\nC204137 https://shopview.testrail.io/index.php?/cases/view/204137",
+   "S16-R2, S16-R3, Plan 2 §1",
+   "Items: Chunk 2 D12.\nAmbiguous description; the plan fills it with a stated assumption of its own.\nCase handling as the reviewers recorded it: Chunk 2 D12 - C204136 uses two services with no covering, so its count is unaffected.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Work order maintenance card #3",
+   "C204102 https://shopview.testrail.io/index.php?/cases/view/204102\nC204142 https://shopview.testrail.io/index.php?/cases/view/204142",
+   "S10-R1, S16-N1, S16-R12, Reusable components",
+   "Items: Chunk 2 D1.\nThe description contradicts itself (and the main page’s component list sides with the later sentence).\nCase handling as the reviewers recorded it: Chunk 2 D1 - C204102 now tests the asset dialog only; S10-R1 held until answered. C204142 follows S16-R12 (the later, more specific text).\nThe question has NOT been sent yet."
+  ],
+  [
+   "Readings and estimates #1",
+   "C146352 https://shopview.testrail.io/index.php?/cases/view/146352\nC146385 https://shopview.testrail.io/index.php?/cases/view/146385\nC146364 https://shopview.testrail.io/index.php?/cases/view/146364\nC204181 https://shopview.testrail.io/index.php?/cases/view/204181\nC310720 (N17) https://shopview.testrail.io/index.php?/cases/view/310720\nC204182 https://shopview.testrail.io/index.php?/cases/view/204182\nC204131 https://shopview.testrail.io/index.php?/cases/view/204131",
+   "S11-R24, artboard S4; S11-R24, artboard S1; S11-R24, Demo board; S11-R23, S11-R24, artboards S4",
+   "Items: Chunk 1 D24 (diverge index 23), Chunk 1 D35 (diverge index 34), Chunk 2 D18, Chunk 2 D19.\nDescription vs current design help text and sample. Merged from both reviewers (confidence key vs confidence table). D19’s second ask (“thin” readings not graded down on their own) is answered by S11-R22 (“Nothing is graded separately and nothing caps anything”), so it is not asked.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8). Chunk 2 D18 - Cases follow S11-R24. (The drive's own spec quote reads '31 to 91 days'; the 5 Oct page says '31 to 90 days', which is what is quoted here.) Chunk 2 D19 - Cases follow S11-R24.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Readings and estimates #2",
+   "C204127 https://shopview.testrail.io/index.php?/cases/view/204127",
+   "S10-R8, S11-R7, Plan 1 §3.2 TD-06",
+   "Items: Chunk 2 D17.\nThe description is ambiguous between two of its own sentences; the plan picks one reading. Also raised earlier in the Chunk 1 review (MF-14, “Which reading is current after a lower correction…”), still open there.\nCase handling as the reviewers recorded it: Chunk 2 D17 - C204127 corrects the latest reading only.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Mark complete #1",
+   "C310728 (NEW-8) https://shopview.testrail.io/index.php?/cases/view/310728\nC204158 https://shopview.testrail.io/index.php?/cases/view/204158",
+   "S18-R1, artboard M2; S18-R1",
+   "Items: Chunk 1 D9 (diverge index 8), Chunk 2 D7.\nDescription vs current design (both boards). Merged from both reviewers.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8). Chunk 2 D7 - C204158 keeps the spec quote; the build will be judged against it.\nThe question has NOT been sent yet."
+  ],
+  [
+   "Older design boards #1",
+   "C146317 https://shopview.testrail.io/index.php?/cases/view/146317\nC146352 https://shopview.testrail.io/index.php?/cases/view/146352\nC146357 https://shopview.testrail.io/index.php?/cases/view/146357\nC146364 https://shopview.testrail.io/index.php?/cases/view/146364\nC146385 https://shopview.testrail.io/index.php?/cases/view/146385\nC146343 https://shopview.testrail.io/index.php?/cases/view/146343\nC146324 https://shopview.testrail.io/index.php?/cases/view/146324\nC146323 https://shopview.testrail.io/index.php?/cases/view/146323\nC146372 https://shopview.testrail.io/index.php?/cases/view/146372\nC310745 (NEW-25) https://shopview.testrail.io/index.php?/cases/view/310745\nC204109 https://shopview.testrail.io/index.php?/cases/view/204109\nC204125 https://shopview.testrail.io/index.php?/cases/view/204125\nC204180 https://shopview.testrail.io/index.php?/cases/view/204180\nC204129 https://shopview.testrail.io/index.php?/cases/view/204129\nC204134 https://shopview.testrail.io/index.php?/cases/view/204134\nC204165 https://shopview.testrail.io/index.php?/cases/view/204165\nC204187 https://shopview.testrail.io/index.php?/cases/view/204187\nC204137 https://shopview.testrail.io/index.php?/cases/view/204137\nC204117 https://shopview.testrail.io/index.php?/cases/view/204117\nC204167 https://shopview.testrail.io/index.php?/cases/view/204167\nC204152 https://shopview.testrail.io/index.php?/cases/view/204152",
+   "S10-N5, Demo board; S11-R2, Demo board; S11-R9, Demo board; S11-R22, Demo board; S14-R9, Demo board; S8-R10, Demo board; S2-N8, Demo board; S14-R13, Demo board; S18-R13, 4-work-order, old WO chrome; S12-R10, S16-R3, 4-work-order, old WO chrome; S18-R16, 4-work-order, old WO chrome; S18-N6, S18-R14, 4-work-order, old WO chrome; S17-N1, 4-work-order, old WO chrome",
+   "Items: Chunk 1 D45 (diverge index 44), Chunk 1 D46 (diverge index 45), Chunk 1 D47 (diverge index 46), Chunk 1 D48 (diverge index 47), Chunk 1 D49 (diverge index 48), Chunk 1 D50 (diverge index 49), Chunk 1 D51 (diverge index 50), Chunk 1 D52 (diverge index 51), Chunk 2 D22, Chunk 2 D23, Chunk 2 D24, Chunk 2 D25, Chunk 2 D26, Chunk 2 D27, Chunk 2 D28, Chunk 2 D29.\nCollapsed per the brief: sixteen items (Chunk 1 D45–D52, Chunk 2 D22–D29), every one the same question. The description pages name their boards, but the linked design project still holds these two, so one confirmation is worth asking.\nCase handling as the reviewers recorded it: Chunk 1 - the description governs the case wording; the tester records the build's wording where it differs (CHUNK1-FINDINGS §6/§8). Chunk 2 D22 - C204109 follows S10-N5. Chunk 2 D23 - Cases follow S11-R2. Chunk 2 D24 - Cases follow S11-R9. Chunk 2 D25 - Cases follow S18-R13. Chunk 2 D26 - Cases follow the spec. Chunk 2 D27 - C204167 follows S18-R16. Chunk 2 D28 - C204165 checks no step appears on completion. Chunk 2 D29 - C204152 uses the current board's wording.\nThe question has NOT been sent yet."
+  ],
+  [
+   "",
+   "",
+   "",
+   ""
+  ],
+  [
+   "DROPPED / REDIRECTED",
+   "Cases",
+   "Requirement",
+   "Why it is not on the PO sheet"
+  ],
+  [
+   "",
+   "",
+   "",
+   "Settled — the description is clear; only the engineers' plan differs. QA lead ruling 12 Aug 2026 (skill 07 §5; register D1): where the tech plan contradicts the spec or the design, those win for the cases, and every contradiction is reported to the QA lead — not put on a PO sheet. FOR THE QA LEAD to pass to engineering."
+  ],
+  [
+   "Chunk 1 D1 (diverge index 0)",
+   "C146340 https://shopview.testrail.io/index.php?/cases/view/146340",
+   "S7-R4, Plan 1 §3.2 TD-23",
+   "Plan also squeezes inner spaces when matching service names; the description ignores only capitals and surrounding spaces."
+  ],
+  [
+   "Chunk 1 D2 (diverge index 1)",
+   "C146309 https://shopview.testrail.io/index.php?/cases/view/146309\nC146310 https://shopview.testrail.io/index.php?/cases/view/146310\nC146311 https://shopview.testrail.io/index.php?/cases/view/146311\nC146312 https://shopview.testrail.io/index.php?/cases/view/146312\nC146313 https://shopview.testrail.io/index.php?/cases/view/146313\nC146314 https://shopview.testrail.io/index.php?/cases/view/146314\nC146315 https://shopview.testrail.io/index.php?/cases/view/146315\nC310721 (NEW-1) https://shopview.testrail.io/index.php?/cases/view/310721\nC310722 (NEW-2) https://shopview.testrail.io/index.php?/cases/view/310722",
+   "Plan 1 §6",
+   "Settings entry: description + design sidebar “Maintenance”; plan “Maintenance schedules”."
+  ],
+  [
+   "Chunk 1 D5 (diverge index 4)",
+   "C146354 https://shopview.testrail.io/index.php?/cases/view/146354",
+   "S9-R7, Plan 1 §6",
+   "Asset tab status: description + design put the badge beside the service; plan draws a separate Status column."
+  ],
+  [
+   "Chunk 1 D15 (diverge index 14)",
+   "C146343 https://shopview.testrail.io/index.php?/cases/view/146343\nC310743 (NEW-23) https://shopview.testrail.io/index.php?/cases/view/310743",
+   "Plan 1 §6, key decision",
+   "Notification toggle without edit-customer permission: main page key decision (“every gated action is hidden”, same as S14-R10 for Send reminder) vs plan “disabled”."
+  ],
+  [
+   "Chunk 2 D5",
+   "C204168 https://shopview.testrail.io/index.php?/cases/view/204168\nC310715 (N12) https://shopview.testrail.io/index.php?/cases/view/310715",
+   "S16-R25, S18-R17, Plan 2 §3.3 FD-211",
+   "Undo complete after Mark complete on a lines-added row: description S18-R17/S16-R25 AND the design (Chunk 2 artboard W13c: “the row menu offers Undo complete”) agree; only Plan 2 FD-211 differs."
+  ],
+  [
+   "Chunk 2 D9",
+   "C204164 https://shopview.testrail.io/index.php?/cases/view/204164",
+   "S18-R8",
+   "Reason text names the service (“Lines added from PM-A”): description, design and the plan’s own walk-through agree; only one plan table says schedule."
+  ],
+  [
+   "Chunk 2 D13",
+   "C204149 https://shopview.testrail.io/index.php?/cases/view/204149\nC310715 (N12) https://shopview.testrail.io/index.php?/cases/view/310715",
+   "S16-R25, Plan 2 §3.3 FD-221",
+   "Menu item “Remove”: description + design; plan “Remove from this work order”."
+  ],
+  [
+   "",
+   "",
+   "",
+   "Settled — the description gives no words; design and plan differ; the design wins over the plan for the cases (same ruling). FOR THE QA LEAD to report as plan contradictions."
+  ],
+  [
+   "Chunk 1 D3 (diverge index 2)",
+   "C146310 https://shopview.testrail.io/index.php?/cases/view/146310",
+   "Plan 1 §6, artboard P01",
+   "Empty schedule list: design “No schedules yet” vs plan “No maintenance schedules yet”."
+  ],
+  [
+   "Chunk 1 D10 (diverge index 9)",
+   "C146343 https://shopview.testrail.io/index.php?/cases/view/146343\nC146373 https://shopview.testrail.io/index.php?/cases/view/146373",
+   "Plan 1 §3.3 FD-29, artboard B1n",
+   "No-email note: design vs plan wording."
+  ],
+  [
+   "Chunk 1 D11 (diverge index 10)",
+   "C146345 https://shopview.testrail.io/index.php?/cases/view/146345",
+   "Plan 1 §6, artboard X1s",
+   "Enrolment confirmation: design toast vs plan caption."
+  ],
+  [
+   "Chunk 1 D16 (diverge index 15)",
+   "C146372 https://shopview.testrail.io/index.php?/cases/view/146372\nC310745 (NEW-25) https://shopview.testrail.io/index.php?/cases/view/310745",
+   "Plan 2 §6, artboard B5",
+   "Send dialog title: design “Send email” vs plan “Sending Maintenance reminder” (the dialog is the app’s existing one; its title is an on-screen label read from the build)."
+  ],
+  [
+   "Chunk 1 D17 (diverge index 16)",
+   "C146372 https://shopview.testrail.io/index.php?/cases/view/146372",
+   "Plan 2 §3 FD-216, artboard B1r",
+   "Toast after a send: design “Reminder sent to Dave Brabay” vs plan “Reminder sent.”."
+  ],
+  [
+   "Chunk 1 D18 (diverge index 17)",
+   "C146340 https://shopview.testrail.io/index.php?/cases/view/146340",
+   "Plan 1 §6, artboard X1",
+   "Blank last-service-date hint: design “Left blank, counting starts today.” vs plan “Blank counts from today”."
+  ],
+  [
+   "Chunk 2 D6",
+   "C204140 https://shopview.testrail.io/index.php?/cases/view/204140\nC204152 https://shopview.testrail.io/index.php?/cases/view/204152",
+   "Plan 2 §3.3 FD-209",
+   "Add Service window labels: design vs plan."
+  ],
+  [
+   "",
+   "",
+   "",
+   "Settled — the description is silent and the plan sources it alone; nothing current contradicts it (12 Aug ruling, part a). JUDGEMENT: promote back to the sheet if the QA lead disagrees."
+  ],
+  [
+   "Chunk 2 D10",
+   "C204119 https://shopview.testrail.io/index.php?/cases/view/204119\nC204121 https://shopview.testrail.io/index.php?/cases/view/204121",
+   "S22-E1, S22-R1, Plan 2 §3.2 TD-112",
+   "An Add Service that is undone/removed is not a maintenance origin (Plan 2 TD-112). S16-R25 says Undo/Remove return the row to “no longer addressed on this work order”; S22-R1 does not address removal. C204119/C204121 may now assert the plan’s rule."
+  ],
+  [
+   "Chunk 2 D11",
+   "C204142 https://shopview.testrail.io/index.php?/cases/view/204142",
+   "S16-E1, Plan 2 §3.3 FD-204",
+   "Words for “a service that has just become due”: plan “Now due”. The current boards draw no wording; the older 16 Sep screenshots predate the 2 Oct design-to-description check."
+  ],
+  [
+   "",
+   "",
+   "",
+   "Not a disagreement on checking the sources."
+  ],
+  [
+   "Chunk 1 D25 (diverge index 24)",
+   "C146363 https://shopview.testrail.io/index.php?/cases/view/146363\nC310733 (NEW-13) https://shopview.testrail.io/index.php?/cases/view/310733",
+   "S18-R6, artboard S1",
+   "Work order status “Complete” vs design “Completed”: the description means the work order’s own existing status, which is an on-screen label taken from the build (Rule 57 allows labels). Design sample wording is a designer note."
+  ],
+  [
+   "Chunk 1 D27 (diverge index 26)",
+   "C146326 https://shopview.testrail.io/index.php?/cases/view/146326\nC146384 https://shopview.testrail.io/index.php?/cases/view/146384",
+   "S3-R8, artboard K02",
+   "Remind before expiry “2 months before” on artboard K02: K02 is the FILLED form showing a value someone chose (S3-R8 says the default “can be changed”). Not a default. (Designer note: empty artboard K01 shows “Choose” instead of the 1-month default.)"
+  ],
+  [
+   "Chunk 1 D28 (diverge index 27)",
+   "C146318 https://shopview.testrail.io/index.php?/cases/view/146318",
+   "S2-R7",
+   "Calendar “At”: S2-R7 and Chunk 1 review decision MF-2 say At takes a day and a month; the design tooltip “at always takes a month” does not say a month alone. (Designer may reword it.)"
+  ],
+  [
+   "Chunk 1 D42 (diverge index 41)",
+   "C146340 https://shopview.testrail.io/index.php?/cases/view/146340",
+   "S7-R4, artboard X1",
+   "Blank date “stated in the modal”: the design’s (i) sits inside the enrolment window, so it is stated in the modal; its wording is settled above (Chunk 1 D18). JUDGEMENT."
+  ],
+  [
+   "Chunk 2 D14",
+   "C204174 https://shopview.testrail.io/index.php?/cases/view/204174\nC310712 (N9) https://shopview.testrail.io/index.php?/cases/view/310712",
+   "S2-R3, S19-R8",
+   "Service name in the email: S2-R3 is explicit (“the name a shop gives a service is the name its customer reads in a reminder”) and design frame R1T agrees; R1/R1U adding “ service” is a designer note."
+  ],
+  [
+   "Chunk 2 D21",
+   "C204164 https://shopview.testrail.io/index.php?/cases/view/204164",
+   "S18-R15, S18-R8",
+   "Resolved on checking by the Chunk 2 reviewer: S18-R8 provides unticking, so the (i) agrees with the description. Dropped per the brief."
+  ],
+  [
+   "",
+   "",
+   "",
+   "FOR THE DESIGNER — design gaps or errors, not product decisions (the description is clear and the design is silent, incomplete or inconsistent with itself)."
+  ],
+  [
+   "Chunk 1 D53 (diverge index 52)",
+   "(no case)",
+   "",
+   "DESIGN-PACKAGE DEFECT: 35 “Create work order” links on the Chunk 1 board point at Chunk 2 #v5, which does not exist (design drive §1c)."
+  ],
+  [
+   "Chunk 1 D26 (diverge index 25)",
+   "C146334 https://shopview.testrail.io/index.php?/cases/view/146334",
+   "S6-R11, artboard E04r",
+   "Remove-service confirmation (E04r) omits the outcome S6-R11 requires (enrolled assets untouched; later enrolments get the schedule as it now stands)."
+  ],
+  [
+   "Chunk 1 D38 (diverge index 37)",
+   "C146343 https://shopview.testrail.io/index.php?/cases/view/146343",
+   "S7-R19, artboard CS0",
+   "Turning notifications off: S7-R19’s count of silenced units is drawn on no artboard."
+  ],
+  [
+   "Chunk 1 D41 (diverge index 40)",
+   "C146326 https://shopview.testrail.io/index.php?/cases/view/146326",
+   "artboard R6, artboards K01",
+   "Remind before expiry (i) has two wordings on the design (K01/K02 vs R6); K01/K02 matches S3-R8."
+  ],
+  [
+   "",
+   "",
+   "",
+   ""
+  ],
+  [
+   "NOTE",
+   "",
+   "",
+   "Not in scope of this sheet (not in either reviewer’s diverge list): Chunk 1 findings §9 also lists PO questions on field length limits, a service-contents hover implied by Plan 2 TD-123, and the fate of the legacy maintenance screens. Raise separately if wanted."
+  ],
+  [
+   "NOTE",
+   "",
+   "",
+   "NEW-x / Nx keys were mapped to the created case ids by exact title from applied/chunk1-log.json and applied/chunk2-log.json."
+  ]
+ ]
+}

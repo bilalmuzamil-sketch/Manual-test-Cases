@@ -65,4 +65,24 @@ numeric/date-accuracy cases (Rule 116, DATA folder). Not spec-dumps.
   descendants (`getConfluencePageDescendants 833290250`) at every source check, so a new page is never missed.
 - New design: `MR_V2_2.zip` → `sources/design-MR_V2_2-2026-10-06/` (Chunk 1 and Chunk 2 boards changed; new boards
   "Canned lines per location - proposal" and "Maintenance Reminders Demo").
-- Review in progress: `source-update-2026-10-06/`.
+- **DONE 2026-10-06 — source update applied** (`source-update-2026-10-06/`). Sources: specification (Confluence 6 Oct,
+  whole tree), Plan 1 + Plan 2, design MR_V2_2 driven end to end (9 boards, 6,801 elements, 17,240 interactions;
+  `DESIGN-DRIVE-2026-10-06/`).
+  - **Chunk 1 (group 19397, Chunk 2 subtree excluded):** 81 cases updated, 81/81 read back exactly; 25 new cases
+    C310721–C310745 in new folder **39947** "Chunk 1 — Specification and tech plan update 6 October 2026 (QA Additions)".
+  - **Chunk 2 (group 26635):** 86 cases updated (45 full rewrites + 41 precondition/marker fixes), 86/86 read back
+    exactly; 17 new cases C310704–C310720 in new folder **39946** "Chunk 2 — Specification and tech plan update
+    6 October 2026 (QA Additions)".
+  - Every case now carries `AUTOMATION: HOLD - not yet build-verified on a Maintenance Reminders QA build` (the
+    feature flag no longer exists, so the old flag precondition was removed everywhere). No case is Automated.
+  - **Live coverage proof** (`LIVE-COVERAGE-PROOF-2026-10-06.txt`): Chunk 1 106 cases, 251/251 requirements cited;
+    Chunk 2 103 cases, 190/191 cited — **S10-R1 held** (the description contradicts itself; PO question "Work order
+    maintenance card #3"); 0 quotes differ from the 6 Oct specification.
+  - Before/after snapshots per case: `applied/chunk1/`, `applied/chunk2/`; logs `applied/chunk1-log.json`,
+    `applied/chunk2-log.json`; render repair `applied/render-log.txt`.
+  - **PO sheet for Milos Vasic (27 questions), NOT SENT** — goes out last (Rule 66):
+    `Maintenance-Reminders_Questions-for-Milos-Vasic_2026-10-06.{xlsx,docx,md}`. QA-internal notes (case links per
+    question, the 14 tech-plan-only contradictions for engineering, judgement drops, designer notes) are in the
+    separate `Maintenance-Reminders_QA-internal-notes-for-the-PO-sheet_2026-10-06.{xlsx,md}` — never send that one.
+  - **Build verification is NOT done by this session** (L7): all 209 touched cases go to the build verification
+    session once a Maintenance Reminders QA build exists.
