@@ -262,3 +262,8 @@ Classification: TV = tester-visible (feeds a case), EX = not manually testable (
 - EX L2650-2672 §8 rollback (ops). INFO: no flag; rollback = revert release; emails already added stay on contacts.
 - TV/EX L2676-2732 §9 security: one asset per message; subject carries only the org name (TV: subject = organization name — not in spec; INFO); user content HTML-escaped (typed HTML shows as text); addresses validated 1–30; Reply-To sender, BCC only when ticked; A38/A40 refuse another WO's invoice (EX); no Golden Rule changes visible. GR-1: the panel shows services of schedules homed at other locations (TV, matches S16-R3 org-wide). Consent: setting off → no send; no preferred contact → no send.
 - INFO L2736-2762 §10 traceability rows S16-R1..R17 (restate §1; no new tester-visible detail).
+
+## Plan 2 L2763–3002 (§10 traceability rest incl. E2E rows, §11 verification tickets, Appendix merge notes: contradictions 1–17)
+- INFO L2763-2950 traceability: restates §1/§6; no new tester-visible detail. Confirms S19-R8/R9 "certificate → day" (L2831), S22-N1 removed links excluded (L2849), S14-N2/N4 preferred contact without email listed unticked (L2870).
+- INFO L2954-2971 §11: verification tickets SV-10863..SV-10873 (Plan 2) — "When all these tickets are marked Done, the feature is ready for QA" (build-readiness signal for our build verification later).
+- INFO L2975-3002 Appendix contradictions resolved (API shapes, gates, numbering). L2990: an earlier 60-second resend guard existed but is dropped (TD-122) — a second send right away is allowed.

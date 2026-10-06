@@ -116,3 +116,12 @@ Tester-visible items found:
   - A29 (line 1577): Undo refused "once a later completion exists" -> ADD detail (Undo complete only on the latest Mark complete).
   - A33 (line 1581): a live linked WO already exists -> 409; UI offers Open work order (S13-R14) -> CONFIRM.
   - "No money field appears in any MR response" (line 1640) -> CONFIRM key decision "The worklist shows no money" (C146365/C146329).
+
+### Lines 1705-1889 (§5.4 FE view of the contract, DTO shapes, modified endpoints; §6 intro + gates; P0 header + BE table start) — READ
+- 5.4 item 4 (lines 1724-1725): duplicate-name and Reset-date errors "render inline without a second toast"; "an undo that is no longer allowed shows "This can no longer be undone" instead of the generic conflict toast" -> tester-visible string -> ADD to Mark complete Undo case (stale Undo complete, e.g. after a later completion made in another browser tab).
+- A11 (line 1747): enrol error -> "toast, dialog stays open" -> CONFIRM key decision "A failed save keeps the form open with its values" (loading/error case).
+- A33 (line 1769): live WO already exists -> toast, row then shows Open work order -> CONFIRM.
+- DTO shapes, wire rules, modified existing endpoints (behaviour unchanged) -> EXCLUDE (API/code). Modified endpoints note: creating a WO by hand is unchanged; asset delete/merge flows dispatch events, responses unchanged -> no visible change.
+- §6 gates (lines 1850-1867): includes "a walk of every touched existing screen as a user without the new permission" -> supports permission ADD case. Rest EXCLUDE (CI/dev gates).
+- P0 BE table rows to line 1889: access gate atoms, entity_event types, today port -> EXCLUDE (backend).
+- Design-drive coordination: a separate worker is driving the whole design (DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md); fold in if it exists before finishing.
