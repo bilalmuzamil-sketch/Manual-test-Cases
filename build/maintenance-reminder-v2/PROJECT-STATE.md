@@ -52,3 +52,17 @@ numeric/date-accuracy cases (Rule 116, DATA folder). Not spec-dumps.
    not invented — surface with the PO when one is named.
 5. **S21 audit UI surface** unconfirmed — cases stay HOLD until the build shows where the trail lives.
 6. **Chunk 2 (S10/S11/S12) intentionally out of scope** — not authored here.
+
+## 2026-10-06 — technical plans received; every page in the Confluence tree is a source (QA lead)
+- **Technical plans now PROVIDED** (supersedes "NOT PROVIDED"): Plan 1 "Track, act, clear" (covers Chunk 1 and the
+  S10/S11/S12 + S16/S17/S18/S22 Plan-1 subset) and Plan 2 "The work order and the customer" (Chunk 2), saved in
+  `sources/tech-plan/`. Read for tester-visible behaviour; they inform, never overrule the specification.
+- **QA lead instruction:** every page under the Confluence heading "Maintenance Reminders V1" (833290250) is a source,
+  now and as pages are added in future. Tree on 2026-10-06: 833290250 (main: key decisions, reusable components, open
+  questions, change log) · 841678852 Review Decisions + 844431363 Run log · 886931488 Chunk 1 MR · 892305428 Review
+  Decisions — Chunk one + 891519016 Run log · 891944985 Review Decisions — Chunk three + 891977734 Run log ·
+  897679389 Chunk 2 MR. **Chunk 2 MR holds the specification for both chunks** (QA lead). Always list the tree's
+  descendants (`getConfluencePageDescendants 833290250`) at every source check, so a new page is never missed.
+- New design: `MR_V2_2.zip` → `sources/design-MR_V2_2-2026-10-06/` (Chunk 1 and Chunk 2 boards changed; new boards
+  "Canned lines per location - proposal" and "Maintenance Reminders Demo").
+- Review in progress: `source-update-2026-10-06/`.
