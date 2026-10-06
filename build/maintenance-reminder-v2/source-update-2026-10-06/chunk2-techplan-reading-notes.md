@@ -322,3 +322,31 @@ File: `sources/tech-plan/Plan-1-Track-act-clear-Technical-Implementation-Plan.md
 - TV L571-583 NFR-F: no "0" while loading (skeleton); hover reachable by hover/focus/Enter/Space/tap, Esc closes, phone sheet; "mileage"/"hours" in full, never mi/km/hrs; phone dialogs fullscreen, lists → cards, menus → action sheets.
 - INFO L585-619 clarifications (same answers as Plan 2 §1). Q9: a WO reaching Complete does NOT record its readings; Mark complete On it does. Q12: every completion rests the worklist row (Chunk 1). Q17: 30 days per month for reminder rows (Chunk 1, S5-R12).
 - INFO L621-665 product answers index.
+
+## Plan 1 L667–1163 (§2 architecture, §2.11–2.13 seams, §3.1 D0–D29, §3.2 TD-01..TD-36, §3.3 FD-1..FD-29, §3.4/3.5 risks) — read for Chunk 2 topics (S10–S12, S16–S19, S22); the remaining Chunk 1 rows were read in the same ranges but are classified by the Chunk 1 pass
+- EX L667-920 architecture/modules/ports/query keys (Chunk 2 TV consequences: reading dialog is mounted on the asset only; status/confidence/today derived at read with the header location's timezone).
+- TV L925 (seam): Plan 1's contact card line "Maintenance notifications are off for this customer" (Chunk 1 surface; Plan 2 adds the disabled Send).
+- TV L926/L945/L964: ReadingDialog is NOT mounted on the WO; the WO keeps its inline Mileage and Engine Hours inputs.
+- TV L940: Mark complete against a WO with no link writes a mark_complete link only in Plan 2 (TD-110).
+- TV L944: In the shop value as a meter position also changes due states on the ASSET TAB and WORKLIST (Chunk 1 surfaces) — Chunk 1 note.
+- TV L948: origin = earliest link, removed excluded, Mark complete never.
+- TV L1043 (TD-05): readings captured from: WO Mileage/Engine Hours edits; asset create, asset edit, Public API create/update, data import create/update, customer portal create. (Source values shown with a reading: work order, asset, customer portal, import, API — S10-R10.)
+- TV L1044/L1073 (TD-06/TD-35): one WO reading row per meter, updated in place on each WO edit (old/new in the audit); In the shop reading dated the WO START date; recorded when the WO has a live invoice or a Mark complete On it, dated the earliest of the invoice date and the Mark-complete Reset dates; value never replaced; Undo complete / reversal → back to In the shop.
+- TV L1045 (TD-07): invoice reset kill switch (ops) — EX.
+- TV L1048 (TD-10): reading entry needs create-and-edit customers.
+- TV L1052 (TD-14): a WO created from a row copies the asset's mileage and hours (not a reading).
+- TV L1055 (TD-17): today = header location's timezone.
+- TV L1056 (TD-18): line close date stamped on completion of a line.
+- TV L1062 (TD-24): ceilings 1,500 mileage/day, 24 hours/day.
+- TV L1066 (TD-28): Mark complete WO picker lists service WOs of the vehicle across every location, newest first, 20 at a time.
+- TV L1067 (TD-29): reversal routes: "Reverse invoice" from the invoice menu and closing the unpaid payment dialog; reversal hard-deletes the invoice and sets the WO back to Complete; superseded completions are left alone; the same lines-closed date comes back on re-invoice; credit memo does nothing; a line added to a PENDING invoice's WO voids it (no event) → reconciled at next invoice; a line added to a SENT/PAID WO goes to a NEW WO and the invoice stands (nothing to do).
+- TV L1070 (TD-32): copied line: name, description, hours AND tech time; labour type same id, else same NAME, else this location's default; no labour type → none, not priced; no fixed price; no parts, no adjustments, no inspection forms created; one internal line note: "Copied from {home}. Parts used there, for reference:" then "{qty} × {description} · {part number}" per part; fixed price at home: "Copied from {home}. Fixed price there, priced at {local}'s rate here"; no parts and not fixed: "Copied from {home}." (=> third note variant not in spec — plan detail; spec S16-R23 gives two forms); copied lines needing authorization block tech-view edits like any canned line.
+- TV L1071 (TD-33): certificate End = Start + term with the same day number, clamped to month end; "14 Oct 2025 + 12 months = 14 Oct 2026, valid through 14 Oct and overdue from 15 Oct"; typed beats derived.
+- TV L1072 (TD-34): a WO reading is recorded only when the value differs from what the WO held before; a tech who types the same value as the copied one records nothing (accepted cost) — a manual tester typing the same number will see NO In the shop reading.
+- TV L1074 (TD-36): rest after completion (worklist, Chunk 1).
+- TV L1096 (FD-17): orange confirmation BEFORE save, for "lower than last" and "above ceiling × days since last".
+- TV L1099 (FD-20): undo toasts use the app's standard Undo.
+- TV L1100 (FD-21): vocabulary "mileage", "hours" (never mi/km/hrs).
+- TV L1105 (FD-26): certificate: two date inputs (Start, End) + term select; typed wins.
+- TV L1108 (FD-29, Chunk 1): "None of this customer's contacts has an email address, so no reminder can be sent." + "Add contact".
+- EX L1110-1163 risks (BR/FR): TV L1121/1122 BR8/BR9 closed (copied mileage not a reading; Mark complete records readings). TV L1129 BR16: copied pricing may differ from home by design.
