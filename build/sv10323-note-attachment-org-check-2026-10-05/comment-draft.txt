@@ -1,10 +1,12 @@
-{panel:bgColor=#e3fcef}
-*OVERALL QA STATUS: PASSED*
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
 {panel}
 
-I tested this on the QA branch [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build v26.40.7-7ffda69) on 5 October 2026, against the ticket, Nemanja's QA checklist and spec rule S10-R5b, and compared it with production (build v26.40.7-e1021b1). All 9 checks passed.
+I tested this on the QA branch [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build v26.40.7-7ffda69) on 5 October 2026, against the ticket, Nemanja's QA checklist and spec rule S10-R5b, and compared it with production (build v26.40.7-e1021b1). 9 of the 10 checks below passed; 1 is open.
 
 The For Customer box on a note's file now follows the note's own shop. A shop can no longer change another shop's files, and a file added by someone who has since left the shop can be shared with the customer again.
+
+*Why this is partially passed and not fully passed:* one point is still open, and it is posted as a question to Nemanja in the [next comment|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=77937]. A user with the Technician role sees no For Customer box at all, while the spec says a user who can only view the record should see it greyed out. Production does the same, so this change did not cause it, but it sits inside the rule this ticket implements, so we need to know whether it was left out on purpose or belongs to this fix. Once that question is answered (and fixed, if it needs fixing), this ticket will be marked fully passed.
 
 h3. Before and after: the person who added the file has left the shop
 
@@ -23,6 +25,7 @@ h3. What I checked
 |7|A file added by a staff member who has since been removed can still be shared with the customer by the shop (picture above).|PASSED|
 |8|The second shop can still change its own files normally.|PASSED|
 |9|Automated tests for the cross-shop cases and the removed-uploader case are in the pull request, and all of its checks pass.|PASSED|
+|10|A user with the Technician role (view-only on work orders) sees the For Customer box greyed out, as the spec asks. Today the box is not shown to them at all (same on production).|OPEN - question to Nemanja in the next comment|
 
 h3. Before and after: a user who can only view work orders
 

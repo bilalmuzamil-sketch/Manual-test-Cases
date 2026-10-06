@@ -57,11 +57,11 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-06, ~03:15 UTC. **SV-10323 POSTED: QA PASSED (77936) + A QUESTION TO NEMANJA (77937).**
+## ⚠️ NEWEST — 2026-10-06, ~03:15 UTC. **SV-10323 POSTED: PARTIALLY PASSED (77936) + A QUESTION TO NEMANJA (77937); FULLY PASSED ONCE HE ANSWERS.**
 
 | # | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|---|
-| 1 | Nemanja's answer on comment 77937: is the Technician meant to see **no** For Customer box (spec S10-R5b says a view-only user "sees the checkbox disabled")? Same on production. | Developer (Nemanja Djuric) | Nothing on SV-10323 — the QA lead ruled 6 Oct: *"mark it as QA Passed but in the later comment put a question for the developer"*. If the answer is "should be fixed", it needs a follow-up ticket. | 2026-10-06 |
+| 1 | Nemanja's answer on comment 77937: is the Technician meant to see **no** For Customer box (spec S10-R5b says a view-only user "sees the checkbox disabled")? Same on production. | Developer (Nemanja Djuric) | SV-10323 being marked **fully passed** — QA lead's ruling 6 Oct: *"it should be marked as partially passed and shoul dbe fully passed after the last comment is addressed"*. If the answer is "should be fixed", re-test after the fix, then update 77936 to PASSED. | 2026-10-06 |
 
 **Cleared:** SV-10323 Q1 (Technician — ruled by you: pass + ask the developer) and Q2 (technical section — not answered, posted without one).
 

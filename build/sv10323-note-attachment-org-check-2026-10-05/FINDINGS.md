@@ -110,3 +110,11 @@ both bodies: 0 hits · no technical section · 3 images uploaded as real attachm
 New and recorded: `reset-password` from a QA-branch page context needs `credentials:'include'` (else 401 `sso_required` — production has no
 SSO gate so it works there); a guard before destructive steps (abort if the note/attachment was not created) — a missing guard deleted the
 first branch leaver before it had written anything.
+
+## Update 2026-10-06 ~03:20 UTC — verdict changed to PARTIALLY PASSED (QA lead's ruling)
+QA lead, verbatim: *"In that comment also mention the logic why are we leaving that comment there, and it should be marked as partially
+passed and shoul dbe fully passed after the last comment is addressed"*. Comment **77936** updated in place (PUT 200): yellow panel
+**OVERALL QA STATUS: PARTIALLY PASSED**, a "why partially passed" paragraph linking 77937, opening line "9 of the 10 checks below passed; 1
+is open", and table row 10 = the Technician point marked OPEN. Comment **77937** updated in place (PUT 200) with one line: the ticket stays
+Partially Passed until this is answered (and fixed if needed). Read back: 77936 panel type `warning`, 2 media `file` 900×835 / 900×561,
+11 table rows (header + 10); 77937 1 media `file` 900×617.
