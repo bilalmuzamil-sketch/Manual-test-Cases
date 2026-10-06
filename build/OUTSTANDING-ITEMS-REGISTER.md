@@ -3090,6 +3090,10 @@ single machine literal the automation counter reads, and the counter is position
 count is unaffected.
 
 ## 2026-10-06 — Maintenance Reminders source update (Chunk 1 group 19397 · Chunk 2 group 26635)
+**QA lead decision 2026-10-06:** *"Lets wait for build verification and let that session raise questions if it finds
+something to be asked to the PO or the designer or anyone else."* So MR-2 to MR-5 are **NOT sent by this session**; they
+wait for the build verification session, which raises its own questions. The prepared sheet and notes stay in the repo as
+reference facts for that session.
 Both suites updated to the 6 Oct specification, Plan 1 + Plan 2 and design MR_V2_2 (record:
 `build/maintenance-reminder-v2/PROJECT-STATE.md`). Open items, each with its solution:
 - **MR-1 · Build verification of all 209 touched cases** — no Maintenance Reminders QA build exists yet. **Solution:**

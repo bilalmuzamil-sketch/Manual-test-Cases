@@ -50,8 +50,8 @@ numeric/money-accuracy DATA folder (Rule 116).
    and stamp when a build/branch + access is provided.
 2. **Customer Portal part-sale deposit (S8-R8–R11)** blocked on SV-10261 (engineering, portal side) —
    reflected as HOLD in the cases; rest of S8 is live.
-3. **Sibling Founder Mode features** (Notifications, What/Why, Price/Category, Part Lifecycle) not yet
-   authored — awaiting the go-ahead to proceed feature by feature.
+3. ~~Sibling Founder Mode features not yet authored~~ — superseded: Notifications, What/Why, Price/Category and
+   Part Lifecycle each have their own folder and PROJECT-STATE.md (checked 2026-10-06).
 
 ## 2026-10-05 — brought current with the specification edit of 5 October 2026 (QA lead approved "Apply A, B and C")
 - Spec 867434569 edited 5 Oct with no change-log row: 104 -> 111 requirements. Findings: `STALE-CHECK-2026-10-05.md`.

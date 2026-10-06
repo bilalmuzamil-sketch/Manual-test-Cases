@@ -94,5 +94,7 @@ QA lead wants one.
     `Maintenance-Reminders_Questions-for-Milos-Vasic_2026-10-06.{xlsx,docx,md}`. QA-internal notes (case links per
     question, the 14 tech-plan-only contradictions for engineering, judgement drops, designer notes) are in the
     separate `Maintenance-Reminders_QA-internal-notes-for-the-PO-sheet_2026-10-06.{xlsx,md}` — never send that one.
+  - **QA lead 2026-10-06: wait for build verification; that session raises any questions for the PO, the designer or
+    anyone else.** The PO sheet above is NOT sent; it stays as reference.
   - **Build verification is NOT done by this session** (L7): all 209 touched cases go to the build verification
     session once a Maintenance Reminders QA build exists.

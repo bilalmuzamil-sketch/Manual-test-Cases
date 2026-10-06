@@ -5,6 +5,12 @@ verify on the build (L7). Every case below is marked `AUTOMATION: HOLD - not yet
 Where a step says to record the build's wording, the wording is not judged — the PO question sheet decides it.
 **Total: 209 cases.**
 
+Facts for the build verification session (QA lead 2026-10-06: that session raises any questions for the PO,
+the designer or anyone else). Already-known disagreements between the specification, the design and the tech plans, with
+the cases each affects, are in `Maintenance-Reminders_QA-internal-notes-for-the-PO-sheet_2026-10-06.md`; a prepared,
+unsent question sheet is `Maintenance-Reminders_Questions-for-Milos-Vasic_2026-10-06.md`. Requirement S10-R1 (entering a
+reading on a work order) has no case because the specification contradicts itself.
+
 
 ## Chunk 1 — group 19397 (Chunk 2 subtree excluded)
 
