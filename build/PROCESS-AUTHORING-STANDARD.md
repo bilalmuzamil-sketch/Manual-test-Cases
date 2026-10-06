@@ -29,8 +29,9 @@
 5. **Add it to the Process Catalog in the SAME turn** (`build/PROCESS-CATALOG.md`): a row with the
    process name, what it does, how to call it (trigger), the deliverable it produces, and the doc
    path. Keep the catalog complete and current.
-6. **Share with the other session** by committing to the repo and indexing it in `CLAUDE.md`
-   (the shared brain both parallel sessions read). Note any new durable rule in CLAUDE.md too.
+6. **Record it in my own copy** by committing to the repo and indexing it in `CLAUDE.md`. Note any
+   new durable rule in CLAUDE.md too. (Other sessions' copies are facts-only and are never updated or
+   synced — Standing Rule 98.)
 7. **Tell the user how to call it** for other projects (name + trigger phrase), and offer to
    dry-run it.
 8. **Reuse, don't reinvent**: if a process already covers the ask, extend/point to it rather than
@@ -66,5 +67,5 @@
 - [ ] Guardrails + honesty notes.
 - [ ] Human-readable filename (Rule 19).
 - [ ] Row added to `build/PROCESS-CATALOG.md`.
-- [ ] Indexed in `CLAUDE.md`; durable rules noted (shared with other session).
+- [ ] Indexed in `CLAUDE.md`; durable rules noted.
 - [ ] Told the user the name + how to call it; offered a dry-run.

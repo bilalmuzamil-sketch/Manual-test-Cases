@@ -60,6 +60,5 @@ too — set up some protection around your learning."* This doc is that protecti
 
 ## Ties to existing rules
 Extends Standing Rule 12 (observed, never inferred — this is its *learning-time* twin: don't record an
-inference as a proven fact), Rule 27 (the books are the shared brain — a wrong entry mis-teaches the other
-session too), Rule 31 (a proven-absence finding has a shelf life — re-check, don't cache) and Rule 33
+inference as a proven fact), Rule 27 (the books are my memory — a wrong entry mis-teaches every later pass), Rule 31 (a proven-absence finding has a shelf life — re-check, don't cache) and Rule 33
 (judge the claim, not the claimant — including my own past conclusions).
