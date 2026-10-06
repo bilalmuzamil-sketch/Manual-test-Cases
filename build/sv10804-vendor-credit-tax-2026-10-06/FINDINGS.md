@@ -47,3 +47,6 @@ Marker `v26.40.8-1bc3b12` unchanged · C-13665 re-read live ($179.55; 1300 $171.
 
 ## Learning check (Rule 95)
 New and recorded in the playbook §AJ addendum 2: inline Add Part + Enter picks a catalogue match; vendor tax rates come from `GET /api/parts-catalogue/options`; received part row menu is `button_part_context_menu_<partId>_line_<lineId>`; go-live/accounting endpoints + journal-entry shape; tax-mapping PUT; manual vendor credit route; curl cookie-jar polling of a QA branch. Lessons index: one row (the Enter trap).
+
+## QA lead's answers (6 Oct 2026)
+Technical section on 77983: *"NO"* — none added. SV-10370-scope observations: *"If we already have tickets for them then leave it."* — left with SV-10370, nothing posted. SV-10323: *"OK"* — still waiting on Nemanja (77937).
