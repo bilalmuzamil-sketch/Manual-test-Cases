@@ -125,3 +125,62 @@ Tester-visible items found:
 - §6 gates (lines 1850-1867): includes "a walk of every touched existing screen as a user without the new permission" -> supports permission ADD case. Rest EXCLUDE (CI/dev gates).
 - P0 BE table rows to line 1889: access gate atoms, entity_event types, today port -> EXCLUDE (backend).
 - Design-drive coordination: a separate worker is driving the whole design (DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md); fold in if it exists before finishing.
+
+### Lines 1890-2088 (P0 FE table, code sketches, tests, browser-walk, E2E P0-1) — READ
+- Customers page tab labels "Customers" and "Maintenance reminders" (line 1957-1958) -> CONFIRM C146358.
+- keep-alive (line 1986): "stops a tab switch from re-mounting the Vuex list and losing its scroll and pagination" -> ADD detail: switching to the worklist and back keeps the customer list's scroll position/page (Plan 1 quote).
+- New customer only on the customers tab; search kept across tabs; mr_* filter keys dropped from the address on tab change and "restored from user prefs on return, S13-R42" -> CONFIRM C146358/C146370.
+- DueBadge (line 1910): "Overdue red except compliance (orange, S3-R10). Grey Skipped. "Completed" chip" -> CONFIRM C146354/C146327; "Completed" chip relevant to Mark complete ADD case.
+- DueCell (line 1911): line 2 values "Calendar", "Certificate", ConfidenceMeter, "Calendar · needs mileage reading", "No record"; dates per org date format -> CONFIRM C146355/C146364.
+- ConfidenceMeter (line 1912): "3 bars + word. Low is never red"; hover holds the rule, the fixed disclaimer and "View work orders" -> ADD case for S11-R27 (uncited anchor).
+- HoverCard (lines 1899, 2017): "300 ms open delay on hover only"; "a 150 ms grace on leave"; opens on focus, Enter/Space, click/tap; closes on Esc, blur, leave -> ADD hover-access case.
+- EditableTitle (line 2054): commit on Enter/blur, Esc reverts, blank reverts -> ADD detail to S1-N3 case (Esc reverts) — Plan 1 quote.
+- VehicleTabsBar: tab counters except Work Orders; existing tabs unchanged -> CONFIRM.
+- Fullscreen dialogs on phone width (prop) -> phone ADD case.
+- BE/FE unit tests, gates -> EXCLUDE (developer tests), but they confirm behaviours above.
+
+### Lines 2089-2263 (Phase P1 Settings: BE/FE tables, sketch, tests, browser-walk, E2E P1-1..P1-4) — READ
+Tester-visible:
+- AdminLeftMenuNav (line 2131): nav item label "Maintenance schedules" (q-route-tab) — spec S1 "Settings, Maintenance, beneath Inspection Templates" / S1-R1 "a Maintenance entry". LABEL QUESTION -> check design board; if design differs from spec record DIVERGE (spec is authority for behaviour; label from design/spec only).
+- Schedule list (line 2134): Active/Archived tabs with count badges; default sort name ascending; Assets plain text; row menu Edit, Duplicate, Archive / Restore; empty state "No maintenance schedules yet" + New schedule; FilteredTableEmptyState for a search with no match; list NOT scoped by header location -> ADD: org-wide list stays the same after switching header location (Plan 1 browser-walk 1b "Switch the header location to B and the same schedules stay listed").
+- Editor (line 2137): Cancel/Save; "CloseConfirmationDialog when dirty (Cancel and onBeforeRouteLeave)" -> leaving the editor by navigation with unsaved changes also asks -> ADD detail to S1-R8 case; duplicate-name error inline under the title with no extra toast; archived read-only: "every control disabled, Restore shown"; D21 success toast + stays open after first Save; header caption "Lines from {home}"; a new schedule shows the header workplace name.
+- ServiceTable (line 2139): "4 lines · 3 covered" HoverCard; Move up/down; row menu "Edit / Remove (confirm, S6-R11)".
+- ServiceFormDialog (line 2140): steps order; covered step only with ≥1 other routine service and not compliance; "the failed save keeps the dialog open" (line 2185).
+- TriggerBlock (line 2142): plain line "Comes due at whichever trigger arrives first" -> label from plan + design screenshot ("Comes due at whichever trigger arrives first.") -> CONFIRM C146321 (check its wording).
+- ComplianceBlock: Type + (i) examples; term 1-60 list; Remind before expiry defaults 1/2 months; ≤ term.
+- ReminderTimingRows/serviceFormRules tests (lines 2170, 2178-2179) give exact boundaries: "13 and 14 days drop the 14-before row, 15 keeps it; before = interval refused, interval − 1 accepted; 1-month interval → 29 accepted, 30 refused"; "every 3 months → 89 accepted, 90 refused; yearly At → 364 accepted"; note "absent at 15 days and for months"; "untouched defaults follow an interval change across 14 days (row removed, then restored); after a row edit nothing is added or removed automatically" -> ADD S5-R12/S5-R13 cases (spec quotes + Plan 1 quotes).
+- Browser-walk P1 (lines 2194-2208): exact note "A reminder before the due date must be shorter than the 7-day interval"; read-only canned lines for a user without access to the home location (remove access in Settings › Users); phone 390 px: service form fullscreen, row menu action sheet; tech without settingsService: no nav item, direct URL denied -> CONFIRM/ADD.
+- E2E P1-1 (line 2220): interval reads "10,000 mileage · 6 months", "1 line"; P1-2 (line 2233-2235): "2 lines · 2 covered"; keyboard focus/Enter opens the hover card; removing PM-A -> "PM-B keeps its 2 lines, and the covered count is 0" -> ADD to S6-R11 removal case (C146334 UPDATE).
+- P1-3: Duplicate opens the editor on "(Copy)"; archived opens read-only "only Restore offered"; P1-4: deep link redirects away.
+- BE classes/handlers/VOs, unit/functional tests -> EXCLUDE (code), used only as confirmation.
+
+### Lines 2264-2416 (Phase P2 header, DB, BE table, FE table, sketches) — READ
+Tester-visible UI strings and rules (FE table lines 2311-2324, sketch 2333-2379):
+- Enrolment dialog static title "Enroll in schedule" (S7-R7 has no wording; plan gives it) -> ADD S7-R7 case (uncited anchor) with Plan 1 quote.
+- Body line "{unit} · {customer}" at normal weight (S7-R7).
+- Customer chooser: preselected and shown as text when exactly one; searchable; >50 links caption "Showing 50 of {customersTotal}. Type to search."; "the schedule Select is disabled until a customer is chosen" -> ADD detail to S7-R23 case (C146339 UPDATE?) — keep to quotes.
+- Schedule options show "Lines from {homeWorkplaceName}" when >1 workplace; schedules the asset is already on are filtered out (S7-E8).
+- Service row: "(optional)" inline, date input max today, hint "Blank counts from today", Needs mileage/engine hours reading badge, meter-At-passed "Mark as done" (default) / "Leave due", compliance line "{number} · ends {endDate}" or "No record" + "+ Add record" opening the certificate fields inline.
+- Bulk Assets section: server search type/make/unit/VIN; greyed "Already on this schedule"; "{n} of {m} have a last service on record; the rest count from today" computed from ticked assets; truncation caption "Showing {assets.length} of {total}. Search to narrow."; "Selections survive a search change"; confirm "Enroll N assets"; "Select all" ticks only assets not already on; a toast after submit (enrolled / skipped counts).
+- Notification checkbox label "Send preventive maintenance notifications"; writes immediately; stands if cancelled; disabled without edit customers.
+- Confirmation caption "The rows appear on the worklist. No emails are sent for them." -> S7-R10 wording -> CONFIRM/UPDATE C146345.
+- No schedules: message + "Create a schedule" link (only for Settings Service users) -> S7-N6 (C146339) ADD detail.
+- No-email note under the checkbox + Add contact; contact dialog stacks over enrolment; note clears after saving a contact with an email -> ADD (S7-R20 case).
+- CertificateFields: type prefilled from the service, term, Start date, End date, Certificate number, attachment; half/full widths; derivation preview.
+- CertificateAttachmentField: accept pdf/jpeg/png, ≤10 MB client check, file chip with open/replace/remove.
+- CertificateRecordDialog: add / edit-current; read-only history list beneath.
+- ComplianceSection: "CVIP · AB-4471902 · ends 14 Oct 2026" per current record, + Add record (edit customers only); placed "after the Preferred Contact card" (spec: "below Contact") -> CONFIRM.
+- Customer card toggle "Maintenance notifications"; Off -> inline "N enrolled units will not receive reminders" (S7-R19); no-email note + Add contact; toggle disabled without edit customers (S7-R22) -> UPDATE/ADD.
+- Customer Assets tab: "Enroll in Schedule" button beside New Asset, only for users with edit customers.
+- Code (BE classes, CalendarMath sketches) -> EXCLUDE; certificate sketch confirms clamp both ways.
+
+### Lines 2417-2539 (P2 tests, browser-walk, E2E P2-1..P2-5) — READ
+- certificateDates.spec (lines 2431-2436): "14 Oct 2025 + 12 → 14 Oct 2026"; "31 Jan 2026 + 1 → 28 Feb 2026; 31 Jan 2028 + 1 → 29 Feb 2028; 30 Nov + 3 → 28 Feb (non-leap)"; "a typed End beats a derived End, and a typed Start beats a derived Start"; "a changed term re-derives only the untouched date" -> ADD to certificate arithmetic case (C146383 UPDATE) with Plan 1 quotes.
+- Browser-walk P2 (lines 2459-2471): bulk "search "Heavy" narrows ... tick 3; enroll; toast; reopen: those 3 are greyed"; toggle off -> "N enrolled units…", persists on reload; no-email note -> Add contact -> note disappears; certificate "End 14 Oct 2026, term 12 → Start 14 Oct 2025; change Start → End follows unless End was typed"; "attach a PDF (and a 12 MB file is refused)"; line "Type · number · ends D Mon YYYY"; renewal -> history read-only; phone modals fullscreen; "As tech without customers edit: the toggle is disabled and no Enroll in Schedule button shows" -> ADD/UPDATE cases (S7-R22 toggle disabled-not-hidden, S7-R24 button hidden).
+- E2E P2-1..P2-5: confirm the above; P2-3 exact "2 enrolled units will not receive reminders"; P2-5 archived schedule shows Assets 0 and is not offered in Enroll in Schedule -> CONFIRM C146336.
+- Backend/frontend unit/functional tests -> EXCLUDE (developer layer).
+
+### Lines 2540-2708 (Phase P3 Readings) — READ
+- Reading capture at every entry point, idempotency keys, historical load CLI, transactional WO handlers -> EXCLUDE (backend; Chunk 2 S10 behaviour).
+- ReadingDialog (lines 2591-2593): mounted on the Chunk 1 asset tab as "Enter mileage" (S9); labels "Mileage" / "Engine hours"; current value read-only with source + age, "In the shop" state; orange confirm block with "Save anyway" / "Change"; Undo toast; a stale undo shows "This can no longer be undone" -> the dialog's rules are Chunk 2 (S10) and are not copied on the Chunk 1 page -> boundary: Chunk 1 keeps only S9-E2 (entering a reading here recalculates immediately) -> CONFIRM existing S9-E2 coverage; dialog detail left to Chunk 2 reviewer.
+- Browser-walk P3 regression (existing WO mileage and asset edit inputs keep working) -> no Chunk 1 case (existing-screen regression; noted).

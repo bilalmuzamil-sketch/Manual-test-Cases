@@ -267,3 +267,58 @@ Classification: TV = tester-visible (feeds a case), EX = not manually testable (
 - INFO L2763-2950 traceability: restates §1/§6; no new tester-visible detail. Confirms S19-R8/R9 "certificate → day" (L2831), S22-N1 removed links excluded (L2849), S14-N2/N4 preferred contact without email listed unticked (L2870).
 - INFO L2954-2971 §11: verification tickets SV-10863..SV-10873 (Plan 2) — "When all these tickets are marked Done, the feature is ready for QA" (build-readiness signal for our build verification later).
 - INFO L2975-3002 Appendix contradictions resolved (API shapes, gates, numbering). L2990: an earlier 60-second resend guard existed but is dropped (TD-122) — a second send right away is allowed.
+
+## Plan 2 L3003–3241 (Appendix: contradictions 18–19, PQ/EQ mapping, editorial, E2E pass E1–E6, audit fixes A1–A14, revision 2026-10-04 R1–R6, re-audit F1–F18, Revision 3, final audit fixes, final answers) — END OF FILE
+- INFO L3003-3059 mappings/editorial.
+- INFO L3061-3070 E2E pass history; E4 = B-4 bug class (carried date shown wrongly) — fixed in plan; worth a manual check (case 204170 rewrite / new reversal case).
+- INFO L3072-3089 audit fixes A1–A14 (history). TV-relevant: A1 S22-R4 summary must total ALL matching WOs across pages, not just loaded pages (classic bug to test: compare with a page size smaller than the result set — but the list loads on scroll; tester-visible check = summary total equals the sum of every matching WO, which needs all rows loaded); A6 no "Open asset" item in the panel row menu; A7 "Closed {date}" caption.
+- INFO L3091-3113 revision 2026-10-04 (history: no automatic email; hand send; copied work; Mark complete button; certificate days; no Plan 3).
+- INFO L3115-3149 re-audit F1–F18 (history). F11 step title "When was the maintenance done?" (from the main page's Reusable components table: "the step after invoicing (When was the maintenance done?)" — this IS quotable from the main page).
+- TV L3215 (MEDIUM-2, FINAL): the collapsed WO card shows the badge alone — NO "Maintenance" title; accessible name only. This supersedes FD-211's title text (L724) and the DoD walk L1233. Plan and spec agree; the design screenshot ("Maintenance schedule" + "1 due") is older and DIFFERS → design-vs-spec note (spec wins).
+- TV L3216 (LOW-1): the step's certificate fields include the type, prefilled from the service.
+- TV L3218 (LOW-3): badge excludes covered services folded under a listed coverer.
+- INFO L3228-3241 final answers: S19-R23 line replaces the opening line AND the table; footer ships as specified; typed address does not change the greeting; every guessed date incl. every Low reads Soon.
+
+### Plan 2 coverage statement
+Lines 1–3241 of 3,240 newline-terminated lines (+ final line) read in full, sequentially, ranges: 1–220, 220–409, 409–658, 659–793, 793–1032, 1033–1262, 1263–1502, 1503–1752, 1753–2002, 2003–2262, 2263–2562, 2563–2762, 2763–3002, 3003–3241. No gaps. 100%.
+
+# Plan 1 (Track, act, clear) — Chunk 2 sections
+File: `sources/tech-plan/Plan-1-Track-act-clear-Technical-Implementation-Plan.md` — 5,363 lines, 680,361 bytes. Per instruction, every section touching S10, S11, S12, S16, S17, S18, S19, S22 is read in full (located by headings + keyword grep); the rest of Plan 1 is read by the Chunk 1 pass.
+
+## Plan 1 L313–481 (§1 S10, S11, S12 tables; S13, S14, S21 tables read for context — Chunk 1)
+- TV L317 (S10-R1): on the WO readings go through its existing Mileage/Engine Hours fields; the reading dialog is used on the ASSET only. => spec S10-R1 still says "The reading dialog will be the same component from the asset and from the work order" while S16-R12 says "The card opens no reading dialog of its own" → DIVERGE inside the spec itself (S10-R1 vs S16-R12) — PO question; case 204102 must not test a WO dialog.
+- TV L318: current reading shows source and age.
+- TV L321 (S10-R10): a WO value counts only when entered or changed on that WO.
+- TV L322 (S10-R11): In the shop until invoiced OR Mark complete On this WO.
+- TV L324 (S10-R7): undo deletes the just-saved reading.
+- TV L325 (S10-R8): asset: new reading row; WO: in-place correction (old/new kept in the audit — no audit screen in v1 → audit half EX).
+- TV L327 (S10-N1): only "whole number ≥ 0" shape checks (non-numeric/negative input is refused by the field shape — not a "rejection" of a value). Plan-only; note.
+- TV L328 (S10-N2): ceiling 1,500 mileage/day, 24 hours/day.
+- TV L333-335: engine swap → lower value kept, pair discarded; same-day: rate takes higher, display last.
+- TV L336 (S10-N6): copied mileage on a new WO is not a reading; WOs created from the worklist copy mileage.
+- TV L337 (S10-R12): historical load once per environment (EX for a tester to trigger; observable: an asset with past WO mileage shows readings with source Work order from day one — testable on a QA environment after the load).
+- TV L343-375 (S11): rounding in the tab; "640 a week"; certificate End date as a day "14 Oct 2026 · Certificate"; S11-N1 → Plan 2.
+- TV L381-401 (S12): S12-R4 due soon = End date − Remind before expiry; S12-R14 today from the header location's timezone; S12-E5 reading recorded first then reset.
+- INFO L403-480 S13/S14/S21 (Chunk 1). Chunk-1-relevant TV: S13-R34 "Calendar · needs mileage reading" wording on the worklist; S13-R43 row rests after ANY completion incl. invoice until due soon, Needs readings rows never hidden; S21-N3 no audit screen in v1 (so every "recorded in the audit" expectation is NOT manually checkable in v1 → EXCLUDE that half).
+
+## Plan 1 L482–666 (§1 S18 subset, S16/S17/S22 subset, deferred list, NFR, NFR-F, Clarifications, Product answers index)
+- TV L488 (S18-R3): Reset date validated ≤ today (future refused).
+- TV L489 (S18-R4): Completed elsewhere reading saved with source "completion elsewhere".
+- TV L490 (S18-R5): both dates absent → Start = Reset date.
+- TV L493 (S18-R9): stamp in Plan 1, display ("Closed {date}") in Plan 2.
+- TV L498 (S18-R17): Undo complete only for the LATEST effective completion; worklist row rests after ANY completion until due soon; A29 undoes only Mark complete completions.
+- TV L499 (S18-R18): removed-from-schedule service's link becomes orphaned; no reset.
+- TV L500 (S18-E2): reversal undoes unless a later completion superseded it.
+- TV L501: credit memo changes nothing.
+- TV L503 (S18-R19): Mark complete On a WO records its readings dated the Reset date; Undo complete undoes that.
+- TV L504 (S18-N8): invoice/covered/enrolment completions cannot be undone.
+- TV L506-511: by construction S18-N2/N3/N4/E1/E7/E8, S17-N2, S17-E3.
+- TV L517-530: S16-R19 lines appended at the end; S16-N4; S16-N6 copy; S16-R22 labour type, fixed price; S16-R23 note texts "Copied from {home}. Parts used there, for reference: …" / "… Fixed price there, priced at {local}'s rate here"; S16-N7 no lines on invoiced or paid WO; S17-R5 note "{service} added from {schedule}", internal, emails nobody; S17-R8 dedup by canned line per call AND against lines this WO already got from maintenance; S22-R1 origin stored.
+- INFO L532-536 deferred to Plan 2 list.
+- TV L563 (NFR-022): reversal paths: "reverse invoice" and the unpaid payment-dialog dismissal; readings back to In the shop unless an effective Mark complete On that WO keeps them; credit memo nothing.
+- TV L564 (NFR-023): copy never copies a price, fixed price, part, adjustment or inspection link (plan detail beyond spec S16-N6 "Prices and parts are not copied").
+- TV L565 (NFR-024): only a user with access to the home location changes the schedule's canned lines (Chunk 1, S4-R9).
+- EX L542-562: tenancy, performance, migrations, transactions.
+- TV L571-583 NFR-F: no "0" while loading (skeleton); hover reachable by hover/focus/Enter/Space/tap, Esc closes, phone sheet; "mileage"/"hours" in full, never mi/km/hrs; phone dialogs fullscreen, lists → cards, menus → action sheets.
+- INFO L585-619 clarifications (same answers as Plan 2 §1). Q9: a WO reaching Complete does NOT record its readings; Mark complete On it does. Q12: every completion rests the worklist row (Chunk 1). Q17: 30 days per month for reminder rows (Chunk 1, S5-R12).
+- INFO L621-665 product answers index.
