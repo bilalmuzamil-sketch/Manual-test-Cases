@@ -39,6 +39,8 @@ w('**Marker and source stamp (coordinator decision, 6 Oct):** every update and n
 w('')
 w('**Second pass (coordinator decisions, 6 Oct):** (1) marker and stamp as above; (2) the six S21 audit cases stay manual: each has real hand steps for what is visible, and the plain results say the audit part "cannot be checked by hand in v1 — no screen shows the audit"; (3) reading histories are now seeded by hand through Mark complete On a work order, which records that work order\'s mileage and engine hours as readings dated the Reset date (S18-R19): C146352, C146355, C146357, C146364, C146385, C146386 and NEW-7 carry the recipe ("ZZAUTOTEST Reading seed" schedule, "ZZ Seed n" services, one work order per reading, oldest first) with worked values that produce exactly what each case checks; (4) send cases tell the tester to give the contact an email address they can open, so the reminder lands in their own inbox; (5) NEW-2 uses "the organization\'s Feature flags page" and stays on HOLD until the label is confirmed on the build.')
 w('')
+w('**Third pass (final design drive, 6 Oct):** DESIGN-DRIVE-FINDINGS.md (646 lines) and spec-comparison.md (134 lines) read in full; every design label used was confirmed against the drive\'s exposed texts (Chunk 1-interactions.jsonl, Chunk 1-pages.txt and the Demo board\'s, gathered by `drive_corpus.py` into 244 distinct texts) or the board text. (a) Design-only details a tester sees (tooltips, hover cards, empty states, messages) were added to the 28 cases that already reach that screen, each as "On the design …" with the artboard in the Source line and the design text quoted: C146310, C146313, C146314, C146316, C146317, C146318, C146320, C146324, C146325, C146326, C146329, C146331, C146338, C146340, C146341, C146343, C146347, C146348, C146352, C146353, C146355, C146360, C146363, C146364, C146366 (design hover wording, for the tester to record), C146371, C146373, C146374, plus NEW-25 (Send email dialog fields). None contradicts the spec, so no new case was needed: every design-only detail sits on a screen an existing case already drives. (b) Every Chunk 1 "design differs from spec" row is now in DIVERGE, both texts verbatim (D34–D53, 20 added: 13 drive 3b rows not already present (rows 1, 2, 4, 5, 15, 16, 17–23), 6 further differences the drive exposed in its 3a list — compliance drag tooltip, two Remind before expiry wordings, blank-date hint only in a hover, the spec\'s own digits-only vs "rejected inline" conflict, "Set contact" vs "Add contact information", the Demo\'s Send reminder confirmation step — and the 35 dead "Create work order" links as a design-package note, no case). Rows already present (D4, D6, D7, D8, D9, D13, D19, D24) stay as they were. (c) Labels settled by the design: Settings entry "Maintenance" (spec and design sidebar; tech plan "Maintenance schedules" stays a DIVERGE), empty list "No schedules yet" / "Create the first schedule", list button "New Schedule", worklist heading "Status", tile "Due in three months", empty worklist "Nothing is due.", record form "Add history record", enrolment title "Enroll in a schedule", send dialog "Send email". Where the spec words differ the case keeps the spec and asks the tester to record the build\'s wording.')
+w('')
 w('## 1. Per-source verdicts')
 w('')
 w('| Source | Verdict | What it changed |')
@@ -48,12 +50,12 @@ w('| Maintenance Reminders V1 main page (833290250), key decisions | **UPDATE + 
 w('| Review decisions 892305428 (Chunk one), 891944985 (Chunk three), 841678852 (open questions), run log 891519016 | **CONFIRM** | Every Chunk 1 item is answered in or superseded by the 5 Oct spec. Open items left (MF-14/15/16/18, OQ-4) are Chunk 2; OQ-5 is not testable. Nothing to add. |')
 w('| Plan 1 — Track, act, clear — Technical Implementation Plan (5,363 lines) | **ADD (informs) + DIVERGE + EXCLUDE** | Added tester-visible details the spec does not give: first Save keeps the editor open with a toast (D21); archived names reserved (S1-E2 row); "Lines from {home}" before first Save (FD-23); read-only lines also hide Move up/down (FD-24); 13/14/15-day and 29/30 boundaries (P1 tests); certificate clamp both ways (Q15, certificateDates tests); Undo complete only for the latest Mark complete and "This can no longer be undone" (§1, §5.4); Open/Invoice offer a location switch (FD-16); Invoice falls back to Open work order (FR10); Settings entry not gated on Digital Inspections (FR13); hover by focus/Enter/tap (NFR-F08); loading never shows 0 (NFR-F03); testability note B5 (no API to backdate a reading; answered by the hand route of S18-R19). Divergences: name matching (TD-23), Status column (P5), toggle disabled vs hidden, Settings entry label. DB/API/architecture excluded. |')
 w('| Plan 2 — The work order and the customer (sections touching Chunk 1) | **ADD (informs) + DIVERGE** | Send reminder states and "Last sent {date}" (FD-216); send dialog title and toast differ from the design. (NFR-118 sends QA mail only to allowed addresses; testers use an address they can open.) |')
-w('| Design board "Chunk 1.dc.html", 6 Oct vs 29 Sep | **UPDATE (labels) + DIVERGE** | New board: "covered" (not "absorbed"), "Lines from <home>", "Enroll in Schedule", Start/End date, "ends 14 Oct 2026", Mark complete modal, Send email dialog, contact-card states. 33 divergences recorded (section 6); the spec wins in every case and no case follows the design where they differ. |')
+w('| Design board "Chunk 1.dc.html", 6 Oct vs 29 Sep | **UPDATE (labels) + DIVERGE** | New board: "covered" (not "absorbed"), "Lines from <home>", "Enroll in Schedule", Start/End date, "ends 14 Oct 2026", Mark complete modal, Send email dialog, contact-card states. 33 divergences recorded from the board itself (section 6, D1–D33); the spec wins in every case and no case follows the design where they differ. |')
 w('| Design-package reading notes (other worker, 1,277 lines) and NEW-SCREENSHOTS-READ | **CONFIRM + DIVERGE** | Screenshots and handoff markdown are older than the spec (spec wins). Folded in: "Not on a maintenance schedule", "Certificate unknown", "Add history record", rule-in-cell, one-pair Low grade, "Completed", remove-confirm outcome, 2-month default, "at always takes a month", covering (i), 36 months, one labelled phone, phone hover ending, live-WO rows. |')
 w('| Design inventories inv1/inv1b/inv1c and audit.json | **CONFIRM (superseded)** | An intermediate snapshot (still "absorbed", Effective/Expiry); nothing new. |')
 w('| "Canned lines per location - proposal.dc.html" | **CONFIRM** | Matches S4-R7/R8 and S13-R30/S16-N6 (used in NEW-3 and NEW-18). Design-only: the picker marks lines already on the service "Already added". |')
 w('| "Maintenance Reminders Demo.dc.html", "4-work-order (old WO chrome).dc.html" | **EXCLUDE (superseded)** | Older board states; the work-order board is Chunk 2. |')
-w('| Design drive (DESIGN-DRIVE-FINDINGS.md) | **STILL TO BE FOLDED IN** | The file says "Status: IN PROGRESS" (Chunk 1 still being driven when last checked, after 10:01). Its findings are not in these proposals. |')
+w('| Design drive (DESIGN-DRIVE-FINDINGS.md, final; spec-comparison.md) | **ADD (design-only details) + DIVERGE** | 3a: 45 Chunk 1 items; 28 cases and NEW-25 now carry what the tester sees (tooltips, hover cards, messages, empty states); designer notes, the reading-card (i)s of S10/S11 (Chunk 2) and the proposal-board hover are excluded with reasons. 3b: rows 1–5, 7–10, 12–23 are Chunk 1 and all are in DIVERGE (D4, D6, D7, D8, D9, D13, D19, D24 were already there; D34–D53 added). Dead links: 35 "Create work order" links point at a missing Chunk 2#v5 (design note). Spec states no artboard draws: the cases keep the spec text as their only source. |')
 w('')
 w('## 2. Quote check')
 w('')
@@ -95,7 +97,7 @@ w('|---|---|---|---|')
 for i, n in enumerate(p_new.N, 1):
     w(f"| NEW-{i} | {n['story']} | {n['title']} | {n['why']} |")
 w('')
-w('## 6. DIVERGE (33) — sources disagree; never picked, the spec governs the case wording')
+w(f"## 6. DIVERGE ({len(P['diverge'])}) — sources disagree; never picked, the spec governs the case wording")
 w('')
 w('| # | Topic | Source A (verbatim) | Source B (verbatim) | Affected |')
 w('|---|---|---|---|---|')
@@ -103,19 +105,19 @@ for i, d in enumerate(P['diverge'], 1):
     aff = ', '.join(str(x) if isinstance(x, str) else f'C{x}' for x in d['affected_cases'])
     w(f"| D{i} | {d['topic']} | {d['source_a'][0]}: \"{d['source_a'][1]}\" | {d['source_b'][0]}: \"{d['source_b'][1]}\" | {aff} |")
 w('')
-w('## 7. EXCLUDE (17)')
+w(f"## 7. EXCLUDE ({len(P['exclude'])})")
 w('')
 for e in P['exclude']:
     w(f"- **{e['item']}** — {e['reason']}")
 w('')
-w('## 8. Labels I could not confirm from the spec (the case wording follows the spec, or says the label is open)')
+w('## 8. Labels where the sources differ (the design labels below are now confirmed by the design drive; the case wording follows the spec and asks the tester to record the build\'s wording)')
 w('')
 for s in [
- 'Settings entry: spec and the design sidebar "Maintenance"; tech plan "Maintenance schedules" (D2). Preconditions say to use whichever the build shows.',
+ 'Settings entry: "Maintenance" — spec and the design sidebar agree (drive: SettingsSidebar active=maintenance); tech plan "Maintenance schedules" (D2). Preconditions now name "Maintenance" and tell the tester to record the label if the build shows the tech plan\'s.',
  'Success message after the first Save of a schedule: the tech plan says "a success toast" with no words (C146311).',
- 'Enrolment modal title: "Enroll in schedule" (tech plan) vs "Enroll in a schedule" (design); spec only says static (C146340 asserts static, not the words).',
+ 'Enrolment modal title: "Enroll in a schedule" (design, confirmed by the drive) vs "Enroll in schedule" (tech plan); spec only says static (C146340 asserts static and shows the design title for the tester to compare).',
  'Blank-date hint: "Blank counts from today" (tech plan) vs "Left blank, counting starts today." (design).',
- 'Empty settings list: "No schedules yet" / "Create the first schedule" (design) vs "No maintenance schedules yet" (tech plan).',
+ 'Empty settings list: "No schedules yet" / "Create the first schedule" (design, confirmed by the drive; C146310 now shows them) vs "No maintenance schedules yet" (tech plan); the spec gives no words ("one thing to press"). List button "New Schedule" (design) vs "New schedule" (spec).',
  'Worklist: "Due status" (spec) vs "Status" (design); "Due in 3 months" (spec) vs "Due in three months" (design); "nothing is due in the next three months" (spec, tech plan) vs "Nothing is due." (design).',
  'No-email note wording (tech plan vs design, spec gives none); send dialog title ("Sending Maintenance reminder" vs "Send email"); toast after a send ("Reminder sent." vs "Reminder sent to Dave Brabay").',
  'Record form: "+ Add record" (spec) vs "Add history record" (design); "No record" (spec) vs "Certificate unknown" / "no certificate on file" (design); "This unit is not on a maintenance schedule" (spec) vs "Not on a maintenance schedule" (design).',
@@ -163,7 +165,10 @@ rows = [
  ('_tools/audit.json, "Chunk 1.dc.html" part', '22,395 B (whole file)', 'every key and value of the Chunk 1 part printed and read', '100% read'),
  ('source-update-2026-10-06/NEW-SCREENSHOTS-READ-2026-10-06.md', '3,721 B / 21 lines', 'read in full', '100% read'),
  ('source-update-2026-10-06/DESIGN-PACKAGE-READING-NOTES.md (other worker)', '359,793 B / 1,277 lines', 'lines 1–1,277 read (in five passes as the file grew: 1–200, 200–492, 493–639, 640–799, 800–1,277)', '100% read; Chunk 1 findings folded in (sections 1, 6)'),
- ('source-update-2026-10-06/DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md', '1,022 B / 13 lines', 'read in full', 'IN PROGRESS when read; its findings are still to be folded in'),
+ ('source-update-2026-10-06/DESIGN-DRIVE-2026-10-06/DESIGN-DRIVE-FINDINGS.md (final)', '129,428 B / 646 lines', 'read in full', '100% read; every Chunk 1 item of 3a, 3b, the dead links and the not-drawn list folded in'),
+ ('source-update-2026-10-06/DESIGN-DRIVE-2026-10-06/spec-comparison.md', '134 lines', 'read in full (identical to the findings file\'s section 3)', '100% read'),
+ ('DESIGN-DRIVE-2026-10-06/Chunk 1-interactions.jsonl, Chunk 1-pages.txt, Maintenance Reminders Demo-interactions.jsonl and -pages.txt', '5,729,806 B / 78,770 B (Chunk 1)', 'every exposed text, native tooltip and label extracted by `drive_corpus.py` (244 distinct texts) and used by the quote check', '100% of exposed text used; every design label in the proposals is verified against it or the board text'),
+ ('design-text/Demo-board-text-2026-10-06.txt', 'Demo board visible text', 'used by the quote check for the superseded Demo wordings in DIVERGE', '100% used for its quotes'),
  ('source-update-2026-10-06/AUTHORIZED-SKIPS-2026-10-06.md', '933 B', 'read in full (QA lead skip list for fonts, icons, DS code, designer scripts, backups)', '100% read'),
  ('snapshots-2026-10-06/chunk1-cases-before.json (81 cases)', '265,663 B', 'parsed by script; every case\'s title, preconditions, steps, results, source and quotes read', '100% read'),
  ('mr_lib.py and v2_s1.py … v2_s14_s21_data.py (house format)', 'mr_lib 3,819 B', 'mr_lib read in full; v2_s1.py read for the case style', 'mr_lib 100%; v2 scripts: format only'),
@@ -176,7 +181,7 @@ w('')
 w('## OUTSTANDING — what I need from you')
 w('')
 w('1. Apply the proposals with the coordinator\'s renderer (no TestRail write was made here).')
-w('2. Send the 33 DIVERGE items to the PO (labels first: Settings entry, Due status, tile name, empty states, record form, Mark complete line).')
-w('3. The design-drive findings are still IN PROGRESS (file last checked after 10:01); send them when final and I will fold them in.')
+w(f"2. Send the {len(P['diverge'])} DIVERGE items to the PO (labels first: Settings entry, Due status, tile name, empty states, record form, Mark complete line). D53 is a design-package note for the designer, not a PO question.")
+w('3. Nothing else outstanding from me: the design drive is folded in. Every case stays on HOLD until a Maintenance Reminders QA build exists.')
 open(ROOT + 'source-update-2026-10-06/CHUNK1-FINDINGS.md', 'w').write('\n'.join(L) + '\n')
 print('written', len(L), 'lines')

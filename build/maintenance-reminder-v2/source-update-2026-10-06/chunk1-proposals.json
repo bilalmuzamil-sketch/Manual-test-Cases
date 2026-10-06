@@ -53,7 +53,7 @@
    "title": "The empty Maintenance screen prompts the first schedule",
    "preconds": [
     "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "An organization with no maintenance schedules at all (schedules are shared by the whole organization, so a new location does not give an empty list). If the environment has none, mark the case Blocked with that reason."
    ],
    "steps": [
@@ -91,7 +91,7 @@
    "title": "New schedule opens an empty Untitled schedule editor; first Save keeps it open",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header."
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header."
    ],
    "steps": [
     "In Settings > Maintenance click New schedule.",
@@ -127,7 +127,7 @@
    "title": "Save is disabled until the schedule has one service",
    "preconds": [
     "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "A new schedule editor is open (click New schedule)."
    ],
    "steps": [
@@ -165,7 +165,7 @@
    "title": "A schedule name cannot be blank or already in use",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "Seed a maintenance schedule (standard steps):",
     "↳ In Settings > Maintenance click New schedule; the \"Untitled schedule\" editor opens.",
     "↳ Inline-edit the title to a test name (e.g. \"Highway Tractor PM\").",
@@ -217,7 +217,7 @@
    "title": "The service table shows Service, Interval, Canned Lines and reorders",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "A schedule open in the editor with two services. Seed it:",
     "↳ New schedule; Add service \"PM-A\": calendar Every 3 months, tick Distance and enter Every 15,000 (mileage); add 3 canned lines; save the service.",
     "↳ Add service \"PM-C\": calendar Every 12 months; at \"Services also covered\" pick PM-A (its 3 lines arrive marked \"from PM-A\"); add 1 more canned line of its own; save the service."
@@ -261,7 +261,7 @@
    "title": "The schedule list: Active/Archived tabs, search, row menu",
    "preconds": [
     "You are signed in as an Owner/Admin, or a user with \"Settings Service\" enabled, on the build under test.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "Several schedules exist - at least one active with assets enrolled and one archived. Seed them:",
     "Seed a maintenance schedule (standard steps):",
     "↳ In Settings > Maintenance click New schedule; the \"Untitled schedule\" editor opens.",
@@ -310,7 +310,7 @@
    "title": "Add service opens a blank form in a fixed order",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "A schedule open in the editor that already has one routine service (e.g. \"PM-A\"), so that the covered step can show. Seed it with the standard steps (New schedule, Add service \"PM-A\", Every 3 months, save the service)."
    ],
    "steps": [
@@ -420,7 +420,7 @@
    "title": "Interval operator Every vs At; calendar At is a day-and-month picker",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "A schedule open in the editor with the Add service form open (New schedule > Add service), Distance ticked so a meter row shows too."
    ],
    "steps": [
@@ -494,7 +494,7 @@
    "title": "Interval fields take whole numbers within caps only",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "The Add service form open (New schedule > Add service) with Distance and Engine hours ticked, so the calendar, mileage and engine-hours rows all show."
    ],
    "steps": [
@@ -584,7 +584,7 @@
    "title": "Months land on the same day; a missing day falls on month-end",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "A schedule open in the editor (New schedule)."
    ],
    "steps": [
@@ -620,7 +620,7 @@
    "title": "Services also covered pre-fills the covered services' lines",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "A schedule with routine services and one compliance service. Seed it:",
     "↳ New schedule; Add service \"PM-A\" (Every 3 months, 3 canned lines) and \"PM-B\" (Every 6 months, 2 canned lines); save each.",
     "↳ Add service \"CVIP\": turn on \"Is this a compliance inspection?\", Type \"CVIP\", Term 12 months; save it."
@@ -736,7 +736,7 @@
    "title": "Compliance Type is required free text with examples in an (i)",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "The Add service form open with \"Is this a compliance inspection?\" turned on (New schedule > Add service > turn it on)."
    ],
    "steps": [
@@ -777,7 +777,7 @@
    "title": "Compliance Term and Remind before expiry are in months",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "The Add service form open with \"Is this a compliance inspection?\" turned on, Type \"CVIP\"."
    ],
    "steps": [
@@ -833,7 +833,7 @@
    "title": "No certificate date on the form; a compliance service is orange",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "A schedule with a compliance service. Seed it: New schedule; Add service \"CVIP\", turn on \"Is this a compliance inspection?\", Type \"CVIP\", Term 12 months; save the service and the schedule.",
     "↳ Open Customers, open a test customer (e.g. \"Aacrest Works\"), open its Assets tab and open an asset (e.g. unit 402 · 2019 Freightliner Cascadia).",
     "↳ Open the asset's Maintenance tab (the last tab, after Notes) and click Enroll in Schedule.",
@@ -924,7 +924,7 @@
    "title": "A service shows no value; the line count opens a hover card",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "A schedule with PM-A (3 canned lines) and PM-C covering PM-A plus 1 line of its own (seed as in the service-table case)."
    ],
    "steps": [
@@ -1011,7 +1011,7 @@
    "title": "Reminder rows are in days; a before row must be shorter than the interval",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "The Add service form open on a routine service (New schedule > Add service), name \"PM-A\", calendar Every 1 month."
    ],
    "steps": [
@@ -1083,7 +1083,7 @@
    "title": "Reminder rows drive due soon only; compliance has none",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "A schedule with a routine service \"PM-A\" (calendar Every 30 days, default reminder rows) and a compliance service \"CVIP\" (Term 12 months). Seed it with the standard steps.",
     "Enrol one asset on it (asset Maintenance tab > Enroll in Schedule) and enter PM-A's last service date as 20 days before today, so PM-A comes due in 10 days (20 + 10 = 30)."
    ],
@@ -1182,7 +1182,7 @@
    "title": "Editing or removing a service asks first and spares enrolled assets",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "Schedule \"Highway Tractor PM\" with PM-A (Every 3 months) and PM-B (Every 6 months), and PM-C covering PM-B (pick PM-B at \"Services also covered\"). Save.",
     "↳ Open Customers, open a test customer (e.g. \"Aacrest Works\"), open its Assets tab and open an asset (e.g. unit 402 · 2019 Freightliner Cascadia).",
     "↳ Open the asset's Maintenance tab (the last tab, after Notes) and click Enroll in Schedule.",
@@ -1227,7 +1227,7 @@
    "title": "Duplicate names the copy \"(Copy)\", then \"(Copy 2)\"; no assets",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "Seed a maintenance schedule (standard steps):",
     "↳ In Settings > Maintenance click New schedule; the \"Untitled schedule\" editor opens.",
     "↳ Inline-edit the title to a test name (e.g. \"Highway Tractor PM\").",
@@ -1278,7 +1278,7 @@
    "title": "Archiving deactivates and unenrolls; restoring enrolls nobody",
    "preconds": [
     "You are signed in, on the build under test, as an Owner/Admin or as a user with \"Settings Service\" enabled.",
-    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build labels it \"Maintenance schedules\", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.",
+    "In the left sidebar under Settings, open the \"Maintenance\" entry beneath \"Inspection Templates\" (if the build shows \"Maintenance schedules\" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.",
     "Seed a maintenance schedule (standard steps):",
     "↳ In Settings > Maintenance click New schedule; the \"Untitled schedule\" editor opens.",
     "↳ Inline-edit the title to a test name (e.g. \"Highway Tractor PM\").",
@@ -5690,7 +5690,7 @@
   },
   {
    "item": "Design drive \"spec states that no artboard draws\" (S1-E2 name-in-use message, S7-E1 Mark as done / Leave due, S7-R19 count statement, S11 \"No data\", S11-R27 hover ending, S13-R33 \"No reminders match\", S1-R10 Move up / Move down)",
-   "reason": "Not excluded from testing: the cases keep the spec wording as their only source (C146313, C146342, C146343, C146365, C146314, NEW-7). Listed so nobody takes screen wording for them from the design."
+   "reason": "Not excluded from testing: the cases keep the spec wording as their only source (S1-E2 C146313, S7-E1 C146341, S7-R19 C146343, \"No data\" C146386, S13-R33 C146361, S1-R10 C146314, S11-R27 NEW-7). Listed so nobody takes screen wording for them from the design."
   }
  ]
 }

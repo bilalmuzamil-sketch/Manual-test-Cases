@@ -28,7 +28,7 @@ def src(story, section=None, plan1=None, plan2=None, main=None, design=None):
     return s + '; read 6 Oct 2026. Source-verified 6 October 2026; not yet build-verified.'
 
 ADMIN = 'You are signed in, on the build under test, as an Owner/Admin or as a user with "Settings Service" enabled.'
-NAV = 'In the left sidebar under Settings, open the "Maintenance" entry beneath "Inspection Templates" (if the build labels it "Maintenance schedules", use that entry; the label is an open question). Schedules are shared by the whole organization, whichever location is chosen in the header.'
+NAV = 'In the left sidebar under Settings, open the "Maintenance" entry beneath "Inspection Templates" (if the build shows "Maintenance schedules" instead, use that entry and record the label). Schedules are shared by the whole organization, whichever location is chosen in the header.'
 SEED = ['Seed a maintenance schedule (standard steps):',
         '↳ In Settings > Maintenance click New schedule; the "Untitled schedule" editor opens.',
         '↳ Inline-edit the title to a test name (e.g. "Highway Tractor PM").',
