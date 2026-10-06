@@ -56,3 +56,16 @@ wording he chose (put to the QA lead 2026-10-05, not rewritten).
   note — a review task, not a screen test; left for the QA lead) · precondition labels ALL CLEAR · Rule 115 clean except Mudassir's
   C154871/C154873/C154883 wording already put to the QA lead · served fr-view on every write.
 - verify_suite on the whole group still reports the 22 held Automated cases (old build stamp v26.39.2, Rule 71 — need go-ahead).
+
+## 2026-10-06 — QA lead decisions on the morning report
+1. **Yes** — the 22 automated cases Vlad last edited were updated (same setup fixes + per-case: no "server response", Set Status location
+   noted in C154621, "Vendor missing" note in C154604, tax set to GST 5% in C154637/C154638/C154878). Write log 22/22 OK, fr-view 22/22,
+   runnability gate clean, label gate clear, Rule 115 gate clean. All 104 now name build v26.40.7-7ffda69. **Tell Vlad** (automated, changed):
+   C154587 C154588 C154590 C154592 C154599 C154602 C154604 C154605 C154606 C154607 C154609 C154610 C154612 C154617 C154621 C154622 C154623
+   C154637 C154638 C154639 C154642 C154878.
+2. QuickBooks-dependent cases **wait for staging** (no QuickBooks connection will be made on sv9667).
+3. Mudassir's cases: **leave them** as they are (markers and wording as of 10-05; C154871/C154873/C154883 untouched).
+4. Vlad list acknowledged.
+5. **No** source re-verification now.
+Final group markers (live): READY 68 · HOLD 35 (QuickBooks 22, portal 8, not-manual 4, old sign-in 1) · Not available 1.
+verify_suite: every check passes except runnability on Mudassir's held/left cases and C154883 (left by QA-lead decision 3).

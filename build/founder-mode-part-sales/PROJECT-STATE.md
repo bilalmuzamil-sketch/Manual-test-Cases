@@ -46,3 +46,7 @@ Group 20435 now holds 104 (61 Bilal + 43 Mudassir). Walked the whole core flow t
 Markers (final, counted live): 46 READY · 22 HOLD QuickBooks (not connected on this branch, proved) · 8 portal-HOLD · 5 HOLD not-manual/old-sign-in · 1 Not available (C154595).
 Hand-off: RUN-HANDOFF-PART-SALES-2026-10-05.md. Outstanding: go-ahead for the 22 held automated; Mudassir's 16 READY→QB-HOLD
 (tell him); C154601 "Charged" tag absent (three outcomes in case); QuickBooks test company for this branch.
+
+## 2026-10-06 · QA lead decisions applied
+22 held automated cases updated on go-ahead (now all 104 stamped v26.40.7-7ffda69; READY 68 · HOLD 35 · Not available 1).
+QuickBooks cases wait for staging · Mudassir's cases left as they are · no source re-verify now. Details in the run hand-off.

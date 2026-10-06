@@ -67,7 +67,7 @@ Seeded sale P9667-370 (4 Star Truck Repair, Water Pump $517.55 + core $79.99, ve
 - **QuickBooks NOT connected on this QA branch** (Settings → QuickBooks shows only the heading; server reports no company) — proved, `build-verify-2026-10-05/quickbooks-not-connected-claim.json` (blocker_gate exit 0). No QuickBooks login is held.
 
 ### Gate vocabulary — labels confirmed on sv9667 v26.40.7-7ffda69 on 2026-10-05 (evidence: build-verify-2026-10-05/seed-*, roles/staff dumps)
-`Core for Water Pump` · `Parts Manager` · `Service Advisor` · `Edit tax rate` · `Taxes` · `GST` · `New Tax` · `Add Part` · `Save & Close` · `Save & Add Part` ·
+`Vendor missing` (Receive parts dialog, part with no vendor — receive-dialog.txt) · `Core for Water Pump` · `Parts Manager` · `Service Advisor` · `Edit tax rate` · `Taxes` · `GST` · `New Tax` · `Add Part` · `Save & Close` · `Save & Add Part` ·
 `Authorize` · `Decline` · `Auth To Order` · `Order` · `Awaiting` · `Receive` · `Receive parts` · `Receive Parts` · `Parts received.` · `Return Core` ·
 `Returned` · `Cancel Return` · `Put Back` · `Add Part Fee / Discount` · `Audit Log` · `Part Sale Log` · `Delete Part Sale` · `Split Part Sale` · `Move Part` ·
 `Set Status` · `Finance` · `Add Deposit` · `Create Deposit` · `Record Deposit` · `Collect In Portal` · `Create Invoice` · `New Customer Payment` ·
