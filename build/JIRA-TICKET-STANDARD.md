@@ -203,3 +203,6 @@ Scope the testing and the comment to **exactly that source**: quote it at the to
 
 ### §10.2 — A spec was updated and a retest asked against it (Standing Rule 99)
 Open with the named check's verdict against the new text (`*Check N: PASSED against <rule> (version V)*`), quote the updated text, put the picture under it, then a `----` line and any remaining issue. Then update every earlier comment row the new text changes, in place, so no row contradicts the current spec. Canonical example: SV-10323 comments 78010 and 77936 (7 Oct 2026).
+
+### §10.3 — Editing a comment that is already posted (Standing Rule 100)
+Put an italic dated note at each edited section or row: `_Updated on <d Month yyyy>, <hh:mm> <TZ>: <what changed>._` or `_Added on …_`. If the comment has been edited more than once, open it with one line: `_First posted <time>. Edited at <time> (<what>) and at <time> (<what>)._` Take the times from the comment's `updated` field (team timezone, CDT/CST). Example: SV-10323 comments 77936 and 78010.

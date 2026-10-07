@@ -10,6 +10,8 @@ The main fix is working:
 
 h3. Check 10: PASSED against the updated spec
 
+_Added on 7 October 2026, 02:43 CDT._
+
 Chris chose option B in [comment 77996|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=77996] and updated *Notifications Update V1, S10-R5b (version 28)*, which now states:
 
 {quote}_"Exception: on work order and work order line notes, a role whose Work Orders view is set to Tech View does not see the checkbox at all, as today."_{quote}
@@ -17,6 +19,8 @@ Chris chose option B in [comment 77996|https://shopview.atlassian.net/browse/SV-
 I retested on 7 October 2026 (build v26.40.8-cf5b7ad). A Technician sees no {{For Customer}} checkbox on work order and work order line notes, which is exactly what this exception asks for. Details and picture are in [comment 78010|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=78010].
 
 h3. Why this is still Partially Passed
+
+_Updated on 7 October 2026, 02:43 CDT: the reason was the open question on check 10, which is now answered and passed. It is now row 11._
 
 The same S10-R5b (version 28) states:
 
@@ -42,8 +46,8 @@ h3. What I checked
 |7|A file added by a staff member who has since been removed can still be shared with the customer by the shop (picture above).|PASSED|
 |8|The second shop can still change its own files normally.|PASSED|
 |9|Automated tests for the cross-shop cases and the removed-uploader case are in the pull request, and all of its checks pass.|PASSED|
-|10|A user with the Technician role (Tech View, view-only on work orders) sees no For Customer checkbox on work order and work order line notes, as the S10-R5b exception (version 28) asks. Retested 7 October.|PASSED|
-|11|Tech View roles on customer, asset and part sale notes: with Edit the checkbox works, view-only it shows greyed out (S10-R5b version 28, Chris's comment 77996). Today they see no checkbox, and a part sale does not open for them.|FAILED - see comment 78010|
+|10|A user with the Technician role (Tech View, view-only on work orders) sees no For Customer checkbox on work order and work order line notes, as the S10-R5b exception (version 28) asks. _Updated 7 October 2026, 02:43 CDT: was OPEN._|PASSED|
+|11|Tech View roles on customer, asset and part sale notes: with Edit the checkbox works, view-only it shows greyed out (S10-R5b version 28, Chris's comment 77996). Today they see no checkbox, and a part sale does not open for them. _Added 7 October 2026, 02:43 CDT._|FAILED - see comment 78010|
 
 h3. Before and after: a user who can only view work orders
 

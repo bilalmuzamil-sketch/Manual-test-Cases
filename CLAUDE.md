@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **EDITING SOMETHING ALREADY POSTED? (Standing Rule 100): put a dated note (date, time, timezone, what changed) right at the edited section/row.**
 > - **PO UPDATED THE SPEC + ASKED FOR A RETEST? (Standing Rule 99): first line = that check's verdict against the NEW text, quoted; update every earlier row the new text changes; never drop the spec quote.**
 > - **GREEN "OVERALL QA STATUS: PASSED" ONLY WHEN THE TICKET IS 100% FIXED (Standing Rule 97).** Anything less =
 >   "PARTIALLY PASSED" (non-green), remaining issues in a SEPARATE comment to the dev, and NO "not treated as a fault"
@@ -5277,6 +5278,13 @@ deliver the 7-tab management report.
     **(c) UPDATE EVERY EARLIER COMMENT / TABLE ROW WHOSE EXPECTATION THE NEW TEXT CHANGES.** A row that still asserts the old expectation now contradicts the spec — it is a defect in our record, not history. Update it in place (verdict + the new quote), and adjust the overall status text so the arithmetic closes (Rule 90).
     **(d) NEVER DROP THE SPEC QUOTE IN A REWRITE.** When a comment is rewritten for scope, the spec text the requester pointed at stays quoted; quoting only the requester's comment is not enough when they said "I updated the spec".
     **RATIONALE, 2026-10-07 (SV-10323, my miss):** Chris updated S10-R5b to v28 (Tech View exception on work order/line notes) and asked us to retest check 10 against it. I read v28 and tested correctly, but my comment 78010 never said check 10 PASSED, its rewrite dropped the v28 quote, and 77936 row 10 still said the Technician should see the box greyed out — the opposite of v28. Fixed in place: 78010 now opens "Check 10: PASSED against S10-R5b (version 28)" with the quote and picture; 77936 row 10 PASSED + new row 11 FAILED. Ties to Standing Rules 25, 31/59 (re-read the source), 54/57 (expectations come from the document), 72, 90, 97 and §10.1 of the ticket standard.
+
+100. **EVERY EDIT TO AN ALREADY-POSTED COMMENT, TICKET OR DOCUMENT CARRIES A DATED NOTE SAYING WHAT CHANGED (all projects).**
+    USER DIRECTIVE (2026-10-07, verbatim): *"So when you have updated the comment or anything in an older comment like this 'Check 10: PASSED against the updated spec' You should mention something like edited/updated with date and time."*
+    **THE RULE:** whenever I change something already posted (a Jira comment, a ticket description, a table row, a published page), the changed part carries a short italic note with the **date, time and timezone, and what changed** — e.g. *"_Updated on 7 October 2026, 02:43 CDT: was OPEN._"* or *"_Added on 7 October 2026, 02:43 CDT._"*. Put it **right at the edited section or row**, not only at the bottom. A comment edited more than once opens with one line listing every edit (*"First posted 02:01 CDT. Edited at 02:12 CDT (…) and at 02:43 CDT (…)."*).
+    **USE THE REAL TIME, READ FROM THE RECORD:** take it from the comment's `updated` timestamp or the logged write time, in the timezone the readers see in Jira (CDT/CST for this team, from Jira's −0500/−0600 offset). Never estimate; convert offsets, don't eyeball them (Rule 59's timezone lesson).
+    **WHY:** readers who saw the earlier version must be able to tell what changed and when; a silent edit makes an old verdict look like it was always there, and can make someone think they misread it. **It is not a "we were wrong" narrative** (the one-complete-comment rule still stands) — just a plain, dated marker of the change.
+    Ties to Standing Rules 46 (no undocumented changes), 65 (human voice), 72 (the pre-post gate now checks an edit note is present on every edited part), 90, 97 and 99.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
