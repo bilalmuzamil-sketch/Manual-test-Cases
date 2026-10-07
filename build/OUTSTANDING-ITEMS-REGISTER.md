@@ -57,7 +57,13 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-07, ~12:00 UTC. **SV-10599 POSTED: PASSED with "hold the release" (comment 78112), 16 of 16 checks on sv10599 `v26.40.3-971d112`; two confirmations asked in follow-up 78113.**
+## ⚠️ NEWEST — 2026-10-07, ~13:10 UTC. **SV-10323 RETEST AFTER NEMANJA'S FIX: PASSED (new comment 78116), check 11 rows 1–8 + Full View rows 9–10 all pass on sv9667 `v26.40.8-129d22f`. Nothing outstanding on SV-10323.**
+
+**QA lead's rulings (7 Oct):** technical section *"No"*; *"Just add a New comment with the overall QA status with the screenshots."* — so 77936 and 78010 were left as they are.
+**Cleared:** the open item below (option B deployed) — satisfied by build `v26.40.8-129d22f`, verified live with a 5-role matrix.
+**Not tested (by design, Nemanja 78014):** notes on a part sale's line — the part sale New Note window has no line selector.
+
+## ⚠️ PREVIOUS — 2026-10-07, ~12:00 UTC. **SV-10599 POSTED: PASSED with "hold the release" (comment 78112), 16 of 16 checks on sv10599 `v26.40.3-971d112`; two confirmations asked in follow-up 78113.**
 
 | # | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|---|
@@ -86,7 +92,7 @@ else owes).
 
 | # | What I need | Who owes it | What it blocks | Since |
 |---|---|---|---|---|
-| 1 | The option-B change deployed to sv9667 (no commit since Chris's ruling; build still `v26.40.8-cf5b7ad`) | Developer (Nemanja Djuric) | SV-10323 fully passed — QA lead's ruling 6 Oct: *"it should be marked as partially passed and shoul dbe fully passed after the last comment is addressed"* | 2026-10-07 |
+| 1 | ~~The option-B change deployed to sv9667~~ **CLEARED 2026-10-07 13:10 UTC — deployed in `v26.40.8-129d22f`, retested, PASSED (78116)** | Developer (Nemanja Djuric) | SV-10323 fully passed — QA lead's ruling 6 Oct: *"it should be marked as partially passed and shoul dbe fully passed after the last comment is addressed"* | 2026-10-07 |
 
 ## ⚠️ PREVIOUS — 2026-10-06, ~14:55 UTC. **SV-10804 POSTED: PASSED (comment 77983), 12 of 12 checks, on sv10360 `v26.40.8-1bc3b12`. Nothing outstanding.**
 

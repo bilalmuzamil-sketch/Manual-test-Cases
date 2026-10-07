@@ -18,3 +18,14 @@ Rows 1–2 re-captured targeted as Technician (`ev/raw/r4-rows12-*.png`): `note_
 **Part sale line note (Nemanja: "known, by design"):** the part sale **New Note** dialog has no line selector (`ev/raw/psnote.png` — content, tag groups, quick notes, reminder only), so such a note cannot be written from the screen; not tested.
 **State left:** Tech back on Technician; fixture flags now WO/WOL true, customer/asset/part sale false (Admin's toggles); both ZZ10323 roles keep See Financial Data on (per-ticket branch, no clean-up).
 Exhibits: `ev/01-customer-asset-before-after-hd.png`, `ev/02-part-sale-before-after-hd.png`, `ev/03-work-order-notes-technician-hd.png` (BEFORE halves = retest-1 captures on v26.40.8-cf5b7ad).
+
+## Pre-post gate (Rule 72) — 7 Oct ~13:08Z
+Branch marker re-read over HTTP: `v26.40.8-129d22f`, last-modified Wed 07 Oct 2026 09:46:12 GMT, etag `009978c294552bb4c2a183bb447fb21f` — unchanged. Ticket re-read: TESTING QA, 14 comments, last 78059 (Nemanja), nothing new. Fingerprint scan on the comment text: 0 hits. No technical section (QA lead: *"No"*). Image embed sizes = half the 2× files (1290×2436, 1290×1244, 1280×790).
+
+## Posted
+- QA lead: *"1. No 2. Just add a New comment with the overall QA status with the screenshots."* — one new comment; 77936 and 78010 not edited.
+- **78116** (2026-10-07 08:09:39 −0500): green panel *"OVERALL QA STATUS: PASSED"*, @Nemanja Djuric, S10-R5b v28 quoted, 8-row Tech View table + 2-row Full View table, 3 images (attachments 61896/61897/61898), 5 walked steps, the part-sale-line note.
+- Read back via v3 ADF: first node panel `success`; media `file` ×3 in order at 1290×2436 / 1290×1244 / 1280×790; tableRow 12 = 2 headers + 10; mention resolved; 5 list items. Ticket now 15 comments.
+
+## Learning check (Rule 95)
+Nothing new. (Reminder already in playbook §U.0b, hit again: `pkill -f` on the bridge pattern killed my own shell — read the build marker over plain HTTP instead when the browser isn't needed.)
