@@ -1,0 +1,79 @@
+# before-after.html — visible text per page (hidden tooltip text excluded; it is listed per interaction)
+
+
+======================== PAGE _whole_board  ========================
+Dashboard tiles with no data
+
+Every tile on This Month for a shop with nothing in the range: no invoices, no clocked hours, no customers. "Before" is what the build shows today. "After" follows Branko's direction: an icon placeholder where the trend line goes (dashed outline only, no fill), and a dash instead of "n/a". Numbers that are real zeros stay as they are.
+
+Before and after
+Before only
+After only
+BEFORE
+Today: "n/a" with no trend line, and a flat line on zero
+Revenue
+This Month
+$0.00
+0 Invoices
+View details
+Billing Efficiency
+This Month
+n/a
+0.00 Invoiced / 0.00 Clocked
+View details
+Technician Efficiency
+This Month
+n/a
+0.00 Invoiced Tech Hrs / 0.00 Clocked
+View details
+Technician Utilization
+This Month
+n/a
+0.00 WO Hrs / 0.00 Clocked
+View details
+Sales by Customer
+Last 12 Months
+0 customers
+View details
+At Risk Customers
+120 Days
+0
+$0.00 (12mo) · 0 customers
+View details
+AFTER
+Branko's direction: a dash, and a chart placeholder
+Revenue
+This Month
+$0.00
+0 Invoices
+View details
+Billing Efficiency
+This Month
+-
+0.00 Invoiced / 0.00 Clocked
+View details
+Technician Efficiency
+This Month
+-
+0.00 Invoiced Tech Hrs / 0.00 Clocked
+View details
+Technician Utilization
+This Month
+-
+0.00 WO Hrs / 0.00 Clocked
+View details
+Sales by Customer
+Last 12 Months
+0 customers
+View details
+At Risk Customers
+120 Days
+0
+$0.00 (12mo) · 0 customers
+View details
+What changes, and what doesn't
+Dash instead of "n/a". The three ratio tiles (Billing Efficiency, Technician Efficiency, Technician Utilization) have nothing to divide by when no hours are recorded. Today they read "n/a"; after, a grey dash.
+Icon placeholder instead of a flat line or an empty space. Today a ratio tile with no hours draws no trend line at all, and a tile whose every point is zero draws a flat line along the bottom. After, when a tile has nothing to plot, fewer than two points with a value or every point zero, the trend line becomes a dashed outline with a chart icon inside, same height, so the tiles keep their size. The box has no fill: the tile's white shows through (Branko, 2026-10-07).
+Real zeros stay. $0.00 revenue, 0 customers and 0 at risk are true figures, not missing data (PRD S5-E1, S5-E2), so the number stays. Only the empty trend line under them changes.
+Supporting lines stay. "0 Invoices" and "0.00 Invoiced / 0.00 Clocked" are true and explain the dash, so they do not change.
+In the PRD (Confluence v42): S3-E3 now reads "-" in place of "n/a". S4-R12 to S4-R18, S4-E2, S4-E3 and S5-R16 define the empty-chart placeholder. Design canvas row 15 shows it.
