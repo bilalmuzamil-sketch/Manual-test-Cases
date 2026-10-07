@@ -4068,7 +4068,9 @@ deliver the 7-tab management report.
     hit send, every time.*
     **THE CHECKLIST (run all that apply; each is cheap — Rule 63):**
     **(1) BUILD MARKER — re-read it LIVE** (`index.html` app-version + last-modified/etag) and confirm it
-    matches the build the findings were taken on. If it **moved**, the branch redeployed: re-verify the
+    matches the build the findings were taken on. **AND re-render or re-read at least one result the verdict rests on,
+    and check the PR's commit list — a BACK-END-ONLY deploy does not move the front-end marker** (SV-10142, 2026-10-07:
+    the marker said unchanged while the back end already carried the fix, and only a fresh render caught it). If it **moved**, the branch redeployed: re-verify the
     affected layers (Rules 49/60) before posting, or say plainly what is now unconfirmed — never post a
     verdict against a build that no longer exists.
     **(2) SOURCES — re-read the ticket/spec/PO state LIVE** (status, priority, newest comments). A

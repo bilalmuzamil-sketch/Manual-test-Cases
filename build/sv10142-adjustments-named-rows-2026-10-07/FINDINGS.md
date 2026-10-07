@@ -75,3 +75,15 @@ Profile menu → **Customer Portal** on the branch sends `POST https://shopview-
 
 ## QA lead's rulings (7 Oct)
 1st ask: verdict *"Partially passed now"* · portal *"Ask stefan to enable POrtal on the branch to testing the part {{mention what is blocked on portal access}}"* · technical section *"No"* · spec note *"Yes, ask Chris"*. 2nd ask (after the redeploy): *"Partially passed, portal"*. Then: *"wait before posting anything see this comment …78143"* — **holding, nothing posted.**
+
+## QA lead: *"1. Go ahead"* — posted
+**Pre-post gate (~14:58Z):** marker `v26.40.8-a32d41c` (unchanged since 14:45:51 GMT); ticket TESTING QA, 8 comments, last 78143 (Stefan); fresh render of S10142-17582/17583 = Chris's example; fingerprint scan 0 hits; no technical section; exhibit 1 embed height corrected 992 → 1018 after the rebuild.
+- **78144** (09:58:33 −0500): yellow panel *"OVERALL QA STATUS: PARTIALLY PASSED"* (waiting only on the portal), 15-row table (14 PASSED, row 15 NOT TESTED), spec v70 S7-R5 quoted + Chris's three rulings cited as the newer source, 6 images (attachments 61907–61912), 8 walked steps.
+- **78145** (09:58:33 −0500): @Stefan Mitrovic — enable the Customer Portal on the branch (what it blocks); @Chris Ward — update S7-R5 to match 77792/77997/78126.
+- Read back via v3 ADF: 78144 first node panel `warning`; media `file` ×6 in order at 512×1018, 390×957, 390×1196, 390×710, 512×444, 420×787; tableRow 16 = header + 15; 13 list items. 78145 mentions resolved (@Stefan Mitrovic, @Chris Ward).
+
+## Learning check (Rule 95)
+New and recorded: a back-end-only deploy leaves the front-end marker unchanged → the gate must re-render a result (Rule 72 (1) amended, LESSONS-INDEX row); on-screen numbers differ from `view.number` (LESSONS-INDEX row); inventory `make-request` needs `inventory_part_id`; estimate PDF endpoint; amount-0 refused; portal CORS on branches; reading the Adjustments block from PDFs (playbook §AC.15 addendum 5).
+
+## Environment changes left (per-ticket branch, no clean-up)
+QuickBooks feature OFF on the branch org; work orders S10142-17580…17585, part sale P10142-248 (all invoiced except 17580); invoice design back on Modern. Production: S2-962 deleted, design back on Legacy.

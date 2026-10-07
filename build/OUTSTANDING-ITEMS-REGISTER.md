@@ -57,7 +57,16 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-07, ~13:10 UTC. **SV-10323 RETEST AFTER NEMANJA'S FIX: PASSED (new comment 78116), check 11 rows 1–8 + Full View rows 9–10 all pass on sv9667 `v26.40.8-129d22f`. Nothing outstanding on SV-10323.**
+## ⚠️ NEWEST — 2026-10-07, ~15:00 UTC. **SV-10142 POSTED: PARTIALLY PASSED (comment 78144), 14 of 14 testable checks passed on sv10142 `v26.40.8-a32d41c`; waiting only on the customer portal. Asks in 78145.**
+
+**QA lead's rulings (7 Oct):** *"Partially passed, portal"* · portal *"Ask stefan to enable POrtal on the branch to testing the part {{mention what is blocked on portal access}}"* · technical section *"No"* · spec note *"Yes, ask Chris"* · *"1. Go ahead"*.
+
+| # | What I need | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| 1 | The Customer Portal enabled for sv10142 (the shared portal host rejects the branch's sign-in) | Developer (Stefan Mitrovic), asked in 78145 | SV-10142 fully passed — row 15: checking the invoice/estimate opened from the customer portal show the named rows, combined totals and order | 2026-10-07 |
+| 2 | Invoice UI Refresh S7-R5 (v70) updated to match Chris's rulings 77792/77997/78126 | PO (Chris Ward), asked in 78145 | The spec still describes the old Labor/Parts rollup; our expectation rests on his ticket comments until it is updated | 2026-10-07 |
+
+## ⚠️ PREVIOUS — 2026-10-07, ~13:10 UTC. **SV-10323 RETEST AFTER NEMANJA'S FIX: PASSED (new comment 78116), check 11 rows 1–8 + Full View rows 9–10 all pass on sv9667 `v26.40.8-129d22f`. Nothing outstanding on SV-10323.**
 
 **QA lead's rulings (7 Oct):** technical section *"No"*; *"Just add a New comment with the overall QA status with the screenshots."* — so 77936 and 78010 were left as they are.
 **Cleared:** the open item below (option B deployed) — satisfied by build `v26.40.8-129d22f`, verified live with a 5-role matrix.
