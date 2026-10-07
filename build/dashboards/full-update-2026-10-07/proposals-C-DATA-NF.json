@@ -1,0 +1,1301 @@
+{
+ "updates": [
+  {
+   "case_id": 88631,
+   "title": "Dashboard tiles load quickly and one slow tile does not hold up the others",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar choose the busiest location you can reach (the one with the most invoices and clocked time), so every tile has real work to do.",
+    "Have a stopwatch or a phone timer ready."
+   ],
+   "steps": [
+    "Click Work Orders in the top menu so you start away from the Dashboard.",
+    "Start the stopwatch and click Dashboard in the top menu.",
+    "Stop the stopwatch when all six tiles (Revenue, Billing Efficiency, Technician Efficiency, Technician Utilization, Sales by Customer, At Risk Customers) show a figure.",
+    "Write down the time.",
+    "On each of the four top tiles and on Sales by Customer, click the range pill and choose Last 12 Months.",
+    "Watch the tiles while each one reloads and note whether any tile stays blank or waits for another tile.",
+    "Repeat steps 1 to 4 two more times and write down each time."
+   ],
+   "results": [
+    "Each time, all six tiles show their figures in about one second. A load that clearly takes several seconds, again and again, is reported.",
+    "The tiles fill in on their own: no tile waits for another tile before it shows its figure.",
+    "This part cannot be checked by hand: the measured targets (95 of every 100 first loads within 1 second, each tile's server time within 250 ms, no single query over 500 ms, and a 2-second cut-off that fails only the slow tile). Write \"targets not checked by hand\" in the result comment and pass or fail on what you can see.",
+    "Making one tile slow or fail on purpose is not possible by hand. Write \"slow-tile cut-off not checked by hand\" in the result comment."
+   ],
+   "source": "Epic SV-490; Dashboard v1 Technical Implementation Plan (sources/Dashboard-v1-Technical-Implementation-Plan.md, 2026-09-16), NFR-001, read in full 7 Oct 2026. The tech plan informs and never overrules the PRD; Dashboard v1 PRD Confluence 788430850 v42 (read 7 Oct 2026) states no speed target. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "Tech plan NFR-001",
+     "No dashboard query may exceed **500 ms**; anything above is treated as a defect and alerted. Per-tile server time targets p95 ≤ 250 ms; the six-tile first load targets p95 ≤ 1 s (a slight overrun is acceptable). Every dashboard statement carries a **2 s** `MAX_EXECUTION_TIME` circuit breaker, and a query that trips it fails only its own tile (FR-021)"
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not manually testable (performance budget and per-tile circuit breaker are developer/automated checks)",
+   "change_summary": "Rewritten as a hand-runnable stopwatch check; the measured targets and forced slow tile are stated plainly as not checkable by hand."
+  },
+  {
+   "case_id": 88632,
+   "title": "Sales and Advisor Analysis reports drop a voided invoice and keep its re-invoice",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Revenue tile and choose This Week. Revenue must read $0.00 with 0 Invoices under it. If it shows anything else, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "Have a technician who works at this location and can clock time (e.g. \"Tom Tech\"): Settings > Staff > open the technician and check the Time Clock setting is on. You need this technician's sign-in to clock time in a second browser or a private window.",
+    "Have a staff member who appears in the work order's Service Advisor list (e.g. \"Alex Advisor\").",
+    "Create and invoice one work order for that customer with these standard steps:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Line 1\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 2.00, Tech Time 2.00, tick Approved > Save & Close.",
+    "↳ In the second browser, signed in as Tom Tech: Work Orders > open this work order > use Clock In on the line, then clock out.",
+    "↳ Make the clocked time exact: on the work order click the three dots (top right) > Timesheets (1) and edit the record so it runs exactly 2.00 hours earlier today (e.g. 8:00 AM to 10:00 AM). If the time cannot be edited there or in Reports > Timesheet Activities, keep the real time and use the hours Timesheet Activities shows instead of 2.00 in every sum below.",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice.",
+    "↳ On the Finance tab write down the invoice's Subtotal (before any discount and before tax), e.g. $200.00 (2.00 hours x $100.00). If shop supplies are added automatically they are part of the subtotal: use the subtotal the invoice shows."
+   ],
+   "steps": [
+    "Click Reports in the top menu, then Sales in the left menu.",
+    "Set the Date control to This week.",
+    "Write down the row for your invoice and the Subtotal in the Totals row (e.g. $200.00).",
+    "Click Advisor Analysis in the left menu (the page is titled Service Advisor Analysis) and set the Date control to This week, with no advisor chosen.",
+    "Write down your invoice's row: Hrs Worked, Hrs Invoiced, Billing Efficiency, ELR and Subtotal (e.g. 2.00, 2.00, 100.00%, $200.00).",
+    "Click Work Orders in the top menu and open the same work order.",
+    "On the Lines tab click New Line: Description \"ZZAUTOTEST Line 2\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 1.00, Tech Time 1.00, tick Approved > Save & Close. (Adding a line while the invoice is still unpaid and unsent voids that invoice.)",
+    "Type a Story on the new line, set it to Complete, then click Complete Work Order and Mark Reviewed.",
+    "Click the Finance tab and write down what it shows for the first invoice (for example a Void label).",
+    "Click Create Invoice, close the New Customer Payment dialog without paying, and write down the new Subtotal (e.g. $300.00 = $200.00 + 1.00 hour x $100.00).",
+    "Open Reports > Sales again (Date: This week) and write down the rows and the Totals row Subtotal.",
+    "Open Reports > Advisor Analysis again (Date: This week, no advisor chosen) and write down the rows and the Totals row.",
+    "Try to make an invoice with no customer: Parts > Part Sales > New Part Sale, and see whether the sale can be invoiced without choosing a customer. If the screen insists on a customer, stop this step.",
+    "Open the release notes published with this release (ask your QA lead where they are) and look for the note about the Sales and Service Advisor Analysis corrections."
+   ],
+   "results": [
+    "Before the void, the Sales report shows your invoice and its Totals row Subtotal reads $200.00, and Advisor Analysis shows Hrs Worked 2.00, Hrs Invoiced 2.00 and Billing Efficiency 100.00% (2.00 / 2.00 x 100).",
+    "After the void and re-invoice, the Sales report lists only the new invoice: the voided invoice is gone and the Totals row Subtotal reads $300.00, not $500.00 ($200.00 + $300.00).",
+    "Advisor Analysis shows one row for the work order, the new invoice, with Hrs Invoiced 3.00 (2.00 + 1.00) and Subtotal $300.00. Hrs Worked stays 2.00, so Billing Efficiency reads 150.00% (3.00 / 2.00 x 100). The figures moved up, which is the void-then-reinvoice case.",
+    "If you could invoice a sale with no customer, it appears in the Sales report total and in Advisor Analysis. If you could not, write \"no-customer invoice not reachable by hand\" in the result comment.",
+    "The release notes carry one plain-language note naming both corrections, and it mentions that a voided-then-reinvoiced figure can move up. This is a check of the published notes, not of the product screens."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3, context notes under S3-E2. Also the Dashboard v1 Technical Implementation Plan (2026-09-16), NFR-010 and section 7 (how a void is produced), read in full 7 Oct 2026; it informs and never overrules the PRD. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-E2 context note (Sales report)",
+     "That is a defect in the Sales report rather than a dashboard decision, and it is corrected inside this project so Revenue can match it (@chris ruling, 2026-09-15). Correcting it moves the Sales report's own existing totals for any range containing voided or no-company invoices, so it ships with a release note."
+    ],
+    [
+     "S3-E2 context note (Service Advisor Analysis)",
+     "That moves advisor revenue and ELR down for periods containing voided invoices and adds walk-in sales to advisor figures, under the same release note."
+    ],
+    [
+     "Tech plan NFR-010",
+     "Both report corrections ship with one plain-language release note: Sales report totals move for ranges containing voided or no-company invoices, and on Service Advisor Analysis **revenue, ELR *and the hours columns, and therefore Labor Efficiency %*** move for those periods, while advisor figures gain walk-in sales. **It must also call out the void-then-reinvoice case, where a figure can move *up***"
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Seeds a real void (line added to an unpaid invoice) and re-invoice by hand, with the before and after report figures written out."
+  },
+  {
+   "case_id": 88633,
+   "title": "Revenue tile shows the exact amount to the cent and equals the Sales report",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Revenue tile and choose This Week. Revenue must read $0.00 with 0 Invoices under it. If it shows anything else, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "Have an in-stock inventory part to sell: Parts > Inventory, pick (or create with New Inventory Part) a part with stock on hand and a Sell price of e.g. $200.00. Credits are issued by returning a part, so the credit needs this part on the invoice.",
+    "Invoice 1 (with a discount). Create it with these standard steps:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Labor 10h\", Technician \"Tom Tech\", Labor Rate e.g. $125.00 per hour, Estimated Time 10.00, Tech Time 10.00, tick Approved > Save & Close.",
+    "↳ Click the three dots (top right) > Add Work Order Fee / Discount: Type Discount, flat amount e.g. $100.00 > Add Discount.",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice.",
+    "↳ On the Finance tab write down the invoice's Subtotal (before any discount and before tax), e.g. $1,250.00 (10.00 hours x $125.00), with the $100.00 discount and the tax shown below it. If shop supplies are added automatically they are part of the subtotal: use the subtotal the invoice shows.",
+    "Invoice 2 (with the part you will return). Create a second work order for the same customer the same way:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Labor 2h\", Technician \"Tom Tech\", Labor Rate e.g. $140.00 per hour, Estimated Time 2.00, Tech Time 2.00, tick Approved > Save & Close.",
+    "↳ On that line click + Add Part, choose the inventory part (Sell price e.g. $200.00), quantity 1, and make sure it shows In stock (pick it if the screen asks).",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice.",
+    "↳ On the Finance tab write down the invoice's Subtotal (before any discount and before tax), e.g. $480.00 (2.00 hours x $140.00 = $280.00, plus the $200.00 part). If shop supplies are added automatically they are part of the subtotal: use the subtotal the invoice shows.",
+    "Credit memo. On invoice 2's Finance tab click the invoice's three dots > Issue Credit, choose the $200.00 part to return, Outcome Store Credit, and save.",
+    "↳ Write down the credit's amount before tax (e.g. $200.00). It shows on Customers > the customer > Invoices tab as a row with an orange Credit chip (turn Open only off if you cannot see it)."
+   ],
+   "steps": [
+    "Work out Revenue by hand: invoice 1 subtotal + invoice 2 subtotal - the credit = $1,250.00 + $480.00 - $200.00 = $1,530.00 (use your own figures if they differ).",
+    "Click Dashboard in the top menu.",
+    "On the Revenue tile click the range pill and choose This Week.",
+    "Write down the Revenue figure exactly as shown.",
+    "Click the arrow icon beside \"Revenue\" on the tile (its tooltip names the report).",
+    "On the Sales report, make sure the Date control shows This week. If it does not, choose This week.",
+    "Write down the Subtotal in the Totals row at the bottom of the table."
+   ],
+   "results": [
+    "The Revenue figure equals your hand total exactly. With the example data it reads $1,530.00 ($1,250.00 + $480.00 - $200.00): the $100.00 discount is not taken off and the tax is not added.",
+    "The figure shows dollars and cents (e.g. $1,530.00), not a rounded whole-dollar amount.",
+    "The Sales report for the same location and the same week shows the same amount in its Totals row Subtotal as the Revenue tile."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9576 (S4); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R1, S3-R2 Revenue row, context note), S4 (S4-R2). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 02_Last12_After, 03_Range_After, 10_sales_After. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-R2",
+     "Each measure is calculated as defined in the table below."
+    ],
+    [
+     "S3-R2 table row (Revenue)",
+     "| Revenue | Sum of invoice subtotals in the selected range, before any discount and before tax, minus credit memos. Shown to the cent. | Sales report |"
+    ],
+    [
+     "S4-R2",
+     "The Revenue tile headline is the total revenue for the selected range, shown as a dollar amount to the cent."
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ],
+    [
+     "S3 context note (parity check)",
+     "to check parity on a KPI tile that shows a shop-wide figure, compare it against the matching report with all advisors or all technicians selected (no filter applied)."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Hand-seeded two invoices (one discounted), a returned-part credit and the full arithmetic, compared against the Sales report Totals row."
+  },
+  {
+   "case_id": 88634,
+   "title": "Revenue tile shows a negative amount when credits are larger than sales",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Revenue tile and choose This Week. Revenue must read $0.00 with 0 Invoices under it. If it shows anything else, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Find an older invoice in this location that carries a part, dated before this week (e.g. last month, with a $500.00 part): Customers > open a customer > Invoices tab, open an invoice dated before this week and check its parts on the work order's Finance tab. If no such invoice exists, create one now with a part and run this case in a later week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "This week's sale. Create and invoice one work order for the test customer with these standard steps:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Labor 1h\", Technician \"Tom Tech\", Labor Rate e.g. $150.00 per hour, Estimated Time 1.00, Tech Time 1.00, tick Approved > Save & Close.",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice.",
+    "↳ On the Finance tab write down the invoice's Subtotal (before any discount and before tax), e.g. $150.00 (1.00 hour x $150.00). If shop supplies are added automatically they are part of the subtotal: use the subtotal the invoice shows.",
+    "Credit memo this week against the older invoice. On the older invoice's Finance tab click the invoice's three dots > Issue Credit, choose its part (e.g. the $500.00 part), Outcome Store Credit, and save.",
+    "↳ Write down the credit's amount before tax (e.g. $500.00)."
+   ],
+   "steps": [
+    "Work out Revenue for this week by hand: this week's subtotals - this week's credits = $150.00 - $500.00 = -$350.00 (use your own figures).",
+    "Click Dashboard in the top menu.",
+    "On the Revenue tile click the range pill and choose This Week.",
+    "Write down the Revenue figure exactly as shown, including the minus sign.",
+    "Click the arrow icon beside \"Revenue\" on the tile (its tooltip names the report).",
+    "On the Sales report make sure the Date control shows This week, then write down the Subtotal in the Totals row."
+   ],
+   "results": [
+    "The Revenue tile shows the true negative amount. With the example data it reads minus $350.00 ($150.00 - $500.00), not $0.00 and not a positive number.",
+    "The amount keeps its cents and its minus sign. Write down exactly how the minus sign is placed (e.g. -$350.00 or $-350.00); do not pass or fail on where it sits.",
+    "The Sales report for the same location and week shows the same negative amount as the Revenue tile."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-E1, S3-R2 Revenue row, S3-R1). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 02_Last12_After, 10_sales_After. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-E1",
+     "The Revenue figure can be negative when credit memos in the range exceed sales; the dashboard shows the true negative figure rather than flooring it at zero."
+    ],
+    [
+     "S3-R2",
+     "Each measure is calculated as defined in the table below."
+    ],
+    [
+     "S3-R2 table row (Revenue)",
+     "| Revenue | Sum of invoice subtotals in the selected range, before any discount and before tax, minus credit memos. Shown to the cent. | Sales report |"
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Hand-seeded a small sale plus a larger credit against an older invoice, with the negative arithmetic and the Sales report comparison."
+  },
+  {
+   "case_id": 88635,
+   "title": "Revenue tile leaves out a reversed or voided invoice, like the Sales report",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Revenue tile and choose This Week. Revenue must read $0.00 with 0 Invoices under it. If it shows anything else, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "Create and invoice three work orders (A, B and C) for this customer, each with these standard steps:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Line\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 3.00 for A, 5.00 for B, 2.00 for C, Tech Time the same hours, tick Approved > Save & Close.",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice.",
+    "↳ On the Finance tab write down the invoice's Subtotal (before any discount and before tax), e.g. A $300.00, B $500.00, C $200.00. If shop supplies are added automatically they are part of the subtotal: use the subtotal the invoice shows.",
+    "Leave invoice C unpaid and unsent: it is the one you will void. (A line added to a sent or paid invoice splits the work order instead of voiding.)",
+    "Your role must be able to reverse an invoice (Admin can): the Reverse item sits in the invoice's three dots on the Finance tab."
+   ],
+   "steps": [
+    "Click Dashboard in the top menu, set the Revenue tile's range pill to This Week and write down the figure (expected $1,000.00 = $300.00 + $500.00 + $200.00).",
+    "Click Work Orders, open work order B, click the Finance tab, click the invoice's three dots > Reverse, and confirm Reverse.",
+    "Click Dashboard, set Revenue to This Week again and write down the figure.",
+    "Click Work Orders and open work order C.",
+    "On the Lines tab click New Line: Description \"ZZAUTOTEST Extra\", Labor Rate e.g. $100.00 per hour, Estimated Time 0.50, Tech Time 0.50, tick Approved > Save & Close. (This voids C's unpaid invoice.)",
+    "Type a Story on the new line, set it to Complete, then click Complete Work Order and Mark Reviewed.",
+    "Click the Finance tab and write down what it shows for C's first invoice (for example a Void label).",
+    "Click Create Invoice, close the New Customer Payment dialog without paying, and write down the new Subtotal (e.g. $250.00 = $200.00 + 0.50 hour x $100.00).",
+    "Click Dashboard, set Revenue to This Week and write down the figure.",
+    "Click the arrow icon beside \"Revenue\" on the tile (its tooltip names the report).",
+    "On the Sales report set the Date control to This week and write down every invoice row and the Totals row Subtotal.",
+    "Try to make an invoice with no customer: Parts > Part Sales > New Part Sale, and see whether it can be invoiced without choosing a customer. If the screen insists on a customer, stop this step."
+   ],
+   "results": [
+    "Step 1: Revenue reads $1,000.00 ($300.00 + $500.00 + $200.00).",
+    "After reversing B: Revenue reads $500.00 ($300.00 + $200.00). The reversed invoice adds nothing.",
+    "After voiding C's first invoice and re-invoicing: Revenue reads $550.00 ($300.00 + $250.00). The voided $200.00 invoice adds nothing and the new $250.00 invoice counts.",
+    "The Sales report for This week lists A and C's new invoice only (no row for B and none for C's voided invoice), and its Totals row Subtotal reads $550.00, the same as the tile.",
+    "If you could invoice a sale with no customer, its subtotal is in both the Revenue figure and the Sales report total. If you could not, write \"no-customer invoice not reachable by hand\" in the result comment."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-E2 and its context note, S3-R1). Tech plan section 7 (2026-09-16) informs how a void is produced by hand: Reverse removes the invoice, and a line added to a still-unpaid invoiced work order voids it. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-E2",
+     "**A voided invoice is excluded from every figure the dashboard shows.** It contributes nothing to Revenue or to the parts-versus-labor split, nothing to invoiced hours or invoiced technician hours, and it is counted in neither the Sales by Customer count nor the At Risk Customers count, including when deciding a customer's most recent invoice. This is not a dashboard rule of its own: it is what the reports do, and the dashboard matches them (S3-R1). A void means the document was undone, so a figure that still carried its money or its hours would overstate the shop."
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ],
+    [
+     "S3-E2 context note (Sales report)",
+     "That is a defect in the Sales report rather than a dashboard decision, and it is corrected inside this project so Revenue can match it (@chris ruling, 2026-09-15). Correcting it moves the Sales report's own existing totals for any range containing voided or no-company invoices, so it ships with a release note."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Three hand-made invoices: one reversed, one voided by adding a line and re-invoiced, with Revenue written out after each change and compared to the Sales report."
+  },
+  {
+   "case_id": 88636,
+   "title": "Revenue tile shows Parts and Labor as whole percentages, or the invoice count",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Revenue tile and choose This Week. Revenue must read $0.00 with 0 Invoices under it. If it shows anything else, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field. If the customer's edit screen shows Default Shop Supplies, set it to 0 so the invoice carries only labor and parts.",
+    "Have an in-stock inventory part to sell: Parts > Inventory, pick (or create with New Inventory Part) a part with stock on hand and a Sell price of e.g. $100.00. Credits are issued by returning a part, so the credit needs this part on the invoice.",
+    "Prepare (do not invoice yet) one work order for this customer with these standard steps:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Labor 2h\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 2.00, Tech Time 2.00, tick Approved > Save & Close.",
+    "↳ On that line click + Add Part, choose the inventory part (Sell price e.g. $100.00), quantity 1, and make sure it shows In stock (pick it if the screen asks).",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed."
+   ],
+   "steps": [
+    "Click Dashboard in the top menu, set the Revenue tile's range pill to This Week and read the line under the amount.",
+    "Click Work Orders, open the prepared work order, click the Finance tab and click Create Invoice. Close the New Customer Payment dialog without paying.",
+    "On the invoice write down the labor total and the parts total (e.g. Labor $200.00 = 2.00 hours x $100.00, Parts $100.00). If the invoice also shows shop supplies, write that amount down too.",
+    "Work out the split by hand: Parts = $100.00 / ($100.00 + $200.00) x 100 = 33.33, shown as 33. Labor = $200.00 / $300.00 x 100 = 66.67, shown as 67.",
+    "Click Dashboard, set Revenue to This Week again and read the line under the amount."
+   ],
+   "results": [
+    "Before the invoice: Revenue reads $0.00 and the line under it reads \"0 Invoices\", because there is no parts-and-labor split to show.",
+    "After the invoice: the line reads \"Parts 33% · Labor 67%\", each a whole number (33.33 rounds to 33, 66.67 rounds to 67), and the two add up to 100.",
+    "If the invoice carried shop supplies and your percentages differ only because of them, mark the case Blocked and write all three amounts in the comment: the specification does not say which side shop supplies fall on."
+   ],
+   "source": "Epic SV-490; story SV-9576 (S4); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S4 (S4-R3, S4-N2), S3 (S3-E3, Revenue split sentence). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 02_Last12_After (\"Parts 7% · Labor 93%\"), 15_Empty_Design (\"0 Invoices\"). Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S4-R3",
+     "The Revenue tile shows a supporting line reading \"Parts {parts}% · Labor {labor}%\", each percent shown as a whole number."
+    ],
+    [
+     "S4-N2",
+     "If the Revenue tile has no parts-versus-labor split to show, its supporting line reads \"{count} Invoices\" instead."
+    ],
+    [
+     "S3-E3 (Revenue split sentence)",
+     "The same applies to the Revenue tile's parts-versus-labor split when revenue for the range is zero (S4-N2 already gives that tile its fallback supporting line)."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Reads the no-invoice fallback first, then one hand-made labor plus part invoice, with the whole-number rounding worked out."
+  },
+  {
+   "case_id": 88637,
+   "title": "Billing Efficiency shows the exact percentage and equals Advisor Analysis",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Billing Efficiency tile and choose This Week. It must show no percentage (a grey \"-\", or \"n/a\" on an older build). If it shows a percentage, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "Have a technician who works at this location and can clock time (e.g. \"Tom Tech\"): Settings > Staff > open the technician and check the Time Clock setting is on. You need this technician's sign-in to clock time in a second browser or a private window.",
+    "Have a staff member who appears in the work order's Service Advisor list (e.g. \"Alex Advisor\").",
+    "Create and invoice one work order with two labor lines and 3.00 clocked hours, with these standard steps:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Line 1\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 2.00, Tech Time 2.00, tick Approved > Save & Close.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Line 2\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 1.50, Tech Time 1.50, tick Approved > Save & Close.",
+    "↳ In the second browser, signed in as Tom Tech: Work Orders > open this work order > use Clock In on the line, then clock out.",
+    "↳ Make the clocked time exact: on the work order click the three dots (top right) > Timesheets (1) and edit the record so it runs exactly 3.00 hours earlier today (e.g. 8:00 AM to 11:00 AM). If the time cannot be edited there or in Reports > Timesheet Activities, keep the real time and use the hours Timesheet Activities shows instead of 3.00 in every sum below.",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice."
+   ],
+   "steps": [
+    "Work out Billing Efficiency by hand: invoiced hours / clocked hours x 100 = (2.00 + 1.50) / 3.00 x 100 = 3.50 / 3.00 x 100 = 116.666..., shown as 116.67%.",
+    "Click Dashboard in the top menu.",
+    "On the Billing Efficiency tile click the range pill and choose This Week.",
+    "Write down the percentage and the line under it.",
+    "Click the arrow icon beside \"Billing Efficiency\" on the tile (its tooltip names the report).",
+    "On Service Advisor Analysis make sure the Date control shows This week and no advisor is chosen in the Advisor filter.",
+    "Write down your invoice's Hrs Worked, Hrs Invoiced and Billing Efficiency, and the Billing Efficiency in the Totals row."
+   ],
+   "results": [
+    "The tile reads 116.67%, to two decimal places (3.50 / 3.00 x 100 = 116.666... rounded).",
+    "The line under it reads \"3.50 Invoiced / 3.00 Clocked\".",
+    "The report row for your invoice shows Hrs Worked 3.00 and Hrs Invoiced 3.50. If Hrs Invoiced is not 3.50, mark the case Blocked and write down which line hours the report used.",
+    "The Totals row Billing Efficiency on Service Advisor Analysis reads 116.67%, the same as the tile."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9576 (S4); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R1, S3-R2 Billing Efficiency row, context note), S4 (S4-R4, S4-R5). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 02_Last12_After, 05_Billing_After, 11_service-advisor-analysis_After. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-R2",
+     "Each measure is calculated as defined in the table below."
+    ],
+    [
+     "S3-R2 table row (Billing Efficiency)",
+     "| Billing Efficiency | Invoiced hours divided by worked hours, times 100, for the selected range. | Service Advisor Analysis report |"
+    ],
+    [
+     "S4-R4",
+     "The Billing Efficiency tile headline is the billing efficiency percentage for the selected range, shown to two decimal places."
+    ],
+    [
+     "S4-R5",
+     "The Billing Efficiency tile shows a supporting line reading \"{invoiced hours} Invoiced / {clocked hours} Clocked\"."
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ],
+    [
+     "S3 context note (parity check)",
+     "to check parity on a KPI tile that shows a shop-wide figure, compare it against the matching report with all advisors or all technicians selected (no filter applied)."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "One hand-made invoice with 3.50 billed and 3.00 clocked hours, the 116.67% arithmetic, and the Service Advisor Analysis comparison."
+  },
+  {
+   "case_id": 88638,
+   "title": "Billing Efficiency adds up all hours first, not an average of advisors",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Billing Efficiency tile and choose This Week. It must show no percentage (a grey \"-\", or \"n/a\" on an older build). If it shows a percentage, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "Have a technician who works at this location and can clock time (e.g. \"Tom Tech\"): Settings > Staff > open the technician and check the Time Clock setting is on. You need this technician's sign-in to clock time in a second browser or a private window.",
+    "Have two staff members in the work order's Service Advisor list (e.g. \"Alex Advisor\" and \"Bea Advisor\").",
+    "Work order A (low efficiency, many hours). Create and invoice it with these standard steps:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST A\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 1.00, Tech Time 1.00, tick Approved > Save & Close.",
+    "↳ In the second browser, signed in as Tom Tech: Work Orders > open this work order > use Clock In on the line, then clock out.",
+    "↳ Make the clocked time exact: on the work order click the three dots (top right) > Timesheets (1) and edit the record so it runs exactly 4.00 hours earlier today (e.g. 7:00 AM to 11:00 AM). If the time cannot be edited there or in Reports > Timesheet Activities, keep the real time and use the hours Timesheet Activities shows instead of 4.00 in every sum below.",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice.",
+    "Work order B (high efficiency, few hours). Create and invoice it the same way:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Bea Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST B\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 2.00, Tech Time 2.00, tick Approved > Save & Close.",
+    "↳ In the second browser, signed in as Tom Tech: Work Orders > open this work order > use Clock In on the line, then clock out.",
+    "↳ Make the clocked time exact: on the work order click the three dots (top right) > Timesheets (1) and edit the record so it runs exactly 1.00 hours earlier today (e.g. 11:00 AM to 12:00 PM). If the time cannot be edited there or in Reports > Timesheet Activities, keep the real time and use the hours Timesheet Activities shows instead of 1.00 in every sum below.",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice."
+   ],
+   "steps": [
+    "Work out the right figure by hand, all hours first: (1.00 + 2.00) / (4.00 + 1.00) x 100 = 3.00 / 5.00 x 100 = 60.00%.",
+    "Work out the wrong figure, an average of the two advisors: Alex 1.00 / 4.00 = 25.00%, Bea 2.00 / 1.00 = 200.00%, average (25.00 + 200.00) / 2 = 112.50%.",
+    "Click Dashboard in the top menu.",
+    "On the Billing Efficiency tile click the range pill and choose This Week.",
+    "Write down the percentage and the line under it.",
+    "Click the arrow icon beside \"Billing Efficiency\" on the tile (its tooltip names the report).",
+    "On Service Advisor Analysis set the Date control to This week with no advisor chosen.",
+    "Write down each invoice row's Billing Efficiency and the Totals row Billing Efficiency."
+   ],
+   "results": [
+    "The tile reads 60.00% (3.00 / 5.00 x 100), not 112.50%.",
+    "The line under it reads \"3.00 Invoiced / 5.00 Clocked\".",
+    "The report shows Alex's invoice at 25.00% and Bea's at 200.00%, and its Totals row reads 60.00%, the same as the tile."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R2 Billing Efficiency row, S3-R1, context note). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 05_Billing_After, 11_service-advisor-analysis_After. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-R2",
+     "Each measure is calculated as defined in the table below."
+    ],
+    [
+     "S3-R2 table row (Billing Efficiency)",
+     "| Billing Efficiency | Invoiced hours divided by worked hours, times 100, for the selected range. | Service Advisor Analysis report |"
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ],
+    [
+     "S3 context note (parity check)",
+     "to check parity on a KPI tile that shows a shop-wide figure, compare it against the matching report with all advisors or all technicians selected (no filter applied)."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Two hand-made advisors with uneven hours (25% and 200%) so the pooled 60.00% and the averaged 112.50% are visibly different."
+  },
+  {
+   "case_id": 88639,
+   "title": "Technician Efficiency shows the exact percentage and equals its report",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Technician Efficiency tile and choose This Week. It must show no percentage (a grey \"-\", or \"n/a\" on an older build). If it shows a percentage, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "Have a technician who works at this location and can clock time (e.g. \"Tom Tech\"): Settings > Staff > open the technician and check the Time Clock setting is on. You need this technician's sign-in to clock time in a second browser or a private window.",
+    "Have a staff member who appears in the work order's Service Advisor list (e.g. \"Alex Advisor\").",
+    "Create and invoice one work order with two lines whose Tech Time differs from Estimated Time, with these standard steps:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Line 1\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 2.00, Tech Time 1.80, tick Approved > Save & Close.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Line 2\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 1.50, Tech Time 1.20, tick Approved > Save & Close.",
+    "↳ In the second browser, signed in as Tom Tech, use Clock In on Line 1 and then clock out; then do the same on Line 2.",
+    "↳ Make the clocked time exact: on the work order click the three dots (top right) > Timesheets (2) and edit the record so it runs exactly 2.00 hours earlier today (e.g. 8:00 AM to 10:00 AM for Line 1). If the time cannot be edited there or in Reports > Timesheet Activities, keep the real time and use the hours Timesheet Activities shows instead of 2.00 in every sum below. Do the same for Line 2 (e.g. 10:00 AM to 12:00 PM, also 2.00 hours).",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice."
+   ],
+   "steps": [
+    "Work out Technician Efficiency by hand: invoiced technician hours / clocked hours x 100 = (1.80 + 1.20) / (2.00 + 2.00) x 100 = 3.00 / 4.00 x 100 = 75.00%.",
+    "Click Dashboard in the top menu.",
+    "On the Technician Efficiency tile click the range pill and choose This Week.",
+    "Write down the percentage and the line under it.",
+    "Click the arrow icon beside \"Technician Efficiency\" on the tile (its tooltip names the report).",
+    "On the Technician Efficiency report click the Invoiced tab and make sure the Date control shows This week.",
+    "Write down Tom Tech's Clocked Hrs, Invoiced Tech Hrs and Efficiency."
+   ],
+   "results": [
+    "The tile reads 75.00%, to two decimal places (3.00 / 4.00 x 100).",
+    "The line under it reads \"3.00 Invoiced Tech Hrs / 4.00 Clocked\". It uses Tech Time (1.80 + 1.20), not Estimated Time (2.00 + 1.50).",
+    "On the report's Invoiced tab, Tom Tech shows Clocked Hrs 4.00, Invoiced Tech Hrs 3.00 (the report may print it as 3) and Efficiency 75.00%, the same as the tile."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9576 (S4); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R1, S3-R2 Technician Efficiency row, context note), S4 (S4-R6, S4-R7). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 06_TechEff_After, 12_technician-efficiency_After (Invoiced / Completed tabs). Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-R2",
+     "Each measure is calculated as defined in the table below."
+    ],
+    [
+     "S3-R2 table row (Technician Efficiency)",
+     "| Technician Efficiency | Invoiced technician hours divided by clocked hours, times 100, for the selected range. Each work order line's technician time is split across the technicians who worked it, in proportion to each technician's share of the clocked time on that line. | Technician Efficiency report (Invoiced) |"
+    ],
+    [
+     "S4-R6",
+     "The Technician Efficiency tile headline is the technician efficiency percentage for the selected range, shown to two decimal places."
+    ],
+    [
+     "S4-R7",
+     "The Technician Efficiency tile shows a supporting line reading \"{invoiced tech hours} Invoiced Tech Hrs / {clocked hours} Clocked\"."
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ],
+    [
+     "S3 context note (parity check)",
+     "to check parity on a KPI tile that shows a shop-wide figure, compare it against the matching report with all advisors or all technicians selected (no filter applied)."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "One hand-made invoice with Tech Time different from Estimated Time and 4.00 clocked hours, the 75.00% arithmetic, and the Invoiced-tab comparison."
+  },
+  {
+   "case_id": 88640,
+   "title": "Technician Efficiency shares a line's hours by each technician's clocked time",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Technician Efficiency tile and choose This Week. It must show no percentage (a grey \"-\", or \"n/a\" on an older build). If it shows a percentage, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "Have a technician who works at this location and can clock time (e.g. \"Tom Tech\"): Settings > Staff > open the technician and check the Time Clock setting is on. You need this technician's sign-in to clock time in a second browser or a private window.",
+    "Have a second technician at this location who can clock time (e.g. \"Tara Tech\"), set up the same way.",
+    "Have a staff member who appears in the work order's Service Advisor list (e.g. \"Alex Advisor\").",
+    "Work order 1 (technician time but nobody clocks it). Create and invoice it with these standard steps:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST No clock\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 1.00, Tech Time 1.00, tick Approved > Save & Close.",
+    "↳ Nobody clocks in on this line.",
+    "↳ On each line type a Story (e.g. \"Done\") and set the line to Complete. Then click Complete Work Order, then Mark Reviewed.",
+    "↳ Finance tab > Create Invoice. When the New Customer Payment dialog opens, close it without taking a payment. Do not send or pay the invoice.",
+    "Work order 2 is created later, in the steps."
+   ],
+   "steps": [
+    "Click Dashboard in the top menu, set the Technician Efficiency tile's range pill to This Week, and write down what the tile shows.",
+    "Create work order 2 for the same customer: Work Orders > New Work Order > customer and asset > Create, then set Service Advisor and the mileage.",
+    "On the Lines tab click New Line: Description \"ZZAUTOTEST Shared\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 2.00, Tech Time 2.00, tick Approved > Save & Close.",
+    "In the second browser, signed in as Tom Tech, use Clock In on that line and clock out. Then sign in as Tara Tech and do the same.",
+    "On work order 2 click the three dots > Timesheets (2) and edit the records so Tom's runs 2.10 hours (e.g. 8:00 AM to 10:06 AM) and Tara's 0.90 hours (e.g. 8:00 AM to 8:54 AM). If they cannot be edited, use the hours shown in Reports > Timesheet Activities in the sums below.",
+    "Type a Story on the line, set it to Complete, click Complete Work Order and Mark Reviewed, then Finance > Create Invoice (close the payment dialog without paying).",
+    "Work out each share by hand: Tom 2.00 x 2.10 / 3.00 = 1.40 hours (70%), Tara 2.00 x 0.90 / 3.00 = 0.60 hours (30%). Work order 1's 1.00 hour has no clocked time, so it gives nobody a share.",
+    "Work out the tile by hand: (1.40 + 0.60) / (2.10 + 0.90) x 100 = 2.00 / 3.00 x 100 = 66.67%.",
+    "Click Dashboard, set Technician Efficiency to This Week and write down the percentage and the line under it.",
+    "Click the arrow icon beside \"Technician Efficiency\" on the tile (its tooltip names the report).",
+    "Click the Invoiced tab, make sure the Date control shows This week, and write down Tom's and Tara's Clocked Hrs, Invoiced Tech Hrs and Efficiency."
+   ],
+   "results": [
+    "Step 1, with only work order 1 invoiced and no clocked time: the tile headline reads a single grey hyphen \"-\", not \"0.00%\", not blank and not an error.",
+    "After work order 2: the tile reads 66.67% and the line under it reads \"2.00 Invoiced Tech Hrs / 3.00 Clocked\". Work order 1's unclocked hour adds nothing and causes no error or endless figure.",
+    "On the Invoiced tab Tom shows Clocked Hrs 2.10, Invoiced Tech Hrs 1.40, Efficiency 66.67%, and Tara shows 0.90, 0.60 and 66.67%: the line's 2.00 hours are shared 70 / 30 by clocked time.",
+    "The tile's 66.67% equals the report for the same week."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R2 Technician Efficiency row, S3-E3, S3-R1). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 06_TechEff_After, 12_technician-efficiency_After. Design canvas row 15 (15_Empty_Design, approved 2026-10-07, to build) shows the grey \"-\".",
+   "quotes": [
+    [
+     "S3-R2",
+     "Each measure is calculated as defined in the table below."
+    ],
+    [
+     "S3-R2 table row (Technician Efficiency)",
+     "| Technician Efficiency | Invoiced technician hours divided by clocked hours, times 100, for the selected range. Each work order line's technician time is split across the technicians who worked it, in proportion to each technician's share of the clocked time on that line. | Technician Efficiency report (Invoiced) |"
+    ],
+    [
+     "S3-E3",
+     "Billing Efficiency, Technician Efficiency and Technician Utilization are each a ratio. When the denominator for the selected range is zero, worked hours, clocked hours, or the sum of work-order and internal hours, the measure **has no value for that range**. It is not zero, and the tile must not show \"0.00%\", because no hours recorded and a genuine zero percent are different facts. The same applies to the Revenue tile's parts-versus-labor split when revenue for the range is zero (S4-N2 already gives that tile its fallback supporting line). Inside the Technician Efficiency calculation, a work order line with invoiced technician time but no clocked time contributes no split share rather than an infinite one. **The tile headline reads exactly \"-\"**, a single hyphen, in grey."
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet built (approved design 7 Oct 2026)",
+   "change_summary": "Hand-seeds a 70/30 shared line and an unclocked line, adds the grey \"-\" check from v42 S3-E3, and moves the marker to HOLD (not yet built)."
+  },
+  {
+   "case_id": 88641,
+   "title": "Technician Utilization shows the exact percentage and equals its report",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Technician Utilization tile and choose This Week. It must show no percentage (a grey \"-\", or \"n/a\" on an older build). If it shows a percentage, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "Have a technician who works at this location and can clock time (e.g. \"Tom Tech\"): Settings > Staff > open the technician and check the Time Clock setting is on. You need this technician's sign-in to clock time in a second browser or a private window.",
+    "Have a department for internal work with the time clock on: Settings > Departments (e.g. \"ZZAUTOTEST Shop Cleanup\").",
+    "Work-order time. Create a work order with one line and clock 2.00 hours on it:",
+    "↳ Work Orders > New Work Order > choose the customer and its asset > Create.",
+    "↳ In the work order header set Service Advisor to \"Alex Advisor\" and enter the mileage (e.g. 123456). If the Finance tab is greyed out with \"Please select a contact for the asset\", choose the contact and answer YES to keep it on the asset.",
+    "↳ Lines tab > New Line: Description \"ZZAUTOTEST Line 1\", Technician \"Tom Tech\", Labor Rate e.g. $100.00 per hour, Estimated Time 2.00, Tech Time 2.00, tick Approved > Save & Close.",
+    "↳ In the second browser, signed in as Tom Tech: Work Orders > open this work order > use Clock In on the line, then clock out.",
+    "↳ Make the clocked time exact: on the work order click the three dots (top right) > Timesheets (1) and edit the record so it runs exactly 2.00 hours earlier today (e.g. 8:00 AM to 10:00 AM). If the time cannot be edited there or in Reports > Timesheet Activities, keep the real time and use the hours Timesheet Activities shows instead of 2.00 in every sum below.",
+    "Internal time. In the second browser, signed in as Tom Tech, click Clock In in the top menu, choose the department (not a work order), then clock out.",
+    "↳ In Reports > Timesheet Activities edit that record so it runs exactly 1.00 hour earlier today (e.g. 10:00 AM to 11:00 AM). If it cannot be edited, use the hours shown there in the sums below.",
+    "The work order does not need to be invoiced: this tile counts clocked time only."
+   ],
+   "steps": [
+    "Work out Technician Utilization by hand: work-order hours / (work-order hours + internal hours) x 100 = 2.00 / (2.00 + 1.00) x 100 = 66.666..., shown as 66.67%.",
+    "Click Dashboard in the top menu.",
+    "On the Technician Utilization tile click the range pill and choose This Week.",
+    "Write down the percentage and the line under it.",
+    "Click the arrow icon beside \"Technician Utilization\" on the tile (its tooltip names the report).",
+    "On the Technician Utilization report make sure the Date control shows This week, Technician shows All technicians and Location shows your test location.",
+    "Write down Tom Tech's Total Hours, WO Hours, Internal Hours and Utilization %, and the Summary row's Utilization %."
+   ],
+   "results": [
+    "The tile reads 66.67%, to two decimal places (2.00 / 3.00 x 100 = 66.666... rounded).",
+    "The line under it reads \"2.00 WO Hrs / 3.00 Clocked\".",
+    "The report shows Tom Tech with Total Hours 3.00, WO Hours 2.00, Internal Hours 1.00 and Utilization 66.67%, and the Summary row's Utilization % reads 66.67%, the same as the tile."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9576 (S4); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R1, S3-R2 Technician Utilization row, context note), S4 (S4-R8, S4-R9). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 07_TechUtil_After, 13_technician-utilization_After. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-R2",
+     "Each measure is calculated as defined in the table below."
+    ],
+    [
+     "S3-R2 table row (Technician Utilization)",
+     "| Technician Utilization | Work-order hours divided by the sum of work-order hours and internal hours, times 100, for the selected range. | Technician Utilization report |"
+    ],
+    [
+     "S4-R8",
+     "The Technician Utilization tile headline is the technician utilization percentage for the selected range, shown to two decimal places."
+    ],
+    [
+     "S4-R9",
+     "The Technician Utilization tile shows a supporting line reading \"{work-order hours} WO Hrs / {clocked hours} Clocked\"."
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ],
+    [
+     "S3 context note (parity check)",
+     "to check parity on a KPI tile that shows a shop-wide figure, compare it against the matching report with all advisors or all technicians selected (no filter applied)."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Hand-clocked 2.00 work-order hours and 1.00 internal hour, the 66.67% rounding worked out, compared against the report's Summary row."
+  },
+  {
+   "case_id": 88642,
+   "title": "Sales by Customer counts each customer once and leaves out undone invoices",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Revenue tile and choose This Week. Revenue must read $0.00 with 0 Invoices under it. If it shows anything else, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create four test customers the standard way (Customers > New Customer, then a contact and an asset with that contact), e.g. \"ZZAUTOTEST SBC 1\" to \"ZZAUTOTEST SBC 4\".",
+    "Invoice work orders with these standard steps for each one: Work Orders > New Work Order > choose the customer and its asset > Create. Set Service Advisor and mileage, add one line (e.g. Estimated Time 1.00 at $100.00 per hour, Tech Time 1.00, Approved), type a Story, set the line Complete, Complete Work Order, Mark Reviewed, Finance > Create Invoice, close the payment dialog without paying.",
+    "↳ Customer 1: two invoiced work orders.",
+    "↳ Customer 2: one invoiced work order.",
+    "↳ Customer 3: one invoiced work order, then reverse it: Finance tab > the invoice's three dots > Reverse > confirm.",
+    "↳ Customer 4: one invoiced work order left unpaid and unsent, then void it: on its Lines tab add a New Line (e.g. 0.50 hour) and save. Do not create a new invoice for it."
+   ],
+   "steps": [
+    "Count by hand: Customer 1 (two invoices, counted once) + Customer 2 = 2 customers. Customer 3 (reversed) and Customer 4 (voided) add none.",
+    "Click Dashboard in the top menu.",
+    "On the Sales by Customer tile click the range pill (it opens on Last 12 Months) and choose This Week.",
+    "Write down the headline.",
+    "Click View details under the tile and write down the customers listed and their Invoices count.",
+    "Click the arrow icon beside \"Sales by Customer\" on the tile (its tooltip names the report).",
+    "On the Sales By Customer report set the Date control to This week and count the customer rows.",
+    "Click Work Orders, open Customer 2's work order, Finance tab > the invoice's three dots > Reverse > confirm.",
+    "Click Dashboard, set Sales by Customer to This Week again and write down the headline.",
+    "Try to make an invoice with no customer: Parts > Part Sales > New Part Sale, and see whether it can be invoiced without choosing a customer. If the screen insists on a customer, stop this step."
+   ],
+   "results": [
+    "The headline reads \"2 customers\": Customer 1 counts once although it has two invoices.",
+    "The detail table lists Customer 1 (Invoices 2) and Customer 2 (Invoices 1). Customer 3 and Customer 4 are not listed.",
+    "The Sales By Customer report for This week lists the same two customers, so its count matches the tile.",
+    "After reversing Customer 2's invoice the headline reads \"1 customer\" (singular).",
+    "If you could invoice sales with no customer, all of them together add exactly one customer to the count, however many such invoices there are. If you could not, write \"no-customer invoice not reachable by hand\" in the result comment."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9577 (S5); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R2 Sales by Customer row, S3-E2, S3-R1), S5 (S5-R1, S5-R2, S5-E3). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 08_Customers_After (table: Customer, Invoices, Labor Delta, Subtotal). Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-R2",
+     "Each measure is calculated as defined in the table below."
+    ],
+    [
+     "S3-R2 table row (Sales by Customer (count))",
+     "| Sales by Customer (count) | The count of distinct customers with sales in the selected range. | Sales By Customer report |"
+    ],
+    [
+     "S5-R1",
+     "The Sales by Customer tile headline is the count of distinct customers with sales in the selected range."
+    ],
+    [
+     "S5-R2",
+     "The Sales by Customer headline reads \"{count} customer\" when the count is one and \"{count} customers\" otherwise."
+    ],
+    [
+     "S5-E3",
+     "Sales made on an invoice with no company are counted together as a single \"no company\" customer in the Sales by Customer count."
+    ],
+    [
+     "S3-E2",
+     "**A voided invoice is excluded from every figure the dashboard shows.** It contributes nothing to Revenue or to the parts-versus-labor split, nothing to invoiced hours or invoiced technician hours, and it is counted in neither the Sales by Customer count nor the At Risk Customers count, including when deciding a customer's most recent invoice. This is not a dashboard rule of its own: it is what the reports do, and the dashboard matches them (S3-R1). A void means the document was undone, so a figure that still carried its money or its hours would overstate the shop."
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Four hand-made customers (repeat, single, reversed, voided) with the distinct count worked out, plus the singular \"1 customer\" check."
+  },
+  {
+   "case_id": 88643,
+   "title": "At Risk Customers counts the right customers for the chosen days",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar choose a location with several months of invoice history (many customers, invoices going back more than a year), e.g. the main QA location. At Risk needs old invoices, which cannot be back-dated by hand.",
+    "Click Dashboard in the top menu, then View details under the At Risk Customers tile. The table shows Customer, Last Invoice Date, Lifetime Invoices and Revenue (12 Mo).",
+    "Pick customer W from the At Risk table (window 120 Days): one with Lifetime Invoices 2 or more, whose newest invoice you will make and then undo. Write down W's Last Invoice Date.",
+    "Look up, on Customers > customer > Invoices tab, a customer X whose only invoice is more than 12 months old (Lifetime Invoices 1, so Revenue (12 Mo) is $0.00), and a customer Y with 2 or more invoices, all more than 12 months old."
+   ],
+   "steps": [
+    "On the At Risk Customers tile click the window pill and choose 120 Days. Write down the headline and count the table rows.",
+    "Look for customer X in the table.",
+    "Look for customer Y in the table.",
+    "Read down the table and check every row: Lifetime Invoices is 2 or more, or Revenue (12 Mo) is above $0.00.",
+    "Window edge: on the window pill try each of 30, 60, 90, 120 and 180 Days, and look for a customer whose Last Invoice Date is exactly that many days before today (count calendar days, e.g. Jun 9, 2026 to Oct 7, 2026 = 120 days) and one at one day fewer. If the Create Invoice step on a work order lets you choose the invoice date, you may make such invoices instead.",
+    "Make a new invoice today for customer W: Work Orders > New Work Order > W and its asset > one line > Story > Complete > Complete Work Order > Mark Reviewed > Finance > Create Invoice (close the payment dialog without paying).",
+    "Click Dashboard, set the window to 120 Days and write down the headline. Look for W in the table.",
+    "Click Work Orders, open the work order you just invoiced, Finance tab > the invoice's three dots > Reverse > confirm.",
+    "Click Dashboard, set the window to 120 Days, write down the headline and find W's row."
+   ],
+   "results": [
+    "The headline is a plain number (e.g. 12, no words, no dollar sign) and equals the number of rows in the table.",
+    "Customer X (one invoice, $0.00 revenue in the last 12 months) is not listed. Customer Y (2 or more invoices, $0.00 recent revenue) is listed.",
+    "Every listed customer has Lifetime Invoices of 2 or more, or Revenue (12 Mo) above $0.00.",
+    "Window edge: a customer whose newest invoice is exactly the chosen number of days old is listed, and one at one day fewer is not. If no such pair exists and invoice dates cannot be chosen, write \"window edge not reachable by hand\" in the result comment.",
+    "After invoicing W today, W leaves the list and the headline drops by 1 (e.g. 12 to 11).",
+    "After reversing that new invoice, W is back with its earlier Last Invoice Date and the headline returns to the step 1 figure: the undone invoice is ignored when deciding W's newest invoice."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9577 (S5); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S5 (S5-R15, S5-R7), S3 (S3-E2). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 09_AtRisk_After (table: Customer, Last Invoice Date, Lifetime Invoices, Revenue (12 Mo)), 09_AtRisk_Window. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S5-R15",
+     "Two parts of the at-risk definition are fixed here so the count cannot be read two ways. **\"Some revenue in the last twelve months\" means revenue greater than $0.00** over the trailing twelve months, measured the way the Revenue tile measures revenue: invoice subtotals before any discount and before tax, minus credit memos. A customer whose twelve-month revenue is exactly $0.00, or is negative because credits exceeded sales, does not satisfy this part of the test, though they can still qualify on the two-or-more-lifetime-invoices part. **\"At least the selected number of days old\" is counted in whole calendar days in the selected workplace's timezone**, from the date of the customer's most recent invoice to the current date. The count therefore changes at the shop's own midnight and is stable through the shop's working day, and two people viewing the same workplace from different places see the same number."
+    ],
+    [
+     "S5-R7",
+     "The At Risk Customers tile headline is the count of at-risk customers for the selected inactivity window, shown as a plain number."
+    ],
+    [
+     "S3-E2",
+     "**A voided invoice is excluded from every figure the dashboard shows.** It contributes nothing to Revenue or to the parts-versus-labor split, nothing to invoiced hours or invoiced technician hours, and it is counted in neither the Sales by Customer count nor the At Risk Customers count, including when deciding a customer's most recent invoice. This is not a dashboard rule of its own: it is what the reports do, and the dashboard matches them (S3-R1). A void means the document was undone, so a figure that still carried its money or its hours would overstate the shop."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Uses real history, read off the At Risk table, for both qualifying rules and the window edge, plus a hand-made then reversed invoice for the undone-invoice rule."
+  },
+  {
+   "case_id": 88644,
+   "title": "At Risk Customers counts days in the location's own time zone",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar choose a location with several months of invoice history (many customers, invoices going back more than a year), e.g. the main QA location. At Risk needs old invoices, which cannot be back-dated by hand.",
+    "Note the location's time zone: Settings > Locations > open the location (write down the time zone it shows).",
+    "Have a second device (a second computer or a phone) whose clock is set to a time zone far from the location's (e.g. 8 or more hours apart), signed in as the same or another user with the Reports permission and the same location selected.",
+    "Click Dashboard in the top menu, then View details under the At Risk Customers tile. The table shows Customer, Last Invoice Date, Lifetime Invoices and Revenue (12 Mo)."
+   ],
+   "steps": [
+    "On your main device, set the At Risk window pill to 30 Days and write down the headline. Repeat for 60, 90, 120 and 180 Days.",
+    "On the second device open Dashboard and read the At Risk headline for the same five windows.",
+    "In the table on the main device pick one customer and count the calendar days from their Last Invoice Date to today's date at the location (not your own date).",
+    "Read the headline again at the end of the shop's working day for the same windows, without making or undoing any invoice in between.",
+    "If your working hours reach the location's midnight, read the headline a few minutes before and a few minutes after midnight at the location."
+   ],
+   "results": [
+    "Both devices show the same At Risk count for every window, even though their clocks are in different time zones.",
+    "The day count uses the location's date: a customer is listed only when the days from their Last Invoice Date to the location's today are at least the chosen window.",
+    "The count does not change during the shop's working day (morning and evening readings match).",
+    "Across the location's midnight the count may change, and only then. If you cannot be working at the location's midnight, write \"midnight change not checked by hand\" in the result comment."
+   ],
+   "source": "Epic SV-490; story SV-9577 (S5); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S5 (S5-R15). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 09_AtRisk_After, 09_AtRisk_Window. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S5-R15",
+     "Two parts of the at-risk definition are fixed here so the count cannot be read two ways. **\"Some revenue in the last twelve months\" means revenue greater than $0.00** over the trailing twelve months, measured the way the Revenue tile measures revenue: invoice subtotals before any discount and before tax, minus credit memos. A customer whose twelve-month revenue is exactly $0.00, or is negative because credits exceeded sales, does not satisfy this part of the test, though they can still qualify on the two-or-more-lifetime-invoices part. **\"At least the selected number of days old\" is counted in whole calendar days in the selected workplace's timezone**, from the date of the customer's most recent invoice to the current date. The count therefore changes at the shop's own midnight and is stable through the shop's working day, and two people viewing the same workplace from different places see the same number."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Two devices in different time zones, a calendar-day count against the location's date, and a same-day stability check, with the midnight part marked honestly."
+  },
+  {
+   "case_id": 88645,
+   "title": "At Risk trend line has twelve monthly points and the last equals the count",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar choose a location with several months of invoice history (many customers, invoices going back more than a year), e.g. the main QA location. At Risk needs old invoices, which cannot be back-dated by hand.",
+    "Click Dashboard in the top menu and set the At Risk Customers window pill to 120 Days.",
+    "Pick an at-risk customer V in the At Risk table whose newest invoice is from 2 to 6 months ago and who also has an older invoice. Note both invoice dates (Customers > V > Invoices tab). Your role must be able to reverse an invoice (Admin can)."
+   ],
+   "steps": [
+    "Take a screenshot of the At Risk Customers tile.",
+    "Count the points on the trend line, from left to right.",
+    "Hover over each point and write down the month and the value it shows. If the line shows no values on hover, compare heights only.",
+    "Compare the last (right-most) point with the headline.",
+    "Click Work Orders, open V's newest invoiced work order, Finance tab > the invoice's three dots > Reverse > confirm. (If Reverse is not offered because the invoice is paid, first reverse its payment on Customers > V > Payments.)",
+    "Click Dashboard, set the window to 120 Days, take a second screenshot and repeat steps 2 to 4."
+   ],
+   "results": [
+    "The trend line has twelve points, one per month, for the last twelve months.",
+    "The right-most point equals the headline (e.g. both 12).",
+    "After reversing V's newest invoice, one or more of the earlier points change, not only the last one: every point is worked out again from today's data rather than kept from the past.",
+    "If the points show no values on hover, judge from the two screenshots and write \"point values not checked by hand\" in the result comment."
+   ],
+   "source": "Epic SV-490; story SV-9577 (S5); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S5 (S5-R13). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 01_Opens_After, 09_AtRisk_After. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S5-R13",
+     "The At Risk Customers sparkline shows the at-risk count over the trailing twelve months as twelve monthly points. Each historical point is the at-risk count as of the last day of that month in the workplace's timezone, using the inactivity window the tile currently shows. The twelfth point is computed as of now, rather than as of a month end that has not happened yet, so it always equals the headline. Every point is recomputed from current data, so a later void changes the past points: recording the count as it stood at the time would contradict S3-E2, which excludes a voided invoice even when deciding a customer's most recent invoice."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Counts and hovers the twelve points, compares the last with the headline, and reverses a past invoice by hand to show the earlier points are recalculated."
+  },
+  {
+   "case_id": 88646,
+   "title": "Ratio tiles with no hours show a grey dash, never 0.00%",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "The location has no clocked time and no invoices this week (you check this in step 1).",
+    "Have a technician who works at this location and can clock time (e.g. \"Tom Tech\"): Settings > Staff > open the technician and check the Time Clock setting is on. You need this technician's sign-in to clock time in a second browser or a private window.",
+    "Have a department for internal work with the time clock on: Settings > Departments (e.g. \"ZZAUTOTEST Shop Cleanup\")."
+   ],
+   "steps": [
+    "Click Dashboard in the top menu.",
+    "Set the range pill to This Week on Revenue, Billing Efficiency, Technician Efficiency and Technician Utilization.",
+    "Write down each tile's headline, its colour and the line under it.",
+    "Click the arrow icon beside \"Technician Efficiency\", set the report's Date control to This week, and write down how the report shows an empty value.",
+    "In the second browser, signed in as Tom Tech, click Clock In in the top menu, choose the department (not a work order), and clock out.",
+    "In Reports > Timesheet Activities edit that record so it runs exactly 1.00 hour earlier today (e.g. 9:00 AM to 10:00 AM). If it cannot be edited, use the hours shown there.",
+    "Click Dashboard, set Technician Utilization to This Week and write down the headline and the line under it."
+   ],
+   "results": [
+    "Billing Efficiency, Technician Efficiency and Technician Utilization each read a single hyphen \"-\" in grey. None reads \"0.00%\", none is blank and none shows an error.",
+    "Revenue reads $0.00 with \"0 Invoices\" under it, because there is no parts-and-labor split to show.",
+    "The report may show its own empty value differently (for example an empty number with the % sign). That difference is expected and is not a failure.",
+    "After 1.00 hour of internal time only, Technician Utilization reads \"0.00%\" with \"0.00 WO Hrs / 1.00 Clocked\" under it (0.00 / (0.00 + 1.00) x 100 = 0.00): a real zero, shown differently from the \"-\" of no hours."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9576 (S4); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-E3 and its context note), S4 (S4-N2, S4-R9). Design canvas row 15 (15_Empty_Design, approved 2026-10-07, to build): ratio tiles read a grey \"-\"; 15_Empty_Now shows today's build reading \"n/a\". Boards used for labels only.",
+   "quotes": [
+    [
+     "S3-E3",
+     "Billing Efficiency, Technician Efficiency and Technician Utilization are each a ratio. When the denominator for the selected range is zero, worked hours, clocked hours, or the sum of work-order and internal hours, the measure **has no value for that range**. It is not zero, and the tile must not show \"0.00%\", because no hours recorded and a genuine zero percent are different facts. The same applies to the Revenue tile's parts-versus-labor split when revenue for the range is zero (S4-N2 already gives that tile its fallback supporting line). Inside the Technician Efficiency calculation, a work order line with invoiced technician time but no clocked time contributes no split share rather than an infinite one. **The tile headline reads exactly \"-\"**, a single hyphen, in grey."
+    ],
+    [
+     "S3-E3 context note",
+     "the matching report renders its own empty cell differently, as an empty number with the percent sign still shown. Bringing the report's empty state into line is deliberately outside this spec, so a difference between the tile and the report in this one case, where neither is showing a figure, is not a failure of the parity rule in S3-R1."
+    ],
+    [
+     "S4-N2",
+     "If the Revenue tile has no parts-versus-labor split to show, its supporting line reads \"{count} Invoices\" instead."
+    ],
+    [
+     "S4-R9",
+     "The Technician Utilization tile shows a supporting line reading \"{work-order hours} WO Hrs / {clocked hours} Clocked\"."
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet built (approved design 7 Oct 2026)",
+   "change_summary": "Expectation moved from \"n/a\" to the grey \"-\" of v42 S3-E3, with a hand-made genuine 0.00% for contrast. Marker set to HOLD (not yet built)."
+  },
+  {
+   "case_id": 88647,
+   "title": "Trend line splits the range by day, week, month or quarter correctly",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar choose a location with more than two years of invoices, so Revenue has a value in every period.",
+    "Click Dashboard in the top menu. You will set custom ranges on the Revenue tile: click its range pill, click a start day and an end day in the calendar, check the \"Range: N days\" readout at the bottom, then click Apply."
+   ],
+   "steps": [
+    "On Revenue set a custom range of exactly 31 days (readout \"Range: 31 days\"). Hover along the trend line (or count the points) and write down how many points there are and the date each shows.",
+    "Set a range of exactly 32 days and do the same.",
+    "Set ranges of exactly 182 days and then 183 days and do the same.",
+    "Set ranges of exactly 731 days and then 732 days and do the same.",
+    "On the 31-day range hover one point and write down its date and value. Open Reports > Sales, set the Date to that single day, and write down the Totals row Subtotal.",
+    "On the Technician Utilization tile set a custom range that includes a day on which nobody clocked time (check Reports > Timesheet Activities, e.g. a Sunday) between days that do have clocked time. Look at the trend line around that day.",
+    "On the Technician Utilization tile set a custom range in which only one day has clocked time (e.g. a single working day). Look at where the trend line would be."
+   ],
+   "results": [
+    "31 days: one point per day (31 points). 32 days: one point per week.",
+    "182 days: one point per week. 183 days: one point per month.",
+    "731 days: one point per month. 732 days: one point per quarter.",
+    "The hovered day's value equals the Sales report total for that single day.",
+    "The day with no clocked time leaves a gap in the line: the line is not joined across it and does not drop to zero.",
+    "With only one day that has a value, no line is drawn. In its place the tile shows the empty-chart placeholder: a light grey dashed outline with rounded corners, no fill and a grey line-chart icon in the middle, the same height as a trend line. The headline still shows its figure.",
+    "If the trend line shows no dates or values on hover, count the points (zoom the browser in if needed) and write \"values not checked by hand\" in the result comment for the value check."
+   ],
+   "source": "Epic SV-490; story SV-9576 (S4); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S4 (S4-R11, S4-R12). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 03_Range_After (calendar, presets, \"Range: N days\" readout, Apply). Design canvas row 15 (15_Empty_Design, approved 2026-10-07, to build) shows the empty-chart placeholder.",
+   "quotes": [
+    [
+     "S4-R11",
+     "The sparkline draws one point per bucket, and the bucket size is chosen from the length of the selected range: **a range of 31 days or fewer buckets by day; 32 to 182 days by week; 183 to 731 days by month; anything longer by quarter**. Each point is the measure recomputed over that bucket using the same calculation as the headline, so a point can never disagree with the tile it sits in. A bucket for which the measure has no value (S3-E3) contributes no point, and interior gaps are preserved rather than closed up or drawn as zero. When fewer than two points have values, no line is drawn and the tile shows the empty-chart placeholder instead (S4-R12)."
+    ],
+    [
+     "S4-R12",
+     "A tile shows the empty-chart placeholder in place of its sparkline when fewer than two points in the selected range have a value."
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet built (approved design 7 Oct 2026)",
+   "change_summary": "Requoted S4-R11 from v42 (now ending with the placeholder sentence), added the placeholder expectation, made every range edge a hand-set custom range. Marker set to HOLD (not yet built)."
+  },
+  {
+   "case_id": 88648,
+   "title": "Each tile equals its report on every one of the nine date ranges",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar choose a location with more than two years of invoices and clocked time, so every range has figures.",
+    "Make a grid to fill in: five tiles (Revenue, Billing Efficiency, Technician Efficiency, Technician Utilization, Sales by Customer) by nine ranges (Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week): 45 tile figures and 45 report figures."
+   ],
+   "steps": [
+    "Click Dashboard in the top menu.",
+    "On the Revenue tile click the range pill and choose Last 12 Months. Write down the figure.",
+    "Click the arrow icon beside \"Revenue\". Check the report's Date control covers the same dates (Last 12 Months runs from the 1st of the month eleven months back to today, e.g. on Oct 7, 2026: Nov 1, 2025 to Oct 7, 2026). Write down the Totals row Subtotal.",
+    "Go back to the Dashboard and repeat steps 2 and 3 for the other eight ranges.",
+    "Do the same on Billing Efficiency and compare it with the Totals row Billing Efficiency on Service Advisor Analysis (no advisor chosen).",
+    "Do the same on Technician Efficiency and compare it with the report's Invoiced tab: add up the Invoiced Tech Hrs column and the Clocked Hrs column for all technicians and work out Invoiced / Clocked x 100 (e.g. 377.58 / 858.45 x 100 = 43.98%).",
+    "Do the same on Technician Utilization and compare it with the report's Summary row Utilization % (Technician: All technicians).",
+    "Do the same on Sales by Customer and compare it with the number of customer rows on the Sales By Customer report."
+   ],
+   "results": [
+    "For each of the nine ranges, Revenue equals the Sales report's Totals row Subtotal.",
+    "For each range, Billing Efficiency equals the Service Advisor Analysis Totals row Billing Efficiency.",
+    "For each range, Technician Efficiency equals your Invoiced / Clocked figure from the report's Invoiced tab.",
+    "For each range, Technician Utilization equals the Technician Utilization Summary row Utilization %.",
+    "For each range, the Sales by Customer count equals the number of customers on the Sales By Customer report.",
+    "Each report covers exactly the same dates as its tile for every range, including Last 12 Months. All 45 pairs match."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9579 (S7), story SV-9582 (S10); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R1, context note), S7 (S7-R2), S10 (S10-R8). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 02_Last12_After, 03_Range_After, 10_sales_After, 11_service-advisor-analysis_After, 12_technician-efficiency_After, 13_technician-utilization_After. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ],
+    [
+     "S7-R2",
+     "The date-range control offers, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week."
+    ],
+    [
+     "S10-R8",
+     "\"Last 12 months\" covers the same window on every tile and in every report the dashboard links to: from the first day of the month eleven months before the current month, through today, in the workplace's timezone. Example: on October 5, 2026 it covers November 1, 2025 to October 5, 2026."
+    ],
+    [
+     "S3 context note (parity check)",
+     "to check parity on a KPI tile that shows a shop-wide figure, compare it against the matching report with all advisors or all technicians selected (no filter applied)."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "A 5 x 9 grid filled by hand, naming exactly which report figure each tile is compared with and how the Last 12 Months window is checked."
+  },
+  {
+   "case_id": 88649,
+   "title": "A chart filtered to one advisor or technician equals the filtered report",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar choose a location with several advisors and technicians and at least two months of invoices and clocked time.",
+    "Note: chart tooltips show whole percentages (e.g. 117%) while the reports show two decimals. Compare after rounding the report figure to a whole number."
+   ],
+   "steps": [
+    "Click Dashboard in the top menu.",
+    "On Billing Efficiency set the range pill to Last 12 Months and click View details.",
+    "In the chart's Advisor filter choose one advisor (e.g. Marcus Halvorsen).",
+    "Hover the chart point for last month and write down that advisor's percentage and ELR.",
+    "Click Reports > Advisor Analysis, choose the same advisor in the Advisor filter and set the Date control to Last month. Write down the Totals row Billing Efficiency and ELR.",
+    "Back on the Dashboard, set Technician Efficiency to Last 12 Months, click View details, and in the Technician filter keep only two technicians (e.g. Grace Sullivan and Ravi Kapoor).",
+    "Hover last month's point and write down each technician's percentage.",
+    "Click Reports > Technician Efficiency, Invoiced tab, Date: Last month, and write down those two technicians' Efficiency.",
+    "Repeat steps 6 to 8 on Technician Utilization, comparing with the Technician Utilization report with the same two technicians chosen in its Technician filter.",
+    "On Reports > Advisor Analysis keep the same advisor chosen, set the Date control to This year, and hover last month's point on the chart above the table.",
+    "On the Dashboard set Billing Efficiency to This Year with the same advisor chosen and hover last month's point."
+   ],
+   "results": [
+    "The Billing Efficiency chart filtered to one advisor shows only that advisor's line, and last month's point equals the report filtered to the same advisor for last month (percentage and ELR, after rounding).",
+    "The Technician Efficiency chart filtered to two technicians shows only their lines, and each one's last-month point equals the report's Efficiency for that technician.",
+    "The Technician Utilization chart filtered the same way matches the Technician Utilization report for those technicians.",
+    "The chart on the Advisor Analysis report, under the report's own advisor and date filters, shows the same last-month value as the report and as the Dashboard chart with the same advisor."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9580 (S8), story SV-9583 (S11); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R1), S8 (S8-R5), S11 (S11-R7). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 05_Billing_Hover, 06_TechEff_Hover, 07_TechUtil_Hover, 11_saa_Hover, 12_te_Hover, 13_tu_Hover (whole-number tooltips). Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ],
+    [
+     "S8-R5",
+     "When the user changes a chart filter, the chart reloads scoped to the selected technicians or advisor."
+    ],
+    [
+     "S11-R7",
+     "The embedded chart shows the same figures as the report it sits on."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Concrete filter choices, the exact chart point to hover and the matching report filter and date to compare against, with the rounding rule stated."
+  },
+  {
+   "case_id": 88650,
+   "title": "Tile figure, trend line and expanded table all add up to the same numbers",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar choose a location with invoices and clocked time this month.",
+    "Run this case before the last day of the month, so This Month is not finished yet.",
+    "If a total differs only in the last decimal place (0.01) because rows are rounded, mark the case Blocked and write both numbers in the comment: the specification does not cover rounding of row sums."
+   ],
+   "steps": [
+    "Click Dashboard in the top menu. The four top tiles open on This Month.",
+    "On Technician Efficiency write down the headline and the line under it (e.g. 377.58 Invoiced Tech Hrs / 858.45 Clocked).",
+    "Click View details on Technician Efficiency. Page through the table and add up the Clocked Hrs column and the Invoiced Tech Hrs column.",
+    "Work out Invoiced / Clocked x 100 from your sums.",
+    "On Technician Utilization click View details. Add up WO Hours, Internal Hours and Total Hours.",
+    "On Billing Efficiency click View details. Add up Worked Hours and Invoiced Hrs.",
+    "On Revenue click View details. Hover each bar of the chart and add up the values.",
+    "Look at the right-hand end of each tile's trend line."
+   ],
+   "results": [
+    "Technician Efficiency: the Clocked Hrs sum equals the Clocked figure, the Invoiced Tech Hrs sum equals the Invoiced Tech Hrs figure, and your Invoiced / Clocked x 100 equals the headline.",
+    "Technician Utilization: the WO Hours sum equals the WO Hrs figure, the Total Hours sum equals the Clocked figure, and WO Hours + Internal Hours = Total Hours.",
+    "Billing Efficiency: the Worked Hours sum equals the Clocked figure and the Invoiced Hrs sum equals the Invoiced figure.",
+    "Revenue: the chart's bars add up to the headline.",
+    "The chart and table cover the same range as the tile (This Month), and no point or row contradicts the tile.",
+    "Each trend line stops at today: there are no points for the days of the month still to come, so the line and the headline cover the same part of the month."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3), story SV-9576 (S4), story SV-9579 (S7); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R1), S4 (S4-R11), S7 (S7-E1). Design canvas boards 04_Revenue_After, 05_Billing_After, 06_TechEff_After, 07_TechUtil_After (detail-table columns; \"Chart and table read the card's range\"), used for labels and the design-only table details. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S4-R11",
+     "The sparkline draws one point per bucket, and the bucket size is chosen from the length of the selected range: **a range of 31 days or fewer buckets by day; 32 to 182 days by week; 183 to 731 days by month; anything longer by quarter**. Each point is the measure recomputed over that bucket using the same calculation as the headline, so a point can never disagree with the tile it sits in. A bucket for which the measure has no value (S3-E3) contributes no point, and interior gaps are preserved rather than closed up or drawn as zero. When fewer than two points have values, no line is drawn and the tile shows the empty-chart placeholder instead (S4-R12)."
+    ],
+    [
+     "S7-E1",
+     "If the selected range has not finished, the tile's headline and sparkline both describe the same partial window."
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Names each column to add up against each figure in the supporting line, and the partial-month end of the trend line. S4-R11 requoted from v42."
+  },
+  {
+   "case_id": 88651,
+   "title": "Every tile shows only the selected location's figures",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Revenue tile and choose This Week. Revenue must read $0.00 with 0 Invoices under it. If it shows anything else, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Have a second location B you can choose in the top bar (any other location).",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "In your test location (A), create and invoice one work order for the test customer: Work Orders > New Work Order > choose the customer and its asset > Create. Set Service Advisor and mileage, add one line (Estimated Time 3.00 at e.g. $100.00 per hour, Tech Time 3.00, Approved), type a Story, set the line Complete, Complete Work Order, Mark Reviewed, Finance > Create Invoice, close the payment dialog without paying.",
+    "↳ On the Finance tab write down the invoice's Subtotal (before any discount and before tax), e.g. $300.00 (3.00 hours x $100.00). If shop supplies are added automatically they are part of the subtotal: use the subtotal the invoice shows."
+   ],
+   "steps": [
+    "With location A selected, click Dashboard. Set Revenue and Sales by Customer to This Week. Write down both headlines.",
+    "Open Reports > Sales (Date: This week) for location A and write down the Totals row Subtotal.",
+    "In the top bar switch to location B.",
+    "On the Dashboard set Revenue and Sales by Customer to This Week and write down both headlines.",
+    "Open Reports > Sales (Date: This week) for location B and write down the Totals row Subtotal.",
+    "In the top bar switch back to location A and read the Dashboard again (This Week on both tiles)."
+   ],
+   "results": [
+    "Location A: Revenue reads $300.00 and Sales by Customer reads \"1 customer\", matching A's Sales report ($300.00).",
+    "After switching to B, every tile reloads with B's own figures. B's Revenue equals B's Sales report for This week and does not include A's $300.00 invoice.",
+    "Back on A, the figures return to $300.00 and \"1 customer\"."
+   ],
+   "source": "Epic SV-490; story SV-9573 (S1), story SV-9575 (S3); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S1 (S1-R4, S1-E1), S3 (S3-R1). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 01_Opens_After (location name in the top bar). Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S1-R4",
+     "The dashboard shows figures for the workplace the user currently has selected in the top navigation."
+    ],
+    [
+     "S1-E1",
+     "If the user switches the selected workplace in the top navigation, the dashboard reloads its figures for the newly selected workplace."
+    ],
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "One hand-made $300.00 invoice in location A, read in A, B and A again, each compared with that location's Sales report."
+  },
+  {
+   "case_id": 88652,
+   "title": "A tile equals its report straight after new data is added",
+   "preconds": [
+    "Sign in on the build under test as an Admin user. Admin holds every permission, including Reports, so Reports and Dashboard both show in the top menu.",
+    "In the top bar, click the location name at the top left (e.g. ShopHub) and choose your test location: one where nobody else invoices, issues credits or clocks time this week. Ask your QA lead which location to use. Do not create a new location for this (locations cannot be deleted).",
+    "Check the location is quiet: click Dashboard in the top menu, click the range pill on the Revenue tile and choose This Week. Revenue must read $0.00 with 0 Invoices under it. If it shows anything else, choose another location.",
+    "Run the whole case on one day, and not on the last evening of the week, so every record you create stays inside This Week.",
+    "Create a test customer: Customers > New Customer, name it (e.g. \"ZZAUTOTEST Dash Customer 1\") and save. On its Contacts tab add a contact (e.g. \"Dana Test\"). On its Assets tab add an asset (e.g. unit \"ZZ-101\") and pick that contact in the asset's Contact field.",
+    "Have a technician who works at this location and can clock time (e.g. \"Tom Tech\"): Settings > Staff > open the technician and check the Time Clock setting is on. You need this technician's sign-in to clock time in a second browser or a private window.",
+    "Have a department for internal work with the time clock on: Settings > Departments (e.g. \"ZZAUTOTEST Shop Cleanup\").",
+    "Prepare (do not invoice yet) one work order for the test customer: Work Orders > New Work Order > choose the customer and its asset > Create. Set Service Advisor and mileage, add one line (Estimated Time 2.50 at e.g. $100.00 per hour, Tech Time 2.50, Approved), type a Story, set the line Complete, Complete Work Order, Mark Reviewed."
+   ],
+   "steps": [
+    "Click Dashboard, set Revenue to This Week and write down the figure ($0.00).",
+    "Open the work order, Finance tab > Create Invoice, and close the payment dialog without paying (subtotal e.g. $250.00).",
+    "At once click Dashboard (or reload the page), set Revenue to This Week and write down the figure.",
+    "At once open Reports > Sales (Date: This week) and write down the Totals row Subtotal.",
+    "Reverse the invoice: open the work order, Finance tab > the invoice's three dots > Reverse > confirm.",
+    "At once read Revenue (This Week) on the Dashboard and the Sales report total again.",
+    "In the second browser, signed in as Tom Tech, click Clock In in the top menu, choose the department, wait about 6 minutes, and clock out.",
+    "At once read Technician Utilization (This Week) on the Dashboard and the Summary row of the Technician Utilization report (Date: This week)."
+   ],
+   "results": [
+    "Straight after the invoice, Revenue reads $250.00 and the Sales report reads $250.00. You never need to wait for the tile to catch up.",
+    "Straight after the reversal, both read $0.00.",
+    "Straight after the clock-out, Technician Utilization and its report both show the new internal time (0.00% with 0.00 WO Hrs and about 0.10 Clocked), matching each other.",
+    "At no reading does the tile show an older figure than its report. Whether the dashboard's stored figures are cleared at the right moment inside the system cannot be checked by hand: write \"internal refresh not checked by hand\" in the result comment and pass or fail on what you see."
+   ],
+   "source": "Epic SV-490; story SV-9575 (S3); Dashboard v1 PRD, Confluence 788430850 v42, read 7 Oct 2026, S3 (S3-R1, S3-N1). Design canvas (claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge, captured 2026-09-28) used for on-screen labels and navigation only: boards 02_Last12_After, 10_sales_After, 13_technician-utilization_After. Last checked against build v26.39.1-09be696 on 10/2/2026.",
+   "quotes": [
+    [
+     "S3-R1",
+     "Every figure the dashboard shows for a measure equals the figure the measure's matching report shows for the same workplace, date range, and filters. **This holds at every moment, not merely in principle.** The dashboard may serve a figure from a cache, but only in a way that cannot produce a difference: the tile and its report must resolve to the same stored calculation, or the cache must be invalidated by the same events that change the report's answer. A tile that shows a different number from its report because one of them is more recently computed than the other is a defect, not an accepted staleness window. There is no freshness allowance and no \"up to N minutes behind\" in this spec."
+    ],
+    [
+     "S3-N1",
+     "If a measure's report shows a value, the matching tile shows the same value; the two never disagree."
+    ]
+   ],
+   "marker": "AUTOMATION: READY",
+   "change_summary": "Adds, reverses and clocks data by hand and reads the tile and the report straight away each time, with the internal refresh check stated as not checkable by hand."
+  }
+ ],
+ "new": [],
+ "notes": [
+  "The task brief says v42 notes that reversal is how a void is made. v42 has no such sentence (the words \"reverse\" and \"reversal\" do not appear in it). The tech plan, section 7, says the opposite: \"the invoice factory's reverse() does not void an invoice — it hard-deletes it\", and a voided invoice is made by adding a line to an already-invoiced work order whose invoice is still pending. So C88632, C88635 and C88642 use both routes: Reverse (the invoice is removed) and the add-a-line-to-an-unpaid-invoice route (a real void). C88643 and C88645 use Reverse only. The observable expectation (contributes nothing) is the same for both.",
+  "No UI route is known for an invoice with no company (no customer). A work order needs a customer. C88632, C88635 and C88642 ask the tester to try a Part Sale without a customer and otherwise to write \"no-customer invoice not reachable by hand\". The PRD context note under S5-E3 says QA should expect to create the case rather than find it: PO/dev question, how is one created by hand?",
+  "The PRD does not say which New Line field is \"invoiced hours\" (labor time billed) and which is \"invoiced technician hours\" (technician time recorded on lines). The cases read Tech Time as invoiced technician hours. The Billing Efficiency cases set Estimated Time equal to Tech Time so they do not depend on the answer, and tell the tester to mark Blocked if Advisor Analysis Hrs Invoiced does not match.",
+  "Credits are issued through Issue Credit, which the playbook records as a parts-only picker (\"Parts to return\", Outcome Store Credit / Refund). So every credit in C88633 and C88634 is made by returning a part.",
+  "Shop supplies and the Parts / Labor split: the PRD does not say which side shop supplies fall on. C88636 tells the tester to set the customer's Default Shop Supplies to 0 where shown, and to mark Blocked if shop supplies alone change the split. Candidate PO question.",
+  "Negative money format is not specified. The Sales report design shows \"$-422.01\". C88634 asks the tester to record the format and not judge where the minus sign sits.",
+  "Rounding of row sums against the supporting-line totals is not specified (C88650). The tester marks Blocked with both numbers if they are 0.01 apart.",
+  "Chart tooltips in the design show whole percentages (e.g. \"Marcus Halvorsen 117%\") while the reports show two decimals. C88649 compares after rounding.",
+  "Report naming: the PRD says \"Service Advisor Analysis report\". The design's report menu item reads \"Advisor Analysis\" and the page title reads \"Service Advisor Analysis\". The cases use both. Tech plan NFR-010 says \"Labor Efficiency %\", but the design's Service Advisor Analysis column reads \"Billing Efficiency\". C88632 refers to the on-screen column.",
+  "Exact clocked hours depend on editing the clock record (work order three dots > Timesheets (n), or Reports > Timesheet Activities). Every case gives the fallback: use the real hours shown and adjust the arithmetic. The clock-in control on a line is not in the observed-label file (only the top-menu \"Clock In\" is), so its exact label must be read off the build.",
+  "Locations cannot be deleted (playbook), so the cases do not create one. They ask for a quiet test location named by the QA lead and prove it quiet first. OUTSTANDING: the QA lead to name the quiet test location (and a second location for C88651).",
+  "C88640: the zero-clock line rule is read from v42 S3-E3 (\"contributes no split share\") as adding nothing to the shop-wide invoiced technician hours, giving 2.00 / 3.00 = 66.67%. If the PO reads it as adding to the shop-wide numerator without a technician, the tile figure would be 100.00%. The parity with the Technician Efficiency report still decides.",
+  "At Risk (C88643, C88644, C88645): invoices cannot be back-dated by hand, so these cases use the location's real invoice history read off the At Risk table. The exact-day window edge, the location's midnight and point values on hover are each stated as \"not checked by hand\" where the data or the UI does not allow them.",
+  "Quotes keep the v42 file's own text, including its ** bold markers, so they are character-for-character substrings of the file. Strip the ** only if the renderer turns them into bold.",
+  "C88631 and C88632 quote the tech plan (NFR-001 and NFR-010) because v42 states no speed target and does not mention the void-then-reinvoice increase. C88632 also quotes the v42 S3-E2 context note sentences that cover the two report corrections and the release note.",
+  "Design vs spec on my cases: no capitalisation conflicts. The PRD's empty ratio headline \"-\" matches design row 15 (15_Empty_Design). 15_Empty_Now (today's build) shows \"n/a\", which is why C88640, C88646 and C88647 are HOLD - not yet built.",
+  "No new cases were needed. Every anchor quoted by the 22 cases is still present in v42, and the S4-R11, S3-E3 and S3-R2 quotes were refreshed from v42."
+ ],
+ "anchors_covered": {
+  "S1-E1": [
+   "C88651"
+  ],
+  "S1-R4": [
+   "C88651"
+  ],
+  "S10-R8": [
+   "C88648"
+  ],
+  "S11-R7": [
+   "C88649"
+  ],
+  "S3 context note (parity check)": [
+   "C88633",
+   "C88637",
+   "C88638",
+   "C88639",
+   "C88641",
+   "C88648"
+  ],
+  "S3-E1": [
+   "C88634"
+  ],
+  "S3-E2": [
+   "C88632",
+   "C88635",
+   "C88642",
+   "C88643"
+  ],
+  "S3-E3": [
+   "C88636",
+   "C88640",
+   "C88646"
+  ],
+  "S3-N1": [
+   "C88652"
+  ],
+  "S3-R1": [
+   "C88633",
+   "C88634",
+   "C88635",
+   "C88637",
+   "C88638",
+   "C88639",
+   "C88640",
+   "C88641",
+   "C88642",
+   "C88648",
+   "C88649",
+   "C88650",
+   "C88651",
+   "C88652"
+  ],
+  "S3-R2": [
+   "C88633",
+   "C88634",
+   "C88637",
+   "C88638",
+   "C88639",
+   "C88640",
+   "C88641",
+   "C88642"
+  ],
+  "S4-N2": [
+   "C88636",
+   "C88646"
+  ],
+  "S4-R11": [
+   "C88647",
+   "C88650"
+  ],
+  "S4-R12": [
+   "C88647"
+  ],
+  "S4-R2": [
+   "C88633"
+  ],
+  "S4-R3": [
+   "C88636"
+  ],
+  "S4-R4": [
+   "C88637"
+  ],
+  "S4-R5": [
+   "C88637"
+  ],
+  "S4-R6": [
+   "C88639"
+  ],
+  "S4-R7": [
+   "C88639"
+  ],
+  "S4-R8": [
+   "C88641"
+  ],
+  "S4-R9": [
+   "C88641",
+   "C88646"
+  ],
+  "S5-E3": [
+   "C88642"
+  ],
+  "S5-R1": [
+   "C88642"
+  ],
+  "S5-R13": [
+   "C88645"
+  ],
+  "S5-R15": [
+   "C88643",
+   "C88644"
+  ],
+  "S5-R2": [
+   "C88642"
+  ],
+  "S5-R7": [
+   "C88643"
+  ],
+  "S7-E1": [
+   "C88650"
+  ],
+  "S7-R2": [
+   "C88648"
+  ],
+  "S8-R5": [
+   "C88649"
+  ],
+  "Tech plan NFR-001": [
+   "C88631"
+  ],
+  "Tech plan NFR-010": [
+   "C88632"
+  ]
+ },
+ "reading_coverage": "build/dashboards/sources/CONFLUENCE-788430850-Dashboard-v1-2026-10-07-v42.md - 45,786 bytes, 675 lines, lines 1-675 read 100%; build/dashboards/full-update-2026-10-07/design-drive/BOARDS-TEXT.md - 25,284 bytes, 396 lines, lines 1-396 read 100%; build/dashboards/sources/Dashboard-v1-Technical-Implementation-Plan.md - 104,226 bytes, 828 lines, lines 1-828 read 100%; build/dashboards/full-update-2026-10-07/WORKER-BRIEF.md - 6,436 bytes read 100%; build/rules/RULES-61-96.md lines 2391-2760 (Rules 113-119) read 100%; build/skills/IDEAL-TEST-CASE-STANDARD.md 7,009 bytes read 100%; C154586-after.json 5,367 bytes read 100%; the 22 snapshots-before case files C88631-C88652 (2,175-5,320 bytes each) read 100%; design screenshots viewed: after-dash.png, after-datemenu.png, after-empty-tiles.png, after-open-revenueKpi.png, after-open-billingEfficiencyKpi.png, after-open-techEfficiencyKpi.png, after-open-techUtilizationKpi.png, after-open-salesByCustomer.png, after-open-atRiskHero.png, after-report-sales.png, after-report-service-advisor-analysis.png, after-report-technician-efficiency.png, after-report-technician-utilization.png (13 of 34 after-* images; the other 21 were not opened, but their content is in the BOARDS-TEXT captions, which were read in full); fact sources (targeted reads): APP-ACTIONS-PLAYBOOK.md sections Navigation Map, Work Orders, Invoicing/Payments, Customers, Reports, F, N addenda, Q; OBSERVED-UI-LABELS-sv9315.md lines 86-160 and credit-memo rows; skills/18-LAYMAN-UI-STEPS.md read 100%; dashboards/PROJECT-STATE.md read 100%."
+}
