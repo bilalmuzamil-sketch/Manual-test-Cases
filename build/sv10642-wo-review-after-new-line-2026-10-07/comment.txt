@@ -42,16 +42,19 @@ h3. After the new line is resolved
 
 h3. How to see it yourself
 
-# Open [sv10642.qa.shopview.com|https://sv10642.qa.shopview.com] with the *Admin* quick-login.
-# Open work order *S10642-17582*. All its lines are {{Complete}}, so it shows {{Review}}.
-# Click {{New Line}}.
-# In {{What Are You Doing?}}, pick *Service - Battery service*.
-# Leave {{Line Approved}} unticked and click {{Save & Close}}.
+_(Updated on 7 October 2026, TIMEHERE CDT: steps rewritten to say exactly where to click.)_
+# Open [sv10642.qa.shopview.com|https://sv10642.qa.shopview.com] and click the *Admin* quick-login button.
+# In the top menu, click {{Work Orders}}.
+# Above the list, on the right, click {{Search}} (the magnifying glass) and type *S10642-17582*.
+# Click *S10642-17582* in the {{Number}} column. The work order opens on its {{Lines}} tab, and the small label at the top left, next to the work order number, reads {{Review}}.
+# At the top right, click the blue {{New Line}} button.
+# In the {{New Line}} window, click the {{What Are You Doing?}} box, type *Battery* and click *Service - Battery service*.
+# Leave the {{Line Approved}} box (below {{Labor Rate}}) unticked, and click the blue {{Save & Close}} button at the bottom right of the window.
 
 *Expected:*
 * The work order changes from {{Review}} to {{Approved}}.
 * {{Mark Reviewed}} is no longer shown.
-* Clicking {{Decline}} on the new line takes the work order back to {{Review}}.
+* On the new line, in the {{Action}} column, click the red {{Decline}} button: the work order goes back to {{Review}}.
 
 h3. Not tested
 
