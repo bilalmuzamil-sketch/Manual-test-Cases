@@ -196,3 +196,7 @@ replicatable/runnable/understandable like this."* His versions are saved word fo
 
 **The test before posting:** could a PO who has never seen the feature read each line on its own, follow the steps
 without asking anything, and see the source of every "should"? If a line needs re-reading, split it.
+
+
+### §10.1 — A retest asked against one comment or ruling (SV-10323, 2026-10-07)
+Scope the testing and the comment to **exactly that source**: quote it at the top, then a table with **one row per statement it makes** (every record kind, every permission level it names), each PASSED/FAILED, then steps for the failures and the pictures. Nothing it doesn't mention; nothing it does mention held back as a side question.

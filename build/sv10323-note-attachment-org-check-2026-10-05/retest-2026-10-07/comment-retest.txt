@@ -2,49 +2,53 @@
 
 *Remaining issue to be fixed*
 
-I retested check 10 against Chris's [option B|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=77996] on [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build v26.40.8-cf5b7ad) on 7 October 2026.
-* Work order and work order line notes: Tech View roles see no {{For Customer}} checkbox. This matches option B.
-* Customer and asset notes: Tech View roles still see no {{For Customer}} checkbox. Option B says they should.
-
-h3. What's happening
-
-* A Tech View role with *Customers → Edit* sees no {{For Customer}} checkbox on customer and asset notes. It should show and work.
-* A Tech View role with *Customers → View* only (the Technician) sees no checkbox on customer and asset notes. It should show greyed out.
-
-h3. What it should be
+I retested check 10 against Chris's decision on [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build v26.40.8-cf5b7ad) on 7 October 2026.
 
 Chris stated in [comment 77996|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=77996]:
 
-{quote}"Everywhere else (customer, asset and part sale notes), follow S10-R5b: edit permission for that record means the checkbox works, view-only means it shows greyed out. The Full View rule no longer applies to those."{quote}
+{quote}"option B. Tech View roles keep not seeing the For Customer checkbox on work order and work order line notes, as in production. Everywhere else (customer, asset and part sale notes), follow S10-R5b: edit permission for that record means the checkbox works, view-only means it shows greyed out. The Full View rule no longer applies to those."{quote}
 
-Spec S10-R5b (Notifications Update V1, version 28) states:
+||#||Option B, for a Tech View role||Status||
+|1|Work order notes: no {{For Customer}} checkbox|PASSED|
+|2|Work order line notes: no {{For Customer}} checkbox|PASSED|
+|3|Customer notes, with *Customers → Edit*: the checkbox works|FAILED - no checkbox|
+|4|Customer notes, *Customers → View* only: the checkbox shows greyed out|FAILED - no checkbox|
+|5|Asset notes, with *Customers → Edit*: the checkbox works|FAILED - no checkbox|
+|6|Asset notes, *Customers → View* only: the checkbox shows greyed out|FAILED - no checkbox|
+|7|Part sale notes, with *Part Sales → Edit*: the checkbox works|FAILED - the part sale does not open|
+|8|Part sale notes, *Part Sales → View* only: the checkbox shows greyed out|FAILED - the part sale does not open|
 
-{quote}"A user who can only view the record sees the checkbox disabled, so they can still tell which files the customer sees. Exception: on work order and work order line notes, a role whose Work Orders view is set to Tech View does not see the checkbox at all, as today."{quote}
+h3. What's happening
+
+* Customer and asset notes: Tech View roles still see no {{For Customer}} checkbox, whatever their Customers permission.
+* Part sale notes: a Tech View role with Part Sales permission cannot open a part sale, so it never reaches the notes.
 
 h3. Steps to reproduce
 
-*Tech View role with Customers → Edit*
+*Customer and asset notes (rows 3 to 6)*
 # Open [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] with the *Admin* quick-login.
 # Go to {{Administration}} > {{Staff}}.
 # Search for *tech@shopview.com*.
 # Click the edit icon on *Tech ShopView*.
-# In {{Edit Staff Member}}, set {{Role}} to *ZZ10323 TechView edit* (Tech View, with Customers → Edit).
+# In {{Edit Staff Member}}, set {{Role}} to *ZZ10323 TechView edit* (Tech View, with Customers → Edit and Part Sales → Edit).
 # Click {{Save & Close}}.
 # Sign out, then sign in with the *Tech* quick-login.
 # Open {{Customers}} > *West Mifflin Diesel Repair* > {{Notes}}.
-# Look at the file *zz10323_customer.png* on the note *ZZAUTOTEST SV-10323 customer note*.
+# Look at the file *zz10323_customer.png*.
 
 *Actual Result*
-No {{For Customer}} checkbox (picture 1). The same note signed in as Sales Representative shows the checkbox and it can be ticked (picture 2).
+No {{For Customer}} checkbox (picture 1). Signed in as Sales Representative, the same file shows the checkbox and it can be ticked (picture 2).
 
-*Technician (Customers → View only)*
-# Put *Tech ShopView* back on the *Technician* role the same way, and sign in with the *Tech* quick-login.
-# Open {{Customers}} > *Lamkin Diesel Services Inc* > {{Assets}} > *Unit 24 / A1305B* > {{Notes}}.
-# Look at the file *zz10323_vehicle.png* on the note *ZZAUTOTEST SV-10323 vehicle note*.
+For view-only, use the *Technician* role in step 5 and open {{Customers}} > *Lamkin Diesel Services Inc* > {{Assets}} > *Unit 24 / A1305B* > {{Notes}}. The file *zz10323_vehicle.png* shows no checkbox (picture 3).
+
+*Part sale notes (rows 7 and 8)*
+# Sign in as Tech with the role *ZZ10323 TechView edit* (steps 1 to 7 above).
+# Open {{Customers}} > *Bloomingdale Diesel Repair* > {{Part Sales}}.
+# Click *P9667-368*.
 
 *Actual Result*
-No {{For Customer}} checkbox (picture 3). It should show greyed out.
-
-The same happens on the customer note for the Technician, and with the role *ZZ10323 TechView view-only*.
+The part sale does not open; the list stays on screen (picture 4). Clicking {{Parts}} in the top menu does nothing either. The same happens with the role *ZZ10323 TechView view-only* (Part Sales → View).
 
 !01-techview-customer-asset-hd.png|width=1290,height=1218!
+
+!02-techview-part-sale-hd.png|width=1290,height=434!

@@ -15,3 +15,8 @@ c=panel(R+'technician-asset.png',crop=(280,135,1570,415),
   notes=[(1,RED,'No For Customer checkbox. The updated S10-R5b says a view-only user sees it greyed out.')])
 stack([a,b,c]).save(O+'01-techview-customer-asset-hd.png')
 from PIL import Image; print(Image.open(O+'01-techview-customer-asset-hd.png').size)
+d=panel(R+'techview-edit-partsale-list.png',crop=(285,60,1575,340),
+  title='4. Customer Bloomingdale Diesel Repair > Part Sales, signed in with a Tech View role that HAS Part Sales > Edit',
+  boxes=[(337,250,1568,294,RED,1)],
+  notes=[(1,RED,'Part sale P9667-368 is listed, but clicking it does not open it, so its notes and the For Customer checkbox can never be reached. Clicking Parts in the top menu does nothing either.')])
+stack([d]).save(O+'02-techview-part-sale-hd.png'); print(Image.open(O+'02-techview-part-sale-hd.png').size)
