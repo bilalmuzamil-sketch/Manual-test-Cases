@@ -31,3 +31,6 @@ Comment **78031** — PASSED, 8 rows, desktop + phone before/after (attachments 
 
 ## Learning check (Rule 95)
 Recorded in playbook §AC.15 addendum 2: note ⋮ labels; Add attachment file chooser + "Too many files" dialog; per-file delete is a hover icon (`delete_attachment_<id>` → `/api/note/delete-attachment`); `/api/note/delete`; the layout-measuring recipe. Lessons: I hit the `pkill -f` self-kill trap again (already in §U.0b) — logged as a recurrence.
+
+## QA lead's answers (7 Oct 2026)
+Technical section on 78031: *"No"*. Image-order observation: *"No - Because its the same on production too."* — not raised. SV-10323: *"We will check that later."*

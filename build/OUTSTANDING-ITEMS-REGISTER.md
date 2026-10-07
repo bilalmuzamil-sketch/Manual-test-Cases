@@ -57,12 +57,9 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-07, ~08:45 UTC. **SV-10274 POSTED: PASSED (comment 78031), 8 of 8 checks, sv9667 `v26.40.8-cf5b7ad`; production note cleaned up.**
+## ⚠️ NEWEST — 2026-10-07, ~08:45 UTC. **SV-10274 POSTED: PASSED (comment 78031), 8 of 8 checks, sv9667 `v26.40.8-cf5b7ad`; production note cleaned up. Nothing outstanding.**
 
-| # | What I need | Who owes it | What it blocks | Since |
-|---|---|---|---|---|
-| 1 | Technical section on 78031? (build markers, note ids, measurements) | You (QA lead) | Nothing — posted without (Rule 84) | 2026-10-07 |
-| 2 | Raise the image order? A note's images are not shown in the order they were uploaded (e.g. 11, 12, 10, 9, 7…). Same on production; outside SV-10274. Steps: sv9667 → S2-17414 → Notes → *ZZAUTOTEST SV-10274 work order note with 12 images* — look at the IMG numbers. | You (QA lead) | Nothing on SV-10274 | 2026-10-07 |
+**Cleared 2026-10-07 (QA lead's answers):** (1) technical section on 78031 — *"No"*, none added; (2) raise the image-order observation — *"No - Because its the same on production too."*, not raised; (3) SV-10323 — *"We will check that later."*, parked until Nemanja deploys option B.
 
 ## ⚠️ PREVIOUS — 2026-10-07, ~07:05 UTC. **SV-10323 RETEST vs Chris's option B: customer/asset notes still hide the For Customer box from Tech View roles — remaining issue posted to Nemanja (comment 78010, rewritten to 77996's scope incl. part sale notes); ticket stays PARTIALLY PASSED (77936).**
 
