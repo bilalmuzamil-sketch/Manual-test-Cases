@@ -104,7 +104,7 @@
 >   external account we do not have) does.**
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
-> - **EVERY QA COMMENT (PASSED / FAILED / PARTIALLY PASSED) ENDS WITH A SCREEN RECORDING of the test, live, captioned, embedded last (Standing Rule 104; method playbook §AK).**
+> - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK).**
 > - **EVERY STEP SAYS EXACTLY WHERE TO CLICK OR LOOK (Standing Rule 101): screen area + exact label, no private names ("the blue bubble"), describe small things by colour/shape/text/position, say what appears, locator picture with a close-up, walk the steps live before posting.**
 > - **EDITING SOMETHING ALREADY POSTED? (Standing Rule 100): put a dated note (date, time, timezone, what changed) right at the edited section/row.**
 > - **PO UPDATED THE SPEC + ASKED FOR A RETEST? (Standing Rule 99): first line = that check's verdict against the NEW text, quoted; update every earlier row the new text changes; never drop the spec quote.**
@@ -5348,11 +5348,20 @@ deliver the 7-tab management report.
     SV-10142 was Ready for Production with Chris's sign-off (78152), SV-10642 Ready for Production, SV-10599 Rejected from
     testing after Chris's answer (78129). Ties to Standing Rules 31, 36, 48, 53, 59 and 72.
 
-104. **EVERY QA COMMENT ENDS WITH A SCREEN RECORDING OF THE TEST — PASSED, FAILED OR PARTIALLY PASSED (all projects).**
+104. **A SCREEN RECORDING GOES AT THE BOTTOM OF A QA COMMENT ONLY WHEN THE QA LEAD SAYS YES FOR THAT TICKET — ASK EVERY
+    TIME, BEFORE MAKING ONE (all projects).**
+    **⚠️ AMENDED 2026-10-07 — PERMISSION FIRST.** USER DIRECTIVE (2026-10-07, verbatim): *"Ok, but in new tickets for
+    adding screen recording you must ask for my permission if the comment/s f9r this ticket ahould include the
+    video/screen recording. Only if I say YES then you would create and add the screen recording to your comment,
+    otherwise you will exclude creating/adding the screen recording"*. **So: on every new ticket, ASK — in one plain
+    sentence, before recording anything — whether its comment(s) should include a screen recording. Only on an explicit
+    YES is a recording made and added. No answer, or no, means NO recording is made or added.** A yes on one ticket is
+    never a yes on the next (same shape as Rules 51/84). Everything below describes how the recording is made WHEN he
+    says yes.
     USER DIRECTIVE (2026-10-07, verbatim): *"Now you need to find a way to add teh screen recording at the bottom of your
     comment with every comment you make for the QA passed/Failed/Partially passed tickets. SO that we can prove with screen
     recording whether its really working or not working."*
-    **THE RULE:** the last section of every QA-result comment is **"Screen recording"**: one MP4 (more only if the test
+    **THE RULE (when approved for that ticket):** the last section of the QA-result comment is **"Screen recording"**: one MP4 (more only if the test
     genuinely spans separate flows), filmed **live on the environment the verdict is about**, uploaded as a real Jira
     attachment and embedded inline (`!file.mp4|width=1280,alt="file.mp4"!`), with a one-line caption naming the environment,
     build, date and the values seen. **PASSED** → it shows the fix working on the reporter's flow; **FAILED/PARTIALLY
@@ -5368,11 +5377,11 @@ deliver the 7-tab management report.
     **HONEST LIMIT, STATE IT IF ASKED:** our headless browser cannot play H.264, so it can confirm Jira's player is present
     and the file was stored, but playback itself is proven by the local decode + frame review; the reader's Chrome, Edge or
     Safari plays it.
-    **IF A RECORDING CANNOT BE MADE** (environment down, session dead), the comment does not go out without one silently —
+    **IF AN APPROVED RECORDING CANNOT BE MADE** (environment down, session dead), the comment does not go out without one silently —
     get access (Rule 22) or say plainly in the comment why there is no recording, and raise it as outstanding (Rule 36).
     Method + tools: playbook §AK, `build/testing-tools/qa-session.mjs` (`record`, `caption`, `glideClick`, `pointBeside`,
     `confirm`) and `build/testing-tools/finish_recording.py`; standard §11. Ties to Standing Rules 12, 13, 22, 64, 65, 68,
-    72 (the pre-post gate now checks the recording is attached, decodes and is embedded last), 73, 81, 83, 97 and 102.
+    72 (the pre-post gate checks the permission was asked, and — only if he said yes — that the recording is attached, decodes and is embedded last), 73, 81, 83, 97 and 102.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

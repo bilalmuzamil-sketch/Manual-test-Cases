@@ -5977,7 +5977,9 @@ in-page `s.api` call** — from a blank page the fetch fails with "Failed to fet
 - **Production restore after a core return:** delete the vendor return (puts the core back), `work-orders/parts/delete` the part (puts the main part back — **and adds the core quantity back again**), delete the work order, then compare every stock figure with the snapshot and cycle-count any that differ.
 - **Jira search:** `/rest/api/2/search` is retired — use `GET /rest/api/3/search/jql?jql=…&fields=…`.
 
-## §AK — SCREEN RECORDING AT THE BOTTOM OF EVERY QA COMMENT (proven 2026-10-07, SV-9828 demo; Standing Rule 104)
+## §AK — SCREEN RECORDING AT THE BOTTOM OF A QA COMMENT (proven 2026-10-07, SV-9828 demo; Standing Rule 104)
+
+**⚠️ ONLY WITH THE QA LEAD'S YES FOR THAT TICKET.** Ask on every new ticket, before recording anything, whether its comment(s) should include a screen recording; no yes = no recording made or added.
 
 **What it is:** a real-time MP4 of the test being driven on the environment tested, with a visible red pointer, a click ripple and a plain caption bar, attached to the ticket and embedded at the bottom of the QA comment.
 
