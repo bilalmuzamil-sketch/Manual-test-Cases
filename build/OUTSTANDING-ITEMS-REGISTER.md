@@ -57,7 +57,14 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-06, ~14:55 UTC. **SV-10804 POSTED: PASSED (comment 77983), 12 of 12 checks, on sv10360 `v26.40.8-1bc3b12`. Nothing outstanding.**
+## ⚠️ NEWEST — 2026-10-07, ~07:05 UTC. **SV-10323 RETEST vs Chris's option B: customer/asset notes still hide the For Customer box from Tech View roles — remaining issue posted to Nemanja (comment 78010); ticket stays PARTIALLY PASSED (77936).**
+
+| # | What I need | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| 1 | The option-B change deployed to sv9667 (no commit since Chris's ruling; build still `v26.40.8-cf5b7ad`) | Developer (Nemanja Djuric) | SV-10323 fully passed — QA lead's ruling 6 Oct: *"it should be marked as partially passed and shoul dbe fully passed after the last comment is addressed"* | 2026-10-07 |
+| 2 | Should the part-sale point go to Nemanja too? A Tech View role with Part Sales View/Edit cannot open any Parts page (Parts menu does nothing; part sale link bounces to Work Orders), so option B's part-sale half can't be seen by any Tech View user. Steps: Administration > Staff > Tech ShopView > Role **ZZ10323 TechView edit** > Save & Close → sign in as Tech → click **Parts**. | You (QA lead) | Whether 78010 gets a second item below the line | 2026-10-07 |
+
+## ⚠️ PREVIOUS — 2026-10-06, ~14:55 UTC. **SV-10804 POSTED: PASSED (comment 77983), 12 of 12 checks, on sv10360 `v26.40.8-1bc3b12`. Nothing outstanding.**
 
 **Cleared 2026-10-06 (QA lead's answers):** (1) technical section on 77983 — *"NO"*, so none was added; (2) the three cost-routing observations — *"If we already have tickets for them then leave it."* — they are SV-10370 scope (Open), so they are left there and not mentioned on SV-10804.
 

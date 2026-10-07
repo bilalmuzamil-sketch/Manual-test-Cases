@@ -1,0 +1,17 @@
+import sys; sys.path.insert(0,'/home/user/Manual-test-Cases/build/testing-tools')
+from ticket_exhibit import panel, stack, RED, GRN
+R='/home/user/Manual-test-Cases/build/sv10323-note-attachment-org-check-2026-10-05/retest-2026-10-07/ev/raw/'; O=R+'../'
+a=panel(R+'techview-edit-customer.png',crop=(300,200,1570,480),
+  title='1. Customer West Mifflin Diesel Repair > Notes, signed in with a Tech View role that HAS Customers > Edit',
+  boxes=[(357,332,607,435,RED,1)],
+  notes=[(1,RED,'The file zz10323_customer.png shows, but there is no For Customer checkbox. The updated S10-R5b says it should show and work for this user.')])
+b=panel(R+'salesrep-customer.png',crop=(300,200,1570,480),
+  title='2. The same note, signed in as Sales Representative (Full View, Customers > Edit)',
+  boxes=[(457,388,564,418,GRN,1)],
+  notes=[(1,GRN,'The For Customer checkbox shows and can be ticked. This is what the Tech View user in picture 1 should also get.')])
+c=panel(R+'technician-asset.png',crop=(280,135,1570,415),
+  title='3. Asset Unit 24 / A1305B > Notes, signed in as Technician (Tech View, Customers > View only)',
+  boxes=[(333,268,583,371,RED,1)],
+  notes=[(1,RED,'No For Customer checkbox. The updated S10-R5b says a view-only user sees it greyed out.')])
+stack([a,b,c]).save(O+'01-techview-customer-asset-hd.png')
+from PIL import Image; print(Image.open(O+'01-techview-customer-asset-hd.png').size)

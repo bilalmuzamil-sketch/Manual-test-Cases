@@ -121,3 +121,23 @@ Partially Passed until this is answered (and fixed if needed). Read back: 77936 
 
 ## Update 2026-10-06 ~03:30 UTC — reasoning now quotes the rule
 QA lead: *"You say  \" but it sits inside the rule this ticket implements,\" but you never quote that rule, it should be authentic always. Keep your comment short concise but the rule quotation."* 77936 PUT 200: the paragraph now quotes Nemanja 77887 (*"now checks the note's organization and the For Customer rule (Edit for the record kind)"*) and S10-R5b verbatim, from the live spec re-read at v27 (2026-10-01). Read back: panel still PARTIALLY PASSED, 2 media, 11 table rows.
+
+## Retest 2026-10-07 — check 10 against Chris's option B (comment 77996; spec S10-R5b v28)
+**Trigger:** Chris Ward 77996 (6 Oct 11:23 −0500), verbatim: *"option B. Tech View roles keep not seeing the For Customer checkbox on work order and work order line notes, as in production. Everywhere else (customer, asset and part sale notes), follow S10-R5b: edit permission for that record means the checkbox works, view-only means it shows greyed out. The Full View rule no longer applies to those."* Spec page 817463297 **v28** (16:23:05Z, "S10-R5b: Tech View roles do not see For Customer on work order and line notes, as today (SV-10323)") — exception text quoted in the comment.
+**Build:** `v26.40.8-cf5b7ad` (= PR #3369 head, 13:00Z 6 Oct, *before* Chris's ruling; no commit on the branch since), read 06:24Z and again at 07:01Z — unchanged. **So no option-B code was deployed.**
+
+| User (genuine Tech quick-login, role swapped) | Mode | WO note | WO line | Customer | Asset | Part sale |
+|---|---|---|---|---|---|---|
+| Technician (WO View, Customers View, no Part Sales) | Tech | no box ✓ | no box ✓ | **no box — should be greyed ✗** | **no box — should be greyed ✗** | page not reachable (no permission) |
+| ZZ10323 TechView view-only (+ Part Sales View) | Tech | no box ✓ | no box ✓ | **no box ✗** | **no box ✗** | **every Parts page bounces to /workorders** |
+| ZZ10323 TechView edit (+ Customers Edit, Part Sales Edit, WO Edit) | Tech | no box ✓ (even with WO Edit) | no box ✓ | **no box — should work ✗** | **no box ✗** | **bounces to /workorders** |
+| Sales Representative (regression) | Full | greyed, 403 ✓ | greyed, 403 ✓ | ticks 201, persists ✓ | ticks 201, persists ✓ | greyed, 403 ✓ |
+| Admin (regression) | Full | works ✓ | works ✓ | works ✓ | works ✓ | works ✓ |
+
+Screenshots confirm the notes and their files are on screen for every "no box" cell (raw `retest-2026-10-07/raw/*/result.json`; exhibit `retest-2026-10-07/ev/01-techview-customer-asset-hd.png`).
+
+**Posted comment 78010** (remaining issue to Nemanja, Rule 97 layout): Chris's ask quoted, S10-R5b v28 quoted, steps (live-verified: Administration > Staff > search > edit icon > Edit Staff Member > Role > Save & Close; asset Unit 24 / A1305B is under **Lamkin Diesel Services Inc** — my first draft named the wrong customer, caught by the live check), 1 exhibit (attachment 61876). Read back: mention @Nemanja Djuric, 1 media `file` 1290×1218, ordered lists 9 + 3, 2 quotes. Gate: marker unchanged, ticket unchanged since 77996, 0 fingerprint hits, no technical section. 77936 stays PARTIALLY PASSED (not edited).
+
+**Not in the comment — asked of the QA lead (Rule 97d):** a Tech View role with Part Sales View/Edit cannot open any Parts page (Parts menu does nothing; `/parts`, `/parts/part-sales`, the part sale link all redirect to `/workorders`). So the part-sale half of option B cannot be reached by any Tech View user on screen.
+**Env:** Tech user restored to **Technician** (read back). Roles ZZ10323 TechView view-only / edit left on the branch for the developer to reproduce with. Sales Rep and Admin runs toggled For Customer on the five fixture files (per-ticket branch, no clean-up).
+**Learning check:** `POST /api/roles` needs `organization` (else 400 "organization: Missing required parameter"; an empty body gives 500 — API-only, not raised, Rule 94); Tech View roles are locked out of every Parts page; staff editor = `select_role` + `button_save_staff` "Save & Close". Recorded in playbook §AC.15.
