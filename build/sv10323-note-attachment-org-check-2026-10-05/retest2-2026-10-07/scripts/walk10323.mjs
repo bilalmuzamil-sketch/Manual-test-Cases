@@ -1,0 +1,11 @@
+import {ob,j} from './lib.mjs'; const s=await ob(); const p=s.page;
+const clickText=async(txt,y0=0,y1=2000)=>{const c=await p.evaluate(([t,a,b])=>{const e=[...document.querySelectorAll('*')].filter(x=>x.childElementCount===0&&(x.innerText||'').trim()===t&&x.getBoundingClientRect().width>0).find(x=>{const r=x.getBoundingClientRect();return r.y>=a&&r.y<=b;});if(!e)return null;const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};},[txt,y0,y1]); if(!c)return false; await p.mouse.click(c.x,c.y); await p.waitForTimeout(2500); return true;};
+await s.go('/workorders'); console.log('Customers menu',await clickText('Customers',0,60),p.url());
+console.log('Search',await clickText('Search',60,160)); await p.keyboard.type('West Mifflin Diesel Repair',{delay:40}); await p.waitForTimeout(3000);
+console.log('click name',await clickText('West Mifflin Diesel Repair',150,700),p.url());
+const tabs=await p.evaluate(()=>[...document.querySelectorAll('a,[role=tab]')].filter(e=>e.getBoundingClientRect().y<200&&e.getBoundingClientRect().y>60).map(e=>e.innerText.trim()).filter(Boolean)); console.log('tabs',j(tabs));
+const nt=tabs.find(t=>/^Notes/.test(t)); console.log('Notes tab',nt,await clickText(nt,60,200),p.url());
+console.log('note+box',await p.evaluate(()=>{const n=[...document.querySelectorAll('[data-test-id^="note_card_"]')].find(e=>/ZZAUTOTEST SV-10323 customer note/.test(e.innerText));if(!n)return 'note not found';const cb=n.querySelector('[data-test-id^="checkbox_attachment_for_customer_"]');return {file:/zz10323_customer/.test(n.innerText),box:!!cb,label:cb?cb.innerText.trim():null};}));
+const pm=await s.box('profile_menu_button'); await p.mouse.click(pm.x,pm.y); await p.waitForTimeout(1500);
+console.log('profile menu',j(await p.evaluate(()=>[...document.querySelectorAll('.q-menu [data-test-id]')].map(e=>e.getAttribute('data-test-id')+':'+e.innerText.trim().replace(/\n/g,' ')).slice(0,14)),900), 'btn text',await p.evaluate(()=>document.querySelector('[data-test-id="profile_menu_button"]').innerText.replace(/\n/g,' | ')));
+await s.close();
