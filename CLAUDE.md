@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **EVERY STEP SAYS EXACTLY WHERE TO CLICK OR LOOK (Standing Rule 101): screen area + exact label, no private names ("the blue bubble"), describe small things by colour/shape/text/position, say what appears, locator picture with a close-up, walk the steps live before posting.**
 > - **EDITING SOMETHING ALREADY POSTED? (Standing Rule 100): put a dated note (date, time, timezone, what changed) right at the edited section/row.**
 > - **PO UPDATED THE SPEC + ASKED FOR A RETEST? (Standing Rule 99): first line = that check's verdict against the NEW text, quoted; update every earlier row the new text changes; never drop the spec quote.**
 > - **GREEN "OVERALL QA STATUS: PASSED" ONLY WHEN THE TICKET IS 100% FIXED (Standing Rule 97).** Anything less =
@@ -5285,6 +5286,18 @@ deliver the 7-tab management report.
     **USE THE REAL TIME, READ FROM THE RECORD:** take it from the comment's `updated` timestamp or the logged write time, in the timezone the readers see in Jira (CDT/CST for this team, from Jira's −0500/−0600 offset). Never estimate; convert offsets, don't eyeball them (Rule 59's timezone lesson).
     **WHY:** readers who saw the earlier version must be able to tell what changed and when; a silent edit makes an old verdict look like it was always there, and can make someone think they misread it. **It is not a "we were wrong" narrative** (the one-complete-comment rule still stands) — just a plain, dated marker of the change.
     Ties to Standing Rules 46 (no undocumented changes), 65 (human voice), 72 (the pre-post gate now checks an edit note is present on every edited part), 90, 97 and 99.
+
+101. **EVERY STEP NAMES EXACTLY WHERE TO LOOK OR CLICK — a reader must never have to hunt (all projects).**
+    USER DIRECTIVE (2026-10-07, verbatim): *"I dont know what do you mean by 'Hover the blue bubble on its status' there should enver be any step/s which does not tell where exactly you are referring to. Just like this time I spend 5 minutes and until now I am unable to know what you are referring to. You need to improve these things and make a rule to simplify and correctly guide on steps"*.
+    **THE RULE — every reproduction / "how to see it" step, in every Jira comment, ticket and report:**
+    **(a) ONE ACTION PER STEP, AND IT SAYS WHERE.** Name the screen area first, then the control, using its **exact on-screen text** (Rule 9): *"In the top menu, click {{Work Orders}}"*, *"Above the list, on the right, click {{Search}} (the magnifying glass)"*, *"At the top of the work order, click the {{Parts (4)}} tab (next to {{Lines}})"*. Never a bare *"go to"*, *"open the list"*, *"switch the location"*.
+    **(b) NO PRIVATE NAMES FOR THINGS.** Never call a control by a word I made up (*"the blue bubble"*, *"the chip"*, *"the kebab"*). Describe it as the reader sees it — **colour, shape, the text or number on it, and what it sits on or next to**: *"a small blue circle with the number 4 on the top-right corner of the green {{Approved}} label in the {{Status}} column"*.
+    **(c) SAY HOW TO GET THERE.** Include every click from the start (login, menu, search, open, tab). If a step depends on something being expanded, collapsed, hovered or scrolled, say which and where (*"the small arrow at the left end of the grey row that reads '1 - Service - …'"*); a hover step says *"move the mouse pointer over it (don't click)"* and what then appears.
+    **(d) SAY WHAT THE READER SHOULD SEE AFTER THE STEP**, in the screen's own words, so they know they are in the right place.
+    **(e) A LOCATOR PICTURE FOR ANYTHING SMALL OR HIDDEN** — a hover box, a tiny badge, an icon, a collapsed row, a control inside a menu: an annotated picture with a numbered box on **each** spot the steps mention, plus an **enlarged close-up** of the small thing itself (Rule 64).
+    **(f) WALK THE STEPS LIVE BEFORE POSTING** exactly as written, click by click, on the environment named (Rule 68). Correct any label that differs (on 2026-10-07 the walk caught that the tab reads *"Parts (4)"*, not *"Parts"*).
+    **(g) THE PRE-POST GATE (Rule 72) CHECKS IT:** read each step as a first-time reader — if any step leaves a question about *where*, it is not ready.
+    **RATIONALE, 2026-10-07 (SV-10599 comment 78113, my miss):** the step *"Go to {{Work Orders}}, search S10599-17581 and hover the blue bubble on its status"* used my own name for a 19-pixel badge and named no screen area. The QA lead spent five minutes and still could not find it. Fixed in place (dated note, 8 numbered steps walked live, locator picture with a close-up). Ties to Standing Rules 7, 9, 50 (name the exact test data), 64, 65, 67 (steps runnable by a non-technical PO), 68, 72, 83 (failure reproduction steps), 95 (the ticket standard) and 100 (dated edit note).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

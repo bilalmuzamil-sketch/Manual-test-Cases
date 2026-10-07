@@ -8,23 +8,16 @@
 
 Why I'm asking: Chris's decision was to hide the badge and leave counts as they are, so this may be intended. But on the same screen the badge is now hidden while the count still says those parts are in stock, which is the kind of mismatch the customer reported. Parth's pull request also lists the collapsed-row count as a follow-up.
 
-*Steps to see it:* _(Updated on 7 October 2026, 07:24 CDT: steps rewritten to say exactly where to click; a picture showing each spot added below.)_
-# Open [sv10599.qa.shopview.com|https://sv10599.qa.shopview.com] and click the *Admin* quick-login button.
-# In the top menu, click {{Work Orders}}.
-# Above the list, on the right, click {{Search}} (the magnifying glass) and type *S10599-17581*.
-# Click *S10599-17581* in the {{Number}} column to open the work order.
-# At the top of the work order, click the {{Parts (4)}} tab (next to {{Lines}}).
-# Find the grey row that reads *1 - Service - Battery service - Corrosion/ preventative maintenence*. Click the small arrow at the left end of that row. The parts under it fold away, and the end of the row now shows {{1 Auth To Order}} and {{3 In Stock}}.
-# In the top menu, click {{Work Orders}} again and search *S10599-17581* the same way.
-# In that row's {{Status}} column there is a green {{Approved}} label. On its top-right corner sits a small blue circle with the number *4*. Move the mouse pointer over that blue circle (don't click). A dark box appears that reads {{1 Part Ready to Order}} and {{3 Parts In Stock}}.
-
-!05-where-is-the-blue-circle-hd.png|width=1900,height=2162!
-_Where each step is: the top menu, the Search box, the Status column, and a close-up of the small blue circle and the dark box it shows._
+*Steps to see it:*
+# Open [sv10599.qa.shopview.com|https://sv10599.qa.shopview.com] with the *Admin* quick-login.
+# Open work order *S10599-17581* and go to the {{Parts}} tab.
+# Collapse the line (the arrow at the start of the line row).
+# Go to {{Work Orders}}, search *S10599-17581* and hover the blue bubble on its status.
 
 *What happens now:*
 * Only one of its three inventory parts has stock (FLAT HOOK WINCH STRAP, 10). The other two have -3 and 0 and correctly show no badge.
 * The collapsed line says {{3 In Stock}}.
-* The dark box on the Work Orders list says {{3 Parts In Stock}}.
+* The list tooltip says {{3 Parts In Stock}}.
 
 *Question for Chris:* should these counts stay as they are for now, or should they also leave out parts with 0 or less on hand?
 * *A.* Leave them as they are (as decided in comment 77666).
@@ -32,7 +25,7 @@ _Where each step is: the top menu, the Search box, the Status column, and a clos
 
 *Question for Parth:* is there a ticket for the collapsed-row count follow-up?
 
-!04b-counts-still-say-in-stock-hd.png|width=1580,height=986!
+!04-counts-still-say-in-stock-hd.png|width=1580,height=951!
 
 ----
 

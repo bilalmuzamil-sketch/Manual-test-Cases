@@ -1,0 +1,15 @@
+import {ob,j} from './lib.mjs'; const s=await ob(); const p=s.page;
+const clickText=async(txt,y0=0,y1=2000)=>{const c=await p.evaluate(([t,a,b])=>{const e=[...document.querySelectorAll('*')].filter(x=>x.childElementCount===0&&(x.innerText||'').trim()===t&&x.getBoundingClientRect().width>0).find(x=>{const r=x.getBoundingClientRect();return r.y>=a&&r.y<=b;});if(!e)return null;const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};},[txt,y0,y1]); if(!c)return false; await p.mouse.click(c.x,c.y); await p.waitForTimeout(2000); return true;};
+await s.go('/workorders?tab=all');
+console.log('2 top menu Work Orders',await clickText('Work Orders',0,60), p.url());
+console.log('3 Search',await clickText('Search',70,140)); await p.keyboard.type('S10599-17581',{delay:60}); await p.waitForTimeout(3000);
+console.log('4 number',await clickText('S10599-17581',150,400), p.url());
+const tabs=await p.evaluate(()=>[...document.querySelectorAll('a,[role=tab]')].filter(e=>e.getBoundingClientRect().y<130&&e.getBoundingClientRect().y>80).map(e=>e.innerText.trim()).filter(Boolean)); console.log('tabs',j(tabs));
+console.log('5 Parts tab',await clickText('Parts (4)',80,130), p.url());
+const c=await p.evaluate(()=>{const row=[...document.querySelectorAll('*')].find(x=>x.childElementCount<6&&/^1 - Service - Battery service/.test((x.innerText||'').trim()));const r=row.getBoundingClientRect();const btn=[...document.querySelectorAll('button,i,.q-icon')].find(b=>{const g=b.getBoundingClientRect();return Math.abs(g.y+g.height/2-(r.y+r.height/2))<15&&g.x<r.x&&g.width>0;});const g=btn.getBoundingClientRect();return {x:g.x+g.width/2,y:g.y+g.height/2,arrow:[g.x,g.y,g.width,g.height].map(Math.round)};});
+console.log('6 arrow at',j(c.arrow)); await p.mouse.click(c.x,c.y); await p.waitForTimeout(1200);
+console.log('6 row now',j(await p.evaluate(()=>[...document.querySelectorAll('.q-badge,.q-chip')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.innerText.trim()))));
+console.log('7 top menu Work Orders',await clickText('Work Orders',0,60)); console.log('Search',await clickText('Search',70,140)); await p.keyboard.type('S10599-17581',{delay:60}); await p.waitForTimeout(3000);
+const b=await p.evaluate(()=>{const e=document.querySelector('[id^="partsActionsCount-a950943f"]');const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,t:e.innerText};}); await p.mouse.move(b.x,b.y); await p.waitForTimeout(1800);
+console.log('8 circle',b.t,'tip',j(await p.evaluate(()=>[...document.querySelectorAll('.q-tooltip')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.innerText.trim()))));
+await s.close();

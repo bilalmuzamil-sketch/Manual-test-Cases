@@ -206,3 +206,10 @@ Open with the named check's verdict against the new text (`*Check N: PASSED agai
 
 ### §10.3 — Editing a comment that is already posted (Standing Rule 100)
 Put an italic dated note at each edited section or row: `_Updated on <d Month yyyy>, <hh:mm> <TZ>: <what changed>._` or `_Added on …_`. If the comment has been edited more than once, open it with one line: `_First posted <time>. Edited at <time> (<what>) and at <time> (<what>)._` Take the times from the comment's `updated` field (team timezone, CDT/CST). Example: SV-10323 comments 77936 and 78010.
+
+### §10.4 Steps that say exactly where (Standing Rule 101, 2026-10-07)
+Every step = **where on the screen** + **the exact on-screen label** + **one action** + **what you should now see**.
+- Good: *"In the top menu, click {{Work Orders}}."* · *"Above the list, on the right, click {{Search}} (the magnifying glass) and type S10599-17581."* · *"In that row's {{Status}} column there is a green {{Approved}} label. On its top-right corner sits a small blue circle with the number 4. Move the mouse pointer over that blue circle (don't click). A dark box appears that reads …"*
+- Bad: *"Go to Work Orders, search S10599-17581 and hover the blue bubble on its status."* (no screen area; "blue bubble" is my own name; no click path; nothing says what appears).
+- Small or hidden things (hover boxes, badges, icons, collapsed rows, menu items) get a **locator picture**: numbered boxes on every spot the steps mention, plus an **enlarged close-up**. Canonical: SV-10599 comment 78113, `05-where-is-the-blue-circle-hd.png`.
+- **Walk the steps live, exactly as written, before posting**, and fix any label that differs.
