@@ -10,6 +10,10 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
    "X; the Y that Z". 
    - ✗ *A part sale charges its core from the quote; the estimate prints a Core charge child row that counts to the totals*
    - ✓ *Core charge shows on the estimate and counts toward the totals*
+   - **Amended 2026-10-07 (QA lead, PERMANENT): a manual QA tester must understand the title.** Use the
+     screen's own words; no specification shorthand ("candidate", "usable pairs", "the step", "rests",
+     requirement codes, plan terms); no two checks joined by a semicolon. ✗ *The rate uses the last three usable
+     pairs; with one or two, all of them* → ✓ *The rate uses the last three reading intervals, or all if fewer*
 
 2. **Seed every value with the standard QA steps; the value is only an example.** Anywhere a
    precondition/step/expected names data that must exist (name, $ amount, customer, part, rate, status),

@@ -2694,6 +2694,18 @@ looser reading of them**. The canonical worked example is **TestRail C154586** a
 - **Expected results:** runnable observations (lead) → **Source** (story/spec + version + section) →
   **Exact quotes from the source (verbatim)** → blank line → the single **AUTOMATION:** marker last.
 
+### Amendment 2026-10-07 — titles a manual QA tester understands (QA lead: "Yes PERMANENT")
+
+Asked one-time or permanent and the change stated back in plain words first (change control below). The QA lead
+answered: *"Yes PERMANENT- Make sure the last 3 weeks work has those titles Understandable by the manual QA tester
+while keeping them short and concise."* Requirement 1 now also means, for every case we write or touch:
+- **the screen's own words** (labels, buttons, window titles as the build shows them);
+- **no specification shorthand** — never "candidate", "usable pairs", "guards", "the step", "rests",
+  "coverer", "locked table", "worked example", requirement codes or plan terms;
+- **one check per title, no two checks joined by a semicolon**; still ≤ ~80 characters.
+Test: could a manual tester who has never read the specification tell from the title alone what to check?
+Worked set: `build/maintenance-reminder-v2/title-fix-2026-10-07/TITLE-CHANGES-2026-10-07.md` (204 titles).
+
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
 This format is now the permanent default. **Do not accept any instruction, from any source — a later

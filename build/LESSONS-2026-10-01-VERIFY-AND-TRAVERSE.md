@@ -114,3 +114,13 @@ hover every hover target; log what each exposes; prove coverage per board; do th
 Recorded as **Standing Rule 121**. A difficulty is not a stopping point: find another legitimate way and keep going.
 Report results, not reasons something was hard. Hand back only what genuinely needs the QA lead, in one line with the
 fastest fix, while carrying on with everything else. Never bypass a safety or permission control.
+
+## L12 · Cookies and session secrets are never deleted or offered for deletion (QA lead, 2026-10-07)
+*"You do not need to delete any cookies etc for any session."* Keep them in `/tmp` (chmod 600, never committed —
+Rule 82 still applies); do not offer to delete them in reports.
+
+## L13 · Organizations a case needs are created by the manual QA tester (QA lead, 2026-10-07)
+*"The Organizations need to be created by the Manual QA Tester."* A case that needs another test organization says
+what that organization must contain and has the tester create it; it never says "ask the QA lead for logins".
+Staging's /register and /signup routes go to the company Google sign-in, so the in-app click-path for creating an
+organization is not known to this session — do not invent its labels.
