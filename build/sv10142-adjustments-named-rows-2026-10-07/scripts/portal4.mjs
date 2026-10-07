@@ -1,0 +1,10 @@
+import {ob,j} from './lib.mjs';
+const s=await ob(); const p=s.page;
+s.ctx.on('request',r=>{ if(/laravel/.test(r.url())) console.log('REQ',r.resourceType(),r.method(),r.url(),'frame',r.frame()?.url().slice(0,60),'body',(r.postData()||'').slice(0,120)); });
+s.ctx.on('requestfailed',r=>{ if(/laravel/.test(r.url())) console.log('FAILED',r.url(),r.failure()?.errorText); });
+s.ctx.on('response',r=>{ if(/laravel/.test(r.url())) console.log('RESP',r.status(),r.url(),r.headers()['location']||''); });
+s.ctx.on('page',pg=>console.log('NEW PAGE',pg.url()));
+const b=await s.box('profile_menu_button'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(1500);
+const c=await s.box('profile_menu_customer_portal'); await p.mouse.click(c.x,c.y); await p.waitForTimeout(25000);
+for(const pg of s.ctx.pages()) console.log('PAGE',pg.url());
+await s.close();

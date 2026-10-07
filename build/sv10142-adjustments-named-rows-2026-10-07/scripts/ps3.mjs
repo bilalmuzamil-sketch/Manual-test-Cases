@@ -1,0 +1,17 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const {ps}=JSON.parse(fs.readFileSync('ps.json')); const IP=JSON.parse(fs.readFileSync('invparts.json')).find(x=>x.part_number==='MD668D');
+const s=await ob(); const P=(u,b)=>s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+let l=await s.api(`/api/work-orders/${ps}/parts/list-requests-by-line`); const line=l.json.data.collection[0].line_id;
+const r=await P('/api/work-orders/part/make-request',{work_order:ps,line,description:IP.name,part_number:IP.part_number,quantity:1,part_source_type:'inventory',is_authorized:true,part_category_id:IP.category,inventory_part_id:IP.id,sell_price:IP.sell_price}); console.log('add2',r.status);
+console.log('authorize',(await P('/api/work-orders/lines/change-status',{line_id:line,status:'authorized',workOrderId:ps})).status);
+l=await s.api(`/api/work-orders/${ps}/parts/list-requests-by-line`); const prs=l.json.data.collection[0].part_requests.map(x=>({id:x.id,pn:x.part_number,st:x.status}));
+console.log('parts',j(prs,300));
+const p1=prs.find(x=>x.pn==='84-2005').id, p2=prs.find(x=>x.pn==='MD668D').id;
+const add=async(kind,name,amount,scope,targetId)=>{const a=await P('/api/work-orders/adjustments/add',{workOrderId:ps,kind,name,calculationType:'flat',amount,scope,targetId,taxable:false}); console.log('adj',kind,name,a.status,a.status>=300?j(a.json,160):'');};
+await add('fee','Tire fee',2,'part_line',p1); await add('discount','Core discount',5,'part_line',p1); await add('fee','Environmental fee',3,'part_line',p1); await add('fee','Environmental fee',3,'part_line',p2); await add('discount','Fleet discount',10,'whole_wo',null);
+const pk=await P(`/api/work-orders/${ps}/pick-inventory-parts`,{part_request_ids:prs.map(x=>x.id)}); console.log('pick',pk.status,j(pk.json,150));
+for(const st of ['approved','complete']) console.log(st,(await P('/api/work-orders/change-status',{id:ps,status:st})).status);
+const d=new Date().toISOString().slice(0,10); const iv=await P('/api/invoices/create',{work_order_id:ps,issue_date:d,due_date:d}); console.log('invoice',iv.status,j(iv.json,150));
+const inv=iv.json?.data?.invoice_id; const b=await s.page.evaluate(async([base,id])=>{const r=await fetch(base+'/api/invoices/preview?invoice_id='+id+'&type=pdf',{credentials:'include'}); const a=new Uint8Array(await r.arrayBuffer()); let s='';for(const x of a)s+=String.fromCharCode(x); return btoa(s);},[s.host.api,inv]);
+fs.writeFileSync('raw/invoice-PS.pdf',Buffer.from(b,'base64')); const v=await s.api('/api/work-orders/view/'+ps); fs.writeFileSync('ps.json',JSON.stringify({ps,invoice:inv,line,number:v.json?.data?.work_order?.number})); console.log('number',v.json?.data?.work_order?.number);
+await s.close();

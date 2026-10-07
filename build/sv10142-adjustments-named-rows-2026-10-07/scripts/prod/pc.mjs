@@ -1,0 +1,12 @@
+import {op,j} from '../lib.mjs'; import fs from 'fs';
+const s=await op(); const p=s.page; console.log('url',p.url()); console.log(j(await s.marker()));
+const P=(u,b)=>s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+const TH='b617914c-16e9-4485-8e8b-193cd86aa416';
+console.log('loc',(await P('/api/iam/change-location',{workplace_id:TH,workplace_timezone:'Africa/Accra'})).status);
+const inv=(await s.api('/api/organizations/invoice-settings/view')).json?.data; console.log('documentDesign',inv?.documentDesign);
+const qb=(await s.api('/api/bookkeeping/integration')).json?.data; console.log('qb adv',qb?.toggles?.advancedModeEnabled);
+const st=(await s.api('/api/organizations/settings')).json.data; const org=JSON.stringify(st).match(/"organization_?[iI]d"\s*:\s*"([0-9a-f-]{36})"/)?.[1]; console.log('org',org);
+const ff=(await s.api('/api/organization/feature-flags?organization_id='+org)).json; console.log('features',(ff?.data?.features||[]).map(x=>x.name).join(','));
+const cats=(await s.api('/api/inventory/categories')).json; console.log('cat',j(cats,200));
+fs.writeFileSync('prod/state-before.json',JSON.stringify({documentDesign:inv?.documentDesign,adv:qb?.toggles?.advancedModeEnabled,org,features:ff?.data?.features}));
+await s.close();
