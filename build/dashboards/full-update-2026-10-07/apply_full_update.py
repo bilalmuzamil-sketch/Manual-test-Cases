@@ -31,7 +31,7 @@ def expected(p):
     out = "<p><strong>Expected results</strong></p>" + ul_raw(esc(r) for r in p["results"])
     out += f"<p><strong>Source &mdash; where this behaviour comes from</strong><br>{esc(src)}</p>"
     out += "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>" + ul_raw(
-        f"<strong>{esc(a)}:</strong> &ldquo;{esc(q)}&rdquo;" for a, q in p["quotes"])
+        f"<strong>{esc(a)}:</strong> &ldquo;{esc(q.replace('**', ''))}&rdquo;" for a, q in p["quotes"])
     if stamp: out += f"<p>{esc(stamp)}</p>"
     return out + f"<p>{esc(p['marker'])}</p>"
 problems = []; plans = []; news = []
