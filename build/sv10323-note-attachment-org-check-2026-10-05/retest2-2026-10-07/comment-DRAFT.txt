@@ -1,0 +1,51 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+[~accountid:712020:8f740284-c818-4164-82d3-e6f98ccbba71] I retested check 11 (rows 1 to 8 of [comment 78010|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=78010]) on [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build v26.40.8-129d22f) on 7 October 2026. All rows pass, so every check on this ticket now passes.
+
+*Notifications Update V1, S10-R5b (version 28)* states:
+
+{quote}"Any user with Edit for the kind of record it is on can do it: 'Work Orders → Edit' for a work order or work order line, 'Part Sales → Edit' for a part sale, and 'Customers → Edit' for a customer or an asset. A user who can only view the record sees the checkbox disabled, so they can still tell which files the customer sees. Exception: on work order and work order line notes, a role whose Work Orders view is set to Tech View does not see the checkbox at all, as today."{quote}
+
+h3. Check 11, for a Tech View role
+
+||#||Check||Status||
+|1|Work order notes, signed in as *Technician*: no {{For Customer}} checkbox|PASSED|
+|2|Work order line notes, signed in as *Technician*: no {{For Customer}} checkbox|PASSED|
+|3|Customer notes, with *Customers → Edit* (role *ZZ10323 TechView edit*): the checkbox works, and the change is still there after reloading the page|PASSED|
+|4|Customer notes, *Customers → View* only (*Technician*): the checkbox shows greyed out, clicking it changes nothing|PASSED|
+|5|Asset notes, with *Customers → Edit*: the checkbox works|PASSED|
+|6|Asset notes, *Customers → View* only: the checkbox shows greyed out|PASSED|
+|7|Part sale notes, with *Part Sales → Edit* (*ZZ10323 TechView edit*): the checkbox works|PASSED|
+|8|Part sale notes, *Part Sales → View* only (*ZZ10323 TechView view-only*): the checkbox shows greyed out|PASSED|
+
+For rows 7 and 8 both test roles have *See Financial Data* turned on, as Nemanja pointed out in [comment 78014|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=78014]. The Part Sales spec needs it to open a part sale (*Part Sales Update v1*, version 36, S1-N5: "See Financial Data gates the whole part sale screen").
+
+h3. Full View roles, no change
+
+||#||Check||Status||
+|9|*Admin*: the checkbox works on work order, work order line, customer, asset and part sale notes|PASSED|
+|10|*Sales Representative* (Full View: Work Orders View, Customers Edit, Part Sales View): works on customer and asset notes, greyed out on work order, work order line and part sale notes|PASSED|
+
+h3. Customer and asset notes, before and after
+
+!01-customer-asset-before-after-hd.png|width=1290,height=2436!
+
+h3. Part sale notes, before and after
+
+!02-part-sale-before-after-hd.png|width=1290,height=1244!
+
+h3. Work order and work order line notes, Technician
+
+!03-work-order-notes-technician-hd.png|width=1280,height=790!
+
+h3. How to see it yourself
+
+# Open [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] and click the *Admin* quick-login button.
+# In the top menu, click {{Customers}}, click {{Search}} above the list on the right, type *West Mifflin Diesel Repair* and click it in the list.
+# On the customer page, click the {{Notes}} tab.
+# Find the note *ZZAUTOTEST SV-10323 customer note*. Under its file *zz10323_customer.png* there is a {{For Customer}} checkbox, and as Admin you can tick it.
+# To see it as a Tech View user: click your initials at the top right, then {{Clock Out & Logout}}, and sign in with the *Tech* quick-login button. Tech is on the *Technician* role, so the same checkbox shows greyed out.
+
+Not tested: notes on a part sale's line. The {{New Note}} window on a part sale has no way to choose a line, so there is nowhere on screen to write one.
