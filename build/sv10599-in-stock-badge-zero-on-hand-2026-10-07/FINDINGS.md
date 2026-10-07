@@ -40,3 +40,10 @@
 
 ## Environment changes (per-ticket branch, no clean-up needed)
 ZZAUTOTEST WOs S10599-17580/17581/17582 + a part sale; stock changed on 448-4865 (now 0), MH55205 (−3), 577.55547 (3, now has a $25 core); a 448-4865 inventory record created at Lethbridge (qty 5).
+
+## Production BEFORE (bug reproduced live)
+Production `app.shopview.com` build `v26.40.8-1e8e914`, Trucks Hill 2, work order **S-961** (customer *aa*): on an approved line, inline **Add Part** → picker showed *"ZZKRYPTON Brake Kit | PERTAB-7001 | Inventory Qty: 0 EA"* → added → the line shows **In Stock** (part request status `in_stock`, inventory 0). A427 (1238213, 5 on hand) added alongside also shows In Stock. Evidence `ev/raw/P1-picker.png`, `ev/raw/P2-lines.png`.
+**Clean-up:** work order S-961 deleted (`work-orders/delete` 201; re-read → `400 workOrderId Not found`); inventory re-read unchanged — PERTAB-7001 **0**, 1238213 **5** (nothing was picked).
+
+## Exhibits
+`ev/01-before-vs-after-hd.png` (production picker + line vs branch picker + line) · `ev/02-parts-tab-core-part-sale-hd.png` (Parts tab main + core at 0 and at 3; part sale) · `ev/03-phone-hd.png` (390 wide). Built by `build_exhibits.py` from 2× captures.
