@@ -1,0 +1,61 @@
+{
+ "id": 327128,
+ "title": "Last 12 Months tile window opens Technician Efficiency on the Last 12 months preset",
+ "section_id": 12176,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791297842,
+ "updated_by": 1,
+ "updated_on": 1791298342,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 2,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as owner/admin (storage state)\nA billable technician exists (minted via API)\nAn invoiced Work Order for a test-created customer carries that technician's closed clock hours on its labour line, dated ~3 months before the workplace's today (outside This Month, inside Last 12 Months)",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open /dashboard and wait for the tiles",
+   "expected": "",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Set the Technician Efficiency tile's date pill to \"Last 12 Months\"",
+   "expected": "",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Inspect the Technician Efficiency tile's report link",
+   "expected": "",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Click the report link",
+   "expected": "The pill reads \"Last 12 Months\" and the headline re-renders\nThe link points at /reports/technician-efficiency with range=last_12_months (a single preset value, no custom triple)\nThe new tab's URL carries range=last_12_months\nThe report's date chip reads \"Last 12 months\" and the seeded technician's row is listed",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}
