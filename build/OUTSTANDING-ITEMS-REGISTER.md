@@ -3116,5 +3116,5 @@ Both suites updated to the 6 Oct specification, Plan 1 + Plan 2 and design MR_V2
 - Rule 117 amended (titles a manual QA tester understands). Sweep: 1,088 of our cases reviewed, 765 retitled (title
   only), list `build/title-sweep-2026-10-07/TITLE-SWEEP-CHANGES-2026-10-07.md`.
 - **90 retitled cases are Automated** — note for Vladimir Tomovic (Rule 65):
-  `build/title-sweep-2026-10-07/FOR-VLADIMIR-TITLES-2026-10-07.md`. **Solution:** the QA lead forwards it.
+  `build/title-sweep-2026-10-07/FOR-VLADIMIR-TITLES-2026-10-07.md`. **✅ CLOSED 2026-10-07 — QA lead: "Not needed"** (title-only changes; no note to Vladimir).
 - C204150 (Maintenance Reminders): the manual tester now creates the two extra organizations (QA lead decision).
