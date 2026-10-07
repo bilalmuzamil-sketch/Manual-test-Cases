@@ -1,0 +1,16 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const label=process.argv[2]; const {wo}=JSON.parse(fs.readFileSync(`wo-${label}.json`));
+const s=await ob(); const p=s.page; await s.go(`/workorders/${wo}/lines`);
+let b=await s.box('button_new_line'); await p.mouse.click(b.x,b.y); await s.waitFor('select_line_canned_line');
+b=await s.box('select_line_canned_line'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(800);
+await p.keyboard.type('ZZAUTOTEST typed line',{delay:40}); await p.waitForTimeout(1500);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.trim().slice(0,60))); console.log('opts',j(opts));
+await p.keyboard.press('Enter'); await p.waitForTimeout(800); b=await s.box('dialog_title'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(600);
+const te=p.locator('[data-test-id="input_time_estimate"]'); const tag=await te.evaluate(e=>e.tagName); console.log('tag',tag); await (tag==='INPUT'?te:te.locator('input')).fill('1'); await p.waitForTimeout(500); b=await s.box('dialog_title'); await p.mouse.click(b.x,b.y);
+await s.shot(`${label}-typed-dialog`,'shots');
+const chk=await p.evaluate(()=>document.querySelector('[data-test-id="checkbox_line_approved"]')?.getAttribute('aria-checked')); console.log('approved chk',chk);
+b=await s.box('button_save_close'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3500);
+console.log('writes',s.writes.filter(w=>!/envelope|quick-login/.test(w)).join('\n'));
+const err=await p.evaluate(()=>[...document.querySelectorAll('.q-notification,.q-field--error')].map(e=>e.innerText.trim().slice(0,120))); console.log('errs',j(err));
+await s.go(`/workorders/${wo}/lines`); console.log('badge after',await p.evaluate(()=>document.querySelector('[data-test-id="badge_wo_status"]')?.innerText.trim()));
+await s.close();

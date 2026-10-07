@@ -1,0 +1,10 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob();
+const wp=await s.api('/api/staff/my-workplaces'); console.log('wp',j(wp.json,400));
+const cl=await s.api('/api/work-orders/canned-lines'); const L=(cl.json?.data||cl.json);
+const arr=Array.isArray(L)?L:(L.items||L.canned_lines||[]);
+console.log('canned',arr.length, j(arr[0],400));
+const ok=arr.filter(x=>!x.total_parts); console.log('noparts',ok.length, ok.slice(0,6).map(x=>[x.id,x.name||x.description,x.workplace_id,x.fixed_price,x.labour_rate]).map(x=>JSON.stringify(x)).join('\n'));
+const wos=await s.api('/api/work-orders?limit=3'); console.log('wos',wos.status,j(wos.json,700));
+fs.writeFileSync('canned.json',JSON.stringify(arr));
+await s.close();

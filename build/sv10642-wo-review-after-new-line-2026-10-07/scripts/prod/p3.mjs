@@ -1,0 +1,22 @@
+import {op,j} from '../lib.mjs'; import fs from 'fs';
+const {wo}=JSON.parse(fs.readFileSync('prod/wo.json')); const s=await op(); const p=s.page;
+const P=(u,b)=>s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+await P('/api/iam/change-location',{workplace_id:'b617914c-16e9-4485-8e8b-193cd86aa416',workplace_timezone:'Africa/Accra'});
+await s.go(`/workorders/${wo}/lines`); await p.waitForTimeout(1500);
+const badge=async()=>p.evaluate(()=>document.querySelector('[data-test-id="badge_wo_status"]')?.innerText.trim());
+console.log('badge start',await badge()); await s.shot('P1-review-before','prod');
+let b=await s.box('button_new_line'); await p.mouse.click(b.x,b.y); await s.waitFor('select_line_canned_line');
+b=await s.box('select_line_canned_line'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(800); await p.keyboard.type('ER4',{delay:40}); await p.waitForTimeout(1800);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>{const r=e.getBoundingClientRect();return {t:e.innerText.trim().slice(0,60),x:r.x+r.width/2,y:r.y+r.height/2};})); console.log('opts',j(opts.map(o=>o.t)));
+await p.mouse.click(opts[0].x,opts[0].y); await p.waitForTimeout(1200);
+console.log('approved chk',await p.evaluate(()=>document.querySelector('[data-test-id="checkbox_line_approved"]')?.getAttribute('aria-checked')));
+await s.shot('P2-dialog','prod');
+b=await s.box('button_save_close'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(4000);
+await s.go(`/workorders/${wo}/lines`); await p.waitForTimeout(1500); console.log('badge after add',await badge());
+console.log('line statuses',j(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="badge_line_status_"]')].map(e=>e.innerText.trim()))));
+await s.shot('P3-still-review','prod');
+b=await s.box('button_mark_reviewed'); console.log('mark reviewed box',j(b));
+if(b){ await p.mouse.click(b.x,b.y); for(let i=0;i<12;i++){ await p.waitForTimeout(400); const t=await p.evaluate(()=>[...document.querySelectorAll('.q-notification,.q-dialog')].map(e=>e.innerText.trim().slice(0,200))); if(t.length){ console.log('popup',j(t)); await s.shot('P4-error','prod'); break; } } }
+await p.waitForTimeout(1500); console.log('badge end',await badge());
+console.log('writes',s.writes.filter(w=>!/envelope|login/.test(w)).map(w=>w.slice(0,200)).join('\n'));
+await s.close();
