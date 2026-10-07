@@ -1,8 +1,25 @@
+*Check 10: PASSED against S10-R5b (version 28)*
+
+I retested check 10 on [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build v26.40.8-cf5b7ad) on 7 October 2026, as Chris asked in [comment 77996|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=77996].
+
+*Notifications Update V1, S10-R5b (version 28)* now states:
+
+{quote}"Exception: on work order and work order line notes, a role whose Work Orders view is set to Tech View does not see the checkbox at all, as today."{quote}
+
+* Signed in as *Technician*, work order *S2-17414* > {{Notes}}: the work order note's file and the line note's file show, with no {{For Customer}} checkbox.
+* This is exactly what the exception asks for, so check 10 passes.
+
+!03-check10-technician-workorder-hd.png|width=1279,height=660!
+
+----
+
 [~accountid:712020:8f740284-c818-4164-82d3-e6f98ccbba71]
 
 *Remaining issue to be fixed*
 
-I retested check 10 against Chris's decision on [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build v26.40.8-cf5b7ad) on 7 October 2026.
+The rest of S10-R5b (version 28) is not met yet for Tech View roles. It states:
+
+{quote}"A user who can only view the record sees the checkbox disabled, so they can still tell which files the customer sees."{quote}
 
 Chris stated in [comment 77996|https://shopview.atlassian.net/browse/SV-10323?focusedCommentId=77996]:
 

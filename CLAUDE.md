@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **PO UPDATED THE SPEC + ASKED FOR A RETEST? (Standing Rule 99): first line = that check's verdict against the NEW text, quoted; update every earlier row the new text changes; never drop the spec quote.**
 > - **GREEN "OVERALL QA STATUS: PASSED" ONLY WHEN THE TICKET IS 100% FIXED (Standing Rule 97).** Anything less =
 >   "PARTIALLY PASSED" (non-green), remaining issues in a SEPARATE comment to the dev, and NO "not treated as a fault"
 >   section — ask the QA lead instead, with steps for him to reproduce it.
@@ -5267,6 +5268,15 @@ deliver the 7-tab management report.
     the QA lead hands me work another session has finished, I take it as delivered and do my own job on it
     by my own rules, without redoing or reshaping it unless one of my own rules specifically requires a
     change.
+
+99. **WHEN A PO UPDATES THE SPEC AND ASKS FOR A RETEST AGAINST IT, THE NAMED CHECK'S VERDICT AGAINST THE NEW TEXT COMES FIRST — AND EVERY EARLIER ROW THE NEW TEXT CHANGES IS UPDATED (all projects).**
+    USER DIRECTIVE (2026-10-07, verbatim): *"Chris also said that 'I've updated S10-R5b with the exception. @Bilal Muzamil please retest check 10 against that.' Are you sure you have considered it while testing ?"* → *"Yes please, clearly mention what it has passed."* → *"And always remember as a rule to not miss anything like that and learn from your this mistake too and save it for yourself."*
+    **THE RULE — four parts, all checked by the pre-post gate (Rule 72):**
+    **(a) READ THE ASK AS TWO INSTRUCTIONS:** "I updated <spec rule>" + "retest <check> against that". Re-read the updated spec live (version number + the changed text) BEFORE testing.
+    **(b) THE FIRST LINE OF THE RETEST COMMENT IS THAT NAMED CHECK'S VERDICT AGAINST THE NEW TEXT** — e.g. *"Check 10: PASSED against S10-R5b (version 28)"* — with the updated spec text QUOTED VERBATIM and the evidence picture right under it. A pass is stated as clearly as a fail; it is never left implied by a table row under a "remaining issue" heading.
+    **(c) UPDATE EVERY EARLIER COMMENT / TABLE ROW WHOSE EXPECTATION THE NEW TEXT CHANGES.** A row that still asserts the old expectation now contradicts the spec — it is a defect in our record, not history. Update it in place (verdict + the new quote), and adjust the overall status text so the arithmetic closes (Rule 90).
+    **(d) NEVER DROP THE SPEC QUOTE IN A REWRITE.** When a comment is rewritten for scope, the spec text the requester pointed at stays quoted; quoting only the requester's comment is not enough when they said "I updated the spec".
+    **RATIONALE, 2026-10-07 (SV-10323, my miss):** Chris updated S10-R5b to v28 (Tech View exception on work order/line notes) and asked us to retest check 10 against it. I read v28 and tested correctly, but my comment 78010 never said check 10 PASSED, its rewrite dropped the v28 quote, and 77936 row 10 still said the Technician should see the box greyed out — the opposite of v28. Fixed in place: 78010 now opens "Check 10: PASSED against S10-R5b (version 28)" with the quote and picture; 77936 row 10 PASSED + new row 11 FAILED. Ties to Standing Rules 25, 31/59 (re-read the source), 54/57 (expectations come from the document), 72, 90, 97 and §10.1 of the ticket standard.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

@@ -20,3 +20,9 @@ d=panel(R+'techview-edit-partsale-list.png',crop=(285,60,1575,340),
   boxes=[(337,250,1568,294,RED,1)],
   notes=[(1,RED,'Part sale P9667-368 is listed, but clicking it does not open it, so its notes and the For Customer checkbox can never be reached. Clicking Parts in the top menu does nothing either.')])
 stack([d]).save(O+'02-techview-part-sale-hd.png'); print(Image.open(O+'02-techview-part-sale-hd.png').size)
+e=panel(R+'technician-workorder.png',crop=(296,470,1575,990),
+  title='Check 10: work order S2-17414 > Notes, signed in as Technician (Tech View, Work Orders > View only)',
+  boxes=[(335,600,585,698,GRN,1),(335,878,585,976,GRN,2)],
+  notes=[(1,GRN,'Work order line note: the file shows and there is no For Customer checkbox.'),
+         (2,GRN,'Work order note: the file shows and there is no For Customer checkbox. Both match the S10-R5b exception (version 28).')])
+stack([e]).save(O+'03-check10-technician-workorder-hd.png'); print(Image.open(O+'03-check10-technician-workorder-hd.png').size)

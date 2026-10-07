@@ -200,3 +200,6 @@ without asking anything, and see the source of every "should"? If a line needs r
 
 ### §10.1 — A retest asked against one comment or ruling (SV-10323, 2026-10-07)
 Scope the testing and the comment to **exactly that source**: quote it at the top, then a table with **one row per statement it makes** (every record kind, every permission level it names), each PASSED/FAILED, then steps for the failures and the pictures. Nothing it doesn't mention; nothing it does mention held back as a side question.
+
+### §10.2 — A spec was updated and a retest asked against it (Standing Rule 99)
+Open with the named check's verdict against the new text (`*Check N: PASSED against <rule> (version V)*`), quote the updated text, put the picture under it, then a `----` line and any remaining issue. Then update every earlier comment row the new text changes, in place, so no row contradicts the current spec. Canonical example: SV-10323 comments 78010 and 77936 (7 Oct 2026).
