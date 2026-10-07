@@ -1,0 +1,1226 @@
+[
+ {
+  "case": "C146309",
+  "old": "Maintenance settings sit under Settings and need Settings Service",
+  "new": "Only users with Settings Service see Settings > Maintenance",
+  "verified": true
+ },
+ {
+  "case": "C146310",
+  "old": "The empty Maintenance screen prompts the first schedule",
+  "new": "Empty Maintenance settings page offers to create the first schedule",
+  "verified": true
+ },
+ {
+  "case": "C146311",
+  "old": "New schedule opens an empty Untitled schedule editor; first Save keeps it open",
+  "new": "New schedule opens a blank \"Untitled schedule\" that stays open after Save",
+  "verified": true
+ },
+ {
+  "case": "C146312",
+  "old": "Save is disabled until the schedule has one service",
+  "new": "Save stays disabled until the schedule has at least one service",
+  "verified": true
+ },
+ {
+  "case": "C146313",
+  "old": "A schedule name cannot be blank or already in use",
+  "new": "A schedule name cannot be left blank or reuse an existing name",
+  "verified": true
+ },
+ {
+  "case": "C146314",
+  "old": "The service table shows Service, Interval, Canned Lines and reorders",
+  "new": "The schedule's service table shows its columns and lets you reorder services",
+  "verified": true
+ },
+ {
+  "case": "C146315",
+  "old": "The schedule list: Active/Archived tabs, search, row menu",
+  "new": "Schedule list has Active and Archived tabs, search and a row menu",
+  "verified": true
+ },
+ {
+  "case": "C146316",
+  "old": "Add service opens a blank form in a fixed order",
+  "new": "Add service opens a blank service form with its fields in a fixed order",
+  "verified": true
+ },
+ {
+  "case": "C146317",
+  "old": "Calendar interval is required; distance and hours are optional",
+  "new": "A service needs a time interval, while mileage and hours are optional",
+  "verified": true
+ },
+ {
+  "case": "C146318",
+  "old": "Interval operator Every vs At; calendar At is a day-and-month picker",
+  "new": "Interval can be \"Every\" or \"At\", and an \"At\" date uses a day-and-month picker",
+  "verified": true
+ },
+ {
+  "case": "C146319",
+  "old": "The distance unit is 'mileage' and the meter unit is 'hours', in full",
+  "new": "Units are written in full as \"mileage\" and \"hours\", never abbreviated",
+  "verified": true
+ },
+ {
+  "case": "C146320",
+  "old": "Interval fields take whole numbers within caps only",
+  "new": "Interval boxes accept only whole numbers within the allowed limits",
+  "verified": true
+ },
+ {
+  "case": "C146321",
+  "old": "The service comes due at whichever trigger arrives first",
+  "new": "A service with several triggers comes due at whichever is reached first",
+  "verified": true
+ },
+ {
+  "case": "C146322",
+  "old": "Months land on the same day; a missing day falls on month-end",
+  "new": "Monthly intervals keep the same day, or the month's last day if missing",
+  "verified": true
+ },
+ {
+  "case": "C146323",
+  "old": "Services also covered pre-fills the covered services' lines",
+  "new": "Choosing \"Services also covered\" pre-fills those services' canned lines",
+  "verified": true
+ },
+ {
+  "case": "C146324",
+  "old": "Is this a compliance inspection? is asked before the trigger",
+  "new": "The form asks \"Is this a compliance inspection?\" before the trigger",
+  "verified": true
+ },
+ {
+  "case": "C146325",
+  "old": "Compliance Type is required free text with examples in an (i)",
+  "new": "Compliance Type is a required free-text box with example hints",
+  "verified": true
+ },
+ {
+  "case": "C146326",
+  "old": "Compliance Term and Remind before expiry are in months",
+  "new": "Compliance Term and Remind before expiry are entered in months",
+  "verified": true
+ },
+ {
+  "case": "C146327",
+  "old": "No certificate date on the form; a compliance service is orange",
+  "new": "A compliance service form has no certificate date and shows in orange",
+  "verified": true
+ },
+ {
+  "case": "C146328",
+  "old": "Add canned lines opens a searchable picker showing hours",
+  "new": "Add canned lines opens a searchable picker that shows each line's hours",
+  "verified": true
+ },
+ {
+  "case": "C146329",
+  "old": "A service shows no value; the line count opens a hover card",
+  "new": "A service shows no price, and hovering its line count lists the lines",
+  "verified": true
+ },
+ {
+  "case": "C146330",
+  "old": "Canned lines are optional; Settings edits flow through",
+  "new": "Canned lines are optional, and later edits in Settings carry through",
+  "verified": true
+ },
+ {
+  "case": "C146331",
+  "old": "Reminder rows are in days; a before row must be shorter than the interval",
+  "new": "Reminder rows are in days and must be shorter than the interval",
+  "verified": true
+ },
+ {
+  "case": "C146332",
+  "old": "Reminder rows drive due soon only; compliance has none",
+  "new": "Reminder rows only set \"due soon\", and compliance services have none",
+  "verified": true
+ },
+ {
+  "case": "C146333",
+  "old": "Editing a schedule is silent and never touches enrolled assets",
+  "new": "Editing a schedule does not change assets already enrolled on it",
+  "verified": true
+ },
+ {
+  "case": "C146334",
+  "old": "Editing or removing a service asks first and spares enrolled assets",
+  "new": "Editing or removing a service asks first and leaves enrolled assets alone",
+  "verified": true
+ },
+ {
+  "case": "C146335",
+  "old": "Duplicate names the copy \"(Copy)\", then \"(Copy 2)\"; no assets",
+  "new": "Duplicating a schedule names it \"(Copy)\", then \"(Copy 2)\", with no assets",
+  "verified": true
+ },
+ {
+  "case": "C146336",
+  "old": "Archiving deactivates and unenrolls; restoring enrolls nobody",
+  "new": "Archiving a schedule takes its assets off, and restoring adds none back",
+  "verified": true
+ },
+ {
+  "case": "C146337",
+  "old": "Remove from schedule takes one asset off; history stays",
+  "new": "Remove from schedule takes one asset off and keeps its history",
+  "verified": true
+ },
+ {
+  "case": "C146338",
+  "old": "History survives removal; enrolling again anchors from last completion",
+  "new": "Enrolling an asset again counts from its last completion",
+  "verified": true
+ },
+ {
+  "case": "C146339",
+  "old": "Enrolment opens the same modal from three places, offering every schedule",
+  "new": "The Enroll window opens from three places and lists every schedule",
+  "verified": true
+ },
+ {
+  "case": "C146340",
+  "old": "The modal collects the schedule, then optional last-service dates",
+  "new": "The Enroll window asks for the schedule, then optional last service dates",
+  "verified": true
+ },
+ {
+  "case": "C146341",
+  "old": "Compliance rows show the record; meterless services flag a reading",
+  "new": "Enroll window shows certificates, missing readings and passed targets",
+  "verified": true
+ },
+ {
+  "case": "C146342",
+  "old": "Bulk enrolment from the customer's Assets tab",
+  "new": "Enroll several assets at once from the customer's Assets tab",
+  "verified": true
+ },
+ {
+  "case": "C146343",
+  "old": "The Maintenance notifications setting is a live customer toggle",
+  "new": "The customer's Maintenance notifications switch takes effect at once",
+  "verified": true
+ },
+ {
+  "case": "C146344",
+  "old": "No bulk consent; the setting stands if enrolment is cancelled",
+  "new": "A notifications change made during enrolment stays if you cancel",
+  "verified": true
+ },
+ {
+  "case": "C146345",
+  "old": "Enrolment sends nothing; its rows go straight to the worklist",
+  "new": "Enrolling sends no email and puts due rows straight on the worklist",
+  "verified": true
+ },
+ {
+  "case": "C146346",
+  "old": "Compliance records sit in the asset card's Compliance section",
+  "new": "Compliance records appear in the asset card's Compliance section",
+  "verified": true
+ },
+ {
+  "case": "C146347",
+  "old": "A compliance record's fields, Certificate number and attachment",
+  "new": "Compliance record form: its fields, certificate number and attachment",
+  "verified": true
+ },
+ {
+  "case": "C146348",
+  "old": "Start date, End date and term derive; valid through the End date",
+  "new": "Certificate Start date, End date and term fill each other in",
+  "verified": true
+ },
+ {
+  "case": "C146349",
+  "old": "Latest record is current; a renewal drives at once and keeps history",
+  "new": "The newest certificate is current, and a renewal takes effect at once",
+  "verified": true
+ },
+ {
+  "case": "C146350",
+  "old": "A recordless compliance service can't come due; closing two asks per record",
+  "new": "A compliance service with no certificate never comes due",
+  "verified": true
+ },
+ {
+  "case": "C146351",
+  "old": "The Maintenance tab is last; an unenrolled unit offers Enroll in Schedule",
+  "new": "Maintenance is the asset's last tab and offers Enroll in Schedule",
+  "verified": true
+ },
+ {
+  "case": "C146352",
+  "old": "Two reading cards: recorded is exact, an estimate has a badge",
+  "new": "Asset tab shows a recorded reading exactly and marks estimates",
+  "verified": true
+ },
+ {
+  "case": "C146353",
+  "old": "Services list flat by date with the schedule as a column",
+  "new": "Asset tab lists services by due date, with the schedule as a column",
+  "verified": true
+ },
+ {
+  "case": "C146354",
+  "old": "The status badge carries exactly three values",
+  "new": "The status badge shows only Due soon, Due today or Overdue",
+  "verified": true
+ },
+ {
+  "case": "C146355",
+  "old": "The Due cell shows the earliest candidate; Other triggers lists the rest",
+  "new": "The Due cell shows the earliest date, other triggers are in the menu",
+  "verified": true
+ },
+ {
+  "case": "C146356",
+  "old": "The row menu and Skip; a skipped row returns on its own",
+  "new": "Skip hides a service from the worklist until a new reading or work order",
+  "verified": true
+ },
+ {
+  "case": "C146357",
+  "old": "Due dates: a month for estimates, End date for certificates",
+  "new": "Due dates show a month when estimated and the End date for certificates",
+  "verified": true
+ },
+ {
+  "case": "C146358",
+  "old": "The worklist is a Maintenance reminders tab under Customers",
+  "new": "The worklist is the Maintenance reminders tab on the Customers page",
+  "verified": true
+ },
+ {
+  "case": "C146359",
+  "old": "Four header tiles filter, count assets, and don't add up",
+  "new": "Worklist tiles filter the list and count assets, not rows",
+  "verified": true
+ },
+ {
+  "case": "C146360",
+  "old": "Time tiles don't overlap; Needs readings crosses them",
+  "new": "Time tiles never overlap and combine with the Needs readings tile",
+  "verified": true
+ },
+ {
+  "case": "C146361",
+  "old": "No-tile window is 91 days; sort, search and empty states",
+  "new": "Worklist shows 91 days ahead, with sorting, search and empty state",
+  "verified": true
+ },
+ {
+  "case": "C146362",
+  "old": "One column set; unit shows number + year/make/model",
+  "new": "Worklist columns never change, and units show number, year, make, model",
+  "verified": true
+ },
+ {
+  "case": "C146363",
+  "old": "Due status vs work order status; Invoice or Mark complete clears a row",
+  "new": "Invoicing or Mark complete clears the row from the worklist",
+  "verified": true
+ },
+ {
+  "case": "C146364",
+  "old": "A due date shows confidence, Certificate or Calendar, never a figure",
+  "new": "Worklist due date shows confidence, Certificate or Calendar, not a figure",
+  "verified": true
+ },
+ {
+  "case": "C146365",
+  "old": "Create work order raises one estimate per row at the header location",
+  "new": "Create work order makes one estimate at the header location",
+  "verified": true
+ },
+ {
+  "case": "C146366",
+  "old": "Row actions are Contact and Create work order; menu holds the rest",
+  "new": "Worklist row buttons are Contact and Create work order, the rest in a menu",
+  "verified": true
+ },
+ {
+  "case": "C146367",
+  "old": "Multi-schedule units show a schedule chip; sort by header only",
+  "new": "Units on two schedules show a schedule chip on each row",
+  "verified": true
+ },
+ {
+  "case": "C146368",
+  "old": "Row location and the multi-workplace location filter",
+  "new": "Location column and location filter for shops with several locations",
+  "verified": true
+ },
+ {
+  "case": "C146369",
+  "old": "The Compliance inspection chip; no-record services sort last",
+  "new": "Compliance inspection chip filters rows, uncertified services sort last",
+  "verified": true
+ },
+ {
+  "case": "C146370",
+  "old": "Worklist keeps filters, shows cards on a phone, drops deleted assets",
+  "new": "Worklist keeps filters, shows cards on a phone and drops deleted assets",
+  "verified": true
+ },
+ {
+  "case": "C146371",
+  "old": "The Contact card shows labelled phones, copy and tap",
+  "new": "Contact card shows labelled phone numbers you can copy or tap",
+  "verified": true
+ },
+ {
+  "case": "C146372",
+  "old": "Send reminder covers one asset, updates last sent, no Resend",
+  "new": "Send reminder emails about one asset and updates Last sent",
+  "verified": true
+ },
+ {
+  "case": "C146373",
+  "old": "The contact card reads complete in every empty state",
+  "new": "Contact card reads correctly when phone, email or contact is missing",
+  "verified": true
+ },
+ {
+  "case": "C146374",
+  "old": "Notifications off disables Send; no permission hides it",
+  "new": "Send reminder is disabled when the customer's notifications are off",
+  "verified": true
+ },
+ {
+  "case": "C146375",
+  "old": "A \"last sent\" line appears after a send by hand",
+  "new": "A \"Last sent\" date appears on the contact card after a reminder is sent",
+  "verified": true
+ },
+ {
+  "case": "C146376",
+  "old": "Every maintenance state change is recorded (no audit screen in v1)",
+  "new": "Maintenance changes are saved to the history (no screen shows it yet)",
+  "verified": true
+ },
+ {
+  "case": "C146377",
+  "old": "Adding a service to a work order writes a work order note",
+  "new": "Adding a service to a work order adds a work order note",
+  "verified": true
+ },
+ {
+  "case": "C146378",
+  "old": "A reading correction keeps both values (no audit screen in v1)",
+  "new": "Correcting a reading keeps both values in the history",
+  "verified": true
+ },
+ {
+  "case": "C146379",
+  "old": "Sends are logged with message, recipient and time (no audit screen)",
+  "new": "Sent reminders are logged with message, recipient and time",
+  "verified": true
+ },
+ {
+  "case": "C146380",
+  "old": "History outlives removal, archive and asset deletion (no audit screen)",
+  "new": "History is kept after removal, archiving and asset deletion",
+  "verified": true
+ },
+ {
+  "case": "C146381",
+  "old": "A notification-setting change is recorded (no audit screen in v1)",
+  "new": "Changing the notifications setting is saved to the history",
+  "verified": true
+ },
+ {
+  "case": "C146382",
+  "old": "Month intervals land on the same day; a missing day rolls back",
+  "new": "Monthly due dates keep the day, or move to the month's last day",
+  "verified": true
+ },
+ {
+  "case": "C146383",
+  "old": "Certificate Start date + term = End date, same day, clamped",
+  "new": "Certificate End date is the Start date plus the term, same day of month",
+  "verified": true
+ },
+ {
+  "case": "C146384",
+  "old": "Remind before expiry: default by term band and the term cap",
+  "new": "Remind before expiry defaults by the term and cannot exceed it",
+  "verified": true
+ },
+ {
+  "case": "C146385",
+  "old": "Confidence follows the locked table: age of last reading by pairs",
+  "new": "Confidence grade follows the reading's age and the number of visits",
+  "verified": true
+ },
+ {
+  "case": "C146386",
+  "old": "Confidence worked examples, per meter, N visits and No data",
+  "new": "Confidence examples for mileage and hours, including No data",
+  "verified": true
+ },
+ {
+  "case": "C146387",
+  "old": "Worklist tile day-window boundaries",
+  "new": "Worklist tiles: which days fall into each tile at the edges",
+  "verified": true
+ },
+ {
+  "case": "C146388",
+  "old": "Worklist tile counts: once per tile, no total, filtered",
+  "new": "Worklist tiles count each asset once per tile and follow the filters",
+  "verified": true
+ },
+ {
+  "case": "C146389",
+  "old": "Interval fields: whole numbers within exact caps",
+  "new": "Interval boxes accept whole numbers only, up to the exact limits",
+  "verified": true
+ },
+ {
+  "case": "C204102",
+  "old": "Reading dialog on the asset: current vs new, one row per meter",
+  "new": "Enter mileage window shows the current and new reading for each meter",
+  "verified": true
+ },
+ {
+  "case": "C204103",
+  "old": "Saving re-evaluates thresholds at once; undo offered; returns to the tab",
+  "new": "Saving a reading updates due dates at once and offers Undo",
+  "verified": true
+ },
+ {
+  "case": "C204104",
+  "old": "Every reading stored dated with its source; latest entered is current",
+  "new": "Every reading is kept with its date and source, and the newest is current",
+  "verified": true
+ },
+ {
+  "case": "C204105",
+  "old": "A work order reading shows In the shop until invoiced or Mark complete",
+  "new": "A reading typed on a work order shows \"In the shop\" until invoiced",
+  "verified": true
+ },
+ {
+  "case": "C204106",
+  "old": "Correct a wrong reading by entering the right one; the last one counts",
+  "new": "Fix a wrong reading by entering the right one",
+  "verified": true
+ },
+ {
+  "case": "C204107",
+  "old": "The field reads Mileage; the unit is written in full, never mi or km",
+  "new": "The field reads \"Mileage\" and the unit is never shown as mi or km",
+  "verified": true
+ },
+ {
+  "case": "C204108",
+  "old": "No reading is rejected; an implausible value asks to confirm, then saves",
+  "new": "An unusual reading asks for confirmation but is never refused",
+  "verified": true
+ },
+ {
+  "case": "C204109",
+  "old": "No telematics in v1: readings entered by hand or taken from a work order",
+  "new": "Readings come only from manual entry or work orders, not telematics",
+  "verified": true
+ },
+ {
+  "case": "C204110",
+  "old": "Reading edge cases: gauge vs ECU, engine swap, correction, same-day",
+  "new": "Unusual readings: gauge vs ECU, engine swap and same-day readings",
+  "verified": true
+ },
+ {
+  "case": "C204111",
+  "old": "Each trigger proposes a candidate; the earliest wins as the Due date",
+  "new": "The due date is the earliest of a service's triggers",
+  "verified": true
+ },
+ {
+  "case": "C204112",
+  "old": "Calendar always proposes a date; a meter in No data proposes nothing",
+  "new": "A meter with No data gives no due date, so the calendar decides",
+  "verified": true
+ },
+ {
+  "case": "C204113",
+  "old": "'At a reading' and 'At a day of the year' due and overdue behaviour",
+  "new": "\"At\" a reading or a yearly date: when it comes due and stays overdue",
+  "verified": true
+ },
+ {
+  "case": "C204115",
+  "old": "Confidence changes how the date reads, not which candidate wins",
+  "new": "Confidence changes how the due date reads, not which date is chosen",
+  "verified": true
+ },
+ {
+  "case": "C204116",
+  "old": "Covering applies only to what the shop named, within one schedule",
+  "new": "A service resets others only if the shop named them as covered",
+  "verified": true
+ },
+ {
+  "case": "C204117",
+  "old": "Rows never merge; canned lines deduplicated; two schedules, one call",
+  "new": "Each service keeps its own row, and shared canned lines are added once",
+  "verified": true
+ },
+ {
+  "case": "C204118",
+  "old": "Today follows the location; resets and new readings recalc candidates",
+  "new": "\"Today\" follows the location's time zone, and readings recalculate dues",
+  "verified": true
+ },
+ {
+  "case": "C204119",
+  "old": "Work orders from a due service or Add Service show the Maintenance schedule",
+  "new": "Work orders from Maintenance show the schedule in the Work Orders list",
+  "verified": true
+ },
+ {
+  "case": "C204120",
+  "old": "A hand-created work order has an empty Maintenance schedule column",
+  "new": "A hand-made work order has an empty Maintenance schedule column",
+  "verified": true
+ },
+ {
+  "case": "C204121",
+  "old": "Adding a service marks the origin without replacing an earlier one",
+  "new": "Adding a service keeps an existing Maintenance schedule origin",
+  "verified": true
+ },
+ {
+  "case": "C204122",
+  "old": "From maintenance filter: count and total of every matching work order",
+  "new": "\"From maintenance\" filter shows the count and total of work orders",
+  "verified": true
+ },
+ {
+  "case": "C204123",
+  "old": "Open rates and bounce reporting are not tracked",
+  "new": "Email open rates and bounces are not tracked",
+  "verified": true
+ },
+ {
+  "case": "C204124",
+  "old": "An estimate carries the last reading forward at the unit's own rate",
+  "new": "Estimated reading is the last reading plus the unit's daily rate",
+  "verified": true
+ },
+ {
+  "case": "C204125",
+  "old": "The rate uses the last three usable pairs; with one or two, all of them",
+  "new": "The rate uses the last three reading intervals, or all if fewer",
+  "verified": true
+ },
+ {
+  "case": "C204126",
+  "old": "A usable pair, and the guards that drop pairs from the rate",
+  "new": "The rate ignores readings that are too close, lower, too high or too old",
+  "verified": true
+ },
+ {
+  "case": "C204127",
+  "old": "Correcting a reading recomputes the rate at once",
+  "new": "Correcting a reading updates the rate at once",
+  "verified": true
+ },
+ {
+  "case": "C204128",
+  "old": "Confidence reads Low, Medium or High; No data is its own state",
+  "new": "Confidence shows Low, Medium or High, or No data",
+  "verified": true
+ },
+ {
+  "case": "C204129",
+  "old": "Estimated due date shows a month + confidence; exact date only if recorded",
+  "new": "Estimated due dates show a month and confidence, not an exact day",
+  "verified": true
+ },
+ {
+  "case": "C204130",
+  "old": "How each source renders: meter month, certificate End date, calendar month",
+  "new": "How due dates read for mileage, certificate and calendar services",
+  "verified": true
+ },
+ {
+  "case": "C204131",
+  "old": "Mileage and engine hours each carry their own confidence",
+  "new": "Mileage and engine hours each have their own confidence",
+  "verified": true
+ },
+ {
+  "case": "C204132",
+  "old": "Estimated values round (distance 100, hours 10); a rate reads as an accrual",
+  "new": "Estimates round to 100 mileage or 10 hours, and the rate reads per week",
+  "verified": true
+ },
+ {
+  "case": "C204133",
+  "old": "The meter hover: the rule, the disclaimer, and View work orders",
+  "new": "Confidence hover explains the estimate and links to View work orders",
+  "verified": true
+ },
+ {
+  "case": "C204134",
+  "old": "No projection is shown as fact; in Low a hand-sent reminder shows Soon",
+  "new": "Estimated dates never look certain, and Low reads \"Soon\" in the email",
+  "verified": true
+ },
+ {
+  "case": "C204135",
+  "old": "No data is the ordinary state; the meter gives no candidate, calendar governs",
+  "new": "With no readings the calendar date is used and nothing looks broken",
+  "verified": true
+ },
+ {
+  "case": "C204136",
+  "old": "Card sits in the asset card, collapsed, with a count badge and nothing else",
+  "new": "Work order Maintenance card starts collapsed with only a count badge",
+  "verified": true
+ },
+ {
+  "case": "C204137",
+  "old": "Expanded card: covered services fold in only under a listed coverer",
+  "new": "Covered services are folded under the service that covers them",
+  "verified": true
+ },
+ {
+  "case": "C204138",
+  "old": "Rows show when due; due badges; compliance is orange and carries no tag",
+  "new": "Work order card rows show when each is due, compliance rows in orange",
+  "verified": true
+ },
+ {
+  "case": "C204139",
+  "old": "Hovering a service shows its job, parts and inspection form, never money",
+  "new": "Hovering a service shows its lines, parts and form, never prices",
+  "verified": true
+ },
+ {
+  "case": "C204140",
+  "old": "Add Service is a button on every row and opens the Add Service window",
+  "new": "Every row has an Add Service button that opens the Add Service window",
+  "verified": true
+ },
+ {
+  "case": "C204141",
+  "old": "Add a compliance certificate, or enroll the unit, from the work order card",
+  "new": "Add a certificate or enroll the unit from the work order card",
+  "verified": true
+ },
+ {
+  "case": "C204142",
+  "old": "Readings go in the work order's Mileage field; the card updates at once",
+  "new": "Typing Mileage on the work order updates the card at once",
+  "verified": true
+ },
+ {
+  "case": "C204143",
+  "old": "Two ways to satisfy a row: Add Service (on invoice) or Mark complete (now)",
+  "new": "Two ways to clear a row: Add Service (on invoice) or Mark complete (now)",
+  "verified": true
+ },
+ {
+  "case": "C204144",
+  "old": "A row shows line count and hours only - no money anywhere on the panel",
+  "new": "The work order card shows line count and hours, never money",
+  "verified": true
+ },
+ {
+  "case": "C204145",
+  "old": "After Add Service: row reads Added, N lines; Mark complete is its button",
+  "new": "After Add Service the row reads \"Added · N lines\" with Mark complete",
+  "verified": true
+ },
+ {
+  "case": "C204146",
+  "old": "Canned lines append as ordinary lines; nothing about the lines table changes",
+  "new": "Added canned lines appear as normal lines at the end of the work order",
+  "verified": true
+ },
+ {
+  "case": "C204147",
+  "old": "Add Service at another location copies the work at this location's rates",
+  "new": "Add Service at another location charges this location's rates",
+  "verified": true
+ },
+ {
+  "case": "C204148",
+  "old": "Each copied line carries an internal note listing the home location's parts",
+  "new": "Copied lines carry an internal note listing the home location's parts",
+  "verified": true
+ },
+ {
+  "case": "C204149",
+  "old": "Add Service toast with Undo; Remove until invoiced; no line is deleted",
+  "new": "Add Service shows Undo, and Remove works until the work order is invoiced",
+  "verified": true
+ },
+ {
+  "case": "C204150",
+  "old": "Card negatives: line search, closing, invoiced work order, no schedule",
+  "new": "Work order card: line search, completing, invoiced and no-schedule cases",
+  "verified": true
+ },
+ {
+  "case": "C204151",
+  "old": "Splitting a work order and merging assets keep services and history",
+  "new": "Splitting a work order or merging assets keeps services and history",
+  "verified": true
+ },
+ {
+  "case": "C204152",
+  "old": "The card offers this or a new work order; elsewhere only Create work order",
+  "new": "Only the work order card offers \"This work order\" or \"A new work order\"",
+  "verified": true
+ },
+ {
+  "case": "C204153",
+  "old": "Adding from the worklist creates a work order and shows its number on the row",
+  "new": "Create work order from the worklist shows the new number on the row",
+  "verified": true
+ },
+ {
+  "case": "C204154",
+  "old": "Adding a service writes one internal note naming the service and schedule",
+  "new": "Adding a service writes one internal note naming service and schedule",
+  "verified": true
+ },
+ {
+  "case": "C204155",
+  "old": "Canned lines duplicated across services are deduplicated on one visit",
+  "new": "A canned line shared by two services is added only once",
+  "verified": true
+ },
+ {
+  "case": "C204156",
+  "old": "Adding a service is permission-gated and must offer the second destination",
+  "new": "Add Service needs permission and offers \"A new work order\"",
+  "verified": true
+ },
+ {
+  "case": "C204157",
+  "old": "Declined estimate resets nothing; freeform or canned work; completion decides",
+  "new": "Only completed work resets a service, never a declined estimate",
+  "verified": true
+ },
+ {
+  "case": "C204158",
+  "old": "Mark complete is in the row menu everywhere; it resets now, from a chosen date",
+  "new": "Mark complete is in every row menu and resets from a chosen date",
+  "verified": true
+ },
+ {
+  "case": "C204159",
+  "old": "Where was it done: On a work order (lists them) or Completed elsewhere",
+  "new": "Mark complete asks where: On a work order or Completed elsewhere",
+  "verified": true
+ },
+ {
+  "case": "C204160",
+  "old": "Reset date: never in the future; defaults by state; elsewhere requires it",
+  "new": "Reset date cannot be in the future and Completed elsewhere needs it",
+  "verified": true
+ },
+ {
+  "case": "C204161",
+  "old": "On a compliance service the modal also takes the certificate",
+  "new": "Mark complete on a compliance service also records the certificate",
+  "verified": true
+ },
+ {
+  "case": "C204162",
+  "old": "Mark complete resets at once; a lines-added service waits for the invoice",
+  "new": "Mark complete resets at once, but added lines reset only on invoice",
+  "verified": true
+ },
+ {
+  "case": "C204163",
+  "old": "Covered services reset with the one that covers them, each on its own interval",
+  "new": "Covered services reset together with the service that covers them",
+  "verified": true
+ },
+ {
+  "case": "C204164",
+  "old": "The step lists services whose lines were added; untick to leave one",
+  "new": "Invoicing shows \"When was the maintenance done?\" for added services",
+  "verified": true
+ },
+ {
+  "case": "C204166",
+  "old": "Completion records where it happened and travels across the organization",
+  "new": "Work done at one location updates the service at every location",
+  "verified": true
+ },
+ {
+  "case": "C204167",
+  "old": "The step: Compliance certificates section, optional, with its (i)",
+  "new": "\"When was the maintenance done?\" has a Compliance certificates section",
+  "verified": true
+ },
+ {
+  "case": "C204168",
+  "old": "Mark complete: toast with Undo, Completed row, worklist rest until due soon",
+  "new": "After Mark complete: Undo toast, Completed row, off the worklist",
+  "verified": true
+ },
+ {
+  "case": "C204169",
+  "old": "Completion works with no canned line, and nothing scolds a freeform shop",
+  "new": "Mark complete works without canned lines and shows no warning",
+  "verified": true
+ },
+ {
+  "case": "C204170",
+  "old": "Early completion needs no confirmation; serviced Monday, invoiced later",
+  "new": "Completing early needs no confirmation, and invoicing later changes nothing",
+  "verified": true
+ },
+ {
+  "case": "C204171",
+  "old": "One email, sent by hand via Send reminder; nothing sends automatically in v1",
+  "new": "The reminder email is sent only by hand with Send reminder",
+  "verified": true
+ },
+ {
+  "case": "C204172",
+  "old": "Send reminder opens the send email window with every contact listed",
+  "new": "Send reminder opens the send email window listing every contact",
+  "verified": true
+ },
+ {
+  "case": "C204173",
+  "old": "Send email opens with the fixed wording, editable for this one send",
+  "new": "The reminder email has fixed wording you can edit for this send",
+  "verified": true
+ },
+ {
+  "case": "C204174",
+  "old": "The email lists every service the worklist shows for the unit, with its state",
+  "new": "The reminder email lists every service the worklist shows for the unit",
+  "verified": true
+ },
+ {
+  "case": "C204175",
+  "old": "Due month where the date is sound; Soon for a Low date; no confidence words",
+  "new": "The reminder email shows the due month, or \"Soon\" for Low confidence",
+  "verified": true
+ },
+ {
+  "case": "C204176",
+  "old": "Sender is the shop over the platform address; Reply-To is the sender; BCC copy",
+  "new": "Reminder email sender, Reply-To and BCC copy",
+  "verified": true
+ },
+ {
+  "case": "C204177",
+  "old": "Greeting names one or two people, else Hello; invoice-style signature",
+  "new": "Reminder email greets one or two people by name, otherwise \"Hello\"",
+  "verified": true
+ },
+ {
+  "case": "C204178",
+  "old": "The footer says why the email was sent; there is no unsubscribe link",
+  "new": "Reminder email footer says why it was sent, with no unsubscribe link",
+  "verified": true
+ },
+ {
+  "case": "C204179",
+  "old": "Setting off blocks every send; a send updates Last sent; no bounces",
+  "new": "Notifications off blocks sending, and each send updates Last sent",
+  "verified": true
+ },
+ {
+  "case": "C204180",
+  "old": "Rate maths: last three usable pairs over the days they span (worked example)",
+  "new": "Rate example: three intervals give 97.5 a day and the due month",
+  "verified": true
+ },
+ {
+  "case": "C204181",
+  "old": "Confidence table: age of last reading × usable pairs, every cell",
+  "new": "Confidence grade for every reading age and number of visits",
+  "verified": true
+ },
+ {
+  "case": "C204182",
+  "old": "Confidence worked examples: visits and age together decide the grade",
+  "new": "Confidence examples: visits and reading age together set the grade",
+  "verified": true
+ },
+ {
+  "case": "C204183",
+  "old": "A dropped pair lowers the usable-pair count and so the confidence",
+  "new": "An ignored reading lowers the confidence grade",
+  "verified": true
+ },
+ {
+  "case": "C204184",
+  "old": "Estimates round: mileage to the nearest 100, hours to the nearest 10",
+  "new": "Estimates round to the nearest 100 mileage or 10 engine hours",
+  "verified": true
+ },
+ {
+  "case": "C204185",
+  "old": "24-month cut-off: readings older than two years give No data",
+  "new": "Readings older than two years are not used (No data)",
+  "verified": true
+ },
+ {
+  "case": "C204186",
+  "old": "Due date: the earliest candidate wins; compliance is due on its End date",
+  "new": "Due date is the earliest trigger, and certificates are due on End date",
+  "verified": true
+ },
+ {
+  "case": "C204187",
+  "old": "Next due counts from the Work done date chosen in the step, not the invoice",
+  "new": "Next due counts from the \"Work done\" date, not the invoice date",
+  "verified": true
+ },
+ {
+  "case": "C310704",
+  "old": "Mark complete on a work order records its mileage and engine hours",
+  "new": "Mark complete on a work order saves its mileage and hours as readings",
+  "verified": true
+ },
+ {
+  "case": "C310705",
+  "old": "The step after invoicing comes before the payment window",
+  "new": "\"When was the maintenance done?\" appears before the payment window",
+  "verified": true
+ },
+ {
+  "case": "C310706",
+  "old": "Closing the step after changing a date asks Discard your changes?",
+  "new": "Closing \"When was the maintenance done?\" after an edit asks to discard",
+  "verified": true
+ },
+ {
+  "case": "C310707",
+  "old": "Anyone who can invoice sees the step, with no other permission",
+  "new": "Anyone who can invoice sees \"When was the maintenance done?\"",
+  "verified": true
+ },
+ {
+  "case": "C310708",
+  "old": "The step cannot be reopened and its dates cannot be changed afterwards",
+  "new": "\"When was the maintenance done?\" cannot be reopened later",
+  "verified": true
+ },
+ {
+  "case": "C310709",
+  "old": "Past work order mileage is loaded as dated readings from the first day",
+  "new": "Past work order mileage counts as readings from release day",
+  "verified": true
+ },
+ {
+  "case": "C310710",
+  "old": "Mileage copied onto a new work order is not a reading",
+  "new": "Mileage copied onto a new work order is not counted as a reading",
+  "verified": true
+ },
+ {
+  "case": "C310711",
+  "old": "A unit with nothing dated: the email says Nothing is scheduled yet",
+  "new": "Unit with nothing scheduled: email says \"Nothing is scheduled yet\"",
+  "verified": true
+ },
+ {
+  "case": "C310712",
+  "old": "Nothing due within 91 days: the email lists the next two as Coming up",
+  "new": "Nothing due in 91 days: the email lists the next two as \"Coming up\"",
+  "verified": true
+ },
+ {
+  "case": "C310713",
+  "old": "Mark complete creates no work order and sets no maintenance origin",
+  "new": "Mark complete creates no work order and no Maintenance schedule origin",
+  "verified": true
+ },
+ {
+  "case": "C310714",
+  "old": "A user who cannot open the schedule sees its name as plain text",
+  "new": "Users who can't open the schedule see its name as plain text",
+  "verified": true
+ },
+ {
+  "case": "C310715",
+  "old": "After a reset Remove is gone; adding again re-attaches the lines still there",
+  "new": "After a reset Remove is gone, and re-adding reuses lines still there",
+  "verified": true
+ },
+ {
+  "case": "C310716",
+  "old": "Reversing an invoice undoes its resets; services are proposed again",
+  "new": "Reversing an invoice undoes its resets and asks again next invoice",
+  "verified": true
+ },
+ {
+  "case": "C310717",
+  "old": "A pending invoice voided by adding a line: services proposed again",
+  "new": "Adding a line to a pending invoice asks again at the next invoice",
+  "verified": true
+ },
+ {
+  "case": "C310718",
+  "old": "Part sales and imported work orders show no maintenance card or step",
+  "new": "Part sales and imported work orders show no Maintenance card",
+  "verified": true
+ },
+ {
+  "case": "C310719",
+  "old": "Every way of invoicing shows the step exactly once",
+  "new": "Every way of invoicing shows \"When was the maintenance done?\" once",
+  "verified": true
+ },
+ {
+  "case": "C310720",
+  "old": "Confidence changes band exactly at 30/31, 90/91, 180/181 and 365/366 days",
+  "new": "Confidence changes exactly at 30, 90, 180 and 365 days",
+  "verified": true
+ },
+ {
+  "case": "C310721",
+  "old": "Each schedule shows its home location: \"Lines from Calgary South\"",
+  "new": "Each schedule shows its home location, e.g. \"Lines from Calgary South\"",
+  "verified": true
+ },
+ {
+  "case": "C310722",
+  "old": "The Maintenance entry needs only Settings Service, not Digital Inspections",
+  "new": "Maintenance settings need only Settings Service, not Digital Inspections",
+  "verified": true
+ },
+ {
+  "case": "C310723",
+  "old": "The picker lists the home location's canned lines, with a helper",
+  "new": "The canned line picker lists the home location's lines",
+  "verified": true
+ },
+ {
+  "case": "C310724",
+  "old": "Canned lines are read only for a user without access to the home location",
+  "new": "Users without access to the home location can't edit canned lines",
+  "verified": true
+ },
+ {
+  "case": "C310725",
+  "old": "A 14-day or shorter interval drops the default before row",
+  "new": "Intervals of 14 days or less get no default \"14 days before\" row",
+  "verified": true
+ },
+ {
+  "case": "C310726",
+  "old": "A duplicate keeps the original's home location and canned lines",
+  "new": "A duplicated schedule keeps the original's home location and lines",
+  "verified": true
+ },
+ {
+  "case": "C310727",
+  "old": "The confidence meter's hover ends with the estimate disclaimer",
+  "new": "The confidence hover ends with the estimate disclaimer",
+  "verified": true
+ },
+ {
+  "case": "C310728",
+  "old": "Mark complete sits in the row menu and opens \"Mark PM-A complete\"",
+  "new": "Mark complete in the row menu opens \"Mark PM-A complete\"",
+  "verified": true
+ },
+ {
+  "case": "C310730",
+  "old": "Reset date defaults: today, or the day the lines closed",
+  "new": "Reset date defaults to today or the day the lines closed",
+  "verified": true
+ },
+ {
+  "case": "C310731",
+  "old": "Completed elsewhere asks for a Reset date and optional shop and reading",
+  "new": "Completed elsewhere needs a Reset date, shop and reading are optional",
+  "verified": true
+ },
+ {
+  "case": "C310732",
+  "old": "Mark complete on a compliance service takes the certificate",
+  "new": "Mark complete on a compliance service records the certificate",
+  "verified": true
+ },
+ {
+  "case": "C310733",
+  "old": "Mark complete resets at once; added lines wait for the invoice",
+  "new": "Mark complete resets at once, but added lines wait for the invoice",
+  "verified": true
+ },
+ {
+  "case": "C310734",
+  "old": "After Mark complete: toast with Undo, Completed row, Undo complete",
+  "new": "After Mark complete: Undo toast, Completed row and Undo complete",
+  "verified": true
+ },
+ {
+  "case": "C310735",
+  "old": "Undo complete only for the latest Mark complete",
+  "new": "Undo complete works only on the latest Mark complete",
+  "verified": true
+ },
+ {
+  "case": "C310736",
+  "old": "Mark complete on a work order records its mileage as a reading",
+  "new": "Mark complete on a work order saves its mileage as a reading",
+  "verified": true
+ },
+ {
+  "case": "C310737",
+  "old": "A completed row rests until its first reminder; Needs readings stays",
+  "new": "A completed row leaves the worklist until due soon (not Needs readings)",
+  "verified": true
+ },
+ {
+  "case": "C310738",
+  "old": "Create work order at another location adds the same work, not the lines",
+  "new": "Create work order at another location adds the same work at local rates",
+  "verified": true
+ },
+ {
+  "case": "C310740",
+  "old": "New lists show a loading state and an error with Retry",
+  "new": "New maintenance screens show loading, and an error with Retry",
+  "verified": true
+ },
+ {
+  "case": "C310741",
+  "old": "Hover cards open by keyboard and by tap, and Esc closes them",
+  "new": "Hover cards open by keyboard or tap and close with Esc",
+  "verified": true
+ },
+ {
+  "case": "C310743",
+  "old": "View-only customers user: tabs readable, every change hidden",
+  "new": "View-only customer users can read the tabs but not change anything",
+  "verified": true
+ },
+ {
+  "case": "C310744",
+  "old": "Work-order actions follow work-order and invoicing permissions",
+  "new": "Work order actions follow work order and invoicing permissions",
+  "verified": true
+ },
+ {
+  "case": "C310745",
+  "old": "Send reminder is offered when any contact has an email",
+  "new": "Send reminder is offered when any of the customer's contacts has an email",
+  "verified": true
+ }
+]

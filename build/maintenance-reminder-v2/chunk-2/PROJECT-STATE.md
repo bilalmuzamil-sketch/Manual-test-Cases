@@ -111,3 +111,6 @@ QA lead wants one.
   marked Blocked with a reason (4); audit parts say to write "audit not checked by hand" in the result comment (13);
   every case that seeds readings through Mark complete says to mark Blocked, not Failed, if seeding fails (21).
   Source lines, verbatim quotes and AUTOMATION markers unchanged (asserted per case).
+
+## 2026-10-07 — plain-language titles (QA lead)
+- 204 of 209 titles rewritten so a manual QA tester understands them; still 80 characters or less, screen labels, one check each, no semicolons. Title only; read back 204/204. List: `title-fix-2026-10-07/TITLE-CHANGES-2026-10-07.md`.
