@@ -13,7 +13,9 @@ FF = imageio_ffmpeg.get_ffmpeg_exe()
 
 
 def finish(src, start, out, width=1280, crf=28):
-    cmd = [FF, '-y', '-loglevel', 'error', '-ss', f'{max(0.0, float(start) - 0.3):.2f}', '-i', src,
+    # start 0.6 s AFTER the logged-in moment: the video timeline lags the wall clock, and a pre-roll
+    # left the sign-in page in frame 0 (SV-9828, 2026-10-07) - which Jira then used as the preview image.
+    cmd = [FF, '-y', '-loglevel', 'error', '-ss', f'{float(start) + 0.6:.2f}', '-i', src,
            '-vf', f'scale={width}:-2:flags=lanczos,fps=25', '-c:v', 'libx264', '-preset', 'medium',
            '-crf', str(crf), '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an', out]
     subprocess.run(cmd, check=True)

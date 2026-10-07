@@ -70,3 +70,9 @@ Recorded: playbook §AC.15 addendum 6 (returns screens, labels, endpoints, core 
 - **Comment 78155 edited in place at 11:50 CDT** (Rule 100 notes on the top, row 8 and the new picture): row 8 now on-screen PASSED, "Separate issue … SV-10993" paragraph removed. Pre-post gate: marker `v26.40.8-71ec2f7` unchanged, ticket REJECTED FROM TESTING read live, fingerprint scan 0 hits. Read back: panel warning first, 4 images in order 01–04, 13 table rows, no SV-10993 text. Previous text kept as `comment-as-posted-78155.txt`.
 - SV-10993 left exactly as the QA lead set it (Obsolete) — not touched.
 - Learning check: Standing Rules 102 (double confirmation) + 103 (re-open tickets before calling them outstanding); `qa-session.mjs` `confirm()`; playbook §AC.15 addendum 6 corrected; LESSONS-INDEX row; register updated with live states.
+
+## Screen recording added to 78155 — 7 Oct 2026, 12:43–13:20 CDT (QA lead: "Yes")
+- Recording: `ev/sv9828-cancel-return-recording.mp4` (3:35, 2,566,518 bytes, 1280×674, H.264), filmed on sv9828 `v26.40.8-71ec2f7`: MD668D 18.75 → Create Return 0.5 → 18.25 → Cancel Return (Yes → Are You Sure?) → 18.75. Decodes cleanly end to end; first 3 s checked — opens on Work Orders, no sign-in page.
+- Gate: build marker unchanged, ticket REJECTED FROM TESTING with no new comments, voice scan clean. Comment edited in place with dated notes (top line + "Added on 7 October 2026, 12:43 CDT").
+- Attachment **61948** (61947 was my first upload; it had the sign-in page as frame 0 and was deleted and replaced). Comment media repointed to file `3a2bdcc6…` via the v3 ADF after the same-name swap left it on the deleted `d87861f5…`.
+- Read back: panel `warning` first, 13 table rows, 5 media in order (4 pictures + video 1280×674). On the Jira page: inline player 720×379 with controls; preview frame = Work Orders page. The headless browser cannot play H.264 (stated limit); playback proven by the clean local decode.

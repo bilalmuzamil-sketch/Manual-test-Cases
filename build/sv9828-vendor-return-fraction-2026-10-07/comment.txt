@@ -2,7 +2,7 @@
 *OVERALL QA STATUS: PARTIALLY PASSED*
 {panel}
 
-_Edited on 7 October 2026, 11:50 CDT: row 8 updated and the "Separate issue" note removed - Cancel Return works; it asks to confirm twice._
+_Edited on 7 October 2026, 11:50 CDT: row 8 updated and the "Separate issue" note removed - Cancel Return works; it asks to confirm twice. Edited again at 12:43 CDT: screen recording added at the bottom._
 
 Item 1 of Chris's comment is fixed. The ticket is waiting only on item 2, the list for Support. That question is in a separate comment.
 
@@ -71,3 +71,10 @@ The core return, the path this ticket fixes: work order *S9828-17586* already ha
 # The core's stock drops by exactly 2.5. Core parts are not listed under Parts > Inventory, so this number can only be checked behind the screen.
 
 All test data is left on the branch: work orders S9828-17580 to S9828-17586, and part P550848 now has a core.
+
+h3. Screen recording
+
+_Added on 7 October 2026, 12:43 CDT._
+
+!sv9828-cancel-return-recording.mp4|width=1280,height=674,alt="sv9828-cancel-return-recording.mp4"!
+_QA branch sv9828 (build v26.40.8-71ec2f7), recorded 7 October 2026. Parts > Inventory shows MD668D at 18.75 Available. A Create Return of 0.5 takes it to 18.25 Available. Cancelling that return (three-dot menu > Cancel Return > Yes > the orange Are You Sure?) removes it from the list and puts the stock back to 18.75 Available. The caption bar at the bottom names each step and the value on screen._
