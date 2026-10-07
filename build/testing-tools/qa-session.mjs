@@ -23,14 +23,19 @@ const cookieDomain = env => env==='branch' ? '.qa.shopview.com' : '.shopview.com
 function port(dir){ return fs.readFileSync(dir+'/port.txt','utf8').trim(); }
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw='analyst1',
-                            cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true}={}){
+                            cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null}={}){
+  // record: a folder path -> the whole session is filmed (see recording.mjs: finishRecording()).
   const H = env==='prod' ? PROD : env==='staging' ? STAGING : branch(ticket);
   const b = await chromium.launch({executablePath:CHROME, args:[
     '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2']});
-  const ctx = await b.newContext({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true});
+  const ctx = await b.newContext(Object.assign({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true},
+    record ? {recordVideo:{dir:record, size:vp}} : {}));
+  // Recordings do not show the mouse: draw a pointer, a click ripple and a caption bar into every page.
+  if (record) await ctx.addInitScript(RECORD_OVERLAY);
   if (cookies) await ctx.addCookies(Object.entries(cookies).map(([name,value])=>
     ({name, value, domain:cookieDomain(env), path:'/'})));
   const p = await ctx.newPage();
+  const t0 = Date.now(); let recStart = null;
   const writes=[];
   p.on('response', r=>{ try{ const u=new URL(r.url());
     if(u.pathname.startsWith('/api') && r.request().method()!=='GET')
@@ -67,6 +72,7 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
     await p.waitForURL(u=>!/\/login/.test(u.toString()),{timeout:60000}).catch(()=>{});
   }
   await settle();
+  recStart = (Date.now()-t0)/1000;   // the film is trimmed to start here: no login screen in the recording
 
   const s = {
     browser:b, ctx, page:p, host:H, writes,
@@ -108,10 +114,38 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
     async marker(){ return p.evaluate(async base=>{ const r=await fetch(base+'/index.html',{cache:'no-store'});
         const t=await r.text(); const m=t.match(/name="app-version" content="([^"]+)"/);
         return {version:m&&m[1], lastModified:r.headers.get('last-modified'), etag:r.headers.get('etag')};},H.app); },
-    async close(){ await b.close(); },
+    // recording-friendly moves: the pointer glides (so the viewer sees where it goes) and controls are scrolled into view
+    async glideClick(tid){ await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center',inline:'center'}),tid);
+      await p.waitForTimeout(250); const b=await s.box(tid); if(!b) throw new Error('not on screen: '+tid);
+      await p.mouse.move(b.x,b.y,{steps:18}); await p.waitForTimeout(250); await p.mouse.click(b.x,b.y); return b; },
+    // point AT a value without covering it: park the pointer just left of the element
+    async pointBeside(tid){ const b=await s.box(tid); if(!b) return null; await p.mouse.move(b.bx-22,b.y,{steps:18}); return b; },
+    // show a plain-English caption on screen (it is filmed); pass '' to hide it
+    async caption(text,{hold=1800}={}){ await p.evaluate(t=>window.__qaCaption&&window.__qaCaption(t),text).catch(()=>{});
+      if(text&&hold) await p.waitForTimeout(hold); },
+    // close; when recording, returns {video, startSec} for finishRecording()
+    async close(){ const v = record ? p.video() : null; await ctx.close(); await b.close();
+      return v ? {video: await v.path(), startSec: recStart} : null; },
   };
   return s;
 }
+
+const RECORD_OVERLAY = `(()=>{ if(window.__qaOverlay) return; window.__qaOverlay=1;
+  const add=()=>{ if(!document.body) return setTimeout(add,50);
+    const c=document.createElement('div'); c.id='__qa_cursor';
+    c.style.cssText='position:fixed;left:-40px;top:-40px;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:rgba(255,40,40,.55);border:2px solid #fff;box-shadow:0 0 0 2px rgba(200,0,0,.8);z-index:2147483647;pointer-events:none;transition:transform .12s';
+    const cap=document.createElement('div'); cap.id='__qa_caption';
+    cap.style.cssText='position:fixed;left:50%;bottom:18px;transform:translateX(-50%);max-width:80%;padding:10px 18px;background:rgba(20,20,20,.86);color:#fff;font:600 26px/1.35 sans-serif;border-radius:8px;z-index:2147483647;pointer-events:none;display:none;text-align:center';
+    document.body.append(c,cap);
+    window.__qaCaption=t=>{cap.textContent=t||''; cap.style.display=t?'block':'none'; try{sessionStorage.setItem('__qaCap',t||'');}catch(e){}};
+    try{ const k=sessionStorage.getItem('__qaCap'); if(k) window.__qaCaption(k); }catch(e){}
+    addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';},true);
+    addEventListener('mousedown',e=>{c.style.transform='scale(1.8)'; const r=document.createElement('div');
+      r.style.cssText='position:fixed;left:'+e.clientX+'px;top:'+e.clientY+'px;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;border:3px solid #e00;z-index:2147483646;pointer-events:none;transition:all .6s ease-out';
+      document.body.append(r); requestAnimationFrame(()=>{r.style.width=r.style.height='70px';r.style.margin='-35px 0 0 -35px';r.style.opacity='0';});
+      setTimeout(()=>r.remove(),700);},true);
+    addEventListener('mouseup',()=>{c.style.transform='scale(1)';},true); };
+  add(); })();`;
 
 // Run independent environment work concurrently (prod BEFORE alongside branch AFTER).
 export async function parallel(tasks){ return Promise.all(tasks.map(t=>t())); }

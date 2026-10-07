@@ -104,6 +104,7 @@
 >   external account we do not have) does.**
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
+> - **EVERY QA COMMENT (PASSED / FAILED / PARTIALLY PASSED) ENDS WITH A SCREEN RECORDING of the test, live, captioned, embedded last (Standing Rule 104; method playbook §AK).**
 > - **EVERY STEP SAYS EXACTLY WHERE TO CLICK OR LOOK (Standing Rule 101): screen area + exact label, no private names ("the blue bubble"), describe small things by colour/shape/text/position, say what appears, locator picture with a close-up, walk the steps live before posting.**
 > - **EDITING SOMETHING ALREADY POSTED? (Standing Rule 100): put a dated note (date, time, timezone, what changed) right at the edited section/row.**
 > - **PO UPDATED THE SPEC + ASKED FOR A RETEST? (Standing Rule 99): first line = that check's verdict against the NEW text, quoted; update every earlier row the new text changes; never drop the spec quote.**
@@ -5346,6 +5347,32 @@ deliver the 7-tab management report.
     **RATIONALE, 2026-10-07:** my OUTSTANDING list after SV-9828 named SV-10142, SV-10642 and SV-10599 as waiting — live,
     SV-10142 was Ready for Production with Chris's sign-off (78152), SV-10642 Ready for Production, SV-10599 Rejected from
     testing after Chris's answer (78129). Ties to Standing Rules 31, 36, 48, 53, 59 and 72.
+
+104. **EVERY QA COMMENT ENDS WITH A SCREEN RECORDING OF THE TEST — PASSED, FAILED OR PARTIALLY PASSED (all projects).**
+    USER DIRECTIVE (2026-10-07, verbatim): *"Now you need to find a way to add teh screen recording at the bottom of your
+    comment with every comment you make for the QA passed/Failed/Partially passed tickets. SO that we can prove with screen
+    recording whether its really working or not working."*
+    **THE RULE:** the last section of every QA-result comment is **"Screen recording"**: one MP4 (more only if the test
+    genuinely spans separate flows), filmed **live on the environment the verdict is about**, uploaded as a real Jira
+    attachment and embedded inline (`!file.mp4|width=1280,alt="file.mp4"!`), with a one-line caption naming the environment,
+    build, date and the values seen. **PASSED** → it shows the fix working on the reporter's flow; **FAILED/PARTIALLY
+    PASSED** → it shows the failure reproducing by the written steps. It **adds to** the annotated screenshots (Rule 64);
+    it never replaces them.
+    **WHAT MAKES IT PROOF, NOT DECORATION:** real time and unedited except for trimming the login off the start (no
+    credential ever appears); a visible pointer that glides to each control; a caption per step whose numbers are **read
+    live from the screen**, never typed in; the pointer parks **beside** a value, never on it; the final frame shows the
+    result. **Before posting, the MP4 is decoded end to end and a frame grid is looked at** (Rule 81 — verify what the
+    reader gets).
+    **API-ONLY CHECKS:** the recording shows the check being run from the app's own browser session (the paste-ready console
+    script, with its output on screen) — still a screen recording of the real environment.
+    **HONEST LIMIT, STATE IT IF ASKED:** our headless browser cannot play H.264, so it can confirm Jira's player is present
+    and the file was stored, but playback itself is proven by the local decode + frame review; the reader's Chrome, Edge or
+    Safari plays it.
+    **IF A RECORDING CANNOT BE MADE** (environment down, session dead), the comment does not go out without one silently —
+    get access (Rule 22) or say plainly in the comment why there is no recording, and raise it as outstanding (Rule 36).
+    Method + tools: playbook §AK, `build/testing-tools/qa-session.mjs` (`record`, `caption`, `glideClick`, `pointBeside`,
+    `confirm`) and `build/testing-tools/finish_recording.py`; standard §11. Ties to Standing Rules 12, 13, 22, 64, 65, 68,
+    72 (the pre-post gate now checks the recording is attached, decodes and is embedded last), 73, 81, 83, 97 and 102.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

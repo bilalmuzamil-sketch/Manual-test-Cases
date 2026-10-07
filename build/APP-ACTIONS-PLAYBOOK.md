@@ -5976,3 +5976,41 @@ in-page `s.api` call** — from a blank page the fetch fails with "Failed to fet
 - **Back-end-only return endpoints (no screen):** delete a completed vendor return `POST /api/inventory/returns/delete {id}` (key is `id`); add an item `POST /api/inventory/returns/add-item {return_id, quantity, inventory_part_id, price}` (keys are snake_case; `return_id`+`quantity` alone is accepted and stores a part-less item); change an item `POST /api/inventory/returns/change-item {returnId, returnItemId, quantity}`. Completed returns: `GET /api/inventory/returns?rowsPerPage=N` (Credits tab), `GET /api/inventory/returns/{id}` (JSON in `data.content`).
 - **Production restore after a core return:** delete the vendor return (puts the core back), `work-orders/parts/delete` the part (puts the main part back — **and adds the core quantity back again**), delete the work order, then compare every stock figure with the snapshot and cycle-count any that differ.
 - **Jira search:** `/rest/api/2/search` is retired — use `GET /rest/api/3/search/jql?jql=…&fields=…`.
+
+## §AK — SCREEN RECORDING AT THE BOTTOM OF EVERY QA COMMENT (proven 2026-10-07, SV-9828 demo; Standing Rule 104)
+
+**What it is:** a real-time MP4 of the test being driven on the environment tested, with a visible red pointer, a click ripple and a plain caption bar, attached to the ticket and embedded at the bottom of the QA comment.
+
+**1. Record** — `build/testing-tools/qa-session.mjs`:
+```js
+const s = await open({env:'branch', ticket:'9828', dir:'/tmp/qa9828', cookies:C, quick:'admin',
+                      vp:{width:1900,height:1000}, record:'/tmp/qa9828/rec'});
+await s.caption('SV-9828 - QA branch sv9828, build v26.40.8-71ec2f7, 7 Oct 2026', {hold:3000});
+await s.glideClick('button_create_return');       // pointer glides, control scrolled into view, then clicked
+await s.pointBeside('stock_quantity_badge_<id>');  // points AT a value without covering it
+const r = await s.close();                         // -> {video:'<...>.webm', startSec}
+```
+- `record:<dir>` turns on Playwright `recordVideo` at the viewport size and injects the overlay (pointer + ripple + caption).
+- **Captions survive page loads** (kept in `sessionStorage`). One caption per step, in the screen's own words, ending with the observed value (*"After cancelling: 18.75 Available (the 0.5 is back)"*).
+- **Read values live and put them in the caption** — never type an expected number into a caption.
+- **Use `s.confirm()` for any confirm button** (Rule 102: ShopView asks twice).
+- Recordings don't show the real mouse, so **move the pointer with `glideClick`/`pointBeside`** — a bare `mouse.click(x,y)` teleports and the viewer can't follow.
+- Width 1900: at 1600 the Returns ⋮ column is off-screen and a click lands outside the window (hit 2026-10-07).
+
+**2. Finish** — `python3 build/testing-tools/finish_recording.py <video.webm> <startSec> <out.mp4>`
+- Trims everything before `startSec` (the login / quick-login / wake-up), so **no login screen or credential appears**.
+- H.264 + yuv420p + faststart, 1280 wide, 25 fps, CRF 28 ≈ 0.7 MB per minute. ffmpeg comes from `pip install imageio-ffmpeg` (has libx264).
+- **Verify before posting:** `ffmpeg -v error -i out.mp4 -f null -` prints nothing (clean decode); sample a frame every 8 s into a grid and **look at it** — captions present, pointer not covering the evidenced value, final frame shows the result.
+
+**3. Attach + embed (Jira)** — upload like an image (`POST /rest/api/3/issue/KEY/attachments`, 1 GB limit), then at the bottom of the comment:
+```
+h3. Screen recording
+!sv9828-cancel-return-recording.mp4|width=1280,alt="sv9828-cancel-return-recording.mp4"!
+_What it shows, in one line: environment, build, date, the values seen._
+```
+This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as an ADF `media` node `type:file` and renders an inline `<video>` player (`data-testid="media-video-element"`).
+
+**4. Read back** — the comment's ADF has the media node, the attachment is `video/mp4` with the uploaded byte size.
+**Honest limit of the read-back:** Playwright's Chromium has **no H.264** (`canPlayType('video/mp4; codecs="avc1.42E01E"')` = `""`), so a headless check can see Jira's player but **cannot play it**. Playback proof = the clean local decode + the frame grid; the reader's Chrome/Edge/Safari plays H.264.
+
+**Traps hit while building this:** `pgrep -f`/`pkill -f` on a pattern that appears in your own command line matches your own shell (an `until ! pgrep -f "node x.mjs"` loop never ends; `pkill -f "until ! pgrep"` killed the shell — §U.0b). Wait for a background run by its output file instead.

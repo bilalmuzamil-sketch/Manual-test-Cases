@@ -213,3 +213,10 @@ Every step = **where on the screen** + **the exact on-screen label** + **one act
 - Bad: *"Go to Work Orders, search S10599-17581 and hover the blue bubble on its status."* (no screen area; "blue bubble" is my own name; no click path; nothing says what appears).
 - Small or hidden things (hover boxes, badges, icons, collapsed rows, menu items) get a **locator picture**: numbered boxes on every spot the steps mention, plus an **enlarged close-up**. Canonical: SV-10599 comment 78113, `05-where-is-the-blue-circle-hd.png`.
 - **Walk the steps live, exactly as written, before posting**, and fix any label that differs.
+
+## 11. Screen recording at the bottom of every QA comment (QA lead 2026-10-07, Standing Rule 104)
+Every QA comment — **PASSED, FAILED or PARTIALLY PASSED** — ends with a **Screen recording** section: one real-time MP4 of the test being driven on the environment tested, with a visible pointer and plain captions naming each step and the value seen. It goes **last**, after the table, the pictures and the steps; the annotated screenshots are still required (Rule 64) — the recording adds proof, it does not replace them.
+- **PASSED:** the recording shows the fix working (the reporter's flow, the key values).
+- **FAILED / PARTIALLY PASSED:** the recording shows the failure reproducing, following the written steps, plus the parts that passed where they fit in the same run.
+- Caption line under it: environment, build, date, and what values are seen. No login screen, no credentials (trimmed).
+- Method: playbook §AK.
