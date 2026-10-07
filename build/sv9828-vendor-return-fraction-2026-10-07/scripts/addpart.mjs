@@ -1,0 +1,18 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const label=process.argv[2]; const qty=process.argv[3]||'2.5'; const W=JSON.parse(fs.readFileSync(`wo-${label}.json`));
+const s=await ob({dpr:2}); const p=s.page;
+await s.go(`/workorders/${W.wo}/lines`); await p.waitForTimeout(2500);
+const ids=async(re)=>p.evaluate(r=>[...document.querySelectorAll('[data-test-id]')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.getAttribute('data-test-id')).filter(x=>new RegExp(r).test(x)),re);
+let b=await s.box('button_add_part'); console.log('add part btn',!!b); await p.mouse.click(b.x,b.y); await p.waitForTimeout(1500);
+b=await s.box('select_inline_part_number'); await p.mouse.click(b.x,b.y); await p.keyboard.type('P550848',{delay:70}); await p.waitForTimeout(3000);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].filter(e=>e.getBoundingClientRect().width>0).map(e=>{const r=e.getBoundingClientRect();return {t:e.innerText.replace(/\n/g,' | ').slice(0,140),x:r.x+r.width/2,y:r.y+r.height/2}}));
+console.log('options',j(opts.map(o=>o.t),600)); const o=opts.find(x=>/P550848/.test(x.t)); await p.mouse.click(o.x,o.y); await p.waitForTimeout(2000);
+const q='input_inline_part_quantity'; const qb=await s.box(q); await p.mouse.click(qb.x,qb.y); await p.keyboard.press('Control+A'); await p.keyboard.type(qty,{delay:60}); await p.waitForTimeout(500);
+await p.screenshot({path:`raw/${label}-1-inline-add.png`});
+const sv=await s.box('button_save_inline_part'); await p.mouse.click(sv.x,sv.y); await p.waitForTimeout(4000);
+console.log(s.writes.filter(w=>!/recent-entities/.test(w)).slice(-4).join('\n').slice(0,700));
+await p.evaluate(()=>document.querySelectorAll('.q-notification').forEach(n=>n.remove()));
+await p.screenshot({path:`raw/${label}-2-after-add.png`});
+console.log('core-ish ids',j(await ids('core|ok|Ok'),800));
+const L=await s.api('/api/work-orders/lines/'+W.wo); for(const l of L.json.data.collection) for(const pr of (l.part_requests||[])) console.log('PR',pr.id,pr.part_number,pr.description?.slice(0,40),'qty',pr.quantity,'status',pr.status,'core?',pr.is_core??pr.core??'',pr.core_status??'');
+await s.close();

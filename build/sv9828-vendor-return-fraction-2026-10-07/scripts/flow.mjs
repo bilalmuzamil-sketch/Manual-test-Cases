@@ -1,0 +1,31 @@
+// node flow.mjs <label> <qty> [receivedQty]  — full on-screen core-return flow for P550848
+import {ob,j} from './lib.mjs'; import fs from 'fs'; import {execSync} from 'child_process';
+const [label,qty,recv]=process.argv.slice(2);
+execSync(`node seed.mjs ${label}`,{stdio:'ignore'}); const W=JSON.parse(fs.readFileSync(`wo-${label}.json`));
+const s=await ob({dpr:2}); const p=s.page; const CORE='b919e7ca-395c-44aa-828d-43cd362c97ba';
+const coreQ=async()=>(await s.api('/api/inventory/parts/'+CORE)).json.data.part.quantity;
+const num=(await s.api('/api/work-orders/view/'+W.wo)).json.data.work_order; 
+await s.go(`/workorders/${W.wo}/lines`); await p.waitForTimeout(2500);
+const disp=await p.evaluate(()=>{const e=[...document.querySelectorAll('*')].find(x=>x.childElementCount===0&&/^S9828-\d+$/.test((x.innerText||'').trim()));return e?.innerText.trim();});
+let b=await s.box('button_add_part'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(1200);
+b=await s.box('select_inline_part_number'); await p.mouse.click(b.x,b.y); await p.keyboard.type('P550848',{delay:70}); await p.waitForTimeout(3000);
+const o=await p.evaluate(()=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>/P550848 \| Inventory Qty/.test(x.innerText.replace(/\n/g,' | ')));const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};}); await p.mouse.click(o.x,o.y); await p.waitForTimeout(1800);
+b=await s.box('input_inline_part_quantity'); await p.mouse.click(b.x,b.y); await p.keyboard.press('Control+A'); await p.keyboard.type(qty,{delay:60});
+b=await s.box('button_save_inline_part'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3500); await p.keyboard.press('Escape');
+await s.go(`/workorders/${W.wo}/lines`); await p.waitForTimeout(2500);
+const pk=await p.evaluate(()=>{const b=[...document.querySelectorAll('[data-test-id="button_part_request_action"]')].find(e=>/Pick/.test(e.innerText)&&e.getBoundingClientRect().width>0);const r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};}); await p.mouse.click(pk.x,pk.y); await p.waitForTimeout(3000);
+const ok=await p.evaluate(()=>{const b=[...document.querySelectorAll('[data-test-id^="button_ok_"]')].find(e=>e.getBoundingClientRect().width>0);const r=b.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};}); await p.mouse.click(ok.x,ok.y); await p.waitForTimeout(3000);
+await p.screenshot({path:`raw/${label}-wo.png`});
+const before=await coreQ();
+await s.go('/parts/returns'); await p.waitForTimeout(3000);
+const r=await p.evaluate(d=>{const row=[...document.querySelectorAll('tr')].find(r=>r.innerText.includes(d)&&/Core for/.test(r.innerText)); const c=row.querySelector('[data-test-id^="return_request_checkbox_"]').getBoundingClientRect(); return {x:c.x+c.width/2,y:c.y+c.height/2,t:row.innerText.replace(/\s+/g,' ').slice(0,160)};},disp);
+console.log('return row',r.t); await p.mouse.click(r.x,r.y); await p.waitForTimeout(1200);
+b=await s.box('button_receive_credit'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3500);
+b=await s.box('input_credit_memo_number'); await p.mouse.click(b.x,b.y); await p.keyboard.type('ZZ'+label,{delay:40});
+if(recv){ b=await s.box('input_received_quantity_0'); await p.mouse.click(b.x,b.y); await p.keyboard.press('Control+A'); await p.keyboard.type(recv,{delay:60}); await p.waitForTimeout(600); }
+const fq=await p.evaluate(()=>document.querySelector('[data-test-id="input_received_quantity_0"] input, input[data-test-id="input_received_quantity_0"]')?.value);
+await p.screenshot({path:`raw/${label}-confirm.png`});
+b=await s.box('button_post_credit'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(5000);
+const w=s.writes.filter(x=>/returns\/create/.test(x)).map(x=>x.slice(0,60)); const after=await coreQ();
+const res={label,wo:disp,qty,received:fq,before,after,drop:+(before-after).toFixed(4),post:w};
+console.log(j(res,500)); fs.writeFileSync(`result-${label}.json`,JSON.stringify(res)); await s.close();

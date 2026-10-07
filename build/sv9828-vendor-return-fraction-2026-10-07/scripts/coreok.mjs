@@ -1,0 +1,15 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const label=process.argv[2]; const W=JSON.parse(fs.readFileSync(`wo-${label}.json`));
+const s=await ob({dpr:2}); const p=s.page; const id='b919e7ca-395c-44aa-828d-43cd362c97ba';
+const coreQ=async()=>(await s.api('/api/inventory/parts/'+id)).json.data.part.quantity;
+const mainQ=async()=>(await s.api('/api/inventory/parts?rowsPerPage=50&search=P550848')).json.data.collection.find(r=>r.part_number==='P550848').quantity;
+console.log('after pick: main',await mainQ(),'core',await coreQ());
+await s.go(`/workorders/${W.wo}/lines`); await p.waitForTimeout(2500);
+const ok=await p.evaluate(()=>{const b=[...document.querySelectorAll('button,.q-btn')].find(e=>(e.innerText||'').trim()==='Ok'&&e.getBoundingClientRect().width>0); if(!b) return null; const r=b.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2,tid:b.getAttribute('data-test-id')};});
+console.log('Ok button',j(ok)); await p.mouse.click(ok.x,ok.y); await p.waitForTimeout(3000);
+const dlg=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.replace(/\n/g,' | ').slice(0,300)));
+console.log('dialog',j(dlg,400));
+await p.screenshot({path:`raw/${label}-4-core-ok.png`});
+console.log(s.writes.filter(w=>!/recent-entities|session|quick-login/.test(w)).join('\n').slice(0,600));
+console.log('after Ok: main',await mainQ(),'core',await coreQ());
+await s.close();

@@ -1,0 +1,13 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const label=process.argv[2]; const W=JSON.parse(fs.readFileSync(`wo-${label}.json`));
+const s=await ob({dpr:2}); const p=s.page; const id='b919e7ca-395c-44aa-828d-43cd362c97ba';
+const coreQ=async()=>(await s.api('/api/inventory/parts/'+id)).json.data.part.quantity;
+const mainQ=async()=>(await s.api('/api/inventory/parts?rowsPerPage=50&search=P550848')).json.data.collection.find(r=>r.part_number==='P550848').quantity;
+console.log('before pick: main',await mainQ(),'core',await coreQ());
+await s.go(`/workorders/${W.wo}/lines`); await p.waitForTimeout(2500);
+const c=await p.evaluate(()=>{const b=[...document.querySelectorAll('[data-test-id="button_part_request_action"]')].find(e=>/Pick/.test(e.innerText)&&e.getBoundingClientRect().width>0); if(!b) return null; const r=b.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};});
+await p.mouse.click(c.x,c.y); await p.waitForTimeout(3000);
+const dlg=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id], .q-dialog button')].filter(e=>e.getBoundingClientRect().width>0).map(e=>(e.getAttribute('data-test-id')||'')+'|'+(e.innerText||'').trim().slice(0,30)));
+console.log('dialog',j(dlg,600)); await p.screenshot({path:`raw/${label}-3-pick.png`});
+console.log(s.writes.filter(w=>!/recent-entities|session/.test(w)).slice(-3).join('\n').slice(0,500));
+await s.close();

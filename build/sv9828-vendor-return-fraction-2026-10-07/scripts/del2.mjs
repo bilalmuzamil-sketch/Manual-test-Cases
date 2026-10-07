@@ -1,0 +1,11 @@
+import {ob,j} from './lib.mjs';
+const pn=process.argv[2]||'MD668D'; const s=await ob({dpr:2}); const p=s.page;
+await s.go('/parts/returns'); await p.waitForTimeout(3000);
+const m=await p.evaluate(pn=>{const row=[...document.querySelectorAll('tr')].find(r=>r.innerText.includes(pn)&&/Manual/.test(r.innerText)); const b=row.querySelector('[data-test-id^="button_manual_return_actions_"]'); const r=b.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};},pn);
+await p.mouse.click(m.x,m.y); await p.waitForTimeout(1200);
+const c=await s.box('menu_item_cancel_return'); await p.mouse.click(c.x,c.y); await p.waitForTimeout(2500);
+await p.screenshot({path:'raw/del-dialog.png'});
+await p.locator('.q-dialog button',{hasText:/^\s*Yes\s*$/}).first().click({timeout:10000}); await p.waitForTimeout(4500);
+console.log(s.writes.filter(w=>!/recent-entities|session|quick-login/.test(w)).join('\n').slice(0,500));
+console.log('rows left',j(await p.evaluate(pn=>[...document.querySelectorAll('tr')].filter(r=>r.innerText.includes(pn)).length,pn)));
+await s.close();

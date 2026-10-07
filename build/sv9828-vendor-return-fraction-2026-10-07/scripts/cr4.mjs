@@ -1,0 +1,17 @@
+import {ob,j} from './lib.mjs';
+const qty=process.argv[2]||'2.5'; const tag=process.argv[3]||'ctrl'; const s=await ob({dpr:2}); const p=s.page;
+const pickOpt=async(re)=>{ const o=await p.evaluate(r=>{const e=[...document.querySelectorAll('.q-menu .q-item')].filter(x=>x.getBoundingClientRect().width>0).find(x=>new RegExp(r).test(x.innerText.replace(/\n/g,' | '))); if(!e) return null; const b=e.getBoundingClientRect(); return {x:b.x+b.width/2,y:b.y+b.height/2,t:e.innerText.replace(/\n/g,' | ').slice(0,120)};},re); if(o) await p.mouse.click(o.x,o.y); return o; };
+await s.go('/parts/create-return'); await p.waitForTimeout(3000);
+let b=await s.box('select_vendor'); await p.mouse.click(b.x,b.y); await p.keyboard.type(process.argv[4]||'Hester',{delay:60}); await p.waitForTimeout(2500); console.log('vendor',j(await pickOpt(process.argv[4]||'Hester')));
+await p.waitForTimeout(1500);
+b=await s.box('create_return_part_select'); await p.mouse.click(b.x,b.y); await p.keyboard.type(process.argv[5]||'P550848',{delay:60}); await p.waitForTimeout(3000);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].filter(x=>x.getBoundingClientRect().width>0).map(x=>x.innerText.replace(/\n/g,' | ').slice(0,120))); console.log('part options',j(opts,500));
+console.log('part',j(await pickOpt((process.argv[5]||'P550848')+' \| Inventory')));
+await p.waitForTimeout(1500);
+console.log('ids',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>e.getBoundingClientRect().width>0&&/return|part|qty|quant/i.test(e.getAttribute('data-test-id'))).map(e=>{const i=e.querySelector('input')||(e.tagName==='INPUT'?e:null);return e.getAttribute('data-test-id')+(i?'=['+i.value+']':'')}))));
+b=await s.box('input_return_qty_0_0'); await p.mouse.click(b.x,b.y); await p.keyboard.press('Control+A'); await p.keyboard.type(qty,{delay:60});
+const vals=await p.evaluate(()=>Object.fromEntries(['input_manual_return_part_description','input_return_qty_0_0','input_manual_return_part_price'].map(t=>[t,(document.querySelector(`[data-test-id="${t}"] input, input[data-test-id="${t}"]`)||{}).value])));
+console.log('fields',j(vals)); await p.screenshot({path:`raw/${tag}-create-return.png`});
+b=await s.box('button_save_manual_return'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(5000);
+console.log('url',p.url()); console.log(s.writes.filter(w=>/returns/.test(w)).join('\n').slice(0,700));
+await s.close();

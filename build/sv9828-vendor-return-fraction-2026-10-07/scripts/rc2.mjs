@@ -1,0 +1,10 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:2}); const p=s.page;
+await s.go('/parts/returns'); await p.waitForTimeout(3000);
+const r=await p.evaluate(()=>{const row=[...document.querySelectorAll('tr')].find(r=>/P550848/.test(r.innerText)); const c=row.querySelector('[data-test-id^="return_request_checkbox_"]').getBoundingClientRect(); return {x:c.x+c.width/2,y:c.y+c.height/2};});
+await p.mouse.click(r.x,r.y); await p.waitForTimeout(1200);
+const b=await s.box('button_receive_credit'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3500);
+console.log('url',p.url());
+const f=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].filter(e=>e.getBoundingClientRect().width>0).map(e=>{const i=e.querySelector('input')||(e.tagName==='INPUT'?e:null); return e.getAttribute('data-test-id')+'|'+(e.innerText||'').trim().replace(/\n/g,' ').slice(0,40)+(i?' [value='+i.value+']':'');}));
+console.log(f.filter(x=>!/^parts_nav|^parts_left|^profile|^header|^nav/.test(x)).join('\n').slice(0,2500));
+await p.screenshot({path:'raw/A-6-receive-credit.png'}); await s.close();

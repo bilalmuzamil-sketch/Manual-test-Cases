@@ -1,0 +1,12 @@
+import {ob,j} from './lib.mjs';
+const pn=process.argv[2]||'MD668D'; const s=await ob({dpr:2}); const p=s.page;
+await s.go('/parts/returns'); await p.waitForTimeout(3000);
+const m=await p.evaluate(pn=>{const row=[...document.querySelectorAll('tr')].find(r=>r.innerText.includes(pn)&&/Manual/.test(r.innerText)); const b=row.querySelector('[data-test-id^="button_manual_return_actions_"]'); const r=b.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};},pn);
+await p.mouse.click(m.x,m.y); await p.waitForTimeout(1200);
+const c=await s.box('menu_item_cancel_return'); await p.mouse.click(c.x,c.y); await p.waitForTimeout(2500);
+await p.screenshot({path:'raw/del-dialog.png'}); const all=[]; p.on('request',r=>all.push('REQ '+r.method()+' '+r.url().replace(/https:\/\/[^/]+/,'')+' '+(r.postData()||'').slice(0,120))); p.on('requestfailed',r=>all.push('FAIL '+r.url()+' '+r.failure()?.errorText)); p.on('response',r=>{ if(/\/api\//.test(r.url())) all.push('RES '+r.status()+' '+r.url().replace(/https:\/\/[^/]+/,'')); }); p.on('console',m=>{ if(m.type()==='error') all.push('CONSOLE '+m.text().slice(0,200)); });
+const yb=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button')].map(b=>({t:b.innerText.trim(),tid:b.getAttribute('data-test-id'),dis:b.disabled})) ); console.log('dialog buttons',JSON.stringify(yb));
+const yb2=await s.box('button_remove_return_positive_answer'); console.log('yes box',JSON.stringify(yb2)); await p.mouse.move(yb2.x,yb2.y); await p.waitForTimeout(400); await p.mouse.click(yb2.x,yb2.y); await p.waitForTimeout(8000); console.log('dialog still open',await p.evaluate(()=>!!document.querySelector('[data-test-id="button_remove_return_positive_answer"]')));
+console.log(all.filter(x=>!/sentry|\.js|\.css|fonts|png|svg/.test(x)).join('\n').slice(0,1500)); console.log(s.writes.filter(w=>!/recent-entities|session|quick-login/.test(w)).join('\n').slice(0,500));
+console.log('rows left',j(await p.evaluate(pn=>[...document.querySelectorAll('tr')].filter(r=>r.innerText.includes(pn)).length,pn)));
+await s.close();
