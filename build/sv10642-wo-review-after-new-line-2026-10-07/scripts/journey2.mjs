@@ -1,0 +1,24 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const {wo}=JSON.parse(fs.readFileSync('wo-N.json'));
+const s=await ob({dpr:2}); const p=s.page; const G={};
+const geo=async(name)=>{ await p.waitForTimeout(800); G[name]=await p.evaluate(()=>{const g=t=>{const e=document.querySelector(`[data-test-id="${t}"]`);if(!e)return null;const r=e.getBoundingClientRect();return [r.x,r.y,r.width,r.height].map(Math.round);};
+  const lines=[...document.querySelectorAll('[data-test-id^="badge_line_status_"]')].map(e=>{const r=e.getBoundingClientRect();return {t:e.innerText.trim(),g:[r.x,r.y,r.width,r.height].map(Math.round)};});
+  const btn=[...document.querySelectorAll('button')].filter(b=>b.getBoundingClientRect().width>0&&/^(Approve|Decline|Complete|Mark Reviewed|New Line)$/.test(b.innerText.trim())).map(b=>{const r=b.getBoundingClientRect();return {t:b.innerText.trim(),g:[r.x,r.y,r.width,r.height].map(Math.round)};});
+  return {badge:g('badge_wo_status'),badgeText:document.querySelector('[data-test-id="badge_wo_status"]')?.innerText.trim(),num:document.querySelector('[data-test-id="text_wo_number"]')?.innerText.trim(),lines,btn};});
+  await s.shot('J2-'+name,'shots'); console.log(name,G[name].badgeText,j(G[name].lines.map(l=>l.t))); };
+const click=async(re)=>{const c=await p.evaluate(src=>{const re=new RegExp(src);const e=[...document.querySelectorAll('button')].find(b=>re.test(b.innerText.trim())&&b.getBoundingClientRect().width>0);const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};},re.source); await p.mouse.click(c.x,c.y); await p.waitForTimeout(2500); await s.go(`/workorders/${wo}/lines`);};
+await s.go(`/workorders/${wo}/lines`); await geo('1-review');
+let b=await s.box('button_new_line'); await p.mouse.click(b.x,b.y); await s.waitFor('select_line_canned_line');
+b=await s.box('select_line_canned_line'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(800); await p.keyboard.type('Battery service',{delay:40}); await p.waitForTimeout(1800);
+const o=await p.evaluate(()=>{const e=document.querySelector('.q-menu .q-item');const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};}); await p.mouse.click(o.x,o.y); await p.waitForTimeout(1200);
+G.dialog=await p.evaluate(()=>{const e=document.querySelector('[data-test-id="checkbox_line_approved"]');const r=e.getBoundingClientRect();const d=document.querySelector('[data-test-id="dialog_line"]')||document.querySelector('.q-dialog .q-card');const q=d.getBoundingClientRect();return {chk:[r.x,r.y,r.width,r.height].map(Math.round),dlg:[q.x,q.y,q.width,q.height].map(Math.round),checked:e.getAttribute('aria-checked')};});
+await s.shot('J2-2-dialog','shots');
+b=await s.box('button_save_close'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3500); await s.go(`/workorders/${wo}/lines`); await geo('3-after-add');
+await click(/^Approve$/); await geo('4-approved');
+const ln=G['4-approved'].lines; // story then complete
+const lid=(await s.api('/api/work-orders/lines/'+wo)).json.data.collection.find(l=>l.status==='authorized').line_id;
+await s.api('/api/work-orders/lines/change-story',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({line_id:lid,tech_story:'ZZAUTOTEST SV-10642 new line done',work_order_id:wo})});
+await s.go(`/workorders/${wo}/lines`); await click(/^Complete$/); await geo('5-completed-review');
+await click(/^Mark Reviewed$/); await geo('6-complete');
+G.marker=await s.marker(); fs.writeFileSync('journey2-geo.json',JSON.stringify(G)); console.log(j(G.marker));
+await s.close();

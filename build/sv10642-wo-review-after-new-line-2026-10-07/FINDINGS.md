@@ -51,3 +51,7 @@ The PR also routes part-sale work orders through the new rule. Part sales on scr
 
 ## Environment changes
 Branch: ZZAUTOTEST work orders S10642-17580…17590 left (per-ticket branch, no clean-up). Production: see clean-up section.
+
+## Production clean-up (restore-after)
+`requireReview` restored to **false** at ~10:00Z and read back: **0 fields differ** from the original settings object. Work order **S2-960** kept for now (status Review, one line Needs Approval) so the QA lead can see the stuck state; delete it after (`change-status` → estimate, then `work-orders/delete`). Session location was switched to Trucks Hill 2 (session-scoped).
+Production evidence: `ev/raw/P3x2-still-review.png`, `ev/raw/P4x2-error.png` (toast *"Cannot complete work order with incomplete lines. Please try to resolve this."*, `change-status` 400), build `v26.40.8-1e8e914`.
