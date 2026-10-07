@@ -3141,9 +3141,8 @@ Possible deviation for the build verification session: the Sales and Service Adv
 Tester data: At Risk cases need customers last invoiced months ago (invoices cannot be back-dated by hand) — cases use existing QA data with a fallback; a test location is created once by the tester and reused (locations cannot be deleted).
 Rule 65: content changed in 5 cases flagged Automated (C88594, C88609, C88612, C88617, C88623) — every check kept, preconditions/steps made manual. Note for Vladimir: `dashboards/full-update-2026-10-07/FOR-VLADIMIR-AUTOMATED-CASES-2026-10-07.md` — **QA lead 2026-10-07: not needed this time.**
 
-**Run 525 sync (Rule 123) — OPEN, needs the QA lead.** QA lead 2026-10-07: "add the new cases". The union update of run
-[525](https://shopview.testrail.io/index.php?/runs/view/525) (65 tests now; add the 36 new cases C351704–C351739, keep all 65) was **blocked by this
-session's permission check** (writes to external systems) — nothing was written. He can add them himself in TestRail
-(Run 525 > Edit > Select Cases > tick the 36 new cases) or allow TestRail run writes for this session.
-Other people's Dashboard cases (not edited; Rule 123 asks first): C137997, C137998, C137999 (Vladimir Tomovic,
+**Run 525 sync (Rule 123) — DONE 2026-10-07** (QA lead: "You are allowed"). Run
+[525](https://shopview.testrail.io/index.php?/runs/view/525): 65 → 101 tests, the 36 new cases C351704–C351739 added, all 65 earlier tests kept
+(read back; `dashboards/full-update-2026-10-07/applied/run525-sync.json`).
+Other people's Dashboard cases — QA lead 2026-10-07: "Leave them" (not edited): C137997, C137998, C137999 (Vladimir Tomovic,
 2026-09-28) and C327128 (Vladimir Tomovic, 2026-10-06).
