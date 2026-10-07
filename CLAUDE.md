@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112 and 113** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–123** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -53,6 +53,12 @@ These are stated here **in full** because a session that gets only this far must
   it works. Report results, not why things were hard. Hand back only what truly needs the QA lead (a credential he
   holds, his decision, a control that blocks me) in one line with the fastest fix, and keep working meanwhile.
   Never get around a safety or permission control.
+- **🔴 NEVER WORK IN DELTA MODE (122).** Every update is a full pass: every case in the suite rewritten to the
+  current standard and made runnable by a manual tester, the whole design driven again, coverage proven against every
+  source in full — not only the cases the change touches.
+- **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
+  same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
+  who created each and when, and ask permission. No edit until he says yes.
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
@@ -442,6 +448,13 @@ chunks" navigation), every clickable clicked and every hover hovered, exposed co
 
 **🔴 Rule 121 (always unblock yourself — whatever it takes; no excuses)** was ordered by the QA lead
 **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 120.
+
+**🔴 Rule 122 (never work in DELTA mode)** was ordered by the QA lead **2026-10-07** (PERMANENT) and lives at the
+end of `build/rules/RULES-61-96.md`, after 121. Every update rewrites every case in full, drives the whole design and
+makes every case runnable by a manual tester.
+
+**🔴 Rule 123 (keep test runs in step with the cases; ask before editing anyone else's cases)** was ordered by the QA
+lead **2026-10-07** and lives at the end of `build/rules/RULES-61-96.md`, after 122.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is

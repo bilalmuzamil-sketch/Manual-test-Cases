@@ -2802,3 +2802,36 @@ and give it whatever it takes to unblock you."*
    authorized). Unblocking means finding a legitimate path, never bypassing a control.
 5. Ties to Rules 68 (a blocker must be proved, and blocks only what it blocks), 74 (seed data and log in as needed),
    119 (nothing skipped) and 120 (drive the whole design).
+
+## 122 · NEVER WORK IN DELTA MODE — EVERY UPDATE IS A FULL PASS (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-07: *"never do anything in DELTA mode, you fully drive the design and create/edit the
+test cases as needed to make them runnable for the manual QA tester."* Recorded as PERMANENT on his "Yes", 2026-10-07.
+
+1. **An update is never limited to what changed.** When a source changes (new spec version, PO decision, new design),
+   every case in the suite is re-read and rewritten in full to the current standard (Rules 113, 114, 116, 117), not
+   only the cases the change touches.
+2. **The whole design is driven again** (Rule 120), every board and every clickable, not only the new boards.
+3. **Every case is made runnable by a manual tester** (Rule 114): real click-paths, example values, one action per
+   step, observations the tester can see. Cases are created or edited as needed to get there.
+4. **Coverage is proven against every source in full** (Rules 115, 119): every requirement of the current spec
+   version is quoted by a case, and every out-of-date quote is replaced.
+5. Worked example: the Dashboard v1 full update of 2026-10-07 (`build/dashboards/full-update-2026-10-07/`):
+   61 cases rewritten, 36 added, 146/146 requirements quoted, 437/437 design elements driven.
+
+## 123 · KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS; ASK BEFORE EDITING ANYONE ELSE'S CASES (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-07: *"add the new cases and save it as a rule to ALWAYS add/update as needed unless
+those cases are created by someone else, if those case are created by someone else then you will give me the list and
+links to access those test cases and will tell you that who has created them and when and then you will ask for my
+permission if I want to Edit those test cases."*
+
+1. **Always add and update as needed.** Whenever we create or change cases, the project's test run is brought into
+   step in the same pass: new cases are added, and nothing already in the run is dropped (union only, Rule 34 — a
+   partial `case_ids` list deletes tests and their results). This does not wait for a separate ask, whoever created
+   the run.
+2. **Cases created by someone else are not edited without his permission.** Before editing any case another person
+   created, I give the QA lead the list, each with its C-id and link, who created it and when (from TestRail's
+   `created_by` / `created_on`), and ask whether he wants those cases edited. No edit until he says yes, per ask
+   (Rules 38, 44).
+3. Ties to Rules 34 (union-only run sync), 38 (foreign cases), 47 (run scope) and 71 (Automated cases).

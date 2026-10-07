@@ -17,7 +17,9 @@ Link: https://shopview.testrail.io/index.php?/suites/view/1&group_id=12166
   board row 15) · 12 HOLD not yet build-verified · 1 HOLD not manually testable (C88631).
 - **Access:** the Reports permission only (S1-R6) — there is no "Dashboard feature" switch any more.
 - **Build verification is the build verification session's job (L7).** Nothing in this update was build-verified.
-- **Run 525 is Vladimir's** — the 36 new cases are not in it; not touched.
+- **Run 525:** QA lead ordered the 36 new cases added (Rule 123). The write was blocked by the session's permission
+  check, so they are NOT in it yet — see the register.
+- **PO questions D-1..D-10** (register) go out AFTER build verification.
 
 ## What this is
 Dashboard v1 (epic **SV-490**) — one fixed, read-only manager dashboard: six tiles (4 KPI: Revenue,
