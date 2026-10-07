@@ -57,7 +57,16 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-07, ~15:00 UTC. **SV-10142 POSTED: PARTIALLY PASSED (comment 78144), 14 of 14 testable checks passed on sv10142 `v26.40.8-a32d41c`; waiting only on the customer portal. Asks in 78145.**
+## ⚠️ NEWEST — 2026-10-07, ~16:25 UTC. **SV-9828 POSTED: PARTIALLY PASSED (comment 78155) — item 1 fixed (10 of 10 checks on sv9828 `v26.40.8-71ec2f7`); waiting on item 2. New ticket SV-10993 filed for the dead Cancel Return button.**
+
+**QA lead's rulings (7 Oct):** *"Partially passed, item 2"* · Cancel Return *"New ticket"* · technical section *"No"*.
+
+| # | What I need | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| 1 | The list of parts left overstated by the old single-item-return bug, sent to Support (Chris 77578 item 2) | Developer (parth fadadu), asked in 78156 | SV-9828 fully passed | 2026-10-07 |
+| 2 | A fix for SV-10993 (Cancel Return on a manual return does nothing — production too; looks like a return of SV-9498) | Development (unassigned, Medium) | Shops cannot cancel a wrong manual return; its stock stays deducted | 2026-10-07 |
+
+## ⚠️ PREVIOUS — 2026-10-07, ~15:00 UTC. **SV-10142 POSTED: PARTIALLY PASSED (comment 78144), 14 of 14 testable checks passed on sv10142 `v26.40.8-a32d41c`; waiting only on the customer portal. Asks in 78145.**
 
 **QA lead's rulings (7 Oct):** *"Partially passed, portal"* · portal *"Ask stefan to enable POrtal on the branch to testing the part {{mention what is blocked on portal access}}"* · technical section *"No"* · spec note *"Yes, ask Chris"* · *"1. Go ahead"*.
 

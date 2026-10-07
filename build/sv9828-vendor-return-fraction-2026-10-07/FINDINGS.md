@@ -40,3 +40,24 @@ Manual return cancelled via endpoint (ZZT 4.5 → 7); vendor credit **ZZ9828PROD
 
 ## Branch state left
 P550848 now has a core (b919e7ca…); stock values moved by the tests; work orders S9828-17580…17585; credits ZZB–ZZD remain (ZZE deleted). Per-ticket branch, no clean-up.
+
+## QA lead's rulings (7 Oct)
+*"Partially passed, item 2 (Recommended)"* · Cancel Return: *"New ticket (Recommended)"* · technical section *"No"* · side question answered: Rule 88 (UI ↔ API) confirmed.
+
+## Cancel Return ticket — SV-10993 (filed)
+Pre-ticket check: standard read; Jira searched on the symptom (SV-9498 Done, QA-passed by us 10 Sep; SV-10837 OBSOLETE part-sale; no open duplicate); reproduced with **brand-new returns three times on screen** (MD668D 1.00 / 2.00 / 0.50: stock 20→19 stays 19, 19→17 stays 17, 17→16.5 stays 16.5) plus once on production (ZZT-FIB-1002 7→4.5 stays 4.5). After **Yes** the page sends three reports to the error tracker and no cancel request — the cancel endpoint itself works when called directly (+2.5 exact). Steps walked live (top **Parts** → left **Returns** → ⋮ → **Cancel Return** → **Yes**).
+**[SV-10993](https://shopview.atlassian.net/browse/SV-10993)** "Parts > Returns: Cancel Return on a manual return does nothing" — Bug · Medium · Product Area Parts (copied from SV-9828) · no parent (SV-9828 has none) · Relates SV-9828 + SV-9498 · 3 images (61926–61928). Read back: media `file` ×3 at 1630×322 / 688×421 / 1630×496, table 5 rows, list numbering continuous (images sit inside their steps), 0 jargon hits.
+
+## Pre-post gate (Rule 72, with today's amendment) — ~16:20Z
+Front-end marker `v26.40.8-71ec2f7` unchanged · PR #3372 head `a4b34da` unchanged · SV-9828 TESTING QA, 4 comments (last 78007) · **fresh live result: add-item 0.75 → MD668D 16.5 → 15.75 (exactly 0.75)** · fingerprint scan 0 hits · example numbers in the steps updated to the live badge (15.75).
+
+## Posted
+- **78155** (11:21:29 −0500): yellow *"OVERALL QA STATUS: PARTIALLY PASSED"* (waiting on item 2), Chris 77578 item 2 quoted, 12-row table, 3 images (61931–61933), on-screen steps (Create Return path, visible) + the core path with the honest note that core stock is not shown on screen, separate-issue paragraph → SV-10993.
+- **78156** (11:21:29 −0500): @parth fadadu — who produces the item-2 list for Support, and when.
+- Read back (v3 ADF): 78155 panel `warning`, media `file` ×3 in order (1550×430, 1223×364, 1503×245), tableRow 13, listItem 15, SV-10993 link present; 78156 mention resolved.
+
+## My own slip, recorded (caught before reporting)
+The first Create Return control run showed the badge **20 → 19** for a "2.5" return and looked like a defect. It was **my input**: a part with a core opens **two rows** (part + core), and after a part is chosen its quantity box becomes `input_return_qty_0_0`, so my 2.5 had gone into the core row. Stored values proved both rows exact (1 and 2.5). Re-run with a core-less part: 20 → 17.5.
+
+## Learning check (Rule 95)
+Recorded: playbook §AC.15 addendum 6 (returns screens, labels, endpoints, core stock not on screen, Create Return quantity box, Cancel Return dead); LESSONS-INDEX row (a "wrong number" on a form with a hidden second row is my input until the stored values say otherwise); `ticket_exhibit.py` gained an optional `'right'` badge side (a left badge covered the "No" button), backwards compatible (SV-10142 exhibits rebuilt byte-identical); Jira `/rest/api/2/search` is retired → `/rest/api/3/search/jql`.

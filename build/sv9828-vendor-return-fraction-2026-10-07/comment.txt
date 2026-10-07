@@ -1,0 +1,72 @@
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel}
+
+Item 1 of Chris's comment is fixed. The ticket is waiting only on item 2, the list for Support. That question is in a separate comment.
+
+The fix is working:
+* Returning part of a unit now takes the exact amount off stock, decimals included (2.5, 0.5, 1.25 all exact).
+* Whole numbers still work as before.
+* The *Create Return* path still takes off the exact amount.
+* Cancelling or deleting a return puts the exact amount back.
+
+h3. Why this is still Partially Passed
+
+Chris stated in [comment 77578|https://shopview.atlassian.net/browse/SV-9828?focusedCommentId=77578], item 2:
+{quote}Stock may still be overstated from single-item returns made while the old bug was live, when they usually took 0 off stock. Find the parts affected and send the list to Support. Shops correct their own stock; we don't change it for them.{quote}
+
+The code change does not cover this (it needs a data check), and nothing on the ticket shows the list has been sent yet.
+
+h3. Before and after
+
+!01-before-vs-after-hd.png|width=1550,height=430!
+_The same core return of 2.5 on both builds. Before: 2.5 accepted, only 2 taken off the core's stock. After: exactly 2.5 taken off. Core parts are not listed under Parts > Inventory (on production either), so the core's stock was read from the part record behind the screen._
+
+h3. What was checked
+
+Tested on [sv9828.qa.shopview.com|https://sv9828.qa.shopview.com] (build v26.40.8-71ec2f7) on 7 October 2026, following Parth's steps in [comment 77605|https://shopview.atlassian.net/browse/SV-9828?focusedCommentId=77605]. Every return was clicked through on screen.
+
+||#||Check||Status||
+|1|Core return through *Receive Credit*, 2.5 accepted: core stock 6.00 > 3.50 (exactly 2.5)|PASSED|
+|2|Same path, 0.5: 3.50 > 3.00 (exactly 0.5)|PASSED|
+|3|Same path, 1.25: 3.00 > 1.75 (exactly 1.25)|PASSED|
+|4|Same path, whole number 3: exactly 3 taken off|PASSED|
+|5|Same path, *Accepted Quantity* changed from 2.50 to 1.5: exactly 1.5 taken off|PASSED|
+|6|Control: *Create Return* of 2.5 MD668D > *Save Return*: Parts > Inventory shows *20 Available* > *17.5 Available*|PASSED|
+|7|*Create Return* of a part that has a core lists the part and its core as two rows, and each takes its own exact amount off|PASSED|
+|8|Cancelling a manual return puts the exact 2.5 back (checked behind the screen, because the *Cancel Return* button is broken - see below)|PASSED|
+|9|Deleting a completed return puts the exact amounts back (1.5 and 2.5). No screen offers this today, so it was checked behind the screen|PASSED|
+|10|Adding a 2.5 item to an existing return (the original bug) takes exactly 2.5 off. No screen offers this today, so it was checked behind the screen|PASSED|
+|11|Production still has the bug: a 2.5 core return took only 2 off (core 32 > 30)|Before picture|
+|12|Item 2: list of parts left overstated by the old bug, sent to Support|WAITING - see the separate comment|
+
+h3. More pictures
+
+!02-create-return-control-hd.png|width=1223,height=364!
+_The Create Return path on screen: MD668D goes from 20 to 17.5 Available after a 2.5 return._
+
+!03-core-ok-button-hd.png|width=1503,height=245!
+_Where the core's Ok button is on the work order, after the part is picked._
+
+h3. How to see it yourself
+
+On screen, with the Create Return path (the part's stock is shown on screen):
+# Open [sv9828.qa.shopview.com|https://sv9828.qa.shopview.com] and click the *Admin* quick-login button.
+# In the top menu, click {{Parts}}. The {{Inventory}} page opens.
+# Above the list, click {{Search}} and type *MD668D*. Its row shows a stock badge, for example *15.75 Available*. Note the number.
+# In the left menu, click {{Returns}}, then click {{Create Return}} at the top right.
+# In {{Vendor}}, choose *Roselle Park Trailer Repair Ltd*.
+# In {{Part Number}}, type *MD668D* and pick the row that says *Inventory Qty*.
+# In the {{Qty To Return}} column, type *2.5* in the {{Quantity}} box, then click {{Save Return}}.
+# Go back to {{Parts}} > {{Inventory}} and search *MD668D* again. The badge has dropped by exactly 2.5 (for example 15.75 > 13.25).
+
+The core return, the path this ticket fixes: work order *S9828-17586* already has a core waiting.
+# In {{Parts}} > {{Returns}}, tick the box at the left of the row *S9828-17586 ... Core for FUEL/W.. 2.50*, then click {{Receive Credit}}.
+# On the {{Process Return}} screen, type any {{Credit Memo Number}}, leave {{Accepted Quantity}} at *2.50*, and click {{Post Credit}}.
+# The core's stock drops by exactly 2.5. Core parts are not listed under Parts > Inventory, so this number can only be checked behind the screen.
+
+h3. Separate issue found while testing
+
+{{Cancel Return}} on a manual return does nothing: after *Yes* the return stays listed, no message appears, and the stock is not put back. It happens on production too, so it is not caused by this ticket. Raised as [SV-10993|https://shopview.atlassian.net/browse/SV-10993] (it looks like a return of [SV-9498|https://shopview.atlassian.net/browse/SV-9498]).
+
+All test data is left on the branch: work orders S9828-17580 to S9828-17586, and part P550848 now has a core.

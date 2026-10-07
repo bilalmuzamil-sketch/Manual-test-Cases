@@ -49,10 +49,11 @@ def panel(src, crop, title, boxes, notes, scale=2):
     y = pad - 3*S
     for l in tl: d.text((pad, y), l, font=tf, fill=BLK); y += 26*S
     out.paste(shot, (0, hh)); d.rectangle([0, hh, W - 1, hh + shot.height], outline=EDGE, width=S)
-    for x0, y0, x1, y1, c, n in boxes:
+    for bx in boxes:
+        x0, y0, x1, y1, c, n = bx[:6]; side = bx[6] if len(bx) > 6 else 'auto'   # optional 7th item: 'right' keeps the badge off a neighbour (SV-9828: a left badge covered the "No" button)
         a = ((x0-cx0)*S - 4*S, (y0-cy0)*S + hh - 3*S, (x1-cx0)*S + 4*S, (y1-cy0)*S + hh + 3*S)
         d.rectangle(a, outline=c, width=int(3.5*S))
-        r = 15*S; cx = a[0] - r - 3*S if a[0] - 2*r - 6*S > 0 else a[2] + r + 3*S; cy = (a[1] + a[3])//2
+        r = 15*S; cx = a[0] - r - 3*S if (side != 'right' and a[0] - 2*r - 6*S > 0) else a[2] + r + 3*S; cy = (a[1] + a[3])//2
         d.ellipse([cx-r, cy-r, cx+r, cy+r], fill=c)
         d.text((cx, cy), str(n), font=font(17*S, True), fill=(255, 255, 255), anchor='mm')
     y = hh + shot.height + pad

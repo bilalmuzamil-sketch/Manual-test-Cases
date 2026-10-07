@@ -1,0 +1,11 @@
+import {ob,j} from './lib.mjs'; const s=await ob(); const p=s.page;
+await s.go('/parts/returns'); await p.waitForTimeout(3000);
+console.log('S9828-17586 row',j(await p.evaluate(()=>[...document.querySelectorAll('tr')].filter(r=>/S9828-17586/.test(r.innerText)).map(r=>r.innerText.replace(/\s+/g,' ').trim().slice(0,140)))));
+const cr=await s.box('button_create_return'); console.log('Create Return at',j(cr));
+await p.mouse.click(cr.x,cr.y); await p.waitForTimeout(3000);
+const labels=await p.evaluate(()=>['select_vendor','input_packaging_slip','create_return_part_select','input_manual_return_part_description','input_manual_return_part_quantity','input_manual_return_part_price','button_save_manual_return'].map(t=>{const e=document.querySelector(`[data-test-id="${t}"]`); if(!e) return t+': none'; const f=e.closest('.q-field'); const l=f?.querySelector('.q-field__label')?.innerText||e.getAttribute('placeholder')||e.querySelector('input')?.getAttribute('placeholder')||e.innerText; return t+': '+(l||'').trim();}));
+console.log(labels.join('\n'));
+await s.go('/parts/inventory'); await p.waitForTimeout(2500); const sb=await s.box('page_search_toggle'); console.log('Inventory Search at',j(sb));
+await p.mouse.click(sb.x,sb.y); await p.waitForTimeout(800); await p.keyboard.type('MD668D',{delay:60}); await p.waitForTimeout(3000);
+console.log('MD668D badge',await p.evaluate(()=>document.querySelector('[data-test-id="stock_quantity_badge_0019667d-d90f-41ae-a289-78d5a962bb8b"]')?.innerText.trim()));
+await s.close();

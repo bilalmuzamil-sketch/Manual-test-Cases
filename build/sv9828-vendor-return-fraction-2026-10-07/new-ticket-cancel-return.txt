@@ -1,0 +1,36 @@
+Found while testing [SV-9828|https://shopview.atlassian.net/browse/SV-9828]
+
+h3. Summary
+On *Parts > Returns*, cancelling a manual return does nothing. After you confirm *Yes*, the window closes, but the return stays in the list, no message appears, and the stock it took off is not put back. This happens on production too.
+
+h3. Steps to reproduce
+Open the QA branch to reproduce the issue: [https://sv9828.qa.shopview.com|https://sv9828.qa.shopview.com] (click the *Admin* quick-login button).
+# In the top menu, click *Parts*. The Inventory page opens.
+# In the left menu, click *Returns*. The *Returns* tab is selected.
+# Find a row whose *Vendor Invoice* column reads *Manual Return*, for example *Roselle Park Trailer Repair Ltd, MD668D, quantity 1.00*.
+# At the right end of that row, click the three-dot menu, then click *Cancel Return*:
+!t01-cancel-return-menu-hd.png|width=1630,height=322!
+# A *Warning!* window opens: "This will permanently delete the return… Are you sure you want to delete this return?" Click *Yes*:
+!t02-confirm-yes-hd.png|width=688,height=421!
+# Look at the list again, then reload the page.
+
+*Fastest way to see it:* open [Parts > Returns on the QA branch|https://sv9828.qa.shopview.com/parts/returns], then use the three-dot menu on any *Manual Return* row for *MD668D* (there are three: quantities 1.00, 2.00 and 0.50) and click *Cancel Return*, then *Yes*.
+
+h3. Expected behaviour
+The manual return is cancelled and removed from the list, and its stock is put back.
+*Where this comes from:*
+* [SV-9498|https://shopview.atlassian.net/browse/SV-9498] (customer E2 Trucking, QA-passed on 10 September 2026, when cancelling worked): _"The customer should be able to cancel/delete an incorrect manual return so it can be removed from the Returns list."_
+* The confirmation window itself: _"This will permanently delete the return."_
+
+h3. Current behaviour
+The window closes, but nothing happens: the return is still listed straight away and after a reload, no success or error message appears, and the part's stock stays where the return left it.
+!t03-return-still-listed-hd.png|width=1630,height=496!
+
+It happened on all four tries:
+||Where||Part||Returned||Stock after the return||Stock after Cancel Return > Yes||
+|QA branch sv9828|MD668D|1.00|19|19 (should be back to 20)|
+|QA branch sv9828|MD668D|2.00|17|17 (should be back to 19)|
+|QA branch sv9828|MD668D|0.50|16.5|16.5 (should be back to 17)|
+|Production app.shopview.com|ZZT-FIB-1002|2.50|4.5|4.5 (should be back to 7)|
+
+Tested on the QA branch sv9828 (build v26.40.8-71ec2f7) and on production (build v26.40.10-9b663ae), 7 October 2026.

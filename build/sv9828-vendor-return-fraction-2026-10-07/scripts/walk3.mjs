@@ -1,0 +1,7 @@
+import {ob,j} from './lib.mjs'; const s=await ob(); const p=s.page;
+const pickOpt=async(re)=>{ const o=await p.evaluate(r=>{const e=[...document.querySelectorAll('.q-menu .q-item')].filter(x=>x.getBoundingClientRect().width>0).find(x=>new RegExp(r).test(x.innerText.replace(/\n/g,' | '))); if(!e) return null; const b=e.getBoundingClientRect(); return {x:b.x+b.width/2,y:b.y+b.height/2};},re); if(o) await p.mouse.click(o.x,o.y); return o; };
+await s.go('/parts/create-return'); await p.waitForTimeout(3000);
+let b=await s.box('select_vendor'); await p.mouse.click(b.x,b.y); await p.keyboard.type('Roselle Park',{delay:60}); await p.waitForTimeout(2500); await pickOpt('Roselle Park'); await p.waitForTimeout(1500);
+b=await s.box('create_return_part_select'); await p.mouse.click(b.x,b.y); await p.keyboard.type('MD668D',{delay:60}); await p.waitForTimeout(3000); await pickOpt('MD668D \\| Inventory'); await p.waitForTimeout(1500);
+const q=await p.evaluate(()=>{const e=document.querySelector('[data-test-id="input_return_qty_0_0"]'); const f=e?.closest('.q-field'); const row=e?.closest('tr,.row,.q-item'); return {label:f?.querySelector('.q-field__label')?.innerText, ph:(e?.querySelector('input')||e)?.getAttribute('placeholder'), around:(row?.innerText||'').replace(/\s+/g,' ').slice(0,200), headers:[...document.querySelectorAll('th')].map(t=>t.innerText.trim()).filter(Boolean)};});
+console.log(j(q,700)); await p.screenshot({path:'raw/create-return-picked.png'}); await s.close();
