@@ -1,0 +1,12 @@
+import {ob,j} from './lib.mjs'; const s=await ob();
+const P=(u,b)=>s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+await P('/api/iam/change-location',{workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'});
+const hd=(await s.api('/api/inventory/parts?search=448-4865')).json.data.collection.find(x=>x.part_number==='448-4865');
+console.log('HD qty',hd.quantity);
+await P('/api/iam/change-location',{workplace_id:'f8a8b802-7780-4b16-bf10-343caeb616b2',workplace_timezone:'America/Edmonton'});
+const r=await P('/api/inventory/parts/create',{catalog_part_id:hd.catalogue_part_id,category_id:hd.category,quantity:5,cost:hd.purchase_price,purchase_price:hd.purchase_price,sell_price:hd.sell_price,vendor_id:hd.vendor_id,tags:[],bins:[{id:'0dfc0a12-479b-11f1-9bed-020a144de1a3',quantity:5,isDefault:true}]});
+console.log('create at Lethbridge',r.status,j(r.json,250));
+const there=(await s.api('/api/inventory/parts?search=448-4865')).json.data.collection.filter(x=>x.part_number==='448-4865').map(x=>[x.quantity,x.workplace_id.slice(0,8)]); console.log('at L',j(there));
+await P('/api/iam/change-location',{workplace_id:'b3c8c820-f815-4cf1-8938-10956c5ee71a',workplace_timezone:'America/Edmonton'});
+const back=(await s.api('/api/inventory/parts?search=448-4865')).json.data.collection.filter(x=>x.part_number==='448-4865').map(x=>[x.quantity,x.workplace_id.slice(0,8)]); console.log('at HD',j(back));
+await s.close();
