@@ -1,0 +1,10 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs';
+import {C,j} from './lib.mjs';
+const s=await open({env:'branch',ticket:'9828',dir:'/tmp/qa9828',cookies:C,quick:'admin'}); const p=s.page; const PID='0019667d-d90f-41ae-a289-78d5a962bb8b';
+const q=async()=>(await s.api('/api/inventory/parts/'+PID)).json.data.part.quantity;
+const before=await q().catch(()=>null); await s.go('/parts/returns'); await p.waitForTimeout(3000);
+const m=await p.evaluate(()=>{const row=[...document.querySelectorAll('tr')].find(r=>/P550848/.test(r.innerText)&&/Manual/.test(r.innerText)); if(!row) return null; const b=row.querySelector('[data-test-id^="button_manual_return_actions_"]').getBoundingClientRect(); return {x:b.x+b.width/2,y:b.y+b.height/2,t:row.innerText.replace(/\s+/g,' ').slice(0,140)};});
+console.log('row',j(m)); await p.mouse.click(m.x,m.y); await p.waitForTimeout(1200);
+const mi=await s.box('menu_item_cancel_return'); await p.mouse.click(mi.x,mi.y); await p.waitForTimeout(2000);
+const r=await s.confirm('button_remove_return_positive_answer',{shotPrefix:'raw/helper'}); console.log('steps',j(r,600));
+await p.waitForTimeout(3000); const left=await p.evaluate(()=>[...document.querySelectorAll("tr")].some(r=>/P550848/.test(r.innerText)&&/Manual/.test(r.innerText))); const after=left; console.log('stock',before,'->',after); await s.close();

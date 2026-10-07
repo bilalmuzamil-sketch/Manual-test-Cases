@@ -36,7 +36,19 @@ panel(R + 'A-3-pick.png', (395, 340, 1898, 445),
      (2, GREEN, 'Click the green Ok button on that row. This sends the core back to the vendor as a return.')]
 ).save('ev/03-core-ok-button-hd.png')
 
-# ---------- Cancel Return ticket ----------
+# ---------- SV-9828 04: Cancel Return works (two clicks: Yes, then "Are You Sure?") ----------
+d2 = json.load(open(R + 'dbl.json')); dg2 = d2['dlgBox']; sure = [b for b in d2['b2'] if b['t'] == 'Are You Sure?'][0]
+c1 = panel(R + 'dbl-3-are-you-sure.png', (dg2['x'] - 20, dg2['y'] - 20, dg2['x'] + dg2['w'] + 20, dg2['y'] + dg2['h'] + 20),
+    'Parts > Returns > three-dot menu on a Manual return > Cancel Return > Yes. The same window then asks again.',
+    [(sure['x'], sure['y'], sure['x'] + sure['w'], sure['y'] + sure['h'], GREEN, 1, 'right')],
+    [(1, GREEN, 'Click the orange Are You Sure? button. This second click cancels the return.')])
+c2 = badge_panel(R + 'badge-cancel-before.png', R + 'badge-cancel-before.json',
+    'Parts > Inventory, MD668D, with a Manual return of 2.00 still listed.', BLUE, 2, '17.25 Available.')
+c3 = badge_panel(R + 'badge-cancel-after.png', R + 'badge-cancel-after.json',
+    'The same row after cancelling that return (Yes, then Are You Sure?).', GREEN, 3, '19.25 Available: exactly 2.00 put back.')
+stack([c1, c2, c3]).save('ev/04-cancel-return-restores-hd.png')
+
+# ---------- Cancel Return ticket (SV-10993 — WITHDRAWN: false defect, the second click was missed; kept as the record) ----------
 d = json.load(open(R + 'cr-run1.json'))
 row, mi, dg = d['row1'], d['menu'], d['dialog']
 panel(R + 'cr-run1-2-menu.png', (row['x'], row['y'] - 70, row['x'] + row['w'] + 10, mi['by'] + mi['bh'] + 20),

@@ -102,6 +102,8 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
+> - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
 > - **EVERY STEP SAYS EXACTLY WHERE TO CLICK OR LOOK (Standing Rule 101): screen area + exact label, no private names ("the blue bubble"), describe small things by colour/shape/text/position, say what appears, locator picture with a close-up, walk the steps live before posting.**
 > - **EDITING SOMETHING ALREADY POSTED? (Standing Rule 100): put a dated note (date, time, timezone, what changed) right at the edited section/row.**
 > - **PO UPDATED THE SPEC + ASKED FOR A RETEST? (Standing Rule 99): first line = that check's verdict against the NEW text, quoted; update every earlier row the new text changes; never drop the spec quote.**
@@ -5300,6 +5302,50 @@ deliver the 7-tab management report.
     **(f) WALK THE STEPS LIVE BEFORE POSTING** exactly as written, click by click, on the environment named (Rule 68). Correct any label that differs (on 2026-10-07 the walk caught that the tab reads *"Parts (4)"*, not *"Parts"*).
     **(g) THE PRE-POST GATE (Rule 72) CHECKS IT:** read each step as a first-time reader — if any step leaves a question about *where*, it is not ready.
     **RATIONALE, 2026-10-07 (SV-10599 comment 78113, my miss):** the step *"Go to {{Work Orders}}, search S10599-17581 and hover the blue bubble on its status"* used my own name for a 19-pixel badge and named no screen area. The QA lead spent five minutes and still could not find it. Fixed in place (dated note, 8 numbered steps walked live, locator picture with a close-up). Ties to Standing Rules 7, 9, 50 (name the exact test data), 64, 65, 67 (steps runnable by a non-technical PO), 68, 72, 83 (failure reproduction steps), 95 (the ticket standard) and 100 (dated edit note).
+
+102. **AFTER EVERY CONFIRM CLICK, LOOK FOR A SECOND CONFIRMATION BEFORE CONCLUDING ANYTHING — "it does nothing" is never a
+    verdict until the dialog has been re-read (all projects, everywhere in the application).**
+    USER DIRECTIVE (2026-10-07, verbatim): *"See the screenshot after clicking yes there is another confirmation window where
+    you have to once again click "Are you sure" to complete the action - You are missing this for the second time, make it a
+    learning/rule for yourself to see if there is a double confirmation like this, make sure you do not make the same mistake
+    here or anywhere else on the application in your testing."*
+    **THE RULE:** after clicking **Yes / Confirm / Delete / Remove / Cancel X / Save** in any dialog, menu or row action,
+    **re-read the screen before concluding**: (a) **the SAME dialog may still be open with its button changed** — in ShopView
+    the **Yes** button turns into an orange **"Are You Sure?"** (`data-test-id` ending `_confirmation_answer`) and **No**
+    moves left; (b) **a menu entry may stay open and turn red** — click the SAME entry again; (c) **a second dialog** may
+    open. **Click the second confirmation, then judge.**
+    **MECHANICALLY (scripts):** after the first confirm, re-list the dialog's buttons (text + `data-test-id`); if the dialog
+    is still open or any button's text/test-id changed, that is a second confirmation — click it. **Never close a scripted
+    flow on "no request was sent"** without that re-read.
+    **"DOES NOTHING" / "NO REQUEST SENT" / "BUTTON BROKEN" ARE BARRED CONCLUSIONS** until the dialog's state after the first
+    click has been captured in a screenshot, any second confirmation has been clicked, and the result re-read after a reload.
+    A defect report asserting a control does nothing must carry that after-first-click screenshot.
+    **USE THE HELPER, NOT A HAND-ROLLED CLICK:** `build/testing-tools/qa-session.mjs` → `s.confirm('<first button test-id>',
+    {shotPrefix})` clicks, re-reads the dialog, clicks any "Are You Sure?"/confirmation button, and returns every step. A
+    written lesson alone did NOT stop this (see rationale), so the safeguard is in the code path.
+    **RATIONALE, 2026-10-07 (SV-9828 / SV-10993) — and it is a REPEAT OF A RECORDED LESSON:** the same trap on the same
+    Cancel Return button was already written in `build/LESSONS-INDEX.md` on **2026-10-02 (SV-10406)**, and the ALWAYS-UNBLOCK
+    ruling already described the two-step menu confirm. I did not read either before concluding. Parts → Returns → ⋮ → **Cancel Return** → **Yes** turns Yes into **"Are You Sure?"**. I never
+    clicked it, concluded "Cancel Return does nothing" on the branch AND on production, filed **SV-10993** and wrote it into
+    SV-9828 comment 78155. The QA lead marked SV-10993 Obsolete. With the second click the cancel request is sent, the return
+    disappears and the stock comes back exactly (0.5 and 2.0; Inventory badge 17.25 → 19.25 Available). Ties to Standing
+    Rules 12, 68, 72, 75 (a false defect costs more than a missed one), 85, 89, 93 and the ALWAYS-UNBLOCK ruling. Recipe:
+    playbook §AC.15 addendum 6.
+
+103. **BEFORE CALLING ANY TICKET OUTSTANDING, RE-OPEN IT LIVE AND READ ITS STATUS AND LAST COMMENT (all projects).**
+    USER DIRECTIVE (2026-10-07, verbatim): *"We have marked it ready for production - another rule/learning for you when
+    telling me the outstanding tickets alays reopen the tickets and see their last comment and status before wrongly tellig
+    me that it is outstanding."*
+    **THE RULE:** every ticket named in an OUTSTANDING section, a status report or a "waiting on" line is **re-read live at
+    the moment of writing** (`GET /rest/api/2/issue/KEY?fields=status,resolution,assignee,updated,comment`), and the line
+    states **its current status and who said what last (comment id, author, time)**. Never carry a ticket's state forward from
+    earlier in the session, from the register, or from what I posted. A ticket that moved (Ready for Production, QA Complete,
+    Rejected from testing, Obsolete) is reported **as it now stands**, not as outstanding.
+    **ALSO READ WHAT THE QA LEAD DID UNDER OUR SHARED ACCOUNT** — a status change or comment authored "Bilal Muzamil" that I
+    did not make is his action (Rule 53 corollary): report it, never reverse it.
+    **RATIONALE, 2026-10-07:** my OUTSTANDING list after SV-9828 named SV-10142, SV-10642 and SV-10599 as waiting — live,
+    SV-10142 was Ready for Production with Chris's sign-off (78152), SV-10642 Ready for Production, SV-10599 Rejected from
+    testing after Chris's answer (78129). Ties to Standing Rules 31, 36, 48, 53, 59 and 72.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

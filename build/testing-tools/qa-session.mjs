@@ -88,6 +88,22 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
         .filter(e=>e.getBoundingClientRect().width>0).map(e=>{const r=e.getBoundingClientRect();
           return {text:(e.innerText||'').trim(),x:Math.round(r.x),y:Math.round(r.y),w:Math.round(r.width),h:Math.round(r.height)};}));
       return {box:bx, tips}; },
+    // Standing Rule 102: click a confirm button, then RE-READ the dialog. ShopView often asks twice
+    // (Yes -> orange "Are You Sure?", test-id ending _confirmation_answer). Keeps clicking the changed
+    // button until the dialog closes or stops changing; returns every step so the caller can screenshot/report it.
+    async confirm(tid,{maxSteps=3,wait=1500,shotPrefix=null}={}){
+      const read=()=>p.evaluate(()=>[...document.querySelectorAll('.q-dialog button,.q-menu .q-item')]
+        .filter(e=>e.getBoundingClientRect().width>0).map(e=>{const r=e.getBoundingClientRect();
+          return {t:(e.innerText||'').trim(),tid:e.getAttribute('data-test-id'),x:r.x+r.width/2,y:r.y+r.height/2};}));
+      const steps=[]; let target=await s.box(tid); if(!target) return {steps,error:'not found: '+tid};
+      for(let i=0;i<maxSteps;i++){
+        await p.mouse.click(target.x,target.y); await p.waitForTimeout(wait);
+        if(shotPrefix) await p.screenshot({path:`${shotPrefix}-confirm-${i+1}.png`});
+        const now=await read(); steps.push(now.map(b=>b.t+' ['+b.tid+']'));
+        const next=now.find(b=>/are you sure|confirm/i.test(b.t)||/_confirmation_answer$/.test(b.tid||''));
+        if(!next) break; target=next;
+      }
+      return {steps}; },
     async shot(name,dir2='/tmp/qa'){ const f=`${dir2}/${name}.png`; await p.screenshot({path:f}); return f; },
     async marker(){ return p.evaluate(async base=>{ const r=await fetch(base+'/index.html',{cache:'no-store'});
         const t=await r.text(); const m=t.match(/name="app-version" content="([^"]+)"/);

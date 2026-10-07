@@ -57,14 +57,23 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-07, ~16:25 UTC. **SV-9828 POSTED: PARTIALLY PASSED (comment 78155) — item 1 fixed (10 of 10 checks on sv9828 `v26.40.8-71ec2f7`); waiting on item 2. New ticket SV-10993 filed for the dead Cancel Return button.**
+## ⚠️ NEWEST — 2026-10-07, ~17:00 UTC. **LIVE STATES RE-READ (Rule 103) + SV-10993 WAS MY MISTAKE.**
+
+Read live 7 Oct ~16:50 UTC (status · last comment):
+- **SV-9828** — **REJECTED FROM TESTING** (QA lead, for Parth to do item 2). Last comments: ours 78155/78156. Still owed: item 2 list for Support (Parth).
+- **SV-10993** — **OBSOLETE / Done**, marked by the QA lead (78157 *"Markig as obsolete."* with his screenshot). **It was a false defect:** Cancel Return asks twice (Yes → "Are You Sure?"). Re-verified on screen: 0.50 and 2.00 returns cancelled, MD668D 17.25 → 19.25 Available. Rule 102. **CLEARED — nothing owed.**
+- **SV-10142** — **READY FOR PRODUCTION**. Chris 78152 (10:49 −0500) signed off; portal covered by the shared layout (Stefan); PRD now matches (Invoice UI Refresh v71, S7-R5 to S7-R5h). **Both items below CLEARED.**
+- **SV-10642** — **READY FOR PRODUCTION** (Stefan 78074; our QA-complete 78075). **Nothing owed.**
+- **SV-10599** — **REJECTED FROM TESTING** after Chris 78129 (09:07 −0500): counts must match the badge too, and the badge hides everywhere (line, Parts tab, part sale page). Owed by Parth; we retest when it returns.
+
+## ⚠️ PREVIOUS — 2026-10-07, ~16:25 UTC. **SV-9828 POSTED: PARTIALLY PASSED (comment 78155) — item 1 fixed (10 of 10 checks on sv9828 `v26.40.8-71ec2f7`); waiting on item 2. New ticket SV-10993 filed for the dead Cancel Return button.**
 
 **QA lead's rulings (7 Oct):** *"Partially passed, item 2"* · Cancel Return *"New ticket"* · technical section *"No"*.
 
 | # | What I need | Who owes it | What it blocks | Since |
 |---|---|---|---|---|
 | 1 | The list of parts left overstated by the old single-item-return bug, sent to Support (Chris 77578 item 2) | Developer (parth fadadu), asked in 78156 | SV-9828 fully passed | 2026-10-07 |
-| 2 | A fix for SV-10993 (Cancel Return on a manual return does nothing — production too; looks like a return of SV-9498) | Development (unassigned, Medium) | Shops cannot cancel a wrong manual return; its stock stays deducted | 2026-10-07 |
+| 2 | ~~A fix for SV-10993~~ **CLEARED 7 Oct — false defect (missed the "Are You Sure?" second click); SV-10993 marked Obsolete by the QA lead** | — | — | 2026-10-07 |
 
 ## ⚠️ PREVIOUS — 2026-10-07, ~15:00 UTC. **SV-10142 POSTED: PARTIALLY PASSED (comment 78144), 14 of 14 testable checks passed on sv10142 `v26.40.8-a32d41c`; waiting only on the customer portal. Asks in 78145.**
 
@@ -72,8 +81,8 @@ else owes).
 
 | # | What I need | Who owes it | What it blocks | Since |
 |---|---|---|---|---|
-| 1 | The Customer Portal enabled for sv10142 (the shared portal host rejects the branch's sign-in) | Developer (Stefan Mitrovic), asked in 78145 | SV-10142 fully passed — row 15: checking the invoice/estimate opened from the customer portal show the named rows, combined totals and order | 2026-10-07 |
-| 2 | Invoice UI Refresh S7-R5 (v70) updated to match Chris's rulings 77792/77997/78126 | PO (Chris Ward), asked in 78145 | The spec still describes the old Labor/Parts rollup; our expectation rests on his ticket comments until it is updated | 2026-10-07 |
+| 1 | **CLEARED 7 Oct (Chris 78152: portal uses the same layout; ticket Ready for Production)** ~~The Customer Portal enabled for sv10142 (the shared portal host rejects the branch's sign-in)~~ | Developer (Stefan Mitrovic), asked in 78145 | SV-10142 fully passed — row 15: checking the invoice/estimate opened from the customer portal show the named rows, combined totals and order | 2026-10-07 |
+| 2 | **CLEARED 7 Oct (PRD v71, S7-R5 to S7-R5h — Chris 78152)** ~~Invoice UI Refresh S7-R5 (v70) updated to match Chris's rulings 77792/77997/78126~~ | PO (Chris Ward), asked in 78145 | The spec still describes the old Labor/Parts rollup; our expectation rests on his ticket comments until it is updated | 2026-10-07 |
 
 ## ⚠️ PREVIOUS — 2026-10-07, ~13:10 UTC. **SV-10323 RETEST AFTER NEMANJA'S FIX: PASSED (new comment 78116), check 11 rows 1–8 + Full View rows 9–10 all pass on sv9667 `v26.40.8-129d22f`. Nothing outstanding on SV-10323.**
 

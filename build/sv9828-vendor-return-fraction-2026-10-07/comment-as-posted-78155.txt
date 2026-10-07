@@ -2,8 +2,6 @@
 *OVERALL QA STATUS: PARTIALLY PASSED*
 {panel}
 
-_Edited on 7 October 2026, 11:50 CDT: row 8 updated and the "Separate issue" note removed - Cancel Return works; it asks to confirm twice._
-
 Item 1 of Chris's comment is fixed. The ticket is waiting only on item 2, the list for Support. That question is in a separate comment.
 
 The fix is working:
@@ -36,7 +34,7 @@ Tested on [sv9828.qa.shopview.com|https://sv9828.qa.shopview.com] (build v26.40.
 |5|Same path, *Accepted Quantity* changed from 2.50 to 1.5: exactly 1.5 taken off|PASSED|
 |6|Control: *Create Return* of 2.5 MD668D > *Save Return*: Parts > Inventory shows *20 Available* > *17.5 Available*|PASSED|
 |7|*Create Return* of a part that has a core lists the part and its core as two rows, and each takes its own exact amount off|PASSED|
-|8|Cancelling a manual return puts the exact amount back, on screen: {{Cancel Return}} > {{Yes}} > {{Are You Sure?}}; MD668D *17.25 Available* > *19.25 Available* for a 2.00 return, and a 0.50 return put back exactly 0.5. _Edited on 7 October 2026, 11:50 CDT: was checked behind the screen only._|PASSED|
+|8|Cancelling a manual return puts the exact 2.5 back (checked behind the screen, because the *Cancel Return* button is broken - see below)|PASSED|
 |9|Deleting a completed return puts the exact amounts back (1.5 and 2.5). No screen offers this today, so it was checked behind the screen|PASSED|
 |10|Adding a 2.5 item to an existing return (the original bug) takes exactly 2.5 off. No screen offers this today, so it was checked behind the screen|PASSED|
 |11|Production still has the bug: a 2.5 core return took only 2 off (core 32 > 30)|Before picture|
@@ -49,9 +47,6 @@ _The Create Return path on screen: MD668D goes from 20 to 17.5 Available after a
 
 !03-core-ok-button-hd.png|width=1503,height=245!
 _Where the core's Ok button is on the work order, after the part is picked._
-
-!04-cancel-return-restores-hd.png|width=1229,height=857!
-_Cancelling a manual return: after Yes, the same window asks again; clicking the orange Are You Sure? cancels it and the stock comes back exactly (17.25 > 19.25 for a 2.00 return). _Edited on 7 October 2026, 11:50 CDT: picture added._
 
 h3. How to see it yourself
 
@@ -69,5 +64,9 @@ The core return, the path this ticket fixes: work order *S9828-17586* already ha
 # In {{Parts}} > {{Returns}}, tick the box at the left of the row *S9828-17586 ... Core for FUEL/W.. 2.50*, then click {{Receive Credit}}.
 # On the {{Process Return}} screen, type any {{Credit Memo Number}}, leave {{Accepted Quantity}} at *2.50*, and click {{Post Credit}}.
 # The core's stock drops by exactly 2.5. Core parts are not listed under Parts > Inventory, so this number can only be checked behind the screen.
+
+h3. Separate issue found while testing
+
+{{Cancel Return}} on a manual return does nothing: after *Yes* the return stays listed, no message appears, and the stock is not put back. It happens on production too, so it is not caused by this ticket. Raised as [SV-10993|https://shopview.atlassian.net/browse/SV-10993] (it looks like a return of [SV-9498|https://shopview.atlassian.net/browse/SV-9498]).
 
 All test data is left on the branch: work orders S9828-17580 to S9828-17586, and part P550848 now has a core.
