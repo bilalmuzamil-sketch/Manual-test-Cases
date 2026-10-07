@@ -1,0 +1,84 @@
+<style>
+:root {
+  --ink: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --card: #ffffff;
+  --bg: #f4f6f8;
+  --before: #6b7280;
+  --after: #2563eb;
+  --wo: #b45309;
+  --new: #047857;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+}
+.board {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 18px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.chip {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #fff;
+  white-space: nowrap;
+}
+.chip--before { background: var(--before); }
+.chip--after { background: var(--after); }
+.chip--wo { background: var(--wo); }
+.chip--new { background: var(--new); }
+h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.sub { font-size: 12.5px; line-height: 1.5; color: var(--muted); margin: 0; }
+.shots { display: flex; flex-direction: column; gap: 10px; }
+.shot { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff; }
+.shot img { display: block; width: 100%; height: auto; margin: 0 auto; }
+.shot-label {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--line);
+  background: #fafafa;
+}
+.note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: #f9fafb;
+  border-left: 3px solid var(--after);
+  padding: 8px 10px;
+  border-radius: 0 6px 6px 0;
+  margin: 0;
+}
+.note--before { border-left-color: var(--before); }
+.note--wo { border-left-color: var(--wo); }
+</style>
+
+<div class="board">
+  <div class="head">
+    <span class="chip chip--before">Before &middot; production</span>
+    <h2>7. Technician Utilization: opening the detail</h2>
+  </div>
+  <p class="sub">Clicking Tech Utilization opens a second page: an empty chart and a 445-row table of clock punches.</p>
+  <div class="shots">
+    <div class="shot">
+      <div class="shot-label">Production code &middot; after clicking Tech Utilization</div>
+      <img src="before-drill-techUtilizationKpi.png" alt="Production: a separate Tech Utilization page with an empty chart and a 445-row table of clock punches" style="max-width:1920px">
+    </div>
+  </div>
+  <p class="note note--before">Its report link reads &quot;Shop Efficiency Report&quot;, a different report from the one the tile measures.</p>
+</div>

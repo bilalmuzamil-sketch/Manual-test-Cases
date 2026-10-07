@@ -124,3 +124,12 @@ Rule 82 still applies); do not offer to delete them in reports.
 what that organization must contain and has the tester create it; it never says "ask the QA lead for logins".
 Staging's /register and /signup routes go to the company Google sign-in, so the in-app click-path for creating an
 organization is not known to this session — do not invent its labels.
+
+## L14 · Opening claude.ai design links (2026-10-07) — FACT
+A `https://claude.ai/artifact/<id>` link shared by a PO opens with the **Artifact tool, `action: "read"`, `url`**.
+It saves the page's full raw HTML under the session's tool-results folder (the inline summary can come back
+truncated — work from the saved HTML, never the summary). A **design canvas** keeps every artboard inside the
+`<script id="appifact-doc">` JSON: `content.files` maps `*.dc.html` boards, `canvas.json` and base64 PNG
+screenshots (no `data:` prefix — decode strings that start `iVBOR`). `action: "list", scope: "files"` shows
+whether separately published files exist (the Dashboard canvas had none: one self-contained page).
+Worked example: `build/dashboards/sources/design-po-empty-states-2026-10-07/`.
