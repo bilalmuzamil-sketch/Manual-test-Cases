@@ -1,0 +1,44 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on the QA branch [sv10642.qa.shopview.com|https://sv10642.qa.shopview.com] (build v26.39.2-8b087eb) on 7 October 2026, and compared with production (build v26.40.8-1e8e914). All 13 checks passed.
+* A work order at Review now moves to Approved as soon as a line that needs approval is added.
+* It goes back to Review once that line is completed, declined or deleted, and Mark Reviewed then works.
+
+h3. Before and after
+
+!01-before-vs-after-hd.png|width=1880,height=1985!
+_On production the work order stays at Review and Mark Reviewed fails with "Cannot complete work order with incomplete lines." On the QA branch it moves to Approved straight away and Mark Reviewed is not offered until the line is done._
+
+h3. What I checked
+
+||#||Check||Status||
+|1|Work order at Review, {{New Line}} added with {{Line Approved}} left unticked: the work order changes to {{Approved}} and {{Mark Reviewed}} disappears.|PASSED|
+|2|The new line is approved: the work order stays {{Approved}}.|PASSED|
+|3|The new line is completed: the work order goes back to {{Review}}.|PASSED|
+|4|{{Mark Reviewed}} is clicked: the work order is {{Complete}}, no error.|PASSED|
+|5|The new line is declined instead: the work order goes back to {{Review}}.|PASSED|
+|6|The declined line is approved again: the work order goes to {{Approved}}.|PASSED|
+|7|The new line is deleted instead (right-click the line, {{Delete line}}): the work order goes back to {{Review}}.|PASSED|
+|8|A line added with {{Line Approved}} ticked: the work order goes to {{Approved}}, as before.|PASSED|
+|9|Two lines needing approval added (one typed in, one from the list): declining one keeps {{Approved}}, declining both returns to {{Review}}.|PASSED|
+|10|A line added from the {{ShopCoach Line Builder}}: the work order changes to {{Approved}}.|PASSED|
+|11|With {{Require Review}} turned off: completing the other lines while one still needs approval keeps the work order at {{Approved}} instead of completing it. Once that line is approved and completed, the work order completes.|PASSED|
+|12|A brand-new work order whose only line needs approval stays at {{Estimate}}, as before.|PASSED|
+|13|The {{Work Orders}} list shows {{Approved}} with the red action bubble for that work order.|PASSED|
+
+h3. After the new line is resolved
+
+!02-after-the-line-is-resolved-hd.png|width=1880,height=2600!
+
+h3. How to see it yourself
+
+# Open [sv10642.qa.shopview.com|https://sv10642.qa.shopview.com] with the *Admin* quick-login.
+# Open any work order whose lines are all {{Complete}}, so it shows {{Review}} (for example *S10642-17582*).
+# Click {{New Line}}, pick *Service - Battery service* in {{What Are You Doing?}}, leave {{Line Approved}} unticked and click {{Save & Close}}.
+
+*Expected:*
+* The work order changes from {{Review}} to {{Approved}}.
+* {{Mark Reviewed}} is no longer shown.
+* Click {{Decline}} on the new line, and the work order goes back to {{Review}}.
