@@ -1,0 +1,83 @@
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel}
+
+Everything that could be tested on this branch passed. The ticket is waiting only on the customer portal check. Stefan is asked in a separate comment to enable the portal on this branch.
+
+The fix is working:
+* Each line-level fee and discount now prints its own name, as {{Labor · <name>}} or {{Parts · <name>}}.
+* Identical rows combine into one row carrying the total.
+* Fees and discounts are no longer netted against each other.
+* Inside Labor and inside Parts, fees come before discounts, each A to Z by name, whatever order they were entered in.
+* The Legacy layout is unchanged.
+
+h3. Why this is still Partially Passed
+
+The customer portal could not be checked. In the profile menu (top right), {{Customer Portal}} does not open from this branch, because the shared portal server does not accept sign-ins from it.
+Stefan's PR lists the customer-portal document as using the same invoice template, so it still needs to be looked at.
+
+h3. Before and after
+
+!01-before-vs-after-hd.png|width=512,height=992!
+_The same eight fees and discounts, entered in the same order. Before: one "Labor" row, and one "Parts" row that nets a fee and a discount into $1.00. After: every fee and discount is named and in Chris's order. The adjustments add up to the same $61.00 on both; the subtotals differ only because the labor lines are priced differently._
+
+h3. What was checked
+
+Tested on [sv10142.qa.shopview.com|https://sv10142.qa.shopview.com] (build v26.40.8-a32d41c, which includes Stefan's fixed-order update) on 7 October 2026.
+
+||#||Check||Status||
+|1|A labor-line fee prints its own name, e.g. {{Labor · Diagnostic fee}}, on the estimate and on the invoice|PASSED|
+|2|A labor-line discount prints as its own row, in brackets, e.g. {{Labor · Zulu discount ($2.00)}}|PASSED|
+|3|A part-line fee or discount prints as {{Parts · <name>}}|PASSED|
+|4|Fees and discounts are not netted against each other|PASSED|
+|5|Identical rows combine into one row with the total (three $15.00 Shop fees print as one {{Labor · Shop fee $45.00}} row)|PASSED|
+|6|A fee and a discount with the same name stay two rows ({{Labor · Promo $10.00}} and {{Labor · Promo ($4.00)}})|PASSED|
+|7|The same name with a different calculation combines (a flat $5.00 Shop fee and a 2%-of-labor Shop fee print as one $8.00 row)|PASSED|
+|8|A row that works out to $0.00 is not printed|PASSED|
+|9|Labor rows first, then Parts rows, then work-order-wide rows|PASSED|
+|10|Inside Labor and inside Parts: fees before discounts, each A to Z by name, whatever order they were entered in|PASSED|
+|11|Capital and small letters sort together ({{Alpha fee}}, {{brake fee}}, {{zeta fee}}), and a group with only discounts sorts A to Z|PASSED|
+|12|Work-order-wide rows keep the order they were added and are not combined|PASSED|
+|13|Part sale invoice: part fees print as {{Parts · <name>}}, combined and in the same order|PASSED|
+|14|Legacy invoice layout: identical to production for the same fees|PASSED|
+|15|Customer portal: the invoice and estimate opened from the portal|NOT TESTED - the portal cannot be opened from this branch|
+
+Row 10 is the check Stefan described in [comment 78143|https://shopview.atlassian.net/browse/SV-10142?focusedCommentId=78143]: on S10142-17582 the Shop fees were entered before the Diagnostic fee and the Core discount before the Environmental fees, and the Adjustments block prints exactly as in Chris's example.
+
+h3. Where the expected behaviour comes from
+
+The invoice spec still describes the old behaviour. *Invoice UI Refresh*, version 70, S7-R5 states:
+{quote}Under the Adjustments heading, in this order: a rollup row labeled exactly "Labor" totaling all line-level labor fees and discounts, a rollup row labeled exactly "Parts" totaling all line-level parts fees and discounts, then each work-order-wide fee or discount as its own named row{quote}
+
+Chris ruled on this ticket afterwards, in [comment 77792|https://shopview.atlassian.net/browse/SV-10142?focusedCommentId=77792] (2 October), [comment 77997|https://shopview.atlassian.net/browse/SV-10142?focusedCommentId=77997] (6 October) and [comment 78126|https://shopview.atlassian.net/browse/SV-10142?focusedCommentId=78126] (7 October).
+His comments are the latest information, so this test follows them. I have asked him to update the spec in the separate comment.
+
+h3. More pictures
+
+!02-entry-order-does-not-matter-hd.png|width=390,height=957!
+_The same fees entered in two different orders print exactly the same way._
+
+!03-variants-hd.png|width=390,height=1196!
+_Fees and discounts entered Z-first, with repeated names, mixed calculations, a $0.00 fee and two work-order-wide discounts._
+
+!06-lowercase-and-discount-only-hd.png|width=390,height=710!
+_Names in small letters sort together with capitalised ones, and a group with only discounts sorts A to Z._
+
+!04-part-sale-hd.png|width=512,height=444!
+_Part sale P10142-248: each part fee is named, combined, and fees come before the discount._
+
+!05-legacy-unchanged-hd.png|width=420,height=787!
+_Legacy layout: the same rows and amounts on production and on this branch._
+
+h3. How to see it yourself
+
+# Open [sv10142.qa.shopview.com|https://sv10142.qa.shopview.com] and click the *Admin* quick-login button.
+# In the top menu, click {{Work Orders}}.
+# Just below the top menu, on the left, click the {{All}} tab.
+# Above the list, on the right, click {{Search}} and type *S10142-17582*.
+# Click *S10142-17582* in the list. The work order opens on the {{Lines}} tab.
+# In the row of tabs ({{Lines}}, {{Parts (2)}}, {{Notes}}, {{Stats}}, {{Finance}}), click {{Finance}}. Invoice *INV-S10142-17582* shows on the right.
+# Scroll down that invoice to the {{Adjustments}} block, just above {{Subtotal}}. Each fee and discount has its own name.
+# Repeat steps 4 to 7 for *S10142-17583*. The same fees were entered in a different order, and they print exactly the same way.
+
+All test data is left on the branch: work orders S10142-17580 to S10142-17585 and part sale P10142-248.

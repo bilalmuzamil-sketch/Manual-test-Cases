@@ -73,63 +73,81 @@ def screen_panel(png, geo, L, title, marks, notes, bottom=None):
     return panel(png, crop, title, boxes, notes)
 
 
+R2 = 'ev/raw2/'   # re-captured after Stefan's fixed-order commit 13b782a reached the branch (7 Oct ~14:25Z)
+AFTER = 'QA branch sv10142, build v26.40.8-a32d41c (with the fixed-order update), 7 Oct 2026'
+
 # ---------- 01 BEFORE vs AFTER (same fees, same entry order, estimate, new layout) ----------
 before = pdf_panel(R + 'prod-estimate-S962-modern.pdf', R + 'p-before.png',
-    'BEFORE - production app.shopview.com, build v26.40.9-27b6bca, 7 Oct 2026. Estimate S-962, new invoice layout.',
+    'BEFORE - production app.shopview.com, build v26.40.9-27b6bca, 7 Oct 2026. Estimate S2-962, new invoice layout.',
     [('Labor', RED, 1), ('Parts', RED, 2)],
     [(1, RED, 'Every labor-line fee is summed into one "Labor" row: the Shop fee and Diagnostic fee names never print.'),
      (2, RED, 'The parts Environmental fee ($6.00) and Core discount ($5.00) are netted into "Parts $1.00".')])
-after = pdf_panel(R + 'estimate-A.pdf', R + 'p-after.png',
-    'AFTER - QA branch sv10142, build v26.40.3-d72fa24, 7 Oct 2026. Estimate S-17580, same fees entered the same way.',
-    [('Labor · Shop fee', GREEN, 1), ('Labor · Diagnostic fee', GREEN, 2), ('Parts · Core discount', GREEN, 3),
-     ('Parts · Environmental fee', GREEN, 4)],
-    [(1, GREEN, 'Each fee prints its own name. Three $15.00 Shop fees combine into one $45.00 row.'),
-     (2, GREEN, 'The Diagnostic fee has its own row.'),
-     (3, GREEN, 'The parts discount and fee are no longer netted: ($5.00) and $6.00 print separately.'),
-     (4, GREEN, 'Two $3.00 Environmental fees combine into $6.00. The adjustments add up to the same $61.00 on both builds (the subtotals differ only because the labor lines are priced differently).')])
+after = pdf_panel(R2 + 'estimate-A.pdf', R2 + 'p-after.png',
+    'AFTER - ' + AFTER + '. Estimate S10142-17580, the same fees entered in the same order.',
+    [('Labor · Diagnostic fee', GREEN, 1), ('Labor · Shop fee', GREEN, 2), ('Parts · Environmental fee', GREEN, 3),
+     ('Parts · Core discount', GREEN, 3)],
+    [(1, GREEN, 'Each fee prints its own name.'),
+     (2, GREEN, 'Three $15.00 Shop fees combine into one $45.00 row.'),
+     (3, GREEN, 'The parts fee and discount are no longer netted: $6.00 and ($5.00) print separately, fee first.')])
 stack([before, after]).save('ev/01-before-vs-after-hd.png')
 
-# ---------- 02 FAIL: the order inside a group follows entry order ----------
-c = screen_panel(R + 'screen-C.png', R + 'geo-CD.json', 'C',
-    'S-17582, Finance tab. Fees entered in this order: Shop fee, Diagnostic fee, Core discount, Environmental fee.',
-    [('Labor · Shop fee', RED, 1), ('Labor · Diagnostic fee', RED, 1), ('Parts · Core discount', RED, 2),
-     ('Parts · Environmental fee', RED, 2)],
-    [(1, RED, 'Labor prints Shop fee before Diagnostic fee - the order they were entered, not A to Z.'),
-     (2, RED, 'Parts prints the Core discount before the Environmental fee - a discount before a fee.')])
-d = screen_panel(R + 'screen-D.png', R + 'geo-CD.json', 'D',
-    "S-17583, Finance tab. The same fees, entered in the order of Chris's example.",
-    [('Labor · Diagnostic fee', GREEN, 3), ('Labor · Shop fee', GREEN, 3), ('Parts · Environmental fee', GREEN, 4), ('Parts · Core discount', GREEN, 4)],
-    [(3, GREEN, 'Labor prints Diagnostic fee, then Shop fee - only because the Diagnostic fee was entered first.'),
-     (4, GREEN, "Parts prints the Environmental fee, then the Core discount - again only because of the entry order. Chris's comment 78126 asks for THIS order on both work orders, whatever order the fees were entered in.")])
-stack([c, d]).save('ev/02-order-follows-entry-order-hd.png')
+# ---------- 02 entry order no longer matters ----------
+c = screen_panel(R2 + 'screen-C.png', R2 + 'geo.json', 'C',
+    'S10142-17582, Finance tab. Fees entered in this order: Shop fee, Diagnostic fee, Core discount, Environmental fee.',
+    [('Labor · Diagnostic fee', GREEN, 1), ('Labor · Shop fee', GREEN, 1), ('Parts · Environmental fee', GREEN, 2),
+     ('Parts · Core discount', GREEN, 2)],
+    [(1, GREEN, 'Labor prints Diagnostic fee, then Shop fee: A to Z, not the order they were entered.'),
+     (2, GREEN, 'Parts prints the Environmental fee before the Core discount: fees before discounts.')])
+d = screen_panel(R2 + 'screen-D.png', R2 + 'geo.json', 'D',
+    "S10142-17583, Finance tab. The same fees, entered in the order of Chris's example.",
+    [('Labor · Diagnostic fee', GREEN, 3), ('Labor · Shop fee', GREEN, 3), ('Parts · Environmental fee', GREEN, 3),
+     ('Parts · Core discount', GREEN, 3)],
+    [(3, GREEN, "Prints exactly the same as S10142-17582, and line for line as Chris's example in comment 78126.")])
+stack([c, d]).save('ev/02-entry-order-does-not-matter-hd.png')
 
-# ---------- 03 variants on S-17584 ----------
-g = json.load(open(R + 'geo-E.json'))['E']
-e = screen_panel(R + 'screen-E.png', R + 'geo-E.json', 'E',
-    'S-17584, Finance tab. Fees and discounts entered Z-first, with repeated names.',
-    [('Labor · Zeta fee', RED, 1), ('Labor · Zulu discount', RED, 1), ('Labor · Shop fee', GREEN, 2)]
-    + [({'x': k['x'], 'y': k['y'], 'h': k['h']}, GREEN, 3) for k in g['rows']['near'] if k['t'] == 'Labor · Promo']
-    + [({'x': k['x'], 'y': k['y'], 'h': k['h']}, BLUE, 4) for k in g['rows']['near'] if k['t'] == 'Loyalty discount'],
-    [(1, RED, 'Labor opens with Zeta fee, then Zulu discount: entry order, fees and discounts mixed. Expected: Alpha fee, Promo, Shop fee, Zeta fee, then Bravo discount, Promo, Zulu discount.'),
-     (2, GREEN, 'A flat $5.00 Shop fee and a 2%-of-labor Shop fee ($3.00) combine into one $8.00 row, as Chris confirmed.'),
-     (3, GREEN, '"Promo" as a fee ($10.00) and "Promo" as a discount ($4.00) stay two rows - a fee and a discount never combine.'),
-     (4, BLUE, 'Work-order-wide rows are not combined: two Loyalty discounts print as two rows, as Stefan described and Chris accepted.'),
-     (5, GREEN, 'Not printed, correctly: a "Tiny fee" of 0.01% on a $4.56 part, which works out to $0.00.')])
+# ---------- 03 variants on S10142-17584 ----------
+g = json.load(open(R2 + 'geo.json'))['E']
+near = g['rows']['near']
+e = screen_panel(R2 + 'screen-E.png', R2 + 'geo.json', 'E',
+    'S10142-17584, Finance tab. Entered Z-first: Zeta fee, Zulu discount, Promo, Shop fee, Bravo discount, Alpha fee, Promo discount, Shop fee 2%.',
+    [('Labor · Alpha fee', GREEN, 1), ('Labor · Zeta fee', GREEN, 1), ('Labor · Bravo discount', GREEN, 2),
+     ('Labor · Zulu discount', GREEN, 2), ('Labor · Shop fee', GREEN, 3),
+     ('Parts · Battery fee', GREEN, 6), ('Parts · Tire fee', GREEN, 6), ('Parts · Waste discount', GREEN, 6)]
+    + [({'x': k['x'], 'y': k['y'], 'h': k['h']}, GREEN, 4) for k in near if k['t'] == 'Labor · Promo']
+    + [({'x': k['x'], 'y': k['y'], 'h': k['h']}, BLUE, 5) for k in near if k['t'] == 'Loyalty discount'],
+    [(1, GREEN, 'Labor fees print A to Z: Alpha fee, Promo, Shop fee, Zeta fee.'),
+     (2, GREEN, 'Then the labor discounts, A to Z: Bravo discount, Promo, Zulu discount.'),
+     (3, GREEN, 'A flat $5.00 Shop fee and a 2%-of-labor Shop fee ($3.00) combine into one $8.00 row, as Chris confirmed.'),
+     (4, GREEN, '"Promo" as a fee ($10.00) and "Promo" as a discount ($4.00) stay two rows - a fee and a discount never combine.'),
+     (5, BLUE, 'Work-order-wide rows are not combined and keep the order they were added (Chris ruled on the Labor and Parts groups only).'),
+     (6, GREEN, 'Parts: Battery fee, Tire fee, then Waste discount.'),
+     (7, GREEN, 'Not printed, correctly: a "Tiny fee" of 0.01% on a $4.56 part, which works out to $0.00 (no row).')])
 e.save('ev/03-variants-hd.png')
 
 # ---------- 04 part sale ----------
-ps = pdf_panel(R + 'invoice-PS.pdf', R + 'p-ps.png',
-    'Part sale P-248 invoice (PDF), QA branch sv10142. Fees entered: Tire fee, Core discount, Environmental fee x2.',
-    [('Parts · Tire fee', RED, 1), ('Parts · Core discount', RED, 1), ('Parts · Environmental fee', GREEN, 2)],
-    [(1, RED, 'Rows print in entry order. Expected: Environmental fee, Tire fee, then Core discount.'),
-     (2, GREEN, 'Each part fee prints as "Parts · <name>", and the two $3.00 Environmental fees combine into $6.00.')])
+ps = pdf_panel(R2 + 'invoice-PS.pdf', R2 + 'p-ps.png',
+    'Part sale P10142-248 invoice (PDF). Entered: Tire fee, Core discount, Environmental fee x2.',
+    [('Parts · Environmental fee', GREEN, 1), ('Parts · Tire fee', GREEN, 1), ('Parts · Core discount', GREEN, 2)],
+    [(1, GREEN, 'Part fees print as "Parts · <name>", A to Z; the two $3.00 Environmental fees combine into $6.00.'),
+     (2, GREEN, 'The discount comes after the fees.')])
 ps.save('ev/04-part-sale-hd.png')
 
 # ---------- 05 Legacy layout unchanged ----------
 lb = pdf_panel(R + 'prod-estimate-S962-legacy.pdf', R + 'p-legb.png',
-    'Legacy layout on production (build v26.40.9-27b6bca), estimate S-962.', [], [])
-la = pdf_panel(R + 'estimate-A-legacy.pdf', R + 'p-lega.png',
-    'Legacy layout on the QA branch (build v26.40.3-d72fa24), estimate S-17580, same fees.', [],
+    'Legacy layout on production (build v26.40.9-27b6bca), estimate S2-962.', [], [])
+la = pdf_panel(R2 + 'v2-estimate-A-legacy.pdf', R2 + 'p-lega.png',
+    'Legacy layout on the ' + AFTER + ', estimate S10142-17580, same fees.', [],
     [(1, GREEN, 'Identical rows and amounts on both builds: the Legacy layout is unchanged by the fix.')])
 stack([lb, la]).save('ev/05-legacy-unchanged-hd.png')
+
+# ---------- 06 lowercase names and a discount-only group ----------
+f = screen_panel(R2 + 'screen-F.png', R2 + 'geo.json', 'F',
+    'S10142-17585, Finance tab. Entered: zeta fee, bravo discount, Alpha fee, Alpha discount, brake fee, then part discounts Waste discount, core discount.',
+    [('Labor · Alpha fee', GREEN, 1), ('Labor · brake fee', GREEN, 1), ('Labor · zeta fee', GREEN, 1),
+     ('Labor · Alpha discount', GREEN, 3), ('Labor · bravo discount', GREEN, 3),
+     ('Parts · core discount', GREEN, 2), ('Parts · Waste discount', GREEN, 2)],
+    [(1, GREEN, 'Capital and small letters sort together: Alpha fee, brake fee, zeta fee.'),
+     (2, GREEN, 'A Parts group with only discounts also sorts A to Z: core discount, Waste discount.'),
+     (3, GREEN, 'The labor discounts follow the fees, also A to Z regardless of capitals: Alpha discount, bravo discount.')])
+f.save('ev/06-lowercase-and-discount-only-hd.png')
 print('ok')

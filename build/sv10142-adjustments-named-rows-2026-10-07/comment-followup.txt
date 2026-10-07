@@ -1,0 +1,9 @@
+[~accountid:557058:17189c93-b223-4b4c-8efe-c508356d0492] *Please enable the Customer Portal on this branch.*
+* *Currently:* in the profile menu (top right), {{Customer Portal}} does not open on sv10142. The shared portal server does not accept sign-ins from this branch.
+* *Blocked:* checking that an invoice and an estimate opened from the customer portal show the same named rows, combined totals and order. Your PR lists the customer-portal document as using the same template.
+* Once the portal opens from the branch, I will check it and the ticket can be marked fully passed.
+
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] *Could you update the spec to match your rulings?*
+*Invoice UI Refresh*, version 70, S7-R5 still states:
+{quote}Under the Adjustments heading, in this order: a rollup row labeled exactly "Labor" totaling all line-level labor fees and discounts, a rollup row labeled exactly "Parts" totaling all line-level parts fees and discounts, then each work-order-wide fee or discount as its own named row{quote}
+Your comments 77792, 77997 and 78126 on this ticket replace that with named rows, combined totals and the fixed order.

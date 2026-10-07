@@ -28,35 +28,50 @@ Chris's 78126 is the newest authoritative source and post-dates both the branch 
 ## Set-up (per-ticket branch, no clean-up)
 - QuickBooks advanced mode blocked every fee (`adjustments/add` 409 "Connect a QuickBooks item for fees…"). **QuickBooks feature turned OFF on the branch org** (`POST /api/organization/feature-flags`, list minus `990e383e…`; snapshot `ff-before.json` in /tmp). Same unblock as SV-9480. Not restored (per-ticket branch).
 - Work orders built by API (create, mileage, canned lines *Service - Battery service / Full grease service / PDI*, inventory parts **84-2005 CONNECTOR** and **MD668D ATF**, picked, adjustments, complete, invoice). Customer **4 Star Truck Repair**, contact Savannah.
-- Part sale P-248: first part added **on screen** (creates the Default line), the rest by API.
+- Part sale P10142-248: first part added **on screen** (creates the Default line), the rest by API.
 - Invoice design switched to Legacy and back to Modern for the Legacy check (read back `modern`).
 
 ## Results — every cell observed live (Rule 96 matrix)
 | # | Work order | Entry order | Document | Adjustments block (verbatim) | Result |
 |---|---|---|---|---|---|
-| 1 | S-17580 | Shop, Diagnostic, Shop, Shop · Core disc, Env, Env · Fleet | estimate (Finance tab + PDF) | Labor · Shop fee $45.00 / Labor · Diagnostic fee $25.00 / Parts · Core discount ($5.00) / Parts · Environmental fee $6.00 / Fleet discount ($10.00) | names + combine PASS · order FAIL (78126) |
-| 2 | S-17582 | same as 1 | invoice PDF + Finance tab | identical to 1 | names + combine PASS · order FAIL |
-| 3 | S-17583 | Chris's order (Diagnostic first, Env before Core) | invoice PDF + Finance tab | Labor · Diagnostic fee $25.00 / Labor · Shop fee $45.00 / Parts · Environmental fee $6.00 / Parts · Core discount ($5.00) / Fleet discount ($10.00) — **Chris's example line for line** | PASS (but only because of entry order) |
-| 4 | S-17584 | Zeta, Zulu disc, Promo fee, Shop flat $5, Bravo disc, Alpha, Promo disc, Shop 2% labor, Waste disc(part), Tire(part), Battery(part), Tiny 0.01% part, Loyalty disc, Admin fee, Loyalty disc | estimate PDF + invoice PDF + Finance tab | Labor · Zeta fee $7.00 / Labor · Zulu discount ($2.00) / Labor · Promo $10.00 / Labor · Shop fee $8.00 / Labor · Bravo discount ($3.00) / Labor · Alpha fee $4.00 / Labor · Promo ($4.00) / Parts · Waste discount ($1.00) / Parts · Tire fee $2.00 / Parts · Battery fee $1.00 / Loyalty discount ($5.00) / Admin fee $8.00 / Loyalty discount ($2.00) | see rows 4a–4e |
+| 1 | S10142-17580 | Shop, Diagnostic, Shop, Shop · Core disc, Env, Env · Fleet | estimate (Finance tab + PDF) | Labor · Shop fee $45.00 / Labor · Diagnostic fee $25.00 / Parts · Core discount ($5.00) / Parts · Environmental fee $6.00 / Fleet discount ($10.00) | names + combine PASS · order FAIL (78126) |
+| 2 | S10142-17582 | same as 1 | invoice PDF + Finance tab | identical to 1 | names + combine PASS · order FAIL |
+| 3 | S10142-17583 | Chris's order (Diagnostic first, Env before Core) | invoice PDF + Finance tab | Labor · Diagnostic fee $25.00 / Labor · Shop fee $45.00 / Parts · Environmental fee $6.00 / Parts · Core discount ($5.00) / Fleet discount ($10.00) — **Chris's example line for line** | PASS (but only because of entry order) |
+| 4 | S10142-17584 | Zeta, Zulu disc, Promo fee, Shop flat $5, Bravo disc, Alpha, Promo disc, Shop 2% labor, Waste disc(part), Tire(part), Battery(part), Tiny 0.01% part, Loyalty disc, Admin fee, Loyalty disc | estimate PDF + invoice PDF + Finance tab | Labor · Zeta fee $7.00 / Labor · Zulu discount ($2.00) / Labor · Promo $10.00 / Labor · Shop fee $8.00 / Labor · Bravo discount ($3.00) / Labor · Alpha fee $4.00 / Labor · Promo ($4.00) / Parts · Waste discount ($1.00) / Parts · Tire fee $2.00 / Parts · Battery fee $1.00 / Loyalty discount ($5.00) / Admin fee $8.00 / Loyalty discount ($2.00) | see rows 4a–4e |
 | 4a | | | | Promo fee + Promo discount → two rows | PASS (77792) |
 | 4b | | | | Shop fee flat $5 + 2% of $149.95 labor ($3.00) → one $8.00 row | PASS (77997 #2) |
 | 4c | | | | Tiny fee 0.01% × $4.56 = $0.0005 → not printed | PASS (77792 hide $0.00) |
 | 4d | | | | Labor group, then Parts group, then work-order-wide | PASS (77997 #1) |
 | 4e | | | | inside Labor: Zeta, Zulu disc, Promo… — entry order, fees and discounts mixed. Expected: Alpha fee, Promo, Shop fee, Zeta fee, Bravo discount, Promo, Zulu discount | **FAIL (78126)** |
 | 4f | | | | two work-order-wide Loyalty discounts stay two rows, in entry order | as Stefan 77809 stated and Chris 77997 accepted; 78126 rules only on Labor/Parts groups |
-| 5 | P-248 part sale | Tire, Core disc, Env, Env · Fleet | invoice PDF | Parts · Tire fee $2.00 / Parts · Core discount ($5.00) / Parts · Environmental fee $6.00 / Fleet discount ($10.00) | names + combine PASS · order FAIL (expected Environmental, Tire, Core discount) |
-| 6 | Legacy layout | S-17580 branch vs S-962 prod | estimate PDF | both: Fleet discount ($10.00) / Shop fee (×3) $45.00 / Diagnostic fee $25.00 / Core discount ($5.00) / Environmental fee (×2) $6.00 — **identical text** | PASS (unchanged) |
+| 5 | P10142-248 part sale | Tire, Core disc, Env, Env · Fleet | invoice PDF | Parts · Tire fee $2.00 / Parts · Core discount ($5.00) / Parts · Environmental fee $6.00 / Fleet discount ($10.00) | names + combine PASS · order FAIL (expected Environmental, Tire, Core discount) |
+| 6 | Legacy layout | S10142-17580 branch vs S2-962 prod | estimate PDF | both: Fleet discount ($10.00) / Shop fee (×3) $45.00 / Diagnostic fee $25.00 / Core discount ($5.00) / Environmental fee (×2) $6.00 — **identical text** | PASS (unchanged) |
 | 7 | Legacy layout | C/D/E invoices | invoice PDF | legacy grouping (×n), unchanged style | PASS |
-| 8 | Estimate vs invoice | S-17584 | both PDFs | identical Adjustments rows | PASS |
+| 8 | Estimate vs invoice | S10142-17584 | both PDFs | identical Adjustments rows | PASS |
 
 Arithmetic: the line-level + WO-wide amounts on 1–3 net to $61.00 (76 fees − 15 discounts), matching the work order's `adjustmentsSummary` and the production BEFORE (Labor 70 + Parts 1 − 10 = 61).
 
 ## Production BEFORE (bug reproduced live)
-Work order **S-962** (Trucks Hill 2, customer *aa*, canned lines ER5/ER3/ER4, two ZZAUTOTEST vendor parts), same eight adjustments in the same entry order. Production `documentDesign` was **legacy**; switched to **modern** for the capture, rendered the estimate PDF, switched back to **legacy** and read back `legacy`. New layout prints **`Labor $70.00 · Parts $1.00 · Fleet discount ($10.00)`** — no names, and the parts fee and discount netted into $1.00. Legacy estimate captured as the comparison for row 6.
-**Clean-up:** S-962 deleted (`work-orders/delete` 201; re-read → 400 `workOrderId Not found`); `documentDesign` read back **legacy**. QuickBooks advanced mode was off on production, so no flags touched there. Session location set to Trucks Hill 2.
+Work order **S2-962** (Trucks Hill 2, customer *aa*, canned lines ER5/ER3/ER4, two ZZAUTOTEST vendor parts), same eight adjustments in the same entry order. Production `documentDesign` was **legacy**; switched to **modern** for the capture, rendered the estimate PDF, switched back to **legacy** and read back `legacy`. New layout prints **`Labor $70.00 · Parts $1.00 · Fleet discount ($10.00)`** — no names, and the parts fee and discount netted into $1.00. Legacy estimate captured as the comparison for row 6.
+**Clean-up:** S2-962 deleted (`work-orders/delete` 201; re-read → 400 `workOrderId Not found`); `documentDesign` read back **legacy**. QuickBooks advanced mode was off on production, so no flags touched there. Session location set to Trucks Hill 2.
 
 ## Customer portal — NOT REACHED (raised with the QA lead, Rule 91)
 Profile menu → **Customer Portal** on the branch sends `POST https://shopview-portal-feature-branch-xn74b9.laravel.cloud/sso-login {"returnJson":true,"portalType":"customer"}`; the browser fails it with `net::ERR_FAILED`. The CORS preflight from origin `https://sv10142.qa.shopview.com` returns 204 **without** `Access-Control-Allow-Origin`, so the shared portal server does not accept this branch. Not one of the PR's QA steps; the PR summary lists the portal document as sharing the same template.
 
 ## Evidence
 `ev/01-before-vs-after-hd.png` · `ev/02-order-follows-entry-order-hd.png` · `ev/03-variants-hd.png` · `ev/04-part-sale-hd.png` · `ev/05-legacy-unchanged-hd.png` (built by `build_exhibits.py` from `ev/raw/` — PDFs rendered at 4×, Finance-tab captures at 2×). Scripts in `scripts/`.
+
+## ⚠️ THE BRANCH MOVED DURING THE PASS — re-tested in full (Rules 59/72)
+- **Pre-post gate (~14:40Z) caught it:** S10142-17582 suddenly printed in the fixed order while the front-end marker was still `v26.40.3-d72fa24`. Stefan had pushed **`13b782a` "fix(be)[SV-10142]: fixed row order inside Labor and Parts — fees first, then A to Z"** (14:25:33Z) + merge `a32d41c` (14:25:41Z). The back end redeployed first; the **front end followed at 14:45:51 GMT → `v26.40.8-a32d41c`** (includes a merge of `main`). The first draft (PARTIALLY PASSED with a "fixed order missing" remaining issue) was **never posted**.
+- Commit message: sorts each line-level group by *(is discount, lower-cased name)*; work-order-wide rows keep entry order; Legacy untouched. Files: `AdjustmentRenderFormatter.php`, `InvoiceDtoInterface.php`, `InvoiceAdjustmentRenderProvider.php`, unit test, e2e spec.
+- **Stefan comment 78143 (09:46 −0500)** asks Chris to verify the out-of-order example and sign off; PR merges once he does.
+- **Re-tested on `v26.40.8-a32d41c`, every document re-rendered:**
+  - S10142-17580 (est), 17582 (inv, reverse entry), 17583 (inv, Chris order): all `Labor · Diagnostic fee $25.00 / Labor · Shop fee $45.00 / Parts · Environmental fee $6.00 / Parts · Core discount ($5.00) / Fleet discount ($10.00)` — **Chris's 78126 example line for line, whatever the entry order.** PASS
+  - S10142-17584 (est + inv): `Labor · Alpha fee $4.00 / Promo $10.00 / Shop fee $8.00 / Zeta fee $7.00 / Bravo discount ($3.00) / Promo ($4.00) / Zulu discount ($2.00) / Parts · Battery fee $1.00 / Tire fee $2.00 / Waste discount ($1.00) / Loyalty discount ($5.00) / Admin fee $8.00 / Loyalty discount ($2.00)` — fees then discounts, A to Z; work-order-wide rows in entry order, not combined. PASS
+  - **New variant S10142-17585** (entered: zeta fee, bravo discount, Alpha fee, Alpha discount, brake fee, part discounts Waste discount, core discount): `Labor · Alpha fee / brake fee / zeta fee / Alpha discount / bravo discount / Parts · core discount / Waste discount` — case-insensitive A to Z; discount-only group sorts. PASS
+  - P10142-248: `Parts · Environmental fee $6.00 / Tire fee $2.00 / Core discount ($5.00) / Fleet discount ($10.00)`. PASS
+  - Legacy (C/D/E invoices + estimate A): Adjustments text **identical** to the pre-commit captures, and estimate A Legacy **identical to production S2-962 Legacy**. PASS
+- First-build exhibits kept in `ev/first-build/` (they show the entry-order behaviour on `d72fa24`); the posted set is rebuilt from `ev/raw2/` on `a32d41c`.
+
+## QA lead's rulings (7 Oct)
+1st ask: verdict *"Partially passed now"* · portal *"Ask stefan to enable POrtal on the branch to testing the part {{mention what is blocked on portal access}}"* · technical section *"No"* · spec note *"Yes, ask Chris"*. 2nd ask (after the redeploy): *"Partially passed, portal"*. Then: *"wait before posting anything see this comment …78143"* — **holding, nothing posted.**
