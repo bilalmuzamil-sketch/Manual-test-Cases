@@ -13,7 +13,14 @@ APPLY = "--apply" in sys.argv
 def ws(s): return re.sub(r"\s+", " ", s.replace("**", "").replace("\\", "")).strip()
 V42N = ws(V42)
 def esc(t): return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-def ol(x): return "<ol>" + "".join(f"<li>{esc(i)}</li>" for i in x) + "</ol>"
+def ol(x):
+    # one <li> per item; a leading "N. " is dropped (the list numbers itself); "↳" items nest under the item above
+    items = []
+    for i in x:
+        i = i.strip()
+        if i.startswith("↳"): items[-1][1].append(i.lstrip("↳ ").strip())
+        else: items.append([re.sub(r"^\d+\.\s+", "", i), []])
+    return "<ol>" + "".join(f"<li>{esc(t)}" + ("<ul>" + "".join(f"<li>{esc(s)}</li>" for s in subs) + "</ul>" if subs else "") + "</li>" for t, subs in items) + "</ol>"
 def ul_raw(x): return "<ul>" + "".join(f"<li>{i}</li>" for i in x) + "</ul>"
 STAMP = re.compile(r"\s*(Last checked against build [^ ]+ on [0-9/]+\.)")
 SHORTHAND = re.compile(r"\b(S\d+-[RNE]\d+|parity|denominator|bucket|n/a state|Rule \d+|delta)\b|;", re.I)
