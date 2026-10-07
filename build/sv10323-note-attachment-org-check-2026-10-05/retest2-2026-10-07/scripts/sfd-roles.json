@@ -1,0 +1,82 @@
+{
+ "ZZ10323 TechView view-only": {
+  "before": {
+   "mode": "tech",
+   "cross": {
+    "seeFinancialData": false,
+    "seeApArData": false,
+    "viewHistoryLogs": false
+   },
+   "perms": [
+    "customersView",
+    "partSalesView",
+    "scheduleView",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersView"
+   ]
+  },
+  "after": {
+   "mode": "tech",
+   "cross": {
+    "seeFinancialData": true,
+    "seeApArData": false,
+    "viewHistoryLogs": false
+   },
+   "perms": [
+    "customersView",
+    "partSalesView",
+    "scheduleView",
+    "seeFinancialData",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersView"
+   ]
+  }
+ },
+ "ZZ10323 TechView edit": {
+  "before": {
+   "mode": "tech",
+   "cross": {
+    "seeFinancialData": false,
+    "seeApArData": false,
+    "viewHistoryLogs": false
+   },
+   "perms": [
+    "customersCreateAndEdit",
+    "customersView",
+    "partSalesCreateAndEdit",
+    "partSalesView",
+    "scheduleView",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ]
+  },
+  "after": {
+   "mode": "tech",
+   "cross": {
+    "seeFinancialData": true,
+    "seeApArData": false,
+    "viewHistoryLogs": false
+   },
+   "perms": [
+    "customersCreateAndEdit",
+    "customersView",
+    "partSalesCreateAndEdit",
+    "partSalesView",
+    "scheduleView",
+    "seeFinancialData",
+    "woPickParts",
+    "woTechViewMode",
+    "workOrderLinesCreateAndEdit",
+    "workOrdersCreateAndEdit",
+    "workOrdersView"
+   ]
+  }
+ }
+}
