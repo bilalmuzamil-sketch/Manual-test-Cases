@@ -1,0 +1,717 @@
+[
+ {
+  "op": "update",
+  "case": "C88594",
+  "automated": true,
+  "verified": true,
+  "change": "AUTOMATED CASE (tell Vlad): same five checks kept (Dashboard entry shown, sits right of Reports, opens the dashboard, figures for the selected workplace, lands on dashboard after login); preconditions rewritten from automation terms (storage state, seeded via API, browser storage key) to manual click-paths with a private window standing in for 'no stored expanded tile'; steps split into one action per line; the workplace check now compares Revenue against the Sales report; quotes re-read from v42 (unchanged text); title reworded."
+ },
+ {
+  "op": "update",
+  "case": "C88595",
+  "automated": false,
+  "verified": true,
+  "change": "Preconditions now create the two roles and users with real click-paths (Settings > Roles & Permissions, Settings > Staff); steps one action per line; plain results separate the hand check from the server-side part, which is marked as not checkable by hand; quotes re-read from v42 (S1-R7 apostrophe now straight as in the file)."
+ },
+ {
+  "op": "update",
+  "case": "C88596",
+  "automated": false,
+  "verified": true,
+  "change": "Precondition now seeds the role and user step by step; steps one action per line with the build's labels; results say exactly what the tester sees; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88597",
+  "automated": false,
+  "verified": true,
+  "change": "Steps split into one action per line with hover, click and tap described; small screen explained in plain words; analytics part marked as not checkable by hand; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88598",
+  "automated": false,
+  "verified": true,
+  "change": "Preconditions now seed an empty second workplace so the change of figures can be seen; steps one action per line; results show example figures; the no-workplace part says what to do if it cannot be reached; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88599",
+  "automated": false,
+  "verified": true,
+  "change": "Precondition now names how to get a second user; steps one action per line; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88600",
+  "automated": false,
+  "verified": true,
+  "change": "Steps now tell the tester exactly where to look and what to try (right-click, drag, sign out and in, other browser); quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88601",
+  "automated": false,
+  "verified": true,
+  "change": "Steps now walk tile by tile through the arrow icon into each matching report with all advisors or technicians selected; the 'at every moment' rule became a hand check (create an invoice and reload both within a minute); quotes re-read from v42 (unchanged) plus the parity-check context note."
+ },
+ {
+  "op": "update",
+  "case": "C88602",
+  "automated": false,
+  "verified": true,
+  "change": "Replaced 'compute each measure by the formula' with a seeded data set (two invoices, two advisors, two technicians, a shared line, then internal time) and the exact figure for every tile and table row, with the arithmetic shown; the S3-R2 quote now carries the requirement sentence plus each table row verbatim instead of a merged paraphrase."
+ },
+ {
+  "op": "update",
+  "case": "C88603",
+  "automated": false,
+  "verified": true,
+  "change": "S3-E3 changed in v42: the ratio headline now reads a grey \"-\" (was \"n/a\"); this case now checks only that (the negative-revenue and voided-invoice checks moved to two new cases, NEW-A11 and NEW-A12, so each case checks one thing); a seeded no-clock workplace and a technician-time-but-no-clock line make it runnable; marker set to HOLD (not yet built); last-checked stamp dropped."
+ },
+ {
+  "op": "update",
+  "case": "C88604",
+  "automated": false,
+  "verified": true,
+  "change": "Placeholder text like {parts} replaced by a seeded data set with exact expected figures and arithmetic; the report link is described as the arrow icon beside the tile name, as built; one action per step; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88605",
+  "automated": false,
+  "verified": true,
+  "change": "Placeholders replaced by the seeded data set (Technician Efficiency read first, then 0.50 internal hours added for Technician Utilization and removed again) with exact expected figures and arithmetic; one action per step; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88606",
+  "automated": false,
+  "verified": true,
+  "change": "S4-R11 changed in v42: it now ends with the empty-chart placeholder when fewer than two points have values (was 'the line is not drawn'). Steps now build exact-length custom ranges with the calendar's 'Range: N days' readout to test both sides of every switch, compare the trend line with the expanded chart, and show a gap on a day with no clocked time. Marker set to HOLD (not yet built); last-checked stamp dropped."
+ },
+ {
+  "op": "update",
+  "case": "C88607",
+  "automated": false,
+  "verified": true,
+  "change": "Placeholder {count} replaced by a seeded empty workplace (\"0 Invoices\") and a seeded $1,234,567.89 invoice for the extreme value; steps tell the tester exactly what a change indicator would look like; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88608",
+  "automated": false,
+  "verified": true,
+  "change": "Placeholders replaced by two seeded workplaces (one customer, then two) with exact headlines; the report link is described as the arrow icon; the 'Top' line asks the tester to record the name, since v42 does not say how the top customer is chosen (raised in notes); quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88609",
+  "automated": true,
+  "verified": true,
+  "change": "AUTOMATED CASE (tell Vlad): all six checks kept (plain-number headline, one-customer line, many-customer line, 30/60/90/120/180 options, 120 default, everything updates on change); the automation's seeding (one invoice ~90 days old, cleared browser storage keys) is stated as such and a manual equivalent added (private window, existing customers last invoiced 60-119 days ago); placeholders replaced by example wording; steps one action per line; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88610",
+  "automated": false,
+  "verified": true,
+  "change": "Steps now make the 'revenue above $0.00' rule testable by crediting an at-risk customer's only invoice (they leave) against a two-invoice customer (they stay); remembered window checked in the same browser vs a private window; time-zone rule checked by changing the computer's time zone; parts a tester cannot see are marked to note in the result; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88611",
+  "automated": false,
+  "verified": true,
+  "change": "Preconditions now seed an empty workplace and two walk-in (no customer) part sales with click-paths; results give the exact on-screen readings (\"0 customers\", \"0\", count up by one); quotes re-read from v42 (unchanged) plus the S5-E3 context note that QA must create the no-company case."
+ },
+ {
+  "op": "update",
+  "case": "C88630",
+  "automated": false,
+  "verified": true,
+  "change": "Quotes now come from the PRD v42 (the At Risk context note, S5-R9, S6-R8) instead of the tech plan, which is cited in the Source line only; steps one action per line with a worked sum; the unreachable 500-row cap is marked for the result comment."
+ },
+ {
+  "op": "update",
+  "case": "C88612",
+  "automated": true,
+  "verified": true,
+  "change": "AUTOMATED CASE (tell Vlad): all seven checks kept (View details on each tile, reveals detail, and each tile's exact contents: Revenue chart; Billing Efficiency chart + Advisor Analysis table; Technician Efficiency chart + table; Technician Utilization chart + table; Sales by Customer table); automation seeding stated as such with a manual equivalent; a private window stands in for 'no stored expanded tile'; steps one click per line; results add the on-screen details the design boards show (panel under the row, arrow flips, filter names)."
+ },
+ {
+  "op": "update",
+  "case": "C88613",
+  "automated": false,
+  "verified": true,
+  "change": "Steps now say how to read the order and the tie-break and to count the rows against the headline; the unreachable 500-row cap is marked for the result comment; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88614",
+  "automated": false,
+  "verified": true,
+  "change": "Steps now spell out each click (other tile, tile body, range pill, window pill, report arrow, closing again); results one per line; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88615",
+  "automated": false,
+  "verified": true,
+  "change": "Steps now set each remembered choice by name (expanded tile, technician filter, At Risk window, report Hide Chart) and compare same browser, other browser and cleared data; the one-tile-fails part is marked not checkable by hand; note: the earlier 'mentions n/a' flag was a false match on 'technician/advisor', nothing about n/a was in this case; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88616",
+  "automated": false,
+  "verified": true,
+  "change": "Small screen explained in plain words (phone, upright tablet, or narrow window); steps one action per line including a tap on the tile body; results add the design's 'View Report' footer details; quotes re-read from v42 (unchanged)."
+ },
+ {
+  "op": "update",
+  "case": "C88627",
+  "automated": false,
+  "verified": true,
+  "change": "Re-sourced from the retired 'ShopView Dashboard Directions' design to the canvas boards 05/06/07 *_After; quotes now come from the PRD (S6-R4 to S6-R6) with column names cited to the boards; the 'matching report's own table' claim was dropped (no source sentence); the Technician Efficiency pager added from board 06; steps one action per line."
+ },
+ {
+  "op": "update",
+  "case": "C88628",
+  "automated": false,
+  "verified": true,
+  "change": "Re-sourced from the retired 'Dashboard Directions' design to canvas boards 08_Customers_After and 09_AtRisk_After; quotes now from the PRD (S6-R7, S6-R8) with columns cited to the boards; added the board's pager, customer links and the panel's 'Inactive for' select; steps one action per line."
+ },
+ {
+  "op": "update",
+  "case": "C88617",
+  "automated": true,
+  "verified": true,
+  "change": "Rewritten to the standard; every check kept (S7-R1 to R6, same order list, headline, trend line, expanded chart and table, other tiles untouched). Changed: seeding via the app instead of an API, the browser-storage precondition replaced by 'start with no tile expanded', 'confirm' steps split into single UI actions, the expanded check done on Billing Efficiency because it has both a chart and a table (S7-R5 names both). No check removed; marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88618",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard. The part-period check (S7-E1) moved to its own new case NEW-B01 so this case checks one thing; the default ranges and not-remembered checks are unchanged. Steps now name real actions (change two pills, leave, return, sign out and in). Marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88619",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard and narrowed to the Technician filter. The Advisor filter checks moved to NEW-B02 and the remembered-between-visits check to NEW-B03, so each case checks one thing; no check dropped. Label 'Technician: All technicians' added from the canvas screenshots. Marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88620",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard: real click-path, one action per step, plain observations including that the chart returns when a technician is re-ticked. Expectation unchanged; marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88621",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard with a hand-seedable outlier (1.00 hour billed on 0.25 hours clocked = 400%) and the pooled-median condition made countable by hovering. The 'fits the data when nothing is above 200%' part moved to NEW-B04; a new NEW-B05 adds the 'all values high, no cap' half. Marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88622",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard with countable observations (legend names = lines). The hover check (ELR in the tooltip) moved to NEW-B06 and the technician-chart half of 'no extra lines' to NEW-B07, so each case checks one thing; nothing dropped. Marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C204097",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard: a seedable negative day (credit with no sales today) on the Revenue chart's This Week view, and one named chart per check. Expectation unchanged; marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88623",
+  "automated": true,
+  "verified": true,
+  "change": "Rewritten to the standard; every check kept (S10-R1 to R4 and S10-N1). Changed: the backdated API seeding replaced by existing last-month data or an invoice made in the app, the range check made concrete (Revenue on Last Month, dates read from the calendar), the five tile-to-report pairs spelled out from the PRD context note, report link described as the icon beside the name as on screen. Marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88624",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard and narrowed to 'chart above the table' on each of the four reports, with the pairings from the PRD context note. Show/Hide moved to NEW-B15, the filters check to NEW-B16, the same-figures check to NEW-B17 and the remembered choice to NEW-B18, so each case checks one thing; nothing dropped. Marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88625",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard: real click-path across all four reports, observations of what the chart's box does and does not hold. Expectation unchanged; marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C204098",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard: all four reports, one action per step, an instruction to record where the \u22ef menu sits (the screenshots show it missing on Sales and Service Advisor Analysis and left of the filters on Technician Utilization). Expectation unchanged; marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88626",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten to the standard and narrowed to the desktop layout. Theme colours and rendering moved to NEW-B21, the larger count headline to NEW-B22 and the small-screen stacking to NEW-B23, so each case checks one thing; nothing dropped. Marker and build stamp kept."
+ },
+ {
+  "op": "update",
+  "case": "C88629",
+  "automated": false,
+  "verified": true,
+  "change": "Re-sourced from the retired Design Directions file (its quotes removed) to the canvas boards and PRD v42 quotes. Its four old checks were placed honestly: blue pill and report icon kept here; 'four in a row, two below' is C88626; light and dark is NEW-B21; 'one detail panel under the row, swapping' is the new NEW-B24. Marker and build stamp kept because the checks are the same ones last checked on that build."
+ },
+ {
+  "op": "update",
+  "case": "C88631",
+  "automated": false,
+  "verified": true,
+  "change": "Rewritten as a hand-runnable stopwatch check; the measured targets and forced slow tile are stated plainly as not checkable by hand."
+ },
+ {
+  "op": "update",
+  "case": "C88632",
+  "automated": false,
+  "verified": true,
+  "change": "Seeds a real void (line added to an unpaid invoice) and re-invoice by hand, with the before and after report figures written out."
+ },
+ {
+  "op": "update",
+  "case": "C88633",
+  "automated": false,
+  "verified": true,
+  "change": "Hand-seeded two invoices (one discounted), a returned-part credit and the full arithmetic, compared against the Sales report Totals row."
+ },
+ {
+  "op": "update",
+  "case": "C88634",
+  "automated": false,
+  "verified": true,
+  "change": "Hand-seeded a small sale plus a larger credit against an older invoice, with the negative arithmetic and the Sales report comparison."
+ },
+ {
+  "op": "update",
+  "case": "C88635",
+  "automated": false,
+  "verified": true,
+  "change": "Three hand-made invoices: one reversed, one voided by adding a line and re-invoiced, with Revenue written out after each change and compared to the Sales report."
+ },
+ {
+  "op": "update",
+  "case": "C88636",
+  "automated": false,
+  "verified": true,
+  "change": "Reads the no-invoice fallback first, then one hand-made labor plus part invoice, with the whole-number rounding worked out."
+ },
+ {
+  "op": "update",
+  "case": "C88637",
+  "automated": false,
+  "verified": true,
+  "change": "One hand-made invoice with 3.50 billed and 3.00 clocked hours, the 116.67% arithmetic, and the Service Advisor Analysis comparison."
+ },
+ {
+  "op": "update",
+  "case": "C88638",
+  "automated": false,
+  "verified": true,
+  "change": "Two hand-made advisors with uneven hours (25% and 200%) so the pooled 60.00% and the averaged 112.50% are visibly different."
+ },
+ {
+  "op": "update",
+  "case": "C88639",
+  "automated": false,
+  "verified": true,
+  "change": "One hand-made invoice with Tech Time different from Estimated Time and 4.00 clocked hours, the 75.00% arithmetic, and the Invoiced-tab comparison."
+ },
+ {
+  "op": "update",
+  "case": "C88640",
+  "automated": false,
+  "verified": true,
+  "change": "Hand-seeds a 70/30 shared line and an unclocked line, adds the grey \"-\" check from v42 S3-E3, and moves the marker to HOLD (not yet built)."
+ },
+ {
+  "op": "update",
+  "case": "C88641",
+  "automated": false,
+  "verified": true,
+  "change": "Hand-clocked 2.00 work-order hours and 1.00 internal hour, the 66.67% rounding worked out, compared against the report's Summary row."
+ },
+ {
+  "op": "update",
+  "case": "C88642",
+  "automated": false,
+  "verified": true,
+  "change": "Four hand-made customers (repeat, single, reversed, voided) with the distinct count worked out, plus the singular \"1 customer\" check."
+ },
+ {
+  "op": "update",
+  "case": "C88643",
+  "automated": false,
+  "verified": true,
+  "change": "Uses real history, read off the At Risk table, for both qualifying rules and the window edge, plus a hand-made then reversed invoice for the undone-invoice rule."
+ },
+ {
+  "op": "update",
+  "case": "C88644",
+  "automated": false,
+  "verified": true,
+  "change": "Two devices in different time zones, a calendar-day count against the location's date, and a same-day stability check, with the midnight part marked honestly."
+ },
+ {
+  "op": "update",
+  "case": "C88645",
+  "automated": false,
+  "verified": true,
+  "change": "Counts and hovers the twelve points, compares the last with the headline, and reverses a past invoice by hand to show the earlier points are recalculated."
+ },
+ {
+  "op": "update",
+  "case": "C88646",
+  "automated": false,
+  "verified": true,
+  "change": "Expectation moved from \"n/a\" to the grey \"-\" of v42 S3-E3, with a hand-made genuine 0.00% for contrast. Marker set to HOLD (not yet built)."
+ },
+ {
+  "op": "update",
+  "case": "C88647",
+  "automated": false,
+  "verified": true,
+  "change": "Requoted S4-R11 from v42 (now ending with the placeholder sentence), added the placeholder expectation, made every range edge a hand-set custom range. Marker set to HOLD (not yet built)."
+ },
+ {
+  "op": "update",
+  "case": "C88648",
+  "automated": false,
+  "verified": true,
+  "change": "A 5 x 9 grid filled by hand, naming exactly which report figure each tile is compared with and how the Last 12 Months window is checked."
+ },
+ {
+  "op": "update",
+  "case": "C88649",
+  "automated": false,
+  "verified": true,
+  "change": "Concrete filter choices, the exact chart point to hover and the matching report filter and date to compare against, with the rounding rule stated."
+ },
+ {
+  "op": "update",
+  "case": "C88650",
+  "automated": false,
+  "verified": true,
+  "change": "Names each column to add up against each figure in the supporting line, and the partial-month end of the trend line. S4-R11 requoted from v42."
+ },
+ {
+  "op": "update",
+  "case": "C88651",
+  "automated": false,
+  "verified": true,
+  "change": "One hand-made $300.00 invoice in location A, read in A, B and A again, each compared with that location's Sales report."
+ },
+ {
+  "op": "update",
+  "case": "C88652",
+  "automated": false,
+  "verified": true,
+  "change": "Adds, reverses and clocks data by hand and reads the tile and the report straight away each time, with the internal refresh check stated as not checkable by hand."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A11",
+  "case": "C351704",
+  "section": 12169,
+  "verified": true,
+  "why": "S3-E1 (negative Revenue), split out of C88603 so each case checks one thing; made runnable with a credit dated today against an earlier invoice in a workplace with no sales today."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A12",
+  "case": "C351705",
+  "section": 12169,
+  "verified": true,
+  "why": "S3-E2 (voided invoices excluded), split out of C88603; made runnable with its own workplace, a hand-made void (add a line to an unpaid, unsent invoice) and exact before/after figures, plus the at-risk customer's most recent invoice."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A1",
+  "case": "C351706",
+  "section": 12170,
+  "verified": true,
+  "why": "S4-R12 (no point with a value: ratio tiles with no hours) and S4-R18."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A2",
+  "case": "C351707",
+  "section": 12170,
+  "verified": true,
+  "why": "S4-R12 (fewer than two points with a value) and S4-R18 (headline and supporting line keep their figures)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A3",
+  "case": "C351708",
+  "section": 12170,
+  "verified": true,
+  "why": "S4-E2 (real zero keeps $0.00), S4-R13 (every point zero) and S4-R18; also the context note that expanded charts are unchanged."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A4",
+  "case": "C351709",
+  "section": 12170,
+  "verified": true,
+  "why": "S4-E3 (every point zero except one shows the sparkline)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A5",
+  "case": "C351710",
+  "section": 12170,
+  "verified": true,
+  "why": "S4-R14 (same space as the sparkline, tile keeps its height)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A6",
+  "case": "C351711",
+  "section": 12170,
+  "verified": true,
+  "why": "S4-R15 (light grey dashed, rounded, no fill) and S4-R16 (grey line-chart icon at centre)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A7",
+  "case": "C351712",
+  "section": 12170,
+  "verified": true,
+  "why": "S4-R17 (screen reader reads \"No data to chart\")."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A8",
+  "case": "C351713",
+  "section": 12170,
+  "verified": true,
+  "why": "Story 4 context note (loading placeholder is not the empty-chart placeholder) with S6-R14; board 15 note."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A9",
+  "case": "C351714",
+  "section": 12171,
+  "verified": true,
+  "why": "S5-R16 (count tiles follow the empty-chart rules), with S4-R13 and S4-E2 applied to the count tiles."
+ },
+ {
+  "op": "add",
+  "key": "NEW-A10",
+  "case": "C351715",
+  "section": 12171,
+  "verified": true,
+  "why": "S5-R16 applied to S4-E3 on a count tile (one non-zero month keeps the sparkline)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B01",
+  "case": "C351716",
+  "section": 12173,
+  "verified": true,
+  "why": "S7-E1 (moved out of C88618, which carried it; expectation unchanged, so the build stamp carries over)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B02",
+  "case": "C351717",
+  "section": 12174,
+  "verified": true,
+  "why": "S8-R3, S8-R4, S8-R5 for the advisor half (moved out of C88619; expectation unchanged, stamp carried)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B03",
+  "case": "C351718",
+  "section": 12174,
+  "verified": true,
+  "why": "S8-R6 (moved out of C88619; expectation unchanged, stamp carried)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B04",
+  "case": "C351719",
+  "section": 12175,
+  "verified": true,
+  "why": "S9-R1 and the no-cap sentence of S9-R2 (moved out of C88621; expectation unchanged, stamp carried)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B05",
+  "case": "C351720",
+  "section": 12175,
+  "verified": true,
+  "why": "S9-R2 (the median-above-200% half) and the Story 9 axis context note; no existing case of ours exercises the uncapped high case."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B06",
+  "case": "C351721",
+  "section": 12175,
+  "verified": true,
+  "why": "S9-R5 (moved out of C88622; expectation unchanged, stamp carried; the month header and ELR-on-a-second-line layout are from the design board)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B07",
+  "case": "C351722",
+  "section": 12175,
+  "verified": true,
+  "why": "S9-R7, technician-chart half (moved out of C88622; expectation unchanged, stamp carried)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B08",
+  "case": "C351723",
+  "section": 12175,
+  "verified": true,
+  "why": "Design-only legend hover readout on the dashboard charts (boards 05/06/07 *_Legend); backed by S9-R4/S9-R7 for the per-person lines."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B09",
+  "case": "C351724",
+  "section": 12175,
+  "verified": true,
+  "why": "Design-only hover tooltip contents on the dashboard charts (boards 04/06/07 *_Hover)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B10",
+  "case": "C351725",
+  "section": 12176,
+  "verified": true,
+  "why": "S10-R5 (no case of ours covered it)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B11",
+  "case": "C351726",
+  "section": 12176,
+  "verified": true,
+  "why": "S10-R6 (no case of ours covered it)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B12",
+  "case": "C351727",
+  "section": 12176,
+  "verified": true,
+  "why": "S10-R7 (no case of ours covered it)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B13",
+  "case": "C351728",
+  "section": 12176,
+  "verified": true,
+  "why": "S10-R8 (no case of ours covered it), with the PRD's worked example."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B14",
+  "case": "C351729",
+  "section": 12176,
+  "verified": true,
+  "why": "S10-E1 (no case of ours covered it); the PRD says it is normally unreachable, so the case gives the hand-picked-dates route and an honest Blocked path."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B15",
+  "case": "C351730",
+  "section": 12177,
+  "verified": true,
+  "why": "S11-R2 (moved out of C88624; expectation unchanged, stamp carried). Carries the Hide Chart/Show Chart capitalisation difference."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B16",
+  "case": "C351731",
+  "section": 12177,
+  "verified": true,
+  "why": "S11-R3 (moved out of C88624; expectation unchanged, stamp carried)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B17",
+  "case": "C351732",
+  "section": 12177,
+  "verified": true,
+  "why": "S11-R7 (moved out of C88624; expectation unchanged, stamp carried)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B18",
+  "case": "C351733",
+  "section": 12177,
+  "verified": true,
+  "why": "S11-E1 (moved out of C88624; expectation unchanged, stamp carried)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B19",
+  "case": "C351734",
+  "section": 12177,
+  "verified": true,
+  "why": "Design-only legend hover readout on the report charts (boards 11_saa_Legend, 12_te_Legend, 13_tu_Legend); backed by S11-R7."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B20",
+  "case": "C351735",
+  "section": 12177,
+  "verified": true,
+  "why": "Design-only hover tooltip contents on the report charts (boards 10_sales_Hover, 11_saa_Hover, 12_te_Hover, 13_tu_Hover)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B21",
+  "case": "C351736",
+  "section": 12178,
+  "verified": true,
+  "why": "S12-R2, S12-R3, S12-R5 (moved out of C88626; expectation unchanged, stamp carried)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B22",
+  "case": "C351737",
+  "section": 12178,
+  "verified": true,
+  "why": "S12-R4 (moved out of C88626; expectation unchanged, stamp carried)."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B23",
+  "case": "C351738",
+  "section": 12178,
+  "verified": true,
+  "why": "S12-N1 (moved out of C88626; expectation unchanged, stamp carried). Phone board 14 used for the order and the full-width look."
+ },
+ {
+  "op": "add",
+  "key": "NEW-B24",
+  "case": "C351739",
+  "section": 12178,
+  "verified": true,
+  "why": "The C88629 'single panel below the row, swaps' check moved here so C88629 checks one thing; expectation unchanged (stamp carried), now backed by S6-R2/S6-R10 and boards 04/06 After."
+ }
+]
