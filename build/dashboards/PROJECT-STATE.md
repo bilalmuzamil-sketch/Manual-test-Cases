@@ -4,6 +4,21 @@
 **TestRail:** group **12166** "Dashboard (Sep 2026)", suite 1 — empty at start (0 subfolders, 0 cases).
 Link: https://shopview.testrail.io/index.php?/suites/view/1&group_id=12166
 
+## 🟢 CURRENT STATE — 7 Oct 2026 full update (read this first)
+- **Sources now:** PRD **v42** (`sources/CONFLUENCE-788430850-Dashboard-v1-2026-10-07-v42.md`, read 100%) · PO Slack
+  decision on empty states (Chris Ward, 7 Oct 2026: grey "-" instead of "n/a"; empty-chart placeholder; real zeros stay)
+  · **design = the canvas** https://claude.ai/artifact/Wae9DFQ8PJQBy8mbLsL5ge (50 boards, saved in
+  `sources/design-po-empty-states-2026-10-07/canvas/`) + before/after https://claude.ai/artifact/KqefWwaQHKjXed3hPULU8Z.
+  The old "ShopView Dashboard Directions" design is **RETIRED** (PO: "Drop this, not faithfully accurate") — never cite it.
+  Tech plan unchanged (older than v42: still says "n/a" and an organisation-level gate; v42 wins).
+- **Suite now:** **61 of ours rewritten in full + 36 new = 97 ours** (plus 4 foreign, Vladimir's, untouched).
+  Record with every link: `full-update-2026-10-07/FULL-UPDATE-2026-10-07.md`. Coverage 146/146 v42 anchors.
+- **Markers:** 69 READY · 15 HOLD not yet built (approved design 7 Oct 2026 — the grey "-" and empty-chart outline,
+  board row 15) · 12 HOLD not yet build-verified · 1 HOLD not manually testable (C88631).
+- **Access:** the Reports permission only (S1-R6) — there is no "Dashboard feature" switch any more.
+- **Build verification is the build verification session's job (L7).** Nothing in this update was build-verified.
+- **Run 525 is Vladimir's** — the 36 new cases are not in it; not touched.
+
 ## What this is
 Dashboard v1 (epic **SV-490**) — one fixed, read-only manager dashboard: six tiles (4 KPI: Revenue,
 Billing Efficiency, Technician Efficiency, Technician Utilization; 2 count: Sales by Customer, At Risk

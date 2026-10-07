@@ -3118,3 +3118,25 @@ Both suites updated to the 6 Oct specification, Plan 1 + Plan 2 and design MR_V2
 - **90 retitled cases are Automated** — note for Vladimir Tomovic (Rule 65):
   `build/title-sweep-2026-10-07/FOR-VLADIMIR-TITLES-2026-10-07.md`. **✅ CLOSED 2026-10-07 — QA lead: "Not needed"** (title-only changes; no note to Vladimir).
 - C204150 (Maintenance Reminders): the manual tester now creates the two extra organizations (QA lead decision).
+
+## 2026-10-07 — Dashboard v1 full update (group 12166) — written to TestRail
+61 of ours rewritten in full + 36 new (record: `dashboards/full-update-2026-10-07/FULL-UPDATE-2026-10-07.md`). Not build-verified (L7: build verification session).
+Candidate questions — **NOT sent** (Rule 66: the PO sheet goes last; the QA lead decides when):
+
+| # | Question (plain) | For | Cases |
+|---|---|---|---|
+| D-1 | The chart legend's hover "avg" looks like an average of monthly percentages (e.g. 107%) while the table shows 110.96% for the same range. Should the legend figure match the report? | Chris Ward | C351723, C351734 |
+| D-2 | May a tile carry a hand-picked date range (picked day by day on the tile's calendar)? It is the only way we found to reach the "Custom" fallback. | Chris Ward | C351729 |
+| D-3 | The expanded At Risk panel has its own "Inactive for" select as well as the tile's pill. Should both exist, and must they stay in step? | Chris Ward | At Risk cases |
+| D-4 | At zero, the design shows no "Top:" line on Sales by Customer and "$0.00 (12mo) · 0 customers" on At Risk. The PRD is silent on the zero case. Confirm the design. | Chris Ward | C351714, C351715 |
+| D-5 | How is the "Top" customer chosen (highest sales in the range? ties?) | Chris Ward | C88608 |
+| D-6 | Do internal (non work order) hours count in the "Clocked" figure for Billing Efficiency and Technician Efficiency? | Chris Ward | C88637, C88640 |
+| D-7 | Which line field is "invoiced hours" — Estimated Time or Tech Time? | Chris Ward | Billing Efficiency cases |
+| D-8 | Is reversing an invoice the same as voiding it for the dashboard? (v42 never mentions reversal; the tech plan says Reverse deletes and a void comes from adding a line while unpaid.) | Chris Ward | C88632, C88635, C351705 |
+| D-9 | A line with technician time but no clocked time: does it add nothing to the shop-wide total (66.67%) or count fully (100.00%)? | Chris Ward | C88640 |
+| D-10 | The dashboard footer says "Last updated: N minutes ago", suggesting cached figures, but the PRD forbids any staleness window. | Chris Ward | C88652 |
+
+Design-vs-PRD wording differences (cases follow the PRD and tell the tester not to fail on capitalisation): "Hide Chart"/"Show Chart" vs "Hide chart"/"Show chart" · menu "Advisor Analysis" vs page/PRD "Service Advisor Analysis" · "This year" vs "This Month" · "30 days" vs "120 Days" · tooltips show whole dollars/percents while headlines show cents/two decimals.
+Possible deviation for the build verification session: the Sales and Service Advisor Analysis toolbars show no ⋯ menu for the chart toggle.
+Tester data: At Risk cases need customers last invoiced months ago (invoices cannot be back-dated by hand) — cases use existing QA data with a fallback; a test location is created once by the tester and reused (locations cannot be deleted).
+Rule 65: content changed in 5 cases flagged Automated (C88594, C88609, C88612, C88617, C88623) — every check kept, preconditions/steps made manual. Note for Vladimir: `dashboards/full-update-2026-10-07/FOR-VLADIMIR-AUTOMATED-CASES-2026-10-07.md`.
