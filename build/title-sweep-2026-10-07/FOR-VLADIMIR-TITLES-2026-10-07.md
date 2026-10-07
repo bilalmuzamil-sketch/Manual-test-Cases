@@ -1,0 +1,96 @@
+# For Vladimir Tomovic — Automated cases whose TITLE changed, 7 October 2026
+
+Bilal (QA lead) asked for every test case title from the last three weeks to be readable by a manual QA tester. 90 of the changed cases are marked Automated in TestRail. **Only the title changed** — preconditions, steps, expected results and the Automation status are exactly as before (read back per case). If any of your specs match cases by title rather than by case ID, these are the ones to update.
+
+| Case | Old title | New title |
+|---|---|---|
+| [C154587](https://shopview.testrail.io/index.php?/cases/view/154587) | Return Core credits the core and badges the row Returned | Return Core credits the core and marks the row Returned |
+| [C154588](https://shopview.testrail.io/index.php?/cases/view/154588) | A returned core's credit equals the charge, and both are logged | A returned core's credit equals its charge, and both are logged |
+| [C154589](https://shopview.testrail.io/index.php?/cases/view/154589) | Cancel Return restores the charge after a confirmation | Cancel Return asks to confirm, then restores the core charge |
+| [C154590](https://shopview.testrail.io/index.php?/cases/view/154590) | Return Core appears only after receipt and before invoicing | Return Core shows only after the part is received and before invoicing |
+| [C154592](https://shopview.testrail.io/index.php?/cases/view/154592) | Returning a core moves no stock and isn't a vendor credit | Returning a core moves no stock and is not a vendor credit |
+| [C154597](https://shopview.testrail.io/index.php?/cases/view/154597) | Reversing keeps the core rows; an auto-applied deposit blocks it | Reversing keeps the core rows, but an auto-applied deposit blocks it |
+| [C154599](https://shopview.testrail.io/index.php?/cases/view/154599) | A part sale's reported figures include the charged core | A part sale's reported totals include the charged core |
+| [C154602](https://shopview.testrail.io/index.php?/cases/view/154602) | Returns count ignores Core credit; the label is document-only | The Returns count ignores Core credit, which shows only on documents |
+| [C154603](https://shopview.testrail.io/index.php?/cases/view/154603) | A zero core is refused; a picked inventory core bills its price | A $0 core is refused, and an inventory core bills its own price |
+| [C154604](https://shopview.testrail.io/index.php?/cases/view/154604) | Simultaneous returns are refused; a vendorless core still returns | Two returns at once are refused, and a core with no vendor still returns |
+| [C154605](https://shopview.testrail.io/index.php?/cases/view/154605) | A core return below a deposit becomes a credit at invoicing | A core return smaller than the deposit becomes a credit at invoicing |
+| [C154610](https://shopview.testrail.io/index.php?/cases/view/154610) | The menu is reordered with Delete last and not red | The menu is reordered with Delete last and not shown in red |
+| [C154611](https://shopview.testrail.io/index.php?/cases/view/154611) | A Complete part sale with received parts gets the received-parts refusal | A Complete part sale with received parts shows the received-parts message |
+| [C154612](https://shopview.testrail.io/index.php?/cases/view/154612) | Created is the first entry; a split writes a linked pair | Part Sale Log starts with Created, and a split logs a linked pair |
+| [C154617](https://shopview.testrail.io/index.php?/cases/view/154617) | An unset rep falls back to the customer's rep, else Unassigned | With no rep set, the customer's rep is used, otherwise Unassigned |
+| [C154621](https://shopview.testrail.io/index.php?/cases/view/154621) | The bulk and row menus are renamed and title-cased | The bulk and row menu items are renamed in title case |
+| [C154623](https://shopview.testrail.io/index.php?/cases/view/154623) | The work order is untouched; Notes ships with another project | Work orders are unchanged by the Part Sales tab changes |
+| [C154624](https://shopview.testrail.io/index.php?/cases/view/154624) | A split leaves the deposit, may move every line, carries the core | A split leaves the deposit behind, can move every line and keeps the core |
+| [C154637](https://shopview.testrail.io/index.php?/cases/view/154637) | Charged core: document totals to the exact cent | A charged core makes the document totals correct to the cent |
+| [C154638](https://shopview.testrail.io/index.php?/cases/view/154638) | Returned core: credit is exact and totals fall back | A returned core's credit is exact and the totals go back down |
+| [C154639](https://shopview.testrail.io/index.php?/cases/view/154639) | Tax change recalculates to the exact cent; card matches document | Changing the tax rate recalculates totals to the cent on card and document |
+| [C45223](https://shopview.testrail.io/index.php?/cases/view/45223) | Selecting a part auto-allocates the full quantity to a single bin | Picking a part takes the full quantity from a single bin |
+| [C45224](https://shopview.testrail.io/index.php?/cases/view/45224) | Allocation is shown below the row as a Pulled from chip | The bin used shows below the row as a Pulled from chip |
+| [C45227](https://shopview.testrail.io/index.php?/cases/view/45227) | Choosing a bin from the picker moves the full quantity into it | Choosing a bin from the list moves the full quantity into it |
+| [C45234](https://shopview.testrail.io/index.php?/cases/view/45234) | Applying a split writes it back and sets quantity to the sum | Applying a split saves it and sets the quantity to the total |
+| [C45237](https://shopview.testrail.io/index.php?/cases/view/45237) | Allocation is stored on save and not shown on the saved part row | The bins chosen are saved but not shown on the saved part row |
+| [C88513](https://shopview.testrail.io/index.php?/cases/view/88513) | Choose the target work order before drafting; eligibility and new WO | Choose which work order gets the lines, or a new one, before drafting |
+| [C88514](https://shopview.testrail.io/index.php?/cases/view/88514) | A generated line behaves as an ordinary approved line | A line built from an inspection behaves like any approved line |
+| [C88516](https://shopview.testrail.io/index.php?/cases/view/88516) | Permissions gate the build; the server enforces withheld actions | Building lines needs permission, also checked when saving |
+| [C88518](https://shopview.testrail.io/index.php?/cases/view/88518) | Edge cases: long notes, many findings, concurrent/deleted WOs | Building lines with long notes, many findings, or a deleted work order |
+| [C88522](https://shopview.testrail.io/index.php?/cases/view/88522) | Edge cases: deleted work order, concurrent build, reopening | Building lines when the work order is deleted, built twice, or reopened |
+| [C88523](https://shopview.testrail.io/index.php?/cases/view/88523) | Build lines from the report note, incl. phone and ineligible WO | Build lines from the report note, on a phone and on an ineligible work order |
+| [C88525](https://shopview.testrail.io/index.php?/cases/view/88525) | The note's Build lines action is absent unless preconditions met | The note's Build lines is hidden until the inspection is ready |
+| [C88526](https://shopview.testrail.io/index.php?/cases/view/88526) | The Inspections tab appears on the asset and lists every inspection | The asset has an Inspections tab that lists every inspection |
+| [C88527](https://shopview.testrail.io/index.php?/cases/view/88527) | Each column behaves as specified: status, findings, WO, report, action | Inspections tab columns: status, findings, work order, report and action |
+| [C88528](https://shopview.testrail.io/index.php?/cases/view/88528) | Filters, summary line, 'needs action' definition, counts across perms | Inspections tab filters, summary line and needs-action counts |
+| [C88529](https://shopview.testrail.io/index.php?/cases/view/88529) | Links vs buttons, phone usability, and the asset on the inspection | Inspections tab links and buttons, phone use, and the inspection's asset |
+| [C88531](https://shopview.testrail.io/index.php?/cases/view/88531) | The tab and its actions are withheld by permission and configuration | The Inspections tab and its actions are hidden without permission or setup |
+| [C88532](https://shopview.testrail.io/index.php?/cases/view/88532) | Edge cases: not-started, all-N/A, deletions, moves, archives, ties, volume | Inspections tab with not-started, all N/A, deleted, moved and many inspections |
+| [C88533](https://shopview.testrail.io/index.php?/cases/view/88533) | Build from a needs-action row: shared target menu and eligibility | Build lines from a needs-action row, with the same work order choice |
+| [C88535](https://shopview.testrail.io/index.php?/cases/view/88535) | The build action and targets are withheld by permission/config | The row's build action is hidden without permission or setup |
+| [C88536](https://shopview.testrail.io/index.php?/cases/view/88536) | Edge cases: deleted WO, per-row build, a row the viewer can't start | Row build with a deleted work order, per row, or a row you can't start |
+| [C88537](https://shopview.testrail.io/index.php?/cases/view/88537) | A note records the work order was built from an inspection | A work order note says its lines were built from an inspection |
+| [C88538](https://shopview.testrail.io/index.php?/cases/view/88538) | An Audit Log entry records the build, from any entry point | The Audit Log records each build, wherever it was started |
+| [C88539](https://shopview.testrail.io/index.php?/cases/view/88539) | The note and Audit Log carry the same facts, incl. line count | The work order note and Audit Log match, including the line count |
+| [C88540](https://shopview.testrail.io/index.php?/cases/view/88540) | Edge cases: write failure, deletions, and a split work order | Lines are kept if the note or Audit Log fails, deleted records handled |
+| [C88542](https://shopview.testrail.io/index.php?/cases/view/88542) | No typing to get lines; the AI treatment; the brief is preserved | ShopCoach drafts lines with no typing, and its instructions are kept |
+| [C88543](https://shopview.testrail.io/index.php?/cases/view/88543) | Drafting runs alongside navigation; nothing added until Add Lines | You can move around while ShopCoach drafts, nothing is added until Add Lines |
+| [C88544](https://shopview.testrail.io/index.php?/cases/view/88544) | Proposed lines arrive selected, editable, traceable; phone modal | Proposed lines arrive ticked, editable and traceable, in a window on a phone |
+| [C88545](https://shopview.testrail.io/index.php?/cases/view/88545) | The proposed-lines panel is shared with the Line Builder | The proposed lines panel is the same one as the Line Builder's |
+| [C88547](https://shopview.testrail.io/index.php?/cases/view/88547) | Negatives: no ShopCoach, passing findings, ungiven parts, deselect all | No ShopCoach, passing findings, unlisted parts and Deselect all |
+| [C88548](https://shopview.testrail.io/index.php?/cases/view/88548) | Edge cases: empty results, failures, navigation, multi-axle, Monitor | ShopCoach with no results, failures, leaving the page and several axles |
+| [C29300](https://shopview.testrail.io/index.php?/cases/view/29300) | Optional receiving completes a line directly without ordering its vendor parts | Optional receiving completes a line without ordering its vendor parts |
+| [C29301](https://shopview.testrail.io/index.php?/cases/view/29301) | Optional receiving receives only selected-line parts through bulk Receive | Optional receiving receives only the chosen line's parts with bulk Receive |
+| [C44557](https://shopview.testrail.io/index.php?/cases/view/44557) | Only ordering and picking ask to confirm; turning picking OFF warns about stock | Only ordering and picking ask to confirm, picking off warns about stock |
+| [C44575](https://shopview.testrail.io/index.php?/cases/view/44575) | Bulk approve/decline judges each line on its own and never sweeps a declined line | Bulk approve or decline checks each line and never changes a declined one |
+| [C44583](https://shopview.testrail.io/index.php?/cases/view/44583) | Receive opens a modal (no navigation); its contents depend on the entry point | Receive opens a window on the same page, its contents depend on the start |
+| [C44587](https://shopview.testrail.io/index.php?/cases/view/44587) | A user without See Financial Data can still receive; money fields are removed, not masked | Without See Financial Data you can still receive, money fields are removed |
+| [C44596](https://shopview.testrail.io/index.php?/cases/view/44596) | Each wizard step's own action saves and advances; there is no Continue; receive reuses the modal | Each wizard step's button saves and moves on, receiving uses the same window |
+| [C44597](https://shopview.testrail.io/index.php?/cases/view/44597) | Where a wizard run ends depends on what opened it | Where the completion wizard ends depends on what opened it |
+| [C44601](https://shopview.testrail.io/index.php?/cases/view/44601) | Finish-action negatives: needs-approval block, declined-only, invoice lock, payment-close | Finish actions blocked by approval, declined-only lines, invoice lock |
+| [C44604](https://shopview.testrail.io/index.php?/cases/view/44604) | Dragging a part reorders it within its line; the line order is the invoice order | Dragging a part reorders it in its line, and that is the invoice order |
+| [C28538](https://shopview.testrail.io/index.php?/cases/view/28538) | Same-named line-level fees combine into one Labor row ahead of named whole-WO rows in the bottom block | Same-named line fees combine into one Labor row before work order rows |
+| [C30354](https://shopview.testrail.io/index.php?/cases/view/30354) | Columns and sort are remembered per browser before the first fetch; filters ride the URL | Columns and sort are remembered per browser, filters are in the address |
+| [C88594](https://shopview.testrail.io/index.php?/cases/view/88594) | Dashboard entry, landing and the six tiles | Dashboard entry point, landing page and the six tiles |
+| [C88609](https://shopview.testrail.io/index.php?/cases/view/88609) | The At Risk Customers tile - headline, line, window control | The At Risk Customers tile: headline, line and time window |
+| [C88612](https://shopview.testrail.io/index.php?/cases/view/88612) | View details expands each tile to its own detail content | View details expands each tile to its own detail |
+| [C88617](https://shopview.testrail.io/index.php?/cases/view/88617) | Per-tile date ranges - options, updates and independence | Each tile's date range: options, updates, independent of other tiles |
+| [C88623](https://shopview.testrail.io/index.php?/cases/view/88623) | Report drill-in from the tiles | Opening a report from a Dashboard tile |
+| [C44902](https://shopview.testrail.io/index.php?/cases/view/44902) | Shop logo shows when set; nothing (no placeholder) shows when unset | Shop logo shows when set, and nothing shows when it isn't |
+| [C44905](https://shopview.testrail.io/index.php?/cases/view/44905) | No money figure in the masthead; headline figure is the boxed total | No money figure in the masthead, the main figure is the boxed total |
+| [C44909](https://shopview.testrail.io/index.php?/cases/view/44909) | Remit Payment To shows when a payee is configured (both mechanisms) | Remit Payment To shows when a payee is set, either way it is set up |
+| [C44912](https://shopview.testrail.io/index.php?/cases/view/44912) | Bill To address fields hide when empty; the name line always shows | Bill To address fields hide when empty, the name line always shows |
+| [C44913](https://shopview.testrail.io/index.php?/cases/view/44913) | Order reference fields show in the fixed order with no label punctuation | Order reference fields show in a fixed order with no label punctuation |
+| [C44927](https://shopview.testrail.io/index.php?/cases/view/44927) | VIN / Serial hides when the asset has neither; Asset name still shows | VIN / Serial hides when the asset has neither, the asset name still shows |
+| [C44928](https://shopview.testrail.io/index.php?/cases/view/44928) | Asset section shows whenever the work order has an asset (parts sales too) | The asset section shows whenever there is an asset, part sales too |
+| [C44931](https://shopview.testrail.io/index.php?/cases/view/44931) | Each work line shows name, and description and scope-of-work note when present | Each work line shows its name, and description and notes when present |
+| [C44934](https://shopview.testrail.io/index.php?/cases/view/44934) | Line-level fee shows as a plain amount; discount shows in parentheses | A line fee shows as an amount, a discount in brackets |
+| [C44936](https://shopview.testrail.io/index.php?/cases/view/44936) | Empty work section shows heading; Summary divider still precedes summary | An empty work section still shows its heading and the Summary divider |
+| [C44939](https://shopview.testrail.io/index.php?/cases/view/44939) | Declined Work section hidden when nothing declined or option off | Declined Work is hidden when nothing is declined or the option is off |
+| [C44943](https://shopview.testrail.io/index.php?/cases/view/44943) | Adjustments group shows each Labor · / Parts · line-level row, then each work-order-wide row | Adjustments list each Labor and Parts line row, then work order rows |
+| [C44947](https://shopview.testrail.io/index.php?/cases/view/44947) | Payment method name resolves per rule (SHOPPAY shows 'Online') | Payment method names follow the rule, ShopPay shows as Online |
+| [C44948](https://shopview.testrail.io/index.php?/cases/view/44948) | Deposit and applied customer-account credit show as labeled payment rows | Deposits and customer credit show as labelled payment rows |
+| [C44949](https://shopview.testrail.io/index.php?/cases/view/44949) | Excess payment sub-line reads exactly per the credited/ to-be-credited rule | The overpayment line reads exactly as credited or to be credited |
+| [C44950](https://shopview.testrail.io/index.php?/cases/view/44950) | Balance equals Total minus all applied amounts, floored at $0.00 | Balance is Total minus everything applied, never below $0.00 |
+| [C44956](https://shopview.testrail.io/index.php?/cases/view/44956) | Signature area has exactly three labeled lines and no acknowledgment sentence | The signature area has three labelled lines and no acknowledgement text |
+| [C44972](https://shopview.testrail.io/index.php?/cases/view/44972) | Only the closed palette colours appear on any document | Documents use only the approved set of colours |
+| [C44977](https://shopview.testrail.io/index.php?/cases/view/44977) | Prototype chrome does not appear on any real document | Design preview frames never appear on a real document |
+| [C44982](https://shopview.testrail.io/index.php?/cases/view/44982) | Parts Sale line-level fees/discounts render as on the Invoice | Part Sale line fees and discounts show the same as on the Invoice |
+| [C30174](https://shopview.testrail.io/index.php?/cases/view/30174) | Sort and visible columns are restored on the next visit; filters are not | Sort and visible columns come back on the next visit, filters do not |

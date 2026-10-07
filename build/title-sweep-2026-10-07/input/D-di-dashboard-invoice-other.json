@@ -1,0 +1,3547 @@
+[
+ {
+  "id": 30001,
+  "title": "Day view opens on the shop's exact business hours (or the working-day start when no hours are saved); manual scrolling stands",
+  "automated": false,
+  "folder": "Test Cases > Schedule > Schedule - 2026 > Day View Timeline",
+  "steps": [],
+  "expected": [
+   " 1. The timeline opens exactly at opening time and ends exactly at closing time (9:00 AM – 5:00 PM), with no extra hour on either side. The hours stretch so this window fills the visible area (a few pixels of space are kept before the first hour). 2. Your manu"
+  ]
+ },
+ {
+  "id": 88507,
+  "title": "Note-required option on checkbox and per-axle fields, on by default",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S1 · Require a note on flagged responses",
+  "steps": [
+   "In the template builder, add a Checkbox field and open its authoring options.",
+   "Add a Per-axle measurement field and open its authoring options.",
+   "Read the \"Note required if Monitor / Not OK\" option and its default state on each."
+  ],
+  "expected": [
+   "A checkbox field's authoring options include an option, \"Note required if Monitor / Not OK\".",
+   "That option is on by default for a newly added checkbox field.",
+   "The same option is also available on a per-axle measurement field."
+  ]
+ },
+ {
+  "id": 88508,
+  "title": "A required note is enforced on submit and listed as outstanding",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S1 · Require a note on flagged responses",
+  "steps": [
+   "On the checkbox field, select Monitor or Not OK, leave the note empty, and try to Submit.",
+   "Before submitting, open the outstanding-items list and look for the field.",
+   "On the per-axle field, set a single position to Not OK and check whether a note is required."
+  ],
+  "expected": [
+   "With the option on, choosing Monitor or Not OK requires a note before the inspection can be submitted.",
+   "The requirement is enforced at Submit, not only while filling the form.",
+   "Before submit, the field appears in the outstanding-items list, so the technician is not rejected by an avoidable error.",
+   "On a per-axle field the note requirement is driven by the verdicts on the positions, not a stored axle roll-up; a single Not OK position requires the note as soon as it is set, and the requirement triggers when any axle is marked Monitor or Not OK."
+  ]
+ },
+ {
+  "id": 88509,
+  "title": "Note-required rule: negatives and edge cases",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S1 · Require a note on flagged responses",
+  "steps": [
+   "With the option off, mark Monitor / Not OK with no note and Submit.",
+   "Mark OK or N/A and Submit.",
+   "Enter a note of only spaces on a flagged field.",
+   "Write a note then change the response to OK.",
+   "Open a pre-release template, then turn the option on mid-inspection."
+  ],
+  "expected": [
+   "With the option off, a Monitor or Not OK response with no note submits successfully.",
+   "An OK or N/A response never requires a note.",
+   "A note containing only spaces counts as empty.",
+   "Templates created before this release are unaffected until an author opens one and turns the option on."
+  ]
+ },
+ {
+  "id": 88510,
+  "title": "Photo-required-if-Not-OK option, off by default, enforced on submit",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S17 · Require a photo on a Not OK response",
+  "steps": [
+   "In the template builder, add a Checkbox field, open its options, and read the \"Photo required if Not OK\" option and its default.",
+   "As technician, mark it Not OK with no photo and try to Submit.",
+   "Check the outstanding-items list before submit.",
+   "Check whether the option appears on a per-axle field."
+  ],
+  "expected": [
+   "A checkbox field's authoring options include an option, \"Photo required if Not OK\".",
+   "That option is off by default for a newly added checkbox field.",
+   "With the option on, choosing Not OK requires at least one photo before the inspection can be submitted, enforced at Submit (not only while filling).",
+   "Before submit, the field appears in the outstanding-items list."
+  ]
+ },
+ {
+  "id": 88511,
+  "title": "Photo rule vs unconditional Photo required; target and HEIC",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S17 · Require a photo on a Not OK response",
+  "steps": [
+   "Turn both photo rules on and read the builder's summary sentence.",
+   "On the field card footer, find Add Photo beside Add Note; mark Not OK and see the photo target.",
+   "Upload a HEIC photo, then a format that cannot be rendered in place."
+  ],
+  "expected": [
+   "This option is separate from \"Photo required\" (which asks for a photo whatever the response); when both are on the technician is held to the unconditional rule, and the builder's summary sentence says so.",
+   "The photo target is offered rather than always shown: Add Photo sits in the field card footer beside Add Note and opens the target, or opens on its own the moment a response makes a photo required.",
+   "Inspection photos accept HEIC as well as JPEG and PNG; where a format cannot be shown in place, the viewer says so and offers the download."
+  ]
+ },
+ {
+  "id": 88512,
+  "title": "Photo-required rule: negatives and edge cases",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S17 · Require a photo on a Not OK response",
+  "steps": [
+   "With the option off, mark Not OK with no photo and Submit.",
+   "Mark OK, Monitor, N/A and Submit.",
+   "Attach a photo then change the response to OK; then satisfy the rule, remove the photo, and try to Submit.",
+   "Turn the option on mid-inspection; make photo upload unavailable.",
+   "On an unlabelled field read the outstanding row; upload a rejected format."
+  ],
+  "expected": [
+   "With the option off, a Not OK response with no photo submits successfully.",
+   "OK, Monitor and N/A never require a photo (Monitor requires a note, not a photograph).",
+   "Templates created before this release are unaffected until an author opens one and turns the option on.",
+   "A photo attached then abandoned (response changed to OK) is kept; satisfying the rule then removing the photo blocks submit again."
+  ]
+ },
+ {
+  "id": 88513,
+  "title": "Choose the target work order before drafting; eligibility and new WO",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S2 · Turn findings into work order lines",
+  "steps": [],
+  "expected": [
+   "Building lines requires ShopCoach; without it the completed inspection offers only the report and a link to its work order, and no build action.",
+   "The target is chosen before any drafting starts: the work order the inspection was run on, or a new work order.",
+   "The run-on work order is offered only while it is an eligible build target (status Estimate, Approved, In Progress or Review).",
+   "When the run-on work order is not eligible (Complete, Invoiced, Paid, Declined, or an invoice already exists), a new work order is created without asking."
+  ]
+ },
+ {
+  "id": 88514,
+  "title": "A generated line behaves as an ordinary approved line",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S2 · Turn findings into work order lines",
+  "steps": [],
+  "expected": [
+   "Every Monitor and Not OK finding is represented by at least one line, with ShopCoach composing each line's name, description, time estimate and parts from the finding.",
+   "A generated line then behaves as an ordinary work order line, indistinguishable from one a user typed.",
+   "Added lines arrive approved or awaiting authorisation according to the shop's setting for automatically approving lines, exactly as a manually added line does.",
+   "A work order already in Approved status does not need re-approval, because approval applies to lines rather than to the work order."
+  ]
+ },
+ {
+  "id": 88515,
+  "title": "Landing on Lines tab, actioned state, and a second-build confirm",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S2 · Turn findings into work order lines",
+  "steps": [],
+  "expected": [
+   "The user lands on the target work order's Lines tab as soon as the target is chosen, before drafting finishes, and watches it complete there.",
+   "Once the lines are added, the inspection no longer counts as needing a work order; drafting alone does not change that.",
+   "If lines were already added from this inspection, the user is asked to confirm before adding a second set, checked when Add Lines is pressed."
+  ]
+ },
+ {
+  "id": 88516,
+  "title": "Permissions gate the build; the server enforces withheld actions",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S2 · Turn findings into work order lines",
+  "steps": [],
+  "expected": [
+   "Every withheld action is enforced by the server, so a request made without the permission is refused whatever the interface showed; hiding a control is presentation, not enforcement.",
+   "Without 'Work order lines - Create & Edit', the build is unavailable from every entry point.",
+   "Without 'Work orders - Create & Edit', the option to create a new work order is not shown; only \"add lines to the open work order\" is offered.",
+   "Without 'See Financial Data', the build still runs but the proposed-lines panel withholds the labor rate, labor total and part prices (server-enforced), while the rest stays editable and the lines can still be added."
+  ]
+ },
+ {
+  "id": 88517,
+  "title": "The build is not offered when its preconditions are not met",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S2 · Turn findings into work order lines",
+  "steps": [],
+  "expected": [
+   "If the inspection is not completed, the build is not offered.",
+   "If the inspection has no Monitor or Not OK findings, the build is not offered.",
+   "If the shop has no labor types, the build does not run and states the reason, because a line cannot be created without a labor type or a fixed price."
+  ]
+ },
+ {
+  "id": 88518,
+  "title": "Edge cases: long notes, many findings, concurrent/deleted WOs",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S2 · Turn findings into work order lines",
+  "steps": [],
+  "expected": [
+   "A very long note is given to ShopCoach whole, rather than truncated before it is read.",
+   "An inspection with thirty flagged findings builds without a cap or extra confirmation; a run too large to draft at once is split rather than the surplus dropped.",
+   "If the chosen open work order was closed by someone else in the meantime, the system tells the user and creates nothing.",
+   "If the run-on work order is deleted before the user confirms, the build fails without creating a partial result."
+  ]
+ },
+ {
+  "id": 88519,
+  "title": "Build lines from the completed inspection screen, incl. on a phone",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S3 · Build from a completed inspection",
+  "steps": [],
+  "expected": [
+   "The completed inspection screen offers a Build lines action.",
+   "The action runs the same build as S2, including the choice of target work order.",
+   "The action is usable on a phone, and the whole flow can be completed without switching device."
+  ]
+ },
+ {
+  "id": 88520,
+  "title": "The summary card, per-verdict counts, and the section review",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S3 · Build from a completed inspection",
+  "steps": [],
+  "expected": [
+   "The screen leads with a summary card: the completion line, a count per verdict, and a findings list naming each flagged position (field, axle, row, position) with the reading that earned it.",
+   "A verdict with no findings under it is not counted on the card.",
+   "With ShopCoach the card footer offers View PDF, Go to work order and Build lines with the product named once above it; without ShopCoach it offers View PDF and Go to work order plus a plain line pointing to the customer report, the work order note feed and whe",
+   "The section-by-section review sits below the summary card, and the service advisor, start time and per-section progress are not shown on this screen."
+  ]
+ },
+ {
+  "id": 88521,
+  "title": "Build lines is absent (not disabled) unless preconditions met",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S3 · Build from a completed inspection",
+  "steps": [],
+  "expected": [
+   "If the inspection has no Monitor or Not OK findings, the action is not shown.",
+   "Without 'Work order lines - Create & Edit', the action is absent, not disabled.",
+   "If the inspection is not completed, the action is not shown.",
+   "Without ShopCoach, no build action is shown — only View PDF and a work-order link — and it is absent, not disabled and not behind a tooltip."
+  ]
+ },
+ {
+  "id": 88522,
+  "title": "Edge cases: deleted work order, concurrent build, reopening",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S3 · Build from a completed inspection",
+  "steps": [],
+  "expected": [
+   "If the run-on work order has been deleted, only the option to create a new work order is offered.",
+   "If another user builds from the same inspection while this screen is open, the re-build confirmation is based on the current state rather than the state when the screen loaded.",
+   "If the inspection is reopened while the screen is open, the action disappears."
+  ]
+ },
+ {
+  "id": 88523,
+  "title": "Build lines from the report note, incl. phone and ineligible WO",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S4 · Build from the inspection note on a work order",
+  "steps": [],
+  "expected": [
+   "The inspection report note offers a Build lines action alongside its existing view and download actions.",
+   "The action runs the same build as S2, including the choice of target work order.",
+   "All actions on the note remain reachable on a phone, wrapping rather than overflowing.",
+   "If the work order is not an eligible build target, the build creates a new work order and the note stays where it is."
+  ]
+ },
+ {
+  "id": 88524,
+  "title": "Re-build confirmation is judged on the inspection's current state",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S4 · Build from the inspection note on a work order",
+  "steps": [],
+  "expected": [
+   "The re-build confirmation is based on the inspection's current state rather than on the note, so a build done elsewhere afterwards still triggers the warning.",
+   "If the inspection was already built from through another entry point, the user is asked to confirm."
+  ]
+ },
+ {
+  "id": 88525,
+  "title": "The note's Build lines action is absent unless preconditions met",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S4 · Build from the inspection note on a work order",
+  "steps": [],
+  "expected": [
+   "If the report recorded only passes, the action is not shown.",
+   "If the inspection has been deleted, the note remains as a record but the action is not shown.",
+   "Without 'Work order lines - Create & Edit', the action is not shown.",
+   "If the note is being read in the work order's history view, the action is not shown."
+  ]
+ },
+ {
+  "id": 88526,
+  "title": "The Inspections tab appears on the asset and lists every inspection",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S5 · Inspection history on the asset record",
+  "steps": [],
+  "expected": [
+   "An Inspections tab appears on the asset record, alongside Work Orders, Invoices and Notes.",
+   "The tab lists every inspection linked to that asset, most recently completed first.",
+   "Each row shows the inspection, its status, the completion date, the technician who signed it, the findings, the work order it was run on, the report, and an action.",
+   "The inspection column shows the template name with its version beneath, which distinguishes repeated runs of the same template."
+  ]
+ },
+ {
+  "id": 88527,
+  "title": "Each column behaves as specified: status, findings, WO, report, action",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S5 · Inspection history on the asset record",
+  "steps": [],
+  "expected": [
+   "The status column shows only the inspection's own progress, not whether work is pending.",
+   "The findings column shows one item per finding type with a colour, such as 1 Not OK in red and 3 Monitor in amber.",
+   "The work order column links to the work order the inspection was run on and shows its status.",
+   "The report column links to the report when one has been generated."
+  ]
+ },
+ {
+  "id": 88528,
+  "title": "Filters, summary line, 'needs action' definition, counts across perms",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S5 · Inspection history on the asset record",
+  "steps": [],
+  "expected": [
+   "A filter row offers All, Needs action, With issues and Not started, each count taken from the full list rather than the filtered view.",
+   "A summary reads \"N of M need a work order\".",
+   "An inspection needs action when it was completed after this release, has at least one Monitor or Not OK finding, and has not been built from; a pre-release inspection is never flagged but stays reachable under With issues.",
+   "Two users with different permissions viewing the same asset see identical counts; only the action button differs."
+  ]
+ },
+ {
+  "id": 88529,
+  "title": "Links vs buttons, phone usability, and the asset on the inspection",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S5 · Inspection history on the asset record",
+  "steps": [],
+  "expected": [
+   "Everything that navigates is a link and everything that changes something is a button.",
+   "The tab is usable on a phone: every column's information stays reachable and the page does not scroll sideways.",
+   "The filter row wraps on a phone rather than scrolling out of view, and keeps its counts.",
+   "An inspection records the asset it was run on, stored on the inspection at creation rather than derived through its work order, and pre-release inspections are backfilled from their work order's asset at migration."
+  ]
+ },
+ {
+  "id": 88530,
+  "title": "How findings are counted: the single definition, per axle",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S5 · Inspection history on the asset record",
+  "steps": [],
+  "expected": [
+   "A response contributes one count to exactly one of Pass, Monitor or Needs attention when the field is visible, is a checkbox or measurement, and the response is Pass, Monitor or Not OK.",
+   "N/A and unanswered responses contribute nothing to the counts.",
+   "A per-axle measurement field contributes one count per axle (three axles marked OK, Monitor and Not OK give one pass, one monitor and one needs-attention)."
+  ]
+ },
+ {
+  "id": 88531,
+  "title": "The tab and its actions are withheld by permission and configuration",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S5 · Inspection history on the asset record",
+  "steps": [],
+  "expected": [
+   "Without 'Work orders - View', the Inspections tab does not appear at all; it is absent, not empty.",
+   "With 'Work orders - View' but not 'Customers - View', the asset record and the tab are unreachable, with no alternative route added.",
+   "If the asset has no inspections, an empty state explains so.",
+   "If the user cannot build, the action column shows no button on any row."
+  ]
+ },
+ {
+  "id": 88532,
+  "title": "Edge cases: not-started, all-N/A, deletions, moves, archives, ties, volume",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S5 · Inspection history on the asset record",
+  "steps": [],
+  "expected": [
+   "For a not-started inspection, the completion date, technician and findings show dashes and no action is offered.",
+   "A completed inspection whose responses are all N/A reads as having no issues and never needs action.",
+   "If the run-on work order has been deleted, the inspection stays listed, the work order column shows a dash rather than a broken link, and the row stays usable.",
+   "If the asset has been moved to a different customer, all of its inspections are still listed."
+  ]
+ },
+ {
+  "id": 88533,
+  "title": "Build from a needs-action row: shared target menu and eligibility",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S6 · Build from the asset Inspections tab",
+  "steps": [],
+  "expected": [
+   "A row that needs action offers a build action.",
+   "The action presents the target choice up front as a menu rather than opening a dialog.",
+   "The menu is the shared destination menu, offering the same two targets worded the same way as every other entry point.",
+   "The run-on work order is offered as a target only while it is an eligible build target (judged by its status on the row); when it is not, the target keeps its place and says why."
+  ]
+ },
+ {
+  "id": 88534,
+  "title": "After building, the row shows its outcome and counts update",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S6 · Build from the asset Inspections tab",
+  "steps": [],
+  "expected": [
+   "A row that has been built from shows its outcome instead of the action.",
+   "After a successful build, the row leaves the Needs action filter and the counts and summary update with it."
+  ]
+ },
+ {
+  "id": 88535,
+  "title": "The build action and targets are withheld by permission/config",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S6 · Build from the asset Inspections tab",
+  "steps": [],
+  "expected": [
+   "Without 'Work orders - Create & Edit', the new-work-order target is not offered anywhere on the tab.",
+   "If the run-on work order is not an eligible build target, only the new-work-order target is offered.",
+   "If \"Add lines\" was chosen and the work order has since been closed, the system explains that and creates nothing.",
+   "Without 'Work order lines - Create & Edit', no build action appears on any row."
+  ]
+ },
+ {
+  "id": 88536,
+  "title": "Edge cases: deleted WO, per-row build, a row the viewer can't start",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S6 · Build from the asset Inspections tab",
+  "steps": [],
+  "expected": [
+   "If the run-on work order has been deleted, only the new-work-order target is offered.",
+   "If several rows on the same asset need action, each is built separately; there is no bulk build.",
+   "A user who can fill inspections but cannot create work orders, on a row whose work order is closed, sees a dash with an explanation that creating a work order requires 'Work orders - Create & Edit', readable on a phone."
+  ]
+ },
+ {
+  "id": 88537,
+  "title": "A note records the work order was built from an inspection",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S7 · Record where the lines came from",
+  "steps": [],
+  "expected": [
+   "A note is added to the work order the lines landed on, stating that it was built from the inspection.",
+   "When the lines went onto a new work order, the note links back to the work order the inspection was run on.",
+   "The Notes tab count includes the new note immediately.",
+   "If the lines went onto the run-on work order, the note does not link to that work order from itself."
+  ]
+ },
+ {
+  "id": 88538,
+  "title": "An Audit Log entry records the build, from any entry point",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S7 · Record where the lines came from",
+  "steps": [],
+  "expected": [
+   "An entry reading \"Built from inspection\" is added to that work order's Audit Log.",
+   "The Audit Log entry names the inspection, links to it, and names the work order the inspection was run on.",
+   "Both records are written however the build was started, from S3, S4 or S6.",
+   "Without 'View History Logs', the Audit Log is not shown to the user, but the entry is still recorded."
+  ]
+ },
+ {
+  "id": 88539,
+  "title": "The note and Audit Log carry the same facts, incl. line count",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S7 · Record where the lines came from",
+  "steps": [],
+  "expected": [
+   "The Audit Log entry and the note carry the same three facts — that it was built from an inspection, which inspection, and which run-on work order — with neither missing a fact the other has.",
+   "Both records state how many lines were created, and the asset row reads for example \"3 lines added\" rather than \"Lines added\"."
+  ]
+ },
+ {
+  "id": 88540,
+  "title": "Edge cases: write failure, deletions, and a split work order",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S7 · Record where the lines came from",
+  "steps": [],
+  "expected": [
+   "If either record cannot be written, the created lines are kept and the build still reports success.",
+   "If a user deletes the note, the Audit Log entry remains.",
+   "If the inspection is later deleted, the Audit Log keeps the inspection name as recorded and the link fails gracefully rather than breaking the Audit Log.",
+   "If the work order is later split, the note and the Audit Log entry stay on the original, and the new work order carries no inspection provenance."
+  ]
+ },
+ {
+  "id": 88541,
+  "title": "The ShopCoach brief: its content, structure and constraints",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S15 · Draft the lines with ShopCoach",
+  "steps": [],
+  "expected": [
+   "The brief sent to ShopCoach is composed from the inspection: for each Monitor and Not OK finding it includes the field label, its section, the measured value and its unit, the verdict and the technician's note.",
+   "A per-axle finding names its axle and its measurement row, so a proposed line can be traced back to the measurement that caused it.",
+   "The brief states what ShopCoach may not do: invent a part it was not given, turn a passing finding into a line, or leave a flagged finding unrepresented.",
+   "The brief follows the pattern of the existing asset-recommendation assistant — the asset's own data, then the material to reason about — with the inspection's flagged findings in place of that assistant's work-order history."
+  ]
+ },
+ {
+  "id": 88542,
+  "title": "No typing to get lines; the AI treatment; the brief is preserved",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S15 · Draft the lines with ShopCoach",
+  "steps": [],
+  "expected": [
+   "The user never types anything to get lines — there is no prompt, query box or configuration step anywhere in this flow.",
+   "The build trigger reads as an AI action before it is pressed (the purple treatment and the AI badge), and its label does not name the product.",
+   "ShopCoach is named once, at the step where the destination is chosen, and nowhere else in the flow.",
+   "The written brief a user can type on the work-order Line Builder is not removed; typing is removed from the inspection flow only."
+  ]
+ },
+ {
+  "id": 88543,
+  "title": "Drafting runs alongside navigation; nothing added until Add Lines",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S15 · Draft the lines with ShopCoach",
+  "steps": [],
+  "expected": [
+   "Drafting starts when the destination is chosen, so navigation and drafting happen together rather than one after the other.",
+   "While the lines are being drafted, the panel shows one skeleton row per finding.",
+   "The work order stays usable while the drafting runs.",
+   "Cancelling during the drafting leaves the work order exactly as it was."
+  ]
+ },
+ {
+  "id": 88544,
+  "title": "Proposed lines arrive selected, editable, traceable; phone modal",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S15 · Draft the lines with ShopCoach",
+  "steps": [],
+  "expected": [
+   "Proposed lines arrive selected, so the default is to accept them.",
+   "Every proposed title, description, labor figure and part is editable in place before the lines are added.",
+   "Each proposed line names the finding it came from.",
+   "Every flagged finding is represented by at least one proposed line; if the set is too large to draft in one run, it is split across runs rather than the surplus being dropped."
+  ]
+ },
+ {
+  "id": 88545,
+  "title": "The proposed-lines panel is shared with the Line Builder",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S15 · Draft the lines with ShopCoach",
+  "steps": [],
+  "expected": [
+   "The proposed-lines panel is shared with the Line Builder started from a work order with no inspection; a change made for this flow lands on that one too and must not degrade it.",
+   "Two findings are never collapsed into one proposed line because their titles match: while serving this flow the panel compares proposed lines by their finding identifier, while the work-order Line Builder keeps its existing comparison."
+  ]
+ },
+ {
+  "id": 88546,
+  "title": "The brief is verifiable before release and the model is recorded",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S15 · Draft the lines with ShopCoach",
+  "steps": [],
+  "expected": [
+   "The brief is verifiable before release by running a fixed set of known-finding inspections through it and reading the drafted lines back: every flagged finding represented, no line inventing a part it was not given, and no passing finding becoming a line.",
+   "The model the brief runs on is specified, and the verification pass records the brief and the model together, because the output cannot be attributed to the brief alone.",
+   "The brief and the model can be changed on the QA environment without a release, so the verification pass can iterate.",
+   "Which model the brief runs on is chosen and compared outside this epic; this story only requires that the model is recorded with the brief, and the choice must not gate this work."
+  ]
+ },
+ {
+  "id": 88547,
+  "title": "Negatives: no ShopCoach, passing findings, ungiven parts, deselect all",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S15 · Draft the lines with ShopCoach",
+  "steps": [],
+  "expected": [
+   "Without ShopCoach, this story does not apply and no build action exists.",
+   "A passing finding never becomes a proposed line.",
+   "No part is proposed that ShopCoach was not given.",
+   "Deselecting every proposed line leaves Add Lines unavailable rather than silently adding nothing."
+  ]
+ },
+ {
+  "id": 88548,
+  "title": "Edge cases: empty results, failures, navigation, multi-axle, Monitor",
+  "automated": true,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S15 · Draft the lines with ShopCoach",
+  "steps": [],
+  "expected": [
+   "If ShopCoach returns no lines at all, the user is told so plainly and the work order is unchanged.",
+   "If the call to ShopCoach fails, the user is told that it failed, and is never left with an empty panel.",
+   "If the user navigates away while the drafting runs, nothing is added.",
+   "If a finding's note is empty, the finding is still sent and still represented."
+  ]
+ },
+ {
+  "id": 88549,
+  "title": "Authoring: the Per axle field type, default rows, units, placement",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S8 · Record measurements per axle",
+  "steps": [],
+  "expected": [
+   "Per axle is its own field type, offered alongside Checkbox, Text, Measurement, Photo and Instructions.",
+   "A new per-axle field is named \"New axle measurements\" and pre-filled with four measurement rows: tire pressure, tread depth, brake lining and push-rod travel.",
+   "Each row carries a unit set by the author as the starting default (PSI for tire pressure; inches for tread depth, brake lining and push-rod travel).",
+   "Each row has a scope, '1 per side' or 'Outer + inner' (tire pressure and tread depth default to Outer + inner, brake lining and push-rod travel to 1 per side)."
+  ]
+ },
+ {
+  "id": 88550,
+  "title": "Authoring: editing rows, reference file, axle count, Measurement default",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S8 · Record measurements per axle",
+  "steps": [],
+  "expected": [
+   "Rows are renamed in place, confirmed with a check and dismissed with an X, without a dialog.",
+   "Rows can be added and removed, but the last row cannot be removed.",
+   "A per-axle field can carry a reference file like any other field.",
+   "The template holds only how many axles the technician starts with; the fill screen keeps Add Axle and per-axle delete, and the recorded axles are never validated against it."
+  ]
+ },
+ {
+  "id": 88551,
+  "title": "Filling: setting up each axle and recording values",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S8 · Record measurements per axle",
+  "steps": [],
+  "expected": [
+   "Each axle is set to Single or Dual and to Drum or Disc, and Drum or Disc may be left blank when the axle has no brakes.",
+   "A per-tire row records four values on a Dual axle (left outer, left inner, right inner, right outer) and two on a Single; a per-brake row always records two.",
+   "Every value carries its own verdict, chosen from a menu on the field: OK, Monitor, Not OK or N/A.",
+   "Nothing is required: an empty value stays empty and is not converted to N/A."
+  ]
+ },
+ {
+  "id": 88552,
+  "title": "Filling: verdict tinting, worst-wins derivation, the truck diagram",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S8 · Record measurements per axle",
+  "steps": [],
+  "expected": [
+   "A value's input is tinted by its verdict and stays neutral while nothing is entered.",
+   "A row's verdict is derived from its positions and an axle's from all of its positions, worst wins (Not OK over Monitor over OK over N/A), and neither is chosen directly.",
+   "A position with nothing entered does not affect its row, and a row or axle with nothing entered is Not inspected.",
+   "A diagram of the truck shows every axle and tints each tire by the worst verdict of the rows measuring it, staying grey until one of its rows has a verdict."
+  ]
+ },
+ {
+  "id": 88553,
+  "title": "Filling: Single/Dual, axle add/delete/expand, per-row units, layouts",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S8 · Record measurements per axle",
+  "steps": [],
+  "expected": [
+   "Switching an axle between Single and Dual preserves what was entered with no warning (Single keeps the outer readings as left and right; switching back restores the inner readings), and preserved values live for the session only.",
+   "The first axle can never be deleted but carries a clear action that empties its readings and verdicts and leaves the axle in place.",
+   "Any axle after the first can be deleted, and axles below a deleted one move up and the numbering follows.",
+   "Axles can be expanded one at a time or all at once, and opening one does not collapse another."
+  ]
+ },
+ {
+  "id": 88554,
+  "title": "Output: the read-only view/report, per-axle counting, per-row findings",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S8 · Record measurements per axle",
+  "steps": [],
+  "expected": [
+   "The completed read-only view shows each field's verdict. A per-axle field shows each position's value and verdict and the axle's verdict; a measurement row has no verdict of its own.",
+   "The phone shows the same as the desktop, and the report follows S13-R0.",
+   "Counting is per axle — an axle contributes one count carrying the worst verdict of its positions — and the inspection list, the report counters and the field's own summary report the same numbers.",
+   "The one exception is the per-axle field's header on the fill screen, which counts flagged positions for the technician (for example '2 positions Not OK · 1 Monitor') and names no unit."
+  ]
+ },
+ {
+  "id": 88555,
+  "title": "Negatives: unanswered fields, blank brake type, value-without-verdict",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S8 · Record measurements per axle",
+  "steps": [],
+  "expected": [
+   "A per-axle field with no verdict anywhere counts as unanswered and blocks submit when the field is required.",
+   "If Drum or Disc is left blank, nothing about brake type appears in the report.",
+   "A position with a value and no verdict is not counted as a finding and does not block submit."
+  ]
+ },
+ {
+  "id": 88556,
+  "title": "Edge cases: N/A meanings, free text, road trains, version pinning, units",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S8 · Record measurements per axle",
+  "steps": [],
+  "expected": [
+   "An axle with a verdict and no measurements counts as answered.",
+   "A value containing the text N/A and a verdict of N/A are different statements, and both survive to the report distinctly.",
+   "Free text in a value reaches the report as entered, without being converted or dropped.",
+   "A road train of seven or more axles stays usable in both the diagram and the phone layout."
+  ]
+ },
+ {
+  "id": 88557,
+  "title": "Attach one file per question: types, panel, size limit, names",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S11 · Attach a reference file to a question",
+  "steps": [],
+  "expected": [
+   "Any question type can hold one file attachment.",
+   "PDF, image, Word and Excel files are accepted, including HEIC; video is not accepted.",
+   "The author uploads from the field's properties panel, where the accepted file types and the size limit are stated before the upload; the limit is 20 MB where the platform's upload cap is raised to match in the same release, otherwise 10 MB and the panel says 1",
+   "The upload control reads \"Attach File\" on every field type."
+  ]
+ },
+ {
+  "id": 88558,
+  "title": "The technician opens the file; unrenderable types handled honestly",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S11 · Attach a reference file to a question",
+  "steps": [],
+  "expected": [
+   "The technician sees the attached file while filling and can open it as a full-page view in the same tab, with a close action and a download action; a PDF and a web image are readable there without downloading.",
+   "A file the viewer cannot render (HEIC, TIFF, Word, Excel) says so in that view and offers the download, rather than opening blank or silently downloading.",
+   "The attached file is visible on the canvas on the field's row."
+  ]
+ },
+ {
+  "id": 88559,
+  "title": "Attachments are shop-scoped and survive template republishing",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S11 · Attach a reference file to a question",
+  "steps": [],
+  "expected": [
+   "Attached files are available only within the shop that uploaded them.",
+   "After a template is republished, instructions in earlier published versions still open their attachments."
+  ]
+ },
+ {
+  "id": 88560,
+  "title": "Negatives: video, other shops, and removed attachments",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S11 · Attach a reference file to a question",
+  "steps": [],
+  "expected": [
+   "Video files are rejected, with a reason shown to the author.",
+   "A file belonging to another shop cannot be opened.",
+   "If an attachment is removed from the field, the technician no longer sees it."
+  ]
+ },
+ {
+  "id": 88561,
+  "title": "Edge cases: failed upload, replacement, long names, missing file",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S11 · Attach a reference file to a question",
+  "steps": [],
+  "expected": [
+   "If an upload fails partway, no attachment is recorded and the author is told why.",
+   "Replacing a file records the new attachment, and the old file is not removed.",
+   "An unusually long file name is shortened in the interface rather than breaking the layout.",
+   "If the stored file is missing while the field still refers to it, opening it fails with a message rather than a broken download."
+  ]
+ },
+ {
+  "id": 88562,
+  "title": "A brand-new template offers only the starting-point choice",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "A brand-new template shows only the choice of starting point (start from a template, or build from scratch), with no section heading, field count, section menu, signature option or add-section control.",
+   "As soon as the author chooses either option, the full builder appears.",
+   "The \"Require technician signature\" option is available while building and withheld only on that first empty screen."
+  ]
+ },
+ {
+  "id": 88563,
+  "title": "The starter library: slots, the pending equipment starter, sections",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "The starter library offers six slots; five carry template content (Class 8 Tractor PM, DOT / Annual Federal Safety, Air-Brake, Trailer and Light-Duty PM), each card carrying an icon and a single name.",
+   "The sixth slot is the equipment starter — a pending placeholder (dashed border, PENDING badge) that is not pickable — and the grid is built as equal rows so a seventh and eighth entry drop in without relayout.",
+   "A section added after the first offers field types only, not starting points."
+  ]
+ },
+ {
+  "id": 88564,
+  "title": "Field properties: measurement row cards and response options",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "Per-axle measurement rows appear as cards: the row name reads as text with a rename control (check to confirm, X to dismiss) alongside the unit and whether it is measured on the tire or the brake, with defaults labelled as defaults.",
+   "A newly added measurement row opens ready to be renamed.",
+   "The row list shows how many rows there are and offers a full-width control to add another.",
+   "Response options are editable rows with their colours, and an \"Include Monitor option\" control turns the amber response on and off and is on by default."
+  ]
+ },
+ {
+  "id": 88565,
+  "title": "Field properties: validation errors and the report-wording tooltip",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "An empty response label shows an error on the row itself and blocks publishing, while still allowing the author to save a draft.",
+   "An empty measurement row name behaves the same way, with the error on the row so the author can see which row is at fault.",
+   "Validation rules are explained on demand rather than as permanent text on the panel.",
+   "A tooltip on the response options explains that the labels are the author's to edit but the customer report always uses the standard wording; what the report prints does not change."
+  ]
+ },
+ {
+  "id": 88566,
+  "title": "The canvas: field rows, summaries, and empty sections",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "A field row shows its type, a summary line and its markers, which wrap rather than being cut off.",
+   "A checkbox's summary line lists its responses.",
+   "A per-axle field's canvas row lists its measurement rows and notes that the technician adds axles while filling.",
+   "An empty section does not offer duplicate ways to add a field, the option to duplicate itself, or the add-section control until it has content."
+  ]
+ },
+ {
+  "id": 88567,
+  "title": "One text field replaces short/long text; the per-axle explanation",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "A single Text field replaces the separate short text and long text fields.",
+   "The Text field grows as the technician types rather than scrolling within itself.",
+   "The field type list offers one text option.",
+   "Templates built with the previous short text and long text fields keep working unchanged, with nothing for the author to migrate."
+  ]
+ },
+ {
+  "id": 88568,
+  "title": "Preview mode mounts the fill screen, read-only but the axle control",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "The builder offers a Preview mode alongside Edit (switched from a sub-header control) that mounts the fill screen itself against the current draft, unsaved edits included, with the properties panel stepping aside and the canvas taking its width while the secti",
+   "Preview is read-only except the axle control (adding or deleting an axle writes the count back to the draft); no values, verdicts, Mark OK, Add Note or Add Photo are accepted, a reference file still opens, and the submit bar is not drawn.",
+   "Preview works on a draft without asking the author to publish first, and clicking a field returns to Edit with that field selected in the panel.",
+   "Preview explains nothing about itself: no banner saying nothing is saved, and no line stating how many axles the technician starts on."
+  ]
+ },
+ {
+  "id": 88569,
+  "title": "Templates list, per-axle starters, the Axles control, requiredness",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "The templates list describes usage as \"times used\", not \"runs\", on both the summary figure and the table column.",
+   "Where the same thing is measured or judged on every wheel position, a starter uses one per-axle field rather than one field per position; the DOT form keeps its own structure.",
+   "Seeded templates arrive with checkbox fields marked required to complete and text, notes and measurement fields optional.",
+   "A per-axle field's properties panel offers an Axles control shaped like a measurement row, below the rows and above the add control, defaulting to 3 and offering 2 to 5, explained on demand; the rows above it are headed \"Measurement rows · every axle\"."
+  ]
+ },
+ {
+  "id": 88570,
+  "title": "Negatives: reapplying a starting point, cleared labels, descriptors",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "A starting point cannot be applied twice, or to a template that already has sections, because it is offered only on the empty first screen.",
+   "If a response label is cleared, publishing is blocked until it is corrected.",
+   "No surface the technician sees (the fill screen, and therefore Preview) carries a generated descriptor line summarising a field's configuration; an author-written instruction is shown as written."
+  ]
+ },
+ {
+  "id": 88571,
+  "title": "Edge cases: last section, deleted selected field, long names, live preview",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S12 · Template builder authoring",
+  "steps": [],
+  "expected": [
+   "If the last section is deleted, the canvas still offers a way to add one back.",
+   "If a field is deleted while it is selected, the properties panel clears rather than showing a field that no longer exists.",
+   "A very long field or section name is shortened in the canvas, the outline and the properties panel rather than breaking the layout.",
+   "Changing a measurement row is reflected in the preview without republishing."
+  ]
+ },
+ {
+  "id": 88572,
+  "title": "What the report says: content and the removals",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S13 · Customer-facing inspection report",
+  "steps": [],
+  "expected": [
+   "A per-axle field prints each row's values per position, with a status column carrying the row's derived verdict.",
+   "The report title reads \"Inspection results\".",
+   "The template version does not appear on the report.",
+   "The introductory paragraph and the three summary blurbs are removed."
+  ]
+ },
+ {
+  "id": 88573,
+  "title": "The work order number and inspected date are formatted correctly",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S13 · Customer-facing inspection report",
+  "steps": [],
+  "expected": [
+   "The work order number appears without a leading hash, in both the header and the running header.",
+   "The inspected date shows without a time.",
+   "The work order number includes its branch prefix, so S1-2252 rather than S-2252."
+  ]
+ },
+ {
+  "id": 88574,
+  "title": "Who the report is addressed to",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S13 · Customer-facing inspection report",
+  "steps": [],
+  "expected": [
+   "The Customer block shows the company on the work order, with its name, address, city, state, postal code and phone.",
+   "The contact person appears on a separate Contact row.",
+   "Any field attributed to a user shows that person's name."
+  ]
+ },
+ {
+  "id": 88575,
+  "title": "What the report must survive: regeneration and republishing",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S13 · Customer-facing inspection report",
+  "steps": [],
+  "expected": [
+   "Regenerating a report produces a new version rather than replacing the previous one, every link resolves to the most recent, and earlier versions remain retrievable so a report already handed to a customer cannot change.",
+   "Republishing the template does not alter an existing report, and the inspection keeps the template version it ran on."
+  ]
+ },
+ {
+  "id": 88576,
+  "title": "Negatives/edge: missing company, missing contact, sparse data, volume",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S13 · Customer-facing inspection report",
+  "steps": [],
+  "expected": [
+   "If the work order has no company, the Customer block is omitted rather than showing an empty frame.",
+   "If there is no contact person, the Contact row is omitted.",
+   "A company with a name but no address or phone shows only its name, with no blank lines and no stray punctuation.",
+   "A very long company name or address wraps or is shortened rather than pushing the layout out of shape."
+  ]
+ },
+ {
+  "id": 88577,
+  "title": "Per-axle rendering and touch on a phone",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S14 · Inspection filling on a phone",
+  "steps": [],
+  "expected": [
+   "The per-axle field renders one card per measurement row and does not scroll sideways at any width.",
+   "Every target a technician taps is large enough to hit with a gloved thumb, including the unit selector and the Drum, Disc, Single and Dual controls.",
+   "Value inputs do not zoom the page when they take focus.",
+   "Moving between axles happens from a header rather than by scrolling, and the primary action advances to the next axle."
+  ]
+ },
+ {
+  "id": 88578,
+  "title": "Reference files, outstanding work, and the phone back control",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S14 · Inspection filling on a phone",
+  "steps": [],
+  "expected": [
+   "A reference file opens across the full screen, in the same view, and closes back to the exact position in the inspection.",
+   "Outstanding required work is surfaced on the action that completes the section, carrying a count, rather than as a separate banner competing with the fields.",
+   "Selecting an outstanding item moves to the first field that still needs an answer, rather than to a summary of what is missing.",
+   "The layout does not draw its own back control where the device already provides one."
+  ]
+ },
+ {
+  "id": 88579,
+  "title": "Negatives/edge on a phone: scrolling, overlap, many axles, long names",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S14 · Inspection filling on a phone",
+  "steps": [],
+  "expected": [
+   "No screen in the filling flow requires a horizontal scroll to reach a control.",
+   "No control is placed where the device's own navigation overlaps it.",
+   "A truck with seven axles remains navigable without scrolling through every one.",
+   "A long field label, a long row name and a long file name each shorten rather than breaking the layout."
+  ]
+ },
+ {
+  "id": 88580,
+  "title": "Mark OK at three levels: what it sets, never invents, untouched axles",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S18 · Mark a whole scope OK in one press",
+  "steps": [],
+  "expected": [
+   "The action is offered at three levels — the inspection, a section and a field — with the same treatment. The label names the level: 'Mark all OK', 'Mark section OK' and 'Mark field OK'.",
+   "There is no axle level: an axle is part of a per-axle field, which 'Mark field OK' covers.",
+   "It sets OK only: there is no bulk Monitor and no bulk Not OK.",
+   "It sets verdicts only; a measured value is never invented."
+  ]
+ },
+ {
+  "id": 88581,
+  "title": "After the press: coverage report, nested reporting, Undo, clearing",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S18 · Mark a whole scope OK in one press",
+  "steps": [],
+  "expected": [
+   "After the press the row reports what it covered, counted in its own unit (fields at inspection and section level, positions on a field), and offers Undo.",
+   "Every level beneath the one pressed reports the same, so before and after read at a glance down the page; Undo appears only on the row that was pressed.",
+   "The report clears on the next edit anywhere in the inspection (a verdict, a value, or a Single/Dual switch), and the actions return.",
+   "A scope with nothing left to mark renders inert rather than disappearing, keeping its place."
+  ]
+ },
+ {
+  "id": 88582,
+  "title": "Explaining the scope on demand, and the three phone surfaces",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S18 · Mark a whole scope OK in one press",
+  "steps": [],
+  "expected": [
+   "Each level explains its scope on demand: what it covers, what it leaves alone, and that values are never filled in.",
+   "On a phone the inspection-level caption reads: '34 items are still Not inspected. Only those are marked OK; verdicts already picked stay, and values are never filled in.' (the number is the live count).",
+   "On a phone the three levels take three surfaces — the section header, the axle field's sub-header, and the app-bar menu — and the footer stays section navigation and gains nothing.",
+   "On the last section the footer keeps Back, as a compact arrow button, beside 'Submit & Generate Report', which is never truncated."
+  ]
+ },
+ {
+  "id": 88583,
+  "title": "Negatives/edge: no-verdict fields, read-only/Preview, answered fields",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S18 · Mark a whole scope OK in one press",
+  "steps": [],
+  "expected": [
+   "A field that carries no verdict (text, instructions, a photo) carries no action.",
+   "A read-only or submitted inspection offers none of it, and neither does the builder's Preview mode.",
+   "A Single/Dual switch counts as an edit and ends the report.",
+   "A field answered once rather than per position reports \"Marked OK\" with no count."
+  ]
+ },
+ {
+  "id": 88584,
+  "title": "Authoring: the follow-up toggle and the response blocks",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "A checkbox field offers a toggle, \"Add follow-up to a response\", sitting below \"Include Monitor option\" and off by default.",
+   "While the toggle is off, the response options section is exactly as it is today apart from that one row.",
+   "While the toggle is on, each response becomes a block carrying its response row, a checkbox reading \"Follow-up for this response\", a text area, and an Attach File control.",
+   "The text area and the attach control are shown but disabled until the checkbox is checked, so the author sees what a follow-up consists of before committing to one."
+  ]
+ },
+ {
+  "id": 88585,
+  "title": "Authoring: the acknowledgement toggle, slot binding, retention rules",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "A Monitor or Not OK block additionally carries a \"Require acknowledgement\" toggle, on by default; OK and N/A blocks carry no such toggle.",
+   "A follow-up binds to the response slot, not to its label, so renaming a label does not orphan it.",
+   "Unchecking the checkbox retains the text and the file (fields disabled); turning the section toggle off retains every follow-up on the field; turning \"Include Monitor option\" off removes the Monitor block but retains its content.",
+   "Turning the section toggle off while any follow-up is checked asks the author to confirm."
+  ]
+ },
+ {
+  "id": 88586,
+  "title": "Authoring: the canvas row, on-demand explanations, file labels",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "A field carrying follow-ups lists one line per follow-up on its canvas row — the response name in that response's colour, the first line of the text shortened rather than wrapped, and a clip glyph where a file is attached — whether or not the field is selected",
+   "Both the section toggle and the acknowledgement toggle are explained on demand via an information affordance, with no permanent text on the panel.",
+   "The always-visible field attachment is labelled \"General reference file\" on every field type; the file inside a follow-up block carries no such label and its control reads \"Attach File\"."
+  ]
+ },
+ {
+  "id": 88587,
+  "title": "Filling: the Instruction word, and where and when it opens",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "The technician-facing word is Instruction; Follow-up is the authoring word and appears only in the builder.",
+   "Where the given response carries a follow-up, the instruction opens in the field card, below the note block where a note is also required and above the footer, both blocks full width and never side by side.",
+   "On Monitor and Not OK the instruction opens in place as soon as the response is given; on OK and N/A it stays collapsed with an Instruction action in the card footer beside Add Note and Add Photo."
+  ]
+ },
+ {
+  "id": 88588,
+  "title": "Filling: the acknowledgement's marker, control, and record",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "Where the follow-up requires acknowledgement and none has been given, the instruction header carries a Required marker in the colour of the response that triggered it, and the marker disappears once acknowledged.",
+   "The acknowledgement is a checkbox reading Acknowledge, becoming Acknowledged when set; it is not a button or a toggle, and the technician cannot clear it.",
+   "The acknowledgement records who gave it and when; this is not printed on the field card but is surfaced in the inspection record's field detail."
+  ]
+ },
+ {
+  "id": 88589,
+  "title": "Filling: the attached file, the text, and the two layouts",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "The attached file opens full screen in the same view and closes back to the exact position in the inspection, its action reading View Instruction.",
+   "Instruction text is never truncated and the author's paragraph breaks are preserved, while long file names shorten.",
+   "Desktop and phone are two layouts; on a phone the acknowledgement takes its own full-width row below the file row."
+  ]
+ },
+ {
+  "id": 88590,
+  "title": "Submit and outstanding items: the acknowledgement gate",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "An unacknowledged required follow-up blocks submit.",
+   "The block is enforced by the server: a submit made without the acknowledgement is refused whatever the interface showed.",
+   "An unacknowledged required follow-up appears in the outstanding items list alongside missing answers and notes, naming the kind first and then the section, the field and the verdict, and coloured by the verdict that caused it.",
+   "Pressing submit with items outstanding opens that list rather than raising an error dialog."
+  ]
+ },
+ {
+  "id": 88591,
+  "title": "Preview: every follow-up shown, inert acknowledgement, no banner",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "Preview mounts the fill screen so no response can be given, so every configured follow-up on a field is shown at once, each naming the response it belongs to.",
+   "The file still opens in Preview (a read), and the acknowledgement renders in the inert treatment the verdict controls use there and takes no input.",
+   "Preview draws no banner explaining itself."
+  ]
+ },
+ {
+  "id": 88592,
+  "title": "Negatives: per-axle, empty follow-ups, report, ShopCoach, counting",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "A per-axle field does not offer follow-ups, because a verdict there is recorded per position and there is no single position an instruction would belong to.",
+   "A checked follow-up with no text and no file blocks publishing, with the error on the block, while a draft may still be saved.",
+   "Neither the instruction nor the acknowledgement reaches the customer report.",
+   "Neither the instruction nor the acknowledgement reaches the brief sent to ShopCoach."
+  ]
+ },
+ {
+  "id": 88593,
+  "title": "Edge cases: changing a response, republish, Mark OK, long text, missing file",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > S19 · Conditional follow-up on a checkbox response",
+  "steps": [],
+  "expected": [
+   "Changing the response clears the acknowledgement given on the previous one, and answering the same response again asks for it afresh.",
+   "A follow-up added or edited after a template is republished does not reach an inspection already running, because it keeps the template version it started on.",
+   "The one-press Mark OK sets OK only and never overwrites a verdict already given, so it can reveal collapsed instructions but never creates an acknowledgement the technician has not seen.",
+   "A very long instruction renders in full with the file row and the acknowledgement below it, unscrolled and untruncated."
+  ]
+ },
+ {
+  "id": 154644,
+  "title": "Feature flag off: every new inspection surface is absent",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > TP - Tech-plan coverage (flag, accessibility, tenancy, invariants)",
+  "steps": [
+   "With the flag OFF, open the template builder and confirm the Per axle field type, the 'Note required if Monitor / Not OK' option and the 'Photo required if Not OK' option are absent.",
+   "Confirm reference-file attachment, conditional follow-ups, the Mark OK action and Preview mode are absent.",
+   "Open a completed inspection and the asset Inspections tab and confirm the ShopCoach Build lines action and the tab's V2 additions are absent.",
+   "Turn the flag ON and confirm every one of those surfaces appears.",
+   "Note for the tester: whether the system also blocks the V2 features behind the scenes while the flag is off is a developer/automated check, not something you prove by hand. By hand, confirm only that "
+  ],
+  "expected": [
+   "With the feature flag off, none of the Digital Inspections V2 surfaces render - the Per axle field type, the note-required and photo-required options, reference files, conditional follow-ups, Mark OK, Preview, and the ShopCoach build entry points are all absen",
+   "With the flag on, every one of those surfaces appears.",
+   "The V2 features are also blocked behind the scenes while the flag is off, so they stay unavailable even if something were shown — this behind-the-scenes block is a developer/automated check, not a manual step."
+  ]
+ },
+ {
+  "id": 154645,
+  "title": "Verdict is never colour alone; colour placement; dark theme",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > TP - Tech-plan coverage (flag, accessibility, tenancy, invariants)",
+  "steps": [
+   "Read the answer buttons, the verdict menu and the status chips and confirm each states the verdict in words, not by colour alone.",
+   "Confirm verdict colour appears only on the input border, the verdict marker and the status chips - never as a card or container background.",
+   "Confirm the truck diagram is the only colour-only surface, with the readings shown beside it.",
+   "Switch to dark theme and confirm a not-inspected position is still distinguishable from a judged one."
+  ],
+  "expected": [
+   "Every verdict surface that states a verdict does so in words - the answer buttons, the verdict menu and the status chips are labelled, so colour is never the only signal.",
+   "Verdict colour is confined to the input border, the verdict marker and the status chips, and never fills a card or container background.",
+   "The truck diagram is the single deliberate colour-only surface; because the readings sit beside it, a tyre's tint summarises rather than solely states its verdict.",
+   "In dark theme a not-inspected position reads distinctly from a judged one (the grey-versus-tinted distinction is preserved, not inverted)."
+  ]
+ },
+ {
+  "id": 154646,
+  "title": "New read paths are scoped to organisation and workplace",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > TP - Tech-plan coverage (flag, accessibility, tenancy, invariants)",
+  "steps": [
+   "As the organisation-A user, try to reach organisation B's inspection through the asset Inspections tab.",
+   "Try to open organisation B's reference file and its per-axle answers by their addresses.",
+   "Note for the tester: behind-the-scenes scoping is a developer/automated check. By hand, confirm only that no data belonging to organisation B (or another workplace) is ever shown to the organisation-A"
+  ],
+  "expected": [
+   "The asset Inspections tab, reference files and per-axle answers are scoped to both organisation and workplace; a user in another organisation or workplace cannot read them.",
+   "Because the asset-history read deliberately crosses a customer boundary, the scoping is applied explicitly on each read rather than inherited from the customer join."
+  ]
+ },
+ {
+  "id": 154647,
+  "title": "'Not inspected' is absence of a verdict, never a selectable option",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 (Aug 2026) > TP - Tech-plan coverage (flag, accessibility, tenancy, invariants)",
+  "steps": [
+   "Open the verdict menu on a position and read every option it offers.",
+   "Confirm a not-inspected position carries no verdict of its own.",
+   "Press Mark OK over a scope that includes unmeasured positions and confirm nothing is stamped as N/A by default.",
+   "Confirm no default, seeding or migration wrote a verdict onto a position the technician did not action."
+  ],
+  "expected": [
+   "'Not inspected' is the absence of a verdict, not a value of it - it never appears as a selectable option in the verdict menu.",
+   "No answer carries a verdict the technician did not cause: there is no seeding, no migration fill and no 'complete the record' job.",
+   "'na' is never written as a default by any code path, including bulk Mark OK."
+  ]
+ },
+ {
+  "id": 195849,
+  "title": "Delete a Not started inspection on a completed line (WO Lines: Create & Edit)",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Delete/reopen an incomplete inspection (SV-8347)",
+  "steps": [
+   "Open the work order that has the completed line.",
+   "Open the completed line 'Front brakes'.",
+   "Locate the Not started inspection 'ZZAUTOTEST Brake Check' on that line.",
+   "Check whether the inspection shows a Delete (trash) icon or opens in View mode only.",
+   "Select the Delete (trash) icon on the Not started inspection."
+  ],
+  "expected": [
+   "The Not started inspection shows a Delete (trash) icon; it is not limited to View mode.",
+   "Selecting Delete removes the inspection from the completed line.",
+   "The delete is allowed even though the work order line is Complete."
+  ]
+ },
+ {
+  "id": 195850,
+  "title": "No WO Lines: Create & Edit - Not started inspection stays View mode only",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Delete/reopen an incomplete inspection (SV-8347)",
+  "steps": [
+   "Open the work order that has the completed line.",
+   "Open the completed line 'Front brakes'.",
+   "Open the Not started inspection 'ZZAUTOTEST Brake Check'.",
+   "Look for a Delete (trash) icon on the inspection."
+  ],
+  "expected": [
+   "The inspection opens in View mode only.",
+   "No Delete (trash) icon is shown on the inspection.",
+   "This user cannot delete the Not started inspection."
+  ]
+ },
+ {
+  "id": 195851,
+  "title": "Delete or reopen a completed inspection requires WO Lines: Delete",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Delete/reopen an incomplete inspection (SV-8347)",
+  "steps": [
+   "Sign in as the user whose role has WO Lines: Delete turned off.",
+   "Open the completed line and open the completed inspection.",
+   "Check for a Delete (trash) icon and a Reopen action.",
+   "Sign in as the user whose role has WO Lines: Delete turned on.",
+   "Open the completed line and open the completed inspection."
+  ],
+  "expected": [
+   "Without WO Lines: Delete, the completed inspection opens in View mode with no Delete icon and no Reopen action.",
+   "With WO Lines: Delete, the completed inspection shows a Delete (trash) icon and a Reopen action.",
+   "Reopen returns the completed inspection to an editable state."
+  ]
+ },
+ {
+  "id": 195852,
+  "title": "Incomplete inspection delete gate is independent of the WO line's status",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Delete/reopen an incomplete inspection (SV-8347)",
+  "steps": [
+   "Open the work order and open the Complete line 'Front brakes'.",
+   "Check that the Not started inspection shows a Delete (trash) icon, then delete it and confirm.",
+   "Open the not-complete line 'Rear brakes'.",
+   "Check that the Not started inspection shows a Delete (trash) icon, then delete it and confirm."
+  ],
+  "expected": [
+   "On the Complete line, the Not started inspection shows a Delete icon and can be deleted.",
+   "On the not-complete line, the Not started inspection shows a Delete icon and can be deleted.",
+   "The delete behaviour for a Not started inspection is the same whether or not the line is Complete."
+  ]
+ },
+ {
+  "id": 195853,
+  "title": "Word reference file converts to PDF and renders in the viewer in place",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Convert reference files the viewer cannot render (SV-9882)",
+  "steps": [
+   "On the fill screen, open the question that has the Word reference file.",
+   "Select the attached file to open the full-page reference viewer.",
+   "Scroll through the viewer to the last page."
+  ],
+  "expected": [
+   "The Word file opens as a readable full-page document in the viewer, not a blank frame and not an automatic download.",
+   "Close and Download actions are available in the viewer.",
+   "Every page of the document is shown; no pages are missing."
+  ]
+ },
+ {
+  "id": 195854,
+  "title": "Excel reference file converts to PDF and renders in the viewer in place",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Convert reference files the viewer cannot render (SV-9882)",
+  "steps": [
+   "On the fill screen, open the question that has the Excel reference file.",
+   "Select the attached file to open the full-page reference viewer."
+  ],
+  "expected": [
+   "The Excel file opens as a readable full-page document in the viewer, not a blank frame and not an automatic download.",
+   "The spreadsheet content is readable without downloading.",
+   "Close and Download actions are available in the viewer."
+  ]
+ },
+ {
+  "id": 195855,
+  "title": "A wide Excel sheet converts to a readable layout without clipping columns",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Convert reference files the viewer cannot render (SV-9882)",
+  "steps": [
+   "On the fill screen, open the question that has the wide Excel reference file.",
+   "Select the attached file to open the full-page reference viewer.",
+   "Read across to the rightmost columns of the sheet."
+  ],
+  "expected": [
+   "The sheet opens readable in the viewer; the rightmost columns are not cut off at a page edge.",
+   "All columns of the sheet can be read in the viewer."
+  ]
+ },
+ {
+  "id": 195856,
+  "title": "HEIC and TIFF reference files convert to a web image and render in place",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Convert reference files the viewer cannot render (SV-9882)",
+  "steps": [
+   "On the fill screen, open the question that has the HEIC file and select it to open the full-page viewer.",
+   "Note whether the image is shown.",
+   "Open the question that has the TIFF file and select it to open the full-page viewer.",
+   "Note whether the image is shown."
+  ],
+  "expected": [
+   "The HEIC file displays as an image in the viewer, not a blank frame and not an automatic download.",
+   "The TIFF file displays as an image in the viewer, not a blank frame and not an automatic download.",
+   "Each image is readable in place, with Close and Download actions available."
+  ]
+ },
+ {
+  "id": 195857,
+  "title": "Download returns the original uploaded file, not the converted version",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Convert reference files the viewer cannot render (SV-9882)",
+  "steps": [
+   "Open the Excel reference file in the viewer and select Download; save the downloaded file.",
+   "Open the HEIC reference file in the viewer and select Download; save the downloaded file.",
+   "Check each download's file type: the Excel one ends .xlsx and opens in Excel; the HEIC one is a .heic image file - neither is a PDF or a converted web image.",
+   "Hand both downloaded files back to the test author (attach or send them).",
+   "Test author: compare each downloaded file against the original that was uploaded - same file size and same contents (a checksum / byte compare)."
+  ],
+  "expected": [
+   "Each download opens as the ORIGINAL type: the Excel one is a spreadsheet ending .xlsx; the HEIC one is the original .heic image - not the converted view and not a PDF.",
+   "When the test author compares each downloaded file with the original upload, they are identical (same file size, same contents / matching checksum).",
+   "The file shown in the viewer is the converted rendering; the file that downloads is the original the author uploaded."
+  ]
+ },
+ {
+  "id": 195858,
+  "title": "Corrupt or password-protected file falls back to download-only",
+  "automated": false,
+  "folder": "Test Cases > Digital Inspections > Digital Inspection V2 — QA Additions (gap fill 2026-10-01) > Convert reference files the viewer cannot render (SV-9882)",
+  "steps": [
+   "In the template builder, confirm each file was accepted and stays attached after upload (not rejected).",
+   "On the fill screen, open the question with the corrupt file and select it to open the viewer.",
+   "Select Download for the corrupt file.",
+   "Open the question with the password-protected file and select it to open the viewer.",
+   "Select Download for the password-protected file."
+  ],
+  "expected": [
+   "Each file is accepted and stays attached at upload; neither is rejected.",
+   "Opening each file in the viewer shows the download-only fallback state (a message that the file can only be downloaded) rather than a blank frame.",
+   "The Download action returns each file."
+  ]
+ },
+ {
+  "id": 29300,
+  "title": "Optional receiving completes a line directly without ordering its vendor parts",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow > Completion — PO + Optional Invoice (Story 3)",
+  "steps": [
+   "Open the work order Lines tab without selecting any line.",
+   "Press Complete on the authorized line row.",
+   "Check the persisted line and work-order statuses, then inspect both original vendor-part requests."
+  ],
+  "expected": [
+   "The line and work order become Complete directly. No completion wizard or optional Receive / Complete Without Receiving / Cancel choice opens.",
+   "Both original vendor-part requests remain authorized to order. Completion does not create purchase orders or receive those parts.",
+   "Optional receiving controls whether receipt blocks completion. Users can explicitly order and receive parts through the ordinary part or bulk actions; completion does not perform those actions implicitly."
+  ]
+ },
+ {
+  "id": 29301,
+  "title": "Optional receiving receives only selected-line parts through bulk Receive",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow > Completion — PO + Optional Invoice (Story 3)",
+  "steps": [
+   "Open the Lines tab and select only the first line.",
+   "Press bulk Receive (2). Inspect the parts shown in the receive modal.",
+   "Select both displayed parts, enter a vendor invoice number, retain the prefilled invoice date, and press Receive.",
+   "Inspect the received quantities, the other line's outstanding part, and both line statuses."
+  ],
+  "expected": [
+   "The modal contains exactly the two Awaiting parts from the selected line. The unselected line's third part is excluded even though it uses the same vendor.",
+   "The successful receipt closes the modal and reports Parts received. Both selected requests leave the outstanding list and are replaced by staged parts with the ordered quantities.",
+   "The unselected request remains Awaiting receipt. Both lines remain Approved; explicit receiving does not complete either line.",
+   "The optional completion setting does not prevent explicit receipt or waive its invoice fields. No background purchase-order creation or optional completion-wizard receive step is assumed."
+  ]
+ },
+ {
+  "id": 29328,
+  "title": "Verify a saved tech story renders inline with the text and an Edit link",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow > Tech Story Flow (Story 17)",
+  "steps": [
+   "View the line's Story sub-row.",
+   "Confirm the story text and controls."
+  ],
+  "expected": [
+   "The saved story renders inline as the story text.",
+   "An Edit link is available to change it."
+  ]
+ },
+ {
+  "id": 44549,
+  "title": "Work Orders settings page — the four SFV2 settings appear, named and grouped",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "Read the toggle labels and how the page is split into groups."
+  ],
+  "expected": [
+   "\"Require ordering parts\" (new), \"Require picking inventory parts\" (the renamed auto-pick setting), \"Require receiving parts before completion\" and \"Require approval for new lines\" all appear, each reading in the \"Require...\" form.",
+   "They sit under the WORKFLOW / LINE REQUIREMENTS / PARTS groups, separated by dividers.",
+   "The page also still shows its other existing Work Order settings, unchanged: \"Require Review Before Completion\" (Workflow) and \"Require Tech Story\", \"Require Mileage\", \"Require Engine Hours\" (Line requirements). The page is NOT reduced to only these four."
+  ]
+ },
+ {
+  "id": 44550,
+  "title": "Auto-pick renamed to \"Require picking inventory parts\" — value inverted, behaviour unchanged",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "Find the picking setting in the PARTS group.",
+   "Read its label, and its default on/off state on a shop that has just upgraded."
+  ],
+  "expected": [
+   "The setting now reads \"Require picking inventory parts\"; the old \"Automatically pick inventory parts\" label is gone.",
+   "The value is the inverse of the old one: \"Require picking\" ON equals the old \"Auto-pick\" OFF. A freshly upgraded shop shows it ON and picking behaves exactly as before.",
+   "It is a deliberate inversion, not just a text change — the toggle never reads the opposite of what it does."
+  ]
+ },
+ {
+  "id": 44552,
+  "title": "Require picking and Require receiving — what each controls, on and off",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "With \"Require Picking Inventory Parts\" ON, look at an inventory part; turn it OFF, save, and look again.",
+   "With \"Require Receiving Parts Before Completion\" ON, note where the Receive control sits and whether outstanding parts block invoicing; turn it OFF, save, and look again."
+  ],
+  "expected": [
+   "Require picking ON: a \"Pick\" action appears on each inventory and found part (and in the bulk bar). OFF: those parts are marked picked automatically and no \"Pick\" action appears.",
+   "Require receiving ON: outstanding parts block invoicing and a \"Receive\" button sits on each part row. OFF: outstanding parts do not block invoicing and \"Receive\" moves into the part's ... menu."
+  ]
+ },
+ {
+  "id": 44553,
+  "title": "Turning Require ordering / picking ON later does not retro-act on existing parts",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "Turn \"Require Ordering Parts\" ON, save, and re-open the work order.",
+   "Turn \"Require Picking Inventory Parts\" ON, save, and re-open the work order."
+  ],
+  "expected": [
+   "Parts already recorded as ordered stay ordered; only parts added after the change need the Order press.",
+   "Parts already picked stay picked; only parts added after the change need the Pick press.",
+   "No existing work changes at the moment the setting is turned on."
+  ]
+ },
+ {
+  "id": 44554,
+  "title": "A settings change applies to every open work order — except approval (new lines only)",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "Turn \"Require Ordering Parts\" OFF, save, and check the open work orders' parts.",
+   "Turn \"Require Picking Inventory Parts\" OFF, save, and check the parts and stock levels.",
+   "Toggle \"Require Approval for New Lines\" and compare an existing line with a newly added line."
+  ],
+  "expected": [
+   "Turning Require ordering OFF places already-outstanding parts on purchase orders and moves them to Awaiting (a real PO per vendor); the Order action then disappears.",
+   "Turning Require picking OFF marks inventory/found parts picked and DEDUCTS them from stock (one stock movement + one inventory-history entry per part); the Pick action disappears.",
+   "Require approval for new lines changes NOTHING on existing lines (an estimate stays an estimate, an approved line stays approved); it only sets the status of a line added afterwards."
+  ]
+ },
+ {
+  "id": 44555,
+  "title": "A settings change is written to the audit log, attributed to the admin, with the cause",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "Make the settings change and save.",
+   "Open the audit log on an affected work order and on a changed line/part."
+  ],
+  "expected": [
+   "Every changed record is written to the audit log — on the work order and on each changed line or part.",
+   "Each entry is attributed to the admin who made the change (no system actor), with the cause named, e.g. \"Part ordered because Require ordering parts was turned off\"."
+  ]
+ },
+ {
+  "id": 44556,
+  "title": "Settings-change sweeps skip invoiced/paid work orders and declined lines",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "Make a settings change that would otherwise touch parts (e.g. Require ordering OFF) and save.",
+   "Check the Invoiced/Paid work order and the declined line afterwards."
+  ],
+  "expected": [
+   "Invoiced and Paid work orders are never touched by the change.",
+   "A declined line and its parts are excluded from the change."
+  ]
+ },
+ {
+  "id": 44557,
+  "title": "Only ordering and picking ask to confirm; turning picking OFF warns about stock",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "Change \"Require Ordering Parts\" and watch for a confirmation before it saves.",
+   "Change \"Require Picking Inventory Parts\" to OFF and read the confirmation text.",
+   "Change \"Require Approval for New Lines\" and \"Require Receiving Parts Before Completion\" and watch whether any confirmation appears."
+  ],
+  "expected": [
+   "Changing Require ordering parts or Require picking inventory parts opens a confirmation BEFORE saving; it names the setting and direction in the title and states the consequence with the number of records affected.",
+   "Turning Require picking OFF is shown as a warning that names the stock deduction, e.g. \"N inventory parts on open work orders will be marked as picked and deducted from stock.\"",
+   "Changing Require approval for new lines or Require receiving parts before completion does NOT ask for confirmation (neither writes to an existing record)."
+  ]
+ },
+ {
+  "id": 44558,
+  "title": "Cancelling a settings-change confirmation changes nothing; a zero count saves directly",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "Open the confirmation for a non-zero change and press Cancel.",
+   "Make a change whose count is zero and save."
+  ],
+  "expected": [
+   "Cancelling leaves the setting as it was and changes no records.",
+   "A count of zero shows no confirmation — the setting saves directly.",
+   "No confirmation claims a consequence it cannot count; where the number cannot be established it states the consequence without a figure."
+  ]
+ },
+ {
+  "id": 44559,
+  "title": "Applying a large settings change blocks only the acting admin, never the whole shop",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Work Order Settings",
+  "steps": [
+   "As the admin, confirm a large change and watch the settings page while it applies.",
+   "As the second user, keep working on a work order during the run."
+  ],
+  "expected": [
+   "While the change applies, the admin who made it is blocked (the settings page shows a progress indicator and does not return until every affected record is changed); every other user keeps working normally.",
+   "The organization is never locked — technicians are not stopped by a settings toggle.",
+   "If the run fails part way, the admin is told whether the change completed or the setting reverted; a half-applied change is never left visible."
+  ]
+ },
+ {
+  "id": 44561,
+  "title": "An Approved line completes whatever the state of its parts",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Completing a Line",
+  "steps": [
+   "Press \"Complete\" on that Approved line.",
+   "Re-open the line and check each part's status; then open the work order's finish/invoice path."
+  ],
+  "expected": [
+   "The line completes — unordered, unpicked and unreceived parts do not block it, in any combination.",
+   "Each part keeps its status: the never-ordered part still waits to be ordered, the unpicked part still needs picking, the ordered part still needs receiving; completing the line changed nothing about them.",
+   "The outstanding work has only moved to the work order: review and invoicing still require those parts to be ordered / picked / received (or deferred with Receive later)."
+  ]
+ },
+ {
+  "id": 44562,
+  "title": "The other line requirements still apply on completion when their setting is on",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Completing a Line",
+  "steps": [
+   "Press \"Complete\" on that Approved line while its tech story is empty and its core unresolved."
+  ],
+  "expected": [
+   "Completion still asks for the line-level requirements that are switched on: tech story, mileage and engine hours (each only when its setting is on).",
+   "An unresolved core is asked before the line completes even where receiving is not required (a cored part may never pass a receive and the invoice must still be right) — unchanged V1 behaviour.",
+   "Only the PARTS ordered/picked/received requirements were lifted off the line; these other requirements remain."
+  ]
+ },
+ {
+  "id": 44563,
+  "title": "A line reaches Complete only through the defined paths",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Completing a Line",
+  "steps": [
+   "Try each completion path on an Approved line: \"Complete\" on the line; \"Complete lines\" / \"Complete all lines\" in the bulk action bar; \"Create invoice\"; \"Clock out and complete\".",
+   "Try to complete a Needs Approval line by every path."
+  ],
+  "expected": [
+   "A line reaches Complete only through: Complete (on the line), Complete lines and Complete all lines (bulk bar), Create invoice, and Clock out and complete — and nothing else (no timer, no background job).",
+   "\"Mark as reviewed\" never completes a line — it only becomes available once every line is already complete.",
+   "Nothing completes a line that is not Approved: a Needs Approval line must be approved first, and Create invoice is refused while any line is still in Needs Approval."
+  ]
+ },
+ {
+  "id": 44565,
+  "title": "Complete is never disabled for a parts reason; reopening returns the line to Approved",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Completing a Line",
+  "steps": [
+   "Look at the Complete control on the line with outstanding parts.",
+   "Uncomplete the Complete line (from its three-dot menu) and check its status and its parts."
+  ],
+  "expected": [
+   "Complete is never disabled for a parts reason, anywhere — there is no disabled-with-tooltip state on it for parts.",
+   "No timer and no background job ever completes a line.",
+   "A line reopened (uncompleted) returns to Approved with its parts unchanged."
+  ]
+ },
+ {
+  "id": 44566,
+  "title": "Line actions offered match the line's status",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Line and Part Actions",
+  "steps": [
+   "Open the three-dot menu of a Needs Approval line and read its actions.",
+   "Repeat for an Approved line, a Declined line and a Complete line."
+  ],
+  "expected": [
+   "Needs Approval offers: Approve, Decline, Request part, Delete line.",
+   "Approved offers: Decline, Authorization required, Complete, Request part, Delete line.",
+   "Declined offers: Approve, Authorization required, Request part, Delete line (a declined line can still be approved from its own menu — deliberate).",
+   "Complete offers: Decline, Authorization required, Uncomplete."
+  ]
+ },
+ {
+  "id": 44567,
+  "title": "Decline is disabled while a line holds received or picked parts",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Line and Part Actions",
+  "steps": [
+   "Open that line's three-dot menu and look at \"Decline\".",
+   "Read the reason shown on the disabled Decline."
+  ],
+  "expected": [
+   "Decline is still visible but disabled while the line holds parts that were received or picked.",
+   "The disabled Decline shows the reason: \"Return this line's received parts before declining it.\""
+  ]
+ },
+ {
+  "id": 44568,
+  "title": "Part row action matches the part's state — all seven states",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Line and Part Actions",
+  "steps": [
+   "For a part in each state, read the single action on its row, and note what the bulk bar \"Order (n)\" count includes."
+  ],
+  "expected": [
+   "Requested: nothing on the row (no price yet) — but it IS counted in the bulk bar's \"Order (n)\". This \"counted but no button\" is deliberate.",
+   "Quoted: Order. Auth to order: Order.",
+   "In Stock and not picked: Pick.",
+   "Awaiting: Receive (with \"Receive later\" behind its caret when receiving is required)."
+  ]
+ },
+ {
+  "id": 44569,
+  "title": "Ordering precedes receiving; Receive placement follows the setting",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Line and Part Actions",
+  "steps": [
+   "With ordering required, look at the part before and after you order it — note when \"Receive\" appears.",
+   "Turn Require receiving OFF and check where \"Receive\" is for an ordered part.",
+   "Order a Requested part that is vendor-sourced, then try one that is inventory/found/no-source."
+  ],
+  "expected": [
+   "With ordering required, Receive does not appear until the part has been ordered, and Order and Receive are never offered at once for the same part.",
+   "With receiving NOT required, Receive moves from the part row into the part's ... menu — it is never removed outright.",
+   "Ordering a Requested part only does something when it is vendor-sourced (including a vendorless part marked \"Vendor missing\"); an inventory or found part, or one with no source, needs its details completed first."
+  ]
+ },
+ {
+  "id": 44570,
+  "title": "Declining or sending back a line returns only the not-yet-arrived parts to Quoted",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Line and Part Actions",
+  "steps": [
+   "Decline the line (or send it back with \"Authorization required\").",
+   "Check each part's state afterwards, then approve the line again and re-check."
+  ],
+  "expected": [
+   "Only In Stock, Quoted, Auth to order and Awaiting parts are moved back to Quoted.",
+   "A Requested part is left where it is, and so are Received and Returned parts; parts that were received or picked are not touched and no stock moves.",
+   "Declining does not remove parts from a purchase order (only deleting a part does); approving the declined line again restores its parts to where they were.",
+   "An action the role does not carry is absent even when the state qualifies (Pick follows Pick parts, Order follows Order parts)."
+  ]
+ },
+ {
+  "id": 44571,
+  "title": "Bulk bar replaces the column headers and shows each action by one rule",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Tick one or more line checkboxes.",
+   "Look at where the bar sits, what happens to the page, and how a selected row is highlighted; read the actions and their counts."
+  ],
+  "expected": [
+   "The bar sits at the top of the list and replaces the column headers while a selection is active; nothing on the page shifts when it appears, and it never covers the work order's own tabs.",
+   "Selecting a row highlights the whole line, including its story, labour and parts.",
+   "Each action follows one rule: nothing in the selection qualifies -> hidden; qualifies but blocked -> shown disabled with the reason; qualifies and not blocked -> shown with its count.",
+   "Line actions count lines and parts actions count parts (\"Receive 5 parts\" may come from two lines); a count never includes what the action would skip, except a Requested part which has no button but is still counted in Order (n)."
+  ]
+ },
+ {
+  "id": 44572,
+  "title": "Bulk bar groups: line and parts actions never compete for a slot; More holds the rest",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Select lines that trigger both line actions and parts actions.",
+   "Read the order of buttons across the bar and open \"More\"."
+  ],
+  "expected": [
+   "Layout is: \"n selected\", then Deselect all, then the line-actions group, then the parts-actions group, then More, then a close control — with a divider after \"n selected\", after the line group and after the parts group, always in those places.",
+   "The line group takes up to three (finish action when the selection covers every open line, then Complete lines, then Approve); the parts group takes up to three (Order, Receive, Pick, in that order). A parts action is never pushed into More by a line action.",
+   "More contains, in order: Authorization required, Split to new work order, Decline. Decline is always in More, never a primary slot. Create invoice acts on the whole work order (no count) and disappears once an invoice exists. Mark as reviewed is not in the bar",
+   "A group holding nothing renders no divider and takes no space; if More would be empty, the More button is not rendered."
+  ]
+ },
+ {
+  "id": 44573,
+  "title": "Each bulk action confirms or offers undo per its kind, with one toast each",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Run Approve / Decline / Authorization required / Complete / Uncomplete and watch for an undo toast.",
+   "Run Order and Create invoice and watch for a confirmation.",
+   "Run Receive and Pick and watch what opens."
+  ],
+  "expected": [
+   "Approve, decline, authorization required, complete and uncomplete apply immediately and offer an Undo in the result toast.",
+   "Ordering parts and creating an invoice ask for confirmation first and cannot be undone.",
+   "Receiving and picking open their own screens, so they neither confirm nor offer undo.",
+   "There is one toast per bulk action, summarising the result."
+  ]
+ },
+ {
+  "id": 44575,
+  "title": "Bulk approve/decline judges each line on its own and never sweeps a declined line",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Select the mixed lines and read the Approve / Decline / Authorization required counts.",
+   "Run Approve, then run Decline; check what each acted on and read the result message."
+  ],
+  "expected": [
+   "Each selected line is judged on its own by the single-line rule; every line that qualifies goes through, and one line failing does not stop the rest.",
+   "A declined line is never swept up by a bulk action — Approve and Authorization required leave it alone and do not count it (approving a declined line stays possible from the line itself).",
+   "Counts: Approve counts Needs Approval; Decline counts Needs Approval and Approved; Authorization required counts Approved; completed lines are excluded from all three.",
+   "The result names each failure with its line number and reason in one message (e.g. \"3 lines approved. 1 line couldn't be declined: Line 3, parts must be returned first\"); Undo restores only the lines that changed."
+  ]
+ },
+ {
+  "id": 44576,
+  "title": "Bulk approve/decline skips ineligible lines and hides an action at a zero count",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Select the four lines and run Decline; read the result.",
+   "Select only declined lines and look for an Approve button."
+  ],
+  "expected": [
+   "Declining four lines where one holds received parts declines three and reports the fourth — it does not refuse all four.",
+   "Lines already in the target status are skipped silently and were never in the count.",
+   "A selection made up entirely of declined lines shows no Approve button at all — a zero count means the button is absent, not greyed out."
+  ]
+ },
+ {
+  "id": 44577,
+  "title": "Bulk complete: label and count follow the selected Approved lines",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Select one Approved line, then several, then every open line — read the button label each time.",
+   "Complete a selection where a line has an outstanding tech story.",
+   "Complete the last open lines and see what happens next."
+  ],
+  "expected": [
+   "The label is \"Complete line\" for one, \"Complete lines (n)\" for several, and \"Complete all lines\" when the selection covers every open line; the count is of Approved lines only.",
+   "Where something outstanding can be collected (e.g. a tech story or mileage), the action opens the completion wizard rather than failing; only what the wizard cannot fix produces a failure line. Parts never block it.",
+   "Completing the last open lines stops there — no invoice is created and you are not navigated anywhere; with Review required this is what makes \"Mark as reviewed\" appear."
+  ]
+ },
+ {
+  "id": 44578,
+  "title": "Bulk delete lines is not in the bar this release; Mark as reviewed is not either",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Select lines and read every action in the bar and in More."
+  ],
+  "expected": [
+   "There is no Delete lines action in the bulk bar, and More does not list one — bulk deletion is a follow-up, out of scope this release.",
+   "Mark as reviewed is also absent from the bar (it acts on the whole work order and lives in the header / ... menu)."
+  ]
+ },
+ {
+  "id": 44580,
+  "title": "Bulk order raises a PO per vendor and skips already-ordered / non-vendor parts",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Select the parts and read the Order (n) count.",
+   "Run Order, confirm, and check the purchase orders created."
+  ],
+  "expected": [
+   "Bulk Order runs the single-part order once per selected part; a selection spanning two vendors produces a purchase order per vendor, and a vendor with an open PO on this work order has its parts added to it.",
+   "Requested parts are included and counted (with Quoted and Auth to order); a vendorless part is ordered and counted like any other, its PO marked \"Vendor missing\" (it just does not sync to QuickBooks until a vendor is assigned).",
+   "Already-ordered parts are excluded from the count and not named in the result; only vendor-sourced parts are placed — an inventory/found/no-source part is skipped and never counted.",
+   "Ordering asks for confirmation first and cannot be undone; without \"Order parts\" the action is not shown, in the bar or on the row."
+  ]
+ },
+ {
+  "id": 44581,
+  "title": "Bulk pick runs the existing pick atomically for in-stock unpicked parts",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Select the parts and read the Pick (n) count.",
+   "Run Pick and check the stock movements, bins and inventory history."
+  ],
+  "expected": [
+   "Bulk picking runs the existing single-part pick — the inventory movement, the bin it comes from and the history entry are identical to picking one part.",
+   "All picks in one run succeed or fail together, so a partial result never leaves stock half-moved.",
+   "Pick is offered whenever a part is In Stock and unpicked, whatever the setting says.",
+   "Core charges are untouched by this story — a picked part still asks its core question at pick time (gated by WO Lines: Create & Edit)."
+  ]
+ },
+ {
+  "id": 44582,
+  "title": "Bulk pick action is hidden without the Pick Parts permission",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Select in-stock unpicked parts and look for a Pick action in the bulk bar and on the part row."
+  ],
+  "expected": [
+   "A user without \"Pick parts\" does not see the Pick action, in the bulk bar or on the part row."
+  ]
+ },
+ {
+  "id": 53486,
+  "title": "Deselect all keeps the bar; close dismisses it; an empty group shows no divider",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Bulk Action Bar",
+  "steps": [
+   "Press \"Deselect all\" and watch the bar and the column headers.",
+   "Re-select, then press the close (X) control.",
+   "With an empty action group check the dividers; with a nothing-applies selection read the bar text."
+  ],
+  "expected": [
+   "Deselect all clears the selection and leaves the bar in place; the close (X) clears the selection and dismisses the bar (both return the column headers).",
+   "A group holding nothing renders no divider and takes no space.",
+   "A selection where nothing applies shows \"n selected\" and \"No actions available for this selection\"."
+  ]
+ },
+ {
+  "id": 44583,
+  "title": "Receive opens a modal (no navigation); its contents depend on the entry point",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Receiving",
+  "steps": [
+   "Open Receive from a part row whose part has a vendor.",
+   "Close it; open Receive from a part row whose part has no vendor.",
+   "Open Receive from a line's ... menu, and from the bulk action bar / completion wizard.",
+   "Each time, note what the modal contains and what is pre-ticked."
+  ],
+  "expected": [
+   "Every entry point opens a modal (no navigation to another page) — the same modal in all four cases.",
+   "Contents depend on where it opened: part row with a vendor -> every part on this work order from that same vendor still awaiting, all ticked; part row with no vendor -> every vendorless part on this work order, none ticked; a line menu -> that line's outstandi",
+   "The settings never change what the modal contains (Require receiving only decides where the Receive control lives and whether outstanding parts block invoicing). Same-vendor parts are pre-ticked (they arrive together); vendorless parts are not."
+  ]
+ },
+ {
+  "id": 44584,
+  "title": "Receiving requires vendor, invoice number and date; cost and tax prefilled, may be zero",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Receiving",
+  "steps": [
+   "Read the fields in the expanded card and their prefilled values.",
+   "Clear the vendor invoice number and try to receive.",
+   "Change a cost and watch for the sell-price note; enter a quantity greater than the quantity ordered."
+  ],
+  "expected": [
+   "The expanded card shows vendor invoice number, invoice date (defaults to today) and delivery note on one row, then the parts. Vendor, vendor invoice number and invoice date are all required, and the receive button stays disabled until they are filled.",
+   "Cost is required and may be zero, arriving prefilled from the purchase-order cost; tax is required and may be zero, prefilled from the vendor's tax rate (falling back to zero only when nothing can derive it). The delivery note is optional.",
+   "Quantity received must be greater than zero, may include decimals, and may exceed what was ordered (the excess is shown, not blocked; the purchase order absorbs it). Changing a cost shows a note that the sell price will update."
+  ]
+ },
+ {
+  "id": 44585,
+  "title": "Vendor-missing card requires Assign vendor first; it applies to ticked parts only",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Receiving",
+  "steps": [
+   "Expand the vendor-missing card and note the first field and what is disabled.",
+   "Tick some (not all) parts, type a vendor name that matches an existing vendor, and assign.",
+   "Type a name that matches nothing and use the Create option."
+  ],
+  "expected": [
+   "Where no vendor is set, \"Assign vendor\" is the first field, marked required, a search field; everything below it is disabled until a vendor is chosen.",
+   "Assigning a vendor applies to the ticked parts only — the rest stay in the vendor-missing card.",
+   "A vendor that does not exist yet can be created from the field: a name matching nothing offers \"Create\" with the typed name, which opens the existing new-vendor modal (name and tax rate required) to finish there."
+  ]
+ },
+ {
+  "id": 44587,
+  "title": "A user without See Financial Data can still receive; money fields are removed, not masked",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Receiving",
+  "steps": [
+   "Look for cost, tax, subtotal, total and sell columns.",
+   "Complete a receive without ever entering a money value."
+  ],
+  "expected": [
+   "Cost, tax, subtotal, total and sell are absent (removed, not masked); no text reveals a price by implication (e.g. no cost-vs-sell warning).",
+   "Receiving still works, because those fields arrive prefilled and are never asked of this user — no money field is ever both hidden and required."
+  ]
+ },
+ {
+  "id": 44589,
+  "title": "Purchase-order page groups by vendor, missing vendors first, all collapsed",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Purchase Order Pages",
+  "steps": [
+   "Open the page and read the grouping, the group headers and the default collapsed/expanded state."
+  ],
+  "expected": [
+   "Purchase orders group by vendor, with Missing vendors first, then named vendors alphabetically; every group renders collapsed (including Missing vendors), so the page opens as a list of vendors, not a wall of parts.",
+   "Group headers carry the vendor name, a rollup such as \"3 POs, 6 parts\", and Expand all; the page header carries the vendor count.",
+   "Each purchase-order row shows its number, the work order number and the part count."
+  ]
+ },
+ {
+  "id": 44590,
+  "title": "A panel expands per purchase order with per-PO vendor-side fields and read-only sell",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Purchase Order Pages",
+  "steps": [
+   "Expand a purchase order and read the fields, the tick boxes and the money figures.",
+   "Change a cost or quantity and check whether the tax recomputes."
+  ],
+  "expected": [
+   "A panel expands per purchase order (not per vendor): vendor invoice number, invoice date, delivery note, then the parts with per-part tick boxes and Deselect all, and a subtotal, editable tax and total beneath. The primary action reads \"Receive parts (n)\", dis",
+   "The tax typed here is vendor-side — stored on the vendor bill with the invoice number/date/due date and feeding what the shop owes its suppliers; it is NOT the sales tax charged to the customer. It is typed, not calculated, and changing a cost or quantity afte",
+   "Sell price is shown here and only here, read-only, on every purchase order."
+  ]
+ },
+ {
+  "id": 44591,
+  "title": "Receive page validity matches the modal; money hidden without permission; sell not shown from Parts",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Purchase Order Pages",
+  "steps": [
+   "Compare the receive-page required fields and rules with the work-order receive modal.",
+   "As the user without See Financial Data, check the money columns.",
+   "Check whether sell price appears on the receive page reached from Parts."
+  ],
+  "expected": [
+   "Everything that makes a receive valid is identical to the modal: vendor, invoice number and invoice date required; cost and tax required but able to be zero and always prefilled; the same quantity rules; part number required; cost locked once invoiced or paid.",
+   "Sell price is not shown in the receive modal or on the receive page reached from Parts.",
+   "Without \"See Financial Data\" the cost, tax, subtotal, total and sell columns are absent (not masked); receiving still works because those fields arrive with a value."
+  ]
+ },
+ {
+  "id": 53488,
+  "title": "PO list-page selection raises the shared bulk bar; Select all covers one page only",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Purchase Order Pages",
+  "steps": [
+   "Select several purchase orders and read the bar that appears; open More.",
+   "Press Select all, then scroll down the list."
+  ],
+  "expected": [
+   "Selecting purchase orders raises the SAME bulk action bar as the work order: \"n selected\", Deselect all, \"Receive selected\" (primary), More, close — with the same dividers, and no amber treatment on the bar.",
+   "\"Assign vendor\" is not the primary action — it lives in More and acts only on the selected rows that have no vendor.",
+   "Select all selects what is loaded, which is one page (the list pages at 30 rows), so after Select all and scrolling you find unselected rows below — a known paged-list behaviour, raised as a question rather than a defect."
+  ]
+ },
+ {
+  "id": 44592,
+  "title": "Receive becomes a split button offering Received later, chosen per part",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Receive Later",
+  "steps": [
+   "Look at the Receive control on a part row, in the bulk bar, and on the wizard's receive step; open its caret.",
+   "Choose \"Receive later\" for one part in a modal that holds several."
+  ],
+  "expected": [
+   "Receive becomes a split button: Receive, a divider, and a caret offering \"Receive later\"; it is available on the part row, in the bulk action bar and on the wizard's receive step.",
+   "It is chosen per part, never for a whole card at once — each part carries its own choice, so a delivery where three parts arrived with a bill and one without is recorded truthfully in one pass.",
+   "Choosing it sets the part to \"Receive later\", removes its Receive affordance from the row and toasts; the part then satisfies completion (no longer blocks the work order) but keeps counting in the Waiting on Parts column. It stays receivable later from its ..."
+  ]
+ },
+ {
+  "id": 44593,
+  "title": "Without the permission or the setting, no Received later option appears",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Receive Later",
+  "steps": [
+   "As the user without the permission, look at the Receive control for a caret.",
+   "With Require receiving OFF, look for a split button anywhere."
+  ],
+  "expected": [
+   "Without the permission, Receive is a plain button with no caret anywhere, and a missing vendor bill has no workaround.",
+   "With Require receiving OFF there is nothing to defer and no split button appears.",
+   "\"Receive later\" is never duplicated in the part's ... menu while the split button is showing; deferring creates no vendor bill, moves no stock and does not touch the accounting system."
+  ]
+ },
+ {
+  "id": 44594,
+  "title": "The completion wizard opens only from the defined actions, only when something is collectable",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Completion Wizard",
+  "steps": [
+   "On the work order with outstanding work, trigger each: Complete on a line; Complete lines / Complete all lines; Create invoice; Clock out and complete.",
+   "On the tidy work order, trigger a completion.",
+   "Try \"Mark as reviewed\"."
+  ],
+  "expected": [
+   "The wizard opens from exactly these actions and nothing else: Complete on a line (that line), Complete lines (the selection), Complete all lines / Create invoice (every open line), Clock out and complete (the line clocked out of). No timer, background job or s",
+   "It opens only when something required is both outstanding and collectable; if nothing is, the action completes immediately and no wizard appears.",
+   "Collectable = a missing tech story, a missing mileage or engine hours reading, an unpicked inventory part, an unresolved core, or an unreceived part. \"Mark as reviewed\" never opens it (it only appears once every line is complete). The run fixes which lines it "
+  ]
+ },
+ {
+  "id": 44595,
+  "title": "The wizard shows only the outstanding steps, in a fixed order, with Missing details last",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Completion Wizard",
+  "steps": [
+   "Open the wizard and read the step pills across the top and their order.",
+   "Finish one step, then reopen the wizard and check which steps remain."
+  ],
+  "expected": [
+   "The step list is built from the settings and from what is actually outstanding: a step whose work is done never appears, and reopening shows only what is left.",
+   "Step order is Tech stories, Pick parts, Resolve cores, Receive parts, Missing details — with Missing details always last (mileage/engine hours are work-order info; asked once per work order, only when the run closes every remaining line).",
+   "Steps appear as pills with a count where more than one item is outstanding; a finished step shows a tick and is read-only, while unfinished steps stay clickable (skip ahead and come back). The modal title names the current step, not the flow."
+  ]
+ },
+ {
+  "id": 44596,
+  "title": "Each wizard step's own action saves and advances; there is no Continue; receive reuses the modal",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Completion Wizard",
+  "steps": [
+   "On the Lines tab select all lines and press Create invoice.",
+   "Enter the tech story and leave the field.",
+   "Close the wizard with Cancel, then press Create invoice again.",
+   "Press Pick All.",
+   "Press Receive Parts."
+  ],
+  "expected": [
+   "Step 1: The completion wizard opens on Tech stories, with the steps Tech stories, Pick parts and Receive parts, and no Continue button.",
+   "Step 2: The story is saved and the wizard moves to Pick parts.",
+   "Step 3: The wizard reopens on Pick parts; Tech stories is no longer listed.",
+   "Step 4: The part is picked and the wizard moves to Receive parts, which reads \"1 part waiting to receive\"; its action is Receive Parts, Create Invoice is disabled, and nothing mentions ordering."
+  ]
+ },
+ {
+  "id": 44597,
+  "title": "Where a wizard run ends depends on what opened it",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Completion Wizard",
+  "steps": [
+   "On the Lines tab tick line 1 only, press Complete line, and finish the wizard (enter the tech story, press Complete Line).",
+   "Select all lines, press Complete all lines, and finish the wizard (enter the tech stories, press Complete Lines (2)).",
+   "Add two Approved lines with no tech story.",
+   "Select all lines, press Create invoice, and finish the wizard (enter the tech stories, press Create Invoice)."
+  ],
+  "expected": [
+   "Step 1: The wizard closes with the toast \"1 line completed.\"; only line 1 is Complete, lines 2 and 3 stay Approved, and you stay on the Lines tab.",
+   "Step 2: The wizard closes with the toast \"2 lines completed.\"; every line is Complete, the work order is Complete, and you stay on the Lines tab.",
+   "Step 3: The work order is open again (Approved).",
+   "Step 4: The two new lines are Complete, you land on the Finance tab with the payment screen open, and the work order is Invoiced."
+  ]
+ },
+ {
+  "id": 44599,
+  "title": "The header shows only the one finish action that is genuinely next",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Finish Action",
+  "steps": [
+   "For each state, read the work-order header (next to New Line and the ... menu).",
+   "Select some lines and confirm the bulk bar appears instead."
+  ],
+  "expected": [
+   "Review off, a line still open: New Line, Send, and a ... menu holding Create invoice. Review off, every line complete: Create invoice promoted to a primary button.",
+   "Review on, a line still open: New Line, Send, ... and NO finish action at all (the next real action is completing the lines). Review on, all complete not reviewed: Mark as reviewed promoted. Review on, already reviewed: Create invoice promoted.",
+   "Only one finish action is ever on screen, and only ever one the user can actually press. With lines selected, the bulk action bar shows whatever the review setting."
+  ]
+ },
+ {
+  "id": 44600,
+  "title": "Create invoice runs the wizard if needed, then invoices, completes Approved lines and opens payment",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Finish Action",
+  "steps": [
+   "Press Create invoice while lines are still open and read the confirmation.",
+   "Complete the wizard and watch what happens on completion.",
+   "Separately, on a work order whose deposit already covers the amount, press Create invoice."
+  ],
+  "expected": [
+   "Where every line is approved, Create invoice runs the wizard first if anything required is outstanding, otherwise proceeds directly; if lines are still open the confirmation states the invoice total and how many Approved lines will be completed (declined lines",
+   "On completion the invoice is created, every open Approved line completes, and the Finance tab opens with the payment screen. Everything that happens today when an invoice is created still happens (deposit applying, over-payment becoming a credit, customer lock",
+   "Where a deposit already covers the whole amount the payment screen is skipped, the work order reads Paid, and the user is told the deposit settled the invoice."
+  ]
+ },
+ {
+  "id": 44601,
+  "title": "Finish-action negatives: needs-approval block, declined-only, invoice lock, payment-close",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Finish Action",
+  "steps": [
+   "Check Create invoice on the bulk action bar (declined lines selected), the Lines tab … menu and the Finance tab.",
+   "Add a Needs Approval line, then check the same three places.",
+   "Approve that line, then check the same three places.",
+   "On the Finance tab press Create invoice.",
+   "Close the payment screen without paying."
+  ],
+  "expected": [
+   "Step 1: Bulk bar and … menu do not offer Create invoice; the Finance tab shows it disabled with \"This work order has no work to invoice.\"",
+   "Step 2: In all three places Create invoice is shown disabled (not hidden) with \"All lines must be approved before invoicing.\"",
+   "Step 3: Create invoice is offered and enabled in all three places; the declined lines do not block it.",
+   "Step 4: The payment screen opens and the work order is Invoiced."
+  ]
+ },
+ {
+  "id": 44602,
+  "title": "The part and line ... menus hold exactly the actions that belong to them",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Part Rows and Menus",
+  "steps": [
+   "Open a part's ... menu and read its items (with receiving optional, then required).",
+   "Open a line's ... menu and read its items."
+  ],
+  "expected": [
+   "The part's ... menu contains: Move, Return, Add part fee or discount, and Receive part (the last only when receiving is optional, and always at the bottom).",
+   "The line's ... menu contains: Request part, Uncomplete line, Add line note, Save as canned line, Edit labour, Receive parts (n) (when receiving is optional and the line has parts waiting), and Authorization required.",
+   "Uncomplete is existing behaviour and is already blocked once the work order is invoiced or paid; the same block applies in the bulk action bar so the two cannot drift apart."
+  ]
+ },
+ {
+  "id": 44603,
+  "title": "Menu negatives: Request part, Uncomplete and Receive part visibility",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Part Rows and Menus",
+  "steps": [
+   "On a completed line, open its ... menu and look for Request part and Uncomplete line.",
+   "On an open (not completed) line, look for Uncomplete line.",
+   "As a user without Order parts, look for Receive part."
+  ],
+  "expected": [
+   "Request part is hidden on a completed line.",
+   "Uncomplete line appears only on a completed line.",
+   "Receive part is absent for a user without Order parts, whatever the setting."
+  ]
+ },
+ {
+  "id": 44604,
+  "title": "Dragging a part reorders it within its line; the line order is the invoice order",
+  "automated": true,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Reordering Parts",
+  "steps": [
+   "Drag a part to a new position within its own line and drop it.",
+   "Open the invoice / PDF for that work order and read the part order."
+  ],
+  "expected": [
+   "Parts can be dragged to reorder within their own line, and the new order persists on the line.",
+   "The order shown on the line is the order on the invoice: the work order, the invoice and the PDF all read the one stored order, and the line numbers move with the rows.",
+   "The confirmation shown on drop is informational only — the Undo action was removed on user request (2026-09-04), PO-confirmed 2026-09-24. (The spec still reads \"a drop can be undone\"; that sentence is stale and is being corrected by the PM.)"
+  ]
+ },
+ {
+  "id": 44605,
+  "title": "Reordering negatives: no cross-line moves, refused on an invoiced WO, last write wins",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Reordering Parts",
+  "steps": [
+   "Try to drag a part onto a different line.",
+   "Try to reorder parts on an invoiced work order.",
+   "Have two users reorder the same line at once, then refresh and check the invoice."
+  ],
+  "expected": [
+   "Moving a part to a different line is not supported.",
+   "Reordering on an invoiced work order is refused.",
+   "Where two people reorder at once, the last write wins and the invoice follows what was stored."
+  ]
+ },
+ {
+  "id": 44606,
+  "title": "'Received later' is the one new permission — a per-role toggle, off by default",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Permissions",
+  "steps": [
+   "In the Work Orders section of the permissions page, find \"Receive later\".",
+   "Check its default state on a role that has not been changed, and its control type."
+  ],
+  "expected": [
+   "\"Receive later\" appears in the Work Orders section as a yes/no toggle (not a CRUD row).",
+   "It is off by default in every role and is granted per role.",
+   "It is the only permission atom this release adds; everything else reuses an existing atom."
+  ]
+ },
+ {
+  "id": 44607,
+  "title": "Every Simple Flow action is gated by its mapped existing atom; bulk uses the same atom as single",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Permissions",
+  "steps": [
+   "For each action, confirm the gating atom by turning that atom off on a test role and checking the action disappears: completing (Work Orders: Create & Edit); approve/decline/reorder/tech story (WO Lin",
+   "Compare the bulk version of an action with its single-row version."
+  ],
+  "expected": [
+   "Each action is gated by exactly the atom the spec maps to it (list above), and the settings page itself needs Settings > App Settings.",
+   "The bulk version of an action is governed by exactly the same atom as the single version — no bulk action introduces a gate of its own."
+  ]
+ },
+ {
+  "id": 44608,
+  "title": "Money follows See Financial Data; work follows View mode; nothing is hidden-and-required",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Permissions",
+  "steps": [
+   "As the user without See Financial Data, look at cost, tax, subtotals, totals and sell price across the receive modal, receive page and lines.",
+   "Compare what Tech view vs Full View shows for actions and work columns.",
+   "Receive as the no-money user."
+  ],
+  "expected": [
+   "See Financial Data governs money (cost, tax, subtotals, totals, sell price); View mode (Tech view / Full View) governs which actions and work columns a user sees — the two never compete on the same row.",
+   "No money field is ever both hidden and required: receiving needs a cost and a tax, both always prefilled, so a user without See Financial Data receives with those fields removed and the existing values standing.",
+   "Where a user cannot see money, those fields are removed rather than masked, and no text that reveals a price by implication is rendered."
+  ]
+ },
+ {
+  "id": 44609,
+  "title": "A user without an atom never sees the action; hidden values are not sent to the screen",
+  "automated": false,
+  "folder": "Test Cases > Simple Flow V2 (Aug 2026) > Permissions",
+  "steps": [
+   "As that user, look for the action in the bulk action bar and on the row.",
+   "Check (with dev/network support) that values behind a hidden money field are not delivered to the page."
+  ],
+  "expected": [
+   "A user without an atom does not see the action at all, in the bulk action bar or on the row — nothing is shown and then refused.",
+   "The values behind a hidden field are not sent to a screen that is not allowed to show them.",
+   "Creating a new vendor keeps the existing vendor-management permission wherever it is offered."
+  ]
+ },
+ {
+  "id": 28538,
+  "title": "Same-named line-level fees combine into one Labor row ahead of named whole-WO rows in the bottom block",
+  "automated": true,
+  "folder": "Fees & Discounts > Customer document — Adjustments block",
+  "steps": [
+   "View the customer estimate/invoice.",
+   "Inspect the bottom \"Adjustments\" block."
+  ],
+  "expected": [
+   "The four line-level fees all share the name \"ZZAUTOTEST Shop Supply Fee\", so they show as ONE row in the bottom \"Adjustments\" block, labeled \"Labor · ZZAUTOTEST Shop Supply Fee\", carrying their total: $23.00 ($5.00 + $7.00 + $9.00 + the 2%-of-labor $2.00). No ",
+   "The $4.00 whole-WO fee follows as its own row under its own name, after the Labor row.",
+   "Each line-level fee ALSO still shows inline under its own target line, with its own amount."
+  ]
+ },
+ {
+  "id": 29613,
+  "title": "Leaving the page and returning restores your filter selections",
+  "automated": true,
+  "folder": "Filters - (2026) > Persistence",
+  "steps": [],
+  "expected": [
+   "Filter selections survive leaving the page and returning in-app, without a page reload or re-entering them by hand"
+  ]
+ },
+ {
+  "id": 38879,
+  "title": "Opening a shared link does not change your own saved filters",
+  "automated": true,
+  "folder": "Filters - (2026) > URL State and Shareable Links",
+  "steps": [],
+  "expected": [
+   "1. The Status chip shows Estimate, and only the two Estimate work orders for the customer are listed.\n2. The Status chip shows Approved and only the Approved work order is listed. Opening the link did not change the saved filters.\n3. The Status chip shows Esti"
+  ]
+ },
+ {
+  "id": 30174,
+  "title": "Sort and visible columns are restored on the next visit; filters are not",
+  "automated": true,
+  "folder": "Reports Suite > Sales By Customer Report > SBC — Saved View & Persistence",
+  "steps": [],
+  "expected": [
+   " 1. The sort column and direction and the visible columns ARE restored - these are remembered per browser.\n2. The date range, Product Type, location selection and Customer selection are NOT restored: the report opens on its default filters, because a report ke"
+  ]
+ },
+ {
+  "id": 30354,
+  "title": "Columns and sort are remembered per browser before the first fetch; filters ride the URL",
+  "automated": true,
+  "folder": "Reports Suite > Parts Velocity Report > PV — Columns & Remembered View",
+  "steps": [],
+  "expected": [
+   "On return through the left-hand menu the column set including Turns / Yr and the Revenue-descending sort ARE restored - these are remembered per browser.",
+   "The filters are NOT restored on that return: Type, Date and Category open on their first-visit defaults (This Year / Both / active location), because a report keeps its filters in the URL and a left-hand-menu re-entry carries none.",
+   "Whatever is applied is applied BEFORE the first data fetch - the report does not flash one view and then re-query.",
+   "After a full page reload (F5) the filters ARE restored as well, because a reload keeps the URL."
+  ]
+ },
+ {
+  "id": 88594,
+  "title": "Dashboard entry, landing and the six tiles",
+  "automated": true,
+  "folder": "Dashboard (Sep 2026) > S1 · Access & Entry Point",
+  "steps": [],
+  "expected": [
+   "A \"Dashboard\" entry appears in the top navigation.",
+   "Selecting \"Dashboard\" opens the dashboard screen.",
+   "A user with the Reports permission lands on the dashboard when they log in.",
+   "The dashboard shows figures for the workplace currently selected in the top navigation."
+  ]
+ },
+ {
+  "id": 88595,
+  "title": "Access gate and server-side enforcement",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S1 · Access & Entry Point",
+  "steps": [
+   "Signed in as a user who HAS the Reports permission, look at the top navigation and confirm a \"Dashboard\" entry appears. (The Reports permission is the only thing that controls this — there is no separ",
+   "Sign in as the user who does NOT have the Reports permission and confirm there is no \"Dashboard\" entry, and that you land on Work Orders after logging in.",
+   "Still as the user without the permission, type the dashboard address straight into the browser and confirm it takes you to Work Orders rather than showing an error page."
+  ],
+  "expected": [
+   "The \"Dashboard\" entry appears for any user who has the Reports permission — that permission is the only gate, with no organization-level Dashboard feature and no other switch.",
+   "A user without the Reports permission does not see the \"Dashboard\" entry, lands on Work Orders after logging in, and is sent to Work Orders (not an error page) when opening the dashboard address directly.",
+   "Blocking the dashboard behind the scenes — so a user without the permission gets no dashboard data even if the entry were shown — is confirmed by the automated check, not something the manual tester verifies by hand."
+  ]
+ },
+ {
+  "id": 88596,
+  "title": "Access negative - missing Reports permission",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S1 · Access & Entry Point",
+  "steps": [],
+  "expected": [
+   "Without the Reports permission, the \"Dashboard\" entry is not shown and the user cannot open the dashboard.",
+   "Without the Reports permission, the user does not land on the dashboard at login."
+  ]
+ },
+ {
+  "id": 88597,
+  "title": "The shop logo is inert branding, not navigation",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S1 · Access & Entry Point",
+  "steps": [],
+  "expected": [
+   "The shop logo in the top navigation is not a link, at any screen size.",
+   "Selecting the shop logo does nothing, at any screen size.",
+   "On a small screen the shop logo is not part of the menu button, so tapping the logo does not open the menu.",
+   "On a small screen the menu button has its own menu icon and opens the menu when tapped."
+  ]
+ },
+ {
+  "id": 88598,
+  "title": "Workplace edge cases - switching and none selected",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S1 · Access & Entry Point",
+  "steps": [],
+  "expected": [
+   "Switching the selected workplace in the top navigation reloads the dashboard's figures for the newly selected workplace.",
+   "If no workplace is selected, the dashboard does not load data."
+  ]
+ },
+ {
+  "id": 88599,
+  "title": "The fixed tile set and order",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S2 · One Fixed Layout",
+  "steps": [],
+  "expected": [
+   "The four KPI tiles sit in a fixed top row, left to right: Revenue, Billing Efficiency, Technician Efficiency, Technician Utilization.",
+   "The two count tiles sit below the KPI row, left to right: Sales by Customer, At Risk Customers.",
+   "The tile set and order are the same for every user.",
+   "Every user who can open the dashboard sees all six tiles."
+  ]
+ },
+ {
+  "id": 88600,
+  "title": "No customization controls exist",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S2 · One Fixed Layout",
+  "steps": [],
+  "expected": [
+   "There is no control to add a tile.",
+   "There is no control to remove a tile.",
+   "There is no control to reorder tiles.",
+   "There is no control to hide or show tiles."
+  ]
+ },
+ {
+  "id": 88601,
+  "title": "Report parity - every tile figure equals its report",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S3 · Measure Formulas & Report Parity",
+  "steps": [],
+  "expected": [
+   "Every dashboard figure equals its matching report's figure for the same workplace, date range and filters, at every moment — any difference caused by one being computed more recently than the other is a defect, with no freshness allowance.",
+   "If a measure's report shows a value, the matching tile shows the same value; the two never disagree."
+  ]
+ },
+ {
+  "id": 88602,
+  "title": "Measure formulas",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S3 · Measure Formulas & Report Parity",
+  "steps": [],
+  "expected": [
+   "Each measure is calculated exactly as the spec's formula table defines it (Revenue, Billing Efficiency, Technician Efficiency, Technician Utilization, Sales by Customer count, At Risk Customers count, and ELR), each against its named matching report."
+  ]
+ },
+ {
+  "id": 88603,
+  "title": "Void exclusion, negative revenue, and the n/a state",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S3 · Measure Formulas & Report Parity",
+  "steps": [],
+  "expected": [
+   "Revenue can be negative when credit memos exceed sales in the range, and the dashboard shows the true negative figure rather than flooring it at zero.",
+   "A voided invoice is excluded from every dashboard figure — Revenue, the parts/labor split, invoiced hours, invoiced tech hours, the Sales by Customer count and the At Risk count (including when deciding a customer's most recent invoice) — matching the reports.",
+   "When a ratio measure's denominator for the range is zero (worked hours, clocked hours, or work-order+internal hours), the measure has no value and the tile headline reads exactly \"n/a\" (lower case, no periods) rather than \"0.00%\"."
+  ]
+ },
+ {
+  "id": 88604,
+  "title": "KPI tile anatomy; Revenue and Billing Efficiency lines",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S4 · KPI Hero Tiles",
+  "steps": [],
+  "expected": [
+   "Each KPI tile shows a label, a headline value, a sparkline, a date-range control, and a report link.",
+   "The Revenue tile headline is the total revenue for the selected range, shown as a dollar amount to the cent.",
+   "The Revenue tile's supporting line reads \"Parts {parts}% · Labor {labor}%\", each percent a whole number.",
+   "The Billing Efficiency tile headline is the billing efficiency percentage for the selected range, to two decimal places."
+  ]
+ },
+ {
+  "id": 88605,
+  "title": "Technician Efficiency and Utilization headlines and lines",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S4 · KPI Hero Tiles",
+  "steps": [],
+  "expected": [
+   "The Technician Efficiency tile headline is the technician efficiency percentage for the selected range, to two decimal places.",
+   "The Technician Efficiency tile's supporting line reads \"{invoiced tech hours} Invoiced Tech Hrs / {clocked hours} Clocked\".",
+   "The Technician Utilization tile headline is the technician utilization percentage for the selected range, to two decimal places.",
+   "The Technician Utilization tile's supporting line reads \"{work-order hours} WO Hrs / {clocked hours} Clocked\"."
+  ]
+ },
+ {
+  "id": 88606,
+  "title": "The KPI sparkline and how it buckets the range",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S4 · KPI Hero Tiles",
+  "steps": [],
+  "expected": [
+   "The sparkline shows the tile's measure trending over the selected range.",
+   "The sparkline draws one point per bucket, with bucket size chosen by range length (≤31 days by day; 32-182 by week; 183-731 by month; longer by quarter); each point recomputes the measure the same way as the headline; a bucket with no value contributes no poin"
+  ]
+ },
+ {
+  "id": 88607,
+  "title": "KPI negatives and extreme values",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S4 · KPI Hero Tiles",
+  "steps": [],
+  "expected": [
+   "No KPI tile shows a delta indicator; the sparkline is the only comparison.",
+   "If the Revenue tile has no parts-versus-labor split to show, its supporting line reads \"{count} Invoices\" instead.",
+   "If the underlying report has an extreme value, the tile headline still shows the true figure to the report's precision."
+  ]
+ },
+ {
+  "id": 88608,
+  "title": "The Sales by Customer tile",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S5 · Count Tiles — Sales by Customer & At Risk",
+  "steps": [],
+  "expected": [
+   "The Sales by Customer tile headline is the count of distinct customers with sales in the selected range.",
+   "The Sales by Customer headline reads \"{count} customer\" when the count is one and \"{count} customers\" otherwise.",
+   "The Sales by Customer tile's supporting line reads \"Top: {top customer name}\".",
+   "The Sales by Customer tile has its own date-range control."
+  ]
+ },
+ {
+  "id": 88609,
+  "title": "The At Risk Customers tile - headline, line, window control",
+  "automated": true,
+  "folder": "Dashboard (Sep 2026) > S5 · Count Tiles — Sales by Customer & At Risk",
+  "steps": [],
+  "expected": [
+   "The At Risk Customers tile headline is the count of at-risk customers for the selected inactivity window, shown as a plain number.",
+   "When exactly one customer is at risk, the At Risk supporting line reads \"${revenue} (12mo) · {customer name}\".",
+   "When more than one customer is at risk, the At Risk supporting line reads \"${revenue} (12mo) · {count} customers\".",
+   "The At Risk Customers tile has an inactivity-window control offering 30, 60, 90, 120 and 180 days."
+  ]
+ },
+ {
+  "id": 88610,
+  "title": "At Risk sparkline, remembered window, and the definition",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S5 · Count Tiles — Sales by Customer & At Risk",
+  "steps": [],
+  "expected": [
+   "The At Risk sparkline shows the at-risk count over the trailing twelve months as twelve monthly points (each as of that month's last day in the workplace timezone using the current window; the twelfth point is as of now so it equals the headline), and every po",
+   "The inactivity window the user chose is remembered and applied on their next visit in place of the 120-day default (per the browser-storage rule).",
+   "\"Some revenue in the last twelve months\" means revenue greater than $0.00 (measured as the Revenue tile does), so exactly $0.00 or a negative total fails that part (but can still qualify on two-or-more lifetime invoices); and \"at least the selected number of d"
+  ]
+ },
+ {
+  "id": 88611,
+  "title": "Count-tile negatives and edge cases",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S5 · Count Tiles — Sales by Customer & At Risk",
+  "steps": [],
+  "expected": [
+   "No count tile shows a delta indicator; the sparkline is the only comparison.",
+   "The At Risk Customers tile shows no report link, because there is no At Risk report.",
+   "If no customers had sales in the selected range, the Sales by Customer headline shows 0.",
+   "If no customers are at risk in the selected window, the At Risk Customers headline shows 0."
+  ]
+ },
+ {
+  "id": 88630,
+  "title": "At Risk line revenue aggregates all at-risk customers, not rows",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S5 · Count Tiles — Sales by Customer & At Risk",
+  "steps": [],
+  "expected": [
+   "The \"$… (12mo)\" figure in the At Risk tile’s supporting line is the total last-12-months revenue across ALL at-risk customers.",
+   "It is never just the sum of the rows you can see in the table — the table can stop at 500 rows, but the figure still covers every at-risk customer."
+  ]
+ },
+ {
+  "id": 88612,
+  "title": "View details expands each tile to its own detail content",
+  "automated": true,
+  "folder": "Dashboard (Sep 2026) > S6 · Expanding a Tile",
+  "steps": [],
+  "expected": [
+   "Each tile shows a \"View details\" control that expands the tile.",
+   "Expanding a tile reveals that tile's detail content — its chart, its detail table, or both.",
+   "The Revenue tile expands to the Revenue chart.",
+   "The Billing Efficiency tile expands to the Billing Efficiency chart and the Advisor Analysis table."
+  ]
+ },
+ {
+  "id": 88613,
+  "title": "The At Risk detail table - ordering and the 500-row cap",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S6 · Expanding a Tile",
+  "steps": [],
+  "expected": [
+   "The At Risk Customers tile expands to a table of every at-risk customer, ordered by trailing-twelve-month revenue highest first (name as tiebreaker); a 500-row safety cap shows the first 500 and says \"Showing 500 of N at-risk customers\" while the headline stil"
+  ]
+ },
+ {
+  "id": 88614,
+  "title": "One detail open at a time, and controls that do not expand",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S6 · Expanding a Tile",
+  "steps": [],
+  "expected": [
+   "At most one tile's detail is open at a time.",
+   "Expanding a tile while another's detail is open closes the previously open detail.",
+   "Only the \"View details\" control expands or collapses a tile.",
+   "Selecting the date-range or inactivity-window control on a tile does not expand the tile."
+  ]
+ },
+ {
+  "id": 88615,
+  "title": "Loading, per-tile failure, and browser-stored choices",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S6 · Expanding a Tile",
+  "steps": [],
+  "expected": [
+   "A tile still loading shows a placeholder in place of its headline, supporting line and sparkline while its label and controls stay readable — never a blank tile and never a stale figure from a previous range.",
+   "Tiles load independently: a tile that cannot load shows it could not load while the other five still render, and no toast or alert is shown.",
+   "Every remembered choice (the expanded tile, a chart's technician/advisor selection, the At Risk window, and an embedded chart's show/hide state) is stored in the browser — per browser and device, not on the account — and clearing browser data returns each to i"
+  ]
+ },
+ {
+  "id": 88616,
+  "title": "Expansion negatives and small-screen behaviour",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S6 · Expanding a Tile",
+  "steps": [],
+  "expected": [
+   "The dashboard has no \"expand all\" or \"collapse all\" control.",
+   "The dashboard has no Panel-versus-Inline view choice.",
+   "On a small screen, a tile cannot be expanded in place.",
+   "On a small screen, in place of \"View details\", the tile's footer is a \"View Report\" link that opens the tile's full report."
+  ]
+ },
+ {
+  "id": 88627,
+  "title": "Expanded KPI detail tables show the design's columns",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S6 · Expanding a Tile",
+  "steps": [],
+  "expected": [
+   "Expanding Billing Efficiency shows the Advisor Analysis table with columns: Advisor, Worked Hours, Invoiced Hrs, Billing Efficiency, ELR.",
+   "Expanding Technician Efficiency shows the table with columns: Tech, Clocked Hrs, Invoiced Tech Hrs, Efficiency.",
+   "Expanding Technician Utilization shows the table with columns: Tech, WO Hours, Internal Hours, Total Hours, Utilization %.",
+   "Each detail table is the matching report's own table, shown in the tile's one full-width detail panel."
+  ]
+ },
+ {
+  "id": 88628,
+  "title": "Expanded count detail tables show the design's columns",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S6 · Expanding a Tile",
+  "steps": [],
+  "expected": [
+   "Expanding Sales by Customer shows a table with columns: Customer, Invoices, Labor Delta, Subtotal, and it paginates (e.g. '1–10 of 15').",
+   "Expanding At Risk Customers shows a table with columns: Customer, Last Invoice Date, Lifetime Invoices, Revenue (12 Mo).",
+   "Each detail table is the matching report's own table (At Risk has no report, so its table is the dashboard-only at-risk list)."
+  ]
+ },
+ {
+  "id": 88617,
+  "title": "Per-tile date ranges - options, updates and independence",
+  "automated": true,
+  "folder": "Dashboard (Sep 2026) > S7 · Per-Tile Date Ranges",
+  "steps": [],
+  "expected": [
+   "Each KPI tile and the Sales by Customer tile has its own date-range control.",
+   "The date-range control offers, in order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week.",
+   "Changing a tile's date range updates that tile's headline value for the new range.",
+   "Changing a tile's date range redraws that tile's sparkline for the new range."
+  ]
+ },
+ {
+  "id": 88618,
+  "title": "Default ranges, not remembered, and partial ranges",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S7 · Per-Tile Date Ranges",
+  "steps": [],
+  "expected": [
+   "The four KPI tiles open on This Month; the Sales by Customer tile opens on Last 12 Months.",
+   "A tile's date range is not carried between visits — every visit opens each tile on its default.",
+   "If the selected range has not finished, the tile's headline and sparkline both describe the same partial window."
+  ]
+ },
+ {
+  "id": 88619,
+  "title": "Technician and advisor chart filters",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S8 · Chart Filters",
+  "steps": [],
+  "expected": [
+   "The Technician Efficiency and Technician Utilization charts each have a Technician filter.",
+   "The Technician filter lets the user select any number of technicians and defaults to all selected.",
+   "The Billing Efficiency chart has an Advisor filter.",
+   "The Advisor filter lets the user select a single advisor, and shows all advisors when none is chosen (the default)."
+  ]
+ },
+ {
+  "id": 88620,
+  "title": "Deselecting every technician hides the chart",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S8 · Chart Filters",
+  "steps": [],
+  "expected": [
+   "If the user deselects every technician on a technician chart, the chart is hidden rather than shown empty."
+  ]
+ },
+ {
+  "id": 88621,
+  "title": "Value-axis scaling and the 200% cap",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S9 · Chart Behavior",
+  "steps": [],
+  "expected": [
+   "A percentage chart's value axis fits the range of the data shown.",
+   "When one value is far above the rest (above 200% while the pooled median across all drawn lines stays at or below 200%), the axis caps at 200%; when the highest value is at or below 200% the axis just fits the data and no cap applies.",
+   "A value drawn above the axis cap is clipped at the top of the chart but still shows its true value on hover."
+  ]
+ },
+ {
+  "id": 88622,
+  "title": "Billing Efficiency lines, ELR on hover, and no extra series",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S9 · Chart Behavior",
+  "steps": [],
+  "expected": [
+   "The Billing Efficiency chart draws one billing-efficiency line per advisor.",
+   "Hovering a point on the Billing Efficiency chart shows a tooltip with that advisor's billing efficiency percent and ELR dollar amount.",
+   "The Billing Efficiency chart does not draw ELR as its own line or axis.",
+   "A chart draws only the lines its story defines (one per selected technician, or one per advisor) — no shop-average, aggregate or other reference line."
+  ]
+ },
+ {
+  "id": 204097,
+  "title": "Chart axis starts at 0, and extends below 0 only for negative values",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S9 · Chart Behavior",
+  "steps": [],
+  "expected": [
+   "Every chart’s vertical axis starts at 0 — on both percentage charts and dollar charts.",
+   "When a drawn value in the selected range is below 0, the axis extends below 0 far enough to show that value in full."
+  ]
+ },
+ {
+  "id": 88623,
+  "title": "Report drill-in from the tiles",
+  "automated": true,
+  "folder": "Dashboard (Sep 2026) > S10 · Report Drill-In",
+  "steps": [],
+  "expected": [
+   "Each KPI tile and the Sales by Customer tile shows a report link.",
+   "Selecting a tile's report link opens that tile's matching report.",
+   "The report opens with the date range the tile currently shows.",
+   "Hovering a tile's report link shows a tooltip naming the report the link opens."
+  ]
+ },
+ {
+  "id": 88624,
+  "title": "Embedded chart on the report page - toggle, filters, parity",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S11 · Chart on the Report Page",
+  "steps": [],
+  "expected": [
+   "The report page shows its matching chart above the report's detail table.",
+   "The report page shows a \"Show chart\" / \"Hide chart\" control for the chart.",
+   "The embedded chart reflects the report's own active filters, including its date range and technician or advisor selection.",
+   "The embedded chart shows the same figures as the report it sits on."
+  ]
+ },
+ {
+  "id": 88625,
+  "title": "The embedded chart has no controls of its own",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S11 · Chart on the Report Page",
+  "steps": [],
+  "expected": [
+   "The embedded chart has no date-range control of its own.",
+   "The embedded chart has no technician or advisor filter of its own.",
+   "The embedded chart shows no report link."
+  ]
+ },
+ {
+  "id": 204098,
+  "title": "Show/Hide-chart control sits on the report filter row",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S11 · Chart on the Report Page",
+  "steps": [],
+  "expected": [
+   "The \"Show chart\" / \"Hide chart\" control sits on the same horizontal line as the report’s filters and its ⋯ (more actions) menu, immediately to the right of them.",
+   "The gap between each of those controls is the same.",
+   "The control never sits on a row of its own above the chart."
+  ]
+ },
+ {
+  "id": 88626,
+  "title": "Visual conformance - layout, themes and small-screen stacking",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S12 · Visual Conformance",
+  "steps": [],
+  "expected": [
+   "On a desktop screen (1024 pixels or wider), the four KPI tiles sit in one row and the two count tiles in a row below.",
+   "The tiles' descriptive text (labels, supporting lines, and the date-range/inactivity-window controls) is a near-black colour in the light theme.",
+   "The same descriptive text is a near-white colour in the dark theme.",
+   "The count tiles show their headline count in a larger size than the KPI tiles' headline."
+  ]
+ },
+ {
+  "id": 88629,
+  "title": "New Dashboard visual conformance - cards, panel, pill, icon, themes",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > S12 · Visual Conformance",
+  "steps": [],
+  "expected": [
+   "The KPI heroes sit in one compact row; Sales by Customer and At Risk read as two more heroes below (headline count, not a dollar figure).",
+   "Clicking a card opens its chart and detail table in a single full-width panel below the row, and clicking another swaps the panel — one detail panel open at a time, collapsed by default.",
+   "The date filter is a blue filter pill; the report opens from an arrow-in-a-square icon beside the hero name.",
+   "The dashboard renders in native light and dark."
+  ]
+ },
+ {
+  "id": 88631,
+  "title": "Dashboard performance budget and per-tile circuit breaker",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > NF · Non-Functional & Tech Plan",
+  "steps": [
+   "This case checks the dashboard’s speed and stability targets — how quickly the tiles load, and that one slow tile cannot take down the whole dashboard. Those targets are measured with developer perfor",
+   "The user-visible part of this — that one tile can fail or be slow while the other five keep working — is checked by hand in the per-tile loading / failure case in Section 6; run it there."
+  ],
+  "expected": [
+   "The dashboard meets its speed targets (tiles load quickly, and the first full load is fast), measured with developer performance tooling — not by eye.",
+   "If one tile’s data is slow or fails, only that tile shows a failure; the other five still load. (The user-visible half of this is run by hand in the Section 6 loading / failure case.)"
+  ]
+ },
+ {
+  "id": 88632,
+  "title": "Sales and Advisor Analysis report corrections ship with a note",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > NF · Non-Functional & Tech Plan",
+  "steps": [],
+  "expected": [
+   "The Sales report and the Service Advisor Analysis report both exclude voided invoices and include no-company/walk-in sales; their totals move for ranges containing voided or no-company invoices.",
+   "On Service Advisor Analysis, revenue, ELR, the hours columns and therefore Labor Efficiency % move for those periods, and advisor figures gain walk-in sales.",
+   "The void-then-reinvoice case can move a figure UP, and both corrections ship under one plain-language release note."
+  ]
+ },
+ {
+  "id": 88633,
+  "title": "Revenue - exact value to the cent, and equals the Sales report",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The Revenue headline equals the hand-computed figure exactly, shown to the cent.",
+   "The Revenue tile equals the Sales report total for the same inputs."
+  ]
+ },
+ {
+  "id": 88634,
+  "title": "Revenue - credit memos and a true negative figure",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The Revenue tile shows the true negative figure, not floored at zero.",
+   "It matches the Sales report for the same range."
+  ]
+ },
+ {
+  "id": 88635,
+  "title": "Revenue - voided/no-company invoices excluded, matching the report",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The voided invoice contributes nothing to Revenue.",
+   "Revenue equals the Sales report after its void/no-company correction (voided excluded, no-company included).",
+   "Whether the report correction shipped is checkable via its release note; the numeric effect is verifiable by the with/without comparison (developer/automated for the code path)."
+  ]
+ },
+ {
+  "id": 88636,
+  "title": "Revenue - Parts/Labor whole-number split and no-split fallback",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The supporting line reads 'Parts {parts}% · Labor {labor}%' with each percent a whole number matching the computed split.",
+   "Where there is no parts-vs-labor split, the supporting line reads '{count} Invoices' instead."
+  ]
+ },
+ {
+  "id": 88637,
+  "title": "Billing Efficiency - exact to 2dp, equals Advisor Analysis report",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The headline equals the computed value to two decimals; the supporting line reads '{invoiced hours} Invoiced / {clocked hours} Clocked'.",
+   "It equals the Service Advisor Analysis report."
+  ]
+ },
+ {
+  "id": 88638,
+  "title": "Billing Efficiency - total-over-total, not average of advisor %",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The headline equals the POOLED total-over-total figure, NOT the average of the per-advisor percentages (averaging ratios is a statistical error).",
+   "It equals the report with all advisors selected."
+  ]
+ },
+ {
+  "id": 88639,
+  "title": "Technician Efficiency - exact to 2dp, equals the report",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The headline equals the computed value to two decimals; supporting line reads '{invoiced tech hours} Invoiced Tech Hrs / {clocked hours} Clocked'.",
+   "It equals the Technician Efficiency report (Invoiced)."
+  ]
+ },
+ {
+  "id": 88640,
+  "title": "Technician Efficiency - per-line tech time split by clocked share",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "Each line's technician time is split across technicians in proportion to each technician's clocked-time share on that line (70/30 clocked → 70/30 allocation).",
+   "A line with invoiced technician time but no clocked time contributes NO split share (not an infinite one); the figure stays finite and correct."
+  ]
+ },
+ {
+  "id": 88641,
+  "title": "Technician Utilization - exact to 2dp, equals the report",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The headline equals the computed value to two decimals; supporting line reads '{work-order hours} WO Hrs / {clocked hours} Clocked'.",
+   "It equals the Technician Utilization report."
+  ]
+ },
+ {
+  "id": 88642,
+  "title": "Sales by Customer - distinct count, voids excluded, no-company grouped",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The headline counts DISTINCT customers (a customer with several invoices counts once).",
+   "A voided invoice adds no customer; no-company invoices count as a single 'no company' customer.",
+   "It equals the Sales By Customer report, reading '{count} customer' for one and '{count} customers' otherwise."
+  ]
+ },
+ {
+  "id": 88643,
+  "title": "At Risk count - window boundary, OR test, revenue>$0, voids",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "A customer is at-risk when their most recent invoice is AT LEAST the selected days old (N = at risk, N-1 = not).",
+   "A customer qualifies with EITHER 2+ lifetime invoices OR revenue > $0.00 in 12 months; exactly $0.00 or negative fails the revenue part but can still qualify on 2+ invoices.",
+   "A voided invoice is ignored when deciding the most recent invoice, so voiding the latest can change at-risk status."
+  ]
+ },
+ {
+  "id": 88644,
+  "title": "At Risk - day boundary in the workplace timezone",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "'Days old' is whole calendar days in the workplace's timezone from the most recent invoice to now.",
+   "The count changes at the shop's own midnight, is stable through the working day, and is identical for two viewers of the same workplace."
+  ]
+ },
+ {
+  "id": 88645,
+  "title": "At Risk - twelve sparkline points recomputed from current data",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The sparkline shows twelve monthly points, each the at-risk count as of that month's last day in the workplace timezone for the current window; the twelfth is as of now and equals the headline.",
+   "A later void changes past points, because every point is recomputed from current data."
+  ]
+ },
+ {
+  "id": 88646,
+  "title": "Ratio measures - a zero denominator reads 'n/a', never 0.00%",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "With a zero denominator the headline reads exactly 'n/a' (lower case, no periods), never '0.00%'.",
+   "A genuine 0.00% is shown as 0.00%, distinct from 'n/a'."
+  ]
+ },
+ {
+  "id": 88647,
+  "title": "Sparkline - one point per bucket, correct size at each boundary",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "Bucket size follows the rule: ≤31 days daily, 32–182 weekly, 183–731 monthly, longer quarterly (verified on both sides of each boundary).",
+   "Each point equals the measure recomputed over its bucket by the same calculation as the headline.",
+   "An empty bucket contributes no point (interior gaps preserved, not zero-filled); the line is not drawn with fewer than two valued points."
+  ]
+ },
+ {
+  "id": 88648,
+  "title": "Parity holds at every one of the nine date ranges",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "For all nine ranges (Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week) the tile equals its report."
+  ]
+ },
+ {
+  "id": 88649,
+  "title": "Filtered parity - a filtered chart equals the report filtered same",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "A KPI/chart filtered to an advisor or technician equals the matching report filtered the same way.",
+   "The embedded chart on a report page shows the same figures as that report under its active filters."
+  ]
+ },
+ {
+  "id": 88650,
+  "title": "Internal consistency - headline, sparkline and table reconcile",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "The headline and sparkline describe the same window, including a partial current range.",
+   "The expanded chart and table are for the same range and reconcile with the headline; no point or row contradicts the tile."
+  ]
+ },
+ {
+  "id": 88651,
+  "title": "Workplace scoping - every figure is for the selected workplace only",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "Every tile's figure is for the selected workplace only, with no other workplace's data bleeding in.",
+   "Switching workplace reloads all tiles to the new workplace's figures; switching back restores them."
+  ]
+ },
+ {
+  "id": 88652,
+  "title": "No stale window - the tile equals the report right after a change",
+  "automated": false,
+  "folder": "Dashboard (Sep 2026) > DATA · Accuracy & Report Parity",
+  "steps": [],
+  "expected": [
+   "After the change the tile and its report still show the SAME number, with no window in which the tile lags the report.",
+   "Proving the cache-invalidation at code level is a developer/automated check; by hand, confirm no observable disagreement after a change."
+  ]
+ },
+ {
+  "id": 44901,
+  "title": "Masthead shows the shop location's full identity details",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Masthead and Letterhead",
+  "steps": [],
+  "expected": [
+   " 1. The masthead shows the shop location's name. 2. It shows the shop location's street address, city, state or province, postal code, and phone number. 3. All of these identity details read exactly as they are entered for the shop location.  --- This is the e"
+  ]
+ },
+ {
+  "id": 44902,
+  "title": "Shop logo shows when set; nothing (no placeholder) shows when unset",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Masthead and Letterhead",
+  "steps": [],
+  "expected": [
+   " 1. On the shop that HAS a logo: the shop's own logo is shown across the top middle of the document.  2. On the shop with NO logo: that space is completely EMPTY. No logo, no placeholder picture, no grey box, no outline and no \"no logo\" wording. The rest of th"
+  ]
+ },
+ {
+  "id": 44903,
+  "title": "Document label names the type before the number on each document",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Masthead and Letterhead",
+  "steps": [],
+  "expected": [
+   " 1. The Estimate label reads exactly \"Estimate: {number}\", for example \"Estimate: EST-4176\". 2. The Invoice label reads exactly \"Invoice: {number}\", for example \"Invoice: INV-4176\". 3. The Credit Invoice label reads exactly \"Credit: {number}\", for example \"Cre"
+  ]
+ },
+ {
+  "id": 44904,
+  "title": "No status pill appears in the masthead on any document",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Masthead and Letterhead",
+  "steps": [],
+  "expected": [
+   " 1. No status label or pill (for example \"PAID\", \"PAID IN FULL\", \"DRAFT\", \"VOIDED\") appears anywhere in the masthead of any document. 2. The only place a status indicator appears is with the content that proves it: the Paid banner's pill (on portal-generated I"
+  ]
+ },
+ {
+  "id": 44905,
+  "title": "No money figure in the masthead; headline figure is the boxed total",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Masthead and Letterhead",
+  "steps": [],
+  "expected": [
+   " 1. No monetary amount appears anywhere in the masthead of any document. 2. On the Estimate the single headline figure appears once, as the boxed figure at the end of the totals block, labeled \"Estimated Total\". 3. On the Invoice the boxed headline figure at t"
+  ]
+ },
+ {
+  "id": 44906,
+  "title": "Masthead date labels read correctly for each document type",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Masthead and Letterhead",
+  "steps": [],
+  "expected": [
+   " 1. The Estimate masthead shows \"Estimate date: {date}\" and no due date. 2. The unpaid Invoice masthead shows \"Invoice date: {date}\" and \"Due date: {date}\". 3. The fully paid Invoice masthead shows \"Invoice date: {date}\" and \"Paid date: {date}\" (Paid date repl"
+  ]
+ },
+ {
+  "id": 44907,
+  "title": "Masthead identity fields each hide when empty",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Masthead and Letterhead",
+  "steps": [],
+  "expected": [
+   " 1. With \"Address 2\" filled in, the shop block shows it on its own line, between the street address and the city line.  2. With \"Address 2\" empty, that line is gone completely - no blank line, no gap and no empty label where it used to be. The lines below it c"
+  ]
+ },
+ {
+  "id": 44908,
+  "title": "Bill To block shows the customer name and address",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Addresses",
+  "steps": [],
+  "expected": [
+   " 1. A block labeled exactly \"Bill To\" is shown. 2. It shows the customer's name — the company name when the customer has one, otherwise the customer's personal name. 3. It shows the customer's street address, city, state or province, and postal code.  --- This"
+  ]
+ },
+ {
+  "id": 44909,
+  "title": "Remit Payment To shows when a payee is configured (both mechanisms)",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Addresses",
+  "steps": [],
+  "expected": [
+   " 1. A block labeled exactly \"Remit Payment To\" is shown, holding the payee address. 2. The payee resolves from either mechanism: the shop's integrated-billing remit-to, or the location's own remit-to setting. 3. The block appears on the Estimate and Invoice (n"
+  ]
+ },
+ {
+  "id": 44910,
+  "title": "Bill To spans full width when Remit Payment To is absent",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Addresses",
+  "steps": [],
+  "expected": [
+   " 1. When there is no Remit Payment To block, the Bill To block spans the full width of the addresses area (it does not stay at half width). 2. When a Remit Payment To block is present, Bill To and Remit Payment To sit side by side. 3. On the Credit Invoice, wh"
+  ]
+ },
+ {
+  "id": 44911,
+  "title": "Remit Payment To is hidden when no payee is configured",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Addresses",
+  "steps": [],
+  "expected": [
+   " 1. No \"Remit Payment To\" block is shown. 2. The shop's own address is NOT printed as a fallback remit-to (this fallback has been removed).  --- This is the expected behaviour as per epic SV-8218 and story SV-9141 (Story 2, Addresses) and the Invoice UI Refres"
+  ]
+ },
+ {
+  "id": 44912,
+  "title": "Bill To address fields hide when empty; the name line always shows",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Addresses",
+  "steps": [],
+  "expected": [
+   " 1. Each missing field among the street address, city, state or province, and postal code is hidden — no blank line is left. 2. The name line is always shown, even when the address fields are empty.  --- This is the expected behaviour as per epic SV-8218 and s"
+  ]
+ },
+ {
+  "id": 44913,
+  "title": "Order reference fields show in the fixed order with no label punctuation",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Order Reference Fields",
+  "steps": [],
+  "expected": [
+   " 1. Up to five fields can appear, in this exact order: \"Work Order\", \"Customer PO\", \"Authorizer\", \"Approval Code\", \"Terms\". 2. Each field label has no punctuation after it (no colon). 3. The labels read exactly as listed.  --- This is the expected behaviour as"
+  ]
+ },
+ {
+  "id": 44914,
+  "title": "Terms field always shows, even when no terms are set",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Order Reference Fields",
+  "steps": [],
+  "expected": [
+   " 1. When terms are set, the Terms field shows the value (for example \"Net 30\"). 2. When no terms are set, the field still shows: the text reads exactly \"Terms\" with an empty value area — no colon, and no placeholder text. 3. Terms is the one order reference fi"
+  ]
+ },
+ {
+  "id": 44915,
+  "title": "Authorizer field shows the selected authorizer's full name",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Order Reference Fields",
+  "steps": [],
+  "expected": [
+   " 1. The Authorizer field shows the full name of the work order's selected authorizer. 2. The name matches the selected 'Approves Work' contact on the work order.  --- This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Referenc"
+  ]
+ },
+ {
+  "id": 44918,
+  "title": "Customer PO, Authorizer and Approval Code each hide when empty",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Order Reference Fields",
+  "steps": [],
+  "expected": [
+   " 1. The Customer PO field is hidden (no label, no empty value). 2. The Authorizer field is hidden — no label and no empty value area; an empty authorizer never prints on any document. 3. The Approval Code field is hidden (no label, no empty value area). 4. Ter"
+  ]
+ },
+ {
+  "id": 44923,
+  "title": "A new 'Approves Work' contact becomes selectable immediately",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Authorizer Entry (Work Order)",
+  "steps": [],
+  "expected": [
+   " 1. The newly enabled contact appears in the work order's Authorizer list. 2. It becomes selectable without any refresh or re-save of the work order.  --- This is the expected behaviour as per epic SV-8218 and story SV-9142 (Story 3, Order Reference Fields) an"
+  ]
+ },
+ {
+  "id": 44924,
+  "title": "Asset section shows Asset name and VIN / Serial when present",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Asset Section",
+  "steps": [],
+  "expected": [
+   " 1. The asset section shows the asset name, labeled exactly \"Asset\". 2. When the asset has a VIN, one value labeled exactly \"VIN / Serial\" shows the VIN. 3. When the asset has no VIN but has a serial number, the \"VIN / Serial\" value shows the serial number. 4."
+  ]
+ },
+ {
+  "id": 44925,
+  "title": "Asset section can show Unit, Plate, Mileage and Eng Hrs",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Asset Section",
+  "steps": [],
+  "expected": [
+   " 1. The asset section shows fields labeled exactly \"Unit\", \"Plate\", \"Mileage\", and \"Eng Hrs\" with their values.  --- This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specification version "
+  ]
+ },
+ {
+  "id": 44926,
+  "title": "Unit, Plate, Mileage and Eng Hrs each hide when empty",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Asset Section",
+  "steps": [],
+  "expected": [
+   " 1. Each of Unit, Plate, Mileage and Eng Hrs is hidden when it has no value — no blank label is left. 2. The fields that do have values still show.  --- This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoi"
+  ]
+ },
+ {
+  "id": 44927,
+  "title": "VIN / Serial hides when the asset has neither; Asset name still shows",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Asset Section",
+  "steps": [],
+  "expected": [
+   " 1. The \"VIN / Serial\" field is hidden when the asset has neither a VIN nor a serial number. 2. The Asset name still shows.  --- This is the expected behaviour as per epic SV-8218 and story SV-9143 (Story 4, Asset Section) and the Invoice UI Refresh specificat"
+  ]
+ },
+ {
+  "id": 44928,
+  "title": "Asset section shows whenever the work order has an asset (parts sales too)",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Asset Section",
+  "steps": [],
+  "expected": [
+   " 1. The asset section shows whenever the work order has an asset attached — including on part sales, treated the same as service work orders. 2. When the work order has no asset attached, the asset section is hidden entirely.  --- This is the expected behaviou"
+  ]
+ },
+ {
+  "id": 53481,
+  "title": "VIN / Serial prints the last 8 characters in bold",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Asset Section",
+  "steps": [],
+  "expected": [
+   " 1. The last 8 characters of the \"VIN / Serial\" value are bold. Everything before them is in normal weight. 2. Worked example: the value \"MNUKXGGLD60VSJGSP\" is 17 characters, so \"MNUKXGGLD\" (the first 9) is normal weight and \"60VSJGSP\" (the last 8) is bold.  3"
+  ]
+ },
+ {
+  "id": 44929,
+  "title": "Work heading is 'Work Summary' on Estimate and 'Work Performed' on Invoice",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Work Section",
+  "steps": [],
+  "expected": [
+   " 1. On the Estimate the work section heading reads exactly \"Work Summary\". 2. On the Invoice the same section heading reads exactly \"Work Performed\".  --- This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invo"
+  ]
+ },
+ {
+  "id": 44930,
+  "title": "Work line numbers are sequential and zero-padded to two digits",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Work Section",
+  "steps": [],
+  "expected": [
+   " 1. Line numbers are sequential with no gaps. 2. Lines 1 to 99 are zero-padded to two digits: 01, 02 ... 10, 11. 3. When the document has 100 or more lines, lines 1-99 still show two digits and lines 100 and above show three digits (100, 101 ...).  --- This is"
+  ]
+ },
+ {
+  "id": 44931,
+  "title": "Each work line shows name, and description and scope-of-work note when present",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Work Section",
+  "steps": [],
+  "expected": [
+   " 1. Each work line shows its name. 2. A line shows its description when a description is present. 3. A line shows its scope-of-work note when a scope-of-work note is present (shown below the description). 4. A line with no description and no scope-of-work note"
+  ]
+ },
+ {
+  "id": 44932,
+  "title": "Labor and Parts entries are labeled exactly 'Labor' and 'Parts'",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Work Section",
+  "steps": [],
+  "expected": [
+   " 1. A labor entry within a line is labeled exactly \"Labor\". 2. A parts entry within a line is labeled exactly \"Parts\".  --- This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Refresh specification ve"
+  ]
+ },
+ {
+  "id": 44933,
+  "title": "Invoice Details settings show or hide the per-entry figures",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Work Section",
+  "steps": [],
+  "expected": [
+   " 1. When \"Labor hours\", \"Labor rate\", \"Labor price\", \"Part quantity\", \"Part price\", \"Part number\" and \"Part description\" are on, each per-entry figure, the part number, and the part description show on their labor/part entry. 2. Turning a setting off hides its"
+  ]
+ },
+ {
+  "id": 44934,
+  "title": "Line-level fee shows as a plain amount; discount shows in parentheses",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Work Section",
+  "steps": [],
+  "expected": [
+   " 1. A fee that applies to a single labor or parts line is shown with that line as a plain amount. 2. A discount that applies to a single line is shown with that line in parentheses (the accounting convention for a subtraction). 3. The parentheses are required "
+  ]
+ },
+ {
+  "id": 44935,
+  "title": "Line footer shows Labor, Parts and Line total with the divider rule",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Work Section",
+  "steps": [],
+  "expected": [
+   " 1. Each work line has a footer with figures labeled exactly \"Labor\", \"Parts\", and \"Line total\". 2. The Labor and Parts figures are that line's own totals after its line-level fees and discounts; \"Line total\" is their sum. 3. A \"Labor\" or \"Parts\" footer figure"
+  ]
+ },
+ {
+  "id": 44936,
+  "title": "Empty work section shows heading; Summary divider still precedes summary",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Work Section",
+  "steps": [],
+  "expected": [
+   " 1. The work section shows its heading with no lines beneath it. 2. The \"Summary\" divider still appears and precedes the financial summary.  --- This is the expected behaviour as per epic SV-8218 and story SV-9144 (Story 5, Work Section) and the Invoice UI Ref"
+  ]
+ },
+ {
+  "id": 44937,
+  "title": "Declined Work shows in its own section with names and descriptions only",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Declined Work",
+  "steps": [],
+  "expected": [
+   " 1. Declined work appears in its own section headed exactly \"Declined Work\", separate from the main work section. 2. Each declined line shows its name, and its description when a description is present. 3. A declined line never shows a scope-of-work note (the "
+  ]
+ },
+ {
+  "id": 44938,
+  "title": "Declined lines show no prices, no line numbers, and no status pill",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Declined Work",
+  "steps": [],
+  "expected": [
+   " 1. Declined lines show no prices, no labor totals, and no parts totals. 2. Declined lines are never included in any total on the document. 3. Declined lines do not show a line number. 4. No status pill is shown on declined lines; the \"Declined Work\" heading i"
+  ]
+ },
+ {
+  "id": 44939,
+  "title": "Declined Work section hidden when nothing declined or option off",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Declined Work",
+  "steps": [],
+  "expected": [
+   " 1. When there are no declined lines, the Declined Work section is not shown. 2. When the \"Show declined work\" option is off, the Declined Work section is not shown even if declined lines exist.  --- This is the expected behaviour as per epic SV-8218 and story"
+  ]
+ },
+ {
+  "id": 44941,
+  "title": "Summary shows gross Labor and Parts rows, and Shop supplies when charged",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Financial Summary",
+  "steps": [],
+  "expected": [
+   " 1. The summary shows a row labeled exactly \"Labor\" and a row labeled exactly \"Parts\". 2. Each shows the gross amount - before any fees or discounts. 3. A row labeled exactly \"Shop supplies\" shows only when a shop-supplies charge applies.  --- This is the expe"
+  ]
+ },
+ {
+  "id": 44942,
+  "title": "Shop supplies shows its percentage when the location setting is enabled",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Financial Summary",
+  "steps": [],
+  "expected": [
+   " 1. When the location's \"Show % on Estimates and Invoices\" setting is enabled and shop supplies are charged as a percentage of labor, the percentage is shown alongside the shop supplies amount. 2. Otherwise the shop supplies amount is shown alone.  --- This is"
+  ]
+ },
+ {
+  "id": 44943,
+  "title": "Adjustments group shows each Labor · / Parts · line-level row, then each work-order-wide row",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Financial Summary",
+  "steps": [],
+  "expected": [
+   " 1. Fees and discounts are grouped under a heading labeled exactly \"Adjustments\", which carries no amount of its own. 2. Under it, in this order: the line-level labor fees and discounts as rows labeled \"Labor · <name>\", then the line-level parts ones as rows l"
+  ]
+ },
+ {
+  "id": 44944,
+  "title": "Summary shows Subtotal, one row per tax, and the grand Total",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Financial Summary",
+  "steps": [],
+  "expected": [
+   " 1. The summary shows a row labeled exactly \"Subtotal\". 2. It shows one tax row per applicable tax, each labeled with the tax name and its rate. 3. It shows the grand total labeled exactly \"Total\". 4. Every row that contributes to the Subtotal is displayed; no"
+  ]
+ },
+ {
+  "id": 44945,
+  "title": "Adjustments heading and tax rows hide when nothing applies",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Financial Summary",
+  "steps": [],
+  "expected": [
+   " 1. The Adjustments heading is not shown when there is nothing to list under it (no work-order-wide fees or discounts and both rollup totals at zero). 2. When no tax applies, no tax row is shown.  --- This is the expected behaviour as per epic SV-8218 and stor"
+  ]
+ },
+ {
+  "id": 44946,
+  "title": "Payments heading and each applied payment row show correctly",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Paid Banner, Payments and Balance",
+  "steps": [],
+  "expected": [
+   " 1. The Invoice shows a heading labeled exactly \"Payments\". 2. Each applied payment shows as a row reading \"{date} - {method}\" (for example \"Jul 30, 2026 - Cash\"), where the hyphen is a literal character. 3. The amount shown is the applied amount when present,"
+  ]
+ },
+ {
+  "id": 44947,
+  "title": "Payment method name resolves per rule (SHOPPAY shows 'Online')",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Paid Banner, Payments and Balance",
+  "steps": [],
+  "expected": [
+   " 1. A payment's method shows the shop-configured payment-method name when configured. 2. When not configured, it shows the payment code with each underscore replaced by a space (for example credit_card shows as \"credit card\"). 3. The \"SHOPPAY\" code shows as \"O"
+  ]
+ },
+ {
+  "id": 44948,
+  "title": "Deposit and applied customer-account credit show as labeled payment rows",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Paid Banner, Payments and Balance",
+  "steps": [],
+  "expected": [
+   " 1. A deposit shows as a payment row labeled \"(Deposit) {date} - {method}\", where {date} is the date the deposit was collected. 2. An applied customer-account credit shows as a payment row labeled \"(Credit) {date} - {credit number}\", where {credit number} is t"
+  ]
+ },
+ {
+  "id": 44949,
+  "title": "Excess payment sub-line reads exactly per the credited/ to-be-credited rule",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Paid Banner, Payments and Balance",
+  "steps": [],
+  "expected": [
+   " 1. A sub-line is shown beneath any payment or deposit whose amount applied to this invoice is less than its full amount - this is not limited to deposits and includes a regular payment spread across more than one invoice. It gates on applied being less than t"
+  ]
+ },
+ {
+  "id": 44950,
+  "title": "Balance equals Total minus all applied amounts, floored at $0.00",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Paid Banner, Payments and Balance",
+  "steps": [],
+  "expected": [
+   " 1. The Invoice shows a row labeled exactly \"Balance\". 2. Balance equals the Total minus all applied payments (any method), applied deposits, and applied customer-account credits. 3. Balance is floored at $0.00: an overpaid invoice shows \"Balance\" with \"$0.00\""
+  ]
+ },
+ {
+  "id": 44955,
+  "title": "Shop disclaimer shows with no heading, identical on every document",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Disclaimer, Signature and Footer",
+  "steps": [],
+  "expected": [
+   " 1. Each document shows the shop's configured disclaimer text, with no heading above it. 2. The disclaimer is identical on every document that carries it.  --- This is the expected behaviour as per epic SV-8218 and story SV-9148 (Story 9, Disclaimer, Signature"
+  ]
+ },
+ {
+  "id": 44956,
+  "title": "Signature area has exactly three labeled lines and no acknowledgment sentence",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Disclaimer, Signature and Footer",
+  "steps": [],
+  "expected": [
+   " 1. The signature area shows three lines labeled exactly \"Customer Signature\", \"Printed Name\", and \"Date\". 2. The three lines are identical on every document that carries the area. 3. The signature area contains no authorization or acknowledgment sentence - on"
+  ]
+ },
+ {
+  "id": 44972,
+  "title": "Only the closed palette colours appear on any document",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Document Visual Standard",
+  "steps": [],
+  "expected": [
+   " 1. The only colours on the light printed document are: ink #121926, body text #364152, muted text #697586, faint labels #9AA4B2, hairlines #E3E8EF, row dividers #EEF2F6, paid-banner surface #F8FAFC, accent #257CFF, negative #B42318, paper #FFFFFF. 2. No colou"
+  ]
+ },
+ {
+  "id": 44977,
+  "title": "Prototype chrome does not appear on any real document",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Document Visual Standard",
+  "steps": [],
+  "expected": [
+   " 1. The Design Document's control strips (the document and field toggles, the settings menu, the theme controls) do not appear on any real document. 2. Only the white sheet is the document. 3. The PDF output carries no drop shadow and no rounded sheet corners "
+  ]
+ },
+ {
+  "id": 44982,
+  "title": "Parts Sale line-level fees/discounts render as on the Invoice",
+  "automated": true,
+  "folder": "Invoice Refresh (Aug 2026) > Parts Sale Estimate and Invoice",
+  "steps": [],
+  "expected": [
+   " 1. Line-level fees and discounts render exactly as on the Invoice: indented under their part line. 2. The row divider follows the part's last adjustment row, rather than sitting between the part and its adjustments.  --- This is the expected behaviour as per "
+  ]
+ }
+]

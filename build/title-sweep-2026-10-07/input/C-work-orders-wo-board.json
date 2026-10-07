@@ -1,0 +1,3205 @@
+[
+ {
+  "id": 22331,
+  "title": "Add Deposit button is visible on an estimate Part Sale Finance tab",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Deposits - Scroll down on the left side for the tests > A. Prerequisites & Foundational Changes",
+  "steps": [],
+  "expected": [
+   "Add Deposit button is not visible for Part Sale."
+  ]
+ },
+ {
+  "id": 44988,
+  "title": "Add Part button appears in the Parts section of each work order line",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. Each work order line displays an “Add Part” button in its Parts section. 2. The “Add Part” button is shown even on a work order line that has no parts yet.  --- This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button "
+  ]
+ },
+ {
+  "id": 44989,
+  "title": "Add Part opens an inline row above existing parts with cursor in description",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. An editable inline row opens directly below the Add Part control and above the line's existing parts. 2. The cursor is placed in the description field automatically. --- This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Par"
+  ]
+ },
+ {
+  "id": 44990,
+  "title": "Inline add row content follows the user's view mode",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. For a Tech View user the inline row follows Story 2 (three fields). 2. For a Full View user the inline row follows Story 4 (six fields). --- This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines)"
+  ]
+ },
+ {
+  "id": 44991,
+  "title": "Edit control is revealed on hover and on keyboard focus of a part line",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. An Edit control is displayed on the part line when you hover over it. 2. The Edit control is also revealed when the part line receives keyboard focus, so it can be reached without a mouse. --- This is the expected behaviour as per epic SV-9315 and story SV"
+  ]
+ },
+ {
+  "id": 44992,
+  "title": "Edit routing follows the user's view mode",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. For a Tech View user, selecting Edit follows Story 3 (inline edit row). 2. For a Full View user, selecting Edit follows Story 5 (part details modal (titled “New Part Request” when you are adding a part and “Edit Part Request” when you are editing one)). --"
+  ]
+ },
+ {
+  "id": 44993,
+  "title": "Add Part button hidden on Complete, Invoiced, Paid; shown on Declined",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. The \"+ Add Part\" button is not displayed on any work order line when the work order status is Complete, Invoiced, or Paid. 2. On a Declined work order the \"+ Add Part\" button IS displayed and works — Declined is a status where inline Add Part applies.   So"
+  ]
+ },
+ {
+  "id": 44994,
+  "title": "Edit control hidden on Complete, Invoiced, Paid; shown on Declined",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. The Edit control is not displayed on part lines when the work order status is Complete, Invoiced, or Paid. 2. On a Declined work order the Edit control IS displayed and works — Declined is a status where inline Edit applies.   Source:   Epic SV-9315 and st"
+  ]
+ },
+ {
+  "id": 44995,
+  "title": "Add Part and Edit hidden without the Create and Edit setting",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. The “Add Part” button is not displayed. 2. The Edit control is not displayed on part lines. --- This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Or"
+  ]
+ },
+ {
+  "id": 44997,
+  "title": "Add Part on another line while a row is open triggers the guard",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. The unsaved-data confirmation from S6-R5 is shown before the requested row opens. --- This is the expected behaviour as per epic SV-9315 and story SV-9316 (Story 1, Add Part Button on Work Order Lines) and the Inline Add and Edit Parts on Work Order Lines "
+  ]
+ },
+ {
+  "id": 45250,
+  "title": "Add Part stays available on a Complete line; system uncompletes it",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [],
+  "expected": [
+   " 1. On the now-Complete line, the “+ Add Part” button is still available in its Parts section. 2. Clicking “+ Add Part” lets you add a part to the line; the system uncompletes the line on your behalf rather than asking you to uncomplete it first. NOTE FOR THE "
+  ]
+ },
+ {
+  "id": 45251,
+  "title": "Completed line: only the allowed part fields are editable (inventory vs special order)",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [
+   "In the top menu, click “Work Orders”, then create a new work order.",
+   "On the “Lines” tab, click “New Line”.",
+   "In the line's Parts section, click “+ Add Part”, then add and pick an INVENTORY part with quantity 5.",
+   "Also add, via Order → Receive, a SPECIAL ORDER (SPO) part with quantity 5.",
+   "Set the line's status to Complete."
+  ],
+  "expected": [
+   " 1. For an INVENTORY part, only these fields are editable (all others are read-only): Category, Sell Price, Margin, Quantity. 2. For a SPECIAL ORDER (SPO) part, only these fields are editable: Description, Category, Sell Price, Margin. 3. Part number, Source, "
+  ]
+ },
+ {
+  "id": 45252,
+  "title": "Add Part calculates the Sell Price from the cost via the pricing matrix",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [
+   "In the line's Parts section, click “+ Add Part”.",
+   "In the part number field, add a special order part number from the typeahead list.",
+   "Enter the Quantity, then enter the Cost."
+  ],
+  "expected": [
+   " 1. Entering the Cost fills in the Sell Price automatically, calculated from the pricing matrix. WHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the Sell price does NOT change when you enter the Cost. Checked three ways — a stocked part (cost 53.52, sell 86.32"
+  ]
+ },
+ {
+  "id": 45253,
+  "title": "Changing the part category recalculates the Sell Price via the matrix",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [
+   "In the line's Parts section, click “+ Add Part”.",
+   "Fill in all the fields needed to add the part to the line, but do NOT click Save.",
+   "Change the Category field, cycling through different categories."
+  ],
+  "expected": [
+   " 1. The Sell Price changes according to the selected category, for categories that have a different pricing matrix. WHAT YOU SHOULD SEE TODAY, AND IT IS A PROBLEM: the Sell price does NOT change when you change the Category. Tried with Uncategorized, AUTO-Brak"
+  ]
+ },
+ {
+  "id": 45254,
+  "title": "Add Part: cannot enter a custom Cost for an inventory part",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Add Part Button and Edit Control",
+  "steps": [
+   "In the work order line's Parts section, click “+ Add Part”.",
+   "Select an INVENTORY part from the list (the part-number typeahead).",
+   "Try to enter a custom Cost and a Sell price, fill in the other mandatory fields, and click Save."
+  ],
+  "expected": [
+   "You are NOT allowed to enter a custom Cost for an inventory part — the Cost field is not editable; the cost comes from the catalogue. (You can still set the Sell price and the other allowed fields.)"
+  ]
+ },
+ {
+  "id": 44998,
+  "title": "Tech View inline add row shows exactly three fields and no pricing",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The inline row displays exactly three editable fields, in order: description, part number, quantity. 2. Cost, sell price, category, and any other part details are not displayed in the inline row. --- This is the expected behaviour as per epic SV-9315 and s"
+  ]
+ },
+ {
+  "id": 44999,
+  "title": "Part number field is the existing catalog typeahead",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The part number field is the same catalog typeahead used in the existing add-part flow and behaves as it does today. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit"
+  ]
+ },
+ {
+  "id": 45000,
+  "title": "Selecting a catalog part populates fields and moves focus to quantity",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The part number and description populate from the selected part; the description you had typed is replaced by the catalog description. 2. Focus moves to the quantity field, since part number and description are already populated. 3. The typeahead result ca"
+  ]
+ },
+ {
+  "id": 45001,
+  "title": "Description overwrite: editable for catalog, read-only for inventory",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. For a catalog part, the populated description accepts your edit and can be overwritten. 2. For an inventory part, the description is read-only (matching the part details modal and the legacy modal). 3. After the inline part request is saved, description, c"
+  ]
+ },
+ {
+  "id": 45002,
+  "title": "Quantity starts empty and is required",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The quantity field starts empty (it is not pre-filled with 1). 2. Quantity is a required field. 3. Quantity may also be set by applying a bin split (see the Bin Allocation cases, Story 7). --- This is the expected behaviour as per epic SV-9315 and story SV"
+  ]
+ },
+ {
+  "id": 45003,
+  "title": "Inline row shows a Save action and an X close action",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The inline row displays a Save action and a close action (the “×” at the end of the row; in Tech View it is labelled “Cancel”). --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline A"
+  ]
+ },
+ {
+  "id": 45004,
+  "title": "Save requires a description and a quantity; part number optional",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. With a description and a quantity the part saves even though part number is empty (part number is optional). 2. Without a quantity the row does not save (see the validation cases). --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (S"
+  ]
+ },
+ {
+  "id": 45005,
+  "title": "Saving adds the part at the top of the list with a Part added toast",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The part is added at the top of the line's parts list. 2. A success toast displays reading “Part added” and fades on its own. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add"
+  ]
+ },
+ {
+  "id": 45006,
+  "title": "After a save a fresh empty row opens with cursor in description",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Immediately after the successful save, a new empty inline row opens on the same work order line. 2. The cursor is placed in the description field of the new row. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add "
+  ]
+ },
+ {
+  "id": 45007,
+  "title": "Tech View part category: Uncategorized only if none, and not shown",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. A part with no category of its own is assigned the category \"Uncategorized\". 2. A part that already carries a category (an inventory or catalog part) keeps its own category - it is never replaced with \"Uncategorized\". 3. In either case the category is not "
+  ]
+ },
+ {
+  "id": 45008,
+  "title": "Pressing Enter from any field saves the row",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Pressing Enter saves the row, with the same result as selecting Save. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification versio"
+  ]
+ },
+ {
+  "id": 45009,
+  "title": "Tab moves through the Tech View add row and never leaves it",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Tab moves the cursor forward through the row and does not leave it (per the spec's Keyboard Model — Inline Row). 2. The Tech View add-row Tab order is: description, part number, quantity, Save, Cancel (X). 3. When a bin is allocated, the “Pulled from” bin "
+  ]
+ },
+ {
+  "id": 45010,
+  "title": "Escape closes the inline row like the X action",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Escape closes the inline row, with the same result as selecting X (for an empty row it closes immediately). --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on"
+  ]
+ },
+ {
+  "id": 45011,
+  "title": "X closes the row without saving; with data it triggers the guard",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Selecting X closes the inline row without saving. 2. Because the row contains data, the discard confirmation from S6-R1 is shown first. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the "
+  ]
+ },
+ {
+  "id": 45012,
+  "title": "Clicking outside a populated row keeps it open with data preserved",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The inline row remains open and its data is preserved; the click does not cancel the row. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines "
+  ]
+ },
+ {
+  "id": 45013,
+  "title": "Free-typed part saves as Requested and is flagged as needing details",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The part is added with the existing “Auth to order” status (the Requested / needs-details status) and the part line is visually flagged as needing details. 2. The success toast is the same as any other save: “Part added”. 3. The part number typeahead behav"
+  ]
+ },
+ {
+  "id": 45014,
+  "title": "Inline row shows the keyboard hint legend",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The inline row displays a keyboard hint legend: Enter — save & next row · Tab — next field · Esc — cancel. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on "
+  ]
+ },
+ {
+  "id": 45015,
+  "title": "Combined validation message names only the missing required fields",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The row does not save; a single inline validation message names all missing fields in order. 2. In Tech View only description and qty can appear in the message (for example “Enter a qty to save this part.” when only quantity is missing). --- This is the ex"
+  ]
+ },
+ {
+  "id": 45016,
+  "title": "Quantity of zero or less is rejected with a specific message",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The row does not save and an inline validation message is displayed: “Qty must be greater than 0.” --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Ord"
+  ]
+ },
+ {
+  "id": 45017,
+  "title": "Invalid field is highlighted and focus moves to the first invalid field",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The invalid field is highlighted and the cursor moves to the first field that failed validation. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order"
+  ]
+ },
+ {
+  "id": 45018,
+  "title": "Validation messages clear as soon as the field is corrected",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The validation message clears as soon as the field is corrected. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16,"
+  ]
+ },
+ {
+  "id": 45019,
+  "title": "Empty row closes immediately with no confirmation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The row closes immediately with no confirmation. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S2-N6, "
+  ]
+ },
+ {
+  "id": 45020,
+  "title": "Adding the same part twice creates two separate part lines",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Two separate part lines are created; the quantities are not merged. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version "
+  ]
+ },
+ {
+  "id": 45021,
+  "title": "Save fails cleanly when the work order becomes non-editable mid-entry",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The save fails and an alert is shown: “This work order can no longer be edited. Refresh to see the latest.” 2. The entered data remains in the row so it can be copied before refreshing. --- This is the expected behaviour as per epic SV-9315 and story SV-93"
+  ]
+ },
+ {
+  "id": 45022,
+  "title": "Any other save failure keeps the row open with data intact",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. An alert toast is shown: “Couldn't add the part. Please try again.” 2. The inline row remains open with the entered data intact. --- This is the expected behaviour as per epic SV-9315 and story SV-9317 (Story 2, Inline Add Part - Tech View) and the Inline "
+  ]
+ },
+ {
+  "id": 45023,
+  "title": "Edit opens an inline row below the part with the same three fields",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. An inline edit row opens directly below that part line. 2. It contains the same three fields as the add flow in the same order: description, part number, quantity. --- This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Ed"
+  ]
+ },
+ {
+  "id": 45024,
+  "title": "Edit row is pre-populated and cursor lands in description",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. The inline row is pre-populated with the part's current description, part number, and quantity. 2. The cursor is placed in the description field when the row opens. --- This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline E"
+  ]
+ },
+ {
+  "id": 45025,
+  "title": "Edit row reuses Story 2 behaviour with a shortened hint legend",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. All field, keyboard, and validation behaviour from Story 2 applies identically to the edit row. 2. The edit-row Tab order matches the Tech View add row (per the spec's Keyboard Model — Inline Row): description, part number, quantity, Save, Cancel (X), then"
+  ]
+ },
+ {
+  "id": 45026,
+  "title": "Saving an edit updates the part line in place and closes the row",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. The part line is updated in place and the inline row closes, returning to the normal part line display. --- This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Wo"
+  ]
+ },
+ {
+  "id": 45027,
+  "title": "Saving an edit does not open a new empty row",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. No new empty inline row opens after an edit save; the repeat-entry behaviour applies only to the add flow. --- This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on"
+  ]
+ },
+ {
+  "id": 45028,
+  "title": "Hidden pricing and category are preserved on a Tech View edit",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. Cost, sell price, and category are preserved unchanged when the Tech View user saves the inline edit, because they are not displayed in Tech View and were not re-linked. --- This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inl"
+  ]
+ },
+ {
+  "id": 45029,
+  "title": "Closing an edit row with changes triggers the discard guard",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. Because a field was changed, the discard confirmation from S6-R1 is shown. 2. On Discard the row closes without saving and the part line returns to its previously saved values. --- This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story"
+  ]
+ },
+ {
+  "id": 45030,
+  "title": "Linking a different catalog part repopulates the edit row",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. The row is repopulated from the newly selected part — description, cost, sell price, and category — matching the add flow. 2. The quantity you entered stays as it is and focus moves to it. 3. This is the one case where the values protected by S3-R7 are ove"
+  ]
+ },
+ {
+  "id": 45031,
+  "title": "Opening an edit row and changing nothing records no update",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. No confirmation is shown and no update is recorded. --- This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-"
+  ]
+ },
+ {
+  "id": 45032,
+  "title": "Edit control not displayed without the Create and Edit setting",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. The Edit control is not displayed. --- This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S3-N2, read on 16 Se"
+  ]
+ },
+ {
+  "id": 45033,
+  "title": "Clearing the description blocks the edit save with validation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. The row does not save and the combined validation from S2-N1 applies (the description is named as missing). --- This is the expected behaviour as per epic SV-9315 and story SV-9318 (Story 3, Inline Edit Part - Tech View) and the Inline Add and Edit Parts o"
+  ]
+ },
+ {
+  "id": 45034,
+  "title": "Inline edit saves normally — no concurrent-edit detection",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. The change saves normally and the row returns to its read-only display showing the new value. 2. There is no “This part was changed by someone else” alert and the save is not blocked: the product has no concurrent-edit detection, so a change another user m"
+  ]
+ },
+ {
+  "id": 45035,
+  "title": "Work order becoming non-editable during edit fails the save",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Tech View Inline Edit",
+  "steps": [],
+  "expected": [
+   " 1. The save fails and the alert “This work order can no longer be edited. Refresh to see the latest.” is shown, with the entered data still in the row. WHAT YOU SHOULD SEE TODAY, AND IT IS A KNOWN PROBLEM: the save is not refused. No alert appears, nothing te"
+  ]
+ },
+ {
+  "id": 45036,
+  "title": "Full View inline add row shows six fields in order",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The inline row displays six editable fields, in order: description, part number, quantity, category, cost, sell price (Rate). --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add"
+  ]
+ },
+ {
+  "id": 45037,
+  "title": "Description, part number and quantity behave as in Tech View",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Description, part number, and quantity behaviour from Story 2 applies identically (including the empty-required quantity and the optional part number). --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Ful"
+  ]
+ },
+ {
+  "id": 45038,
+  "title": "Selecting a catalog part populates cost and sell price with a dollar prefix",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Cost and sell price populate automatically from the selected part. 2. Cost and sell price display with a $ prefix. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit P"
+  ]
+ },
+ {
+  "id": 45039,
+  "title": "Cost/sell overwrite: cost read-only for inventory and Found parts",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. For a normal part, the populated cost and sell price can both be overwritten. 2. For an inventory part, cost is read-only; the sell price can still be overwritten. 3. For a Found part (Source set to Found through More Options), vendor, cost, core charge an"
+  ]
+ },
+ {
+  "id": 45040,
+  "title": "Category is a select and empty saves as Uncategorized",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The category field is a select of the shop's part categories. 2. A part saved with no category is assigned “Uncategorized”, consistent with the Tech View rule. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Pa"
+  ]
+ },
+ {
+  "id": 45041,
+  "title": "Full View inline row shows Save, More Options and X actions",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The inline row displays a Save action, a “More options” action, and a close action (the “×” at the end of the row; in Tech View it is labelled “Cancel”). --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - F"
+  ]
+ },
+ {
+  "id": 45042,
+  "title": "Save requires description, quantity, cost and sell price",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The part saves; part number and category are optional. 2. Omitting any of description, quantity, cost, or sell price blocks the save (see validation cases). --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part "
+  ]
+ },
+ {
+  "id": 45043,
+  "title": "Saving adds the part at the top, shows the toast and opens a fresh row",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The part is added at the top of the line's parts list. 2. The “Part added” success toast displays. 3. A new empty inline row opens with the cursor in the description field. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, "
+  ]
+ },
+ {
+  "id": 45044,
+  "title": "More Options opens the part details modal",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The part details modal (titled “New Part Request” when you are adding a part and “Edit Part Request” when you are editing one) opens. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the In"
+  ]
+ },
+ {
+  "id": 45045,
+  "title": "Values entered inline carry over into the modal",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. All values already entered in the inline row carry over into the corresponding fields of the modal. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work Or"
+  ]
+ },
+ {
+  "id": 45046,
+  "title": "Saving from the modal closes both the modal and the inline row",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The part is added, the modal closes, and the inline row also closes. 2. No new inline row is opened. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit Parts on Work O"
+  ]
+ },
+ {
+  "id": 45047,
+  "title": "Cancelling the modal returns to the inline row with data intact",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Cancelling the part details modal - via, the X, or Escape - shows no confirmation and discards nothing. 2. The modal closes and you are returned to the inline row, which still holds the values it had when “More Options” was opened. 3. Any values you change"
+  ]
+ },
+ {
+  "id": 45048,
+  "title": "Pressing Enter saves the Full View row",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Every Enter saves the row, matching the Tech View behaviour: the part is added to the line, “Part added” is shown, and a new empty row opens for the next part. Category is not in the list on purpose: it is a dropdown that uses Enter itself, so Enter there "
+  ]
+ },
+ {
+  "id": 45049,
+  "title": "Shift+Enter opens the More Options modal",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The “More options” part details window opens, titled “New Part Request”, so a user can escalate to full detail without the mouse. The typed description is carried over, the window’s button reads “Save part”, and the row itself is not saved. --- Amended on "
+  ]
+ },
+ {
+  "id": 45050,
+  "title": "Tab moves through the Full View add row and never leaves it",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Tab moves the cursor forward through the row and does not leave it (per the spec's Keyboard Model — Inline Row). 2. The Full View add-row Tab order is: description, part number, quantity, category, cost, sell price, Save, Cancel (X), then More Options (whi"
+  ]
+ },
+ {
+  "id": 45051,
+  "title": "Escape closes the Full View inline row",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Escape closes the empty row straight away, with no confirmation, matching the Tech View behaviour. 2. A “Discard this part?” confirmation opens, with the text “The details you entered will be lost.” and the buttons “Keep Editing” and “Discard Part”. The ro"
+  ]
+ },
+ {
+  "id": 45052,
+  "title": "Clicking outside a populated Full View row asks to discard it",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. A “Discard this part?” confirmation opens, with the text “The details you entered will be lost.” and the buttons “Keep Editing” and “Discard Part”. The inline row stays open behind it, still holding the typed description. 2. The confirmation closes and the"
+  ]
+ },
+ {
+  "id": 45053,
+  "title": "Hint legend adds a More Options row for Full View only",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The keyboard hint legend additionally shows: ⇧Enter — more options. 2. This hint is only shown to Full View users. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and the Inline Add and Edit P"
+  ]
+ },
+ {
+  "id": 45054,
+  "title": "Requested flow applies in Full View when no catalog part is selected",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The Requested flow applies equally in Full View: the part is added with the “Auth to order” status (Requested) and flagged as needing details, with the “Part added” toast. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, I"
+  ]
+ },
+ {
+  "id": 45055,
+  "title": "Typeahead offers Create as a new part for Full View users only",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The typeahead ends with a “Create <typed text> as a new part” action that opens the part details modal (titled “New Part Request” when you are adding a part and “Edit Part Request” when you are editing one) with the typed description carried over. 2. This "
+  ]
+ },
+ {
+  "id": 45056,
+  "title": "Combined validation names empty cost and sell price too",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The row does not save and the single combined message names the missing fields in order, including cost and sell price (for example “Enter a cost and sell price to save this part.”). 2. All validation behaviour from S2-N1 through S2-N6 applies. --- This is"
+  ]
+ },
+ {
+  "id": 45057,
+  "title": "More Options bypasses inline validation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Validation is not enforced when More Options is selected; the user may escalate to the modal with an incomplete row, and the modal applies its own validation on save. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline"
+  ]
+ },
+ {
+  "id": 45058,
+  "title": "Non-numeric or negative cost or sell price is rejected by field",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The row does not save and the message names the field: “Cost must be a number.”, “Cost cannot be negative.”, “Sell price must be a number.”, “Sell price cannot be negative.” as applicable. WHAT YOU SHOULD SEE TODAY, AND IT IS A KNOWN PROBLEM: the negative-"
+  ]
+ },
+ {
+  "id": 45059,
+  "title": "Sell price below cost shows a non-blocking note and still saves",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. A non-blocking note is displayed in the row: “Sell price is below cost.” 2. The row still saves — a sell price lower than the cost is permitted and does not block saving. --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, In"
+  ]
+ },
+ {
+  "id": 45060,
+  "title": "Catalogue part with no price of its own may be saved at 0.00",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. Where the part picked is a  catalogue  part — the picker shows the word “Catalog” beside it — the Cost and Sell price boxes may be left at 0.00 and the part saves. The cost is entered later, when the part is ordered and received. 2. Where the part picked a"
+  ]
+ },
+ {
+  "id": 45061,
+  "title": "Work order becoming non-editable during Full View add fails the save",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The save fails and the alert “This work order can no longer be edited. Refresh to see the latest.” is shown, with the entered data still in the row. WHAT YOU SHOULD SEE TODAY, AND IT IS A KNOWN PROBLEM: the save is not refused — the part is added. No alert"
+  ]
+ },
+ {
+  "id": 45062,
+  "title": "Any other Full View save failure keeps the row open with data",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. An alert toast is shown: “Couldn't add the part. Please try again.” and the inline row remains open with the entered data intact (S2-EH1). --- This is the expected behaviour as per epic SV-9315 and story SV-9319 (Story 4, Inline Add Part - Full View) and t"
+  ]
+ },
+ {
+  "id": 53477,
+  "title": "Full View without See Financial Data gets the three-field row",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Inline Add",
+  "steps": [],
+  "expected": [
+   " 1. The inline add row shows only three fields: description, part number, quantity. 2. There is no cost field, no sell price field, and no “More Options” action. 3. This is the same three-field row a Tech View user gets - because the user lacks the See Financi"
+  ]
+ },
+ {
+  "id": 45063,
+  "title": "Full View Edit opens the part details modal pre-populated",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Edit",
+  "steps": [],
+  "expected": [
+   " 1. The part details modal (titled “New Part Request” when you are adding a part and “Edit Part Request” when you are editing one) opens, pre-populated with the part's current values. --- This is the expected behaviour as per epic SV-9315 and story SV-9320 (St"
+  ]
+ },
+ {
+  "id": 45064,
+  "title": "Full View has no inline edit row",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Edit",
+  "steps": [],
+  "expected": [
+   " 1. There is no inline edit row for Full View users; the part line is not replaced by an editable row. --- This is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lin"
+  ]
+ },
+ {
+  "id": 45065,
+  "title": "Saving from the modal updates the part line and opens no inline row",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Edit",
+  "steps": [],
+  "expected": [
+   " 1. The part line is updated and the modal closes. 2. No inline row opens afterward. --- This is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification v"
+  ]
+ },
+ {
+  "id": 45066,
+  "title": "Edit control not displayed without the Create and Edit setting",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Edit",
+  "steps": [],
+  "expected": [
+   " 1. The Edit control is not displayed. --- This is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S5-N1, read on 16 September"
+  ]
+ },
+ {
+  "id": 45067,
+  "title": "Cancelling the modal discards changes and leaves the part unchanged",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Edit",
+  "steps": [],
+  "expected": [
+   " 1. The changes are discarded and the part line is left unchanged. --- This is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, Edit Part - Full View) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section"
+  ]
+ },
+ {
+  "id": 45068,
+  "title": "Edit while an inline add row is open triggers the guard first",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Full View Edit",
+  "steps": [],
+  "expected": [
+   " 1. The S6-R5 confirmation applies before the part details modal (titled “New Part Request” when you are adding a part and “Edit Part Request” when you are editing one) opens. --- This is the expected behaviour as per epic SV-9315 and story SV-9320 (Story 5, E"
+  ]
+ },
+ {
+  "id": 45069,
+  "title": "Closing a populated add row shows the discard-part confirmation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. A confirmation is displayed — Title: “Discard this part?”, Body: “The details you entered will be lost.”, Actions: “Keep Editing” and “Discard Part”. 2. “Keep Editing” is the default focused action. --- This is the expected behaviour as per epic SV-9315 an"
+  ]
+ },
+ {
+  "id": 45070,
+  "title": "Closing a changed edit row shows the discard-changes confirmation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. The same confirmation is shown with edit wording — Title: “Discard these changes?”, Body: “The changes you made will be lost.” 2. Actions and default focus are unchanged: “Keep Editing” (default) and “Discard Part”. --- This is the expected behaviour as pe"
+  ]
+ },
+ {
+  "id": 45071,
+  "title": "Keep Editing returns to the row with data intact",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. The confirmation closes and the user is returned to the inline row with all entered data intact. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Orde"
+  ]
+ },
+ {
+  "id": 45072,
+  "title": "Discard Part closes the row and restores saved values on edit",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. On an add row the inline row closes without saving. 2. On an edit row the part line returns to its previously saved values. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add "
+  ]
+ },
+ {
+  "id": 45073,
+  "title": "Navigating away with data shows the leave-without-saving confirmation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. A confirmation is displayed — Title: “Leave without saving?”, Body: “This part hasn't been added to the work order yet. Leaving will discard it.”, Actions: “Stay on Work Order” and “Leave”. 2. “Stay on Work Order” is the default focused action. --- This is"
+  ]
+ },
+ {
+  "id": 45074,
+  "title": "Opening another row with data prompts, then swaps or keeps",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. The S6-R1 confirmation is displayed. 2. Selecting “Discard Part” closes the current row and opens the requested one. 3. Selecting “Keep Editing” cancels the request and leaves the current row open and focused. --- This is the expected behaviour as per epic"
+  ]
+ },
+ {
+  "id": 45075,
+  "title": "Only one inline row can be open on a work order at a time",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. Only one inline row may be open on a work order at any time; opening another goes through the S6-R5 handling rather than opening a second row. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) "
+  ]
+ },
+ {
+  "id": 45076,
+  "title": "Empty row closes with no confirmation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. The row closes immediately with no confirmation. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S6-N1,"
+  ]
+ },
+ {
+  "id": 45077,
+  "title": "Navigating away from an empty row proceeds with no confirmation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. Navigation proceeds immediately with no confirmation. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S"
+  ]
+ },
+ {
+  "id": 45078,
+  "title": "Unchanged edit row closes or navigates with no confirmation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. Closing it or navigating away proceeds immediately with no confirmation. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification ve"
+  ]
+ },
+ {
+  "id": 45079,
+  "title": "Navigation is unaffected when no inline row is open",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. Navigation is unaffected; no confirmation is shown. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specification version 16, section S6-"
+  ]
+ },
+ {
+  "id": 45080,
+  "title": "Clicking outside never triggers a leave confirmation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. Clicking outside is not treated as navigating away and never triggers a confirmation; the row stays open with its data intact. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline A"
+  ]
+ },
+ {
+  "id": 45081,
+  "title": "Untouched follow-on empty row after a save prompts nothing",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. The untouched follow-on empty row does not trigger any confirmation; navigation and dismissal proceed freely. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts"
+  ]
+ },
+ {
+  "id": 45082,
+  "title": "Leave discards the entered part and completes navigation",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. The entered part is discarded and the navigation the user requested is completed. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edit Parts on Work Order Lines specifi"
+  ]
+ },
+ {
+  "id": 45083,
+  "title": "Stay on Work Order cancels navigation and refocuses the row",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Unsaved Data Protection",
+  "steps": [],
+  "expected": [
+   " 1. The navigation is cancelled, the user stays on the work order, and focus returns to the inline row with data intact. --- This is the expected behaviour as per epic SV-9315 and story SV-9321 (Story 6, Protecting Unsaved Part Data) and the Inline Add and Edi"
+  ]
+ },
+ {
+  "id": 45221,
+  "title": "Catalog part carries named bins with on-hand quantity and one Default",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. Each catalog part carries a set of bins. 2. Every bin has a name and an on-hand quantity. 3. Exactly one bin per part is flagged as the Default bin. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the "
+  ]
+ },
+ {
+  "id": 45222,
+  "title": "Typeahead result cards show inventory quantity and bin chips",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. The result card shows the total inventory quantity across all bins, then up to three bin chips each with its per-bin quantity. 2. When a part is in more than three bins, the further bins collapse into a “+ N” chip whose tooltip lists them. 3. A part with n"
+  ]
+ },
+ {
+  "id": 45223,
+  "title": "Selecting a part auto-allocates the full quantity to a single bin",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. When the Default bin covers the quantity, the full quantity is allocated to the Default bin. 2. When the Default bin is below the quantity, the full quantity is allocated to the largest single bin whose on-hand covers it. 3. When no single bin covers the q"
+  ]
+ },
+ {
+  "id": 45224,
+  "title": "Allocation is shown below the row as a Pulled from chip",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. While an allocation exists, it is displayed below the row as “Pulled from” followed by a chip. 2. The chip is displayed only while an allocation exists. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); "
+  ]
+ },
+ {
+  "id": 45225,
+  "title": "Chip label is the bin name for one bin and N bins for a split",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. For a single-bin allocation the chip label is the bin name. 2. For a split allocation the chip label reads “N bins” (where N is the number of bins). --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the "
+  ]
+ },
+ {
+  "id": 45226,
+  "title": "Selecting the chip opens a bin picker listing every bin",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. A picker opens listing every bin in catalog order, each with its on-hand quantity. 2. A check marks the currently selected bin and a Default badge marks the Default bin. 3. Any bin whose on-hand is below the requested quantity is shown in warning styling. "
+  ]
+ },
+ {
+  "id": 45227,
+  "title": "Choosing a bin from the picker moves the full quantity into it",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. The full quantity moves into the chosen bin. 2. The allocation is now marked as manually chosen. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Ed"
+  ]
+ },
+ {
+  "id": 45228,
+  "title": "Allocating more than a bin holds is permitted and only warns",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. Allocating more than a bin's on-hand quantity is permitted; the bin is allowed to go negative. 2. The system warns but does not block the save. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story"
+  ]
+ },
+ {
+  "id": 45229,
+  "title": "A short single-bin allocation shows the takes-negative warning",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. The chip is shown in warning styling. 2. This warning is displayed beside it: “Only <on hand> here. Pulling <qty> takes this bin negative.” --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 J"
+  ]
+ },
+ {
+  "id": 45230,
+  "title": "Auto-switching off the Default bin shows an informational note",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. This informational note is displayed beside the chip: “Default bin <name> has <on hand>. Switched to a bin that covers <qty>.” 2. It is shown only when the takes-negative warning (S7-R9) does not apply. --- This is the expected behaviour as per epic SV-931"
+  ]
+ },
+ {
+  "id": 45231,
+  "title": "Editing the quantity re-runs allocation per manual or automatic state",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. When the user manually chose a single bin, that bin is kept and the new quantity is moved into it — it is not re-picked, and the takes-negative warning (S7-R9) applies if the bin no longer covers it. 2. When the allocation was automatic, the auto-allocatio"
+  ]
+ },
+ {
+  "id": 45232,
+  "title": "Split across bins opens the right modal for each view mode",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. For a Tech View user - and for a Full View user WITHOUT the See Financial Data permission - “Split across bins…” opens the Bin Locations modal. 2. For a Full View user WITH the See Financial Data permission, on the add row it opens the part details modal i"
+  ]
+ },
+ {
+  "id": 45233,
+  "title": "Bin Locations modal lists a row per bin with Auto and Apply",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. The modal lists one row per bin, each showing name, a Default badge, on-hand quantity, and an allocation input. 2. An Auto action redistributes the quantity Default-first then largest-first. 3. An Apply action is present. --- This is the expected behaviour"
+  ]
+ },
+ {
+  "id": 45234,
+  "title": "Applying a split writes it back and sets quantity to the sum",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. The split is written back to the inline row. 2. The row's quantity is set to the sum of the per-bin allocations. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the I"
+  ]
+ },
+ {
+  "id": 45235,
+  "title": "Already-negative bins show in error styling but do not block",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. Bins already at a negative on-hand quantity are displayed in error styling in the Bin Locations modal. 2. Allocation is not blocked. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira tic"
+  ]
+ },
+ {
+  "id": 45236,
+  "title": "Tech View edit row carries the same allocation UI and restores stored splits",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. The inline edit row carries the same chip, picker, warnings and label format as the add row. 2. When the part already has a stored allocation, it is restored and treated as manually chosen. 3. When there is no stored allocation, auto-allocation runs. 4. Fu"
+  ]
+ },
+ {
+  "id": 45237,
+  "title": "Allocation is stored on save and not shown on the saved part row",
+  "automated": true,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. The allocation is stored with the part line on save. 2. It is not displayed on the saved part row (surfacing it in the part detail panel is out of scope per the spec's §2). --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation "
+  ]
+ },
+ {
+  "id": 45238,
+  "title": "The Pulled from chip is reachable by Tab",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. The “Pulled from” chip is reachable by Tab; it is the last Tab stop in the row's keyboard order, after Save and Cancel (X) (and after More Options in Full View). --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inli"
+  ]
+ },
+ {
+  "id": 45239,
+  "title": "A part with no bins gets no allocation and no chip",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. The part gets no allocation and no chip. 2. The “Pulled from” line is not displayed. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on "
+  ]
+ },
+ {
+  "id": 45240,
+  "title": "A part not linked to the catalog gets no allocation and no chip",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. A part not linked to the catalog gets no allocation and no chip. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and Edit Parts on Work Order Lines spe"
+  ]
+ },
+ {
+  "id": 45242,
+  "title": "No note is shown when the Default bin covers the quantity",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. When the Default bin covers the quantity, no note is shown even if other bins would also cover it. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TBD and the Inline Add and "
+  ]
+ },
+ {
+  "id": 45243,
+  "title": "A split allocation never shows the takes-negative warning",
+  "automated": false,
+  "folder": "Test Cases > Work Orders > Inline Add and Edit Parts (Aug 2026) > Inline Add and Edit Parts - Bin Allocation",
+  "steps": [],
+  "expected": [
+   " 1. A split allocation never shows the takes-negative warning from S7-R9; that warning applies only to a single-bin allocation. --- This is the expected behaviour as per epic SV-9315 and Story 7 (Bin Allocation on the Inline Row); the Story 7 Jira ticket is TB"
+  ]
+ },
+ {
+  "id": 96909,
+  "title": "Display switcher offers List, Tech View, Board View and marks the active one",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Open the Work Orders page.",
+   "Look at the display controls on the right of the toolbar.",
+   "Note which control is highlighted.",
+   "Click a different display control."
+  ],
+  "expected": [
+   "The Work Orders toolbar shows three display-option controls: List, Tech View, and Board View.",
+   "The control for the display you are currently viewing is clearly marked as the active one."
+  ]
+ },
+ {
+  "id": 96910,
+  "title": "List is the default display for a brand-new user",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Open the Work Orders page for the first time as this user.",
+   "Observe which display option is shown."
+  ],
+  "expected": [
+   "For a brand-new user who has never chosen a display, the page opens in List."
+  ]
+ },
+ {
+  "id": 96911,
+  "title": "Switching display re-lays out instantly, keeping filters and search",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Note the current filter tab, search text, applied filters, and the visible work orders.",
+   "Switch from List to Tech View.",
+   "Switch to Board View.",
+   "Compare the filter tab, search text, filters, and the set of work orders before and after each switch."
+  ],
+  "expected": [
+   "Switching the display re-lays out the same work orders instantly; the filter tab, search text, and filters do not change."
+  ]
+ },
+ {
+  "id": 96912,
+  "title": "Chosen display is remembered across logout/login, devices, and locations",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Choose Board View on the Work Orders page.",
+   "Log out and log back in; open Work Orders.",
+   "Log in on a second device/browser; open Work Orders.",
+   "Change to another location and open Work Orders."
+  ],
+  "expected": [
+   "Your chosen display is remembered and comes back after logging out and in, on another device, and at another location."
+  ]
+ },
+ {
+  "id": 96913,
+  "title": "Filter views (All/Work Orders/Estimates/Completed) apply in every display",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Open the Work Orders page.",
+   "Read the filter tabs across the top.",
+   "Note which tab is selected on arrival."
+  ],
+  "expected": [
+   "The filter views (the tabs on the left: All, Work Orders, Estimates, Completed) are shown to a user with Work Orders view permission and apply the same way in every display option (List, Tech View, Board View).",
+   "The filter bar (search, status, assigned to me, and so on) applies the same way in every display option."
+  ]
+ },
+ {
+  "id": 96914,
+  "title": "Search, filter persistence, and result set behave the same in all three displays",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "In List, apply a search term and a status filter; note the results.",
+   "Switch to Tech View; confirm the same search/filters and the same result set.",
+   "Switch to Board View; confirm the same again."
+  ],
+  "expected": [
+   "Search, filter persistence, and which results appear behave the same in List, Tech View, and Board View."
+  ]
+ },
+ {
+  "id": 96915,
+  "title": "Returning to List uses the List sort; manual order never changes it",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Set and confirm a List sort.",
+   "Switch to Tech View, then Board View.",
+   "Switch back to List.",
+   "Observe the sort order."
+  ],
+  "expected": [
+   "Switching back to List uses the List sort the user last chose there (e.g. by Created date).",
+   "The manual order set in Tech View or Board View never changes the List sort."
+  ]
+ },
+ {
+  "id": 96916,
+  "title": "Browser Back restores both vertical and horizontal scroll",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Scroll the Work Orders page down and to the right.",
+   "Open a work order.",
+   "Press the browser Back button.",
+   "Observe the vertical and horizontal scroll position."
+  ],
+  "expected": [
+   "Using the browser Back button restores both the up/down and the left/right scroll position of the Work Orders page."
+  ]
+ },
+ {
+  "id": 96917,
+  "title": "Direct navigation to a filter tab starts at the top-left",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Open a filter tab directly by its link/URL (e.g. Completed).",
+   "Observe the starting scroll position of the page."
+  ],
+  "expected": [
+   "Opening a filter tab directly by its link starts you at the top-left of the page."
+  ]
+ },
+ {
+  "id": 96918,
+  "title": "No-results empty state with Clear filters appears in every display",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Apply filters that match no work orders.",
+   "View the result in List.",
+   "Switch to Tech View.",
+   "Switch to Board View.",
+   "In each, read the empty-state message and confirm a Clear filters action is present."
+  ],
+  "expected": [
+   "When filters match nothing, every display shows the existing \"No work orders match your filters\" empty state with a Clear filters action."
+  ]
+ },
+ {
+  "id": 96919,
+  "title": "A display preference that cannot load falls back to List",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "With the preference read forced to fail, open the Work Orders page.",
+   "Observe which display is shown."
+  ],
+  "expected": [
+   "If your saved display preference cannot be loaded, the page falls back to List."
+  ]
+ },
+ {
+  "id": 96920,
+  "title": "A failed preference save keeps the previous one and does not block retry",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "With saves forced to fail, switch to Tech View.",
+   "Confirm you can still switch displays.",
+   "Retry the save.",
+   "Reload the page and observe which preference was retained."
+  ],
+  "expected": [
+   "If saving your display preference fails, your previously saved preference is kept.",
+   "A failed preference save does not stop you switching displays or trying the save again."
+  ]
+ },
+ {
+  "id": 96921,
+  "title": "Simultaneous tabs: the last display-preference request wins",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "In tab A set Tech View.",
+   "In tab B set Board View a moment later.",
+   "Reload both tabs.",
+   "Observe the display each opens in."
+  ],
+  "expected": [
+   "If you change the preference in two tabs at once, the last request is the one that sticks."
+  ]
+ },
+ {
+  "id": 96923,
+  "title": "Changing location opens that location's default page; Assigned to me resets",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Enable Assigned to me on Work Orders.",
+   "Switch to another location.",
+   "Observe which page opens.",
+   "Observe the Assigned to me state."
+  ],
+  "expected": [
+   "Changing location opens that location's existing default page.",
+   "\"Assigned to me\" turns itself off when you change location, exactly as it does today."
+  ]
+ },
+ {
+  "id": 154884,
+  "title": "Assigned to me shows only my matching work orders in every display",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Open the Work Orders page and switch to List.",
+   "Turn on the \"Assigned to me\" filter.",
+   "Read which work orders are listed.",
+   "Switch to Tech View, then to Board View, and read which work orders show in each."
+  ],
+  "expected": [
+   "With \"Assigned to me\" enabled, every display option shows only the work orders that match the existing Assigned to me rules."
+  ]
+ },
+ {
+  "id": 154885,
+  "title": "Display options follow the 1024px screen-width switch (List below it)",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S1 — Switch between display options",
+  "steps": [
+   "Make the browser window narrower than 1024 pixels wide and open the Work Orders page.",
+   "Read whether a display switcher (List / Tech View / Board View) is offered, and which layout shows.",
+   "Widen the window to 1024 pixels or more and read whether Tech View and Board View become available.",
+   "If a tablet is available, open the page on it held sideways (1024 pixels wide or more) and confirm the display options appear."
+  ],
+  "expected": [
+   "Below 1024px the Work Orders page shows List exactly as today (the phone card layout) with no display switcher.",
+   "At 1024px and wider, Tech View and Board View are offered on any device (a tablet at >=1024px gets them too); the switch is by screen width only and never detects the device type."
+  ]
+ },
+ {
+  "id": 96924,
+  "title": "Tech View groups the table by lead technician with a header and count",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Observe the grouping and separators between technicians.",
+   "Read a group header."
+  ],
+  "expected": [
+   "Tech View groups the work-order table under each lead technician, with a visible separator between groups.",
+   "Each group header shows the technician's name, avatar, and the count of matching work orders."
+  ]
+ },
+ {
+  "id": 96925,
+  "title": "Unassigned group is fixed before all technician groups",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Find the Unassigned group.",
+   "Confirm it appears before every technician group."
+  ],
+  "expected": [
+   "An Unassigned group holding work orders with no lead technician sits fixed before all technician groups."
+  ]
+ },
+ {
+  "id": 96926,
+  "title": "Initial technician order: first name, then last name, then account age",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View without reordering anything.",
+   "Read the technician order top to bottom.",
+   "Confirm first-name A–Z, then last-name A–Z, then the earliest-created record for identical names."
+  ],
+  "expected": [
+   "Technicians are initially ordered by first name A-Z, then last name A-Z.",
+   "Technicians with identical names are ordered by when their user account was created, oldest first and newest last."
+  ]
+ },
+ {
+  "id": 96927,
+  "title": "Tech View has its own column chooser and adds an Assigned Techs column",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Note the columns and open the column chooser in List.",
+   "Switch to Tech View.",
+   "Open the column chooser in Tech View.",
+   "Compare the available columns and the chooser."
+  ],
+  "expected": [
+   "Tech View offers the same columns as List, plus an Assigned Techs column (Story 7).",
+   "It has its own column chooser (Story 5), separate from List."
+  ]
+ },
+ {
+  "id": 96928,
+  "title": "Technician groups collapse/expand and the state persists per user",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Collapse a technician group and expand another.",
+   "Refresh the page.",
+   "Open a new tab to Work Orders.",
+   "Log out and back in.",
+   "Confirm the collapsed/expanded states are restored each time."
+  ],
+  "expected": [
+   "Each technician group can be collapsed and expanded.",
+   "A group's collapsed/expanded state is remembered per user across sessions, logout/login, refreshes, new tabs, and reopening."
+  ]
+ },
+ {
+  "id": 96929,
+  "title": "Before a manual order is saved, work orders in a group use List's default sort",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Pick a technician group with several work orders.",
+   "Compare the order of its work orders to List's default sort."
+  ],
+  "expected": [
+   "Until you save a manual order, work orders inside a group use List's default work-order sort."
+  ]
+ },
+ {
+  "id": 96930,
+  "title": "Only eligible technicians are shown as groups",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Read the technician groups.",
+   "Confirm groups exist only for Clockable + Active + correct-role + this-location staff, and the excluded staff have no group."
+  ],
+  "expected": [
+   "The technicians shown are those who are Clockable, Active, enrolled in the current location, and whose role is neither Office nor Time Clock User."
+  ]
+ },
+ {
+  "id": 96931,
+  "title": "Every eligible technician appears even with no work, labelled No work orders",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Find the technician with no work.",
+   "Read the group's empty label.",
+   "Look for any control to hide empty technician groups."
+  ],
+  "expected": [
+   "Every eligible technician has a group even without matching work, except while Assigned to me is enabled (then only groups holding my work show).",
+   "A technician group with no work orders under the current filters, and an empty Unassigned group, show the text \"No work orders\"."
+  ]
+ },
+ {
+  "id": 96932,
+  "title": "Clicking a Tech View row opens the work order; a drag needs a few pixels first",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Open a work order from a technician group.",
+   "Confirm the work order opens."
+  ],
+  "expected": [
+   "Clicking anywhere on a row, outside its own controls, opens the work order.",
+   "A drag starts only after the pointer has moved a few pixels, so a click never turns into a drag."
+  ]
+ },
+ {
+  "id": 96933,
+  "title": "Empty Unassigned with Assigned to me off stays present as a drop target",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Ensure Unassigned has no work and Assigned to me is off.",
+   "Switch to Tech View.",
+   "Confirm the Unassigned group is still present with its empty state.",
+   "Confirm a work order can be dropped onto it."
+  ],
+  "expected": [
+   "When Unassigned has no work and \"Assigned to me\" is off, the Unassigned group stays present with its empty state and can still receive dropped work."
+  ]
+ },
+ {
+  "id": 96934,
+  "title": "Work led by a deactivated technician stays visible; header inactive",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Deactivate a technician who leads work.",
+   "Switch to Tech View.",
+   "Find that technician's group.",
+   "Confirm the work is still shown and the header shows an inactive indicator."
+  ],
+  "expected": [
+   "Work led by a technician who has been deactivated stays visible under that technician.",
+   "A deactivated technician's group header is marked as inactive."
+  ]
+ },
+ {
+  "id": 96935,
+  "title": "Technician group header stays visible while scrolling a tall group",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Scroll down within a tall technician group.",
+   "Confirm that group's header stays visible."
+  ],
+  "expected": [
+   "While you scroll within a tall group, that group's technician header stays visible."
+  ]
+ },
+ {
+  "id": 96936,
+  "title": "After a lead change elsewhere, the work order moves to its new group on refresh",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Note a work order under technician A in Tech View.",
+   "Change its lead to technician B from the work order detail page.",
+   "Refresh Tech View.",
+   "Confirm the work order now appears under technician B."
+  ],
+  "expected": [
+   "After the lead is changed somewhere else, the work order moves to its new technician group on the next refresh."
+  ]
+ },
+ {
+  "id": 96937,
+  "title": "Assigned to me shows only groups holding my work; the rest are hidden",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Enable Assigned to me.",
+   "Confirm the Unassigned group is hidden."
+  ],
+  "expected": [
+   "With Assigned to me enabled, Tech View shows only the technician groups (including Unassigned) that hold at least one work order matching Assigned to me.",
+   "Every other group is hidden, including pinned technicians."
+  ]
+ },
+ {
+  "id": 96938,
+  "title": "Hovering a technician header or avatar reveals the name",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Hover a technician header.",
+   "Hover a technician avatar.",
+   "Confirm the name is revealed."
+  ],
+  "expected": [
+   "Hovering a technician header or avatar reveals the technician's name."
+  ]
+ },
+ {
+  "id": 96939,
+  "title": "Tech View allows up to three pinned technician groups",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S2 — Tech View (table grouped by lead technician)",
+  "steps": [
+   "Switch to Tech View.",
+   "Pin three technicians.",
+   "Confirm all three pin and their groups move to the pinned area."
+  ],
+  "expected": [
+   "Tech View allows up to three pinned technician groups."
+  ]
+ },
+ {
+  "id": 96940,
+  "title": "Board View: one column per eligible technician plus Unassigned",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Confirm one column per eligible technician plus an Unassigned column.",
+   "Read a column header."
+  ],
+  "expected": [
+   "Board View shows one column per eligible technician plus an Unassigned column.",
+   "Each column header shows the technician's name, avatar, and the count of matching work orders."
+  ]
+ },
+ {
+  "id": 96941,
+  "title": "Unassigned column is first and stays fixed on horizontal scroll",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Confirm Unassigned is the first column.",
+   "Scroll the technician columns left and right.",
+   "Confirm Unassigned stays in place."
+  ],
+  "expected": [
+   "The Unassigned column is first and stays fixed in place while you scroll the technician columns left and right."
+  ]
+ },
+ {
+  "id": 96942,
+  "title": "Column headers stay pinned at the top while scrolling a long column vertically",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Scroll down inside a long column.",
+   "Confirm the column headers stay pinned at the top."
+  ],
+  "expected": [
+   "The column headers (names and counts) stay pinned at the top while you scroll down a long column."
+  ]
+ },
+ {
+  "id": 96943,
+  "title": "Board View cards always include the mandatory fields",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Turn off every optional field.",
+   "Read a card.",
+   "Confirm work order number, unit number (when present), and status still show."
+  ],
+  "expected": [
+   "Board View cards always include the mandatory fields (work order number, unit number when present, and status)."
+  ]
+ },
+ {
+  "id": 96944,
+  "title": "A card's status badge stays in a fixed position",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Change density and toggle a few fields.",
+   "Confirm the status badge stays in the same fixed spot on each card."
+  ],
+  "expected": [
+   "Each card's status badge stays in a fixed spot on the card."
+  ]
+ },
+ {
+  "id": 96945,
+  "title": "Card more-actions overlay on hover/focus includes Reassign lead",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Hover a card (and move keyboard focus to it).",
+   "Confirm the more-actions control appears.",
+   "Open it and confirm it lists Reassign lead technician."
+  ],
+  "expected": [
+   "A card's more-actions menu appears when you hover the card or move keyboard focus to it.",
+   "The card's more-actions menu includes \"Reassign lead technician\"."
+  ]
+ },
+ {
+  "id": 96946,
+  "title": "Clicking a card outside more-actions opens the work order",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Click a card away from the more-actions control.",
+   "Confirm the work order opens."
+  ],
+  "expected": [
+   "Clicking a card anywhere except the more-actions control opens the work order."
+  ]
+ },
+ {
+  "id": 96947,
+  "title": "Pin a technician from the header; pins sit after Unassigned and append in order",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Pin technician A from its column header.",
+   "Pin technician B.",
+   "Confirm pinned columns appear right after Unassigned and before unpinned columns, in the order pinned."
+  ],
+  "expected": [
+   "You can pin a technician from the column header.",
+   "Pinned technicians appear after the fixed Unassigned column and before the unpinned technicians.",
+   "Each newly pinned technician is added after the technicians already pinned."
+  ]
+ },
+ {
+  "id": 96948,
+  "title": "Pins are shared with Tech View and persist per user across sessions and devices",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Pin two technicians in Board View.",
+   "Switch to Tech View and confirm the same technicians are pinned.",
+   "Log out and back in; confirm the pins persist.",
+   "Open on a second device; confirm the pins persist."
+  ],
+  "expected": [
+   "The pin selection is the same set shared between Tech View and Board View.",
+   "Pins are remembered per user across sessions, logout/login, and devices."
+  ]
+ },
+ {
+  "id": 96949,
+  "title": "Fourth pin is blocked with the cap message; unpinning frees a slot in both views",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "With three pinned, try to pin a fourth technician.",
+   "Read the disabled pin control's message.",
+   "Unpin one technician.",
+   "Confirm a slot is free in both Board View and Tech View."
+  ],
+  "expected": [
+   "When three technicians are pinned, the other pin controls are disabled and show \"You can pin up to 3 technicians.\"",
+   "Unpinning a technician frees a pin slot in both Tech View and Board View."
+  ]
+ },
+ {
+  "id": 96950,
+  "title": "Empty eligible columns stay as drop targets showing \"No work orders\"",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Find the empty technician column.",
+   "Read its short empty state.",
+   "Confirm a card can be dropped onto it.",
+   "Look for any control to hide empty columns."
+  ],
+  "expected": [
+   "A technician column with no work orders under the current filters, and an empty Unassigned column, show the text \"No work orders\" and stay visible as drop targets.",
+   "Empty eligible columns are kept as drop targets except while Assigned to me is enabled; there is no control to hide them."
+  ]
+ },
+ {
+  "id": 96951,
+  "title": "Assigned to me shows only columns holding my work; pinning is disabled",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Enable Assigned to me.",
+   "Confirm the Unassigned column is hidden.",
+   "Confirm pinning is not offered."
+  ],
+  "expected": [
+   "With Assigned to me enabled, Board View shows only the technician columns (including Unassigned) that hold at least one work order matching Assigned to me.",
+   "Every other column is hidden, including pinned technicians, and pinning is not offered while Assigned to me is enabled."
+  ]
+ },
+ {
+  "id": 96952,
+  "title": "Deactivated technician column keeps work, shows inactive, keeps pin",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Pin a technician who leads work, then deactivate them.",
+   "Switch to Board View.",
+   "Confirm the work is still shown and the column shows an inactive indicator.",
+   "Confirm the pin is retained.",
+   "Manually unpin the deactivated technician and confirm it unpins."
+  ],
+  "expected": [
+   "Work led by a deactivated technician stays visible in that technician's column.",
+   "A deactivated technician's column shows an inactive indicator.",
+   "A technician keeps their pin after being deactivated.",
+   "You can manually unpin a deactivated technician."
+  ]
+ },
+ {
+  "id": 96953,
+  "title": "Every Board column scrolls on its own; the page itself does not scroll",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Scroll the tall Unassigned column and confirm it scrolls vertically while other columns and pinned headers stay visible.",
+   "Scroll the board horizontally and confirm technicians scroll into view and are never hidden automatically."
+  ],
+  "expected": [
+   "Every Board View column, including Unassigned, scrolls vertically on its own when its cards exceed the viewport, while adjacent columns and pinned headers stay visible.",
+   "The page itself does not scroll vertically; only the content inside each column does."
+  ]
+ },
+ {
+  "id": 96954,
+  "title": "All selected card content stays reachable by scrolling at any height or density",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View and turn on many fields.",
+   "Try each density.",
+   "Confirm every selected field on the card is reachable by scrolling."
+  ],
+  "expected": [
+   "All selected content on a card stays reachable by scrolling, whatever the card height or density."
+  ]
+ },
+ {
+  "id": 96955,
+  "title": "Board View provides the shared Density control",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Switch to Board View.",
+   "Find the Density control.",
+   "Confirm it offers the same density options shared with the other displays."
+  ],
+  "expected": [
+   "Board View provides the shared Density control from Story 6."
+  ]
+ },
+ {
+  "id": 154886,
+  "title": "Board keeps the Unassigned column visible as a drop target when empty",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S3 — Board View (board by lead technician)",
+  "steps": [
+   "Drag every work order out of the Unassigned column onto a technician column, so Unassigned has none left.",
+   "Read whether the Unassigned column stays on screen and what it shows.",
+   "Drag a work order back onto the Unassigned column and confirm it can be dropped there."
+  ],
+  "expected": [
+   "The Unassigned column stays visible even with no work, showing its empty state, so work orders can be dragged to it (per S3-N1 while Assigned to me is on, S1-N1 when no work orders match, and the same rule as Tech View)."
+  ]
+ },
+ {
+  "id": 96956,
+  "title": "Reassign dialog offers eligible techs plus Unassigned; confirm or cancel",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Open the card/row more-actions menu and choose Reassign lead technician.",
+   "Confirm the dialog lists eligible active technicians in this location plus Unassigned.",
+   "Select a technician and confirm; check the lead changed.",
+   "Reopen the dialog, choose Unassigned and confirm; check the lead is removed.",
+   "Reopen, make a selection, then Cancel; confirm the lead is unchanged."
+  ],
+  "expected": [
+   "The card or row more-actions menu opens the \"Reassign lead technician\" dialog.",
+   "The dialog offers the eligible active technicians in the current location plus Unassigned.",
+   "Confirming the dialog changes the lead to the selected technician, or to Unassigned.",
+   "Cancelling the dialog leaves the lead unchanged."
+  ]
+ },
+ {
+  "id": 96957,
+  "title": "Success toasts show the right text and auto-dismiss",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Reassign a work order to a technician; read the toast.",
+   "Unassign a work order; read the toast.",
+   "Wait and confirm each toast dismisses itself."
+  ],
+  "expected": [
+   "After a successful reassignment you see \"Lead technician updated\"; after unassigning you see \"Lead technician removed\".",
+   "The success toasts dismiss themselves automatically."
+  ]
+ },
+ {
+  "id": 96958,
+  "title": "Detail-page notification behaviour is preserved when the lead changes",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Change the lead from Board/Tech View.",
+   "Check that the same notifications that fire on a detail-page lead change still fire."
+  ],
+  "expected": [
+   "The existing work-order detail-page notification behaviour still happens when the lead changes."
+  ]
+ },
+ {
+  "id": 96959,
+  "title": "Column/group header counts update immediately after a successful change",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Note the counts on the source and destination technician headers.",
+   "Reassign a work order between them.",
+   "Confirm both counts update immediately without a manual refresh."
+  ],
+  "expected": [
+   "The counts in column/group headers update immediately after a successful change."
+  ]
+ },
+ {
+  "id": 96960,
+  "title": "Line-movement rules on ASSIGN/REASSIGN — all six line types",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Confirm the six line conditions on the work order.",
+   "Reassign the work order's lead from A to B (drag or dialog).",
+   "Open the work order and check each line:",
+   "- line with no tech and the implicit-lead line moved to B;",
+   "- the explicit, Complete, logged-labor, and active-clock lines did NOT move."
+  ],
+  "expected": [
+   "The reassignment rules in this story also govern the drag interactions in Story 9.",
+   "On every path that assigns, changes, or removes the lead, work-order lines move according to the line-movement table (unassigned lines and lines implicitly following the outgoing lead move to the new lead; explicit assignments, Complete lines, lines with logge",
+   "For a work order with mixed line assignments, the line-movement rules are applied to each line independently."
+  ]
+ },
+ {
+  "id": 96961,
+  "title": "Removing the lead returns following lines to unassigned and leaves the rest",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Reassign the work order to Unassigned.",
+   "Open the work order and check each line:",
+   "- the no-tech line and the implicit-lead line are now unassigned;",
+   "- explicit, Complete, logged-labor, and active-clock lines are unchanged."
+  ],
+  "expected": [
+   "You can change the lead while the outgoing lead is clocked into a work-order line.",
+   "An actively clocked-in line keeps its assigned technician, even when that assignment is implicit or has no earlier logged labor."
+  ]
+ },
+ {
+  "id": 96962,
+  "title": "One audit entry per lead change; implicit moves add none",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Change the lead of the work order.",
+   "Open the audit history.",
+   "Confirm exactly one entry with previous lead, new lead, the logged-in actor, and time.",
+   "Confirm no separate entries were added for the implicit line movements.",
+   "Separately change a technician directly on a line and confirm the existing line audit still records it."
+  ],
+  "expected": [
+   "Every lead change records exactly one audit entry with the previous lead, new lead, the logged-in actor, and the time.",
+   "No separate audit entries are created for the implicit line movements caused by a lead change.",
+   "Technician changes made directly on a work-order line keep their existing line auditing."
+  ]
+ },
+ {
+  "id": 96963,
+  "title": "Lead change is blocked in Invoiced/Paid/Imported on every path",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Try to reassign an Invoiced work order from the dialog, from drag, and from List more-actions; confirm each is blocked.",
+   "Repeat for Paid, Declined, Imported.",
+   "With engineering/dev support, send a lead-change request for one of these directly to the endpoint (bypassing the UI) and confirm it is refused."
+  ],
+  "expected": [
+   "The lead technician cannot be changed in Invoiced, Paid, or Imported status by any path, including a request that bypasses the UI (server-refused).",
+   "An Invoiced or Paid work order can still be dragged to reorder within its current technician (or within Unassigned), but cannot move to another technician, to Unassigned, or out of Unassigned; Declined and Complete move freely."
+  ]
+ },
+ {
+  "id": 96964,
+  "title": "Disabled reassignment shows the status reason; the WO can still reorder in place",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Find the prohibited-status work order.",
+   "Hover/open its disabled reassignment action and read the reason.",
+   "Confirm it is visibly marked as not draggable."
+  ],
+  "expected": [
+   "The disabled Reassign lead technician action on an Invoiced or Paid work order shows the tooltip \"The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+   "The work order is shown as reorderable only within its current technician, not movable to another one."
+  ]
+ },
+ {
+  "id": 96965,
+  "title": "Shift-clearing prompt on a Board/Tech lead change; clear vs keep",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Change the lead from A to B in Board or Tech View.",
+   "Confirm you are asked whether to clear A's whole-work-order shifts.",
+   "Choose Clear on one run: confirm only A's whole-work-order shifts are removed and the line-level shift remains.",
+   "Repeat on another work order and choose Keep: confirm the lead changes and A's shifts remain.",
+   "In both runs confirm the line-level shift was never cleared."
+  ],
+  "expected": [
+   "Changing the lead in Board View or Tech View asks whether to clear the outgoing lead's whole-work-order scheduled shifts.",
+   "Choosing to clear shifts removes only the outgoing lead's shifts scheduled against the whole work order.",
+   "Choosing to keep shifts changes the lead and leaves the existing shifts in place.",
+   "This prompt never clears shifts scheduled against individual work-order lines."
+  ]
+ },
+ {
+  "id": 96966,
+  "title": "Schedule and lead are independent; a lead change leaves time intact",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Make a Schedule change on the work order and confirm the lead technician does not change.",
+   "Change the lead of the work order and confirm the status is unchanged.",
+   "Confirm active, recorded, and locked time are unchanged by the lead change and any shift clearing."
+  ],
+  "expected": [
+   "Making a Schedule change does not change the work order's lead technician.",
+   "A lead change leaves the work order's status unchanged.",
+   "A lead change and any optional shift clearing leave active, recorded, and locked time unchanged."
+  ]
+ },
+ {
+  "id": 96967,
+  "title": "Reassign requires create-and-edit permission",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "In Board/Tech View, try to drag a work order.",
+   "Try to open Reassign lead technician.",
+   "Confirm both are unavailable to the view-only user."
+  ],
+  "expected": [
+   "Dragging work orders or opening \"Reassign lead technician\" requires Work Orders create and edit permission."
+  ]
+ },
+ {
+  "id": 96968,
+  "title": "Failed reassignment returns the card to origin and shows a dismissible alert",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "With reassignment forced to fail, drag a work order to another technician.",
+   "Confirm the card returns to its original column/group.",
+   "Read the alert text and confirm you can dismiss it."
+  ],
+  "expected": [
+   "If a reassignment fails, the card or row returns to its original column or group.",
+   "A failed reassignment shows a dismissible alert: \"Failed to update lead technician, please try again.\""
+  ]
+ },
+ {
+  "id": 96969,
+  "title": "Selecting the current lead again changes nothing and shows no toast",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Open Reassign lead technician for the work order.",
+   "Select technician A (already the lead) and confirm.",
+   "Confirm no assignment change and no reassignment toast."
+  ],
+  "expected": [
+   "Selecting the technician who is already the lead changes nothing and shows no reassignment toast."
+  ]
+ },
+ {
+  "id": 96970,
+  "title": "Nothing can be dropped onto an inactive technician",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Try to drag a work order onto the inactive technician's column/group.",
+   "Confirm the drop is not accepted."
+  ],
+  "expected": [
+   "Nothing can be dropped onto an inactive technician's column or group."
+  ]
+ },
+ {
+  "id": 96971,
+  "title": "Concurrent reassignment: the later change wins after refresh",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "User 1 reassigns the work order to technician B.",
+   "User 2 reassigns the same work order to technician C a moment later.",
+   "Both users refresh.",
+   "Confirm the final lead is C (the later change) for both."
+  ],
+  "expected": [
+   "When two users reassign the same work order, the later change wins.",
+   "After a concurrent reassignment, both users see the final lead once they refresh."
+  ]
+ },
+ {
+  "id": 96972,
+  "title": "A status turning prohibited mid-drag rejects the drop with a reason",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Begin dragging a work order in an allowed status.",
+   "Have the work order move to a prohibited status before the drop.",
+   "Complete the drop.",
+   "Confirm the drop is rejected, the card returns to origin, and a status explanation is shown."
+  ],
+  "expected": [
+   "If the status becomes prohibited during a drag, the drop is rejected with a status explanation and the card returns to origin."
+  ]
+ },
+ {
+  "id": 96973,
+  "title": "Reassign allows out-of-filter destinations; a non-matching WO leaves",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Open Reassign lead technician on a filtered view.",
+   "Confirm you can pick a destination technician outside the current filter.",
+   "Confirm the reassignment; if the work order no longer matches the filter, confirm it is removed from the results."
+  ],
+  "expected": [
+   "The Reassign dialog lets you pick destinations that are outside the current filter.",
+   "After reassignment, a work order that no longer matches the filter is removed from the results."
+  ]
+ },
+ {
+  "id": 96974,
+  "title": "The N open count counts Approved, In Progress, Ready for Review and Complete",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Count by hand the technician's work orders in Approved, In Progress, Ready for Review and Complete.",
+   "Open the Reassign dialog and read the technician's N open figure.",
+   "Confirm N equals your hand count, so Estimate, Invoiced and Paid work orders are not counted."
+  ],
+  "expected": [
+   "The Reassign lead technician dialog's \"N open\" count includes Approved, In Progress, Ready for Review, and Complete work orders."
+  ]
+ },
+ {
+  "id": 154887,
+  "title": "Imported work order: reassign lead is disabled with its own tooltip",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "On the Imported work order, find the Reassign lead technician action (it is shown disabled).",
+   "Hover the disabled action and read the tooltip."
+  ],
+  "expected": [
+   "The disabled Reassign lead technician action on an Imported work order shows the tooltip \"The lead technician can't be changed on an imported work order.\""
+  ]
+ },
+ {
+  "id": 154888,
+  "title": "Clearing shifts on a lead change trims by shift timing",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Reassign the work order's lead technician to the other technician (for example Dana).",
+   "When the prompt asks, choose to clear shifts.",
+   "Open the Schedule and read what happened to each of the three shifts: the one that had ended, the one not yet started, and the one under way."
+  ],
+  "expected": [
+   "When the user chooses to clear shifts: an already-ended shift stays as it is; a not-yet-started shift is removed; a shift under way at the moment of the lead change is ended at that moment (the part already under way stays, the rest is removed) - e.g. Jeremy 8"
+  ]
+ },
+ {
+  "id": 154889,
+  "title": "Removing the lead prompts to clear shifts, same as changing it",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Open the Reassign lead technician dialog (or the work order's detail page) and remove the lead technician, moving the work order to Unassigned.",
+   "Read the prompt that appears."
+  ],
+  "expected": [
+   "Removing the lead technician (moving the work order to Unassigned) shows the same shift-clearing prompt as changing it (S4-R11)."
+  ]
+ },
+ {
+  "id": 154890,
+  "title": "Lead change and shift clearing succeed or fail together",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S4 — Reassign or unassign the lead technician",
+  "steps": [
+   "Reassign the lead technician and choose to clear shifts, in a run where the shift clearing fails.",
+   "Read whether the lead technician was changed, and read the message that appears."
+  ],
+  "expected": [
+   "The lead change and the shift clearing succeed or fail together: if clearing fails, the lead technician is not changed and the failure message (S4-N8) shows."
+  ]
+ },
+ {
+  "id": 96975,
+  "title": "Tech View has its own column selection, separate from List, saved per user",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "In List, turn a couple of optional columns on/off.",
+   "Switch to Tech View and confirm the same columns.",
+   "Log out/in, open on a second device, and change location; confirm the selection persists in both List and Tech View."
+  ],
+  "expected": [
+   "Tech View has its own optional-column selection, separate from List: changing columns in one never changes the other.",
+   "The Tech View column selection is saved per user across logout/login, devices and locations; List keeps saving its columns as it does today."
+  ]
+ },
+ {
+  "id": 96976,
+  "title": "Board View has its own Fields to display picker; saved everywhere",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "Open the Fields to display picker in Board View (same toolbar position as the column chooser).",
+   "Turn optional fields on and off.",
+   "Log out/in, open on a second device, change location; confirm the field selection persists."
+  ],
+  "expected": [
+   "Board View has its own \"Fields to display\" picker, in the same toolbar spot and working the same way as the column chooser.",
+   "Optional Board View fields can be turned on and off.",
+   "The Board View field selection is saved per user across sessions, logout/login, devices, and locations."
+  ]
+ },
+ {
+  "id": 96977,
+  "title": "Mandatory fields cannot be turned off",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "Open the field/column picker.",
+   "Try to turn off work order number, unit number (when present), and status.",
+   "Confirm they cannot be deselected."
+  ],
+  "expected": [
+   "Work order number, unit number when present, and status are mandatory and cannot be turned off."
+  ]
+ },
+ {
+  "id": 96978,
+  "title": "The full set of optional fields is offered with production meaning",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "Open the field picker.",
+   "Confirm the optional fields include lead technician name, customer, asset (year/make/model), VIN/serial, progress, service advisor, clocked-in time, line count, line technicians, estimated hours, tota",
+   "Spot-check that each shows its existing production meaning."
+  ],
+  "expected": [
+   "The optional fields offered use their existing production meaning: lead technician name, customer, asset (year/make/model), VIN/serial, progress, service advisor, clocked-in time, line count, line technicians, estimated hours, total price, on-site indicator, a"
+  ]
+ },
+ {
+  "id": 96979,
+  "title": "Tech View defaults to the List default columns; saved kept",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "As the new user, open Tech View and confirm the columns match the current production List default columns.",
+   "As the user with a saved selection, confirm their saved columns are retained."
+  ],
+  "expected": [
+   "With no saved column preference, Tech View uses the current production List default columns.",
+   "Existing saved List/Tech View column selections are kept."
+  ]
+ },
+ {
+  "id": 96980,
+  "title": "Board View default field set (total price gated by financial perm)",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "Open Board View as the new user.",
+   "Confirm the default fields: lead technician name, work order number, customer, unit number, asset, progress, total price, and status.",
+   "Repeat as a user without see-financial-data and confirm total price is absent while the rest remain."
+  ],
+  "expected": [
+   "Board View's default fields are lead technician name, work order number, customer, unit number, asset, progress, total price, and the mandatory status — with total price subject to financial permission."
+  ]
+ },
+ {
+  "id": 96981,
+  "title": "Field changes apply immediately with no page reload",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "Open the Fields picker.",
+   "Turn a field on and another off.",
+   "Confirm all visible cards update immediately without a reload."
+  ],
+  "expected": [
+   "Field changes apply immediately to all visible cards, with no page reload."
+  ]
+ },
+ {
+  "id": 96982,
+  "title": "Turning off every optional field keeps mandatory and unit fallback",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "Turn off every optional field.",
+   "Read the cards.",
+   "Confirm only mandatory fields remain, and the missing-unit card still shows the asset fallback."
+  ],
+  "expected": [
+   "If every optional field is turned off, only the mandatory fields and the missing-unit fallback remain."
+  ]
+ },
+ {
+  "id": 96983,
+  "title": "Field prefs that fail to load fall back to defaults; next is saved",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "With the field-preference read forced to fail, open the display.",
+   "Confirm it uses the default columns/fields for that display.",
+   "Make a new field selection and confirm it saves."
+  ],
+  "expected": [
+   "If field preferences cannot load, the current display uses its List/Tech View default columns or Board View default fields.",
+   "After a preference-load failure, your next field selection is saved."
+  ]
+ },
+ {
+  "id": 96984,
+  "title": "Missing unit uses asset fallback; both missing omits; a real zero is a value",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "View the four work orders.",
+   "Confirm (b) shows asset year/make/model where the unit would be;",
+   "confirm (c) omits that content;",
+   "confirm (d) shows the zero as a value, not as missing/blank."
+  ],
+  "expected": [
+   "If unit number is missing, the available asset year/make/model is shown in its place.",
+   "If both unit number and the fallback asset details are missing, that content is left out.",
+   "A genuine zero is shown as a value, not treated as missing."
+  ]
+ },
+ {
+  "id": 96985,
+  "title": "Optional fields with no value are left out",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "Enable several optional fields.",
+   "View a work order missing some of those values.",
+   "Confirm the empty optional fields are omitted rather than shown blank."
+  ],
+  "expected": [
+   "Optional fields with no value are left out."
+  ]
+ },
+ {
+  "id": 96986,
+  "title": "Without see-financial-data, all dollar fields stay hidden",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S5 — Choose what is shown (fields and columns)",
+  "steps": [
+   "Open List, Tech View, and Board View.",
+   "Confirm no dollar-amount fields appear in the displays, in filters, or in the field/column pickers.",
+   "Confirm a saved filter/field selection that included dollar values does not reveal them."
+  ],
+  "expected": [
+   "Without \"see financial data\" permission, all dollar-amount fields are hidden from displays, filters, and the field/column pickers.",
+   "Saved filters and field selections never reveal financial values when \"see financial data\" is off."
+  ]
+ },
+ {
+  "id": 96987,
+  "title": "Compact/Regular/Comfortable offered in Tech View and Board View, Regular default",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S6 — Density across the three displays",
+  "steps": [
+   "Open the Density control in List, Tech View, and Board View.",
+   "Confirm the three options Compact, Regular, Comfortable in each.",
+   "As the new user, confirm Regular is selected by default."
+  ],
+  "expected": [
+   "Compact, Regular and Comfortable density are offered in Tech View and Board View (not List).",
+   "Without a saved choice, Regular is the default."
+  ]
+ },
+ {
+  "id": 96988,
+  "title": "Density changes spacing/size only, never which fields/columns/values show",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S6 — Density across the three displays",
+  "steps": [
+   "Note the fields/columns and their values.",
+   "Switch density Compact -> Regular -> Comfortable.",
+   "Confirm spacing and element size change but the same fields/columns/values remain."
+  ],
+  "expected": [
+   "Density changes the spacing and the size of rows, cards, and their elements.",
+   "Changing density never changes which fields, columns, or values are shown."
+  ]
+ },
+ {
+  "id": 96989,
+  "title": "One density selection is shared between Tech View and Board View, and persists",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S6 — Density across the three displays",
+  "steps": [
+   "Set Comfortable in List.",
+   "Switch to Tech View and Board View and confirm Comfortable is applied.",
+   "Log out/in, open on a second device, and change location; confirm the density persists."
+  ],
+  "expected": [
+   "One density selection is shared between Tech View and Board View (List keeps today's row size).",
+   "The chosen density persists across sessions, logout/login and devices."
+  ]
+ },
+ {
+  "id": 96990,
+  "title": "Compact never shrinks text below the minimum body text size",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S6 — Density across the three displays",
+  "steps": [
+   "Set Compact density in each display.",
+   "Measure/compare the row and card text size.",
+   "Confirm it is not below the minimum body text size."
+  ],
+  "expected": [
+   "Compact density never shrinks text below the application's minimum body text size."
+  ]
+ },
+ {
+  "id": 96991,
+  "title": "A saved density that cannot load falls back to Regular",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S6 — Density across the three displays",
+  "steps": [
+   "With the density read forced to fail, open the Work Orders page.",
+   "Confirm Regular is applied."
+  ],
+  "expected": [
+   "If a saved density cannot be loaded, Regular is used."
+  ]
+ },
+ {
+  "id": 96992,
+  "title": "Density applies to Tech View rows and Board cards; List unchanged",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S6 — Density across the three displays",
+  "steps": [
+   "Change density on Work Orders.",
+   "Confirm List rows, Tech View rows, and Board cards change.",
+   "Open a different application table and confirm it is unaffected."
+  ],
+  "expected": [
+   "Density applies to Tech View rows and Board View cards on Work Orders.",
+   "List keeps today's row size and other application tables are unchanged."
+  ]
+ },
+ {
+  "id": 96993,
+  "title": "Avatar group on cards and the Tech View Assigned Techs column (not List)",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S7 — Line technicians on cards and rows",
+  "steps": [
+   "Enable line technicians on Board cards and view the Assigned Tech column in List/Tech View.",
+   "Find the work order.",
+   "Confirm the avatar group contains the lead plus the distinct line technicians."
+  ],
+  "expected": [
+   "Board View cards (when the line-technicians field is on) and a new optional Assigned Techs column in Tech View show a compact avatar group: the lead technician plus the distinct technicians assigned to lines.",
+   "List does not get this column."
+  ]
+ },
+ {
+  "id": 96994,
+  "title": "Lead is first and each technician appears once, even across several lines",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S7 — Line technicians on cards and rows",
+  "steps": [
+   "View the avatar group.",
+   "Confirm the lead is the first avatar.",
+   "Confirm the lead appears only once.",
+   "Confirm the multi-line technician appears only once."
+  ],
+  "expected": [
+   "The lead technician is placed first in the avatar group.",
+   "Each technician appears once, even when they are both the lead and assigned to lines.",
+   "A technician assigned to several lines of the same work order appears once."
+  ]
+ },
+ {
+  "id": 96995,
+  "title": "Overflow shows +N; every technician discoverable by hover",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S7 — Line technicians on cards and rows",
+  "steps": [
+   "View the avatar group with overflow.",
+   "Confirm the first avatars show followed by a +N indicator.",
+   "Hover each visible avatar (its own area) to see the name.",
+   "Confirm every involved technician is discoverable by name."
+  ],
+  "expected": [
+   "When there are more avatars than fit, the first avatars are shown followed by a \"+N\" overflow indicator.",
+   "Every involved technician stays discoverable by name.",
+   "Each visible avatar's own area is its hover target."
+  ]
+ },
+ {
+  "id": 96996,
+  "title": "The avatar field/column is blank only with no lead and no line technician",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S7 — Line technicians on cards and rows",
+  "steps": [
+   "View both work orders.",
+   "Confirm the avatar field/column is blank only for the one with no lead and no line technician."
+  ],
+  "expected": [
+   "The avatar field/column is blank only when there is no lead technician and no assigned line technician."
+  ]
+ },
+ {
+  "id": 96997,
+  "title": "The tech-story check mark is removed everywhere, incl. Simple Flow",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S8 — Remove the tech-story check-mark",
+  "steps": [
+   "Open the work order line list.",
+   "Confirm no check-mark indicator appears for the line with a tech story.",
+   "Open the Simple Flow tech-view mode and confirm the indicator is gone there too."
+  ],
+  "expected": [
+   "The check mark that appeared on a work-order line when a tech story was entered is gone everywhere it used to show, including the Simple Flow tech-view mode."
+  ]
+ },
+ {
+  "id": 96998,
+  "title": "Entering, editing and requiring a tech story still work; indicator gone",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S8 — Remove the tech-story check-mark",
+  "steps": [
+   "Enter a tech story on a line.",
+   "Edit it.",
+   "Confirm a required tech story is still enforced where configured.",
+   "Confirm all tech-story behaviour is unchanged apart from the missing indicator."
+  ],
+  "expected": [
+   "Entering, editing, and requiring a tech story work exactly as before; only the indicator is removed."
+  ]
+ },
+ {
+  "id": 96999,
+  "title": "Lines without a tech story look the same before and after",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S8 — Remove the tech-story check-mark",
+  "steps": [
+   "View a line with no tech story.",
+   "Confirm its appearance is unchanged by this release."
+  ],
+  "expected": [
+   "Lines that never had a tech story look the same before and after this change."
+  ]
+ },
+ {
+  "id": 97000,
+  "title": "No replacement required-tech-story indicator is introduced",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S8 — Remove the tech-story check-mark",
+  "steps": [
+   "Review the line list for any new tech-story indicator.",
+   "Confirm none was added by this change."
+  ],
+  "expected": [
+   "No replacement required-tech-story indicator is added by this change (any such indicator would need its own spec)."
+  ]
+ },
+ {
+  "id": 97001,
+  "title": "Drag work orders within and between technician groups/columns in both views",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "In Tech View, drag a work order to a different position within its group.",
+   "Drag a work order to another technician group.",
+   "Repeat both in Board View.",
+   "Confirm the drags are allowed."
+  ],
+  "expected": [
+   "You can drag work orders within a technician group/column and between technician groups/columns in Tech View and Board View."
+  ]
+ },
+ {
+  "id": 97002,
+  "title": "Between-tech drag reassigns the lead; to/from Unassigned toggles it",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "Drag a work order from technician A to technician B; confirm B becomes the lead (Story 4 rules).",
+   "Drag a work order to Unassigned; confirm its lead is removed.",
+   "Drag an unassigned work order onto a technician; confirm that technician becomes the lead."
+  ],
+  "expected": [
+   "Dragging a work order to another technician reassigns its lead under the Story 4 rules.",
+   "Dragging a work order to Unassigned removes its lead; dragging it out of Unassigned assigns the destination technician as lead."
+  ]
+ },
+ {
+  "id": 97003,
+  "title": "View users can reorder tech groups/columns; Unassigned stays fixed",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "As the view-only user, reorder two technician groups/columns.",
+   "Confirm the reorder is allowed.",
+   "Confirm Unassigned stays fixed during the reorder."
+  ],
+  "expected": [
+   "A user with Work Orders view permission can reorder technician groups/columns.",
+   "Unassigned stays fixed while technicians are being reordered."
+  ]
+ },
+ {
+  "id": 97004,
+  "title": "Pinned technicians reorder only within the pinned area",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "Reorder the pinned technicians and confirm they stay within the pinned area.",
+   "Try to move a pinned technician outside the pinned area and confirm it is not allowed.",
+   "Confirm no work order assignments changed from the reorder."
+  ],
+  "expected": [
+   "Pinned technicians can only be reordered within the pinned area.",
+   "Reordering technicians does not change any work order assignments."
+  ]
+ },
+ {
+  "id": 97005,
+  "title": "After reordering, the saved order is used and shared per location across views",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "Reorder work orders and technicians in Tech View.",
+   "Switch to Board View and confirm the same manual order.",
+   "Log out/in and open on a second device; confirm the manual order persists and is used instead of the initial sort."
+  ],
+  "expected": [
+   "Once anyone at the location has reordered a technician's work orders, that saved order is used instead of the initial sort; the manual order of work orders is saved once per location and everyone there sees the same order in both Tech View and Board View.",
+   "Technician group/column order is saved per user. If two people reorder at the same time, the later save wins; the other sees the saved order on next refresh and is not warned."
+  ]
+ },
+ {
+  "id": 97006,
+  "title": "Dragging does not change List's selected sort",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "Set a sort in List.",
+   "Reorder work in Tech View by dragging.",
+   "Return to List.",
+   "Confirm List's selected sort is unchanged."
+  ],
+  "expected": [
+   "Dragging does not change the sort you have selected in List."
+  ]
+ },
+ {
+  "id": 97007,
+  "title": "Newly eligible technicians append last; reassignment placement rules",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "Make a new technician eligible; confirm they appear after the existing unpinned technicians.",
+   "Assign a work order to a technician from the work order detail page.",
+   "Confirm that work order appears at the bottom of the destination technician's work in both Tech View and Board View."
+  ],
+  "expected": [
+   "A newly eligible technician (Clockable, Active, role not Office/Time Clock, enrolled at the location) is added after the existing unpinned technicians.",
+   "A work order given a new lead via the Reassign dialog or its detail page goes to the bottom of the new technician's work for everyone at the location; a dragged work order goes where it is dropped; removing the lead puts it at the bottom of Unassigned; a creat"
+  ]
+ },
+ {
+  "id": 97008,
+  "title": "Between-tech move uses Story 4 feedback; within-tech shows no toast",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "Drag a work order between technicians; confirm the Story 4 toast and header count updates.",
+   "Drag a work order to a new position within one technician; confirm the position changes with no reassignment toast and no assignment change."
+  ],
+  "expected": [
+   "A successful between-technician move uses Story 4's toast and count updates.",
+   "Reordering a work order within one technician changes only its position, with no assignment change and no reassignment toast."
+  ]
+ },
+ {
+  "id": 97009,
+  "title": "Permission and status restrictions apply to every work-order drag",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "As a view-only user, try to drag a work order and confirm it is blocked.",
+   "As a create-and-edit user, try to drag a prohibited-status work order and confirm it is blocked."
+  ],
+  "expected": [
+   "The Story 4 permission and status restrictions apply to every work-order drag."
+  ]
+ },
+ {
+  "id": 97010,
+  "title": "Inactive-destination and failure recovery apply to drag reassignment",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "Try to drag a work order onto an inactive technician and confirm it is refused.",
+   "With reassignment forced to fail, drag a work order to a valid technician and confirm the card returns to origin with the failure alert."
+  ],
+  "expected": [
+   "The inactive-destination restriction and the failure recovery from Story 4 apply to drag reassignment."
+  ]
+ },
+ {
+  "id": 97011,
+  "title": "A cancelled drag leaves order and assignment unchanged",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "Start dragging a work order and cancel the drag (drop outside / press Escape).",
+   "Confirm the order and the assignment are unchanged."
+  ],
+  "expected": [
+   "A cancelled drag leaves both the order and the assignment unchanged."
+  ]
+ },
+ {
+  "id": 97012,
+  "title": "Status/permission re-checked before a drop; unauthorized rejected",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "Begin dragging a work order.",
+   "Have its status become prohibited (or lose permission) before the drop.",
+   "Complete the drop.",
+   "Confirm the reassignment is re-checked and rejected."
+  ],
+  "expected": [
+   "If status or permission changes before a drop finishes, the move is re-checked and an unauthorized reassignment is rejected."
+  ]
+ },
+ {
+  "id": 97013,
+  "title": "Filtered reorder places by a visible anchor and keeps it on clear",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S9 — Drag to reorder work and technician groups/columns",
+  "steps": [
+   "With the filter showing A and C, move C immediately above A; clear the filter and confirm order C, A, B, D.",
+   "Reset to A, B, C, D; with the same filter move A immediately below C; clear the filter and confirm order B, C, A, D.",
+   "Confirm hidden items keep their relative order."
+  ],
+  "expected": [
+   "When reordering filtered results, the moved item is placed immediately before or after a visible unmoved anchor item.",
+   "That relative position is kept when the filters are cleared (per the confirmed filtered-order examples)."
+  ]
+ },
+ {
+  "id": 97020,
+  "title": "Keyboard access never bypasses permissions or status restrictions",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S11 — Keyboard access and focus",
+  "steps": [
+   "As a view-only user, try to reach and trigger drag/reassignment using only the keyboard.",
+   "Confirm the keyboard cannot perform an action the user lacks permission for.",
+   "As a create-and-edit user, try to reassign a prohibited-status work order by keyboard and confirm it is blocked."
+  ],
+  "expected": [
+   "Keyboard access never bypasses action permissions or work order status restrictions."
+  ]
+ },
+ {
+  "id": 97021,
+  "title": "Keyboard focus, navigation and actions on cards/rows (design-pending)",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S11 — Keyboard access and focus",
+  "steps": [
+   "Using the keyboard only, move focus into a card/row.",
+   "Navigate between cards/rows and technician groups/columns.",
+   "Press Enter and confirm the defined action.",
+   "Press Escape and confirm it cancels the interaction.",
+   "Open a dialog and close it; confirm focus returns to the defined place."
+  ],
+  "expected": [
+   "There is a defined, working way for keyboard focus to enter a work order card or row (exact keys per final design).",
+   "There is defined keyboard navigation between cards/rows and technician groups/columns (exact keys per final design).",
+   "Enter has a defined action (per final design).",
+   "Escape has a defined way to cancel an interaction (per final design)."
+  ]
+ },
+ {
+  "id": 97022,
+  "title": "Keyboard focus recovers when a WO leaves the filter (design-pending)",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S11 — Keyboard access and focus",
+  "steps": [
+   "With keyboard focus on a work order, cause it to leave the filter results; confirm focus recovers to the defined place.",
+   "With keyboard focus in a technician's area, deactivate that technician; confirm focus recovers to the defined place."
+  ],
+  "expected": [
+   "Keyboard focus recovers sensibly when a work order leaves the filter results (per final design).",
+   "Keyboard focus recovers sensibly when a technician becomes inactive (per final design)."
+  ]
+ },
+ {
+  "id": 97023,
+  "title": "Display-view event fires after load and on each switch, not on refresh",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S12 — Google Analytics for display and field usage",
+  "steps": [
+   "Load the Work Orders page and confirm one display-view event after it finishes loading.",
+   "Switch display option and switch filter view; confirm one event each.",
+   "Trigger an ordinary row refresh; confirm no new display-view event.",
+   "Confirm display, field, and density usage is being measured as Story 12 specifies (Story 5 defers measurement to Story 12)."
+  ],
+  "expected": [
+   "A display-view event is recorded once after the display finishes loading and once on each display or filter-view switch.",
+   "Ordinary row refreshes are not counted as new display views.",
+   "Display, field, and density usage is measured as specified in Story 12."
+  ]
+ },
+ {
+  "id": 97024,
+  "title": "Field-exposure snapshot recorded once per display per session",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S12 — Google Analytics for display and field usage",
+  "steps": [
+   "Load the page and confirm one field-exposure event per available field, including untouched defaults and restored preferences.",
+   "As the user without see-financial-data, confirm financial fields are not sent and are excluded from the exposure denominator."
+  ],
+  "expected": [
+   "The analytics snapshot of selected and unselected fields available to the user (including untouched defaults and restored preferences) is recorded once per display per session, the first time the user opens that display that session, not on every open.",
+   "Field changes are still recorded each time they are saved; unavailable financial fields are excluded."
+  ]
+ },
+ {
+  "id": 97025,
+  "title": "Field-change and density-change events fire only after successful saves",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S12 — Google Analytics for display and field usage",
+  "steps": [
+   "Change a field selection and let it save; confirm one field-change event per changed field.",
+   "Change density and let it save; confirm one density-change event.",
+   "Cancel a change and force a save to fail; confirm no successful-change events are sent."
+  ],
+  "expected": [
+   "A field-change event is recorded only after a field-selection save succeeds.",
+   "A density-change event is recorded only after a density save succeeds.",
+   "Cancelled or failed saves do not produce successful-change events."
+  ]
+ },
+ {
+  "id": 97026,
+  "title": "Cohorts are reported separately and defaults are never changed automatically",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S12 — Google Analytics for display and field usage",
+  "steps": [
+   "Open the analytics report.",
+   "Confirm default, saved, and fallback preference cohorts are reported separately.",
+   "Confirm the product defaults are not changed automatically based on the analytics."
+  ],
+  "expected": [
+   "Default, saved, and fallback preference cohorts are reported separately.",
+   "Product defaults are never changed automatically based on analytics."
+  ]
+ },
+ {
+  "id": 97027,
+  "title": "Events contain no record values or PII and reuse the existing analytics identity",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S12 — Google Analytics for display and field usage",
+  "steps": [
+   "Trigger the display, exposure, and change events.",
+   "Inspect the event parameters.",
+   "Confirm only predefined field keys and setting values are present — no names, identifiers, search text, or dollar amounts.",
+   "Confirm the existing analytics identity is reused and no new customer identifier is added."
+  ],
+  "expected": [
+   "Analytics may contain predefined field keys and setting values only — never displayed record values, names, identifiers, search text, or dollar amounts.",
+   "Analytics reuses the existing analytics identity and adds no new customer identifier."
+  ]
+ },
+ {
+  "id": 97028,
+  "title": "Analytics failure or opt-out never blocks the feature",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S12 — Google Analytics for display and field usage",
+  "steps": [
+   "Block analytics / opt out.",
+   "Load the page, change preferences, and reassign a lead.",
+   "Confirm loading, preference changes, and reassignment all still work."
+  ],
+  "expected": [
+   "An analytics failure, opt-out, or unavailability never blocks loading, preference changes, or reassignment."
+  ]
+ },
+ {
+  "id": 97029,
+  "title": "Analytics acceptance scenarios are all verified",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > S12 — Google Analytics for display and field usage",
+  "steps": [
+   "Verify events for: first use, restored preferences, fallback loading, explicit view changes, a successful save, a failed save, and financial-visibility-off.",
+   "Confirm each scenario produces the expected events (and none for financial fields when financial visibility is off)."
+  ],
+  "expected": [
+   "Analytics is verified for first use, restored preferences, fallback loading, view changes, successful and failed saves, and financial-visibility-off."
+  ]
+ },
+ {
+  "id": 97030,
+  "title": "Header counts are exact and consistent across List, Tech View, and Board View",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > Counts and data accuracy (Rule 116)",
+  "steps": [
+   "Under a fixed filter, count each technician's matching work orders by hand in List.",
+   "Open Tech View; confirm each group header count equals your hand count.",
+   "Open Board View; confirm each column header count equals the same number.",
+   "Confirm the Unassigned count equals the hand-counted work orders with no lead technician."
+  ],
+  "expected": [
+   "Each group header shows the technician's name, avatar, and the count of matching work orders.",
+   "Each column header shows the technician's name, avatar, and the count of matching work orders."
+  ]
+ },
+ {
+  "id": 97031,
+  "title": "Header counts stay exact after a reassignment (no double-count, no drift)",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > Counts and data accuracy (Rule 116)",
+  "steps": [
+   "Record the source and destination technician counts.",
+   "Reassign one work order between them.",
+   "Confirm the source count decreased by exactly one and the destination increased by exactly one.",
+   "Confirm the grand total across all groups/columns is unchanged."
+  ],
+  "expected": [
+   "The counts in column/group headers update immediately after a successful change."
+  ]
+ },
+ {
+  "id": 97032,
+  "title": "The N open dialog count is exact and counts the four included statuses",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > Counts and data accuracy (Rule 116)",
+  "steps": [
+   "Hand-count the technician's Approved + In Progress + Ready for Review + Complete work orders.",
+   "Open the Reassign dialog and read the technician's N open.",
+   "Confirm N equals the hand count exactly and that Estimate, Invoiced and Paid are not included."
+  ],
+  "expected": [
+   "Seed a known set of work orders across statuses; the dialog's \"N open\" equals exactly the number in Approved + In Progress + Ready for Review + Complete (other statuses excluded).",
+   "The count matches an independent hand count of those four statuses."
+  ]
+ },
+ {
+  "id": 97033,
+  "title": "Field selection rate is a pooled ratio (distinct selectors / exposed)",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > Counts and data accuracy (Rule 116)",
+  "steps": [
+   "For one field/display, from the events count the distinct users exposed to that available field and the distinct exposed users who selected it.",
+   "Compute the rate by hand as selectors / exposed (a single pooled ratio).",
+   "Confirm the report shows the same value and does NOT average per-user or per-day rates.",
+   "Confirm unavailable financial fields are excluded from both numerator and denominator."
+  ],
+  "expected": [
+   "Field selection rate is reported per field and display as distinct exposed users who selected the field divided by distinct users exposed to that available field."
+  ]
+ },
+ {
+  "id": 97034,
+  "title": "Density and weekly usage counted by distinct users, no double count",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > Counts and data accuracy (Rule 116)",
+  "steps": [
+   "For a seeded week, hand-count distinct users per display option and per density.",
+   "Confirm weekly display usage is reported by distinct users and matches your count.",
+   "Confirm the density distribution matches.",
+   "Confirm a single user who produced many events is counted once (no inflation of the user denominator)."
+  ],
+  "expected": [
+   "Weekly display usage is reported by distinct users.",
+   "Density distribution is reported.",
+   "Repeated events from one user do not count that user more than once."
+  ]
+ },
+ {
+  "id": 97035,
+  "title": "Event multiplicity and a sample reporting calculation reconcile end to end",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > Counts and data accuracy (Rule 116)",
+  "steps": [
+   "Run a small seeded scenario (loads, switches, saves).",
+   "Confirm the number of each event matches what the rules say should fire (multiplicity).",
+   "Pick one reported figure and recompute it by hand from the events.",
+   "Confirm the report matches the hand calculation."
+  ],
+  "expected": [
+   "Event multiplicity and sample reporting calculations are verified."
+  ]
+ },
+ {
+  "id": 154648,
+  "title": "Imported: board displays off and Imported disabled as a status filter",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > TP - Tech-plan coverage (Imported, mobile breakpoint, tenancy)",
+  "steps": [
+   "Open the Work Orders page and select the Imported filter view.",
+   "Look for the Board View and Tech View display options while Imported is selected.",
+   "In Tech View and Board View, open the Status filter and look for Imported as an option."
+  ],
+  "expected": [
+   "While Imported is selected, the Board View and Tech View display options are unavailable (only List is offered).",
+   "In Tech View and Board View, Imported is disabled as a Status-filter option."
+  ]
+ },
+ {
+  "id": 154649,
+  "title": "Below the desktop breakpoint the new displays are withheld",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > TP - Tech-plan coverage (Imported, mobile breakpoint, tenancy)",
+  "steps": [
+   "On a desktop-width screen, confirm the List, Tech View and Board View display options are offered.",
+   "Narrow the window below the desktop breakpoint (or open on a phone) and read the Work Orders page.",
+   "Look for the Tech View and Board View display options at that width."
+  ],
+  "expected": [
+   "Below the desktop breakpoint the Tech View and Board View displays are withheld and the page keeps today's mobile List (an interim state until the phone/tablet design exists - not the final V-2 requirement).",
+   "At desktop width all three displays are available again."
+  ]
+ },
+ {
+  "id": 154650,
+  "title": "New board/tech queries are scoped to organization and workplace",
+  "automated": false,
+  "folder": "WO Board and Tech View (Sep 2026) > TP - Tech-plan coverage (Imported, mobile breakpoint, tenancy)",
+  "steps": [
+   "As the organization-A user, try to load organization B's Board View / Tech View data by its addresses.",
+   "Attempt a reassignment supplying a technician id that belongs to organization B.",
+   "Note for the tester: server-side scoping and the organization-ownership check are developer/automated checks. By hand, confirm only that no organization-B data or technician is ever shown or accepted."
+  ],
+  "expected": [
+   "Every new Board View / Tech View query is scoped by both workplace and organization; a user in another organization or workplace cannot read the data.",
+   "An inbound technician id on a reassignment gets an organization-ownership check, so a technician from another organization is refused (eligibility remains the picker's job)."
+  ]
+ }
+]

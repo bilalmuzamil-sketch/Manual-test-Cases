@@ -3111,3 +3111,10 @@ Both suites updated to the 6 Oct specification, Plan 1 + Plan 2 and design MR_V2
 - **MR-5 · Three possible extra PO questions not on the sheet** (field length limits from Plan 1, a service-contents
   hover implied by Plan 2, what happens to today's older maintenance screens). **Solution:** say "add them" and they
   go on the sheet as questions 28–30 before it is sent.
+
+## 2026-10-07 — Plain-language titles across the last 3 weeks of work (QA lead: "Yes PERMANENT")
+- Rule 117 amended (titles a manual QA tester understands). Sweep: 1,088 of our cases reviewed, 765 retitled (title
+  only), list `build/title-sweep-2026-10-07/TITLE-SWEEP-CHANGES-2026-10-07.md`.
+- **90 retitled cases are Automated** — note for Vladimir Tomovic (Rule 65):
+  `build/title-sweep-2026-10-07/FOR-VLADIMIR-TITLES-2026-10-07.md`. **Solution:** the QA lead forwards it.
+- C204150 (Maintenance Reminders): the manual tester now creates the two extra organizations (QA lead decision).

@@ -1,0 +1,3210 @@
+[
+ {
+  "id": 44804,
+  "title": "Open the global search palette with the keyboard shortcut (⌘K / Ctrl+K)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " 1. A centered search box (a modal overlay, 640px wide) opens on top of the page, positioned 96px from the top — it is NOT anchored to the header field. 2. The page behind the box is dimmed.  3. The search input is focused so you can type right away, and shows"
+  ]
+ },
+ {
+  "id": 44805,
+  "title": "Open the global search palette by clicking the header search field",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " 1. A centered search box (a modal overlay, 640px wide) opens 96px from the top of the page — it is NOT anchored to the header field. 2. The page behind the box is dimmed.  3. The input is focused and shows the placeholder 'Search work orders, customers, parts"
+  ]
+ },
+ {
+  "id": 44806,
+  "title": "Close the palette with the Esc key",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " The search box closes. The dimming is removed and you are back on the page you were on.  Keyboard focus returns to the page (or the header search field).   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specifi"
+  ]
+ },
+ {
+  "id": 44807,
+  "title": "Toggle the palette closed by pressing the shortcut again (Cmd+K)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " The search box closes. The dimming is removed and you are back on the page.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.1 (Esc, clicking und"
+  ]
+ },
+ {
+  "id": 44808,
+  "title": "Close the palette by clicking the dimmed page behind it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " The search box closes. The dimming is removed and you are back on the page.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 5.1 (clicking the page"
+  ]
+ },
+ {
+  "id": 44809,
+  "title": "Move through result rows with the Up and Down arrow keys, skipping group headers",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " Each Down press moves the highlight to the next result row. Each Up press moves the highlight to the previous result row.  The highlight moves only across result rows - the group heading lines (for example 'Work orders (12)') are skipped and never get the hig"
+  ]
+ },
+ {
+  "id": 44810,
+  "title": "Open the highlighted result in the same tab by pressing Enter",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " The palette closes and the highlighted record opens in the same browser tab. You land on that record's page (for example the Work Order detail page).   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specificati"
+  ]
+ },
+ {
+  "id": 44811,
+  "title": "Open the highlighted result in a new browser tab with Cmd+Enter (Ctrl+Enter)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " The highlighted record opens in a NEW browser tab. The page you were on (and, per build behavior, the palette) remains in the original tab.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version"
+  ]
+ },
+ {
+  "id": 44812,
+  "title": "Move focus to the scope tab strip with Tab, then cycle tabs with Left and Right arrows",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " Pressing Tab moves keyboard focus onto the scope tab strip. Each Right arrow press moves to the next tab to the right; each Left arrow press moves to the previous tab.  Selecting a tab scopes the results to that entity type.  Focus does not leave the palette "
+  ]
+ },
+ {
+  "id": 44813,
+  "title": "The keyboard shortcut legend stays visible in the footer at all times",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [],
+  "expected": [
+   " The footer keyboard legend is visible in every state: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'. The legend does not disappear when results are showing or when the input is empty.   This is the expected behaviour as per e"
+  ]
+ },
+ {
+  "id": 137996,
+  "title": "The clear control appears only once you type, and empties the box without closing",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Palette Open, Close and Keyboard",
+  "steps": [
+   "With the search window open and nothing typed yet, look at the right-hand end of the search box. Note whether a small clear icon (an x) is showing inside it.",
+   "Be careful not to confuse it with \"Clear all\", which sits to the right of the \"Recent searches\" heading further down and belongs to your search history, not to the box.",
+   "Now type your word into the search box and wait for results.",
+   "Look at the right-hand end of the search box again. Note whether the clear icon is showing now.",
+   "Click the clear icon."
+  ],
+  "expected": [
+   "Before anything is typed, the clear icon is NOT shown inside the search box. (\"Clear all\" beside the Recent searches heading is a different control and may be there - it empties your search history, not the box.)",
+   "Once something has been typed, the clear icon appears at the right-hand end of the search box.",
+   "Clicking it empties the search box.",
+   "Clicking it does NOT close the search window - the window stays open, and the cursor stays in the box so you can type again immediately."
+  ]
+ },
+ {
+  "id": 44814,
+  "title": "The scope tab strip lists All plus the eight entity tabs in the exact order",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " 1. The tabs read, in this exact left-to-right order: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices. 2. There is no Contacts tab.  3. The 'All' tab is selected by default.  4. Each tab carries its total resul"
+  ]
+ },
+ {
+  "id": 44815,
+  "title": "The 'All' tab shows results from every entity group together",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " 1. Results from every matching entity type appear, each under its own group heading with a true count (for example 'Work Orders (12)', 'Customers (2)'). 2. Groups appear in this fixed order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase"
+  ]
+ },
+ {
+  "id": 44816,
+  "title": "The 'Work Orders' tab shows only Work Order results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " Only Work Order results are shown; other entity groups (Customers, Assets, Parts, Vendors, Part Sales) are hidden. The 'Work Orders' tab appears selected/active.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements"
+  ]
+ },
+ {
+  "id": 44817,
+  "title": "The 'Customers' tab shows only Customer results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " Only Customer results are shown; other entity groups are hidden. The 'Customers' tab appears selected/active.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 57697894"
+  ]
+ },
+ {
+  "id": 44818,
+  "title": "The 'Assets' tab shows only Asset (vehicle) results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " Only Asset results are shown; other entity groups are hidden. The 'Assets' tab appears selected/active.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), se"
+  ]
+ },
+ {
+  "id": 44819,
+  "title": "The 'Parts' tab shows only Part (inventory) results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " Only Part results are shown; other entity groups are hidden. The 'Parts' tab appears selected/active.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), sect"
+  ]
+ },
+ {
+  "id": 44820,
+  "title": "The 'Vendors' tab shows only Vendor results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " Only Vendor results are shown; other entity groups are hidden. The 'Vendors' tab appears selected/active.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), "
+  ]
+ },
+ {
+  "id": 44821,
+  "title": "The 'Part Sales' tab shows only Part Sales results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " Only Part Sales results are shown; other entity groups are hidden. The 'Part Sales' tab appears selected/active.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 57697"
+  ]
+ },
+ {
+  "id": 44822,
+  "title": "Selecting a scope tab shows only that entity's results with its count",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " 1. Selecting an entity scope tab scopes the query to that entity type only. 2. The scoped tab shows up to 20 rows, scrolled inside the modal - there is no pagination, no further loading, and no 'Show all' link inside the tab.  3. The scope tab's count never r"
+  ]
+ },
+ {
+  "id": 45129,
+  "title": "No Contacts tab or group appears; a contact match returns its company",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " 1. There is no 'Contacts' tab in the tab strip and no 'Contacts' group in the results. 2. The contact's parent company appears instead (the Customer row, or Vendor row), with a 'Contact match' note on its second line — even though the query did not match the "
+  ]
+ },
+ {
+  "id": 45130,
+  "title": "The 'Purchase Orders' tab shows only Purchase Order results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " Selecting the 'Purchase Orders' tab scopes the query to purchase orders only. The tab carries the true PO count; results show PO rows only (subject to permission).   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requiremen"
+  ]
+ },
+ {
+  "id": 45131,
+  "title": "The 'Vendor Invoices' tab shows only Vendor Invoice results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Scope Tabs",
+  "steps": [],
+  "expected": [
+   " Selecting the 'Vendor Invoices' tab scopes the query to vendor invoices only. The tab carries the true count; results show vendor-invoice rows only (subject to permission).   This is the expected behaviour as per epic SV-9160 and the Global Search - Product R"
+  ]
+ },
+ {
+  "id": 44823,
+  "title": "Each result group shows a heading with the total match count",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Grouped Results and Counts",
+  "steps": [],
+  "expected": [
+   " 1. Each group heading shows the entity name and its match count in parentheses, for example 'Work Orders (12)' and 'Customers (2)'. 2. The count never reads higher than 20 - a group with more than 20 matches shows the count as 20.   This is the expected behav"
+  ]
+ },
+ {
+  "id": 44824,
+  "title": "A group shows up to five results (raised from three)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Grouped Results and Counts",
+  "steps": [],
+  "expected": [
+   " The group shows at most five result rows. It does not show six or more rows inline (the old behavior was three - it is now five).   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Conf"
+  ]
+ },
+ {
+  "id": 44825,
+  "title": "A 'Show all' link appears when a group has more than five matches",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Grouped Results and Counts",
+  "steps": [],
+  "expected": [
+   " 1. When a result group has more than five matches, a 'Show all' link appears on that group's heading (for example 'Show all').  2. A group with five or fewer matches shows no 'Show all' link.  3. The 'Show all' link is available for every entity group, includ"
+  ]
+ },
+ {
+  "id": 44826,
+  "title": "Clicking 'Show all N' switches the modal to that entity's scope tab",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Grouped Results and Counts",
+  "steps": [],
+  "expected": [
+   " 1. The search modal stays open and switches to the Work Orders scope tab - you do not leave the modal, and no separate list page or full-page results screen opens. 2. The scoped tab shows up to 20 matching rows, scrolled inside the modal.  3. There is no pagi"
+  ]
+ },
+ {
+  "id": 44827,
+  "title": "Groups appear in the fixed order Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Grouped Results and Counts",
+  "steps": [],
+  "expected": [
+   " 1. The groups appear top to bottom in this order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices. 2. There is no Contacts group.  3. The order does not change based on how many matches each group has.   This is th"
+  ]
+ },
+ {
+  "id": 44828,
+  "title": "The typed text is highlighted inside each matching result",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Grouped Results and Counts",
+  "steps": [],
+  "expected": [
+   " The matched substring 'Fib' is visually highlighted (in the captures it is highlighted in yellow) inside the result's primary text. Only the matched portion is highlighted, not the whole row.   This is the expected behaviour as per epic SV-9160 and the Global"
+  ]
+ },
+ {
+  "id": 44829,
+  "title": "A screen reader announces the results count when it changes",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Grouped Results and Counts",
+  "steps": [],
+  "expected": [
+   " The screen reader announces the total results count when it changes, for example 'X results found across N categories'. Every interactive element (input, tabs, rows, links) has a visible focus ring when reached by keyboard.   This is the expected behaviour as"
+  ]
+ },
+ {
+  "id": 44830,
+  "title": "Group order follows the v2 eight-entity sequence; pinned top hit above groups",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Grouped Results and Counts",
+  "steps": [],
+  "expected": [
+   " 1. Group display order on 'All' is: Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices (no Contacts group). 2. Within each group, rows are sorted by score, most relevant first; ties break by most recent.  3. When the "
+  ]
+ },
+ {
+  "id": 53476,
+  "title": "No count in the search modal reads higher than 20",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Grouped Results and Counts",
+  "steps": [],
+  "expected": [
+   " 1. No count anywhere in the modal reads higher than 20 - not the scope tab (for example 'Work Orders (20)'), not the group heading, and not the 'Show all N' link ('Show all 20'). 2. A query matching 34 Work Orders shows 'Work Orders (20)' and 'Show all 20', n"
+  ]
+ },
+ {
+  "id": 44895,
+  "title": "A contact match returns its company row (Contacts are not a separate group)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Per-Entity Result Shape",
+  "steps": [],
+  "expected": [
+   " 1. There is no 'Contacts' group and no 'Contacts' tab — contacts are not a separate entity in v2. 2. The matching contact surfaces its parent company instead: the Customer row (or Vendor row) appears, with a 'Contact match' note on its second line.  3. The ta"
+  ]
+ },
+ {
+  "id": 44831,
+  "title": "A Work Order result row shows number + customer, status badge, and unit + year/make/model",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Per-Entity Result Shape",
+  "steps": [],
+  "expected": [
+   " 1. The main (bold) line shows the work order number and customer name (for example 'S1-644 Fibridge Commercial'). 2. A coloured status badge is shown (for example Approved, Estimate, Invoiced).  3. The second line shows the unit number and the year/make/model"
+  ]
+ },
+ {
+  "id": 44832,
+  "title": "A Customer result shows name, address and an open work-order count chip",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Per-Entity Result Shape",
+  "steps": [],
+  "expected": [
+   " The row shows the customer name as the main line (for example 'Fibridge Commercial'). An address line is shown as the secondary line (for example '923 Ross Islands, X1T 2B1').  A count chip is shown (the open work-order / document count, for example '12').  A"
+  ]
+ },
+ {
+  "id": 44833,
+  "title": "An Asset result shows year/make/model and the owning customer",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Per-Entity Result Shape",
+  "steps": [],
+  "expected": [
+   " The row shows year, make and model as the main line (for example '2025 Freightliner M2'). The owning customer name is shown as smaller secondary text (for example 'Bryan Smith').  A vehicle icon is shown on the left of the row.   This is the expected behaviou"
+  ]
+ },
+ {
+  "id": 44834,
+  "title": "A Part result shows description, part number and a quantity chip colored by stock level",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Per-Entity Result Shape",
+  "steps": [],
+  "expected": [
+   " The row shows the part description as the main line (for example 'Microfiber' or 'Rear Shock'). The part number is shown as the secondary line (for example '65547').  A total quantity chip is shown (for example '72').  The quantity chip is colored by stock st"
+  ]
+ },
+ {
+  "id": 44835,
+  "title": "A Vendor result shows the vendor name and address",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Per-Entity Result Shape",
+  "steps": [],
+  "expected": [
+   " The row shows the vendor name as the main line (for example 'Fibridge Mining'). An address line is shown as the secondary line.  A building icon is shown on the left of the row.   This is the expected behaviour as per epic SV-9160 and the Global Search - Prod"
+  ]
+ },
+ {
+  "id": 44836,
+  "title": "A Part Sale result shows the P-number, customer, status badge, total price and date",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Per-Entity Result Shape",
+  "steps": [],
+  "expected": [
+   " The row shows the P-number and customer name as the main line (for example 'P2-58 Toboro Industries'). A status badge is shown.  A total price and a created date are shown.  A label icon is shown on the left of the row.   This is the expected behaviour as per"
+  ]
+ },
+ {
+  "id": 44837,
+  "title": "A customer or vendor matched on a contact field shows 'Contact match'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Per-Entity Result Shape",
+  "steps": [],
+  "expected": [
+   " 1. The customer (or vendor) still appears in the results — matched via its contact's phone/email. 2. Its second line shows 'Contact match', showing the match was on a contact field rather than the company name.  3. There is no separate 'Contacts' group or row"
+  ]
+ },
+ {
+  "id": 44838,
+  "title": "Status and stock badges in search match the rest of the app",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Per-Entity Result Shape",
+  "steps": [
+   "Open Work Orders and search the toolbar for the customer named in the preconditions.",
+   "Open the Status menu and tick one status only, starting with Estimate.",
+   "Write down the colour shown in the Status column and the work order number of one of the rows.",
+   "Repeat steps 2 and 3 for every status in the menu in turn: Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported.",
+   "Press Ctrl+K, type the same customer name and click the Work orders tab."
+  ],
+  "expected": [
+   "every status keeps its own colour in the search, exactly as it appears on the Work Orders list;",
+   "two statuses a person needs to tell apart are never shown in the same colour;",
+   "a part's quantity keeps the colour the Parts list gives it - under-supplied, well-supplied and over-supplied each stay distinct."
+  ]
+ },
+ {
+  "id": 44839,
+  "title": "A misspelled name still finds the record - 'Petersn' finds 'Peterson'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The 'Peterson' record is found and shown, despite the typo. The matched part of the text is highlighted.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), s"
+  ]
+ },
+ {
+  "id": 44840,
+  "title": "A misspelled name still finds the record - 'Abrige' finds 'Aabridge'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The 'Aabridge' record is found and shown, despite the typo.  This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 1 + 10 Phase 5 (fuzzy query 'Abrige'), "
+  ]
+ },
+ {
+  "id": 44841,
+  "title": "A transposed-letters query still finds the record - 'frieghtliner' finds 'Freightliner'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The 'Freightliner' record is found and shown, despite the transposed letters.  This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 7 (Damerau-Levenshtei"
+  ]
+ },
+ {
+  "id": 44842,
+  "title": "A phonetically-similar name still finds the record - 'Filbridge' finds 'Fibridge'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The 'Fibridge' record is found and shown (matched by sound, as a last-resort phonetic match), likely lower in the ranking than an exact/near-exact match.  This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specific"
+  ]
+ },
+ {
+  "id": 44843,
+  "title": "A Work Order number matches exactly with or without the dash or a space",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " All three forms find the same Work Order 'S2-15430'. The Work Order number is treated as an identifier: it is normalized by stripping the dash/space, so 'S2-15430' equals 's215430'.  The match is exact (identifier), not fuzzy.   This is the expected behaviour"
+  ]
+ },
+ {
+  "id": 44844,
+  "title": "A VIN / serial number requires an exact match after normalization",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The exact VIN (case and spacing normalized) finds the matching asset / work order. A VIN with a wrong character does NOT return a fuzzy match - VINs are exact-only identifiers, no typo tolerance.   This is the expected behaviour as per epic SV-9160 and the Gl"
+  ]
+ },
+ {
+  "id": 44845,
+  "title": "A telephone number matches on digits only, ignoring formatting",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " 1. Both forms find the same customer — the phone is normalised to digits only, so '(264) 328-6723' equals '2643286723'. 2. The matched customer's second line shows 'Contact match' (matched on a contact field — the telephone — not the company name).   This is "
+  ]
+ },
+ {
+  "id": 44846,
+  "title": "A part number requires an exact match after normalization",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The exact part number finds the matching part. A part number with a wrong digit does NOT return a fuzzy match - part numbers are exact-only identifiers.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specific"
+  ]
+ },
+ {
+  "id": 44847,
+  "title": "Typos in identifier fields do NOT return fuzzy matches",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The real Work Order 'S2-15430' is NOT returned as a fuzzy match. Because identifier fields are exact-only, a one-digit-off WO number returns no fuzzy identifier match (it may show 'No results' if nothing else matches).   This is the expected behaviour as per "
+  ]
+ },
+ {
+  "id": 44848,
+  "title": "A soft (fuzzy) match is visually indicated",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The matched token is highlighted. A subtle soft-match indicator is shown for fuzzy matches (spec mentions a '≈' symbol or italic treatment).   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification versio"
+  ]
+ },
+ {
+  "id": 44849,
+  "title": "A Part Sale P-number requires an exact match (no fuzzy typo tolerance)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The exact P-number 'P2-58' finds the matching Part Sale. A one-digit-off P-number does NOT return the real Part Sale as a fuzzy match - P-numbers are exact-only identifiers, no typo tolerance (it may show 'No results' if nothing else matches).   This is the e"
+  ]
+ },
+ {
+  "id": 55713,
+  "title": "A very short query does not produce noisy fuzzy matches",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The 2 to 3 letter query does NOT surface the loose typo match: short queries need a closer match to count, so noisy 2 to 3 letter fuzzy matches are avoided. The longer query (4 or more letters) with the same single edit DOES return its fuzzy match.   This is "
+  ]
+ },
+ {
+  "id": 55714,
+  "title": "A Purchase Order number and a Vendor Invoice number require an exact match (no fuzzy tolerance)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " 1. The exact Purchase Order number finds the matching purchase order (the dash or a space is ignored). A one-character-off Purchase Order number does NOT return it as a typo match. 2. The exact Vendor Invoice number finds the matching vendor invoice. A one-ch"
+  ]
+ },
+ {
+  "id": 55715,
+  "title": "A misspelled word in a part's description still finds the part",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The part is still found through its description despite the typo, and the matched part of the text is highlighted. Typo tolerance applies to a part's description text, not only to names.   This is the expected behaviour as per epic SV-9160 and the Global Sear"
+  ]
+ },
+ {
+  "id": 55725,
+  "title": "A clearly unrelated query returns no close (fuzzy) match",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The record is NOT returned. Close (typo) matching only catches near-misses; a query that is too different returns no results, or only genuinely related records.  The search does not return unrelated records just because a few letters overlap.   This is the ex"
+  ]
+ },
+ {
+  "id": 55726,
+  "title": "An accented name matches with or without the accent",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " Both forms find the same customer. Accents are ignored for matching, so the accented and plain spellings match each other.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence "
+  ]
+ },
+ {
+  "id": 55727,
+  "title": "A name with a dash or apostrophe matches with or without it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " Both forms find the same record. Hyphens and apostrophes are optional in name matching, so 'OBrien' finds 'O'Brien' and 'Smith Jones' finds 'Smith-Jones'.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specif"
+  ]
+ },
+ {
+  "id": 55728,
+  "title": "Sound-alike matching applies to names only, not to part numbers or descriptions",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   " The part is NOT returned by the sound-alike. Sound-alike (phonetic) matching is reserved for customer, vendor and contact NAMES; it is never applied to part numbers or descriptions.  A genuine close-spelling typo of the description would still match (that is "
+  ]
+ },
+ {
+  "id": 96844,
+  "title": "A near spelling of a customer contact name is shown and marked as close",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   "\"When a match is fuzzy rather than exact, the matched token in the row is still highlighted, and a subtle ≈ or italicized treatment indicates the soft match.\""
+  ]
+ },
+ {
+  "id": 96845,
+  "title": "A near spelling of a Vendor contact name is shown and marked as close",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Fuzzy Matching",
+  "steps": [],
+  "expected": [
+   "\"When a match is fuzzy rather than exact, the matched token in the row is still highlighted, and a subtle ≈ or italicized treatment indicates the soft match.\""
+  ]
+ },
+ {
+  "id": 44850,
+  "title": "An exact identifier match is pinned as a single row at the very top",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "The record matched exactly on its identifier is pinned as a single row at the very top, above the grouped results, labelled with its entity icon.",
+   "This gives the 'type the number, jump straight to it' experience."
+  ]
+ },
+ {
+  "id": 44851,
+  "title": "Within a group, more relevant results appear first",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "Open/active and recently-updated work orders rank above old, closed ones.",
+   "Work orders assigned to, or recently viewed by, the signed-in user are boosted.",
+   "Closed or Invoiced work orders older than 90 days are pushed down.",
+   "Within a group, rows are ordered by score, most relevant first."
+  ]
+ },
+ {
+  "id": 44852,
+  "title": "In-stock parts rank above out-of-stock parts (out-of-stock not hidden)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "The in-stock part ranks above the out-of-stock part.",
+   "The out-of-stock part is still shown — out-of-stock parts are not demoted below relevance and are not hidden."
+  ]
+ },
+ {
+  "id": 44853,
+  "title": "On a Customer page, that customer's assets and work orders are boosted",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "Assets and work orders owned by the customer whose page you are on rank higher than they would from an unrelated page.",
+   "This is a single lightweight contextual-bias signal."
+  ]
+ },
+ {
+  "id": 44854,
+  "title": "On a Work Order page, parts already on that work order are pushed down",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "Parts already on the work order you are viewing are pushed down relative to other matching parts.",
+   "Other parts in the same category as the work order's existing parts get a small lift."
+  ]
+ },
+ {
+  "id": 45137,
+  "title": "Purchase Orders rank by Ordered status and recency",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "A Purchase Order still Ordered (not yet received) ranks above received ones.",
+   "More recently created POs rank above older ones (recency fades over about two weeks).",
+   "A PO created by the signed-in user gets a small extra lift."
+  ]
+ },
+ {
+  "id": 45138,
+  "title": "Vendor Invoices rank Unpaid first and by recency",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "An Unpaid vendor invoice ranks above paid ones.",
+   "A more recent invoice date ranks higher (recency fades over about a month)."
+  ]
+ },
+ {
+  "id": 45139,
+  "title": "A contact-field match scores as a secondary-field match on its company",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "A match on a contact field (name, phone or email) is treated as a secondary-field match on the parent company and does not get the primary-name bonus.",
+   "Contacts are not ranked or grouped on their own — the company row carries the result."
+  ]
+ },
+ {
+  "id": 55707,
+  "title": "A prefix name match ranks above a whole-word match, which ranks above a fuzzy match",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "The record whose name begins with the query ranks highest, a whole-word match ranks next, and a typo-only (fuzzy) match ranks lowest.",
+   "An exact identifier match, if present, would pin above all of them."
+  ]
+ },
+ {
+  "id": 55708,
+  "title": "Customers with an open work order and recently viewed rank higher",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "The customer that has an open work order and that you viewed recently ranks above the customer with neither.",
+   "Open work orders and a recent view both lift a customer up the list."
+  ]
+ },
+ {
+  "id": 55709,
+  "title": "Assets with an open work order (and recently viewed) rank higher",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "The asset attached to an open work order (and/or viewed recently) ranks above the other.",
+   "A newer model year only breaks a tie; it does not by itself outrank an open-work-order asset."
+  ]
+ },
+ {
+  "id": 55710,
+  "title": "Vendors with open purchase orders (and recently used) rank higher",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "The vendor with open purchase orders (and/or used recently) ranks above the vendor with none."
+  ]
+ },
+ {
+  "id": 55711,
+  "title": "Recent part sales, yours, and paid ones rank higher",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "A recently created part sale ranks well above an old one (the lift fades over roughly a week).",
+   "A part sale you created gets a small extra lift, and a Paid part sale gets a small lift."
+  ]
+ },
+ {
+  "id": 55712,
+  "title": "Recently sold and recently viewed parts rank higher",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "A part sold or used recently (and/or viewed recently) ranks above an equally-matching part with no recent activity.",
+   "A part that has a bin location gets a small extra lift."
+  ]
+ },
+ {
+  "id": 55716,
+  "title": "When two results are otherwise equal, the most recently updated one ranks first",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "When everything else is equal, the more recently updated record ranks first."
+  ]
+ },
+ {
+  "id": 55722,
+  "title": "A customer with more open work orders ranks above one with fewer",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "The customer with more open work orders ranks higher.",
+   "The effect is scaled, so a large gap in open-WO count matters more than a tiny one."
+  ]
+ },
+ {
+  "id": 55723,
+  "title": "A result matched on its name ranks above one matched only on a secondary field",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "A customer matched on its name ranks above a customer matched only on a secondary field.",
+   "A match on the primary display name carries a small bonus that a secondary-field match does not."
+  ]
+ },
+ {
+  "id": 55724,
+  "title": "Prefix name match ranks above a whole-word match with all other signals held equal",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "With all other signals equal, a name that begins with the query ranks first, a name that contains it as a whole word ranks second, and a typo-only match ranks last.",
+   "Order is decided purely by match strength: begins-with beats contains, which beats a typo."
+  ]
+ },
+ {
+  "id": 55729,
+  "title": "An exact identifier match is pinned at the very top even when a strong name match exists",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "The record matched on its exact identifier is pinned as the single row at the very top, above all groups, even when a strong name match for the same text also exists.",
+   "An exact identifier match effectively always wins and is shown first."
+  ]
+ },
+ {
+  "id": 55730,
+  "title": "A matching record ranked below the top 20 is not shown until the query is narrowed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "On a broad query the scope tab shows at most 20 rows and a low-ranked target is not shown (no pagination, no load-more).",
+   "After narrowing the query the target appears; reaching a record beyond the top 20 means narrowing the query, and ranking decides what is reachable."
+  ]
+ },
+ {
+  "id": 72120,
+  "title": "Parts tab: a part whose name begins with the query ranks above one that only contains it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "On the Parts tab, a part whose description begins with the query ranks above one that only contains it, with a typo-only match last.",
+   "The begins-with part is credited more strongly than the contains part; nothing else differs, so match strength alone decides the order."
+  ]
+ },
+ {
+  "id": 72121,
+  "title": "Vendors tab: a vendor whose name begins with the query ranks above one that only contains it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "On the Vendors tab, a vendor whose name begins with the query ranks above one that only contains it, with a typo-only match last.",
+   "Match strength alone decides the order."
+  ]
+ },
+ {
+  "id": 72122,
+  "title": "Assets tab: a vehicle whose name begins with the query ranks above one that only contains it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Ranking and Prioritization",
+  "steps": [],
+  "expected": [
+   "On the Assets tab, a vehicle whose name begins with the query ranks above one that only contains it, with a typo-only match last.",
+   "Match strength alone decides the order."
+  ]
+ },
+ {
+  "id": 44855,
+  "title": "First-time empty state shows the placeholder and a single helper line (no quick-create buttons)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Empty and First-Time State",
+  "steps": [],
+  "expected": [
+   " 1. The input shows the placeholder 'Search work orders, customers, parts and more' (no 'ask a question' / AI wording — AI is out of scope in v1). 2. Below the input there is a single helper line and NO quick-create buttons. The helper line reads 'Search for s"
+  ]
+ },
+ {
+  "id": 44856,
+  "title": "The first-time and no-results states offer no quick-create buttons",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Empty and First-Time State",
+  "steps": [],
+  "expected": [
+   " 1. Neither the first-time empty state nor the no-results state shows any quick-create buttons ('New work order', 'New customer', 'New inventory part' are not present). 2. The first-time state shows only the helper line; the no-results state shows only the 'No"
+  ]
+ },
+ {
+  "id": 44857,
+  "title": "Recent activity is grouped under Today, Yesterday, Past week and Past 30 days",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Recent Activity Default State",
+  "steps": [],
+  "expected": [
+   " Instead of the first-time helper text, the palette shows your recent activity. Rows are grouped under time headings: 'Today', 'Yesterday', 'Past week', 'Past 30 days'.  Each row is a previously opened record (not just a previous search word).   This is the ex"
+  ]
+ },
+ {
+  "id": 44858,
+  "title": "Recent activity mixes different entity types using the same row template",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Recent Activity Default State",
+  "steps": [],
+  "expected": [
+   " Recent rows include a mix of entity types (for example a Work Order, an Asset, a Customer, a Part, a Vendor). Each recent row uses the same row template as a normal result row (icon, primary line, secondary line, status/quantity cluster).  Example rows: WO 'S"
+  ]
+ },
+ {
+  "id": 44859,
+  "title": "Clicking a recent item opens that record",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Recent Activity Default State",
+  "steps": [],
+  "expected": [
+   " The palette closes and the clicked record opens. Opening the record refreshes its position in recent activity (it is 'touched').   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confl"
+  ]
+ },
+ {
+  "id": 44860,
+  "title": "Recent-entities API records views and serves a deduped, permission-filtered list",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Recent Activity Default State",
+  "steps": [],
+  "expected": [
+   " Viewing an entity (a result click or a direct entity-page visit) records it via the recent-entities touch. The empty-input recents list is per-user and per-tenant, retained 30 days, and is permission-filtered on read.  The list is deduplicated: re-viewing an "
+  ]
+ },
+ {
+  "id": 45128,
+  "title": "Clear all empties the history and returns to the first-time state",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Recent Activity Default State",
+  "steps": [],
+  "expected": [
+   " 1. The first recent-activity group header carries a 'Clear all' action. 2. Selecting 'Clear all' empties the entire recent-search history.  3. After clearing, the panel falls back to the first-time state — the placeholder and the single 'Search for something'"
+  ]
+ },
+ {
+  "id": 44861,
+  "title": "The typed query is retained in the header search field after the palette closes",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Persisting Query",
+  "steps": [],
+  "expected": [
+   " When the modal closes (either by Esc or by navigating to a result), the most recent query string is preserved in the header search field as plain text.  Reopening the modal restores the query, the scope tab, and the result list, and pre-selects the query text"
+  ]
+ },
+ {
+  "id": 44862,
+  "title": "Reopening the palette restores the last query, scope tab and result list",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Persisting Query",
+  "steps": [],
+  "expected": [
+   " The palette reopens with the last query 'Fibridge' already in the input. The previously selected scope tab is restored.  The result list for that query is shown again.  The query text may appear selected/highlighted in the input so it can be replaced by typin"
+  ]
+ },
+ {
+  "id": 44863,
+  "title": "The persisted query can be cleared with the clear (x) button",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Persisting Query",
+  "steps": [],
+  "expected": [
+   " 1. The search box is cleared to empty. 2. The results clear and the palette returns to the empty / recent-activity state, showing the placeholder 'Search work orders, customers, parts and more' (no 'ask a question' / AI wording — AI is out of scope in v1).  3"
+  ]
+ },
+ {
+  "id": 44864,
+  "title": "No matches shows only a 'No results for [query]' message (no quick-create)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > No-Results State",
+  "steps": [],
+  "expected": [
+   " 1. A centered message reads 'No results for '<query>'' (the exact query is echoed in quotes), plus ' in <Tab>' when a scope tab other than All is active. 2. Nothing else is shown below the message — there are no quick-create buttons ('New work order', 'New cu"
+  ]
+ },
+ {
+  "id": 44865,
+  "title": "No-results in a scoped tab reads 'No results for [query] in [Tab]'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > No-Results State",
+  "steps": [],
+  "expected": [
+   " 1. The centered message reads 'No results for '<query>' in <Tab>' — the active scope tab's name is appended after ' in '. 2. Nothing else is shown — there are no quick-create buttons (removed in v1.3); the footer keyboard legend remains visible.   This is the"
+  ]
+ },
+ {
+  "id": 44874,
+  "title": "Searching the in-page Work Orders list filters the list, with the term in the search box",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > In-Page Work Orders List Search",
+  "steps": [],
+  "expected": [
+   " 1. The Work Orders list filters to only the rows matching the term. 2. The term stays in the list's search box - there is no separate 'Showing N ... matching' banner.  3. The list columns remain: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, P"
+  ]
+ },
+ {
+  "id": 44875,
+  "title": "Clearing the in-page Work Orders search restores the full list",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > In-Page Work Orders List Search",
+  "steps": [],
+  "expected": [
+   " 1. The filter is removed and the full Work Orders list is shown again. 2. There is no banner to dismiss - clearing the search box is what restores the list.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements spec"
+  ]
+ },
+ {
+  "id": 44876,
+  "title": "A search failure shows the 'Search unavailable, retry' banner",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Error State",
+  "steps": [],
+  "expected": [
+   " 1. An inline banner reads 'Search unavailable, retry'. 2. The palette degrades gracefully — it does not crash or show a blank screen.  3. Retrying after connectivity is restored re-runs the search and shows results.   This is the expected behaviour as per epi"
+  ]
+ },
+ {
+  "id": 44877,
+  "title": "A user WITH Parts access sees Parts results in the palette",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " A 'Parts' group appears with matching part rows.  The 'Parts' scope tab shows the part results.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 (Confluence page 576978945), section 9 "
+  ]
+ },
+ {
+  "id": 44878,
+  "title": "A technician WITHOUT Parts access does NOT see Parts results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " No 'Parts' group appears and no part rows are shown.  The user cannot see part results they are not permitted to access, even though those parts exist.  Results for entity types the user CAN access still appear normally.   This is the expected behaviour as pe"
+  ]
+ },
+ {
+  "id": 44879,
+  "title": "A user WITHOUT Work Orders access does NOT see Work Order results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " No 'Work orders' group appears and no Work Order rows are shown.  Results for entity types the user CAN access still appear normally.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification version 1.5 ("
+  ]
+ },
+ {
+  "id": 44880,
+  "title": "Results are limited to the signed-in user's own tenant",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " Only records belonging to your own tenant/organization are returned.  No records from any other tenant are shown (tenant isolation is respected).   This is the expected behaviour as per epic SV-9160 and the Global Search - Product Requirements specification v"
+  ]
+ },
+ {
+  "id": 44881,
+  "title": "An entity type with no accessible records shows no group (and its scope tab shows the empty state)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " On the 'All' tab, no group appears for the entity type that has zero accessible results (the empty group is simply not shown).  Groups for the entity types that do have matches still appear normally.  The empty entity type's scope tab shows its empty / no-res"
+  ]
+ },
+ {
+  "id": 44882,
+  "title": "Permission bundles hide whole groups, their counts and tabs; prices masked without financial access",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " 1. Permission filtering follows the eight-entity bundle mapping: Work Orders → Work Orders: View; Part Sales → Part Sales: View; Customers and Assets → Customers: View; Parts → Catalog & Inventory: View; Vendors, Purchase Orders and Vendor Invoices → Vendor &"
+  ]
+ },
+ {
+  "id": 55702,
+  "title": "A user WITH Work Orders access sees Work Order results in the palette",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " A 'Work orders' group appears with matching work-order rows and its count.  The 'Work Orders' scope tab shows the same results. A permitted user is NOT wrongly hidden their own work orders.   This is the expected behaviour as per epic SV-9160 and the Global S"
+  ]
+ },
+ {
+  "id": 55703,
+  "title": "A user WITH Customers access sees Customer and Asset results in the palette",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " A 'Customers' group AND an 'Assets' group both appear with matching rows and counts.  Their scope tabs show the results. The 'Customers: View' bundle gates Customers and Assets together, so a permitted user must see BOTH.   This is the expected behaviour as p"
+  ]
+ },
+ {
+  "id": 55704,
+  "title": "A user WITH Part Sales access sees Part Sale results in the palette",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " A 'Part Sales' group appears with matching part-sale rows and its count.  The 'Part Sales' scope tab shows the same results. A permitted user is not wrongly hidden their part sales.   This is the expected behaviour as per epic SV-9160 and the Global Search - "
+  ]
+ },
+ {
+  "id": 55705,
+  "title": "A user WITH Vendor & Order Management access sees Vendor, Purchase Order and Vendor Invoice results",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " A 'Vendors' group, a 'Purchase Orders' group AND a 'Vendor Invoices' group all appear with rows and counts.  Their scope tabs show the results. The one 'Vendor & Order Management: View' bundle gates all three, so a permitted user must see all three.   This is"
+  ]
+ },
+ {
+  "id": 55706,
+  "title": "A user WITH See Financial Data sees prices in search result rows",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " With 'See Financial Data', the money fields shown inside result rows display their real values and none is masked: the part-sale total price, the purchase-order total, and the vendor-invoice total.  This is the positive inverse of the masking rule: with the p"
+  ]
+ },
+ {
+  "id": 55717,
+  "title": "The recent-searches list only shows records the person can currently access",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " The record the person can no longer access does NOT appear in the recent-searches list. The recent list obeys the person's current access, exactly as live search results do.   This is the expected behaviour as per epic SV-9160 and the Global Search - Product "
+  ]
+ },
+ {
+  "id": 55718,
+  "title": "Typing the exact number of a record you cannot access does not surface it (no pinned top hit)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " The work order you are not allowed to see is NOT shown: it is not pinned as the single row at the top, and it is not in any group.  The exact-number match still obeys access. Typing the exact number of a record you cannot see does not surface it (you get no r"
+  ]
+ },
+ {
+  "id": 55719,
+  "title": "A contact-field match is hidden when you cannot access its parent company",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " No customer row appears for that contact match. A contact match returns the COMPANY row, and because you cannot see customers, that company is hidden — the contact does not leak it.  A user WHO CAN see customers would see that company row labelled as a contac"
+  ]
+ },
+ {
+  "id": 55720,
+  "title": "A role missing several access areas hides all of them together and keeps the rest",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " Every area the role lacks is hidden together: no group, no count and no scope tab appears for any of them (for the example, neither Work Orders nor Vendors / Purchase Orders / Vendor Invoices).  The areas the role still has appear normally, with correct count"
+  ]
+ },
+ {
+  "id": 55721,
+  "title": "A typo search does not leak a record you cannot access",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " The part you are not allowed to see is NOT returned by the typo match. Access is applied to fuzzy matches too, not only to exact matches.  Records you ARE allowed to see still fuzzy-match normally.   This is the expected behaviour as per epic SV-9160 and the "
+  ]
+ },
+ {
+  "id": 55731,
+  "title": "Flipping only Parts access shows then hides the same part in search",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " With access, the seeded part appears in the 'Parts' group and its scope tab.  Without access, the SAME part is gone: no 'Parts' group, no row, no count for it.  Nothing else changed between the two runs, so the record can only have disappeared because the per"
+  ]
+ },
+ {
+  "id": 55732,
+  "title": "Flipping only Work Orders access shows then hides the same work order",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " With access, the seeded work order appears in the 'Work orders' group and its scope tab.  Without access, the SAME work order is gone: no group, no row, no count for it.  Nothing else changed between the two runs, so the record can only have disappeared becau"
+  ]
+ },
+ {
+  "id": 55733,
+  "title": "Flipping only Customers access shows then hides the same customer and its vehicle",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " With access, BOTH the seeded customer (Customers group) AND its vehicle (Assets group) appear.  Without access, BOTH the SAME customer and the SAME vehicle are gone — the one bundle gates them together.  Nothing else changed between the two runs, so the recor"
+  ]
+ },
+ {
+  "id": 55734,
+  "title": "Flipping only Part Sales access shows then hides the same part sale",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " With access, the seeded part sale appears in the 'Part Sales' group and its scope tab.  Without access, the SAME part sale is gone: no group, no row, no count for it.  Nothing else changed between the two runs, so the record can only have disappeared because "
+  ]
+ },
+ {
+  "id": 55735,
+  "title": "Flipping only Vendor & Order Management access hides the same vendor, PO and invoice",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [],
+  "expected": [
+   " With access, the seeded vendor, its purchase order AND its vendor invoice all appear in their three groups.  Without access, all THREE of the SAME records are gone — the one bundle gates all three together.  Nothing else changed between the two runs, so the r"
+  ]
+ },
+ {
+  "id": 55736,
+  "title": "Removing See Financial Data hides the total on a Vendor invoice row but keeps the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [
+   "Signed in as the role WITH \"See Financial Data\", type the word and open the \"Vendor invoices\" tab.",
+   "Read the first row and note the total shown on it, and the invoice number next to it.",
+   "Move the same person to the role WITHOUT \"See Financial Data\" and sign in again.",
+   "Type the SAME word, open the \"Vendor invoices\" tab and find the SAME invoice number."
+  ],
+  "expected": [
+   " With the See Financial Data permission, the vendor-invoice row shows its invoice number and vendor, its status, and its total.  Without the See Financial Data permission, the same vendor-invoice row still appears with its invoice number, vendor and status, bu"
+  ]
+ },
+ {
+  "id": 55737,
+  "title": "Records a person cannot see are not counted in any heading, tab or total",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Permissions and Role-Based Scoping",
+  "steps": [
+   "Signed in as the role WITH the access area, type the word.",
+   "On the \"All\" tab, write down the number shown on the \"All\" tab itself, and the number shown on each group heading and on each tab in the strip.",
+   "Move the same person to the role WITHOUT that access area and sign in again.",
+   "Type the SAME word and read the same numbers again."
+  ],
+  "expected": [
+   " For a kind of record the person is allowed to see: that kind has its own group heading and its own scope tab, each showing its result count, and its results are included on the All tab.  For a kind of record the person is not allowed to see: no group, no coun"
+  ]
+ },
+ {
+  "id": 44896,
+  "title": "SV-9306 Obsoleted - WO, Parts and Customers list search via the new engine",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Page-Search Cutover (v2)",
+  "steps": [],
+  "expected": [
+   " The in-page list search on the Work Orders, Inventory Parts and Customers pages is served by the same unified search engine, with identical matching (normalisation, identifier parsing, fuzzy) to global search. Results respect the same tenant isolation and per"
+  ]
+ },
+ {
+  "id": 44897,
+  "title": "Old global-search path is removed on direct rollout (no feature flag)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Page-Search Cutover (v2)",
+  "steps": [],
+  "expected": [
+   " Global Search v2 ships for everyone with no feature flag. The old GET /api/global-search/fetch endpoint, its handler and the client-side filtering are removed after stabilisation.  The 3-result-per-category dropdown behaviour is replaced entirely by the modal"
+  ]
+ },
+ {
+  "id": 44898,
+  "title": "Global search works on mobile/tablet viewports per the mobile design",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Mobile Global Search (v2)",
+  "steps": [],
+  "expected": [
+   " 1. The global search is a full-screen screen on mobile (not a centered modal), matching the Mobile Global Search design, with no horizontal scroll.  2. Scope selection is a horizontal chip row that appears only once there is a query, and lists only the entity"
+  ]
+ },
+ {
+  "id": 45132,
+  "title": "On mobile the search is a full-screen surface with a Cancel action",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Mobile Global Search (v2)",
+  "steps": [],
+  "expected": [
+   " On a phone the search is a full-screen screen that replaces the page, not a centered modal.  The top bar shows a 'Cancel' action next to the input.  The placeholder copy is ' Search work orders, parts... '.  There is no keyboard-hints footer on mobile.   This"
+  ]
+ },
+ {
+  "id": 45133,
+  "title": "On mobile the scope chip row appears only with a query and lists matched types",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Mobile Global Search (v2)",
+  "steps": [],
+  "expected": [
+   " Scope selection on mobile is a horizontal chip row. The chip row appears only once there is a query.  It lists only the entity types that actually matched, each with its count, so the row stays short.   This is the expected behaviour as per epic SV-9160 and t"
+  ]
+ },
+ {
+  "id": 45135,
+  "title": "Mobile first-time, recent and no-results states match web (no quick-create buttons)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Mobile Global Search (v2)",
+  "steps": [],
+  "expected": [
+   " 1. The first-time, recent-searches and no-results states match the web states. 2. There are no quick-create buttons (they were removed in v1.3); the first-time state shows only the helper line.  3. 'Clear all' behaves as on web: clearing the history returns t"
+  ]
+ },
+ {
+  "id": 44899,
+  "title": "Purchase Orders searchable; real number format; Receive quick action",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Purchase Orders Entity (v2)",
+  "steps": [],
+  "expected": [
+   " Purchase Orders appear as their own searchable entity, grouped under a 'Purchase Orders' heading with a true count and a scope tab (subject to permission). A PO row carries the package icon; the primary line shows the PO number + vendor, and the row shows a s"
+  ]
+ },
+ {
+  "id": 44900,
+  "title": "Vendor Invoices are searchable with a tri-state payment badge and no quick action",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Vendor Invoices Entity (v2)",
+  "steps": [],
+  "expected": [
+   " 1. Vendor Invoices appear as their own searchable entity, grouped under a 'Vendor Invoices' heading with a count and a scope tab (subject to permission). 2. A vendor-invoice row carries the file-text icon; the primary line shows the invoice number + vendor, w"
+  ]
+ },
+ {
+  "id": 45140,
+  "title": "SV-9167 Obsoleted - Search telemetry (impression/click logging) out of v1 scope",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search - Out of V1 Scope (not tested this release)",
+  "steps": [],
+  "expected": [
+   " 1. EXCLUDED FROM V1 — not tested in this release. Search telemetry (the search_event schema and impression/click logging described in PRD §6.4) has been deferred out of v1. 2. The owning story SV-9167 has been moved to a later release, and engineering removed"
+  ]
+ },
+ {
+  "id": 45142,
+  "title": "Work Orders results appear only for users with Work Orders access",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " User A sees Work Order results. User B sees NO Work Order results (the Work Orders group does not appear for them). No other change to what each user can otherwise see.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is "
+  ]
+ },
+ {
+  "id": 45143,
+  "title": "A Part-Sales-only role sees Part Sales but not Parts or Vendors",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " 1. Part Sale results appear. 2. NO Part results appear. 3. NO Vendor results appear.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product reposito"
+  ]
+ },
+ {
+  "id": 45144,
+  "title": "Part results appear only with Catalog & Inventory access",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " 1. User A sees Part results. 2. User B sees NO Part results. 3. A Part result, when opened, shows the inventory part (on-hand quantity and stock status), not the catalogue entry.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION."
+  ]
+ },
+ {
+  "id": 45145,
+  "title": "Vendor results appear only with Vendor & Order Management access",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " User A sees Vendor results. User B sees NO Vendor results.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repository at commit  55767168 , F"
+  ]
+ },
+ {
+  "id": 45146,
+  "title": "Customer and Asset results both require Customers access",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " User A sees Customer results and Asset results. User B sees NEITHER Customer nor Asset results.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView produ"
+  ]
+ },
+ {
+  "id": 45147,
+  "title": "A Time Clock role gets no global search results at all",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " No results of any type are shown to the Time Clock user - the result set is entirely empty.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product r"
+  ]
+ },
+ {
+  "id": 45148,
+  "title": "An unrecognised result type is hidden unless explicitly permitted",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Any result type that is not explicitly permitted is NOT shown (the default is hide, not show).  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView produc"
+  ]
+ },
+ {
+  "id": 45149,
+  "title": "Recent items the user can no longer access are hidden",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The no-longer-permitted record does NOT appear in recent activity.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repository at commit  5576"
+  ]
+ },
+ {
+  "id": 45150,
+  "title": "Results never include another organization's records",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Only Org X records appear. No Org Y record is ever shown.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repository at commit  55767168 , Fe"
+  ]
+ },
+ {
+  "id": 45151,
+  "title": "Work Orders and Part Sales are limited to the current location",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Work Order and Part Sale results are limited to the CURRENT location (Location 1). Customer, Asset, Vendor and Part results are org-wide (not limited to the current location).  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  T"
+  ]
+ },
+ {
+  "id": 45152,
+  "title": "Switching location refreshes results to the new location",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " After switching, the Work Order / Part Sale results reflect Location 2, not Location 1.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repos"
+  ]
+ },
+ {
+  "id": 45153,
+  "title": "Selecting each result type opens the right record",
+  "automated": true,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " 1. Work Order opens the work order page. Part Sale opens the part sale page. Customer opens that customer's work-orders page. Asset opens that asset's work-orders page, for the correct owning customer. Vendor opens the vendor page. 2.  A Part opens a part rec"
+  ]
+ },
+ {
+  "id": 45154,
+  "title": "Selecting the record you are already on does not re-navigate",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The page does not navigate/reload to the same record again (and it is not re-added to recent activity).  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopVi"
+  ]
+ },
+ {
+  "id": 45155,
+  "title": "The vehicles group is shown to users as 'Assets'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The group is labelled 'Assets' to the user (never the internal name 'Vehicles').  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repository a"
+  ]
+ },
+ {
+  "id": 45156,
+  "title": "The keyboard shortcut opens global search",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Global search opens / the search field is focused, ready to type.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repository at commit  55767"
+  ]
+ },
+ {
+  "id": 45157,
+  "title": "A record that matches more than once appears only once",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The record appears only once in the results (it is not listed twice).  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repository at commit  5"
+  ]
+ },
+ {
+  "id": 45158,
+  "title": "Global search is available with no feature-flag toggle",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Global search is available to every permitted user - there is no feature flag or toggle gating it.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView pr"
+  ]
+ },
+ {
+  "id": 45160,
+  "title": "Selecting a result records a usage analytics event",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " A usage analytics event is recorded when a result is selected.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repository at commit  55767168"
+  ]
+ },
+ {
+  "id": 45161,
+  "title": "Search needs at least two characters before it matches",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " With one character, no matching search runs (recent activity may show instead). Matching begins at two characters.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself :"
+  ]
+ },
+ {
+  "id": 53516,
+  "title": "Searching an asset's licence plate finds that asset",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [
+   "Open global search from the top navigation bar.",
+   "Type the asset's FULL licence plate: OHZZT471. (If that returns nothing at all, check the plate on the asset record itself - open the asset ZZT-4471 and read the licence plate field - because the seed",
+   "Look at the results list."
+  ],
+  "expected": [
+   "The asset appears in the results.",
+   "It appears under the group heading 'Assets'.",
+   "The result row identifies the asset (its year, make and model), with the owning customer shown alongside it.",
+   "This is the expected behaviour based on the EXISTING behaviour BEFORE the V2 deployment (the V1 regression baseline), not on assumption.Traceable source: INV-92 - ShopView/shopview@5576716 - FetchDataQueryHandler.php:292, where licence_plate is concatenated in"
+  ]
+ },
+ {
+  "id": 53578,
+  "title": "Finding a work order by its customer's name still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The seeded customer's work orders are listed under the Work Orders group. You did not need to know any work order number to find them.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the"
+  ]
+ },
+ {
+  "id": 53579,
+  "title": "A work order number with the shop number in front still finds it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Every form finds the same seeded work order and none returns 'No results'.  All five forms in steps 3 to 7 must find the SAME job.  Those five are the exact forms the old version wrote into its searchable text: the number as stored, and the shop number insert"
+  ]
+ },
+ {
+  "id": 53580,
+  "title": "Finding an asset by its unit number still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The seeded asset is listed under the Assets group. This is about SEARCHING by unit number. It is not enough for the unit number to appear on a result row - the search itself must match it.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPEC"
+  ]
+ },
+ {
+  "id": 53581,
+  "title": "Finding an asset by the customer who owns it still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The seeded asset appears under the Assets group, found by its owner's name.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repository at com"
+  ]
+ },
+ {
+  "id": 53582,
+  "title": "Finding a customer by address, city or postal code still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Steps 2, 3 and 4 each return the seeded customer. These three fields are indexed by the V2 specification, so a miss there is a defect. Step 5, postal code, returned the customer in V1. If it does not in V2, RUN THIS TEST - do not skip it. If it fails, mark th"
+  ]
+ },
+ {
+  "id": 53583,
+  "title": "Finding a customer by their website still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The seeded customer is returned. If not, record and flag it - the V2 specification omits website entirely from the Customer indexed fields, so this may be a deliberate scope cut. It worked in the previous version, so it has to work here - failing is a fault a"
+  ]
+ },
+ {
+  "id": 53584,
+  "title": "Finding a vendor by email address still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The seeded vendor is returned under the Vendors group.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2 SPECIFICATION.  This is the expected behaviour as per  the V1 product itself : the ShopView product repository at commit  55767168 , Fetch"
+  ]
+ },
+ {
+  "id": 53585,
+  "title": "Finding a vendor by address, city or postal code still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Steps 2 and 3 each return the seeded vendor. Vendor address and city are indexed by the V2 specification, so a miss there is a defect. Step 4, postal code, returned the vendor in V1. If it does not in V2, RUN THIS TEST - do not skip it. If it fails, mark the "
+  ]
+ },
+ {
+  "id": 53586,
+  "title": "A newly created customer is findable within 30 seconds",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The customer you just created is returned. Allow up to 30 seconds for it to appear - that is the specified index refresh window, not a bug. No sign-out and no re-login is needed. The record also appears under Recent searches, because creating a record counts "
+  ]
+ },
+ {
+  "id": 53587,
+  "title": "A new work order or part sale is findable within 30 seconds",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Each newly created record is returned by search. Allow up to 30 seconds for each to appear - that is the specified index refresh window, not a bug. No page refresh or sign-out is needed in any of the three flows.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1,"
+  ]
+ },
+ {
+  "id": 53588,
+  "title": "More recent work orders rank above older ones of equal relevance",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Among work orders that match equally well and share the same status, the more recently updated one is listed above the older one. A closed or invoiced work order older than 90 days is pushed down the list. Do NOT expect a strict newest-first date order. Other"
+  ]
+ },
+ {
+  "id": 53589,
+  "title": "Typing is never lost while search results are loading",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Every character you typed is still in the input box - nothing is swallowed while a search is in flight. The results shown at the end match the FULL text in the input, not an earlier half-typed version of it. While results are being fetched the modal does not "
+  ]
+ },
+ {
+  "id": 53601,
+  "title": "A catalogue part that is not in inventory can still be found",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Both searches return the catalogue part 'ZZAUTOTEST Airline Coupler Vernway'. THIS IS THE HIGHEST-RISK DIFFERENCE BETWEEN V1 AND V2. In V1 every catalogue part was searchable whether or not it had ever been stocked. V2 searches Parts (Inventory). If the part "
+  ]
+ },
+ {
+  "id": 53602,
+  "title": "Finding a customer by their name with the spaces removed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 also returns the customer, confirming the record itself is searchable. In V1 the customer name was indexed twice, once as typed and once with every space removed, so a run-together name match"
+  ]
+ },
+ {
+  "id": 53603,
+  "title": "Finding a customer or vendor by a contact's job title",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The customer 'ZZAUTOTEST Bridgeport Hauling' is returned, carrying the 'Contact match' label. In V1 the contact's job title was part of the customer's searchable text. If it fails, record and flag it - the V2 specification lists contact names, telephone numbe"
+  ]
+ },
+ {
+  "id": 53604,
+  "title": "Finding a customer or vendor by address line 2",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Step 2 returns the customer 'ZZAUTOTEST Bridgeport Hauling'. Step 4 returns the vendor 'ZZAUTOTEST Kestrel Parts Supply'. Address line 2 is searchable in its own right, not only address line 1.  ---  SOURCE - THIS CASE IS TESTED AGAINST V1, NOT AGAINST THE V2"
+  ]
+ },
+ {
+  "id": 53605,
+  "title": "Finding an asset by its year and make typed together",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The 2019 Freightliner Cascadia is returned under the Assets group. In V1 this matched on the row's visible name. The name shown for an asset is its year, make and model in that order - '2019 Freightliner Cascadia' - and the old version also matched anything y"
+  ]
+ },
+ {
+  "id": 53606,
+  "title": "Finding a vendor by state or province",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The vendor 'ZZAUTOTEST Kestrel Parts Supply' is returned under the Vendors group. If it fails, record and flag it - the V2 specification lists vendor name, telephone, email, address and city but not state or province. It worked in the previous version, so it "
+  ]
+ },
+ {
+  "id": 53607,
+  "title": "Finding a part by its description",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Both searches return the part 'ZZAUTOTEST Brake Chamber Kestrel'. A part is findable by the words in its description, not only by its part number. This is the most common way a parts person searches, so a failure here is high impact.  ---  SOURCE - THIS CASE "
+  ]
+ },
+ {
+  "id": 55659,
+  "title": "Finding a record by typing only part of its number still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Each search returns its record: 17597 returns work order S-17597, 4412 returns the brake chamber part, and 4471 returns the asset. In V1 the second matching pass looked for the typed text ANYWHERE inside the record's search text, so a fragment of any number f"
+  ]
+ },
+ {
+  "id": 55660,
+  "title": "Finding a record by a fragment from the middle of a word still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " All three searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. In V1 the typed text was matched anywhere inside the record's search text, so a fragment from the middle of any word found the record. V2 scores similarity instead, and a short fragment c"
+  ]
+ },
+ {
+  "id": 55661,
+  "title": "Every matching type still appears when a search matches many records",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Every type that has a match is represented on the All tab. No matching type is missing from the All view. In V1 each type was given its own slots (up to three) and there was no overall limit, so if six types matched, all six were shown. V2 caps the whole resu"
+  ]
+ },
+ {
+  "id": 55662,
+  "title": "Finding a customer by the company's own main phone number",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. The result is matched on the COMPANY record, so it should not be labelled as a contact match. In V1 the company's own telephone was searchable in its own right, separately from its contacts' n"
+  ]
+ },
+ {
+  "id": 55663,
+  "title": "Finding a vendor by phone number",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Both forms return the vendor 'ZZAUTOTEST Kestrel Parts Supply'. In V1 a vendor could be found by its phone number just as a customer could. The existing phone-number case in the suite uses a CUSTOMER, so the vendor side was never covered.  IF THIS FAILS:  it "
+  ]
+ },
+ {
+  "id": 55664,
+  "title": "Finding an asset by its model",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The asset '2019 Freightliner Cascadia' is returned. In V1 both the make and the model were searchable. A separate case, C55688, types the MAKE on its own; this one covers the MODEL.  IF THIS FAILS:  it is a real V1-to-V2 capability loss. Mark the test FAILED "
+  ]
+ },
+ {
+  "id": 55665,
+  "title": "Finding a part sale by its customer's name",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The part sale for 'ZZAUTOTEST Bridgeport Hauling' is returned under Part sales. In V1 work orders and part sales were produced by the same query and both carried the customer name in their search text, so typing the customer found both. The suite has a case f"
+  ]
+ },
+ {
+  "id": 55666,
+  "title": "Finding a part by its part number still works",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Both forms return the part 'ZZAUTOTEST Brake Chamber Kestrel'. In V1 a part was searchable by its part number with the dashes and without them - the number was stored twice in the search text for exactly that reason. Typing a part number is the normal way a p"
+  ]
+ },
+ {
+  "id": 55667,
+  "title": "Finding a customer by company name",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. This is the most basic thing global search does and the control for every other customer case on this suite - if this fails, nothing else about customers can be trusted.  IF THIS FAILS:  it is"
+  ]
+ },
+ {
+  "id": 55668,
+  "title": "Finding a vendor by name",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Both searches return the vendor 'ZZAUTOTEST Kestrel Parts Supply' under Vendors. Note the word Kestrel also appears on a part and on the customer address - the vendor must still be returned in its own group, not swallowed by the others.  IF THIS FAILS:  it is"
+  ]
+ },
+ {
+  "id": 55669,
+  "title": "Finding an asset by its VIN, in full and in part",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Both searches return the asset. In V1 the VIN was matched anywhere inside the record's search text, so the whole VIN and any piece of it both worked - a technician reading the last six characters off a windscreen plate could find the vehicle.  THIS CASE IS EX"
+  ]
+ },
+ {
+  "id": 55670,
+  "title": "Finding a customer or vendor by a contact's name or phone number",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Both searches return the customer 'ZZAUTOTEST Bridgeport Hauling'. Steps 6 to 9 must also return the same customer - both the whole dashed number and just the last part of it.  A contact's own direct line was searchable in V1 too, and so was any PART of it  -"
+  ]
+ },
+ {
+  "id": 55671,
+  "title": "Search finds records whatever mix of capitals is typed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " All three return the same customer. In V1 both the typed text and the record text were put into lower case before matching, so capitals never mattered. Nobody types a company name with the right capitals.  IF THIS FAILS:  it is a real V1-to-V2 capability loss"
+  ]
+ },
+ {
+  "id": 55672,
+  "title": "Finding a work order by its plain number with no prefix",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The work order S-17597 is returned. In V1 the plain number was stored as a searchable value in its own right, separately from the formatted number - it was not merely a fragment that happened to match. So typing the bare number was a supported way to find a w"
+  ]
+ },
+ {
+  "id": 55673,
+  "title": "Pressing Enter opens the top result without arrowing to it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The top result opens. In V1 the first selectable result was highlighted automatically as soon as results appeared, so type-then-Enter went straight to the record. If Enter does nothing until you press a Down arrow first, that is a step added to the single mos"
+  ]
+ },
+ {
+  "id": 55674,
+  "title": "Search can be reached on a phone and a tablet as well as a desktop",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " At all three sizes search can be reached and returns the customer. In V1 search was always visible on desktop and tablet, and on a phone it appeared when you tapped a search icon. Technicians work from phones in the yard, so losing search at phone width remov"
+  ]
+ },
+ {
+  "id": 55675,
+  "title": "A search that matches nothing says so plainly",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " A clear no-results message is shown. The list does not simply sit empty, and it does not keep showing a spinner or the previous results. In V1 the no-results message appeared only after at least two characters had been typed and nothing matched - so an empty "
+  ]
+ },
+ {
+  "id": 55679,
+  "title": "RETIRED - Your recent items come back when a search finds nothing",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Your recent items are shown again once the search finds nothing, so you can click straight back to something you were working on. In V1 the recent list reappeared automatically whenever a search returned no matches - a fruitless search never left you at a dea"
+  ]
+ },
+ {
+  "id": 55680,
+  "title": "Arrow keys move between results and skip the group headings",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Only RESULT ROWS are ever highlighted. The group headings - 'Customers', 'Assets', 'Vendors' - are stepped over and never become the highlighted item, going down or coming back up. In V1 the headings were not selectable, so arrowing through results never land"
+  ]
+ },
+ {
+  "id": 55682,
+  "title": "Each result row shows an icon telling you what kind of record it is",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Every result row shows a small icon on its left, and the icon differs by record type so you can tell at a glance what each row is. In V1 each type had its own icon: a building for a customer, a contact card for a contact match, a truck for an asset, a shopfro"
+  ]
+ },
+ {
+  "id": 55683,
+  "title": "The keyboard shortcut is shown in the search box so people can find it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " The keyboard shortcut is visible on the search box on a desktop-width screen, and it shows the RIGHT one for the machine you are on - the Command symbol with K on a Mac, Ctrl+K on Windows. Hovering explains what it does. In V1 this hint was deliberately shown"
+  ]
+ },
+ {
+  "id": 55685,
+  "title": "Typing a name does not bring back other differently spelled names",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   " Every record that comes back contains the word you typed.  ZZAUTOTEST Marlene Freight Lines  is there.  ZZAUTOTEST Darlene Cartage  is NOT - you did not type Darlene. In V1 search compared the letters you typed against the letters in the record. A record came"
+  ]
+ },
+ {
+  "id": 55686,
+  "title": "The record that actually matches what you typed is listed first",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   "  ZZAUTOTEST Marlene Freight Lines  - the record that genuinely contains what you typed - is at the TOP of the Customers group, above  ZZAUTOTEST Darlene Cartage  and above any other near-spelling. Pressing Enter opens Marlene Freight Lines. In V1 the results "
+  ]
+ },
+ {
+  "id": 55688,
+  "title": "Finding an asset by its make on its own",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   "  Every vehicle listed in the Assets group is a Freightliner , and the group is not empty. That is what proves the search looked at the vehicle's make. In V1 the make was part of what a vehicle could be found by, in its own right - alongside the year, the mode"
+  ]
+ },
+ {
+  "id": 55689,
+  "title": "Finding an asset by its year on its own",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression Suite",
+  "steps": [],
+  "expected": [
+   "  The vehicles listed in the Assets group are 2019 vehicles , and the group is not empty. That is what proves the search looked at the vehicle's year. In V1 the year was part of what a vehicle could be found by, in its own right.   WHAT COUNTS AS A FAILURE, an"
+  ]
+ },
+ {
+  "id": 44866,
+  "title": "Hovering a Work Order result shows an 'Add new line' action",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Quick Actions on Hover (v1)",
+  "steps": [],
+  "expected": [
+   " 1. On hover, a right-aligned 'Add new line' button appears on the Work Order row. 2. 'Add new line' acts on the work order the user is currently editing elsewhere in the app; it is shown unconditionally (it does not disappear when no work order is being edite"
+  ]
+ },
+ {
+  "id": 44867,
+  "title": "Hovering an Asset result shows 'New work order' plus history and invoices icons",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Quick Actions on Hover (v1)",
+  "steps": [],
+  "expected": [
+   " 1. On hover, a 'New work order' button appears, plus two secondary icon buttons: a history (clock) icon and an invoices icon. 2. The actions are non-destructive and are also reachable from the asset's own record and by keyboard. --- This is the expected behav"
+  ]
+ },
+ {
+  "id": 44868,
+  "title": "Hovering a Customer result shows 'New work order' and 'New contact'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Quick Actions on Hover (v1)",
+  "steps": [],
+  "expected": [
+   " 1. On hover, a 'New work order' button and a 'New contact' button appear on the Customer row. 2. The actions are non-destructive and are also reachable from the customer's own record and by keyboard. --- This is the expected behaviour as per epic SV-9160 and "
+  ]
+ },
+ {
+  "id": 44869,
+  "title": "Hovering a Part result shows only 'View part history'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Quick Actions on Hover (v1)",
+  "steps": [],
+  "expected": [
+   " 1. On hover, the Part row shows a single quick action: 'View part history'. 2. 'Add to work order' and 'Add part' are not offered on the Part row. 3. Clicking the Part row itself opens the INVENTORY part (on-hand quantity and stock status), not the catalogue "
+  ]
+ },
+ {
+  "id": 44870,
+  "title": "Hovering a Vendor result shows 'Add contact'",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Quick Actions on Hover (v1)",
+  "steps": [],
+  "expected": [
+   " 1. On hover, an 'Add contact' button appears on the Vendor row. 2. The action is non-destructive and is also reachable from the vendor's own record and by keyboard. --- This is the expected behaviour as per epic SV-9160 and the Global Search - Product Require"
+  ]
+ },
+ {
+  "id": 44871,
+  "title": "A Part row shows only 'View part history', even while editing a work order",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Quick Actions on Hover (v1)",
+  "steps": [],
+  "expected": [
+   " 1. Even while you are editing a work order elsewhere, the Part row's only quick action is 'View part history'. 2. There is no 'Add to work order' button on the Part row - that action was dropped. 3. The action is non-destructive and is also reachable from the"
+  ]
+ },
+ {
+  "id": 44872,
+  "title": "Quick actions never trigger a destructive operation",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Quick Actions on Hover (v1)",
+  "steps": [],
+  "expected": [
+   " 1. Every quick action offered is an add/create-style action — none deletes, voids, or otherwise destroys data. 2. Every quick action is also reachable from the entity's own record, so hover is non-essential, and each has a keyboard path. --- This is the expec"
+  ]
+ },
+ {
+  "id": 44873,
+  "title": "Quick actions on hover are shown for each entity (v1)",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Quick Actions on Hover (v1)",
+  "steps": [],
+  "expected": [
+   " 1. On hover, a quick-action button appears on the right of the row for each entity that has one - shown unconditionally (there is no state that hides the action for an entity that has one). 2. The actions by entity are: Work Order to 'Add new line'; Customer "
+  ]
+ },
+ {
+  "id": 55684,
+  "title": "After switching location you never see the old location's records",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Global Search V2 - V1 Regression (derived from V1 automated tests)",
+  "steps": [],
+  "expected": [
+   " After the switch, the Heavy Duty work orders are gone and they are never shown even for a moment while the new results are loading. The customer itself still appears at both locations - customers belong to the whole company - but its WORK ORDERS belong to Hea"
+  ]
+ },
+ {
+  "id": 146197,
+  "title": "SRI-WO-A1 — The whole matched value is shown, not just what you typed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " Each row shows the COMPLETE WO number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.3: \"Every row h"
+  ]
+ },
+ {
+  "id": 146198,
+  "title": "SRI-WO-A2 — A long value is not cut off through the part that matched",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick"
+  ]
+ },
+ {
+  "id": 146199,
+  "title": "SRI-WO-A3 — The highlight marks the match inside the text, not instead of it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " The full text is on the row and the matched part is highlighted within it — exactly like the example in the requirement, where typing \"Fib\" shows the whole of \"S1-644 Fibridge Commercial\" with \"Fib\" marked.  --- SOURCE — quoted verbatim from PRD v1.5, section"
+  ]
+ },
+ {
+  "id": 146200,
+  "title": "SRI-WO-B1 — Two records sharing what you typed can be told apart",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " You can say which row is which from the rows alone. Two rows that read the same is a FAIL — and note that the right number of rows does not rescue it.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick the right "
+  ]
+ },
+ {
+  "id": 146201,
+  "title": "SRI-WO-B2 — Two records with the same bold line differ somewhere you can see",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " Something visible differs — the second line, a badge, a number. Two identical rows is a FAIL; write down both records and what actually differs between them in the data.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context"
+  ]
+ },
+ {
+  "id": 146202,
+  "title": "SRI-WO-C1 — A match on VIN / serial number shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146204,
+  "title": "SRI-WO-C3 — A match on service advisor name shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146205,
+  "title": "SRI-WO-C4 — A match on line item descriptions (parts and labor on the WO) shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146206,
+  "title": "SRI-WO-C5 — A match on part numbers on the work order's lines (`item_part_numbers`) shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146207,
+  "title": "SRI-WO-D1 — The Work Orders row shows everything the specification promised",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"Displayed: WO number + customer name (primary), status badge, **unit number + year/make/m"
+  ]
+ },
+ {
+  "id": 146208,
+  "title": "SRI-WO-I1 — A corrected typo says that it corrected something",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " The matched word is highlighted AND carries the \"≈\" mark or italics that says it is a close match. A corrected typo that looks exactly like an exact match is a FAIL.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"When a match is fuzzy rather than ex"
+  ]
+ },
+ {
+  "id": 195898,
+  "title": "SRI-WO-C2 — A match on lead technician name shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Work Orders",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146209,
+  "title": "SRI-CUST-A1 — The whole matched value is shown, not just what you typed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " Each row shows the COMPLETE telephone, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.3: \"Every row h"
+  ]
+ },
+ {
+  "id": 146210,
+  "title": "SRI-CUST-A2 — A long value is not cut off through the part that matched",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick"
+  ]
+ },
+ {
+  "id": 146211,
+  "title": "SRI-CUST-A3 — The highlight marks the match inside the text, not instead of it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The full text is on the row and the matched part is highlighted within it — exactly like the example in the requirement, where typing \"Fib\" shows the whole of \"S1-644 Fibridge Commercial\" with \"Fib\" marked.  --- SOURCE — quoted verbatim from PRD v1.5, section"
+  ]
+ },
+ {
+  "id": 146212,
+  "title": "SRI-CUST-B1 — Two records sharing what you typed can be told apart",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " You can say which row is which from the rows alone. Two rows that read the same is a FAIL — and note that the right number of rows does not rescue it.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick the right "
+  ]
+ },
+ {
+  "id": 146213,
+  "title": "SRI-CUST-B2 — Two records with the same bold line differ somewhere you can see",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " Something visible differs — the second line, a badge, a number. Two identical rows is a FAIL; write down both records and what actually differs between them in the data.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context"
+  ]
+ },
+ {
+  "id": 146214,
+  "title": "SRI-CUST-C1 — A match on the customer's own telephone shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146215,
+  "title": "SRI-CUST-C2 — A match on a contact's telephone shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146216,
+  "title": "SRI-CUST-C3 — A match on a contact's email address shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146217,
+  "title": "SRI-CUST-C4 — A match on a contact's name shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146218,
+  "title": "SRI-CUST-C5 — A match on address line 2 shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146220,
+  "title": "SRI-CUST-C7 — A match on state / province shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146221,
+  "title": "SRI-CUST-C8 — A match on postal code shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146222,
+  "title": "SRI-CUST-D1 — The Customers row shows everything the specification promised",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"Displayed: customer name (primary), address line, open WO count badge (e.g. `12`), teleph"
+  ]
+ },
+ {
+  "id": 146223,
+  "title": "SRI-CUST-I1 — A corrected typo says that it corrected something",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The matched word is highlighted AND carries the \"≈\" mark or italics that says it is a close match. A corrected typo that looks exactly like an exact match is a FAIL.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"When a match is fuzzy rather than ex"
+  ]
+ },
+ {
+  "id": 146390,
+  "title": "SRI-CUST-C9 — Two people with the same name at one customer — which one matched?",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " ONE customer row comes back, reading \"Contact match: ZZDUALREP\" — but the customer holds TWO people with that name. Record whether anything on the row tells you which person matched.  One row is correct: the specification says contacts are not a result group "
+  ]
+ },
+ {
+  "id": 195899,
+  "title": "SRI-CUST-C6 — A match on city shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Customers",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146224,
+  "title": "SRI-ASSET-A1 — The whole matched value is shown, not just what you typed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Assets",
+  "steps": [],
+  "expected": [
+   " Each row shows the COMPLETE unit number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.3: \"Every row"
+  ]
+ },
+ {
+  "id": 146225,
+  "title": "SRI-ASSET-A2 — A long value is not cut off through the part that matched",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Assets",
+  "steps": [],
+  "expected": [
+   " You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick"
+  ]
+ },
+ {
+  "id": 146226,
+  "title": "SRI-ASSET-A3 — The highlight marks the match inside the text, not instead of it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Assets",
+  "steps": [],
+  "expected": [
+   " The full text is on the row and the matched part is highlighted within it — exactly like the example in the requirement, where typing \"Fib\" shows the whole of \"S1-644 Fibridge Commercial\" with \"Fib\" marked.  --- SOURCE — quoted verbatim from PRD v1.5, section"
+  ]
+ },
+ {
+  "id": 146227,
+  "title": "SRI-ASSET-B1 — Two records sharing what you typed can be told apart",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Assets",
+  "steps": [],
+  "expected": [
+   " You can say which row is which from the rows alone. Two rows that read the same is a FAIL — and note that the right number of rows does not rescue it.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick the right "
+  ]
+ },
+ {
+  "id": 146228,
+  "title": "SRI-ASSET-B2 — Two records with the same bold line differ somewhere you can see",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Assets",
+  "steps": [],
+  "expected": [
+   " Something visible differs — the second line, a badge, a number. Two identical rows is a FAIL; write down both records and what actually differs between them in the data.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context"
+  ]
+ },
+ {
+  "id": 146229,
+  "title": "SRI-ASSET-C1 — A match on VIN / serial number shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Assets",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146230,
+  "title": "SRI-ASSET-C2 — A match on licence plate shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Assets",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146231,
+  "title": "SRI-ASSET-D1 — The Assets row shows everything the specification promised",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Assets",
+  "steps": [],
+  "expected": [
+   " Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"Displayed: year + make + model (primary), customer name (secondary, smaller).\"  This case"
+  ]
+ },
+ {
+  "id": 146232,
+  "title": "SRI-ASSET-I1 — A corrected typo says that it corrected something",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Assets",
+  "steps": [],
+  "expected": [
+   " The matched word is highlighted AND carries the \"≈\" mark or italics that says it is a close match. A corrected typo that looks exactly like an exact match is a FAIL.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"When a match is fuzzy rather than ex"
+  ]
+ },
+ {
+  "id": 146233,
+  "title": "SRI-PART-A1 — The whole matched value is shown, not just what you typed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " Each row shows the COMPLETE part number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.3: \"Every row"
+  ]
+ },
+ {
+  "id": 146234,
+  "title": "SRI-PART-A2 — A long value is not cut off through the part that matched",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick"
+  ]
+ },
+ {
+  "id": 146235,
+  "title": "SRI-PART-A3 — The highlight marks the match inside the text, not instead of it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " The full text is on the row and the matched part is highlighted within it — exactly like the example in the requirement, where typing \"Fib\" shows the whole of \"S1-644 Fibridge Commercial\" with \"Fib\" marked.  --- SOURCE — quoted verbatim from PRD v1.5, section"
+  ]
+ },
+ {
+  "id": 146236,
+  "title": "SRI-PART-B1 — Two records sharing what you typed can be told apart",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " You can say which row is which from the rows alone. Two rows that read the same is a FAIL — and note that the right number of rows does not rescue it.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick the right "
+  ]
+ },
+ {
+  "id": 146237,
+  "title": "SRI-PART-B2 — Two records with the same bold line differ somewhere you can see",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " Something visible differs — the second line, a badge, a number. Two identical rows is a FAIL; write down both records and what actually differs between them in the data.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context"
+  ]
+ },
+ {
+  "id": 146238,
+  "title": "SRI-PART-C1 — A match on bin location shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146239,
+  "title": "SRI-PART-C2 — A match on manufacturer shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146240,
+  "title": "SRI-PART-C3 — A match on vendor name shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146241,
+  "title": "SRI-PART-C4 — A match on category shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146242,
+  "title": "SRI-PART-C5 — A match on tags shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146243,
+  "title": "SRI-PART-D1 — The Parts row shows everything the specification promised",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"Displayed: description (primary), part number (secondary), total quantity with a stock-st"
+  ]
+ },
+ {
+  "id": 146244,
+  "title": "SRI-PART-I1 — A corrected typo says that it corrected something",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Parts",
+  "steps": [],
+  "expected": [
+   " The matched word is highlighted AND carries the \"≈\" mark or italics that says it is a close match. A corrected typo that looks exactly like an exact match is a FAIL.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"When a match is fuzzy rather than ex"
+  ]
+ },
+ {
+  "id": 146245,
+  "title": "SRI-VEND-A1 — The whole matched value is shown, not just what you typed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " Each row shows the COMPLETE telephone, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.3: \"Every row h"
+  ]
+ },
+ {
+  "id": 146246,
+  "title": "SRI-VEND-A2 — A long value is not cut off through the part that matched",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick"
+  ]
+ },
+ {
+  "id": 146247,
+  "title": "SRI-VEND-A3 — The highlight marks the match inside the text, not instead of it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " The full text is on the row and the matched part is highlighted within it — exactly like the example in the requirement, where typing \"Fib\" shows the whole of \"S1-644 Fibridge Commercial\" with \"Fib\" marked.  --- SOURCE — quoted verbatim from PRD v1.5, section"
+  ]
+ },
+ {
+  "id": 146248,
+  "title": "SRI-VEND-B1 — Two records sharing what you typed can be told apart",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " You can say which row is which from the rows alone. Two rows that read the same is a FAIL — and note that the right number of rows does not rescue it.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick the right "
+  ]
+ },
+ {
+  "id": 146249,
+  "title": "SRI-VEND-B2 — Two records with the same bold line differ somewhere you can see",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " Something visible differs — the second line, a badge, a number. Two identical rows is a FAIL; write down both records and what actually differs between them in the data.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context"
+  ]
+ },
+ {
+  "id": 146250,
+  "title": "SRI-VEND-C1 — A match on email address shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146251,
+  "title": "SRI-VEND-C2 — A match on address line 2 shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146252,
+  "title": "SRI-VEND-C3 — A match on a contact's telephone shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146255,
+  "title": "SRI-VEND-D1 — The Vendors row shows everything the specification promised",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"Displayed: vendor name (primary), telephone + address line (secondary).\"  This case's exp"
+  ]
+ },
+ {
+  "id": 146256,
+  "title": "SRI-VEND-I1 — A corrected typo says that it corrected something",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " The matched word is highlighted AND carries the \"≈\" mark or italics that says it is a close match. A corrected typo that looks exactly like an exact match is a FAIL.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"When a match is fuzzy rather than ex"
+  ]
+ },
+ {
+  "id": 195900,
+  "title": "SRI-VEND-C4 — A match on a contact's name shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 195901,
+  "title": "SRI-VEND-C5 — A match on a contact's email address shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendors",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146257,
+  "title": "SRI-PS-A1 — The whole matched value is shown, not just what you typed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Part Sales",
+  "steps": [],
+  "expected": [
+   " Each row shows the COMPLETE P-number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.3: \"Every row ha"
+  ]
+ },
+ {
+  "id": 146258,
+  "title": "SRI-PS-A2 — A long value is not cut off through the part that matched",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Part Sales",
+  "steps": [],
+  "expected": [
+   " You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick"
+  ]
+ },
+ {
+  "id": 146259,
+  "title": "SRI-PS-A3 — The highlight marks the match inside the text, not instead of it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Part Sales",
+  "steps": [],
+  "expected": [
+   " The full text is on the row and the matched part is highlighted within it — exactly like the example in the requirement, where typing \"Fib\" shows the whole of \"S1-644 Fibridge Commercial\" with \"Fib\" marked.  --- SOURCE — quoted verbatim from PRD v1.5, section"
+  ]
+ },
+ {
+  "id": 146260,
+  "title": "SRI-PS-B1 — Two records sharing what you typed can be told apart",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Part Sales",
+  "steps": [],
+  "expected": [
+   " You can say which row is which from the rows alone. Two rows that read the same is a FAIL — and note that the right number of rows does not rescue it.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick the right "
+  ]
+ },
+ {
+  "id": 146261,
+  "title": "SRI-PS-B2 — Two records with the same bold line differ somewhere you can see",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Part Sales",
+  "steps": [],
+  "expected": [
+   " Something visible differs — the second line, a badge, a number. Two identical rows is a FAIL; write down both records and what actually differs between them in the data.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context"
+  ]
+ },
+ {
+  "id": 146262,
+  "title": "SRI-PS-C1 — A match on the asset on the sale shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Part Sales",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146263,
+  "title": "SRI-PS-C2 — A match on VIN / serial number shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Part Sales",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146264,
+  "title": "SRI-PS-D1 — The Part Sales row shows everything the specification promised",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Part Sales",
+  "steps": [],
+  "expected": [
+   " Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"Displayed: P-number + customer (primary), status badge, total price + created date.\"  Thi"
+  ]
+ },
+ {
+  "id": 146265,
+  "title": "SRI-PS-I1 — A corrected typo says that it corrected something",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Part Sales",
+  "steps": [],
+  "expected": [
+   " The matched word is highlighted AND carries the \"≈\" mark or italics that says it is a close match. A corrected typo that looks exactly like an exact match is a FAIL.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"When a match is fuzzy rather than ex"
+  ]
+ },
+ {
+  "id": 146266,
+  "title": "SRI-PO-A1 — The whole matched value is shown, not just what you typed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " Each row shows the COMPLETE PO number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.3: \"Every row h"
+  ]
+ },
+ {
+  "id": 146267,
+  "title": "SRI-PO-A2 — A long value is not cut off through the part that matched",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick"
+  ]
+ },
+ {
+  "id": 146268,
+  "title": "SRI-PO-A3 — The highlight marks the match inside the text, not instead of it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " The full text is on the row and the matched part is highlighted within it — exactly like the example in the requirement, where typing \"Fib\" shows the whole of \"S1-644 Fibridge Commercial\" with \"Fib\" marked.  --- SOURCE — quoted verbatim from PRD v1.5, section"
+  ]
+ },
+ {
+  "id": 146269,
+  "title": "SRI-PO-B1 — Two records sharing what you typed can be told apart",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " You can say which row is which from the rows alone. Two rows that read the same is a FAIL — and note that the right number of rows does not rescue it.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick the right "
+  ]
+ },
+ {
+  "id": 146270,
+  "title": "SRI-PO-B2 — Two records with the same bold line differ somewhere you can see",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " Something visible differs — the second line, a badge, a number. Two identical rows is a FAIL; write down both records and what actually differs between them in the data.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context"
+  ]
+ },
+ {
+  "id": 146271,
+  "title": "SRI-PO-C1 — A match on part numbers on the PO shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146272,
+  "title": "SRI-PO-C2 — A match on part descriptions on the PO shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146273,
+  "title": "SRI-PO-C3 — A match on created-by user shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146274,
+  "title": "SRI-PO-C4 — A match on spliced number variants (`number_variants`) shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146275,
+  "title": "SRI-PO-D1 — The Purchase Orders row shows everything the specification promised",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"Displayed: PO number + vendor (primary), status badge (Ordered / Received), total + creat"
+  ]
+ },
+ {
+  "id": 146276,
+  "title": "SRI-PO-I1 — A corrected typo says that it corrected something",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Purchase Orders",
+  "steps": [],
+  "expected": [
+   " The matched word is highlighted AND carries the \"≈\" mark or italics that says it is a close match. A corrected typo that looks exactly like an exact match is a FAIL.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"When a match is fuzzy rather than ex"
+  ]
+ },
+ {
+  "id": 146277,
+  "title": "SRI-VINV-A1 — The whole matched value is shown, not just what you typed",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendor Invoices",
+  "steps": [],
+  "expected": [
+   " Each row shows the COMPLETE invoice number, with the bit you typed highlighted inside it. Seeing only what you typed, or a value cut short with \"...\", is a FAIL — that is SV-10619 and SV-10551.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.3: \"Every "
+  ]
+ },
+ {
+  "id": 146278,
+  "title": "SRI-VINV-A2 — A long value is not cut off through the part that matched",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendor Invoices",
+  "steps": [],
+  "expected": [
+   " You can still identify the record. If the \"...\" has eaten the characters you typed, or eaten the part that tells this record from its neighbours, that is a FAIL.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick"
+  ]
+ },
+ {
+  "id": 146279,
+  "title": "SRI-VINV-A3 — The highlight marks the match inside the text, not instead of it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendor Invoices",
+  "steps": [],
+  "expected": [
+   " The full text is on the row and the matched part is highlighted within it — exactly like the example in the requirement, where typing \"Fib\" shows the whole of \"S1-644 Fibridge Commercial\" with \"Fib\" marked.  --- SOURCE — quoted verbatim from PRD v1.5, section"
+  ]
+ },
+ {
+  "id": 146280,
+  "title": "SRI-VINV-B1 — Two records sharing what you typed can be told apart",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendor Invoices",
+  "steps": [],
+  "expected": [
+   " You can say which row is which from the rows alone. Two rows that read the same is a FAIL — and note that the right number of rows does not rescue it.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick the right "
+  ]
+ },
+ {
+  "id": 146281,
+  "title": "SRI-VINV-B2 — Two records with the same bold line differ somewhere you can see",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendor Invoices",
+  "steps": [],
+  "expected": [
+   " Something visible differs — the second line, a badge, a number. Two identical rows is a FAIL; write down both records and what actually differs between them in the data.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context"
+  ]
+ },
+ {
+  "id": 146282,
+  "title": "SRI-VINV-C1 — A match on the PO number the invoice belongs to shows the FULL value on the row",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendor Invoices",
+  "steps": [],
+  "expected": [
+   " The second line carries a labelled note — such as \"Contact match: ...\", \"Matched: ...\", \"Unit: ...\", \"VIN: ...\" — naming what matched, with the part you typed highlighted inside it.  THE THING TO CHECK IS WHETHER THE VALUE IS COMPLETE. The note must show the "
+  ]
+ },
+ {
+  "id": 146283,
+  "title": "SRI-VINV-D1 — The Vendor Invoices row shows everything the specification promised",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendor Invoices",
+  "steps": [],
+  "expected": [
+   " Every field named in the requirement is on the row. Do not judge whether a missing one matters — just record it.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"Displayed: invoice number + vendor (primary), status badge (Paid / Unpaid), total + invoi"
+  ]
+ },
+ {
+  "id": 146284,
+  "title": "SRI-VINV-I1 — A corrected typo says that it corrected something",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > Vendor Invoices",
+  "steps": [],
+  "expected": [
+   " The matched word is highlighted AND carries the \"≈\" mark or italics that says it is a close match. A corrected typo that looks exactly like an exact match is a FAIL.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"When a match is fuzzy rather than ex"
+  ]
+ },
+ {
+  "id": 146285,
+  "title": "SRI-ALL-E1 — A tab's count equals the number of rows inside it",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " The number on the tab and the number of rows inside it agree, up to a maximum of 20.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.2: \"The scoped tab shows **up to 20 rows**, scrolled within the modal — there is no pagination and no further loading, "
+  ]
+ },
+ {
+  "id": 146286,
+  "title": "SRI-ALL-E2 — No count anywhere reads higher than 20",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " All three read 20 — never the true total.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.2: \"**Counts are capped at 20.** No count in the modal reads higher than `20` — not a tab, not a group header, not the `Show all N` link. A query matching 34 work"
+  ]
+ },
+ {
+  "id": 146287,
+  "title": "SRI-ALL-E3 — A group on the All tab shows 5 and offers the rest",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " Exactly 5 rows, and a \"Show all N\" link beside the heading.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.2: \"Each group shows up to **5** results (raised from today's 3). When a group has more, a `Show all N` link appears to the right of the group h"
+  ]
+ },
+ {
+  "id": 146288,
+  "title": "SRI-ALL-E4 — \"Show all\" opens that tab and keeps you in the search box",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " You land on that entity's tab, still inside the search box, with your text intact. Being sent to a separate page is a FAIL.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.2: \"Clicking it switches the modal to that entity's scope tab. The user never le"
+  ]
+ },
+ {
+  "id": 146289,
+  "title": "SRI-ALL-E5 — All nine tabs are there, named and counted",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " All nine, in this order: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.2: \"A horizontal tab strip immediately under the input: `All · Work Orders · Cus"
+  ]
+ },
+ {
+  "id": 146290,
+  "title": "SRI-ALL-E6 — Groups on the All tab are always in the same order",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " Work Orders, then Customers, Assets, Parts, Vendors, Part Sales, Purchase Orders, Vendor Invoices. Kinds with no results are simply skipped.  --- SOURCE — quoted verbatim from PRD v1.5, section 6.2: \"Group display order in \"All\" is: Work Orders → Customers → "
+  ]
+ },
+ {
+  "id": 146291,
+  "title": "SRI-ALL-E7 — Typing a full record number puts that record at the very top",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " That one record sits alone at the top, above all the groups, with its icon.  --- SOURCE — quoted verbatim from PRD v1.5, section 6.2: \"When the top result across all groups has a score > 0.95 (effectively an ID match), it is pinned as a separate single row at"
+  ]
+ },
+ {
+  "id": 146292,
+  "title": "SRI-ALL-F1 — A number is found with and without its dashes",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " Both find the same record.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"Lowercase; strip diacritics; collapse whitespace; for identifier fields (WO number, part number, VIN, phone) also strip non-alphanumerics so `S2-15276` and `s215276` match, an"
+  ]
+ },
+ {
+  "id": 146293,
+  "title": "SRI-ALL-F2 — A phone number is found however it is punctuated",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " The first two find the same customer. The last-four search is a different test — write down whether you can tell the results apart (that is test B1 on the Customers tab).  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"Lowercase; strip diacritics; co"
+  ]
+ },
+ {
+  "id": 146294,
+  "title": "SRI-ALL-F3 — An accented name is found typed either way",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " Both spellings return the same single customer.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"Lowercase; strip diacritics; collapse whitespace; for identifier fields (WO number, part number, VIN, phone) also strip non-alphanumerics so `S2-15276` an"
+  ]
+ },
+ {
+  "id": 146295,
+  "title": "SRI-ALL-F4 — An apostrophe or hyphen in a name is optional",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " Both spellings find the record.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"Lowercase; strip diacritics; collapse whitespace; for identifier fields (WO number, part number, VIN, phone) also strip non-alphanumerics so `S2-15276` and `s215276` matc"
+  ]
+ },
+ {
+  "id": 146296,
+  "title": "SRI-ALL-F5 — A typo in a NUMBER is not silently corrected",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " The near-miss VIN does NOT return the vehicle. If it does, that is a FAIL — record it immediately, this one matters more than the rest.  --- SOURCE — quoted verbatim from PRD v1.5, section 7: \"Exact identifier fields — VIN, WO number, P-number, part number, P"
+  ]
+ },
+ {
+  "id": 146297,
+  "title": "SRI-ALL-F6 — Typing a status word returns nothing because of status",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " Nothing comes back BECAUSE of its status. Records whose name genuinely contains the word are fine — say which is which.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"Some fields — notably **status** — are stored on the search document for ranking ("
+  ]
+ },
+ {
+  "id": 146298,
+  "title": "SRI-ALL-G1 — A work order whose truck has no unit number still reads properly",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " The year/make/model stands on its own, with no blank gap and no leftover separator.  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"When the asset has no unit number, the year/make/model stands alone.\"  This case's expected result is the source's own"
+  ]
+ },
+ {
+  "id": 146299,
+  "title": "SRI-ALL-G2 — A very long value does not push the rest of the row out of sight",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " The badge and the second line are still readable.  --- SOURCE — quoted verbatim from Story SV-9170: \"Each result row carries enough context to pick the right record without opening it — its identifier, who it belongs to, its status, and for work orders the un"
+  ]
+ },
+ {
+  "id": 146300,
+  "title": "SRI-ALL-G3 — A very common word still gives a usable list",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " The part you wanted is inside the 20, and the rows differ enough to choose from. If you cannot reach it, say which part and what you typed.  --- SOURCE — quoted verbatim from PRD v1.5, section 6.1: \"Because search returns at most 20 records per entity type (§"
+  ]
+ },
+ {
+  "id": 146302,
+  "title": "SRI-ALL-G5 — A kind of record that does not exist yet does not break search",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " Search works normally and the empty kind simply does not appear.  --- SOURCE — quoted verbatim from PRD v1.5, section 9: \"Search must work for a single-tenant dataset where any entity type is empty (e.g. a shop with no part sales yet).\"  This case's expected "
+  ]
+ },
+ {
+  "id": 146303,
+  "title": "SRI-ALL-H1 — No results shows your query back, and nothing else",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " It reads: No results for 'Zqwxpol' — and nothing else. No suggestions, no buttons, no tips.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.2: \"\"No results for '<query>'\" — plus \" in <Tab>\" when a scope tab other than All is active. Nothing else.\"  Thi"
+  ]
+ },
+ {
+  "id": 146304,
+  "title": "SRI-ALL-H2 — No results inside a tab names the tab",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " The message names the tab you are on, so you know the search is narrowed and not empty everywhere.  --- SOURCE — quoted verbatim from PRD v1.5, section 5.2: \"\"No results for '<query>'\" — plus \" in <Tab>\" when a scope tab other than All is active. Nothing else"
+  ]
+ },
+ {
+  "id": 146305,
+  "title": "SRI-ALL-H3 — A record you can open from its own list is never \"not found\"",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " The value finds its record. The control in step 3 is NOT optional: without it you cannot tell \"this field is not searchable\" from \"the search is down\".  --- SOURCE — quoted verbatim from PRD v1.5, section 4: \"The indexed fields are what a typed query is match"
+  ]
+ },
+ {
+  "id": 146306,
+  "title": "SRI-ALL-K1 — Someone without access sees no rows AND no count",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " The restricted user sees none of those rows, no tab for them, and no count. Check the COUNT as well — a count still showing the full total leaks how much exists.  --- SOURCE — quoted verbatim from PRD v1.5, section 9: \"All result fields must respect existing "
+  ]
+ },
+ {
+  "id": 195902,
+  "title": "SRI-ALL-G4 — One or two characters behaves sensibly",
+  "automated": false,
+  "folder": "Test Cases > Global Search > Global Search - Enhancement (Aug 2026) > Search Results Integrity — result row display (SV-10619 / SV-10551) > All tab and cross-tab",
+  "steps": [],
+  "expected": [
+   " THIS CASE IS HELD — the specification sets a typing delay but no minimum length, so we cannot say what one character should do. Do not pass or fail it. It must not error, must not hang, and must not leave the previous keystroke's results on screen.  --- SOURC"
+  ]
+ }
+]

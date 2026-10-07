@@ -1,0 +1,191 @@
+44990	The add row's fields depend on the user's view (Tech View or Full View)
+44991	The part line's Edit button appears on hover and on keyboard focus
+44992	Edit opens a row or a window depending on the user's view
+44997	Add Part on another line while a row is open asks to discard it first
+45250	Add Part works on a Complete line and sets the line back to not complete
+45251	On a completed line only some part fields can be edited
+44999	The Part number field searches the catalog as you type
+45000	Picking a catalog part fills the fields and moves to Quantity
+45001	Description can be changed for catalog parts but not inventory parts
+45007	Tech View saves a part with no category as Uncategorized, without showing it
+45011	X closes the row without saving, and asks first if it has data
+45012	Clicking outside a filled-in row keeps it open with its data
+45013	A typed-in part saves as Auth to order and is flagged as needing details
+45014	The add row shows a list of keyboard hints
+45015	One validation message names only the missing required fields
+45017	The wrong field is highlighted and the cursor moves to the first one
+45021	Saving fails cleanly if the work order is locked while you type
+45025	The edit row works like the add row, with a shorter keyboard hint list
+45028	A Tech View edit keeps the hidden price and category unchanged
+45029	Closing an edit row with changes asks to discard them
+45030	Picking a different catalog part refills the edit row
+45031	Opening an edit row and changing nothing saves no change
+45033	Clearing the description blocks saving the edit
+45034	An edit saves normally even if someone else changed the part
+45035	Saving an edit fails if the work order is locked meanwhile
+45038	Picking a catalog part fills Cost and Sell Price with a $ sign
+45039	Inventory and found parts can't change Cost, Sell Price can change
+45040	Category is a dropdown, and leaving it empty saves Uncategorized
+45054	In Full View a part typed without picking from the catalog saves as requested
+45055	The part search offers Create as a new part only in Full View
+45056	The validation message also names an empty Cost and Sell Price
+45057	More Options opens even when required fields are empty
+45058	A non-number or negative Cost or Sell Price is refused for that field
+45059	A Sell Price below Cost shows a note but still saves
+45060	A catalog part with no price of its own can be saved at 0.00
+45061	Saving in Full View fails if the work order is locked meanwhile
+45062	Any other Full View save failure keeps the row open with its data
+53477	Full View without See Financial Data gets the three-field add row
+45063	Full View Edit opens the part details window already filled in
+45068	Edit while an add row is open asks to discard that row first
+45069	Closing a filled-in add row asks to confirm discarding the part
+45070	Closing a changed edit row asks to confirm discarding the changes
+45072	Discard Part closes the row and puts back the saved values on edit
+45073	Leaving the page with a filled-in row asks to confirm leaving
+45074	Opening another row while one has data asks first, then switches or stays
+45081	The empty row that opens after a save never asks to discard
+45082	Leave discards the typed part and goes to the new page
+45083	Stay on Work Order cancels leaving and returns to the row
+45221	A catalog part has named bins with stock on hand, one marked Default
+45222	Part search results show stock quantity and bin chips
+45223	Picking a part takes the full quantity from a single bin
+45224	The bin used shows below the row as a Pulled from chip
+45225	The chip shows the bin name, or "N bins" when split
+45226	Clicking the chip opens a bin list showing every bin
+45227	Choosing a bin from the list moves the full quantity into it
+45228	Taking more than a bin holds is allowed, with a warning
+45229	Taking more than one bin holds shows the going-negative warning
+45230	A note appears when the part is taken from a bin other than Default
+45231	Changing the quantity updates the bins, keeping a bin you chose yourself
+45232	Splitting across bins opens the right window in each view
+45233	The Bin Locations window lists each bin with Auto and Apply
+45234	Applying a split saves it and sets the quantity to the total
+45235	Bins already below zero show in red but don't block saving
+45236	The Tech View edit row has the same bin choice and keeps saved splits
+45237	The bins chosen are saved but not shown on the saved part row
+45238	The Pulled from chip can be reached with the Tab key
+45239	A part with no bins gets no bin chip
+45240	A part not linked to the catalog gets no bin chip
+45242	No note shows when the Default bin covers the quantity
+45243	A split across bins never shows the going-negative warning
+96911	Switching display changes the layout at once, keeping filters and search
+96912	The chosen display is kept after sign-out, on other devices and locations
+96914	Search and filters work the same way in all three displays
+96915	Going back to List uses List's sort, a manual order never changes it
+96917	Opening a filter tab directly starts at the top-left
+96919	If the saved display can't load, List is shown
+96920	If saving the display fails, the old one stays and you can retry
+96921	With two browser tabs open, the last display change wins
+96923	Changing location opens that location's default page and resets Assigned to me
+154885	The new displays need a screen at least 1024px wide, otherwise List
+96926	Technicians start in order of first name, last name, then account age
+96928	Technician groups collapse and expand, and stay that way for the user
+96929	Until you reorder them, a group's work orders use List's default sort
+96930	Only technicians who can lead work show as groups
+96931	Every technician who can lead work shows, with "No work orders" if empty
+96932	Clicking a Tech View row opens the work order, a drag needs a small move
+96933	An empty Unassigned group stays visible to drop work into
+96934	Work led by a deactivated technician stays visible under an inactive header
+96935	A technician's group header stays visible while scrolling a tall group
+96936	After the lead changes elsewhere, the work order moves group on refresh
+96937	Assigned to me shows only the groups that hold my work
+96938	Hovering a technician header or avatar shows the full name
+96939	Tech View lets you pin up to three technician groups
+96940	Board View has one column per technician plus Unassigned
+96941	The Unassigned column is first and stays put when scrolling sideways
+96942	Column headers stay at the top while scrolling down a long column
+96943	Board View cards always show the required fields
+96944	A card's status badge always sits in the same place
+96945	A card's more-actions menu on hover or focus includes Reassign lead
+96946	Clicking a card anywhere but more-actions opens the work order
+96947	Pin a technician from its header, pins go after Unassigned in order pinned
+96948	Pins are shared with Tech View and kept for the user on any device
+96949	A fourth pin is refused with a message, unpinning frees a slot
+96950	Empty technician columns stay visible to drop work into
+96951	Assigned to me shows only columns with my work, and pinning is disabled
+96952	A deactivated technician's column keeps its work, shows inactive, stays pinned
+96953	Each Board column scrolls on its own, the page itself doesn't
+96954	All card content stays reachable by scrolling at any height or density
+96955	Board View has the shared Density setting
+154886	An empty Unassigned column stays visible on the Board to drop work into
+96956	The Reassign window offers technicians plus Unassigned, with confirm or cancel
+96957	Success messages show the right text and close on their own
+96958	The work order page's notifications still work when the lead changes
+96959	Column and group counts update straight after a successful change
+96960	Which lines move with the lead on assign or reassign, for all six line types
+96961	Removing the lead unassigns the lines that followed it and leaves the rest
+96962	Each lead change adds one history entry, lines that move add none
+96963	The lead can't be changed on Invoiced, Paid or Imported work orders
+96964	A blocked reassign shows the status reason, reordering still works
+96965	Changing the lead on Board or Tech View asks whether to clear shifts
+96966	Changing the lead leaves the work order's scheduled time unchanged
+96967	Reassigning needs Create and Edit permission
+96968	A failed reassign puts the card back and shows a message you can close
+96969	Choosing the current lead again changes nothing and shows no message
+96971	If two people reassign at once, the later change wins after refresh
+96972	A work order that becomes locked during a drag is refused with a reason
+96973	Reassign can move work outside the filter, and it then leaves the view
+96974	The open count includes Approved, In Progress, Ready for Review, Complete
+154887	An imported work order's Reassign lead is disabled with its own tooltip
+154888	Clearing shifts on a lead change removes shifts by their timing
+154889	Removing the lead asks to clear shifts, the same as changing it
+154890	The lead change and shift clearing both succeed or both fail
+96975	Tech View has its own column choice, separate from List, saved per user
+96976	Board View has its own Fields to display list, saved for the user
+96977	Required fields cannot be turned off
+96978	Every optional field is offered and shows the same value as elsewhere
+96979	Tech View starts with List's default columns, saved choices are kept
+96980	Board View default fields, with total price only for financial access
+96981	Field changes apply at once without reloading the page
+96982	Turning off every optional field keeps the required ones and the unit
+96983	If field choices fail to load, defaults show and the next change saves
+96984	No unit number shows the asset instead, a real zero still shows
+96985	Optional fields with no value are left off the card
+96986	Without See Financial Data no dollar fields are shown
+96987	Compact, Regular and Comfortable in Tech and Board View, Regular by default
+96988	Density changes only spacing and size, never what is shown
+96989	One density choice is shared by Tech View and Board View and kept
+96990	Compact never makes text smaller than normal body text
+96991	If the saved density can't load, Regular is used
+96992	Density applies to Tech View rows and Board cards, List is unchanged
+96993	Technician avatars show on cards and in Tech View's Assigned Techs column
+96994	The lead comes first and each technician shows once across all lines
+96995	Extra technicians show as +N, and hovering shows every name
+96996	The avatar column is blank only with no lead and no line technician
+96997	The tech story check mark is removed everywhere, including Simple Flow
+96998	Tech stories can still be entered, edited and required, the mark is gone
+97000	No new required-tech-story marker replaces the old one
+97001	Drag work orders within and between technicians in both views
+97002	Dragging to another technician changes the lead, Unassigned removes it
+97003	Users can reorder technician groups and columns, Unassigned stays first
+97004	Pinned technicians can only be reordered among the pinned ones
+97005	The saved technician order is shared by both views for each location
+97006	Dragging does not change List's chosen sort
+97007	Newly added technicians go last, and where reassigned work lands
+97008	Dragging to another technician shows the reassign message, same group none
+97009	Permission and status limits apply to every work order drag
+97010	Dropping on an inactive technician or a failed drop recovers cleanly
+97012	Status and permission are checked again before a drop is accepted
+97013	Reordering while filtered places work next to a visible card
+97020	The keyboard never gets around permission or status limits
+97021	Keyboard focus, movement and actions on cards and rows
+97022	Keyboard focus recovers when a work order leaves the filter
+97023	The display is recorded in analytics after loading and on each switch
+97024	The fields shown are recorded once per display per session
+97025	Field and density changes are recorded only after they save
+97026	User groups are reported separately and defaults never change by themselves
+97027	Analytics carry no customer data and use the existing user identity
+97028	Analytics failing or turned off never blocks the feature
+97029	Every analytics scenario in the acceptance list is checked
+97030	Header counts are exact and the same in List, Tech View and Board View
+97031	Header counts stay exact after a reassign, nothing counted twice
+97032	The open count in the window is exact and counts the four statuses
+97033	Field selection rate is the share of users who chose a field
+97034	Density and weekly use are counted per user, never twice
+97035	Analytics event counts add up to the reported figures end to end
+154648	Imported work orders: board displays off, Imported not a status filter
+154649	The new displays are not offered below the desktop screen width
+154650	The new board and tech views show only this organization and location
+44993	Add Part is hidden on Complete, Invoiced and Paid, shown on Declined
+44994	Edit is hidden on Complete, Invoiced and Paid, shown on Declined
+45004	Save needs a description and quantity, the part number is optional
