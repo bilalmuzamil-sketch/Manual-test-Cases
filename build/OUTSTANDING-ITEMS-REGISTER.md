@@ -57,7 +57,17 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-07, ~08:45 UTC. **SV-10274 POSTED: PASSED (comment 78031), 8 of 8 checks, sv9667 `v26.40.8-cf5b7ad`; production note cleaned up. Nothing outstanding.**
+## ⚠️ NEWEST — 2026-10-07, ~10:30 UTC. **SV-10642 POSTED: PARTIALLY PASSED (comment 78063), 13 of 13 checks passed on sv10642 `v26.39.2-8b087eb`; two questions in follow-up comment 78064.**
+
+| # | What is missing | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| 1 | Which status a work order should show while a newly added line still waits for approval (the fix shows Approved). | **Milos Vasic** (tagged in 78064) | Row 14 of 78063; the ticket cannot be fully passed. | 7 Oct 2026 |
+| 2 | Whether work orders already stuck at Review with a pending line correct themselves on release, or only when a line changes. | **parth fadadu** (developer, tagged in 78064) | Row 15 of 78063; the customer's own work order may stay wrong after release. | 7 Oct 2026 |
+| 3 | Delete production work order **S2-960** (Trucks Hill 2) once Parth has seen it (`change-status` estimate, then `work-orders/delete`). | us, after Parth answers | Nothing — clean-up; kept as the example in 78064. | 7 Oct 2026 |
+
+**QA lead's rulings (7 Oct):** *"Partually Pass the ticket and mention what it is waiting on to be fully passed"*; question to Milos *"tagging him with ghe reason why are we asking him that question but that question should be in the followup new comment"*; *"Ask the the developer who fixed this issue in the same followup comment"*; part sales *"Yes, OK to leave"*; technical section *"No"*; SV-10323 / Nemanja's comment *"yes"* — read after the remaining tickets.
+
+## ⚠️ PREVIOUS — 2026-10-07, ~08:45 UTC. **SV-10274 POSTED: PASSED (comment 78031), 8 of 8 checks, sv9667 `v26.40.8-cf5b7ad`; production note cleaned up. Nothing outstanding.**
 
 **Cleared 2026-10-07 (QA lead's answers):** (1) technical section on 78031 — *"No"*, none added; (2) raise the image-order observation — *"No - Because its the same on production too."*, not raised; (3) SV-10323 — *"We will check that later."*, parked until Nemanja deploys option B.
 

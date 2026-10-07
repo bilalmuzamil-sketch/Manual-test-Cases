@@ -55,3 +55,17 @@ Branch: ZZAUTOTEST work orders S10642-17580…17590 left (per-ticket branch, no 
 ## Production clean-up (restore-after)
 `requireReview` restored to **false** at ~10:00Z and read back: **0 fields differ** from the original settings object. Work order **S2-960** kept for now (status Review, one line Needs Approval) so the QA lead can see the stuck state; delete it after (`change-status` → estimate, then `work-orders/delete`). Session location was switched to Trucks Hill 2 (session-scoped).
 Production evidence: `ev/raw/P3x2-still-review.png`, `ev/raw/P4x2-error.png` (toast *"Cannot complete work order with incomplete lines. Please try to resolve this."*, `change-status` 400), build `v26.40.8-1e8e914`.
+
+## QA lead's rulings (7 Oct 2026, ~10:20Z)
+*"Partually Pass the ticket and mention what it is waiting on to be fully passed."* · Milos question in a follow-up comment with the reason · developer question in the same follow-up · part sales *"Yes, OK to leave"* · technical section *"No"*.
+
+## Pre-post gate (Rule 72) — ~10:28Z
+Branch marker re-read `v26.39.2-8b087eb` (unchanged; bridge restarted on port 36919 first) · ticket re-read: TESTING QA, 5 comments, only change since start = QA Assignee set to Bilal 04:12 −0500 · production S2-960 re-read: Review, lines complete/complete/authorization_required · fingerprint scan 0 hits · no technical section (ruled "No").
+
+## Posted
+- **78063** (2026-10-07 05:29:32 −0500): warning panel *"OVERALL QA STATUS: PARTIALLY PASSED"*, 15-row table (13 PASSED, row 14 WAITING ON MILOS, row 15 WAITING ON PARTH), attachments 61887 + 61888.
+- **78064** (05:29:33 −0500): follow-up, mentions resolved as **@Milos Vasic** and **@parth fadadu**, 1 image (61887).
+Read back via v3 ADF: first node panel `warning`; media type `file` ×2 in order (78063) and ×1 (78064); tableRow 16 = header + 15.
+
+## Learning check (Rule 95)
+New and recorded: lines endpoint `GET /api/work-orders/lines/{wo}` → `data.collection[].status`; line delete is the right-click menu `menu-item_delete_line_<id>` + dialog **Delete** (`POST /api/work-orders/lines/delete {line_id}`); bulk bar has only Approve / Decline / Split; ShopCoach Line Builder = `input_shopcoach-linebuilder-query` → Build Lines → `button_shopcoach-linebuilder-submit` ("Add (1 Lines)") → `lines/create`; typed New Line also goes through `lines/create` (canned → `create-from-canned-line`); part sales have no Lines tab. Playbook §AC.15 addendum 3.

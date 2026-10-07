@@ -1,0 +1,39 @@
+*Two questions before this ticket can be fully passed*
+
+----
+
+[~accountid:712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab]
+
+*Question for Milos: Work Orders, status of a work order while a new line waits for approval*
+
+Why I'm asking you: the ticket's expected behaviour says the status should "reflect that there is unresolved work remaining", but it never names which status. Sasha asked for that to be stated, and Mike answered for the moment *after* the line is approved ("The work order status then moves to approved state."). Nobody has said which status to show *while* the line is still waiting, so I need your decision before passing this.
+
+*What happens now with the fix:*
+# A work order has all its lines complete, so it shows {{Review}}.
+# A new line is added that needs approval.
+# The work order changes to {{Approved}} straight away, while the new line still shows {{Needs Approval}}.
+
+*Question:* while the new line is still waiting for approval, should the work order show {{Approved}}?
+* *A.* Yes, {{Approved}} is correct.
+* *B.* No, it should show a different status (please name it).
+
+!01-before-vs-after-hd.png|width=1880,height=1985!
+_The bottom half shows what the fix does now: Approved at the top left, and the new line at Needs Approval._
+
+----
+
+[~accountid:5bd6d7573aa82432ce72b8d3]
+
+*Question for Parth: work orders that are already stuck at Review*
+
+On the QA branch the status is worked out again whenever a line is added, approved, declined, completed or deleted, and that all works. My question is about work orders that are *already* sitting at {{Review}} with a line waiting for approval on the day this is released, like the customer's work order in the ticket.
+
+*Question:* will those work orders correct themselves when the fix is released, or will they keep showing {{Review}} until someone changes one of their lines?
+
+*Steps to see one on production:*
+# Open [app.shopview.com|https://app.shopview.com] and switch the location to *Trucks Hill 2*.
+# Open work order *S2-960*.
+# Lines 1 and 2 are {{Complete}} and line 3 shows {{Needs Approval}}.
+# The work order shows {{Review}}.
+
+On the QA branch I couldn't check this either way: none of its 30 work orders at {{Review}} has a line waiting for approval.
