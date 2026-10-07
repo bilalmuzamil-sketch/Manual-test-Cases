@@ -1,0 +1,42 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on the QA branch [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build v26.40.8-cf5b7ad) on 7 October 2026, against this ticket and Nemanja's QA checklist ([comment 77886|https://shopview.atlassian.net/browse/SV-10274?focusedCommentId=77886]). Compared with production (build v26.40.8-1e8e914). All 8 checks passed.
+* A note with many images now wraps them onto rows inside the note.
+* Nothing scrolls sideways, and the note's three-dot menu is always visible.
+
+h3. Before and after: a work order note with 12 images (desktop)
+
+!01-before-vs-after-desktop-hd.png|width=1590,height=1128!
+_On production the 12 images run in one row off the right edge, and the three-dot menu is about 480 pixels past the edge of the screen. On the QA branch they wrap onto 3 rows and the menu is visible._
+
+h3. Before and after: the same note on a phone (375 pixels wide)
+
+!02-before-vs-after-phone-hd.png|width=770,height=697!
+
+h3. What I checked
+
+||#||Check||Status||
+|1|A work order note with 12 images, window 1920 wide: the images wrap onto 3 rows inside the note, the page does not scroll sideways, and the three-dot menu is visible.|PASSED|
+|2|The same note at 1366 wide and at 960 wide (960 is what a 1920 screen shows at 200% browser zoom): 4 rows, no sideways scroll, menu visible.|PASSED|
+|3|The same note at phone width (375): one image per row, no sideways scroll, menu visible.|PASSED|
+|4|A work order line note with 12 images, at 1920, 1366, 960 and 375 wide: same results as above.|PASSED|
+|5|A work order note with 25 images: 5 rows at 1920, 9 rows at 960, one per row at 375. No sideways scroll, menu visible.|PASSED|
+|6|A customer note with 12 images, at 1920 and 375 wide: same results.|PASSED|
+|7|The three-dot menu works: {{Edit}} opens {{Update Note}}, {{Add attachment}} adds files, and {{Delete Note}} asks for confirmation.|PASSED|
+|8|Clicking an image opens the viewer with the full image, at every width.|PASSED|
+
+h3. How to see it yourself
+
+# Open [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] with the *Admin* quick-login.
+# Open work order *S2-17414*.
+# Go to {{Notes}}.
+# Find the note *ZZAUTOTEST SV-10274 work order note with 12 images*.
+
+*Expected:*
+* The 12 images sit in rows inside the note.
+* The three-dot menu is at the top right of the note.
+* Making the browser window narrower, or zooming in, rewraps the images and the menu stays visible.
+
+To add images yourself, click the note's three-dot menu, then {{Add attachment}}, and pick up to 10 images at a time. If you pick more than 10, the app shows {{Too many files}} and uploads the first 10.
