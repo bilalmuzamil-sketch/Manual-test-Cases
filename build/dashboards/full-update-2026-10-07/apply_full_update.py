@@ -12,6 +12,7 @@ V42 = open("build/dashboards/sources/CONFLUENCE-788430850-Dashboard-v1-2026-10-0
 APPLY = "--apply" in sys.argv
 def ws(s): return re.sub(r"\s+", " ", s.replace("**", "").replace("\\", "")).strip()
 V42N = ws(V42)
+TPN = ws(open("build/dashboards/sources/Dashboard-v1-Technical-Implementation-Plan.md").read())  # tech-plan quotes (Rule 115) are checked against the tech plan
 def esc(t): return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 def ol(x):
     # one <li> per item; a leading "N. " is dropped (the list numbers itself); "↳" items nest under the item above
@@ -45,7 +46,7 @@ for f in sorted(glob.glob(f"{H}/proposals-*.json")):
             if not p["preconds"] or not p["steps"] or not p["results"] or not p["quotes"]: problems.append(f"{k}: empty part")
             if not p["marker"].startswith("AUTOMATION: ") or "AUTOMATION:" in " ".join(p["results"]): problems.append(f"{k}: marker")
             for a, q in p["quotes"]:
-                if ws(q) not in V42N: problems.append(f"{k}: quote {a} not verbatim in v42: {q[:90]}")
+                if ws(q) not in (TPN if a.lower().startswith("tech plan") else V42N): problems.append(f"{k}: quote {a} not verbatim in v42: {q[:90]}")
             tester = " ".join(p["preconds"] + p["steps"] + p["results"])
             for bad in ("Dashboard feature", "Rule 11", "Rule 5", "seed the exact", "conditions in S", "DashboardAdministrator"):
                 if bad.lower() in tester.lower(): problems.append(f"{k}: tester text contains '{bad}'")
