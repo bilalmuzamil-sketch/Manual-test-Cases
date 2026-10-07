@@ -57,7 +57,16 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-07, ~10:30 UTC. **SV-10642 POSTED: PARTIALLY PASSED (comment 78063), 13 of 13 checks passed on sv10642 `v26.39.2-8b087eb`; two questions in follow-up comment 78064.**
+## ⚠️ NEWEST — 2026-10-07, ~12:00 UTC. **SV-10599 POSTED: PASSED with "hold the release" (comment 78112), 16 of 16 checks on sv10599 `v26.40.3-971d112`; two confirmations asked in follow-up 78113.**
+
+| # | What is missing | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| 1 | Whether the counts that still say "In Stock" (Parts tab collapsed row "3 In Stock", Work Orders list tooltip "3 Parts In Stock") stay as they are or follow the badge. | **Chris Ward** (A/B in 78113); **parth fadadu** — is the collapsed-row follow-up ticketed? | Release of SV-10599 (QA lead: hold until confirmed). | 7 Oct 2026 |
+| 2 | OK that the badge is also hidden on the Parts tab and the part sale page (Chris named only the work order line). | **Chris Ward** (A/B in 78113) | Release of SV-10599. | 7 Oct 2026 |
+
+**QA lead's ruling (7 Oct):** *"Mark the ricket as passed but hold to release if the followup comment above is confirmed bybthe tagged authorities."*; technical section *"No"*; production S2-960 (SV-10642) — *"OK"*, keep until Parth answers.
+
+## ⚠️ PREVIOUS — 2026-10-07, ~10:30 UTC. **SV-10642 POSTED: PARTIALLY PASSED (comment 78063), 13 of 13 checks passed on sv10642 `v26.39.2-8b087eb`; two questions in follow-up comment 78064.**
 
 | # | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|---|

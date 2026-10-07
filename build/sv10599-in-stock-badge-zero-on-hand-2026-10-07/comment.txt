@@ -1,0 +1,55 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+*Please hold the release until the two points in the follow-up comment below are confirmed by Chris and Parth.*
+
+Tested on the QA branch [sv10599.qa.shopview.com|https://sv10599.qa.shopview.com] (build v26.40.3-971d112) on 7 October 2026, and compared with production (build v26.40.8-1e8e914). All 16 checks passed against Chris's decision in [comment 77666|https://shopview.atlassian.net/browse/SV-10599?focusedCommentId=77666]:
+
+{quote}"Let's go with Option A: hide the In Stock badge on the work order line when the part's on-hand quantity is 0 or less. Nothing else changes for now (counts, Pick and auto-pick stay as they are)."{quote}
+
+* A part with 0 or less on hand no longer shows {{In Stock}} on the work order line.
+* Parts that are on hand still show {{In Stock}}, and Pick is offered as before.
+
+h3. Before and after
+
+!01-before-vs-after-hd.png|width=1580,height=1302!
+_On production a part with "Inventory Qty: 0" still says In Stock on the line. On the QA branch the same kind of part shows no badge, while a part with 10 on hand still says In Stock._
+
+h3. What I checked
+
+||#||Check||Status||
+|1|Part with 0 on hand (the picker shows {{Inventory Qty: 0}}) added to an approved line: no {{In Stock}} badge on the line.|PASSED|
+|2|The same part on the {{Parts}} tab: no {{In Stock}} badge.|PASSED|
+|3|Part with 10 on hand: {{In Stock}} shows.|PASSED|
+|4|Part with 2 on hand on a line that needs 5: {{In Stock}} shows (only 0 or less hides it).|PASSED|
+|5|{{Pick}} is still offered on a part with 0 on hand, and picking it works as before.|PASSED|
+|6|Part with -1 on hand: no badge.|PASSED|
+|7|Part with -3 on hand: no badge.|PASSED|
+|8|Stock arrives (0 to 3): {{In Stock}} appears on the line.|PASSED|
+|9|Stock goes back to 0: the badge disappears again.|PASSED|
+|10|Part with 5 on hand at another location and 0 at this one: no badge here.|PASSED|
+|11|Part with a core, 0 on hand: no badge on the part or its {{Core for ...}} row.|PASSED|
+|12|Same part with 3 on hand: {{In Stock}} on the part and its core row.|PASSED|
+|13|Part sale, after {{Authorize}}: part with 0 on hand shows no badge, part with 14 on hand shows {{In Stock}}.|PASSED|
+|14|Phone width: the line card shows the same badges.|PASSED|
+|15|Logged in as {{Technician}}: the same badges.|PASSED|
+|16|A vendor part on the same line still shows {{Auth To Order}}.|PASSED|
+
+h3. Parts tab, core part and part sale
+
+!02-parts-tab-core-part-sale-hd.png|width=1580,height=1130!
+
+h3. Phone width
+
+!03-phone-hd.png|width=390,height=497!
+
+h3. How to see it yourself
+
+# Open [sv10599.qa.shopview.com|https://sv10599.qa.shopview.com] with the *Admin* quick-login.
+# Open work order *S10599-17581*.
+# Look at the line's parts.
+
+*Expected:*
+* *FLAT HOOK WINCH STRAP HiVis 4"* (10 on hand) shows {{In Stock}}.
+* *Load Spring IHC* (-3 on hand) and *SPINDLE NUT KIT* (0 on hand) show no {{In Stock}} badge, only {{Pick}}.

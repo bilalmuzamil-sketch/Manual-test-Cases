@@ -1,0 +1,40 @@
+*Two points to confirm before release*
+
+----
+
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] [~accountid:5bd6d7573aa82432ce72b8d3]
+
+*1. Two counts still say "In Stock" for parts with nothing on hand (Work Orders, part stock badge)*
+
+Why I'm asking: Chris's decision was to hide the badge and leave counts as they are, so this may be intended. But on the same screen the badge is now hidden while the count still says those parts are in stock, which is the kind of mismatch the customer reported. Parth's pull request also lists the collapsed-row count as a follow-up.
+
+*Steps to see it:*
+# Open [sv10599.qa.shopview.com|https://sv10599.qa.shopview.com] with the *Admin* quick-login.
+# Open work order *S10599-17581* and go to the {{Parts}} tab.
+# Collapse the line (the arrow at the start of the line row).
+# Go to {{Work Orders}}, search *S10599-17581* and hover the blue bubble on its status.
+
+*What happens now:*
+* Only one of its three inventory parts has stock (FLAT HOOK WINCH STRAP, 10). The other two have -3 and 0 and correctly show no badge.
+* The collapsed line says {{3 In Stock}}.
+* The list tooltip says {{3 Parts In Stock}}.
+
+*Question for Chris:* should these counts stay as they are for now, or should they also leave out parts with 0 or less on hand?
+* *A.* Leave them as they are (as decided in comment 77666).
+* *B.* Change them to match the badge.
+
+*Question for Parth:* is there a ticket for the collapsed-row count follow-up?
+
+!04-counts-still-say-in-stock-hd.png|width=1580,height=951!
+
+----
+
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20]
+
+*2. The badge is also hidden outside the work order line (Parts tab and part sale page)*
+
+Why I'm asking: your decision named the badge "on the work order line". The fix also hides it on the work order's {{Parts}} tab and on the part sale page, under the same rule (0 or less on hand). Both work correctly; see the second picture in the comment above.
+
+*Question:* is it OK that the badge is also hidden on the {{Parts}} tab and the part sale page?
+* *A.* Yes, hide it everywhere the badge shows.
+* *B.* No, only on the work order line.

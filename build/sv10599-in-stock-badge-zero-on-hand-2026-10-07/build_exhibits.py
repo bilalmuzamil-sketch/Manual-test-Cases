@@ -33,3 +33,13 @@ ph=panel(R+'B11.png',crop=(0,820,390,1105),title='QA branch, phone width (390), 
   notes=[(1,GRN,'Stocked part: In Stock.'),(2,GRN,'Load Spring IHC (-3 on hand) and SPINDLE NUT KIT (0 on hand): only Pick, no In Stock badge.')])
 ph.save(O+'03-phone-hd.png')
 for f in ['01-before-vs-after-hd.png','02-parts-tab-core-part-sale-hd.png','03-phone-hd.png']: print(f,Image.open(O+f).size)
+# follow-up: the counts that still say In Stock (S10599-17581)
+c1=panel(R+'X1-parts-expanded.png',crop=(320,180,1900,480),title='QA branch, S10599-17581, Parts tab with the line open',
+  boxes=[(1676,300,1739,321,GRN,1),(368,355,1890,467,GRN,2)],
+  notes=[(1,GRN,'FLAT HOOK WINCH STRAP, 10 on hand: In Stock.'),(2,GRN,'Load Spring IHC (-3 on hand) and SPINDLE NUT KIT (0 on hand): no In Stock badge, correctly.')])
+c2=panel(R+'X2-parts-collapsed.png',crop=(320,160,1900,230),title='Same Parts tab with the line collapsed',
+  boxes=[(987,188,1061,209,RED,3)],notes=[(3,RED,'The collapsed line still says "3 In Stock" - it counts the two parts that have none.')])
+c3=panel(R+'X4-list-tip.png',crop=(20,120,900,250),title='Work Orders list, the same work order, hovering the blue bubble on its status',
+  boxes=[(131,142,279,193,RED,4),(195,189,214,208,RED,5)],
+  notes=[(4,RED,'The tooltip says "3 Parts In Stock".'),(5,RED,'The bubble shows 4 (3 in stock + 1 ready to order).')])
+stack([c1,c2,c3]).save(O+'04-counts-still-say-in-stock-hd.png'); print('04',Image.open(O+'04-counts-still-say-in-stock-hd.png').size)

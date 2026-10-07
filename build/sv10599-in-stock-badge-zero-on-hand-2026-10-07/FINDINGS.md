@@ -47,3 +47,17 @@ Production `app.shopview.com` build `v26.40.8-1e8e914`, Trucks Hill 2, work orde
 
 ## Exhibits
 `ev/01-before-vs-after-hd.png` (production picker + line vs branch picker + line) · `ev/02-parts-tab-core-part-sale-hd.png` (Parts tab main + core at 0 and at 3; part sale) · `ev/03-phone-hd.png` (390 wide). Built by `build_exhibits.py` from 2× captures.
+
+## QA lead's rulings (7 Oct 2026, ~11:40Z)
+*"Mark the ricket as passed but hold to release if the followup comment above is confirmed bybthe tagged authorities."* · counts question *"Yes in followup comment"* · extra surfaces *"Yes in followup comment"* · technical section *"No"* · S2-960 (SV-10642) *"OK"*.
+
+## Live re-check before posting (Rule 68/72) — ~11:50Z
+Branch marker `v26.40.3-971d112` unchanged. S10599-17581 re-read: parts ZZ10599V `authorized_to_order`, 573.D430FH-HV `in_stock` 10, MH55205 `in_stock` −3, 448-4865 `in_stock` 0. Parts tab collapsed row reads **"3 In Stock"** (chip at 987,188); list bubble **4**, hover tooltip **"1 Part Ready to Order | 3 Parts In Stock"**; list endpoint `statusInStock: 3`. Ticket: TESTING QA, 3 comments, only change today = QA Assignee set (05:49 −0500). Fingerprint scan 0 hits.
+
+## Posted
+- **78112** (06:57:04 −0500): green panel *"OVERALL QA STATUS: PASSED"*, bold hold-release line, Chris's 77666 quoted, 16-row table, 3 images (61889/61890/61891).
+- **78113** (06:57:05 −0500): follow-up, **@Chris Ward + @parth fadadu** on the counts (picture 61892, A/B for Chris, ticket question for Parth), **@Chris Ward** on the badge also being hidden on the Parts tab and part sale page (A/B).
+Read back via v3 ADF: panel `success`; media `file` ×3 in order + ×1; tableRow 17 = header + 16; mentions resolved.
+
+## Learning check (Rule 95)
+Recorded: inline Add Part picker shows *"Inventory Qty: N"* per option (`select_inline_part_number` → `.q-menu .q-item`); WO list status bubble `#partsActionsCount-<woId>` hover tooltip spells out the counts; a user's location set with `iam/change-location` **persists across logins** (a later quick-login lands at that location — switch back explicitly); `inventory/parts/change` needs `id, catalog_part_id, category_id, quantity, purchase_price, tags, bins` (+ `core:true, core_charge` mints a core). Playbook §AC.15 addendum 4.
