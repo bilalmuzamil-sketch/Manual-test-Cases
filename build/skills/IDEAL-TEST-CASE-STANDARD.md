@@ -31,9 +31,16 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
 
 ## The layout (in order)
 
-- **Preconditions** — role + permission + "on the build under test"; then data set-up as standard QA
-  steps (seed sub-steps prefixed, e.g. with `↳`, so they read as a recipe), example values inline.
-- **Steps** — numbered, one UI action per line, build glossary, the tester's real actions.
+- **Preconditions field — two headed blocks (PERMANENT, QA lead 2026-10-08):**
+  - **"Preconditions"** — the required starting state only: environment/build, user role and permissions, location,
+    relevant configuration, browser; exact test data and relationships (counts, statuses, assignments, values); the
+    initial value of every setting the expected result depends on; which names are examples and which relationships
+    and values must hold.
+  - **"Setup"** — numbered instructions that create that state (path, fields, values, save), reuse of existing
+    records only after checking every condition, system-assigned identifiers written down for the steps, and a final
+    "check the setup worked" step. Never only an external link.
+- **Steps** — start from the prepared state; numbered, one UI action per line with the exact control and value, build
+  glossary; no setup actions and nothing vague ("verify it works") — only the behaviour being tested.
 - **Expected results** — runnable observations (lead) → **Source** (story/spec + version + section, and
   the source-verified/build-verified stamp) → **Exact quotes from the source (verbatim)** → blank line →
   the single **AUTOMATION:** marker, last.

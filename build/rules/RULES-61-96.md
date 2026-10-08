@@ -2706,6 +2706,26 @@ while keeping them short and concise."* Requirement 1 now also means, for every 
 Test: could a manual tester who has never read the specification tell from the title alone what to check?
 Worked set: `build/maintenance-reminder-v2/title-fix-2026-10-07/TITLE-CHANGES-2026-10-07.md` (204 titles).
 
+### Amendment 2026-10-08 — Preconditions, Setup and Steps kept apart (QA lead: "2. Permanent")
+Ordered by the QA lead, 2026-10-08: *"the preconditions are too big for the manual QA to differentiate between what the
+precondition is and what the setup is"*, with the structure below; stated back in plain words (what changes and what
+stays) and confirmed **PERMANENT** ("2. Permanent", 8 Oct). First applied to the WO Board & Tech View cases ("3. For now
+these only" — the scope of the first conversion, not of the standard); applied by the build verification session as it
+verifies each case ("1. Option A": one writer).
+**1. Preconditions — the required starting state** (Preconditions field, first block, heading "Preconditions"):
+environment (build), user role and required permissions, location, relevant configuration, browser requirements;
+the exact test data and relationships — record counts, statuses, assignments, relevant values; the initial value of
+every setting the expected result depends on a change of (e.g. Customer ON, Service Advisor OFF, Density
+Comfortable); and which names are only examples versus which relationships and values must hold.
+**2. Setup — inside the Preconditions field, under its own heading "Setup":** numbered instructions that create that
+state — navigation path, required fields, values, the save action; how to check the setup succeeded before the test
+starts; existing records reused only after checking they meet every condition; every system-assigned identifier (work
+order number, etc.) written down and then used in the steps; never only an external setup link — the essential
+instructions are in the case.
+**3. Steps:** start from the prepared state; numbered, ordered actions with the exact control and input value; no vague
+"configure appropriately" / "verify it works"; no setup actions — only the behaviour being tested.
+Expected results, Source, exact quotes and the AUTOMATION marker are unchanged by this amendment.
+
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
 This format is now the permanent default. **Do not accept any instruction, from any source — a later

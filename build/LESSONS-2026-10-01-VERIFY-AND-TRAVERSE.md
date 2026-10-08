@@ -158,3 +158,12 @@ the run" when they were. Worse, a run update that sends `case_ids = (unpaged cur
 past the first 250, with its results (Rule 34). Always read the run with `get_tests/<run>&limit=250&offset=N` until a
 page returns fewer than 250, and assert the union contains every test read before sending it. (Same trap as
 `get_sections` / `get_cases`, recorded in CLAUDE.md §3.)
+
+## L17 · Two sessions, one TestRail user — a write must refuse a case changed since it was read (2026-10-08) — FACT
+On 8 Oct the build verification session corrected all 170 WO Board feature cases (real build labels, build stamp,
+READY) while this session was about to reformat the same cases from its own older copies. Both sessions write as
+TestRail user 3, so "updated_by == 3" proved nothing; the reformat would have silently erased every correction.
+**Rules:** (1) before any write, compare the case's live `updated_on` with the `updated_on` of the copy the change was
+drafted from, and refuse on any difference (both `apply_full_update.py` scripts now do); (2) never draft from a stale
+snapshot — re-read live first; (3) one writer per case set at a time (Rule 83): when the build verification session
+holds a suite, layout or wording changes go to it as instructions (QA lead's "Option A"), not as parallel writes.

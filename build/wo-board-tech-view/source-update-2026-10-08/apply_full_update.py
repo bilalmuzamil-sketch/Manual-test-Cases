@@ -70,7 +70,10 @@ if APPLY:
     os.makedirs(f"{H}/applied", exist_ok=True); log = []
     for cid, payload, why in plans:
         c = api(f"get_case/{cid}")
-        assert c["created_by"] == 3 and c["updated_by"] == 3, f"C{cid} changed by someone else"
+        assert c["created_by"] == 3, f"C{cid} not ours"
+        # optimistic lock: every session writes as the same TestRail user, so updated_by cannot tell sessions apart —
+        # refuse if the case changed at all since the snapshot it was drafted from (L17)
+        assert c["updated_on"] == ours[cid]["updated_on"], f"C{cid} was edited after it was read (another session?) — refusing to overwrite; re-read and redo it"
         json.dump(c, open(f"{H}/applied/C{cid}-before.json", "w"), indent=1)
         api(f"update_case/{cid}", payload); a = api(f"get_case/{cid}")
         json.dump(a, open(f"{H}/applied/C{cid}-after.json", "w"), indent=1)
