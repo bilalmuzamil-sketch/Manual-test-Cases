@@ -57,6 +57,17 @@ else owes).
 
 ---
 
+## ⚠️ NEWEST — 2026-10-08, ~04:00 UTC. **SV-9138 TESTED ON sv9138 — VERDICT HELD, FOUR ASKS TO THE QA LEAD.**
+
+| What is missing | Who owes it | What it blocks | Since |
+|---|---|---|---|
+| Decision: test the "copies that already exist" half of SV-9138 (leftover copies not deletable / renamable, one default, the cleanup command) — needs the developer to put 2–3 copies into the sv9138 database, since the fix blocks every way to create one and QA has no database access — or rule it out of scope | QA lead (then Parth) | The overall verdict: 10 of 10 checks I could run PASSED, but green PASSED needs 100% (Rule 97) | 2026-10-08 |
+| API-only observation: removing or renaming the default "Uncategorized" through the server answers OK but does nothing (screen offers neither) — report it or not? (Rule 94) | QA lead | Nothing on the ticket; whether a separate ticket is raised | 2026-10-08 |
+| Screen recording on the SV-9138 comment? (Rule 104) | QA lead | Whether a recording is made | 2026-10-08 |
+| Technical details section on the SV-9138 comment? (Rule 84) | QA lead | Whether that section is added | 2026-10-08 |
+
+Evidence: `build/sv9138-duplicate-uncategorized-2026-10-08/FINDINGS.md`. Production restored byte-identical (15 categories).
+
 ## ⚠️ NEWEST — 2026-10-07, ~17:00 UTC. **LIVE STATES RE-READ (Rule 103) + SV-10993 WAS MY MISTAKE.**
 
 Read live 7 Oct ~16:50 UTC (status · last comment):
