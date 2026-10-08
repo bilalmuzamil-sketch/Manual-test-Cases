@@ -464,3 +464,15 @@ It deliberately does NOT touch the standing holds — Jira/external artefacts (6
 Vladimir's cases (38), Automated cases (71), secrets (82), production. Unblocking concerns reaching a
 test STATE, never widening what may be published or written. Indexed in `CLAUDE.md` §2 and folded into
 the existing §1 blocker bullet as an amendment per the §1 admission gate. Rule count 106 → **107**.
+
+## Rule 119 added 2026-10-08
+
+Ordered by the QA lead on 2026-10-08, with his approval to record it without proposing the wording first:
+*each session follows only its own rule book; facts may be shared, rules may not.* Text at the end of
+`build/rules/RULES-61-ONWARD.md` (rule 119); indexed in `CLAUDE.md` §2; folded into the existing §1
+handoff bullet (Rule 111, the same subject) as an amendment per the §1 admission gate. Every place in this
+copy that told a session to read, follow or keep in step with another session's rules was changed to
+"facts only, never rules": `CLAUDE.md` (Rule 97 drill, the shared-brain paragraph), `RULES-01-20.md`,
+`RULES-21-40.md` (×2), `RULES-41-60.md`, `RULES-61-ONWARD.md` (Rule 72 note, Rule 97 part B and its drill,
+the Rule 27 tie), skills `00-COMMON-CORE.md` (×2) and `13-CROSS-SESSION-SAFETY.md`, and the handoffs
+`README.md` and `HANDOFF-1…4`. Rule count 117 → **118**. Learning L0300.

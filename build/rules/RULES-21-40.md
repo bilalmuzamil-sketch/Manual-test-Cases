@@ -174,9 +174,9 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     INSTANT you discover a NEW working recipe (a new endpoint, payload field, ID, UI path, or the
     concrete gotcha-fix that unblocked success), append it to build/APP-ACTIONS-PLAYBOOK.md
     immediately in the same session — success-proven knowledge ONLY (never failed attempts/dead-ends),
-    per the "Keeping this current" append-only convention. This is the shared brain across the
-    parallel sessions (there is no live message bus — the books ARE the channel, Rule 20), so a
-    recipe recorded once must never be re-discovered. Rationale, 2026-07-27: the user flagged that
+    per the "Keeping this current" append-only convention. Recipes are FACTS, so they may be shared
+    across the parallel sessions (facts only, never rules — Rule 119), and a recipe recorded once
+    must never be re-discovered. Rationale, 2026-07-27: the user flagged that
     re-discovering known actions (e.g. how to add a part to a work order) from scratch extends
     testing time — "you should have these things in your memory as mentioned to you before so that
     you can retrieve them from memory instead of finding your ways from scratch again and again."
@@ -262,7 +262,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     in-flight kill recovery, pre-limit checklist, post-reset resume steps). Rationale: proven
     across the 2026-07-28/29 daily-limit hits — because every step was committed+pushed and
     state-saved, ZERO work was lost across the resets. Ties to Standing Rules 6/17/20 and the
-    two-session shared-brain convention (CLAUDE.md + PROJECT-STATE.md are the resume anchors).
+    facts-only sharing convention of Rule 119 (CLAUDE.md + PROJECT-STATE.md are this copy's resume anchors).
     **⇒ STRENGTHENED 2026-08-11 INTO SEVEN CHECKABLE REQUIREMENTS — because the wording above was
     ALREADY IN FORCE on 2026-08-11 and was NOT ENOUGH. USER DIRECTIVE (2026-08-11, verbatim):**
     *"there are the chances that again we will lose all the work due to 5 hours limit issue, so we

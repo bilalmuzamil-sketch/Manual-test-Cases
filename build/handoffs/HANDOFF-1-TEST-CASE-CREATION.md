@@ -491,19 +491,20 @@ and wrongly. **On 2026-08-28 alone a stale checkout caused a 479-line security t
 reported absent, a 42 KB `CLAUDE.md` to be measured as 459 KB, and existing build-verify directories to
 be denied.** Fetch first, then search.
 
-**🔴 SEARCH THE CANONICAL BRANCH, NOT ONLY YOUR OWN (added 2026-08-28, same cause).** The workspace's
-shared knowledge lives on **`origin/claude/slack-session-0sxnd9`**. If you are on a different branch you
+**🔴 SEARCH THE CANONICAL BRANCH, NOT ONLY YOUR OWN — FOR FACTS ONLY, NEVER RULES (added 2026-08-28;
+narrowed 2026-10-08 by Rule 119).** Other sessions' facts (error texts, recipes, BLOCKED files, project
+notes) may be found on **`origin/claude/slack-session-0sxnd9`**; its rules and skills are never yours. If you are on a different branch you
 do **NOT** need to check it out — read straight from the remote ref:
 
 ```
-git ls-tree -r --name-only origin/claude/slack-session-0sxnd9 | grep -E 'skills/|rules/|BLOCKED|PLAYBOOK'
+git ls-tree -r --name-only origin/claude/slack-session-0sxnd9 | grep -E 'BLOCKED|PLAYBOOK|DIAGNOSIS|PROJECT-STATE'
 git show origin/claude/slack-session-0sxnd9:<path> | grep -n "<what you need>"
 git show origin/claude/slack-session-0sxnd9:<path> | sed -n '1,80p'
 git grep -n "<exact error text>" origin/claude/slack-session-0sxnd9 -- build/ | head -20
 ```
 
 **"NOT ON THIS BRANCH" IS NEVER A VALID REASON TO CONCLUDE SOMETHING DOES NOT EXIST — check the
-canonical branch before saying anything is missing.** On 2026-08-28 a session on another branch
+canonical branch for the FACT before saying anything is missing.** On 2026-08-28 a session on another branch
 reported `build/skills/14-ACCESS-RESILIENCE.md`, `build/rules/RULES-*.md` and the `build/BLOCKED-*.md`
 files as absent; all of them existed on the canonical branch at that moment.
 

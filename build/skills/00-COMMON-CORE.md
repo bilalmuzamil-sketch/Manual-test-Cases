@@ -1343,7 +1343,7 @@ alongside the work script. Reusable form:
 
 ```bash
 nohup bash -c '
-  BR=claude/slack-session-0sxnd9
+  BR=$(git rev-parse --abbrev-ref HEAD)   # THIS session's branch — never another session's (Rule 119)
   # Gate on the run-flag the work script created, NOT on pgrep of the script name.
   while [ -f /tmp/<job>.running ]; do
     git add -- <explicit paths>
@@ -1846,8 +1846,8 @@ of asking.
   the date.
 - **Reuse recorded recipes; never re-derive (Rule 27).** Read `build/APP-ACTIONS-PLAYBOOK.md` before
   any environment action, and **append any new proven recipe immediately, in the same session** —
-  success-proven knowledge only, never dead ends. **The books ARE the channel between parallel
-  sessions; there is no live message bus.**
+  success-proven knowledge only, never dead ends. **Recorded recipes are FACTS that parallel sessions
+  may share; rules never are — each session follows only its own rule book (Rule 119).**
 - **Every DEVIATION / Failed / Blocked cell carries a plain "What needs to be done"** a
   non-technical QA can act on. Never a bare status.
 - **API-content cases go in a section whose title includes "API" (Rule 4).**

@@ -675,10 +675,11 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     away real coverage.** The full requirement, the three states, the automation precondition and the
     deletion discipline are **Standing Rule 64** — read it before acting on this paragraph.
     **TWO-SESSION KNOWLEDGE SHARING:** this workspace is worked
-    by more than one Claude session in parallel; there is no live message bus between
-    them, so **this CLAUDE.md + the build/*-PROCESS.md docs ARE the shared brain** — any
-    session that learns/changes a durable rule MUST write it here so the other session
-    picks it up, and MUST read here before acting. Ties to Standing Rules
+    by more than one Claude session in parallel, each with its own job and its own rule
+    book. **FACTS ONLY, NEVER RULES (Rule 119, 2026-10-08):** a session that learns a durable
+    FACT writes it into the playbook or the project's PROJECT-STATE.md so others may read it
+    for facts; this CLAUDE.md and its rule files are THIS copy's rule book only, and another
+    session's copy is never read for rules. Ties to Standing Rules
     6/8/9/10/11/12/13/14/15 and build/SPEC-RECHECK-PROCESS.md +
     build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md.
 

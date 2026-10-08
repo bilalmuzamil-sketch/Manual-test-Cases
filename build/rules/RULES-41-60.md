@@ -618,7 +618,7 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     **one comma-free entry ≤ 248 chars**), so `refs` is verified under
     `','.join(p.strip() for p in s.split(','))`, declared as such in the log. **Any NEWLY discovered
     normalisation must be PROVEN and RECORDED in `build/APP-ACTIONS-PLAYBOOK.md` §J, with its
-    evidence, BEFORE it may be relied on** (Rule 27 — the books are the shared brain; an undeclared
+    evidence, BEFORE it may be relied on** (Rule 27 — recorded recipes are shared FACTS, never rules (119); an undeclared
     normalisation is indistinguishable from a silent write failure).
     **EVIDENCE DUTY:** keep **the pre-write snapshot AND the post-write re-GET**, and record **per
     operation** in the audit log: **the operation · the target C-id · the HTTP status · the

@@ -100,7 +100,7 @@ never repairs another lane's artefact unilaterally.
 **On push reject** (the one benign collision — git actually tells you):
 
 ```sh
-git fetch origin && git rebase origin/claude/slack-session-0sxnd9 && git push
+git fetch origin && git rebase origin/"$(git rev-parse --abbrev-ref HEAD)" && git push   # my OWN branch only — never rebase onto another session's branch: that pulls in its rule book (Rule 119)
 ```
 
 ---
