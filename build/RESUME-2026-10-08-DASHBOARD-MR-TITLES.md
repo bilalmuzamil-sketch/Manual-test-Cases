@@ -30,3 +30,10 @@ tree is pushed. The next task has not been given yet.
   ~2.5 minutes of retries (7 Oct 2026). Retry with a backoff loop; the GitHub write API is not open to this session.
 - `pgrep -f <name>` also matches a shell loop whose own text contains `<name>`; check for the real process with the
   interpreter in the pattern (e.g. `pgrep -af "python3 build/testing-tools/drive_design_full"`).
+
+## Update — 8 Oct 2026, WO Board & Tech View full update DONE
+- 170 of ours (130 rewritten in full + 40 new), run 498 = 170, all 221 PRD requirements quoted, design driven in full
+  (`build/wo-board-tech-view/source-update-2026-10-08/DESIGN-COVERAGE-2026-10-08.md`). Handed to the build verification
+  session by the QA lead; that session also re-checks questions W-1..W-16 before any go to the PO.
+- New tool: `build/testing-tools/crawl_design_states.py` (stateful design crawl). New lesson: L15 (Claude Design links).
+- Nothing in flight. Waiting for the next task.
