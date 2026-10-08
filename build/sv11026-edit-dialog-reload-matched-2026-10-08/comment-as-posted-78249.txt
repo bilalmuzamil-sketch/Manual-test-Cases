@@ -1,0 +1,49 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on the QA branch [sv10360|https://sv10360.qa.shopview.com] (build v26.40.8-e20f5ff) on 8 October 2026, signed in as Admin, on the test bank account *ZZAUTOTEST SV-10903 bank*. Each check used a fresh imported row. The "before" pictures are the ones taken for this ticket earlier the same day on the same branch (build v26.40.8-3e5c1df).
+
+In short:
+* Pressing *Reload* after "This transaction changed. Reload it before saving." now keeps what you typed in the *Edit* window. Fields you did not touch show the change made elsewhere, and *Save* then keeps both.
+* When the row was matched somewhere else, the message now shows inside the *Edit* window with a *Dismiss* button, and *Save* is greyed out. There is no pop-up any more.
+
+h3. Before vs after: Reload after a change made in another tab
+!01-reload-before-after.png|width=1090,height=592!
+
+h3. Before vs after: Save on a row matched in another tab
+!02-matched-before-after.png|width=1535,height=835!
+
+h3. What I checked
+||#||Check||Result||
+|1|Another tab changed the *Account* to 6100 Insurance. In the Edit window I typed a Memo and a Payee and clicked *Save*. The "This transaction changed" message appeared with my typing still there, *Save* was greyed out, and pressing Enter did not save|PASSED|
+|2|Clicked *Reload*: Memo "ZZ typed memo 1" and Payee "ZZ typed payee 1" stayed, and *Account* now showed 6100 Insurance. *Save* showed "Saved." and the row kept all three|PASSED|
+|3|Another tab changed the Memo *and* the Account. In the Edit window I typed only a Memo. After *Reload*, my Memo stayed and the Account showed the other tab's 5100 Shop Supplies COGS. After *Save* the row had my Memo and 5100|PASSED|
+|4|In the Edit window I picked *Account* 6100 Insurance and typed a Memo. Another tab set the Account to 5100 and added a Payee. After *Reload*, my Account (6100) and Memo stayed and the other tab's Payee appeared. After *Save* the row had all three|PASSED|
+|5|Row matched in another tab (*Match transaction* → *Select* → *Match entry*), then *Save* in the Edit window with a Memo typed: "Only pending transactions can be edited; this one is matched." shows inside the window with *Dismiss*. *Save* is greyed out, Enter does nothing, and no pop-up appears. *Dismiss* closes the window, and the row leaves the *For review* list. Same result on 3 of 3 rows (Memo typed, Account picked, Memo and Payee typed)|PASSED|
+|6|Row excluded in another tab (*Exclude*), then *Save*: "Only pending transactions can be edited; this one is excluded." shows inside the window with *Dismiss*, and *Save* is greyed out|PASSED|
+|7|*Reload* could not refresh the list (I made that refresh fail on purpose): the "This transaction changed" message and my typed Payee stayed. Clicking *Reload* again worked, and *Save* kept the Payee and the newer Account|PASSED|
+|8|*Save* failed on the server (I made that one save fail on purpose): "Couldn't save the transaction. Please try again." shows inside the window with *Dismiss*, and the typed Memo and Payee stayed. After *Dismiss*, *Save* worked first time. The app's general "Ooooops! An error occurred" pop-up also showed, as it does for any server error|PASSED|
+|9|SV-10903 recheck: a memo typed on the row, *Edit* opened before that memo had saved (I slowed that one save down on purpose), *Account* changed, *Save*: both the memo and the Account were kept|PASSED|
+|10|SV-10903 recheck: a row whose own save on the list was refused shows "This transaction changed. Reload it before saving.", and in its ⋮ menu *Edit* and *Split* are greyed out while *Match transaction* still works. The row's *Reload* turns them back on|PASSED|
+
+h3. The other cases (fixed build)
+!03-other-cases.png|width=1650,height=672!
+
+h3. How to see it yourself
+# Open [https://sv10360.qa.shopview.com|https://sv10360.qa.shopview.com] and sign in as Admin.
+# At the top left, next to the logo, click *ShopHub* (with the small arrow) and choose *AccountingHub*.
+# In the left menu under *BANKING*, click *Transactions*. In the row of bank cards near the top, click the card *ZZAUTOTEST SV-10903 bank*.
+# Open the same page in a second browser tab (copy the address) and click the same bank card there too.
+
+*Reload keeps what you typed (row ZZ11026-11 supplies, -$211.00)*
+# In the first tab, on the row *ZZ11026-11 supplies*, click the three dots (⋮) at the right end of the row and choose *Edit*.
+# In the second tab, on the same row, open the *ACCOUNT* dropdown and pick another account, for example *6100 Insurance*.
+# Back in the first tab, type something in *Memo (optional)* and *Payee (optional)*, then click *Save*. The red message "This transaction changed. Reload it before saving." appears with *Reload*.
+# Click *Reload*. What you typed is still in Memo and Payee, and *Account* now shows 6100 Insurance. Click *Save*: "Saved." appears and the row shows all three.
+
+*A matched row shows its message inside the window (row ZZ11026-12 supplies, -$212.00)*
+# In the first tab, on the row *ZZ11026-12 supplies*, click ⋮ and choose *Edit*.
+# In the second tab, on the same row, click ⋮ and choose *Match transaction*. In the window that opens, click *Select* on *JE #13762* and then click *Match entry*.
+# Back in the first tab, type something in *Memo (optional)* and click *Save*. The message "Only pending transactions can be edited; this one is matched." appears inside the Edit window with *Dismiss*, and *Save* is greyed out. Click *Dismiss* to close the window.
+
+Checks 7, 8 and 9 need a failure or a slow save made on purpose, so they can't easily be repeated by hand.

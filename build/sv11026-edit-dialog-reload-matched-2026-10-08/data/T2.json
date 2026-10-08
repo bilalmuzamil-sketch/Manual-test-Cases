@@ -1,0 +1,136 @@
+{
+ "L": [
+  "0.0 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&per_page=50 ",
+  "A row before {\"status\":\"pending\",\"account\":null,\"memo\":null,\"payee\":null,\"v\":2}",
+  "2.0 tab1 SEND GET /api/accounting/bank-transactions?tab=for_review&page=1&per_page=25 ",
+  "3.5 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a1107a-df12-735d-a2db-fb209dd2f8fc&tab=for_review&page=1&per_page=25 ",
+  "6.5 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "13.1 tab2 SEND GET /api/accounting/bank-transactions?tab=for_review&page=1&per_page=25 ",
+  "13.5 tab2 SEND GET /api/accounting/bank-transactions?account_id=01a1107a-df12-735d-a2db-fb209dd2f8fc&tab=for_review&page=1&per_page=25 ",
+  "17.7 tab2 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "22.8 tab2 SEND PUT /api/accounting/bank-transactions/01a11b37-b7aa-7220-adb3-c381126be0b6/details {\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZ other tab memo A\",\"mutation_version\":2}",
+  "23.2 tab2 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "23.2 tab2 RECV 200 01a11b37-b7aa-7220-adb3-c381126be0b6/details {v=3",
+  "27.2 tab2 SEND PUT /api/accounting/bank-transactions/01a11b37-b7aa-7220-adb3-c381126be0b6/details {\"category_account_id\":\"01a1107a-df57-739d-b551-d93b26c87f4e\",\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZ other tab memo A\",\"mutation_version\":3}",
+  "27.8 tab2 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "27.8 tab2 RECV 200 01a11b37-b7aa-7220-adb3-c381126be0b6/details {v=4",
+  "30.3 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&per_page=50 ",
+  "A tab2 changed memo+account; row {\"status\":\"pending\",\"account\":\"Shop Supplies COGS\",\"memo\":\"ZZ other tab memo A\",\"payee\":null,\"v\":4}",
+  "31.8 tab1 SEND PUT /api/accounting/bank-transactions/01a11b37-b7aa-7220-adb3-c381126be0b6/details {\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZ my typed memo A\",\"mutation_version\":2}",
+  "32.0 tab1 RECV 409 01a11b37-b7aa-7220-adb3-c381126be0b6/details {\"errors\":[{\"message\":\"This transaction changed. Reload it before saving.\"}],\"error\":\"stale_transaction\",v=4",
+  "A after Save {\"open\":true,\"banner\":\"This transaction changed. Reload it before saving. Reload\",\"reload\":true,\"dismiss\":false,\"saveDisabled\":true,\"memo\":\"ZZ my typed memo A\",\"payee\":\"\",\"account\":\"Account arrow_drop_down\",\"toasts\":[]}",
+  "A after Reload {\"open\":true,\"reload\":false,\"dismiss\":false,\"saveDisabled\":false,\"memo\":\"ZZ my typed memo A\",\"payee\":\"\",\"account\":\"5100 Shop Supplies COGS\",\"toasts\":[]}",
+  "40.2 tab1 SEND PUT /api/accounting/bank-transactions/01a11b37-b7aa-7220-adb3-c381126be0b6/details {\"category_account_id\":\"01a1107a-df57-739d-b551-d93b26c87f4e\",\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZ my typed memo A\",\"mutation_version\":4}",
+  "40.6 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "40.6 tab1 RECV 200 01a11b37-b7aa-7220-adb3-c381126be0b6/details {v=5",
+  "A after Save2 {\"open\":false,\"reload\":false,\"dismiss\":false,\"saveDisabled\":null,\"account\":null,\"toasts\":[\"check_circle Saved. Close\"]}",
+  "44.4 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&per_page=50 ",
+  "A row after {\"status\":\"pending\",\"account\":\"Shop Supplies COGS\",\"memo\":\"ZZ my typed memo A\",\"payee\":null,\"v\":5}",
+  "44.8 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&per_page=50 ",
+  "B row before {\"status\":\"pending\",\"account\":null,\"memo\":null,\"payee\":null,\"v\":2}",
+  "45.4 tab1 SEND GET /api/accounting/bank-transactions?tab=for_review&page=1&per_page=25 ",
+  "46.0 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a1107a-df12-735d-a2db-fb209dd2f8fc&tab=for_review&page=1&per_page=25 ",
+  "50.0 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "56.5 tab2 SEND GET /api/accounting/bank-transactions?tab=for_review&page=1&per_page=25 ",
+  "57.1 tab2 SEND GET /api/accounting/bank-transactions?account_id=01a1107a-df12-735d-a2db-fb209dd2f8fc&tab=for_review&page=1&per_page=25 ",
+  "61.1 tab2 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "66.2 tab2 SEND PUT /api/accounting/bank-transactions/01a11b37-b7ad-7304-a199-d5f29ada6810/details {\"category_account_id\":\"01a1107a-df57-739d-b551-d93b26c87f4e\",\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":null,\"mutation_version\":2}",
+  "66.5 tab2 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "66.6 tab2 RECV 200 01a11b37-b7ad-7304-a199-d5f29ada6810/details {v=3",
+  "73.2 tab2 SEND PUT /api/accounting/bank-transactions/01a11b37-b7ad-7304-a199-d5f29ada6810/details {\"category_account_id\":\"01a1107a-df57-739d-b551-d93b26c87f4e\",\"account_class_id\":null,\"location_id\":null,\"payee_name\":\"ZZ other tab payee B\",\"memo\":null,\"mutation_version\":3}",
+  "73.5 tab2 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "73.5 tab2 RECV 200 01a11b37-b7ad-7304-a199-d5f29ada6810/details {v=4",
+  "76.9 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&per_page=50 ",
+  "B tab2 saved: {\"open\":false,\"reload\":false,\"dismiss\":false,\"saveDisabled\":null,\"account\":null,\"toasts\":[\"check_circle Saved. Close\"]} row {\"status\":\"pending\",\"account\":\"Shop Supplies COGS\",\"memo\":null,\"payee\":\"ZZ other tab payee B\",\"v\":4}",
+  "80.7 tab1 SEND PUT /api/accounting/bank-transactions/01a11b37-b7ad-7304-a199-d5f29ada6810/details {\"category_account_id\":\"01a1107a-df5d-73a4-b7c1-540c015c9081\",\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZ my typed memo B\",\"mutation_version\":2}",
+  "81.0 tab1 RECV 409 01a11b37-b7ad-7304-a199-d5f29ada6810/details {\"errors\":[{\"message\":\"This transaction changed. Reload it before saving.\"}],\"error\":\"stale_transaction\",v=4",
+  "B after Save {\"open\":true,\"banner\":\"This transaction changed. Reload it before saving. Reload\",\"reload\":true,\"dismiss\":false,\"saveDisabled\":true,\"memo\":\"ZZ my typed memo B\",\"payee\":\"\",\"account\":\"6100 Insurance\",\"toasts\":[]}",
+  "B after Reload {\"open\":true,\"reload\":false,\"dismiss\":false,\"saveDisabled\":false,\"memo\":\"ZZ my typed memo B\",\"payee\":\"ZZ other tab payee B\",\"account\":\"6100 Insurance\",\"toasts\":[]}",
+  "88.5 tab1 SEND PUT /api/accounting/bank-transactions/01a11b37-b7ad-7304-a199-d5f29ada6810/details {\"category_account_id\":\"01a1107a-df5d-73a4-b7c1-540c015c9081\",\"account_class_id\":null,\"location_id\":null,\"payee_name\":\"ZZ other tab payee B\",\"memo\":\"ZZ my typed memo B\",\"mutation_version\":4}",
+  "89.0 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "89.0 tab1 RECV 200 01a11b37-b7ad-7304-a199-d5f29ada6810/details {v=5",
+  "B after Save2 {\"open\":false,\"reload\":false,\"dismiss\":false,\"saveDisabled\":null,\"account\":null,\"toasts\":[\"check_circle Saved. Close\"]}",
+  "92.7 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&per_page=50 ",
+  "B row after {\"status\":\"pending\",\"account\":\"Insurance\",\"memo\":\"ZZ my typed memo B\",\"payee\":\"ZZ other tab payee B\",\"v\":5}"
+ ],
+ "G": {
+  "Ab": {
+   "dlg": [
+    560,
+    277,
+    480,
+    437
+   ],
+   "banner_error_accounting_bank_details": [
+    585,
+    394,
+    430,
+    68
+   ],
+   "input_memo_accounting_bank_details": [
+    597,
+    590,
+    183,
+    40
+   ],
+   "select_category_accounting_bank_details": [
+    597,
+    492,
+    376,
+    24
+   ]
+  },
+  "Ar": {
+   "dlg": [
+    560,
+    319,
+    480,
+    354
+   ],
+   "input_memo_accounting_bank_details": [
+    597,
+    548,
+    183,
+    40
+   ],
+   "select_category_accounting_bank_details": [
+    597,
+    450,
+    380,
+    24
+   ],
+   "input_payee_accounting_bank_details": [
+    820,
+    492,
+    183,
+    40
+   ]
+  },
+  "Br": {
+   "dlg": [
+    560,
+    319,
+    480,
+    354
+   ],
+   "input_memo_accounting_bank_details": [
+    597,
+    548,
+    183,
+    40
+   ],
+   "select_category_accounting_bank_details": [
+    597,
+    450,
+    380,
+    24
+   ],
+   "input_payee_accounting_bank_details": [
+    820,
+    492,
+    183,
+    40
+   ]
+  }
+ }
+}

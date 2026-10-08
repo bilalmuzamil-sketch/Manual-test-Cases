@@ -1,0 +1,80 @@
+{
+ "L": [
+  "0.8 tab1 SEND GET /api/accounting/bank-transactions?tab=for_review&page=1&per_page=25 ",
+  "2.4 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a1107a-df12-735d-a2db-fb209dd2f8fc&tab=for_review&page=1&per_page=25 ",
+  "5.3 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "13.5 tab1 SEND PUT /api/accounting/bank-transactions/01a11b37-b7b7-7171-b653-333243ec9ac7/details {\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":\"ZZ typed payee 5\",\"memo\":\"ZZ typed memo 5\",\"mutation_version\":2}",
+  "INDUCED 500 on details PUT",
+  "13.5 tab1 RECV 500 01a11b37-b7b7-7171-b653-333243ec9ac7/details {\"message\":\"Server Error\"}",
+  "row5 after 500: {\"open\":true,\"banner\":\"Couldn't save the transaction. Please try again. Dismiss\",\"reload\":false,\"dismiss\":true,\"saveDisabled\":false,\"memo\":\"ZZ typed memo 5\",\"payee\":\"ZZ typed payee 5\",\"account\":\"Account arrow_drop_down\",\"toasts\":[\"warning Ooooops! An error occurred Close\"]}",
+  "row5 after Dismiss: {\"open\":true,\"reload\":false,\"dismiss\":false,\"saveDisabled\":false,\"memo\":\"ZZ typed memo 5\",\"payee\":\"ZZ typed payee 5\",\"account\":\"Account arrow_drop_down\",\"toasts\":[\"warning Ooooops! An error occurred Close\"]}",
+  "19.4 tab1 SEND PUT /api/accounting/bank-transactions/01a11b37-b7b7-7171-b653-333243ec9ac7/details {\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":\"ZZ typed payee 5\",\"memo\":\"ZZ typed memo 5\",\"mutation_version\":2}",
+  "19.8 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "19.8 tab1 RECV 200 01a11b37-b7b7-7171-b653-333243ec9ac7/details {v=3",
+  "row5 retry Save: {\"open\":false,\"reload\":false,\"dismiss\":false,\"saveDisabled\":null,\"account\":null,\"toasts\":[\"warning Ooooops! An error occurred Close\",\"check_circle Saved. Close\"]}",
+  "23.6 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&per_page=50 ",
+  "row5 after {\"status\":\"pending\",\"account\":null,\"memo\":\"ZZ typed memo 5\",\"payee\":\"ZZ typed payee 5\",\"v\":3}",
+  "24.8 tab1 SEND GET /api/accounting/bank-transactions?tab=for_review&page=1&per_page=25 ",
+  "25.4 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a1107a-df12-735d-a2db-fb209dd2f8fc&tab=for_review&page=1&per_page=25 ",
+  "29.3 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "36.5 tab1 SEND PUT /api/accounting/bank-transactions/01a11b37-b7bc-71a4-a04a-a982424894d7/details {\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "36.8 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&tab=for_review&page=1&per_page=25 ",
+  "36.8 tab1 RECV 200 01a11b37-b7bc-71a4-a04a-a982424894d7/details {v=3",
+  "row6 long memo save: {\"open\":false,\"reload\":false,\"dismiss\":false,\"saveDisabled\":null,\"account\":null,\"toasts\":[\"check_circle Saved. Close\"]}",
+  "40.5 tab1 SEND GET /api/accounting/bank-transactions?account_id=01a11aed-070a-7132-a24d-603361edd606&per_page=50 ",
+  "row6 after {\"status\":\"pending\",\"account\":null,\"memo\":\"ZZxxx…\",\"payee\":null,\"v\":3}"
+ ],
+ "G": {
+  "e500": {
+   "dlg": [
+    560,
+    277,
+    480,
+    437
+   ],
+   "banner_error_accounting_bank_details": [
+    585,
+    394,
+    430,
+    68
+   ],
+   "button_dismiss_error_accounting_bank_details": [
+    940,
+    426,
+    63,
+    28
+   ],
+   "button_save_accounting_bank_details": [
+    954,
+    654,
+    61,
+    36
+   ],
+   "input_memo_accounting_bank_details": [
+    597,
+    590,
+    183,
+    40
+   ],
+   "input_payee_accounting_bank_details": [
+    820,
+    534,
+    183,
+    40
+   ]
+  },
+  "toast": [
+   1100,
+   942,
+   400,
+   48
+  ],
+  "long": {
+   "dlg": null,
+   "banner_error_accounting_bank_details": null,
+   "button_dismiss_error_accounting_bank_details": null,
+   "button_save_accounting_bank_details": null,
+   "input_memo_accounting_bank_details": null
+  }
+ }
+}
