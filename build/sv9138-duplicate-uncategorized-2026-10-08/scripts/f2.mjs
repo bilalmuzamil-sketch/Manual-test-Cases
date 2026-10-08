@@ -1,0 +1,11 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:2,vp:{width:1600,height:900}}); const p=s.page;
+await s.go('/parts/inventory?search=ZZ9138-'); await p.waitForTimeout(2500);
+const h=await p.evaluate(()=>{const e=[...document.querySelectorAll('th')].find(t=>/Part Number/.test(t.innerText)); const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};});
+await p.mouse.click(h.x,h.y); await p.waitForTimeout(2500);
+const rows=await p.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(e=>{const r=e.getBoundingClientRect(); const td=[...e.querySelectorAll('td')].map(c=>c.innerText.trim()); return {td,x:r.x,y:r.y,w:r.width,h:r.height};}));
+const cols=await p.evaluate(()=>[...document.querySelectorAll('th')].map(e=>{const r=e.getBoundingClientRect(); return {t:e.innerText.trim(),x:r.x,w:r.width};}));
+fs.writeFileSync('/tmp/qa9138/F-inv-geo.json',JSON.stringify({rows,cols,url:p.url()},null,1));
+await p.screenshot({path:'/tmp/qa9138/F-branch-inventory2.png'});
+console.log(rows.map(r=>r.td.slice(1,4).join(' | ')).join('\n'));
+await s.close();
