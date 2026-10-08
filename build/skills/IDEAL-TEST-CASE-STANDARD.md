@@ -51,6 +51,8 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
   `build/wo-board-tech-view/source-update-2026-10-08/HANDOVER-TO-BUILD-VERIFICATION-CASE-LAYOUT-2026-10-08.md`.
 - **🔴 PLACEHOLDER NAMES — PERMANENT, 2026-10-08 (seventh amendment):**
   - Every placeholder is name, hyphen and letter, even when there is only one: {Part-A}, {Part-B}, {Location-A}, {Work-order-A}, {Line-A}, {User-B}.
+  - A further record of the same kind takes the next letter: {Work-order-B}, {Line-B}, {Technician-B}, {Location-B}, and after {User-B} comes {User-C}.
+  - Converting old placeholders: a letter is kept ([User-B] → {User-B}); a number maps 1 → A, 2 → B.
   - This replaces the plain {Part} and {Location} names.
 - **🔴 FRIENDLY PHRASING — PERMANENT, 2026-10-08 (sixth amendment):**
   - Each precondition is one plain sentence: say what must exist, then name it ("… In this test it is called {Part} (for example …).").

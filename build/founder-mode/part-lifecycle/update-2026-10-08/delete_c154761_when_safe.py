@@ -12,7 +12,8 @@ if holding or early:
 else:
     c = api('get_case/154761'); assert c['created_by'] == 3
     snap = json.load(open(f'{U}/retired-2026-10-08/C154761.json')); assert c['updated_on'] == snap['updated_on']
-    api('delete_case/154761', {})
+    try: api('delete_case/154761', {})
+    except Exception: pass  # empty-body reply makes mr_lib retry and raise 400 even when the delete worked (playbook); get_case below decides
     try: api('get_case/154761'); res['deleted'] = False; res['why'] = 'still readable after delete'
     except Exception as e: res['deleted'] = True; res['verify'] = f'get_case now fails: {str(e)[:60]}'
 json.dump(res, open(f'{U}/applied/c154761-delete-result.json', 'w'), indent=1)
