@@ -2899,3 +2899,15 @@ proven before anyone may say it was done.** Operator form: `build/skills/21-DESI
    and the gap triage. The report to the QA lead quotes its numbers and names everything not driven and why.
 8. **Long runs are detached and checkpointed** (Rule 75): they survive the session's background time limits, are
    committed every 10 minutes, and are resumable; a crawler fix is applied by resuming, never by starting over.
+9. **Every shortcut must prove it lost nothing (added 2026-10-08 on the QA lead's "you know what is best").** The crawl
+   saves time two ways — screens that differ only in record data are skipped, and an element already exercised on
+   another screen is not re-exercised. Before the gates are signed off, re-sweep IN FULL (every element, every action,
+   no shortcuts) at least 10 skipped screens and 10 shortcut-swept screens per display, chosen evenly across the queue
+   and including the deepest ones. If that audit shows ANY kind of text or behaviour the shortcut run did not, the
+   shortcut is switched off for that display and its whole queue is re-swept in full. The audit's result goes in the
+   proof file.
+10. **The tools are shared, not rewritten:** `crawl_design_states.py`, `design_gap_scan.py` and `design_label_check.py`
+   in `build/testing-tools/` take the project's folders as arguments; a project copies nothing and changes nothing in
+   them except through a fix that every project then gets.
+11. **Checkpoints run outside the session's background-job limit** (a `nohup` script, not a session background task),
+   so a 2-hour limit can never silently stop the commits while a crawl is still running.

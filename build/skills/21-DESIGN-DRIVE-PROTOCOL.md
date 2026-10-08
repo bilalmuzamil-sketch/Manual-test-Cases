@@ -27,7 +27,7 @@ python3 build/testing-tools/drive_design_full.py "<board>.html" <out>/<board> --
 python3 build/testing-tools/crawl_design_states.py "<board>.html" <out>/<name> --vendor <react/babel dir> \
    --max-depth 6 --max-states 300 --variants --resume [--seed 'key::click'] [--no-expand '<labels another worker crawls>']
 ```
-Run the crawlers with `nohup` from a script file, and a separate checkpoint script that commits every 10 minutes.
+Run the crawlers with `nohup` from a script file, and a separate checkpoint script — also `nohup`, never a session background task (2-hour limit) — that commits every 10 minutes.
 Stop/restart processes with a ps/awk PID list from a script file — **never `pkill -f <pattern>` from a command line that
 contains the pattern** (it kills your own shell). Resume after any crawler fix (`--resume`); never start over.
 
@@ -40,12 +40,16 @@ contains the pattern** (it kills your own shell). Resume after any crawler fix (
    succeeded with it. Retry the rest (forced action; hover the row/card to reveal hover-only buttons; escape quotes).
    Publish the never-exercised list with a reason for each (e.g. "a Paid card cannot be dragged — that is the locked
    behaviour").
-4. **Gap proof:** `design_gap_scan.py`-style script — every kind of text the design showed (record data as
+4. **Gap proof:** `python3 build/testing-tools/design_gap_scan.py --crawl <out> --cases <snapshots dir> --out <file>` — every kind of text the design showed (record data as
    placeholders) that no live case of ours mentions. Classify **every** entry: DATA · COVERED (C-id) · OUT-OF-SCOPE
    (ruling) · SPEC-CONFLICT (→ PO question; check it is not already in the register) · CASE-NEEDED (→ write the case).
    Zero unclassified. Re-run after any crawl retry and classify the difference.
-5. **Label check:** every on-screen word in quotes in preconditions/steps must be in the design or the spec
-   (`label_check.py`-style); misses must be example data only; no record from another environment (e.g. a production
+5. **Shortcut audit (Rule 124 §9):** `python3 build/testing-tools/crawl_design_states.py <board> <out>/<display>-audit
+   --vendor <dir> --audit-from <out>/<display> --audit-count 10` re-sweeps, with no shortcuts, 10 skipped and 10
+   shortcut-swept screens (evenly spread, deepest included) and prints any kind of text the shortcut run never saw.
+   Anything printed ⇒ re-run that display with `--no-shortcuts`. Record the result in the proof file.
+6. **Label check:** every on-screen word in quotes in preconditions/steps must be in the design or the spec
+   (`python3 build/testing-tools/design_label_check.py --design <files…> --proposals <glob>`); misses must be example data only; no record from another environment (e.g. a production
    workplace) used as an example.
 
 ## 5 · Cases

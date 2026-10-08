@@ -3151,6 +3151,7 @@ Other people's Dashboard cases — QA lead 2026-10-07: "Leave them" (not edited)
 130 of ours rewritten in full + 40 new; run 498 = 170 tests; design crawled in full and triaged. READY for build verification. Record: `wo-board-tech-view/source-update-2026-10-08/FULL-UPDATE-2026-10-08.md`.
 Not build-verified — the QA lead starts the build verification session on sv10043.qa.shopview.com.
 Candidate PO / design questions (Sasha Grosman PRD owner; Chris Ward; Branko Cicovic design) — **NOT sent** (Rule 66: sent last):
+**Developer's QA handoff (8 Oct 2026, `wo-board-tech-view/sources/dev-regression-2026-10-08/`):** C368160 and C368164 (Tech View Columns menu count / Show all / Reset to default / Find box) and C368162 (Collapse all / Expand all) test design details NOT in this release — the build verification session marks them **Blocked, not Failed**, and the design-vs-release gap becomes a PO question (design shows them; release leaves them out).
 **QA lead 8 Oct 2026:** build verification handed to the build verification session; that session checks whether W-1..W-16 are answered by the build and adds, drops or reshapes them before anything goes to the PO.
 
 | # | Question (plain) | For |

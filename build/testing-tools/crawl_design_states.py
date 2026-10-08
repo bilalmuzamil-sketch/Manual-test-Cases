@@ -112,6 +112,9 @@ def main():
     ap.add_argument("--resume", action="store_true")
     ap.add_argument("--seed", default="", help="actions from fresh load to the crawl's root state: 'key::action;key::action'")
     ap.add_argument("--no-expand", default="", help="regex on element labels whose resulting screens are recorded but not crawled (another worker crawls them)")
+    ap.add_argument("--no-shortcuts", action="store_true", help="sweep every screen in full: no duplicate-screen skip, no already-exercised-element skip")
+    ap.add_argument("--audit-from", help="SHORTCUT AUDIT (Rule 124 §9): re-sweep, with no shortcuts, screens of this earlier crawl dir and report any kind of text it never saw")
+    ap.add_argument("--audit-count", type=int, default=10, help="audit: how many skipped and how many shortcut-swept screens")
     ap.add_argument("--variants", action="store_true", help="after the crawl, capture every expanded state in dark theme and the root at 768/1024/1920 px")
     a = ap.parse_args()
     board = pathlib.Path(a.board).resolve(); out = pathlib.Path(a.out); (out / "screenshots").mkdir(parents=True, exist_ok=True)
@@ -223,7 +226,26 @@ def main():
 
         seed = [[x.split("::")[0], x.split("::")[1], None] for x in a.seed.split(";") if x]
         noexp = re.compile(a.no_expand) if a.no_expand else None
-        if not states:
+        if a.audit_from:
+            a.no_shortcuts = True
+            A = [json.loads(l) for l in open(pathlib.Path(a.audit_from) / "states.jsonl")]
+            modes = {}
+            for l in open(pathlib.Path(a.audit_from) / "sweeps.jsonl"):
+                r = json.loads(l); modes[r["state"]] = r["mode"]
+            def pick(ids):
+                ids = sorted(ids, key=lambda i: A[i]["depth"])
+                if len(ids) <= a.audit_count: return ids
+                step = len(ids) / a.audit_count
+                return sorted(set([ids[int(i * step)] for i in range(a.audit_count - 1)] + [ids[-1]]))
+            skipped = [i for i, m in modes.items() if m.startswith("skipped")]
+            shortcut = [i for i, m in modes.items() if not m.startswith("skipped") and A[i]["depth"] > 0]
+            chosen = pick(skipped) + pick(shortcut)
+            if not states:
+                for i in chosen:
+                    try: goto_state(A[i]["path"]); fp, t = snap(); add_state(A[i]["path"], 0, fp, t)
+                    except Exception as ex: print("audit: cannot reach screen", i, ex)
+            a.max_states = len(states)  # audit sweeps the chosen screens only; nothing new is queued
+        elif not states:
             goto_state(seed); fp, t = snap(); add_state(seed, 0, fp, t)
         known_fp = {s["fp"]: s["id"] for s in states}
         for st in states:
@@ -241,7 +263,7 @@ def main():
             S = states[qi]; qi += 1
             if S["depth"] >= a.max_depth: continue
             if S["id"] in swept_ids: pass
-            elif S["depth"] > 0 and set(shape(x) for x in S["lines"]) <= swept_shapes and S.get("overlays") == states[S.get("parent") or 0].get("overlays"):
+            elif not a.no_shortcuts and S["depth"] > 0 and set(shape(x) for x in S["lines"]) <= swept_shapes and S.get("overlays") == states[S.get("parent") or 0].get("overlays"):
                 with open(out / "sweeps.jsonl", "a") as f: f.write(json.dumps({"state": S["id"], "mode": "skipped: same kinds of text as screens already swept (only record data differs)", "elements": 0}) + "\n")
                 swept_ids.add(S["id"]); continue
             try: goto_state(S["path"])
@@ -279,7 +301,7 @@ def main():
                 # an element identical (same label, place and role) to one already exercised on another screen is not
                 # re-clicked here; changed or new elements get new keys and are always exercised
                 tk = (e["key"], "drag" if action == "drag" else k[2])
-                if S["depth"] > 0 and tk in tried:
+                if not a.no_shortcuts and S["depth"] > 0 and tk in tried:
                     continue
                 rec = {"state": S["id"], "key": e["key"], "label": e["label"], "ctx": e["ctx"], "action": k[2]}; FORCED.clear()
                 try:
@@ -334,6 +356,19 @@ def main():
                "per_action": {k: sum(1 for r in acts if r["action"].split(":")[0] == k) for k in ("hover", "click", "type", "select", "drag")},
                "distinct_text_lines_seen": len(seen_lines)}
     json.dump(summary, open(out / "summary.json", "w"), indent=1); print(json.dumps(summary))
+    if a.audit_from:
+        def shapes_of(d):
+            sh = set()
+            for l in open(pathlib.Path(d) / "states.jsonl"): sh.update(shape(x) for x in json.loads(l)["lines"])
+            for l in open(pathlib.Path(d) / "actions.jsonl"):
+                r = json.loads(l)
+                for t in (r.get("new_text") or []) + ([r["tooltip"]] if r.get("tooltip") else []): sh.update(shape(p) for p in t.split(" | "))
+            return sh
+        missed = sorted(shapes_of(out) - shapes_of(a.audit_from))
+        rep = {"audited_screens": len(states), "new_kinds_of_text_the_shortcut_run_never_saw": missed}
+        json.dump(rep, open(out / "audit-result.json", "w"), indent=1, ensure_ascii=False)
+        print("AUDIT:", "PASS - nothing new" if not missed else f"FAIL - {len(missed)} new kinds of text: re-run this display with --no-shortcuts")
+        for m in missed[:40]: print("   ", m)
 
 
 if __name__ == "__main__":
