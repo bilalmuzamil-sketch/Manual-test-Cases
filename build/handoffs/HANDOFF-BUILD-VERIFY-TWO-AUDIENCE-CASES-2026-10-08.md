@@ -5,18 +5,18 @@
 - That covers **everything, starting from the Setup file attached to the case**, then the Preconditions, the Setup, the Steps and the Expected results.
 - **Everything from Expected results downwards is handled exactly the way you already handle it.**
 
-The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RULES-61-96.md`; the standard is `build/skills/IDEAL-TEST-CASE-STANDARD.md`.
+These are task instructions from the QA lead for verifying these cases. They are not rules for your rule book: do not record, save or adopt anything here as a rule, standard or skill. Your own rules stay exactly as they are.
 
-## What a case looks like now (Rule 117, fourth amendment of 8 Oct — PERMANENT)
+## What a case looks like now
 | Part | What it holds |
 |---|---|
 | Top of the Preconditions field: link **"Setup (manual QA tester and Claude session)"** | the case's public Google Doc, in the Drive folder "Setup for Claude session (test case setup docs)". **Part 1 "Setup for manual QA tester"** is short click-by-click steps in the build's labels, ending with "Check the setup worked". **Part 2 "Setup for Claude session"** is everything a Claude session needs (environment, access, ids, recipes with browser fallbacks, the check, how to run and observe, evidence, cleanup, traps), with unproven points marked UNVERIFIED. No secrets, ever. |
-| After a line break: **Preconditions** | clearly and completely, what must be true before step 1: user and role, location, every record with its state, as **{brace} placeholders** ({Location}, {Part}, {Line}). Every illustrative value is marked **"(for example …)"** (Rule 117, fifth amendment). No Needs line, browser count or duration. |
+| After a line break: **Preconditions** | clearly and completely, what must be true before step 1: user and role, location, every record with its state, as **{brace} placeholders** ({Location}, {Part}, {Line}). Every illustrative value is marked **"(for example …)"**. No Needs line, browser count or duration. |
 | (no Setup block in TestRail) | the Setup lives only in the doc |
 | **Steps** | actions only, one per line |
 | **Expected results** and below | every line starts "Step N:". Source, exact quotes, build stamp and AUTOMATION marker are as today. |
 
-## What to verify, in this order (every case, in full: Rule 122, never a delta)
+## What to verify, in this order (every case, in full)
 1. **Doc Part 2 (Claude session). Run it as a fresh session would**, following only what the doc says.
    - Check every address, the access route, every id, every recipe and call, the check, the way to observe the steps, the evidence list and the cleanup.
    - Resolve every UNVERIFIED point, and add any trap you hit.
@@ -33,23 +33,23 @@ The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RUL
    - Nothing needed is missing: a tester reading only the Preconditions knows exactly what must exist.
    - Labels are the build's own.
    - No example value is written as if it already exists in the app.
-   - Friendly phrasing (Rule 117, sixth amendment): each precondition is one plain sentence (what must exist, then its {name}); each step is one simple action in order; a "don't" the test depends on is its own step.
-   - The same rule holds in the setup doc, both parts. Every {brace} name used in the doc, including API ids in Part 2, is defined before it is used, and every illustrative value is marked "(for example …)".
+   - Friendly phrasing: each precondition is one plain sentence (what must exist, then its {name}); each step is one simple action in order; a "don't" the test depends on is its own step.
+   - The same holds in the setup doc, both parts. Every {brace} name used in the doc, including API ids in Part 2, is defined before it is used, and every illustrative value is marked "(for example …)".
 5. **Steps:**
    - Perform them. Each is one action in the build's labels.
    - There are no checks in Steps.
 6. **Expected results and everything below. Handle these exactly as you do today:**
    - pass/fail on what you see;
-   - Rules 57 and 113: the quote is never changed, and a build that differs is a deviation;
+   - the quote is never changed, and a build that differs is a deviation;
    - the build stamp;
    - the AUTOMATION marker;
    - Blocked vs Failed.
    One addition: check that each "Step N:" points at the right step.
 
-## Rules that still apply
-- **One writer per case set, plus the edit lock (L17).** Re-read a case immediately before you write. Refuse if it changed since you read it.
-- **Ask before changing a case created by someone else (Rule 123).** Never touch Vladimir Tomovic's cases.
-- **Run sync is union only, with `get_tests` paged (L16).**
+## Also for this task
+- **One writer per case set.** Re-read a case immediately before you write, and refuse if it changed since you read it.
+- **Ask the QA lead before changing a case created by someone else.** Never touch Vladimir Tomovic's cases.
+- **Run sync is union only, with `get_tests` paged** (it returns at most 250 tests per call).
 - **Secrets stay in `/tmp`** (`chmod 600`); run the secret scan before every commit.
 
 ## Worked example (reference only — the case itself was deleted on 8 Oct 2026)

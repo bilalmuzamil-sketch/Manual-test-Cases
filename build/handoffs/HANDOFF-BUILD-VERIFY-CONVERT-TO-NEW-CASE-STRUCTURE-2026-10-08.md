@@ -7,11 +7,11 @@
   - It does not ask you to re-verify behaviour, change any verdict, or change what a case tests.
   - Where the move needs a fact you have already proven on the build (a label, a click-path, an id), use it. Do not go looking for new results.
 
-The structure is permanent: Rule 117, the fourth, fifth and sixth amendments of 8 Oct 2026, in this repository at `build/rules/RULES-61-96.md`.
+These are task instructions from the QA lead for this conversion. They are not rules for your rule book: do not record, save or adopt anything here as a rule, standard or skill. Your own rules stay exactly as they are.
 
 **Which cases:**
 - Only cases you have build-verified that were created by our TestRail user (created_by 3).
-- **Never cases created by anyone else** (for example Vladimir Tomovic, created_by 1). Ask the QA lead first with the C-ids, links, creator and date (Rule 123).
+- **Never cases created by anyone else** (for example Vladimir Tomovic, created_by 1). Ask the QA lead first, with the C-ids, links, creator and date.
 - **When to start:** the QA lead decides. Start only when he says so, with the set he names.
 
 ---
@@ -51,7 +51,7 @@ The structure is permanent: Rule 117, the fourth, fifth and sixth amendments of 
   - If you split or renumber the Steps, update the "Step N:" numbers to match. Change nothing else about the meaning.
 - **NEVER CHANGE any of these. Leave them exactly as they are, byte for byte:**
   - the **Source** paragraph;
-  - the **"Exact quotes from the source (for reproducibility)"** list (Rule 113);
+  - the **"Exact quotes from the source (for reproducibility)"** list;
   - your **"Last checked against build …"** stamp;
   - the **AUTOMATION:** marker;
   - any author note.
@@ -119,7 +119,7 @@ The structure is permanent: Rule 117, the fourth, fifth and sixth amendments of 
    - Moving text is fine. **Losing information a tester needs to run the case is not.** Every fact in the old Setup must land in doc Part 1 or Part 2.
 3. **Create the doc** (§2) and read it back.
 4. **Update the case** with `update_case`, writing **only** `custom_preconds`, `custom_steps` and the plain expected-result list inside `custom_expected`.
-   - Use the **edit lock (L17):** re-read `updated_on` immediately before writing, and refuse if it changed since your read.
+   - Before writing, re-read the case's `updated_on` and refuse to write if it changed since your read, because another session may have edited it.
 5. **Read the case back** and check, by comparing before and after:
    - Source, exact quotes, build stamp and marker are byte-identical to the before copy.
    - There are no square-bracket placeholders left.
