@@ -30,20 +30,24 @@ export async function candidates(a: Api): Promise<{ id: string; name: string; op
 
 /** a customer by exact name (created if absent), with one contact and one vehicle */
 export async function customer(a: Api, name: string, unit = 'ZZ-1') {
+  // 🔴 2026-10-08: GET /api/contacts?company_id= and /api/vehicles?company_id= IGNORE the filter and return the
+  // branch's first rows, so "reuse its vehicle" handed EVERY customer the same Ford Transit (no unit). A customer
+  // made here now gets its own contact and its own vehicle with the unit asked for.
   let c = (rows(await a.get(`/api/customers?pagination[rowsPerPage]=200&search=${encodeURIComponent(name)}`)) as any[])
     .find((x) => x.name === name);
+  let fresh = false;
   if (!c) {
     const r = await a.post('/api/customers/create', { name });
     if (r.status >= 300) throw new Error(`customer ${name}: ${r.status} ${JSON.stringify(r.body).slice(0, 200)}`);
-    c = { id: r.body?.data?.company_id ?? r.body?.data?.id ?? r.body?.company_id };
+    c = { id: r.body?.data?.company_id ?? r.body?.data?.id ?? r.body?.company_id }; fresh = true;
   }
   const company_id = c.id;
-  let contact = (rows(await a.get(`/api/contacts?company_id=${company_id}`)) as any[])[0];
+  let contact = fresh ? null : (rows(await a.get(`/api/contacts?company_id=${company_id}`)) as any[]).find((x) => x.company_id === company_id || x.companyId === company_id);
   if (!contact) {
     const r = await a.post('/api/contacts/create', { company_id, first_name: 'ZZAUTOTEST', last_name: 'Contact', email: `zz${Date.now()}@staging.shopview.local` });
     contact = { id: r.body?.data?.contact_id ?? r.body?.contact_id };
   }
-  let veh = (rows(await a.get(`/api/vehicles?company_id=${company_id}`)) as any[])[0];
+  let veh = fresh ? null : (rows(await a.get(`/api/vehicles?company_id=${company_id}`)) as any[]).find((x) => x.company_id === company_id || x.companyId === company_id);
   if (!veh) {
     const r = await a.post('/api/vehicles/create', { company_id, customer_id: contact.id, year: 2021, unit, vin: `ZZWOB${Date.now()}`.slice(0, 17) });
     veh = { id: r.body?.data?.vehicle_id ?? r.body?.data?.id ?? r.body?.vehicle_id };
