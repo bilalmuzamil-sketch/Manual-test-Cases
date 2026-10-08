@@ -1,0 +1,15 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-08"},
+ "results": {
+  "C96916": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Scroll Back has 20 Approved work orders led by Ayesha Khan, so her column (56 cards) is taller than the window and the board (about 50 technicians) is wider than it. Board View: scrolled right until Unassigned, Admin ShopView, Bilal Muzamil, Ayesha Khan, Branko Cicovic and Brent Avila were in view, then scrolled down in Ayesha Khan's column until S10043-17602 was the first whole card at the top. Opened S10043-17602 by clicking it, then pressed Back. The same technicians were in view, and S10043-17602 was again the first card at the top of her column. The column lined up on that card: the half-hidden card above it was no longer partly shown, a difference of less than one card. Tech View: scrolled down and right, opened the first row in view (S2-17435), then pressed Back. The same row was at the top and the same columns were in view.",
+   "not_observed": null
+  },
+  "C96917": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Top Left has 20 Approved work orders led by Ayesha Khan. Board View, scrolled right and down. Clicking Estimates and then All brought the board back to the top-left: Unassigned and the first technicians in view, each column at its first card. Scrolled again, then Schedule then Work Orders in the top navigation: back at the top-left. Scrolled again, then clicked Work Orders in the top navigation while already on Board View: the page stayed and the scroll position was exactly as before. Tech View behaved the same way: top-left after a tab click and after coming back from Schedule, and unchanged after clicking Work Orders while already on Tech View.",
+   "not_observed": null
+  }
+ }
+}
