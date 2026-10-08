@@ -1,0 +1,34 @@
+{
+ "R": {
+  "S0 sync before": {
+   "response": "{\"result\":{\"kind\":\"syncing\",\"syncing\":5}}",
+   "toast": ""
+  },
+  "create 1094": 201,
+  "manual link 1094": "check_circle\nBank account added\nClose",
+  "refused page": "First Platypus Bank is connected. Pick the accounts to bring into accounting. Each gets its own entry in the chart of accounts, created automatically unless you point it at one you already have. | Some accounts could not be connected. See the messages below. | That chart account already belongs to another bank account.",
+  "S1 sync after refused": {
+   "response": "{\"result\":{\"kind\":\"syncing\",\"syncing\":5}}",
+   "toast": ""
+  },
+  "connected page": "Connected 1 account at First Platypus Bank. 20 transactions imported from 2026-07-10 onward. They are waiting in For review.",
+  "S2 sync after success": {
+   "response": "{\"result\":{\"kind\":\"syncing\",\"syncing\":6}}",
+   "toast": ""
+  }
+ },
+ "log": [
+  {
+   "st": 200,
+   "res": "{\"result\":{\"kind\":\"syncing\",\"syncing\":5}}"
+  },
+  {
+   "st": 200,
+   "res": "{\"result\":{\"kind\":\"syncing\",\"syncing\":5}}"
+  },
+  {
+   "st": 200,
+   "res": "{\"result\":{\"kind\":\"syncing\",\"syncing\":6}}"
+  }
+ ]
+}
