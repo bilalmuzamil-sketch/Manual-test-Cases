@@ -44,6 +44,11 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
 - **Final check before a case is finished (PERMANENT, 2026-10-08):** *"Can a tester or a fresh Claude session prepare the
   required state, execute the test and determine pass/fail using this case alone?"* If not, it is not finished.
 - **Improving an existing case:** remove repetition and ambiguity, never information needed for execution.
+- **PERMANENT, 2026-10-08 (second amendment):** the Preconditions block opens with a **"Needs:"** line (users, browsers,
+  access, time); Setup records every relied-on value once as a **[placeholder]** ([WO-1], [Tech-A], [User-B]) and Steps
+  and Expected use only placeholders; every plain expected result starts with **"Step n:"**; every case has **its own
+  ZZAUTOTEST data**, never shared. Worked example: C96950 in
+  `build/wo-board-tech-view/source-update-2026-10-08/HANDOVER-TO-BUILD-VERIFICATION-CASE-LAYOUT-2026-10-08.md`.
 - **Expected results** — runnable observations (lead) → **Source** (story/spec + version + section, and
   the source-verified/build-verified stamp) → **Exact quotes from the source (verbatim)** → blank line →
   the single **AUTOMATION:** marker, last.

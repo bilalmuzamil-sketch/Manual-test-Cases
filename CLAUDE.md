@@ -441,7 +441,9 @@ starting state: environment, role/permissions, location, settings, exact data an
 "Setup" (numbered instructions to create it, identifiers captured, a final check that setup worked); Steps hold only the
 behaviour being tested, starting from the prepared state. Final check on every case: "Can a tester or a fresh Claude
 session prepare the required state, execute the test and determine pass/fail using this case alone?" Improving a case
-removes repetition and ambiguity, never information needed to run it.**
+removes repetition and ambiguity, never information needed to run it.** **Also PERMANENT (2026-10-08): a "Needs:" line opens the
+Preconditions; Setup records relied-on values once as [placeholders] ([WO-1], [Tech-A]) used throughout; each expected
+result starts "Step n:"; every case has its own ZZAUTOTEST data.**
 
 **🔴 Rule 118 (each session follows only its own rule book — facts may be shared, rules may not)** was
 ordered by the QA lead **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 117.

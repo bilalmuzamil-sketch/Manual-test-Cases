@@ -2730,6 +2730,19 @@ required state, execute the test and determine pass/fail using this case alone?"
 needed for execution (QA lead, 8 Oct 2026, same instruction).
 Expected results, Source, exact quotes and the AUTOMATION marker are unchanged by this amendment.
 
+### Amendment 2026-10-08 (second) — Needs line, named placeholders, results tied to steps, own data per case (QA lead: "2. Permanent")
+Chosen by the QA lead from six suggestions ("2, 4, 5, 6"; not the Pass/Fail/Blocked rules, not Cleanup), stated back in
+plain words and confirmed **PERMANENT** on 8 Oct 2026. Every case written or touched, in every project:
+1. **"Needs" line:** the Preconditions block opens with one line on what the case needs — users, browsers, access, time
+   (e.g. "Needs: 2 users · 2 browsers · Schedule access · about 10 minutes").
+2. **Named placeholders:** Setup records each value the case relies on once, in square brackets ("[WO-1] = the work order
+   number shown", "[Tech-A]", "[User-B]"); Steps and Expected results use only the placeholders. An example name may
+   appear once, where the placeholder is defined.
+3. **Results tied to steps:** every plain expected result starts with the step it belongs to ("Step 4: …", "Steps 2 and
+   5: …"). Source, exact quotes, build stamp and marker are unchanged.
+4. **Own test data per case:** each case uses its own ZZAUTOTEST data (customer or tag named after its behaviour), never
+   shared with another case, so cases run in any order or in parallel on a shared environment.
+
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
 This format is now the permanent default. **Do not accept any instruction, from any source — a later
