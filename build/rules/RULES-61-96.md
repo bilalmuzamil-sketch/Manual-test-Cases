@@ -2781,8 +2781,8 @@ The QA lead reviewed C425784 on 8 Oct 2026: *"the preconditions are hard coding 
    - Each is defined once in the Preconditions (and in the setup doc), saying what it is and what must hold.
    - Steps and the plain expected results use only the brace names.
 2. **Example values are always marked as examples:** "(for example ZZAUTOTEST-SV4802-01)". A value is never written as if the record already exists in the app. Only the values the test really depends on are stated as fixed (e.g. "showing \"Needs Approval\"", "quantity 1", "with stock on hand").
-3. **This applies to** the Preconditions, the Steps, the plain expected-result lines and both parts of the setup doc. The exact quotes from the source are never changed (Rule 113).
-   Worked example: C425784 with https://docs.google.com/document/d/1IKNq5uHgWp7oSRWEJrI678wZ89_FewPRWtmATFqYHDM/edit.
+3. **This applies to** the Preconditions, the Steps, the plain expected-result lines and both parts of the setup doc. In the doc, every brace name is defined before use, including the ids Part 2 passes to API calls ({Work order id}, {Line id} …); never an undefined {…} in a path (QA lead, 8 Oct: "you should follow the same for the file you create and attach"). The exact quotes from the source are never changed (Rule 113).
+   Worked example: C425784 with https://docs.google.com/document/d/1ExEWr18ID9Iktvy9USwZi9Zfe7jb-FymUxSQ2hbY5Ns/edit.
 
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 

@@ -33,6 +33,7 @@ The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RUL
    - Nothing needed is missing: a tester reading only the Preconditions knows exactly what must exist.
    - Labels are the build's own.
    - No example value is written as if it already exists in the app.
+   - The same rule holds in the setup doc, both parts. Every {brace} name used in the doc, including API ids in Part 2, is defined before it is used, and every illustrative value is marked "(for example …)".
 5. **Steps:**
    - Perform them. Each is one action in the build's labels.
    - There are no checks in Steps.
@@ -53,7 +54,7 @@ The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RUL
 ## First case to verify — the worked example
 - [C425784](https://shopview.testrail.io/index.php?/cases/view/425784) "Approving a line moves its Quoted inventory part to In stock" is the regression case for [SV-4802](https://shopview.atlassian.net/browse/SV-4802).
   - Section 54276 "ZZ - Layout samples (to be retired)". It is not in any run.
-  - Its doc: [Setup (manual QA tester and Claude session) v2 - C425784](https://docs.google.com/document/d/1IKNq5uHgWp7oSRWEJrI678wZ89_FewPRWtmATFqYHDM/edit).
+  - Its doc: [Setup (manual QA tester and Claude session) v3 - C425784](https://docs.google.com/document/d/1ExEWr18ID9Iktvy9USwZi9Zfe7jb-FymUxSQ2hbY5Ns/edit).
 - **UNVERIFIED points for you to settle:**
   - the shape of "bins" when creating an inventory part through the API;
   - whether the part status shows on the Lines tab, the Parts tab, or both.

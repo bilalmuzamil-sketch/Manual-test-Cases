@@ -42,3 +42,4 @@
   - New doc v2: https://docs.google.com/document/d/1IKNq5uHgWp7oSRWEJrI678wZ89_FewPRWtmATFqYHDM/edit
   - Superseded docs, not trashed: 12puP022… and 18wB2oHK….
   - Source, quotes and marker are unchanged; the display check is OK.
+- **8 Oct 2026, doc v3:** the API ids in Part 2 are now defined brace names; the case links to https://docs.google.com/document/d/1ExEWr18ID9Iktvy9USwZi9Zfe7jb-FymUxSQ2hbY5Ns/edit. v2 (1IKNq5uH…) is superseded and not trashed.
