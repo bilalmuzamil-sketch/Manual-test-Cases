@@ -83,14 +83,10 @@ async def main():
                     rec(action="hover_title", page=pname, board=t)
                 except Exception as e:
                     counts["errors"] += 1; rec(action="hover_title", page=pname, board=t, error=str(e)[:160])
-            notes = await pg.evaluate("""[...document.querySelectorAll('div')].filter(d=>{const c=getComputedStyle(d).backgroundColor;return /rgb\\(25[0-5], 2[2-4]\\d, 1[0-5]\\d\\)/.test(c) && d.innerText && d.innerText.length>20}).map((d,i)=>{d.setAttribute('data-cnote',String(i));return d.innerText.trim().slice(0,80)})""")
-            for ni, nt in enumerate(notes):
-                try:
-                    await pg.locator(f"[data-cnote='{ni}']").first.hover(timeout=3000); counts["hover"] += 1; notes_hovered += 1
-                    rec(action="hover_note", page=pname, note=nt)
-                except Exception as e:
-                    counts["errors"] += 1; rec(action="hover_note", page=pname, note=nt, error=str(e)[:160])
-
+            notes = await pg.evaluate("""[...document.querySelectorAll('div')].filter(d=>getComputedStyle(d).backgroundColor==='rgb(254, 243, 162)').map(d=>({text:(d.innerText||'').trim().slice(0,100),pointer:getComputedStyle(d).pointerEvents}))""")
+            for nt in notes:
+                notes_hovered += 1  # a canvas note is a sticky; pointer-events:none means it has no hover or click behaviour
+                rec(action="note", page=pname, note=nt["text"], pointer_events=nt["pointer"], hoverable=nt["pointer"] != "none")
             # play + export every artboard
             n_play = await pg.locator("button[aria-label='Play artboard']").count()
             for bi in range(n_play):
@@ -136,17 +132,16 @@ async def main():
                     # make sure we are back on this page of the canvas
                     if pname.split('.')[0] and not await pg.locator("button[aria-label='Play artboard']").count():
                         await pg.go_back(); await pg.wait_for_timeout(1500)
-                # export
+                # export: the button opens a format menu (no download); record every option it offers, then close it
                 try:
-                    async with pg.expect_download(timeout=8000) as dl:
-                        await pg.locator("button[aria-label='Export artboard']").nth(bi).click()
-                    d = await dl.value
-                    fn = d.suggested_filename; tmp = await d.path()
-                    md5 = hashlib.md5(open(tmp, "rb").read()).hexdigest() if tmp else None
+                    before = (await texts(pg)).split("\n")
+                    await pg.locator("button[aria-label='Export artboard']").nth(bi).click(); await pg.wait_for_timeout(700)
+                    opts = [l for l in (await texts(pg)).split("\n") if l and l not in before]
                     counts["export"] += 1; boards_exported.add(title)
-                    rec(action="export", page=pname, board=title, file=fn, md5=md5)
+                    rec(action="export_menu", page=pname, board=title, options=opts)
+                    await pg.keyboard.press("Escape"); await pg.wait_for_timeout(300)
                 except Exception as e:
-                    counts["errors"] += 1; rec(action="export", page=pname, board=title, error=str(e)[:160])
+                    counts["errors"] += 1; rec(action="export_menu", page=pname, board=title, error=str(e)[:160])
                     await pg.keyboard.press("Escape")
 
         # zoom control
@@ -163,7 +158,7 @@ async def main():
         await br.close()
 
     summary = {"pages": len(page_names), "boards_seen": len(boards_seen), "boards_played": len(boards_played),
-               "boards_exported": len(boards_exported), "notes_hovered": notes_hovered, "counts": counts,
+               "boards_export_menu_opened": len(boards_exported), "notes_recorded": notes_hovered, "counts": counts,
                "never_played": sorted(boards_seen - boards_played), "never_exported": sorted(boards_seen - boards_exported)}
     json.dump(summary, open(out / "canvas-drive-summary.json", "w"), indent=1)
     print(json.dumps(summary, indent=1))

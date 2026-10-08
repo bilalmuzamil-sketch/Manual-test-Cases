@@ -11,7 +11,7 @@ for f in sorted(glob.glob(a.proposals)):
     d = json.load(open(f))
     for p in d.get("updates", []) + d.get("new", []):
         k = p.get("case_id") or p.get("key")
-        for line in p["preconds"] + p["steps"]:
+        for line in p.get("preconds", []) + p.get("preconditions", []) + p.get("setup", []) + p["steps"]:
             for lab in re.findall(r'"([^"]{2,60})"', line):
                 n += 1
                 if lab.lower().replace("’", "'") not in C and not lab.startswith(("ZZAUTOTEST", "e.g")): miss[lab].append(str(k))
