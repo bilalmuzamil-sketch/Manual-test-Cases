@@ -14,6 +14,7 @@ Source reconciliation: NOT done this pass — the QA lead will check the cases a
 | D4 | C96938 | Hovering a technician's avatar in a Tech View group header shows no name | SV-10045 (Story 2) — status to be read live before asking | `D4-C96938-tech-annotated.png` |
 | D5 | C368131 | A technician whose Location field no longer includes this location is still offered here, and their pinned column keeps "Drag a work order here to assign it" instead of "No work orders" | SV-10046 (Story 3) — status to be read live before asking | picture to be made with the 2x recapture |
 | D6 | C368135 | A click outside the "Clear …'s scheduled shifts?" question does not call the change off (Cancel, X and Escape do) | SV-10047 (Story 4) — status to be read live before asking | picture to be made with the 2x recapture |
+| D7 | C368138 | Dropping next to a card another person just moved shows the general "Couldn't save the new order" headline above the expected sentence, instead of exactly that sentence | SV-10047 (Story 4) — status to be read live before asking | `D7-C368138-alert-annotated.png` |
 | D2 | C96923 | After changing location, Assigned to me stays switched on (List, Tech View and Board View alike) | SV-10044 | `D2-C96923-board-annotated.png` |
 
 ## D1 — C96918 · No-results message and its Clear filters action
@@ -87,3 +88,13 @@ read Lethbridge.
 **What you will see:** the question stays open and the card stays in the new column; only Cancel, the X or Escape call it off.
 **What the case expects:** a click outside calls the change off like the others: the card goes back to its place and no message appears.
 **Note:** the question itself is new on this build (the case's "today" note expected none); everything else about it behaved as specified.
+
+## D7 — C368138 · The "card next to it has moved" alert has an extra headline
+
+**Steps to check by hand**
+1. Three work orders led by one technician, Board View open in two tabs.
+2. Tab 2: drag the middle card into another technician's column.
+3. Tab 1, without reloading: drop the last card directly above that middle card.
+
+**What you will see:** one alert reading "Couldn't save the new order. Please try again." with "The card you dropped this next to has moved. Refresh the board and try again." under it. The card goes back correctly.
+**What the case expects:** an alert reading exactly "The card you dropped this next to has moved. Refresh the board and try again."
