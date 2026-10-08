@@ -29,3 +29,6 @@
 - **8 Oct 2026:**
   - C425783 deleted on the QA lead's instruction ("reture the previous test sample case"). Its full body is in `C425783-final-before-delete.json`; it was in no run.
   - New example: **C425784**, the SV-4802 regression, in section 54276 "ZZ - Layout samples (to be retired)", with its Claude doc https://docs.google.com/document/d/18wB2oHKhUYBvrWy2Kq-OCtGdmJoeRjkDRkD3zSNbBaM/edit (in the public-folder Drive folder).
+- **8 Oct 2026, QA lead:** removed the "Needs:" line and the "Build: the build named in the test run" line from C425784's Preconditions.
+  - Asked one-time or permanent; answer: **"This case only"**. The standard is unchanged: the Needs line still opens Preconditions in every other case (Rule 117, second amendment).
+  - Before and after snapshots are in `sv4802/`.
