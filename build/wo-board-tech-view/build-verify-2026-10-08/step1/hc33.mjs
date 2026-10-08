@@ -1,0 +1,18 @@
+import {start,mk} from './woblib.mjs'; import fs from 'fs';
+const L='/tmp/cln/hc33.log'; fs.writeFileSync(L,''); const log=(...a)=>fs.appendFileSync(L,a.join(' ')+'\n');
+const b=await start('/workorders','admin'); const {page}=b; const {dump,ov,go,esc,body}=mk(page); page.setDefaultTimeout(15000);
+const T=async(n,f)=>{try{await f();}catch(e){log('ERR',n,e.message.slice(0,200));}};
+const openWO=async(num)=>{ await go('/workorders',7000); await page.locator('button[aria-label="Search"]').last().click(); await page.waitForTimeout(800); await page.keyboard.type(num,{delay:30}); await page.waitForTimeout(4500); await page.locator('tbody tr').filter({hasText:num}).first().locator('td').nth(3).click(); await page.waitForTimeout(6000); };
+await T('addline',async()=>{ await openWO('S10043-17594'); await page.locator('button:has-text("New Line")').first().click(); await page.waitForTimeout(2500);
+  const f=page.getByLabel('What Are You Doing?').first(); await f.click(); await f.pressSequentially('clutch',{delay:90}); await page.waitForTimeout(3000); log('OPTS',(await ov()).split('||').pop().slice(0,200));
+  await page.locator('.q-menu .q-item').first().click(); await page.waitForTimeout(1200); await page.locator('text=Line Approved').first().click(); await page.waitForTimeout(600);
+  await page.locator('button:has-text("Save & Close")').first().click(); await page.waitForTimeout(5000);
+  const t=await body(); log('LINES',t.slice(t.indexOf('Lines ('),t.indexOf('Lines (')+900)); });
+await T('impersonate',async()=>{ await go('/impersonate-user/862a7c31-1fa2-4ddd-8393-3d9dbcf2305a',9000); const t=await body(); log('IMP',page.url(),'|',(t.match(/Account Access Mode[^.]{0,120}/)||['no bar'])[0]); await dump('hc-imp-deltech'); });
+await T('start',async()=>{ await openWO('S10043-17594'); const t=await body(); log('AS TECH LINES',t.slice(t.indexOf('Lines ('),t.indexOf('Lines (')+900));
+  const starts=page.locator('button:has-text("Start")'); log('starts',await starts.count()); await starts.last().click(); await page.waitForTimeout(3500); log('START OV',(await ov()).slice(0,300));
+  await page.reload(); await page.waitForTimeout(6000); const u=await body(); log('AFTER START',u.slice(u.indexOf('Lines ('),u.indexOf('Lines (')+900)); await dump('hc-deltech-started');
+  await page.waitForTimeout(65000);
+  await page.locator('button:has-text("Stop")').last().click(); await page.waitForTimeout(2500); await page.locator('.q-dialog button:has-text("Clock Out")').last().click(); await page.waitForTimeout(3500); log('CLOCKED OUT',(await ov()).slice(0,200)); });
+await T('exit',async()=>{ const ex=page.locator('button:has-text("Exit")').first(); log('exit count',await ex.count()); await ex.click(); await page.waitForTimeout(6000); const t=await body(); log('AFTER EXIT',(t.match(/Account Access Mode/)?'still in':'out'), t.slice(0,200)); });
+await b.browser.close();

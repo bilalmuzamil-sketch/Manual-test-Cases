@@ -186,3 +186,6 @@ Test data made: customer "ZZAUTOTEST Regression Walk" (contact ZZAUTOTEST Walker
 - Work order page buttons: `Change Customer` (window "Change Customer": Customer, Contact, `Cancel`, `Update Customer`), `Change Asset`, `Edit shop supplies
   charge`, `Edit tech story`; no button opens an "Edit Work Order" window (proved, step1/edit-work-order-unreachable-claim.json).
 - List loads ~33 rows, then more as you scroll; no page buttons or rows-per-page (proved, step1/list-no-paging-claim.json).
+- Staff delete: a staff member with logged time cannot be deleted — `Delete` is greyed out with tooltip "This staff can't be deleted, they have tasks records
+  history." (proved, step1/deleted-user-line-unbuildable-claim.json). `Deactivate Account` leaves the name on the line's Labor row.
+- Board View column header shows the technician's photo (image named after the technician) — seen on ZZAUTOTEST Dan Delta's column at the far right (hc37).

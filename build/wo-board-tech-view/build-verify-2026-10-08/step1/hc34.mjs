@@ -1,0 +1,11 @@
+import {start,mk} from './woblib.mjs'; import fs from 'fs';
+const L='/tmp/cln/hc34.log'; fs.writeFileSync(L,''); const log=(...a)=>fs.appendFileSync(L,a.join(' ')+'\n');
+const b=await start('/administration/staff','admin'); const {page}=b; const {dump,ov,go,esc,body}=mk(page); page.setDefaultTimeout(15000);
+const T=async(n,f)=>{try{await f();}catch(e){log('ERR',n,e.message.slice(0,200));}};
+await T('delete',async()=>{ await page.waitForTimeout(3000); const sb=page.locator('button:has-text("Search")').filter({hasNotText:'customers'}).last(); await sb.click().catch(()=>{}); await page.waitForTimeout(800); await page.keyboard.type('ZZAUTOTEST Del',{delay:40}); await page.waitForTimeout(3500); log('ROWS',await page.locator('tr').filter({hasText:'ZZAUTOTEST Del'}).count());
+  const row=page.locator('tr').filter({hasText:'ZZAUTOTEST Del'}).first(); await row.locator('button, i').filter({hasText:/edit/}).first().click(); await page.waitForTimeout(3000);
+  await page.locator('.q-dialog button:has-text("Delete")').last().click(); await page.waitForTimeout(2500); log('DELETE CONFIRM',(await ov()).slice(0,500)); await dump('hc-delete-confirm');
+  const c=page.locator('.q-dialog button').filter({hasText:/^(Delete|Confirm|Yes|OK)$/}).last(); await c.click(); await page.waitForTimeout(4000); log('AFTER DELETE',(await ov()).slice(0,300)); });
+await T('read',async()=>{ await go('/workorders',7000); await page.locator('button[aria-label="Search"]').last().click(); await page.waitForTimeout(800); await page.keyboard.type('S10043-17594',{delay:30}); await page.waitForTimeout(4500); await page.locator('tbody tr').filter({hasText:'S10043-17594'}).first().locator('td').nth(3).click(); await page.waitForTimeout(6000);
+  const t=await body(); const i=t.indexOf('Service - Adjust clutch'); log('LINE 2',t.slice(i,i+300)); await dump('hc-deleted-user-line'); });
+await b.browser.close();

@@ -1,0 +1,9 @@
+{"claim":"On sv10043 v26.40.8-7a95011 a line whose labor belongs to a deleted staff member cannot be built: a staff member with recorded time cannot be deleted (screen and behind the screen)",
+ "proofs":{
+ "positive_control":{"passed":true,"evidence":"Same session created the staff member ZZAUTOTEST Del Tech (Settings > Staff > New Staff Member > Save & Close), clocked 0.02 h on S10043-17594 line 2 as that person, and deactivated the record (is_active=false read back) — so create/edit/deactivate all work with this method (hc32-hc36 logs)."},
+ "tried_through_the_screen":{"passed":true,"evidence":"Settings > Staff > ZZAUTOTEST Del Tech edit icon: the Delete button is disabled; its tooltip reads \"This staff can't be deleted, they have tasks records history.\" (hc35.log)."},
+ "waited_and_retried":{"passed":true,"evidence":"Two screen attempts (hc34, hc35) and two behind-the-screen attempts (hc36: by user id 404 'Staff was not found', by staff id 400 'Staff is being used elsewhere.')."},
+ "checked_for_navigation":{"passed":true,"evidence":"The edit window stayed open; no navigation, no new tab."},
+ "precondition_read_back":{"passed":true,"evidence":"Line 2 of S10043-17594 shows Labor 'ZZAUTOTEST Del Tech' and 0.02 / 1.50 hours (hc34/hc35); staff record read back active=false deletable=false (hc36)."},
+ "searched_the_repo":{"passed":true,"evidence":"git grep 'Deleted user' and \"can't be deleted\" under build/: only the regression notes (Deleted user seen after moving labor via Edit Timesheet) and this suite's cases; no recorded way to delete a staff member who has time."},
+ "asked_what_would_make_this_my_fault":{"passed":true,"evidence":"Most likely mine: trying to delete before the time existed, or a stale page. Ruled out: the time was read back first, the tooltip names the reason, and the server gave the same refusal behind the screen."}}}
