@@ -1,0 +1,10 @@
+tab now Work Orders
+LIST url https://sv10043.qa.shopview.com/workorders?tab=work_orders&search=ZZAUTOTEST+Regression+Walk rows 8
+OPENED https://sv10043.qa.shopview.com/workorders/c4ac1b4c-cbc4-4ccd-b780-890ff44a66cb/lines
+BACK url https://sv10043.qa.shopview.com/workorders?tab=work_orders&search=ZZAUTOTEST+Regression+Walk tab Work Orders search val ZZAUTOTEST Regression Walk rows 8
+FWD url https://sv10043.qa.shopview.com/workorders/c4ac1b4c-cbc4-4ccd-b780-890ff44a66cb/lines
+BACK2 url https://sv10043.qa.shopview.com/workorders?tab=work_orders&search=ZZAUTOTEST+Regression+Walk tab Work Orders rows 8
+ERR locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('.q-menu .q-item').filter({ hasText: /^\s*Invoiced\s*$/ }).first()[22m
+

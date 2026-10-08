@@ -1,0 +1,18 @@
+STATUS0 Complete Started
+STATUS b Complete Started
+LEAD on Complete ZZAUTOTEST Ana Alpha
+lead field (dropdown) count 1
+P2 dlg New Customer Payment close event Payment Date Payment Method arrow_drop_down Ref
+P2 status Invoiced Over
+P1 stale status shown Complete Started
+after setLead  warning
+The lead technician can't be changed once a work order is Invoiced or Paid.
+Please try to resolve this.
+Close
+P1 notes after lead warning The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this. Close
+P1 lead shown Lead technician
+ZZAUTOTEST Ana Alpha
+ERR locator.fill: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Mileage')[22m
+[2m    - locator resolved to <input disabled type="text" tabindex="0" value="120,700" aria-label="Mileage" data-test-id="input_vehicle_mileage" class="q-field__native q-placeholder" id="f_731f893d-2fd6-

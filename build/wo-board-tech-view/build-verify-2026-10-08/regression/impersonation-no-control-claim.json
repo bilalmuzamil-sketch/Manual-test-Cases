@@ -1,0 +1,41 @@
+{
+ "claim": "The app has no in-app control to start account access (impersonation) on sv10043 2026-10-08: Settings > Staff and the profile menu carry none; it starts only from the address /impersonate-user/<staff user id> (code text: 'Please start again from Team Tools.')",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The same chunk crawl (i6.log, 851 files) found the route \"/impersonate-user/:user_id\", the ImpersonationBar (\"Account Access Mode:\", \"Exit\") and switchUser calls, so it does find impersonation code when present.",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Settings > Staff row edit icon opened Edit Staff Member (View Permissions, Resend Invitation, Deactivate Account, Delete, Save & Close) \u2014 no access/impersonate action (i1.log); profile menu items read (i2.log): Edit Profile, Change Location, My Timesheets, Customer Portal, Billing, What's New, Settings, Logout.",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Staff page read twice (i1, st1 runs) and the crawl run twice (i5 restricted, i6 full).",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "Opening /impersonate-user/<id> worked and showed the bar (i8.log), so the route exists; no link to it was found in any chunk except the route table (i6.log, index hits only).",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Impersonation via the address was read back: \"Account Access Mode: ZZAUTOTEST Ana Alpha in Staging Foothills Group Inc.\" and Exit returned to Admin ShopView (i8.log).",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "build/APP-ACTIONS-PLAYBOOK.md lines 514-519 and 2271: impersonation is recorded only as the API switch-user call, no UI control.",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "A control could appear only for a super-admin or a different role; the code text \"Please start again from Team Tools.\" says it is started outside the app. Not ruled out for other accounts \u2014 the claim is for the Admin quick-login account.",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}

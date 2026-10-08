@@ -1,0 +1,41 @@
+{
+ "claim": "The part sale status card has no technician or Sales Representative field on sv10043 2026-10-08",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "Same page read found Contact and Authorizer dropdowns on the card, and the work order card read the same way showed Lead Technician / Service Advisor / Sales Representative (A1 log).",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Opened the part sale P10043-248 from Parts > Part Sales (ps1/ps2/ps4 logs); dump PS2-part-sale-with-parts.txt.",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Three loads (ps1, ps2, ps4), before and after Authorize: same card fields.",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "URL /parts/part-sale/<id>/part-requests.",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Card text: P10043-248 Estimate/Approved Over Limit Started \u2026 Contact \u2026 Phone Authorizer \u2026 Asset \u2026 (ps4.log CARD).",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "Case notes: \"the part sale status card's person field (developer says technician, PRD of Part Sales says Sales Representative)\" \u2014 unconfirmed before.",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "The field could show only for some statuses; checked Estimate and Approved.",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}

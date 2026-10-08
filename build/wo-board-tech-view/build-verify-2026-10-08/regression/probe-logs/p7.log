@@ -1,0 +1,7 @@
+CONTROL board btns ["Clear search~cancel"] No work orders match the search "zz-no-such-work-order".
+ATTEMPT2 url https://sv10043.qa.shopview.com/workorders?search=zz-no-such-work-order msg No work orders match the search "zz-no-such-work-order". all btns ["~Skip to main content","Open mobile menu~","Search~search Search customers, work orders, parts...","~timer Clock In","~0.07 Hrs","Close mobile menu~","~All","~Estimates","~Work Orders","~Completed","Clear search~cancel","Sort work orders~swap_vert","Create Work Order~Create Work Order","~Status keyboard_arrow_down","~Assigned to me","~Asset on Site keyboard_arrow_down","Show more filters~chevron_right"] pages 1
+x count 3
+ERR locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('button,i').filter({ hasText: /^cancel$/ }).first()[22m
+[2m    - locator resolved to <i tabindex="0" role="button" aria-label="Clear" aria-hidden="false" class="q-icon notranslate material-icons q-field__focusable-actio

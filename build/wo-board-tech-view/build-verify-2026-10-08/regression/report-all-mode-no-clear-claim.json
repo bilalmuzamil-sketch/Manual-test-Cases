@@ -1,0 +1,41 @@
+{
+ "claim": "Sales By Customer / Parts Velocity / Inventory Value filters (Customer, Vendor, Category) have no Clear selection button on sv10043 2026-10-08",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "Same menu read found \"Clear selection\" in the Location (Work In Progress, Sales By Representative) and Technician (Technician Utilization) filters in the same runs (rp3.log btns=Clear selection).",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Opened each filter by clicking its button on the report page; screenshots RP3-SalesByCustomer-Customer.png, RP3-PartsVelocity-Vendor.png, RP3-InventoryValue-Category.png.",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Two runs (rp3, rp4) with 1.5 s settle after opening; btns= empty both times for these three.",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "Report URLs /reports/sales-by-customer, /reports/parts-velocity, /reports/inventory-value; no new tab.",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Menus listed options (1, 1042, 49) and the note \"All \u2026 are included. Pick one or more to narrow.\" (rp3.log).",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "Case notes say Technician Utilization read \"All technicians\" / \"Clear all\" on an earlier build; nothing recorded for these three menus.",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "A clear action could be a link, not a button; the full menu text was read (rp3.log text=) and contains no Clear wording.",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}

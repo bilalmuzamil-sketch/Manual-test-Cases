@@ -1,0 +1,7 @@
+import {start,mk,L,menu,inputs,btns,notes,st,B,OUT} from './h.mjs';
+const log=L('sc5'); const S=st(); const b=await start(S.woG.url.replace(B,'')+'/lines','admin'); const {page}=b; const {dump,esc,body}=mk(page); page.setDefaultTimeout(15000);
+try{ await page.setViewportSize({width:390,height:844}); await page.waitForTimeout(6000);
+ log('BTNS',(await btns(page)).slice(0,30)); const cands=page.locator('button').filter({hasText:/^expand_(less|more)$/}); const arr=[]; for(let j=0;j<await cands.count();j++){ const bb=await cands.nth(j).boundingBox(); arr.push([j,bb?Math.round(bb.y):-1]); } log('CHEV',arr); const first=arr.filter(a=>a[1]>350).sort((a,b)=>a[1]-b[1])[0]; await cands.nth(first[0]).click(); await page.waitForTimeout(2000); const t=await body(); const i=t.indexOf('1. Approved'); log('EXPANDED',t.slice(i,i+700)); await page.screenshot({path:OUT+'SC5-phone-line-expanded.png',fullPage:true}); await dump('SC5-phone-line-expanded');
+ await page.evaluate(()=>window.scrollTo(0,0)); await page.waitForTimeout(500); await page.locator('button').filter({hasText:/^edit$/}).first().click(); await page.waitForTimeout(2000); log('URL',page.url()); log('BODY',(await body()).slice(0,800)); await page.waitForTimeout(3000); log('EDIT DLG',await menu(page)); log('EDIT IN',await inputs(page,'.q-dialog').catch(()=>[])); await dump('SC5-phone-edit'); await page.screenshot({path:OUT+'SC5-phone-edit.png'});
+}catch(e){log('ERR',e.message.slice(0,300)); await dump('SC5-err');}
+await b.browser.close();

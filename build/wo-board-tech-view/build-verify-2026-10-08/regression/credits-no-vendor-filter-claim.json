@@ -1,0 +1,41 @@
+{
+ "claim": "Parts > Returns > Credits tab has no Vendor filter (only Date) on sv10043 2026-10-08",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "Same toolbar read found the Vendor filter on the Returns tab of the same page (pt2.log, pt5.log).",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Clicked the Credits tab on Parts > Returns (pt5.log CREDITS); dump PT5-credits.txt.",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Two runs (pt5 4 s, pt7 4 s): toolbar Returns, Credits, Search, Date: 30 days, Create Credit.",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "URL /parts/returns both times.",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Credits table listed credit memos (CALCM1172842 \u2026).",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "No earlier record of a Credits Vendor filter in build/wo-board-tech-view.",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "The Vendor filter might be a column filter; the column headers were read (Credit Memo Number, Vendor, \u2026) and have sort arrows only.",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}

@@ -1,0 +1,10 @@
+BASE tab All atm false|q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable  URL https://sv10043.qa.shopview.com/workorders
+HEADS after on ["On Site","Status","Number","Customer","Asset","Unit","VIN/Serial #","Progress","Service Advisor","Lead Technician","Clocked In","Lines","Total Price","Created On"]
+HEADS after reload ["On Site","Status","Number","Customer","Asset","Unit","VIN/Serial #","Progress","Service Advisor","Lead Technician","Clocked In","Lines","Total Price","Created On"] tab All
+HEADS restored ["On Site","Status","Number","Customer","Asset","Unit","VIN/Serial #","Progress","Service Advisor","Lead Technician","Clocked In","Lines","Total Price","Created On"]
+RAPID tab Completed URL https://sv10043.qa.shopview.com/workorders?tab=complete statuses ["Complete",null] n 10 notes 
+LINK tab Estimates atm true|q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text- q-btn--actionable q-focusable q-hoverable  URL https://sv10043.qa.shopview.com/workorders?tab=estimate&assigned_to_me=1
+ERR locator.click: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Work Orders' }).first()[22m
+

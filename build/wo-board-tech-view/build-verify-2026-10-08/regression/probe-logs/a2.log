@@ -1,0 +1,17 @@
+LT field count 1
+LT MENU check Unassigned check Admin ShopView check Andrew Wilkinson check Ayesha Khan check Bilal Muzamil check Branko Cicovic check Cameron Johnston check Carol Ramos check Damjan Veljkovic check Daniel Montoya check David Sparks check David Combs check Debra Garcia check Dipesh Changawala check Dusan Bulovan check Dusan Radulovic check Fabian Bonjean check Jacqueline Calderon check Jasna Mladenovic check Jennifer Cole check Justin Lin check Kenneth Oconnor check Megan Matthews check Melanie Garner check Michael Newman check Milan Zivanovic check Milomir Kotlajic check Milos Vasic check Monica Brady check Monique Turner
+ROW HTML btns [["BUTTON::expand_less","I::expand_less","I::more_vert","BUTTON::Complete"]]
+LINE MV Request part Add line note Save as canned line Story history Audit log Add inspection Edit labor Authorization required Decline Delete line
+AFTER NAME CLICK url https://sv10043.qa.shopview.com/workorders/31a3135b-b8e4-4aec-87f4-229f6ebf13b7/lines
+DLG Edit Line close What Are You Doing? Why Are You Doing It? Status Authorized arrow_drop_down Technicians Add Technician arrow_drop_down Labor Rate HD Fleet Rate arrow_drop_down Estimated Time Tech Time AI SHOPCOACH LABOR GUIDE Delete Save & Close
+INPUTS ["Lead technician||Lead Technician Unassigned arrow_drop_down|Unassigned","Service advisor||Service Advisor Admin ShopView arrow_drop_down|Admin ShopView","Sales representative||Sales Representative Unassigned arrow_drop_down|Unassigned","Contact||Contact Savannah Tran arrow_drop_down|Savannah Tran","Authorizer||Authorizer None arrow_drop_down|None","Mileage||Mileage 225,584|","Engine Hours||Engine Hours|","License Plate||License Plate|ZZP-6028","|e.g. Dot Inspection, Oil Change, Check Engine Light||","What are you doing?||What Are You Doing?| Replace - Brake pot","Why are you doing it?||Why Are You Doing It?|","Status||Status Authorized arrow_drop_down|Authorized","Add technician||Add Technician arrow_drop_down|","Labor rate||Labor Rate HD Fleet Rate arrow_drop_down|","Estimated time|#.## hours|Estimated Time|1.50","Tech time|#.## hours|Tech Time|1.00"]
+lab locator.click: Timeout 10000ms exceeded.
+Call log:
+[2m  - w
+LABOR CLICK Edit Line close What Are You Doing? Why Are You Doing It? Status Authorized arrow_drop_down Technicians Add Technician arrow_drop_down Labor Rate HD Fleet Rate arrow_drop_down Estimated Time Tech Time AI SHOPCOACH LABOR GUIDE Delete Save & Close
+ERR page.evaluate: TypeError: Cannot read properties of undefined (reading 'trim')
+    at eval (eval at evaluate (:290:30), <anonymous>:1:169)
+    at Array.map (<anonymous>)
+    at eval (eval at evaluate (:290:30), <anonymous>:1:136)
+    at UtilityScript.evaluate (<anonymous>:292:16)
+    at UtilityScrip

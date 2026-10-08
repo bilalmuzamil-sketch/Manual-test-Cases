@@ -1,0 +1,41 @@
+{
+ "claim": "Settings > Staff list shows no profile photos (no avatar next to staff names) on sv10043 2026-10-08",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "In the same run the same name-to-image search found the uploaded photo next to the technician on the Schedule row (ph2.log \"SCHED m/view-avatar/\u2026\"), and colour sampling of the Schedule screenshots read red then blue (PH2-sched-red.png 578 red px, PH2-sched-blue.png 578 blue px).",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Opened Settings > Staff, searched the technician by name as a user does; screenshots PH2-staff-before.png, PH2-staff-red.png, PH2-staff-blue.png show the row (First Name, Last Name, Email, Job Title, Role, Department(S), Created, Confirmed Invitation, Billable) with no picture.",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Three loads (before, after red upload, after blue upload), 5 s + 3.5 s waits each.",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "URL /administration/staff each time; no new tab.",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "The technician had a photo: the profile page and top bar showed the blue picture while acting as that user (PH2-profile-blue.png).",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "build/wo-board-tech-view/build-verify-2026-10-08/staff-list.txt (earlier session) also lists staff rows with no avatar column.",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "The avatar could appear only in another Staff view (e.g. the edit window). Checked the Edit Staff Member window earlier (I1-staff-edit.txt): no photo either. The claim is limited to the Staff list.",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}

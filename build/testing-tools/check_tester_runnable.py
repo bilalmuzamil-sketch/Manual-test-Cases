@@ -129,7 +129,9 @@ def scan_case(case):
     jh = []
     for pat, label, cs in JARGON:
         flags = 0 if cs else re.I
-        found = [m.group(0) for m in re.finditer(pat, t, flags) if m.group(0) not in PLAIN_WORDS]
+        found = [m.group(0) for m in re.finditer(pat, t, flags) if m.group(0) not in PLAIN_WORDS
+                 # a web address the tester TYPES (e.g. ...?vehicleHere=2) is an instruction, not jargon (2026-10-08, C368205)
+                 and not (cs and t[max(0, m.start()-1):m.start()] in ('?', '&'))]
         if found:
             jh.append(f'{label} ("{found[0]}")')
     nh = [p for p in NOT_HAND if re.search(p, t, re.I)]
