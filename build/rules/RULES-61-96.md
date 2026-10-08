@@ -2796,6 +2796,8 @@ Worked example: C425784 (Steps: open, approve, wait without refreshing, refresh)
 The QA lead chose the pattern and confirmed **PERMANENT** on 8 Oct 2026. It replaces the fifth amendment's plain names ({Part}, {Location}).
 - **Every placeholder is the record name, a hyphen and a capital letter, even when there is only one:** {Part-A}, {Part-B}, {Location-A}, {Line-A}, {Technician-A}, {User-A}, {User-B}, {Customer-A}.
 - **Multi-word names are joined with hyphens:** {Work-order-A}.
+- **A further record of the same kind takes the next letter:** {Work-order-B}, {Line-B}, {Technician-B}, {Location-B}.
+- **When converting old placeholders,** a letter is kept ([User-B] → {User-B}, the next user is {User-C}), and a number maps 1 → A, 2 → B.
 - **API ids in a setup doc follow the same pattern:** {Work-order-A id}, {Line-A id}.
 - **Everything else in the fifth amendment stands:** {} braces, "(for example …)" on every example value, and every name defined before use. This applies to Preconditions, Steps, the plain expected results and the setup doc.
 

@@ -57,13 +57,14 @@ These are task instructions from the QA lead for this conversion. They are not r
   - any author note.
 
 ### 1.4 Placeholder renaming (all fields except Source and quotes)
-- **Every placeholder is the record name, a hyphen and a capital letter, even when there is only one.** Multi-word names are joined with hyphens.
-  - [WO-1] → {Work-order-A}
-  - [Line-1] → {Line-A}
-  - [Part-A] → {Part-A}, and a second part → {Part-B}
-  - [Tech-A] → {Technician-A}
-  - [User-B] → {User-B}
-  - [Loc-1] → {Location-A}, and a second location → {Location-B}
+- **Every placeholder is the record name, a hyphen and a capital letter, even when there is only one.** Multi-word names are joined with hyphens. A further record of the same kind takes the next letter.
+  - [WO-1] → {Work-order-A}; the second work order → {Work-order-B}, and so on.
+  - [Line-1] → {Line-A}; the second line → {Line-B}, and so on.
+  - [Part-A] → {Part-A}; the second part → {Part-B}, and so on.
+  - [Tech-A] → {Technician-A}; the second technician → {Technician-B}, and so on.
+  - [User-B] → {User-B} (it keeps its letter); the next user → {User-C}, and so on.
+  - [Loc-1] → {Location-A}; the second location → {Location-B}, and so on.
+- **Where an old placeholder already has a letter, keep that letter** ([Part-A] stays A, [User-B] stays B). Where it has a number, 1 becomes A, 2 becomes B, and so on.
 - **Ids in the setup doc follow the same pattern:** {Work-order-A id}, {Line-A id}.
 - **Consistency:** use the same name for the same thing everywhere in the case and in its doc.
 
