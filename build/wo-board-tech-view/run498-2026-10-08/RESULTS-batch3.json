@@ -1,0 +1,25 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-08"},
+ "results": {
+  "C96911": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST Fibridge with three Approved work orders: S10043-17614 led by Ayesha Khan, S10043-17595 led by Bilal Muzamil, S10043-17594 with no lead. Customer ZZAUTOTEST Fisquare with one Approved work order, S10043-17605. All tab, Search ZZAUTOTEST Fibridge, Status filter Approved. List showed the three. Switching to Tech View, then Board View, then back to List changed the layout each time in about 3 seconds, with no page reload. After every switch the All tab was still selected, the search box still read ZZAUTOTEST Fibridge and the filter still read Status: Approved. Tech View showed the same three: Unassigned 1, Bilal Muzamil 1 and Ayesha Khan 1. Board View showed the same three cards in the same three columns. S10043-17605 (Fisquare) appeared in none of them.",
+   "not_observed": null
+  },
+  "C96914": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Same Results has three Approved work orders on three different assets: S10043-17606 (Asset on Site on, led by Ayesha Khan), S10043-17607 (unit ZZSR2B, led by Bilal Muzamil) and S10043-17608 (unit ZZSR3C, no lead). The first asset has no unit number, so ZZSR2B was used as the unit no other asset uses. Search ZZSR2B showed only S10043-17607 in List, Tech View (Bilal Muzamil's group) and Board View (his column): 1 result in each display. With Asset on Site = Yes (and the customer name in Search, to keep the list small), all three displays showed only S10043-17606. Asset on Site was left on, and the round trip Schedule then Work Orders was made from Board View, Tech View and List. In all three displays the filter was kept (Asset on Site: Yes) and the search box was cleared. Tech View and Board View therefore keep or clear exactly what List does.",
+   "not_observed": null
+  },
+  "C96915": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 List Sort with three Approved work orders, all led by Ayesha Khan and created a few seconds apart: S10043-17611, S10043-17612, S10043-17613. In List, sorted by Created On with the newest first, the order was S10043-17613, S10043-17612, S10043-17611. In Tech View, under Ayesha Khan, the last of the three was dragged to the top of the group, and Tech View then showed it first. Board View showed the same dragged order in Ayesha Khan's column. Back in List, the order was again S10043-17613, S10043-17612, S10043-17611, still sorted by Created On, newest first, and the sort arrow was still on Created On. The dragged order did not appear in List.",
+   "not_observed": null
+  },
+  "C96920": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Unsaved Display with one Approved work order led by Ayesha Khan. Chose Board View and refreshed: the page opened in Board View. Turning the network off could not be used on this QA branch: as soon as a request fails, the QA branch's own 'QA env is sleeping, Redirecting...' guard sends the page away and it goes blank. This belongs to the QA test site, not to the Work Orders page. So the same situation, a display change that cannot be saved, was made by having the server refuse the save. With saving refused, clicking Tech View still switched to Tech View, and clicking List still switched to List. A general message 'Ooooops! An error occurred' appeared. After saving was allowed again and the page refreshed, it opened in Board View, the earlier choice. Clicking Tech View while saving worked was saved: after the next refresh the page opened in Tech View.",
+   "not_observed": "The case's own route, switching the network off, was not run because the QA branch's sleep guard takes the page away; the same result was checked with the server refusing the save."
+  }
+ }
+}
