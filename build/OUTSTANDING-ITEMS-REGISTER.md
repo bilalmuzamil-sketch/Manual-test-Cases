@@ -7,6 +7,14 @@
 > that carries the meaning. If an item cannot be understood on one read without opening anything, it
 > is not written yet.
 
+## 2026-10-08 — Part Lifecycle full update (PRD v26): what waits on whom
+
+- **Done:** 61 cases rewritten and 198 new (C425585–C425782) under section 20439; 288 of 288 requirements covered. Report: `build/founder-mode/part-lifecycle/update-2026-10-08/FULL-UPDATE-2026-10-08.md`.
+- **QA lead:** retire C154761 (its footer Deactivate control was removed in v26) — yes or no?
+- **QA lead:** 7 cases that cannot be fully run by hand — keep them manual or hand them to automation? C425602, C425622, C425629, C425701, C425723, C425755, C425776.
+- **PO (send after build verification, Rule 66):** 15 questions, listed in the report above.
+- **Build:** none yet. Build verification belongs to the build verification session (L7).
+
 ## 2026-09-17 — the search test data: three things you already decided, recorded so nobody asks again
 
 **Nothing on this page needs anything from you.** It is here because a decision that lives only in one

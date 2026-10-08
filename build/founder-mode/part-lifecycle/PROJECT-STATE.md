@@ -10,7 +10,23 @@ Catalog→Part Library rename, editable part number.
 **Build:** ❌ No QA branch yet. **PROVISIONAL — the spec is in review**; every case is
 `AUTOMATION: HOLD` naming the in-review status (Rules 49/85).
 
-## What was created — 62 cases, Rule 117, 207 anchors covered 1:1
+## 🟢 CURRENT STATE — 8 Oct 2026 (full update, Rule 122) — read this first
+- **Sources:**
+  - PRD Confluence 829227015 **v26 "Ready for dev"** (Product sign-off 8 Oct 13:17 UTC);
+  - tech plan 7 Oct (first copy, `sources/tech-plan-…`);
+  - 13 stories SV-10814…SV-10826 (some behind the PRD);
+  - bug SV-10380 (ships with this epic);
+  - design canvas: **46 boards** plus 5 Before boards, driven to the Rule 124 gates (`update-2026-10-08/DESIGN-COVERAGE-2026-10-08.md`).
+- **Suite:** **259 live cases** = 61 rewritten + 198 new (C425585–C425782), plus C154761. All are ours.
+  - Layout: 8 Oct (Needs, Setup with placeholders, Step n:, own data).
+  - Coverage: 288/288 requirements.
+  - Every case is `AUTOMATION: HOLD - no Part Lifecycle QA build exists yet, not build-verified`.
+- **New section 54274** "Inventory Value net quantity (SV-10380)": 9 cases.
+- **C154761** is proposed for retirement (the footer Deactivate control was removed in v26). It is untouched, pending the QA lead.
+- **Report, PO questions and hand-runnability decisions:** `update-2026-10-08/FULL-UPDATE-2026-10-08.md`. PO questions go out AFTER build verification.
+- **Build:** none yet (Rule 85: "source-verified only, no build exists yet").
+
+## (HISTORY) What was created on 30 Sep — 62 cases, Rule 117, 207 anchors covered 1:1
 | Story | Sub-folder (section) | Cases | Case ids |
 |---|---|---|---|
 | S1 Active/Inactive tabs | 20468 | 2 | C154752–C154753 |
