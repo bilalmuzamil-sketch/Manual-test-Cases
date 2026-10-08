@@ -247,7 +247,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   state assertion like "a WO with a Needs Approval line" with no setup) — match the shape the tester uses
   when he fixes a case himself, and VERIFY the settings on the build, never guess. **ENFORCED:**
   `python3 build/testing-tools/check_tester_runnable.py --cases <ids>` must exit 0 before any suite is
-  reported build-verified. **A manual tester must NEVER again report a build-verified case as unclear/unrunnable.**
+  reported build-verified. **A manual tester must NEVER again report a build-verified case as unclear/unrunnable.** **🛑 2026-10-08 (QA lead, permanent): the bar is 100% AUTHENTIC (every label/route/setting/data step SEEN on the build this pass, never assumed or taken from a draft) · RUNNABLE · BUILD-VERIFIED · BUILD GLOSSARY · UNDERSTANDABLE · ZERO tester complaints; a helper's draft is walked before it is written.**
   Don't edit a case the tester is already editing (83/86). Full text: `RULES-61-ONWARD.md` rule 115.
 - **🛑 QUICK-LOGIN IS THE ROUTE, AND ONE COOKIE ONLY (2026-09-02).** Run
   `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`. Carry `sv_sso_session` ONLY,

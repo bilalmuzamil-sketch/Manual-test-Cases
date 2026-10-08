@@ -4129,3 +4129,23 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     it flags is rewritten to the standard (settings verified on the build), never shipped.
     **BUILD-VERIFY THE SETTINGS:** the required settings/role/data are confirmed on the live build, not
     guessed — a guessed setting is a NEW wrong precondition. This is part of "FULLY build verified".
+
+    **115-AMENDMENT (2026-10-08, QA lead, WO Board / Tech View — made permanent for this lane).** Verbatim: *"you have to
+    make 100% sure that all the Test cases for WO Board and Tech View are 100% authentic and 100% runnable by the manual QA
+    tester and 100% build verified and they are 100% using the build glossary and they are 100% understandable by the manual
+    QA tester and there is 0% complaint from the manual QA tester about the test cases not being runnable or understandable
+    or hallucinated. That should be your permanent rule."*
+    **THE BAR, ALL SIX, EVERY CASE, EVERY SUITE THIS LANE TOUCHES:** (1) **AUTHENTIC** — every expected result traces to its
+    source, verbatim (57/114); every label, route, setting and data step in Preconditions/Setup/Steps was SEEN on the build
+    this pass, with evidence — nothing assumed, nothing carried from a design, a note, a helper's draft or memory (12, 100).
+    (2) **RUNNABLE BY HAND** to a pass/fail verdict from the case alone (84, 115). (3) **BUILD-VERIFIED** on the current build,
+    stamped (54, 101). (4) **BUILD GLOSSARY** — tester-facing words are the build's own labels from the observed-labels file
+    (102). (5) **UNDERSTANDABLE** by the manual tester, no jargon (7/9/110). (6) **ZERO COMPLAINTS** — a case a tester could
+    call unrunnable, unclear or invented is not finished.
+    **HOW IT IS HELD:** a helper's or another session's draft is a DRAFT — any setup action, label or route it introduces that
+    is not already in the observed-labels file is walked on the build before the case is written (worked miss, same day: 23
+    cases' setup said "invite a new user and accept the invitation", a route never seen on a QA branch, L0051; and helpers
+    assumed the "Asset Here?" switch drives the Asset on Site filter). Before reporting a suite done, all gates pass —
+    `verify_suite.py`, `check_runnable_cases.py`, `check_precond_labels.py`, `check_tester_runnable.py`, the served-page fr-view
+    scan — AND every assumption list is closed by observation. An item that cannot be seen is HOLD with a plain reason,
+    never READY.
