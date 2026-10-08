@@ -1,0 +1,2624 @@
+{
+ "board": "artifact-raw.html",
+ "url": "http://127.0.0.1:56209/artifact-raw.html",
+ "render_stats": {
+  "elements": 150,
+  "textLen": 2382,
+  "scrollW": 1440,
+  "scrollH": 900
+ },
+ "pages": [],
+ "hover_rules": [
+  {
+   "selector": "input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus",
+   "style": "box-shadow: 0 0 0 1000px var(--om-bg-surface) inset; -webkit-text-fill-color: var(--om-text-primary); caret-color: var(--om-text-primary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".om-scrollbar::-webkit-scrollbar-thumb:hover",
+   "style": "background: var(--om-scrollbar-thumb-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-within\\:opacity-100:is(:where(.group):focus-within *)",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\:flex:is(:where(.group):hover *)",
+   "style": "display: flex;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\:scale-100:is(:where(.group):hover *)",
+   "style": "--tw-scale-x: 100%; --tw-scale-y: 100%; --tw-scale-z: 100%; scale: var(--tw-scale-x) var(--tw-scale-y);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\:bg-om-bg-active:is(:where(.group):hover *)",
+   "style": "background-color: var(--color-om-bg-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\:bg-om-bg-muted:is(:where(.group):hover *)",
+   "style": "background-color: var(--color-om-bg-muted);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\:bg-wash-1:is(:where(.group):hover *)",
+   "style": "background-color: var(--t-wash-1);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\:text-fg:is(:where(.group):hover *)",
+   "style": "color: var(--t-fg);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\:opacity-100:is(:where(.group):hover *)",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/btn\\:bg-\\[var\\(--cds-button-on-content-hover\\)\\]:is(:where(.group\\/btn):hover *)",
+   "style": "background-color: var(--cds-button-on-content-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/btn\\:bg-fill-brand-hover:is(:where(.group\\/btn):hover *)",
+   "style": "background-color: var(--cds-fill-brand-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/btn\\:bg-fill-danger-hover:is(:where(.group\\/btn):hover *)",
+   "style": "background-color: var(--cds-fill-danger-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/btn\\:bg-fill-ghost-hover:is(:where(.group\\/btn):hover *)",
+   "style": "background-color: var(--cds-fill-ghost-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/btn\\:bg-fill-primary-hover:is(:where(.group\\/btn):hover *)",
+   "style": "background-color: var(--cds-fill-primary-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/btn\\:bg-fill-secondary-hover:is(:where(.group\\/btn):hover *)",
+   "style": "background-color: var(--cds-fill-secondary-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/cb\\:border-stronger:is(:where(.group\\/cb):hover *)",
+   "style": "border-color: var(--cds-border-stronger);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/cbx\\:text-secondary:is(:where(.group\\/cbx):hover *)",
+   "style": "color: var(--cds-text-secondary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/cdsrow\\:border-transparent:is(:where(.group\\/cdsrow):hover *)",
+   "style": "border-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/cdsrow\\:bg-fill-ghost-hover:is(:where(.group\\/cdsrow):hover *)",
+   "style": "background-color: var(--cds-fill-ghost-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/cdsrow\\:opacity-100:is(:where(.group\\/cdsrow):hover *)",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/cdsth\\:text-disabled:is(:where(.group\\/cdsth):hover *)",
+   "style": "color: var(--cds-text-disabled);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/diff\\:\\[background-color\\:color-mix\\(in_oklch\\,var\\(--cds-bg-git-added\\)\\,white_8\\%\\)\\]:is(:where(.group\\/diff):hover *)",
+   "style": "background-color: var(--cds-bg-git-added);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/diff\\:\\[background-color\\:color-mix\\(in_oklch\\,var\\(--cds-bg-git-added\\)\\,white_8\\%\\)\\]:is(:where(.group\\/diff):hover *)",
+   "style": "background-color: color-mix(in oklch,var(--cds-bg-git-added),white 8%);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/diff\\:\\[background-color\\:color-mix\\(in_oklch\\,var\\(--cds-bg-git-removed\\)\\,white_8\\%\\)\\]:is(:where(.group\\/diff):hover *)",
+   "style": "background-color: var(--cds-bg-git-removed);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/diff\\:\\[background-color\\:color-mix\\(in_oklch\\,var\\(--cds-bg-git-removed\\)\\,white_8\\%\\)\\]:is(:where(.group\\/diff):hover *)",
+   "style": "background-color: color-mix(in oklch,var(--cds-bg-git-removed),white 8%);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/mention\\:bg-fill-ghost-hover:is(:where(.group\\/mention):hover *)",
+   "style": "background-color: var(--cds-fill-ghost-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/rd\\:border-stronger:is(:where(.group\\/rd):hover *)",
+   "style": "border-color: var(--cds-border-stronger);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/resize\\:opacity-100:is(:where(.group\\/resize):hover *), .group-hover\\/unset\\:opacity-100:is(:where(.group\\/unset):hover *)",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-visible\\/btn\\:\\!shadow-\\[inset_0_0_0_1px_var\\(--cds-button-on-content-ring\\)\\]:is(:where(.group\\/btn):focus-visible *)",
+   "style": "--tw-shadow: inset 0 0 0 1px var(--tw-shadow-color,var(--cds-button-on-content-ring)) !important; box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--t",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-visible\\/btn\\:shadow-\\[inset_0_0_0_1px_var\\(--cds-page-bg\\)\\]:is(:where(.group\\/btn):focus-visible *)",
+   "style": "--tw-shadow: inset 0 0 0 1px var(--tw-shadow-color,var(--cds-page-bg)); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-s",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-visible\\/cb\\:shadow-focus:is(:where(.group\\/cb):focus-visible *), .group-focus-visible\\/rd\\:shadow-focus:is(:where(.group\\/rd):focus-visible *)",
+   "style": "--tw-shadow: var(--cds-focus-shadow); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-visible\\/resize\\:max-h-none:is(:where(.group\\/resize):focus-visible *)",
+   "style": "max-height: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-visible\\/resize\\:max-w-none:is(:where(.group\\/resize):focus-visible *)",
+   "style": "max-width: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-visible\\/resize\\:bg-fill-accent:is(:where(.group\\/resize):focus-visible *)",
+   "style": "background-color: var(--cds-fill-accent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-visible\\/resize\\:opacity-100:is(:where(.group\\/resize):focus-visible *)",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-visible\\/resize\\:shadow-focus:is(:where(.group\\/resize):focus-visible *)",
+   "style": "--tw-shadow: var(--cds-focus-shadow); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-focus-visible\\/resize\\:delay-0:is(:where(.group\\/resize):focus-visible *)",
+   "style": "transition-delay: 0s;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-disabled\\:group-hover\\:bg-om-bg-hover:is(:where(.group):disabled *):is(:where(.group):hover *)",
+   "style": "background-color: var(--color-om-bg-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-disabled\\:group-hover\\:bg-transparent:is(:where(.group):disabled *):is(:where(.group):hover *)",
+   "style": "background-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-has-\\[\\:focus-visible\\]\\/cdsrow\\:opacity-100:is(:where(.group\\/cdsrow):has(:focus-visible) *)",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/btn\\:group-aria-pressed\\/btn\\:bg-accent:is(:where(.group\\/btn):hover *):is(:where(.group\\/btn)[aria-pressed=\"true\"] *)",
+   "style": "background-color: var(--cds-bg-accent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-data-\\[checked\\]\\/cb\\:group-hover\\/cb\\:bg-fill-accent-hover:is(:where(.group\\/cb)[data-checked] *):is(:where(.group\\/cb):hover *)",
+   "style": "background-color: var(--cds-fill-accent-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-data-\\[checked\\]\\/rd\\:group-hover\\/rd\\:bg-fill-accent-hover:is(:where(.group\\/rd)[data-checked] *):is(:where(.group\\/rd):hover *)",
+   "style": "background-color: var(--cds-fill-accent-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-data-\\[disabled\\]\\/cb\\:group-hover\\/cb\\:border-strong:is(:where(.group\\/cb)[data-disabled] *):is(:where(.group\\/cb):hover *), .group-data-\\[disabled\\]\\/rd\\:group-hover\\/rd\\:border-strong:is(:where(.group\\/rd)[data-disabled] *):is(:where(.group\\/rd):hover *)",
+   "style": "border-color: var(--cds-border-strong);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-data-\\[indeterminate\\]\\/cb\\:group-hover\\/cb\\:bg-fill-accent-hover:is(:where(.group\\/cb)[data-indeterminate] *):is(:where(.group\\/cb):hover *)",
+   "style": "background-color: var(--cds-fill-accent-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".peer-hover\\/slot\\:bg-fill-brand-hover:is(:where(.peer\\/slot):hover ~ *)",
+   "style": "background-color: var(--cds-fill-brand-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".peer-hover\\/slot\\:bg-fill-danger-hover:is(:where(.peer\\/slot):hover ~ *)",
+   "style": "background-color: var(--cds-fill-danger-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".peer-hover\\/slot\\:bg-fill-ghost-hover:is(:where(.peer\\/slot):hover ~ *)",
+   "style": "background-color: var(--cds-fill-ghost-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".peer-hover\\/slot\\:bg-fill-primary-hover:is(:where(.peer\\/slot):hover ~ *)",
+   "style": "background-color: var(--cds-fill-primary-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".peer-hover\\/slot\\:bg-fill-secondary-hover:is(:where(.peer\\/slot):hover ~ *)",
+   "style": "background-color: var(--cds-fill-secondary-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".peer-focus-visible\\:ring-2:is(:where(.peer):focus-visible ~ *)",
+   "style": "--tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color,currentcolor); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-",
+   "src": "inline"
+  },
+  {
+   "selector": ".peer-focus-visible\\:ring-blue:is(:where(.peer):focus-visible ~ *)",
+   "style": "--tw-ring-color: var(--t-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\:after\\:opacity-100:is(:where(.group):hover *)::after",
+   "style": "content: var(--tw-content); opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/cdsrow\\:first\\:rounded-l:is(:where(.group\\/cdsrow):hover *):first-child",
+   "style": "border-top-left-radius: var(--cds-radius); border-bottom-left-radius: var(--cds-radius);",
+   "src": "inline"
+  },
+  {
+   "selector": ".group-hover\\/cdsrow\\:last\\:rounded-r:is(:where(.group\\/cdsrow):hover *):last-child",
+   "style": "border-top-right-radius: var(--cds-radius); border-bottom-right-radius: var(--cds-radius);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:border-border-strong:focus-within",
+   "style": "border-color: var(--t-border-strong);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:border-om-border-focus:focus-within",
+   "style": "border-color: var(--color-om-border-focus);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:border-om-border-strong:focus-within",
+   "style": "border-color: var(--color-om-border-strong);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:bg-panel:focus-within",
+   "style": "background-color: var(--t-panel);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:bg-wash-1:focus-within",
+   "style": "background-color: var(--t-wash-1);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:shadow-\\[0_0\\.25rem_1\\.25rem_color-mix\\(in_srgb\\,var\\(--cds-black\\)_7\\.5\\%\\,transparent\\)\\]:focus-within",
+   "style": "--tw-shadow: 0 .25rem 1.25rem var(--tw-shadow-color,var(--cds-black));",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:shadow-\\[0_0\\.25rem_1\\.25rem_color-mix\\(in_srgb\\,var\\(--cds-black\\)_7\\.5\\%\\,transparent\\)\\]:focus-within",
+   "style": "--tw-shadow: 0 .25rem 1.25rem var(--tw-shadow-color,color-mix(in srgb,var(--cds-black) 7.5%,transparent));",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:shadow-\\[0_0\\.25rem_1\\.25rem_color-mix\\(in_srgb\\,var\\(--cds-black\\)_7\\.5\\%\\,transparent\\)\\]:focus-within",
+   "style": "box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:shadow-\\[0_0\\.25rem_1\\.25rem_rgb\\(0_0_0\\/7\\.5\\%\\)\\,0_0_0_var\\(--cds-ring-hairline\\)_hsl\\(60_2\\%_12\\%\\/0\\.3\\)\\]:focus-within",
+   "style": "--tw-shadow: 0 .25rem 1.25rem var(--tw-shadow-color,#00000013), 0 0 0 var(--cds-ring-hairline) var(--tw-shadow-color,#1f1f1e4d); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-within\\:shadow-focus:focus-within",
+   "style": "--tw-shadow: var(--cds-focus-shadow); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:-translate-y-px:hover",
+   "style": "--tw-translate-y: -1px; translate: var(--tw-translate-x) var(--tw-translate-y);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:scale-\\[1\\.15\\]:hover",
+   "style": "scale: 1.15;",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:border-om-border-default:hover",
+   "style": "border-color: var(--color-om-border-default);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:border-om-border-strong:hover",
+   "style": "border-color: var(--color-om-border-strong);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:border-strong:hover",
+   "style": "border-color: var(--cds-border-strong);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:border-transparent:hover",
+   "style": "border-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-\\[\\#2968f0\\]:hover",
+   "style": "background-color: rgb(41, 104, 240);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-\\[color-mix\\(in_srgb\\,currentColor_10\\%\\,transparent\\)\\]:hover",
+   "style": "background-color: currentcolor;",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-\\[color-mix\\(in_srgb\\,currentColor_10\\%\\,transparent\\)\\]:hover",
+   "style": "background-color: color-mix(in srgb, currentcolor 10%, transparent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-\\[color-mix\\(in_srgb\\,currentColor_20\\%\\,transparent\\)\\]:hover",
+   "style": "background-color: currentcolor;",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-\\[color-mix\\(in_srgb\\,currentColor_20\\%\\,transparent\\)\\]:hover",
+   "style": "background-color: color-mix(in srgb, currentcolor 20%, transparent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-\\[rgba\\(180\\,35\\,24\\,0\\.06\\)\\]:hover",
+   "style": "background-color: rgba(180, 35, 24, 0.06);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-\\[var\\(--cds-switch-track-hover\\)\\]:hover",
+   "style": "background-color: var(--cds-switch-track-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-bad\\/10:hover",
+   "style": "background-color: var(--t-bad);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-bad\\/10:hover",
+   "style": "background-color: color-mix(in oklab, var(--t-bad) 10%, transparent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-black\\/5:hover",
+   "style": "background-color: var(--cds-black);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-black\\/5:hover",
+   "style": "background-color: color-mix(in oklab, var(--cds-black) 5%, transparent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-fill-accent-hover:hover",
+   "style": "background-color: var(--cds-fill-accent-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-fill-ghost-hover:hover",
+   "style": "background-color: var(--cds-fill-ghost-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-ink-hover:hover",
+   "style": "background-color: var(--t-ink-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-neutral-hover:hover",
+   "style": "background-color: var(--cds-bg-neutral-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-accent-black-active:hover",
+   "style": "background-color: var(--color-om-accent-black-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-accent-black-hover:hover",
+   "style": "background-color: var(--color-om-accent-black-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-accent-blue-bg:hover",
+   "style": "background-color: var(--color-om-accent-blue-bg);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-accent-error-active:hover",
+   "style": "background-color: var(--color-om-accent-error-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-accent-error-hover:hover",
+   "style": "background-color: var(--color-om-accent-error-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-accent-primary-active:hover",
+   "style": "background-color: var(--color-om-accent-primary-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-accent-primary-hover:hover",
+   "style": "background-color: var(--color-om-accent-primary-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-accent-secondary-active:hover",
+   "style": "background-color: var(--color-om-accent-secondary-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-accent-secondary-hover:hover",
+   "style": "background-color: var(--color-om-accent-secondary-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-bg-active:hover",
+   "style": "background-color: var(--color-om-bg-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-bg-hover:hover",
+   "style": "background-color: var(--color-om-bg-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-om-bg-surface:hover",
+   "style": "background-color: var(--color-om-bg-surface);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-pp-hover:hover",
+   "style": "background-color: var(--pp-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-pp-seg:hover",
+   "style": "background-color: var(--pp-seg);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-transparent:hover",
+   "style": "background-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-wash-1:hover",
+   "style": "background-color: var(--t-wash-1);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:bg-none:hover",
+   "style": "background-image: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:text-fg:hover",
+   "style": "color: var(--t-fg);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:text-om-accent-error:hover",
+   "style": "color: var(--color-om-accent-error);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:text-om-text-primary:hover",
+   "style": "color: var(--color-om-text-primary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:text-om-text-secondary:hover",
+   "style": "color: var(--color-om-text-secondary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:text-pp-value:hover",
+   "style": "color: var(--pp-value);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:text-primary:hover",
+   "style": "color: var(--cds-text-primary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:text-secondary:hover",
+   "style": "color: var(--cds-text-secondary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:underline:hover",
+   "style": "text-decoration-line: underline;",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:opacity-80:hover",
+   "style": "opacity: 0.8;",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:opacity-90:hover",
+   "style": "opacity: 0.9;",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:shadow-\\[0_0_0_0\\.5px_var\\(--om-border-strong\\)\\,0_4px_10px_rgba\\(0\\,0\\,0\\,0\\.12\\)\\]:hover",
+   "style": "--tw-shadow: 0 0 0 .5px var(--tw-shadow-color,var(--om-border-strong)), 0 4px 10px var(--tw-shadow-color,#0000001f); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offs",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:\\[--cds-badge-x-wght\\:700\\]:hover",
+   "style": "--cds-badge-x-wght: 700;",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:\\[--ring-w\\:var\\(--hair\\)\\]:hover",
+   "style": "--ring-w: var(--hair);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:after\\:bg-om-text-tertiary:hover::after",
+   "style": "content: var(--tw-content); background-color: var(--color-om-text-tertiary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:focus-within\\:shadow-\\[0_0\\.25rem_1\\.25rem_rgb\\(0_0_0\\/7\\.5\\%\\)\\,0_0_0_var\\(--cds-ring-hairline\\)_hsl\\(60_2\\%_12\\%\\/0\\.3\\)\\]:hover:focus-within",
+   "style": "--tw-shadow: 0 .25rem 1.25rem var(--tw-shadow-color,#00000013), 0 0 0 var(--cds-ring-hairline) var(--tw-shadow-color,#1f1f1e4d); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus\\:border-border-strong:focus",
+   "style": "border-color: var(--t-border-strong);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus\\:border-om-border-focus:focus",
+   "style": "border-color: var(--color-om-border-focus);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus\\:border-om-border-strong:focus",
+   "style": "border-color: var(--color-om-border-strong);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus\\:shadow-\\[0_0_0_2px_color-mix\\(in_srgb\\,var\\(--om-accent-blue\\)_22\\%\\,transparent\\)\\]:focus",
+   "style": "--tw-shadow: 0 0 0 2px var(--tw-shadow-color,var(--om-accent-blue));",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus\\:shadow-\\[0_0_0_2px_color-mix\\(in_srgb\\,var\\(--om-accent-blue\\)_22\\%\\,transparent\\)\\]:focus",
+   "style": "--tw-shadow: 0 0 0 2px var(--tw-shadow-color,color-mix(in srgb,var(--om-accent-blue) 22%,transparent));",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus\\:shadow-\\[0_0_0_2px_color-mix\\(in_srgb\\,var\\(--om-accent-blue\\)_22\\%\\,transparent\\)\\]:focus",
+   "style": "box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus\\:outline-none:focus",
+   "style": "--tw-outline-style: none; outline-style: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:bg-fill-ghost-hover:focus-visible",
+   "style": "background-color: var(--cds-fill-ghost-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:bg-neutral-hover:focus-visible",
+   "style": "background-color: var(--cds-bg-neutral-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:text-primary:focus-visible",
+   "style": "color: var(--cds-text-primary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:text-secondary:focus-visible",
+   "style": "color: var(--cds-text-secondary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:opacity-100:focus-visible",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:\\!shadow-\\[0_0_0_2px_rgb\\(255_255_255\\/0\\.7\\)\\]:focus-visible",
+   "style": "--tw-shadow: 0 0 0 2px var(--tw-shadow-color,#ffffffb3) !important; box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shado",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:shadow-\\[0_0_0_2px_var\\(--om-text-secondary\\)\\]:focus-visible",
+   "style": "--tw-shadow: 0 0 0 2px var(--tw-shadow-color,var(--om-text-secondary)); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-s",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:shadow-focus:focus-visible",
+   "style": "--tw-shadow: var(--cds-focus-shadow); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:shadow-none:focus-visible",
+   "style": "--tw-shadow: 0 0 #0000; box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:ring-2:focus-visible",
+   "style": "--tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color,currentcolor); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:\\[box-shadow\\:inset_0_0_0_1px_var\\(--cds-fill-accent\\)\\]:focus-visible",
+   "style": "box-shadow: inset 0 0 0 1px var(--cds-fill-accent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:ring-blue:focus-visible",
+   "style": "--tw-ring-color: var(--t-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:outline-hidden:focus-visible",
+   "style": "--tw-outline-style: none; outline-style: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:outline-hidden:focus-visible",
+   "style": "outline-offset: 2px; outline: rgba(0, 0, 0, 0) solid 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:outline:focus-visible",
+   "style": "outline-style: var(--tw-outline-style); outline-width: 1px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:outline-2:focus-visible",
+   "style": "outline-style: var(--tw-outline-style); outline-width: 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:outline-transparent:focus-visible",
+   "style": "outline-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": ".focus-visible\\:before\\:shadow-focus:focus-visible::before",
+   "style": "content: var(--tw-content); --tw-shadow: var(--cds-focus-shadow); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:cursor-grabbing:active",
+   "style": "cursor: grabbing;",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-\\[\\#1d55d8\\]:active",
+   "style": "background-color: rgb(29, 85, 216);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-\\[rgba\\(180\\,35\\,24\\,0\\.10\\)\\]:active",
+   "style": "background-color: rgba(180, 35, 24, 0.1);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-bad\\/15:active",
+   "style": "background-color: var(--t-bad);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-bad\\/15:active",
+   "style": "background-color: color-mix(in oklab, var(--t-bad) 15%, transparent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-om-accent-black-active:active",
+   "style": "background-color: var(--color-om-accent-black-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-om-accent-blue-bg:active",
+   "style": "background-color: var(--color-om-accent-blue-bg);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-om-accent-error-active:active",
+   "style": "background-color: var(--color-om-accent-error-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-om-accent-primary-active:active",
+   "style": "background-color: var(--color-om-accent-primary-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-om-accent-secondary-active:active",
+   "style": "background-color: var(--color-om-accent-secondary-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-om-bg-active:active",
+   "style": "background-color: var(--color-om-bg-active);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:bg-wash-2:active",
+   "style": "background-color: var(--t-wash-2);",
+   "src": "inline"
+  },
+  {
+   "selector": ".active\\:brightness-\\[\\.8\\]:active",
+   "style": "--tw-brightness: brightness(.8); filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var",
+   "src": "inline"
+  },
+  {
+   "selector": ".has-\\[\\:focus-visible\\]\\:opacity-100:has(:focus-visible)",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".has-\\[\\:focus-visible\\]\\:shadow-focus:has(:focus-visible)",
+   "style": "--tw-shadow: var(--cds-focus-shadow); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);",
+   "src": "inline"
+  },
+  {
+   "selector": ".has-\\[\\:focus-visible\\]\\:ring-2:has(:focus-visible)",
+   "style": "--tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color,currentcolor); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-",
+   "src": "inline"
+  },
+  {
+   "selector": ".has-\\[\\:focus-visible\\]\\:ring-blue:has(:focus-visible)",
+   "style": "--tw-ring-color: var(--t-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".has-\\[\\[data-cds\\=CardLink\\]\\:focus-visible\\]\\:after\\:shadow-focus:has([data-cds=\"CardLink\"]:focus-visible)::after",
+   "style": "content: var(--tw-content); --tw-shadow: var(--cds-focus-shadow); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)",
+   "src": "inline"
+  },
+  {
+   "selector": ".aria-pressed\\:hover\\:bg-blue-tint[aria-pressed=\"true\"]:hover",
+   "style": "background-color: var(--t-blue-tint);",
+   "src": "inline"
+  },
+  {
+   "selector": ".aria-pressed\\:hover\\:text-blue-text[aria-pressed=\"true\"]:hover",
+   "style": "color: var(--t-blue-text);",
+   "src": "inline"
+  },
+  {
+   "selector": ".data-\\[checked\\]\\:hover\\:border-accent[data-checked]:hover",
+   "style": "border-color: var(--cds-border-accent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".data-\\[checked\\]\\:hover\\:bg-fill-accent-hover[data-checked]:hover",
+   "style": "background-color: var(--cds-fill-accent-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".data-\\[disabled\\]\\:hover\\:bg-\\[var\\(--cds-switch-track\\)\\][data-disabled]:hover",
+   "style": "background-color: var(--cds-switch-track);",
+   "src": "inline"
+  },
+  {
+   "selector": ".data-\\[disabled\\]\\:hover\\:text-current[data-disabled]:hover",
+   "style": "color: currentcolor;",
+   "src": "inline"
+  },
+  {
+   "selector": ".data-\\[checked\\]\\:data-\\[disabled\\]\\:hover\\:bg-fill-accent[data-checked][data-disabled]:hover",
+   "style": "background-color: var(--cds-fill-accent);",
+   "src": "inline"
+  },
+  {
+   "selector": ".dark\\:focus-within\\:shadow-\\[0_0\\.25rem_1\\.25rem_rgb\\(0_0_0\\/7\\.5\\%\\)\\,inset_0_0_0_1px_var\\(--cds-border-strong\\)\\]:where([data-theme=\"dark\"], [data-theme=\"dark\"] *):focus-within",
+   "style": "--tw-shadow: 0 .25rem 1.25rem var(--tw-shadow-color,#00000013), inset 0 0 0 1px var(--tw-shadow-color,var(--cds-border-strong)); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--",
+   "src": "inline"
+  },
+  {
+   "selector": ".dark\\:hover\\:focus-within\\:shadow-\\[0_0\\.25rem_1\\.25rem_rgb\\(0_0_0\\/7\\.5\\%\\)\\,inset_0_0_0_1px_var\\(--cds-border-strong\\)\\]:where([data-theme=\"dark\"], [data-theme=\"dark\"] *):hover:focus-within",
+   "style": "--tw-shadow: 0 .25rem 1.25rem var(--tw-shadow-color,#00000013), inset 0 0 0 1px var(--tw-shadow-color,var(--cds-border-strong)); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--",
+   "src": "inline"
+  },
+  {
+   "selector": ".forced-colors\\:hover\\:bg-\\[color\\:Highlight\\]:hover",
+   "style": "background-color: highlight;",
+   "src": "inline"
+  },
+  {
+   "selector": ".forced-colors\\:focus-visible\\:outline-\\[color\\:CanvasText\\]:focus-visible",
+   "style": "outline-color: canvastext;",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&_\\.ProseMirror\\:focus\\]\\:outline-none .ProseMirror:focus",
+   "style": "--tw-outline-style: none; outline-style: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&_a\\:hover\\]\\:text-\\[hsl\\(213_68\\%_45\\%\\)\\] a:hover",
+   "style": "color: rgb(37, 107, 193);",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&_a\\:hover\\]\\:opacity-80 a:hover",
+   "style": "opacity: 0.8;",
+   "src": "inline"
+  },
+  {
+   "selector": ".dark\\:\\[\\&_a\\:hover\\]\\:text-\\[hsl\\(212_75\\%_62\\%\\)\\]:where([data-theme=\"dark\"], [data-theme=\"dark\"] *) a:hover",
+   "style": "color: rgb(85, 153, 231);",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&_button\\:hover\\:not\\(\\[aria-pressed\\=true\\]\\)\\]\\:text-primary button:hover:not([aria-pressed=\"true\"])",
+   "style": "color: var(--cds-text-primary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&\\:has\\(\\+\\*\\:not\\(\\[data-disabled\\]\\)\\>\\[data-cds\\=AccordionHeader\\]\\:hover\\)\\]\\:border-b-transparent:has(+ :not([data-disabled]) > [data-cds=\"AccordionHeader\"]:hover)",
+   "style": "border-bottom-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&\\:has\\(\\+\\[data-cds-segment\\]_\\[aria-haspopup\\]\\[aria-expanded\\=true\\]\\)\\>span\\]\\:opacity-0:has(+ [data-cds-segment] [aria-haspopup][aria-expanded=\"true\"]) > span, .\\[\\&\\:has\\(\\+\\[data-cds-segment\\]_\\[aria-pressed\\=true\\]\\)\\>span\\]\\:opacity-0:has(+ [data-cds-segment] [aria-pressed=\"true\"]) > span, .\\[\\&\\:has\\(\\+\\[data-cds-segment\\]\\:hover\\)\\>span\\]\\:opacity-0:has(+ [data-cds-segment]:hover) > span",
+   "style": "opacity: 0;",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&\\:has\\(\\+tbody\\>tr\\[data-hoverable\\]\\:first-child\\:hover\\)_th\\]\\:border-b-transparent:has(+ tbody > tr[data-hoverable]:first-child:hover) th",
+   "style": "border-bottom-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&\\:has\\(\\+tbody\\>tr\\[data-hoverable\\]\\:first-child\\:hover\\)_th\\]\\:bg-none:has(+ tbody > tr[data-hoverable]:first-child:hover) th",
+   "style": "background-image: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&\\:has\\(\\>tr\\[data-hoverable\\]\\:nth-child\\(2\\)\\:hover\\)\\>tr\\:first-child\\>th\\]\\:border-b-transparent:has(> tr[data-hoverable]:nth-child(2):hover) > tr:first-child > th",
+   "style": "border-bottom-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": ".enabled\\:\\[\\&\\:hover\\:not\\(\\:focus\\)\\:not\\(\\[data-invalid\\]\\)\\]\\:shadow-field-hover:enabled:hover:not(:focus):not([data-invalid]), .\\[\\&\\:hover\\:not\\(\\:focus-within\\)\\:not\\(\\[data-invalid\\]\\)\\:not\\(\\[data-disabled\\]\\)\\]\\:shadow-field-hover:hover:not(:focus-within):not([data-invalid]):not([data-disabled])",
+   "style": "--tw-shadow: inset 0 0 0 1px var(--tw-shadow-color,var(--cds-border-strong)); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(",
+   "src": "inline"
+  },
+  {
+   "selector": ".hover\\:\\[\\&\\:not\\(\\:where\\(\\:has\\(button\\:hover\\,a\\:hover\\,\\[role\\=button\\]\\:hover\\,label\\:hover\\)\\)\\)\\]\\:shadow-\\[0_0\\.25rem_1\\.25rem_rgb\\(0_0_0\\/3\\.5\\%\\)\\,0_0_0_var\\(--cds-ring-hairline\\)_hsl\\(60_2\\%_12\\%\\/0\\.3\\)\\]:hover:not(:where(:has(button:hover, a:hover, [role=\"button\"]:hover, label:hover)))",
+   "style": "--tw-shadow: 0 .25rem 1.25rem var(--tw-shadow-color,#00000009), 0 0 0 var(--cds-ring-hairline) var(--tw-shadow-color,#1f1f1e4d); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--",
+   "src": "inline"
+  },
+  {
+   "selector": ".dark\\:hover\\:\\[\\&\\:not\\(\\:where\\(\\:has\\(button\\:hover\\,a\\:hover\\,\\[role\\=button\\]\\:hover\\,label\\:hover\\)\\)\\)\\]\\:shadow-\\[0_0\\.25rem_1\\.25rem_rgb\\(0_0_0\\/3\\.5\\%\\)\\,inset_0_0_0_1px_var\\(--cds-border-strong\\)\\]:where([data-theme=\"dark\"], [data-theme=\"dark\"] *):hover:not(:where(:has(button:hover, a:hover, [role=\"button\"]:hover, label:hover)))",
+   "style": "--tw-shadow: 0 .25rem 1.25rem var(--tw-shadow-color,#00000009), inset 0 0 0 1px var(--tw-shadow-color,var(--cds-border-strong)); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&\\:not\\(\\[data-active\\]\\)\\]\\:hover\\:text-secondary:not([data-active]):hover",
+   "style": "color: var(--cds-text-secondary);",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&\\:not\\(\\[data-active\\]\\)\\]\\:hover\\:before\\:bg-fill-ghost-hover:not([data-active]):hover::before",
+   "style": "content: var(--tw-content); background-color: var(--cds-fill-ghost-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&\\:not\\(\\[data-checked\\]\\)\\]\\:hover\\:bg-fill-ghost-hover:not([data-checked]):hover",
+   "style": "background-color: var(--cds-fill-ghost-hover);",
+   "src": "inline"
+  },
+  {
+   "selector": ".\\[\\&\\[data-closed\\]\\:not\\(\\[data-disabled\\]\\)\\:has\\(\\>\\[data-cds\\=AccordionHeader\\]\\:hover\\)\\]\\:border-b-transparent[data-closed]:not([data-disabled]):has(> [data-cds=\"AccordionHeader\"]:hover)",
+   "style": "border-bottom-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": "[data-cds-segment]:has([aria-haspopup][aria-expanded=\"true\"]) + .\\[\\[data-cds-segment\\]\\:has\\(\\[aria-haspopup\\]\\[aria-expanded\\=true\\]\\)\\+\\&\\>span\\]\\:opacity-0 > span, [data-cds-segment]:has([aria-pressed=\"true\"]) + .\\[\\[data-cds-segment\\]\\:has\\(\\[aria-pressed\\=true\\]\\)\\+\\&\\>span\\]\\:opacity-0 > span, [data-cds-segment]:hover + .\\[\\[data-cds-segment\\]\\:hover\\+\\&\\>span\\]\\:opacity-0 > span",
+   "style": "opacity: 0;",
+   "src": "inline"
+  },
+  {
+   "selector": "[data-hoverable]:hover + .\\[\\[data-hoverable\\]\\:hover\\+\\&\\]\\:bg-none, [data-selected=\"true\"] + .\\[\\[data-selected\\=true\\]\\+\\&\\]\\:bg-none",
+   "style": "background-image: none;",
+   "src": "inline"
+  },
+  {
+   "selector": "tr:has(+ tr[data-active=\"true\"]) .\\[tr\\:has\\(\\+tr\\[data-active\\=true\\]\\)_\\&\\]\\:border-b-transparent, tr:has(+ tr[data-hoverable]:hover) .\\[tr\\:has\\(\\+tr\\[data-hoverable\\]\\:hover\\)_\\&\\]\\:border-b-transparent, tr:has(+ tr[data-selected=\"true\"]) .\\[tr\\:has\\(\\+tr\\[data-selected\\=true\\]\\)_\\&\\]\\:border-b-transparent",
+   "style": "border-bottom-color: rgba(0, 0, 0, 0);",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root .group\\/btn:active:not([disabled]) .cds-btn-squish",
+   "style": "transition: transform var(--cds-dur-fast) ease-out; transform: scale(0.975);",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]:active) > .cds-card-fill, .cds-root [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]:active)::after",
+   "style": "transform: scale(var(--cds-card-press-sx), var(--cds-card-press-sy)); transition: transform var(--cds-dur-fast) ease-out;",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]:active) > .cds-card-body",
+   "style": "clip-path: inset(var(--cds-card-press-d) round calc(var(--cds-radius) + 4px)); transition: clip-path var(--cds-dur-fast) ease-out;",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root [data-cds=\"Card\"] > .cds-card-fill, .cds-root [data-cds=\"Card\"]::after, .cds-root [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]:active) > .cds-card-fill, .cds-root [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]:active)::after, .cds-root [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]) > .cds-card-body, .cds-root [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]:active) > .cds-card-body, .cds-root .cds-btn-squish, .cds-root .group\\/btn:active:not([disabled]) .cds-btn-squish",
+   "style": "transition: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root:where([data-reduce-motion=\"true\"], [data-reduce-motion=\"true\"] *) [data-cds=\"Card\"] > .cds-card-fill, .cds-root:where([data-reduce-motion=\"true\"], [data-reduce-motion=\"true\"] *) [data-cds=\"Card\"]::after, .cds-root:where([data-reduce-motion=\"true\"], [data-reduce-motion=\"true\"] *) [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]:active) > .cds-card-fill, .cds-root:where([data-reduce-motion=\"true\"], [data-reduce-motion=\"true\"] *) [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]:active)::after, .cds-root:where([data-reduce-motion=\"true\"], [data-reduce-motion=\"true\"] *) [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]) > .cds-card-body, .cds-root:where([data-reduce-motion=\"true\"], [data-reduce-motion=\"true\"] *) [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]:active) > .cds-card-body, .cds-root:where([data-reduce-motion=\"true\"], [data-reduce-motion=\"true\"] *) .cds-btn-squish, .cds-root:where([data-reduce-motion=\"true\"], [data-reduce-motion=\"true\"] *) .group\\/btn:active:not([disabled]) .cds-btn-squish",
+   "style": "transition: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root .group\\/message-row:focus-within [data-cds=\"MessageActions\"][data-reveal], .cds-root [data-cds=\"MessageActions\"][data-reveal]:focus-within, .cds-root [data-cds=\"MessageActions\"][data-reveal]:has([data-popup-open])",
+   "style": "opacity: 1; transition-duration: var(--cds-message-actions-reveal-in-duration); transition-timing-function: var(--cds-message-actions-reveal-in-ease); transition-delay: 0s; scale: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root .group\\/message-row:focus-within [data-cds=\"MessageActions\"][data-reveal], .cds-root [data-cds=\"MessageActions\"][data-reveal]:focus-within, .cds-root [data-cds=\"MessageActions\"][data-reveal]:has([data-popup-open])",
+   "style": "opacity: 0; scale: var(--cds-message-actions-reveal-scale);",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root .group\\/message-row:hover [data-cds=\"MessageActions\"][data-reveal], .cds-root [data-cds=\"MessageActions\"][data-reveal]:hover",
+   "style": "opacity: 1; transition-duration: var(--cds-message-actions-reveal-in-duration); transition-timing-function: var(--cds-message-actions-reveal-in-ease); transition-delay: var(--cds-message-actions-revea",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root .group\\/message-row:hover [data-cds=\"MessageActions\"][data-reveal], .cds-root [data-cds=\"MessageActions\"][data-reveal]:hover",
+   "style": "opacity: 0; scale: var(--cds-message-actions-reveal-scale);",
+   "src": "inline"
+  },
+  {
+   "selector": ".cds-root [data-cds=\"Card\"]:has([data-cds=\"CardLink\"]):hover > .cds-card-fill",
+   "style": "background-color: var(--cds-surface-2);",
+   "src": "inline"
+  },
+  {
+   "selector": ":where(.cds-root) :where([data-cds=\"CardLink\"]:focus-visible)::after",
+   "style": "outline-offset: -2px; outline: rgba(0, 0, 0, 0) solid 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ":where(.cds-root) :where(input, textarea).cds-input.cds-input:focus",
+   "style": "box-shadow: none; border-color: var(--cds-border); outline: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ":where(.cds-root) :where(input, textarea).cds-input.cds-input:focus-visible",
+   "style": "box-shadow: var(--cds-focus-shadow); outline-offset: 2px; outline: rgba(0, 0, 0, 0) solid 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ":where(.cds-root) .cds-reset:focus, :where(.cds-root) .cds-reset:focus-visible",
+   "style": "outline: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ":where(.cds-root) .cds-reset:focus-visible",
+   "style": "outline-offset: 2px; outline: rgba(0, 0, 0, 0) solid 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ":where(.cds-root) .cds-text-link:is(:hover, :focus-visible)",
+   "style": "--_text-link-line: currentColor;",
+   "src": "inline"
+  },
+  {
+   "selector": ":where(.cds-root) .cds-text-link:focus-visible",
+   "style": "outline-offset: 2px; box-shadow: var(--cds-focus-shadow,0 0 0 2px Highlight); outline: rgba(0, 0, 0, 0) solid 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".mc-tabbar-tab:not([aria-selected=\"true\"]):hover .mc-tabface",
+   "style": "background: var(--t-wash-1);",
+   "src": "inline"
+  },
+  {
+   "selector": ".mc-tabbar-tab:focus-visible",
+   "style": "box-shadow: inset 0 0 0 1px var(--t-bg), 0 0 0 1px var(--t-blue), 0 0 6px 1px var(--t-blue-tint); z-index: 2; outline: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".mc-tabbar-tab:focus-visible",
+   "style": "box-shadow: inset 0 0 0 2px var(--t-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".tb-sync-dot:hover",
+   "style": "background: var(--t-wash-1);",
+   "src": "inline"
+  }
+ ],
+ "hover_host_selectors": [
+  ".group-focus-within\\:opacity-100:is(:where(.group)",
+  ".group-hover\\:flex:is(:where(.group)",
+  ".group-hover\\:scale-100:is(:where(.group)",
+  ".group-hover\\:bg-om-bg-active:is(:where(.group)",
+  ".group-hover\\:bg-om-bg-muted:is(:where(.group)",
+  ".group-hover\\:bg-wash-1:is(:where(.group)",
+  ".group-hover\\:text-fg:is(:where(.group)",
+  ".group-hover\\:opacity-100:is(:where(.group)",
+  ".group-hover\\/btn\\:bg-\\[var\\(--cds-button-on-content-hover\\)\\]:is(:where(.group\\/btn)",
+  ".group-hover\\/btn\\:bg-fill-brand-hover:is(:where(.group\\/btn)",
+  ".group-hover\\/btn\\:bg-fill-danger-hover:is(:where(.group\\/btn)",
+  ".group-hover\\/btn\\:bg-fill-ghost-hover:is(:where(.group\\/btn)",
+  ".group-hover\\/btn\\:bg-fill-primary-hover:is(:where(.group\\/btn)",
+  ".group-hover\\/btn\\:bg-fill-secondary-hover:is(:where(.group\\/btn)",
+  ".group-hover\\/cb\\:border-stronger:is(:where(.group\\/cb)",
+  ".group-hover\\/cbx\\:text-secondary:is(:where(.group\\/cbx)",
+  ".group-hover\\/cdsrow\\:border-transparent:is(:where(.group\\/cdsrow)",
+  ".group-hover\\/cdsrow\\:bg-fill-ghost-hover:is(:where(.group\\/cdsrow)",
+  ".group-hover\\/cdsrow\\:opacity-100:is(:where(.group\\/cdsrow)",
+  ".group-hover\\/cdsth\\:text-disabled:is(:where(.group\\/cdsth)",
+  "white_8\\%\\)\\]:is(:where(.group\\/diff)",
+  ".group-hover\\/mention\\:bg-fill-ghost-hover:is(:where(.group\\/mention)",
+  ".group-hover\\/rd\\:border-stronger:is(:where(.group\\/rd)",
+  ".group-hover\\/resize\\:opacity-100:is(:where(.group\\/resize)",
+  ".group-hover\\/unset\\:opacity-100:is(:where(.group\\/unset)",
+  "*):is(:where(.group)",
+  ".group-hover\\/btn\\:group-aria-pressed\\/btn\\:bg-accent:is(:where(.group\\/btn)",
+  "*):is(:where(.group\\/cb)",
+  "*):is(:where(.group\\/rd)",
+  ".peer-hover\\/slot\\:bg-fill-brand-hover:is(:where(.peer\\/slot)",
+  ".peer-hover\\/slot\\:bg-fill-danger-hover:is(:where(.peer\\/slot)",
+  ".peer-hover\\/slot\\:bg-fill-ghost-hover:is(:where(.peer\\/slot)",
+  ".peer-hover\\/slot\\:bg-fill-primary-hover:is(:where(.peer\\/slot)",
+  ".peer-hover\\/slot\\:bg-fill-secondary-hover:is(:where(.peer\\/slot)",
+  ".group-hover\\:after\\:opacity-100:is(:where(.group)",
+  ".group-hover\\/cdsrow\\:first\\:rounded-l:is(:where(.group\\/cdsrow)",
+  ".group-hover\\/cdsrow\\:last\\:rounded-r:is(:where(.group\\/cdsrow)",
+  ".hover\\:after\\:bg-om-text-tertiary",
+  ".hover\\",
+  "0_0_0_var\\(--cds-ring-hairline\\)_hsl\\(60_2\\%_12\\%\\/0\\.3\\)\\]",
+  ".aria-pressed\\",
+  ".data-\\[checked\\]\\",
+  ".data-\\[disabled\\]\\",
+  ".data-\\[checked\\]\\:data-\\[disabled\\]\\",
+  ".dark\\",
+  "*)",
+  ".forced-colors\\",
+  ".\\[\\&_a\\",
+  ".dark\\:\\[\\&_a\\",
+  ".\\[\\&_button\\",
+  ".\\[\\&\\:has\\(\\+\\*\\:not\\(\\[data-disabled\\]\\)\\>\\[data-cds\\=AccordionHeader\\]\\",
+  ".\\[\\&\\:has\\(\\+\\[data-cds-segment\\]\\",
+  ".\\[\\&\\:has\\(\\+tbody\\>tr\\[data-hoverable\\]\\:first-child\\",
+  ".\\[\\&\\:has\\(\\>tr\\[data-hoverable\\]\\:nth-child\\(2\\)\\",
+  ".enabled\\:\\[\\&\\",
+  ".\\[\\&\\",
+  ".hover\\:\\[\\&\\:not\\(\\:where\\(\\:has\\(button\\",
+  "a\\",
+  "\\[role\\=button\\]\\",
+  "label\\",
+  "label",
+  ".\\[\\&\\:not\\(\\[data-active\\]\\)\\]\\",
+  ".\\[\\&\\:not\\(\\[data-checked\\]\\)\\]\\",
+  ".\\[\\&\\[data-closed\\]\\:not\\(\\[data-disabled\\]\\)\\:has\\(\\>\\[data-cds\\=AccordionHeader\\]\\",
+  "[data-cds-segment]",
+  "[data-hoverable]",
+  "tr[data-hoverable]",
+  ".group\\/message-row",
+  "[data-cds=\"Card\"]:has([data-cds=\"CardLink\"])",
+  ".mc-tabbar-tab:not([aria-selected=\"true\"])"
+ ],
+ "native_listener_elements": [
+  {
+   "el": "div#root.",
+   "types": [
+    "abort",
+    "animationend",
+    "animationiteration",
+    "animationstart",
+    "auxclick",
+    "beforetoggle",
+    "cancel",
+    "canplay",
+    "canplaythrough",
+    "change",
+    "click",
+    "close"
+   ],
+   "n_types": 83
+  },
+  {
+   "el": "div.tb-scroll flex min-w-0 flex-1 items-cent",
+   "types": [
+    "scroll",
+    "wheel"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.inline-flex cursor-default items-center ",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.inline-flex cursor-default items-center ",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.relative h-full w-full select-none overf",
+   "types": [
+    "dragstart",
+    "gesturechange",
+    "gestureend",
+    "gesturestart",
+    "pointerdown",
+    "touchcancel",
+    "touchend",
+    "touchmove",
+    "touchstart",
+    "wheel"
+   ],
+   "n_types": 10
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.relative inline-flex h-5 w-5 shrink-0 cu",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  }
+ ],
+ "react_handler_elements": [
+  "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1) > button:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(2) > span:nth-of-type(1) > span:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(2) > span:nth-of-type(1) > span:nth-of-type(1) > button:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+  "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9)"
+ ],
+ "hidden_pointer_elements_skipped_as_hidden_content": 14,
+ "hidden_inventory": [
+  {
+   "hid": 0,
+   "tag": "title",
+   "cls": "",
+   "text": "Parts Lifecycle Update",
+   "path": "title:nth-of-type(1)",
+   "why": "display:none"
+  }
+ ],
+ "selects": [],
+ "datalists": [],
+ "dc_imports": {},
+ "page_text_chars": {
+  "_whole_board": 2382
+ },
+ "variants": [
+  {
+   "variant": "light-1440",
+   "text_chars": 2382,
+   "same_text_as_light_1440": true,
+   "lines_only_here": [],
+   "lines_missing_here": [],
+   "background": "rgb(250, 249, 245) / html rgb(250, 249, 245)"
+  },
+  {
+   "variant": "dark-1440",
+   "text_chars": 2382,
+   "same_text_as_light_1440": true,
+   "lines_only_here": [],
+   "lines_missing_here": [],
+   "background": "rgb(250, 249, 245) / html rgb(250, 249, 245)"
+  },
+  {
+   "variant": "light-768",
+   "text_chars": 2382,
+   "same_text_as_light_1440": true,
+   "lines_only_here": [],
+   "lines_missing_here": [],
+   "background": "rgb(250, 249, 245) / html rgb(250, 249, 245)"
+  },
+  {
+   "variant": "light-1920",
+   "text_chars": 2382,
+   "same_text_as_light_1440": true,
+   "lines_only_here": [],
+   "lines_missing_here": [],
+   "background": "rgb(250, 249, 245) / html rgb(250, 249, 245)"
+  }
+ ],
+ "console": [
+  "error: Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+ ],
+ "candidates": [
+  {
+   "idx": 0,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "7 pagesRead-only",
+   "path": "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 8,
+   "y": 8,
+   "w": 1420,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 1,
+   "tag": "span",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "7 pages",
+   "path": "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 8,
+   "y": 8,
+   "w": 78,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 2,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "react-handler"
+   ],
+   "label": "7 pages",
+   "path": "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 8,
+   "y": 8,
+   "w": 78,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 3,
+   "tag": "span",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "[icon]",
+   "path": "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(2) > span:nth-of-type(1) > span:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 90,
+   "y": 8,
+   "w": 29,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 4,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "react-handler"
+   ],
+   "label": "Zoom",
+   "path": "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(2) > span:nth-of-type(1) > span:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 90,
+   "y": 8,
+   "w": 29,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 5,
+   "tag": "span",
+   "kinds": [
+    "tooltip-host"
+   ],
+   "label": "Read-only",
+   "path": "#root > div:nth-of-type(1) > header:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > span:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 123,
+   "y": 16,
+   "w": 72,
+   "h": 16,
+   "href": null,
+   "title": "This view’s runtime does not offer self-publish (window.claude.self is absent) — content can be viewed but not saved from here.",
+   "fast": false
+  },
+  {
+   "idx": 6,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.0 Before: the part dialog today1.1 New Inventory Part opens1.2 Save with nothing filled1.3 Number and description typed1.4 Saved and linked to the Par",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 0,
+   "y": 48,
+   "w": 1440,
+   "h": 852,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 7,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.0 Before: the part dialog today",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 48,
+   "y": 430,
+   "w": 153,
+   "h": 101,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 8,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.0 Before: the part dialog today",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 48,
+   "y": 402,
+   "w": 153,
+   "h": 28,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 9,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Play artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 147,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Play: open this artboard as a clickable prototype",
+   "fast": false
+  },
+  {
+   "idx": 10,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 151,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 11,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Export artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 173,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Export this artboard",
+   "fast": false
+  },
+  {
+   "idx": 12,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 177,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 13,
+   "tag": "iframe",
+   "kinds": [
+    "tooltip-host",
+    "react-handler"
+   ],
+   "label": "PartDialogBefore.dc.html",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 48,
+   "y": 430,
+   "w": 153,
+   "h": 101,
+   "href": null,
+   "title": "PartDialogBefore.dc.html",
+   "fast": false
+  },
+  {
+   "idx": 14,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.1 New Inventory Part opens",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 219,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 15,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.1 New Inventory Part opens",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 219,
+   "y": 402,
+   "w": 180,
+   "h": 28,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 16,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Play artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 346,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Play: open this artboard as a clickable prototype",
+   "fast": false
+  },
+  {
+   "idx": 17,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 350,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 18,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Export artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 372,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Export this artboard",
+   "fast": false
+  },
+  {
+   "idx": 19,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 376,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 20,
+   "tag": "iframe",
+   "kinds": [
+    "tooltip-host",
+    "react-handler"
+   ],
+   "label": "create-01-p1-1-new-empty.dc.html",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 219,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": "create-01-p1-1-new-empty.dc.html",
+   "fast": false
+  },
+  {
+   "idx": 21,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.2 Save with nothing filled",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 418,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 22,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.2 Save with nothing filled",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 418,
+   "y": 402,
+   "w": 180,
+   "h": 28,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 23,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Play artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 544,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Play: open this artboard as a clickable prototype",
+   "fast": false
+  },
+  {
+   "idx": 24,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 548,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 25,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Export artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 570,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Export this artboard",
+   "fast": false
+  },
+  {
+   "idx": 26,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 574,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 27,
+   "tag": "iframe",
+   "kinds": [
+    "tooltip-host",
+    "react-handler"
+   ],
+   "label": "create-02-p1-2-required.dc.html",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 418,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": "create-02-p1-2-required.dc.html",
+   "fast": false
+  },
+  {
+   "idx": 28,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.3 Number and description typed",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 616,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 29,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.3 Number and description typed",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 616,
+   "y": 402,
+   "w": 180,
+   "h": 28,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 30,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Play artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 743,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Play: open this artboard as a clickable prototype",
+   "fast": false
+  },
+  {
+   "idx": 31,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 747,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 32,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Export artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 769,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Export this artboard",
+   "fast": false
+  },
+  {
+   "idx": 33,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 773,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 34,
+   "tag": "iframe",
+   "kinds": [
+    "tooltip-host",
+    "react-handler"
+   ],
+   "label": "create-03-p1-3-filled.dc.html",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 616,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": "create-03-p1-3-filled.dc.html",
+   "fast": false
+  },
+  {
+   "idx": 35,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.4 Saved and linked to the Part Library entry",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 815,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 36,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.4 Saved and linked to the Part Library entry",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 815,
+   "y": 402,
+   "w": 180,
+   "h": 28,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 37,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Play artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 941,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Play: open this artboard as a clickable prototype",
+   "fast": false
+  },
+  {
+   "idx": 38,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 945,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 39,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Export artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 967,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Export this artboard",
+   "fast": false
+  },
+  {
+   "idx": 40,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 971,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 41,
+   "tag": "iframe",
+   "kinds": [
+    "tooltip-host",
+    "react-handler"
+   ],
+   "label": "create-04-p1-4-linked-toast.dc.html",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 815,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": "create-04-p1-4-linked-toast.dc.html",
+   "fast": false
+  },
+  {
+   "idx": 42,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.5 The same number again, in lower case",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1013,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 43,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.5 The same number again, in lower case",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1013,
+   "y": 402,
+   "w": 180,
+   "h": 28,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 44,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Play artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1140,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Play: open this artboard as a clickable prototype",
+   "fast": false
+  },
+  {
+   "idx": 45,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1144,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 46,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Export artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1166,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Export this artboard",
+   "fast": false
+  },
+  {
+   "idx": 47,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1170,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 48,
+   "tag": "iframe",
+   "kinds": [
+    "tooltip-host",
+    "react-handler"
+   ],
+   "label": "create-05-p1-5-duplicate-refused.dc.html",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1013,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": "create-05-p1-5-duplicate-refused.dc.html",
+   "fast": false
+  },
+  {
+   "idx": 49,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.6 Branch: a new part with tracking off",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1212,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 50,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "1.6 Branch: a new part with tracking off",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1212,
+   "y": 402,
+   "w": 180,
+   "h": 28,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 51,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Play artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1338,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Play: open this artboard as a clickable prototype",
+   "fast": false
+  },
+  {
+   "idx": 52,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1342,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 53,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer",
+    "react-handler"
+   ],
+   "label": "Export artboard",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1364,
+   "y": 404,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Export this artboard",
+   "fast": false
+  },
+  {
+   "idx": 54,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1368,
+   "y": 408,
+   "w": 12,
+   "h": 12,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 55,
+   "tag": "iframe",
+   "kinds": [
+    "tooltip-host",
+    "react-handler"
+   ],
+   "label": "create-06-p1-6-untracked.dc.html",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7) > div:nth-of-type(2) > iframe:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1212,
+   "y": 430,
+   "w": 180,
+   "h": 124,
+   "href": null,
+   "title": "create-06-p1-6-untracked.dc.html",
+   "fast": false
+  },
+  {
+   "idx": 56,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "Today a part starts from a Catalog Part pick, the first field on the screen. An inventory part cannot exist unless a matching catalog entry already does.",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 48,
+   "y": 561,
+   "w": 124,
+   "h": 5,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 57,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "Description first, then Part Number. Both are free text (S7-R1). No Part Library selector and no lookup step (S7-R2). Inventory Tracking sits below the cost, Se",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 219,
+   "y": 561,
+   "w": 124,
+   "h": 11,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 58,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "Every empty required field shows its own error at the same time: \"Description is a required field\" and \"Part number is a required field\" (S7-N1, S7-N2). Categor",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 418,
+   "y": 561,
+   "w": 124,
+   "h": 7,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 59,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "The user types SLACK ADJUSTER LEFT and F40010212. F40010212 already exists in the Part Library as \"Slack Adjuster\", stocked at Lethbridge and not at this locati",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 616,
+   "y": 561,
+   "w": 124,
+   "h": 5,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 60,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "Exactly one Part Library entry has the number typed, so the new part links to it (S7-R4, S7-R5). The entry keeps its own description (S7-R6). The descriptions d",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(6)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 815,
+   "y": 561,
+   "w": 124,
+   "h": 11,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 61,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "Typing f40010212 at a location that already stocks F40010212 is refused with \"F40010212 already exists at this location.\" (S7-N3). Upper and lower case, hyphens",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(7)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1013,
+   "y": 561,
+   "w": 124,
+   "h": 11,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 62,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "With the switch off, Min and Max are hidden (S4-R5). The bin location section stays visible and is optional, so a bin can be set as a shelf reference (S4-R6). S",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(8)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 1212,
+   "y": 561,
+   "w": 124,
+   "h": 9,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 63,
+   "tag": "div",
+   "kinds": [
+    "react-handler"
+   ],
+   "label": "CREATE A PART A parts manager adds a part by typing its description and part number. No Part Library pick, no lookup step. Read left to right. Board 1.0 is toda",
+   "path": "#root > div:nth-of-type(1) > div:nth-of-type(1) > main:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(9)",
+   "page": "_header_or_outside",
+   "flow": " / 7 pages / ",
+   "x": 48,
+   "y": 383,
+   "w": 158,
+   "h": 14,
+   "href": null,
+   "title": null,
+   "fast": false
+  }
+ ],
+ "_page_ids": []
+}

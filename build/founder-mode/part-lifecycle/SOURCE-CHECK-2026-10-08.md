@@ -2,7 +2,7 @@
 
 | Source | What we built the 62 cases on (30 Sep 2026) | What is current (8 Oct 2026) |
 |---|---|---|
-| PRD, Confluence 829227015 | "In review — 2026-09-09"; 207 anchors we assigned | **"Ready for dev - 2026-10-07"** (tech plan cites v22). Page last modified about 13:25 UTC on 8 Oct 2026, after the tech plan. **288 requirement IDs** (S1-R1 … S13-E1). Saved: `sources/CONFLUENCE-829227015-PartLifecycle-v22-2026-10-08.md` |
+| PRD, Confluence 829227015 | "In review — 2026-09-09"; 207 anchors we assigned | **"Ready for dev - 2026-10-07"** (tech plan cites v22). Page last modified about 13:25 UTC on 8 Oct 2026, after the tech plan. **288 requirement IDs** (S1-R1 … S13-E1). Saved: `sources/CONFLUENCE-829227015-PartLifecycle-v26-2026-10-08.md` |
 | Tech plan | none supplied | **First copy we hold**, dated 2026-10-07, written against PRD v22. Read 100% (1,130 lines, 135,715 bytes, lines 1–1130). Saved: `sources/tech-plan-Parts-Lifecycle-Update-shared-2026-10-08.md` |
 | Design, artifact Vz6rprcWyP16tYxzM1kdeE | 11 boards driven | The tech plan says **46 boards on pages 1–7** (create, correct, retire, bulk, tracking, daily, library). Not re-read yet |
 | Jira | epic only; story tickets "TBD" | Epic SV-10647 is "Design In Progress"; **13 stories SV-10814 … SV-10826** (Open, updated 8 Oct); **9 verification tasks SV-11038 … SV-11046** (Board Backlog) |

@@ -1,0 +1,49 @@
+# artifact-raw.html — visible text per page (hidden tooltip text excluded; it is listed per interaction)
+
+
+======================== PAGE _whole_board  ========================
+
+7 pages
+
+Read-only
+1.0 Before: the part dialog today
+
+
+1.1 New Inventory Part opens
+
+
+1.2 Save with nothing filled
+
+
+1.3 Number and description typed
+
+
+1.4 Saved and linked to the Part Library entry
+
+
+1.5 The same number again, in lower case
+
+
+1.6 Branch: a new part with tracking off
+
+
+Today a part starts from a Catalog Part pick, the first field on the screen. An inventory part cannot exist unless a matching catalog entry already does.
+Description first, then Part Number. Both are free text (S7-R1). No Part Library selector and no lookup step (S7-R2).
+
+Inventory Tracking sits below the cost, Sell Price and Core Charge fields and above Tags, with the switch on by default (S4-R1, S4-R2). Min and Max sit under the switch (S4-R4).
+Every empty required field shows its own error at the same time: "Description is a required field" and "Part number is a required field" (S7-N1, S7-N2). Category and Cost are required, as they are today.
+The user types SLACK ADJUSTER LEFT and F40010212. F40010212 already exists in the Part Library as "Slack Adjuster", stocked at Lethbridge and not at this location.
+Exactly one Part Library entry has the number typed, so the new part links to it (S7-R4, S7-R5). The entry keeps its own description (S7-R6).
+
+The descriptions differ, so the toast reads: "Part created. Linked to F40010212 in the Part Library. Its description "Slack Adjuster" was kept." (S7-R9). There is no toast when they match, or when a new entry is created (S7-R10).
+Typing f40010212 at a location that already stocks F40010212 is refused with "F40010212 already exists at this location." (S7-N3). Upper and lower case, hyphens, asterisks, periods and spaces are ignored, and the message names the number of the part already there (S7-N5).
+
+The second line, "Please try to resolve this.", is the caption every error toast in the app carries.
+With the switch off, Min and Max are hidden (S4-R5). The bin location section stays visible and is optional, so a bin can be set as a shelf reference (S4-R6).
+
+Saving a part with tracking off also needs the Delete permission (Story 8).
+CREATE A PART
+
+A parts manager adds a part by typing its description and part number. No Part Library pick, no lookup step. Read left to right.
+
+Board 1.0 is today's part dialog, traced from staging. Boards 1.1 to 1.6 are screenshots of the build, on Staging Heavy Duty data.
