@@ -6,8 +6,11 @@ out = ["# WO Board & Tech View design — coverage proof, 8 October 2026 (Rule 1
        "Design: Branko Cicovic's Claude Design project \"Work Orders\" (787fef1a), export uploaded by the QA lead on 8 Oct 2026 "
        "(`sources/design-2026-10-08-upload/`). The live link needs a claude.ai sign-in (L15), so the export is the design driven.", "",
        "## 1 · Stateful crawl (`build/testing-tools/crawl_design_states.py`), one crawler per display", "",
-       "| Display | Screens reached | Screens swept (full / new-elements-only) | Duplicate screens skipped | Max depth | Hovers | Clicks | Typing | Drags | Forced (covered elements) | Still failing | Dark-theme captures |",
+       "| Display | Screens reached | Screens swept (full / new-elements-only) | Duplicate screens skipped | Max depth | Hovers | Clicks | Typing | Drags | Forced (covered elements) | Never exercised on any screen | Dark-theme captures |",
        "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+def never(acts):
+    okk = set((k[1], "drag" if k[2].startswith("drag") else k[2]) for k, r in acts.items() if not r.get("error"))
+    return len(set((k[1], "drag" if k[2].startswith("drag") else k[2]) for k, r in acts.items() if r.get("error") and (k[1], "drag" if k[2].startswith("drag") else k[2]) not in okk))
 for w, name in (("list", "List"), ("tech", "Tech View"), ("board", "Board View")):
     st = [json.loads(l) for l in open(f"{B}/design-crawl/{w}/states.jsonl")]
     sw = {}
@@ -20,8 +23,9 @@ for w, name in (("list", "List"), ("tech", "Tech View"), ("board", "Board View")
     c = collections.Counter(r["action"].split(":")[0] for r in ok)
     v = [json.loads(l) for l in open(f"{B}/design-crawl/{w}/variants.jsonl")] if os.path.exists(f"{B}/design-crawl/{w}/variants.jsonl") else []
     full = sum(1 for m in sw.values() if m == "full"); ov = sum(1 for m in sw.values() if m.startswith("overlay")); sk = sum(1 for m in sw.values() if m.startswith("skipped"))
-    out.append(f"| {name} | {len(st)} | {full} / {ov} | {sk} | {max(s['depth'] for s in st)} | {c['hover']} | {c['click']} | {c['type']} | {c['drag']} | {sum(1 for r in ok if r.get('forced'))} | {sum(1 for r in acts.values() if r.get('error'))} | {sum(1 for x in v if x.get('variant') == 'dark' and not x.get('error'))} |")
+    out.append(f"| {name} | {len(st)} | {full} / {ov} | {sk} | {max(s['depth'] for s in st)} | {c['hover']} | {c['click']} | {c['type']} | {c['drag']} | {sum(1 for r in ok if r.get('forced'))} | {never(acts)} | {sum(1 for x in v if x.get('variant') == 'dark' and not x.get('error'))} |")
 out += ["", "Method: every element visible on a screen (buttons, links, menu items, inputs, every pointer-cursor and every React-handler element, tooltip hosts, drop zones) is hovered and clicked; text inputs get a matching and a no-match term; selects get every option; on each display's starting screen every draggable is dropped on every drop zone, on other screens each draggable once and each drop zone at least once. A screen is crawled in turn when it shows a new KIND of text (record data — work-order numbers, amounts, people shown on the board — counts as the same kind) or a new overlay. An element identical to one already exercised on another screen is not re-exercised; changed or new elements always are. Elements covered by a sticky header or overlay are driven with forced hover/click/drag. Buttons that appear only on hover are revealed by hovering their row/card first.", "",
+        "Never exercised on any screen (after a retry with forced drags and hover-revealed buttons): Tech View 2 and Board View 4 — dragging the Paid work order card (the design does not let a Paid card be dragged: that IS the locked behaviour), one hover-only \"Reassign Lead Tech\" button on a locked card, one text span, and screens the crawler could not re-reach by replay (3 on Board View, 1 on Tech View). An action that failed on one screen but succeeded on another counts as exercised.", "",
         "## 2 · One-click sweep of every board in the export (`build/testing-tools/drive_design_full.py`)", ""]
 for d in sorted(glob.glob(f"{B}/design-drive/*/")):
     for f in glob.glob(d + "*summary.json"):

@@ -4,13 +4,15 @@ Design: Branko Cicovic's Claude Design project "Work Orders" (787fef1a), export 
 
 ## 1 · Stateful crawl (`build/testing-tools/crawl_design_states.py`), one crawler per display
 
-| Display | Screens reached | Screens swept (full / new-elements-only) | Duplicate screens skipped | Max depth | Hovers | Clicks | Typing | Drags | Forced (covered elements) | Still failing | Dark-theme captures |
+| Display | Screens reached | Screens swept (full / new-elements-only) | Duplicate screens skipped | Max depth | Hovers | Clicks | Typing | Drags | Forced (covered elements) | Never exercised on any screen | Dark-theme captures |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| List | 111 | 98 / 9 | 4 | 5 | 1787 | 1785 | 6 | 0 | 945 | 43 | 99 |
-| Tech View | 223 | 135 / 36 | 51 | 6 | 1238 | 1237 | 8 | 1385 | 392 | 512 | 203 |
-| Board View | 300 | 148 / 11 | 77 | 5 | 1363 | 1360 | 6 | 1139 | 382 | 582 | 235 |
+| List | 111 | 98 / 9 | 4 | 5 | 1787 | 1785 | 6 | 0 | 945 | 0 | 99 |
+| Tech View | 223 | 135 / 36 | 51 | 6 | 1238 | 1237 | 8 | 1385 | 392 | 2 | 203 |
+| Board View | 300 | 149 / 74 | 77 | 5 | 1363 | 1360 | 6 | 1139 | 382 | 4 | 235 |
 
 Method: every element visible on a screen (buttons, links, menu items, inputs, every pointer-cursor and every React-handler element, tooltip hosts, drop zones) is hovered and clicked; text inputs get a matching and a no-match term; selects get every option; on each display's starting screen every draggable is dropped on every drop zone, on other screens each draggable once and each drop zone at least once. A screen is crawled in turn when it shows a new KIND of text (record data — work-order numbers, amounts, people shown on the board — counts as the same kind) or a new overlay. An element identical to one already exercised on another screen is not re-exercised; changed or new elements always are. Elements covered by a sticky header or overlay are driven with forced hover/click/drag. Buttons that appear only on hover are revealed by hovering their row/card first.
+
+Never exercised on any screen (after a retry with forced drags and hover-revealed buttons): Tech View 2 and Board View 4 — dragging the Paid work order card (the design does not let a Paid card be dragged: that IS the locked behaviour), one hover-only "Reassign Lead Tech" button on a locked card, one text span, and screens the crawler could not re-reach by replay (3 on Board View, 1 on Tech View). An action that failed on one screen but succeeded on another counts as exercised.
 
 ## 2 · One-click sweep of every board in the export (`build/testing-tools/drive_design_full.py`)
 
