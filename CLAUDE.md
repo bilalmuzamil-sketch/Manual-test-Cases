@@ -5333,7 +5333,7 @@ deliver the 7-tab management report.
     Rules 12, 68, 72, 75 (a false defect costs more than a missed one), 85, 89, 93 and the ALWAYS-UNBLOCK ruling. Recipe:
     playbook §AC.15 addendum 6.
 
-103. **BEFORE CALLING ANY TICKET OUTSTANDING, RE-OPEN IT LIVE AND READ ITS STATUS AND LAST COMMENT (all projects).**
+103. **BEFORE CALLING ANY TICKET OUTSTANDING, RE-OPEN IT LIVE AND READ ITS STATUS AND LAST COMMENT (all projects).** **The read must be taken AT THE MOMENT THE REPORT IS WRITTEN — a reading from the pre-post gate is already stale (2026-10-08: three tickets reported "still Blocked" that the QA lead had moved to Ready for Production 1–6 minutes after each post).**
     USER DIRECTIVE (2026-10-07, verbatim): *"We have marked it ready for production - another rule/learning for you when
     telling me the outstanding tickets alays reopen the tickets and see their last comment and status before wrongly tellig
     me that it is outstanding."*
