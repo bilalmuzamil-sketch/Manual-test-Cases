@@ -52,16 +52,11 @@ The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RUL
 - **Run sync is union only, with `get_tests` paged (L16).**
 - **Secrets stay in `/tmp`** (`chmod 600`); run the secret scan before every commit.
 
-## First case to verify — the worked example
-- [C425784](https://shopview.testrail.io/index.php?/cases/view/425784) "Approving a line moves its Quoted inventory part to In stock" is the regression case for [SV-4802](https://shopview.atlassian.net/browse/SV-4802).
-  - Section 54276 "ZZ - Layout samples (to be retired)". It is not in any run.
-  - Its doc: [Setup (manual QA tester and Claude session) v4 - C425784](https://docs.google.com/document/d/1MrEUYh5KA0JD1QkiaN28zYhJXip4j0egjm_1BBgX7L8/edit).
-- **UNVERIFIED points for you to settle:**
-  - the shape of "bins" when creating an inventory part through the API;
-  - whether the part status shows on the Lines tab, the Parts tab, or both.
-- **The bug was a screen-refresh bug.** The pass/fail must come from the screen without a reload, never from an API read.
-- The case will be retired after the QA lead's review. Verify it as the trial of this layout, and report what the doc got right and wrong.
-- The earlier example, C425783, was deleted on 8 Oct; ignore any mention of it.
+## Worked example (reference only — the case itself was deleted on 8 Oct 2026)
+- The example case was C425784, "Approving a line moves its Quoted inventory part to In stock" (regression of SV-4802). The QA lead deleted it after review.
+- Its full body is in `build/skills/example-layout-2026-10-08/sv4802/C425784-final-before-delete.json`.
+- Its setup doc is kept as the reference layout: https://docs.google.com/document/d/1MrEUYh5KA0JD1QkiaN28zYhJXip4j0egjm_1BBgX7L8/edit
+- There is no case to verify from this handoff until the authoring session creates cases in this layout. Apply it to those.
 
 ## Report back (per case)
 Give a table with these columns:
