@@ -54,3 +54,10 @@
 - **Asks open:** C368218 Purchase Orders, C368219 Vendors, C368223 Deliveries — the pages have no filter on this build (proved,
   regression/parts-pages-no-filter-claim.json); keep as HOLD, or treat as build-differs (READY + "What you should see today")?
 - Test data left on the site (all ZZAUTOTEST): see the regression helper's list in RUN-HANDOFF-WO-BOARD-2026-10-08.md.
+
+## 2026-10-08 (evening) — structure conversion started (QA lead's task instructions, not rules)
+- Set: the 229 build-verified cases outside "Not runnable for now" (created_by 3). QA lead decisions for this conversion: follow the new structure
+  including "Step N:" and {brace} names in the plain expected-result lines (Source, quotes, stamp, marker and author notes byte-identical); all 229 at
+  once. Instructions, reference and checker: build/wo-board-tech-view/structure-conversion-2026-10-08/. One public setup doc per case in the Drive
+  folder "Setup for Claude session (test case setup docs)". Before-copies saved (C<id>-before.json); writes guarded on updated_on; display check =
+  hs_repair_one.mjs "RESULT OK".
