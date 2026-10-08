@@ -11,7 +11,7 @@ These are task instructions from the QA lead for verifying these cases. They are
 | Part | What it holds |
 |---|---|
 | Top of the Preconditions field: link **"Setup (manual QA tester and Claude session)"** | the case's public Google Doc, in the Drive folder "Setup for Claude session (test case setup docs)". **Part 1 "Setup for manual QA tester"** is short click-by-click steps in the build's labels, ending with "Check the setup worked". **Part 2 "Setup for Claude session"** is everything a Claude session needs (environment, access, ids, recipes with browser fallbacks, the check, how to run and observe, evidence, cleanup, traps), with unproven points marked UNVERIFIED. No secrets, ever. |
-| After a line break: **Preconditions** | clearly and completely, what must be true before step 1: user and role, location, every record with its state, as **{brace} placeholders** ({Location}, {Part}, {Line}). Every illustrative value is marked **"(for example …)"**. No Needs line, browser count or duration. |
+| After a line break: **Preconditions** | clearly and completely, what must be true before step 1: user and role, location, every record with its state, as **{brace} placeholders** ({Location-A}, {Part-A}, {Line-A}). Every illustrative value is marked **"(for example …)"**. No Needs line, browser count or duration. |
 | (no Setup block in TestRail) | the Setup lives only in the doc |
 | **Steps** | actions only, one per line |
 | **Expected results** and below | every line starts "Step N:". Source, exact quotes, build stamp and AUTOMATION marker are as today. |
@@ -33,7 +33,7 @@ These are task instructions from the QA lead for verifying these cases. They are
    - Nothing needed is missing: a tester reading only the Preconditions knows exactly what must exist.
    - Labels are the build's own.
    - No example value is written as if it already exists in the app.
-   - Friendly phrasing: each precondition is one plain sentence (what must exist, then its {name}); each step is one simple action in order; a "don't" the test depends on is its own step.
+   - Friendly phrasing: each precondition is one plain sentence (what must exist, then its {Name-A}); each step is one simple action in order; a "don't" the test depends on is its own step.
    - The same holds in the setup doc, both parts. Every {brace} name used in the doc, including API ids in Part 2, is defined before it is used, and every illustrative value is marked "(for example …)".
 5. **Steps:**
    - Perform them. Each is one action in the build's labels.

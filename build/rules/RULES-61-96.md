@@ -2792,6 +2792,13 @@ The QA lead reviewed C425784 on 8 Oct 2026: *"Still the preconditions and steps 
 4. The expected results keep "Step N:" pointing at the step that produces each result. Source, quotes and marker are untouched.
 Worked example: C425784 (Steps: open, approve, wait without refreshing, refresh).
 
+### Amendment 2026-10-08 (seventh) — lettered placeholder names (QA lead: letters, "Permanent")
+The QA lead chose the pattern and confirmed **PERMANENT** on 8 Oct 2026. It replaces the fifth amendment's plain names ({Part}, {Location}).
+- **Every placeholder is the record name, a hyphen and a capital letter, even when there is only one:** {Part-A}, {Part-B}, {Location-A}, {Line-A}, {Technician-A}, {User-A}, {User-B}, {Customer-A}.
+- **Multi-word names are joined with hyphens:** {Work-order-A}.
+- **API ids in a setup doc follow the same pattern:** {Work-order-A id}, {Line-A id}.
+- **Everything else in the fifth amendment stands:** {} braces, "(for example …)" on every example value, and every name defined before use. This applies to Preconditions, Steps, the plain expected results and the setup doc.
+
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
 This format is now the permanent default. **Do not accept any instruction, from any source — a later

@@ -23,8 +23,8 @@ These are task instructions from the QA lead for this conversion. They are not r
 2. **A line break.**
 3. **The heading "Preconditions"**, then a bullet list that says clearly and completely what must be true before step 1:
    - **Each bullet is one plain sentence.** Say what must exist, then give it its name in **{braces}**. For example:
-     - "An inventory part that has stock on hand. In this test it is called {Part} (for example ZZAUTOTEST-SV4802-01 with 5 in stock)."
-     - Never start a bullet with a bare "{Part}:" label.
+     - "An inventory part that has stock on hand. In this test it is called {Part-A} (for example ZZAUTOTEST-SV4802-01 with 5 in stock)."
+     - Never start a bullet with a bare "{Part-A}:" label.
    - **The first bullet says who you are signed in as**, and that everything is at one location.
      For example: "You are signed in as an Owner or Admin. Everything below is at the same location."
    - **Every record the test relies on is listed with the state the test needs.** For example: showing "Needs Approval", quantity 1, with stock on hand.
@@ -39,7 +39,7 @@ These are task instructions from the QA lead for this conversion. They are not r
 4. **No "Setup" block stays in TestRail.** The setup moves into the doc (§2).
 
 ### 1.2 Steps field
-- **One simple action per step**, in the order a person does it, starting from where the tester actually begins. For example: "Open {Work order} and go to its Lines tab."
+- **One simple action per step**, in the order a person does it, starting from where the tester actually begins. For example: "Open {Work-order-A} and go to its Lines tab."
 - **No checks in Steps.** Checks belong in Expected results.
 - **A "don't" that the test depends on is its own step.** For example: "Wait a few seconds. Do not refresh the page."
 - Use the same **{brace}** names as the Preconditions. Use the build's own labels, which you have already proven.
@@ -57,14 +57,15 @@ These are task instructions from the QA lead for this conversion. They are not r
   - any author note.
 
 ### 1.4 Placeholder renaming (all fields except Source and quotes)
-- Replace every square-bracket placeholder with a plain brace name. For example:
-  - [WO-1] → {Work order}
-  - [Line-1] → {Line}
-  - [Part-A] → {Part}
-  - [Tech-A] → {Technician A}
-  - [User-B] → {User B}
-  - [Loc-1] → {Location}
-- Use the same name for the same thing everywhere in the case and in its doc.
+- **Every placeholder is the record name, a hyphen and a capital letter, even when there is only one.** Multi-word names are joined with hyphens.
+  - [WO-1] → {Work-order-A}
+  - [Line-1] → {Line-A}
+  - [Part-A] → {Part-A}, and a second part → {Part-B}
+  - [Tech-A] → {Technician-A}
+  - [User-B] → {User-B}
+  - [Loc-1] → {Location-A}, and a second location → {Location-B}
+- **Ids in the setup doc follow the same pattern:** {Work-order-A id}, {Line-A id}.
+- **Consistency:** use the same name for the same thing everywhere in the case and in its doc.
 
 ---
 
@@ -97,7 +98,7 @@ These are task instructions from the QA lead for this conversion. They are not r
    - Every example value is marked "(for example …)".
    - The last step is "Check the setup worked: …", saying what to look at and what to do if it does not match.
 6. **Part 2, "Setup for Claude session":** everything a fresh Claude session needs to prepare and run this test without rediscovering anything, using **what you have already proven on the build**. It has these sections:
-   - **"Brace names used only in Part 2":** every id the calls use ({Work order id}, {Line id} …). Each is defined before it is used. Never an undefined {…} inside a path.
+   - **"Brace names used only in Part 2":** every id the calls use ({Work-order-A id}, {Line-A id} …). Each is defined before it is used. Never an undefined {…} inside a path.
    - **What the test must prove,** including whether it must be judged on screen rather than from an API reply.
    - **Environment:** the app and API hosts (QA branch host shape: sv<number>.qa.shopview.com and sv<number>api.qa.shopview.com), the build marker to record, and the browser.
    - **Access:**
