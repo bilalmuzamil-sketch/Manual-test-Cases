@@ -22,7 +22,14 @@ import { rememberSession } from './seedwork.js';
  */
 
 export const APP  = (process.env.GS_APP  || 'https://app.staging.shopview.com').replace(/\/$/, '');
-export const APIH = process.env.GS_API || new URL(APP).host.replace(/^app\./, 'api.');
+// app.x -> api.x for staging and production; a QA branch is <branch>.qa.shopview.com and its API is
+// <branch>api.qa.shopview.com (measured on sv10043, 2026-10-08: posting the sign-in to the app host itself
+// answers 403, which reads like a dead cookie and is not). GS_API still overrides both.
+export const APIH = process.env.GS_API || (() => {
+  const h = new URL(APP).host;
+  const qa = h.match(/^([a-z0-9-]+)\.qa\.shopview\.com$/);
+  return qa ? `${qa[1]}api.qa.shopview.com` : h.replace(/^app\./, 'api.');
+})();
 export const IS_PROD = /app\.shopview\.com/.test(APP);
 export const IS_STAGING = /staging/.test(APP);
 

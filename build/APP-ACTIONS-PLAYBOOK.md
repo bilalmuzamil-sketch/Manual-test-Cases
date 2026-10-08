@@ -5748,3 +5748,7 @@ three wrong characterisations before it was found — see learning **L0233**.
   the reset (last one: **2026-09-28 14:19:29**). Anything dated later was made since and is gone after
   the next reset, so it must be in a seeding plan (`seed-manifest-fixtures.json` holds the 86 that were
   made by hand on 2026-09-29).
+- **QA-branch API host for the e2e harness (measured on `sv10043`, 2026-10-08):** a QA branch's API is
+  `<branch>api.qa.shopview.com` (e.g. `sv10043api.qa.shopview.com`). Posting quick-login to the app host
+  `<branch>.qa.shopview.com` answers **403**, which looks like an expired cookie and is not.
+  `build/global-search/e2e/fixtures/boot.ts` now derives it; `GS_API` still overrides.
