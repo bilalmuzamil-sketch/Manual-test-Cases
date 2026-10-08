@@ -7,44 +7,41 @@
 
 The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RULES-61-96.md`; the standard is `build/skills/IDEAL-TEST-CASE-STANDARD.md`.
 
-## What a case looks like now
-| Part | Who it is for | What it holds |
-|---|---|---|
-| Top of the Preconditions field: link **"Setup for claude session"** | a Claude session | its own public Google Doc, "Setup for Claude session - C<id> <title>", in the Drive folder "Setup for Claude session (test case setup docs)". It holds everything a Claude session needs to prepare and run the test: build and API addresses, how to get and check access, the ids it relies on, exact recipes, the check that setup worked, how to run and observe, the evidence to keep, cleanup and the traps. Unproven points are marked UNVERIFIED. No secrets, ever. |
-| After a line break: **Preconditions** | the manual QA tester | a Needs line, then only what the test depends on |
-| **Setup** | the manual QA tester | short numbered steps in the build's own labels, ending with "Check the setup worked". A tester never needs the doc. |
-| **Steps** | both | actions only, one per line |
-| **Expected results** and below | both | every line starts "Step N:". Source, exact quotes, build stamp and AUTOMATION marker are as today. |
+## What a case looks like now (Rule 117, fourth amendment of 8 Oct — PERMANENT)
+| Part | What it holds |
+|---|---|
+| Top of the Preconditions field: link **"Setup (manual QA tester and Claude session)"** | the case's public Google Doc, in the Drive folder "Setup for Claude session (test case setup docs)". **Part 1 "Setup for manual QA tester"** is short click-by-click steps in the build's labels, ending with "Check the setup worked". **Part 2 "Setup for Claude session"** is everything a Claude session needs (environment, access, ids, recipes with browser fallbacks, the check, how to run and observe, evidence, cleanup, traps), with unproven points marked UNVERIFIED. No secrets, ever. |
+| After a line break: **Preconditions** | clearly and completely, what must be true before step 1: user and role, location, every record with its state and values, as [placeholders]. No Needs line, browser count or duration. |
+| (no Setup block in TestRail) | the Setup lives only in the doc |
+| **Steps** | actions only, one per line |
+| **Expected results** and below | every line starts "Step N:". Source, exact quotes, build stamp and AUTOMATION marker are as today. |
 
 ## What to verify, in this order (every case, in full: Rule 122, never a delta)
-1. **The Claude setup doc. Run it as a fresh session would**, following only what the doc says.
-   - Check every address, the access route and its error handling, every id (location, role, template), every recipe and call, the "check the setup worked" test, the way to observe the steps, the evidence list and the cleanup.
-   - **Resolve every UNVERIFIED point** on the build: confirm it, or replace it with what really works.
-   - Add any trap you hit that the doc does not mention.
-   - The test of the doc: *"Could a new Claude session, with only this doc and the case, prepare the state and run the test without rediscovering anything?"*
-   - **Correct the doc in place**, so the link in the case stays the same. If this session has no Google Docs editor connector, do not create a second doc. Instead:
-     - write the corrected text to `build/<project>/setup-doc-corrections/C<id>.md`;
-     - list it in your report, so the QA lead (or the authoring session) can apply it.
-   - Never write a cookie, password, token or OTP into a doc. The doc is public.
-2. **Preconditions (manual):**
-   - Every item is true on the build and is needed by the test. Nothing the result does not depend on.
-   - The Needs line is accurate (users, browsers, time).
+1. **Doc Part 2 (Claude session). Run it as a fresh session would**, following only what the doc says.
+   - Check every address, the access route, every id, every recipe and call, the check, the way to observe the steps, the evidence list and the cleanup.
+   - Resolve every UNVERIFIED point, and add any trap you hit.
+   - The test of Part 2: *"Could a new Claude session, with only this doc and the case, prepare the state and run the test without rediscovering anything?"*
+2. **Doc Part 1 (manual QA tester).** Carry it out by hand in the UI, exactly as written, as a manual tester would.
+   - It must reach the same state as Part 2, in the build's own labels.
+   - Its final "Check the setup worked" must really detect a broken setup.
+3. **Correcting the doc:** correct it in place, so the link stays the same. If this session has no Google Docs editor connector, never create a second doc. Instead:
+   - write the corrected text to `build/<project>/setup-doc-corrections/C<id>.md`;
+   - list it in your report.
+   - Never write a cookie, password, token or OTP into a doc: it is public.
+4. **Preconditions:**
+   - Every item is true after the setup, and is needed by the test.
+   - Nothing needed is missing: a tester reading only the Preconditions knows exactly what must exist.
    - Labels are the build's own.
-3. **Setup (manual):**
-   - Carry it out by hand in the UI, exactly as written, as a manual QA tester would.
-   - It must be enough on its own: if you needed the doc, or prior knowledge, to finish it, the Setup is incomplete. Fix the case.
-   - Every [placeholder] is defined once.
-   - The final "Check the setup worked" really detects a broken setup.
-4. **Steps:**
+5. **Steps:**
    - Perform them. Each is one action in the build's labels.
-   - There are no checks in Steps; checks belong in Expected.
-5. **Expected results and everything below. Handle these exactly as you do today:**
+   - There are no checks in Steps.
+6. **Expected results and everything below. Handle these exactly as you do today:**
    - pass/fail on what you see;
-   - Rules 57 and 113: the exact quote is never changed, and a build that differs is a deviation, never an edit;
+   - Rules 57 and 113: the quote is never changed, and a build that differs is a deviation;
    - the build stamp;
    - the AUTOMATION marker;
    - Blocked vs Failed.
-   One addition: check that each "Step N:" points at the step that produces that result.
+   One addition: check that each "Step N:" points at the right step.
 
 ## Rules that still apply
 - **One writer per case set, plus the edit lock (L17).** Re-read a case immediately before you write. Refuse if it changed since you read it.
@@ -55,7 +52,7 @@ The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RUL
 ## First case to verify — the worked example
 - [C425784](https://shopview.testrail.io/index.php?/cases/view/425784) "Approving a line moves its Quoted inventory part to In stock" is the regression case for [SV-4802](https://shopview.atlassian.net/browse/SV-4802).
   - Section 54276 "ZZ - Layout samples (to be retired)". It is not in any run.
-  - Its doc: [Setup for Claude session - SV-4802](https://docs.google.com/document/d/18wB2oHKhUYBvrWy2Kq-OCtGdmJoeRjkDRkD3zSNbBaM/edit).
+  - Its doc: [Setup (manual QA tester and Claude session) - C425784](https://docs.google.com/document/d/12puP022sjAh3-LgkvogjaYw-WnT4hI62uR1K4HrfkxY/edit).
 - **UNVERIFIED points for you to settle:**
   - the shape of "bins" when creating an inventory part through the API;
   - whether the part status shows on the Lines tab, the Parts tab, or both.

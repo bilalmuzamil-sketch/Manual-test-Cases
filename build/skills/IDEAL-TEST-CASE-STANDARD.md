@@ -49,6 +49,11 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
   and Expected use only placeholders; every plain expected result starts with **"Step n:"**; every case has **its own
   ZZAUTOTEST data**, never shared. Worked example: C96950 in
   `build/wo-board-tech-view/source-update-2026-10-08/HANDOVER-TO-BUILD-VERIFICATION-CASE-LAYOUT-2026-10-08.md`.
+- **🔴 CURRENT LAYOUT — PERMANENT, 2026-10-08 (fourth amendment; supersedes the "Needs:" line and the third amendment's case/doc split):**
+  1. **Preconditions field:** the link "Setup (manual QA tester and Claude session)", a line break, then **"Preconditions"**. These state clearly and completely what must be true before step 1: user and role, location, and every record with its state and values, as [placeholders]. No Needs line, no browser count or duration. Anything genuinely needed (a second user, a phone, a window width) is its own line.
+  2. **No Setup block in TestRail.** The attached public Google Doc holds **Part 1 "Setup for manual QA tester"** and **Part 2 "Setup for Claude session"**. It is created in the Drive folder "Setup for Claude session (test case setup docs)" and never contains a secret.
+  3. Steps are actions only. Every expected result starts "Step N:". Source, quotes and marker are unchanged.
+  4. Example: C425784, the SV-4802 regression.
 - **PERMANENT, 2026-10-08 (third amendment) — two audiences (Rule 117, third 8 Oct amendment):**
   - Each case has its own public Google Doc, **"Setup for Claude session - C<id> <title>"**, created in the Drive folder "Setup for Claude session (test case setup docs)". It holds everything a Claude session needs, never a secret, and marks unproven points UNVERIFIED.
   - The Preconditions field opens with that link, titled **"Setup for claude session"**. After a line break come the manual tester's Preconditions (Needs line plus only what the test depends on) and Setup (short, build labels, ending with a check). A tester never needs the doc.

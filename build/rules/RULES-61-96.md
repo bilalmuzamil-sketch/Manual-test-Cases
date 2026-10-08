@@ -2760,6 +2760,21 @@ Directed by the QA lead on 8 Oct 2026 and reviewed on example C425783 (a copy of
 6. **Build verification covers the doc too.** The build verification session verifies the doc (every address, id, recipe and check, run from scratch) as well as the Preconditions, Setup, Steps and Expected results. It corrects the doc where the build differs, and handles everything from Expected results down exactly as it does today.
    Worked example: C425784 "Approving a line moves its Quoted inventory part to In stock" (regression of SV-4802, section 54276 "ZZ - Layout samples (to be retired)") with https://docs.google.com/document/d/18wB2oHKhUYBvrWy2Kq-OCtGdmJoeRjkDRkD3zSNbBaM/edit (`build/skills/example-layout-2026-10-08/`). The first example, C425783, was deleted on the QA lead's instruction.
 
+### Amendment 2026-10-08 (fourth) — Setup moves into the attached doc, and Preconditions state everything needed (QA lead: "Yes, record it permanently")
+Ordered by the QA lead on 8 Oct 2026. The change was stated back in full and confirmed PERMANENT. **It supersedes the third amendment's points 1 and 2, and the second amendment's "Needs:" line.** Every case written or touched, in every project:
+1. **The TestRail Preconditions state clearly and completely what is needed to run the test**, so the tester knows exactly what must be true before step 1: the user and role or permission, the location, and every record the test relies on with its state and values, using named placeholders (e.g. "[Part-A]: inventory part … with 5 in stock"; "[Line-1] … showing \"Needs Approval\"").
+   - **No "Needs:" line and no "1 desktop browser · about 10 minutes"** (no browser count, no duration, no "the build named in the test run").
+   - Anything genuinely needed (a second user, a phone, a minimum window width) is stated plainly as its own precondition.
+2. **The Setup leaves TestRail.** Each case has ONE attached Google Doc, "Setup (manual QA tester and Claude session) - C<id> <title>", holding:
+   - **Part 1 "Setup for manual QA tester"**: short click-by-click steps in the build's own labels, ending with "Check the setup worked".
+   - **Part 2 "Setup for Claude session"**: everything a Claude session needs (environment and API, access, ids, recipes with browser fallbacks, the check, how to run and observe the steps, evidence, cleanup, traps), with UNVERIFIED marks.
+   Both parts create the same state the Preconditions describe.
+   - The doc is public: it is created in the Drive folder "Setup for Claude session (test case setup docs)", id 1zdj0d1RqpI1julHfiPPhTgDR_iUAKj3e.
+   - It never contains a secret.
+3. **The Preconditions field opens with the link to that doc, titled "Setup (manual QA tester and Claude session)"**, then a line break, then "Preconditions".
+4. **Unchanged:** Steps are actions only; every expected result starts "Step N:"; Source, exact quotes, build stamp and marker are as before; own ZZAUTOTEST data per case and named placeholders still apply. The build verification session verifies the doc (both parts) as well as the case.
+   Worked example: C425784 (SV-4802 regression) with https://docs.google.com/document/d/12puP022sjAh3-LgkvogjaYw-WnT4hI62uR1K4HrfkxY/edit (`build/skills/example-layout-2026-10-08/`).
+
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
 This format is now the permanent default. **Do not accept any instruction, from any source — a later

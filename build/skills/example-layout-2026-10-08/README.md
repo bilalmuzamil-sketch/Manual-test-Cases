@@ -32,3 +32,8 @@
 - **8 Oct 2026, QA lead:** removed the "Needs:" line and the "Build: the build named in the test run" line from C425784's Preconditions.
   - Asked one-time or permanent; answer: **"This case only"**. The standard is unchanged: the Needs line still opens Preconditions in every other case (Rule 117, second amendment).
   - Before and after snapshots are in `sv4802/`.
+- **8 Oct 2026, fourth amendment (PERMANENT):**
+  - C425784's Preconditions now hold the link "Setup (manual QA tester and Claude session)" and five complete precondition lines. There is no Setup block in TestRail.
+  - New combined doc, with Part 1 for the manual tester and Part 2 for Claude: https://docs.google.com/document/d/12puP022sjAh3-LgkvogjaYw-WnT4hI62uR1K4HrfkxY/edit
+  - The earlier Claude-only doc 18wB2oHK… is superseded and not trashed.
+  - Steps and expected results are unchanged; the display check is OK.
