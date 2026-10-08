@@ -43,5 +43,5 @@ Catalog→Part Library rename, editable part number.
 ## Coverage verdict (Rule 115)
 - **PRD (Confluence 829227015, in review):** ✅ 100% — all 207 anchors covered 1:1.
 - **Design (11 boards, driven):** ✅ CONFIRM — no DIVERGE (canvas covers stories the PRD marks TBD).
-- **Tech plan:** none supplied. N/A.
+- **Tech plan:** first copy received 8 Oct 2026 (dated 7 Oct, PRD v22) — see SOURCE-CHECK-2026-10-08.md; suite NOT yet updated against it.
 - **Epic (SV-10647):** ✅ 13 stories map 1:1 to the 13 sub-folders.
