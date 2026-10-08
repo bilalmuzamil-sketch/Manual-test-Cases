@@ -1,0 +1,17 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:1,vp:{width:1600,height:1000}}); const p=s.page; const R={};
+const api=(u,m,b)=>s.api(u,m?{method:m,headers:{'content-type':'application/json',accept:'application/json'},body:JSON.stringify(b||{})}:null);
+const a=await api('/api/accounting/accounts','POST',{account_number:'1096',name:'ZZAUTOTEST SV-10903 bank',type:'asset',sub_type:'bank'}); R.chart=a.json?.account?.id;
+const b=await api('/api/accounting/bank-accounts','POST',{account_type:'checking',account_id:R.chart,institution_name:'ZZ Test Bank',nickname:'ZZAUTOTEST SV-10903 bank',mask:'0903'}); R.bank=b.json?.bank_account?.id; console.log('chart',a.status,'bank',b.status);
+await p.goto(s.host.app+'/accounting/banking/transactions',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(5000);
+const box=async t=>{ await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center',inline:'center'}),t); await p.waitForTimeout(300); return s.box(t); };
+let bx=await box('button_card_menu_accounting_bank_transactions_'+R.bank); await p.mouse.click(bx.x,bx.y); await p.waitForTimeout(900);
+bx=await box('button_card_import_accounting_bank_transactions_'+R.bank); await p.mouse.click(bx.x,bx.y); await p.waitForTimeout(1500);
+await p.setInputFiles('input[type=file]','rows.csv'); await p.waitForTimeout(600);
+const ib=await p.evaluate(()=>{const e=[...document.querySelectorAll('.q-dialog button')].find(x=>x.innerText.trim()==='Import'); const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};}); await p.mouse.click(ib.x,ib.y); await p.waitForTimeout(4000);
+console.log('import',await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText.replace(/\s+/g,' ')).join('|')));
+const rows=(await api('/api/accounting/bank-transactions?account_id='+R.chart+'&per_page=20')).json.bank_transactions; R.rows=Object.fromEntries(rows.map(t=>[t.description.slice(8,9),t.id]));
+console.log(JSON.stringify(rows.map(t=>[t.description,t.mutation_version,t.category_account_name,t.memo,t.location_name,t.account_class_name,t.payee_name])));
+fs.writeFileSync('ids.json',JSON.stringify(R,null,1));
+const m=await api('/api/accounting/bank-transactions/'+rows[0].id+'/match-candidates'); console.log('match-candidates',m.status,JSON.stringify(m.json).slice(0,600));
+await s.close();

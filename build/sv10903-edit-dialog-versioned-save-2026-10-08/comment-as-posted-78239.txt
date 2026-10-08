@@ -1,0 +1,44 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on the QA branch [sv10360|https://sv10360.qa.shopview.com] (build v26.40.8-3e5c1df) on 8 October 2026, signed in as Admin, on a test bank account with imported rows. The "before" was taken on production (build v26.40.12-106a0f1) the same day with the same steps.
+
+In short:
+* Saving from the *Edit* window no longer undoes a memo you had just typed on the row, and no longer silently wipes a change made in another tab.
+* When the row was changed somewhere else, the window now stops with "This transaction changed. Reload it before saving." and a *Reload* button, and keeps what you typed while that message shows.
+* A row locked by that kind of conflict has *Edit* and *Split* greyed out until it is reloaded.
+
+h3. Before vs after: a memo typed on the row just before opening Edit
+!01-memo-in-flight-before-after.png|width=1348,height=601!
+
+h3. Before vs after: another tab changed the row while the Edit window was open
+!02-other-tab-change-before-after.png|width=1348,height=977!
+
+h3. What I checked
+||#||Check||Result||
+|1|Memo typed on the row, Edit opened before that memo had saved, Account changed in the window, Save: both the memo (ZZ inline memo 1) and the Account (6100 Insurance) are kept. The window's save waited for the memo save to finish. To open the window in time I slowed that one memo save down on purpose by 8 seconds; on production the same steps lose the memo|PASSED|
+|2|Another tab changed the Account while the Edit window was open: Save is refused with "This transaction changed. Reload it before saving." and a Reload button; the other tab's Account is not overwritten. On production the same steps wipe it with no warning|PASSED|
+|3|While that message shows: the memo and payee typed in the window stay there, Save is greyed out, and pressing Enter does not save|PASSED|
+|4|Reload, then Save: the other tab's Account (5100 Shop Supplies COGS) is kept and the memo is saved; "Saved." appears|PASSED|
+|5|A row whose own save on the list was refused because another tab changed it first: the row shows "This transaction changed. Reload it before saving." and, in its ⋮ menu, *Edit* and *Split* are greyed out and do nothing|PASSED|
+|6|Pressing that row's *Reload*: *Edit* and *Split* work again, the row shows the other tab's memo, and the next save from the Edit window goes through|PASSED|
+|7|After a refused save, later saves on the same row still go through (a memo on the list, then a payee from the Edit window)|PASSED|
+|8|A normal edit with nothing else going on: memo and payee saved, "Saved." appears|PASSED|
+
+h3. A locked row's menu
+!03-locked-row-menu.png|width=1348,height=415!
+
+h3. How to see it yourself
+# Open [https://sv10360.qa.shopview.com|https://sv10360.qa.shopview.com] and sign in as Admin.
+# At the top left, next to the logo, click *ShopHub* (with the small arrow) and choose *AccountingHub*.
+# In the left menu under *BANKING*, click *Transactions*, then click the bank card *ZZAUTOTEST SV-10903 bank* near the top.
+# Open the same page in a second browser tab and click the same bank card there.
+# In the first tab, on a row (for example *ZZ10903-1 supplies*), click the three dots (⋮) at the right end and choose *Edit*.
+# In the second tab, on the same row, change the *ACCOUNT* dropdown to another account.
+# Back in the first tab, type a memo in *Memo (optional)* and click *Save*: the red message "This transaction changed. Reload it before saving." appears with *Reload*, and what you typed is still there. Nothing was saved over the second tab's account.
+# For the locked row: in the second tab change the memo of a row (click the small arrow at the right end of the row to show *Memo*), then in the first tab change the memo of the same row and click somewhere else. The row shows the same red message; its ⋮ menu has *Edit* and *Split* greyed out until you click the row's *Reload*.
+
+The memo-before-Edit case (check 1) is hard to do by hand on a fast connection, because the memo usually saves before the Edit window can be opened.
+
+h3. Separate issue raised
+[SV-11026|https://shopview.atlassian.net/browse/SV-11026] — Banking Edit window: Reload wipes typed changes; a matched row shows only a pop-up. Two things found while testing this ticket: pressing *Reload* after the conflict message throws away what was typed in the window, and a row matched in another tab gives only a red pop-up instead of a message in the window.

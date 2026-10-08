@@ -1,0 +1,11 @@
+import {ob} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:1,vp:{width:1600,height:1000}}); const p=s.page; const R=JSON.parse(fs.readFileSync('ids.json'));
+const box=async t=>{ await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center',inline:'center'}),t); await p.waitForTimeout(300); return s.box(t); };
+const click=async t=>{ const b=await box(t); await p.mouse.click(b.x,b.y); await p.waitForTimeout(800); };
+await p.goto(s.host.app+'/accounting/banking/transactions',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(4500); await click('card_account_accounting_bank_transactions_'+R.bank); await p.waitForTimeout(2500);
+const id=R.rows['8']; await click('button_expand_accounting_bank_transactions_'+id);
+console.log('expanded',JSON.stringify(await p.evaluate(id=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(t=>t.includes(id)&&/inline|memo|class|location/.test(t)),id)));
+await click('button_actions_accounting_bank_transactions_'+id); await click('button_edit_accounting_bank_transactions_'+id); await p.waitForTimeout(1200);
+console.log('dialog',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.getAttribute('data-test-id')+'|'+e.tagName+'|'+(e.innerText||e.value||'').replace(/\s+/g,' ').slice(0,30)))));
+await p.screenshot({path:'D1-dialog.png'});
+await s.close();

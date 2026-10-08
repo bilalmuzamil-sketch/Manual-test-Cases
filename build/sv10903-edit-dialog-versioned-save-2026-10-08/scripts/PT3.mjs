@@ -1,0 +1,26 @@
+import {op as ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:2,vp:{width:1600,height:1000}}); const p=s.page; const R=JSON.parse(fs.readFileSync('prod-ids.json')); const L=[]; const t0=Date.now(); const ts=()=>((Date.now()-t0)/1000).toFixed(1);
+const hook=(pg,tag)=>{ pg.on('request',r=>{ if(/bank-transactions\/[^/]+\/details/.test(r.url())) L.push(ts()+` ${tag} SEND `+(r.postData()||'').slice(0,250)); }); pg.on('response',async r=>{ if(/bank-transactions\/[^/]+\/details/.test(r.url())){ let b=''; try{b=await r.text()}catch(e){} const jb=JSON.parse(b||'{}'); L.push(ts()+` ${tag} RECV ${r.status()} v=${jb.bank_transaction?.mutation_version} account=${jb.bank_transaction?.category_account_name} ${jb.error||''}`); }}); };
+hook(p,'tab1');
+const mk=pg=>{ const box=async t=>{ await pg.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center',inline:'center'}),t); await pg.waitForTimeout(200); return pg.evaluate(t=>{const e=[...document.querySelectorAll(`[data-test-id="${t}"]`)].map(x=>x.getBoundingClientRect()).filter(q=>q.width>0&&q.height>0).pop(); return e?{x:e.x+e.width/2,y:e.y+e.height/2}:null;},t); };
+ const click=async t=>{ const b=await box(t); if(!b) throw new Error('no '+t); await pg.mouse.click(b.x,b.y); await pg.waitForTimeout(600); };
+ const pickItem=async label=>{ for(let i=0;i<10;i++){ const o=await pg.evaluate(l=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>x.getBoundingClientRect().width>0&&x.innerText.includes(l)); if(!e) return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};},label); if(o){ await pg.mouse.click(o.x,o.y); await pg.waitForTimeout(500); return; } await pg.waitForTimeout(300);} throw new Error('no item '+label); };
+ const open=async()=>{ await pg.goto(s.host.app+'/accounting/banking/transactions',{waitUntil:'domcontentloaded'}); await pg.waitForTimeout(4500); await click('card_account_accounting_bank_transactions_'+R.bank); await pg.waitForTimeout(2500); };
+ return {box,click,pickItem,open}; };
+const A=mk(p); await A.open();
+// import row 3 on screen
+await A.click('button_card_menu_accounting_bank_transactions_'+R.bank); await A.click('button_card_import_accounting_bank_transactions_'+R.bank); await p.waitForTimeout(1200); await p.setInputFiles('input[type=file]','rows-prod3.csv'); await p.waitForTimeout(500);
+const ib=await p.evaluate(()=>{const e=[...document.querySelectorAll('.q-dialog button')].find(x=>x.innerText.trim()==='Import'); const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};}); await p.mouse.click(ib.x,ib.y); await p.waitForTimeout(4000);
+const id=(await s.api('/api/accounting/bank-transactions?account_id='+R.chart+'&per_page=20')).json.bank_transactions.find(t=>t.description.startsWith('ZZ10903-3')).id; R.rows['3']=id; fs.writeFileSync('prod-ids.json',JSON.stringify(R,null,1));
+await A.open(); await A.click('button_actions_accounting_bank_transactions_'+id); await A.click('button_edit_accounting_bank_transactions_'+id); await p.waitForTimeout(800); L.push(ts()+' tab1: Edit open on ZZ10903-3');
+const p2=await s.ctx.newPage(); await p2.setViewportSize({width:1600,height:1000}); hook(p2,'tab2'); const B=mk(p2); await B.open();
+await B.click('select_inline_account_'+id+'_accounting_bank_transactions'); await p2.keyboard.type('5100'); await p2.waitForTimeout(900); await B.pickItem('5100 Shop Supplies'); await p2.waitForTimeout(2500); L.push(ts()+' tab2: Account set to 5100 Shop Supplies COGS');
+await p.bringToFront(); await p.waitForTimeout(600); await A.click('input_memo_accounting_bank_details'); await p.keyboard.type('ZZ dialog memo 3'); await A.click('input_payee_accounting_bank_details'); await p.keyboard.type('ZZ Payee 3');
+await p.screenshot({path:'PT3-dialog-before-save.png'});
+await A.click('button_save_accounting_bank_details'); await p.waitForTimeout(3500);
+L.push(ts()+' tab1 after Save: dialog open? '+await p.evaluate(()=>!!document.querySelector('[data-test-id="button_save_accounting_bank_details"]'))+' banner? '+await p.evaluate(()=>!!document.querySelector('[data-test-id="banner_error_accounting_bank_details"]')));
+const t=(await s.api('/api/accounting/bank-transactions?account_id='+R.chart+'&per_page=20')).json.bank_transactions.find(x=>x.id===id); L.push('saved row: account='+t.category_account_name+' memo='+t.memo+' payee='+t.payee_name+' v='+t.mutation_version);
+await p2.bringToFront(); await p2.reload({waitUntil:'domcontentloaded'}); await p2.waitForTimeout(4500); await B.click('card_account_accounting_bank_transactions_'+R.bank); await p2.waitForTimeout(2500); await p2.evaluate(()=>window.scrollTo(0,0)); await p2.screenshot({path:'PT3-tab2-after.png'});
+L.push('geo '+JSON.stringify(await p2.evaluate(id=>{const r=t=>{const e=document.querySelector(`[data-test-id="${t}"]`); const q=e?.getBoundingClientRect(); return q?[q.x,q.y,q.width,q.height].map(Math.round):null;}; return {row:r('row_accounting_bank_transactions_'+id),cat:r('cell_accounting_bank_transactions_'+id+'_category'),desc:r('cell_accounting_bank_transactions_'+id+'_description')};},id)));
+fs.writeFileSync('PT3.json',JSON.stringify(L,null,1)); console.log(L.join('\n'));
+await s.close();

@@ -1,0 +1,16 @@
+[
+ "10.6 tab1: Edit dialog open on ZZ10903-2",
+ "20.8 tab2 SEND PUT details {\"category_account_id\":\"01a1107a-df57-739d-b551-d93b26c87f4e\",\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":null,\"mutation_version\":2}",
+ "21.1 tab2 RECV 200 {v=3",
+ "23.8 tab2: Account changed to 5100 Shop Supplies COGS",
+ "26.1 tab1 SEND PUT details {\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":\"ZZ Payee 2\",\"memo\":\"ZZ dialog memo 2\",\"mutation_version\":2}",
+ "26.3 tab1 RECV 409 {\"errors\":[{\"message\":\"This transaction changed. Reload it before saving.\"}],\"error\":\"stale_transaction\",v=3",
+ "29.7 tab1 dialog after Save: {\"banner\":\"This transaction changed. Reload it before saving. Reload\",\"reload\":true,\"dismiss\":false,\"saveDisabled\":true,\"memo\":\"ZZ dialog memo 2\",\"payee\":\"ZZ Payee 2\",\"account\":\"\",\"open\":true}",
+ "geo banner {\"banner\":[585,394,430,68],\"reload\":[945,426,58,28],\"save\":[954,654,61,36],\"memo\":[597,590,183,40],\"payee\":[820,534,183,40],\"account\":[597,492,376,24],\"dialog\":[560,277,480,437]}",
+ "32.4 pressed Enter in memo (should send nothing)",
+ "36.2 tab1 dialog after Reload: {\"reload\":false,\"dismiss\":false,\"saveDisabled\":false,\"memo\":\"\",\"payee\":\"\",\"account\":\"5100 Shop Supplies COGS\",\"open\":true}",
+ "37.6 tab1 SEND PUT details {\"category_account_id\":\"01a1107a-df57-739d-b551-d93b26c87f4e\",\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZ dialog memo 2\",\"mutation_version\":3}",
+ "38.0 tab1 RECV 200 {v=4",
+ "41.7 after second Save: {\"reload\":false,\"dismiss\":false,\"saveDisabled\":null,\"open\":false} notif check_circle Saved. Close",
+ "saved row: account=Shop Supplies COGS memo=ZZ dialog memo 2 payee=null v=4"
+]

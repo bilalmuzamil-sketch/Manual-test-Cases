@@ -1,0 +1,15 @@
+[
+ "10.8 SEND PUT {\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZ inline memo 1\",\"mutation_version\":2}",
+ "10.8 (holding the inline memo save for 8 s)",
+ "10.8 memo typed, field left",
+ "13.8 Edit dialog open",
+ "13.8 dialog memo field shows: \"\"",
+ "16.6 SEND PUT {\"category_account_id\":\"01a0d358-a2d5-73de-a98a-ec1daef96910\",\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":null}",
+ "16.9 RECV 200 v=3 memo=null cat=Insurance err=",
+ "17.2 Save clicked",
+ "19.1 RECV 409 v=3 memo=null cat=Insurance err=stale_transaction",
+ "28.2 notifications: ",
+ "dialog still open: false",
+ "screen after reload: {\"memo\":\"\",\"memoBox\":[699,557,848,30],\"cat\":\"arrow_drop_down\",\"catBox\":[897,473,212,55]}",
+ "saved row: memo=null category=Insurance v=3"
+]

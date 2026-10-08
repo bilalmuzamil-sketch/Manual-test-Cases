@@ -1,0 +1,40 @@
+Found while testing [SV-10903|https://shopview.atlassian.net/browse/SV-10903]
+
+h3. Summary
+Two things go wrong in the *Edit* window on Banking → Transactions when the same transaction is changed somewhere else while the window is open:
+* After the red "This transaction changed" message, pressing *Reload* throws away what you typed in the window, so you have to type it again.
+* If the transaction was matched somewhere else, pressing *Save* only shows a red pop-up at the bottom of the screen. The window itself stays open with no message in it and nothing to dismiss.
+
+h3. Steps to reproduce
+Open the QA branch to reproduce the issue: [https://sv10360.qa.shopview.com|https://sv10360.qa.shopview.com] (sign in as Admin).
+# At the top left, next to the logo, click *ShopHub* (with the small arrow) and choose *AccountingHub*.
+# In the left menu under *BANKING*, click *Transactions*. In the row of bank cards near the top, click the card *ZZAUTOTEST SV-10903 bank*.
+# Open the same page in a second browser tab (copy the address), and click the same bank card there too.
+
+*Issue 1 — Reload throws away what you typed (row ZZ10903-7, -$107.00)*
+# In the first tab, on the row *ZZ10903-7 supplies*, click the three dots (⋮) at the right end of the row and choose *Edit*. The *Edit -$107.00 on 10/07/2026* window opens.
+# In the second tab, on the same row, open the *ACCOUNT* dropdown and pick a different account, for example *6100 Insurance*.
+# Back in the first tab, type something in *Memo (optional)* and *Payee (optional)* and click *Save*. A red message appears in the window: "This transaction changed. Reload it before saving." with a *Reload* button. What you typed is still there (left picture).
+# Click *Reload*. The Memo and Payee boxes now show what was already saved on the row; what you typed is gone (right picture):
+!01-reload-clears-typing-hd.png|width=1090,height=672!
+
+*Issue 2 — a matched row gives only a pop-up (row ZZ10903-6, -$106.00)*
+# In the first tab, on the row *ZZ10903-6 supplies*, click ⋮ and choose *Edit*.
+# In the second tab, on the same row, click ⋮ and choose *Match transaction*. In the window that opens, click *Select* on *JE #13758* and then click *Match entry*.
+# Back in the first tab, type something in *Memo (optional)* and click *Save*. A red pop-up at the bottom right says "Only pending transactions can be edited; this one is matched." The Edit window stays open with no message in it and no *Dismiss* button:
+!02-matched-row-popup-hd.png|width=975,height=858!
+
+h3. Expected behaviour
+* Issue 1: what you typed in the Edit window should not be thrown away when you reload after a change made somewhere else.
+* Issue 2: when the transaction was matched somewhere else, the Edit window should say so inside the window, with a *Dismiss* button.
+
+*Where this comes from:*
+* [SV-10903|https://shopview.atlassian.net/browse/SV-10903], Expected fix: the window should keep your edits on this kind of conflict — _"On a stale 409, take the latest row, keep the dialog's edits, and show a conflict banner with Reload"_
+* The developer's description of the fix for SV-10903 (pull request "Send the Edit dialog's save through the row queue with its version"): a matched row should show the message in the window with Dismiss — _"A matched 409 shows Dismiss."_
+* Related: [SV-10906|https://shopview.atlassian.net/browse/SV-10906] item 2 asks Product the same question about the *Split* window (whether reloading should discard what was typed there).
+
+h3. Current behaviour
+* Issue 1: Reload replaces what you typed with the values already saved on the row. Seen on 2 of 2 tries (rows ZZ10903-2 and ZZ10903-7).
+* Issue 2: only a red pop-up appears; the Edit window shows nothing. Seen on 3 of 3 tries (rows ZZ10903-8, ZZ10903-5 and ZZ10903-4).
+
+Tested on the QA branch sv10360 (build v26.40.8-3e5c1df), 8 October 2026.

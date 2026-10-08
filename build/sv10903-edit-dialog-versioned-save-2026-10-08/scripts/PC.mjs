@@ -1,0 +1,12 @@
+import {op} from './lib.mjs'; import fs from 'fs';
+const RID='2a43e6cb-34ab-4475-bd02-242361a725f5';
+let s=await op({dpr:1}); const R=JSON.parse(fs.readFileSync('prod-ids.json'));
+const api=(u,m,b)=>s.api(u,m?{method:m,headers:{'content-type':'application/json',accept:'application/json'},body:JSON.stringify(b||{})}:null);
+console.log('retire bank',(await api('/api/accounting/bank-accounts/'+R.bank,'DELETE')).status);
+console.log('chart inactive',(await api('/api/accounting/accounts/'+R.chart,'DELETE')).status);
+const before=JSON.parse(fs.readFileSync('prod-role-before.json'));
+console.log('role restore',(await api('/api/roles/'+RID,'PUT',{name:before.name,description:before.description,fePermissions:before.fe_permissions.map(x=>x.id),viewMode:before.view_mode,crossToggles:before.cross_toggles})).status);
+await s.close(); s=await op({dpr:1});
+const g=await s.api('/api/roles/'+RID); const now=g.json?.data||g.json; const a=before.fe_permissions.map(x=>x.id).sort(), b=(now.fe_permissions||[]).map(x=>x.id).sort();
+console.log('role equal',JSON.stringify(a)===JSON.stringify(b),a.length,b.length,now.name===before.name,now.description===before.description,now.view_mode===before.view_mode,JSON.stringify(now.cross_toggles)===JSON.stringify(before.cross_toggles),'banking',(await s.api('/api/accounting/banking/connect')).status);
+await s.close();

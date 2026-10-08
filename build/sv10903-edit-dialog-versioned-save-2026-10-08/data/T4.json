@@ -1,0 +1,18 @@
+[
+ "21.1 tab2 PUT 200  body={\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZ tab2 memo 4\",\"mutation_version\":2}",
+ "24.6 tab1 PUT 409 stale_transaction body={\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":\"ZZ Payee 4\",\"memo\":null,\"mutation_version\":2}",
+ "27.9 banner: This transaction changed. Reload it before saving. Reload",
+ "save state: true",
+ "30.9 row 4 menu after dialog conflict + Cancel: {\"editDisabled\":false,\"splitDisabled\":false}",
+ "row 4 text:  10/06/2026 Z — ZZ10903-6 supplies -$106.00 arrow_drop_down arrow_drop_down Post more_vert expand_more",
+ "row 4 tids: []",
+ "NO row reload button; reopening the dialog is blocked?",
+ "35.9 row 4 menu after row Reload: {\"editDisabled\":false,\"splitDisabled\":false}",
+ "row 4 memo field after Reload: ZZ tab2 memo 4",
+ "38.8 tab1 PUT 200  body={\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":null,\"memo\":\"ZZ tab1 memo 4 after reload\",\"mutation_version\":3}",
+ "44.8 tab1 PUT 200  body={\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":\"ZZ Payee 4\",\"memo\":\"ZZ tab1 memo 4 after reload\",\"mutation_version\":4}",
+ "row 4 saved: memo=ZZ tab1 memo 4 after reload payee=ZZ Payee 4 v=5",
+ "53.6 tab1 PUT 200  body={\"category_account_id\":null,\"account_class_id\":null,\"location_id\":null,\"payee_name\":\"ZZ Payee 5\",\"memo\":\"ZZ plain edit 5\",\"mutation_version\":2}",
+ "56.3 row 5 notif: check_circle Saved. Close",
+ "row 5 saved: memo=ZZ plain edit 5 payee=ZZ Payee 5 v=3"
+]
