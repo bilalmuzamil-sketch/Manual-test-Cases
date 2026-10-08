@@ -113,3 +113,14 @@ Already answered by Product in v26, so NOT asked:
 - **Display check:** 259 of 259 written cases are "RESULT OK" (`hs_repair_one.mjs`; logs `render*.log`).
 - **Test runs (Rule 123):** no open run is named for Part Lifecycle. The only Founder Mode run is 495, "Part Sales + Notifications", created by Vladimir Tomovic; it is not ours to change. **Not yet proven:** whether any open run holds Part Lifecycle cases. The first full scan of the 380 open runs hit its time limit; a detached re-scan is writing `run-membership.jsonl` (done when `run-membership.DONE` exists).
   - If the QA lead wants a Part Lifecycle run, it should be created when a QA build exists.
+
+## QA lead decisions, 8 Oct 2026 (after the update)
+- **C154761 — "1. Yes": delete it.**
+  - Done only once the test-run check proves it is in no run (deleting a case also deletes its results everywhere).
+  - Full body saved: `retired-2026-10-08/C154761.json`.
+- **The 7 not-hand-runnable cases — "Retire them":**
+  - I raised the Rule 63 conflict with Rule 115 (6 PRD requirements would lose their only case). He chose "Move them to a Retired folder".
+  - **Done:** C425602, C425622, C425629, C425701, C425723, C425755 and C425776 moved to section **54275 "Retired - not manually runnable"**.
+  - Same C-ids, content unchanged, every move verified (`applied/retire-move-log.jsonl`). Nothing deleted.
+  - **Recorded gap:** S4-N1, S4-N2, S5-N1, S9-E9, S13-R19d and S10-R25a now have no case in the manual suite. They rely on the developers' automated tests (tech plan §7: BE functional tests cover them). The same goes for the §8 server-error rows and the two Part Library part-request refusal rows.
+  - **Live manual suite:** 251 cases (259 − 7 retired − C154761 once deleted). PRD coverage in the manual suite: 282 of 288.
