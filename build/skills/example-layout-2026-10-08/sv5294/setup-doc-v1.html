@@ -1,32 +1,34 @@
 <html><body>
 <h1>Setup: Picking a Found part on a work order line completes without an error</h1>
 <p>Test case: <a href="https://shopview.testrail.io/index.php?/cases/view/433977">C433977</a>, the regression case for <a href="https://shopview.atlassian.net/browse/SV-5294">SV-5294</a> and <a href="https://shopview.atlassian.net/browse/SV-5293">SV-5293</a>. Part 1 is for a manual QA tester. Part 2 is for a Claude session that prepares and runs the case on its own. Both create the same starting state, the one listed in the test case's Preconditions.</p>
-<p>How to read this document: a name in braces, such as {Part-A} or {Line-1}, stands for a record you create or pick. Every brace name is defined before it is used. Wherever a value is given "for example", you may use any other value: the example is not a record that already exists in the app. Write down the real value you used for each brace name, because the test steps refer to it.</p>
+<p>How to read this document: a name in braces, such as {Part-A}, stands for a record you create or pick. Every brace name is defined before it is used. Wherever a value is given "for example", you may use any other value: the example is not a record that already exists in the app. Write down the real value you used for each brace name, because the test steps refer to it.</p>
 <h2>What the setup creates</h2>
 <ul>
-<li>You are signed in as an Owner or Admin at {Location-A} (for example Staging Heavy Duty - 9919). Everything below is created there.</li>
-<li>Customer {Customer-A} (for example "ZZAUTOTEST SV5294 Found Part"), with contact {Contact-A} (for example "Sam Tester") and asset {Asset-A} (for example a 2020 Freightliner Cascadia).</li>
-<li>Work order {Work-order-1} (for example S2-15440) for {Customer-A} and {Asset-A}. The app gives the work order its number.</li>
-<li>An approved line on {Work-order-1}, {Line-1} (for example "Replace - Brake pot").</li>
-<li>Part {Part-A} (for example part number ZZAUTOTEST-SV5294-01, description "ZZAUTOTEST SV5294 found part", quantity 1), requested on {Line-1} with Source "Found". It shows a Pick button.</li>
+<li>You are signed in as an Owner or Admin, at one location. In this test the location is called {Location-A} (for example Staging Heavy Duty - 9919). Everything below is at {Location-A}.</li>
+<li>A customer made for this case only. In this test it is called {Customer-A} (for example "ZZAUTOTEST SV5294 Found Part").</li>
+<li>A contact for {Customer-A}. In this test it is called {Contact-A}.</li>
+<li>An asset for {Customer-A}. In this test it is called {Asset-A}.</li>
+<li>A work order for {Customer-A} and {Asset-A}. In this test it is called {Work-order-A}.</li>
+<li>One approved line on {Work-order-A}. In this test it is called {Line-A}.</li>
+<li>A part requested on {Line-A} with the Source set to Found. In this test it is called {Part-A} (for example part number ZZAUTOTEST-SV5294-01, description "ZZAUTOTEST SV5294 found part", quantity 1). It shows a Pick button.</li>
 </ul>
 <h1>Part 1. Setup for manual QA tester</h1>
 <ol>
 <li>Sign in as an Owner or Admin user. On a QA build, use the Admin quick-login button on the sign-in page.</li>
 <li>Look at the location shown in the top bar, next to the bell. This is {Location-A}. To use another one, click your initials at the top right, then Change Location.</li>
 <li>Go to Customers and click New Customer. Type a new name (for example ZZAUTOTEST SV5294 Found Part) and click Save. This is {Customer-A}.</li>
-<li>On the customer page, open the Contacts tab, click New Contact, type a first and last name (for example Sam Tester), and click Save. This is {Contact-A}.</li>
-<li>Open the Assets tab, click New Asset, pick {Contact-A}, then a Year, Make and Model (for example 2020 Freightliner Cascadia), and click Save. This is {Asset-A}.</li>
-<li>Go to Work Orders and click Create Work Order. Pick {Customer-A} and {Asset-A}, and click Save. If an over-credit-limit confirmation appears, click Create. Write down the work order number the app shows (for example S2-15440); this is {Work-order-1}.</li>
+<li>On the customer page, open the Contacts tab, click New Contact, type any first and last name, and click Save. This is {Contact-A}.</li>
+<li>Open the Assets tab, click New Asset, pick {Contact-A}, then any Year, Make and Model, and click Save. This is {Asset-A}.</li>
+<li>Go to Work Orders and click Create Work Order. Pick {Customer-A} and {Asset-A}, and click Save. If an over-credit-limit confirmation appears, click Create. Write down the work order number shown; this is {Work-order-A}.</li>
 <li>The New Line window opens. If it does not, click New Line on the Lines tab.</li>
-<li>Open "What Are You Doing?" and pick any ready-made line (for example "Replace - Brake pot"). Turn Line Approved on, and click Save &amp; Close. This line is {Line-1}. If the ready-made line added parts of its own, leave them alone: this test uses only {Part-A}.</li>
-<li>On {Line-1}, click its three-dot menu, then Request part.</li>
+<li>Open "What Are You Doing?" and pick any ready-made line (for example "Replace - Brake pot"). Turn Line Approved on, and click Save &amp; Close. This line is {Line-A}. If the ready-made line added parts of its own, leave them alone: this test uses only {Part-A}.</li>
+<li>On {Line-A}, click its three-dot menu, then Request part.</li>
 <li>Type a new Part Number (for example ZZAUTOTEST-SV5294-01). Fill the Part Number before the Source: the Source can be chosen only once Part Number and Description are filled.</li>
 <li>Type a Description (for example ZZAUTOTEST SV5294 found part).</li>
 <li>Set Source to Found.</li>
 <li>Type Quantity 1, any Cost (for example 10.00) and any Sell Price (for example 20.00).</li>
 <li>Click Save &amp; Close. This part is {Part-A}.</li>
-<li>Check the setup worked: {Part-A} is listed on {Line-1} and shows a Pick button. If an error message appears when you click Save &amp; Close, stop: that is a different problem (SV-6952), and the test cannot start. Report it to the QA lead.</li>
+<li>Check the setup worked: {Part-A} is listed on {Line-A} and shows a Pick button. If an error message appears when you click Save &amp; Close, stop: that is a different problem (SV-6952), and the test cannot start. Report it to the QA lead.</li>
 </ol>
 <h1>Part 2. Setup for Claude session</h1>
 <p>The facts below come from the team's recorded playbook (build/APP-ACTIONS-PLAYBOOK.md in the Manual-test-Cases repository), from the SV-4802 setup document, and from SV-5293, SV-5294 and SV-6952. Points marked UNVERIFIED have not been observed yet. Check them, and record the answer in the playbook. Record the real value of every brace name in the case's verification folder.</p>
@@ -36,8 +38,8 @@
 <li>The company id returned when {Customer-A} is created. It is called {Customer-A id}.</li>
 <li>data.contact_id returned when {Contact-A} is created. It is called {Contact-A id}.</li>
 <li>The vehicle id returned when {Asset-A} is created. It is called {Asset-A id}.</li>
-<li>data.work_order_id returned when {Work-order-1} is created. It is called {Work-order-1 id}.</li>
-<li>The id of {Line-1}. It is called {Line-1 id}.</li>
+<li>data.work_order_id returned when {Work-order-A} is created. It is called {Work-order-A id}.</li>
+<li>The id of {Line-A}. It is called {Line-A id}.</li>
 <li>Any value from GET /api/inventory/categories. It is called {Category-A id}.</li>
 <li>The id of the part request for {Part-A}. It is called {Part-A request id}.</li>
 </ul>
@@ -68,20 +70,20 @@
 <li>Create {Customer-A}: POST /api/customers/create with a new name (for example "ZZAUTOTEST SV5294 Found Part"). Record {Customer-A id}.</li>
 <li>Create {Contact-A}: POST /api/contacts/create with company_id {Customer-A id} and any first_name. Record {Contact-A id} at once.</li>
 <li>Create {Asset-A}: POST /api/vehicles/create with company_id {Customer-A id}, customer_id {Contact-A id} (the contact, not the company) and any unit (for example "SV5294-1"). Record {Asset-A id}.</li>
-<li>Create {Work-order-1}: POST /api/work-orders/create with company_id {Customer-A id}, vehicle_id {Asset-A id}, workplace_id {Location-A id}, start_date and is_vehicle_here true. Record {Work-order-1 id} from data.work_order_id (not "id"). This call can answer 500 in some sessions; if it does, use Part 1 step 6 in the browser.</li>
-<li>Create {Line-1} already approved: POST /api/work-orders/ followed by {Work-order-1 id} and /lines/create-from-canned-line, with another false and any canned_line_id. Record {Line-1 id}. UNVERIFIED: the status value for an approved line (the SV-4802 setup used "authorization_required" for a line waiting for approval). If unsure, create the line in the browser with Part 1 steps 7 and 8.</li>
-<li>Request {Part-A} on {Line-1}: POST /api/work-orders/part/make-request with line {Line-1 id}, work_order {Work-order-1 id}, part_number (for example "ZZAUTOTEST-SV5294-01"), description, quantity 1, cost, sell_price, part_category_id {Category-A id} (required) and the Found source. UNVERIFIED: the part_source_type value for Found (the SV-4802 setup used "inventory" for Inventory). If unsure, request the part in the browser with Part 1 steps 9 to 14. Record {Part-A request id}.</li>
+<li>Create {Work-order-A}: POST /api/work-orders/create with company_id {Customer-A id}, vehicle_id {Asset-A id}, workplace_id {Location-A id}, start_date and is_vehicle_here true. Record {Work-order-A id} from data.work_order_id (not "id"). This call can answer 500 in some sessions; if it does, use Part 1 step 6 in the browser.</li>
+<li>Create {Line-A} already approved: POST /api/work-orders/ followed by {Work-order-A id} and /lines/create-from-canned-line, with another false and any canned_line_id. Record {Line-A id}. UNVERIFIED: the status value for an approved line (the SV-4802 setup used "authorization_required" for a line waiting for approval). If unsure, create the line in the browser with Part 1 steps 7 and 8.</li>
+<li>Request {Part-A} on {Line-A}: POST /api/work-orders/part/make-request with line {Line-A id}, work_order {Work-order-A id}, part_number (for example "ZZAUTOTEST-SV5294-01"), description, quantity 1, cost, sell_price, part_category_id {Category-A id} (required) and the Found source. UNVERIFIED: the part_source_type value for Found (the SV-4802 setup used "inventory" for Inventory). If unsure, request the part in the browser with Part 1 steps 9 to 14. Record {Part-A request id}.</li>
 </ol>
 <h2>Check the setup worked</h2>
 <ul>
-<li>GET /api/work-orders/lines/ followed by {Work-order-1 id}: {Line-1} is approved, and the {Part-A} request is on it with the Found source.</li>
-<li>In the browser at /workorders/ followed by {Work-order-1 id} and /lines, {Part-A} is listed on {Line-1} with a Pick button. UNVERIFIED: whether the part and its Pick button show on the Lines tab, the Parts tab, or both. Record where they show.</li>
+<li>GET /api/work-orders/lines/ followed by {Work-order-A id}: {Line-A} is approved, and the {Part-A} request is on it with the Found source.</li>
+<li>In the browser at /workorders/ followed by {Work-order-A id} and /lines, {Part-A} is listed on {Line-A} with a Pick button. UNVERIFIED: whether the part and its Pick button show on the Lines tab, the Parts tab, or both. Record where they show.</li>
 <li>If {Part-A} has no Pick button, or saving the request showed an error, stop: the starting state is wrong.</li>
 </ul>
 <h2>Running the test steps</h2>
 <ol>
-<li>Test step 1: in a fresh browser context with the cookies loaded and a 1440 x 900 window, open /workorders/ followed by {Work-order-1 id} and /lines. Only a freshly created work order opens its detail page reliably.</li>
-<li>Test step 2: find {Part-A} on {Line-1}. Take a screenshot showing it with its Pick button.</li>
+<li>Test step 1: in a fresh browser context with the cookies loaded and a 1440 x 900 window, open /workorders/ followed by {Work-order-A id} and /lines. Only a freshly created work order opens its detail page reliably.</li>
+<li>Test step 2: find {Part-A} on {Line-A}. Take a screenshot showing it with its Pick button.</li>
 <li>Test step 3: click Pick on {Part-A}.</li>
 <li>Test step 4: if a window opens, take a screenshot of it, then click its button to confirm the pick without changing anything. UNVERIFIED: whether picking a Found part opens a window, and the name of its confirm button. Record both.</li>
 <li>After test step 4: wait up to 5 seconds, take a screenshot, and read from the page itself (the DOM), not from the API, whether any error message appeared and what {Part-A} now shows. UNVERIFIED: how a picked part shows on screen (a status label, the Pick button disappearing, or both). Record what you see.</li>
@@ -90,6 +92,6 @@
 <h2>Evidence and cleanup</h2>
 <ul>
 <li>Keep the build marker, the real value of each brace name, the value of the automatic picking setting, the screenshots and the text read from the page in the repository, under the case's verification folder. Judge pass or fail against the test case's Expected results only.</li>
-<li>Delete {Work-order-1} afterwards: POST /api/work-orders/delete with work_order_id {Work-order-1 id} (uncomplete it first if needed; on staging the delete can be browser-only, top three-dot menu &gt; Delete Work Order). Leave {Customer-A}; its ZZAUTOTEST name marks it as test data.</li>
+<li>Delete {Work-order-A} afterwards: POST /api/work-orders/delete with work_order_id {Work-order-A id} (uncomplete it first if needed; on staging the delete can be browser-only, top three-dot menu &gt; Delete Work Order). Leave {Customer-A}; its ZZAUTOTEST name marks it as test data.</li>
 </ul>
 </body></html>

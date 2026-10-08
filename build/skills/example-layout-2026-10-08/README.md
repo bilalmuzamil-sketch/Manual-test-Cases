@@ -55,3 +55,4 @@
   - Setup doc (Part 1 manual tester, Part 2 Claude session), in the public folder: https://docs.google.com/document/d/1-Y9ue-2HhusE9yR5k2cICF8o_OyDbR6tI4ptmjrmk8Q/edit
   - Body, script and doc source in `sv5294/`. A first add_case attempt answered 400 (the required automation fields were missing); the section it had already created is the one used.
   - QA lead 8 Oct ("What do you mean 'in this test it is called' … Keep it simple"): Preconditions shortened to name-in-place lines ("Work order {Work-order-A} has an approved line, {Line-A}."). Snapshots before/after in sv5294/. Display check OK. One-time or permanent: asked.
+  - QA lead 8 Oct: lines and work orders are numbered ({Line-1}, {Work-order-1}); every record has an example (work order number, line, part number). Case and doc v2 https://docs.google.com/document/d/1hsNgzAdUiwqImR_x3uCNy5-Rxx15He162aEcUlV0P_s/edit (v1 1-Y9ue-2H… superseded, not trashed). Display check OK. One-time or permanent: asked.
