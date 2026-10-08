@@ -10,6 +10,8 @@ Source reconciliation: NOT done this pass — the QA lead will check the cases a
 | # | Case | What is wrong | Owning story | Picture |
 |---|---|---|---|---|
 | D1 | C96918 | A search that finds nothing says *No work orders match the search "…"* and offers no Clear filters | SV-10044 (Ready for QA when read on 2026-10-08) | `D1-C96918-board-annotated.png` |
+| D3 | C96929 | Before anyone reorders a group, Tech View and Board View list its work orders in the order they were made, not in List's default order (Customer A-Z) | SV-10045 (Story 2) — status to be read live before asking | picture to be made with the 2x recapture |
+| D4 | C96938 | Hovering a technician's avatar in a Tech View group header shows no name | SV-10045 (Story 2) — status to be read live before asking | `D4-C96938-tech-annotated.png` |
 | D2 | C96923 | After changing location, Assigned to me stays switched on (List, Tech View and Board View alike) | SV-10044 | `D2-C96923-board-annotated.png` |
 
 ## D1 — C96918 · No-results message and its Clear filters action
@@ -42,3 +44,22 @@ live product yet; it should be before this is raised.
 **Also seen (not part of this report):** after moving to Lethbridge, picking Staging Heavy Duty - 9919 in that menu
 did nothing (three tries, and after a refresh); the menu's orange button kept showing Heavy Duty while the top bar
 read Lethbridge.
+
+## D3 — C96929 · A group's work orders do not start in List's default order
+
+**Steps to check by hand**
+1. Make three work orders, in this order, for three customers whose names sort differently (e.g. Zeta…, Alpha…, Mid…), all led by one technician who leads nothing else.
+2. Sign in as a user who has never reordered anything (on this branch: ZZAUTOTEST WOB User B). In List, All tab, note the order of the three: List's default sort is Customer A-Z, so Alpha, Mid, Zeta.
+3. Switch to Tech View and find that technician's group; then Board View and that technician's column.
+
+**What you will see:** Zeta, Alpha, Mid in both (the order they were made).
+**What the case expects:** List's default order, Alpha, Mid, Zeta, in Tech View and Board View.
+
+## D4 — C96938 · No name on hovering a technician's avatar
+
+**Steps to check by hand**
+1. Work Orders > All > Tech View. Pick any technician group, e.g. Aaron Baker.
+2. Hover the round avatar (initials) at the left of the name. Then hover the name.
+
+**What you will see:** nothing on the avatar; the name shows the browser's own hover text with the full name.
+**What the case expects:** hovering the avatar shows the technician's full name (and the long-name header or its avatar shows the full name even when shortened).
