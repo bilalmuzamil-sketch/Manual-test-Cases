@@ -1,0 +1,18 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob(); const p=s.page; const log=[];
+p.on('response',async r=>{try{const u=new URL(r.url()); if(u.pathname.startsWith('/api')&&!/envelope|punch|notes|notif|release|my-current|staff|technicians|feature|workplaces|view-profile|bookkeeping/.test(u.pathname)) log.push(r.request().method()+' '+r.status()+' '+u.pathname+u.search+' REQ '+(r.request().postData()||'')+' :: '+(await r.text()).slice(0,300));}catch(e){}});
+await s.go('/administration/categories'); await p.waitForTimeout(1200); log.length=0;
+const add=await s.box('new_category_button'); await p.mouse.click(add.x,add.y); await p.waitForTimeout(900);
+await p.click('[data-test-id="category_name_input"]'); await p.keyboard.type('Uncategorized'); await p.keyboard.insertText('​'); await p.waitForTimeout(2500);
+console.log('value',JSON.stringify(await p.inputValue('[data-test-id="category_name_input"]')));
+await p.screenshot({path:'/tmp/qa9138/zw-1-typed.png'});
+const sv=await s.box('category_save_button'); console.log('save',j(sv)); 
+const dis=await p.evaluate(()=>{const b=document.querySelector('[data-test-id="category_save_button"]'); return b.disabled||b.getAttribute('aria-disabled')||b.className;}); console.log('disabled?',dis);
+await p.mouse.click(sv.x,sv.y); await p.waitForTimeout(3000);
+await p.screenshot({path:'/tmp/qa9138/zw-2-after-save.png'});
+console.log('dialog',await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText||'CLOSED'));
+console.log('notif',await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText).join('|')));
+console.log(log.join('\n'));
+const a=await s.api('/api/parts-catalogue/categories-list?search=&pagination%5BrowsPerPage%5D=500&pagination%5Bpage%5D=1'); const c=a.json.data.collection;
+console.log('total',c.length, JSON.stringify(c.filter(x=>/uncateg/i.test(x.name)).map(x=>[JSON.stringify(x.name),x.id,x.isDefault,x.deletable])));
+await s.close();

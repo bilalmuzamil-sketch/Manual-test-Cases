@@ -1,0 +1,22 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob(); const p=s.page; const log=[];
+p.on('response',async r=>{try{const u=new URL(r.url()); if(u.pathname.startsWith('/api')&&r.request().method()!=='GET'&&!/envelope/.test(u.pathname)) log.push(r.request().method()+' '+r.status()+' '+u.pathname+' REQ '+(r.request().postData()||'')+' :: '+(await r.text()).slice(0,250));}catch(e){}});
+const ZZ='0e51ee72-1a4d-4dc1-8717-878ede8a1aa5';
+const openZZ=async()=>{ await s.go('/administration/categories'); await p.waitForTimeout(1200);
+  const t=await s.box('page_search_toggle'); await p.mouse.click(t.x,t.y); await p.waitForTimeout(600);
+  await p.keyboard.type('ZZAUTOTEST-9138'); await p.waitForTimeout(2000);
+  const b=await s.box('category_row_'+ZZ); await p.mouse.click(b.x,b.y); await p.waitForTimeout(1500); };
+const out=[]; let k=0;
+for(const n of [' Uncategorized','UNCATEGORIZED','uncategorized ','Uncategorized']){ k++; log.length=0;
+  await openZZ();
+  await p.fill('[data-test-id="category_name_input"]',n); await p.waitForTimeout(2000);
+  const sv=await s.box('category_save_button'); await p.mouse.click(sv.x,sv.y); await p.waitForTimeout(2500);
+  const dlg=await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText.replace(/\s+/g,' ')||'CLOSED');
+  const notif=await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText.replace(/\s+/g,' ')).join('|'));
+  await p.screenshot({path:`/tmp/qa9138/rename-${k}.png`});
+  out.push({n:JSON.stringify(n),dlg,notif,writes:log.slice()}); console.log(j(out.at(-1),600));
+}
+fs.writeFileSync('/tmp/qa9138/rename-results.json',JSON.stringify(out,null,1));
+const a=await s.api('/api/parts-catalogue/categories-list?search=&pagination%5BrowsPerPage%5D=500&pagination%5Bpage%5D=1'); const c=a.json.data.collection;
+console.log('total',c.length,JSON.stringify(c.filter(x=>/uncateg|zzauto/i.test(x.name)).map(x=>[JSON.stringify(x.name),x.isDefault])));
+await s.close();

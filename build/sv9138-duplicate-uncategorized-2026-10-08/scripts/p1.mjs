@@ -1,0 +1,18 @@
+import {op,j} from './lib.mjs'; import fs from 'fs';
+const s=await op(); const p=s.page; const log=[];
+p.on('response',async r=>{try{const u=new URL(r.url()); if(u.pathname.startsWith('/api')&&r.request().method()!=='GET'&&!/envelope/.test(u.pathname)) log.push(r.request().method()+' '+r.status()+' '+u.pathname+' :: '+(await r.text()).slice(0,200));}catch(e){}});
+await s.go('/administration/inventory-import'); await p.waitForTimeout(1500);
+await p.setInputFiles('input[type=file]','/tmp/qa9138/prod-import.csv'); await p.waitForTimeout(1500);
+let b=await s.box('button_submit_file'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(2500);
+await p.screenshot({path:'/tmp/qa9138/prod-import-preview.png'});
+b=await s.box('button_import_inventory'); console.log('importBtn',j(b)); await p.mouse.click(b.x,b.y); await p.waitForTimeout(12000);
+console.log(log.join('\n'));
+const a=await s.api('/api/parts-catalogue/categories-list?search=&pagination%5BrowsPerPage%5D=500&pagination%5Bpage%5D=1'); const c=a.json.data.collection;
+fs.writeFileSync('/tmp/qa9138/prod-cats-after-import.json',JSON.stringify(c,null,1));
+console.log('total',c.length, JSON.stringify(c.filter(x=>/uncateg/i.test(x.name)).map(x=>[JSON.stringify(x.name),x.id,x.numberOfRelatedCatalogueParts,x.isDefault,x.deletable,x.editable])));
+const pp=await s.api('/api/inventory/parts?search=ZZ9138P&limit=50'); const col=pp.json?.data?.collection||[];
+fs.writeFileSync('/tmp/qa9138/prod-zzparts.json',JSON.stringify(col,null,1));
+for(const x of col) console.log(x.part_number,x.id,x.catalogue_part_id,x.category_label,x.category);
+await s.go('/administration/categories'); await p.waitForTimeout(2000);
+await p.screenshot({path:'/tmp/qa9138/prod-cat-list-after.png'});
+await s.close();

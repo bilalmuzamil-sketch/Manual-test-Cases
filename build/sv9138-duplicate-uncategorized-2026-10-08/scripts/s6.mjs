@@ -1,0 +1,10 @@
+import {ob,j} from './lib.mjs';
+const s=await ob(); const p=s.page;
+await s.go('/administration/categories'); await p.waitForTimeout(1500);
+console.log(await p.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(t=>!/^(link_|module|global|clock|skip|button_notif|page_admin)/.test(t)).slice(0,80).join(' ')));
+const add=await p.evaluate(()=>{const e=[...document.querySelectorAll('button')].find(b=>/add|new|create/i.test(b.innerText)); if(!e)return null; const r=e.getBoundingClientRect(); return {t:e.innerText,tid:e.getAttribute('data-test-id'),x:r.x+r.width/2,y:r.y+r.height/2};});
+console.log('add',j(add)); await p.mouse.click(add.x,add.y); await p.waitForTimeout(1500);
+console.log('dialog',await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText));
+console.log(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.getAttribute('data-test-id')+':'+e.tagName).join(' ')));
+await p.screenshot({path:'/tmp/qa9138/add-dialog.png'});
+await s.close();

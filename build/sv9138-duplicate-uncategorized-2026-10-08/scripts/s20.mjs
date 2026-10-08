@@ -1,0 +1,11 @@
+import {ob,j} from './lib.mjs';
+const s=await ob(); const p=s.page; const log=[];
+p.on('response',async r=>{try{const u=new URL(r.url()); if(u.pathname.startsWith('/api')&&!/envelope|punch|notif|notes|release|my-current/.test(u.pathname)) log.push(r.request().method()+' '+r.status()+' '+u.pathname+u.search.slice(0,60)+' '+(r.request().postData()||'').slice(0,100));}catch(e){}});
+await s.go('/administration/categories'); await p.waitForTimeout(1500); log.length=0;
+let b=await s.box('new_category_button'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(900);
+await p.click('[data-test-id="category_name_input"]'); await p.keyboard.type('ZZAUTOTEST-9138-UI',{delay:40}); await p.waitForTimeout(2500);
+console.log('btn',await p.evaluate(()=>{const e=document.querySelector('[data-test-id="category_save_button"]'); return e.outerHTML.slice(0,200);}));
+b=await s.box('category_save_button'); console.log(j(b)); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3000);
+await p.screenshot({path:'/tmp/qa9138/add-ui.png'});
+console.log(log.join('\n'));
+await s.close();
