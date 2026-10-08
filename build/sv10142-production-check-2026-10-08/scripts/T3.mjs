@@ -1,0 +1,14 @@
+import {op,j} from './lib.mjs'; import fs from 'fs';
+const s=await op(); const P=(u,b)=>s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+await P('/api/iam/change-location',{workplace_id:'b617914c-16e9-4485-8e8b-193cd86aa416',workplace_timezone:'Africa/Accra'});
+const W=JSON.parse(fs.readFileSync('prod/wo-B.json'));
+console.log('remove tiny',(await P('/api/work-orders/adjustments/remove',{adjustmentId:'6509c2e6-57ef-4b57-9a4e-8d4b32e8501f',workOrderId:W.wo})).status);
+const p={id:'02df7128-351e-41de-893f-ccaa6dbc37d3',pn:'1237821',name:'A35',cat:'00e200b1-59fe-4c4a-88a1-952a6d38fee0',sell:0.72};
+const st=(await s.api('/api/inventory/parts/'+p.id)).json?.data?.quantity; const sb=JSON.parse(fs.readFileSync('prod/stock-before.json')); sb[p.pn]=st; fs.writeFileSync('prod/stock-before.json',JSON.stringify(sb)); console.log('A35 stock before',st);
+const r=await P('/api/work-orders/part/make-request',{work_order:W.wo,line:W.lines[0],description:p.name,part_number:p.pn,quantity:1,part_source_type:'inventory',is_authorized:true,part_category_id:p.cat,inventory_part_id:p.id,sell_price:p.sell}); console.log('add A35',r.status);
+await s.page.waitForTimeout(1200); const L=(await s.api('/api/work-orders/lines/'+W.wo)).json.data.collection; let id; for(const l of L) for(const q of (l.part_requests||[])) if(q.part_number==='1237821') id=q.id;
+console.log('pick',(await P(`/api/work-orders/${W.wo}/pick-inventory-parts`,{part_request_ids:[id]})).status);
+const a=await P('/api/work-orders/adjustments/add',{workOrderId:W.wo,kind:'fee',name:'Tiny fee',calculationType:'pct_parts',amount:0.01,scope:'part_line',targetId:id,taxable:false}); console.log('add tiny',a.status,'resolved',a.json?.data?.resolvedAmount);
+W.invparts['1237821']=id; fs.writeFileSync('prod/wo-B.json',JSON.stringify(W));
+console.log('summary',j((await s.api('/api/work-orders/view/'+W.wo)).json?.data?.work_order?.adjustmentsSummary,200));
+await s.close();

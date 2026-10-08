@@ -1,0 +1,52 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED (on production)*
+{panel}
+I tested this on production *app.shopview.com* (build *v26.40.13-013e543*) on *8 October 2026*, with the new invoice layout turned on.
+
+Fees and discounts now print under their own names on estimates, invoices, part sale invoices and the customer portal. They print in the fixed order Chris asked for. The Legacy layout looks exactly as it did before.
+
+h3. Before and after
+!prod-01-before-vs-after-hd.png|width=512,height=1096!
+_Same fees and discounts, estimate, new layout. Before (production, 7 Oct) every labor fee was lumped into "Labor $70.00" and the parts fee and discount were netted into "Parts $1.00". Now (production, 8 Oct) each one prints by name._
+
+h3. What I checked
+||#||Check||Result||
+|1|Each labor-line and part-line fee or discount prints its own name ({{Labor · Shop fee}}, {{Parts · Core discount}}) instead of one "Labor" / "Parts" total|PASSED|
+|2|Rows with the same name in the same group combine into one row with the total: three $15.00 Shop fees print as $45.00, a flat $5.00 Shop fee plus a 2%-of-labor Shop fee print as $7.00, two $3.00 Environmental fees print as $6.00|PASSED|
+|3|Order: Labor rows, then Parts rows, then work-order-wide rows; inside Labor and Parts, fees before discounts, each A to Z, small and capital letters sorted together|PASSED|
+|4|The order does not depend on the order the fees were entered (S2-966's were entered Z first)|PASSED|
+|5|A fee and a discount with the same name ("Promo") stay two separate rows|PASSED|
+|6|A fee that works out to $0.00 (0.01% on a $0.72 part) is not printed|PASSED|
+|7|Work-order-wide rows keep the order they were added and are not combined, as agreed on this ticket|PASSED|
+|8|Estimate PDF and invoice PDF print the same rows (S2-965 and S2-966)|PASSED|
+|9|The document shown on the work order's {{Finance}} tab shows the same rows as the PDF|PASSED|
+|10|Part sale invoice P2-79: part fees print by name, combined and in the same order|PASSED|
+|11|Customer portal: invoices S2-965, S2-966 and P2-79 show the same rows as the PDFs|PASSED|
+|12|Legacy invoice layout: unchanged, identical to production before the release for the same fees|PASSED|
+
+The customer portal lists invoices only (it has no estimate page), so the estimate checks were done on the estimate PDF from the work order.
+
+h3. Evidence
+!prod-02-variants-hd.png|width=512,height=1032!
+_Invoice S2-966: fixed order, combining, same-name fee and discount kept apart, $0.00 fee not printed._
+
+!prod-03-part-sale-hd.png|width=512,height=473!
+_Part sale invoice P2-79._
+
+!prod-04-legacy-unchanged-hd.png|width=420,height=813!
+_Legacy layout, before and after the release: identical rows and amounts._
+
+!prod-05-customer-portal-hd.png|width=360,height=1286!
+_Customer portal: the same rows the customer sees._
+
+h3. How to see it
+# Log in to production. Click your initials (top right) and under {{Change Location}} pick {{Trucks Hill 2}}.
+# Production currently uses the Legacy layout. To see the new layout: click your initials (top right) → {{Settings}} → in the left menu click {{Settings}} again → click the {{Invoice}} tab at the top → turn off the {{Legacy invoice layout}} switch → click {{Save Details}}. Turn it back on afterwards.
+# In the top menu click {{Work Orders}}, search {{S2-965}} and open it.
+# At the top of the work order click the {{Finance}} tab (after {{Stats}}).
+# Scroll the document down to the {{Adjustments}} block on the right, just above {{Subtotal}}. It reads: {{Labor · Diagnostic fee $25.00}}, {{Labor · Shop fee $45.00}}, {{Parts · Environmental fee $6.00}}, {{Parts · Core discount ($5.00)}}, {{Fleet discount ($10.00)}}.
+# Do the same for {{S2-966}} to see the longer list from the second picture.
+
+h3. Screen recording
+!sv10142-production-recording.mp4|width=1280,alt="sv10142-production-recording.mp4"!
+_Production app.shopview.com, build v26.40.13-013e543, 8 October 2026: the Finance tab of S2-965 and S2-966, the customer portal invoices S2-965, S2-966 and P2-79, then the Legacy layout. Every value in the captions was read off the screen at the time._

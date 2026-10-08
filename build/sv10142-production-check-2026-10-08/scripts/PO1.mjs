@@ -1,0 +1,17 @@
+import {op,j} from './lib.mjs'; import fs from 'fs';
+const s=await op(); const p=s.page; const P=(u,b)=>s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+await P('/api/iam/change-location',{workplace_id:'b617914c-16e9-4485-8e8b-193cd86aa416',workplace_timezone:'Africa/Accra'});
+await P('/api/organizations/invoice-settings/change-design',{documentDesign:'modern'}); console.log('design',(await s.api('/api/organizations/invoice-settings/view')).json?.data?.documentDesign);
+const reqs=[]; s.ctx.on('request',r=>{ if(/portal\.shopview/.test(r.url())&&!/\/build\/|cdn-cgi|logo/.test(r.url())) reqs.push(r.method()+' '+r.url().slice(0,160)); });
+await s.go('/workorders'); let b=await s.box('profile_menu_button'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(1200); b=await s.box('profile_menu_customer_portal'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(12000);
+const pp=s.ctx.pages().at(-1); console.log('portal url',pp.url());
+await pp.setViewportSize({width:1600,height:1000});
+const sinp=pp.locator('input[placeholder*="Search by invoice"]'); await sinp.fill('965'); await pp.waitForTimeout(3000);
+console.log('rows',await pp.evaluate(()=>[...document.querySelectorAll('tr')].slice(0,6).map(r=>r.innerText.replace(/\s+/g,' ').slice(0,140))));
+const row=pp.locator('tr',{hasText:'965'}).first(); await row.click(); await pp.waitForTimeout(6000); console.log('after click url',pp.url());
+const txt=await pp.evaluate(()=>document.body.innerText); const i=txt.indexOf('Adjustments'); console.log('ADJ',i, txt.slice(Math.max(0,i-50),i+700).replace(/\n/g,' | '));
+await pp.screenshot({path:'portal-inv-A.png',fullPage:true});
+console.log('buttons',await pp.evaluate(()=>[...document.querySelectorAll('button,a')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.innerText.trim()).filter(Boolean).slice(0,40).join(' / ')));
+console.log(reqs.slice(-25).join('\n'));
+await P('/api/organizations/invoice-settings/change-design',{documentDesign:'legacy'}); console.log('design restored',(await s.api('/api/organizations/invoice-settings/view')).json?.data?.documentDesign);
+await s.close();
