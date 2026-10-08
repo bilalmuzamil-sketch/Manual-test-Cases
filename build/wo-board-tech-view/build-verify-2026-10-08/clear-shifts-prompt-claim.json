@@ -1,0 +1,12 @@
+{
+ "claim": "On sv10043 (v26.40.8-7a95011) changing a work order's lead technician (Reassign lead technician dialog in Tech View, or dragging the card to Unassigned on Board View) shows NO 'Clear <name>'s scheduled shifts?' question when the outgoing lead has a future shift booked for the ENTIRE work order; the lead changes at once and the shift stays on the Schedule",
+ "proofs": {
+  "positive_control": {"passed": true, "evidence": "Same run and method: the dialog and the drag both changed the lead (toasts 'Lead technician updated' / 'Lead technician removed'); the same overlay reader captured the Schedule picker ('Entire work order / Choose lines / Create 1 shift'), the Reassign dialog and the toasts (wob48.log, wob49.log), so it does see dialogs."},
+  "tried_through_the_screen": {"passed": true, "evidence": "Real UI: Schedule > Fri Oct 9 > dragged S2-13556 (2 lines) onto Brent Avila's row at 9 AM > picker 'Entire work order' > 'Create 1 shift'; then Work Orders > Tech View > row More actions > Reassign lead technician > Bilal Muzamil > Reassign; then Board View card dragged to Unassigned."},
+  "waited_and_retried": {"passed": true, "evidence": "Two whole-work-order attempts on two routes (wob48 dialog, wob49 drag), overlay polled every 0.5 s for 3 s; plus three earlier single-line attempts. Never a question, only the toast."},
+  "checked_for_navigation": {"passed": true, "evidence": "URL stayed /workorders?search=S2-13556; no new tab; screenshots clear-shifts-prompt.png and clear-shifts-wholewo-try2.png show only the toast."},
+  "precondition_read_back": {"passed": true, "evidence": "Schedule board read back: shift 4d4a0445 for Brent Avila 2026-10-09 15:15-17:45Z on S2-13556 listing BOTH lines (whole work order), present before and after each lead change (sched-board.json reads). Reassign dialog showed Brent Avila 'Current' before each attempt."},
+  "searched_the_repo": {"passed": true, "evidence": "git grep 'scheduled shifts' / 'Keep shifts' under build/: only our own case text and the observed-labels 'NOT observed' note; ls build/BLOCKED-*.md: nothing on shifts or the Schedule."},
+  "asked_what_would_make_this_my_fault": {"passed": true, "evidence": "My first try WAS my fault (single-line work order, so the shift was a line shift, which the cases say gives no prompt; and on another try the shift was on a line technician, not the lead). Ruled out here: two-line work order, picker set to Entire work order, shift read back with both lines, shift owner = outgoing lead shown as Current."}
+ }
+}

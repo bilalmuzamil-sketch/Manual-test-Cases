@@ -48,7 +48,7 @@ JARGON = [
     (r'\bNFR-\d+\b', 'requirement id (NFR-0xx)', True),
 ]
 # everyday product names that merely look like camelCase codes (a tester reads them fine)
-PLAIN_WORDS = {'iPad', 'iPads', 'iPhone', 'iPhones', 'iOS', 'macOS', 'eBay', 'eTransfer'}
+PLAIN_WORDS = {'iPad', 'iPads', 'iPhone', 'iPhones', 'iOS', 'macOS', 'eBay', 'eTransfer', 'uBlock'}
 # tokens that mean "only provable with developer tooling" -> never a manual READY case
 NOT_HAND = [r'\bp9[0-9]\b(?!-\d)', r'\bAPM\b', r'\bserver timing\b', r'performance tooling',
             r'\bcircuit breaker\b', r'MAX_EXECUTION', r'\b\d+\s?ms\b']

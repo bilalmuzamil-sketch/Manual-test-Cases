@@ -1,0 +1,16 @@
+import {start,mk,log} from './woblib.mjs';
+const b=await start('/customers/b416a8ad-011f-4946-a6af-e736abf7fe2f/work-orders','admin'); const {page}=b; const {dump,ov}=mk(page);
+await page.getByRole('tab',{name:/Assets/}).first().click(); await page.waitForTimeout(4000);
+await page.getByRole('button',{name:'New Asset'}).first().click(); await page.waitForTimeout(4000);
+const d=page.locator('.q-dialog');
+await d.getByLabel('Contact *').click(); await page.waitForTimeout(2000); log('CONTACT MENU',await ov());
+await page.keyboard.press('Escape'); await page.waitForTimeout(800);
+await d.getByLabel('Year').fill('2022');
+await d.getByLabel('Make *').click(); await d.getByLabel('Make *').fill('Freightl'); await page.waitForTimeout(2500); log('MAKE MENU',(await ov()).slice(0,400));
+await page.locator('.q-menu .q-item').filter({hasText:/^Freightliner$/}).first().click().catch(e=>log('make',e.message)); await page.waitForTimeout(1500);
+await d.getByLabel('Model').click(); await d.getByLabel('Model').fill('M2'); await page.waitForTimeout(2500); log('MODEL MENU',(await ov()).slice(0,400));
+await page.locator('.q-menu .q-item').filter({hasText:/M2/}).first().click().catch(e=>log('model',e.message)); await page.waitForTimeout(1500);
+await d.getByLabel('Unit').fill('TRK-118');
+await d.getByRole('button',{name:'Save'}).click(); await page.waitForTimeout(5000);
+log('AFTER SAVE',(await ov()).slice(0,500)); await dump('new-asset-after-save');
+await b.browser.close();

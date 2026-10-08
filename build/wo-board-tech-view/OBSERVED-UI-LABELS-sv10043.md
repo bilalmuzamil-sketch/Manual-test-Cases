@@ -28,7 +28,7 @@ Staging Heavy Duty - 9919, department Administration); work order S10043-17581 (
 - Dialog `Reassign lead technician` "<number> · <customer>": search box, `Unassigned` (shows `Current` when it is), technicians with initials
   and "N open"; `Cancel` · `Reassign`.
 - Drag to another technician → message `Lead technician updated` (with `Close`), gone within ~10 s. Reassign to Unassigned → `Lead technician removed`.
-  No shift prompt appeared (the work order had no scheduled shifts) — the "Clear …'s scheduled shifts?" prompt was NOT observed.
+  No shift question appeared — not even when the outgoing lead held a whole-work-order shift (see the Schedule section below).
 - No-match search: `No work orders match these filters` · `Try removing a filter to widen your results.` · `Clear all filters`.
 
 ## Set-up screens
@@ -45,3 +45,42 @@ Staging Heavy Duty - 9919, department Administration); work order S10043-17581 (
 - Work order tabs: Lines · Parts · Notes · Timesheets · `History (n)` · Stats · Finance. The History tab table (Staff, Date, Time, Event, Work
   Order Total, Customer, Contacts) showed no rows for the lead changes made by drag/reassign (observation only).
 - Location: shown next to the bell; change it with your initials → `Change Location`.
+
+## Customers, contacts and assets (observed 2026-10-08, evidence new-customer.txt, customer-created.txt, new-asset*.txt, wob24-wob32 logs)
+- Customers list: `New Customer` → dialog: Name * · Phone · Address 1 · Address 2 · City · ZIP/Postal Code · State/Province · Country · Notes · Website · IBS · `Save`.
+  Saving opens the customer page; tabs: `Work Orders` · `Part Sales` · `Contacts` · `Assets` · `Notes` · `Invoices` · `Payments` · `Deposits` · `Fees & Discounts`.
+- `Contacts` tab → `New Contact`: First Name · Last Name · Title · Email · Telephone · Mobile · Approves Work · Customer Portal Access · `Save`.
+- `Assets` tab → `New Asset`: Contact * · VIN/Serial # · Year · Make * · Model · Trim · Engine · Drivetrain · Unit · Type · Mileage · Engine Hours · Licence Plate ·
+  Color · Notes · `Save`. Contact and Make are required ("Contact is a required field", "Make is a required field"); a new customer has no contact, so add one first.
+  Make offers e.g. Freightliner, Ford; Model offers e.g. M2, Explorer. Saved: "2022 Freightliner Em2 106 TRK-118" and "1999 Ford Explorer" (no unit).
+  The same New Asset form opens from `New Work Order` → Asset `Add`. An asset with no make cannot be saved (proved: build-verify-2026-10-08/asset-without-make-claim.json).
+- Example customers named in the cases ("Fibridge Commercial", "Fisquare Farms", "Zeta Hauling", "Alpha Freight", "Mid Trucking", "Trailer Shop") do NOT exist on this site (customer search, 2026-10-08); the cases now tell the tester to create them.
+
+## Schedule (observed 2026-10-08, evidence schedule-page.txt, schedule-drop*.png, schedule-picker, wob36-wob50 logs)
+- Day / Week / Month, `Today`, `Search work orders`, `Filters`; rows per technician grouped by department. Dragging a work order card onto a technician's row:
+  a one-line work order is booked at once ("Shift scheduled." with `Undo`); a work order with several lines opens a picker: `Entire work order` · `Choose lines` ·
+  Hours · `Cancel` · `Create 1 shift`. Clicking a shift opens its panel (with a delete icon, no confirmation).
+- 🔴 The clear-shifts question the cases describe (its title and its keep / clear / cancel buttons) was NOT shown on this build: changing the lead by the Reassign
+  dialog or by dragging, with the outgoing lead holding a whole-work-order shift, changed the lead at once and the shift stayed (proved: clear-shifts-prompt-claim.json).
+  The cases that test the question carry "What you should see today".
+- Tech View / Board View recheck: no `Collapse all` / `Expand all` button (each group has only "Collapse <name>"); `Column Selection` and `Fields to display` menus
+  list ticks only, no search box. Board View column pin button is named "Pin <technician name>" / "Unpin <technician name>" (no visible tooltip text).
+
+### Gate vocabulary — confirmed on sv10043 v26.40.8-7a95011, 2026-10-08
+`New Customer` · `New Contact` · `New Asset` · `Contacts` · `Assets` · `Entire work order` · `Choose lines` · `Create 1 shift` · `Shift scheduled.` · `Admin ShopView` ·
+`Lead technician updated` · `Lead technician removed` · `Reassign lead technician` · `Make is a required field`.
+Staff that exist on this site and appear in cases: "Admin ShopView" (the Admin quick-login user), "Tech ShopView".
+
+### Example data the tester creates or types (not screen labels; the cases say how to create each one)
+Technicians "Esther Howard", "Ralph Edwards", "Jenny Wilson", "Kristin Watson", "Theresa Webb", "Dana Ortiz", "Brenda Martinez", "Cameron Williamson", "Floyd Miles",
+"Aaron Keating", "Aaron Baker", "Aaron Zed", "Chris Lee", "James Smith", "Maximiliana Fitzgerald-Montgomery", "Sam Second", "Nora New", "Nina Newtech", "Ina Active",
+"Ivan Inactive", "Ella Elsewhere", "Lena Otherloc", "Billy Nobill", "Nick Noclock", "Tim Clockuser", "Owen Office", "Olive Office", "Fay Financial", "Nate Nofinance",
+"Vera Viewonly"; roles "WO View Only"; customers "Fibridge Commercial", "Fibridge Commercial Transport Services", "Fisquare Farms", "Zeta Hauling", "Alpha Freight",
+"Mid Trucking", "Trailer Shop", "ZZ Board Test Co"; line labels "Line 1" … "Line 6 Clocked", "Line 1 Unassigned", "Oil change" (the build offers only ready-made lines;
+the cases say so); tech story "Brought unit in. Completed inspection"; actual hours "0.02 / 2.00"; the comment "not checked by hand"; and every name beginning
+"ZZAUTOTEST" (Rule 6 test-data tag), e.g. "ZZAUTOTEST Alpha Co" … "ZZAUTOTEST Zoe Zulu".
+
+Further example data named in the cases (created or typed by the tester as each case's setup says; regression cases included):
+"(c) not built - an asset needs a Make" · "Brake Pads" · "Brake inspection" · "Line 2" · "Line 2 Explicit" · "Line 2 Implicit" · "Line 3" · "Line 3 Complete" · "Line 3 Explicit" · "Line 4 Complete" · "Line 5 Logged" · "Pin column" · "ZZAUTOTEST Aardvark Co" · "ZZAUTOTEST Abbey Co" · "ZZAUTOTEST Board Unassigned" · "ZZAUTOTEST Bravo Co" · "ZZAUTOTEST Cal Charlie" · "ZZAUTOTEST Charlie Co" · "ZZAUTOTEST Columns" · "ZZAUTOTEST Dan Delta" · "ZZAUTOTEST Delta Co" · "ZZAUTOTEST Dispatcher Role" · "ZZAUTOTEST Dispatcher Two" · "ZZAUTOTEST Echo Co" · "ZZAUTOTEST Empty Columns" · "ZZAUTOTEST Empty Shop" · "ZZAUTOTEST Empty Tech" · "ZZAUTOTEST Empty Unassigned" · "ZZAUTOTEST Ezra Echo" · "ZZAUTOTEST Fibridge" · "ZZAUTOTEST Fisquare" · "ZZAUTOTEST Fresh" · "ZZAUTOTEST Golf Co" · "ZZAUTOTEST Grouping" · "ZZAUTOTEST Inv Co" · "ZZAUTOTEST Loc2" · "ZZAUTOTEST Loc2 Customer" · "ZZAUTOTEST Location 2" · "ZZAUTOTEST New Dispatcher" · "ZZAUTOTEST Newbie" · "ZZAUTOTEST No Money" · "ZZAUTOTEST Org B" · "ZZAUTOTEST OrgB Customer" · "ZZAUTOTEST OrgB Tech" · "ZZAUTOTEST Pin Order" · "ZZAUTOTEST Refresh" · "ZZAUTOTEST Regression Co" · "ZZAUTOTEST Site Co" · "ZZAUTOTEST Spare Co" · "ZZAUTOTEST Tab Co" · "ZZAUTOTEST Unassigned First" · "ZZAUTOTEST Viewer" · "ZZAUTOTEST WO View Only" · "ZZAUTOTEST WO view only" · "ZZAUTOTEST Xia X-ray" · "ZZAUTOTEST Yan Yankee"
+
+Still NOT observed on this build (kept in the cases, so the label gate keeps flagging them on purpose): the clear-shifts question's title and its keep / clear buttons — see the Schedule section above.

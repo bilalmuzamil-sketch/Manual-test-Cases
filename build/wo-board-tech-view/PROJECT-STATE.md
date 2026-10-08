@@ -20,3 +20,21 @@
   57 permissions. **Build v26.40.8-7a95011.** The Work Orders screen already shows the new display switch (list / tech-grouped / board icons) and a
   board grouped by lead technician ("Unassigned" column) — evidence build-verify-2026-10-08/wo-list-first-look.txt/png.
   **Build verification NOT started** (QA lead: "get ready but do not start now"). Still open with the QA lead: re-check sources first, or not (Rule 81).
+
+## 2026-10-08 — build verification pass 1 (sv10043 v26.40.8-7a95011) — feature folder done, regression folder and new layout open
+- **Done — 170 of our cases** in folder 13204 (130 original + 40 added mid-pass, C368125–C368164): build-verified, re-stamped
+  "Last checked against build v26.40.8-7a95011 on 10/8/2026.", markers 158 READY / 12 HOLD (11 not hand-testable analytics cases + C154650 needs a second
+  organisation). Writes: `build-verify-2026-10-08/write/` (write-log 130 OK, write-log-40-new 40 OK, fix170-log 112 OK); served page fr-view 130 + 40 + 112.
+- **Fix pass (fix170):** example customers ("Fibridge Commercial" …) do not exist on the site → setup now says how to create customer, contact and asset
+  (observed); "ZZ Board Test Co" asset route corrected (Contacts tab first, Make required); line names are labels only (ready-made lines); C96984 part (c)
+  cannot be made by hand (asset without Make — proved, `asset-without-make-claim.json`); 14 vague steps given a place; 65 stale "not yet build-verified".
+- **Build differs from the documents (cases keep the documented expectation, "What you should see today" added):** C96918 (no-match wording), C368160
+  (column menu count/Show all/Reset — Blocked per developer), C368162 (Collapse all — Blocked), C368164 (column/field search box — Blocked), and the
+  clear-shifts question: C96965, C154888, C154889, C368133, C368134, C368135, C368136 (proved absent, `clear-shifts-prompt-claim.json`; whole-work-order
+  shift on S2-13556, restored).
+- **Site restored:** test shifts deleted; S2-14294 lead back to Jason Johnson; S2-13556 lead back to Brent Avila. Left as test data: customer
+  "ZZAUTOTEST Fibridge Commercial" with contact "ZZAUTOTEST Contact" and assets TRK-118 / 1999 Ford Explorer.
+- **Open:** (1) regression folder 47109 (C368165 onward, 83 cases, all HOLD "not yet build-verified") — not yet walked; (2) the QA lead's new case layout
+  (handover file 2026-10-08 "_1") for all 253 cases — two of its rules edit the expected results (step prefixes, [placeholders]); this conflicts with
+  Rules 57/114 and the file's own "do not change the expected results" → asked (Rule 63); (3) run 498 lacks Vladimir's 18 (pre-existing, not ours to add
+  without the QA lead); (4) Vladimir's cases flagged by the runnability gate (C204099 …) — hands-off (Rule 38).

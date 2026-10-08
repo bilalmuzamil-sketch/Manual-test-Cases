@@ -1,0 +1,10 @@
+import {start,mk,log} from './woblib.mjs';
+const b=await start('/customers','admin'); const {page}=b; const {dump,ov,go,esc,body}=mk(page);
+const btns=async()=>JSON.stringify(await page.evaluate(()=>[...document.querySelectorAll('button,[role=tab],.q-tab')].filter(e=>e.offsetParent).map(e=>e.innerText.replace(/\s+/g,' ').trim()).filter(Boolean)));
+await page.getByRole('button',{name:'New Customer'}).first().click(); await page.waitForTimeout(3000);
+await page.getByLabel('Name *').fill('ZZAUTOTEST Fibridge Commercial');
+await page.locator('.q-dialog').getByRole('button',{name:'Save'}).click(); await page.waitForTimeout(6000);
+log('URL',page.url()); log('OV',await ov()); await dump('customer-created'); log('BTNS',await btns());
+const t=page.getByRole('tab',{name:/Assets/}).first(); await t.click().catch(e=>log('tab',e.message)); await page.waitForTimeout(4000);
+await dump('customer-assets-tab'); log('BTNS2',await btns());
+await b.browser.close();

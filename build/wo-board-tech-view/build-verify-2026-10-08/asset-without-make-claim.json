@@ -1,0 +1,12 @@
+{
+ "claim": "On sv10043 (v26.40.8-7a95011) a tester cannot create, from the screen, an asset with no year, make or model: both New Asset forms refuse to save without a Make",
+ "proofs": {
+  "positive_control": {"passed": true, "evidence": "Same form, same script method saved '2022 Freightliner Em2 106 TRK-118' and '1999 Ford Explorer' (no unit) in this run (new-asset-after-save.txt, asset-ford-no-unit.txt; wob29/wob31 logs)."},
+  "tried_through_the_screen": {"passed": true, "evidence": "Clicked through the real UI: Customers > customer > Assets tab > New Asset > pick Contact > Save (asset-no-make.txt), and Work Orders > Create Work Order > Asset Add > pick Contact > Save (wo-asset-add-no-make-0.txt, -1.txt)."},
+  "waited_and_retried": {"passed": true, "evidence": "Three attempts over two forms (wob31 A, wob32 try 0 and try 1), each after a 3 s settle; same red message each time: 'Make is a required field'."},
+  "checked_for_navigation": {"passed": true, "evidence": "Dialog stayed open with the field error; no URL change, no new tab, no toast (overlay text captured in wob31.log / wob32.log)."},
+  "precondition_read_back": {"passed": true, "evidence": "The customer 'ZZAUTOTEST Fibridge Commercial' and its contact 'ZZAUTOTEST Contact' existed and were picked in the Contact field before Save (overlay shows 'Contact * ZZAUTOTEST Contact')."},
+  "searched_the_repo": {"passed": true, "evidence": "git grep 'Make is a required field' and 'asset ... no make / without a make' across build/: no hits; ls build/BLOCKED-*.md: none about assets."},
+  "asked_what_would_make_this_my_fault": {"passed": true, "evidence": "Most likely my fault: picking a contact failed, so the save refused for another reason. Ruled out: the error shown is on Make specifically and the Contact field shows the chosen contact; with a Make filled the same form saves. An asset with no make could still arrive by import, which is not a hand route."}
+ }
+}
