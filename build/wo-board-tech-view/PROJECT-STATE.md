@@ -2,6 +2,16 @@
 
 **Created:** 2026-09-23 · **PO / spec owner:** Sasha Grosman · **Status:** ACTIVE — source-verified authoring complete, not yet build-verified.
 
+## 🟢 CURRENT STATE — 8 Oct 2026 source check (read this first)
+- **Sources moved since 30 Sep:** PRD edited 7 Oct (17 new requirements, 3 changed; status line still "PRD v33"),
+  Review Decisions refreshed 29 Sep, new PO decisions in comments 1–7 Oct, stories now "Ready for QA", Story 12 =
+  SV-10593. Detail: `source-update-2026-10-08/SOURCE-CHECK-2026-10-08.md`.
+- **QA build exists:** https://sv10043.qa.shopview.com (v26.40.8-7a95011 on 8 Oct). Build verification belongs to the
+  build verification session (L7) — not signed into here.
+- **Suite:** 130 ours + 18 Vladimir's (Automated, hands-off, Rule 123). Run **498** (ours, 130 untested).
+- **Not held:** the current design export (newer than our 23 Sep copy) and the current tech plan (newer than 17 Sep).
+- **Next:** full pass (Rule 122) once the QA lead gives the go-ahead and the design/tech plan.
+
 ## What this is
 Manual TestRail test suite for **Work Orders — Board View & Tech View Display Options** (adds Tech View and
 Board View display options to the Work Orders page, plus shared controls: fields/columns, density, lead

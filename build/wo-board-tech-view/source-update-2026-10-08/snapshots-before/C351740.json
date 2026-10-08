@@ -1,0 +1,54 @@
+{
+ "id": 351740,
+ "title": "Lines tab shows the technicians scheduled on a line",
+ "section_id": 13242,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791390186,
+ "updated_by": 1,
+ "updated_on": 1791390830,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 5,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as Owner (work-order View) on a desktop viewport, at the location the work order belongs to.\nA work order for a new customer with no pinned note and no lead technician, with two lines approved for repair (Line 1 and Line 2), neither with a labor technician.\nTechnician A has a shift on the Schedule that covers Line 2 only, so A is on Line 2's technician roster without a labor task.",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open the work order's Lines tab.",
+   "expected": "Both lines are listed and no New Line dialog opens.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Look at Line 2's Labor row.",
+   "expected": "It shows technician A's full name where it used to say \"Unassigned\" or \"No technicians assigned to this line.\", with no badge.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Look at Line 1's Labor row.",
+   "expected": "It still says the line has no technician and does not show A's name.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}

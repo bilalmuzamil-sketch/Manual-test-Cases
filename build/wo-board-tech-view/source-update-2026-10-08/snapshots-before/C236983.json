@@ -1,0 +1,61 @@
+{
+ "id": 236983,
+ "title": "Owner returns with Back to Tech View and the row and horizontal scroll positions are restored",
+ "section_id": 13236,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791232640,
+ "updated_by": 1,
+ "updated_on": 1791281474,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 19,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as Admin, at a 1150 x 900 viewport, so the default Tech View columns overflow sideways\nThe admin's saved Work Orders view is reset over the API (display List, no layout keys)\nTwelve work orders with no lead for a unique customer, each with a line, and the customer has no pinned note",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open Work Orders, pick Tech View, and search for the unique customer",
+   "expected": "Tech View renders, the twelve rows under Unassigned, and the table scrolls both down and sideways",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Scroll the table down and sideways",
+   "expected": "Note the first visible row and the horizontal offset",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Click a plain cell (Number, or another plain cell when Number is scrolled out of view) of a fully visible row",
+   "expected": "The work order opens",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press browser Back",
+   "expected": "Tech View renders, data-scroll-restore becomes \"applied\", and the first visible row and horizontal offset are the ones noted\n\nBack restores Tech View's vertical and horizontal scroll position",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}

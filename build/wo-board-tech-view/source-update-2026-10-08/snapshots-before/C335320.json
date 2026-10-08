@@ -1,0 +1,110 @@
+{
+ "id": 335320,
+ "title": "Owner reassigns a lead technician on Board View using only the keyboard and focus returns to the board",
+ "section_id": 13246,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791320498,
+ "updated_by": 1,
+ "updated_on": 1791321603,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 4,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as Admin (can edit work orders), viewport 1280 px or wider; browser pinned to the fixture workplace\nSaved Work Orders view reset over the API, then technicians A and B pinned in that saved preference\nA throwaway customer with a unique name and no pinned note\nTwo work orders for that customer, each with one line, lead technician A, not Invoiced or Paid, and no scheduled shifts\nB is an eligible lead technician whose name matches no other technician when searched",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open Work Orders, pick Board View and search for the unique customer",
+   "expected": "Unassigned shows 0, A's column shows both cards, B's column shows 0",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Focus New work order and press Tab",
+   "expected": "Focus enters the board on the Unassigned column header",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press ArrowRight, then ArrowDown",
+   "expected": "Focus moves to A's column header, then to A's first card",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press Tab, then Enter",
+   "expected": "Focus moves to the card's More actions, and the menu opens with focus on Reassign lead technician",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press Enter",
+   "expected": "The Reassign lead technician dialog opens with the search field focused and A selected",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press Escape",
+   "expected": "The dialog closes, nothing changes, and focus is back on the card's More actions",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press Enter twice",
+   "expected": "The menu and then the dialog reopen, with A selected and the search empty",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Type B's name, press Tab, then ArrowDown",
+   "expected": "Only Unassigned and B are listed, and B is selected and focused",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press Tab twice to reach Reassign and press Enter",
+   "expected": "\"Lead technician updated\" shows, the dialog closes, the card moves to B's column, and the counts read A 1 and B 1",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Check where focus is",
+   "expected": "The other card, still in A's column, has focus",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Reload the page cold",
+   "expected": "The card is in B's column and the other card is still in A's column",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}

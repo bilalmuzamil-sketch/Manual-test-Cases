@@ -1,0 +1,61 @@
+{
+ "id": 204101,
+ "title": "Fields to display on Board View apply to the cards and persist",
+ "section_id": 13240,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 2,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1790936065,
+ "updated_by": 1,
+ "updated_on": 1791281488,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 13,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as Admin (sees financial data), viewport 1024 px or wider\nThe admin's saved Work Orders view is reset over the API (display List), so Board View shows its default fields\nA throwaway customer with a unique name and no pinned note, with a vehicle carrying a known VIN\nOne work order with one line for that customer and vehicle; seeding is pinned to the browser's current location",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open /workorders, pick Board View from the display switcher, and search for the unique customer name",
+   "expected": "The work order's card shows the customer name and no VIN",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Open Fields to display",
+   "expected": "Customer is on and VIN/serial is off",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Turn Customer off and VIN/serial on",
+   "expected": "Without a reload, the card no longer shows the customer and shows the vehicle VIN",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Once the preference is saved, reload the page cold with the same search",
+   "expected": "Board View reopens, and the card still shows the VIN and no customer. In Fields to display, Customer is off and VIN/serial is on\n\nBoard View field choices apply to the cards immediately and are restored from the account after a reload, and the newly shown field renders the work order's real VIN",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}

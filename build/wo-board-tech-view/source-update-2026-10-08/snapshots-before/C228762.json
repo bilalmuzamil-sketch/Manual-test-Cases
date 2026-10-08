@@ -1,0 +1,61 @@
+{
+ "id": 228762,
+ "title": "Collapse a technician group in Tech View and it stays collapsed after a reload",
+ "section_id": 13237,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 2,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791110471,
+ "updated_by": 1,
+ "updated_on": 1791281488,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 18,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as Admin, viewport 1024 px or wider\nThe admin's saved Work Orders view is reset over the API: display List, no collapsed groups and no other Tech View or Board View layout keys\nA throwaway customer with a unique name of at most 30 characters and no pinned note, with one vehicle; seeding is pinned to the browser's current location\nOne work order for that customer, with one line and lead technician A",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open /workorders, pick Tech View from the display switcher, and search for the unique customer name",
+   "expected": "Technician A's group shows a count of 1 with the work order as its row, and its control reads Collapse A",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Collapse technician A's group",
+   "expected": "The work order row leaves the table, A's header stays with its count of 1, and its control reads Expand A",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Once the preference is saved, reload the page cold at the same URL",
+   "expected": "Tech View reopens, and A's group is still collapsed with a count of 1, and the work order row is not shown under it",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Expand technician A's group",
+   "expected": "The work order row is back under A's header\n\nCollapsing a technician group hides its work orders but keeps its header and count; the collapse is restored from the account after a reload; and expanding brings the rows back",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}
