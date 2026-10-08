@@ -37,7 +37,7 @@ Build marker re-read before posting: unchanged. Ticket re-read: Ready for Produc
 
 ## Production state after the test
 - `documentDesign` = **legacy** (as before) — restored and read back.
-- **Left in place, waiting on the QA lead:** invoices S2-965, S2-966, P2-79 and their work orders / part sale. The posted "how to see it" steps point at S2-965 / S2-966. Stock used: A146 8 → 5, A256 5 → 2, A35 40 → 39 (`data/stock-before.json`).
+- **Left in place on the QA lead's ruling (8 Oct, answer: "Keep them") so the comment's steps keep working:** invoices S2-965, S2-966, P2-79 and their work orders / part sale. The posted "how to see it" steps point at S2-965 / S2-966. Stock used: A146 8 → 5, A256 5 → 2, A35 40 → 39 (`data/stock-before.json`).
 
 ## Learning check
 - The browser bridge must run as its own long-lived background task (`node build/testing-tools/staging-bridge.mjs` with run_in_background); started with `nohup … &` inside a normal shell call it died when the call's shell was reset. Recorded in the playbook.
