@@ -208,15 +208,16 @@ await run('C368161', async () => {
   R.C368161 = { wo: w.number, lead: 'Esther Howard', lineTech: 'Aaron Baker' };
   const canned = (await a.get('/api/work-orders/canned-lines')).body?.data; const cl = (Array.isArray(canned) ? canned : canned?.collection ?? [])[0];
   if (!w.linesCount) { const r = await a.post(`/api/work-orders/${w.id}/lines/create-from-canned-line`, { canned_line_id: cl?.id, status: 'authorized' }); R.C368161.lineCreate = r.status; }
-  // give the line to Aaron Baker through the line editor (click the line > Add Technician > Save & Close)
-  await p.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
+  // give the line to Aaron Baker through the line editor (click the line > Add Technician > Save & Close) — done once
+  // (2026-10-08, the editor saved PUT /api/work-orders/lines/<id>/technicians {staffIds:[Aaron Baker]}); not repeated
+  if (!process.env.LINE_DONE) await p.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
   calls.length = 0;
   R.C368161.canned = cl?.name ?? cl?.title ?? cl?.line_name ?? JSON.stringify(cl).slice(0, 120);
   R.C368161.linesPageText = ((await p.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText`)) as string).replace(/\s+/g, ' ').slice(0, 300);
-  await p.waitForTimeout(5000);
-  await p.getByText(/Transmission service/i).first().click().catch((e) => { R.C368161.lineClick = String(e.message).slice(0, 80); }); await p.waitForTimeout(2500); await shot(p, 'C368161-line-editor');
+  if (!process.env.LINE_DONE) { await p.waitForTimeout(5000);
+  await p.getByText(/Transmission service/i).first().click().catch((e) => { R.C368161.lineClick = String(e.message).slice(0, 80); }); } await p.waitForTimeout(2500); await shot(p, 'C368161-line-editor');
   const add = p.locator('.q-dialog .q-field').filter({ hasText: /Add technician/i }).first(); R.C368161.editorOpen = await add.count();
-  if (await add.count()) {
+  if (!process.env.LINE_DONE && await add.count()) {
     await add.click(); await p.waitForTimeout(1500);
     R.C368161.techOptions = (await p.locator('.q-menu .q-item, [role=option]').allInnerTexts()).slice(0, 8);
     await p.locator('.q-menu .q-item, [role=option]').filter({ hasText: 'Aaron Baker' }).first().click().catch(async () => { await p.keyboard.type('Aaron Baker'); await p.waitForTimeout(1500); await p.locator('.q-menu .q-item, [role=option]').filter({ hasText: 'Aaron Baker' }).first().click(); });
