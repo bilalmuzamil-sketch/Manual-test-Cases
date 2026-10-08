@@ -1,0 +1,96 @@
+{
+ "id": 335321,
+ "title": "Owner expands a collapsed Tech View group and opens a work order using only the keyboard, and Tab returns to it after Back",
+ "section_id": 13246,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791320503,
+ "updated_by": 1,
+ "updated_on": 1791321604,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 5,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as Admin, viewport 1280 px or wider; browser pinned to the fixture workplace\nSaved Work Orders view reset over the API, then technician A pinned and A's group saved as collapsed\nA throwaway customer with a unique name and no pinned note\nOne work order for that customer with one line and lead technician A",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open Work Orders, pick Tech View and search for the unique customer",
+   "expected": "A's group header shows 1 work order and is collapsed, with no work order row under it",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Focus New work order and press Tab",
+   "expected": "Focus enters the table on the first row on screen",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press ArrowDown until A's group header has focus",
+   "expected": "A's group header row is focused",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press Tab",
+   "expected": "Focus moves to the Expand A button",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press Enter",
+   "expected": "A's group expands (the button now reads Collapse A) and its work order row appears",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press ArrowDown",
+   "expected": "The work order's row is focused",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press Enter",
+   "expected": "The work order opens",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Go Back in the browser",
+   "expected": "Tech View returns where it was, with A's group still expanded",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Focus New work order and press Tab",
+   "expected": "Focus lands on the same work order's row",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}

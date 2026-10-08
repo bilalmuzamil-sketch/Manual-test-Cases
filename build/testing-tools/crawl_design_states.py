@@ -162,11 +162,28 @@ def main():
             page.evaluate("() => { try { localStorage.clear(); sessionStorage.clear(); } catch (e) {} }")
             page.wait_for_timeout(1500); page.mouse.move(2, 2)
 
+        def sel(k): return '[data-crawl-key="' + k.replace('\\', '\\\\').replace('"', '\\"') + '"]'
+
+        def reveal(k):  # buttons that only appear while the pointer is over their row / card: hover that container first
+            m = re.search(r"\|g:([^ |#]*)(?: wo:([^|#]*))?", k)
+            if m and m.group(2):
+                c = page.locator(f'[data-wo="{m.group(2)}"]')
+                if c.count(): c.first.hover(timeout=3000, force=True); page.wait_for_timeout(150); return
+            # no row/card id in the key (e.g. List rows): hover rows/cards one by one until the element is there
+            rows = page.locator('tr, [data-wo], [role=row]')
+            for i in range(min(rows.count(), 80)):
+                try: rows.nth(i).hover(timeout=1500, force=True)
+                except Exception: continue
+                page.wait_for_timeout(80); page.evaluate(ENUM_JS)
+                if page.locator(sel(k)).count(): return
+
         def act(el_key, action, arg=None):
-            loc = page.locator(f'[data-crawl-key="{el_key}"]')
+            loc = page.locator(sel(el_key))
             if loc.count() == 0:
                 page.evaluate(ENUM_JS)  # re-tag keys only when the DOM was re-rendered
-                loc = page.locator(f'[data-crawl-key="{el_key}"]')
+                loc = page.locator(sel(el_key))
+            if loc.count() == 0:
+                reveal(el_key); page.evaluate(ENUM_JS); loc = page.locator(sel(el_key))
             if loc.count() == 0: raise RuntimeError("element not found: " + el_key)
             loc = loc.first
             try: loc.scroll_into_view_if_needed(timeout=3000)
@@ -181,10 +198,13 @@ def main():
             elif action == "type": loc.fill(arg, timeout=3000)
             elif action == "select": loc.select_option(arg, timeout=3000)
             elif action == "drag":
-                tgt = page.locator(f'[data-crawl-key="{arg}"]')
-                if tgt.count() == 0: page.evaluate(ENUM_JS); tgt = page.locator(f'[data-crawl-key="{arg}"]')
+                tgt = page.locator(sel(arg))
+                if tgt.count() == 0: page.evaluate(ENUM_JS); tgt = page.locator(sel(arg))
                 tgt = tgt.first
-                loc.drag_to(tgt, timeout=5000)
+                try: loc.drag_to(tgt, timeout=5000)
+                except Exception as ex:  # drop zone covered by a sticky header / another layer: drag anyway
+                    if "Timeout" not in str(ex): raise
+                    loc.drag_to(tgt, timeout=8000, force=True); FORCED.append(el_key)
             page.wait_for_timeout(a.wait)
 
         def goto_state(path):
@@ -270,7 +290,7 @@ def main():
                     fp, t = snap(); new = [l for l in t["lines"] if l not in base_lines]
                     rec.update({"changed": fp != base_fp, "new_text": new[:60], "overlays": t["overlays"]})
                     if action == "hover":
-                        tip = page.evaluate("(k) => { const e = document.querySelector('[data-crawl-key=\"' + k + '\"]'); if (!e) return ''; let n = e, t = []; for (let i = 0; n && i < 4; i++, n = n.parentElement) { for (const a of ['title','data-tip-text','data-tip','aria-label']) { const v = n.getAttribute && n.getAttribute(a); if (v && !t.includes(v)) t.push(a + '=' + v); } } return t.join(' | ') }", e["key"])
+                        tip = page.evaluate("(k) => { const e = [...document.querySelectorAll('[data-crawl-key]')].find(x => x.getAttribute('data-crawl-key') === k); if (!e) return ''; let n = e, t = []; for (let i = 0; n && i < 4; i++, n = n.parentElement) { for (const a of ['title','data-tip-text','data-tip','aria-label']) { const v = n.getAttribute && n.getAttribute(a); if (v && !t.includes(v)) t.push(a + '=' + v); } } return t.join(' | ') }", e["key"])
                         rec["tooltip"] = tip
                     if fp != base_fp and action != "hover":
                         novel = [l for l in t["lines"] if shape(l) not in seen_lines]

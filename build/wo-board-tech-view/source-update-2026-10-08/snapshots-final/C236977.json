@@ -1,0 +1,68 @@
+{
+ "id": 236977,
+ "title": "Owner drags a work order card to another technician and then to Unassigned on Board View",
+ "section_id": 13244,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791232624,
+ "updated_by": 1,
+ "updated_on": 1791281449,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 14,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as Admin, viewport at least 1280 px wide.\nSaved Work Orders view reset over the API (display List, no layout keys). Technicians A and B pinned; the Line technicians board field on.\nA work order for a unique customer, lead technician A, with three lines added in this order: one with no technician, one assigned to technician C, one assigned to A. No shifts for A on it.",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open Work Orders, pick Board View, and search for the unique customer.",
+   "expected": "The card is in A's column, its Line technicians shows A then C, and the counts read A 1, B 0.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Drag the card onto B's column and release.",
+   "expected": "A drop indicator shows over B; then \"Lead technician updated\", the card in B's column, counts A 0 and B 1, and Line technicians B then C with A gone.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Reload the page cold.",
+   "expected": "The card is still in B's column, showing B then C.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Drag the card onto the Unassigned column and release.",
+   "expected": "\"Lead technician removed\", the card in Unassigned, B's count 0, and Line technicians showing only C.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Reload the page cold.",
+   "expected": "The card is still in Unassigned, showing only C.",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}
