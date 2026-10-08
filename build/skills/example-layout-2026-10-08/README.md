@@ -37,3 +37,8 @@
   - New combined doc, with Part 1 for the manual tester and Part 2 for Claude: https://docs.google.com/document/d/12puP022sjAh3-LgkvogjaYw-WnT4hI62uR1K4HrfkxY/edit
   - The earlier Claude-only doc 18wB2oHK… is superseded and not trashed.
   - Steps and expected results are unchanged; the display check is OK.
+- **8 Oct 2026, fifth amendment (PERMANENT):**
+  - C425784 now uses {Location}, {Part}, {Work order} and {Line}, with "(for example …)" on every example value.
+  - New doc v2: https://docs.google.com/document/d/1IKNq5uHgWp7oSRWEJrI678wZ89_FewPRWtmATFqYHDM/edit
+  - Superseded docs, not trashed: 12puP022… and 18wB2oHK….
+  - Source, quotes and marker are unchanged; the display check is OK.

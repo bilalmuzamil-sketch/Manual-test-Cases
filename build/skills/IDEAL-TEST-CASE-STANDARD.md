@@ -49,6 +49,12 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
   and Expected use only placeholders; every plain expected result starts with **"Step n:"**; every case has **its own
   ZZAUTOTEST data**, never shared. Worked example: C96950 in
   `build/wo-board-tech-view/source-update-2026-10-08/HANDOVER-TO-BUILD-VERIFICATION-CASE-LAYOUT-2026-10-08.md`.
+- **🔴 PLACEHOLDERS AND EXAMPLES — PERMANENT, 2026-10-08 (fifth amendment):**
+  - Placeholders go in **{} braces with plain names** ({Location}, {Part}, {Work order}, {Line}), not [square brackets].
+  - Every value that is only an illustration is written **"(for example …)"**, never as if it exists in the app.
+  - Fixed values appear only where the test depends on them.
+  - This applies to Preconditions, Steps, the plain expected results and the setup doc. Quotes are untouched.
+  - Example: C425784.
 - **🔴 CURRENT LAYOUT — PERMANENT, 2026-10-08 (fourth amendment; supersedes the "Needs:" line and the third amendment's case/doc split):**
   1. **Preconditions field:** the link "Setup (manual QA tester and Claude session)", a line break, then **"Preconditions"**. These state clearly and completely what must be true before step 1: user and role, location, and every record with its state and values, as [placeholders]. No Needs line, no browser count or duration. Anything genuinely needed (a second user, a phone, a window width) is its own line.
   2. **No Setup block in TestRail.** The attached public Google Doc holds **Part 1 "Setup for manual QA tester"** and **Part 2 "Setup for Claude session"**. It is created in the Drive folder "Setup for Claude session (test case setup docs)" and never contains a secret.

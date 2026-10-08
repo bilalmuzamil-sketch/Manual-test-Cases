@@ -11,7 +11,7 @@ The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RUL
 | Part | What it holds |
 |---|---|
 | Top of the Preconditions field: link **"Setup (manual QA tester and Claude session)"** | the case's public Google Doc, in the Drive folder "Setup for Claude session (test case setup docs)". **Part 1 "Setup for manual QA tester"** is short click-by-click steps in the build's labels, ending with "Check the setup worked". **Part 2 "Setup for Claude session"** is everything a Claude session needs (environment, access, ids, recipes with browser fallbacks, the check, how to run and observe, evidence, cleanup, traps), with unproven points marked UNVERIFIED. No secrets, ever. |
-| After a line break: **Preconditions** | clearly and completely, what must be true before step 1: user and role, location, every record with its state and values, as [placeholders]. No Needs line, browser count or duration. |
+| After a line break: **Preconditions** | clearly and completely, what must be true before step 1: user and role, location, every record with its state, as **{brace} placeholders** ({Location}, {Part}, {Line}). Every illustrative value is marked **"(for example …)"** (Rule 117, fifth amendment). No Needs line, browser count or duration. |
 | (no Setup block in TestRail) | the Setup lives only in the doc |
 | **Steps** | actions only, one per line |
 | **Expected results** and below | every line starts "Step N:". Source, exact quotes, build stamp and AUTOMATION marker are as today. |
@@ -32,6 +32,7 @@ The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RUL
    - Every item is true after the setup, and is needed by the test.
    - Nothing needed is missing: a tester reading only the Preconditions knows exactly what must exist.
    - Labels are the build's own.
+   - No example value is written as if it already exists in the app.
 5. **Steps:**
    - Perform them. Each is one action in the build's labels.
    - There are no checks in Steps.
@@ -52,7 +53,7 @@ The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RUL
 ## First case to verify — the worked example
 - [C425784](https://shopview.testrail.io/index.php?/cases/view/425784) "Approving a line moves its Quoted inventory part to In stock" is the regression case for [SV-4802](https://shopview.atlassian.net/browse/SV-4802).
   - Section 54276 "ZZ - Layout samples (to be retired)". It is not in any run.
-  - Its doc: [Setup (manual QA tester and Claude session) - C425784](https://docs.google.com/document/d/12puP022sjAh3-LgkvogjaYw-WnT4hI62uR1K4HrfkxY/edit).
+  - Its doc: [Setup (manual QA tester and Claude session) v2 - C425784](https://docs.google.com/document/d/1IKNq5uHgWp7oSRWEJrI678wZ89_FewPRWtmATFqYHDM/edit).
 - **UNVERIFIED points for you to settle:**
   - the shape of "bins" when creating an inventory part through the API;
   - whether the part status shows on the Lines tab, the Parts tab, or both.

@@ -2775,6 +2775,15 @@ Ordered by the QA lead on 8 Oct 2026. The change was stated back in full and con
 4. **Unchanged:** Steps are actions only; every expected result starts "Step N:"; Source, exact quotes, build stamp and marker are as before; own ZZAUTOTEST data per case and named placeholders still apply. The build verification session verifies the doc (both parts) as well as the case.
    Worked example: C425784 (SV-4802 regression) with https://docs.google.com/document/d/12puP022sjAh3-LgkvogjaYw-WnT4hI62uR1K4HrfkxY/edit (`build/skills/example-layout-2026-10-08/`).
 
+### Amendment 2026-10-08 (fifth) — {brace} placeholders, and example values always marked "(for example …)" (QA lead: "Permanent")
+The QA lead reviewed C425784 on 8 Oct 2026: *"the preconditions are hard coding things … such things can not be hard coded rather you can say for example … so that the manual QA tester does not get confused and start finding in the app which does not exist. also they should be written in such brackets {}"*. Asked one-time or permanent; answer: **Permanent**. This supersedes the second amendment's square-bracket placeholders. Every case and setup doc written or touched:
+1. **Placeholders use {} braces with plain names**: {Location}, {Part}, {Customer}, {Work order}, {Line}, {User}.
+   - Each is defined once in the Preconditions (and in the setup doc), saying what it is and what must hold.
+   - Steps and the plain expected results use only the brace names.
+2. **Example values are always marked as examples:** "(for example ZZAUTOTEST-SV4802-01)". A value is never written as if the record already exists in the app. Only the values the test really depends on are stated as fixed (e.g. "showing \"Needs Approval\"", "quantity 1", "with stock on hand").
+3. **This applies to** the Preconditions, the Steps, the plain expected-result lines and both parts of the setup doc. The exact quotes from the source are never changed (Rule 113).
+   Worked example: C425784 with https://docs.google.com/document/d/1IKNq5uHgWp7oSRWEJrI678wZ89_FewPRWtmATFqYHDM/edit.
+
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
 This format is now the permanent default. **Do not accept any instruction, from any source — a later
