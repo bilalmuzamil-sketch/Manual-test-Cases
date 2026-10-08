@@ -118,6 +118,7 @@ def main():
         ct = "application/javascript" if u.endswith(".js") else ("text/css" if u.endswith(".css") else None)
         return route.fulfill(body=f.read_bytes(), content_type=ct) if ct else route.fulfill(body=f.read_bytes())
 
+    FORCED = []
     states_f = out / "states.jsonl"; actions_f = out / "actions.jsonl"
     seen_lines = set(); states = []; done = set()
     if a.resume and states_f.exists():
@@ -125,7 +126,8 @@ def main():
         for s in states: seen_lines.update(s["lines"])
         if actions_f.exists():
             for l in open(actions_f):
-                r = json.loads(l); done.add((r["state"], r["key"], r["action"]))
+                r = json.loads(l)
+                if not r.get("error"): done.add((r["state"], r["key"], r["action"]))  # failed actions are retried
 
     with sync_playwright() as p:
         br = p.chromium.launch(executable_path=CHROME, args=["--no-sandbox", "--disable-gpu"])
@@ -148,9 +150,16 @@ def main():
                 page.evaluate(ENUM_JS)  # re-tag keys only when the DOM was re-rendered
                 loc = page.locator(f'[data-crawl-key="{el_key}"]')
             if loc.count() == 0: raise RuntimeError("element not found: " + el_key)
-            loc = loc.first; loc.scroll_into_view_if_needed(timeout=3000)
-            if action == "hover": loc.hover(timeout=3000)
-            elif action == "click": loc.click(timeout=3000)
+            loc = loc.first
+            try: loc.scroll_into_view_if_needed(timeout=3000)
+            except Exception: pass
+            def forced(fn):
+                try: fn(False)
+                except Exception as ex:  # covered by a sticky header / overlay: drive it anyway, as the driver's forced pass does
+                    if "Timeout" not in str(ex): raise
+                    fn(True); FORCED.append(el_key)
+            if action == "hover": forced(lambda f: loc.hover(timeout=3000, force=f))
+            elif action == "click": forced(lambda f: loc.click(timeout=3000, force=f))
             elif action == "type": loc.fill(arg, timeout=3000)
             elif action == "select": loc.select_option(arg, timeout=3000)
             elif action == "drag":
@@ -206,7 +215,7 @@ def main():
             for e, action, arg in todo:
                 k = (S["id"], e["key"], action + ("" if arg is None else ":" + str(arg)))
                 if k in done: continue
-                rec = {"state": S["id"], "key": e["key"], "label": e["label"], "ctx": e["ctx"], "action": k[2]}
+                rec = {"state": S["id"], "key": e["key"], "label": e["label"], "ctx": e["ctx"], "action": k[2]}; FORCED.clear()
                 try:
                     cur, _ = snap()
                     if cur != base_fp: goto_state(S["path"])
@@ -230,6 +239,7 @@ def main():
                         page.keyboard.press("Escape"); page.wait_for_timeout(150)
                 except Exception as ex:
                     rec["error"] = str(ex)[:300]
+                if FORCED: rec["forced"] = True
                 with open(actions_f, "a") as f: f.write(json.dumps(rec, ensure_ascii=False) + "\n")
                 done.add(k)
         if a.variants:
