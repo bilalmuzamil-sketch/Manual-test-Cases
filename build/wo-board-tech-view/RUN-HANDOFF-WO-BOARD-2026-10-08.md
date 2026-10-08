@@ -1,7 +1,7 @@
 # Run hand-off — WO Board / Tech View — 8 Oct 2026 (build sv10043 v26.40.8-7a95011)
 
 Suite: TestRail group 13204 (feature, 170 ours + 18 Vladimir's) and 47109 (regression, 83). Run 498 (253 tests; Vladimir's 18 not in the run).
-**Ready for testers:** 225 READY cases (feature 158 + regression 62 + … see live markers). **Not ready:** 28 HOLD with plain reasons.
+**Ready for testers:** 225 READY cases (feature 158 + regression 67). **Not ready:** 28 HOLD with plain reasons.
 
 ## Before testing
 - Sign in with the Admin quick-login button; a second user (where a case needs one) is invited and accepts the invitation (QA lead, 8 Oct).

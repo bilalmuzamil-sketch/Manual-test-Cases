@@ -45,7 +45,7 @@
   its own ZZAUTOTEST customer; damage-checked before writing (`scripts/layout_check.py`: Expected unchanged, step references intact, no dropped
   labels/setup actions, no shared customers), served fr-view 157/157, runnable 157/157. **13 held** until their setup claims are seen on the site:
   C96914, C96915, C96944, C96954, C96959, C96975, C96980, C96984, C96997, C97027, C154648, C368130, C368158 (list: SITE-CHECKS-AFTER-WALKER.md).
-- **Regression folder 47109: 74 of 83 build-verified and written** (READY 62 + HOLD 12 with plain reasons), served fr-view, runnable. 11 carry "What you
+- **Regression folder 47109: 74 of 83 build-verified and written** (READY 67 + HOLD 7 with plain reasons), served fr-view, runnable. 11 carry "What you
   should see today" (C368165, C368181, C368204, C368211, C368216, C368221, C368233, C368234, C368235, C368236, C368242). **9 held, not walked:**
   C368169–C368171 (no way to open Edit Work Order found — unproved), C368197 (no page control; scroll loads more — unproved), C368213, C368217 (order/
   receive/return not walked), C368191, C368240, C368244 (sign-in expired mid-walk). Also to revisit: C368247 (seed an Imported work order via Data Import).
