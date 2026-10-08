@@ -23,7 +23,9 @@ const cookieDomain = env => env==='branch' ? '.qa.shopview.com' : '.shopview.com
 function port(dir){ return fs.readFileSync(dir+'/port.txt','utf8').trim(); }
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw='analyst1',
-                            cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null}={}){
+                            cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin'}={}){
+  // quick: which dev quick-login button to press on staging/branches ('admin' | 'tech'). Added 2026-10-08:
+  // the option was being passed by callers but silently ignored, so a 'tech' run was really an admin run.
   // record: a folder path -> the whole session is filmed (see recording.mjs: finishRecording()).
   const H = env==='prod' ? PROD : env==='staging' ? STAGING : branch(ticket);
   const b = await chromium.launch({executablePath:CHROME, args:[
@@ -56,7 +58,7 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
     // Cookies authenticate the API, but the SPA keeps its own auth state, so a cookie-only
     // context still bounces to /login. Staging carries the same dev quick-login panel the
     // per-ticket branches have — one click hydrates the app.
-    await p.click('[data-test-id="button_quick_login_admin"]').catch(()=>{});
+    await p.click(`[data-test-id="button_quick_login_${quick}"]`).catch(()=>{});
     await p.waitForURL(u=>!/\/login/.test(u.toString()),{timeout:60000}).catch(()=>{});
   } else {
     // per-ticket branches park themselves: click Wake Up until the app renders
@@ -68,7 +70,7 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
       await p.mouse.click(w.x,w.y); await p.waitForTimeout(40000);
       await p.goto(H.app+'/login',{waitUntil:'domcontentloaded',timeout:120000}); await settle();
     }
-    await p.click('[data-test-id="button_quick_login_admin"]').catch(()=>{});
+    await p.click(`[data-test-id="button_quick_login_${quick}"]`).catch(()=>{});
     await p.waitForURL(u=>!/\/login/.test(u.toString()),{timeout:60000}).catch(()=>{});
   }
   await settle();

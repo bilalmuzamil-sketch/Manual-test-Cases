@@ -1,0 +1,51 @@
+{panel:bgColor=#e3fcef|borderColor=#36b37e}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Re-tested on the QA branch [sv10599.qa.shopview.com|https://sv10599.qa.shopview.com] (build {{v26.40.12-9176f26}}) on 8 October 2026, for the two counts Chris asked to change in [comment 78129|https://shopview.atlassian.net/browse/SV-10599?focusedCommentId=78129]. All 11 checks passed.
+
+{quote}"Counts: make them match the badge. The collapsed line row and the Work Orders list bubble leave out parts with 0 or less on hand, so "In Stock" means the same thing everywhere on screen. Pick and auto-pick stay as they are."{quote}
+
+* The folded line on the {{Parts}} tab and the hover box on the {{Work Orders}} list now count only parts that have stock on hand.
+* Parts with 0 or less on hand are left out of both, just like their badge.
+
+h3. Before and after
+
+!01-same-work-order-before-after.png|width=1910,height=580!
+_The same work order, S10599-17581, with the same parts and stock: yesterday it said "3 In Stock", today "1 In Stock". Only FLAT HOOK WINCH STRAP (10 on hand) is counted; the parts at 0 and -3 are left out._
+
+!02-production-vs-qa.png|width=1910,height=557!
+_Production still counts a part with 0 on hand ("2 In Stock", "2 Parts In Stock"). The QA branch, with the same kind of line, counts only the stocked part ("1 In Stock", "1 Part In Stock")._
+
+h3. What I checked
+
+||#||Check||Status||
+|1|S10599-17581 (one part with 10 on hand, one at 0, one at -3, one vendor part): the folded line on the {{Parts}} tab reads {{1 Auth To Order}} {{1 In Stock}}|PASSED|
+|2|S10599-17581 on the {{Work Orders}} list: the hover box reads {{1 Part Ready to Order}} {{1 Part In Stock}}|PASSED|
+|3|A line whose only part has 0 on hand (S10599-17584): no In Stock count on the folded line, and no blue circle on the list|PASSED|
+|4|Stock arrives (0 to 3): the part is counted ({{1 In Stock}}, {{1 Part In Stock}}). Stock goes back to 0: it is left out again|PASSED|
+|5|A part that needs 5 with only 2 on hand is still counted (only 0 or less is left out)|PASSED|
+|6|Two lines on one work order (S10599-17585): line 1 (only a part at 0) shows no count, line 2 shows {{1 In Stock}}; the list reads {{1 Part In Stock}}|PASSED|
+|7|Part with a core (S10599-17582): with 3 on hand the folded line reads {{2 In Stock}} (the part and its {{Core for ...}} row, both showing the badge) and the list reads {{1 Part In Stock}}; with 0 on hand, neither is counted|PASSED|
+|8|{{Pick}} is still offered on a part with 0 on hand and works as before (stock went to -1 and the part moved to {{Received}})|PASSED|
+|9|The {{In Stock}} badge is still hidden on parts with 0 or less on hand|PASSED|
+|10|Logged in as the Technician: the list hover box shows the same counts (the Technician has no {{Parts}} tab)|PASSED|
+|11|Phone width: the folded line on the {{Parts}} tab shows the same counts|PASSED|
+
+The {{Part Sales}} list shows no In Stock count on screen (only the status, a {{Parts}} total and {{Returns}}), so there was nothing to compare there.
+
+!03-two-lines-qa.png|width=1290,height=356!
+_Each line is counted on its own._
+
+h3. How to see it yourself
+
+# Open [sv10599.qa.shopview.com|https://sv10599.qa.shopview.com] and click the *Admin* quick-login button.
+# In the top menu, click {{Work Orders}}.
+# Above the list, on the right, click {{Search}} (the magnifying glass) and type *S10599-17581*.
+# In that row's {{Status}} column there is a green {{Approved}} label with a small blue circle on its top-right corner showing *2*. Move the mouse pointer over the blue circle (don't click). A dark box appears that reads {{1 Part Ready to Order}} and {{1 Part In Stock}}.
+# Click *S10599-17581* in the {{Number}} column to open the work order.
+# At the top of the work order, click the {{Parts (4)}} tab (next to {{Lines}}).
+# Find the grey row that reads *1 - Service - Battery service - Corrosion/ preventative maintenence* and click the small arrow at the left end of that row. The parts fold away and the end of the row reads {{1 Auth To Order}} and {{1 In Stock}}.
+
+*Why 1:* of the three stock parts, only *FLAT HOOK WINCH STRAP HiVis 4"* has stock (10). *Load Spring IHC* (-3) and *SPINDLE NUT KIT* (0) are left out.
+
