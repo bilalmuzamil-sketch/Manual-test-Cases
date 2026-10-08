@@ -12,6 +12,7 @@ Source reconciliation: NOT done this pass — the QA lead will check the cases a
 | D1 | C96918 | A search that finds nothing says *No work orders match the search "…"* and offers no Clear filters | SV-10044 (Ready for QA when read on 2026-10-08) | `D1-C96918-board-annotated.png` |
 | D3 | C96929 | Before anyone reorders a group, Tech View and Board View list its work orders in the order they were made, not in List's default order (Customer A-Z) | SV-10045 (Story 2) — status to be read live before asking | picture to be made with the 2x recapture |
 | D4 | C96938 | Hovering a technician's avatar in a Tech View group header shows no name | SV-10045 (Story 2) — status to be read live before asking | `D4-C96938-tech-annotated.png` |
+| D5 | C368131 | A technician whose Location field no longer includes this location is still offered here, and their pinned column keeps "Drag a work order here to assign it" instead of "No work orders" | SV-10046 (Story 3) — status to be read live before asking | picture to be made with the 2x recapture |
 | D2 | C96923 | After changing location, Assigned to me stays switched on (List, Tech View and Board View alike) | SV-10044 | `D2-C96923-board-annotated.png` |
 
 ## D1 — C96918 · No-results message and its Clear filters action
@@ -63,3 +64,14 @@ read Lethbridge.
 
 **What you will see:** nothing on the avatar; the name shows the browser's own hover text with the full name.
 **What the case expects:** hovering the avatar shows the technician's full name (and the long-name header or its avatar shows the full name even when shortened).
+
+## D5 — C368131 · Changing a technician's Location does not take them off this location
+
+**Steps to check by hand**
+1. Settings > Staff > edit a technician who is enrolled at two locations (on this branch: Ayesha Khan) > Location = Staging Lethbridge - 4310 > Save & Close.
+2. Back at Staging Heavy Duty - 9919: Work Orders > Board View. Look at her column; open any card's More actions > Reassign lead technician and look for her name.
+3. Afterwards set her Location back to Staging Heavy Duty - 9919.
+
+**What you will see:** her column is still there with "Drag a work order here to assign it", and she is still offered as a lead technician.
+**What the case expects:** a technician no longer at this location shows "No work orders" in their (pinned) column and cannot be given work here.
+**Note:** a technician enrolled at only one location cannot have it removed at all (the Location list offers only that one), so the case's step 2 cannot be followed as written. The deactivated half of the same case passed.

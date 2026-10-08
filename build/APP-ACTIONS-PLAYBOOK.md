@@ -5783,3 +5783,18 @@ three wrong characterisations before it was found — see learning **L0233**.
 - **Location menu:** initials > the orange button under "Change Location:" > pick. Seen 2026-10-08: after moving to
   Lethbridge the orange button still read Heavy Duty and picking Heavy Duty did nothing; a new sign-in starts at the
   default location. The API `iam/change-location` changes the server side only, not what the screen shows.
+- **🔴 SEEING THE SCREEN AS ANOTHER PERSON (2026-10-08):** `switch-user` changes the server session only. The sign-in
+  context re-writes the ADMIN's `user` and `fe_permissions_wrapper` into localStorage on every page load, so a page
+  there keeps admin permissions: a view-only person looked able to reassign ("Drag a work order here…" instead of
+  "No work orders"). Use `build/wo-board-tech-view/run498-2026-10-08/viewas.mts`: switch, then open a NEW context with
+  the same cookies and the switched person's own user and permissions written before load; exit-switch afterwards.
+  Server-side things (saved display, pins, sort) were right either way. A crashed run can leave the switch on:
+  call `POST /api/exit-switch-user` at the start of the next script.
+- **Staff form (Settings > Staff > edit):** "Deactivate Account" posts `POST /api/iam/change-status {id:<user id>}`, a
+  toggle; the same call sets them active again. The Location field is ONE location, chosen from the locations the
+  person is enrolled at (their departments). It saves `POST /api/staff/{staffId}/change … workplace_id`. Changing it
+  did NOT stop Ayesha Khan, who is enrolled at both locations, being offered as a lead technician at Heavy Duty. A
+  hidden `.q-dialog` sits in front of the open form, so scope Save & Close as `button:visible`.
+- **`/api/contacts?company_id=` and `/api/vehicles?company_id=` ignore the filter** and return the branch's first rows.
+  Reusing "the customer's vehicle" from them gave every test customer the same Ford Transit with no unit; make each
+  new customer its own vehicle (`data.mts customer()` does now).
