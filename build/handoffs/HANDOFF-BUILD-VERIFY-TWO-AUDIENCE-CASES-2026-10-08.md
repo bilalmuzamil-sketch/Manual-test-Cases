@@ -52,13 +52,16 @@ The layout is permanent: Rule 117, third amendment of 8 Oct, in `build/rules/RUL
 - **Run sync is union only, with `get_tests` paged (L16).**
 - **Secrets stay in `/tmp`** (`chmod 600`); run the secret scan before every commit.
 
-## First case to verify: the worked example
-- [C425783](https://shopview.testrail.io/index.php?/cases/view/425783) "EXAMPLE LAYOUT - A user who never chose a display sees List". It is a copy of C96910 in section 13236 and is not in run 498.
-- Its doc is [Setup for Claude session - C96910](https://docs.google.com/document/d/1ZZE5wE_8YDYugVmM6QGFavU-blJjUWoJZAdk7VSaTtQ/edit). It has three UNVERIFIED points for you to settle:
-  - whether the invitation link can be accepted inside the sign-in gate;
-  - the "+" alias email route;
-  - which call saves the display choice.
-- C425783 will be retired after the QA lead's review. Verify it as the trial of this layout, and report what the doc got right and wrong.
+## First case to verify — the worked example
+- [C425784](https://shopview.testrail.io/index.php?/cases/view/425784) "Approving a line moves its Quoted inventory part to In stock" is the regression case for [SV-4802](https://shopview.atlassian.net/browse/SV-4802).
+  - Section 54276 "ZZ - Layout samples (to be retired)". It is not in any run.
+  - Its doc: [Setup for Claude session - SV-4802](https://docs.google.com/document/d/18wB2oHKhUYBvrWy2Kq-OCtGdmJoeRjkDRkD3zSNbBaM/edit).
+- **UNVERIFIED points for you to settle:**
+  - the shape of "bins" when creating an inventory part through the API;
+  - whether the part status shows on the Lines tab, the Parts tab, or both.
+- **The bug was a screen-refresh bug.** The pass/fail must come from the screen without a reload, never from an API read.
+- The case will be retired after the QA lead's review. Verify it as the trial of this layout, and report what the doc got right and wrong.
+- The earlier example, C425783, was deleted on 8 Oct; ignore any mention of it.
 
 ## Report back (per case)
 Give a table with these columns:

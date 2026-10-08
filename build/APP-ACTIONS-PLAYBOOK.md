@@ -3017,6 +3017,7 @@ from the email, which *contains* the website string. See Standing Rule 110.
   are the keywords. Full runbook: `build/global-search/seeding/RESEED.md`.
 * 🔴 **`delete_case/<id>&soft=1` DELETES on this TestRail — it is NOT a dry run.** Do not reach for it
   as a safe preview.
+* **`delete_case` answers with an EMPTY body on success, and `mr_lib.api` retries on the JSON error. The retry then reports 400 "Field :case_id is not a valid test case." even though the delete WORKED** (seen 2026-10-08 on C425783). Confirm with `get_case`; never "retry the delete".
 * **Deleting a TestRail case also deletes its tests and results everywhere.** Snapshot the full body
   **and** its results first, verify the snapshot, then delete, then count the run before and after.
   Precedent: SBC-EXP-13 (2026-07-28) and C55692 (2026-09-16).

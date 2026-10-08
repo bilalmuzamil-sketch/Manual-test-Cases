@@ -2744,7 +2744,7 @@ plain words and confirmed **PERMANENT** on 8 Oct 2026. Every case written or tou
    shared with another case, so cases run in any order or in parallel on a shared environment.
 
 ### Amendment 2026-10-08 (third) — two audiences: the case for the manual tester, a linked "Setup for claude session" doc for Claude (QA lead: PERMANENT)
-Directed by the QA lead on 8 Oct 2026 and reviewed on example C425783 (a copy of C96910). The change was stated back and adjusted ("That setup for claude session file should be public"), then recorded. Every case written or touched, in every project:
+Directed by the QA lead on 8 Oct 2026 and reviewed on example C425783 (a copy of C96910, since deleted). The change was stated back and adjusted ("That setup for claude session file should be public"), then recorded. Every case written or touched, in every project:
 1. **One Google Doc per test case, titled "Setup for Claude session - C<id> <case title>".**
    - It holds everything an individual Claude session needs to prepare and run that test without rediscovering anything: build and API addresses, how to get and check access, the ids it relies on, exact recipes (screens or API calls), the "check the setup worked" test, how to run and observe the steps, the evidence to keep, cleanup, and the traps that apply.
    - Anything not yet observed on the build is marked UNVERIFIED, with what to record once it is.
@@ -2758,7 +2758,7 @@ Directed by the QA lead on 8 Oct 2026 and reviewed on example C425783 (a copy of
 4. **Expected results:** every line starts "Step N:" (or "Steps N and M:"). Source, exact quotes, build stamp and marker stay exactly as before.
 5. **This replaces** the first 8 Oct amendment's "never only a link to another setup; the essential instructions are in the case" for the Claude-level detail. That detail now lives in the doc; the case keeps what a manual tester needs. The Needs line, named placeholders and own ZZAUTOTEST data per case (second amendment) still apply, in both the case and the doc.
 6. **Build verification covers the doc too.** The build verification session verifies the doc (every address, id, recipe and check, run from scratch) as well as the Preconditions, Setup, Steps and Expected results. It corrects the doc where the build differs, and handles everything from Expected results down exactly as it does today.
-   Worked example: C425783 and https://docs.google.com/document/d/1ZZE5wE_8YDYugVmM6QGFavU-blJjUWoJZAdk7VSaTtQ/edit (`build/skills/example-layout-2026-10-08/`).
+   Worked example: C425784 "Approving a line moves its Quoted inventory part to In stock" (regression of SV-4802, section 54276 "ZZ - Layout samples (to be retired)") with https://docs.google.com/document/d/18wB2oHKhUYBvrWy2Kq-OCtGdmJoeRjkDRkD3zSNbBaM/edit (`build/skills/example-layout-2026-10-08/`). The first example, C425783, was deleted on the QA lead's instruction.
 
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 

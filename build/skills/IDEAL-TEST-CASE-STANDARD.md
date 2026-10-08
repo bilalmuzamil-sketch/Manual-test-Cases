@@ -54,7 +54,7 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
   - The Preconditions field opens with that link, titled **"Setup for claude session"**. After a line break come the manual tester's Preconditions (Needs line plus only what the test depends on) and Setup (short, build labels, ending with a check). A tester never needs the doc.
   - Steps are actions only. Every expected result starts **"Step N:"**.
   - The build verification session verifies the doc too.
-  - Example: C425783 (`build/skills/example-layout-2026-10-08/`).
+  - Example: C425784, the SV-4802 regression (`build/skills/example-layout-2026-10-08/`).
 - **Expected results** — runnable observations (lead) → **Source** (story/spec + version + section, and
   the source-verified/build-verified stamp) → **Exact quotes from the source (verbatim)** → blank line →
   the single **AUTOMATION:** marker, last.
