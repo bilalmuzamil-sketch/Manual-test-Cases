@@ -1,0 +1,10 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs'; import {allFields,toasts,clickTid} from './hh.mjs';
+const s=await ob({dpr:2,vp:{width:1600,height:1000}}); const p=s.page; const R=JSON.parse(fs.readFileSync('ids.json')); const L=[];
+p.on('request',r=>{ if(/\/api\/accounting\/(invoices|vendor-bills)/.test(r.url())&&r.method()!=='GET') L.push('SEND '+r.method()+' '+r.url().replace(/^https:\/\/[^/]+/,'')+' '+(r.postData()||'').slice(0,600)); });
+p.on('response',async r=>{ if(/\/api\/accounting\/(invoices|vendor-bills)/.test(r.url())&&r.request().method()!=='GET'){ let b=''; try{b=await r.text()}catch(e){} L.push('RECV '+r.status()+' '+b.slice(0,300)); }});
+await s.go('/accounting/sales/invoices/'+R.invoice2); await p.waitForTimeout(3000);
+await clickTid(p,'button_copy_accounting_invoice_detail'); await p.waitForTimeout(4000); L.push('URL '+p.url());
+const f=await allFields(p); L.push('fields '+JSON.stringify(f)); await p.screenshot({path:'C0-copy-active.png',fullPage:true});
+await clickTid(p,'button_save_accounting_invoice_new'); await p.waitForTimeout(4000); L.push('after save URL '+p.url()+' toasts '+JSON.stringify(await toasts(p)));
+fs.writeFileSync('C0.json',JSON.stringify(L,null,1)); console.log(L.join('\n').slice(0,4000));
+await s.close();

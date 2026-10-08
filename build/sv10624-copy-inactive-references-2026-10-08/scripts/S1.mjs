@@ -1,0 +1,10 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:1}); await s.go('/accounting/sales/invoices'); const R={};
+const api=(u,m,b)=>s.api(u,m?{method:m,headers:{'content-type':'application/json',accept:'application/json'},body:JSON.stringify(b||{})}:null);
+let r=await api('/api/workplaces/create','POST',{name:'ZZAUTOTEST SV-10624 Location',address_1:'1 Test Rd',state_or_province:'Alberta',postal_code:'T2C 4M5',city:'Calgary',telephone:'(403) 555 - 0101',color:'#888888',timezone:'America/Edmonton',country_code:'CA',shop_id:'10360',tax:[],tax_rate_local:0,tax_rate_federal:0,shop_supplies_charge:0,max_shop_supplies_charge:0,min_shop_supplies_charge:0});
+console.log('workplace',r.status,j(r.json,300)); R.workplace=r.json?.data?.workplace_id||r.json?.workplace_id;
+r=await api('/api/accounting/customers','POST',{name:'ZZAUTOTEST SV-10624 Customer'}); console.log('customer',r.status,j(r.json,300)); R.customer=r.json?.customer?.id;
+r=await api('/api/accounting/vendors','POST',{name:'ZZAUTOTEST SV-10624 Vendor'}); console.log('vendor',r.status,j(r.json,300)); R.vendor=r.json?.vendor?.id;
+r=await api('/api/accounting/tax-codes','POST',{name:'ZZAUTOTEST SV-10624 Tax',rate:0.07}); console.log('tax',r.status,j(r.json,400)); R.tax=r.json?.tax_code?.id;
+fs.writeFileSync('ids.json',JSON.stringify(R,null,1)); console.log(JSON.stringify(R));
+await s.close();

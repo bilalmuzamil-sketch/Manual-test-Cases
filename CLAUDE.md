@@ -5539,6 +5539,7 @@ regression / bug-fix re-testing.
   **SHARED** long-lived environments — `app.staging.shopview.com` (org `d55bc308…`), the `qb`
   env, and **anything on PRODUCTION** — keep the restore-after discipline above, because other
   sessions and other testers depend on their state (Standing Rule 26 drift).
+- **DO NOT TEST ACCOUNTING (AccountingHub) TICKETS FOR NOW — engineering-manager instruction relayed by the QA lead, 2026-10-08.** Stefan Mitrovic, verbatim: *"we don't need anyone testing Accounting tickets for now, because that is more or less MVP for now and it's not being released to everyone, so until we finish with MVP it will be like this. We expect once we're done with MVP to have 1 QA, 1 Dev and 1 PM dedicated for Accounting full time."* If an Accounting ticket is handed over, say so and confirm with the QA lead before testing. Stopped mid-way under this ruling: SV-10624 (nothing posted; state in `build/sv10624-copy-inactive-references-2026-10-08/FINDINGS.md`) and SV-10975/SV-10976 (already Done).
 - Currently **ignore** Digital Inspections, Regression Suite (Minja's API file),
   and Backend API & Security in the Custom Roles execution scope (unless told
   otherwise).
