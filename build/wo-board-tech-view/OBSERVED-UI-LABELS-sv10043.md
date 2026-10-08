@@ -176,3 +176,13 @@ Test data made: customer "ZZAUTOTEST Regression Walk" (contact ZZAUTOTEST Walker
 - Status changes seen: a line saved with `Line Approved` off reads `Needs Approval` with `Approve` / `Decline`; clicking `Decline` on the only line made the work
   order `Declined`. On an Approved line, `Start` on its Labor row made the work order `In Progress`; `Stop` opens "Stop working on <number>, <line>" with
   `Line Completed?`, `What Have You Been Doing On This Line?` and `Clock Out` only — `Clock Out` ("Timesheet clocked out") stopped it.
+- Work order parts (line's Parts row): `Add Part` opens an entry row (`Part number`, `Description *`, `Qty *`, `Category` Uncategorized, `Cost`, `Sell price *`,
+  `More options`, `Save`, close) → "Part added"; part reads `Auth To Order` + `Order` → `Awaiting` + `Receive` → window `Receive parts` (`Vendor missing`,
+  `Assign Vendor`, `Vendor Invoice Number`, `Invoice Date`, `Delivery Note`, row tick + part number + `Qty Received`, `Select All`, `Receive Parts (n)`) →
+  "Parts received."; part menu (three-dots, "Part context menu") on a received part: `Move` `Return` `Move up` `Move down` `Add Part Fee / Discount`;
+  `Return` → `Add new part return request` (`Return Reason`, `Quantity`, `Cancel`, `Save & Close`) → part reads `Returned`. List `Parts` / `Returns`
+  columns then read 2 / 1 (hc28). Part sale: `Order` → `Receive` (same window, vendor pre-filled) → part `Received` with a `Return part` button → same
+  return window; Part Sales list row then reads Parts 2 / Returns 1 (hc31).
+- Work order page buttons: `Change Customer` (window "Change Customer": Customer, Contact, `Cancel`, `Update Customer`), `Change Asset`, `Edit shop supplies
+  charge`, `Edit tech story`; no button opens an "Edit Work Order" window (proved, step1/edit-work-order-unreachable-claim.json).
+- List loads ~33 rows, then more as you scroll; no page buttons or rows-per-page (proved, step1/list-no-paging-claim.json).

@@ -1,0 +1,9 @@
+{"claim":"On sv10043 v26.40.8-7a95011 the desktop Work Orders List has no page buttons or rows-per-page choice; it loads more rows as you scroll",
+ "proofs":{
+ "positive_control":{"passed":true,"evidence":"Same reader found the List rows (33) and their numbers, and after scrolling 71 rows (hc18.log), so it sees rows and controls."},
+ "tried_through_the_screen":{"passed":true,"evidence":"Work Orders page, All tab, scrolled with the mouse wheel to the bottom (hc18)."},
+ "waited_and_retried":{"passed":true,"evidence":"Two attempts after a reload and 7 s settle: 33 rows first, 71 after scrolling, both times; no 'Rows per page' or 'n-m of N' text."},
+ "checked_for_navigation":{"passed":true,"evidence":"URL stayed /workorders; no new tab."},
+ "precondition_read_back":{"passed":true,"evidence":"More than 33 work orders exist at the location (71 loaded after scrolling)."},
+ "searched_the_repo":{"passed":true,"evidence":"git grep 'rows per page' / 'Rows per page' under build/wo-board-tech-view: none observed; regression helper saw the same (notes on C368197)."},
+ "asked_what_would_make_this_my_fault":{"passed":true,"evidence":"Most likely mine: the control sits below the last loaded row and appears only at the true end. Ruled out: no paging words anywhere in the page text after scrolling; rows kept loading instead."}}}
