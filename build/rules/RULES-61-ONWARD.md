@@ -4150,3 +4150,18 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     `verify_suite.py`, `check_runnable_cases.py`, `check_precond_labels.py`, `check_tester_runnable.py`, the served-page fr-view
     scan — AND every assumption list is closed by observation. An item that cannot be seen is HOLD with a plain reason,
     never READY.
+
+    **115-AMENDMENT 2 — THE LANE LIMIT: NEVER OVERSTEP (2026-10-08, QA lead, PERMANENT).** Verbatim: *"Kindly note: Your lane is to Build
+    verify the test cases to make sure that those tests have all as per the build glossary what it needs for the test to be understood and run.
+    Are you sure you are keeping in your lane?"* and *"Why were you overstepping? You have wasted my whole day doing this when you were supposed
+    to just build verify the test cases as asked. Make it a permanent rule for yourself to never overstep ever."*
+    **WHAT THIS LANE DOES — AND ONLY THIS:** for each case, confirm on the build that every label, button, menu, field, route and setting its
+    Preconditions/Setup/Steps name EXISTS and is worded as the screen shows it (the build glossary), that the tester can follow it, and fix the
+    wording/route where it does not match. That is all "seen on the build" means.
+    **WHAT IT NEVER DOES:** (1) never RUN the test — do not perform the case's steps to read its result or decide pass/fail; that is the tester's
+    job. (2) Never run behaviour EXPERIMENTS (repeated tries to see what the app does). (3) Never BUILD a full data state or chase hard-to-make
+    data unless a route cannot otherwise be confirmed — confirming that the setup screen and its fields exist is enough. (4) Never take on side
+    work nobody asked for (extra cleanup, extra investigations, re-architecting cases). (5) Never hand a helper a task wider than this lane — a
+    helper told to "walk" cases will run them. **If something seems to need more than confirming labels and routes, STOP AND ASK first, with
+    the time it would take.** Worked overstep, same day: shift-prompt experiments, reading Parts/Returns results, trying to delete staff and
+    seed a deleted-user line, a helper running all 83 regression cases end to end — most of a day spent outside the lane.
