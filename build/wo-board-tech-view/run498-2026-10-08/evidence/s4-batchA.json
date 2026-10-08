@@ -1,0 +1,223 @@
+{
+ "clearedSwitch": 200,
+ "nina": [
+  "create 400 {\"errors\":[{\"roleId\":\"Role is missing.\"}]}"
+ ],
+ "C96956": {
+  "menuDisabled": false,
+  "list": {
+   "count": 63,
+   "unassigned": true,
+   "esther": true,
+   "ralph": true,
+   "jenny": true,
+   "oliveOffice": false,
+   "timClockuser": false,
+   "inaInactive": false,
+   "nickNoclock": false,
+   "ellaElsewhere": false
+  },
+  "toRalph": {
+   "prompt": null,
+   "toast": [
+    "Lead technician updated"
+   ],
+   "lead": [
+    "S10043-17876 lead=Ralph Edwards"
+   ]
+  },
+  "inRalphColumn": true,
+  "toUnassigned": {
+   "prompt": null,
+   "toast": [
+    "Lead technician removed"
+   ],
+   "lead": [
+    "S10043-17876 lead=none"
+   ]
+  },
+  "inUnassigned": true,
+  "afterCancel": {
+   "lead": [
+    "S10043-17876 lead=none"
+   ],
+   "stillUnassigned": true
+  },
+  "woPageLead": null,
+  "techRowMenu": [
+   "Reassign lead technician"
+  ]
+ },
+ "C96957": {
+  "drag1": {
+   "prompt": null,
+   "message": [
+    "Lead technician updated"
+   ],
+   "goneAfterSec": 9,
+   "lead": [
+    "S10043-17877 lead=Ralph Edwards"
+   ]
+  },
+  "drag2": {
+   "prompt": null,
+   "message": [
+    "Lead technician removed"
+   ],
+   "goneAfterSec": 9,
+   "lead": [
+    "S10043-17877 lead=none"
+   ]
+  }
+ },
+ "C96959": {
+  "before": {
+   "esther": 3,
+   "ralph": 1,
+   "unassigned": 0
+  },
+  "afterDrag": {
+   "esther": 2,
+   "ralph": 2,
+   "unassigned": 0
+  },
+  "afterDialog": {
+   "esther": 2,
+   "ralph": 1,
+   "unassigned": 1
+  },
+  "tech": {
+   "esther": 2,
+   "ralph": 1,
+   "unassigned": 1
+  }
+ },
+ "C96969": {
+  "linesBefore": {
+   "lines": [
+    "Service - Transmission service",
+    "Service - Cabin air filter"
+   ],
+   "lineTechnicians": "{\"lineTechnicians\":[{\"lineId\":\"e59bc039-dee3-48fe-baaa-818feaf6f447\",\"leadTechnicianId\":null,\"derivedFromLeadTech\":false,\"needsTechnicians\":true,\"technicians\":[]},{\"lineId\":\"b68379e2-fdb9-40f4-930d-cf6f683b28fc\",\"leadTechnicianId\":null,\"derivedFromLeadTech\":false,\"needsTechnicians\":true,\"technicians\":[]}]}"
+  },
+  "historyBefore": [
+   "Line created",
+   "Line created",
+   "Lead tech changed",
+   "Created"
+  ],
+  "confirmEnabledForCurrent": true,
+  "message": [],
+  "lead": [
+   "S10043-17882 lead=Esther Howard"
+  ],
+  "linesAfter": {
+   "lines": [
+    "Service - Transmission service",
+    "Service - Cabin air filter"
+   ],
+   "lineTechnicians": "{\"lineTechnicians\":[{\"lineId\":\"e59bc039-dee3-48fe-baaa-818feaf6f447\",\"leadTechnicianId\":null,\"derivedFromLeadTech\":false,\"needsTechnicians\":true,\"technicians\":[]},{\"lineId\":\"b68379e2-fdb9-40f4-930d-cf6f683b28fc\",\"leadTechnicianId\":null,\"derivedFromLeadTech\":false,\"needsTechnicians\":true,\"technicians\":[]}]}"
+  },
+  "historyAfter": [
+   "Line created",
+   "Line created",
+   "Lead tech changed",
+   "Created"
+  ],
+  "controlHistory": [
+   "Lead tech changed",
+   "Line created",
+   "Line created",
+   "Lead tech changed",
+   "Created"
+  ]
+ },
+ "C96967": {
+  "moreActionsButton": 0,
+  "after": {
+   "leads": [
+    "S10043-17886 lead=Esther Howard",
+    "S10043-17885 lead=Esther Howard"
+   ],
+   "order": [
+    "S10043-17885",
+    "S10043-17886"
+   ],
+   "before": [
+    "S10043-17885",
+    "S10043-17886"
+   ],
+   "message": []
+  }
+ },
+ "C96974": {
+  "statuses": [
+   "S10043-17887 approved lead=Esther"
+  ],
+  "error": "Cannot read properties of undefined (reading 'staff_id')"
+ },
+ "C96970": {
+  "estherDeactivated": 201,
+  "nickClockable": false,
+  "leads": [
+   "S10043-17890 lead=Nick Noclock",
+   "S10043-17889 lead=Ralph Edwards",
+   "S10043-17888 lead=Esther Howard"
+  ],
+  "pinnedForTheCheck": "Ralph Edwards, Esther Howard, Nick Noclock (so the three columns stand together)",
+  "Board View": {
+   "esther": {
+    "id": "1161043d-a0e8-42b0-b2c7-63d3e74940ba",
+    "name": "Esther Howard",
+    "count": 1,
+    "cards": [
+     "S10043-17888"
+    ],
+    "pinned": "true",
+    "pinDisabled": false,
+    "empty": null,
+    "left": 655
+   },
+   "nick": {
+    "id": "df19e15c-c257-43bc-815b-db470d05e2b5",
+    "name": "Nick Noclock",
+    "count": 1,
+    "cards": [
+     "S10043-17890"
+    ],
+    "pinned": "true",
+    "pinDisabled": false,
+    "empty": null,
+    "left": 959
+   },
+   "estherHeader": "drag_indicator EH Esther Howard Inactive push_pin assignment 1 1 work order",
+   "leadAfter_116104": [
+    "S10043-17890 lead=Nick Noclock",
+    "S10043-17889 lead=Ralph Edwards",
+    "S10043-17888 lead=Esther Howard"
+   ],
+   "msg_116104": [],
+   "leadAfter_df19e1": [
+    "S10043-17890 lead=Nick Noclock",
+    "S10043-17889 lead=Ralph Edwards",
+    "S10043-17888 lead=Esther Howard"
+   ],
+   "msg_df19e1": []
+  },
+  "Tech View": {
+   "groups": [
+    "Ralph Edwards(1)",
+    "Esther Howard(1)",
+    "Nick Noclock(1)"
+   ],
+   "leadAfterTech": [
+    "S10043-17890 lead=Nick Noclock",
+    "S10043-17889 lead=Ralph Edwards",
+    "S10043-17888 lead=Esther Howard"
+   ],
+   "header": "drag_indicator expand_more EH Esther Howard Inactive push_pin assignment 1 1 work order"
+  },
+  "restore": 201,
+  "estherActive": true
+ }
+}

@@ -1,0 +1,21 @@
+/** The Reassign lead technician dialog: markup, list, open counts, search (2026-10-08). Changes nothing (Cancel). */
+import fs from 'node:fs';
+import path from 'node:path';
+import { open, done, APP } from './session.mts';
+import { api, workOrders } from './data.mts';
+import { EV, t, shot, display, tab, search, toColumn } from './wob.mts';
+const { browser, page: p } = await open('/workorders?tab=all');
+const a = api(p);
+const [w] = await workOrders(a, 'ZZAUTOTEST F2 Card Menu');
+await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
+await tab(p, 'All'); await display(p, 'Board View'); await search(p, 'ZZAUTOTEST F2 Card Menu');
+await toColumn(p, w.techAssignedId);
+const card = p.locator(`[data-test-id="board_card_${w.id}"]`);
+await card.hover(); await card.locator('[data-test-id="button_work_order_more_actions"]').click(); await p.waitForTimeout(1000);
+await p.locator('.q-menu .q-item').filter({ hasText: 'Reassign lead technician' }).first().click(); await p.waitForTimeout(2500);
+await shot(p, 'probe-reassign-dialog');
+const dlg = await p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog')].pop(); return d ? { html: d.innerHTML.slice(0, 6000), text: d.innerText.replace(/\\s+/g, ' ').slice(0, 1500), ids: [...new Set([...d.querySelectorAll('[data-test-id]')].map(e => e.getAttribute('data-test-id').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>')))] } : null; })()`);
+fs.writeFileSync(path.join(EV, 'probe-reassign.json'), JSON.stringify(dlg, null, 1));
+console.log(t(), 'IDS', JSON.stringify(dlg?.ids)); console.log(t(), 'TEXT', dlg?.text);
+await p.keyboard.press('Escape'); await p.waitForTimeout(800);
+await done(browser);

@@ -120,3 +120,29 @@ export async function toColumn(p: Page, id: string) {
   await p.evaluate(`document.querySelector('[data-test-id="board_column_${id}"]')?.scrollIntoView({ inline: 'center', block: 'nearest' })`); await p.waitForTimeout(800);
   return (await p.locator(`[data-test-id="board_column_${id}"]`).count()) > 0;
 }
+
+/** open a card's (Board View) or row's (Tech View) More actions > Reassign lead technician */
+export async function openReassign(p: Page, woId: string, where: 'board' | 'tech' = 'board') {
+  const host = p.locator(where === 'board' ? `[data-test-id="board_card_${woId}"]` : `[data-test-id="tech_view_row_${woId}"]`);
+  await host.hover(); await host.locator('[data-test-id="button_work_order_more_actions"]').click(); await p.waitForTimeout(900);
+  const item = p.locator('.q-menu .q-item').filter({ hasText: 'Reassign lead technician' }).first();
+  const disabled = await item.evaluate((e) => e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled')).catch(() => null);
+  return { item, disabled };
+}
+/** read the toasts now on screen */
+export const toasts = (p: Page) => p.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => e.innerText.replace(/\\s+/g, ' ').replace(/^(check_circle|warning|error|info)\\s*/, '').replace(/\\s*close$/i, '').trim())`) as Promise<string[]>;
+/** answer the "Clear …'s scheduled shifts?" prompt if it is up; returns its text or null */
+export async function shiftPrompt(p: Page, answer: 'Keep shifts' | 'Clear shifts' | 'Cancel' | null = 'Keep shifts') {
+  await p.waitForTimeout(900);
+  const d = p.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).last();
+  if (!(await d.count())) return null;
+  const text = (await d.innerText()).replace(/\s+/g, ' ');
+  if (answer) { await d.locator('button').filter({ hasText: answer }).first().click(); await p.waitForTimeout(2000); }
+  return text;
+}
+/** pick a person in the open Reassign dialog and confirm (or cancel); answers a shift prompt with Keep shifts */
+export async function pickLead(p: Page, targetId: string, action: 'confirm' | 'cancel' = 'confirm') {
+  await p.locator(`[data-test-id="option_lead_technician_${targetId}"]`).click(); await p.waitForTimeout(500);
+  await p.locator(action === 'confirm' ? '[data-test-id="button_confirm_reassign_lead_technician"]' : '[data-test-id="button_cancel_reassign_lead_technician"]').click();
+  return action === 'confirm' ? await shiftPrompt(p) : null;
+}

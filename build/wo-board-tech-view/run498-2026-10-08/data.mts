@@ -8,7 +8,7 @@
 import type { Page } from 'playwright';
 import { API } from './session.mts';
 
-export type Api = { get: (u: string) => Promise<any>; post: (u: string, b: unknown) => Promise<any> };
+export type Api = { get: (u: string) => Promise<any>; post: (u: string, b: unknown) => Promise<any>; put: (u: string, b: unknown) => Promise<any> };
 export function api(page: Page): Api {
   const call = (method: string, u: string, b?: unknown) => Promise.race([
     page.evaluate(`fetch('${API}' + ${JSON.stringify(u)}, { method: '${method}', credentials: 'include',
@@ -17,7 +17,7 @@ export function api(page: Page): Api {
       .then(async r => ({ status: r.status, body: await r.json().catch(() => null) }))`),
     new Promise((res) => setTimeout(() => res({ status: 0, body: 'timeout' }), 45_000)),
   ]);
-  return { get: (u) => call('GET', u), post: (u, b) => call('POST', u, b) };
+  return { get: (u) => call('GET', u), post: (u, b) => call('POST', u, b), put: (u, b) => call('PUT', u, b) };
 }
 const rows = (r: any) => r?.body?.data?.collection ?? r?.body?.data ?? [];
 
