@@ -1,0 +1,28 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-08"},
+ "results": {
+  "C96910": {
+   "verdict": "Passed",
+   "observed": "[User-B] is a new staff member made for this check: ZZAUTOTEST WOB User B, role Service Advisor, at Staging Heavy Duty - 9919. They had never opened Work Orders, and no saved choice existed for them. Signed in as them (switched user from the admin) and opened Work Orders. The page opened in List: the ordinary table with 33 rows, no technician groups and no columns of cards, and List was the highlighted option. After a refresh it was still List.",
+   "not_observed": null
+  },
+  "C96912": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Display Follows User with one Approved work order led by Ayesha Khan. Admin ShopView chose Board View. A brand-new sign-in in a separate browser (the case's 'sign in again' and its 'second browser') opened Work Orders in Board View. In that browser, Change Location to Staging Lethbridge - 4310 opened Work Orders in Board View. The first browser, refreshed, was still in Board View. [User-B] (ZZAUTOTEST WOB User B, who never changed the display) saw List. Note: one earlier attempt opened the new sign-in in Tech View, which I could not explain. A repeat with every saved change logged showed the saved choice as Board View throughout and the new sign-in in Board View.",
+   "not_observed": null
+  },
+  "C96919": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Unreadable Display with one Approved work order led by Ayesha Khan. Control check: chose Board View and refreshed; the page opened in Board View. Main check (not checked by hand, as the case says): I also made the saved setting unreadable by having the server answer with an error. The page then opened in List, with a general 'Ooooops! An error occurred' message. Once the setting could be read again, a refresh opened Board View.",
+   "not_observed": null
+  },
+  "C96923": {
+   "verdict": "Failed",
+   "observed": "Customer ZZAUTOTEST F1 Location Reset (S10043-17657) at Staging Heavy Duty - 9919, and ZZAUTOTEST F1 Location Reset 2 (S10043-17658) at Staging Lethbridge - 4310. What List does today on this build (the note): with Assigned to me on, changing location (your initials > Change Location) stays on Work Orders, on the All tab, and Assigned to me STAYS ON, also after a refresh. Board View with Assigned to me on, location changed: Work Orders, All tab, Board View kept, Assigned to me still on. Tech View with Assigned to me on, location changed again: Work Orders, All tab, Tech View kept, Assigned to me still on. The page, tab and display are as expected. But Assigned to me is not turned off after either change; the case expects it to be turned off. The menu would not switch back to Staging Heavy Duty - 9919 (picking it changed nothing, three tries, also after a refresh), so the second change went to ZZAUTOTEST Empty Shop and then to Staging Lethbridge - 4310. Report prepared and held for the QA lead's approval; nothing raised.",
+   "not_observed": "Whether the live product's List turns Assigned to me off on a location change was not checked in this pass.",
+   "todo": "What needs to be done: after a location change, Assigned to me must be switched off in List, Tech View and Board View. Report held for the QA lead.",
+   "ticket_held": true,
+   "ticket": "Report prepared with screenshots and held with the QA lead for approval (one at a time); no ticket raised yet."
+  }
+ }
+}
