@@ -360,3 +360,10 @@ neither is a case of an empty field.
 | **GS-R6** | **PERM-E / PERM-F and the location-scope question** raised by the build-verification lane need the Custom Roles spec or a PO answer before any case is written (Rule 58). Partial evidence now recorded for the "what counts as open" half: `six-new-cases/OPEN-WO-COUNT-EVIDENCE-2026-09-18.md`. | PO, via the QA lead | A family of permission and location cases stays unwritten. |
 
 | — | **CLOSED 2026-09-22** | Global Search — the *Show all* control carries no count (C44825, run 415). Prepared as a report with picture and quoted requirement; **the QA lead declined it: "Do not ceate that Show All ticket."** Nothing filed, nothing parked. C44825 stays Failed with a DO-NOT-RE-RAISE note. Wording kept at `build/global-search/fixed-recheck-2026-09-22/DECLINED-showall-count-2026-09-22.txt`. |
+
+## 2026-10-08 — Global Search PAUSED by the QA lead (resume: `build/global-search/PROJECT-STATE.md` §0-PAUSED-2026-10-08)
+
+| # | Waiting on | What | Cost of silence |
+|---|---|---|---|
+| **GS-P1** | QA lead | Go-ahead for the deciding full run on Production (the fixes are there since 2026-10-06), plus the Production login again (lost in a container restart). | Nothing runs; the post-release clean-up of failing cases cannot start. Blocks nothing else. |
+| **GS-P2** | QA lead, after GS-P1 | His yes on the list of cases that still fail, before anything is deleted (defaults stated 2026-10-05: stood-down kept · C45153 Automated held · no Vladimir cases · spec tests removed with their cases · full text archived first). | Nothing is deleted. |

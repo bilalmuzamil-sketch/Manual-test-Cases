@@ -1,7 +1,40 @@
 # Global Search — PROJECT STATE (canonical cold-resume doc)
 - **TestRail parent folder (group):** group_id **6720**, suite 1 — cases live in the sub-sections inside it, not directly in the folder. Link: https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=6720 (recorded 2026-08-25)
 
-## §0-AUTOMATED-SUITE-AND-CLEANUP-2026-10-05 (LATEST) — what to do on 6 October
+## §0-PAUSED-2026-10-08 (LATEST) — Global Search is PAUSED by the QA lead; resume here
+
+**The QA lead paused this project on 2026-10-08** (*"We need to save the state for global search we will
+come back to it later"*) to start **WO board / Tech View**. Nothing is running, nothing is half-done.
+
+**Where it stopped — the post-release clean-up (§0-AUTOMATED-SUITE-AND-CLEANUP-2026-10-05 below):**
+1. ✅ **The fixes reached Production** (checked 2026-10-06 from the product's own change history, not the
+   version number). Production `v26.40.8-1e8e914` is 87 commits ahead of the staging build the 5 Oct run
+   used (`v26.40.7-f559d24`) and carries the three search changes that run lacked: **"match value and
+   labels" (SV-9160, commit 83e8d48)** — the row shows the WHOLE matched value, the fix for the SV-10634
+   family, the commonest failure on 5 Oct · **SV-10740** short-word one-letter typo (commit da63248) ·
+   search refresh-interval fix (c632b7c). Staging was `v26.40.8-fe16ca2` that day (11 ahead of prod,
+   none of them search). Read the build marker unauthenticated: `curl -s https://app.shopview.com/ |
+   grep app-version`.
+2. ⏸ **NEXT STEP, WAITING ON HIM:** the deciding full run on **Production** (`GS_APP=https://app.shopview.com`,
+   `GS_USER`/`GS_PASS`, ~2.5 h, creates ZZAUTOTEST records). Asked 2026-10-06; **no answer yet**. Two
+   things needed from him: (a) go-ahead to run, (b) the Production login again — `/tmp/shopview/prod-*.env`
+   was lost when the container restarted (suggested he put it in the environment settings, not chat).
+3. Then `cleanup/plan_deletions.py plan <results.json> <build>` → he approves the LIST →
+   `plan_deletions.py apply <plan.json> --approved "<his words>"`. **Nothing is ever deleted without his yes
+   on the list itself.** Defaults he was given and has not changed: stood-down cases are kept (another try)
+   · C45153 (Automated) held for him · Vladimir has no cases in run 415 · each deleted case's spec test is
+   removed with it · every case's full text archived first.
+4. 🔁 **Before resuming, re-check (Rule 100/80):** the Production build marker may have moved again; the
+   staging SSO cookie in `/tmp/shopview/gs-staging.env` has probably expired (ask him for a fresh one);
+   ticket statuses must be read live again.
+
+**Decisions now moot because of the clean-up plan** (both fail, so both will be on the deletion list):
+the held Parts whole-name highlight report (C146233/C146235) and C146222's out-of-date Expected
+(Product Owner on SV-10635, 5 Oct: "we do not show phone on hover").
+
+---
+
+## §0-AUTOMATED-SUITE-AND-CLEANUP-2026-10-05 — what to do on 6 October
 
 **🛑 THE QA LEAD'S PLAN FOR THIS SUITE (2026-10-05, Global Search ONLY — he said "do not save it as your
 rule"):** *"For Global Search Wait for One day, the fixes will be moved to Production and the plan is to
