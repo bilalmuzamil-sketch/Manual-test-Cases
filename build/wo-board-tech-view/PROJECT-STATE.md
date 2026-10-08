@@ -38,3 +38,19 @@
   (handover file 2026-10-08 "_1") for all 253 cases — two of its rules edit the expected results (step prefixes, [placeholders]); this conflicts with
   Rules 57/114 and the file's own "do not change the expected results" → asked (Rule 63); (3) run 498 lacks Vladimir's 18 (pre-existing, not ours to add
   without the QA lead); (4) Vladimir's cases flagged by the runnability gate (C204099 …) — hands-off (Rule 38).
+
+## 2026-10-08 (afternoon) — new case layout + regression folder
+- **QA lead's layout handover (file "_1") applied**, with his decision: Expected results NOT changed (no "Step N:" / placeholders inside them).
+  Feature folder: 157 of 170 written in the new layout (Preconditions · Setup with [placeholders] and "Check the setup worked" · Steps), each with
+  its own ZZAUTOTEST customer; damage-checked before writing (`scripts/layout_check.py`: Expected unchanged, step references intact, no dropped
+  labels/setup actions, no shared customers), served fr-view 157/157, runnable 157/157. **13 held** until their setup claims are seen on the site:
+  C96914, C96915, C96944, C96954, C96959, C96975, C96980, C96984, C96997, C97027, C154648, C368130, C368158 (list: SITE-CHECKS-AFTER-WALKER.md).
+- **Regression folder 47109: 74 of 83 build-verified and written** (READY 62 + HOLD 12 with plain reasons), served fr-view, runnable. 11 carry "What you
+  should see today" (C368165, C368181, C368204, C368211, C368216, C368221, C368233, C368234, C368235, C368236, C368242). **9 held, not walked:**
+  C368169–C368171 (no way to open Edit Work Order found — unproved), C368197 (no page control; scroll loads more — unproved), C368213, C368217 (order/
+  receive/return not walked), C368191, C368240, C368244 (sign-in expired mid-walk). Also to revisit: C368247 (seed an Imported work order via Data Import).
+- **QA lead decisions today:** keep the invitation route where a case needs a second user; permanent 100% rule (Rule 115 amendment).
+- **Blocked:** test-site sign-in expired ~14:00 (`sso_required`); needs a fresh `sv_sso_session` from the QA lead.
+- **Asks open:** C368218 Purchase Orders, C368219 Vendors, C368223 Deliveries — the pages have no filter on this build (proved,
+  regression/parts-pages-no-filter-claim.json); keep as HOLD, or treat as build-differs (READY + "What you should see today")?
+- Test data left on the site (all ZZAUTOTEST): see the regression helper's list in RUN-HANDOFF-WO-BOARD-2026-10-08.md.
