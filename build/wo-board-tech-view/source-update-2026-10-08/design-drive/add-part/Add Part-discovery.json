@@ -1,0 +1,4214 @@
+{
+ "board": "Add Part.html",
+ "url": "http://127.0.0.1:50355/Add%20Part.html",
+ "render_stats": {
+  "elements": 1668,
+  "textLen": 1945,
+  "scrollW": 1440,
+  "scrollH": 900
+ },
+ "pages": [],
+ "hover_rules": [
+  {
+   "selector": ".wo-checkbox:hover",
+   "style": "border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-checkbox:checked",
+   "style": "background: var(--sv-brand-blue); border-color: var(--sv-brand-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-checkbox:checked::after",
+   "style": "content: \"\"; position: absolute; left: 4px; top: 1.5px; width: 5px; height: 9px; border-right: 2px solid rgb(255, 255, 255); border-bottom: 2px solid rgb(255, 255, 255); border-image: initial; border-",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-icon-btn:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-row--header:hover .wo-controls, .wo-controls:has(.row-dropdown.open)",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-row--header:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-complete-btn:hover",
+   "style": "background: var(--sv-grey-50); border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".sv-toast-action:hover",
+   "style": "background: var(--sv-grey-50); border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".sv-toast-action:focus-visible",
+   "style": "outline: rgba(37, 124, 255, 0.24) solid 4px; border-color: var(--sv-brand-blue, #257CFF);",
+   "src": "inline"
+  },
+  {
+   "selector": ".sv-toast-close:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-row--content:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".row-hover-icon-wrap:has(.row-dropdown.open), .wo-inline-more-wrap:has(.row-dropdown.open), .wo-row--content:hover .row-hover-icon-wrap",
+   "style": "opacity: 1; pointer-events: auto;",
+   "src": "inline"
+  },
+  {
+   "selector": ".row-hover-icon:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-show-more:hover",
+   "style": "color: var(--sv-brand-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".stats-section-hd:hover",
+   "style": "background: var(--sv-grey-25);",
+   "src": "inline"
+  },
+  {
+   "selector": ".stats-show-more:hover",
+   "style": "color: var(--sv-brand-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".stats-sub-row:hover .row-more-btn",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".row-more-btn:hover",
+   "style": "background: var(--sv-grey-50); color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-inline-discount:hover .wo-inline-more-btn, .wo-inline-more-btn.active",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-inline-more-btn:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".row-dd-item:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".stats-sub-link:hover",
+   "style": "color: var(--sv-primary-700); text-decoration: underline;",
+   "src": "inline"
+  },
+  {
+   "selector": ".modal-btn-secondary:hover",
+   "style": "background: var(--sv-grey-50); border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".np-btn-danger:hover",
+   "style": "background: rgb(181, 32, 32) !important;",
+   "src": "inline"
+  },
+  {
+   "selector": ".modal-btn-primary:hover:not(:disabled)",
+   "style": "background: rgb(23, 82, 192);",
+   "src": "inline"
+  },
+  {
+   "selector": ".modal-btn-primary:active:not(:disabled)",
+   "style": "background: rgb(4, 34, 96);",
+   "src": "inline"
+  },
+  {
+   "selector": ".modal-close-btn:hover",
+   "style": "background: var(--sv-grey-50); color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".def-picker-row:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".def-picker-row:hover .def-rb",
+   "style": "background: rgb(238, 242, 246);",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field input:hover:not(:disabled):not(:focus), .fl-field select:hover:not(:disabled):not(:focus)",
+   "style": "border-color: rgb(154, 164, 178);",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field input:focus, .fl-field select:focus",
+   "style": "border-color: rgb(37, 124, 255); box-shadow: rgba(37, 124, 255, 0.18) 0px 0px 0px 4px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field input:focus + label, .fl-field input:not(:placeholder-shown) + label",
+   "style": "top: 0px; transform: translateY(-50%); font-size: 11px; color: rgb(105, 117, 134);",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field input:focus + label",
+   "style": "color: rgb(37, 124, 255);",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field select:focus + label, .fl-field.has-value label",
+   "style": "top: 0px; transform: translateY(-50%); font-size: 11px; color: rgb(105, 117, 134);",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field select:focus + label",
+   "style": "color: rgb(37, 124, 255);",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field--select select:focus ~ .fl-chevron",
+   "style": "color: rgb(37, 124, 255);",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field--prefix input:focus + label, .fl-field--prefix input:not(:placeholder-shown) + label",
+   "style": "left: 10px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-fd-add-btn:hover",
+   "style": "background: var(--sv-grey-50); border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-fd-entry:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-fd-entry:hover .wo-fd-entry-more",
+   "style": "opacity: 1;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-fd-entry-more:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".fin-row--expandable:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ab-nav-link:hover:not(.ab-nav-link--active)",
+   "style": "background: rgb(238, 242, 246); color: rgb(18, 25, 38);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ab-hdr-shop-btn:hover",
+   "style": "color: rgb(18, 25, 38);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ab-tab:hover:not([aria-selected=\"true\"])",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-900);",
+   "src": "inline"
+  },
+  {
+   "selector": ".cfd-row:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-bc-link:hover",
+   "style": "color: var(--sv-brand-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".asset-toggle-input:checked + .asset-toggle-track",
+   "style": "background: var(--sv-brand-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".asset-toggle-input:checked + .asset-toggle-track::after",
+   "style": "transform: translateX(16px);",
+   "src": "inline"
+  },
+  {
+   "selector": "body.is-embed .ab-tab:hover:not([aria-selected=\"true\"])",
+   "style": "background: var(--sv-grey-200, #E3E8EF) !important;",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-p-field input:focus",
+   "style": "outline: none; border: 2px solid var(--sv-primary-500); padding: 0px 11px; box-shadow: var(--sv-focus-ring);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-icon-btn:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-900);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-icon-btn:focus-visible",
+   "style": "outline: none; box-shadow: var(--sv-focus-ring);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-btn--primary:hover",
+   "style": "background: var(--sv-primary-700); border-color: var(--sv-primary-700);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-btn--primary:active",
+   "style": "background: var(--sv-primary-800); border-color: var(--sv-primary-800);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-btn--secondary:hover",
+   "style": "background: var(--sv-grey-50); border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-btn:focus-visible",
+   "style": "outline: none; box-shadow: var(--sv-focus-ring);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-opt:hover",
+   "style": "background: var(--sv-grey-100);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-radio:hover",
+   "style": "border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-radio:checked",
+   "style": "border-color: var(--sv-primary-500); background: var(--sv-primary-500);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-radio:checked::after",
+   "style": "content: \"\"; position: absolute; inset: 4px; border-radius: 50%; background: rgb(255, 255, 255);",
+   "src": "inline"
+  },
+  {
+   "selector": ".inv-radio:focus-visible, .inv-panel .wo-checkbox:focus-visible",
+   "style": "outline: none; box-shadow: var(--sv-focus-ring);",
+   "src": "inline"
+  },
+  {
+   "selector": ".pt-fd-cell--clickable:hover .pt-fd-name",
+   "style": "color: var(--sv-brand-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".pt-fd-cell--clickable:hover .pt-fd-more",
+   "style": "background: rgb(216, 236, 255); color: rgb(23, 82, 192);",
+   "src": "inline"
+  },
+  {
+   "selector": ".pt-fd-cell--clickable:hover .pt-fd-pct",
+   "style": "color: var(--sv-brand-blue);",
+   "src": "inline"
+  },
+  {
+   "selector": ".pfd-row:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-clock-btn--running:hover",
+   "style": "background: var(--sv-error-25, #FFFBFA) !important; border-color: var(--sv-error-300, #FDA29B) !important;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-clock-btn:hover:not(:disabled)",
+   "style": "background: var(--sv-success-25); border-color: var(--sv-success-300); color: var(--sv-success-700);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-clock-btn:active:not(:disabled)",
+   "style": "background: var(--sv-success-50); color: var(--sv-success-800);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-clock-btn:focus-visible",
+   "style": "outline: rgba(37, 124, 255, 0.24) solid 4px; border-color: var(--sv-brand-blue, #257CFF);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-act-btn--approve:hover",
+   "style": "background: var(--sv-success-fill, #ABF5C4); border-color: rgb(54, 179, 96); color: rgb(16, 135, 55);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-act-btn--decline:hover",
+   "style": "background: var(--sv-error-fill, #FCA397); border-color: rgb(239, 68, 68); color: rgb(181, 32, 32);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-act-btn:focus-visible",
+   "style": "outline: rgba(37, 124, 255, 0.24) solid 4px; border-color: var(--sv-brand-blue, #257CFF);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-hd-add:hover",
+   "style": "text-decoration: underline;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-row--needs:hover",
+   "style": "background: rgb(254, 247, 231);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-addrow--idle:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-input:hover:not(:focus)",
+   "style": "border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-input:focus",
+   "style": "border: 2px solid var(--sv-brand-blue); padding: 0px 11px; box-shadow: rgba(37, 124, 255, 0.24) 0px 0px 0px 4px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-save:hover",
+   "style": "background: rgb(23, 82, 192);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-save:active",
+   "style": "background: rgb(4, 34, 96); box-shadow: none;",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-save:focus-visible",
+   "style": "outline: none; box-shadow: rgba(37, 124, 255, 0.24) 0px 0px 0px 4px, rgb(216, 236, 255) 0px 2px 2px 0px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-x:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field--invalid input:focus, .fl-field--invalid select:focus",
+   "style": "border-color: rgb(239, 68, 68); box-shadow: rgba(239, 68, 68, 0.18) 0px 0px 0px 3px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field--invalid input:focus + label, .fl-field--invalid input:not(:placeholder-shown) + label, .fl-field--invalid select:focus + label, .fl-field--invalid.has-value label",
+   "style": "color: rgb(181, 32, 32);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-bin-chip:hover",
+   "style": "border-color: var(--sv-grey-400); box-shadow: rgba(11, 23, 51, 0.08) 0px 4px 8px, rgba(11, 23, 51, 0.05) 0px 1px 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-bin-opt:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-bin-split:hover",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-dd-row:hover, .ap-dd-row.active",
+   "style": "background: var(--sv-grey-50);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-bin--more:hover .ap-bin-tip",
+   "style": "display: flex;",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-dd-create:hover",
+   "style": "background: rgb(233, 245, 255);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-more-link:hover",
+   "style": "background: rgb(238, 242, 246); color: rgb(29, 41, 57);",
+   "src": "inline"
+  },
+  {
+   "selector": ".ap-more-link:focus-visible",
+   "style": "outline: none; box-shadow: rgb(242, 244, 247) 0px 0px 0px 4px, rgba(16, 24, 40, 0.05) 0px 1px 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".np-coach:hover .np-coach-lbl",
+   "style": "color: rgb(23, 82, 192); text-decoration: underline;",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field--unresolved input:focus",
+   "style": "border-style: solid; border-color: rgb(247, 144, 9); box-shadow: rgba(247, 144, 9, 0.18) 0px 0px 0px 4px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".fl-field--unresolved input:focus + label",
+   "style": "color: rgb(181, 71, 8);",
+   "src": "inline"
+  },
+  {
+   "selector": ".np-unlink:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-700);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-row--content:hover .wo-part-desc .row-hover-icon-wrap",
+   "style": "width: 26px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-row--content:hover .wo-part-desc .row-hover-icon-wrap, .wo-part-desc .row-hover-icon-wrap:has(.row-dropdown.open)",
+   "style": "overflow: visible;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-row--content:hover .part-edit-btn",
+   "style": "opacity: 1; pointer-events: auto; width: 24px; margin-left: 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-row--content:focus-within .part-edit-btn, .part-edit-btn:focus-visible",
+   "style": "opacity: 1; pointer-events: auto; width: 24px; margin-left: 2px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".part-edit-btn:focus-visible",
+   "style": "outline: 2px solid var(--sv-brand-blue); outline-offset: 1px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-row--part:hover .wo-drag-handle",
+   "style": "opacity: 1; pointer-events: auto;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-drag-handle:hover",
+   "style": "background: none; color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-drag-handle:active",
+   "style": "cursor: grabbing;",
+   "src": "inline"
+  },
+  {
+   "selector": ".part-edit-btn:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-700);",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-receive-btn:hover",
+   "style": "background: var(--sv-grey-50); border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".cell-editable:hover",
+   "style": "box-shadow: inset 0 0 0 1px var(--sv-grey-300);",
+   "src": "inline"
+  },
+  {
+   "selector": ".pd-unlink:hover",
+   "style": "background: var(--sv-grey-100); color: var(--sv-grey-600);",
+   "src": "inline"
+  },
+  {
+   "selector": ".pd-chip:hover",
+   "style": "background: var(--sv-grey-50); border-color: var(--sv-grey-400);",
+   "src": "inline"
+  },
+  {
+   "selector": ".pd-chip--ro:hover",
+   "style": "background: var(--sv-grey-100); border-color: var(--sv-grey-300);",
+   "src": "inline"
+  },
+  {
+   "selector": ".bin-amt:focus",
+   "style": "border-color: var(--sv-brand-blue); box-shadow: rgba(37, 124, 255, 0.18) 0px 0px 0px 4px;",
+   "src": "inline"
+  },
+  {
+   "selector": ".wo-addrow .fl-field input:focus + label, .wo-addrow .fl-field input:not(:placeholder-shown) + label, .wo-addrow .fl-field select:focus + label, .wo-addrow .fl-field.has-value label",
+   "style": "font-size: 10px;",
+   "src": "inline"
+  }
+ ],
+ "hover_host_selectors": [
+  ".wo-row--header",
+  ".wo-row--content",
+  ".stats-sub-row",
+  ".wo-inline-discount",
+  ".modal-btn-primary",
+  ".def-picker-row",
+  "input",
+  "select",
+  ".wo-fd-entry",
+  ".ab-nav-link",
+  ".ab-tab",
+  ".pt-fd-cell--clickable",
+  ".wo-clock-btn",
+  ".ap-input",
+  ".ap-bin--more",
+  ".np-coach",
+  ".wo-row--part"
+ ],
+ "native_listener_elements": [
+  {
+   "el": "button.wo-fd-entry-more",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.row-dd-item",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.fin-row fin-row--expandable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ab-tab ab-tab--overview",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ab-tab",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ab-tab",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ab-tab",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ab-tab",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ab-tab",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-icon-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.row-dd-item",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input#select-all-cb.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-icon-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-icon-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-icon-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-inline-more-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-act-btn wo-act-btn--approve",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-act-btn wo-act-btn--decline",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-clock-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ap-hd-add",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div#addPartRow.wo-row wo-row--content wo-addrow wo-addr",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input#apName.",
+   "types": [
+    "input",
+    "keydown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "input#apNum.",
+   "types": [
+    "click",
+    "focus",
+    "input",
+    "keydown"
+   ],
+   "n_types": 4
+  },
+  {
+   "el": "input#apQty.fl-num",
+   "types": [
+    "input",
+    "keydown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "select#apCat.",
+   "types": [
+    "change",
+    "keydown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "input#apCost.fl-num",
+   "types": [
+    "blur",
+    "keydown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "input#apRate.fl-num",
+   "types": [
+    "blur",
+    "keydown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.ap-save",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ap-x",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ap-more-link",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button#apBinChip.ap-bin-chip",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--has-disco",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-inline-more-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-inline-more-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-inline-more-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-show-more",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part wo-r",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.part-edit-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part wo-r",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.part-edit-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-receive-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-icon-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.wo-icon-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.ap-hd-add",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-row wo-row--content wo-row--part",
+   "types": [
+    "dragend",
+    "dragleave",
+    "dragover",
+    "dragstart",
+    "drop"
+   ],
+   "n_types": 5
+  },
+  {
+   "el": "button.wo-drag-handle",
+   "types": [
+    "click",
+    "mousedown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "button.row-hover-icon",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-qty cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.wo-part-price cell-editable",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.stats-section-hd stats-grid--finance",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.stats-section-hd stats-grid--finance",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.stats-section-hd stats-grid--finance",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.stats-section-hd stats-grid--finance",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.stats-section-hd stats-grid--finance",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.inv-radio",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.inv-radio",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.inv-radio",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.inv-radio",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input#invPoInput.",
+   "types": [
+    "blur",
+    "keydown"
+   ],
+   "n_types": 2
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input.wo-checkbox",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div#feeModal.modal-overlay",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-close-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "select#fd-template.",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input#fd-name.",
+   "types": [
+    "input"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "select#fd-type.",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "select#fd-calc.",
+   "types": [
+    "change"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input#fd-amount.",
+   "types": [
+    "input"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input#fd-maxcap.",
+   "types": [
+    "input"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-btn-secondary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button#fd-add-btn.modal-btn-primary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div#defaultsModal.modal-overlay",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-close-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.def-picker-row",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.def-picker-row",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.def-picker-row",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.def-picker-row",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.def-picker-row",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.def-picker-row",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.def-picker-row",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div.def-picker-row",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-btn-secondary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button#def-add-btn.modal-btn-primary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "div#partFdModal.modal-overlay",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-close-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-btn-secondary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-close-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-btn-secondary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-btn-primary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-close-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "input#npNumber.",
+   "types": [
+    "click",
+    "focus",
+    "input"
+   ],
+   "n_types": 3
+  },
+  {
+   "el": "button.np-unlink",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.np-coach",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-btn-secondary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button#npPrimary.modal-btn-primary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-close-btn",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-btn-secondary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button.modal-btn-primary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button#npDiscardKeep.modal-btn-secondary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  },
+  {
+   "el": "button#npDiscardGo.modal-btn-primary",
+   "types": [
+    "click"
+   ],
+   "n_types": 1
+  }
+ ],
+ "react_handler_elements": [],
+ "hidden_pointer_elements_skipped_as_hidden_content": 492,
+ "hidden_inventory": [
+  {
+   "hid": 0,
+   "tag": "div",
+   "cls": "row-dropdown",
+   "text": "Edit Delete",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "why": "display:none"
+  },
+  {
+   "hid": 1,
+   "tag": "div",
+   "cls": "fin-fees-body",
+   "text": "Early Payment Discount −$857.23 Part discount (LF3620) −$649.00 Fleet discount (LF3620) −$292.00 Parts Handling Fee +$3.75 Line discount −$260.77",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > div:nth-of-type(4)",
+   "why": "display:none"
+  },
+  {
+   "hid": 2,
+   "tag": "button",
+   "cls": "ab-tab ab-tab--overview",
+   "text": "Overview",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "why": "display:none"
+  },
+  {
+   "hid": 3,
+   "tag": "div",
+   "cls": "inv-actions",
+   "text": "Add Deposit Create Invoice",
+   "path": "#invActions",
+   "why": "display:none"
+  },
+  {
+   "hid": 4,
+   "tag": "div",
+   "cls": "row-dropdown",
+   "text": "Add Fee / Discount Print Work Order Delete Work Order",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "why": "display:none"
+  },
+  {
+   "hid": 5,
+   "tag": "div",
+   "cls": "wo-th-label wo-th-label--right",
+   "text": "Rate",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 6,
+   "tag": "div",
+   "cls": "wo-th-label wo-th-label--right",
+   "text": "Margin",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 7,
+   "tag": "div",
+   "cls": "wo-controls",
+   "text": "Uncomplete Add line note Save line Story history Audit log Add fee / discount 1",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 8,
+   "tag": "div",
+   "cls": "row-dropdown",
+   "text": "EditDelete",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "why": "display:none"
+  },
+  {
+   "hid": 9,
+   "tag": "div",
+   "cls": "wo-unit-price",
+   "text": "$149.95",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 10,
+   "tag": "div",
+   "cls": "wo-margin",
+   "text": "57%",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 11,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Edit laborMove laborAdd fee / discount",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 12,
+   "tag": "span",
+   "cls": "wo-clock-time",
+   "text": "00:00:00",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(5) > span:nth-of-type(1)",
+   "why": "display:none"
+  },
+  {
+   "hid": 13,
+   "tag": "div",
+   "cls": "wo-row wo-row--content wo-addrow wo-addrow--idle",
+   "text": "Add part Description Part number Qty UncategorizedHD-FiltersHD-LubricantsHD-BrakesHD-Hose & FittingsHD-ElectricalHD-Shop SuppliesHD-Tires & WheelsHD-OtherCategory Cost$ Sell price$ Save More options",
+   "path": "#addPartRow",
+   "why": "display:none"
+  },
+  {
+   "hid": 14,
+   "tag": "div",
+   "cls": "wo-row wo-addhint ap-composing ap-hidden",
+   "text": "Pulled from—Enter save & next row·Tab next field·Esc cancel·⇧Enter more options",
+   "path": "#addPartHint",
+   "why": "display:none"
+  },
+  {
+   "hid": 15,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 16,
+   "tag": "div",
+   "cls": "row-dropdown",
+   "text": "EditDelete",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "why": "display:none"
+  },
+  {
+   "hid": 17,
+   "tag": "div",
+   "cls": "wo-inline-discount extra-item",
+   "text": "Fleet discount −5% EditDelete",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(3)",
+   "why": "display:none"
+  },
+  {
+   "hid": 18,
+   "tag": "div",
+   "cls": "wo-inline-discount extra-item",
+   "text": "Parts Handling Fee +$3.75 EditDelete",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(4)",
+   "why": "display:none"
+  },
+  {
+   "hid": 19,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$32.48",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 20,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "44%",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 21,
+   "tag": "div",
+   "cls": "wo-discount-amount extra-item",
+   "text": "−$2.92",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(9) > div:nth-of-type(3)",
+   "why": "display:none"
+  },
+  {
+   "hid": 22,
+   "tag": "div",
+   "cls": "wo-fee-amount extra-item",
+   "text": "+$3.75",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(9) > div:nth-of-type(4)",
+   "why": "display:none"
+  },
+  {
+   "hid": 23,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(8) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 24,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$6.84",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(8) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 25,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "45%",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(8) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 26,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(9) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 27,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$7.25",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(9) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 28,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "45%",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(9) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 29,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(10) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 30,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$7.99",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(10) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 31,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "40%",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(10) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 32,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(11) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 33,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$11.25",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(11) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 34,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "61%",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(11) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 35,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(12) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 36,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$88.40",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(12) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 37,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "38%",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(12) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 38,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(13) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 39,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$14.00",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(13) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 40,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "—",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(13) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 41,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(14) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 42,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$9.75",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(14) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 43,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "—",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(14) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 44,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(15) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 45,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$146.90",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(15) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 46,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "31%",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(15) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 47,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(16) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 48,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$62.40",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(16) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 49,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "35%",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(16) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 50,
+   "tag": "div",
+   "cls": "wo-controls",
+   "text": "Add line note Save line Audit log Add fee / discount 2",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 51,
+   "tag": "div",
+   "cls": "wo-unit-price",
+   "text": "$149.95",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 52,
+   "tag": "div",
+   "cls": "wo-margin",
+   "text": "52%",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 53,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 54,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$18.60",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(3) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 55,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "42%",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(3) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 56,
+   "tag": "div",
+   "cls": "row-hover-icon-wrap",
+   "text": "Add fee / discountMove",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(1)",
+   "why": "opacity:0"
+  },
+  {
+   "hid": 57,
+   "tag": "div",
+   "cls": "wo-part-price cell-editable",
+   "text": "$6.40",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(4) > div:nth-of-type(7)",
+   "why": "display:none"
+  },
+  {
+   "hid": 58,
+   "tag": "div",
+   "cls": "wo-part-margin",
+   "text": "39%",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(4) > div:nth-of-type(8)",
+   "why": "display:none"
+  },
+  {
+   "hid": 59,
+   "tag": "div",
+   "cls": "ab-tab-panel",
+   "text": "Hours Tech hours Clocked hours Tech Efficiency Billing Efficiency Total 36.60 14.93 245.14% 245.14% Labor Sell price Cost Margin % Total $5,213.45 $746.91 $4,466.54 85.67% Parts Sell price Cost Margin % Total $5,501.94 $3,893.52 $1,608.42 29.23% Fees & Discounts (5) Value Amount Work order discount S2-13274 −8% −$857.23 Part discount Line 1 · (LF3620) Engine Oil Filter −10% −$649.00 Fleet discount Line 1 · (LF3620) Engine Oil Filter −5% −$292.00 Parts Handling Fee Line 1 · (LF3620) Engine Oil Filter +2% +$3.75 Line discount Line 1 · Service - Perform LOF and inspection −5% −$260.77 Total −$1,1",
+   "path": "#tab-stats",
+   "why": "display:none"
+  },
+  {
+   "hid": 60,
+   "tag": "div",
+   "cls": "ab-tab-panel",
+   "text": "#tab-finance{--inv-ink:var(--sv-grey-900)} /* ── Finance action bar (in tabs row) ── */ .inv-actions{display:none;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto;flex:0 0 auto} .ab-tabs-row:has(.inv-actions) .inv-actions{order:2;margin-left:0} .ab-tabs-row:has(.inv-actions)>div:last-child{order:1;margin-left:auto} .ab-tabs-row:has(.inv-actions){flex-wrap:wrap;row-gap:10px} .ab-tabs-row:has(.inv-actions) .ab-tabs{flex:0 0 auto;flex-wrap:wrap} .ab-tabs-row:has(.ab-tab[data-panel=\"tab-finance\"][aria-selected=\"true\"]) .inv-actions{display:flex} .inv-p-field{display:flex;flex-direction:c",
+   "path": "#tab-finance",
+   "why": "display:none"
+  },
+  {
+   "hid": 61,
+   "tag": "div",
+   "cls": "modal-overlay",
+   "text": "Add new fee/discount S2-13274 Fleet Standard Discount (−10%) Loyalty Discount (−5%) Parts Handling Fee (+$25.00 flat) Environmental Fee (+2.5%) Early Payment Discount (−3%) Labor Surcharge (+$50.00 flat) Apply from template Name Discount Fee Type Percentage Flat amount Calculation type $ Amount % $ Max cap Work Order Total $10,715.39 Fee / Discount — New Work Order Total $10,715.39 Cancel Add",
+   "path": "#feeModal",
+   "why": "display:none"
+  },
+  {
+   "hid": 62,
+   "tag": "div",
+   "cls": "modal-overlay",
+   "text": "Add Fee/Discount Select a fee or discount template to add to this customer Name Type Calculation Type Amount Military Discount Discount 10% of Subtotal −10% Parts Handling Fee Fee % of Labor Total 5% Early Payment Discount Discount % of Parts Total −3% Loyalty Discount Discount % of Parts Total −5% Environmental Fee Fee % of Labor Total 2.5% Labor Surcharge Fee Flat amount $50.00 Fuel Surcharge Fee % of Subtotal 3% Senior / Veteran Discount Discount % of Subtotal −8% Cancel Add",
+   "path": "#defaultsModal",
+   "why": "display:none"
+  },
+  {
+   "hid": 63,
+   "tag": "div",
+   "cls": "modal-overlay",
+   "text": "Fees & Discounts Mobil 1 5W20 Synthetic Engine Oil · #55073 Name Type Calculation Amount Parts Handling Fee Fee 2% of Labor Total +$1.43 Military Discount Discount 10% of Subtotal −$3.31 Early Payment Discount Discount 3% of Parts Total −$0.99 Net adjustment −$2.87 Close",
+   "path": "#partFdModal",
+   "why": "display:none"
+  },
+  {
+   "hid": 64,
+   "tag": "div",
+   "cls": "modal-overlay",
+   "text": "Bin Locations Bin nameQuantity in stockAmount Cancel Apply",
+   "path": "#binModal",
+   "why": "display:none"
+  },
+  {
+   "hid": 65,
+   "tag": "div",
+   "cls": "modal-overlay",
+   "text": "Add part Typed by Brenda Martinez Description Part number UncategorizedHD-FiltersHD-LubricantsHD-BrakesHD-Hose & FittingsHD-ElectricalHD-Shop SuppliesHD-Tires & WheelsHD-OtherCategory FleetPrideTruckProKenworth PartsVendor Qty VendorFoundInventorySource Cost$ Core charge$ Rate$ Margin% Inventory Bin nameQuantity in stockAmount AIShopCoach Parts Guide Cancel Save part",
+   "path": "#newPartModal",
+   "why": "display:none"
+  },
+  {
+   "hid": 66,
+   "tag": "div",
+   "cls": "modal-overlay",
+   "text": "3 parts unpriced Margin on this line is provisional Approving sends the line to the customer with no price on these parts. The line total and margin will change once they’re priced. Price them first Approve anyway",
+   "path": "#unpricedModal",
+   "why": "display:none"
+  },
+  {
+   "hid": 67,
+   "tag": "div",
+   "cls": "modal-overlay",
+   "text": "Discard this part? The details you entered will be lost. Keep Editing Discard Part",
+   "path": "#npDiscardModal",
+   "why": "display:none"
+  },
+  {
+   "hid": 68,
+   "tag": "div",
+   "cls": "modal-overlay",
+   "text": "Leave without saving? This part hasn't been added to the work order yet. Leaving will discard it. Stay on Work Order Leave",
+   "path": "#npLeaveModal",
+   "why": "display:none"
+  }
+ ],
+ "selects": [
+  {
+   "path": "#apCat",
+   "options": [
+    "Uncategorized",
+    "HD-Filters",
+    "HD-Lubricants",
+    "HD-Brakes",
+    "HD-Hose & Fittings",
+    "HD-Electrical",
+    "HD-Shop Supplies",
+    "HD-Tires & Wheels",
+    "HD-Other"
+   ]
+  },
+  {
+   "path": "#fd-template",
+   "options": [
+    "",
+    "Fleet Standard Discount (−10%)",
+    "Loyalty Discount (−5%)",
+    "Parts Handling Fee (+$25.00 flat)",
+    "Environmental Fee (+2.5%)",
+    "Early Payment Discount (−3%)",
+    "Labor Surcharge (+$50.00 flat)"
+   ]
+  },
+  {
+   "path": "#fd-type",
+   "options": [
+    "",
+    "Discount",
+    "Fee"
+   ]
+  },
+  {
+   "path": "#fd-calc",
+   "options": [
+    "",
+    "Percentage",
+    "Flat amount"
+   ]
+  },
+  {
+   "path": "#npCat",
+   "options": [
+    "Uncategorized",
+    "HD-Filters",
+    "HD-Lubricants",
+    "HD-Brakes",
+    "HD-Hose & Fittings",
+    "HD-Electrical",
+    "HD-Shop Supplies",
+    "HD-Tires & Wheels",
+    "HD-Other"
+   ]
+  },
+  {
+   "path": "#npVendor",
+   "options": [
+    "FleetPride",
+    "TruckPro",
+    "Kenworth Parts"
+   ]
+  },
+  {
+   "path": "#npSource",
+   "options": [
+    "Vendor",
+    "Found",
+    "Inventory"
+   ]
+  }
+ ],
+ "datalists": [],
+ "dc_imports": {},
+ "page_text_chars": {
+  "_whole_board": 1941
+ },
+ "variants": [
+  {
+   "variant": "light-1440",
+   "text_chars": 1941,
+   "same_text_as_light_1440": true,
+   "lines_only_here": [],
+   "lines_missing_here": [],
+   "background": "rgba(0, 0, 0, 0) / html rgba(0, 0, 0, 0)"
+  },
+  {
+   "variant": "dark-1440",
+   "text_chars": 1941,
+   "same_text_as_light_1440": true,
+   "lines_only_here": [],
+   "lines_missing_here": [],
+   "background": "rgba(0, 0, 0, 0) / html rgba(0, 0, 0, 0)"
+  },
+  {
+   "variant": "light-768",
+   "text_chars": 1862,
+   "same_text_as_light_1440": false,
+   "lines_only_here": [],
+   "lines_missing_here": [
+    "ACTUAL / EST.",
+    "1.93 / 1.50",
+    "30",
+    "1",
+    "1",
+    "1",
+    "23 EA",
+    "1",
+    "1 EA",
+    "1 EA",
+    "0.60 / 0.75",
+    "2 EA",
+    "2 EA"
+   ],
+   "background": "rgba(0, 0, 0, 0) / html rgba(0, 0, 0, 0)"
+  },
+  {
+   "variant": "light-1920",
+   "text_chars": 2101,
+   "same_text_as_light_1440": false,
+   "lines_only_here": [
+    "RATE",
+    "MARGIN",
+    "$149.95",
+    "57%",
+    "$32.48",
+    "44%",
+    "$6.84",
+    "45%",
+    "45%",
+    "40%",
+    "61%",
+    "$88.40",
+    "38%",
+    "$14.00",
+    "31%",
+    "35%",
+    "$149.95",
+    "52%",
+    "$18.60",
+    "42%",
+    "$6.40",
+    "39%"
+   ],
+   "lines_missing_here": [],
+   "background": "rgba(0, 0, 0, 0) / html rgba(0, 0, 0, 0)"
+  }
+ ],
+ "console": [
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)",
+  "error: Failed to load resource: the server responded with a status of 404 (File not found)"
+ ],
+ "candidates": [
+  {
+   "idx": 0,
+   "tag": "a",
+   "kinds": [
+    "interactive:a",
+    "pointer"
+   ],
+   "label": "ShopView",
+   "path": "header:nth-of-type(1) > div:nth-of-type(1) > a:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 28,
+   "y": 16,
+   "w": 32,
+   "h": 32,
+   "href": "#",
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 1,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "header:nth-of-type(1) > div:nth-of-type(1) > a:nth-of-type(1) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 29,
+   "y": 19,
+   "w": 30,
+   "h": 25,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 2,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "header:nth-of-type(1) > div:nth-of-type(1) > a:nth-of-type(1) > svg:nth-of-type(1) > path:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 29,
+   "y": 19,
+   "w": 30,
+   "h": 25,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 3,
+   "tag": "a",
+   "kinds": [
+    "interactive:a",
+    "hover-rule-host:.ab-nav-link",
+    "pointer"
+   ],
+   "label": "Work Orders",
+   "path": "header:nth-of-type(1) > div:nth-of-type(1) > nav:nth-of-type(1) > a:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 84,
+   "y": 7,
+   "w": 92,
+   "h": 50,
+   "href": "#",
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 4,
+   "tag": "a",
+   "kinds": [
+    "interactive:a",
+    "hover-rule-host:.ab-nav-link",
+    "pointer"
+   ],
+   "label": "Schedule",
+   "path": "header:nth-of-type(1) > div:nth-of-type(1) > nav:nth-of-type(1) > a:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 178,
+   "y": 7,
+   "w": 71,
+   "h": 50,
+   "href": "#",
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 5,
+   "tag": "a",
+   "kinds": [
+    "interactive:a",
+    "hover-rule-host:.ab-nav-link",
+    "pointer"
+   ],
+   "label": "Customers",
+   "path": "header:nth-of-type(1) > div:nth-of-type(1) > nav:nth-of-type(1) > a:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 252,
+   "y": 7,
+   "w": 80,
+   "h": 50,
+   "href": "#",
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 6,
+   "tag": "a",
+   "kinds": [
+    "interactive:a",
+    "hover-rule-host:.ab-nav-link",
+    "pointer"
+   ],
+   "label": "Parts",
+   "path": "header:nth-of-type(1) > div:nth-of-type(1) > nav:nth-of-type(1) > a:nth-of-type(4)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 334,
+   "y": 7,
+   "w": 48,
+   "h": 50,
+   "href": "#",
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 7,
+   "tag": "a",
+   "kinds": [
+    "interactive:a",
+    "hover-rule-host:.ab-nav-link",
+    "pointer"
+   ],
+   "label": "Reports",
+   "path": "header:nth-of-type(1) > div:nth-of-type(1) > nav:nth-of-type(1) > a:nth-of-type(5)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 384,
+   "y": 7,
+   "w": 64,
+   "h": 50,
+   "href": "#",
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 8,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Heavy Duty",
+   "path": "header:nth-of-type(1) > div:nth-of-type(4) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 1301,
+   "y": 22,
+   "w": 71,
+   "h": 20,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 9,
+   "tag": "div",
+   "kinds": [
+    "pointer"
+   ],
+   "label": "User menu",
+   "path": "header:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "Work Orders / Schedule / Customers",
+   "x": 1388,
+   "y": 16,
+   "w": 32,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 10,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer"
+   ],
+   "label": "Edit",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 262,
+   "y": 651,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Edit",
+   "fast": false
+  },
+  {
+   "idx": 11,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 264,
+   "y": 653,
+   "w": 16,
+   "h": 16,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 12,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1) > path:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 265,
+   "y": 654,
+   "w": 13,
+   "h": 13,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 13,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1) > path:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 274,
+   "y": 656,
+   "w": 3,
+   "h": 3,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 14,
+   "tag": "label",
+   "kinds": [
+    "pointer"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 244,
+   "y": 695,
+   "w": 36,
+   "h": 20,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 15,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) > span:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 244,
+   "y": 695,
+   "w": 36,
+   "h": 20,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 16,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-fd-entry"
+   ],
+   "label": "Early Payment Discount −8% −$857.23 Edit Delete",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 16,
+   "y": 954,
+   "w": 280,
+   "h": 53,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 17,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer"
+   ],
+   "label": "Edit",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 262,
+   "y": 1032,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Edit",
+   "fast": false
+  },
+  {
+   "idx": 18,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 264,
+   "y": 1034,
+   "w": 16,
+   "h": 16,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 19,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1) > path:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 265,
+   "y": 1035,
+   "w": 13,
+   "h": 13,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 20,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1) > path:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 274,
+   "y": 1037,
+   "w": 3,
+   "h": 3,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 21,
+   "tag": "div",
+   "kinds": [
+    "interactive:div",
+    "pointer"
+   ],
+   "label": "Fees & Discounts (5) −$2,055.25",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > div:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 16,
+   "y": 1137,
+   "w": 280,
+   "h": 34,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 22,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "Fees & Discounts (5)",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > div:nth-of-type(3) > span:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 32,
+   "y": 1146,
+   "w": 130,
+   "h": 16,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 23,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > div:nth-of-type(3) > span:nth-of-type(1) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 148,
+   "y": 1147,
+   "w": 14,
+   "h": 14,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 24,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > div:nth-of-type(3) > span:nth-of-type(1) > svg:nth-of-type(1) > path:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 151,
+   "y": 1152,
+   "w": 7,
+   "h": 4,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 25,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "−$2,055.25",
+   "path": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(5) > div:nth-of-type(2) > div:nth-of-type(3) > span:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 221,
+   "y": 1146,
+   "w": 59,
+   "h": 16,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 26,
+   "tag": "button",
+   "kinds": [
+    "interactive:tab",
+    "hover-rule-host:.ab-tab",
+    "pointer"
+   ],
+   "label": "Lines 3",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 90,
+   "w": 71,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 27,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "3",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > span:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 355,
+   "y": 96,
+   "w": 16,
+   "h": 20,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 28,
+   "tag": "button",
+   "kinds": [
+    "interactive:tab",
+    "hover-rule-host:.ab-tab",
+    "pointer"
+   ],
+   "label": "Parts 2",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 385,
+   "y": 90,
+   "w": 86,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 29,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "2",
+   "path": "#apTabCount",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 431,
+   "y": 97,
+   "w": 28,
+   "h": 18,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 30,
+   "tag": "button",
+   "kinds": [
+    "interactive:tab",
+    "hover-rule-host:.ab-tab",
+    "pointer"
+   ],
+   "label": "Notes",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(4)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 473,
+   "y": 90,
+   "w": 57,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 31,
+   "tag": "button",
+   "kinds": [
+    "interactive:tab",
+    "hover-rule-host:.ab-tab",
+    "pointer"
+   ],
+   "label": "Stats",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(5)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 532,
+   "y": 90,
+   "w": 51,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 32,
+   "tag": "button",
+   "kinds": [
+    "interactive:tab",
+    "hover-rule-host:.ab-tab",
+    "pointer"
+   ],
+   "label": "Finance",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(6)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 585,
+   "y": 90,
+   "w": 68,
+   "h": 32,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 33,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer"
+   ],
+   "label": "More actions",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1291,
+   "y": 88,
+   "w": 36,
+   "h": 36,
+   "href": null,
+   "title": "More actions",
+   "fast": false
+  },
+  {
+   "idx": 34,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1301,
+   "y": 98,
+   "w": 16,
+   "h": 16,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 35,
+   "tag": "circle",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1) > circle:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1308,
+   "y": 105,
+   "w": 1,
+   "h": 1,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 36,
+   "tag": "circle",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1) > circle:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1308,
+   "y": 101,
+   "w": 1,
+   "h": 1,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 37,
+   "tag": "circle",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1) > circle:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1308,
+   "y": 110,
+   "w": 1,
+   "h": 1,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 38,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "New Line",
+   "path": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(3) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1335,
+   "y": 88,
+   "w": 89,
+   "h": 36,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 39,
+   "tag": "input",
+   "kinds": [
+    "interactive:input",
+    "tooltip-host",
+    "hover-rule-host:input",
+    "pointer"
+   ],
+   "label": "Select all",
+   "path": "#select-all-cb",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 324,
+   "y": 144,
+   "w": 16,
+   "h": 16,
+   "href": null,
+   "title": "Select all",
+   "fast": false
+  },
+  {
+   "idx": 40,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer"
+   ],
+   "label": "Collapse all",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 344,
+   "y": 142,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Collapse all",
+   "fast": false
+  },
+  {
+   "idx": 41,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 346,
+   "y": 144,
+   "w": 16,
+   "h": 16,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 42,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1) > svg:nth-of-type(1) > path:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 350,
+   "y": 150,
+   "w": 8,
+   "h": 4,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 43,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer"
+   ],
+   "label": "Menu",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 368,
+   "y": 142,
+   "w": 20,
+   "h": 20,
+   "href": null,
+   "title": "Menu",
+   "fast": false
+  },
+  {
+   "idx": 44,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 370,
+   "y": 144,
+   "w": 16,
+   "h": 16,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 45,
+   "tag": "circle",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > svg:nth-of-type(1) > circle:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 377,
+   "y": 151,
+   "w": 1,
+   "h": 1,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 46,
+   "tag": "circle",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > svg:nth-of-type(1) > circle:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 377,
+   "y": 147,
+   "w": 1,
+   "h": 1,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 47,
+   "tag": "circle",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(2) > svg:nth-of-type(1) > circle:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 377,
+   "y": 156,
+   "w": 1,
+   "h": 1,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 48,
+   "tag": "div",
+   "kinds": [
+    "tooltip-host"
+   ],
+   "label": "Time clock",
+   "path": "#tab-lines > div:nth-of-type(1) > div:nth-of-type(4)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 776,
+   "y": 145,
+   "w": 96,
+   "h": 14,
+   "href": null,
+   "title": "Time clock",
+   "fast": false
+  },
+  {
+   "idx": 49,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--header"
+   ],
+   "label": "Uncomplete Add line note Save line Story history Audit log Add fee / discount 1 Service - Perform LOF and inspection Line discount −5% EditDelete 1.93 / 1.50 10",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 180,
+   "w": 1112,
+   "h": 70,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 50,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-inline-discount"
+   ],
+   "label": "Line discount −5% EditDelete",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 440,
+   "y": 216,
+   "w": 192,
+   "h": 20,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 51,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer"
+   ],
+   "label": "Approve",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(10) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1348,
+   "y": 192,
+   "w": 28,
+   "h": 28,
+   "href": null,
+   "title": "Approve",
+   "fast": false
+  },
+  {
+   "idx": 52,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(10) > button:nth-of-type(1) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1354,
+   "y": 198,
+   "w": 16,
+   "h": 16,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 53,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(10) > button:nth-of-type(1) > svg:nth-of-type(1) > path:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1357,
+   "y": 202,
+   "w": 11,
+   "h": 7,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 54,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "pointer"
+   ],
+   "label": "Decline",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(10) > button:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1380,
+   "y": 192,
+   "w": 28,
+   "h": 28,
+   "href": null,
+   "title": "Decline",
+   "fast": false
+  },
+  {
+   "idx": 55,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(10) > button:nth-of-type(2) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1386,
+   "y": 198,
+   "w": 16,
+   "h": 16,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 56,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(10) > button:nth-of-type(2) > svg:nth-of-type(1) > path:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1390,
+   "y": 202,
+   "w": 8,
+   "h": 8,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 57,
+   "tag": "path",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(10) > button:nth-of-type(2) > svg:nth-of-type(1) > path:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1390,
+   "y": 202,
+   "w": 8,
+   "h": 8,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 58,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "Story SK: Brought unit in. Set up wheel lifts. Completed LOF and inspection. Greased unit. Filled the washer fluid and installed a service sticker. Job complete",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 250,
+   "w": 1112,
+   "h": 44,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 59,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "Labor Edit laborMove laborAdd fee / discount BMBrenda Martinez 00:00:00 $224.93",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 294,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 60,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "tooltip-host",
+    "hover-rule-host:.wo-clock-btn"
+   ],
+   "label": "Approve the line to start the clock",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(5) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 810,
+   "y": 300,
+   "w": 28,
+   "h": 28,
+   "href": null,
+   "title": "Approve the line to start the clock",
+   "fast": false
+  },
+  {
+   "idx": 61,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "Parts Add Part",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(4)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 334,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 62,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Add Part",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(4) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 440,
+   "y": 342,
+   "w": 71,
+   "h": 24,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 63,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(4) > button:nth-of-type(1) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 440,
+   "y": 347,
+   "w": 14,
+   "h": 14,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 64,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(LF3620) Engine Oil Filter, Detroit Series 60 (2 Required)Add fee / discountMove Part discount −10% EditDelete Fleet discount −5% EditDelete Parts Handling Fee ",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 374,
+   "w": 1112,
+   "h": 97,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 65,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-inline-discount"
+   ],
+   "label": "Part discount −10% EditDelete",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(2) > div:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 440,
+   "y": 416,
+   "w": 180,
+   "h": 20,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 66,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Show 2 more",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(2) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 440,
+   "y": 446,
+   "w": 180,
+   "h": 11,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 67,
+   "tag": "span",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "Show 2 more",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(2) > button:nth-of-type(1) > span:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 440,
+   "y": 446,
+   "w": 59,
+   "h": 11,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 68,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Pick",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(7) > div:nth-of-type(10) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1365,
+   "y": 382,
+   "w": 43,
+   "h": 26,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 69,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(HDEO14) 15W40 Bulk- Mobil 1 Delvac HDEOAdd fee / discountMove 30 In Stock $6.84 45% $205.20 Pick",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(8)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 471,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 70,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Pick",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(8) > div:nth-of-type(10) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1365,
+   "y": 478,
+   "w": 43,
+   "h": 26,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 71,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(WWF) Windshield Washer Fluid 4LAdd fee / discountMove 1 Auth to Order $7.25 45% $7.25 Order",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(9)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 511,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 72,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Order",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(9) > div:nth-of-type(10) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1356,
+   "y": 518,
+   "w": 52,
+   "h": 26,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 73,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(BRAKECLEAN) Brake & Parts CleanerAdd fee / discountMove 1 Auth to Order $7.99 40% $7.99 Order",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(10)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 551,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 74,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Order",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(10) > div:nth-of-type(10) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1356,
+   "y": 558,
+   "w": 52,
+   "h": 26,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 75,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(GREASETUBE) EP2 Grease Tube, 390GAdd fee / discountMove 1 $11.25 61% $11.25",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(11)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 591,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 76,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(ALF9080) Air Filter, Primary — Freightliner CascadiaAdd fee / discountMove 23 EA $88.40 38% $2,033.20",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(12)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 631,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 77,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "shop rag bundleAdd fee / discountMove 2 Requested $14.00 — $28.00",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(13)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 671,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 78,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "zip ties 8in, 100pkAdd fee / discountMove 1 Requested $9.75 — $9.75",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(14)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 711,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 79,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(S-2410) Air Dryer Cartridge, Bendix AD-IPAdd fee / discountMove 1 EA Quoted $146.90 31% $146.90 Receive",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(15)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 751,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 80,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Receive",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(15) > div:nth-of-type(10) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1349,
+   "y": 758,
+   "w": 59,
+   "h": 26,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 81,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(RAD-880) Radiator Hose, UpperAdd fee / discountMove 1 EA Received $62.40 35% $62.40",
+   "path": "#tab-lines > div:nth-of-type(2) > div:nth-of-type(16)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 791,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 82,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--header"
+   ],
+   "label": "Add line note Save line Audit log Add fee / discount 2 Service - Replace marker lamps, driver side 0.60 / 0.75 80% Authorized $149.95 52% $142.36",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 843,
+   "w": 1112,
+   "h": 52,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 83,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "Parts Add Part",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(2)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 895,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 84,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Add Part",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(2) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 440,
+   "y": 903,
+   "w": 71,
+   "h": 24,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 85,
+   "tag": "svg",
+   "kinds": [
+    "pointer-inherited"
+   ],
+   "label": "",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(2) > button:nth-of-type(1) > svg:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 440,
+   "y": 908,
+   "w": 14,
+   "h": 14,
+   "href": null,
+   "title": null,
+   "fast": true
+  },
+  {
+   "idx": 86,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(MKL-2200) Marker Lamp, Amber LEDAdd fee / discountMove 2 EA In Stock $18.60 42% $37.20 Pick",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(3)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 935,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 87,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Pick",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(3) > div:nth-of-type(10) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1365,
+   "y": 942,
+   "w": 43,
+   "h": 26,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 88,
+   "tag": "div",
+   "kinds": [
+    "hover-rule-host:.wo-row--content"
+   ],
+   "label": "(PIG-14) Pigtail Connector, 2-WireAdd fee / discountMove 2 EA In Stock $6.40 39% $12.80 Pick",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(4)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 312,
+   "y": 975,
+   "w": 1112,
+   "h": 40,
+   "href": null,
+   "title": null,
+   "fast": false
+  },
+  {
+   "idx": 89,
+   "tag": "button",
+   "kinds": [
+    "interactive:button",
+    "pointer"
+   ],
+   "label": "Pick",
+   "path": "#tab-lines > div:nth-of-type(3) > div:nth-of-type(4) > div:nth-of-type(10) > button:nth-of-type(1)",
+   "page": "_header_or_outside",
+   "flow": "S2-13274 / In Progress / Started: Jun 8, 2026",
+   "x": 1365,
+   "y": 982,
+   "w": 43,
+   "h": 26,
+   "href": null,
+   "title": null,
+   "fast": false
+  }
+ ],
+ "_page_ids": []
+}
