@@ -2825,6 +2825,14 @@ approval to do so").
    `build/rules/RULES-61-ONWARD.md` — that file is read for facts only, never rules.** I may still search
    other sessions' files for facts.
 
+
+### Addition 2026-10-08 — I never ask another session to save anything as a rule (QA lead: "1. Yes")
+When I write a handoff or instructions for another session, I give **task instructions only**:
+- I never ask that session to save, record or adopt anything as a rule, standard or skill;
+- I never point it at my rule book as its authority (no "Rule N", amendment or lesson numbers presented as its rules);
+- each handoff opens by saying the content is task instructions, not rules for its rule book.
+Sharing facts (the playbook, project files) is still fine.
+
 ## 119 · NOTHING IS SKIPPED — EVERY SOURCE IS READ IN FULL, HOWEVER LARGE, UNLESS THE QA LEAD AUTHORIZES A SKIP (all projects, permanent)
 
 Ordered by the QA lead, 2026-10-06, verbatim: *"Make sure that you do NOT skip reading anything ever no matter how
