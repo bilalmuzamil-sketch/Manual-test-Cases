@@ -13,6 +13,7 @@ Source reconciliation: NOT done this pass — the QA lead will check the cases a
 | D3 | C96929 | Before anyone reorders a group, Tech View and Board View list its work orders in the order they were made, not in List's default order (Customer A-Z) | SV-10045 (Story 2) — status to be read live before asking | picture to be made with the 2x recapture |
 | D4 | C96938 | Hovering a technician's avatar in a Tech View group header shows no name | SV-10045 (Story 2) — status to be read live before asking | `D4-C96938-tech-annotated.png` |
 | D5 | C368131 | A technician whose Location field no longer includes this location is still offered here, and their pinned column keeps "Drag a work order here to assign it" instead of "No work orders" | SV-10046 (Story 3) — status to be read live before asking | picture to be made with the 2x recapture |
+| D6 | C368135 | A click outside the "Clear …'s scheduled shifts?" question does not call the change off (Cancel, X and Escape do) | SV-10047 (Story 4) — status to be read live before asking | picture to be made with the 2x recapture |
 | D2 | C96923 | After changing location, Assigned to me stays switched on (List, Tech View and Board View alike) | SV-10044 | `D2-C96923-board-annotated.png` |
 
 ## D1 — C96918 · No-results message and its Clear filters action
@@ -75,3 +76,14 @@ read Lethbridge.
 **What you will see:** her column is still there with "Drag a work order here to assign it", and she is still offered as a lead technician.
 **What the case expects:** a technician no longer at this location shows "No work orders" in their (pinned) column and cannot be given work here.
 **Note:** a technician enrolled at only one location cannot have it removed at all (the Location list offers only that one), so the case's step 2 cannot be followed as written. The deactivated half of the same case passed.
+
+## D6 — C368135 · Clicking outside the shift question does nothing
+
+**Steps to check by hand**
+1. A work order led by a technician who has a shift on it for the whole work order tomorrow (e.g. 8:00–12:00).
+2. Board View: drag its card into another technician's column. The question "Clear …'s scheduled shifts?" opens.
+3. Click an empty part of the page outside the question.
+
+**What you will see:** the question stays open and the card stays in the new column; only Cancel, the X or Escape call it off.
+**What the case expects:** a click outside calls the change off like the others: the card goes back to its place and no message appears.
+**Note:** the question itself is new on this build (the case's "today" note expected none); everything else about it behaved as specified.
