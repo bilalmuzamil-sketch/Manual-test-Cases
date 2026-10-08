@@ -1,0 +1,48 @@
+{panel:bgColor=#e3fcef|borderColor=#36b37e}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on the QA branch [https://sv9138.qa.shopview.com] (build {{v26.40.12-944b391}}) on 8 October 2026. All 10 checks passed.
+
+New duplicate "Uncategorized" categories can no longer be created. On production today, importing a parts file whose Category column has "Uncategorized" with extra spaces or in capitals adds a new "Uncategorized" category every time. On this branch, the same file puts every part into the one existing "Uncategorized" category, and both places named in the ticket (the Category dropdown and Settings > Categories) show it once.
+
+h3. Before and after
+
+!01-categories-before-after.png|width=1060,height=624!
+_Settings > Categories. Left: production after one import, four "Uncategorized" rows. Right: this branch after the same spellings were imported three times, still one "Uncategorized"._
+
+!02-dropdown-before-after.png|width=1350,height=490!
+_Parts > Inventory > New Inventory Part > Category. Left: production, four "Uncategorized" choices at the top. Right: this branch, one._
+
+h3. What was tested
+
+||#||Test||Status||
+|1|Settings > Categories shows one "Uncategorized", with the {{Default}} badge, at the top of the list|PASSED|
+|2|Parts > Inventory > {{New Inventory Part}} > {{Category}} dropdown shows one "Uncategorized"|PASSED|
+|3|Inventory import with the category written as " Uncategorized", "Uncategorized ", "  UNCATEGORIZED  ", "uncategorized", left empty, and "Uncategorized": all six parts go into the existing "Uncategorized"; no new category is created|PASSED|
+|4|The same spellings imported three times in a row: still one "Uncategorized" (its part count went 8,766 > 8,772 > 8,778 > 8,784)|PASSED|
+|5|Import still creates a normal new category once, and matches an existing one written with extra spaces (" HD-Fasteners " went into HD-Fasteners)|PASSED|
+|6|{{New Category}} with 9 spellings of "Uncategorized", including look-alikes with invisible characters: each is blocked ({{Category Name Is Already In Use.}}, {{Save & Close}} greyed out) and nothing is created|PASSED|
+|7|Renaming a normal category to " Uncategorized", "UNCATEGORIZED", "uncategorized " or "Uncategorized" is refused ({{Cannot rename a category to the reserved name "Uncategorized".}})|PASSED|
+|8|The "Uncategorized" row cannot be opened, edited or deleted from Settings > Categories|PASSED|
+|9|Normal categories can still be added, renamed and deleted ({{Delete}}, then {{Delete}} again in the confirmation)|PASSED|
+|10|Creating a category through Open API with any of 5 spellings of "Uncategorized" is refused; a normal name is created|PASSED|
+
+!03-import-result-qa.png|width=760,height=919!
+_Parts > Inventory, the 9 parts from the test file. Each note under the picture shows exactly what the file said and where the part was saved._
+
+!04-settings-refused-qa.png|width=1040,height=1334!
+_Top: New Category refuses " Uncategorized". Bottom: renaming a normal category to "UNCATEGORIZED" is refused and the name stays as it was._
+
+h3. How to see it yourself
+
+# Log in at [https://sv9138.qa.shopview.com], then open [https://sv9138.qa.shopview.com/administration/categories]. This is *Categories* (left-hand menu, under *PARTS*). The first row reads {{Uncategorized}} with a blue {{Default}} badge, and there is no second "Uncategorized" anywhere in the list.
+# In the top menu, click {{Parts}}. In the left-hand menu, click {{Inventory}}. Click the blue {{New Inventory Part}} button at the top right, then click the {{Category}} box. The list starts with one {{Uncategorized}}, then {{70%override}}.
+# Close the window. In the search box next to the word *Inventory* at the top left, type {{ZZ9138-}}. You see the parts ZZ9138-A to ZZ9138-I from my test file. In the {{Category}} column, A to F read {{Uncategorized}}, G and H read {{ZZAUTOTEST-9138-Cat}}, and I reads {{HD-Fasteners}}.
+# To run the import yourself, download the attached [^SV-9138-test-import.csv] (you can use it as it is). Open [https://sv9138.qa.shopview.com/administration/inventory-import] (left-hand menu, under *IMPORTS*, {{Inventory}}), click {{Select CSV File}} and pick the file, click {{Submit File}} at the top right, then click the green {{Import Inventory}} button. Go back to *Categories*: there is still only one {{Uncategorized}}, and nothing new has appeared.
+# Still on *Categories*, click the blue {{New Category}} button at the top right and type {{Uncategorized}} with a space in front of it. An orange {{Category Name Is Already In Use.}} warning appears under the name and {{Save & Close}} stays greyed out.
+
+h3. Not part of this test
+
+This branch has only one "Uncategorized" category, and the fix blocks every way of creating another, so the duplicates that customers like Windy Hill already have were not part of this test.
+

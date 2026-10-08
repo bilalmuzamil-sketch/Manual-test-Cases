@@ -60,3 +60,22 @@ Org flag `openapi` added (snapshot `data/org-flags-before.json`); API key "ZZAUT
 
 ## Exhibits
 01 categories before/after · 02 dropdown before/after · 03 import result on QA · 04 Settings refusals on QA.
+
+## QA lead rulings (8 Oct 2026)
+- On the "duplicates customers already have" half: *"If the fix now stops you from making more then that is it."* → out of
+  scope for this test; the comment says so in one line.
+- On the server-only delete/rename observation: *"I still dont understand what we want to achieve here"* → dropped, not reported.
+- Screen recording: **NO**. Technical details section: **NO**.
+
+## Extra check before posting
+Re-importing `SV-9138-test-import.csv` unchanged (same part numbers): 201, still 51 categories / one Uncategorized (8,784),
+the 9 parts kept their categories → step 4 tells testers to use the file as it is.
+
+## Pre-post gate (Rule 72), 8 Oct 2026 ~04:10 UTC
+Build marker re-read: `v26.40.12-944b391`, last-modified 00:13:34 GMT, etag `1c0aeb29…` — unchanged; PR head still 944b391.
+Ticket: TESTING QA, Parth, only comment 77474. Named data live (ZZ9138-A…I categories read live). Text scanned for AI
+fingerprints: clean. No technical section. Attachments uploaded as real Jira files (61953–61957).
+
+## Posted
+Comment **78202** (2026-10-07 23:11 CDT). Read back from Jira: success panel "OVERALL QA STATUS: PASSED" first; media
+in order 01, 02, 03, 04 (+ the CSV file card); table 10 rows + header. Copy: `comment-as-posted-78202.txt`.

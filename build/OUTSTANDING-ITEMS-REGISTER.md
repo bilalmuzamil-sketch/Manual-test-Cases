@@ -57,7 +57,7 @@ else owes).
 
 ---
 
-## ⚠️ NEWEST — 2026-10-08, ~04:00 UTC. **SV-9138 TESTED ON sv9138 — VERDICT HELD, FOUR ASKS TO THE QA LEAD.**
+## 2026-10-08, ~04:00 UTC. **SV-9138 — ALL FOUR ASKS ANSWERED (CLEARED ~04:10 UTC): out of scope / drop / no recording / no technical section. QA PASSED posted as comment 78202.**
 
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
