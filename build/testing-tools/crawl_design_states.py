@@ -38,6 +38,8 @@ ENUM_JS = r"""
   const vis = (e) => { const r = e.getBoundingClientRect(); const s = getComputedStyle(e);
     return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none' && +s.opacity > 0.01; };
   const set = new Set(document.querySelectorAll(SEL));
+  // drop zones (board columns / Tech View groups) are not clickable, but every draggable is dropped on each of them
+  document.querySelectorAll('[data-group-id],[data-group],[data-tech]').forEach(e => set.add(e));
   // every outermost element with a pointer cursor counts too (prototype click targets are often plain divs)
   for (const e of document.querySelectorAll('body *')) {
     if (getComputedStyle(e).cursor === 'pointer' && !(e.parentElement && getComputedStyle(e.parentElement).cursor === 'pointer')) set.add(e);
@@ -61,7 +63,7 @@ ENUM_JS = r"""
     const r = e.getBoundingClientRect();
     out.push({ key, tag, role, type, label: label(e), ctx: ctx(e),
       draggable: e.getAttribute('draggable') === 'true',
-      drop: !!(e.closest('[data-group-id]') && e.matches('[data-group-id]')),
+      drop: e.matches('[data-group-id],[data-group],[data-tech]'),
       text_input: (tag === 'input' && ['', 'text', 'search'].includes(type)) || tag === 'textarea',
       select: tag === 'select', options: tag === 'select' ? [...e.options].map(o => o.value) : [],
       x: r.x + r.width / 2, y: r.y + r.height / 2 });
