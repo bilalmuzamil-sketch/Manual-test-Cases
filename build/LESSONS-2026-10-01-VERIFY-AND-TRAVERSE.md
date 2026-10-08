@@ -133,3 +133,21 @@ truncated — work from the saved HTML, never the summary). A **design canvas** 
 screenshots (no `data:` prefix — decode strings that start `iVBOR`). `action: "list", scope: "files"` shows
 whether separately published files exist (the Dashboard canvas had none: one self-contained page).
 Worked example: `build/dashboards/sources/design-po-empty-states-2026-10-07/`.
+
+## L15 · Claude Design PROJECT links (`claude.ai/design/p/<uuid>`) — what works (2026-10-08) — FACT
+Tried every route on 8 Oct for `https://claude.ai/design/p/787fef1a-…?via=share&file=Work+Orders.dc.html`:
+- **Artifact tool `read`** refuses it: "that is a Claude Design link, which the Artifact tool cannot open" (it only
+  reads `claude.ai/artifact/<id>` and `claude.ai/code/artifact/<uuid>` — those DO work, L14).
+- **curl** gets a Cloudflare challenge (403); a **real headless browser** passes that and lands on the claude.ai
+  **sign-in page**. That is a login wall — never try to get around it.
+- **DesignSync** reads claude.ai/design projects only inside the `/design-sync` skill the user starts, and lists
+  design-SYSTEM projects only; not a route for reading a product design.
+- Documented routes (Claude Design help, "Get started"): the design owner can **Export** (ZIP / standalone HTML / PDF)
+  or **hand off to Claude Code**; Claude Code's `/design` imports a design into a codebase (not checked in a cloud
+  session).
+**What works:** the QA lead (or the designer) uploads an **Export → ZIP** of the project, or shares the design as a
+**claude.ai/artifact link** (readable with the Artifact tool, as the Dashboard canvas was). Ask for one of these in
+one line the moment a `claude.ai/design/p/…` link arrives, and keep working meanwhile.
+**Driving a prototype export:** `drive_design_full.py` resets after every click (one click deep). A stateful
+prototype needs `build/testing-tools/crawl_design_states.py` (state-graph crawl: every element hovered and clicked in
+every reachable screen, inputs typed, selects chosen, every draggable dropped on every target, dark theme + widths).
