@@ -108,3 +108,8 @@ Already answered by Product in v26, so NOT asked:
 - the tech plan's Q18 (S8-N1a);
 - Q19 (the singular toast);
 - every one of the 17 planning questions.
+
+## Display check and test runs
+- **Display check:** 259 of 259 written cases are "RESULT OK" (`hs_repair_one.mjs`; logs `render*.log`).
+- **Test runs (Rule 123):** no open run is named for Part Lifecycle. The only Founder Mode run is 495, "Part Sales + Notifications", created by Vladimir Tomovic; it is not ours to change. So there was no run to update.
+  - If the QA lead wants a Part Lifecycle run, it should be created when a QA build exists.
