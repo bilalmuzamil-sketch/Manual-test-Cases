@@ -20,3 +20,8 @@
   - v2 https://docs.google.com/document/d/1h92KV9dBUO91qoZIdPwkQf-IBqFQSsqYFxGJYVckhG8/edit
 
 **Not done:** the domain-wide sharing. The Drive connector shares only with a named person or group address, so the QA lead sets "General access: ShopView, anyone with the link", or gives a group address.
+
+**Update 8 Oct 2026 (QA lead):** every expected result starts with the step it belongs to ("Step N:").
+- C425783 now reads: Step 2 (opens in List) · Step 2 (List highlighted) · Step 3 (still List after refresh).
+- Source, quotes and marker are unchanged (checked).
+- Display check OK.
