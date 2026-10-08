@@ -243,7 +243,13 @@ def main():
                 todo += [(e, "hover", None), (e, "click", None)]
                 if e["text_input"]: todo += [(e, "type", "Fib"), (e, "type", "zzqx-no-match")]
                 if e["select"]: todo += [(e, "select", o) for o in e["options"]]
-                if e["draggable"]: todo += [(e, "drag", d) for d in drops if d != e["key"]]
+                if e["draggable"]:
+                    # the display's starting screen: every draggable onto every drop zone; every other screen: each
+                    # draggable dropped once and each drop zone receiving at least one drop (linear, not quadratic)
+                    if S["depth"] == 0: todo += [(e, "drag", d) for d in drops if d != e["key"]]
+                    else:
+                        others = [d for d in drops if d != e["key"]]
+                        if others: todo.append((e, "drag", others[len([t for t in todo if t[1] == "drag"]) % len(others)]))
             for e, action, arg in todo:
                 k = (S["id"], e["key"], action + ("" if arg is None else ":" + str(arg)))
                 if k in done: continue
