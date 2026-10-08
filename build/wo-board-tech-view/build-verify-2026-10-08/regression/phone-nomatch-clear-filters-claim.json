@@ -1,0 +1,41 @@
+{
+ "claim": "At 390 px the Work Orders List no-match search shows no Clear filters action (sv10043, 2026-10-08)",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "Same button-enumeration method found \"Clear search\" (aria-label) and \"Sort work orders\", \"Show more filters\" on the same page; on Board View it found \"Clear search\" too (/tmp/cln/agent-R/p7.log CONTROL line). Earlier session evidence no-match-list.txt shows \"Clear all filters\" for a filter no-match, so the method sees such a button when present.",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Typed into the List search box at 390x844 via the Search button, as a user would (p6.log NOMATCH, p7.log ATTEMPT2); screenshot P6-nomatch.png shows the empty state with only the search box clear icon.",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Two separate runs (p6 and p7), 4 s and 8 s waits after typing, same message both times.",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "URL read: https://sv10043.qa.shopview.com/workorders?search=zz-no-such-work-order; one page in the context (pages 1).",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Message read back: No work orders match the search \"zz-no-such-work-order\". (P7-phone-nomatch-2.txt).",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "grep -rn \"Clear filters\" build/wo-board-tech-view/ and OBSERVED-UI-LABELS-sv10043.md: only \"Clear all filters\" for the filter no-match in Tech/Board View; nothing for a search no-match at phone width.",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Possible fault: the button is hidden off-screen or under \"Show more filters\". Ruled out: the full button list of the page (all visible buttons, p7.log) has no Clear filters; the case text itself allows a different wording only via the tester noting it.",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}
