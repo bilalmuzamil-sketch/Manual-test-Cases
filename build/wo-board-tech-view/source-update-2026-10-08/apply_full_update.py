@@ -12,6 +12,7 @@ V42 = open("build/wo-board-tech-view/sources/CONFLUENCE-845185030-WO-BoardView-T
 APPLY = "--apply" in sys.argv
 def ws(s): return re.sub(r"\s+", " ", s.replace("**", "").replace("\\", "")).strip()
 V42N = ws(V42)
+EXTRAN = " ".join(ws(open(f).read()) for f in os.environ.get("EXTRA_SOURCES", "").split(":") if f)  # other quoted sources (e.g. the developer's regression list)
 TPN = ws(open("build/wo-board-tech-view/sources/Tech-Plan-Kanban-Tech-View-Display-Options-2026-10-08-upload.md").read())  # tech-plan quotes (Rule 115) are checked against the tech plan
 def esc(t): return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 def ol(x):
@@ -34,6 +35,7 @@ def expected(p):
         f"<strong>{esc(a)}:</strong> &ldquo;{esc(q.replace('**', ''))}&rdquo;" for a, q in p["quotes"])
     if stamp: out += f"<p>{esc(stamp)}</p>"
     return out + f"<p>{esc(p['marker'])}</p>"
+PRIO = {int(k): v for k, v in json.loads(os.environ.get("SECTION_PRIORITY", "{}")).items()}
 problems = []; plans = []; news = []
 for f in sorted(glob.glob(os.environ.get("PROPOSALS", f"{H}/proposals-*.json"))):
     d = json.load(open(f))
@@ -46,7 +48,7 @@ for f in sorted(glob.glob(os.environ.get("PROPOSALS", f"{H}/proposals-*.json")))
             if not p["preconds"] or not p["steps"] or not p["results"] or not p["quotes"]: problems.append(f"{k}: empty part")
             if not p["marker"].startswith("AUTOMATION: ") or "AUTOMATION:" in " ".join(p["results"]): problems.append(f"{k}: marker")
             for a, q in p["quotes"]:
-                if ws(q) not in (TPN if a.lower().startswith("tech plan") else V42N): problems.append(f"{k}: quote {a} not verbatim in v42: {q[:90]}")
+                if ws(q) not in (TPN if a.lower().startswith("tech plan") else V42N) and ws(q) not in EXTRAN: problems.append(f"{k}: quote {a} not verbatim in v42: {q[:90]}")
             tester = " ".join(p["preconds"] + p["steps"] + p["results"])
             for bad in ("display options are on", "Rule 1", "seed the exact", "conditions in S", "ask the QA lead", "ask your QA lead"):
                 if bad.lower() in tester.lower(): problems.append(f"{k}: tester text contains '{bad}'")
@@ -76,7 +78,7 @@ if APPLY:
         log.append({"op": "update", "case": f"C{cid}", "automated": c.get("custom_atmstatus") == 3, "verified": ok, "change": why})
         print(("OK " if ok else "MISMATCH ") + f"C{cid}")
     for key, sec, payload, why in news:
-        payload.update({"template_id": 1, "type_id": 7, "priority_id": 2, "custom_automation_type": 2, "custom_atmstatus": 1})
+        payload.update({"template_id": 1, "type_id": 7, "priority_id": PRIO.get(sec, 2), "custom_automation_type": 2, "custom_atmstatus": 1})
         r = api(f"add_case/{sec}", payload); a = api(f"get_case/{r['id']}")
         ok = all((a.get(k) or "") == v for k, v in payload.items() if k.startswith("custom_p") or k in ("title", "custom_steps", "custom_expected"))
         log.append({"op": "add", "key": key, "case": f"C{r['id']}", "section": sec, "verified": ok, "why": why})
