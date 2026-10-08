@@ -1,0 +1,13 @@
+import {op,j} from './lib.mjs'; import fs from 'fs';
+const s=await op({dpr:2,vp:{width:1600,height:1000}}); const p=s.page; const R=JSON.parse(fs.readFileSync('prod-ids.json'));
+const openList=async(shot)=>{ await p.goto(s.host.app+'/accounting/banking/transactions',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(5000);
+ const card='card_account_accounting_bank_transactions_'+R.bank; await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center',inline:'center'}),card); await p.waitForTimeout(500); const b=await s.box(card); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3500); await p.evaluate(()=>window.scrollTo(0,0)); await p.waitForTimeout(400);
+ await p.screenshot({path:shot}); return p.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(tr=>tr.innerText.replace(/\s+/g,' ').trim()).slice(0,4)); };
+console.log('before',JSON.stringify(await openList('P4-list-before.png')));
+await p.goto(s.host.app+'/accounting/banking/rules',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(4000);
+console.log('confirm',JSON.stringify(await s.confirm('button_apply_accounting_bank_rules_'+R.catRule,{shotPrefix:'P4-apply'})).slice(0,300)); await p.waitForTimeout(3000);
+console.log('after',JSON.stringify(await openList('P4-list-after.png')));
+const rows=(await s.api('/api/accounting/bank-transactions?account_id='+R.chart+'&per_page=20')).json.bank_transactions;
+for(const t of rows) console.log('AFTER',t.description,JSON.stringify({party:t.party?.name||null,kind:t.party_summary?.kind,cat:t.category_account_name,splits:t.splits.length}));
+console.log('marker',j(await s.marker()));
+await s.close();

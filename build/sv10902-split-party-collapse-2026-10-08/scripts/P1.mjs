@@ -1,0 +1,11 @@
+import {op,j} from './lib.mjs'; import fs from 'fs';
+const RID='2a43e6cb-34ab-4475-bd02-242361a725f5';
+let s=await op({dpr:1}); console.log('prod marker',j(await s.marker()));
+const role=(x=>x.data||x)((await s.api('/api/roles/'+RID)).json); fs.writeFileSync('prod-role-before.json',JSON.stringify(role,null,1)); console.log('role perms before',role.fe_permissions.length);
+const acc=((await s.api('/api/fe-permissions')).json.data).filter(x=>/^accounting/.test(x.code)).map(x=>x.id);
+const ids=[...new Set([...role.fe_permissions.map(x=>x.id),...acc])];
+const put=await s.api('/api/roles/'+RID,{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify({name:role.name,description:role.description,fePermissions:ids,viewMode:role.view_mode,crossToggles:role.cross_toggles})}); console.log('grant',put.status,ids.length);
+await s.close(); s=await op({dpr:1});
+const po=await s.api('/api/accounting/bank-transactions/party-options'); console.log('party-options',po.status,(po.json?.party_options||[]).filter(x=>x.type==='customer').slice(0,5).map(x=>x.name+' '+x.id).join(' | '));
+const ex=(await s.api('/api/accounting/accounts?per_page=500')).json.accounts; console.log(ex.filter(x=>x.type==='expense'&&x.is_active).slice(0,8).map(x=>x.account_number+' '+x.name+' '+x.id).join('\n')); console.log('has 1095?',ex.some(x=>x.account_number==='1095'));
+await s.close();

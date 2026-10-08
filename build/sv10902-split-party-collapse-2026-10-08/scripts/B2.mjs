@@ -1,0 +1,16 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:2,vp:{width:1600,height:1000}}); const p=s.page; const R=JSON.parse(fs.readFileSync('ids.json')); const G=R.rows.G, H=R.rows.H;
+const openList=async()=>{ await p.goto(s.host.app+'/accounting/banking/transactions',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(5000);
+ const card='card_account_accounting_bank_transactions_'+R.bank; await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center',inline:'center'}),card); await p.waitForTimeout(500); const b=await s.box(card); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3500); await p.evaluate(()=>window.scrollTo(0,0)); await p.waitForTimeout(400); };
+const geo=async()=>p.evaluate(ids=>ids.map(id=>{const r=e=>{if(!e) return null; const q=e.getBoundingClientRect(); return [q.x,q.y,q.width,q.height].map(Math.round);}; const c=document.querySelector(`[data-test-id="cell_accounting_bank_transactions_${id}_party"]`); return {id, row:r(c?.closest('tr')), party:r(c), cat:r(document.querySelector(`[data-test-id="cell_accounting_bank_transactions_${id}_category"]`)), text:c?.closest('tr')?.innerText.replace(/\s+/g,' ').trim()};}),[H,G]);
+await openList(); const g0=await geo(); await p.screenshot({path:'B2-before.png'}); console.log('before',JSON.stringify(g0));
+let b=await s.box('button_split_summary_accounting_bank_transactions_'+G); await p.mouse.click(b.x,b.y); await p.waitForTimeout(1500);
+await p.screenshot({path:'B2-before-splits.png'});
+const pop=await p.evaluate(()=>{const m=[...document.querySelectorAll('.q-menu,.q-dialog,.q-card')].filter(e=>e.getBoundingClientRect().width>0).pop(); if(!m) return null; const q=m.getBoundingClientRect(); return {box:[q.x,q.y,q.width,q.height].map(Math.round),text:m.innerText.replace(/\s+/g,' ').slice(0,400)};}); console.log('popover',JSON.stringify(pop)); fs.writeFileSync('B2-geo.json',JSON.stringify({g0,pop},null,1));
+await p.keyboard.press('Escape'); await p.waitForTimeout(500);
+await p.goto(s.host.app+'/accounting/banking/rules',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(4000);
+console.log('confirm',JSON.stringify(await s.confirm('button_apply_accounting_bank_rules_'+R.catRule,{shotPrefix:'B2-apply'})).slice(0,200)); await p.waitForTimeout(3000);
+await openList(); const g1=await geo(); await p.screenshot({path:'B2-after.png'}); console.log('after',JSON.stringify(g1));
+const st=JSON.parse(fs.readFileSync('B2-geo.json')); st.g1=g1; fs.writeFileSync('B2-geo.json',JSON.stringify(st,null,1));
+console.log('marker',j(await s.marker()));
+await s.close();

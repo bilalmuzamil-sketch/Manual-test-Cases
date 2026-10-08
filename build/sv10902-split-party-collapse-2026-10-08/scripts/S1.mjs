@@ -1,0 +1,17 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:1}); const R={};
+const api=(u,o={})=>s.api(u,{...o,headers:{'content-type':'application/json',...(o.headers||{})}});
+const acc=await api('/api/accounting/accounts',{method:'POST',body:JSON.stringify({account_number:'1095',name:'ZZAUTOTEST SV-10902 bank',type:'asset',sub_type:'bank'})});
+R.chart=acc.json?.account?.id; console.log('chart',acc.status,R.chart);
+const ba=await api('/api/accounting/bank-accounts',{method:'POST',body:JSON.stringify({account_type:'checking',account_id:R.chart,institution_name:'ZZ Test Bank',nickname:'ZZAUTOTEST SV-10902 bank',mask:'0902'})});
+console.log('bank',ba.status,JSON.stringify(ba.json).slice(0,200)); R.bank=ba.json?.bank_account?.id||ba.json?.data?.id;
+const csv='Date,Description,Amount\n'+['A','B','C','D','E','F'].map((x,i)=>`10/0${i+1}/2026,ZZ10902-${x} supplies,-100.00`).join('\n')+'\n';
+fs.writeFileSync('rows.csv',csv);
+const imp=await s.page.evaluate(async([u,csv])=>{const f=new FormData(); f.append('file',new Blob([csv],{type:'text/csv'}),'zz10902.csv'); for(const [k,v] of Object.entries({date_column:'Date',description_column:'Description',amount_mode:'single',amount_column:'Amount',sign_convention:'deposits_positive',date_format:'MM/DD/YYYY'})) f.append(k,v);
+ const r=await fetch(u,{method:'POST',credentials:'include',body:f,headers:{accept:'application/json'}}); return {st:r.status,t:(await r.text()).slice(0,400)};},[s.host.api+'/api/accounting/bank-accounts/'+R.bank+'/import',csv]);
+console.log('import',j(imp));
+const t=await api('/api/accounting/bank-transactions?account_id='+R.chart+'&per_page=20'); const rows=t.json.bank_transactions; R.rows=Object.fromEntries(rows.map(r=>[r.description.slice(8,9),r.id]));
+console.log(rows.length, JSON.stringify(rows[0]).slice(0,1500));
+const ex=(await api('/api/accounting/accounts?per_page=500')).json.accounts.filter(a=>a.type==='expense').slice(0,6).map(a=>a.account_number+' '+a.name+' '+a.id); console.log(ex.join('\n'));
+fs.writeFileSync('ids.json',JSON.stringify(R,null,1));
+await s.close();

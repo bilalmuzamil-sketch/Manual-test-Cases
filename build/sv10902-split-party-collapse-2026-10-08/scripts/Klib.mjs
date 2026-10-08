@@ -1,0 +1,10 @@
+import fs from 'fs';
+export const mk=(s)=>{ const p=s.page; const R=JSON.parse(fs.readFileSync('/tmp/qa10902/ids.json'));
+ const box=async t=>{ await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center',inline:'center'}),t); await p.waitForTimeout(300); return s.box(t); };
+ const click=async t=>{ const b=await box(t); if(!b) throw new Error('no '+t); await p.mouse.click(b.x,b.y); await p.waitForTimeout(700); };
+ const pickItem=async label=>{ for(let i=0;i<10;i++){ const o=await p.evaluate(l=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>x.getBoundingClientRect().width>0&&x.innerText.includes(l)); if(!e) return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};},label); if(o){ await p.mouse.click(o.x,o.y); await p.waitForTimeout(700); return; } await p.waitForTimeout(400);} throw new Error('no item '+label); };
+ const notif=()=>p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText.replace(/\s+/g,' ')).join('|'));
+ const dlg=()=>p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.getAttribute('data-test-id')+'|'+(e.innerText||e.value||'').replace(/\s+/g,' ').slice(0,30)));
+ const openBank=async()=>{ await p.goto(s.host.app+'/accounting/banking/transactions',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(4500); await click('card_account_accounting_bank_transactions_'+R.bank); await p.waitForTimeout(3000); };
+ return {p,R,box,click,pickItem,notif,dlg,openBank};
+};

@@ -1,0 +1,17 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:2,vp:{width:1600,height:1000}}); const p=s.page; const R=JSON.parse(fs.readFileSync('ids.json')); const log=[];
+p.on('response',async r=>{ if(/rules\/.*\/apply/.test(r.url())) log.push(r.status()+' '+(await r.text()).slice(0,400)); });
+await p.goto(s.host.app+'/accounting/banking/rules',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(4000);
+await p.screenshot({path:'U2-rules-before.png'});
+const steps=await s.confirm('button_apply_accounting_bank_rules_'+R.catRule,{shotPrefix:'U2-apply'}); console.log('confirm steps',JSON.stringify(steps).slice(0,800));
+await p.waitForTimeout(3000); console.log('apply resp',log.join(' | '));
+console.log('notif',await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText.replace(/\s+/g,' ')).join('|')));
+await p.screenshot({path:'U2-rules-after.png'});
+await p.goto(s.host.app+'/accounting/banking/transactions',{waitUntil:'domcontentloaded'}); await p.waitForTimeout(4000);
+const card='card_account_accounting_bank_transactions_'+R.bank; await p.evaluate(t=>document.querySelector(`[data-test-id="${t}"]`)?.scrollIntoView({block:'center',inline:'center'}),card); await p.waitForTimeout(500); let b=await s.box(card); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3000);
+await p.screenshot({path:'U2-list-after.png',fullPage:true});
+console.log('rows',JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(tr=>tr.innerText.replace(/\s+/g,' ').trim()).slice(0,10))));
+const rows=(await s.api('/api/accounting/bank-transactions?account_id='+R.chart+'&per_page=20')).json.bank_transactions;
+const st=Object.fromEntries(rows.map(t=>[t.description.slice(8,9),{party:t.party?.name||null,summary:t.party_summary,cat:t.category_account_name,splits:t.splits.length,splitParties:t.splits.map(x=>x.party?.name||null)}]));
+fs.writeFileSync('state-after-collapse.json',JSON.stringify(st,null,1)); for(const k of 'ABCDEF') console.log('AFTER',k,JSON.stringify(st[k]));
+await s.close();

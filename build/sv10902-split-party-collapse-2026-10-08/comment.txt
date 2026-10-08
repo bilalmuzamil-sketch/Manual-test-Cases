@@ -1,0 +1,47 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on the QA branch [sv10360|https://sv10360.qa.shopview.com] (build v26.40.8-3e5c1df) on 8 October 2026, signed in as Admin, using a test bank account with imported rows. The "before" was taken on production (build v26.40.12-106a0f1) the same day with the same steps.
+
+In short:
+* When a category-only rule collapses a split row whose lines disagree, the row now comes back with *no customer*. The customer it had before it was split no longer comes back.
+* On production the same steps bring the old customer back. That is the problem in this ticket, and it is gone on the QA branch.
+* Rows whose split lines all agree keep that customer. Rows whose lines the user picked and that disagree are left alone. Clearing the splits by hand still leaves the row blank.
+
+h3. Before vs after
+!01-before-after.png|width=1348,height=941!
+
+h3. What I checked
+||#||Check||Result||
+|1|A row set to a customer by a rule, then split, with split lines that disagree and none picked by the user (7 Star, 7 Star and blank). After a category-only rule, the row has no customer; the pre-split customer (4 Star Truck Repair) does not come back. Done on two separate rows: ZZ10902-A and ZZ10902-G|PASSED|
+|2|Split lines that all agree (set by a rule, 7 Star / 7 Star): the collapsed row keeps 7 Star Truck Repair (ZZ10902-B, ZZ10902-H)|PASSED|
+|3|Split lines that agree because they were inherited from the row (4 Star / 4 Star): the collapsed row keeps 4 Star Truck Repair, which is the customer the lines themselves carried (ZZ10902-F)|PASSED|
+|4|Split lines the user picked that agree (7 Star / 7 Star): the collapsed row keeps 7 Star Truck Repair (ZZ10902-D)|PASSED|
+|5|Split lines the user picked that disagree (7 Star / A & J Truck & Trailer Repair): the rule leaves the row alone and it stays split with both customers (ZZ10902-C)|PASSED|
+|6|Clearing all splits by hand: the row comes back blank, not with 4 Star. Splitting it again afterwards gives new lines with no customer (ZZ10902-E)|PASSED|
+|7|The whole case done on screen from start to finish with a new row (ZZ10902-K): import the row, a rule sets ZZ Acme, split into two lines (both show ZZ Acme), a second rule changes the lines to ZZ Bob, a third line is added with no customer, then a category-only rule. The row comes back with no customer|PASSED|
+|8|Posting a collapsed row: ZZ10902-A posts with no customer, ZZ10902-B posts with 7 Star Truck Repair|PASSED|
+
+h3. All six rows after the rule
+!02-all-cases-after-rule.png|width=1348,height=676!
+
+h3. Posted rows
+!03-posted-rows.png|width=1348,height=262!
+
+h3. How to see it yourself
+# Open [https://sv10360.qa.shopview.com|https://sv10360.qa.shopview.com] and sign in as Admin.
+# At the top left, next to the logo, click {{ShopHub}} (with the small arrow) and choose {{AccountingHub}}.
+# In the left menu under {{BANKING}}, click {{Transactions}}. In the row of bank cards near the top, click the card {{ZZAUTOTEST SV-10902 bank}}.
+# The list under {{For review}} shows the test rows. Rows {{ZZ10902-A}} and {{ZZ10902-G}} were split with disagreeing lines before the rule ran: in the {{CUSTOMER / VENDOR}} column they show the grey placeholder {{Customer / Vendor}}, meaning no customer (pictures above).
+
+To repeat it from scratch with a new row (use a letter not used yet, for example M):
+# On {{Transactions}}, click the three dots ({{⋮}}) at the top right of the bank card {{ZZAUTOTEST SV-10902 bank}} and choose {{Import statement}}. Under {{Statement file (CSV)}} pick a CSV with one row, for example a file containing the two lines {{Date,Description,Amount}} and {{2026-10-10,ZZ10902-M supplies,-100.00}}. Leave the other settings as they are and click {{Import}}.
+# In the left menu under {{BANKING}}, click {{Rules}}, then {{New rule}}. Fill {{Name}}, set {{Pattern}} to {{ZZ10902-M}}, under {{Customer / Vendor}} click {{Set customer/vendor}} and pick {{ZZ Acme}} in the box that appears, tick {{Also apply to For review now}} and click {{Save}}.
+# Go back to {{Transactions}} and the {{ZZAUTOTEST SV-10902 bank}} card. On the ZZ10902-M row, click the three dots ({{⋮}}) at the right end and choose {{Split}}. The window shows two lines, both with ZZ Acme. Give each line a {{CATEGORY}} and an {{AMOUNT}} (for example 60.00 and 40.00), leave {{CUSTOMER / VENDOR}} as it is and click {{Save splits}}.
+# Make another rule like step 2, but pick {{ZZ Bob}}. Both lines now show ZZ Bob.
+# On the row, click {{Split (2)}} in the {{ACCOUNT}} column, click {{+ Add split line}}, change the amounts to 50.00, 30.00 and 20.00 with a category on the new line, leave the new line's {{CUSTOMER / VENDOR}} empty and click {{Save splits}}.
+# Make a third rule for {{ZZ10902-M}}: pick {{6110 Sales Tax Expense}} under {{Set account}}, leave {{Customer / Vendor}} on {{No customer/vendor action}}, tick {{Also apply to For review now}} and click {{Save}}.
+# Back on {{Transactions}}, the ZZ10902-M row is no longer split and its {{CUSTOMER / VENDOR}} shows the grey placeholder {{Customer / Vendor}}: no customer. On production the same steps show {{ZZ Acme}} there.
+
+h3. What I could not check
+* The Plaid path, where the bank changes the amount of a transaction after it was split. Plaid's test bank only does that when someone with the developers' Plaid keys tells it to, and nothing in the app can make it happen, so it could not be triggered on the QA branch.
