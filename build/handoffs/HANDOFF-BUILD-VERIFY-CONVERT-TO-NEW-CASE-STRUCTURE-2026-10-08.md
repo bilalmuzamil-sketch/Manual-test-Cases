@@ -143,7 +143,7 @@ These are task instructions from the QA lead for this conversion. They are not r
 ---
 
 ## 4 · Reference
-- **Current example (8 Oct 2026, approved style):** C433977 https://shopview.testrail.io/index.php?/cases/view/433977 and its doc https://docs.google.com/document/d/1hsNgzAdUiwqImR_x3uCNy5-Rxx15He162aEcUlV0P_s/edit
+- **Current example (8 Oct 2026, approved style):** C433977, deleted after review; its body is saved in `build/skills/example-layout-2026-10-08/sv5294/C433977-final-before-delete.json`. Its doc, kept as the reference: https://docs.google.com/document/d/1hsNgzAdUiwqImR_x3uCNy5-Rxx15He162aEcUlV0P_s/edit
 - **Earlier example** (deleted after review; older placeholder names, read for shape only):
   - **The case:** `build/skills/example-layout-2026-10-08/sv4802/C425784-final-before-delete.json` (Preconditions, Steps and Expected HTML).
   - **Its doc:** https://docs.google.com/document/d/1MrEUYh5KA0JD1QkiaN28zYhJXip4j0egjm_1BBgX7L8/edit

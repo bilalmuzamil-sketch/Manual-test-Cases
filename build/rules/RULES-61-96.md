@@ -2807,7 +2807,7 @@ Ordered by the QA lead on C433977 (SV-5294): *"What do you mean 'in this test it
 - **Each precondition is one short sentence that names the record inside it**, with its example: "Work order {Work-order-1} (for example S2-15440) has an approved line, {Line-1} (for example \"Replace - Brake pot\")." No "In this test it is called …" sentences. (Supersedes that part of the sixth amendment.)
 - **Lines and work orders are numbered:** {Line-1}, {Line-2} … {Work-order-1}, {Work-order-2} … Everything else keeps the seventh amendment's letters ({Part-A}, {Location-A}, {Technician-A}, {User-B}). Ids follow: {Work-order-1 id}, {Line-1 id}. (Supersedes the seventh amendment for lines and work orders only.)
 - **Every record has an example**, marked "(for example …)", including the work order number, the line and the part number. The app assigns real numbers; the example only illustrates.
-- Applies to the Preconditions, Steps, plain expected results and the setup doc. Source, quotes, build stamp and marker are untouched. Example: C433977 and its doc v2 (`build/skills/example-layout-2026-10-08/sv5294/`).
+- Applies to the Preconditions, Steps, plain expected results and the setup doc. Source, quotes, build stamp and marker are untouched. Example: C433977 (deleted after review 8 Oct 2026; body and doc v2 kept, `build/skills/example-layout-2026-10-08/sv5294/`).
 
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
