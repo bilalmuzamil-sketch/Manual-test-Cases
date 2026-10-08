@@ -93,7 +93,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("board"); ap.add_argument("out")
     ap.add_argument("--max-depth", type=int, default=6); ap.add_argument("--max-states", type=int, default=400)
-    ap.add_argument("--viewport", default="1440x900"); ap.add_argument("--vendor"); ap.add_argument("--wait", type=int, default=400)
+    ap.add_argument("--viewport", default="1440x900"); ap.add_argument("--vendor"); ap.add_argument("--wait", type=int, default=250)
     ap.add_argument("--resume", action="store_true")
     ap.add_argument("--seed", default="", help="actions from fresh load to the crawl's root state: 'key::action;key::action'")
     ap.add_argument("--no-expand", default="", help="regex on element labels whose resulting screens are recorded but not crawled (another worker crawls them)")
@@ -143,8 +143,10 @@ def main():
             page.wait_for_timeout(1500); page.mouse.move(2, 2)
 
         def act(el_key, action, arg=None):
-            page.evaluate(ENUM_JS)  # re-tag keys on the current DOM
             loc = page.locator(f'[data-crawl-key="{el_key}"]')
+            if loc.count() == 0:
+                page.evaluate(ENUM_JS)  # re-tag keys only when the DOM was re-rendered
+                loc = page.locator(f'[data-crawl-key="{el_key}"]')
             if loc.count() == 0: raise RuntimeError("element not found: " + el_key)
             loc = loc.first; loc.scroll_into_view_if_needed(timeout=3000)
             if action == "hover": loc.hover(timeout=3000)
@@ -152,7 +154,9 @@ def main():
             elif action == "type": loc.fill(arg, timeout=3000)
             elif action == "select": loc.select_option(arg, timeout=3000)
             elif action == "drag":
-                page.evaluate(ENUM_JS); tgt = page.locator(f'[data-crawl-key="{arg}"]').first
+                tgt = page.locator(f'[data-crawl-key="{arg}"]')
+                if tgt.count() == 0: page.evaluate(ENUM_JS); tgt = page.locator(f'[data-crawl-key="{arg}"]')
+                tgt = tgt.first
                 loc.drag_to(tgt, timeout=5000)
             page.wait_for_timeout(a.wait)
 
@@ -160,10 +164,11 @@ def main():
             fresh()
             for st in path: act(*st)
 
-        def add_state(path, depth, fp, t):
+        def add_state(path, depth, fp, t, parent=None):
             sid = len(states); shot = f"screenshots/state-{sid:04d}.png"
             page.screenshot(path=str(out / shot), full_page=False)
-            s = {"id": sid, "depth": depth, "path": path, "fp": fp, "lines": t["lines"], "overlays": t["overlays"], "theme": t["theme"], "shot": shot}
+            keys = [e["key"] for e in page.evaluate(ENUM_JS)]
+            s = {"id": sid, "parent": parent, "keys": keys, "depth": depth, "path": path, "fp": fp, "lines": t["lines"], "overlays": t["overlays"], "theme": t["theme"], "shot": shot}
             states.append(s); seen_lines.update(t["lines"])
             with open(states_f, "a") as f: f.write(json.dumps(s, ensure_ascii=False) + "\n")
             return sid
@@ -183,6 +188,14 @@ def main():
                 continue
             base_fp, base_t = snap(); base_lines = set(base_t["lines"])
             els = page.evaluate(ENUM_JS)
+            # A screen that only ADDED elements on top of its parent (a menu, popover, dialog over the same page) is swept
+            # for its new elements only: everything underneath was already hovered and clicked in the parent screen.
+            P = states[S["parent"]] if S.get("parent") is not None and states[S["parent"]].get("keys") else None
+            sweep_mode = "full"
+            if P is not None and S.get("keys"):
+                pk = set(P["keys"]); ck = set(S["keys"])
+                if pk <= ck: els = [e for e in els if e["key"] not in pk]; sweep_mode = "overlay-new-elements-only"
+            with open(out / "sweeps.jsonl", "a") as f: f.write(json.dumps({"state": S["id"], "mode": sweep_mode, "elements": len(els)}) + "\n")
             drops = [e["key"] for e in els if e["drop"]]
             todo = []
             for e in els:
@@ -209,7 +222,7 @@ def main():
                         if fp in known_fp: rec["to_state"] = known_fp[fp]
                         elif noexp and noexp.search(e["label"] or ""): rec["to_state"] = None; rec["not_expanded_reason"] = "crawled by another worker"
                         elif (novel or t["overlays"] != base_t["overlays"] or t["theme"] != base_t["theme"]) and len(states) < a.max_states:
-                            sid = add_state(S["path"] + [[e["key"], action, arg]], S["depth"] + 1, fp, t); known_fp[fp] = sid; rec["to_state"] = sid; rec["novel_lines"] = novel[:60]
+                            sid = add_state(S["path"] + [[e["key"], action, arg]], S["depth"] + 1, fp, t, parent=S["id"]); known_fp[fp] = sid; rec["to_state"] = sid; rec["novel_lines"] = novel[:60]
                         else: rec["to_state"] = None
                     if new and action == "hover":
                         hs = f"screenshots/s{S['id']:04d}-hover-{hashlib.sha1(e['key'].encode()).hexdigest()[:8]}.png"; page.screenshot(path=str(out / hs)); rec["shot"] = hs
