@@ -49,3 +49,8 @@
   - C425784 and its section 54276 were deleted; both are verified gone (get_case and get_section answer 400). The body is saved in `sv4802/C425784-final-before-delete.json`.
   - Moved to Drive trash: the superseded docs 16cCIn7F…, 1h92KV9d…, 1ZZE5wE_… (C96910) and 18wB2oHK…, 12puP022…, 1IKNq5uH…, 1ExEWr18… (SV-4802).
   - **Kept** as the reference layout: doc v4 1MrEUYh5… (named in Rule 117 and the handoff).
+- **8 Oct 2026, QA lead ("Make a sample test case for this … https://shopview.atlassian.net/browse/SV-5294"):**
+  - New sample **C433977** "Picking a Found part on a work order line completes without an error", in new section 55301 "ZZ - Layout samples (to be retired)" (top level). Not in any run. Display check RESULT OK.
+  - Sources read in full: SV-5294 (OBSOLETE, duplicate of SV-5293), SV-5293 (Done; Expected "Part is picked"), SV-6952 (clone; Save & Close error; developer: Part Number and Description must be filled before Source). Expected results quote SV-5293 and SV-5294 verbatim.
+  - Setup doc (Part 1 manual tester, Part 2 Claude session), in the public folder: https://docs.google.com/document/d/1-Y9ue-2HhusE9yR5k2cICF8o_OyDbR6tI4ptmjrmk8Q/edit
+  - Body, script and doc source in `sv5294/`. A first add_case attempt answered 400 (the required automation fields were missing); the section it had already created is the one used.
