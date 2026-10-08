@@ -119,7 +119,7 @@ U(97001, "Work orders can be dragged within a technician and to another technici
    BOARDVIEW,
    "In Ben's column, drag the Bravo Co card above the Delta Co card and release.",
    "Drag the Echo Co card from Cal's column into Ana's column, below the last card, and release."],
-  ["After step 5, Ana's group lists Charlie Co, Alpha Co (Bravo Co still in Ana's group until step 6): the row moved inside the group to where you dropped it.",
+  ["After step 5, Ana's group lists Charlie Co, Alpha Co, Bravo Co: the row moved inside the group to where you dropped it.",
    "After step 6, Bravo Co is listed in Ben's group below Delta Co and is gone from Ana's group.",
    "After step 8, Ben's column shows Bravo Co above Delta Co.",
    "After step 9, Echo Co is the last card in Ana's column and Cal's column is empty.",
@@ -621,7 +621,7 @@ U(97024, "Fields on and off are recorded once per display per session",
    "Step 8: 0 new field events and 0 new density events. Reopening a display in the same session records nothing again.",
    "Total field-load events in the session = 13 + 15 = 28."],
   src(["S12", "S5"], ["S12-R2", "S5-R11"], GA_SRC + " Field counts (Board View 13, Tech View 15) from Slavcho Mitrov's SV-10593 comment, 6 Oct 2026."),
-  [prd("S12-R2"), prd_sub("S5-R11 optional fields", "Optional fields: lead technician name", "on-site indicator, and created date.")],
+  [prd("S12-R2"), prd_sub("S5-R11 optional fields", "*Optional fields:* lead technician name", "on-site indicator, and created date.")],
   "Rewritten in full: exact event counts per display, once-per-session proved by reopening, saved vs default source. The money-field part moved to its own new case.")
 
 N(S12, "Money fields are left out of field usage for users without financial data",
