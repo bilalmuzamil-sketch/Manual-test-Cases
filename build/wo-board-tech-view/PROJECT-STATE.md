@@ -5,6 +5,8 @@
 ## 🟢 CURRENT STATE — 8 Oct 2026 full update written (read this first)
 - **Suite:** 130 ours rewritten in full + 40 new = **170 ours** (+18 Vladimir's, untouched). Run **498** = 170 tests.
   Design driven in full: `source-update-2026-10-08/DESIGN-COVERAGE-2026-10-08.md`. READY for build verification (8 Oct).
+- **Regression folder 47109** (High 47110 · Medium 47111 · Low 47112): 83 cases from the developer's list + QA handoff
+  (`source-update-2026-10-08/REGRESSION-CASES-2026-10-08.md`). Run 498 = **253** tests (page `get_tests` — L16).
   Record with every link: `source-update-2026-10-08/FULL-UPDATE-2026-10-08.md`. All 221 PRD requirements quoted.
 - **Sources:** PRD edited 7 Oct (status line "PRD v33") · Review Decisions 29 Sep · comments to 7 Oct · stories 8 Oct
   (SV-10593 = Story 12; SV-9769 in scope) · tech plan revised 24 Sep (`sources/…-2026-10-08-upload.md`) · design export
