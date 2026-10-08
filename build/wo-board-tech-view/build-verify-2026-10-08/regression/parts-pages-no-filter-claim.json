@@ -1,0 +1,41 @@
+{
+ "claim": "Parts > Purchase Orders, Vendor Invoices (the Deliveries page, /parts/deliveries) and Vendors show no filter button on sv10043 2026-10-08 (only Search; Purchase Orders also a column-width menu)",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The same toolbar-button read found the filter buttons on Part Sales (Status), Inventory (Bin Location, Category, Supply), Catalog (Manufacturer, Category), Returns (Show cores only, Vendor) and Credits (Date) in the same runs (pt2.log, pt5.log), and those filters were then used (pt3b/pt6 logs).",
+   "_question": "Did the SAME method find this kind of thing somewhere else in this run?"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Opened each page from the Parts left menu links (Purchase Orders, Vendor Invoices, Vendors) as a user; screenshots PT6-orders-toolbar.png, PT6-deliveries-toolbar.png, PT6-vendors-toolbar.png.",
+   "_question": "Was it reproduced the way a USER does it -- clicking the real UI?"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Two runs (pt2 with 6 s, pt6 with 10 s wait): same toolbar each time (pt6.log ATTEMPT2 lines).",
+   "_question": "At least 2 attempts, and the page confirmed quiet before observing?"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "URLs read: /parts/orders, /parts/deliveries, /parts/vendors; no new tab.",
+   "_question": "Did the action navigate, open a tab, or change the URL?"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Each page listed 30 rows (pt2.log rows 30), so the pages were loaded with data.",
+   "_question": "Was the state you claim to be testing actually built, and read back?"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "The Filters project earlier recorded no filter bar on Vendors (REGRESSION-CASES notes: \"whether Vendors has a filter bar on this build (the Filters suite recorded none earlier)\").",
+   "_question": "Rule 97: exact error text grepped across the repo, playbook, skills and BLOCKED-*.md?"
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "A filter could sit behind the column menu (width_normal) on Purchase Orders or appear only after Search. The full button list per page was read (Search, width_normal, New PO, Receive / Search / Search, New Vendor); no Status, Vendor or Date filter.",
+   "_question": "Name the most likely way this is YOUR mistake, and say how you ruled it out."
+  }
+ }
+}
