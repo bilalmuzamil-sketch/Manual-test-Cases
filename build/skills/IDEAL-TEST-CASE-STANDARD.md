@@ -49,6 +49,11 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
   and Expected use only placeholders; every plain expected result starts with **"Step n:"**; every case has **its own
   ZZAUTOTEST data**, never shared. Worked example: C96950 in
   `build/wo-board-tech-view/source-update-2026-10-08/HANDOVER-TO-BUILD-VERIFICATION-CASE-LAYOUT-2026-10-08.md`.
+- **🔴 SIMPLE NAMED PRECONDITIONS, NUMBERED LINES AND WORK ORDERS — PERMANENT, 2026-10-08 (eighth amendment; supersedes the parts of the sixth and seventh it changes):**
+  - Each precondition is one short sentence naming the record inside it, with an example: "Work order {Work-order-1} (for example S2-15440) has an approved line, {Line-1} (for example \"Replace - Brake pot\")." Never "In this test it is called …".
+  - Lines and work orders are numbered: {Line-1}, {Line-2} …, {Work-order-1}, {Work-order-2} …; ids {Work-order-1 id}, {Line-1 id}. Everything else keeps letters.
+  - Every record has an example, including the work order number, the line and the part number.
+  - Example: C433977 (SV-5294) and its doc v2, `build/skills/example-layout-2026-10-08/sv5294/`.
 - **🔴 PLACEHOLDER NAMES — PERMANENT, 2026-10-08 (seventh amendment):**
   - Every placeholder is name, hyphen and letter, even when there is only one: {Part-A}, {Part-B}, {Location-A}, {Work-order-A}, {Line-A}, {User-B}.
   - A further record of the same kind takes the next letter: {Work-order-B}, {Line-B}, {Technician-B}, {Location-B}, and after {User-B} comes {User-C}.

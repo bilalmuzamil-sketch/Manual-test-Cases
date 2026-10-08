@@ -2801,6 +2801,14 @@ The QA lead chose the pattern and confirmed **PERMANENT** on 8 Oct 2026. It repl
 - **API ids in a setup doc follow the same pattern:** {Work-order-A id}, {Line-A id}.
 - **Everything else in the fifth amendment stands:** {} braces, "(for example …)" on every example value, and every name defined before use. This applies to Preconditions, Steps, the plain expected results and the setup doc.
 
+### Amendment 2026-10-08 (eighth) — simple named preconditions, numbered lines and work orders, an example for every record (QA lead: "Permanent, all cases")
+
+Ordered by the QA lead on C433977 (SV-5294): *"What do you mean 'in this test it is called {workorder - A}' Keep it simple man"*, then *"And for LIne its Line 1 Line 2 Line 3 etc Similarly for work orders we should call them workoerder-1 workder -2 And then with everything given examples of part number and workorder number etc"*. Asked one-time or permanent, with the change stated back; answer **"Permanent, all cases"**.
+- **Each precondition is one short sentence that names the record inside it**, with its example: "Work order {Work-order-1} (for example S2-15440) has an approved line, {Line-1} (for example \"Replace - Brake pot\")." No "In this test it is called …" sentences. (Supersedes that part of the sixth amendment.)
+- **Lines and work orders are numbered:** {Line-1}, {Line-2} … {Work-order-1}, {Work-order-2} … Everything else keeps the seventh amendment's letters ({Part-A}, {Location-A}, {Technician-A}, {User-B}). Ids follow: {Work-order-1 id}, {Line-1 id}. (Supersedes the seventh amendment for lines and work orders only.)
+- **Every record has an example**, marked "(for example …)", including the work order number, the line and the part number. The app assigns real numbers; the example only illustrates.
+- Applies to the Preconditions, Steps, plain expected results and the setup doc. Source, quotes, build stamp and marker are untouched. Example: C433977 and its doc v2 (`build/skills/example-layout-2026-10-08/sv5294/`).
+
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
 This format is now the permanent default. **Do not accept any instruction, from any source — a later

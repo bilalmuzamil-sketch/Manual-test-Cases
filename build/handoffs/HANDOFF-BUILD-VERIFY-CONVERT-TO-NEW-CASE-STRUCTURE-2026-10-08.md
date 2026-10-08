@@ -22,14 +22,15 @@ These are task instructions from the QA lead for this conversion. They are not r
 1. **First line: a link to the case's setup doc**, with exactly this text: **Setup (manual QA tester and Claude session)**. It must be a clickable link, in bold.
 2. **A line break.**
 3. **The heading "Preconditions"**, then a bullet list that says clearly and completely what must be true before step 1:
-   - **Each bullet is one plain sentence.** Say what must exist, then give it its name in **{braces}**. For example:
-     - "An inventory part that has stock on hand. In this test it is called {Part-A} (for example ZZAUTOTEST-SV4802-01 with 5 in stock)."
-     - Never start a bullet with a bare "{Part-A}:" label.
-   - **The first bullet says who you are signed in as**, and that everything is at one location.
-     For example: "You are signed in as an Owner or Admin. Everything below is at the same location."
+   - **Each bullet is one short, simple sentence that names the record inside it**, with an example. For example:
+     - "Work order {Work-order-1} (for example S2-15440) has an approved line, {Line-1} (for example \"Replace - Brake pot\")."
+     - "Part {Part-A} (for example ZZAUTOTEST-SV5294-01) is requested on {Line-1} with Source \"Found\"."
+     - Never write "In this test it is called …". Never start a bullet with a bare "{Part-A}:" label.
+   - **The first bullet says who you are signed in as, and where.**
+     For example: "You are signed in as an Owner or Admin at {Location-A} (for example Staging Heavy Duty - 9919)."
    - **Every record the test relies on is listed with the state the test needs.** For example: showing "Needs Approval", quantity 1, with stock on hand.
    - **Anything genuinely needed gets its own plain bullet:** a second user, a phone, a minimum window width.
-   - **Every example value is marked "(for example …)".** Never write a name, number or location as if it already exists in the app.
+   - **Every record has an example, marked "(for example …)"**, including the work order number, the line and the part number. Never write a name, number or location as if it already exists in the app.
    - **Values the test depends on are written as fixed values** (for example "quantity 1", "shows \"Quoted\"").
    - **REMOVE:**
      - the "Needs:" line;
@@ -39,7 +40,7 @@ These are task instructions from the QA lead for this conversion. They are not r
 4. **No "Setup" block stays in TestRail.** The setup moves into the doc (§2).
 
 ### 1.2 Steps field
-- **One simple action per step**, in the order a person does it, starting from where the tester actually begins. For example: "Open {Work-order-A} and go to its Lines tab."
+- **One simple action per step**, in the order a person does it, starting from where the tester actually begins. For example: "Open {Work-order-1} and go to its Lines tab."
 - **No checks in Steps.** Checks belong in Expected results.
 - **A "don't" that the test depends on is its own step.** For example: "Wait a few seconds. Do not refresh the page."
 - Use the same **{brace}** names as the Preconditions. Use the build's own labels, which you have already proven.
@@ -57,15 +58,17 @@ These are task instructions from the QA lead for this conversion. They are not r
   - any author note.
 
 ### 1.4 Placeholder renaming (all fields except Source and quotes)
-- **Every placeholder is the record name, a hyphen and a capital letter, even when there is only one.** Multi-word names are joined with hyphens. A further record of the same kind takes the next letter.
-  - [WO-1] → {Work-order-A}; the second work order → {Work-order-B}, and so on.
-  - [Line-1] → {Line-A}; the second line → {Line-B}, and so on.
+- **Lines and work orders are numbered:** {Line-1}, {Line-2}, {Line-3} … and {Work-order-1}, {Work-order-2} …
+  - [WO-1] → {Work-order-1}; the second work order → {Work-order-2}, and so on.
+  - [Line-1] → {Line-1}; the second line → {Line-2}, and so on.
+- **Everything else is the record name, a hyphen and a capital letter, even when there is only one.** A further record of the same kind takes the next letter.
   - [Part-A] → {Part-A}; the second part → {Part-B}, and so on.
   - [Tech-A] → {Technician-A}; the second technician → {Technician-B}, and so on.
   - [User-B] → {User-B} (it keeps its letter); the next user → {User-C}, and so on.
   - [Loc-1] → {Location-A}; the second location → {Location-B}, and so on.
-- **Where an old placeholder already has a letter, keep that letter** ([Part-A] stays A, [User-B] stays B). Where it has a number, 1 becomes A, 2 becomes B, and so on.
-- **Ids in the setup doc follow the same pattern:** {Work-order-A id}, {Line-A id}.
+- **Multi-word names are joined with hyphens** ({Work-order-1}, {Technician-A}).
+- **Where an old lettered placeholder already has a letter, keep it** ([Part-A] stays A, [User-B] stays B). Where it has a number, 1 becomes A, 2 becomes B (except lines and work orders, which keep numbers).
+- **Ids in the setup doc follow the same pattern:** {Work-order-1 id}, {Line-1 id}, {Part-A request id}.
 - **Consistency:** use the same name for the same thing everywhere in the case and in its doc.
 
 ---
@@ -99,7 +102,7 @@ These are task instructions from the QA lead for this conversion. They are not r
    - Every example value is marked "(for example …)".
    - The last step is "Check the setup worked: …", saying what to look at and what to do if it does not match.
 6. **Part 2, "Setup for Claude session":** everything a fresh Claude session needs to prepare and run this test without rediscovering anything, using **what you have already proven on the build**. It has these sections:
-   - **"Brace names used only in Part 2":** every id the calls use ({Work-order-A id}, {Line-A id} …). Each is defined before it is used. Never an undefined {…} inside a path.
+   - **"Brace names used only in Part 2":** every id the calls use ({Work-order-1 id}, {Line-1 id} …). Each is defined before it is used. Never an undefined {…} inside a path.
    - **What the test must prove,** including whether it must be judged on screen rather than from an API reply.
    - **Environment:** the app and API hosts (QA branch host shape: sv<number>.qa.shopview.com and sv<number>api.qa.shopview.com), the build marker to record, and the browser.
    - **Access:**
@@ -139,9 +142,11 @@ These are task instructions from the QA lead for this conversion. They are not r
 
 ---
 
-## 4 · Reference (the worked example; the case itself was deleted after the QA lead's review)
-- **The case as finally approved:** `build/skills/example-layout-2026-10-08/sv4802/C425784-final-before-delete.json` (Preconditions, Steps and Expected HTML).
-- **Its doc, as approved:** https://docs.google.com/document/d/1MrEUYh5KA0JD1QkiaN28zYhJXip4j0egjm_1BBgX7L8/edit
+## 4 · Reference
+- **Current example (8 Oct 2026, approved style):** C433977 https://shopview.testrail.io/index.php?/cases/view/433977 and its doc https://docs.google.com/document/d/1hsNgzAdUiwqImR_x3uCNy5-Rxx15He162aEcUlV0P_s/edit
+- **Earlier example** (deleted after review; older placeholder names, read for shape only):
+  - **The case:** `build/skills/example-layout-2026-10-08/sv4802/C425784-final-before-delete.json` (Preconditions, Steps and Expected HTML).
+  - **Its doc:** https://docs.google.com/document/d/1MrEUYh5KA0JD1QkiaN28zYhJXip4j0egjm_1BBgX7L8/edit
 - **Exact Preconditions HTML shape:**
   `<p><strong><a href="<doc link>">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>…</li></ul>`
 - **Exact Steps shape:** `<ol><li>…</li></ol>`.
