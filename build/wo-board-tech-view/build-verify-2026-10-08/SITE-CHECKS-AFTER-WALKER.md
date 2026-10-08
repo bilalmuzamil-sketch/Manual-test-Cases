@@ -11,8 +11,4 @@
 10. C154648 — Settings > Data Import > Invoices route for Imported work orders (F3)
 11. C97027 — how a work order gets a non-zero total (line with labour/part price) (F3)
 12. C96975 — location "Staging Lethbridge - 4310" exists in Change Location (observed in New Staff Member Location list; confirm in Change Location) (F2)
-13. MULTI-USER ROUTE — 23 cases say "invite a new user, accept the invitation, set a password" (C96910, C96912, C96958, C96960, C96961, C96966,
-    C96967, C96971, C96972, C368138, C368139, C96987, C96926, C96929, C368126, C96947, C96948, C96950, C368131, C96978, C96979, C96986, C368160).
-    Not observed on a QA branch (L0051: only Admin and Tech quick-login). Replace with an observed route: Tech quick-login in a private window after
-    giving Tech the needed role (Settings > Staff > edit icon > Role > Save & Close), or Settings > Staff impersonation (walker is confirming it) for a
-    brand-new user. Re-write these 23 once the route is seen.
+13. MULTI-USER ROUTE — CLOSED 2026-10-08 by the QA lead: "If that is the requirement of the test cases then leave it like that." The 23 cases that need a second user who signs in keep "invite the user, accept the invitation and set a password". No change.

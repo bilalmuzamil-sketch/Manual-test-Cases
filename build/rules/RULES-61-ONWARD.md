@@ -4143,9 +4143,10 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     (102). (5) **UNDERSTANDABLE** by the manual tester, no jargon (7/9/110). (6) **ZERO COMPLAINTS** — a case a tester could
     call unrunnable, unclear or invented is not finished.
     **HOW IT IS HELD:** a helper's or another session's draft is a DRAFT — any setup action, label or route it introduces that
-    is not already in the observed-labels file is walked on the build before the case is written (worked miss, same day: 23
-    cases' setup said "invite a new user and accept the invitation", a route never seen on a QA branch, L0051; and helpers
-    assumed the "Asset Here?" switch drives the Asset on Site filter). Before reporting a suite done, all gates pass —
+    is not already in the observed-labels file is walked on the build before the case is written (worked miss, same day: helpers
+    assumed the "Asset Here?" switch drives the Asset on Site filter. NOT a miss: a case that needs a second user who signs in may say
+    "invite the user, accept the invitation and set a password" — QA lead 2026-10-08: "If that is the requirement of the test cases then
+    leave it like that."). Before reporting a suite done, all gates pass —
     `verify_suite.py`, `check_runnable_cases.py`, `check_precond_labels.py`, `check_tester_runnable.py`, the served-page fr-view
     scan — AND every assumption list is closed by observation. An item that cannot be seen is HOLD with a plain reason,
     never READY.
