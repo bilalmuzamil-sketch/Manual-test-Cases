@@ -1,0 +1,6 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-08"},
+ "results": {
+  "C368127": {"verdict": "Passed", "observed": "Done as [User-B] (ZZAUTOTEST WOB User B), who had never opened Tech View. Work Orders, All tab, Tech View: the Unassigned group opened expanded, count 1106. Scrolling down through its rows kept the Unassigned header (with its arrow and 1106) at the top of the table. Clicking the arrow on that header, without scrolling back up, collapsed Unassigned (also saved as collapsed). Rows arrived in batches as the page scrolled: the build asked for 25 more at a time (25, 50, 75 ...) rather than all at once. The count matches List: of the 3,425 work orders List returns for the All tab, 1,106 have no lead technician, the same as the Unassigned header.", "not_observed": null}
+ }
+}
