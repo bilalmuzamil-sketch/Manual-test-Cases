@@ -5752,3 +5752,34 @@ three wrong characterisations before it was found — see learning **L0233**.
   `<branch>api.qa.shopview.com` (e.g. `sv10043api.qa.shopview.com`). Posting quick-login to the app host
   `<branch>.qa.shopview.com` answers **403**, which looks like an expired cookie and is not.
   `build/global-search/e2e/fixtures/boot.ts` now derives it; `GS_API` still overrides.
+
+### WO Board / Tech View on a QA branch (sv10043, build v26.40.8-7a95011) — measured 2026-10-08
+- **Display switcher:** `display_option_list` · `display_option_tech_view` · `display_option_board_view` (aria-labels
+  "List" / "Tech View" / "Board View", the chosen one `aria-pressed=true`). The choice is saved in
+  `GET/PUT /api/users/me/preferences/work-orders-list` → `value.display` = `list | tech_view | board_view`, beside
+  `collapsedGroups`, `technicianOrder`, `pinnedTechnicianIds`, `density`. A never-used user has `value: null` (opens List).
+- **Tech View test-ids:** group row `tech_view_group_<staffId|unassigned>` (`data-collapsed`), `tech_view_group_name_*`,
+  `tech_view_group_count_*`, toggle `button_tech_view_group_toggle_*`, pin `button_tech_view_pin_*` (aria-pressed;
+  4th pin disabled, tooltip "You can pin up to 3 technicians."), drag handle `tech_view_group_drag_handle_*`, rows
+  `tech_view_row_<woId>` (`data-group-key`), row menu `button_work_order_more_actions`, columns
+  `button_tech_view_column_selection` (menu items are `[role=switch][aria-label=…]`, e.g. "Assigned Techs").
+  **Every eligible technician gets a group even under a search, and the table draws only the rows on screen** — a group
+  further down is NOT in the DOM until scrolled to. Collapse Unassigned (1,100+ rows) first, then scroll the
+  `.q-table__middle` until `tech_view_group_<id>` exists. The header kept at the top while scrolling is a separate
+  drawn copy, not the group row.
+- **Board View:** columns `board_column_<staffId|unassigned>`, horizontal scroller `.board-view__scroller`, column body
+  `.board-column__body`; toolbar "Fields to display" (`[aria-label="Fields to display"]`, switches incl. "Line technicians").
+- **Lead/advisor calls:** lead candidates `GET /api/work-orders/lead-technician-candidates`; lead
+  `POST /api/work-orders/change-lead-technician {work_order_id, tech_assigned_id|null}`; advisor
+  `POST /api/work-orders/change-service-advisor {work_order_id, service_advisor_id:<staffId>}`.
+  **"Assigned to me" also counts work orders where you are the Service Advisor**, and whoever creates a work order
+  becomes its Service Advisor — give other people's work orders another advisor when a case needs "not mine".
+- **Settings > Staff** is `/administration/staff` (tabs Active(n) / Deactivated(n); "Search" is a button that opens the
+  box; each row ends with an edit icon). This organisation's roles: `GET /api/organizations/<orgId>/roles?pagination[rowsPerPage]=1000`
+  (sv10043/staging org `d55bc308-e61a-438d-b5f1-c7a73c89d49f`) — `iam/list-roles` spans every organisation.
+- **🔴 Changing YOUR OWN staff record's Time Clock (`clockable`) ends your session at once** (the next call answers 401;
+  the change itself is saved, `clockableChanged:true`). Make the change, sign in again, check, change back, sign in
+  again and read it back. Measured on Admin ShopView (needed to make "a location with no technicians").
+- **Location menu:** initials > the orange button under "Change Location:" > pick. Seen 2026-10-08: after moving to
+  Lethbridge the orange button still read Heavy Duty and picking Heavy Duty did nothing; a new sign-in starts at the
+  default location. The API `iam/change-location` changes the server side only, not what the screen shows.
