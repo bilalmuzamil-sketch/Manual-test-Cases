@@ -1,0 +1,82 @@
+{
+ "R": {
+  "A1 row0 options (nothing picked)": [
+   "check 1000 Checking Account",
+   "check 1010 Savings Account",
+   "check 2300 Credit Card Payable"
+  ],
+  "A2 row1 options after row0 picked Checking": [
+   "check 1010 Savings Account",
+   "check 2300 Credit Card Payable"
+  ],
+  "A3 row0 options after row1 picked Savings": [
+   "check 1000 Checking Account",
+   "check 2300 Credit Card Payable"
+  ],
+  "A4 rows": [
+   "Plaid Checking ••••0000 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down",
+   "Plaid Saving ••••1111 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down"
+  ],
+  "B1 row1 options with row0 unticked": [
+   "check 1000 Checking Account",
+   "check 1010 Savings Account",
+   "check 2300 Credit Card Payable"
+  ],
+  "B2 rows after re-tick (both Checking)": [
+   "Plaid Checking ••••0000 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down",
+   "Plaid Saving ••••1111 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down | This chart account is already picked for another account."
+  ],
+  "B2 connect": {
+   "disabled": true,
+   "text": "Connect"
+  },
+  "B3 rows after fixing row1": [
+   "Plaid Checking ••••0000 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down",
+   "Plaid Saving ••••1111 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down"
+  ],
+  "B3 connect": {
+   "disabled": false,
+   "text": "Connect"
+  },
+  "C0 banks before manual": [],
+  "C1 manual form options": [
+   "check 1000 Checking Account",
+   "check 1010 Savings Account",
+   "check 2300 Credit Card Payable"
+  ],
+  "C2 manual add notif": "check_circle\nBank account added\nClose",
+  "C3 banks after manual": [
+   [
+    "ZZAUTOTEST SV-10878 manual",
+    "Checking Account",
+    "manual"
+   ]
+  ],
+  "D0 rows before connect": [
+   "Plaid Checking ••••0000 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down",
+   "Plaid Saving ••••1111 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down"
+  ],
+  "D1 rows after connect": [
+   "Plaid Checking ••••0000 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down",
+   "Plaid Saving ••••1111 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down"
+  ],
+  "D1 page": "Connect a bank | Sign in to your bank through Plaid, then choose which accounts to bring into accounting. | First Platypus Bank is connected. Pick the accounts to bring into accounting. Each gets its own entry in the chart of accounts, created automatically unless you point it at one you already have. | Plaid Checking ••••0000 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down | Plaid Saving ••••1111 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down | Plaid CD ••••2222 | Plaid Credit Card ••••3333 | Plaid Money Market ••••4444 | Plaid IRA ••••5555 | Plaid 401k ••••6666 | Plaid Student Loan ••••7777 | Plaid Mortgage ••••8888 | Plaid HSA ••••9001 | Plaid Cash Management ••••9002 | Plaid Auto Loan ••••9003 | Chart account | Create a chart account automatically | arrow_drop_down | Plaid H",
+  "D1 notif": "",
+  "D2 banks after failed connect": [
+   [
+    "ZZAUTOTEST SV-10878 manual",
+    "Checking Account",
+    "manual"
+   ]
+  ]
+ },
+ "log": [
+  {
+   "m": "POST",
+   "st": 200,
+   "path": "/api/accounting/banking/plaid/link-token",
+   "req": null,
+   "res": "{\"link_token\":\"link-sandbox-bf6a05d0-f227-4d87-92d6-f797d5f44a87\"}"
+  }
+ ]
+}

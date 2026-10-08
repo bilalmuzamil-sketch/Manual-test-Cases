@@ -1,0 +1,15 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const s=await ob({dpr:2,vp:{width:1600,height:1000}}); const R={};
+const sv=(k,v)=>{R[k]=v; fs.writeFileSync('P.json',JSON.stringify(R,null,1)); console.log(k,j(v,700));};
+sv('marker',await s.marker());
+const a=(await s.api('/api/accounting/accounts/01a11a87-e2d1-7090-b9e0-6a026dcfc40a')).json; sv('1090',a);
+const acc=a?.account||a?.data||a;
+const r=await s.api('/api/accounting/accounts',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({account_number:'1091',name:'ZZAUTOTEST SV-10878 active bank',type:acc.type,sub_type:acc.sub_type})}); sv('create 1091',{st:r.status,b:r.json??r.text});
+sv('connect GET',(await s.api('/api/accounting/banking/connect')).json);
+const t2=s.page; await t2.goto(s.host.app+'/accounting/banking/accounts',{waitUntil:'domcontentloaded'}); await t2.waitForTimeout(4000);
+const bx=async tid=>t2.evaluate(t=>{const e=document.querySelector(`[data-test-id="${t}"]`); if(!e) return null; e.scrollIntoView({block:'center'}); const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};},tid);
+let c=await bx('button_new_accounting_bank_accounts'); await t2.mouse.click(c.x,c.y); await t2.waitForTimeout(1500);
+c=await bx('select_gl_account_accounting_bank_account'); await t2.mouse.click(c.x,c.y); await t2.waitForTimeout(1200);
+sv('manual options',await t2.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.innerText.trim().replace(/\n+/g,' '))));
+await t2.screenshot({path:'P-manual.png'});
+await s.close();

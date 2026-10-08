@@ -1,0 +1,93 @@
+{
+ "R": {
+  "E1 Plaid picker options after Checking was linked manually": [
+   "check 1010 Savings Account",
+   "check 2300 Credit Card Payable"
+  ],
+  "E2 manual form options": [
+   "check 1010 Savings Account",
+   "check 2300 Credit Card Payable"
+  ],
+  "E3 manual add notif": "check_circle\nBank account added\nClose",
+  "E4 banks before connect": [
+   [
+    "ZZAUTOTEST SV-10878 manual",
+    "Checking Account",
+    "manual"
+   ],
+   [
+    "ZZAUTOTEST SV-10878 manual savings",
+    "Savings Account",
+    "manual"
+   ]
+  ],
+  "F1 rows after connect": [
+   "Plaid Checking ••••0000 | Chart account | Use an existing chart account | arrow_drop_down | Existing account | arrow_drop_down | That chart account already belongs to another bank account.",
+   "Plaid Saving ••••1111 | Chart account | Create a chart account automatically | arrow_drop_down"
+  ],
+  "F1 notif": "",
+  "F2 banks after refused connect": [
+   [
+    "ZZAUTOTEST SV-10878 manual",
+    "Checking Account",
+    "manual"
+   ],
+   [
+    "ZZAUTOTEST SV-10878 manual savings",
+    "Savings Account",
+    "manual"
+   ]
+  ],
+  "G0 rows after fix": [
+   "Plaid Checking ••••0000 | Chart account | Create a chart account automatically | arrow_drop_down",
+   "Plaid Saving ••••1111 | Chart account | Create a chart account automatically | arrow_drop_down"
+  ],
+  "G1 page": "Connect a bank | Sign in to your bank through Plaid, then choose which accounts to bring into accounting. | Connected 2 accounts at First Platypus Bank. 26 transactions imported from 2026-07-10 onward. They are waiting in For review. | Go to bank transactions | View bank accounts",
+  "G1 url": "https://sv10360.qa.shopview.com/accounting/banking/connect",
+  "G2 banks after successful connect": [
+   [
+    "ZZAUTOTEST SV-10878 manual",
+    "Checking Account",
+    "manual"
+   ],
+   [
+    "ZZAUTOTEST SV-10878 manual savings",
+    "Savings Account",
+    "manual"
+   ],
+   [
+    "Plaid Checking",
+    "Plaid Checking",
+    "plaid"
+   ],
+   [
+    "Plaid Saving",
+    "Plaid Saving",
+    "plaid"
+   ]
+  ]
+ },
+ "log": [
+  {
+   "m": "POST",
+   "st": 200,
+   "path": "/api/accounting/banking/plaid/link-token",
+   "req": null,
+   "res": "{\"link_token\":\"link-sandbox-73265776-6d5e-4dbd-9eeb-95eba6504f42\"}"
+  },
+  {
+   "m": "POST",
+   "st": 422,
+   "path": "/api/accounting/banking/plaid/exchange",
+   "req": "{\"public_token\":\"public-sandbox-49b58934-9efb-4815-8075-5d6f5916a982\",\"start_date\":\"2026-07-10\",\"selections\":[{\"plaid_account_id\":\"EpbrQmX9ALC6648ZQQEyCybLNqV6NBh4jP68l\",\"account_id\":\"01a1107a-df17-7005-8600-d3506ee64da6\"},{\"plaid_account_id\":\"W7V4xjnRZBsppMWeqqnRUB4yZ1D6ZAu6W7B3j\",\"account_id\":null}]}",
+   "res": "{\"errors\":[{\"message\":\"That chart account already belongs to another bank account.\",\"field\":\"selections.0.account_id\"}]}"
+  },
+  {
+   "m": "POST",
+   "st": 200,
+   "path": "/api/accounting/banking/plaid/exchange",
+   "req": "{\"public_token\":\"public-sandbox-49b58934-9efb-4815-8075-5d6f5916a982\",\"start_date\":\"2026-07-10\",\"selections\":[{\"plaid_account_id\":\"EpbrQmX9ALC6648ZQQEyCybLNqV6NBh4jP68l\",\"account_id\":null},{\"plaid_account_id\":\"W7V4xjnRZBsppMWeqqnRUB4yZ1D6ZAu6W7B3j\",\"account_id\":null}]}",
+   "res": "{\"result\":{\"kind\":\"connected\",\"connected_accounts\":2,\"imported\":26,\"skipped\":0,\"start_date\":\"2026-07-10\",\"institution\":\"First Platypus Bank\",\"history_error\":null}}"
+  }
+ ]
+}

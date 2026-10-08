@@ -1,0 +1,108 @@
+{
+ "accounts": {
+  "A2": "01a11aa9-5237-71ee-a56c-b81bb5da3e9d",
+  "A3": "01a11aa9-5320-7345-9f41-d90802015370"
+ },
+ "tokens differ": [
+  true,
+  true
+ ],
+ "banks before": [
+  "ZZAUTOTEST SV-10878 manual -> Checking Account",
+  "ZZAUTOTEST SV-10878 manual savings -> Savings Account",
+  "Plaid Checking -> Plaid Checking",
+  "Plaid Saving -> Plaid Saving",
+  "Plaid Credit Card -> Credit Card Payable",
+  "Plaid Money Market -> ZZAUTOTEST SV-10878 active bank"
+ ],
+ "RACE two different sign-ins, same account 1092, sent together": [
+  {
+   "st": 422,
+   "b": {
+    "errors": [
+     {
+      "message": "That chart account already belongs to another bank account.",
+      "field": "selections.0.account_id"
+     }
+    ]
+   }
+  },
+  {
+   "st": 200,
+   "b": {
+    "result": {
+     "kind": "connected",
+     "connected_accounts": 1,
+     "imported": 3,
+     "skipped": 0,
+     "start_date": "2026-07-10",
+     "institution": "First Platypus Bank",
+     "history_error": null
+    }
+   }
+  }
+ ],
+ "banks after race": [
+  "ZZAUTOTEST SV-10878 manual -> Checking Account",
+  "ZZAUTOTEST SV-10878 manual savings -> Savings Account",
+  "Plaid Checking -> Plaid Checking",
+  "Plaid Saving -> Plaid Saving",
+  "Plaid Credit Card -> Credit Card Payable",
+  "Plaid Money Market -> ZZAUTOTEST SV-10878 active bank",
+  "Plaid CD -> ZZAUTOTEST SV-10878 race"
+ ],
+ "DOUBLE the same request sent twice together (1093)": [
+  {
+   "st": 200,
+   "b": {
+    "result": {
+     "kind": "connected",
+     "connected_accounts": 1,
+     "imported": 0,
+     "skipped": 3,
+     "start_date": "2026-07-10",
+     "institution": "First Platypus Bank",
+     "history_error": null
+    }
+   }
+  },
+  {
+   "st": 200,
+   "b": {
+    "result": {
+     "kind": "connected",
+     "connected_accounts": 1,
+     "imported": 3,
+     "skipped": 0,
+     "start_date": "2026-07-10",
+     "institution": "First Platypus Bank",
+     "history_error": null
+    }
+   }
+  }
+ ],
+ "DOUBLE third send after": {
+  "st": 200,
+  "b": {
+   "result": {
+    "kind": "connected",
+    "connected_accounts": 1,
+    "imported": 0,
+    "skipped": 3,
+    "start_date": "2026-07-10",
+    "institution": "First Platypus Bank",
+    "history_error": null
+   }
+  }
+ },
+ "banks after double": [
+  "ZZAUTOTEST SV-10878 manual -> Checking Account",
+  "ZZAUTOTEST SV-10878 manual savings -> Savings Account",
+  "Plaid Checking -> Plaid Checking",
+  "Plaid Saving -> Plaid Saving",
+  "Plaid Credit Card -> Credit Card Payable",
+  "Plaid Money Market -> ZZAUTOTEST SV-10878 active bank",
+  "Plaid CD -> ZZAUTOTEST SV-10878 race",
+  "Plaid CD -> ZZAUTOTEST SV-10878 double submit"
+ ]
+}

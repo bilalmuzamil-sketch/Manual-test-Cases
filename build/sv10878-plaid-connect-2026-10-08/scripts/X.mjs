@@ -1,0 +1,23 @@
+import {ob,j} from './lib.mjs'; import {plaidLogin} from './plaid.mjs'; import fs from 'fs';
+const s=await ob({dpr:1,vp:{width:1600,height:1000}}); const p=s.page; const R={};
+const sv=(k,v)=>{R[k]=v; fs.writeFileSync('X.json',JSON.stringify(R,null,1)); console.log(k,j(v,700));};
+const q=await s.ctx.newPage(); await q.goto(s.host.app+'/accounting/dashboard').catch(()=>{}); await q.waitForTimeout(3000);
+const api=async(path,o={})=>q.evaluate(async([u,o])=>{const r=await fetch(u,{credentials:'include',...o,headers:{accept:'application/json','content-type':'application/json',...(o.headers||{})}}); const t=await r.text(); let j=null; try{j=JSON.parse(t)}catch(e){} return {status:r.status,json:j,text:t.slice(0,600)};},[s.host.api+path,o]);
+const banks=async()=>((await api('/api/accounting/bank-accounts?per_page=100')).json?.bank_accounts||[]).map(b=>(b.nickname||b.name)+' -> '+(b.chart_account?.name||b.account_name));
+const mk=async(n,name)=>(await api('/api/accounting/accounts',{method:'POST',body:JSON.stringify({account_number:n,name,type:'asset',sub_type:'bank'})})).json?.account?.id;
+const A2=await mk('1092','ZZAUTOTEST SV-10878 race'); const A3=await mk('1093','ZZAUTOTEST SV-10878 double submit'); sv('accounts',{A2,A3});
+const capture=async(tag)=>{ await plaidLogin(s,{shot:'pl/X'+tag}); let body=null; await p.route('**/plaid/exchange',async r=>{body=r.request().postData(); await r.abort();});
+  await p.evaluate(()=>document.querySelector('[data-test-id="button_submit_accounting_bank_connect"]')?.scrollIntoView({block:'center'})); await p.waitForTimeout(400); const b=await s.box('button_submit_accounting_bank_connect'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(2500); await p.unroute('**/plaid/exchange'); return JSON.parse(body); };
+const B1=await capture('1'); const B2=await capture('2'); const B3=await capture('3');
+sv('tokens differ',[B1.public_token!==B2.public_token, B2.public_token!==B3.public_token]);
+sv('banks before',await banks());
+const pick=(B,i)=>B.selections[i].plaid_account_id; // index 2 = Plaid CD
+const body=(B,acct)=>JSON.stringify({public_token:B.public_token,start_date:B.start_date,selections:[{plaid_account_id:pick(B,2),account_id:acct}]});
+const race=await Promise.all([api('/api/accounting/banking/plaid/exchange',{method:'POST',body:body(B1,A2)}),api('/api/accounting/banking/plaid/exchange',{method:'POST',body:body(B2,A2)})]);
+sv('RACE two different sign-ins, same account 1092, sent together',race.map(r=>({st:r.status,b:r.json??r.text})));
+sv('banks after race',await banks());
+const dbl=await Promise.all([api('/api/accounting/banking/plaid/exchange',{method:'POST',body:body(B3,A3)}),api('/api/accounting/banking/plaid/exchange',{method:'POST',body:body(B3,A3)})]);
+sv('DOUBLE the same request sent twice together (1093)',dbl.map(r=>({st:r.status,b:r.json??r.text})));
+const again=await api('/api/accounting/banking/plaid/exchange',{method:'POST',body:body(B3,A3)}); sv('DOUBLE third send after',{st:again.status,b:again.json??again.text});
+sv('banks after double',await banks());
+await s.close();

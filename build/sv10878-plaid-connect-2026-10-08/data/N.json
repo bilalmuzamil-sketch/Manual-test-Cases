@@ -1,0 +1,158 @@
+{
+ "R": {
+  "H1 Plaid picker options now": [
+   "check 2300 Credit Card Payable"
+  ],
+  "H2 captured selections": [
+   {
+    "plaid_account_id": "pv7y5gaKEmc7aLqrmNagTxJbE7NbP5cpqXa1n",
+    "account_id": null
+   },
+   {
+    "plaid_account_id": "8g7dp6WMaPFpzP4A5azLfdzjq1Dj7viWRNql7",
+    "account_id": "01a1107a-df3a-70f0-8f23-a940d3d06b8e"
+   }
+  ],
+  "API duplicate account": {
+   "status": 422,
+   "body": {
+    "errors": [
+     {
+      "message": "That chart account is already picked for another account in this connection.",
+      "field": "selections.1.account_id"
+     }
+    ]
+   }
+  },
+  "API non-bank account (6000 Wages)": {
+   "status": 422,
+   "body": {
+    "errors": [
+     {
+      "message": "A bank account must point at an active bank or credit card account.",
+      "field": "selections.0.account_id"
+     }
+    ]
+   }
+  },
+  "API inactive bank account (1090)": {
+   "status": 422,
+   "body": {
+    "errors": [
+     {
+      "message": "A bank account must point at an active bank or credit card account.",
+      "field": "selections.0.account_id"
+     }
+    ]
+   }
+  },
+  "API already linked (1000)": {
+   "status": 422,
+   "body": {
+    "errors": [
+     {
+      "message": "That chart account already belongs to another bank account.",
+      "field": "selections.0.account_id"
+     }
+    ]
+   }
+  },
+  "API both account_id and new number": {
+   "status": 422,
+   "body": {
+    "errors": [
+     {
+      "message": "Pick an existing chart account or create a new one — not both.",
+      "field": "selections.0.account_id"
+     }
+    ]
+   }
+  },
+  "API taken new number (1000)": {
+   "status": 422,
+   "body": {
+    "errors": [
+     {
+      "message": "Account number 1000 is already in use.",
+      "field": "selections.0.new_account_number"
+     }
+    ]
+   }
+  },
+  "API same new number twice": {
+   "status": 422,
+   "body": {
+    "errors": [
+     {
+      "message": "Account number 1096 is used for another account in this connection.",
+      "field": "selections.1.new_account_number"
+     }
+    ]
+   }
+  },
+  "I0 banks after all refusals": [
+   [
+    "ZZAUTOTEST SV-10878 manual",
+    "Checking Account",
+    "manual"
+   ],
+   [
+    "ZZAUTOTEST SV-10878 manual savings",
+    "Savings Account",
+    "manual"
+   ],
+   [
+    "Plaid Checking",
+    "Plaid Checking",
+    "plaid"
+   ],
+   [
+    "Plaid Saving",
+    "Plaid Saving",
+    "plaid"
+   ]
+  ],
+  "API REAL credit card -> 2300": {
+   "status": 200,
+   "body": {
+    "result": {
+     "kind": "connected",
+     "connected_accounts": 1,
+     "imported": 18,
+     "skipped": 0,
+     "start_date": "2026-07-10",
+     "institution": "First Platypus Bank",
+     "history_error": null
+    }
+   }
+  },
+  "J2 banks after real connect": [
+   [
+    "ZZAUTOTEST SV-10878 manual",
+    "Checking Account",
+    "manual"
+   ],
+   [
+    "ZZAUTOTEST SV-10878 manual savings",
+    "Savings Account",
+    "manual"
+   ],
+   [
+    "Plaid Checking",
+    "Plaid Checking",
+    "plaid"
+   ],
+   [
+    "Plaid Saving",
+    "Plaid Saving",
+    "plaid"
+   ],
+   [
+    "Plaid Credit Card",
+    "Credit Card Payable",
+    "plaid"
+   ]
+  ]
+ },
+ "log": []
+}

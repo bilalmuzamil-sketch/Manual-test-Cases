@@ -1,0 +1,598 @@
+{
+ "1090": {
+  "account": {
+   "id": "01a11a87-e2d1-7090-b9e0-6a026dcfc40a",
+   "account_number": "1090",
+   "name": "ZZAUTOTEST SV-10878 inactive bank",
+   "type": "asset",
+   "sub_type": "bank",
+   "cash_flow_category": null,
+   "parent_account_id": null,
+   "normal_balance": "debit",
+   "description": null,
+   "is_active": false,
+   "is_system": false,
+   "has_activity": false
+  },
+  "can_manage": true,
+  "type_options": [
+   {
+    "value": "asset",
+    "label": "Asset",
+    "normal_balance": "debit",
+    "sub_types": [
+     {
+      "value": "bank",
+      "label": "Bank"
+     },
+     {
+      "value": "other_current_asset",
+      "label": "Other Current Asset"
+     },
+     {
+      "value": "accounts_receivable",
+      "label": "Accounts Receivable"
+     },
+     {
+      "value": "inventory",
+      "label": "Inventory"
+     },
+     {
+      "value": "fixed_asset",
+      "label": "Fixed Asset"
+     }
+    ]
+   },
+   {
+    "value": "liability",
+    "label": "Liability",
+    "normal_balance": "credit",
+    "sub_types": [
+     {
+      "value": "accounts_payable",
+      "label": "Accounts Payable"
+     },
+     {
+      "value": "other_current_liability",
+      "label": "Other Current Liability"
+     },
+     {
+      "value": "credit_card",
+      "label": "Credit Card"
+     },
+     {
+      "value": "long_term_liability",
+      "label": "Long Term Liability"
+     }
+    ]
+   },
+   {
+    "value": "equity",
+    "label": "Equity",
+    "normal_balance": "credit",
+    "sub_types": [
+     {
+      "value": "owners_equity",
+      "label": "Owners Equity"
+     },
+     {
+      "value": "retained_earnings",
+      "label": "Retained Earnings"
+     },
+     {
+      "value": "equity",
+      "label": "Equity"
+     }
+    ]
+   },
+   {
+    "value": "revenue",
+    "label": "Revenue",
+    "normal_balance": "credit",
+    "sub_types": [
+     {
+      "value": "revenue",
+      "label": "Revenue"
+     },
+     {
+      "value": "other_income",
+      "label": "Other Income"
+     }
+    ]
+   },
+   {
+    "value": "expense",
+    "label": "Expense",
+    "normal_balance": "debit",
+    "sub_types": [
+     {
+      "value": "cost_of_goods_sold",
+      "label": "Cost Of Goods Sold"
+     },
+     {
+      "value": "expense",
+      "label": "Expense"
+     }
+    ]
+   }
+  ],
+  "parent_candidates": [
+   {
+    "id": "01a1107a-df12-735d-a2db-fb209dd2f8fc",
+    "account_number": "1000",
+    "name": "Checking Account",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df17-7005-8600-d3506ee64da6",
+    "account_number": "1010",
+    "name": "Savings Account",
+    "type": "asset"
+   },
+   {
+    "id": "01a11a86-db18-70bb-9f31-286a7bef0d1f",
+    "account_number": "1020",
+    "name": "Plaid Checking",
+    "type": "asset"
+   },
+   {
+    "id": "01a11a86-db2e-7395-912c-d9d2a4501073",
+    "account_number": "1030",
+    "name": "Plaid Saving",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df19-70b3-9368-cf9d1bef434e",
+    "account_number": "1100",
+    "name": "Undeposited Funds",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df1a-73ed-8aba-32c171e81e52",
+    "account_number": "1200",
+    "name": "Accounts Receivable",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df1c-7216-997e-c2e7f46f7780",
+    "account_number": "1300",
+    "name": "Parts Inventory",
+    "type": "asset"
+   },
+   {
+    "id": "01a111ac-f1ba-7351-96b7-24bb7998fd0b",
+    "account_number": "1315",
+    "name": "ZZ10804 HST Receivable",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df1f-70cb-a970-9ac378631116",
+    "account_number": "1400",
+    "name": "Shop Supplies Inventory",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df21-7031-99f6-75f94fcfae47",
+    "account_number": "1500",
+    "name": "Leasehold Improvements",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df22-70e8-a807-a9c6e186123e",
+    "account_number": "1505",
+    "name": "Accumulated Depreciation — Leasehold Improvements",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df24-73f4-b50e-638046c10e3c",
+    "account_number": "1510",
+    "name": "Machinery & Shop Equipment",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df25-71fb-985c-7d98a12204cb",
+    "account_number": "1515",
+    "name": "Accumulated Depreciation — Machinery & Shop Equipment",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df26-7372-a567-16a9e1e15b0d",
+    "account_number": "1520",
+    "name": "Vehicles",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df27-70c1-8268-af2927c32f01",
+    "account_number": "1525",
+    "name": "Accumulated Depreciation — Vehicles",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df29-73c3-bbf5-eeb9ab73d6a1",
+    "account_number": "1530",
+    "name": "Shop Tools",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df2a-7242-a0ae-e0a79e61b0c9",
+    "account_number": "1535",
+    "name": "Accumulated Depreciation — Shop Tools",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df2b-7397-b378-bf2b4d243e16",
+    "account_number": "1540",
+    "name": "Office Furniture & Equipment",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df2c-715c-8683-24c3d0bfbaf1",
+    "account_number": "1545",
+    "name": "Accumulated Depreciation — Office Furniture & Equipment",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df2e-7242-ba6b-6a6f85b264ea",
+    "account_number": "1550",
+    "name": "Computers & Technology",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df2f-708d-8b9e-77164c8c0fbf",
+    "account_number": "1555",
+    "name": "Accumulated Depreciation — Computers & Technology",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df30-7224-915e-aefe93e7f253",
+    "account_number": "1560",
+    "name": "Buildings",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df33-700e-b48b-8cb9b2c51a28",
+    "account_number": "1565",
+    "name": "Accumulated Depreciation — Buildings",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df34-7372-839f-731e7a44cfa4",
+    "account_number": "1570",
+    "name": "Land",
+    "type": "asset"
+   },
+   {
+    "id": "01a1107a-df35-73c5-a566-91a1674f86ca",
+    "account_number": "2000",
+    "name": "Accounts Payable",
+    "type": "liability"
+   },
+   {
+    "id": "01a1107a-df37-71f8-a84b-e5ee1daf2789",
+    "account_number": "2050",
+    "name": "Customer Deposits",
+    "type": "liability"
+   },
+   {
+    "id": "01a1107a-df38-72bf-a4c0-083c97ba91f4",
+    "account_number": "2100",
+    "name": "Sales Tax Payable",
+    "type": "liability"
+   },
+   {
+    "id": "01a1107a-df39-7134-80c5-530c494094ff",
+    "account_number": "2200",
+    "name": "Payroll Liabilities",
+    "type": "liability"
+   },
+   {
+    "id": "01a1107a-df3a-70f0-8f23-a940d3d06b8e",
+    "account_number": "2300",
+    "name": "Credit Card Payable",
+    "type": "liability"
+   },
+   {
+    "id": "01a1107a-df3c-73c2-b8f8-26bbc1ecdf5f",
+    "account_number": "2400",
+    "name": "Line of Credit",
+    "type": "liability"
+   },
+   {
+    "id": "01a1107a-df3d-7136-b1df-f89e8d43cb75",
+    "account_number": "2500",
+    "name": "Vehicle Loans",
+    "type": "liability"
+   },
+   {
+    "id": "01a1107a-df3e-7272-ac84-f95bb87d6e65",
+    "account_number": "2600",
+    "name": "Equipment Loans",
+    "type": "liability"
+   },
+   {
+    "id": "01a1107a-df3f-7338-86d5-5e544157d419",
+    "account_number": "3000",
+    "name": "Owner's Equity / Capital",
+    "type": "equity"
+   },
+   {
+    "id": "01a1107a-df41-711f-ac4a-8b52da90297e",
+    "account_number": "3100",
+    "name": "Owner's Draws",
+    "type": "equity"
+   },
+   {
+    "id": "01a1107a-df42-7318-b338-a22a6bd635fe",
+    "account_number": "3200",
+    "name": "Retained Earnings",
+    "type": "equity"
+   },
+   {
+    "id": "01a1107a-df43-71a5-a3c6-159cb1a83e13",
+    "account_number": "3900",
+    "name": "Opening Balance Equity",
+    "type": "equity"
+   },
+   {
+    "id": "01a1107a-df44-71f3-81bc-72f53ab300d3",
+    "account_number": "4000",
+    "name": "Labor Revenue",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df45-71eb-b9d4-05e041b23d33",
+    "account_number": "4010",
+    "name": "Labor Revenue — Overtime / Premium",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df47-71fa-a250-3389f7bccc68",
+    "account_number": "4100",
+    "name": "Parts Revenue",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df48-7338-934f-23e5bbf445f5",
+    "account_number": "4200",
+    "name": "Shop Supplies Revenue",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df49-708e-9a03-ac98fa04e653",
+    "account_number": "4300",
+    "name": "Sublet Revenue",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df4a-73fc-9e64-eb50817295e7",
+    "account_number": "4400",
+    "name": "Hazmat / Environmental Revenue",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df4c-7348-9133-5ecfec8cf091",
+    "account_number": "4500",
+    "name": "Towing Revenue",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df4d-72a3-a442-6eb06a45e111",
+    "account_number": "4600",
+    "name": "Storage Revenue",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df4e-72ce-ae93-7ed938024048",
+    "account_number": "4700",
+    "name": "Gain / Loss on Asset Disposal",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df4f-72c2-84fd-0d55374d379c",
+    "account_number": "4800",
+    "name": "Fee Income",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df51-7247-b37a-8a1661c69513",
+    "account_number": "4810",
+    "name": "Processing Fee Income",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df52-7026-8aa6-3bbd7b7c7087",
+    "account_number": "4900",
+    "name": "Other Revenue",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df53-700b-b500-30c46a8f4e28",
+    "account_number": "4950",
+    "name": "Sales Returns & Allowances",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df54-721a-8561-1844391c150a",
+    "account_number": "4960",
+    "name": "Discounts Given",
+    "type": "revenue"
+   },
+   {
+    "id": "01a1107a-df56-7127-b991-2d7a1fb0528a",
+    "account_number": "5000",
+    "name": "Parts Cost of Goods Sold",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df57-739d-b551-d93b26c87f4e",
+    "account_number": "5100",
+    "name": "Shop Supplies COGS",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df58-7019-b94b-9269f049a711",
+    "account_number": "5200",
+    "name": "Sublet Expense",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df59-7379-88d9-f25ebaf5929d",
+    "account_number": "6000",
+    "name": "Wages & Salaries",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df5b-707e-a877-5ac4dbf56c3f",
+    "account_number": "6010",
+    "name": "Payroll Taxes",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df5c-7296-809e-48b49f45bef3",
+    "account_number": "6020",
+    "name": "Employee Benefits",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df5d-73a4-b7c1-540c015c9081",
+    "account_number": "6100",
+    "name": "Insurance",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df5f-71ad-9796-fac248918631",
+    "account_number": "6110",
+    "name": "Sales Tax Expense",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df60-7391-a5a4-3f5c809db05a",
+    "account_number": "6200",
+    "name": "Rent / Lease",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df61-73c7-bdf5-0cead5ecbf43",
+    "account_number": "6300",
+    "name": "Utilities",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df63-700a-94d8-70fe0e7d9a5f",
+    "account_number": "6400",
+    "name": "Shop Equipment Maintenance",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df64-70a8-836f-4ca8f5607e28",
+    "account_number": "6500",
+    "name": "Vehicle Expenses",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df65-70c2-af69-18bc37aeae6e",
+    "account_number": "6600",
+    "name": "Office Expenses",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df67-703b-82a6-69f69abc50ba",
+    "account_number": "6700",
+    "name": "Advertising & Marketing",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df68-7246-bc79-8cbf056aaa7a",
+    "account_number": "6800",
+    "name": "Professional Fees (Legal, Accounting)",
+    "type": "expense"
+   },
+   {
+    "id": "01a1111d-2280-7255-a587-8cda599ef025",
+    "account_number": "6850",
+    "name": "Payment Processing Fees",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df69-7118-9992-466af4478b0b",
+    "account_number": "6900",
+    "name": "Depreciation Expense",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df6b-703f-9206-6392c0cdfc0d",
+    "account_number": "6950",
+    "name": "Interest Expense",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df6c-7031-a017-af88bf705e44",
+    "account_number": "6960",
+    "name": "Bad Debt Expense",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df6d-7014-bc8a-13347c2ee1ef",
+    "account_number": "6990",
+    "name": "Reconciliation Discrepancy",
+    "type": "expense"
+   },
+   {
+    "id": "01a1107a-df6e-7131-ac38-0aae31367b10",
+    "account_number": "6999",
+    "name": "Miscellaneous Expense",
+    "type": "expense"
+   }
+  ],
+  "deactivation_blockers": []
+ },
+ "marker": {
+  "version": "v26.40.8-3e5c1df",
+  "lastModified": "Wed, 07 Oct 2026 13:37:51 GMT",
+  "etag": "W/\"a9c702e4d9b3d8b90d41a69c38e2cc51\""
+ },
+ "create 1091": {
+  "st": 201,
+  "b": {
+   "account": {
+    "id": "01a11a8f-822e-729c-be08-9b756af764b1",
+    "account_number": "1091",
+    "name": "ZZAUTOTEST SV-10878 active bank",
+    "type": "asset",
+    "sub_type": "bank",
+    "cash_flow_category": null,
+    "parent_account_id": null,
+    "normal_balance": "debit",
+    "description": null,
+    "is_active": true,
+    "is_system": false,
+    "has_activity": false
+   },
+   "result": {
+    "kind": "created"
+   }
+  }
+ },
+ "connect GET": {
+  "plaid_enabled": true,
+  "attachable_accounts": [
+   {
+    "id": "01a11a8f-822e-729c-be08-9b756af764b1",
+    "account_number": "1091",
+    "name": "ZZAUTOTEST SV-10878 active bank",
+    "type": "asset",
+    "sub_type": "bank",
+    "cash_flow_category": null,
+    "parent_account_id": null,
+    "normal_balance": "debit",
+    "description": null,
+    "is_active": true,
+    "is_system": false,
+    "has_activity": false
+   }
+  ]
+ },
+ "manual options": [
+  "check 1091 ZZAUTOTEST SV-10878 active bank"
+ ]
+}

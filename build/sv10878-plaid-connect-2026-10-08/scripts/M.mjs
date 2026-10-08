@@ -1,0 +1,50 @@
+import {ob,j} from './lib.mjs'; import {plaidLogin} from './plaid.mjs'; import fs from 'fs';
+const s=await ob({dpr:2,vp:{width:1600,height:1000}}); const p=s.page; const R={}; const log=[];
+p.on('response',async r=>{try{const u=new URL(r.url()); if(/sv10360api/.test(u.host)&&/bank|plaid/.test(u.pathname)&&r.request().method()!=='GET') log.push({m:r.request().method(),st:r.status(),path:u.pathname,req:r.request().postData(),res:(await r.text()).slice(0,1500)});}catch(e){}});
+const sv=(k,v)=>{R[k]=v; fs.writeFileSync('M.json',JSON.stringify({R,log},null,1)); console.log(k,j(v,700));};
+const pickOpt=async(tid,label)=>{ const b=await s.box(tid); await p.mouse.click(b.x,b.y); await p.waitForTimeout(900); const o=await p.evaluate(l=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>x.innerText.includes(l)); if(!e) return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};},label); if(!o){ await p.keyboard.press('Escape'); throw new Error('no option '+label+' in '+tid);} await p.mouse.click(o.x,o.y); await p.waitForTimeout(800); };
+const list=async (tid,shot)=>{ const b=await s.box(tid); if(!b) return 'NO CONTROL'; await p.mouse.click(b.x,b.y); await p.waitForTimeout(900); const o=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.innerText.trim().replace(/\n+/g,' '))); if(shot) await p.screenshot({path:`M-${shot}.png`}); await p.keyboard.press('Escape'); await p.waitForTimeout(500); return o; };
+const rows=async()=>p.evaluate(()=>[0,1].map(i=>{const r=document.querySelector(`[data-test-id="row_account_accounting_bank_connect_${i}"]`); return r? r.innerText.replace(/\n+/g,' | '):null;}));
+const connectState=async()=>p.evaluate(()=>{const b=document.querySelector('[data-test-id="button_submit_accounting_bank_connect"]'); return {disabled:b?.disabled||b?.getAttribute('aria-disabled')==='true'||/disabled/.test(b?.className||''),text:b?.innerText};});
+const banks=async()=>((await s.api('/api/accounting/bank-accounts?per_page=100')).json?.bank_accounts||[]).map(b=>[b.nickname||b.name,b.chart_account?.name||b.account_name||b.account_id,b.feed||b.source||b.connection_type]);
+await plaidLogin(s,{shot:'pl/M'});
+for(let i=2;i<20;i++){ const b=await s.box(`checkbox_include_accounting_bank_connect_${i}`); if(!b) break; await p.mouse.click(b.x,b.y); await p.waitForTimeout(120); }
+await pickOpt('select_gl_mode_accounting_bank_connect_0','Use an existing'); await pickOpt('select_gl_mode_accounting_bank_connect_1','Use an existing');
+sv('A1 row0 options (nothing picked)',await list('select_existing_accounting_bank_connect_0'));
+await pickOpt('select_existing_accounting_bank_connect_0','Checking Account');
+sv('A2 row1 options after row0 picked Checking',await list('select_existing_accounting_bank_connect_1','A2'));
+await pickOpt('select_existing_accounting_bank_connect_1','Savings Account');
+sv('A3 row0 options after row1 picked Savings',await list('select_existing_accounting_bank_connect_0','A3'));
+sv('A4 rows',await rows()); await p.screenshot({path:'M-A4.png'});
+// collision via untick/retick
+let b=await s.box('checkbox_include_accounting_bank_connect_0'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(600);
+sv('B1 row1 options with row0 unticked',await list('select_existing_accounting_bank_connect_1'));
+await pickOpt('select_existing_accounting_bank_connect_1','Checking Account');
+b=await s.box('checkbox_include_accounting_bank_connect_0'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(900);
+sv('B2 rows after re-tick (both Checking)',await rows()); sv('B2 connect',await connectState()); await p.screenshot({path:'M-B2.png'});
+await pickOpt('select_existing_accounting_bank_connect_1','Savings Account');
+sv('B3 rows after fixing row1',await rows()); sv('B3 connect',await connectState());
+fs.writeFileSync('M-state.txt','A+B done'); await p.waitForTimeout(500);
+// tab2: manual add on Checking Account
+sv('C0 banks before manual',await banks());
+const t2=await s.ctx.newPage(); await t2.goto(s.host.app+'/accounting/banking/accounts',{waitUntil:'domcontentloaded'}); await t2.waitForTimeout(3500);
+const bx=async tid=>t2.evaluate(t=>{const e=document.querySelector(`[data-test-id="${t}"]`); if(!e) return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};},tid);
+let c=await bx('button_new_accounting_bank_accounts'); await t2.mouse.click(c.x,c.y); await t2.waitForTimeout(1500);
+await t2.fill('[data-test-id="input_nickname_accounting_bank_account"]','ZZAUTOTEST SV-10878 manual'); await t2.fill('[data-test-id="input_institution_accounting_bank_account"]','ZZ Test Bank'); await t2.fill('[data-test-id="input_mask_accounting_bank_account"]','9999');
+c=await bx('select_gl_account_accounting_bank_account'); await t2.mouse.click(c.x,c.y); await t2.waitForTimeout(1000);
+const mo=await t2.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.innerText.trim().replace(/\n+/g,' '))); sv('C1 manual form options',mo);
+const ck=await t2.evaluate(()=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>x.innerText.includes('Checking Account')); const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};}); await t2.mouse.click(ck.x,ck.y); await t2.waitForTimeout(700);
+await t2.screenshot({path:'M-C1.png'});
+c=await bx('button_save_accounting_bank_account'); await t2.mouse.click(c.x,c.y); await t2.waitForTimeout(3000);
+sv('C2 manual add notif',await t2.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText).join('|')));
+await t2.screenshot({path:'M-C2.png'}); await t2.close();
+sv('C3 banks after manual',await banks());
+// connect with row0 = Checking (now linked)
+sv('D0 rows before connect',await rows());
+b=await s.box('button_submit_accounting_bank_connect'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(5000);
+sv('D1 rows after connect',await rows()); sv('D1 page',(await p.evaluate(()=>document.querySelector('.q-page')?.innerText||'')).replace(/\n+/g,' | ').slice(0,900));
+sv('D1 notif',await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText).join('|')));
+await p.screenshot({path:'M-D1.png'});
+sv('D2 banks after failed connect',await banks());
+fs.writeFileSync('M-state.txt','D done');
+await s.close();

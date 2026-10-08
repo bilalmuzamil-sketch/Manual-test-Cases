@@ -1,0 +1,50 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on the QA branch [sv10360|https://sv10360.qa.shopview.com] (build v26.40.8-3e5c1df) on 8 October 2026, signed in as Admin, connecting the Plaid test bank "First Platypus Bank" (14 accounts).
+
+In short:
+* A chart account can no longer be picked for two bank accounts in one connect. Each row's list hides what another row has already taken.
+* If the server still refuses a pick (for example, the account was linked from another tab), the reason shows on that row. There is no error page and nothing is saved.
+* After a refusal you can fix the row and press Connect again without signing in to the bank again.
+* The Plaid connect and the manual {{Add account}} form now offer exactly the same chart accounts.
+
+h3. What I checked
+||#||Check||Result||
+|1|Each row's {{Existing account}} list hides an account another ticked row already picked (tried in both directions: row 1 then row 2, and row 2 then row 1)|PASSED|
+|2|A duplicate pick made while a row was unticked is caught when the row is ticked again: "This chart account is already picked for another account." shows on the row and {{Connect}} stays greyed out until it is changed|PASSED|
+|3|Pointing a row at a chart account that already belongs to another bank account (linked from a second tab after the page loaded) is refused with "That chart account already belongs to another bank account." on that row, under "Some accounts could not be connected. See the messages below."|PASSED|
+|4|Nothing is saved when the connect is refused: the Bank Accounts list was the same before and after|PASSED|
+|5|After the refusal, changing the row and pressing {{Connect}} again worked straight away with the same bank sign-in: "Connected 2 accounts at First Platypus Bank. 26 transactions imported"|PASSED|
+|6|The Plaid connect and the manual {{Add account}} form offer the same chart accounts, checked twice: after 1000 Checking Account was linked (both offered only 1010 Savings Account and 2300 Credit Card Payable), and again with an inactive bank account in the chart (both offered only the active one)|PASSED|
+|7|Linking to an existing account still works: Plaid Credit Card → 2300 Credit Card Payable, and Plaid Money Market → 1091 (picked on screen, Connect pressed)|PASSED|
+|8|The server refuses every bad pick with a clear message on the right row, and never a server error: account already linked · same account on two rows · an inactive account · a non-bank account (6000 Wages) · both "existing" and "new" filled in · a new account number already in use (1000) · the same new number on two rows. The Bank Accounts list was unchanged after all seven|PASSED|
+|9|Two different bank sign-ins linking the same chart account at the same moment: one connects, the other gets "That chart account already belongs to another bank account." Only one bank account was added|PASSED|
+|10|The same Connect request sent twice at once adds the bank account once and imports its transactions once (3 imported, then 3 skipped)|PASSED|
+
+h3. 1. Each row hides what another row already picked
+!01-picker-hides-picked-account.png|width=672,height=589!
+
+h3. 2. Picking the same account twice is stopped on the row
+!02-same-account-twice-stopped.png|width=672,height=605!
+
+h3. 3. A refused connect shows the reason on the row, and the retry works without signing in again
+!03-refused-then-retry.png|width=672,height=992!
+
+h3. 4. The Plaid connect and the manual form offer the same accounts
+!04-plaid-and-manual-offer-the-same.png|width=1247,height=721!
+
+h3. How to see it yourself
+# Open [https://sv10360.qa.shopview.com|https://sv10360.qa.shopview.com] and sign in as Admin.
+# At the top left, next to the logo, click {{ShopHub}} (with the small arrow) and choose {{AccountingHub}} from the list that opens.
+# In the left menu under {{SETUP}}, click {{Chart of accounts}} and check there is at least one active Bank account nobody uses yet. If not, click {{New account}} at the top right and save one with {{Type}} = {{Asset}}, {{Sub-type}} = {{Bank}}, any unused {{Account number}} and a {{Name}}.
+# In the left menu under {{BANKING}}, click {{Transactions}}, then the {{Connect a bank}} button at the top right of the page.
+# In the Plaid window: click {{Continue without phone number}}, type {{Platypus}} in the search box, click {{First Platypus Bank}} (the last one with exactly that name), enter user name {{user_good}} and password {{pass_good}}, click {{Submit}}, then {{Continue}}, then {{Finish without saving}}.
+# Back on the {{Connect a bank}} page, leave {{Plaid Checking}} and {{Plaid Saving}} ticked and untick the rest.
+# On {{Plaid Checking}}, set {{Chart account}} to {{Use an existing chart account}} and pick your account under {{Existing account}}.
+# On {{Plaid Saving}}, set {{Chart account}} to {{Use an existing chart account}} and open {{Existing account}}: the account picked on Plaid Checking is not in the list (picture 1).
+
+h3. What I could not check
+* The Sentry issue not coming back on staging (acceptance point 5). That can only be watched after this is deployed to staging.
+* The Plaid connection records themselves. No screen in the app lists them. What I could see is that no bank account was added, and that the same bank sign-in still worked afterwards. That second part means the refused attempt never reached the bank.
+* A production "before" picture. Production's Plaid is a live bank connection that asks "Confirm you're human" and offers no test bank, so a bank cannot be signed into there. This comment shows the fixed state only.
