@@ -1,0 +1,20 @@
+{
+ "pass_meta": {"run": 498, "env": "sv10043.qa.shopview.com", "build": "v26.40.8-7a95011", "date": "2026-10-08"},
+ "results": {
+  "C96913": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Tabs with three work orders, all led by Ayesha Khan: S10043-17597 (Estimate), S10043-17598 (Approved), S10043-17599 (Complete). The four tabs All, Estimates, Work Orders and Completed are shown in List, Tech View and Board View. With the customer name typed in Search after each tab click, every display showed the same work orders on each tab: All = all three; Work Orders = S10043-17598; Estimates = S10043-17597; Completed = S10043-17599. In Tech View they sit in Ayesha Khan's group, and in Board View they sit in her column. Note for the tester: clicking a tab clears the Search box, so type the search again after each tab click.",
+   "not_observed": null
+  },
+  "C154884": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Assigned To Me: S10043-17600 and S10043-17601 led by me (Admin ShopView), S10043-17602 led by Ayesha Khan, S10043-17603 with no lead. With Assigned to me on, List, Tech View and Board View showed exactly the same work orders every time. (1) As the setup leaves them, I am also the Service Advisor on all four (the person who creates a work order becomes its Service Advisor). Assigned to me also counts work orders where you are the Service Advisor, so all four appeared in List, and the same four appeared in Tech View (two in my group, one in Ayesha Khan's, one in Unassigned) and in Board View (the same columns). (2) After S10043-17602 and S10043-17603 were given no Service Advisor, all three displays showed only S10043-17600 and S10043-17601, in my group or column. The case's example (2 rows) therefore needs the other two work orders to have a different Service Advisor; this is reported to the QA lead and the case text is left unchanged.",
+   "not_observed": null
+  },
+  "C96921": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Two Tabs with one Approved work order led by Ayesha Khan. Tab A: clicked Tech View. A few seconds later in tab B: clicked Board View. After refreshing, tab A and tab B both opened in Board View, and a new tab C also opened in Board View. No warning or conflict message appeared.",
+   "not_observed": null
+  }
+ }
+}

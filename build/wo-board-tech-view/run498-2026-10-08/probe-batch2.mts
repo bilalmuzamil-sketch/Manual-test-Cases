@@ -1,0 +1,30 @@
+/** Probe for batch 2 re-measure: list-endpoint fields, service advisor change, Tech View group collapse markup. */
+import fs from 'node:fs';
+import path from 'node:path';
+import { open, done, APP } from './session.mts';
+import { api, candidates } from './data.mts';
+const here = path.dirname(new URL(import.meta.url).pathname);
+const t = () => new Date().toISOString().slice(11, 19);
+const { browser, page: p } = await open('/workorders?tab=all');
+const a = api(p);
+const out: any = {};
+const q = (s: string, my = 0) => a.get(`/api/work-orders?pagination[rowsPerPage]=50&search=${encodeURIComponent(s)}&showMyWorkOrders=${my}`);
+const r0 = await q('ZZAUTOTEST F1 Assigned To Me');
+console.log(t(), 'RAW', r0.status, JSON.stringify(r0.body).slice(0, 1500));
+const pick = (b: any) => { const d = b?.data; return Array.isArray(d) ? d : Array.isArray(d?.collection) ? d.collection : Array.isArray(d?.data) ? d.data : Array.isArray(d?.items) ? d.items : Array.isArray(d?.work_orders) ? d.work_orders : []; };
+const rows = pick(r0.body);
+out.keys = rows[0] ? Object.keys(rows[0]) : r0;
+out.rows = rows.map((w: any) => ({ id: w.id, n: w.number ?? w.wo_number ?? w.display_number, lead: w.tech_assigned_id ?? w.techAssigned?.id, leadName: w.tech_assigned?.name ?? w.techAssignedName, sa: w.service_advisor_id ?? w.serviceAdvisor?.id, saName: JSON.stringify(w.service_advisor ?? w.serviceAdvisor ?? null)?.slice(0, 120) }));
+const r1 = await q('ZZAUTOTEST F1 Assigned To Me', 1);
+out.mine = pick(r1.body).map((w: any) => w.number ?? w.id);
+out.me = await a.get('/api/auth/me').then((r) => JSON.stringify(r.body).slice(0, 600));
+console.log(t(), JSON.stringify(out, null, 0).slice(0, 4000));
+// Tech View group header markup
+await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
+await p.locator('[aria-label="Tech View"]').first().click(); await p.waitForTimeout(4000);
+const hdr = await p.evaluate(`(() => { const el = [...document.querySelectorAll('*')].find(e => e.children.length === 0 && e.textContent.trim() === 'Unassigned'); let h = el; for (let i = 0; i < 6 && h; i++) h = h.parentElement; return h ? h.outerHTML.slice(0, 3000) : 'none'; })()`);
+console.log(t(), 'HEADER', String(hdr).replace(/\s+/g, ' '));
+const groups = await p.evaluate(`[...document.querySelectorAll('[class*=group]')].slice(0,5).map(e => e.className).join(' || ')`);
+console.log(t(), 'GROUPCLASSES', groups);
+fs.writeFileSync(path.join(here, 'evidence', 'probe-batch2.json'), JSON.stringify(out, null, 1));
+await done(browser);
