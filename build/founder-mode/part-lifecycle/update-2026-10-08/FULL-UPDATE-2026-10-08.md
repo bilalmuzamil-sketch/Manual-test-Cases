@@ -111,5 +111,5 @@ Already answered by Product in v26, so NOT asked:
 
 ## Display check and test runs
 - **Display check:** 259 of 259 written cases are "RESULT OK" (`hs_repair_one.mjs`; logs `render*.log`).
-- **Test runs (Rule 123):** no open run is named for Part Lifecycle. The only Founder Mode run is 495, "Part Sales + Notifications", created by Vladimir Tomovic; it is not ours to change. So there was no run to update.
+- **Test runs (Rule 123):** no open run is named for Part Lifecycle. The only Founder Mode run is 495, "Part Sales + Notifications", created by Vladimir Tomovic; it is not ours to change. **Not yet proven:** whether any open run holds Part Lifecycle cases. The first full scan of the 380 open runs hit its time limit; a detached re-scan is writing `run-membership.jsonl` (done when `run-membership.DONE` exists).
   - If the QA lead wants a Part Lifecycle run, it should be created when a QA build exists.
