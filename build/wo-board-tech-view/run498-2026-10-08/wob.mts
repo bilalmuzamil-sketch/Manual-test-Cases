@@ -89,3 +89,34 @@ export async function drag(p: Page, from: string, to: string, dy = 4) {
   await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2 + 6, { steps: 3 });
   await p.mouse.move(b.x + b.width / 2, b.y + dy, { steps: 20 }); await p.waitForTimeout(400); await p.mouse.up(); await p.waitForTimeout(3000);
 }
+
+/** Board View columns currently drawn, left to right: {id, name, count, cards, pinned, pinDisabled, empty, left} */
+export const boardCols = (p: Page) => p.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_header_"]')].map(h => {
+  const id = h.getAttribute('data-test-id').replace('board_column_header_', '');
+  const col = document.querySelector('[data-test-id="board_column_' + id + '"]');
+  const q = (s) => document.querySelector('[data-test-id="' + s + id + '"]');
+  const pin = q('button_board_pin_');
+  return { id, name: (q('board_column_name_') || {}).textContent?.trim(), count: +((q('board_column_count_') || {}).textContent || 'NaN'),
+    cards: col ? [...col.querySelectorAll('[data-test-id="board_card_number"]')].map(e => e.textContent.trim()) : [],
+    pinned: pin ? pin.getAttribute('aria-pressed') : null, pinDisabled: pin ? (pin.disabled || pin.getAttribute('aria-disabled') === 'true') : null,
+    empty: (q('board_column_empty_') || {}).innerText?.replace(/\\s+/g, ' ').trim() || null, left: Math.round(h.getBoundingClientRect().left) };
+})`) as Promise<{ id: string; name: string; count: number; cards: string[]; pinned: string | null; pinDisabled: boolean | null; empty: string | null; left: number }[]>;
+/** every column on the board, scrolling sideways to draw them all; returns them in board order */
+export async function allBoardCols(p: Page) {
+  const seen = new Map<string, any>();
+  await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); await p.waitForTimeout(600);
+  for (let i = 0; i < 40; i++) {
+    for (const c of await boardCols(p)) if (!seen.has(c.id)) seen.set(c.id, c);
+    const moved = await p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller'); const b = h.scrollLeft; h.scrollLeft += 900; return h.scrollLeft !== b; })()`);
+    await p.waitForTimeout(400); if (!moved) { for (const c of await boardCols(p)) if (!seen.has(c.id)) seen.set(c.id, c); break; }
+  }
+  await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); await p.waitForTimeout(500);
+  return [...seen.values()];
+}
+/** bring one Board column on screen */
+export async function toColumn(p: Page, id: string) {
+  await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft = 0`); await p.waitForTimeout(400);
+  for (let i = 0; i < 40 && !(await p.locator(`[data-test-id="board_column_${id}"]`).count()); i++) { await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller').scrollLeft += 600`); await p.waitForTimeout(350); }
+  await p.evaluate(`document.querySelector('[data-test-id="board_column_${id}"]')?.scrollIntoView({ inline: 'center', block: 'nearest' })`); await p.waitForTimeout(800);
+  return (await p.locator(`[data-test-id="board_column_${id}"]`).count()) > 0;
+}
