@@ -1,0 +1,10 @@
+import { open, API, done } from './session.mts';
+import { api } from './data.mts';
+const { browser, page } = await open('/workorders');
+const a = api(page);
+const r = await a.get('/api/work-orders/lead-technician-candidates');
+console.log('candidates', r.status, JSON.stringify(r.body).slice(0, 900));
+console.log('page url', page.url());
+const raw = await page.evaluate(`fetch('${API}/api/auth/me/fe-permissions', { credentials: 'include' }).then(r => r.status).catch(e => 'ERR ' + e.message)`);
+console.log('fe-permissions from page', raw);
+await done(browser);

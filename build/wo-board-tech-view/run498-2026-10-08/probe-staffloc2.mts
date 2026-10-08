@@ -1,0 +1,11 @@
+import { open, done } from './session.mts';
+import { api, candidates } from './data.mts';
+import { t } from './wob.mts';
+import { setStaffLocation } from './staffloc.mts';
+const { browser, page: p } = await open('/workorders');
+const a = api(p);
+console.log(t(), 'move', JSON.stringify(await setStaffLocation(p, 'ayesha.khan', 'Staging Lethbridge')));
+console.log(t(), 'Ayesha a lead candidate at Heavy Duty now:', (await candidates(a)).some((x) => x.name === 'Ayesha Khan'));
+console.log(t(), 'back', JSON.stringify(await setStaffLocation(p, 'ayesha.khan', 'Staging Heavy Duty')));
+console.log(t(), 'Ayesha a lead candidate at Heavy Duty again:', (await candidates(a)).some((x) => x.name === 'Ayesha Khan'));
+await done(browser);

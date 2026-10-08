@@ -4,7 +4,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { open } from './session.mts';
+import { open, done } from './session.mts';
 
 const here = path.dirname(new URL(import.meta.url).pathname);
 const EV = path.join(here, 'evidence');
@@ -69,4 +69,4 @@ R.C154885.wide = await switcher(); await shot('C154885-wide-1600');
 console.log(t(), 'C154885', JSON.stringify(R.C154885).slice(0, 1500));
 await click('List');
 fs.writeFileSync(path.join(EV, 's1-batch1.json'), JSON.stringify(R, null, 1));
-await browser.close();
+await done(browser);

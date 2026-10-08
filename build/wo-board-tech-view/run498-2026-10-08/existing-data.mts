@@ -1,7 +1,7 @@
 /** Which of the customers the cases name already exist on the branch, and their work orders. Read-only. */
 import fs from 'node:fs';
 import path from 'node:path';
-import { open, API } from './session.mts';
+import { open, API, done } from './session.mts';
 
 const here = path.dirname(new URL(import.meta.url).pathname);
 const cases = JSON.parse(fs.readFileSync(path.join(here, 'cases-read-2026-10-08.json'), 'utf8'));
@@ -19,4 +19,4 @@ console.log(`named by the cases: ${wanted.size} · on the branch: ${have.length}
 console.log('present:', have.slice(0, 40).join(' | '));
 console.log('missing (first 20):', [...wanted].filter((n) => !out[n]).slice(0, 20).join(' | '));
 fs.writeFileSync(path.join(here, 'existing-customers.json'), JSON.stringify({ wanted: [...wanted], present: out }, null, 1));
-await browser.close();
+await done(browser);

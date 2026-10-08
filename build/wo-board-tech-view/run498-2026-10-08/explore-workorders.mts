@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildMarker } from '../../global-search/e2e/fixtures/auth.js';
-import { open } from './session.mts';
+import { open, done } from './session.mts';
 
 const OUT = path.join(path.dirname(new URL(import.meta.url).pathname), 'evidence');
 const s = await open('/workorders');
@@ -32,4 +32,4 @@ const read = async (label: string) => {
   console.log('   labels :', [...new Set(r.tooltips)].join(' · ').slice(0, 1200));
 };
 await read('list');
-await s.browser.close();
+await done(s.browser);
