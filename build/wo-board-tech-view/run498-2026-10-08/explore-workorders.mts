@@ -5,25 +5,26 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { signIn, buildMarker } from '../../global-search/e2e/fixtures/auth.js';
+import { buildMarker } from '../../global-search/e2e/fixtures/auth.js';
+import { open } from './session.mts';
 
 const OUT = path.join(path.dirname(new URL(import.meta.url).pathname), 'evidence');
-const s = await signIn('/workorders');
+const s = await open('/workorders');
 const p = s.page;
-await p.waitForTimeout(4000);
+await p.waitForTimeout(4000); console.log('page open', new Date().toISOString().slice(11,19));
 console.log('build:', await buildMarker(p), '| url:', p.url());
 const read = async (label: string) => {
-  const r = await p.evaluate(() => {
-    const vis = (e: Element) => { const b = (e as HTMLElement).getBoundingClientRect(); return b.width > 0 && b.height > 0; };
-    const txt = (e: Element) => ((e as HTMLElement).innerText || e.getAttribute('aria-label') || e.getAttribute('title') || '').replace(/\s+/g, ' ').trim();
+  const r: any = await p.evaluate(`(() => {
+    const vis = (e) => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0; };
+    const txt = (e) => (e.innerText || e.getAttribute('aria-label') || e.getAttribute('title') || '').replace(/\s+/g, ' ').trim();
     return {
       headings: [...document.querySelectorAll('h1,h2,h3,.q-toolbar__title')].filter(vis).map(txt).filter(Boolean).slice(0, 10),
-      buttons: [...document.querySelectorAll('button,[role=button],[role=tab],.q-tab,.q-btn')].filter(vis).map(e => txt(e) || `[${e.getAttribute('aria-label') || e.className.toString().slice(0, 40)}]`).filter(Boolean).slice(0, 80),
+      buttons: [...document.querySelectorAll('button,[role=button],[role=tab],.q-tab,.q-btn')].filter(vis).map(e => txt(e) || '[' + (e.getAttribute('aria-label') || String(e.className).slice(0, 40)) + ']').filter(Boolean).slice(0, 80),
       columns: [...document.querySelectorAll('thead th, [role=columnheader]')].filter(vis).map(txt).slice(0, 40),
       tooltips: [...document.querySelectorAll('[title],[aria-label]')].filter(vis).map(e => e.getAttribute('aria-label') || e.getAttribute('title')).filter(Boolean).slice(0, 60),
       rows: document.querySelectorAll('tbody tr').length,
     };
-  });
+  })()`);
   fs.writeFileSync(path.join(OUT, `explore-${label}.json`), JSON.stringify(r, null, 1));
   await p.screenshot({ path: path.join(OUT, `explore-${label}.png`), fullPage: false });
   console.log(`== ${label}: ${r.rows} rows; columns: ${r.columns.join(' | ')}`);

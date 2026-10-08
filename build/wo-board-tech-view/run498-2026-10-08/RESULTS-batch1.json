@@ -1,0 +1,28 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-08"
+ },
+ "results": {
+  "C96909": {
+   "verdict": "Passed",
+   "observed": "Work Orders, All tab. The display switcher at the right of the toolbar offers exactly three options, labelled List, Tech View and Board View (hover labels read \"List\", \"Tech View\", \"Board View\"). Only the option being viewed is highlighted: List at the start, Tech View after clicking Tech View, Board View after clicking Board View, List again after clicking List.",
+   "not_observed": null
+  },
+  "C96918": {
+   "verdict": "Failed",
+   "observed": "Searched ZZNOMATCH123 on the All tab. List, Tech View and Board View each show one message for the whole page (no empty technician groups or columns): No work orders match the search \"ZZNOMATCH123\". There is no Clear filters action in any of the three displays; the only way out is the small x inside the search box. Expected per the case: \"No work orders match your filters\" with a Clear filters action. This is also different from the case's \"what you should see today\" note (\"No work orders match these filters\" / \"Clear all filters\"), so it is outcome (2): a new difference. Report prepared and held for the QA lead's approval; nothing raised.",
+   "not_observed": "Clicking Clear filters could not be done: the button is not there.",
+   "todo": "What needs to be done: the no-results message must read \"No work orders match your filters\" and offer a Clear filters action in List, Tech View and Board View. Report held for the QA lead.",
+   "ticket_held": true,
+   "ticket": "Report prepared with screenshots and held with the QA lead for approval (one at a time); no ticket raised yet."
+  },
+  "C154885": {
+   "verdict": "Passed",
+   "observed": "Chose Board View at full width (1600 pixels). At 900 pixels wide the display switcher is gone and the page shows the List as the narrow layout does today. Back at 1600 pixels the switcher is offered again and Board View is still the chosen display, so the narrow window did not change the saved choice. Edge not checked by hand.",
+   "not_observed": "The optional sideways-tablet check was not done."
+  }
+ }
+}
