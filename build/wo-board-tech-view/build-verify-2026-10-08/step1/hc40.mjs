@@ -1,0 +1,21 @@
+import {start,mk} from './woblib.mjs'; import fs from 'fs';
+const L='/tmp/cln/hc40.log'; fs.writeFileSync(L,''); const log=(...a)=>fs.appendFileSync(L,a.join(' ')+'\n');
+const b=await start('/administration/locations','admin'); const {page}=b; const {dump,ov,go,esc,body}=mk(page); page.setDefaultTimeout(15000);
+const T=async(n,f)=>{try{await f();}catch(e){log('ERR',n,e.message.slice(0,200));}};
+await T('newloc',async()=>{ await page.waitForTimeout(3000); await page.locator('button:has-text("New Location")').first().click(); await page.waitForTimeout(3000);
+  const d=page.locator('.q-dialog').last(); await d.getByLabel('Name *').fill('ZZAUTOTEST Empty Shop');
+  await d.getByLabel('Address 1').fill('1 ZZAUTOTEST Street'); await d.getByLabel('City').fill('Calgary'); await d.getByLabel('ZIP/Postal code').fill('T2C 4M5'); await d.getByLabel('Telephone').fill('4035230488');
+  const pick=async(lab,txt)=>{ await d.getByLabel(lab).click(); await page.waitForTimeout(1500); const it=txt?page.locator('.q-menu .q-item').filter({hasText:txt}).first():page.locator('.q-menu .q-item').first(); log(lab+' opts',(await page.locator('.q-menu').last().innerText()).replace(/\s+/g,' ').slice(0,150)); await it.click(); await page.waitForTimeout(800); };
+  await pick('State/Province','Alberta'); await pick('Timezone',null);
+  log('FILLED',(await ov()).slice(0,500));
+  await d.locator('button:has-text("Save & Close")').click(); await page.waitForTimeout(4000); log('AFTER SAVE',(await ov()).slice(0,500)); await dump('hc-newloc-saved');
+  if((await ov()).includes('required')){ log('REQUIRED FIELDS present'); }
+  const t=await body(); log('HAS LOC',t.includes('ZZAUTOTEST Empty Shop')); });
+await T('admin-loc',async()=>{ await go('/administration/staff',8000);
+  await page.locator('button:has-text("Search")').filter({hasNotText:'customers'}).last().click(); await page.waitForTimeout(800); await page.keyboard.type('Admin',{delay:40}); await page.waitForTimeout(3500);
+  const row=page.locator('tr').filter({hasText:/Admin/}).filter({hasText:/ShopView/}).first(); await row.locator('button, i').filter({hasText:/edit/}).first().click(); await page.waitForTimeout(3000);
+  const d=page.locator('.q-dialog').last(); await d.getByLabel('Location').click(); await page.waitForTimeout(1500);
+  log('LOC OPTIONS',JSON.stringify(await page.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(i=>i.innerText.replace(/\s+/g,' ').trim()+':'+i.getAttribute('aria-selected')))));
+  log('MULTI?',await page.evaluate(()=>!!document.querySelector('.q-menu .q-checkbox, .q-menu [role=checkbox]')));
+  await esc(); await esc(); });
+await b.browser.close();

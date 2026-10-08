@@ -189,3 +189,6 @@ Test data made: customer "ZZAUTOTEST Regression Walk" (contact ZZAUTOTEST Walker
 - Staff delete: a staff member with logged time cannot be deleted — `Delete` is greyed out with tooltip "This staff can't be deleted, they have tasks records
   history." (proved, step1/deleted-user-line-unbuildable-claim.json). `Deactivate Account` leaves the name on the line's Labor row.
 - Board View column header shows the technician's photo (image named after the technician) — seen on ZZAUTOTEST Dan Delta's column at the far right (hc37).
+- `New Location` required fields: Name, Address 1, City, State/Province, ZIP/Postal Code, Timezone, Telephone (others optional); `Save & Close`. Test location
+  "ZZAUTOTEST Empty Shop" created 2026-10-08 (QA lead OK). A new location appears at once in initials › `Change Location`. Staff `Location` holds ONE location
+  (Admin ShopView = Staging Heavy Duty - 9919), so the new location has no technicians until someone's Location is set to it.
