@@ -1,0 +1,12 @@
+import {ob,j} from './lib.mjs';
+const s=await ob({vp:{width:1600,height:1000}}); const p=s.page; const say=(...a)=>console.log(...a);
+await s.go('/workorders'); await p.waitForTimeout(1500);
+const click=async(pred,desc)=>{ const b=await p.evaluate(pr=>{const f=new Function('e','return '+pr); const e=[...document.querySelectorAll('a,button,div,span,td,.q-tab')].filter(x=>x.getBoundingClientRect().width>0).find(x=>f(x)); if(!e) return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2,t:e.innerText.trim().slice(0,40)};},pred); say(desc,j(b)); if(!b) throw new Error('missing '+desc); await p.mouse.click(b.x,b.y); await p.waitForTimeout(2500); };
+await click("e.tagName==='A'&&e.innerText.trim()==='Customers'",'top menu Customers'); say('url',p.url());
+await click("e.innerText.trim()==='Search'&&e.childElementCount<3",'Search above list'); await p.keyboard.type('TestVT1',{delay:50}); await p.waitForTimeout(3000);
+await click("e.tagName==='TD'&&e.innerText.trim()==='TestVT1'",'row TestVT1'); say('url',p.url());
+await click("/^Part Sales/.test(e.innerText.trim())&&e.childElementCount<4&&e.getBoundingClientRect().y<400",'Part Sales tab'); say('url',p.url());
+say('rows',j(await p.evaluate(()=>{const hs=[...document.querySelectorAll('thead th')].map(t=>t.innerText.trim()); const ti=hs.findIndex(h=>/Total Price/.test(h)); return [...document.querySelectorAll('tbody tr')].slice(0,5).map(r=>{const td=[...r.querySelectorAll('td')].map(c=>c.innerText.trim()); return [td[0],td[1],td[ti]];});}),500));
+await click("e.tagName==='TD'&&e.innerText.trim()==='P9667-447'",'row P9667-447'); await p.waitForTimeout(2000); say('url',p.url());
+say('fin',j(await p.evaluate(()=>{const h=[...document.querySelectorAll('*')].find(e=>e.childElementCount===0&&e.innerText?.trim()==='Financial Info'); let c=h; for(let i=0;i<4;i++) c=c.parentElement; return c.innerText.split('\n').map(t=>t.trim()).filter(Boolean);}),400));
+await s.close();

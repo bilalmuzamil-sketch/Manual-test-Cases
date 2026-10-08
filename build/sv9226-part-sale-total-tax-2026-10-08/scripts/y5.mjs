@@ -1,0 +1,12 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs'; import {fin} from './fin.mjs';
+const {id,num}=JSON.parse(fs.readFileSync('y.json')); const s=await ob({dpr:2,vp:{width:1900,height:1000}}); const p=s.page;
+const listOf=async()=>{let all=[];for(let pg=1;pg<=5;pg++){const c=(await s.api(`/api/part-sales?pagination%5BrowsPerPage%5D=100&pagination%5Bpage%5D=${pg}`)).json.data.partSales;all=all.concat(c);if(c.length<100)break;} return all.find(x=>x.number===num)?.totalPrice;};
+const before=await listOf(); const fb=await fin(s,id); console.log('before list',before,'fin',j(fb));
+await p.waitForSelector('[data-test-id^="button_return_core_"]',{timeout:30000}); await p.waitForTimeout(800); await p.screenshot({path:'/tmp/qa9226/core-0-before.png'});
+const t=await p.evaluate(()=>{const e=document.querySelector('[data-test-id^="button_return_core_"]');const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,tid:e.getAttribute('data-test-id')};});
+await p.mouse.click(t.x,t.y); await p.waitForTimeout(2000);
+console.log('dialog1',(await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText||'NONE')).replace(/\n+/g,' | ').slice(0,600));
+console.log(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog button')].map(e=>e.innerText.trim()+'['+(e.getAttribute('data-test-id')||'')+']').join(' ')));
+await p.screenshot({path:'/tmp/qa9226/core-1-dialog.png'});
+fs.writeFileSync('core-state.json',JSON.stringify({before,fb}));
+await s.close();

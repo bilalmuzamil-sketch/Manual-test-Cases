@@ -1,0 +1,1 @@
+import {op} from './lib.mjs'; const s=await op(); const v=(await s.api('/api/work-orders/view/1cf79799-5b92-47c1-be67-20735439a734')).json.data.work_order; console.log(typeof v.company==='string'?v.company:(v.company?.id||v.company_id)); await s.close();

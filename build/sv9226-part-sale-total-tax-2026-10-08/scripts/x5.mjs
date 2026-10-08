@@ -1,0 +1,20 @@
+// node x5.mjs <Fee|Discount> <amount> <Yes|No> <name> <shot>
+import {ob,j} from './lib.mjs'; import fs from 'fs'; import {fin} from './fin.mjs';
+const [type,amt,tax,name,shot]=process.argv.slice(2); const {id,num}=JSON.parse(fs.readFileSync('x.json')); const s=await ob({dpr:2,vp:{width:1600,height:1000}}); const p=s.page;
+const listOf=async()=>{let all=[];for(let pg=1;pg<=5;pg++){const c=(await s.api(`/api/part-sales?pagination%5BrowsPerPage%5D=100&pagination%5Bpage%5D=${pg}`)).json.data.partSales;all=all.concat(c);if(c.length<100)break;} return all.find(x=>x.number===num)?.totalPrice;};
+const before=await listOf(); const fb=await fin(s,id);
+let b=await s.box('button_part_sale_nav_bar_menu'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(900);
+b=await s.box('menu_item_add_parts_sale_adjustment'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(1800);
+const pick=async(tid,label)=>{ const bb=await s.box(tid); await p.mouse.click(bb.x,bb.y); await p.waitForTimeout(700); const o=await p.evaluate(l=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>x.innerText.replace('check','').trim()===l);if(!e)return null;const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2};},label); if(!o) throw new Error('no option '+label+' have '+JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(x=>x.innerText.trim())))); await p.mouse.click(o.x,o.y); await p.waitForTimeout(600); };
+await p.fill('[data-test-id="input_adjustment_name"]',name);
+if(type!=='Fee') await pick('select_adjustment_type',type);
+await p.fill('[data-test-id="input_adjustment_amount"]',amt); await p.waitForTimeout(400);
+if(tax!=='Yes') await pick('select_adjustment_taxable',tax);
+await p.waitForTimeout(800); console.log('preview',(await p.evaluate(()=>document.querySelector('[data-test-id="adjustment_preview"]')?.innerText||'')).replace(/\n+/g,' | '));
+await p.screenshot({path:`/tmp/qa9226/${shot}-dialog.png`});
+b=await s.box('button_add_adjustment'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3000);
+const after=await listOf(); const fa=await fin(s,id); await p.screenshot({path:`/tmp/qa9226/${shot}-after.png`});
+const T=r=>{const i=r.indexOf('Total');return Math.round(parseFloat(r[i+1].replace(/[$,]/g,''))*100);};
+const R={type,amt,tax,before,after,delta:after-before,finBefore:fb,finAfter:fa,detailAfter:T(fa),match:T(fa)===after};
+fs.writeFileSync(`/tmp/qa9226/${shot}.json`,JSON.stringify(R,null,1)); console.log(j(R,1500));
+await s.close();

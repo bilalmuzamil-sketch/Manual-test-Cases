@@ -1,0 +1,26 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const {id}=JSON.parse(fs.readFileSync('x.json')); const s=await ob({dpr:2,vp:{width:1900,height:1000}}); const p=s.page; const net=[];
+p.on('response',r=>{try{const u=new URL(r.url()); if(u.pathname.startsWith('/api')&&/part-sale|move|open/i.test(u.pathname)) net.push(r.request().method()+' '+r.status()+' '+u.pathname+u.search.slice(0,80)+' '+(Date.now()));}catch(e){}});
+await s.go(`/parts/part-sale/${id}/part-requests`); await p.waitForSelector('[data-test-id^="checkbox_part_request_"]',{timeout:30000}); await p.waitForTimeout(800);
+const cb=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="checkbox_part_request_"]')].map(e=>e.getAttribute('data-test-id'))); console.log('checkboxes',j(cb));
+let b=await s.box(cb[0]); await p.mouse.click(b.x,b.y); await p.waitForTimeout(600);
+b=await s.box('button_bulk_action_menu'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(900);
+console.log('bulk menu',j(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.innerText.trim()+'['+(e.getAttribute('data-test-id')||'')+']'))));
+const mv=await p.evaluate(()=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>/Move/i.test(x.innerText)); if(!e) return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};});
+net.length=0; const t0=Date.now(); await p.mouse.click(mv.x,mv.y);
+await p.waitForSelector('.q-dialog',{timeout:20000}); const tOpen=Date.now()-t0; await p.waitForTimeout(2500);
+console.log('dialog open ms',tOpen,(await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText||'')).replace(/\n+/g,' | ').slice(0,700));
+console.log(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.getAttribute('data-test-id')).join(' ')));
+console.log('net',net.map(x=>x.replace(/ \d+$/,'')).join('\n'));
+await p.screenshot({path:'/tmp/qa9226/move-1-dialog.png'});
+b=await s.box('select_part_sale_select'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(1500);
+const opts=await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>{const r=e.getBoundingClientRect();return {t:e.innerText.trim().replace(/\n+/g,' | '),x:r.x+r.width/2,y:r.y+r.height/2};}));
+console.log('options',opts.length,j(opts.slice(0,6).map(o=>o.t)));
+await p.screenshot({path:'/tmp/qa9226/move-2-options.png'});
+const Y=JSON.parse(fs.readFileSync('y.json')); let o=opts.find(x=>x.t.includes(Y.num));
+if(!o){ await p.keyboard.type('448'); await p.waitForTimeout(1500); const o2=await p.evaluate(n=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>x.innerText.includes(n)); if(!e) return null; const r=e.getBoundingClientRect(); return {t:e.innerText.trim(),x:r.x+r.width/2,y:r.y+r.height/2};},Y.num); o=o2; }
+console.log('pick',o?.t); await p.mouse.click(o.x,o.y); await p.waitForTimeout(800);
+b=await s.box('button_confirm_dialog'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3000);
+console.log('after move dialog',(await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText||'CLOSED')).slice(0,200), 'notif',await p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(n=>n.innerText).join('|')));
+console.log('writes',s.writes.filter(w=>!/envelope|quick-login|touch/.test(w)).map(w=>w.slice(0,220)).join('\n'));
+await s.close();

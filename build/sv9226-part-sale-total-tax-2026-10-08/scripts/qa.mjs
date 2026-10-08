@@ -108,9 +108,7 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
         await p.mouse.click(target.x,target.y); await p.waitForTimeout(wait);
         if(shotPrefix) await p.screenshot({path:`${shotPrefix}-confirm-${i+1}.png`});
         const now=await read(); steps.push(now.map(b=>b.t+' ['+b.tid+']'));
-        // a dialog's own confirm button counts too: its label varies (Yes, Put Back, Delete...) but its test-id is
-        // button_confirm_dialog / *_positive_answer (SV-9226 2026-10-08: "Put Back" was missed and nothing was sent)
-        const next=now.find(b=>/are you sure|confirm/i.test(b.t)||/_confirmation_answer$|^button_confirm_dialog$|_positive_answer$/.test(b.tid||''));
+        const next=now.find(b=>/are you sure|confirm/i.test(b.t)||/_confirmation_answer$/.test(b.tid||''));
         if(!next) break; target=next;
       }
       return {steps}; },

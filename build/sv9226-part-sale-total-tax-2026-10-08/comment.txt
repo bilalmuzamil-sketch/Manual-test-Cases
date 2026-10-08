@@ -1,0 +1,39 @@
+{panel:bgColor=#e3fcef|borderColor=#36b37e}
+*OVERALL QA STATUS: PASSED*
+{panel}
+
+Tested on the QA branch [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] (build {{v26.40.8-129d22f}}) on 8 October 2026, and compared with production (build {{v26.40.12-106a0f1}}). All 10 checks on the QA branch passed, and the original problem still reproduces on production.
+
+* A part sale's *Total Price* in the lists now includes tax, and it is the same figure as the *Total* in that sale's *Financial Info*.
+* On production the list still shows the amount before tax (or a figure that matches neither), as the ticket reports.
+
+h3. Before and after
+
+!01-customer-tab-before-after.png|width=2150,height=932!
+_Customer > Part Sales tab. Production (left): $8.00, $5.00 and $234.64 in the list, while the sales' own Totals are $8.40, $5.25 and $283.50. QA branch (right): an approved, an estimate and an invoiced sale, each list figure equal to its Total._
+
+h3. What I checked
+
+||#||Check||Status||
+|1|*All 290 part sales* on the branch (89 estimate, 9 approved, 75 complete, 33 invoiced, 80 paid, 4 declined) opened one by one: each list *Total Price* equals the *Total* under *Financial Info*|PASSED|
+|2|{{Parts}} > {{Part Sales}}: the 30 rows on screen read directly off the page, each equal to its sale's Total|PASSED|
+|3|{{Customers}} > TestVT1 > {{Part Sales}} tab: the 30 rows on screen, each equal to its sale's Total|PASSED|
+|4|An estimate with taxable parts (P9667-447): the list shows $111.32, higher than its parts subtotal of $106.02 (5% GST included)|PASSED|
+|5|An invoiced sale (P9667-445) and a paid sale (P9667-428): the list figure equals the invoice *Total* on the {{Finance}} tab ($271.08 and $543.43)|PASSED|
+|6|{{⋮}} > {{Add Parts Sale Fee / Discount}}: a $25 fee moved the list +$25.00, a $10 discount −$10.00, and a taxable $10 fee +$10.50 (fee plus GST); each time the list equalled the Total|PASSED|
+|7|Sale with a part that has a $25 core (P9667-448): {{Return Core}} dropped the list from $34.57 to $8.32 (−$26.25, the core plus its GST); the core row's {{⋮}} > {{Cancel Return}} > {{Put Back}} brought it back to $34.57|PASSED|
+|8|Tick a part > {{⋮}} > {{Move Part}}: the window opened at once, listed sales by number and customer (e.g. "P9667-448 [TestVT1]"), and the move worked; both sales' list figures still equal their Totals ($119.16 and $52.23)|PASSED|
+|9|Global search ({{Ctrl}} + {{K}}) for P9667-447: the result shows $119.16, the same as the list|PASSED|
+|10|A user without *See Financial Data*: the customer's {{Part Sales}} tab has no {{Total Price}} column (and the {{Parts}} > {{Part Sales}} page itself needs that permission, so it does not open)|PASSED|
+|11|Production, same screens: the list figure does not match the sale's Total (P2-63 $5.00 vs $5.25, P2-65 $8.00 vs $8.40, P2-58 $234.64 vs $283.50)|Reproduced on production|
+
+The developer's note mentions a list footer total; neither list shows a footer total on screen, so there was nothing to check there.
+
+h3. How to see it yourself
+
+# Open [sv9667.qa.shopview.com|https://sv9667.qa.shopview.com] and click the *Admin* quick-login button.
+# In the top menu, click {{Customers}}.
+# Above the list, on the right, click {{Search}} (the magnifying glass) and type *TestVT1*. Click *TestVT1* in the list.
+# Near the top of the customer page, click the {{Part Sales (157)}} tab (next to {{Work Orders}}).
+# In the {{Total Price}} column: *P9667-448* reads $52.23, *P9667-447* reads $119.16, *P9667-445* reads $271.08.
+# Click *P9667-447* in the {{Number}} column. On the left of the part sale page, scroll down to the *Financial Info* box: its *Total* reads $119.16, the same as the list.

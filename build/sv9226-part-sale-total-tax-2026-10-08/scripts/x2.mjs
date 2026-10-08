@@ -1,0 +1,14 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs'; import {fin,listRow} from './fin.mjs';
+const s=await ob({vp:{width:1600,height:1000}}); const p=s.page;
+const id='cf82dd5e-4527-483e-8f57-96a370c69d10';
+await s.go(`/parts/part-sale/${id}/part-requests`); await p.waitForTimeout(2000);
+if(!(await s.box('select_part'))){ const b=await s.box('button_add_part'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(1200); }
+const add=async(pn,last)=>{ let b=await s.box('select_part'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(500); await p.keyboard.type(pn,{delay:60}); await p.waitForTimeout(4500); console.log('opts',j(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.replace(/\n+/g,' | ').slice(0,90))),600));
+  const o=await p.evaluate(pn=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>x.innerText.includes(pn)&&/Inventory/.test(x.innerText));if(!e)return null;const r=e.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,t:e.innerText.replace(/\n+/g,' | ')};},pn); console.log('opt',o?.t); await p.mouse.click(o.x,o.y); await p.waitForTimeout(1800);
+  const bins=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="input_bin_quantity_"]')].map(e=>e.getAttribute('data-test-id')));
+  if(bins.length){const l=p.locator(`[data-test-id="${bins[0]}"]`); const tag=await l.evaluate(e=>e.tagName); await (tag==='INPUT'?l:l.locator('input')).fill('1'); await p.waitForTimeout(500);}
+  b=await s.box(last?'button_workorder_part_save':'button_workorder_part_save_add_part'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(3000); };
+await add('MD668D',true);
+const v=(await s.api('/api/work-orders/view/'+id)).json.data.work_order; const num=v.display_number; fs.writeFileSync('x.json',JSON.stringify({id,num}));
+console.log(num, 'fin', j(await fin(s,id)), 'list', j(await listRow(s,v.number)));
+await s.close();

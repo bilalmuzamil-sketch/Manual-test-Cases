@@ -1,0 +1,16 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs';
+const {id}=JSON.parse(fs.readFileSync('x.json')); const s=await ob({dpr:2,vp:{width:1900,height:1000}}); const p=s.page; const net=[];
+p.on('response',r=>{try{const u=new URL(r.url()); if(u.pathname.startsWith('/api')&&/part-sale|move|open/i.test(u.pathname)) net.push(r.request().method()+' '+r.status()+' '+u.pathname+u.search.slice(0,80)+' '+(Date.now()));}catch(e){}});
+await s.go(`/parts/part-sale/${id}/part-requests`); await p.waitForSelector('[data-test-id^="checkbox_part_request_"]',{timeout:30000}); await p.waitForTimeout(800);
+const cb=await p.evaluate(()=>[...document.querySelectorAll('[data-test-id^="checkbox_part_request_"]')].map(e=>e.getAttribute('data-test-id'))); console.log('checkboxes',j(cb));
+let b=await s.box(cb[0]); await p.mouse.click(b.x,b.y); await p.waitForTimeout(600);
+b=await s.box('button_bulk_action_menu'); await p.mouse.click(b.x,b.y); await p.waitForTimeout(900);
+console.log('bulk menu',j(await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.innerText.trim()+'['+(e.getAttribute('data-test-id')||'')+']'))));
+const mv=await p.evaluate(()=>{const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>/Move/i.test(x.innerText)); if(!e) return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};});
+net.length=0; const t0=Date.now(); await p.mouse.click(mv.x,mv.y);
+await p.waitForSelector('.q-dialog',{timeout:20000}); const tOpen=Date.now()-t0; await p.waitForTimeout(2500);
+console.log('dialog open ms',tOpen,(await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText||'')).replace(/\n+/g,' | ').slice(0,700));
+console.log(await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.getAttribute('data-test-id')).join(' ')));
+console.log('net',net.map(x=>x.replace(/ \d+$/,'')).join('\n'));
+await p.screenshot({path:'/tmp/qa9226/move-1-dialog.png'});
+await s.close();

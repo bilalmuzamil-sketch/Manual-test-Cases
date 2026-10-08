@@ -1,0 +1,10 @@
+import {ob,j} from './lib.mjs'; import fs from 'fs'; import {fin} from './fin.mjs';
+const {id,num}=JSON.parse(fs.readFileSync('y.json')); const s=await ob({dpr:2,vp:{width:1900,height:1000}}); const p=s.page;
+const listOf=async()=>{let all=[];for(let pg=1;pg<=5;pg++){const c=(await s.api(`/api/part-sales?pagination%5BrowsPerPage%5D=100&pagination%5Bpage%5D=${pg}`)).json.data.partSales;all=all.concat(c);if(c.length<100)break;} return all.find(x=>x.number===num)?.totalPrice;};
+console.log('before list',await listOf()); await s.go(`/parts/part-sale/${id}/part-requests`); await p.waitForSelector('[data-test-id^="button_return_part_request_"]',{timeout:30000}); await p.waitForTimeout(800);
+const b=await s.box((await p.evaluate(()=>document.querySelector('[data-test-id^="button_return_part_request_"]').getAttribute('data-test-id'))));
+await p.mouse.click(b.x,b.y); await p.waitForTimeout(2200);
+console.log('url',p.url()); console.log('page',(await p.evaluate(()=>document.querySelector('.q-page')?.innerText||'')).replace(/\n+/g,' | ').slice(0,700)); console.log('dialog',(await p.evaluate(()=>document.querySelector('.q-dialog')?.innerText||'NONE')).replace(/\n+/g,' | ').slice(0,900));
+console.log(await p.evaluate(()=>[...document.querySelectorAll('.q-page [data-test-id]')].map(e=>e.getAttribute('data-test-id')+':'+e.tagName).join(' ')));
+await p.screenshot({path:'/tmp/qa9226/part-return-dialog.png'});
+await s.close();
