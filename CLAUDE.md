@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–123** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–124** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -56,6 +56,12 @@ These are stated here **in full** because a session that gets only this far must
 - **🔴 NEVER WORK IN DELTA MODE (122).** Every update is a full pass: every case in the suite rewritten to the
   current standard and made runnable by a manual tester, the whole design driven again, coverage proven against every
   source in full — not only the cases the change touches.
+- **🔴 A DESIGN IS NOT "DRIVEN" UNTIL IT PASSES THE COMPLETENESS GATES (124).** Read every file of the package; run the
+  one-click sweep AND the stateful crawl (`crawl_design_states.py`) to an empty queue; every action type non-zero (zero
+  drags on a draggable board = FAIL); failures retried and the never-exercised list explained; every kind of design
+  text in a case or classified (DATA / COVERED / OUT-OF-SCOPE / SPEC-CONFLICT / CASE-NEEDED), zero unclassified; proof
+  file committed. Completion is proven from processes and data, never a marker or a worker's word. Nothing is handed to
+  build verification before the gates pass. Skill `build/skills/21-DESIGN-DRIVE-PROTOCOL.md`.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.
@@ -456,6 +462,10 @@ makes every case runnable by a manual tester.
 **🔴 Rule 123 (keep test runs in step with the cases; ask before editing anyone else's cases)** was ordered by the QA
 lead **2026-10-07** and lives at the end of `build/rules/RULES-61-96.md`, after 122.
 
+**🔴 Rule 124 (a design is not "driven" until it passes the completeness gates)** was ordered by the QA lead
+**2026-10-08** and lives at the end of `build/rules/RULES-61-96.md`, after 123; operator form
+`build/skills/21-DESIGN-DRIVE-PROTOCOL.md`.
+
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
 `build/skills/14-ACCESS-RESILIENCE.md`.
@@ -542,6 +552,7 @@ job.** Each file is a complete cold-start specification.
 | `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md` | **The project is a V2 / upgrade of an existing feature** (Rule 96) — a V2 spec says only what CHANGES and is SILENT about the rest, so derive the **invariant set** (V1 baseline − changed ∪ removed ∪ replaced), escalate the dangerous silences, retire the superseded V1 cases. No build, no cookies |
 | `build/skills/V1-BASELINE-FROM-SOURCE.md` | **Companion to Skill 17 (Rule 96)** — the method for its Step 1 / §3.3: read the CURRENT product source code and produce a **source-cited V1 behaviour baseline** (invariant register + collateral-risk map + existing-coverage list + self-check, pinned to a commit SHA) for the V2 session to subtract the delta from. Use when you have source read access; it feeds Skill 17, it does not derive invariants or author cases. Worked example: `build/global-search/GLOBAL-SEARCH-V1-BASELINE-INVARIANTS.md` |
 | `build/skills/20-FEATURE-DATA-SEEDING.md` | **The feature's cases need data the environment does not hold** — the project-agnostic method for seeding AND reseeding any area of the app. **The engine is generic; only the manifest is per-feature**, so the second feature area costs a fraction of the first. Nine steps (read the CASES not a summary · measure before creating · write the DESIGN RULE first · a keyword that cannot collide · manifest with `serves` and `_why` · seed and VERIFY as separate steps · prove idempotence by running it three times · reconcile server-assigned identifiers · write the traps down), the five-point reseed contract, thirteen feature-independent traps with the symptom each presents as, and what is NEVER seedable. Scaffold: `python3 build/testing-tools/seeding/scaffold_seeding.py <slug> "<Feature>"` · schema: `build/testing-tools/seeding/MANIFEST-SCHEMA.md` · reference implementation: `build/global-search/seeding/` |
+| `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` | **Any design is provided or changes (Rule 124)** — get the export, read every file, one-click sweep + stateful crawl to an empty queue, the completeness gates, the gap triage, the proof file; nothing handed to build verification before it passes |
 | `build/skills/IDEAL-TEST-CASE-STANDARD.md` | **The LOCKED shape of every case (Rule 117)** — concise title · seed values as examples beside the standard QA steps · runnable in the build's own glossary · Expected = runnable observations with the verbatim quote kept for reproducibility. Worked example C154586. Read before authoring/editing any case |
 | `build/skills/COVERAGE-MATRIX.md` | Checking that a session learning is actually carried by a skill |
 | `build/skills/STATE.md` | Resuming work ON the skills themselves |

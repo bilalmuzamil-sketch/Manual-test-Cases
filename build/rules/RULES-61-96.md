@@ -2835,3 +2835,67 @@ permission if I want to Edit those test cases."*
    `created_by` / `created_on`), and ask whether he wants those cases edited. No edit until he says yes, per ask
    (Rules 38, 44).
 3. Ties to Rules 34 (union-only run sync), 38 (foreign cases), 47 (run scope) and 71 (Automated cases).
+
+## 124 · A DESIGN IS NOT "DRIVEN" UNTIL IT PASSES THE COMPLETENESS GATES — AND NO CASE IS HANDED OVER BEFORE THAT (all projects, permanent)
+
+Ordered by the QA lead, 2026-10-08, after the WO Board & Tech View update: *"what approach do you believe would be the
+best one … so that your work can never bite me … we have to save it as a rule … Your mistake or your skipping the work
+can cost me my job."* Rule 120 says the whole design is driven every time; this rule says **how, and what has to be
+proven before anyone may say it was done.** Operator form: `build/skills/21-DESIGN-DRIVE-PROTOCOL.md`.
+
+### Why — what went wrong or nearly went wrong on 8 Oct 2026
+1. The 23 Sep exploration was nine hand-picked screenshots and was recorded as "driven end-to-end". It was not.
+2. The one-click driver (`drive_design_full.py`) resets after every click, so it never reaches a menu inside a
+   view inside a display — most of a prototype.
+3. My own crawler silently under-covered four times, each time while producing a plausible "complete" report:
+   it missed elements without a pointer cursor (59 found, 150 there); it found no drop zones, so **zero drags ran
+   for an hour**; it could not see buttons that appear only on hover; quote marks in names broke its lookups; and a
+   quarter of its first actions timed out behind a sticky header.
+4. A worker reported "the crawl has finished" from a stale marker file while all three crawlers were still running.
+5. Drafting workers skipped design files (library code, fonts, photos) without authorization; caught only because
+   they listed their reading coverage.
+6. Design-tool code lines were quoted as "Exact quotes" in two draft cases; a production workplace name was used as
+   an example on a QA build.
+7. I wrote the cases to TestRail while the crawl was still running; had build verification started then, any later
+   correction would have forced re-verification (Rule 41).
+
+### The rule
+1. **Get the real design first.** The moment a design link arrives, try every route at once (artifact read,
+   browser, export). A link behind a sign-in is a control, never something to get around: ask in one line for an
+   **Export → ZIP** (or a claude.ai/artifact link) and keep working meanwhile (L15).
+2. **Inventory the whole package and read every file** — every board, page, script, style, library, image, font,
+   upload and screenshot. Text is read line by line (script-assisted, never sampled); images are viewed; binaries are
+   identified. A per-file coverage table (file, size, lines read, 100% or the QA lead's written OK to skip) is
+   mandatory (Rule 119).
+3. **Drive in two layers, both complete:**
+   - **(a) one-click sweep** of every board (`drive_design_full.py`): every element hovered and clicked from a known
+     state, hidden text proven reachable, dark theme and widths;
+   - **(b) stateful crawl** of every interactive board (`crawl_design_states.py`): every screen the design can reach,
+     to any depth, is crawled; on it every element is hovered and clicked (including elements with no pointer
+     cursor, React-handler elements, covered elements by forced action, hover-only buttons revealed by hovering
+     their row/card); every text input gets a matching and a no-match term; every select every option; **on each
+     display's starting screen every draggable is dropped on every drop zone**, elsewhere each draggable at least
+     once and each drop zone at least once; every screen captured in dark theme; the start screen at every width.
+     Record data (work-order numbers, amounts, people) is a placeholder when deciding whether a screen is new; an
+     element identical to one already exercised is not re-exercised; both reductions are stated in the proof.
+4. **Completeness gates — ALL must hold before the words "fully driven" are used:**
+   - the crawl's queue is empty and its processes have ended — **proven from the processes and the data, never from
+     a marker file or a worker's report** (Rule 86);
+   - every action type the design supports has a non-zero count (**drags = 0 on a board with draggable cards is a
+     FAIL**, not a result);
+   - every failed action has been retried (forced, revealed, quoting fixed); the list of elements **never exercised
+     on any screen** is published with a reason for each, and anything unexplained is driven by another method;
+   - **the gap proof:** every kind of text the design shows (screens, hover, click, type and drag results, tooltips) is
+     either in a case or classified, one by one: sample DATA, COVERED (with the C-id), OUT-OF-SCOPE (with the ruling),
+     SPEC-CONFLICT (→ a PO question) or CASE-NEEDED (→ a case written). **Zero unclassified.**
+5. **The design informs, the spec decides** (Rules 57, 113): the design supplies on-screen labels and design-only
+   details that do not contradict the spec. Design code is never quoted in a case. Every on-screen word a case tells
+   the tester to click is checked against the design and the spec by script; example data never names a record from
+   another environment.
+6. **Order of work:** no case set is declared ready, and nothing is handed to build verification, until gates 2–4
+   pass and the cases they produced are written, read back, display-checked and in the run (Rule 123).
+7. **The proof is a file**, committed with the work: per display — screens reached, swept, skipped as duplicates,
+   depth, hovers, clicks, typing, drags, forced actions, never-exercised, dark captures — plus the file-reading table
+   and the gap triage. The report to the QA lead quotes its numbers and names everything not driven and why.
+8. **Long runs are detached and checkpointed** (Rule 75): they survive the session's background time limits, are
+   committed every 10 minutes, and are resumable; a crawler fix is applied by resuming, never by starting over.
