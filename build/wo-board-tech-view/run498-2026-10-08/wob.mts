@@ -137,7 +137,8 @@ export async function shiftPrompt(p: Page, answer: 'Keep shifts' | 'Clear shifts
   const d = p.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).last();
   if (!(await d.count())) return null;
   const text = (await d.innerText()).replace(/\s+/g, ' ');
-  if (answer) { await d.locator('button').filter({ hasText: answer }).first().click(); await p.waitForTimeout(2000); }
+  // the buttons are styled with capitals ("Keep Shifts"); match without regard to case
+  if (answer) { await d.locator('button').filter({ hasText: new RegExp('^\\s*' + answer + '\\s*$', 'i') }).first().click(); await p.waitForTimeout(2000); }
   return text;
 }
 /** pick a person in the open Reassign dialog and confirm (or cancel); answers a shift prompt with Keep shifts */
