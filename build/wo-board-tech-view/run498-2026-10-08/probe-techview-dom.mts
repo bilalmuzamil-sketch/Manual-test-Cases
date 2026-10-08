@@ -1,0 +1,24 @@
+/** Tech View markup: every data-test-id family on the page, one technician header, one row, toolbar buttons (2026-10-08). */
+import fs from 'node:fs';
+import path from 'node:path';
+import { open, done, APP } from './session.mts';
+import { EV, t, display, search, tab } from './wob.mts';
+const { browser, page: p } = await open('/workorders?tab=all');
+await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
+await display(p, 'List'); await tab(p, 'All');
+await p.locator('[data-test-id="button_column_selection"]').click().catch(() => {}); await p.waitForTimeout(1200);
+const listCols = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' ')).join(' || ')`);
+await p.keyboard.press('Escape');
+const listBottom = await p.evaluate(`[...document.querySelectorAll('table tr')].slice(-2).map(r => r.outerHTML.slice(0, 600)).join('\\n')`);
+await display(p, 'Tech View'); await search(p, 'ZZAUTOTEST Fibridge');
+const ids = await p.evaluate(`(() => { const m = {}; for (const e of document.querySelectorAll('[data-test-id]')) { const k = e.getAttribute('data-test-id').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g, '<id>'); m[k] = (m[k] || 0) + 1; } return m; })()`);
+const hdr = await p.evaluate(`(() => { const g = document.querySelector('[data-test-id^="tech_view_group_"]:not([data-test-id="tech_view_group_unassigned"])'); return g ? g.outerHTML.slice(0, 4000) : null; })()`);
+const row = await p.evaluate(`(() => { const r = [...document.querySelectorAll('.q-virtual-scroll__content > tr')].find(r => !(r.getAttribute('data-test-id') || '').startsWith('tech_view_group_')); return r ? r.outerHTML.slice(0, 4000) : null; })()`);
+const head = await p.evaluate(`(document.querySelector('thead') || {}).outerHTML?.slice(0, 2500) || null`);
+await p.locator('[data-test-id="button_column_selection"]').click().catch(() => {}); await p.waitForTimeout(1200);
+const techCols = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' ')).join(' || ')`);
+await p.keyboard.press('Escape');
+const out = { listCols, listBottom, ids, hdr, row, head, techCols };
+fs.writeFileSync(path.join(EV, 'probe-techview-dom.json'), JSON.stringify(out, null, 1));
+console.log(t(), 'ids', JSON.stringify(ids)); console.log('LISTCOLS', listCols); console.log('TECHCOLS', techCols);
+await done(browser);

@@ -60,3 +60,32 @@ export async function read(p: Page, d: string): Promise<Record<string, string>> 
     return out;
   })()`) as any;
 }
+
+/** Tech View groups in screen order: {name, id, count, collapsed, pinned?, empty text, rows (numbers)} */
+export const groups = (p: Page) => p.evaluate(`(() => {
+  const out = []; let cur = null;
+  for (const tr of document.querySelectorAll('.q-virtual-scroll__content > tr')) {
+    const tid = tr.getAttribute('data-test-id') || '';
+    if (/^tech_view_group_/.test(tid)) {
+      const id = tid.replace('tech_view_group_', '');
+      const q = (s) => tr.querySelector('[data-test-id="' + s + id + '"]');
+      const pin = q('button_tech_view_pin_');
+      cur = { name: (q('tech_view_group_name_') || {}).textContent?.trim(), id, count: +((q('tech_view_group_count_') || {}).textContent || 'NaN'),
+        collapsed: tr.getAttribute('data-collapsed') === 'true', pin: pin ? { pressed: pin.getAttribute('aria-pressed'), disabled: pin.disabled || pin.getAttribute('aria-disabled') === 'true', label: pin.getAttribute('aria-label') } : null,
+        empty: (q('tech_view_group_empty_') || {}).textContent?.trim() || null, rows: [] };
+      out.push(cur); continue;
+    }
+    const m = tr.innerText.match(/\\bS\\d+-\\d+\\b/); if (cur && m) cur.rows.push(m[0]);
+    const e = tr.querySelector('[data-test-id^="tech_view_group_empty_"]'); if (cur && e && !cur.empty) cur.empty = e.textContent.trim();
+  }
+  return out;
+})()`) as Promise<{ name: string; id: string; count: number; collapsed: boolean; pin: any; empty: string | null; rows: string[] }[]>;
+export async function toggleGroup(p: Page, id: string) { await p.locator(`[data-test-id="button_tech_view_group_toggle_${id}"]`).click(); await p.waitForTimeout(1500); }
+/** drag from one element's centre to another's (mouse, in steps, so a drag library sees a real drag) */
+export async function drag(p: Page, from: string, to: string, dy = 4) {
+  const a = await p.locator(from).first().boundingBox(), b = await p.locator(to).first().boundingBox();
+  if (!a || !b) throw new Error(`drag: missing ${!a ? from : to}`);
+  await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2); await p.mouse.down();
+  await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2 + 6, { steps: 3 });
+  await p.mouse.move(b.x + b.width / 2, b.y + dy, { steps: 20 }); await p.waitForTimeout(400); await p.mouse.up(); await p.waitForTimeout(3000);
+}

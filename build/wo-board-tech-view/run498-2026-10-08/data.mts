@@ -80,3 +80,10 @@ export async function workOrder(a: Api, c: { company_id: string; vehicle_id: str
   }
   return id as string;
 }
+
+/** this case's customer with exactly the work orders it needs (made once; found by the customer name after that) */
+export async function seedCase(a: Api, name: string, unit: string, plan: { lead: string | null; status?: string; here?: boolean }[]) {
+  let have = await workOrders(a, name);
+  if (!have.length) { const c = await customer(a, name, unit); for (const w of plan) await workOrder(a, c, w.status ?? 'approved', w.lead, !!w.here); have = await workOrders(a, name); }
+  return have;
+}
