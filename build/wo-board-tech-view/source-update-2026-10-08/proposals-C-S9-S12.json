@@ -48,7 +48,7 @@
   },
   {
    "case_id": 97002,
-   "title": "Dragging to another technician changes the lead, dropping on Unassigned clears it",
+   "title": "Dragging to another technician changes the lead, Unassigned clears it",
    "preconds": [
     "Sign in to the build under test as a dispatcher whose role has Work Orders view and Work Orders create and edit (check: Settings > Roles & Permissions > open the role > on the Work Orders card, View and Create & Edit are both ticked. The Admin role has both).",
     "In the top bar, choose the location you test in (e.g. \"Heavy Duty\"). Every technician and work order below belongs to this location.",
@@ -231,7 +231,7 @@
   },
   {
    "case_id": 97005,
-   "title": "Work order order is shared by everyone at the location in both views",
+   "title": "The order of work orders is shared by everyone at the location",
    "preconds": [
     "Sign in to the build under test as a dispatcher whose role has Work Orders view and Work Orders create and edit (check: Settings > Roles & Permissions > open the role > on the Work Orders card, View and Create & Edit are both ticked. The Admin role has both).",
     "In the top bar, choose the location you test in (e.g. \"Heavy Duty\"). Every technician and work order below belongs to this location.",
@@ -2382,21 +2382,21 @@
   "DESIGN vs SPEC (Story 9): the design pin limit is 5 (\"Up to 5 pinned columns — unpin one first\"); PRD is 3 with \"You can pin up to 3 technicians.\" (S3-R8).",
   "DESIGN vs SPEC (Story 9): the design locks Declined (\"Declined · can't be reassigned\") and shows Imported as \"Imported · review before assigning\"; PRD S4-N2 lets Declined move freely and S4-N9 fixes the Imported tooltip. C97009 follows the PRD.",
   "DESIGN vs SPEC (Story 9): in the design's Tech View the Unassigned group has a drag handle (\"Drag to reorder technicians\") and can be dragged; PRD S9-R8 and S2-R2 keep it fixed. C97003 asserts the PRD.",
-  "DESIGN vs SPEC (Story 9): in the design a view-only user can still reorder cards within a technician (only cross-technician moves are blocked); PRD S4-N1/S9-N1 require create and edit for every work order drag. New case NEW-C-05 asserts the PRD.",
+  "DESIGN vs SPEC (Story 9): in the design a view-only user can still reorder cards within a technician (only cross-technician moves are blocked); PRD S4-N1/S9-N1 require create and edit for every work order drag. New case NEW-C-04 asserts the PRD.",
   "DESIGN vs SPEC (Story 9): the design's starting order inside a group is \"In progress first, then newest created\"; the PRD uses the List default sort (S2-R6), which DR-45 says is customer name A to Z. Cases use customer-name examples.",
-  "DESIGN vs SPEC (Story 9): the design puts a work order unassigned from the menu at the end of Unassigned; the 7 Oct PRD (S9-R14) puts it in the initial sort. NEW-C-02 follows the PRD.",
+  "DESIGN vs SPEC (Story 9): the design puts a work order unassigned from the menu at the end of Unassigned; the 7 Oct PRD (S9-R14) puts it in the initial sort. NEW-C-01 follows the PRD.",
   "DESIGN vs SPEC (data): the design's Reassign dialog shows \"N open\" as all of a technician's work orders (e.g. Kristin \"4 open\" including Paid and Invoiced); PRD S4-R15 counts four statuses. C97032 tells the tester this is a fail if the build copies the design.",
   "DESIGN: position numbers (1, 2, 3) on cards and rows are in the design but engineering left them out (Slavcho Mitrov, 1 Oct, question open). No case relies on them; testers read the order from the cards.",
   "DESIGN: no keyboard or focus behaviour exists in the design (only the ⌘K search shortcut). Story 11 cases say plainly which parts wait on design (SQ-15 / UX-19 open; Slavcho's 28 Sep inline list).",
   "PRD INTERNAL INCONSISTENCY (PO question): Section 9 says Invoiced/Paid \"drag not offered\", but S4-N2 (and DR-37) allow reordering within the current technician. C97009 follows S4-N2.",
-  "PO QUESTION: SQ-11 on the Review Decisions page (29 Sep) still lists unpin position and cross-location pin behaviour as open, but Sasha Grosman confirmed both in the PRD footer comment of 24 Sep (\"confirmed\", \"agree\") and the tech plan builds them. NEW-C-15 and NEW-C-16 are authored from the PO comment and say so; please confirm, or retire them.",
+  "PO QUESTION: SQ-11 on the Review Decisions page (29 Sep) still lists unpin position and cross-location pin behaviour as open, but Sasha Grosman confirmed both in the PRD footer comment of 24 Sep (\"confirmed\", \"agree\") and the tech plan builds them. NEW-C-13 and NEW-C-14 are authored from the PO comment and say so; please confirm, or retire them.",
   "PO QUESTION: field snapshot timing. PRD S12-R2 says once per display per session; Slavcho's 6 Oct table first said once per display per browser tab. C97024 follows the PRD (session).",
   "PO QUESTION: \"Report density distribution\" (S12-R11) does not say whether a user who changes density during the week counts under their last value or under every value. C97034 uses users whose density does not change; the definition is for the report owner.",
   "PO QUESTION: tech plan 3.19 (layout choices made during a shared-link visit now persist, reversing today's convention) is a user-visible change that the PRD does not mention. Not authored; needs a product yes/no.",
   "EXCLUDED from tech plan with reason: 3.20 first-visit default filter view = Work Orders. Chris Ward's 25 Sep summary says \"The default-tab change is out too\" and DR-33 keeps List's default filter view, so the plan is superseded.",
   "EXCLUDED from tech plan with reason: touch drag rules (Phase 9 and 13, drag never starts for a touch pointer). Slavcho's 28 Sep question about landscape tablets is unanswered in the PRD (DR-34 only says tablets at 1024 px get the views). PO question raised. No case until answered.",
   "EXCLUDED from tech plan (not checkable by hand, performance/architecture): NFR-001 to 005, 007, 010, 012, 013, Phase 12 targets, statement counts, avatar caching, the minimap (built per Slavcho 1 Oct, but not in the PRD).",
-  "NAVIGATION ASSUMPTIONS for the build check: whether New Work Order offers a Lead Technician field (NEW-C-03 gives Split as the fallback); the staff \"Time Clock\" toggle is the Clockable setting (Custom Roles notes, SV-8141); Imported work orders come from Settings > Data Import > Invoices; GA DebugView access is a tester prerequisite for the Story 12 and analytics data cases.",
+  "NAVIGATION ASSUMPTIONS for the build check: whether New Work Order offers a Lead Technician field (NEW-C-02 gives Split as the fallback); the staff \"Time Clock\" toggle is the Clockable setting (Custom Roles notes, SV-8141); Imported work orders come from Settings > Data Import > Invoices; GA DebugView access is a tester prerequisite for the Story 12 and analytics data cases.",
   "HANDS-OFF: Vladimir Tomovic's automated cases C335320 and C335321 (Story 11) assert keyboard behaviour (Tab enters on the Unassigned header, arrow keys move) that no design or PRD defines yet. Reported only, not changed.",
   "S9-R14 CHANGE: C97007 quoted the 29 Sep text (\"… puts the work order at the bottom of Unassigned\"). It now quotes the 7 Oct text. DR-47 on the Review Decisions page (29 Sep) still says bottom; the later PRD wins and the cases disclose this."
  ],

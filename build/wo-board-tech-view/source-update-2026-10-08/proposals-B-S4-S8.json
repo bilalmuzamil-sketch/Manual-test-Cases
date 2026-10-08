@@ -15,7 +15,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; in the design its button tooltip reads \"Board\").",
@@ -75,7 +75,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; in the design its button tooltip reads \"Board\").",
@@ -122,7 +122,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open the work order page and change Lead Technician from Esther Howard to Ralph Edwards there.",
@@ -200,13 +200,13 @@
     "Create a customer used only by this case so a search shows only its work orders: Customers > New Customer, name (e.g. \"ZZ Board Test Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.",
     "Create a new work order on this build (lines created before this release follow the old rule): Work Orders > New Work Order > case customer > create it (e.g. \"S1-702\").",
     "↳ On the Lines tab add four lines with no technician: \"Line 2 Implicit\", \"Line 4 Complete\", \"Line 5 Logged\", \"Line 6 Clocked\".",
-    "↳ Add \"Line 3 Explicit\" and, in its Edit Line dialog, choose Technicians = \"Dana Ortiz\" (a line given its own technician).",
+    "↳ Add \"Line 3 Explicit\", click its name to open the Edit Line dialog and choose Technicians = \"Dana Ortiz\" (a line given its own technician).",
     "↳ Set Lead Technician to \"Esther Howard\" on the work order page. Lines 2, 4, 5 and 6 now show Esther Howard in their Labor row (they follow the lead).",
     "↳ Add \"Line 1 Unassigned\". If its Labor row shows a technician, use the Labor row's More actions > Edit labor to clear it, so it reads Unassigned.",
-    "↳ Approve all six lines (the work order reads Approved).",
+    "↳ Click Approve (check) on all six lines (the work order reads Approved).",
     "↳ Line 4: enter a tech story (e.g. \"Done\") and complete the line, so its status is Complete.",
-    "↳ Line 5: in a second browser signed in as Esther Howard, start the clock on Line 5's Labor row, wait at least 1 minute, then stop it, so Line 5 has logged labor.",
-    "↳ Line 6: still as Esther Howard, start the clock on Line 6's Labor row and leave it running (no earlier labor on this line).",
+    "↳ Line 5: in a second browser signed in as Esther Howard, click Start time clock on Line 5's Labor row, wait at least 1 minute, then click Stop time clock, so Line 5 has logged labor.",
+    "↳ Line 6: still as Esther Howard, click Start time clock on Line 6's Labor row and leave it running (no earlier labor on this line).",
     "↳ Write down each line's Labor technician: Line 1 Unassigned, Line 2 Esther Howard, Line 3 Dana Ortiz, Line 4 Esther Howard, Line 5 Esther Howard, Line 6 Esther Howard (clock running)."
    ],
    "steps": [
@@ -285,13 +285,13 @@
     "Create a customer used only by this case so a search shows only its work orders: Customers > New Customer, name (e.g. \"ZZ Board Test Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.",
     "Create a new work order on this build (lines created before this release follow the old rule): Work Orders > New Work Order > case customer > create it (e.g. \"S1-702\").",
     "↳ On the Lines tab add four lines with no technician: \"Line 2 Implicit\", \"Line 4 Complete\", \"Line 5 Logged\", \"Line 6 Clocked\".",
-    "↳ Add \"Line 3 Explicit\" and, in its Edit Line dialog, choose Technicians = \"Dana Ortiz\" (a line given its own technician).",
+    "↳ Add \"Line 3 Explicit\", click its name to open the Edit Line dialog and choose Technicians = \"Dana Ortiz\" (a line given its own technician).",
     "↳ Set Lead Technician to \"Esther Howard\" on the work order page. Lines 2, 4, 5 and 6 now show Esther Howard in their Labor row (they follow the lead).",
     "↳ Add \"Line 1 Unassigned\". If its Labor row shows a technician, use the Labor row's More actions > Edit labor to clear it, so it reads Unassigned.",
-    "↳ Approve all six lines (the work order reads Approved).",
+    "↳ Click Approve (check) on all six lines (the work order reads Approved).",
     "↳ Line 4: enter a tech story (e.g. \"Done\") and complete the line, so its status is Complete.",
-    "↳ Line 5: in a second browser signed in as Esther Howard, start the clock on Line 5's Labor row, wait at least 1 minute, then stop it, so Line 5 has logged labor.",
-    "↳ Line 6: still as Esther Howard, start the clock on Line 6's Labor row and leave it running (no earlier labor on this line).",
+    "↳ Line 5: in a second browser signed in as Esther Howard, click Start time clock on Line 5's Labor row, wait at least 1 minute, then click Stop time clock, so Line 5 has logged labor.",
+    "↳ Line 6: still as Esther Howard, click Start time clock on Line 6's Labor row and leave it running (no earlier labor on this line).",
     "↳ Write down each line's Labor technician: Line 1 Unassigned, Line 2 Esther Howard, Line 3 Dana Ortiz, Line 4 Esther Howard, Line 5 Esther Howard, Line 6 Esther Howard (clock running)."
    ],
    "steps": [
@@ -345,7 +345,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "↳ Add a second line (e.g. \"Oil change\") with no technician before setting the lead, so both lines follow Esther Howard."
    ],
    "steps": [
@@ -355,7 +355,7 @@
     "If a \"Clear …'s scheduled shifts?\" prompt opens, click Keep shifts.",
     "Open the work order and open its change history (audit log). Write down where you found it.",
     "Count the entries added by this change.",
-    "On the Lines tab open the first line's Edit Line dialog and set Technicians to \"Dana Ortiz\", then save.",
+    "On the Lines tab click the first line's name to open the Edit Line dialog and set Technicians to \"Dana Ortiz\", then save.",
     "Open the change history again and read the newest entries.",
     "Repeat steps 3 to 6 using More actions > Reassign lead technician (Ralph Edwards → Esther Howard), then once more by changing Lead Technician on the work order page (Esther Howard → Ralph Edwards)."
    ],
@@ -393,7 +393,7 @@
     "↳ Settings > Staff > add a staff member, enter a first and last name (e.g. \"Ralph Edwards\") and an email.",
     "↳ Pick a role that is not Office or Time Clock User (e.g. \"Technician\"), turn Clockable on, keep the record Active, enrol the staff member at this location, then Save.",
     "Create a customer used only by this case so a search shows only its work orders: Customers > New Customer, name (e.g. \"ZZ Board Test Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.",
-    "How to reach each status (standard steps): Estimate = a new work order whose lines are not approved. Approved = approve its lines. In Progress = a technician clocks in on an approved line (Labor row clock button). Review = set the work order to Ready for Review with its status control. Complete = enter a tech story on every line, complete each line, then complete the work order. Invoiced = Finance tab > Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.",
+    "How to reach each status (standard steps): Estimate = a new work order whose lines are not approved. Approved = approve its lines. In Progress = a technician clicks Start time clock on an approved line's Labor row. Review = set the work order to Ready for Review with its status control. Complete = enter a tech story on every line, complete each line, then complete the work order. Invoiced = Finance tab > Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.",
     "Create these work orders for the case customer (Lead Technician set while they are still open): an Approved one led by Esther Howard (e.g. S1-702), an Invoiced one led by Esther Howard (e.g. S1-511), a Paid one led by Esther Howard (e.g. S1-366), an Invoiced one with no lead (e.g. S1-512), a Declined one led by Esther Howard (e.g. S1-359) and a Complete one led by Esther Howard (e.g. S1-420)."
    ],
    "steps": [
@@ -407,7 +407,7 @@
     "Drag the Declined card \"S1-359\" into Ralph Edwards' column (keep shifts if asked).",
     "Drag the Complete card \"S1-420\" into Ralph Edwards' column (keep shifts if asked).",
     "Open \"S1-511\" and try to change Lead Technician on the work order page.",
-    "Repeat steps 3 to 9 in Tech View."
+    "Pick Tech View and repeat steps 3 to 7, then drag \"S1-359\" and \"S1-420\" from Ralph Edwards' group back into Esther Howard's group."
    ],
    "results": [
     "\"S1-511\" and \"S1-366\" cannot be moved to Ralph Edwards or to Unassigned: the card returns to Esther Howard's column and the lead stays Esther Howard.",
@@ -444,7 +444,7 @@
     "↳ Settings > Staff > add a staff member, enter a first and last name (e.g. \"Esther Howard\") and an email.",
     "↳ Pick a role that is not Office or Time Clock User (e.g. \"Technician\"), turn Clockable on, keep the record Active, enrol the staff member at this location, then Save.",
     "Create a customer used only by this case so a search shows only its work orders: Customers > New Customer, name (e.g. \"ZZ Board Test Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.",
-    "How to reach each status (standard steps): Estimate = a new work order whose lines are not approved. Approved = approve its lines. In Progress = a technician clocks in on an approved line (Labor row clock button). Review = set the work order to Ready for Review with its status control. Complete = enter a tech story on every line, complete each line, then complete the work order. Invoiced = Finance tab > Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.",
+    "How to reach each status (standard steps): Estimate = a new work order whose lines are not approved. Approved = approve its lines. In Progress = a technician clicks Start time clock on an approved line's Labor row. Review = set the work order to Ready for Review with its status control. Complete = enter a tech story on every line, complete each line, then complete the work order. Invoiced = Finance tab > Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.",
     "Create an Invoiced work order (e.g. \"S1-511\") and a Paid one (e.g. \"S1-366\") for the case customer, both with Lead Technician \"Esther Howard\" set before invoicing."
    ],
    "steps": [
@@ -543,8 +543,8 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
-    "↳ As Esther Howard (second browser) clock in on the line, wait at least 1 minute, clock out, then clock in again and leave the clock running; the work order now reads In Progress.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
+    "↳ As Esther Howard (second browser) click Start time clock on the line's Labor row, wait at least 1 minute, click Stop time clock, then click Start time clock again and leave it running; the work order now reads In Progress.",
     "↳ Write down the line's Actual hours (e.g. \"0.02 / 2.00\") and the work order's Total Hours.",
     "On the Schedule, give \"Esther Howard\" a shift on the work order tomorrow 8:00–12:00: Schedule > go to that day > drag the work order from the work order list onto Esther Howard's row at the start time > in the picker choose Entire work order > set the end time > save.",
     "If your shop locks time entries (timesheet approval), lock one of Esther Howard's entries on this work order; otherwise write 'no locked time on this site' in the result comment."
@@ -595,7 +595,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "In a second browser sign in as Vera Viewonly and pick the same location.",
@@ -605,7 +605,7 @@
     "Try to drag the card to a different position within Esther Howard's column.",
     "Hover the card and look for More actions and Reassign lead technician.",
     "Repeat steps 4 to 6 in Tech View.",
-    "Sign in as Vera Viewonly's dispatcher (your first browser) and open the work order: Lead Technician is still Esther Howard."
+    "In your first browser (your own user) open the work order and read Lead Technician."
    ],
    "results": [
     "Vera Viewonly cannot drag the card to another technician or within the column; it stays where it was and the lead stays Esther Howard.",
@@ -635,7 +635,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; in the design its button tooltip reads \"Board\").",
@@ -679,7 +679,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "↳ Add a second line \"Line 2\" after the lead is set and clear its technician (Labor row > More actions > Edit labor) so its Labor row reads Unassigned."
    ],
    "steps": [
@@ -760,7 +760,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "In both browsers open Work Orders, click the All tab, pick Board View and search for the case customer.",
@@ -799,7 +799,7 @@
     "↳ Pick a role that is not Office or Time Clock User (e.g. \"Technician\"), turn Clockable on, keep the record Active, enrol the staff member at this location, then Save.",
     "A second user with create and edit and invoicing permission (e.g. \"Sam Second\", Admin role) in a second browser.",
     "Create a customer used only by this case so a search shows only its work orders: Customers > New Customer, name (e.g. \"ZZ Board Test Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.",
-    "How to reach each status (standard steps): Estimate = a new work order whose lines are not approved. Approved = approve its lines. In Progress = a technician clocks in on an approved line (Labor row clock button). Review = set the work order to Ready for Review with its status control. Complete = enter a tech story on every line, complete each line, then complete the work order. Invoiced = Finance tab > Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.",
+    "How to reach each status (standard steps): Estimate = a new work order whose lines are not approved. Approved = approve its lines. In Progress = a technician clicks Start time clock on an approved line's Labor row. Review = set the work order to Ready for Review with its status control. Complete = enter a tech story on every line, complete each line, then complete the work order. Invoiced = Finance tab > Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.",
     "A Complete work order for the case customer led by Esther Howard (e.g. \"S1-420\") with a contact person, so it can be invoiced."
    ],
    "steps": [
@@ -845,12 +845,12 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Aaron Keating\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "↳ Make sure you are not this work order's service advisor and no line is assigned to anyone but you."
    ],
    "steps": [
     "Open Work Orders, click the All tab, pick Board View and turn on Assigned to me.",
-    "Confirm only your own column is shown with the work order (Ralph Edwards' and Dana Ortiz's columns are hidden).",
+    "Write down which technician columns are shown.",
     "Hover the card, click More actions and choose Reassign lead technician.",
     "Read the technicians offered.",
     "Pick Ralph Edwards and confirm (keep shifts if asked).",
@@ -886,7 +886,7 @@
     "↳ Pick a role that is not Office or Time Clock User (e.g. \"Technician\"), turn Clockable on, keep the record Active, enrol the staff member at this location, then Save.",
     "\"Nina Newtech\" must be a technician created for this case (no other work), so the expected number is known.",
     "Create a customer used only by this case so a search shows only its work orders: Customers > New Customer, name (e.g. \"ZZ Board Test Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.",
-    "How to reach each status (standard steps): Estimate = a new work order whose lines are not approved. Approved = approve its lines. In Progress = a technician clocks in on an approved line (Labor row clock button). Review = set the work order to Ready for Review with its status control. Complete = enter a tech story on every line, complete each line, then complete the work order. Invoiced = Finance tab > Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.",
+    "How to reach each status (standard steps): Estimate = a new work order whose lines are not approved. Approved = approve its lines. In Progress = a technician clicks Start time clock on an approved line's Labor row. Review = set the work order to Ready for Review with its status control. Complete = enter a tech story on every line, complete each line, then complete the work order. Invoiced = Finance tab > Create Invoice (the work order needs a contact person). Paid = record a full payment on that invoice. Declined = decline the estimate.",
     "Create these work orders for the case customer with Lead Technician \"Nina Newtech\" (set the lead while they are open): 1 Estimate, 1 Approved, 1 In Progress, 1 Review, 1 Complete, 1 Invoiced, 1 Paid, 1 Declined.",
     "Create 1 more Approved work order led by Esther Howard where Nina Newtech is only the technician on a line (Edit Line > Technicians = Nina Newtech).",
     "If Nina Newtech is also enrolled at a second location, create 1 Approved work order there led by her; otherwise write 'second location not checked' in the result comment."
@@ -964,7 +964,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "On the Schedule, give \"Esther Howard\" a shift on this work order yesterday 8:00–12:00 (already ended): Schedule > go to that day > drag the work order from the work order list onto Esther Howard's row at the start time > in the picker choose Entire work order > set the end time > save.",
     "On the Schedule, give \"Esther Howard\" a shift on this work order tomorrow 8:00–12:00 (not started): Schedule > go to that day > drag the work order from the work order list onto Esther Howard's row at the start time > in the picker choose Entire work order > set the end time > save.",
     "On the Schedule, give \"Esther Howard\" a shift on this work order today, starting 1 hour before you run the test and ending 2 hours after (e.g. 9:00–12:00 when you test at 10:00): Schedule > go to that day > drag the work order from the work order list onto Esther Howard's row at the start time > in the picker choose Entire work order > set the end time > save."
@@ -1046,7 +1046,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "On the Schedule, give \"Esther Howard\" a shift on the work order tomorrow 8:00–12:00: Schedule > go to that day > drag the work order from the work order list onto Esther Howard's row at the start time > in the picker choose Entire work order > set the end time > save."
    ],
    "steps": [
@@ -1091,7 +1091,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders in List, open the column chooser (Columns) and write down which columns are on.",
@@ -1137,7 +1137,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "↳ Give the asset a VIN (e.g. \"1FD0W5HY2EEA05499\")."
    ],
    "steps": [
@@ -1193,7 +1193,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; in the design its button tooltip reads \"Board\").",
@@ -1228,7 +1228,7 @@
     "↳ Pick a role that is not Office or Time Clock User (e.g. \"Technician\"), turn Clockable on, keep the record Active, enrol the staff member at this location, then Save.",
     "Create a customer used only by this case so a search shows only its work orders: Customers > New Customer, name (e.g. \"ZZ Board Test Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.",
     "Create an Approved work order for the case customer (e.g. \"S1-702\"): Lead Technician \"Esther Howard\", Service Advisor (e.g. \"James Smith\"), asset with a VIN, 3 lines with labor hours (e.g. 2.0 + 3.0 + 3.0 = 8.0 estimated hours), \"Line 2\" given to Ralph Edwards in Edit Line, Asset on site turned on.",
-    "↳ In a second browser, sign in as Esther Howard and clock in on Line 1, and as Ralph Edwards clock in on Line 2 (two people clocked in)."
+    "↳ In a second browser, sign in as Esther Howard and click Start time clock on Line 1's Labor row, and as Ralph Edwards do the same on Line 2 (two people clocked in)."
    ],
    "steps": [
     "Open Work Orders in List, search for the case customer and write down the row's values: Lead Technician, Customer, Asset, VIN/Serial #, Progress, Service Advisor, Clocked In, Lines, Assigned Tech, Total price, On Site, Created on.",
@@ -1268,7 +1268,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ Leave Lead Technician empty.",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "As Nora New open Work Orders in List and write down every column shown.",
@@ -1314,7 +1314,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "As Fay Financial open Work Orders, pick Board View and search for the case customer.",
@@ -1418,7 +1418,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ Leave Lead Technician empty.",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders, pick Board View and open Fields to display; write down the fields that are on.",
@@ -1534,7 +1534,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "↳ As Nate Nofinance, turn Total price on in Tech View's column chooser and in Board View's Fields to display."
    ],
    "steps": [
@@ -1574,7 +1574,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ Leave Lead Technician empty.",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "As Nora New open Work Orders in List and look for a density control.",
@@ -1615,7 +1615,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; in the design its button tooltip reads \"Board\").",
@@ -1655,7 +1655,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ Leave Lead Technician empty.",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders, pick Tech View and set density to Comfortable.",
@@ -1696,7 +1696,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders in List and look at the size of the text in a row (normal body text).",
@@ -1729,7 +1729,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ Leave Lead Technician empty.",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders, pick Tech View and set density to Comfortable.",
@@ -1763,7 +1763,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders in List and note the row height.",
@@ -2121,7 +2121,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "On the Schedule, give \"Esther Howard\" a shift on the work order tomorrow 8:00–12:00: Schedule > go to that day > drag the work order from the work order list onto Esther Howard's row at the start time > in the picker choose Entire work order > set the end time > save."
    ],
    "steps": [
@@ -2162,7 +2162,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "On the Schedule, give \"Esther Howard\" a shift on the work order tomorrow 8:00–12:00: Schedule > go to that day > drag the work order from the work order list onto Esther Howard's row at the start time > in the picker choose Entire work order > set the end time > save."
    ],
    "steps": [
@@ -2207,7 +2207,7 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved.",
     "On the Schedule, give \"Esther Howard\" a shift on the work order tomorrow 8:00–12:00: Schedule > go to that day > drag the work order from the work order list onto Esther Howard's row at the start time > in the picker choose Entire work order > set the end time > save."
    ],
    "steps": [
@@ -2418,13 +2418,13 @@
     "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
     "↳ On the work order page set Lead Technician to \"Esther Howard\".",
     "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
-    "↳ Approve the line so the work order status reads Approved."
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
    ],
    "steps": [
     "Open Work Orders, click the All tab and pick Tech View in the display switcher (in the design its button tooltip reads \"By Lead Tech\").",
     "Type the case customer's name (e.g. \"ZZ Board Test Co\") in Search.",
     "Open the column chooser and read whether Assigned Techs is on.",
-    "Make sure Lines is on, then turn Assigned Techs on.",
+    "Turn Lines on if it is off, then turn Assigned Techs on.",
     "Read which column is directly to the right of Lines.",
     "Turn Assigned Techs off again."
    ],
@@ -2547,6 +2547,7 @@
   "COVERAGE — S5-R7 (measure usage as in Story 12) is quoted in C96976 with the analytics part stated as not checkable by hand; the Story 12 folder (C97023, other worker) checks the events.",
   "COVERAGE — S4-R8 assign path had no case; NEW-B-08 added so assign, reassign (C96960) and remove (C96961) are all covered, as the PRD's acceptance note requires.",
   "BY-HAND METHODS — failures are produced by turning the network off (C96968, C154890, NEW-B-05) and stale/concurrent states with two browsers (C96971, C96972, NEW-B-06, NEW-B-07). Load failures of saved preferences (C96983, C96991), a clearing-only failure (C154890), the server refusal of a bypassing request (C96963), the no-name prompt title (NEW-B-02) and exact simultaneity (NEW-B-07) cannot be produced by hand and say so in the plain results.",
+  "DESIGN (work order page, wo-details/Add Part.html and its sweep design-drive/add-part): Lines tab line controls \"Approve\" (toast \"Line approved\" with Undo), \"Decline\", \"Uncomplete\", \"Add line note\", \"Save line\", \"Story history\", \"Audit log\", \"Add fee / discount\"; Labor row More actions > \"Edit labor\" / \"Move labor\"; clock button \"Start time clock\" / \"Stop time clock\" (disabled: \"Approve the line to start the clock\"); work order More actions \"Add Fee / Discount\", \"Print Work Order\", \"Delete Work Order\"; header field \"Lead Technician\". The design has no Edit Line dialog; that name and its Technicians field come from Jira SV-9769. Steps use these labels.",
   "SEEDING — Schedule shift picker labels \"Entire work order\" / \"Choose lines\" come from the Schedule suite's build notes (facts only). Staff/role click-paths use Settings > Staff and Settings > Roles & Permissions."
  ],
  "anchors_covered": {
@@ -2843,5 +2844,5 @@
    97000
   ]
  },
- "reading_coverage": "PRD CONFLUENCE-845185030 …edited-2026-10-07.md — 59,254 B — lines 1-640 — 100% read | Review Decisions CONFLUENCE-853901313 …2026-09-29.md — 91,532 B — lines 1-273 — 100% read | PRD page comments (Atlassian MCP, page 845185030): 7 footer threads with all replies + 27 open inline threads with all replies (resolved inline: 0) — 100% read | Jira SV-10043-stories-2026-10-08.md — 113,391 B — lines 1-773 — 100% read | Tech plan …2026-10-08-upload.md — 115,972 B — lines 1-970 — 100% read | Design Work Orders.dc.html — 105,853 B — lines 1-1411 — 100% read; 'Work Orders -no page-fix-.dc.html' — diffed by script against it (5 style-only differences) | design-crawl list/tech/board states.jsonl (9+27+36 states) and actions.jsonl (472+442+400 actions) — 100% read via a deduplicating digest script (every state's new text, every hover/click's exposed text and tooltip) | design-drive Work Orders-pages.txt 224 lines 100% read; -interactions.jsonl 308 interactions — 100% via deduplicated exposed-text script (218 unique texts, no new labels); -summary.json read | design uploads/ — 14/14 images viewed | design screenshots/ — 26/26 images viewed (7 contact sheets) | wo-details/Add Part.html — 304,402 B — visible text 100% extracted by script (433 unique lines) + Story/Labor row markup lines 2395-2445 and labor-name script 5502-5520 read | _ds/_ds_bundle.js 403 KB and support.js 69 KB — scanned by script for user-facing strings (62 / 0 found) + TechStack component (lines 10019-10095) and empty-state strings read; lucide-icons.js / fonts / CSS not read line by line (icon and style code, no labels) | snapshots-before: my 49 cases 100% read; Vladimir's C236975, C236976, C204101, C228763, C351740 read (facts only); other folders' cases scanned for S4-S8 quotes | V33-RECHECK, RULE117-REFORMAT, PROJECT-STATE — 100% | IDEAL-TEST-CASE-STANDARD.md and C154586-after.json — 100% | RULES-61-96.md lines 2391-2837 — 100% | WORKER-BRIEF.md, SOURCE-CHECK-2026-10-08.md, check-2026-10-08.json, anchor-quotes-2026-10-08.json — 100%."
+ "reading_coverage": "PRD CONFLUENCE-845185030 …edited-2026-10-07.md — 59,254 B — lines 1-640 — 100% read | Review Decisions CONFLUENCE-853901313 …2026-09-29.md — 91,532 B — lines 1-273 — 100% read | PRD page comments (Atlassian MCP, page 845185030): 7 footer threads with all replies + 27 open inline threads with all replies (resolved inline: 0) — 100% read | Jira SV-10043-stories-2026-10-08.md — 113,391 B — lines 1-773 — 100% read | Tech plan …2026-10-08-upload.md — 115,972 B — lines 1-970 — 100% read | Design Work Orders.dc.html — 105,853 B — lines 1-1411 — 100% read; 'Work Orders -no page-fix-.dc.html' — diffed by script against it (5 style-only differences) | design-crawl list/tech/board states.jsonl (9+27+36 states) and actions.jsonl (472+442+400 actions) — 100% read via a deduplicating digest script (every state's new text, every hover/click's exposed text and tooltip) | design-drive Work Orders-pages.txt 224 lines 100% read; -interactions.jsonl 308 interactions — 100% via deduplicated exposed-text script (218 unique texts, no new labels); -summary.json read | design uploads/ — 14/14 images viewed | design screenshots/ — 26/26 images viewed (7 contact sheets) | wo-details/Add Part.html — 304,402 B — visible text 100% extracted by script (433 unique lines), every user-facing string in its 99 KB of scripts (35), + Story/Labor row markup lines 2395-2445 and labor-name script 5502-5520 read | _ds/_ds_bundle.js 403 KB and support.js 69 KB — scanned by script for user-facing strings (62 / 0 found) + TechStack component (lines 10019-10095) and empty-state strings read; design-drive/add-part (pages.txt 164 lines, summary with 69 hidden text blocks, 180 interactions) — 100% via digest script; lucide-icons.js / fonts / CSS not read line by line (icon and style code, no labels) | snapshots-before: my 49 cases 100% read; Vladimir's C236975, C236976, C204101, C228763, C351740 read (facts only); other folders' cases scanned for S4-S8 quotes | V33-RECHECK, RULE117-REFORMAT, PROJECT-STATE — 100% | IDEAL-TEST-CASE-STANDARD.md and C154586-after.json — 100% | RULES-61-96.md lines 2391-2837 — 100% | WORKER-BRIEF.md, SOURCE-CHECK-2026-10-08.md, check-2026-10-08.json, anchor-quotes-2026-10-08.json — 100%."
 }

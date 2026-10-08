@@ -127,7 +127,7 @@ U(97001, "Work orders can be dragged within a technician and to another technici
   src(["S9"], ["S9-R1"]), [prd("S9-R1")],
   "Rewritten in full: real seed recipe with example customers, one drag per step in both views, observable positions.")
 
-U(97002, "Dragging to another technician changes the lead, dropping on Unassigned clears it",
+U(97002, "Dragging to another technician changes the lead, Unassigned clears it",
   BASE_EDIT + techs('"ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo", "ZZAUTOTEST Cal Charlie"') + WO_HOW + [
     'Work orders (all Approved): lead Ana — "ZZAUTOTEST Alpha Co"; no lead — "ZZAUTOTEST Golf Co".', NO_SHIFTS],
   [OPEN_WO, SEARCH_ZZ, BOARDVIEW,
@@ -194,7 +194,7 @@ U(97004, "Pinned technicians can only be reordered among the pinned technicians"
   [prd("S9-R9"), prd("S9-R10"), prd("S2-R17")],
   "Rewritten in full: pins set by real clicks, pinned-area boundary checked in both views, counts and lead re-read to prove no assignment changed.")
 
-U(97005, "Work order order is shared by everyone at the location in both views",
+U(97005, "The order of work orders is shared by everyone at the location",
   BASE_EDIT + [
     "A second dispatcher with Work Orders create and edit at the same location (e.g. \"ZZAUTOTEST Dispatcher Two\"): Settings > Staff > add a staff member with a role that has Work Orders View and Create & Edit, enrolled at this location. Sign them in in a second browser.",
   ] + techs('"ZZAUTOTEST Ana Alpha", "ZZAUTOTEST Ben Bravo"') + WO_HOW + [
@@ -981,21 +981,21 @@ notes += [
  "DESIGN vs SPEC (Story 9): the design pin limit is 5 (\"Up to 5 pinned columns — unpin one first\"); PRD is 3 with \"You can pin up to 3 technicians.\" (S3-R8).",
  "DESIGN vs SPEC (Story 9): the design locks Declined (\"Declined · can't be reassigned\") and shows Imported as \"Imported · review before assigning\"; PRD S4-N2 lets Declined move freely and S4-N9 fixes the Imported tooltip. C97009 follows the PRD.",
  "DESIGN vs SPEC (Story 9): in the design's Tech View the Unassigned group has a drag handle (\"Drag to reorder technicians\") and can be dragged; PRD S9-R8 and S2-R2 keep it fixed. C97003 asserts the PRD.",
- "DESIGN vs SPEC (Story 9): in the design a view-only user can still reorder cards within a technician (only cross-technician moves are blocked); PRD S4-N1/S9-N1 require create and edit for every work order drag. New case NEW-C-05 asserts the PRD.",
+ "DESIGN vs SPEC (Story 9): in the design a view-only user can still reorder cards within a technician (only cross-technician moves are blocked); PRD S4-N1/S9-N1 require create and edit for every work order drag. New case NEW-C-04 asserts the PRD.",
  "DESIGN vs SPEC (Story 9): the design's starting order inside a group is \"In progress first, then newest created\"; the PRD uses the List default sort (S2-R6), which DR-45 says is customer name A to Z. Cases use customer-name examples.",
- "DESIGN vs SPEC (Story 9): the design puts a work order unassigned from the menu at the end of Unassigned; the 7 Oct PRD (S9-R14) puts it in the initial sort. NEW-C-02 follows the PRD.",
+ "DESIGN vs SPEC (Story 9): the design puts a work order unassigned from the menu at the end of Unassigned; the 7 Oct PRD (S9-R14) puts it in the initial sort. NEW-C-01 follows the PRD.",
  "DESIGN vs SPEC (data): the design's Reassign dialog shows \"N open\" as all of a technician's work orders (e.g. Kristin \"4 open\" including Paid and Invoiced); PRD S4-R15 counts four statuses. C97032 tells the tester this is a fail if the build copies the design.",
  "DESIGN: position numbers (1, 2, 3) on cards and rows are in the design but engineering left them out (Slavcho Mitrov, 1 Oct, question open). No case relies on them; testers read the order from the cards.",
  "DESIGN: no keyboard or focus behaviour exists in the design (only the ⌘K search shortcut). Story 11 cases say plainly which parts wait on design (SQ-15 / UX-19 open; Slavcho's 28 Sep inline list).",
  "PRD INTERNAL INCONSISTENCY (PO question): Section 9 says Invoiced/Paid \"drag not offered\", but S4-N2 (and DR-37) allow reordering within the current technician. C97009 follows S4-N2.",
- "PO QUESTION: SQ-11 on the Review Decisions page (29 Sep) still lists unpin position and cross-location pin behaviour as open, but Sasha Grosman confirmed both in the PRD footer comment of 24 Sep (\"confirmed\", \"agree\") and the tech plan builds them. NEW-C-15 and NEW-C-16 are authored from the PO comment and say so; please confirm, or retire them.",
+ "PO QUESTION: SQ-11 on the Review Decisions page (29 Sep) still lists unpin position and cross-location pin behaviour as open, but Sasha Grosman confirmed both in the PRD footer comment of 24 Sep (\"confirmed\", \"agree\") and the tech plan builds them. NEW-C-13 and NEW-C-14 are authored from the PO comment and say so; please confirm, or retire them.",
  "PO QUESTION: field snapshot timing. PRD S12-R2 says once per display per session; Slavcho's 6 Oct table first said once per display per browser tab. C97024 follows the PRD (session).",
  "PO QUESTION: \"Report density distribution\" (S12-R11) does not say whether a user who changes density during the week counts under their last value or under every value. C97034 uses users whose density does not change; the definition is for the report owner.",
  "PO QUESTION: tech plan 3.19 (layout choices made during a shared-link visit now persist, reversing today's convention) is a user-visible change that the PRD does not mention. Not authored; needs a product yes/no.",
  "EXCLUDED from tech plan with reason: 3.20 first-visit default filter view = Work Orders. Chris Ward's 25 Sep summary says \"The default-tab change is out too\" and DR-33 keeps List's default filter view, so the plan is superseded.",
  "EXCLUDED from tech plan with reason: touch drag rules (Phase 9 and 13, drag never starts for a touch pointer). Slavcho's 28 Sep question about landscape tablets is unanswered in the PRD (DR-34 only says tablets at 1024 px get the views). PO question raised. No case until answered.",
  "EXCLUDED from tech plan (not checkable by hand, performance/architecture): NFR-001 to 005, 007, 010, 012, 013, Phase 12 targets, statement counts, avatar caching, the minimap (built per Slavcho 1 Oct, but not in the PRD).",
- "NAVIGATION ASSUMPTIONS for the build check: whether New Work Order offers a Lead Technician field (NEW-C-03 gives Split as the fallback); the staff \"Time Clock\" toggle is the Clockable setting (Custom Roles notes, SV-8141); Imported work orders come from Settings > Data Import > Invoices; GA DebugView access is a tester prerequisite for the Story 12 and analytics data cases.",
+ "NAVIGATION ASSUMPTIONS for the build check: whether New Work Order offers a Lead Technician field (NEW-C-02 gives Split as the fallback); the staff \"Time Clock\" toggle is the Clockable setting (Custom Roles notes, SV-8141); Imported work orders come from Settings > Data Import > Invoices; GA DebugView access is a tester prerequisite for the Story 12 and analytics data cases.",
  "HANDS-OFF: Vladimir Tomovic's automated cases C335320 and C335321 (Story 11) assert keyboard behaviour (Tab enters on the Unassigned header, arrow keys move) that no design or PRD defines yet. Reported only, not changed.",
  "S9-R14 CHANGE: C97007 quoted the 29 Sep text (\"… puts the work order at the bottom of Unassigned\"). It now quotes the 7 Oct text. DR-47 on the Review Decisions page (29 Sep) still says bottom; the later PRD wins and the cases disclose this.",
 ]
@@ -1029,3 +1029,42 @@ RC = [
 out["reading_coverage"] = " | ".join(RC)
 json.dump(out, open(OUT, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 print("written", OUT, "updates", len(updates), "new", len(new), "retire", len(retire), "missing", missing)
+
+# ---------- validation (brief's checks) ----------
+def validate(path=OUT):
+    d = json.load(open(path, encoding="utf-8"))
+    errs = []
+    cases = [("C%d" % u["case_id"], u) for u in d["updates"]] + [(n["key"], n) for n in d["new"]]
+    bad_pat = [re.compile(r"Rule 1"), re.compile(r"\bS\d+-[RNE]\d+[a-z]?\b"), re.compile("seed the exact", re.I),
+               re.compile("display options are on", re.I), re.compile("ask the QA lead", re.I)]
+    for cid, c in cases:
+        t = c["title"]
+        if len(t) > 80: errs.append(f"{cid} title {len(t)} chars")
+        if ";" in t: errs.append(f"{cid} title has semicolon")
+        tester = [t] + c["preconds"] + c["steps"] + c["results"]
+        for line in tester:
+            for p in bad_pat:
+                if p.search(line): errs.append(f"{cid} tester text matches {p.pattern!r}: {line[:90]}")
+        for a, q in c["quotes"]:
+            hay = TP_N if a.startswith("Tech plan ") else PRD_N
+            if ws(q) not in hay: errs.append(f"{cid} quote {a} not found verbatim")
+        all_text = json.dumps(c, ensure_ascii=False)
+        if all_text.count("AUTOMATION:") != 1: errs.append(f"{cid} has {all_text.count('AUTOMATION:')} AUTOMATION markers")
+        want = C154650_MARK if cid == "C154650" else MARK
+        if c["marker"] != want: errs.append(f"{cid} marker text differs")
+        if not c["preconds"] or not c["steps"] or not c["results"] or not c["quotes"]: errs.append(f"{cid} empty part")
+        if any(("<" in x and ">" in x and re.search(r"</?[a-z]+[^>]*>", x)) for x in tester): errs.append(f"{cid} HTML in text")
+    ids = sorted(u["case_id"] for u in d["updates"])
+    expect = sorted([97001,97002,97003,97004,97005,97006,97007,97008,97009,97010,97011,97012,97013,97020,97021,97022,
+                     97023,97024,97025,97026,97027,97028,97029,97030,97031,97032,97033,97034,97035,154648,154649,154650])
+    if ids != expect: errs.append(f"update ids mismatch: {set(expect) ^ set(ids)}")
+    want_anch = [a for a in ANCH if a.startswith(("S9-", "S11-", "S12-"))]
+    miss = [a for a in want_anch if a not in d["anchors_covered"]]
+    if miss: errs.append(f"uncovered anchors: {miss}")
+    return errs, len(d["updates"]), len(d["new"]), len(d["retire"]), len(want_anch)
+
+if __name__ == "__main__":
+    e, nu, nn, nr, na = validate()
+    print(f"VALIDATE: updates {nu}, new {nn}, retire {nr}, share anchors {na}, errors {len(e)}")
+    for x in e: print("  ERR", x)
+    sys.exit(1 if e else 0)

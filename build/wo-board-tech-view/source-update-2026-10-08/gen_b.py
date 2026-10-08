@@ -101,7 +101,7 @@ def new_wo(lead, label="the work order", status="Approved"):
     lines.append("↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), "
                  "and save the line.")
     if status == "Approved":
-        lines.append("↳ Approve the line so the work order status reads Approved.")
+        lines.append("↳ Click the line's Approve (check) button so the work order status reads Approved.")
     elif status == "Estimate":
         lines.append("↳ Leave the line unapproved so the work order status stays Estimate.")
     return lines
@@ -109,7 +109,7 @@ def new_wo(lead, label="the work order", status="Approved"):
 
 STATUS_RECIPE = [
     "How to reach each status (standard steps): Estimate = a new work order whose lines are not approved. Approved = "
-    "approve its lines. In Progress = a technician clocks in on an approved line (Labor row clock button). Review = set the "
+    "approve its lines. In Progress = a technician clicks Start time clock on an approved line's Labor row. Review = set the "
     "work order to Ready for Review with its status control. Complete = enter a tech story on every line, complete each "
     "line, then complete the work order. Invoiced = Finance tab > Create Invoice (the work order needs a contact person). "
     "Paid = record a full payment on that invoice. Declined = decline the estimate.",
@@ -251,17 +251,17 @@ SIX_LINES = [
     "Work Order > case customer > create it (e.g. \"S1-702\").",
     "↳ On the Lines tab add four lines with no technician: \"Line 2 Implicit\", \"Line 4 Complete\", \"Line 5 Logged\", "
     "\"Line 6 Clocked\".",
-    "↳ Add \"Line 3 Explicit\" and, in its Edit Line dialog, choose Technicians = \"Dana Ortiz\" (a line given its own "
+    "↳ Add \"Line 3 Explicit\", click its name to open the Edit Line dialog and choose Technicians = \"Dana Ortiz\" (a line given its own "
     "technician).",
     "↳ Set Lead Technician to \"Esther Howard\" on the work order page. Lines 2, 4, 5 and 6 now show Esther Howard in their "
     "Labor row (they follow the lead).",
     "↳ Add \"Line 1 Unassigned\". If its Labor row shows a technician, use the Labor row's More actions > Edit labor to "
     "clear it, so it reads Unassigned.",
-    "↳ Approve all six lines (the work order reads Approved).",
+    "↳ Click Approve (check) on all six lines (the work order reads Approved).",
     "↳ Line 4: enter a tech story (e.g. \"Done\") and complete the line, so its status is Complete.",
-    "↳ Line 5: in a second browser signed in as Esther Howard, start the clock on Line 5's Labor row, wait at least 1 "
-    "minute, then stop it, so Line 5 has logged labor.",
-    "↳ Line 6: still as Esther Howard, start the clock on Line 6's Labor row and leave it running (no earlier labor on "
+    "↳ Line 5: in a second browser signed in as Esther Howard, click Start time clock on Line 5's Labor row, wait at least 1 "
+    "minute, then click Stop time clock, so Line 5 has logged labor.",
+    "↳ Line 6: still as Esther Howard, click Start time clock on Line 6's Labor row and leave it running (no earlier labor on "
     "this line).",
     "↳ Write down each line's Labor technician: Line 1 Unassigned, Line 2 Esther Howard, Line 3 Dana Ortiz, Line 4 Esther "
     "Howard, Line 5 Esther Howard, Line 6 Esther Howard (clock running).",
@@ -328,7 +328,7 @@ upd(96962, "A lead change adds one history entry and none for the lines it moves
         KEEP_IF_PROMPT,
         "Open the work order and open its change history (audit log). Write down where you found it.",
         "Count the entries added by this change.",
-        "On the Lines tab open the first line's Edit Line dialog and set Technicians to \"Dana Ortiz\", then save.",
+        "On the Lines tab click the first line's name to open the Edit Line dialog and set Technicians to \"Dana Ortiz\", then save.",
         "Open the change history again and read the newest entries.",
         "Repeat steps 3 to 6 using More actions > Reassign lead technician (Ralph Edwards → Esther Howard), then once more by "
         "changing Lead Technician on the work order page (Esther Howard → Ralph Edwards).",
@@ -358,7 +358,7 @@ upd(96963, "The lead of an Invoiced or Paid work order cannot be changed by any 
         "Drag the Declined card \"S1-359\" into Ralph Edwards' column (keep shifts if asked).",
         "Drag the Complete card \"S1-420\" into Ralph Edwards' column (keep shifts if asked).",
         "Open \"S1-511\" and try to change Lead Technician on the work order page.",
-        "Repeat steps 3 to 9 in Tech View.",
+        "Pick Tech View and repeat steps 3 to 7, then drag \"S1-359\" and \"S1-420\" from Ralph Edwards' group back into Esther Howard's group.",
     ],
     ["\"S1-511\" and \"S1-366\" cannot be moved to Ralph Edwards or to Unassigned: the card returns to Esther Howard's "
      "column and the lead stays Esther Howard.",
@@ -428,8 +428,8 @@ upd(96965, "Clear shifts removes only the old lead's whole-work-order shifts",
 
 upd(96966, "A lead change leaves status and recorded time alone",
     BASE4 + techs(["Esther Howard", "Ralph Edwards", "Dana Ortiz"]) + [CUSTOMER] + new_wo("Esther Howard") + [
-        "↳ As Esther Howard (second browser) clock in on the line, wait at least 1 minute, clock out, then clock in again and "
-        "leave the clock running; the work order now reads In Progress.",
+        "↳ As Esther Howard (second browser) click Start time clock on the line's Labor row, wait at least 1 minute, click Stop time "
+        "clock, then click Start time clock again and leave it running; the work order now reads In Progress.",
         "↳ Write down the line's Actual hours (e.g. \"0.02 / 2.00\") and the work order's Total Hours.",
         shift("Esther Howard", "the work order", "tomorrow 8:00–12:00"),
         "If your shop locks time entries (timesheet approval), lock one of Esther Howard's entries on this work order; "
@@ -462,7 +462,7 @@ upd(96967, "A user without create and edit cannot drag or reassign work orders",
         "Try to drag the card to a different position within Esther Howard's column.",
         "Hover the card and look for More actions and Reassign lead technician.",
         "Repeat steps 4 to 6 in Tech View.",
-        "Sign in as Vera Viewonly's dispatcher (your first browser) and open the work order: Lead Technician is still Esther Howard.",
+        "In your first browser (your own user) open the work order and read Lead Technician.",
     ],
     ["Vera Viewonly cannot drag the card to another technician or within the column; it stays where it was and the lead "
      "stays Esther Howard.",
@@ -571,7 +571,7 @@ upd(96973, "Reassign can pick a technician outside the filter and the card then 
     + techs(["Ralph Edwards", "Dana Ortiz"]) + [CUSTOMER] + new_wo("Aaron Keating") + [
         "↳ Make sure you are not this work order's service advisor and no line is assigned to anyone but you."],
     ["Open Work Orders, click the All tab, pick Board View and turn on Assigned to me.",
-     "Confirm only your own column is shown with the work order (Ralph Edwards' and Dana Ortiz's columns are hidden).",
+     "Write down which technician columns are shown.",
      "Hover the card, click More actions and choose Reassign lead technician.",
      "Read the technicians offered.",
      "Pick Ralph Edwards and confirm (keep shifts if asked).",
@@ -930,7 +930,7 @@ upd(96978, "Fields to display offers the 13 optional fields with their usual val
         "Create an Approved work order for the case customer (e.g. \"S1-702\"): Lead Technician \"Esther Howard\", Service "
         "Advisor (e.g. \"James Smith\"), asset with a VIN, 3 lines with labor hours (e.g. 2.0 + 3.0 + 3.0 = 8.0 estimated "
         "hours), \"Line 2\" given to Ralph Edwards in Edit Line, Asset on site turned on.",
-        "↳ In a second browser, sign in as Esther Howard and clock in on Line 1, and as Ralph Edwards clock in on Line 2 "
+        "↳ In a second browser, sign in as Esther Howard and click Start time clock on Line 1's Labor row, and as Ralph Edwards do the same on Line 2 "
         "(two people clocked in)."],
     ["Open Work Orders in List, search for the case customer and write down the row's values: Lead Technician, Customer, "
      "Asset, VIN/Serial #, Progress, Service Advisor, Clocked In, Lines, Assigned Tech, Total price, On Site, Created on.",
@@ -1253,7 +1253,7 @@ new("NEW-B-09", 7, "Tech View's Assigned Techs column sits right after Lines",
     BASE7 + techs(["Esther Howard", "Ralph Edwards"]) + [CUSTOMER] + new_wo("Esther Howard"),
     OPEN_TECH + [
         "Open the column chooser and read whether Assigned Techs is on.",
-        "Make sure Lines is on, then turn Assigned Techs on.",
+        "Turn Lines on if it is off, then turn Assigned Techs on.",
         "Read which column is directly to the right of Lines.",
         "Turn Assigned Techs off again.",
     ],
@@ -1415,6 +1415,7 @@ NOTES += [
     "with two browsers (C96971, C96972, NEW-B-06, NEW-B-07). Load failures of saved preferences (C96983, C96991), a "
     "clearing-only failure (C154890), the server refusal of a bypassing request (C96963), the no-name prompt title (NEW-B-02) "
     "and exact simultaneity (NEW-B-07) cannot be produced by hand and say so in the plain results.",
+    "DESIGN (work order page, wo-details/Add Part.html and its sweep design-drive/add-part): Lines tab line controls \"Approve\" (toast \"Line approved\" with Undo), \"Decline\", \"Uncomplete\", \"Add line note\", \"Save line\", \"Story history\", \"Audit log\", \"Add fee / discount\"; Labor row More actions > \"Edit labor\" / \"Move labor\"; clock button \"Start time clock\" / \"Stop time clock\" (disabled: \"Approve the line to start the clock\"); work order More actions \"Add Fee / Discount\", \"Print Work Order\", \"Delete Work Order\"; header field \"Lead Technician\". The design has no Edit Line dialog; that name and its Technicians field come from Jira SV-9769. Steps use these labels.",
     "SEEDING — Schedule shift picker labels \"Entire work order\" / \"Choose lines\" come from the Schedule suite's build notes "
     "(facts only). Staff/role click-paths use Settings > Staff and Settings > Roles & Permissions.",
 ]
@@ -1446,9 +1447,9 @@ READING = (
     "text and tooltip) | design-drive Work Orders-pages.txt 224 lines 100% read; -interactions.jsonl 308 interactions — 100% "
     "via deduplicated exposed-text script (218 unique texts, no new labels); -summary.json read | design uploads/ — 14/14 images "
     "viewed | design screenshots/ — 26/26 images viewed (7 contact sheets) | wo-details/Add Part.html — 304,402 B — visible text "
-    "100% extracted by script (433 unique lines) + Story/Labor row markup lines 2395-2445 and labor-name script 5502-5520 read | "
+    "100% extracted by script (433 unique lines), every user-facing string in its 99 KB of scripts (35), + Story/Labor row markup lines 2395-2445 and labor-name script 5502-5520 read | "
     "_ds/_ds_bundle.js 403 KB and support.js 69 KB — scanned by script for user-facing strings (62 / 0 found) + TechStack "
-    "component (lines 10019-10095) and empty-state strings read; lucide-icons.js / fonts / CSS not read line by line (icon and "
+    "component (lines 10019-10095) and empty-state strings read; design-drive/add-part (pages.txt 164 lines, summary with 69 hidden text blocks, 180 interactions) — 100% via digest script; lucide-icons.js / fonts / CSS not read line by line (icon and "
     "style code, no labels) | snapshots-before: my 49 cases 100% read; Vladimir's C236975, C236976, C204101, C228763, C351740 "
     "read (facts only); other folders' cases scanned for S4-S8 quotes | V33-RECHECK, RULE117-REFORMAT, PROJECT-STATE — 100% | "
     "IDEAL-TEST-CASE-STANDARD.md and C154586-after.json — 100% | RULES-61-96.md lines 2391-2837 — 100% | "
