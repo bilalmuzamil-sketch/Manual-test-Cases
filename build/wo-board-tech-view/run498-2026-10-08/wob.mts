@@ -85,8 +85,10 @@ export async function toggleGroup(p: Page, id: string) { await p.locator(`[data-
 export async function drag(p: Page, from: string, to: string, dy = 4) {
   const a = await p.locator(from).first().boundingBox(), b = await p.locator(to).first().boundingBox();
   if (!a || !b) throw new Error(`drag: missing ${!a ? from : to}`);
-  await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2); await p.mouse.down();
-  await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2 + 6, { steps: 3 });
+  // grab at 45% across: the exact middle of a Tech View row sits over cells (copy buttons, badges) that eat the press
+  const gx = a.x + a.width * 0.45;
+  await p.mouse.move(gx, a.y + a.height / 2); await p.mouse.down();
+  await p.mouse.move(gx, a.y + a.height / 2 + 8, { steps: 4 });
   await p.mouse.move(b.x + b.width / 2, b.y + dy, { steps: 20 }); await p.waitForTimeout(400); await p.mouse.up(); await p.waitForTimeout(3000);
 }
 

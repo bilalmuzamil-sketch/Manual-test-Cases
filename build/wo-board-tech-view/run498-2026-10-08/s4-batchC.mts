@@ -39,9 +39,13 @@ async function run(id: string, f: () => Promise<void>) {
   console.log(t(), id, JSON.stringify(R[id]).slice(0, 2200));
   fs.writeFileSync(path.join(EV, 's4-batchC.json'), JSON.stringify(R, null, 1));
 }
-const dragTo = async (woId: string, target: string, where: 'board' | 'tech' = 'board') => where === 'board'
-  ? drag(p, `[data-test-id="board_card_${woId}"]`, `[data-test-id="board_column_${target}"]`, 120)
-  : drag(p, `[data-test-id="tech_view_row_${woId}"]`, `[data-test-id="tech_view_group_${target}"]`, 10);
+const dragTo = async (woId: string, target: string, where: 'board' | 'tech' = 'board') => {
+  if (where === 'board') return drag(p, `[data-test-id="board_card_${woId}"]`, `[data-test-id="board_column_${target}"]`, 120);
+  // Tech View: drop on the target group's "No work orders" row when it has one, else on its header
+  const empty = `[data-test-id="tech_view_group_empty_${target}"]`;
+  return drag(p, `[data-test-id="tech_view_row_${woId}"]`, (await p.locator(empty).count()) ? empty : `[data-test-id="tech_view_group_${target}"]`, 10);
+};
+async function waitPrompt(ms = 4000) { for (let i = 0; i < ms / 250; i++) { if (await promptLoc().count()) return true; await p.waitForTimeout(250); } return false; }
 const promptLoc = () => p.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).last();
 const setLeadApi = (woId: string, s: string | null) => a.post('/api/work-orders/change-lead-technician', { work_order_id: woId, tech_assigned_id: s });
 
@@ -64,12 +68,11 @@ await run('C368135', async () => {
   const [w] = await fresh(n, 'ZZF4PC'); await setLeadApi(w.id, ES.staff_id);
   if (!(await shiftsOn(a, w.id, names)).length) await mkShift(a, w.id, ES.staff_id, 1, '08:00', 240);
   R.C368135 = {};
-  for (const where of ['board', 'tech'] as const) {
+  for (const where of (process.env.TECH_ONLY ? ['tech'] : ['board', 'tech']) as ('board' | 'tech')[]) {
     await bv(n, where === 'board' ? 'Board View' : 'Tech View');
     const res: any = {};
     for (const how of ['Cancel', 'X', 'Escape', 'outside']) {
-      await dragTo(w.id, RE.staff_id, where); await p.waitForTimeout(1000);
-      const d = promptLoc(); const opened = await d.count();
+      await dragTo(w.id, RE.staff_id, where); const opened = await waitPrompt() ? 1 : 0; const d = promptLoc();
       if (how === 'Cancel') await d.locator('[data-test-id="button_clear_shifts_cancel"]').click().catch(() => {});
       if (how === 'X') await d.locator('[data-test-id="button_close_clear_shifts"]').click().catch(() => {});
       if (how === 'Escape') await p.keyboard.press('Escape');
@@ -98,17 +101,22 @@ await run('C368136', async () => {
   R.C368136 = {};
   for (const where of ['board', 'tech'] as const) {
     await bv(n, where === 'board' ? 'Board View' : 'Tech View');
-    await dragTo(w.id, RE.staff_id, where); const p1 = await shiftPrompt(p, 'Keep shifts');
-    await dragTo(w.id, ES.staff_id, where); await shiftPrompt(p, 'Keep shifts');
+    if (where === 'tech') { const un = (await groups(p)).find((g) => g.id === 'unassigned'); if (un && !un.collapsed) await toggleGroup(p, 'unassigned'); }
+    await dragTo(w.id, RE.staff_id, where); const p1 = await shiftPrompt(p, 'Keep shifts'); const leadAfterDrag = (await lead(n))[w.number];
+    await dragTo(w.id, ES.staff_id, where); await shiftPrompt(p, 'Keep shifts'); const leadAfterBack = (await lead(n))[w.number];
     const o = await openReassign(p, w.id, where); await o.item.click(); await p.waitForTimeout(1200);
     await p.locator(`[data-test-id="option_lead_technician_${RE.staff_id}"]`).click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click();
     const p2 = await shiftPrompt(p, 'Keep shifts');
     await setLeadApi(w.id, ES.staff_id);
-    R.C368136[where] = { dragPrompt: !!p1, dialogPrompt: !!p2, lead: (await lead(n))[w.number] };
+    R.C368136[where] = { dragPrompt: !!p1, leadAfterDrag, leadAfterBack, dialogPrompt: !!p2, lead: (await lead(n))[w.number] };
   }
-  // the work order page: change the lead with its own Lead Technician box
+  // the work order page: change the lead with its own Lead Technician box (it is a dropdown once the work order has a line)
+  { const lines = (await a.get(`/api/work-orders/lines/${w.id}`)).body?.data; if (!(Array.isArray(lines) ? lines : lines?.lines ?? []).length) { const canned = (await a.get('/api/work-orders/canned-lines')).body?.data; const cl = (Array.isArray(canned) ? canned : canned?.collection ?? [])[0]; await a.post(`/api/work-orders/${w.id}/lines/create-from-canned-line`, { canned_line_id: cl.id, status: 'authorized' }); } }
   const pg = await p.context().newPage(); await pg.goto(`${APP}/workorders/${w.id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000);
-  await pg.locator('[data-test-id="select_lead_technician"]').click(); await pg.waitForTimeout(1000);
+  // a work order with no lines opens the New Line form by itself: close it to reach the Lead technician box
+  if (await pg.locator('.q-dialog').filter({ hasText: 'New Line' }).count()) { await pg.locator('.q-dialog').filter({ hasText: 'New Line' }).locator('button').filter({ hasText: /^close$/ }).first().click().catch(() => pg.keyboard.press('Escape')); await pg.waitForTimeout(1200); }
+  const sel = (await pg.locator('[data-test-id="select_lead_technician"]').count()) ? pg.locator('[data-test-id="select_lead_technician"]') : pg.getByText('Lead technician', { exact: true }).locator('..');
+  await sel.click(); await pg.waitForTimeout(1000);
   await pg.locator('.q-menu .q-item').filter({ hasText: 'Ralph Edwards' }).first().click().catch(async () => { await pg.keyboard.type('Ralph'); await pg.waitForTimeout(800); await pg.locator('.q-menu .q-item').filter({ hasText: 'Ralph Edwards' }).first().click(); });
   await pg.waitForTimeout(2000);
   R.C368136.woPage = { prompt: await pg.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).count(), lead: (await lead(n))[w.number] }; await shot(pg, 'C368136-wo-page'); await pg.close();
@@ -149,7 +157,7 @@ await run('C368133', async () => {
   }
   R.C368133 = { setup: Object.fromEntries(await Promise.all(L.map(async (k) => [k, `${byL[k].number}: ${(await shiftsOn(a, byL[k].id, names)).join('; ') || 'no shifts'}`]))) };
   await bv(n);
-  for (const k of L) { await dragTo(byL[k].id, RE.staff_id); await p.waitForTimeout(800); const opened = await promptLoc().count(); if (opened) await shiftPrompt(p, 'Keep shifts'); R.C368133[k] = { prompt: opened > 0, message: await toasts(p), lead: (await lead(n))[byL[k].number] }; }
+  for (const k of L) { await dragTo(byL[k].id, RE.staff_id); const opened = await waitPrompt(3000) ? 1 : 0; if (opened) await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500); R.C368133[k] = { prompt: opened > 0, message: await toasts(p), lead: (await lead(n))[byL[k].number] }; }
   for (const k of L) await setLeadApi(byL[k].id, ES.staff_id);
 });
 
@@ -175,7 +183,7 @@ await run('C96965', async () => {
 await run('C154888', async () => {
   const n = 'ZZAUTOTEST F1 Shift Trim';
   const [w] = await fresh(n, 'ZZF4ST'); await setLeadApi(w.id, ES.staff_id);
-  const now = new Date(); const startRun = localTime(new Date(now.getTime() - 3600000));
+  const now = new Date(); const q = 15 * 60000; const startRun = localTime(new Date(Math.floor((now.getTime() - 3600000) / q) * q));   // shifts start on a 15-minute boundary
   if (!(await shiftsOn(a, w.id, names)).length) { await mkShift(a, w.id, ES.staff_id, -1, '08:00', 240); await mkShift(a, w.id, ES.staff_id, 1, '08:00', 240); }
   const cur = await shiftsOn(a, w.id, names); if (!cur.some((x) => x.includes('today'))) await mkShift(a, w.id, ES.staff_id, 0, startRun, 180);
   R.C154888 = { before: await shiftsOn(a, w.id, names) };

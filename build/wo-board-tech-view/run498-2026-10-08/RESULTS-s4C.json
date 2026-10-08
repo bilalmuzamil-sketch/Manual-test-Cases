@@ -1,0 +1,53 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-08"
+ },
+ "results": {
+  "C368134": {
+   "verdict": "Passed",
+   "observed": "Outcome (3): the shift question has shipped (the case's 'today' note expected no question). Customer ZZAUTOTEST F1 Prompt Wording: S10043-17892 led by Esther Howard, with her whole-work-order shift tomorrow 8:00-12:00. Dragging the card to Ralph Edwards opened the question. Title: 'Clear Esther Howard's scheduled shifts?'. Text: 'Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.' Three buttons, with the words 'Cancel', 'Keep shifts' and 'Clear shifts'; the button style shows them in capitals, e.g. 'Keep Shifts'. There is also a close (X). Keep shifts: 'Lead technician updated', lead Ralph Edwards, and her shift stayed on the Schedule. No-name title not checked by hand.",
+   "not_observed": "The title for a technician with no name (not something that can be set up by hand)."
+  },
+  "C368136": {
+   "verdict": "Passed",
+   "observed": "Outcome (3): the shift question has shipped. Customer ZZAUTOTEST F1 Prompt Where: S10043-17894 led by Esther Howard, whole-work-order shift tomorrow 8:00-12:00. The question opened 4 times, each answered Keep shifts: Board View drag, Board View Reassign dialog, Tech View drag and Tech View row dialog. Changing the lead on the work order page (Lead Technician box) showed no question. The List offers no way to change the lead from a row (no More actions on List rows). Her 8:00-12:00 shift was still on the Schedule at the end.",
+   "not_observed": null
+  },
+  "C154889": {
+   "verdict": "Passed",
+   "observed": "Outcome (3): the shift question has shipped. Customer ZZAUTOTEST F1 Remove Lead Prompt: S10043-17895 and S10043-17896 led by Esther Howard, each with her whole-work-order shift tomorrow 8:00-12:00. Removing the lead by dragging one card to Unassigned, and by the Reassign dialog's Unassigned for the other, both opened the same question. Title 'Clear Esther Howard's scheduled shifts?', buttons Cancel, Keep shifts and Clear shifts. After Keep shifts both work orders were in Unassigned and both of her shifts were still on the Schedule.",
+   "not_observed": null
+  },
+  "C368133": {
+   "verdict": "Passed",
+   "observed": "Outcome (3): the shift question has shipped. Customer ZZAUTOTEST F1 Prompt Only Unfinished, six work orders led by Esther Howard. A (S10043-17902) has her whole-work-order shift tomorrow. B (S10043-17901) has none. C (S10043-17900) has only a Line 1 shift. D (S10043-17899) has only an ended whole-work-order shift. E (S10043-17898) has only Dana Ortiz's shift. F (S10043-17897) has none of its own, while she has a shift on another work order tomorrow 13:00-15:00. Dragging each to Ralph Edwards: only A opened the question (1 of 6). B to F changed lead straight away with no question (5 of 6), each ending led by Ralph Edwards with 'Lead technician updated'.",
+   "not_observed": null
+  },
+  "C96965": {
+   "verdict": "Passed",
+   "observed": "Outcome (3): the shift question has shipped. Customer ZZAUTOTEST F1 Clear Shifts Scope. S10043-17906: Esther Howard 8:00-12:00 (whole) and 13:00-15:00 (Line 1), plus Dana Ortiz 8:00-10:00 (whole), tomorrow. S10043-17905: the same two Esther Howard shifts. S10043-17904: Esther Howard 8:00-12:00 the day after tomorrow. Both drags to Ralph Edwards opened the question. After Clear shifts on S10043-17906: led by Ralph Edwards, her 8:00-12:00 whole-work-order shift gone, Dana Ortiz's 8:00-10:00 still there. After Keep shifts on S10043-17905: led by Ralph Edwards, both of her shifts still there. Her 13:00-15:00 Line 1 shifts were still there on both, and S10043-17904 was untouched.",
+   "not_observed": null
+  },
+  "C154888": {
+   "verdict": "Passed",
+   "observed": "Outcome (3): the shift question has shipped. Customer ZZAUTOTEST F1 Shift Trim: one work order led by Esther Howard, with three whole-work-order shifts: yesterday 8:00-12:00 (ended), tomorrow 8:00-12:00, and today 16:15-19:15 (running when the change was made at 17:16). Dragged to Ralph Edwards and chose Clear shifts. Yesterday's 8:00-12:00 is unchanged. Tomorrow's 8:00-12:00 is gone. Today's now reads 16:15-17:16: it ends at the time of the change, and the part already under way stays.",
+   "not_observed": null
+  },
+  "C154890": {
+   "verdict": "Passed",
+   "observed": "Customer ZZAUTOTEST F1 Clear Fails: led by Esther Howard, with her whole-work-order shift tomorrow 8:00-12:00. Dragged the card to Ralph Edwards; the shift question opened. Switching the network off could not be used on this QA branch: its own 'QA env is sleeping' guard takes the page away when a request drops. So the server was made to refuse the save, and Clear shifts was clicked. The alert read 'Failed to update lead technician, please try again.'. The card went back to Esther Howard's column. Lead Technician still Esther Howard, and her 8:00-12:00 shift was still on the Schedule: nothing half done. Clearing-only failure not checked by hand.",
+   "not_observed": "A failure of only the shift clearing, with the lead change itself saving (cannot be caused by hand)."
+  },
+  "C368135": {
+   "verdict": "Failed",
+   "observed": "Outcome (2): the shift question has shipped, but one way of dismissing it does not work. Customer ZZAUTOTEST F1 Prompt Cancel: S10043-17893 led by Esther Howard, her whole-work-order shift tomorrow 8:00-12:00. Board View and Tech View, after dragging the card to Ralph Edwards each time: Cancel, the close (X) and Escape each closed the question; the card went back to Esther Howard's column and no message appeared. A click on an empty part of the page outside the question did NOT close it: it stayed open and the card stayed in Ralph Edwards' column until another button was used. The dialog path worked: after Cancel in the question you are back in the Reassign lead technician dialog with Ralph Edwards still chosen, and Cancel there changes nothing. In the end the lead was Esther Howard and her shift was still on the Schedule. Report prepared and held for the QA lead's approval; nothing raised.",
+   "not_observed": null,
+   "todo": "What needs to be done: a click outside the shift question should call the change off like Cancel, X and Escape do (the card goes back). Report held for the QA lead.",
+   "ticket_held": true,
+   "ticket": "Report prepared with screenshots and held with the QA lead for approval (one at a time); no ticket raised yet."
+  }
+ }
+}

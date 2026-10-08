@@ -19,5 +19,5 @@ export async function shiftsOn(a: Api, woId: string, names: Record<string, strin
     if (x.startsAt && x.endsAt && x.workOrder?.id === woId && !seen.has(x.id)) { seen.add(x.id); out.push(x); }
     for (const v of Object.values(x)) walk(v); };
   walk(body);
-  return out.map((s) => `${names[s.staffId] ?? s.staffId.slice(0, 6)} ${localDate(0) === new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(new Date(s.startsAt)) ? 'today' : new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(new Date(s.startsAt))} ${localTime(new Date(s.startsAt))}-${localTime(new Date(s.endsAt))} ${(s.lines?.length || s.lineIds?.length) ? 'lines' : 'whole'}`).sort();
+  return out.map((s) => `${names[s.staffId] ?? String(s.staffId ?? s.technicianId ?? s.staff?.id ?? 'someone').slice(0, 6)} ${localDate(0) === new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(new Date(s.startsAt)) ? 'today' : new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(new Date(s.startsAt))} ${localTime(new Date(s.startsAt))}-${localTime(new Date(s.endsAt))} ${(s.lines?.length || s.lineIds?.length) ? 'lines' : 'whole'}`).sort();
 }
