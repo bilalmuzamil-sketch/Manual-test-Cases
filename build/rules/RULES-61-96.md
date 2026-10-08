@@ -2724,6 +2724,10 @@ order number, etc.) written down and then used in the steps; never only an exter
 instructions are in the case.
 **3. Steps:** start from the prepared state; numbered, ordered actions with the exact control and input value; no vague
 "configure appropriately" / "verify it works"; no setup actions — only the behaviour being tested.
+**4. The final check, on every case before it is finished:** *"Can a tester or a fresh Claude session prepare the
+required state, execute the test and determine pass/fail using this case alone?"* If not, the case is not finished.
+**5. Improving an existing case keeps every detail needed to run it:** remove repetition and ambiguity, never information
+needed for execution (QA lead, 8 Oct 2026, same instruction).
 Expected results, Source, exact quotes and the AUTOMATION marker are unchanged by this amendment.
 
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL

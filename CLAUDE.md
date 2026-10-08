@@ -439,7 +439,9 @@ implication is never authorization. **Amended 2026-10-07 (QA lead, PERMANENT): t
 QA tester — the screen's own words, no specification shorthand, one check, no semicolons, still short.** **Amended 2026-10-08 (QA lead, PERMANENT): the Preconditions field holds two headed blocks — "Preconditions" (the required
 starting state: environment, role/permissions, location, settings, exact data and relationships, examples vs fixed) and
 "Setup" (numbered instructions to create it, identifiers captured, a final check that setup worked); Steps hold only the
-behaviour being tested, starting from the prepared state.**
+behaviour being tested, starting from the prepared state. Final check on every case: "Can a tester or a fresh Claude
+session prepare the required state, execute the test and determine pass/fail using this case alone?" Improving a case
+removes repetition and ambiguity, never information needed to run it.**
 
 **🔴 Rule 118 (each session follows only its own rule book — facts may be shared, rules may not)** was
 ordered by the QA lead **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 117.

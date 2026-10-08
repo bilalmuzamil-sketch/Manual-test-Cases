@@ -41,6 +41,9 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
     "check the setup worked" step. Never only an external link.
 - **Steps** — start from the prepared state; numbered, one UI action per line with the exact control and value, build
   glossary; no setup actions and nothing vague ("verify it works") — only the behaviour being tested.
+- **Final check before a case is finished (PERMANENT, 2026-10-08):** *"Can a tester or a fresh Claude session prepare the
+  required state, execute the test and determine pass/fail using this case alone?"* If not, it is not finished.
+- **Improving an existing case:** remove repetition and ambiguity, never information needed for execution.
 - **Expected results** — runnable observations (lead) → **Source** (story/spec + version + section, and
   the source-verified/build-verified stamp) → **Exact quotes from the source (verbatim)** → blank line →
   the single **AUTOMATION:** marker, last.

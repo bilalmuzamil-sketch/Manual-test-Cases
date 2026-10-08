@@ -35,6 +35,10 @@ Medium 47111 · Low 47112). Not Vladimir Tomovic's 18 cases.
 AUTOMATION marker. Only the Preconditions and Steps are reorganised — keep every correction you have already made
 word for word (Admin quick-login, Change Location, Time Clock, Department, Save & Close, Column Selection …).
 
+**Before you finish each case, check:** *"Can a tester or a fresh Claude session prepare the required state, execute
+the test and determine pass/fail using this case alone?"* If not, the case is not finished.
+**Keep every detail needed to run it:** remove repetition and ambiguity, never information needed for execution.
+
 ## Worked example — C96950 "An empty column says 'Drag a work order here' only to users who can reassign"
 
 **Preconditions**
