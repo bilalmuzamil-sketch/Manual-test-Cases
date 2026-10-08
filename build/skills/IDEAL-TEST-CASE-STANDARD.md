@@ -49,6 +49,12 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
   and Expected use only placeholders; every plain expected result starts with **"Step n:"**; every case has **its own
   ZZAUTOTEST data**, never shared. Worked example: C96950 in
   `build/wo-board-tech-view/source-update-2026-10-08/HANDOVER-TO-BUILD-VERIFICATION-CASE-LAYOUT-2026-10-08.md`.
+- **PERMANENT, 2026-10-08 (third amendment) — two audiences (Rule 117, third 8 Oct amendment):**
+  - Each case has its own public Google Doc, **"Setup for Claude session - C<id> <title>"**, created in the Drive folder "Setup for Claude session (test case setup docs)". It holds everything a Claude session needs, never a secret, and marks unproven points UNVERIFIED.
+  - The Preconditions field opens with that link, titled **"Setup for claude session"**. After a line break come the manual tester's Preconditions (Needs line plus only what the test depends on) and Setup (short, build labels, ending with a check). A tester never needs the doc.
+  - Steps are actions only. Every expected result starts **"Step N:"**.
+  - The build verification session verifies the doc too.
+  - Example: C425783 (`build/skills/example-layout-2026-10-08/`).
 - **Expected results** — runnable observations (lead) → **Source** (story/spec + version + section, and
   the source-verified/build-verified stamp) → **Exact quotes from the source (verbatim)** → blank line →
   the single **AUTOMATION:** marker, last.

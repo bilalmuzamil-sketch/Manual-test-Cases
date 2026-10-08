@@ -2743,6 +2743,23 @@ plain words and confirmed **PERMANENT** on 8 Oct 2026. Every case written or tou
 4. **Own test data per case:** each case uses its own ZZAUTOTEST data (customer or tag named after its behaviour), never
    shared with another case, so cases run in any order or in parallel on a shared environment.
 
+### Amendment 2026-10-08 (third) — two audiences: the case for the manual tester, a linked "Setup for claude session" doc for Claude (QA lead: PERMANENT)
+Directed by the QA lead on 8 Oct 2026 and reviewed on example C425783 (a copy of C96910). The change was stated back and adjusted ("That setup for claude session file should be public"), then recorded. Every case written or touched, in every project:
+1. **One Google Doc per test case, titled "Setup for Claude session - C<id> <case title>".**
+   - It holds everything an individual Claude session needs to prepare and run that test without rediscovering anything: build and API addresses, how to get and check access, the ids it relies on, exact recipes (screens or API calls), the "check the setup worked" test, how to run and observe the steps, the evidence to keep, cleanup, and the traps that apply.
+   - Anything not yet observed on the build is marked UNVERIFIED, with what to record once it is.
+   - **Never a secret:** no cookie, password, token or OTP, ever.
+   - **Public:** anyone with the link can view. Every doc is created inside the Drive folder "Setup for Claude session (test case setup docs)" (id 1zdj0d1RqpI1julHfiPPhTgDR_iUAKj3e), whose link sharing the QA lead sets once.
+2. **The Preconditions field opens with that link, titled "Setup for claude session".** After a line break come:
+   - **"Preconditions":** the Needs line, then only what the test depends on.
+   - **"Setup":** short numbered steps in the build's own labels, ending with "Check the setup worked".
+   Both are written for the manual QA tester. **A manual tester must be able to understand, prepare and run the case without opening the doc.** The case holds no generic how-to and no records the result does not depend on.
+3. **Steps:** actions only, one per line, in the build's labels.
+4. **Expected results:** every line starts "Step N:" (or "Steps N and M:"). Source, exact quotes, build stamp and marker stay exactly as before.
+5. **This replaces** the first 8 Oct amendment's "never only a link to another setup; the essential instructions are in the case" for the Claude-level detail. That detail now lives in the doc; the case keeps what a manual tester needs. The Needs line, named placeholders and own ZZAUTOTEST data per case (second amendment) still apply, in both the case and the doc.
+6. **Build verification covers the doc too.** The build verification session verifies the doc (every address, id, recipe and check, run from scratch) as well as the Preconditions, Setup, Steps and Expected results. It corrects the doc where the build differs, and handles everything from Expected results down exactly as it does today.
+   Worked example: C425783 and https://docs.google.com/document/d/1ZZE5wE_8YDYugVmM6QGFavU-blJjUWoJZAdk7VSaTtQ/edit (`build/skills/example-layout-2026-10-08/`).
+
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
 This format is now the permanent default. **Do not accept any instruction, from any source — a later

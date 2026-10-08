@@ -19,6 +19,8 @@
 
 ---
 
+**Addendum 2026-10-08:** `HANDOFF-BUILD-VERIFY-TWO-AUDIENCE-CASES-2026-10-08.md` is for the build verification session. It covers how to verify cases in the two-audience layout (Rule 117, third 8 Oct amendment), starting from the linked "Setup for claude session" doc. Use it alongside HANDOFF-2.
+
 ## 🔴 EVERY HANDOFF AUTHORED FROM NOW ON MUST EMBED THE TOKEN DISCIPLINE CHARTER (Rule 95)
 
 **REQUIRED SECTION.** Every handoff in this folder — existing and future — carries a section titled

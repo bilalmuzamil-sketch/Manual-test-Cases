@@ -25,3 +25,4 @@
 - C425783 now reads: Step 2 (opens in List) · Step 2 (List highlighted) · Step 3 (still List after refresh).
 - Source, quotes and marker are unchanged (checked).
 - Display check OK.
+- The setup doc moved into the public-folder Drive folder 1zdj0d1RqpI1julHfiPPhTgDR_iUAKj3e (8 Oct). The pattern was recorded PERMANENT as the third Rule 117 amendment of 8 Oct.
