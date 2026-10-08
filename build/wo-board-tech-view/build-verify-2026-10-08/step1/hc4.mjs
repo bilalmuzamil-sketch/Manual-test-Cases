@@ -1,0 +1,25 @@
+import {start,mk} from './woblib.mjs'; import fs from 'fs';
+const L='/tmp/cln/hc4.log'; fs.writeFileSync(L,''); const log=(...a)=>fs.appendFileSync(L,a.join(' ')+'\n');
+const b=await start('/workorders','admin'); const {page}=b; const {dump,ov,go,esc,body}=mk(page); page.setDefaultTimeout(15000);
+const T=async(n,f)=>{try{await f();}catch(e){log('ERR',n,e.message.slice(0,160));}};
+const search=async(q)=>{await page.locator('button[aria-label="Search"]').last().click(); await page.waitForTimeout(800); await page.keyboard.press('Control+A'); await page.keyboard.type(q,{delay:30}); await page.waitForTimeout(5000);};
+await T('sort',async()=>{ await search('ZZAUTOTEST Regression Walk'); const nums=async()=>(await body()).match(/S10043-\d+/g);
+  log('DEFAULT',JSON.stringify(await nums()));
+  await page.locator('th').filter({hasText:'Created On'}).first().click(); await page.waitForTimeout(4000); log('CREATED ON 1',JSON.stringify(await nums()));
+  await page.locator('th').filter({hasText:'Created On'}).first().click(); await page.waitForTimeout(4000); log('CREATED ON 2',JSON.stringify(await nums()));
+});
+await T('assetfilter',async()=>{ await page.locator('button:has-text("Asset on Site")').first().click(); await page.waitForTimeout(1500); log('AOS MENU',await ov()); await esc(); });
+await T('newwo',async()=>{ await page.locator('button:has-text("Create Work Order")').first().click(); await page.waitForTimeout(3000);
+  const d=page.locator('.q-dialog').last(); const c=d.locator('input').first(); await c.click(); await c.pressSequentially('ZZAUTOTEST Fib',{delay:90}); await page.waitForTimeout(3000);
+  await page.locator('.q-menu .q-item').filter({hasText:'ZZAUTOTEST Fibridge'}).first().click(); await page.waitForTimeout(2000);
+  await d.locator('input').nth(1).click(); await page.waitForTimeout(2000); await page.locator('.q-menu .q-item').filter({hasText:'TRK-118'}).first().click(); await page.waitForTimeout(1500);
+  log('DLG BEFORE',await ov());
+  await d.locator('text=Asset Here?').first().click(); await page.waitForTimeout(800);
+  log('ASSET HERE STATE',JSON.stringify(await page.evaluate(()=>[...document.querySelectorAll('.q-dialog [role=switch],.q-dialog .q-toggle,.q-dialog [role=checkbox]')].map(e=>(e.getAttribute('aria-checked')||'')+'|'+(e.innerText||'').trim()))));
+  await d.getByRole('button',{name:'Save'}).click(); await page.waitForTimeout(6000); log('NEW WO URL',page.url());
+  const t=await body(); log('WO HEAD',(t.match(/S10043-\d+/)||[''])[0]);
+  // New Line form close
+  log('NEW LINE FORM',await ov()); log('NL BTNS',JSON.stringify(await page.evaluate(()=>[...document.querySelectorAll('.q-dialog button, .q-card button')].filter(e=>e.offsetParent).map(e=>(e.innerText||e.getAttribute('aria-label')||'').replace(/\s+/g,' ').trim()).filter(Boolean))));
+  await dump('hc-newline-form');
+});
+await b.browser.close();

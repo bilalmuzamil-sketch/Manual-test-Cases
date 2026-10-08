@@ -1,0 +1,15 @@
+import {start,mk} from './woblib.mjs'; import fs from 'fs';
+const L='/tmp/cln/hc5.log'; fs.writeFileSync(L,''); const log=(...a)=>fs.appendFileSync(L,a.join(' ')+'\n');
+const b=await start('/workorders','admin'); const {page}=b; const {dump,ov,go,esc,body}=mk(page); page.setDefaultTimeout(15000);
+const T=async(n,f)=>{try{await f();}catch(e){log('ERR',n,e.message.slice(0,160));}};
+const nums=async()=>JSON.stringify((await body()).match(/S10043-\d+/g));
+const aos=async(opt)=>{await page.locator('button:has-text("Asset on Site")').first().click(); await page.waitForTimeout(1200); log('MENUHTML',(await page.locator('.q-menu').last().innerHTML()).replace(/\s+/g,' ').slice(0,600)); await page.locator('.q-menu').last().getByText(opt,{exact:true}).first().click(); await page.waitForTimeout(4000); await esc();};
+await T('f',async()=>{ await page.locator('button[aria-label="Search"]').last().click(); await page.waitForTimeout(800); await page.keyboard.type('ZZAUTOTEST Fibridge',{delay:30}); await page.waitForTimeout(5000);
+  log('ALL',await nums());
+  const st=await page.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(r=>{const t=r.querySelector('[role=switch],.q-toggle,[aria-checked]');return (r.innerText.match(/S10043-\d+/)||[''])[0]+':'+(t?t.getAttribute('aria-checked'):'?')+':'+(r.querySelector('i')?.className||'');}));
+  log('ROW ONSITE',JSON.stringify(st));
+  await aos('Yes'); log('YES',await nums()); await dump('hc-aos-yes');
+  await aos('Clear selection').catch(()=>{}); await aos('No'); log('NO',await nums());
+  await aos('Clear selection').catch(()=>{});
+});
+await b.browser.close();

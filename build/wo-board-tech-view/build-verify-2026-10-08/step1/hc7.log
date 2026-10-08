@@ -1,0 +1,11 @@
+before Estimate,Estimate
+DECLINE DLG 
+17595 after decline Declined,Estimate,Declined
+17594 before Estimate,Estimate,Approved
+LINE OPTS  Service - Full grease service HD Fleet Rate : $149.95 Total Parts: 0
+17594 after approved line Approved,Estimate,Approved,Complete
+start count 1
+START DLG 
+17594 after start In Progress,Estimate,Approved,Complete
+STOP Stop working on S10043-17594, Service - Full greas... - Preventative ma... close Line Completed? What Have You Been Doing On This Line? AI SHOPCOACH SUGGEST STORY Or, If you wish to finish work altogether, you can Clock Out
+17594 after stop In Progress,Estimate,Approved,Complete

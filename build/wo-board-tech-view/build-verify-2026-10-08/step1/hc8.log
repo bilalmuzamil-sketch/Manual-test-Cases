@@ -1,0 +1,8 @@
+DLG BTNS ["close","AI SHOPCOACH SUGGEST STORY","Clock Out"]
+DLG BTNS 2 ["close","AI SHOPCOACH IMPROVE STORY","Clock Out"]
+CLICKABLES ["BUTTON:close","DIV:Line Completed?","SPAN:","DIV:What Have You Been Doing On This Line?","TEXTAREA:What have you been doing on this line?","BUTTON:AI SHOPCOACH IMPROVE STORY","BUTTON:Clock Out"]
+AFTER CLOCKOUT check_circle Timesheet clocked out Close
+AFTER CONFIRM check_circle Timesheet clocked out Close
+AFTER check_circle Timesheet clocked out Close
+TOPBAR timer Clock In notifications Staging Heavy Duty - 9919 0.14 
+LABOR BTN Start

@@ -1,0 +1,22 @@
+import {start,mk} from './woblib.mjs'; import fs from 'fs';
+const L='/tmp/cln/hc6.log'; fs.writeFileSync(L,''); const log=(...a)=>fs.appendFileSync(L,a.join(' ')+'\n');
+const b=await start('/workorders','admin'); const {page}=b; const {dump,ov,go,esc,body}=mk(page); page.setDefaultTimeout(15000);
+const T=async(n,f)=>{try{await f();}catch(e){log('ERR',n,e.message.slice(0,160));}};
+const st=async()=>JSON.stringify(await page.evaluate(()=>[...document.querySelectorAll('.q-dialog [role=switch],.q-dialog .q-toggle,.q-dialog [role=checkbox]')].map(e=>(e.getAttribute('aria-checked')||'')+'|'+(e.innerText||'').trim())));
+await T('newwo',async()=>{ await page.locator('button:has-text("Create Work Order")').first().click(); await page.waitForTimeout(3000);
+  const d=page.locator('.q-dialog').last(); log('DEFAULT STATE',await st());
+  const c=d.locator('input').first(); await c.click(); await c.pressSequentially('ZZAUTOTEST Fib',{delay:90}); await page.waitForTimeout(3000);
+  await page.locator('.q-menu .q-item').filter({hasText:'ZZAUTOTEST Fibridge'}).first().click(); await page.waitForTimeout(2000);
+  await d.locator('input').nth(1).click(); await page.waitForTimeout(2000); await page.locator('.q-menu .q-item').filter({hasText:'Ford Explorer'}).first().click(); await page.waitForTimeout(1500);
+  log('STATE AFTER PICKS',await st());
+  const sw=d.locator('[role=switch],.q-toggle,[role=checkbox]').first(); if(((await st()).includes('false'))) { await sw.click(); await page.waitForTimeout(700); }
+  log('STATE BEFORE SAVE',await st());
+  await d.getByRole('button',{name:'Save'}).click(); await page.waitForTimeout(6000); const t=await body(); log('WO',(t.match(/S10043-\d+/)||[''])[0]);
+  await page.keyboard.press('Escape'); await page.waitForTimeout(800);
+  await go('/workorders',7000);
+  await page.locator('button[aria-label="Search"]').last().click(); await page.waitForTimeout(800); await page.keyboard.type('ZZAUTOTEST Fibridge',{delay:30}); await page.waitForTimeout(5000);
+  await page.locator('button:has-text("Asset on Site")').first().click(); await page.waitForTimeout(1200); await page.locator('.q-menu').last().getByText('Yes',{exact:true}).first().click(); await page.waitForTimeout(4000); await esc();
+  log('YES',JSON.stringify((await body()).match(/S10043-\d+/g))); await dump('hc-aos-yes2');
+  await page.locator('button:has-text("Asset on Site")').first().click(); await page.waitForTimeout(1200); await page.locator('.q-menu').last().getByText('Clear selection',{exact:true}).first().click().catch(()=>{}); await page.waitForTimeout(2000);
+});
+await b.browser.close();

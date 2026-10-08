@@ -1,0 +1,14 @@
+import {start,mk} from './woblib.mjs'; import fs from 'fs';
+const L='/tmp/cln/hc1.log'; fs.writeFileSync(L,''); const log=(...a)=>fs.appendFileSync(L,a.join(' ')+'\n');
+const b=await start('/workorders','admin'); const {page}=b; const {dump,ov,go,esc,body}=mk(page); page.setDefaultTimeout(15000);
+const T=async(n,f)=>{try{await f();}catch(e){log('ERR',n,e.message.slice(0,160));}};
+await T('settings',async()=>{ await go('/settings',8000); await dump('hc-settings'); const t=await body(); log('SETTINGS SIDEBAR',t.slice(t.indexOf('Settings'),t.indexOf('Settings')+1500)); });
+await T('roles',async()=>{ await go('/settings/roles',8000); await dump('hc-roles'); const t=await body(); log('ROLES',t.slice(0,800)); });
+await T('list-search',async()=>{ await go('/workorders',8000);
+  await page.locator('button[aria-label="Search"]').last().click(); await page.waitForTimeout(800); await page.keyboard.type('Regression Wal',{delay:40}); await page.waitForTimeout(5000);
+  let t=await body(); log('PARTIAL "Regression Wal" rows S10043:',(t.match(/S10043-\d+/g)||[]).length, (t.match(/No work orders match[^.]*/)||[''])[0]);
+  await page.keyboard.press('Control+A'); await page.keyboard.type('ZZAUTOTEST Regression Walk',{delay:30}); await page.waitForTimeout(5000);
+  t=await body(); log('FULL rows S10043:',(t.match(/S10043-\d+/g)||[]).length); await dump('hc-list-search');
+  log('ROWS',t.slice(t.indexOf('Number'),t.indexOf('Number')+1500));
+});
+await b.browser.close();

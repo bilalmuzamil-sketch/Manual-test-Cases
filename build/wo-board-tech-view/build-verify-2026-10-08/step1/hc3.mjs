@@ -1,0 +1,13 @@
+import {start,mk} from './woblib.mjs'; import fs from 'fs';
+const L='/tmp/cln/hc3.log'; fs.writeFileSync(L,''); const log=(...a)=>fs.appendFileSync(L,a.join(' ')+'\n');
+const b=await start('/administration/locations','admin'); const {page}=b; const {dump,ov,go,esc,body}=mk(page); page.setDefaultTimeout(15000);
+const T=async(n,f)=>{try{await f();}catch(e){log('ERR',n,e.message.slice(0,160));}};
+const btns=async()=>JSON.stringify(await page.evaluate(()=>[...document.querySelectorAll('button')].filter(e=>e.offsetParent).map(e=>e.innerText.replace(/\s+/g,' ').trim()).filter(Boolean).slice(-15)));
+await T('loc',async()=>{ await page.waitForTimeout(3000); await dump('hc-locations'); const t=await body(); log('LOC',t.slice(t.indexOf('Locations'),t.indexOf('Locations')+500)); log('LOC BTNS',await btns()); });
+await T('inv',async()=>{ await go('/administration/invoices-import',8000); await dump('hc-invoices-import'); const t=await body(); log('INVIMP',t.slice(t.indexOf('Invoices'),t.indexOf('Invoices')+900)); log('INV BTNS',await btns()); });
+await T('roles',async()=>{ await go('/administration/roles-permissions',8000); await dump('hc-roles'); const t=await body(); log('ROLES',t.slice(t.indexOf('Roles'),t.indexOf('Roles')+600));
+  await page.locator('text=Admin').filter({hasNot:page.locator('xx')}).nth(1).click().catch(e=>log('adminclick',e.message.slice(0,80))); await page.waitForTimeout(4000);
+  const u=await body(); const i=u.search(/See Financial Data/i); log('ADMIN ROLE SFD', i>=0?u.slice(i-200,i+200):'not found'); await dump('hc-role-admin');
+  log('SFD toggle',JSON.stringify(await page.evaluate(()=>{const el=[...document.querySelectorAll('*')].find(e=>e.childElementCount===0&&/See Financial Data/i.test(e.textContent||''));if(!el)return null;let r=el;for(let k=0;k<6;k++){r=r.parentElement;const t=r.querySelector('[role=switch],[role=checkbox],input[type=checkbox],.q-toggle');if(t)return {aria:t.getAttribute('aria-checked'),cls:t.className.slice(0,80)};}return 'no toggle';})));
+});
+await b.browser.close();
