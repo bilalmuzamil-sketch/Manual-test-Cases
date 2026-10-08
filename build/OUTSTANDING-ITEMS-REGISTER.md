@@ -3148,7 +3148,7 @@ Other people's Dashboard cases — QA lead 2026-10-07: "Leave them" (not edited)
 2026-09-28) and C327128 (Vladimir Tomovic, 2026-10-06).
 
 ## 2026-10-08 — WO Board & Tech View full update (group 13204) — written to TestRail
-130 of ours rewritten in full + 35 new; run 498 = 165 tests. Record: `wo-board-tech-view/source-update-2026-10-08/FULL-UPDATE-2026-10-08.md`.
+130 of ours rewritten in full + 40 new; run 498 = 170 tests; design crawled in full and triaged. READY for build verification. Record: `wo-board-tech-view/source-update-2026-10-08/FULL-UPDATE-2026-10-08.md`.
 Not build-verified — the QA lead starts the build verification session on sv10043.qa.shopview.com.
 Candidate PO / design questions (Sasha Grosman PRD owner; Chris Ward; Branko Cicovic design) — **NOT sent** (Rule 66: sent last):
 

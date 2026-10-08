@@ -260,3 +260,17 @@ Reading coverage: PRD CONFLUENCE-845185030 (edited 7 Oct) — 59,254 bytes — l
 - HANDS-OFF: Vladimir Tomovic's automated cases C335320 and C335321 (Story 11) assert keyboard behaviour (Tab enters on the Unassigned header, arrow keys move) that no design or PRD defines yet. Reported only, not changed.
 - S9-R14 CHANGE: C97007 quoted the 29 Sep text ("… puts the work order at the bottom of Unassigned"). It now quotes the 7 Oct text. DR-47 on the Review Decisions page (29 Sep) still says bottom; the later PRD wins and the cases disclose this.
 
+
+## Added after the first write (8 Oct 2026)
+| Source | Change | Case |
+|---|---|---|
+| Design library read in full (QA lead: "Read") | NEW — Tech View Columns menu: count, Show all, Reset to default | [C368160](https://shopview.testrail.io/index.php?/cases/view/368160) |
+| Design library | NEW — a technician with no photo shows initials | [C368161](https://shopview.testrail.io/index.php?/cases/view/368161) |
+| Design library | rewritten — Escape and a click outside also close the shift prompt | [C368135](https://shopview.testrail.io/index.php?/cases/view/368135) |
+| Design library | rewritten — a "-" in an empty Assigned Techs cell counts as blank | [C96996](https://shopview.testrail.io/index.php?/cases/view/96996) |
+| Full design crawl, gap triage | NEW — Collapse all / Expand all in Tech View | [C368162](https://shopview.testrail.io/index.php?/cases/view/368162) |
+| Full design crawl, gap triage | NEW — searching in the Reassign lead technician dialog | [C368163](https://shopview.testrail.io/index.php?/cases/view/368163) |
+| Full design crawl, gap triage | NEW — Find a column narrows the Columns menu | [C368164](https://shopview.testrail.io/index.php?/cases/view/368164) |
+
+**Final: 170 of ours** (130 rewritten + 40 new) · run 498 = 170 tests · all 221 PRD requirements quoted · all 170 display checked.
+Design: `DESIGN-COVERAGE-2026-10-08.md` (crawl + one-click sweep + every file read) and `design-gap-triage-2026-10-08.md` (413 + 2 kinds of design text no case mentioned, every one classified).
