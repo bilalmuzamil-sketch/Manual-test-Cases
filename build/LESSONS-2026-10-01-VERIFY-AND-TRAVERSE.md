@@ -151,3 +151,10 @@ one line the moment a `claude.ai/design/p/…` link arrives, and keep working me
 **Driving a prototype export:** `drive_design_full.py` resets after every click (one click deep). A stateful
 prototype needs `build/testing-tools/crawl_design_states.py` (state-graph crawl: every element hovered and clicked in
 every reachable screen, inputs typed, selects chosen, every draggable dropped on every target, dark theme + widths).
+
+## L16 · `get_tests` returns at most 250 per call — ALWAYS page before a union run update (2026-10-08) — FACT
+Run 498 reached 253 tests on 8 Oct; an unpaged `get_tests/498` returned exactly 250, so a check read "new cases not in
+the run" when they were. Worse, a run update that sends `case_ids = (unpaged current) ∪ new` would DELETE every test
+past the first 250, with its results (Rule 34). Always read the run with `get_tests/<run>&limit=250&offset=N` until a
+page returns fewer than 250, and assert the union contains every test read before sending it. (Same trap as
+`get_sections` / `get_cases`, recorded in CLAUDE.md §3.)
