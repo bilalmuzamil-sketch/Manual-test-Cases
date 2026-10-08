@@ -136,13 +136,16 @@ def main():
     FORCED = []
     states_f = out / "states.jsonl"; actions_f = out / "actions.jsonl"
     seen_lines = set(); states = []; done = set()
+    tried = set()  # (element key, action) already exercised successfully on SOME screen
     if a.resume and states_f.exists():
         states = [json.loads(l) for l in open(states_f)]
         for s in states: seen_lines.update(shape(x) for x in s["lines"])
         if actions_f.exists():
             for l in open(actions_f):
                 r = json.loads(l)
-                if not r.get("error"): done.add((r["state"], r["key"], r["action"]))  # failed actions are retried
+                if not r.get("error"):
+                    done.add((r["state"], r["key"], r["action"]))  # failed actions are retried
+                    tried.add((r["key"], r["action"].split(":")[0] if r["action"].startswith("drag") else r["action"]))
 
     with sync_playwright() as p:
         br = p.chromium.launch(executable_path=CHROME, args=["--no-sandbox", "--disable-gpu"])
@@ -253,6 +256,11 @@ def main():
             for e, action, arg in todo:
                 k = (S["id"], e["key"], action + ("" if arg is None else ":" + str(arg)))
                 if k in done: continue
+                # an element identical (same label, place and role) to one already exercised on another screen is not
+                # re-clicked here; changed or new elements get new keys and are always exercised
+                tk = (e["key"], "drag" if action == "drag" else k[2])
+                if S["depth"] > 0 and tk in tried:
+                    continue
                 rec = {"state": S["id"], "key": e["key"], "label": e["label"], "ctx": e["ctx"], "action": k[2]}; FORCED.clear()
                 try:
                     cur, _ = snap()
@@ -280,6 +288,7 @@ def main():
                 if FORCED: rec["forced"] = True
                 with open(actions_f, "a") as f: f.write(json.dumps(rec, ensure_ascii=False) + "\n")
                 done.add(k)
+                if not rec.get("error"): tried.add(tk)
         if a.variants:
             vf = out / "variants.jsonl"
             for S in states:
