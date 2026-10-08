@@ -79,6 +79,19 @@ TEXT_JS = r"""() => {
 }"""
 
 
+NAMES = set()
+
+
+def shape(line):
+    """A text line with its record data replaced by placeholders, so the same message about another work order, amount
+    or person is not "new design content" (it is still recorded verbatim in actions.jsonl)."""
+    l = re.sub(r"\b[A-Z]\d*-\d+\b", "#WO", line)
+    for n in sorted(NAMES, key=len, reverse=True):  # only people the board itself shows (avatar / technician labels)
+        if n in l: l = l.replace(n, "#NAME")
+    l = re.sub(r"[$]?\d[\d,]*(?:\.\d+)?%?", "#N", l)
+    return l
+
+
 def serve(root):
     class H(http.server.SimpleHTTPRequestHandler):
         def __init__(s, *a, **k): super().__init__(*a, directory=root, **k)
@@ -125,7 +138,7 @@ def main():
     seen_lines = set(); states = []; done = set()
     if a.resume and states_f.exists():
         states = [json.loads(l) for l in open(states_f)]
-        for s in states: seen_lines.update(s["lines"])
+        for s in states: seen_lines.update(shape(x) for x in s["lines"])
         if actions_f.exists():
             for l in open(actions_f):
                 r = json.loads(l)
@@ -178,9 +191,10 @@ def main():
         def add_state(path, depth, fp, t, parent=None):
             sid = len(states); shot = f"screenshots/state-{sid:04d}.png"
             page.screenshot(path=str(out / shot), full_page=False)
-            keys = [e["key"] for e in page.evaluate(ENUM_JS)]
+            _els = page.evaluate(ENUM_JS); keys = [e["key"] for e in _els]
+            NAMES.update(e["label"] for e in _els if e["tag"] == "img" and re.fullmatch(r"[A-Z][a-z]+(?: [A-Z][a-z]+)+", e["label"] or ""))
             s = {"id": sid, "parent": parent, "keys": keys, "depth": depth, "path": path, "fp": fp, "lines": t["lines"], "overlays": t["overlays"], "theme": t["theme"], "shot": shot}
-            states.append(s); seen_lines.update(t["lines"])
+            states.append(s); seen_lines.update(shape(x) for x in t["lines"])
             with open(states_f, "a") as f: f.write(json.dumps(s, ensure_ascii=False) + "\n")
             return sid
 
@@ -189,10 +203,24 @@ def main():
         if not states:
             goto_state(seed); fp, t = snap(); add_state(seed, 0, fp, t)
         known_fp = {s["fp"]: s["id"] for s in states}
+        for st in states:
+            for k in st.get("keys", []):
+                parts = k.split("|")
+                if parts[0] == "img" and re.fullmatch(r"[A-Z][a-z]+(?: [A-Z][a-z]+)+", parts[3]): NAMES.add(parts[3])
+        seen_lines = set(shape(x) for s in states for x in s["lines"])
+        swept_ids = set(); swept_shapes = set()
+        if (out / "sweeps.jsonl").exists():
+            for l in open(out / "sweeps.jsonl"):
+                r = json.loads(l); swept_ids.add(r["state"])
+                if r["state"] < len(states) and not r["mode"].startswith("skipped"): swept_shapes.update(shape(x) for x in states[r["state"]]["lines"])
         qi = 0
         while qi < len(states):
             S = states[qi]; qi += 1
             if S["depth"] >= a.max_depth: continue
+            if S["id"] in swept_ids: pass
+            elif S["depth"] > 0 and set(shape(x) for x in S["lines"]) <= swept_shapes and S.get("overlays") == states[S.get("parent") or 0].get("overlays"):
+                with open(out / "sweeps.jsonl", "a") as f: f.write(json.dumps({"state": S["id"], "mode": "skipped: same kinds of text as screens already swept (only record data differs)", "elements": 0}) + "\n")
+                swept_ids.add(S["id"]); continue
             try: goto_state(S["path"])
             except Exception as e:
                 with open(actions_f, "a") as f: f.write(json.dumps({"state": S["id"], "key": "*", "action": "replay", "error": str(e)[:300]}) + "\n")
@@ -206,7 +234,9 @@ def main():
             if P is not None and S.get("keys"):
                 pk = set(P["keys"]); ck = set(S["keys"])
                 if pk <= ck: els = [e for e in els if e["key"] not in pk]; sweep_mode = "overlay-new-elements-only"
-            with open(out / "sweeps.jsonl", "a") as f: f.write(json.dumps({"state": S["id"], "mode": sweep_mode, "elements": len(els)}) + "\n")
+            if S["id"] not in swept_ids:
+                with open(out / "sweeps.jsonl", "a") as f: f.write(json.dumps({"state": S["id"], "mode": sweep_mode, "elements": len(els)}) + "\n")
+            swept_ids.add(S["id"]); swept_shapes.update(shape(x) for x in S["lines"])
             drops = [e["key"] for e in els if e["drop"]]
             todo = []
             for e in els:
@@ -229,7 +259,7 @@ def main():
                         tip = page.evaluate("(k) => { const e = document.querySelector('[data-crawl-key=\"' + k + '\"]'); if (!e) return ''; let n = e, t = []; for (let i = 0; n && i < 4; i++, n = n.parentElement) { for (const a of ['title','data-tip-text','data-tip','aria-label']) { const v = n.getAttribute && n.getAttribute(a); if (v && !t.includes(v)) t.push(a + '=' + v); } } return t.join(' | ') }", e["key"])
                         rec["tooltip"] = tip
                     if fp != base_fp and action != "hover":
-                        novel = [l for l in t["lines"] if l not in seen_lines]
+                        novel = [l for l in t["lines"] if shape(l) not in seen_lines]
                         if fp in known_fp: rec["to_state"] = known_fp[fp]
                         elif noexp and noexp.search(e["label"] or ""): rec["to_state"] = None; rec["not_expanded_reason"] = "crawled by another worker"
                         elif (novel or t["overlays"] != base_t["overlays"] or t["theme"] != base_t["theme"]) and len(states) < a.max_states:
