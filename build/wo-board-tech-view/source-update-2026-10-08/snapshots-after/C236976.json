@@ -1,0 +1,75 @@
+{
+ "id": 236976,
+ "title": "Owner reassigns the lead from a Tech View row and clears the outgoing lead shifts",
+ "section_id": 13239,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 4,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791232607,
+ "updated_by": 1,
+ "updated_on": 1791281473,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 25,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "<p>Signed in as Admin, viewport at least 1280 px wide<br />Saved Work Orders view reset over the API (display List, no layout keys); no pinned technicians<br />A work order for a unique customer with lead technician A and one line authorized for repair<br />A whole-work-order shift for A on that work order, tomorrow 05:00 shop time<br />A line-level shift for A on the authorized line, tomorrow 07:00 shop time</p>\n",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "<p>Open Work Orders, pick Tech View, and search for the unique customer</p>",
+   "expected": "<p>The row is in A's group</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Hover the row, open More actions and choose Reassign lead technician</p>",
+   "expected": "<p>\"Reassign lead technician\" opens, listing Unassigned and the eligible technicians, with the current lead A selected</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Choose B and click Reassign</p>",
+   "expected": "<p>The prompt \"Clear &lt;A&#039;s full name&gt;'s scheduled shifts?\" opens over the dialog</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Click Clear shifts</p>",
+   "expected": "<p>The prompt and the dialog close, \"Lead technician updated\" shows, and the row is in B's group</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Reload the page cold</p>",
+   "expected": "<p>Tech View reopens with the row in B's group</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  },
+  {
+   "content": "<p>Read A's shifts back</p>",
+   "expected": "<p>The whole-work-order shift is gone and the line-level shift remains</p>\n\n<p>Reassigning from the dialog with Clear removes only the outgoing lead's whole-work-order shift, and the change persists</p>",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": 1
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}

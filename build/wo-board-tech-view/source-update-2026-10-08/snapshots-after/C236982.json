@@ -1,0 +1,68 @@
+{
+ "id": 236982,
+ "title": "Owner returns with Back to Board View and the horizontal and column scroll positions are restored",
+ "section_id": 13236,
+ "template_id": 2,
+ "type_id": 7,
+ "priority_id": 3,
+ "milestone_id": null,
+ "refs": null,
+ "created_by": 1,
+ "created_on": 1791232637,
+ "updated_by": 1,
+ "updated_on": 1791281474,
+ "estimate": null,
+ "estimate_forecast": null,
+ "suite_id": 1,
+ "display_order": 18,
+ "is_deleted": 0,
+ "custom_ai_type": null,
+ "custom_ai_model": null,
+ "custom_automation_type": 1,
+ "custom_atmstatus": 3,
+ "custom_preconds": "Signed in as Admin, viewport at least 1280 px wide\nThe admin's saved Work Orders view is reset over the API (display List, no layout keys)\nTwelve work orders with no lead for a unique customer, each with a line, and the customer has no pinned note\nMore technician columns than fit the viewport",
+ "custom_steps": null,
+ "custom_testrail_bdd_scenario": null,
+ "custom_expected": null,
+ "custom_steps_separated": [
+  {
+   "content": "Open Work Orders, pick Board View, and search for the unique customer",
+   "expected": "Board View renders with the twelve cards in Unassigned",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Scroll the board sideways, and scroll the Unassigned column down",
+   "expected": "Note the first visible technician column and the first visible Unassigned card (neither is the first)",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Click a visible card",
+   "expected": "The work order's lines page opens",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Press browser Back",
+   "expected": "Board View renders, data-scroll-restore becomes \"applied\", and the first visible technician column and Unassigned card are the ones noted",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  },
+  {
+   "content": "Open a visible card again, then open Work Orders from the header link",
+   "expected": "Board View opens at top-left (no horizontal offset, Unassigned at its first card) with data-scroll-restore \"none\"\n\nBack restores both scroll axes of Board View; a fresh navigation starts at the top-left",
+   "additional_info": "",
+   "refs": "",
+   "markdown_editor_id": null
+  }
+ ],
+ "custom_mission": null,
+ "custom_goals": null,
+ "ai_automated_test": null,
+ "labels": []
+}

@@ -3146,3 +3146,24 @@ Rule 65: content changed in 5 cases flagged Automated (C88594, C88609, C88612, C
 (read back; `dashboards/full-update-2026-10-07/applied/run525-sync.json`).
 Other people's Dashboard cases — QA lead 2026-10-07: "Leave them" (not edited): C137997, C137998, C137999 (Vladimir Tomovic,
 2026-09-28) and C327128 (Vladimir Tomovic, 2026-10-06).
+
+## 2026-10-08 — WO Board & Tech View full update (group 13204) — written to TestRail
+130 of ours rewritten in full + 35 new; run 498 = 165 tests. Record: `wo-board-tech-view/source-update-2026-10-08/FULL-UPDATE-2026-10-08.md`.
+Not build-verified — the QA lead starts the build verification session on sv10043.qa.shopview.com.
+Candidate PO / design questions (Sasha Grosman PRD owner; Chris Ward; Branko Cicovic design) — **NOT sent** (Rule 66: sent last):
+
+| # | Question (plain) | For |
+|---|---|---|
+| W-1 | The display switcher tooltips in the design read "Table / By Lead Tech / Board"; the spec says List / Tech View / Board View. Which words ship? | Branko / Sasha |
+| W-2 | Is Lead Technician meant to be dropped from Tech View's column choices (the rows are already grouped by it)? Should Number, Unit # and Status be locked on there as on Board View? | Sasha |
+| W-3 | Imported work orders: the 24 Sep answer and the tech plan keep Imported out of the board views, so the spec's Imported tooltip can never show there. Should the rule go into the spec, and where should a user see that tooltip? | Sasha |
+| W-4 | Section 9 says Invoiced/Paid "drag not offered", but S4-N2 lets them be reordered within their technician. Which wins? (Cases follow S4-N2.) | Sasha |
+| W-5 | Should the board minimap and the position numbers on cards be in the spec? (Engineering builds the minimap, leaves numbers out.) | Chris |
+| W-6 | Notifications: "same as the work order page" means none is sent on a lead change — confirm. Where does a user see the work-order-level lead-change history entry? | Chris |
+| W-7 | Analytics: field snapshot once per session (spec) or once per browser tab (a Jira comment)? How is "density distribution" reported? | Chris / Milos Vasic |
+| W-8 | Tech plan vs spec: the plan deletes a shift that is under way, the spec trims it at the moment of the change; the plan still locks Declined, the spec lets it move. Engineering to confirm the build follows the spec. | Engineering |
+| W-9 | Housekeeping: the Review Decisions page still lists unpin position and cross-location pins as open (answered 24 Sep); SV-10044–10047 and SV-10049 still carry old wording (muted groups, desktop only, old empty text, three "open" statuses, density on List). | Sasha / Chris |
+| W-10 | Not in the spec, not authored: dragging on a touch tablet at 1024 px or wider; layout choices made while visiting a shared link being saved. Decide whether they need a requirement. | Chris |
+
+Design-vs-spec differences (cases follow the spec; full list in the record's notes): pin limit 5 vs 3 · Declined locked in the design · drag toast "assigned to …" with Undo vs "Lead technician updated/removed" · Row height Small/Medium/Large and Card size Compact/Detailed vs Density Compact/Regular/Comfortable · no Fields to display picker · empty texts ("No work orders assigned", "No work orders match these filters") · "N open" counts every status · Unassigned goes to the bottom of Unassigned · the design opens collapsed groups on a search match · no keyboard design (Story 11 waits on it).
+Design reading not done line by line (needs the QA lead's OK under Rule 119): the design tool's own code (`support.js`), the design-system component bundle, icon and font files, four avatar photos.
