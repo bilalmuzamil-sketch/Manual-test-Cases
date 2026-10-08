@@ -44,3 +44,4 @@
   - Source, quotes and marker are unchanged; the display check is OK.
 - **8 Oct 2026, doc v3:** the API ids in Part 2 are now defined brace names; the case links to https://docs.google.com/document/d/1ExEWr18ID9Iktvy9USwZi9Zfe7jb-FymUxSQ2hbY5Ns/edit. v2 (1IKNq5uH…) is superseded and not trashed.
 - **8 Oct 2026, plainer wording (QA lead: "still … less friendly"):** each precondition now says what must exist, then names it. Steps are: open, approve, wait without refreshing, refresh. The expected results are renumbered to Steps 2, 3 and 4. The doc's Part 2 still says "test step 1 / test step 2" and is updated once the QA lead approves the wording.
+- **8 Oct 2026, sixth amendment (PERMANENT, friendly phrasing):** doc v4 https://docs.google.com/document/d/1MrEUYh5KA0JD1QkiaN28zYhJXip4j0egjm_1BBgX7L8/edit is phrased the same way, and its Part 2 test steps 1–4 match the case. v3 (1ExEWr18…) is superseded and not trashed.

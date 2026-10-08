@@ -49,6 +49,11 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
   and Expected use only placeholders; every plain expected result starts with **"Step n:"**; every case has **its own
   ZZAUTOTEST data**, never shared. Worked example: C96950 in
   `build/wo-board-tech-view/source-update-2026-10-08/HANDOVER-TO-BUILD-VERIFICATION-CASE-LAYOUT-2026-10-08.md`.
+- **🔴 FRIENDLY PHRASING — PERMANENT, 2026-10-08 (sixth amendment):**
+  - Each precondition is one plain sentence: say what must exist, then name it ("… In this test it is called {Part} (for example …).").
+  - Each step is one simple action, in the order a person does it.
+  - A "don't" the test depends on gets its own step ("Do not refresh the page.").
+  - Example: C425784.
 - **🔴 PLACEHOLDERS AND EXAMPLES — PERMANENT, 2026-10-08 (fifth amendment):**
   - Placeholders go in **{} braces with plain names** ({Location}, {Part}, {Work order}, {Line}), not [square brackets].
   - Every value that is only an illustration is written **"(for example …)"**, never as if it exists in the app.

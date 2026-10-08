@@ -2782,7 +2782,15 @@ The QA lead reviewed C425784 on 8 Oct 2026: *"the preconditions are hard coding 
    - Steps and the plain expected results use only the brace names.
 2. **Example values are always marked as examples:** "(for example ZZAUTOTEST-SV4802-01)". A value is never written as if the record already exists in the app. Only the values the test really depends on are stated as fixed (e.g. "showing \"Needs Approval\"", "quantity 1", "with stock on hand").
 3. **This applies to** the Preconditions, the Steps, the plain expected-result lines and both parts of the setup doc. In the doc, every brace name is defined before use, including the ids Part 2 passes to API calls ({Work order id}, {Line id} …); never an undefined {…} in a path (QA lead, 8 Oct: "you should follow the same for the file you create and attach"). The exact quotes from the source are never changed (Rule 113).
-   Worked example: C425784 with https://docs.google.com/document/d/1ExEWr18ID9Iktvy9USwZi9Zfe7jb-FymUxSQ2hbY5Ns/edit.
+   Worked example: C425784 with https://docs.google.com/document/d/1MrEUYh5KA0JD1QkiaN28zYhJXip4j0egjm_1BBgX7L8/edit.
+
+### Amendment 2026-10-08 (sixth) — plain, friendly phrasing of Preconditions and Steps (QA lead: "Yes permanent")
+The QA lead reviewed C425784 on 8 Oct 2026: *"Still the preconditions and steps are less friendly to understand"*. He approved the rewrite ("it looks better"), and confirmed **PERMANENT** after the rule was stated back. Every case and setup doc written or touched:
+1. **Each precondition is one plain sentence that says what must exist first, then gives it its name**, e.g. "An inventory part that has stock on hand. In this test it is called {Part} (for example …)." Never start a line with a bare "{Name}:" label. The opening line says who you are signed in as and that everything is at one location.
+2. **Each step is one simple action, in the order a person does it**, starting from where the tester actually begins (e.g. "Open {Work order} and go to its Lines tab."). No conditions squeezed into a step.
+3. **An important "don't" gets its own step** when the test depends on it (e.g. "Wait a few seconds. Do not refresh the page.").
+4. The expected results keep "Step N:" pointing at the step that produces each result. Source, quotes and marker are untouched.
+Worked example: C425784 (Steps: open, approve, wait without refreshing, refresh).
 
 ### 🔒 THE STANDARD IS LOCKED — CHANGE CONTROL
 
