@@ -16,3 +16,7 @@
   on 10-05) — `/api/sso/check` 401, and the sign-in page sends the browser to Google sign-in. So the cookie has expired; it is not a branch fault.
   Needs a fresh sv_sso_session from the QA lead (stored only in /tmp, never committed).
 - Build version: not read yet (needs sign-in).
+- **2026-10-08 (later): READY.** Fresh sign-in supplied by the QA lead (kept in /tmp only). Quick-login Admin works: administrator role,
+  57 permissions. **Build v26.40.8-7a95011.** The Work Orders screen already shows the new display switch (list / tech-grouped / board icons) and a
+  board grouped by lead technician ("Unassigned" column) — evidence build-verify-2026-10-08/wo-list-first-look.txt/png.
+  **Build verification NOT started** (QA lead: "get ready but do not start now"). Still open with the QA lead: re-check sources first, or not (Rule 81).
