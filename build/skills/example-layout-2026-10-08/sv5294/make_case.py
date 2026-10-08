@@ -4,10 +4,9 @@ from mr_lib import api
 D = 'build/skills/example-layout-2026-10-08/sv5294'
 DOC = sys.argv[1] if len(sys.argv) > 1 else '#'
 pre = (f'<p><strong><a href="{DOC}">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul>'
- '<li>You are signed in as an Owner or Admin, at a location called {Location-A} (for example Staging Heavy Duty - 9919). Everything below is at {Location-A}.</li>'
- '<li>A work order made for this test. In this test it is called {Work-order-A}.</li>'
- '<li>{Work-order-A} has one approved line. In this test it is called {Line-A}.</li>'
- '<li>A part has been requested on {Line-A} with the Source set to Found. In this test it is called {Part-A} (for example part number ZZAUTOTEST-SV5294-01, quantity 1).</li>'
+ '<li>You are signed in as an Owner or Admin at {Location-A} (for example Staging Heavy Duty - 9919).</li>'
+ '<li>Work order {Work-order-A} has an approved line, {Line-A}.</li>'
+ '<li>Part {Part-A} (for example ZZAUTOTEST-SV5294-01) is requested on {Line-A} with Source "Found".</li>'
  '<li>{Part-A} shows a Pick button.</li></ul>')
 steps = ('<ol><li>Open {Work-order-A} and go to its Lines tab.</li>'
  '<li>Find {Part-A} on {Line-A}.</li>'

@@ -54,3 +54,4 @@
   - Sources read in full: SV-5294 (OBSOLETE, duplicate of SV-5293), SV-5293 (Done; Expected "Part is picked"), SV-6952 (clone; Save & Close error; developer: Part Number and Description must be filled before Source). Expected results quote SV-5293 and SV-5294 verbatim.
   - Setup doc (Part 1 manual tester, Part 2 Claude session), in the public folder: https://docs.google.com/document/d/1-Y9ue-2HhusE9yR5k2cICF8o_OyDbR6tI4ptmjrmk8Q/edit
   - Body, script and doc source in `sv5294/`. A first add_case attempt answered 400 (the required automation fields were missing); the section it had already created is the one used.
+  - QA lead 8 Oct ("What do you mean 'in this test it is called' … Keep it simple"): Preconditions shortened to name-in-place lines ("Work order {Work-order-A} has an approved line, {Line-A}."). Snapshots before/after in sv5294/. Display check OK. One-time or permanent: asked.
