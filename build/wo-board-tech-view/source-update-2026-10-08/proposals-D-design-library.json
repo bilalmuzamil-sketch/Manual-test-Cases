@@ -1,0 +1,158 @@
+{
+ "updates": [],
+ "new": [
+  {
+   "key": "NEW-D-01",
+   "section_id": 13240,
+   "title": "Tech View Columns menu shows a count, Show all and Reset to default",
+   "preconds": [
+    "Sign in to the Work Orders build under test as a user whose role has Work Orders view. To check: Settings > Roles & Permissions > open the role > Work Orders (an Owner or Admin role has it).",
+    "Use a desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.",
+    "In the top bar, pick the location you will test in (e.g. \"Heavy Duty\") and stay in it for the whole case.",
+    "A brand-new user who has never changed any Work Orders columns (e.g. \"Nora New\", created under Settings > Staff with an Admin role), signed in in this browser for the whole case.",
+    "At least 1 technician is eligible at this location (e.g. \"Esther Howard\"). A staff member is eligible when Clockable is on, the staff record is Active, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:",
+    "↳ Settings > Staff > add a staff member, enter a first and last name (e.g. \"Esther Howard\") and an email.",
+    "↳ Pick a role that is not Office or Time Clock User (e.g. \"Technician\"), turn Clockable on, keep the record Active, enrol the staff member at this location, then Save.",
+    "Create a customer used only by this case so a search shows only its work orders: Customers > New Customer, name (e.g. \"ZZ Board Test Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.",
+    "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
+    "↳ On the work order page set Lead Technician to \"Esther Howard\".",
+    "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
+   ],
+   "steps": [
+    "As Nora New, open Work Orders.",
+    "Click the All tab.",
+    "Type the case customer's name (e.g. \"ZZ Board Test Co\") in Search.",
+    "In the display switcher at the right of the toolbar, click Tech View (in the design its tooltip reads \"By Lead Tech\").",
+    "Write down every column heading in Esther Howard's group.",
+    "Click the Columns button in the toolbar (in the design its tooltip reads \"Columns\").",
+    "Read the menu heading, the count beside it and the two buttons at the bottom of the menu.",
+    "Untick one ticked column (e.g. \"Created on\").",
+    "Read the count and the column headings in Esther Howard's group.",
+    "Click Show all.",
+    "Read the count and the column headings.",
+    "Click Reset to default.",
+    "Read the count, the column headings and the Reset to default button."
+   ],
+   "results": [
+    "Step 7: the menu is headed \"Columns\" with a count in the form \"<ticked> of <offered> shown\" (e.g. \"10 of 10 shown\"), and the bottom of the menu offers \"Show all\" and \"Reset to default\". Reset to default is greyed out and cannot be clicked, because Nora has not changed anything yet.",
+    "Step 9: the count goes down by exactly one (e.g. from \"10 of 10 shown\" to \"9 of 10 shown\") and the unticked column disappears from the Tech View rows at once, without reloading the page.",
+    "Step 11: Show all ticks every column the menu offers, the count reads \"<offered> of <offered> shown\" (e.g. \"10 of 10 shown\") and every one of them is a heading in the rows.",
+    "Step 13: Reset to default puts back exactly the columns written down in step 5 (Tech View's starting columns, the same as List's default columns) and the Reset to default button is greyed out again.",
+    "Step 7: columns that are always shown (for example Number and Status) are not listed in the menu and stay in the rows whatever is ticked. The design labels and the \"<n> of <m> shown\" wording come from the design system: write down the words you see, a different label alone is not a fail."
+   ],
+   "source": "Epic SV-10043; story SV-10048 (Story 5, Fields to display (Board View) and columns (Tech View)); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S5-R1, S5-R4, read 8 Oct 2026. Design export of 8 Oct 2026 (Branko Cicovic, Claude Design project 787fef1a, Work Orders.dc.html) renders its toolbar through the design system bundle _ds/shopview-design-system-fac6efcf…/_ds_bundle.js: the Columns menu (columns-dropdown.jsx, bundle L349-L659) shows the \"Columns\" heading, \"<n> of <m> shown\", \"Show all\" and \"Reset to default\" (disabled while the default set is shown), and the Work Orders screen hides the always-on columns from it (bundle L11935-L11939, hideLocked). Design crawl 8 Oct, Tech View state 0, Columns click: \"Columns | 10 of 10 shown | Show all | Reset to default\". Design-only details (count, Show all, Reset to default, greyed state) are cited to the design; the starting set comes from the PRD. Source-verified 8 October 2026; not yet build-verified.",
+   "quotes": [
+    [
+     "S5-R1",
+     "Tech View has its own optional-column selection, separate from List. Changing columns in Tech View never changes List, and changing columns in List never changes Tech View."
+    ],
+    [
+     "S5-R4",
+     "Until the user changes Tech View’s columns, Tech View shows the current production List default columns."
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+   "why": "Design-only controls of the Tech View column chooser (design system Columns menu: count, Show all, Reset to default greyed at default, always-on columns not listed) that no case checks; ties Reset to default to PRD S5-R4 starting columns and S5-R1 own selection. Rule 115 design coverage."
+  },
+  {
+   "key": "NEW-D-02",
+   "section_id": 13237,
+   "title": "A technician with no photo shows initials in headers and avatar groups",
+   "preconds": [
+    "Sign in to the Work Orders build under test as a user whose role has Work Orders view. To check: Settings > Roles & Permissions > open the role > Work Orders (an Owner or Admin role has it).",
+    "Use a desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher.",
+    "In the top bar, pick the location you will test in (e.g. \"Heavy Duty\") and stay in it for the whole case.",
+    "At least 2 technicians are eligible at this location and have no profile photo (e.g. \"Theresa Webb\" and \"Jenny Wilson\"; a newly added staff member has no photo). A staff member is eligible when Clockable is on, the staff record is Active, the role is neither Office nor Time Clock User, and they are enrolled at this location. To add one:",
+    "↳ Settings > Staff > add a staff member, enter a first and last name (e.g. \"Theresa Webb\") and an email.",
+    "↳ Pick a role that is not Office or Time Clock User (e.g. \"Technician\"), turn Clockable on, keep the record Active, enrol the staff member at this location, then Save.",
+    "Create a customer used only by this case so a search shows only its work orders: Customers > New Customer, name (e.g. \"ZZ Board Test Co\"), add an asset with a unit number and year/make/model (e.g. unit \"TRK-118\", \"2022 Freightliner M2\"), then Save.",
+    "Create the work order: Work Orders > New Work Order > pick the case customer (e.g. \"ZZ Board Test Co\") and its asset > create it, and write down its number (e.g. \"S1-702\").",
+    "↳ On the work order page set Lead Technician to \"Theresa Webb\".",
+    "↳ On the Lines tab click New Line, enter a name (e.g. \"Brake inspection\") and labor hours (e.g. 2.0), and save the line.",
+    "↳ Give the line to \"Jenny Wilson\" (Edit Line > Technicians, pick Jenny Wilson, save) so the work order has a line technician besides the lead.",
+    "↳ Click the line's Approve (check) button so the work order status reads Approved."
+   ],
+   "steps": [
+    "Open Work Orders.",
+    "Click the All tab.",
+    "Type the case customer's name (e.g. \"ZZ Board Test Co\") in Search.",
+    "In the display switcher at the right of the toolbar, click Tech View (in the design its tooltip reads \"By Lead Tech\").",
+    "Read the avatar beside Theresa Webb's name in her group header.",
+    "Click the Columns button in the toolbar (in the design its tooltip reads \"Columns\").",
+    "Tick Assigned Techs (in the design the column reads \"Assigned Tech\").",
+    "Read the avatar group in the work order's row.",
+    "In the display switcher click Board View (in the design its tooltip reads \"Board\").",
+    "Read the avatar beside Theresa Webb's name in her column header.",
+    "Click Fields to display in the toolbar.",
+    "Turn line technicians on.",
+    "Read the avatar group on the work order's card."
+   ],
+   "results": [
+    "Steps 5 and 10: Theresa Webb's header shows a round avatar holding her initials \"TW\" (first letter of the first name, then first letter of the last name), next to her name and the count.",
+    "Steps 8 and 13: the avatar group shows \"TW\" first and \"JW\" for Jenny Wilson, each in its own round avatar.",
+    "Nowhere is an empty circle, a blank space or a broken-image icon shown in place of an avatar."
+   ],
+   "source": "Epic SV-10043; story SV-10045 (Story 2, Tech View) and SV-10046 (Story 3, Board View) and SV-10050 (Story 7, line technicians); PRD Confluence 845185030, edited 7 Oct 2026 (status line \"PRD v33\"), S2-R12, S3-R12, S7-R1, read 8 Oct 2026. The PRD requires an avatar but does not say what it shows without a photo; the design does: design export of 8 Oct 2026 (Work Orders.dc.html) renders header avatars through SVAvatarFix and avatar groups through SVTechStack from the design system bundle (_ds_bundle.js L9963-L10013 StaffAvatar: photo, otherwise initials, also when the photo fails to load; L10015-L10096 TechStack). Design crawl 8 Oct shows initials avatars such as \"TW\", \"JW\", \"KW\" beside photo avatars. Design-only detail, cited to the design. Source-verified 8 October 2026; not yet build-verified. Design: the Work Orders design export uploaded by the QA lead on 8 Oct 2026 (on-screen labels and the design-only detail in this case).",
+   "quotes": [
+    [
+     "S2-R12",
+     "Each group header shows the technician’s name, avatar, and a count of the work orders currently shown in that group, after the filter view and filters are applied, so the count always matches the rows listed."
+    ],
+    [
+     "S3-R12",
+     "Each column header shows the technician’s name, avatar, and a count of the work orders currently shown in that column, after the filter view and filters are applied, so the count always matches the cards listed."
+    ],
+    [
+     "S7-R1",
+     "Board View cards (when the line technicians field is on) and a new optional Assigned Techs column in Tech View show a compact avatar group: the lead technician plus the distinct technicians assigned to work order lines. List does not get this column."
+    ]
+   ],
+   "marker": "AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build",
+   "why": "Design-only detail (design system StaffAvatar/TechStack): what an avatar shows for a technician without a photo; supports PRD S2-R12, S3-R12, S7-R1 which only say \"avatar\". Rule 115 design coverage."
+  }
+ ],
+ "retire": [],
+ "notes": [
+  "WHAT RENDERS: the Work Orders design (Work Orders.dc.html lines 6-15) loads support.js, colors_and_type.css, components.css, the top-level lucide-icons.js and _ds_bundle.js, not the loose components/sv-components.jsx, components/tokens.js, index.js or the DS lucide-icons.js. The bundle was built from newer versions of sv-components.jsx, index.js and lucide-icons.js than the copies beside it (sha256 first 12: sv-components.jsx 2e7f81b89b04 on disk vs ed35b760e730 in the bundle header; index.js 5978c692cf56 vs d1ca3f5bd1fe; lucide-icons.js c2856ffa4ce2 vs 2028bf8ec4b7; tokens.js and theme-toggle.js match). Tech View and Board View take their header avatars (SVAvatarFix), avatar groups (SVTechStack), badges (SVBadgeFix), filtered-empty state (SVEmptyState) and the whole toolbar (SVWorkOrdersPageFix = WorkOrdersScreen) from the bundle, so the bundle is what a tester of the design sees.",
+  "KEYBOARD (Story 11), correction to the note in proposals-C ('no keyboard or focus behaviour exists in the design, only the ⌘K search shortcut'): the page's own code has only ⌘K (Work Orders.dc.html L600-L605), but the design-system components it uses define keyboard behaviour. Escape closes the filter dropdowns, the Columns menu and the Row height / Card size menu (Popover, _ds_bundle.js L1571-L1573) and the user menu (L10389-L10396). Moving keyboard focus out of an open dropdown closes it (L1574-L1591). Dropdown options are real buttons reached with Tab and ticked with Space or Enter (components.css L570-L571, _ds_bundle.js L5204-L5207). Tab from an open filter chip lands on its first option (L11015-L11016). Dialogs close on Escape, on a click outside and with the X labelled 'Close' (L1134-L1150, L1172-L1176). Tooltips built with SV.Tooltip also show on keyboard focus (components.css L424-L431). Gaps in the same components: Columns menu options are mouse-only (L582-L585), the clear (x) on a filter chip is mouse-only (L5162-L5177), avatar-group names show on mouse hover only (L10051-L10078), and the library table's row '…' button ('Reassign Lead Tech' / 'Assign Tech') stays invisible until the mouse hovers the row (L11586-L11604). Consistent with NEW-C-08 ('Escape closes it'). PO question PQ-D2.",
+  "NEW-B-03 (S4-R30, closing the clear-shifts prompt): if the prompt is built on the design-system Modal, 'closing the prompt' also includes pressing Escape and clicking outside the prompt, besides the X (_ds_bundle.js L1134-L1150). Suggest adding two steps to NEW-B-03 (press Escape at the prompt; click outside the prompt), each expected to call the change off like Cancel. No competing case written here.",
+  "C96990 (S6-R4, Compact text size): the design-system type scale is body text 14px, 'Dense' 13px for table body text, and 'Minimum text size 12px' (README.md L234-L248). The design's Small row height uses 13px text and 20px avatars (_ds_bundle.js L11360-L11365, Work Orders.dc.html L1292). Whether 13px breaks S6-R4 depends on which size is 'the application's minimum body text size': PQ-D1.",
+  "DENSITY (adds to the A and B notes): in the design, List's Row height 'Large' also adds '<clocked> / <estimated> hrs' under the progress bar (_ds_bundle.js L11487-L11513; crawl list state 4, Large: '0.8 / 5.3 hrs …'). So the design's density changes the values shown (against S6-R6), on a List control the PRD says List does not get. Row heights are Small 36px / Medium 48px / Large 64px (L11626-L11630). Card size offers Compact / Detailed (L11632), with tooltip 'Card size' on Board and 'Row height' elsewhere (L11803). The density button is hidden in a Details view (L11902). C96988 and C96955 already assert the PRD.",
+  "COLUMNS MENU (adds to A's Tech View note): menu texts 'Columns', '<n> of <m> shown', search 'Find a column', no-match 'No columns match', 'Show all', and 'Reset to default' (greyed out when already default). The always-on columns On Site, Status, Number and Customer are hidden from the Work Orders menus (hideLocked) or shown with a padlock and the tooltip 'Always shown' elsewhere (_ds_bundle.js L349-L659, L11935-L11939). The Columns button is hidden on Board View and in Details (L11921, L11929). Proposed NEW-D-01 covers the Tech View menu controls.",
+  "ASSIGNED TECHS DEFAULT (adds to B): the design starts Tech View with Assigned Tech ON (crawl tech state 0 '10 of 10 shown', and the column shows without touching the chooser; COLUMN_DEFS techs on:true, _ds_bundle.js L423-L426). PRD S7-R7 says it 'stays optional and is added through the column chooser', and S5-R4 says Tech View starts with List's default columns, which do not include it: PQ-D4. C96979 and NEW-B-09 check the PRD side.",
+  "EMPTY STATE (adds to A's C96918): the design-system empty state has three texts. With search text and filters: 'No results for “<text>”' + 'Try a different search term or remove a filter.' With search text only: 'No results for “<text>”' + 'Check the spelling, or search by work order number, customer, unit or VIN.', with no clear button. With filters only: 'No work orders match these filters' + 'Try removing a filter to widen your results.' + 'Clear all filters' (_ds_bundle.js L3883-L3962). In Tech View and Board View the crawl shows the filters-only text without the 'Clear all filters' button (tech and board state 2). PRD S1-N1 fixes 'No work orders match your filters' + Clear filters. PQ-D3 asks about the search-only case.",
+  "AVATAR GROUP (confirms B's C96995): TechStack shows up to 5 avatars. With more, it shows 4 avatars then '+N' (N = total − 4). Hovering an avatar shows its name, and hovering '+N' lists the hidden names separated by commas. A work order with no technicians shows '-' (a dash), not a blank (_ds_bundle.js L10015-L10096). The lead comes first (crew(), L10268-L10273). For C96996 (S7-N1 'blank'), worth one line telling the tester that a dash counts as blank.",
+  "AVATAR WITHOUT A PHOTO: StaffAvatar shows the photo where one exists, otherwise the initials (first letters of the first two words of the name), also when the photo fails to load; the photo carries the full name as its hover title (_ds_bundle.js L9963-L10013; SKILL.md L134). The PRD says only 'avatar'. Proposed NEW-D-02 covers this design-only detail.",
+  "DISPLAY SWITCHER (known): buttons 'Table', 'By Lead Tech', 'Board' ('Details' when enabled), each with tooltip and screen-reader name equal to its label, grouped as 'View', with the active one marked pressed (_ds_bundle.js L10098-L10188). A 'Rows' / 'Board' layout switch exists in the library (L10190-L10231) but was not seen on the page.",
+  "FILTER BAR (Technician and Department are out of scope per PO, recorded in proposals-A): the Technician and Department chips show only outside Table (_ds_bundle.js L11892). Technician options are the technicians on screen, A–Z, and the chip filters by lead technician only (L11798-L11802, L11351). The Status chip shows only on the All tab (L11892, today's List behaviour). Filters are remembered per tab and the search text is shared by tabs (L11756-L11775). In the design, Assigned to me = the signed-in user is on the crew or is the service advisor (L11334-L11336). The PRD defers to the existing rule (S1-R13), so this is not asserted.",
+  "THEME: the design chrome has Light / Dark in the user menu (_ds_bundle.js L10613-L10630), every design-system token has a dark value, and with no saved choice the theme follows the computer's light/dark setting, also live (theme-toggle.js L1-L53; colors_and_type.css L467-L570). The PRD says nothing about theme: PQ-D5.",
+  "CLOCKED IN: the design's List and Tech View 'Clocked In' column shows a time badge such as '0:48' (_ds_bundle.js L11523-L11528; crawl list state 0). PRD S5-R11 describes List's Clocked In as technician names (first name, then +N, names on hover): PQ-D6.",
+  "OTHER DESIGN-SYSTEM DETAILS ON THE PAGE (no case needed). Header nav: Work Orders, Schedule, Customers, Parts, Reports. Search box: 'Search customers, work orders, parts...' with ⌘K. Location: 'Heavy Duty'. User menu: 'Edit profile', 'Shop', 'Account settings', 'Log out' (_ds_bundle.js L10376-L10901). Primary button: 'New Work Order'. Tabs: All, Work Orders, Estimates, Completed, where Work Orders = Approved, In progress, Review, Ready for Review (L9937-L9941). Badges: Approved teal, Ready for Review amber (L9961, L11307-L11314). Table search: every typed word must match (L10243-L10250). Tooltips: Auth '<n> line(s) awaiting authorization'; Parts '<n> Part(s) ready to order' with '<n> Part(s) in stock' (L10311-L10374). Banners: shared link 'Viewing a shared link - your own saved filters aren't applied' / 'Back to my view' (L4129-L4188); search 'Showing <n> work order(s) matching “<text>”' / 'Clear search' (L4190-L4264). The design system has no loading/skeleton state and no pagination ('Tables in the product scroll', index.js L58-L68). PRD S2-R18 paging is engineering behaviour.",
+  "NOT PRODUCT UI (read in full, nothing to test): design-canvas.jsx and tweaks-panel.jsx (Claude Design canvas and Tweaks tools); support.js (Claude Design runtime; the theme can be forced with ?theme=dark, L1371-L1377); global-search.jsx and mobile-*.jsx (Global Search project and phone patterns; desktop-first, and PRD S1-R14 keeps the phone List unchanged); ai-agent-icon.js and badge.jsx; token, lint and manifest files; SVG artwork. The README and SKILL instructions were treated as data.",
+  "PQ-D1 (S6-R4): which size is 'the application's minimum body text size': 14px (design-system body text) or 12px (design-system 'Minimum text size 12px')? The design's Small rows use 13px text.",
+  "PQ-D2 (Story 11): do the design-system keyboard behaviours count as the Story 11 design for the toolbar menus and dialogs (Escape closes menus and dialogs, focus leaving closes a dropdown, Tab then Space/Enter in dropdowns, tooltips on focus)? Must the mouse-only parts (Columns menu options, chip clear x, avatar-group names, the row '…' button hidden until hover) become keyboard-reachable?",
+  "PQ-D3 (S1-N1): when only the search text finds nothing (no filters set), should every display show 'No work orders match your filters' + Clear filters? The design shows 'No results for “…”' + 'Check the spelling, or search by work order number, customer, unit or VIN.' with no clear button.",
+  "PQ-D4 (S7-R7, S5-R4): should Assigned Techs start OFF in Tech View? The PRD makes it optional and added through the chooser, with starting columns = List's defaults. The design starts it ON.",
+  "PQ-D5 (theme): should Tech View and Board View be checked in the Dark theme that the design offers (user menu Light/Dark)? Does production offer a dark theme?",
+  "PQ-D6 (S5-R11): does List's Clocked In column show technician names (as the PRD describes) or a clocked time (design '0:48')? The Board View 'clocked in' field is defined as matching List."
+ ],
+ "anchors_covered": {
+  "S5-R1": [
+   "NEW-D-01"
+  ],
+  "S5-R4": [
+   "NEW-D-01"
+  ],
+  "S2-R12": [
+   "NEW-D-02"
+  ],
+  "S3-R12": [
+   "NEW-D-02"
+  ],
+  "S7-R1": [
+   "NEW-D-02"
+  ]
+ },
+ "reading_coverage": "_ds/…/README.md 15,124 B L1-346 100%; SKILL.md 12,355 B L1-236 100%; _adherence.oxlintrc.json 19,663 B L1-670 100%; _ds_bundle.js 408,000 B L1-12085 100% (19 source sections); _ds_manifest.json 60,172 B (1 line) 100%, read as 3,462 pretty-printed lines, every entry (33 cards, 2 themes, 36 fonts, 2 brand fonts, 455 tokens); colors_and_type.css 35,578 B L1-578 100%; components.css 39,290 B L1-597 100%; components/sv-components.jsx 25,329 B L1-610 100%; components/tokens.js 8,794 B L1-139 100%; index.js 8,068 B L1-163 100%; _ds/…/lucide-icons.js 15,878 B L1-32 100% (long lines folded, all characters); theme-toggle.js 1,870 B L1-53 100%; support.js 69,150 B L1-1911 100%; lucide-icons.js (top level) 15,108 B L1-32 100%; assets/symbol-primary.svg 1,459 B L1-5 100%; assets/icons/lucide/columns-3.svg 335 B L1-5 100%; assets/icons/lucide/search.svg 294 B L1-4 100% (the only two SVGs in that folder). Comparators: PRD CONFLUENCE-845185030 (edited 7 Oct) 59,254 B L1-640 100%; WORKER-BRIEF.md 15,374 B L1-177 100%; crawl actions/states (list, tech, board) and proposals A/B/C were searched by script, not read whole. Fonts (36 .ttf) are binary and not text."
+}

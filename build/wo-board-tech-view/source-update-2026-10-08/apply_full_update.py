@@ -35,7 +35,7 @@ def expected(p):
     if stamp: out += f"<p>{esc(stamp)}</p>"
     return out + f"<p>{esc(p['marker'])}</p>"
 problems = []; plans = []; news = []
-for f in sorted(glob.glob(f"{H}/proposals-*.json")):
+for f in sorted(glob.glob(os.environ.get("PROPOSALS", f"{H}/proposals-*.json"))):
     d = json.load(open(f))
     for kind, items in (("upd", d.get("updates", [])), ("new", d.get("new", []))):
         for p in items:
@@ -56,7 +56,7 @@ for f in sorted(glob.glob(f"{H}/proposals-*.json")):
             else: news.append((p["key"], int(p["section_id"]), payload, p.get("why", "")))
 ids = [c for c, _, _ in plans]
 if len(ids) != len(set(ids)): problems.append("a case is proposed twice")
-ours = {json.load(open(f))["id"]: json.load(open(f)) for f in glob.glob(f"{H}/snapshots-before/C*.json")}
+ours = {json.load(open(f))["id"]: json.load(open(f)) for f in glob.glob(os.environ.get("SNAPS", f"{H}/snapshots-before") + "/C*.json")}
 for c in ids:
     if c not in ours or ours[c]["created_by"] != 3: problems.append(f"C{c}: not ours or unknown")
 missing = [c for c, v in ours.items() if v["created_by"] == 3 and c not in ids]
@@ -81,5 +81,5 @@ if APPLY:
         ok = all((a.get(k) or "") == v for k, v in payload.items() if k.startswith("custom_p") or k in ("title", "custom_steps", "custom_expected"))
         log.append({"op": "add", "key": key, "case": f"C{r['id']}", "section": sec, "verified": ok, "why": why})
         print(("OK " if ok else "MISMATCH ") + f"C{r['id']} {key}")
-    json.dump(log, open(f"{H}/applied/apply-log.json", "w"), indent=1)
+    json.dump(log, open(os.environ.get("APPLY_LOG", f"{H}/applied/apply-log.json"), "w"), indent=1)
     print("verified", sum(x["verified"] for x in log), "of", len(log))
