@@ -3451,6 +3451,14 @@ down is the failure this section exists to prevent.
 ---
 
 
+### §U.0b addendum — the Technician login silently ran as Admin (2026-10-08, SV-10599)
+
+`qa-session.mjs` `open()` always pressed `button_quick_login_admin`, so `open({quick:'tech'})` gave an **admin** session
+with no error. Fixed: `open()` now takes `quick` (`'admin'` | `'tech'`) and presses `button_quick_login_${quick}`.
+**Always prove who you are signed in as** before calling a result role-specific: read
+`GET /api/iam/view-profile/` (`data.user.email`) and `GET /api/auth/me/fe-permissions` (`data.view_mode`, `tech` for
+the Technician) inside the run, and print both with the verdict.
+
 ### §U.0b addendum — `pgrep -f` in an `until` loop matches its OWN shell (2026-09-28)
 
 `until ! pgrep -f "node verify2.mjs" >/dev/null; do sleep 6; done` **never exits**: the
