@@ -1,0 +1,17 @@
+{
+ "pass_meta": {
+  "run": 498,
+  "env": "sv10043.qa.shopview.com",
+  "build": "v26.40.8-7a95011",
+  "date": "2026-10-09"
+ },
+ "results": {
+  "C368135": {
+   "verdict": "Passed",
+   "observed": "QA lead ruling 9 Oct 2026: not a defect. The requirement (PRD S4-R30: 'Cancel, or closing the prompt, calls the change off. A dragged card goes back to where it was') is met: Cancel, the close (X) and Escape each closed the 'Clear \u2026's scheduled shifts?' question and put the card back, in Board View and Tech View, and the dialog path kept the choice. A click outside the question does not close it (it stays open and nothing is saved), which the requirement does not ask for. The case's step 'click an empty part of the page outside the prompt' goes beyond the requirement; the case text is left unchanged (expected results are not edited without the QA lead naming the case).",
+   "not_observed": null,
+   "ticket": "",
+   "todo": "Nothing to do. Case text diverges from the requirement on the click-outside step; reported to the QA lead 9 Oct."
+  }
+ }
+}

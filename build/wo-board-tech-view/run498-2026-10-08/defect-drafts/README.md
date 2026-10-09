@@ -214,3 +214,5 @@ Recapture on a FRESH line with NO technician: adding Dana Ortiz in Edit Line DID
 **D3 CLOSED 9 Oct 2026 — the QA lead marked [SV-11101](https://shopview.atlassian.net/browse/SV-11101) Obsolete: "it is NOW working as expected".** C96929 set to **Passed** in run 498 on his re-check (not re-observed here; branch sign-in expired), with SV-11101 in the result's Defects field. *"NOW working"* means the branch may have changed since these reports were checked: when the sign-in is back, read the build marker first, and if it moved, re-check every held report on the new build before asking (Rule 62(c)).
 
 **Defects field (QA lead 9 Oct: "The failed test run links should have the related tickets.")** `push_results_to_run.py` now fills TestRail's own **Defects** field from every `browse/<KEY>` link in the ticket text (or an explicit `"defects"` list). Back-filled and read back: C96923 → SV-11098 · C96938 → SV-11075 · C96929 (Passed) → SV-11101.
+
+**D6 CLOSED 9 Oct 2026 — QA lead: "NOt a defect".** C368135 recorded **Passed** in run 498 on his ruling; its click-outside step goes beyond PRD S4-R30 and the case text is left as it is (Rule 114).
