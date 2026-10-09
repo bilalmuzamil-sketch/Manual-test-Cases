@@ -113,7 +113,7 @@ const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.
 
 
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
-const ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const ORG = (await import('./profile.mts')).ORG;
 const rolesL: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
 const RI = await roleIds(a);
 const roleId = (re: RegExp) => rolesL.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(RI).find(([l]) => re.test(l))?.[1];
@@ -304,7 +304,7 @@ await run('C368191', async () => { const o: any = {}; const w = await one('ZZAUT
   } finally { await v.close(); }
   o.clockedOut = JSON.stringify((await a.get(`/api/staff/${gone.staff_id}/view`)).body?.data ?? {}).match(/"is_clocked_in":\s*(true|false)/)?.[1] ?? 'unknown';
   await page(w.id); o.laborBefore = await laborRows();
-  const del = async () => p.evaluate(async ([api, id]) => { const r = await fetch(`${api}/api/staff/${id}`, { method: 'DELETE', credentials: 'include' }); return `${r.status} ${(await r.text()).slice(0, 120)}`; }, ['https://sv10043api.qa.shopview.com', gone.staff_id]);
+  const del = async () => p.evaluate(async ([api, id]) => { const r = await fetch(`${api}/api/staff/${id}`, { method: 'DELETE', credentials: 'include' }); return `${r.status} ${(await r.text()).slice(0, 120)}`; }, [(await import('./profile.mts')).API, gone.staff_id]);
   o.del1 = await del();
   if (!/^2/.test(o.del1)) { o.deactivate = say(await a.post('/api/iam/change-status', { user_id: gone.id, status: 'inactive' })); o.del2 = await del(); }
   o.stillListed = (await staffRows(a, `zz.wob.gone2.${RUNNO}`)).length;

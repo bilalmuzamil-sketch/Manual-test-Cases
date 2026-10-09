@@ -18,7 +18,7 @@ const { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = {};
-const D = '@staging.shopview.local', ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const D = '@staging.shopview.local', ORG = (await import('./profile.mts')).ORG;
 const rolesR = await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`);
 const roles: any[] = rolesR.body?.data?.collection ?? rolesR.body?.data ?? [];
 const rid = (l: string) => roles.find((r) => (r.label ?? r.name) === l)?.id;

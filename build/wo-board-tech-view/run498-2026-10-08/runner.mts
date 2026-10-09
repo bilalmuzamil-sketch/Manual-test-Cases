@@ -11,7 +11,7 @@ import { api, candidates, type Api } from './data.mts';
 import { APP } from './session.mts';
 import { person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
-const ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const ORG = (await import('./profile.mts')).ORG;
 export const RUNNER_EMAIL = 'zz.wob.runner@staging.shopview.local';
 export async function asRunner(browser: Browser, main: Page, a0: Api) {
   await a0.post('/api/exit-switch-user', {});

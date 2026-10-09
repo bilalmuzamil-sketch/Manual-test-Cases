@@ -8,9 +8,10 @@ import fs from 'node:fs';
 import { chromium, type Browser, type Page } from 'playwright';
 import { signIn } from '../../global-search/e2e/fixtures/auth.js';
 
-const STATE = '/tmp/shopview/sv10043-state.json';
-export const APP = process.env.GS_APP || 'https://sv10043.qa.shopview.com';
-export const API = 'https://sv10043api.qa.shopview.com';
+import { APP as P_APP, API as P_API, STATE as P_STATE } from './profile.mts';
+const STATE = P_STATE;
+export const APP = P_APP;
+export const API = P_API;
 
 const t = () => new Date().toISOString().slice(11, 19);
 async function works(page: Page) {

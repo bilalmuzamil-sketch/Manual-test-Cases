@@ -117,7 +117,7 @@ const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.
 
 
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
-const ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const ORG = (await import('./profile.mts')).ORG;
 const rolesL: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
 const RI = await roleIds(a);
 const roleId = (re: RegExp) => rolesL.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(RI).find(([l]) => re.test(l))?.[1];

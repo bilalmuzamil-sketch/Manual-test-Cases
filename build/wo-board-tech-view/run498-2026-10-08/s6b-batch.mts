@@ -95,7 +95,7 @@ const listRowSizes = (pg: Page, num: string) => pg.evaluate(`(() => { const tr =
   const texts = [...tr.querySelectorAll('td *')].filter(x => [...x.childNodes].some(n => n.nodeType === 3 && n.textContent.trim().length > 1)).map(x => parseFloat(getComputedStyle(x).fontSize));
   return { h: Math.round(tr.getBoundingClientRect().height), minFont: Math.min(...texts), maxFont: Math.max(...texts) }; })()`);
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
-const ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const ORG = (await import('./profile.mts')).ORG;
 const roles: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
 const ADMIN_ROLE = roles.find((r) => /^admin(istrator)?$/i.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(await roleIds(a)).find(([l]) => /^admin(istrator)?$/i.test(l))?.[1];
 

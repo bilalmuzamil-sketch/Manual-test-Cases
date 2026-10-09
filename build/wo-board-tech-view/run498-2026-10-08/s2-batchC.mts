@@ -18,7 +18,7 @@ const { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = {};
-const ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const ORG = (await import('./profile.mts')).ORG;
 const D = '@staging.shopview.local';
 const techs = await candidates(a);
 const by = (n: string) => techs.find((x) => x.name === n)!;

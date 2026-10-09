@@ -65,7 +65,7 @@ async function run(id: string, f: () => Promise<void>) {
 const seed = async (name: string, unit: string, leads: (string | null)[]) => { let w = await workOrders(a, name); if (!w.length) { const c = await customer(a, name, unit); for (const l of leads) await workOrder(a, c, 'approved', l); w = await workOrders(a, name); } return w; };
 
 
-const ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const ORG = (await import('./profile.mts')).ORG;
 const roles: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
 const fromStaff = await roleIds(a);
 const rid = (re: RegExp) => roles.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(fromStaff).find(([l]) => re.test(l))?.[1];

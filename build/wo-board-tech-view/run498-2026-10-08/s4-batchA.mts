@@ -19,7 +19,7 @@ const { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
 const a = api(p);
 const R: Record<string, any> = { clearedSwitch: (await a.post('/api/exit-switch-user', {})).status };
-const D = '@staging.shopview.local', ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const D = '@staging.shopview.local', ORG = (await import('./profile.mts')).ORG;
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
 const roles: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
 R.nina = (await person(a, 'Nina', 'Newtech', { role: roles.find((r) => (r.label ?? r.name) === 'Technician')?.id, email: `zz.wob.nina.newtech${D}`, clockable: true })).log; console.log(t(), 'roles', roles.length, 'nina', JSON.stringify(R.nina));

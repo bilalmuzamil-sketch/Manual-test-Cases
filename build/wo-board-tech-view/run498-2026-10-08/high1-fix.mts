@@ -113,7 +113,7 @@ const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.
 
 
 const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
-const ORG = 'd55bc308-e61a-438d-b5f1-c7a73c89d49f';
+const ORG = (await import('./profile.mts')).ORG;
 const rolesL: any[] = ((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data?.collection ?? []);
 const RI = await roleIds(a);
 const roleId = (re: RegExp) => rolesL.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(RI).find(([l]) => re.test(l))?.[1];
@@ -301,7 +301,7 @@ await run('C368191', async () => { const o: any = {}; const w = await one('ZZAUT
     await d.locator('textarea').first().fill('ZZAUTOTEST labor before deletion').catch(() => {}); await d.locator('button').filter({ hasText: /^\s*(Stop|Stop Working|Save|Clock Out|Submit)\s*$/i }).last().click().catch(() => {}); await pg.waitForTimeout(3000); await shot(pg, 'C368191-stopped');
   } finally { await v.close(); }
   await page(w.id); o.laborBefore = await laborRows();
-  o.del = await p.evaluate(async ([api, id]) => { const r = await fetch(`${api}/api/staff/${id}`, { method: 'DELETE', credentials: 'include' }); return `${r.status} ${(await r.text()).slice(0, 120)}`; }, ['https://sv10043api.qa.shopview.com', gone.staff_id]);
+  o.del = await p.evaluate(async ([api, id]) => { const r = await fetch(`${api}/api/staff/${id}`, { method: 'DELETE', credentials: 'include' }); return `${r.status} ${(await r.text()).slice(0, 120)}`; }, [(await import('./profile.mts')).API, gone.staff_id]);
   o.stillListed = (await staffRows(a, `zz.wob.gone.${RUNNO}`)).length;
   await page(w.id); o.laborAfterDelete = await laborRows();
   o.shift = await schedDrop(w, JW.staff_id, /^\s*11\s*(AM|am|:00)/, lineName(1));
