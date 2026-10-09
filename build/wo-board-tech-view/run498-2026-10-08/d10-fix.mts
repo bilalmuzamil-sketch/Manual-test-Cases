@@ -13,7 +13,7 @@ const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p; const a = api(p); const R: any = {};
 const shot = (n: string) => p.screenshot({ path: path.join(OUT, `${n}.png`) });
 const box = async (sel: string) => { const b = await p.locator(sel).first().boundingBox(); return b ? [b.x, b.y, b.width, b.height].map(Math.round) : null; };
-if (!process.env.SKIP_D1) try { // D10
+try { // D10
   const [w] = await workOrders(a, 'ZZAUTOTEST F2 Card Field Values'); R.d10wo = w?.number; const q = w ? (w.companyName ?? 'ZZAUTOTEST F2 Card Field Values') : 'ZZAUTOTEST F2 Card Field Values';
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await tab(p, 'All'); await display(p, 'Board View'); await search(p, w?.number ?? q); await p.waitForTimeout(3000);
   // FIX 2026-10-09: the card sits in its lead's column, which can be off-screen to the right — bring it into view first
@@ -26,7 +26,7 @@ if (!process.env.SKIP_D1) try { // D10
     R.d10lineBoxes = await p.evaluate(`[...document.querySelectorAll('[data-test-id="table_work_order_lines"] tbody tr')].filter(r => /\\d\\.\\d\\d\\s*\\/\\s*\\d\\.\\d\\d/.test(r.innerText)).map(r => { const b = r.getBoundingClientRect(); return [Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height), (r.innerText.match(/\\d\\.\\d\\d\\s*\\/\\s*\\d\\.\\d\\d/) || [''])[0]]; })`);
     R.d10statusCard = await box('[data-test-id="text_wo_number"]'); await shot('D10-wo-lines'); }
 } catch (e: any) { R.d10error = String(e).slice(0, 300); }
-try { // D1
+if (!process.env.SKIP_D1) try { // D1
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await tab(p, 'All'); await display(p, 'List'); await search(p, 'ZZNOMATCH123'); await p.waitForTimeout(3000);
   R.d1msg = await p.evaluate(`(document.body.innerText.match(/No work orders match[^\\n]*/) || [null])[0]`); R.d1box = await p.evaluate(`(() => { const e = [...document.querySelectorAll('div, span, p')].find(x => /^No work orders match the search/.test(x.innerText || '') && x.children.length < 3); if (!e) return null; const b = e.getBoundingClientRect(); return [Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height)]; })()`); R.d1search = await box('[data-test-id="page_search_input"]'); await shot('D1-search-no-results');
   await p.locator('[data-test-id="page_search_clear"]').click().catch(() => {}); await p.waitForTimeout(2500); await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900);
