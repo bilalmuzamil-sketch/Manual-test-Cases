@@ -172,17 +172,23 @@ await run('C368195', async () => { const u = await mkUser('ZZAUTOTEST', `ListNew
   try { o.saved = await prefFor(); await goList(v.page); o.heads = await listHeads(v.page); o.menu = await colMenu(v.page); } finally { await v.close(); } R.C368195 = o; });
 
 await run('C368196', async () => {
-  const s = await mkSet('ZZAUTOTEST List Sort', [{ co: 'Alpha Co', lead: ANA }, { co: 'Bravo Co', lead: BEN }, { co: 'Charlie Co', lead: null }]); await goList(p, s.q);
-  const nums = Object.values(s.w).map((x: any) => x.number).sort(); const o: any = { nums, heads: {} };
+  // three work orders that DIFFER in every column a person can set: unit, number of lines (so Lines and Total Price),
+  // status, lead, and On Site (one turned on from the List); each header is then judged on the cell values themselves
+  const q = `ZZAUTOTEST List Sort ${RUNNO}`; const plan = [{ co: 'Alpha Co', unit: 'U-3', lines: 1, lead: ANA, st: 'approved' }, { co: 'Bravo Co', unit: 'U-1', lines: 3, lead: BEN, st: 'in_progress' }, { co: 'Charlie Co', unit: 'U-2', lines: 2, lead: null, st: 'estimate' }];
+  for (const x of plan) { const c = await customer(a, `${q} ${x.co}`, x.unit); const w = await workOrder(a, c, 'estimate', null); for (let i = 0; i < x.lines; i++) await mkLine(w, i + 1);
+    if (x.st !== 'estimate') await a.post('/api/work-orders/change-status', { id: w, status: 'approved' }); if (x.lead) await a.post('/api/work-orders/change-lead-technician', { work_order_id: w, tech_assigned_id: x.lead.staff_id }); if (x.st === 'in_progress') await a.post('/api/work-orders/change-status', { id: w, status: 'in_progress' }); }
+  await goList(p, q); const o: any = { heads: {} };
+  const first = p.locator('tbody tr').filter({ hasText: 'Alpha Co' }).first(); await first.locator('[data-test-id*="vehicle_here"], button:has(i:text-matches("place|location_on"))').first().click().catch(() => {}); await p.waitForTimeout(2000);
+  const table = () => p.evaluate(`(() => { const hs = [...document.querySelectorAll('thead th')].map(h => h.innerText.replace(/arrow_drop_(up|down)/g, '').trim()); return [...document.querySelectorAll('tbody tr')].filter(r => /S\\d+-\\d+/.test(r.innerText)).map(r => Object.fromEntries([...r.cells].map((c, i) => [hs[i], (c.querySelector('i') && !c.innerText.replace(/location_on|content_copy/g, '').trim() ? (c.querySelector('i').className.match(/text-[a-z-]+/) || [''])[0] : c.innerText.replace(/location_on|content_copy/g, '').trim())]))); })()`) as Promise<any[]>;
   for (const h of await listHeads()) { const th = p.locator('thead th').filter({ hasText: h }).first(); if (!(await th.locator('i, .q-icon').filter({ hasText: /arrow/ }).count())) { o.heads[h] = 'not sortable'; continue; }
-    await th.click(); await p.waitForTimeout(2200); const r1 = await rowsList(); await th.click(); await p.waitForTimeout(2200); const r2 = await rowsList();
-    o.heads[h] = { first: r1, second: r2, reversed: JSON.stringify(r1) === JSON.stringify([...r2].reverse()), changed: JSON.stringify(r1) !== JSON.stringify(r2) }; }
-  R.C368196 = o; });
+    await th.click(); await p.waitForTimeout(2200); const r1 = await table(); await th.click(); await p.waitForTimeout(2200); const r2 = await table();
+    const v1 = r1.map((r) => r[h]), v2 = r2.map((r) => r[h]); o.heads[h] = { first: v1, second: v2, numbers1: r1.map((r) => r.Number), distinct: new Set(v1).size, reversed: JSON.stringify(r1.map((r) => r.Number)) === JSON.stringify(r2.map((r) => r.Number).reverse()) }; }
+  await shot(p, 'C368196-list'); R.C368196 = o; });
 
 await run('C368198', async () => {
   const s = await mkSet('ZZAUTOTEST Invoice Order', [{ co: 'X Co', lead: ANA, status: 'invoiced' }]); await p.waitForTimeout(65_000);
   const s2 = await mkSet('ZZAUTOTEST Invoice Order', [{ co: 'Y Co', lead: ANA, status: 'invoiced' }]);
-  await goList(p); await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item').filter({ hasText: /^\s*Invoiced\s*$/ }).first().click(); await p.waitForTimeout(1500); await p.keyboard.press('Escape');
+  await goList(p); await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item').filter({ hasText: /Invoiced/ }).first().click(); await p.waitForTimeout(1500); await p.keyboard.press('Escape');
   await p.locator('[data-test-id="button_column_selection"]').click(); await p.waitForTimeout(800); const t = p.locator('[data-test-id="toggle_column_invoicedDate"]'); if ((await t.locator('[role=switch]').getAttribute('aria-checked').catch(() => null)) !== 'true') await t.click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape');
   await search(p, 'ZZAUTOTEST Invoice Order'); const r = await rowsList();
   R.C368198 = { x: s.w['X Co'].number, y: s2.w['Y Co'].number, rows: r, yAboveX: r.indexOf(s2.w['Y Co'].number) >= 0 && r.indexOf(s2.w['Y Co'].number) < r.indexOf(s.w['X Co'].number), heads: await listHeads() };
@@ -219,7 +225,7 @@ await run('C368204', async () => { await goList(p); const saved = { tab: await a
 await run('C368205', async () => { await goList(p); await p.waitForTimeout(1500); const n0 = (await rowsList()).length; const tot0 = await p.locator('.q-table__bottom').innerText().catch(() => null);
   await p.goto(APP + '/workorders?vehicleHere=2', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
   const o: any = { rowsBefore: n0, rowsAfter: (await rowsList()).length, bottomBefore: tot0, bottomAfter: await p.locator('.q-table__bottom').innerText().catch(() => null), toasts: await toasts(p) };
-  await p.locator('[data-test-id="filter_chip_vehicleHere"]').click(); await p.waitForTimeout(900); o.filter = await p.evaluate(`[...document.querySelectorAll('.q-menu .q-item')].map(e => e.innerText.trim() + (e.querySelector('[aria-checked=true], .q-radio__inner--truthy, .q-checkbox__inner--truthy') ? ' [on]' : ''))`); await p.keyboard.press('Escape'); R.C368205 = o; });
+  await p.locator('[data-test-id="filter_chip_vehicleHere"]').click(); await p.waitForTimeout(900); o.chip = await p.locator('[data-test-id="filter_chip_vehicleHere"]').innerText().catch(() => null); o.filter = await p.evaluate(`[...document.querySelectorAll('.q-menu')].map(m => m.innerText.replace(/\\s+/g, ' ').trim()).join(' || ')`); o.checked = await p.evaluate(`[...document.querySelectorAll('.q-menu [aria-checked="true"], .q-menu .q-radio__inner--truthy, .q-menu .q-checkbox__inner--truthy')].length`); await shot(p, 'C368205-filter'); await p.keyboard.press('Escape'); R.C368205 = o; });
 
 await run('C368206', async () => { const orig = await roleRead(VIEW_ROLE); const set = async (on: boolean) => say(await a.put(`/api/roles/${VIEW_ROLE}`, { name: orig.name, description: orig.description, view_mode: orig.view_mode, template_id: orig.template_id, fe_permissions: (orig.fe_permissions ?? []).map((x: any) => x.id), cross_toggles: { ...(orig.cross_toggles ?? {}), seeFinancialData: on } }));
   const o: any = { off: await set(false) }; const u = await mkUser('ZZAUTOTEST', `NoFin ${stamp}`, VIEW_ROLE, 'nofin'); const v = await asUser(u);
